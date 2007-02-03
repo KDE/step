@@ -32,6 +32,9 @@
 #include <QPainter>
 #include <QAction>
 
+
+#include <QDebug>
+
 class WorldSceneAxes: public QGraphicsItem
 {
 public:
@@ -39,17 +42,24 @@ public:
     QRectF boundingRect() const;
     QPainterPath shape() const;
     void paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget);
+    void advance(int phase);
+protected:
+    QRectF _boundingRect;
+    double _viewScale;
+    static const int LENGTH = 100;
+    static const int ARROW_STROKE = 6;
 };
 
 WorldSceneAxes::WorldSceneAxes(QGraphicsItem* parent, QGraphicsScene* scene)
-    : QGraphicsItem(parent, scene)
+    : QGraphicsItem(parent, scene), _boundingRect(-LENGTH, -LENGTH, LENGTH*2, LENGTH*2)
 {
+    _viewScale = 1;
     setZValue(-100);
 }
 
 QRectF WorldSceneAxes::boundingRect() const
 {
-    return QRectF(-100,-100,200,200);
+    return _boundingRect;
 }
 
 QPainterPath WorldSceneAxes::shape() const
@@ -59,13 +69,37 @@ QPainterPath WorldSceneAxes::shape() const
 
 void WorldSceneAxes::paint(QPainter* painter, const QStyleOptionGraphicsItem* /*option*/, QWidget* /*widget*/)
 {
+    if(!scene() || scene()->views().count() == 0) return;
+
     painter->setPen(QPen(Qt::gray, 0));//, Qt::DotLine, Qt::SquareCap, Qt::RoundJoin));
-    painter->drawLine(QLineF(0,-100,0,100));
-    painter->drawLine(QLineF(-100,0,100,0));
+    painter->drawLine(QLineF(0, -LENGTH, 0, LENGTH));
+    painter->drawLine(QLineF(-LENGTH, 0, LENGTH, 0));
+
+    painter->drawLine(QLineF(0, -LENGTH, -0.5*ARROW_STROKE, -LENGTH+0.866*ARROW_STROKE ));
+    painter->drawLine(QLineF(0, -LENGTH, +0.5*ARROW_STROKE, -LENGTH+0.866*ARROW_STROKE ));
+    painter->drawLine(QLineF(LENGTH, 0, LENGTH-0.866*ARROW_STROKE, -0.5*ARROW_STROKE ));
+    painter->drawLine(QLineF(LENGTH, 0, LENGTH-0.866*ARROW_STROKE, +0.5*ARROW_STROKE ));
+
+    painter->drawText(QRectF(5, -LENGTH, LENGTH-5, LENGTH), Qt::AlignLeft | Qt::AlignTop,
+                                                QString::number( LENGTH/_viewScale ));
+    painter->drawText(QRectF(5, -LENGTH, LENGTH-5, LENGTH), Qt::AlignRight | Qt::AlignBottom,
+                                                QString::number( LENGTH/_viewScale ));
+}
+
+void WorldSceneAxes::advance(int phase)
+{
+    if(phase == 0) return;
+    if(scene()) {
+        prepareGeometryChange();
+        _viewScale = static_cast<WorldScene*>(scene())->currentViewScale();
+        resetMatrix();
+        scale(1/_viewScale, -1/_viewScale);
+        update(); // XXX: documentation says this is unnessesary, but it doesn't work without it
+    }
 }
 
 WorldScene::WorldScene(WorldModel* worldModel, QObject* parent)
-    : QGraphicsScene(parent), _worldModel(worldModel), _itemCreator(NULL)
+    : QGraphicsScene(parent), _worldModel(worldModel), _itemCreator(NULL), _currentViewScale(1)
 {
     setItemIndexMethod(NoIndex);
     //XXX
@@ -172,7 +206,9 @@ void WorldScene::worldModelReset()
     _itemsHash.clear();
 
     /* Axes */
+    //new WorldSceneAxes(0, this);
     addItem(new WorldSceneAxes());
+    advance();
 
     /* Check for new items */
     for(int i=0; i<_worldModel->itemCount(); ++i) {
@@ -190,6 +226,7 @@ void WorldScene::worldRowsInserted(const QModelIndex& parent, int start, int end
         if(graphicsItem) {
             _itemsHash.insert(_worldModel->data(index, WorldModel::ObjectRole).value<QObject*>(), graphicsItem);
             addItem(graphicsItem);
+            graphicsItem->advance(1);
         }
     }
 }
@@ -227,12 +264,56 @@ void WorldScene::worldSelectionChanged(const QItemSelection& selected, const QIt
 
 void WorldScene::worldDataChanged(const QModelIndex& /*topLeft*/, const QModelIndex& /*bottomRight*/)
 {
-    advance(); // XXX
+    advance(); // XXX ?
 }
 
-
-WorldGraphicsView::WorldGraphicsView(QGraphicsScene* scene, QWidget* parent)
-    : QGraphicsView(scene, parent)
+void WorldScene::updateViewScale()
 {
+    if(!views().isEmpty()) {
+        _currentViewScale = views()[0]->matrix().m11();
+        advance();
+    }
+}
+
+WorldGraphicsView::WorldGraphicsView(WorldScene* worldScene, QWidget* parent)
+    : QGraphicsView(worldScene, parent)
+{
+    //worldGraphicsView->setRenderHints(QPainter::Antialiasing);
+    setDragMode(QGraphicsView::RubberBandDrag);
+    setResizeAnchor(QGraphicsView::AnchorViewCenter);
+    scale(1, -1);
+    setSceneRect(-SCENE_LENGTH, -SCENE_LENGTH,
+                  SCENE_LENGTH*2, SCENE_LENGTH*2);
+    static_cast<WorldScene*>(scene())->updateViewScale();
+}
+
+void WorldGraphicsView::zoomIn()
+{
+    scale(1.25, 1.25);
+    double length = SCENE_LENGTH / matrix().m11();
+    setSceneRect(-length, -length, length*2, length*2);
+    static_cast<WorldScene*>(scene())->updateViewScale();
+}
+
+void WorldGraphicsView::zoomOut()
+{
+    scale(1/1.25, 1/1.25);
+    double length = SCENE_LENGTH / matrix().m11();
+    setSceneRect(-length, -length, length*2, length*2);
+    static_cast<WorldScene*>(scene())->updateViewScale();
+}
+
+void WorldGraphicsView::fitToPage()
+{
+    QRectF br = static_cast<WorldScene*>(scene())->calcItemsBoundingRect();
+    QRect  ws = viewport()->rect();
+    double s = 0.8 * qMin( ws.width()/br.width(), ws.height()/br.height() );
+    //qDebug() << "br" << br << "ws" << ws << "s" << s;
+    resetMatrix();
+    scale(s, -s);
+    double length = SCENE_LENGTH / s;
+    //qDebug() << "length" << length;
+    setSceneRect(-length, -length, length*2, length*2);
+    static_cast<WorldScene*>(scene())->updateViewScale();
 }
 

@@ -58,9 +58,7 @@ SpringHandlerGraphicsItem::SpringHandlerGraphicsItem(StepCore::Item* item, World
 {
     Q_ASSERT(_num == 1 || _num == 2);
     setFlag(QGraphicsItem::ItemIsMovable);
-    _boundingRect = QRectF(-HANDLER_SIZE/2, -HANDLER_SIZE/2, HANDLER_SIZE, HANDLER_SIZE);
     if(_num == 1) setPos(0, 0);
-    advance(1);
 }
 
 void SpringHandlerGraphicsItem::paint(QPainter* painter, const QStyleOptionGraphicsItem* /*option*/, QWidget* /*widget*/)
@@ -72,6 +70,9 @@ void SpringHandlerGraphicsItem::paint(QPainter* painter, const QStyleOptionGraph
 void SpringHandlerGraphicsItem::advance(int phase)
 {
     if(phase == 0) return;
+    prepareGeometryChange();
+    double w = HANDLER_SIZE/currentViewScale()/2;
+    _boundingRect = QRectF(-w, -w, w*2, w*2);
     if(_num == 2) {
         setPos(qgraphicsitem_cast<SpringGraphicsItem*>(parentItem())->rnorm(), 0);
     }
@@ -141,7 +142,6 @@ SpringGraphicsItem::SpringGraphicsItem(StepCore::Item* item, WorldModel* worldMo
     Q_ASSERT(qobject_cast<StepCore::Spring*>(_item) != NULL);
     setFlag(QGraphicsItem::ItemIsSelectable);
     setZValue(150);
-    advance(1);
     _handler1 = new SpringHandlerGraphicsItem(item, worldModel, this, 1);
     _handler2 = new SpringHandlerGraphicsItem(item, worldModel, this, 2);
     _handler1->setVisible(false);
@@ -156,7 +156,8 @@ inline StepCore::Spring* SpringGraphicsItem::spring() const
 QPainterPath SpringGraphicsItem::shape() const
 {
     QPainterPath path;
-    path.addRect(QRectF(-1, -_radius-1, _rnorm+1, _radius*2+1));
+    double u = 1/currentViewScale();
+    path.addRect(QRectF(-u, -_radius-u, _rnorm+u, _radius*2+u));
     return path;
 }
 
@@ -168,8 +169,8 @@ void SpringGraphicsItem::paint(QPainter* painter, const QStyleOptionGraphicsItem
     if(isSelected()) {
         painter->setRenderHint(QPainter::Antialiasing, true);
         painter->setPen(QPen(SELECTION_COLOR, 0, Qt::DashLine));
-        painter->drawRect(QRectF(-SELECTION_MARGIN, -_radius-SELECTION_MARGIN,
-                           _rnorm+SELECTION_MARGIN*2,  (_radius+SELECTION_MARGIN)*2));
+        double m = SELECTION_MARGIN / currentViewScale();
+        painter->drawRect(QRectF(-m, -_radius-m, _rnorm+m*2,  (_radius+m)*2));
     }
 }
 
@@ -205,9 +206,13 @@ void SpringGraphicsItem::advance(int phase)
     setPos(r1[0], r1[1]);
     resetMatrix();
     rotate(atan2(r[1], r[0])*180/3.14);
+
+    double s = currentViewScale();
+    double m = SELECTION_MARGIN / s;
+    double u = 1/s;
+    _radius /= s;
     
-    _boundingRect.setCoords(-SELECTION_MARGIN-1, -_radius-SELECTION_MARGIN-1,
-                        _rnorm+SELECTION_MARGIN*2+1, (_radius+SELECTION_MARGIN)*2+1);
+    _boundingRect.setCoords(-m-u, -_radius-m-u, _rnorm+m*2+u, (_radius+m)*2+u);
 
     update(); // XXX: documentation says this is unnessesary, but it doesn't work without it
 }

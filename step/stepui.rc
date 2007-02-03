@@ -5,6 +5,8 @@
                           http://www.kde.org/standards/kcfg/1.0/kcfg.xsd" >
   <ToolBar name="mainToolBar" >
     <text>Main Toolbar</text>
+    <Action name="view_zoom_in" />
+    <Action name="view_zoom_out" />
   </ToolBar>
   <ToolBar name="simulationToolBar" >
     <text>Simulation Toolbar</text>

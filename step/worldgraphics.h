@@ -37,6 +37,7 @@ public:
     WorldGraphicsItem(StepCore::Item* item, WorldModel* worldModel, QGraphicsItem* parent = 0);
     StepCore::Item* item() const { return _item; }
     QRectF boundingRect() const;
+    void advance(int phase) const;
 
 protected:
     virtual void mouseSetPos(const QPointF& pos);
@@ -54,6 +55,7 @@ protected:
     QRectF _boundingRect;
     bool   _isMouseOverItem;
 
+    double currentViewScale() const;
     QVariant itemChange(GraphicsItemChange change, const QVariant& value);
     void drawHandler(QPainter* painter, const StepCore::Vector2d& v);
     void drawArrow(QPainter* painter, const StepCore::Vector2d& v);

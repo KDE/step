@@ -66,12 +66,6 @@ MainWindow::MainWindow()
     worldScene = new WorldScene(worldModel);
     worldGraphicsView = new WorldGraphicsView(worldScene, this);
     setCentralWidget(worldGraphicsView);
-    //worldGraphicsView->setRenderHints(QPainter::Antialiasing);
-    worldGraphicsView->setDragMode(QGraphicsView::RubberBandDrag);
-    worldGraphicsView->scale(1, -1);
-    //worldGraphicsView->centerOn(0, 0);
-    worldGraphicsView->setSceneRect(-1000,-1000,2000,2000);
-    //worldGraphicsView->setScene(worldScene);
 
     QObject::connect(worldModel, SIGNAL(worldChanged(bool)), this, SLOT(setModified(bool)));
     QObject::connect(itemPalette, SIGNAL(beginAddItem(const QString&)),
@@ -90,12 +84,14 @@ MainWindow::MainWindow()
 
 void MainWindow::setupActions()
 {
+    /* File menu */
     KStandardAction::openNew(this, SLOT(newFile()), actionCollection());
     KStandardAction::open(this, SLOT(openFile()), actionCollection());
     KStandardAction::save(this, SLOT(saveFile()), actionCollection());
     KStandardAction::saveAs(this, SLOT(saveFileAs()), actionCollection());
     KStandardAction::quit(this, SLOT(close()), actionCollection());
 
+    /* Simulation menu */
     actionSimulation = static_cast<KAction*>(
         actionCollection()->addAction("simulation_start_stop", this, SLOT(simulationStartStop())));
     actionSimulationStart = static_cast<KAction*>(
@@ -109,6 +105,11 @@ void MainWindow::setupActions()
     actionSimulationStop->setIcon(KIcon("player_stop"));
 
     simulationStop();
+
+    /* View menu */
+    KStandardAction::zoomIn(worldGraphicsView, SLOT(zoomIn()), actionCollection());
+    KStandardAction::zoomOut(worldGraphicsView, SLOT(zoomOut()), actionCollection());
+    KStandardAction::fitToPage(worldGraphicsView, SLOT(fitToPage()), actionCollection());
 }
 
 void MainWindow::updateCaption()

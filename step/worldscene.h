@@ -45,6 +45,11 @@ public:
     StepCore::Item* itemFromGraphics(QGraphicsItem* graphicsItem);
     QGraphicsItem* graphicsFromItem(QObject* item);
 
+    void updateViewScale(); // Qt4.3 can help here
+    double currentViewScale() { return _currentViewScale; }
+
+    QRectF calcItemsBoundingRect() { return itemsBoundingRect(); } // XXX: exclude axes
+
 public slots:
     void beginAddItem(const QString& name);
 
@@ -68,14 +73,24 @@ protected:
 protected:
     WorldModel* _worldModel;
     QHash<QObject*, QGraphicsItem*> _itemsHash;
-
     ItemCreator* _itemCreator;
+    double _currentViewScale;
 };
 
 class WorldGraphicsView: public QGraphicsView
 {
+    Q_OBJECT
+
 public:
-    WorldGraphicsView(QGraphicsScene* scene, QWidget* parent);
+    WorldGraphicsView(WorldScene* worldScene, QWidget* parent);
+
+public slots:
+    void zoomIn();
+    void zoomOut();
+    void fitToPage();
+
+protected:
+    static const int SCENE_LENGTH = 1000;
 };
 
 #endif

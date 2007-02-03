@@ -47,12 +47,18 @@ QRectF WorldGraphicsItem::boundingRect() const
     return _boundingRect;
 }
 
+double WorldGraphicsItem::currentViewScale() const
+{
+    if(!scene()) return 1;
+    return static_cast<WorldScene*>(scene())->currentViewScale();
+}
+
 void WorldGraphicsItem::drawArrow(QPainter* painter, const StepCore::Vector2d& v)
 {
     if(v.norm2() > ARROW_STROKE*ARROW_STROKE) { // do not draw too small vectors
         painter->drawLine(QLineF(0, 0, v[0], v[1]));
 
-        const StepCore::Vector2d vn = v * (ARROW_STROKE / v.norm());
+        const StepCore::Vector2d vn = v * (ARROW_STROKE / currentViewScale() / v.norm());
         painter->drawLine(QLineF(v[0], v[1], v[0] - 0.866*vn[0] - 0.5  *vn[1],
                                              v[1] + 0.5  *vn[0] - 0.866*vn[1]));
         painter->drawLine(QLineF(v[0], v[1], v[0] - 0.866*vn[0] + 0.5  *vn[1],
@@ -158,8 +164,6 @@ ArrowHandlerGraphicsItem::ArrowHandlerGraphicsItem(StepCore::Item* item, WorldMo
 {
     Q_ASSERT(_property.userType() == qMetaTypeId<StepCore::Vector2d>());
     setFlag(QGraphicsItem::ItemIsMovable);
-    _boundingRect = QRectF(-HANDLER_SIZE/2, -HANDLER_SIZE/2, HANDLER_SIZE, HANDLER_SIZE);
-    advance(1);
 }
 
 void ArrowHandlerGraphicsItem::paint(QPainter* painter, const QStyleOptionGraphicsItem* /*option*/, QWidget* /*widget*/)
@@ -171,8 +175,12 @@ void ArrowHandlerGraphicsItem::paint(QPainter* painter, const QStyleOptionGraphi
 void ArrowHandlerGraphicsItem::advance(int phase)
 {
     if(phase == 0) return;
+    prepareGeometryChange();
+    double w = HANDLER_SIZE/currentViewScale()/2;
+    _boundingRect = QRectF(-w, -w, w*2, w*2);
     StepCore::Vector2d v = _property.read(_item).value<StepCore::Vector2d>();
     setPos(v[0], v[1]);
+    update(); //XXX
 }
 
 void ArrowHandlerGraphicsItem::mouseMoveEvent(QGraphicsSceneMouseEvent *event)

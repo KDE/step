@@ -45,7 +45,6 @@ ParticleGraphicsItem::ParticleGraphicsItem(StepCore::Item* item, WorldModel* wor
     setFlag(QGraphicsItem::ItemIsSelectable);
     setFlag(QGraphicsItem::ItemIsMovable);
     setAcceptsHoverEvents(true);
-    advance(1);
     _velocityHandler = new ArrowHandlerGraphicsItem(item, worldModel, this,
                    _item->metaObject()->property(_item->metaObject()->indexOfProperty("velocity"))); // XXX
     _velocityHandler->setVisible(false);
@@ -69,7 +68,8 @@ bool ParticleGraphicsItem::contains(const QPointF& point) const
 QPainterPath ParticleGraphicsItem::shape() const
 {
     QPainterPath path;
-    path.addEllipse(QRectF(-RADIUS-1,-RADIUS-1,RADIUS*2+1,RADIUS*2+1));
+    double radius = (RADIUS+1)/currentViewScale();
+    path.addEllipse(QRectF(-radius,-radius,radius*2,radius*2));
     return path;
 }
 
@@ -78,11 +78,14 @@ void ParticleGraphicsItem::paint(QPainter* painter, const QStyleOptionGraphicsIt
     //painter->setPen(QPen(Qt::green, 0));
     //painter->drawRect(boundingRect());
 
+    double s = currentViewScale();
+    double radius = RADIUS/s;
+
     int renderHints = painter->renderHints();
     painter->setRenderHint(QPainter::Antialiasing, true);
     painter->setPen(QPen(Qt::black, 0));
     painter->setBrush(QBrush(Qt::black));
-    painter->drawEllipse(QRectF(-RADIUS,-RADIUS,RADIUS*2,RADIUS*2));
+    painter->drawEllipse(QRectF(-radius,-radius,radius*2,radius*2));
     painter->setBrush(QBrush());
     painter->setRenderHint(QPainter::Antialiasing, renderHints & QPainter::Antialiasing);
 
@@ -90,9 +93,8 @@ void ParticleGraphicsItem::paint(QPainter* painter, const QStyleOptionGraphicsIt
         painter->setRenderHint(QPainter::Antialiasing, true);
         painter->setPen(QPen(SELECTION_COLOR, 0, Qt::DashLine));
         //painter->setBrush(QBrush(QColor(0, 0x99, 0xff)));
-        painter->drawEllipse(QRectF(-RADIUS-SELECTION_MARGIN,    -RADIUS-SELECTION_MARGIN,
-                                    (RADIUS+SELECTION_MARGIN)*2, (RADIUS+SELECTION_MARGIN)*2));
-
+        radius = (RADIUS+SELECTION_MARGIN)/s;
+        painter->drawEllipse(QRectF(-radius, -radius, radius*2, radius*2));
         painter->setRenderHint(QPainter::Antialiasing, renderHints & QPainter::Antialiasing);
     }
 
@@ -107,13 +109,15 @@ void ParticleGraphicsItem::paint(QPainter* painter, const QStyleOptionGraphicsIt
 void ParticleGraphicsItem::advance(int phase)
 {
     if(phase == 0) return;
+    prepareGeometryChange();
+
     const StepCore::Vector2d& r = particle()->position();
     const StepCore::Vector2d& v = particle()->velocity();
     const StepCore::Vector2d  a = particle()->force() / particle()->mass();
+    double s = currentViewScale();
 
-    prepareGeometryChange();
-    _boundingRect = QRectF(-RADIUS-SELECTION_MARGIN,    -RADIUS-SELECTION_MARGIN,
-                            (RADIUS+SELECTION_MARGIN)*2,(RADIUS+SELECTION_MARGIN)*2) 
+    _boundingRect = QRectF((-RADIUS-SELECTION_MARGIN)/s,    (-RADIUS-SELECTION_MARGIN)/s,
+                            (RADIUS+SELECTION_MARGIN)*2/s,(RADIUS+SELECTION_MARGIN)*2/s) 
                     | QRectF(0, 0, v[0], v[1]).normalized()
                     | QRectF(0, 0, a[0], a[1]).normalized();
     _boundingRect.adjust(-ARROW_STROKE,-ARROW_STROKE,ARROW_STROKE,ARROW_STROKE);
