@@ -20,6 +20,9 @@
 
 #include "worldmodel.h"
 #include "worldfactory.h"
+
+#include <klocale.h>
+
 #include <QToolBox>
 #include <QToolBar>
 #include <QAction>
@@ -29,7 +32,7 @@
 #include "itempalette.moc"
 
 ItemPalette::ItemPalette(WorldModel* worldModel, QWidget* parent, Qt::WindowFlags flags)
-    : QDockWidget("Palette", parent, flags), _worldModel(worldModel)
+    : QDockWidget(i18n("Palette"), parent, flags), _worldModel(worldModel)
 {
     /*
     _toolBox = new QToolBox(this);
@@ -57,7 +60,7 @@ ItemPalette::ItemPalette(WorldModel* worldModel, QWidget* parent, Qt::WindowFlag
     _forcesToolBar->addSeparator();
     */
 
-    _toolBar = new QToolBar("Palette", this);
+    _toolBar = new QToolBar(i18n("Palette"), this);
     _toolBar->setOrientation(Qt::Vertical);
     setWidget(_toolBar);
 
