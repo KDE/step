@@ -88,6 +88,7 @@ public slots:
     void zoomIn();
     void zoomOut();
     void fitToPage();
+    void actualSize();
 
 protected:
     static const int SCENE_LENGTH = 1000;

@@ -140,6 +140,8 @@ bool MainWindow::newFile()
     if(!maybeSave()) return false;
 
     worldModel->clearWorld();
+    worldGraphicsView->actualSize();
+    worldGraphicsView->centerOn(0,0);
     currentFileName = QString();
     updateCaption();
     return true;
@@ -155,6 +157,7 @@ bool MainWindow::openFile(const QString& name)
         if(fileName.isEmpty()) return false;
     }
 
+    modified = false;
     newFile();
 
     // TODO: KIO

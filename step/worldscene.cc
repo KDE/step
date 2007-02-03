@@ -281,10 +281,7 @@ WorldGraphicsView::WorldGraphicsView(WorldScene* worldScene, QWidget* parent)
     //worldGraphicsView->setRenderHints(QPainter::Antialiasing);
     setDragMode(QGraphicsView::RubberBandDrag);
     setResizeAnchor(QGraphicsView::AnchorViewCenter);
-    scale(1, -1);
-    setSceneRect(-SCENE_LENGTH, -SCENE_LENGTH,
-                  SCENE_LENGTH*2, SCENE_LENGTH*2);
-    static_cast<WorldScene*>(scene())->updateViewScale();
+    actualSize();
 }
 
 void WorldGraphicsView::zoomIn()
@@ -314,6 +311,15 @@ void WorldGraphicsView::fitToPage()
     double length = SCENE_LENGTH / s;
     //qDebug() << "length" << length;
     setSceneRect(-length, -length, length*2, length*2);
+    static_cast<WorldScene*>(scene())->updateViewScale();
+}
+
+void WorldGraphicsView::actualSize()
+{
+    resetMatrix();
+    scale(1, -1);
+    setSceneRect(-SCENE_LENGTH, -SCENE_LENGTH,
+                  SCENE_LENGTH*2, SCENE_LENGTH*2);
     static_cast<WorldScene*>(scene())->updateViewScale();
 }
 
