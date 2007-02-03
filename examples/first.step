@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE StepCoreXML>
+<world xmlns="http://quantum.dgap.mipt.ru/StepCoreXML" version="1.0">
+    <objectName>world</objectName>
+    <time>0</time>
+
+    <item class="Particle">
+        <objectName>particle1</objectName>
+        <position>(-77,79)</position>
+        <velocity>(0,0)</velocity>
+        <mass>1</mass>
+    </item>
+
+    <item class="Particle">
+        <objectName>particle2</objectName>
+        <position>(13,79)</position>
+        <velocity>(0,0)</velocity>
+        <mass>1</mass>
+    </item>
+
+    <item class="Spring">
+        <objectName>spring1</objectName>
+        <restLength>116.661904664719</restLength>
+        <stiffness>1</stiffness>
+        <body1>particle1</body1>
+        <body2>particle2</body2>
+    </item>
+
+    <item class="ChargedParticle">
+        <objectName>chargedParticle1</objectName>
+        <position>(-101,-58)</position>
+        <velocity>(-9,66)</velocity>
+        <mass>1</mass>
+        <charge>0.01</charge>
+    </item>
+
+    <item class="ChargedParticle">
+        <objectName>chargedParticle2</objectName>
+        <position>(20,-39)</position>
+        <velocity>(1,-62)</velocity>
+        <mass>1</mass>
+        <charge>0.01</charge>
+    </item>
+
+    <item class="CoulombForce">
+        <objectName>coulombForce1</objectName>
+        <electricConst>8.854e-12</electricConst>
+    </item>
+
+    <solver class="EulerSolver">
+        <objectName>solver</objectName>
+        <toleranceAbs>0</toleranceAbs>
+        <toleranceRel>0.01</toleranceRel>
+        <stepSize>0.01</stepSize>
+    </solver>
+
+</world>

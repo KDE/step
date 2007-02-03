@@ -1,0 +1,135 @@
+/* This file is part of StepCore library.
+   Copyright (C) 2007 Vladimir Kuznetsov <ks.vladimir@gmail.com>
+
+   StepCore library is free software; you can redistribute it and/or modify
+   it under the terms of the GNU General Public License as published by
+   the Free Software Foundation; either version 2 of the License, or
+   (at your option) any later version.
+
+   StepCore library is distributed in the hope that it will be useful,
+   but WITHOUT ANY WARRANTY; without even the implied warranty of
+   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+   GNU General Public License for more details.
+
+   You should have received a copy of the GNU General Public License
+   along with StepCore; if not, write to the Free Software
+   Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
+*/
+
+namespace StepCore {
+
+/** @mainpage StepCore
+
+\section overview Overview
+
+StepCore is a physical simulation library. StepCore focuses on accurate
+simulations with error estimations but still tries to be lightweight and fast.
+Currently StepCore can simulate two-dimensional classical mechanics. 
+
+StepCore provides collection of physical bodies and forces which can be
+used in simulations and collections of exchangeable solvers with various
+integration algorithms. It can be easily extended with new bodies, forces
+and solvers.
+
+\section license License
+StepCore is distributed under the terms of the
+<a href="http://www.gnu.org/licenses/gpl.html">GNU General Public License (GPL), Version 2</a>.
+
+\section features Features
+
+- Object oriented, easy to use
+- Accurate simulations, local error estimations
+- Properties reflections via Q_PROPERTY (requires Qt4)
+- Extensible \ref factory "Factory" classes (requires Qt4)
+- \ref xmlfile "XML file save and load" (requires Qt4)
+- \ref bodies "Bodies:"
+ - Particle
+ - ChargedParticle
+- \ref forces "Forces:"
+ - GravitationForce
+ - WeightForce
+ - CoulombForce
+ - Spring
+- \ref solvers "Solvers:"
+ - EulerSolver with error estimations
+ - GslSolver - all solvers from GSL library (requires GSL library)
+
+\section design Design
+Please refer to \ref design_intro "Introduction to StepCore design" for more
+information about StepCore design.
+
+\section download Download
+
+You can checkout the development tree of StepCore by anonymous svn, by doing:
+<pre>svn co svn://anonsvn.kde.org/home/kde/trunk/playground/edu/step/stepcore</pre>
+or view it online at this address:
+<a href="http://websvn.kde.org/trunk/playground/edu/step/stepcore/">http://websvn.kde.org/trunk/playground/edu/step/stepcore/</a>
+
+\section authors Authors
+
+<b>Original Author:</b> Vladimir Kuznetsov (ks dot vladimir at gmail dot com)
+
+*/
+
+//////////////////////////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////////////////////////
+
+/** \page design_intro Introduction to StepCore Design
+
+Main classes in the StepCore are World, Item (Body and Force) and Solver.
+
+Item is the root of the physical bodies and forces hierarchy. Body is an
+interface for bodies (anything that has dynamic variables that require
+ODE integration) and Force is an interface for forces (anything that acts
+upon bodies changing derivatives of dynamic variables). One Item can be
+a Body and a Force at the same time: for example massive spring or fluid.
+
+World distinguishes between Body and Force using dynamic_cast. This is also
+used by Force to distinguish between Body types.
+
+Solver is an interface for generic ODE solvers. It is quite general so it
+can be used not only by World but also by Body or Force that may require
+it (massive springs ?), and it allows to implement variety of
+integration algorithms.
+
+World encapsulates multiple Items and one Solver. It also provides
+World::doEvolve() function which control integration.
+
+Integration algorithm (World::doEvolve()) is like the following:
+-# Gather all dynamic variables from all Bodies in one array
+-# Call Solver::doEvolve() function which will call World::solverFunction()
+   as callback when Solver needs to calculate variable derivatives (Solver may
+   call the callback several times during one step with different variable
+   adjustments - it depends on integration algorithm)
+-# World::solverFunction() function does:
+ -# scatters variables to Bodies and updates World::time
+ -# calls Force::calcForce() for all forces
+ -# gathers variable derivatives from all Bodies
+-# World::doEvolve() scatters variables to all Bodies and updates World::time
+
+Currently I'm thinking how to avoid variables copying but preserve generic
+solvers. One of the ideas it to store variables in array permanently and
+only its indexes in bodies, as a side effect this will allow saving world
+state at several moments simultaneously.
+
+Latter one more Item interface will be added: Restriction. It will
+manage all movement restrictions - anchors, collisions, etc. Restrictions
+will be calculated after Forces and will compute force adjustments. More
+details are still to be decided.
+
+Qt in StepCore is used as a quick way to implement reflections (Q_PROPERTY)
+and XML file support. Currently StepCore can be compiled without Qt (and
+without reflections and XML file support) and in the future dependency on
+Qt can be removed completely (by moving XmlFile support to Step and
+providing manual reflections in Factory classes - it will allow some new
+features for Step as well).
+
+Vector is a template for generic fixed-length vector with some common
+methods on it. This is quite simple, if StepCore will require more I will
+look at Eigen library.
+
+*/
+
+} // namespace StepCore
+

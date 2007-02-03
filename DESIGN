@@ -1,0 +1,26 @@
+1. StepCore design is described in Doxygen-generated documentation
+which is available on-line at
+http://stepcore.sourceforge.net/docs/design_intro.html
+
+2. Step design.
+
+The central object of Step is WorldModel. It contains World object and
+provides acts as a proxy for its main functions (add, get and remove items,
+change solver, do integration, load and save XML files). It also provides
+QAbstractItemModel interface (with all its useful signals) and is directly
+used as a model for WorldBrowser. It also provides global selection handling.
+
+Second important object is WorldScene. This one together with *GraphicsItem
+classes controls all scene drawing and editing with mouse. Together with 
+*Creator classes it controls item creation with the mouse.
+
+WorldFactory class extends StepCore::Factory and provides various item-
+specific static functions such as newItem(), newItemCreator(),
+newGraphicsItem() and functions to convert StepCore types (currently only
+StepCore::Vector2d) to and from QString.
+
+PropertiesBrowser class allows user to browse and edit properties of selected
+object. Currently properties are stored using Q_PROPERTY, but it may change
+in the future. At that time custom widget for properties of any Item can be
+created to allow more convenient presenting and editing object properties.
+

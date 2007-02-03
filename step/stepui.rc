@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<kcfg xmlns="http://www.kde.org/standards/kcfg/1.0"
+      xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+      xsi:schemaLocation="http://www.kde.org/standards/kcfg/1.0
+                          http://www.kde.org/standards/kcfg/1.0/kcfg.xsd" >
+  <ToolBar name="mainToolBar" >
+    <text>Main Toolbar</text>
+  </ToolBar>
+  <ToolBar name="simulationToolBar" >
+    <text>Simulation Toolbar</text>
+    <Action name="simulation_start_stop" />
+  </ToolBar>
+  <MenuBar>
+    <Menu name="file" >
+      <text>&amp;File</text>
+    </Menu>
+    <Menu name="simulation" >
+      <text>&amp;Simulation</text>
+      <Action name="simulation_start" />
+      <Action name="simulation_stop" />
+    </Menu>
+  </MenuBar>
+</kcfg>

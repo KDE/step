@@ -1,0 +1,25 @@
+Basic Installation
+==================
+
+Step and StepCore uses CMake build system, you need it to compile and
+install Step. You can download cmake from http://cmake.org/
+
+You also need Qt4 libraries to build and run Step. You can download
+Open Source version of Qt4 libraries from
+http://www.trolltech.com/products/qt/downloads
+
+Optionally you can compile Step with GSL library to use more accurate
+solvers. You can download GSL library from
+http://www.gnu.org/software/gsl
+
+To install Step on Linux (or other UNIXes):
+1. Create new empty directory in which you will build Step.
+2. `cd' to newly created directory.
+3. Type `cmake /path/to/unpacked_sources'.
+4. Type `make' to compile sources.
+5. Type `make install' to install Step.
+6. You can delete build directory after installing Step.
+
+Please refer to http://www.cmake.org/HTML/RunningCMake.html for
+more information about building with CMake.
+
