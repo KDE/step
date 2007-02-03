@@ -311,6 +311,7 @@ void WorldGraphicsView::fitToPage()
     double length = SCENE_LENGTH / s;
     //qDebug() << "length" << length;
     setSceneRect(-length, -length, length*2, length*2);
+    centerOn(0, 0);
     static_cast<WorldScene*>(scene())->updateViewScale();
 }
 
