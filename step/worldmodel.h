@@ -78,6 +78,9 @@ public:
     bool loadXml(QIODevice* device);
     QString errorString() const { return _errorString; }
 
+    // Names
+    QString newItemName(QString className) const;
+
     // Helper functions
     // XXX: use deeper tree to include properties ?
     QString variantToString(const QVariant& variant) const;

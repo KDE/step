@@ -35,6 +35,7 @@ bool SpringCreator::sceneEvent(QEvent* event)
         StepCore::Body* body = dynamic_cast<StepCore::Body*>(_scene->itemFromGraphics(_scene->itemAt(pos)));
         _item = _worldModel->worldFactory()->newItem(name());
         Q_ASSERT(_item != NULL);
+        _item->setObjectName(_worldModel->newItemName(name()));
         static_cast<StepCore::Spring*>(_item)->setBodyPtr1(body);
         static_cast<StepCore::Spring*>(_item)->setRestLength(0);
         _worldModel->addItem(_item);

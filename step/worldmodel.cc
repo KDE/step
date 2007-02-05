@@ -50,9 +50,13 @@ void WorldModel::clearWorld()
 
 void WorldModel::resetWorld()
 {
+    if(_world->objectName().isEmpty()) {
+        _world->setObjectName("world");
+    }
     if(NULL == _world->solver()) {
         // XXX: change to EulerSolver or better move it away !
         _world->setSolver(new StepCore::EulerSolver());
+        _world->solver()->setObjectName("solver");
     }
     _world->doCalcFn();
 
@@ -217,6 +221,19 @@ bool WorldModel::loadXml(QIODevice* device)
     if(!ret) { _world->clear(); _errorString = file.errorString(); }
     resetWorld();
     return ret;
+}
+
+QString WorldModel::newItemName(QString className) const
+{
+    className[0] = className[0].toLower();
+    for(int n=1; ; ++n) {
+        QString name = className + QString::number(n);
+        StepCore::World::ItemList::const_iterator it = _world->items().begin();
+        for(; it != _world->items().end(); ++it) {
+            if((*it)->objectName() == name) break;
+        }
+        if(it == _world->items().end()) return name;
+    }
 }
 
 QString WorldModel::variantToString(const QVariant& variant) const

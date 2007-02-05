@@ -31,6 +31,7 @@ bool ParticleCreator::sceneEvent(QEvent* event)
         QPointF pos = mouseEvent->scenePos();
         _item = _worldModel->worldFactory()->newItem(name());
         Q_ASSERT(_item != NULL);
+        _item->setObjectName(_worldModel->newItemName(name()));
         static_cast<StepCore::Particle*>(_item)->setPosition(StepCore::Vector2d(pos.x(), pos.y()));
         _worldModel->addItem(_item);
         return true;

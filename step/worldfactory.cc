@@ -37,6 +37,7 @@ bool ItemCreator::sceneEvent(QEvent* event)
     if(event->type() == QEvent::GraphicsSceneMousePress) {
         _item = _worldModel->worldFactory()->newItem(name());
         Q_ASSERT(_item != NULL);
+        _item->setObjectName(_worldModel->newItemName(name()));
         _worldModel->addItem(_item);
         _worldModel->selectionModel()->setCurrentIndex(_worldModel->objectIndex(_item),
                                                     QItemSelectionModel::ClearAndSelect);
