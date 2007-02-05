@@ -43,7 +43,7 @@ void CoulombForce::calcForce()
             if(NULL == (p2 = dynamic_cast<ChargedParticle*>(*b2))) continue;
             Vector2d r = p2->position() - p1->position();
             double rnorm2 = r.norm2();
-            Vector2d force = 1/(4*Constants::Pi*_electricConst)
+            Vector2d force = -1/(4*Constants::Pi*_electricConst)
                              * p1->charge() * p2->charge() * r / (rnorm2*sqrt(rnorm2));
             p1->addForce(force);
             force.invert();
