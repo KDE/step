@@ -83,7 +83,7 @@ protected:
     static const int   INDENT;
 };
 
-};
+}
 
 #endif // STEPCORE_WITH_QT
 
