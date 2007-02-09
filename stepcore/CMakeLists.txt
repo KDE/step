@@ -1,5 +1,6 @@
 
 set(stepcore_SRCS
+    constants.cc
     world.cc
     solver.cc
     factory.cc

@@ -33,21 +33,21 @@ namespace StepCore {
 class Constants {
 public:
     /** Pi constant */
-    static const double Pi = 3.1415;
+    static const double Pi;
 
     /** Electric constant (permittivity of free space) */
-    static const double Electric = 8.8541e-12; // F*m^-1
+    static const double Electric; // F*m^-1
     /** Magnetic constant (permeability of free space) */
-    static const double Magnetic = 1.2566e-6; // N*A^-2
+    static const double Magnetic; // N*A^-2
     /** Newtonian constant of gravitation */
-    static const double Gravitational = 6.6742e-11; // m^3*kg^-1*s^-2
+    static const double Gravitational; // m^3*kg^-1*s^-2
     /** Planck's constant */
-    static const double Plank = 6.6260e-34; // J*s
+    static const double Plank; // J*s
     /** Speed of light in vacuum */
-    static const double SpeedOfLight = 2.9979e8; // m*s^-1
+    static const double SpeedOfLight; // m*s^-1
 
     /** Standard acceleration of gravity (free fall on Earth) */
-    static const double WeightAccel = 9.8066;     // m*s^-2
+    static const double WeightAccel;     // m*s^-2
 };
 
 } // namespace StepCore
