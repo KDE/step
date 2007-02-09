@@ -135,7 +135,7 @@ XmlFileHandler::XmlFileHandler(World* world, const Factory* factory)
 {
 }
 
-bool XmlFileHandler::startElement(const QString &namespaceURI, const QString &localName,
+bool XmlFileHandler::startElement(const QString &namespaceURI, const QString &,
                   const QString &qName, const QXmlAttributes &attributes)
 {
     if(namespaceURI != XmlFile::NAMESPACE_URI) return true; // XXX: is it correct behaviour ?
@@ -196,7 +196,7 @@ bool XmlFileHandler::startElement(const QString &namespaceURI, const QString &lo
     return true;
 }
 
-bool XmlFileHandler::endElement(const QString &namespaceURI, const QString &localName,
+bool XmlFileHandler::endElement(const QString &namespaceURI, const QString &,
                 const QString &qName)
 {
     if(namespaceURI != XmlFile::NAMESPACE_URI) return true; // XXX: is it correct behaviour ?
