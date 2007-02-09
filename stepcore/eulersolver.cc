@@ -19,6 +19,7 @@
 #include "eulersolver.h"
 
 #include <cmath>
+#include <cstring>
 
 #ifdef STEPCORE_WITH_QT
 #include "eulersolver.moc"
@@ -60,7 +61,7 @@ void EulerSolver::setDimension(int dimension)
 void EulerSolver::doCalcFn(double* t, double y[], double f[])
 {
     _function(*t, y, _ydiff, _params);
-    if(f != NULL) memcpy(f, _ydiff, _dimension*sizeof(*f));
+    if(f != NULL) std::memcpy(f, _ydiff, _dimension*sizeof(*f));
 }
 
 bool EulerSolver::doStep(double t, double stepSize, double y[], double yerr[])
@@ -94,13 +95,13 @@ bool EulerSolver::doStep(double t, double stepSize, double y[], double yerr[])
     _localTolerance = _toleranceAbs + _toleranceRel * _localTolerance;
     if(_localError > _localTolerance) return false;
 
-    memcpy(y, _ytemp, _dimension*sizeof(*y));
+    std::memcpy(y, _ytemp, _dimension*sizeof(*y));
     return true;
 }
 
 bool EulerSolver::doEvolve(double* t, double t1, double y[], double yerr[])
 {
-    memset(yerr, 0, _dimension*sizeof(*yerr));
+    std::memset(yerr, 0, _dimension*sizeof(*yerr));
     while(*t < t1) {
         if(!doStep(*t, _stepSize < t1-*t ? _stepSize : t1-*t, y, yerr)) return false;
         *t = _stepSize < t1-*t ? *t + _stepSize : t1;
