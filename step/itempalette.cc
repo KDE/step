@@ -83,7 +83,8 @@ ItemPalette::ItemPalette(WorldModel* worldModel, QWidget* parent, Qt::WindowFlag
         const StepCore::MetaObject* metaObject = _worldModel->worldFactory()->metaObject(name);
         if(metaObject == StepCore::Body::staticMetaObject()) continue;
         if(!metaObject->inherits(StepCore::Body::staticMetaObject())) continue;
-        QAction* action = new QAction(name, this);
+        QAction* action = new QAction(metaObject->className(), this);
+        action->setToolTip(metaObject->description());
         action->setCheckable(true);
         _actionGroup->addAction(action);
         _toolBar->addAction(action);
