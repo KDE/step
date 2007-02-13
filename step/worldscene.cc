@@ -32,7 +32,6 @@
 #include <QPainter>
 #include <QAction>
 
-
 #include <QDebug>
 
 class WorldSceneAxes: public QGraphicsItem
@@ -99,7 +98,7 @@ void WorldSceneAxes::advance(int phase)
 }
 
 WorldScene::WorldScene(WorldModel* worldModel, QObject* parent)
-    : QGraphicsScene(parent), _worldModel(worldModel), _itemCreator(NULL), _currentViewScale(1)
+    : QGraphicsScene(parent), _worldModel(worldModel)/*, _itemCreator(NULL)*/, _currentViewScale(1)
 {
     setItemIndexMethod(NoIndex);
     //XXX
@@ -124,21 +123,23 @@ WorldScene::~WorldScene()
 {
 }
 
-StepCore::Item* WorldScene::itemFromGraphics(QGraphicsItem* graphicsItem)
+StepCore::Item* WorldScene::itemFromGraphics(const QGraphicsItem* graphicsItem) const
 {
-    WorldGraphicsItem* worldGraphicsItem = qgraphicsitem_cast<WorldGraphicsItem*>(graphicsItem);
+    const WorldGraphicsItem* worldGraphicsItem =
+            qgraphicsitem_cast<const WorldGraphicsItem*>(graphicsItem);
     if(worldGraphicsItem != NULL) return worldGraphicsItem->item();
     else return NULL;
 }
 
-QGraphicsItem* WorldScene::graphicsFromItem(QObject* item)
+WorldGraphicsItem* WorldScene::graphicsFromItem(const StepCore::Item* item) const
 {
     return _itemsHash.value(item, NULL);
 }
 
 void WorldScene::beginAddItem(const QString& name)
 {
-    if(_itemCreator) {
+    _currentCreator = name;
+/*    if(_itemCreator) {
         emit endAddItem(_itemCreator->name(), false);
         delete _itemCreator;
     }
@@ -146,11 +147,21 @@ void WorldScene::beginAddItem(const QString& name)
     if(_itemCreator == NULL) {
         emit endAddItem(name, false);
         return;
-    }
+    }*/
 }
 
 bool WorldScene::event(QEvent* event)
 {
+    //qDebug("event, _currentCreator = %s", _currentCreator.toAscii().constData());
+    if(!_currentCreator.isEmpty()) {
+        if(_worldModel->worldFactory()->graphicsCreateItem(_currentCreator, _worldModel,
+                            this, event)) {
+            emit endAddItem(_currentCreator, true);
+            _currentCreator.clear();
+        }
+        if(event->isAccepted()) return true;
+    }
+    /*
     if(_itemCreator) {
         if(_itemCreator->sceneEvent(event)) {
             emit endAddItem(_itemCreator->name(), _itemCreator->item() != NULL);
@@ -158,7 +169,7 @@ bool WorldScene::event(QEvent* event)
             _itemCreator = NULL;
         }
         if(event->isAccepted()) return true;
-    }
+    }*/
     return QGraphicsScene::event(event);
 }
 
@@ -221,10 +232,11 @@ void WorldScene::worldRowsInserted(const QModelIndex& parent, int start, int end
     if(parent != _worldModel->worldIndex()) return;
     for(int i=start; i<=end; ++i) {
         QModelIndex index = _worldModel->index(i, 0, parent);
-        QGraphicsItem* graphicsItem = reinterpret_cast<QGraphicsItem*>(
-            _worldModel->data(index, WorldModel::NewGraphicsItemRole).value<void*>());
+        StepCore::Item* item = _worldModel->item(i);
+        WorldGraphicsItem* graphicsItem =
+            _worldModel->worldFactory()->newGraphicsItem(item, _worldModel);
         if(graphicsItem) {
-            _itemsHash.insert(_worldModel->data(index, WorldModel::ObjectRole).value<QObject*>(), graphicsItem);
+            _itemsHash.insert(item, graphicsItem);
             addItem(graphicsItem);
             graphicsItem->advance(1);
         }
@@ -236,7 +248,7 @@ void WorldScene::worldRowsAboutToBeRemoved(const QModelIndex& parent, int start,
     if(parent != _worldModel->worldIndex()) return;
     for(int i=start; i<=end; ++i) {
         QModelIndex index = _worldModel->index(i, 0, parent);
-        QGraphicsItem* graphicsItem = graphicsFromItem(_worldModel->data(index, WorldModel::ObjectRole).value<QObject*>());
+        QGraphicsItem* graphicsItem = graphicsFromItem(_worldModel->item(index));
         if(graphicsItem) {
             removeItem(graphicsItem);
             delete graphicsItem;
@@ -246,18 +258,18 @@ void WorldScene::worldRowsAboutToBeRemoved(const QModelIndex& parent, int start,
 
 void WorldScene::worldCurrentChanged(const QModelIndex& current, const QModelIndex& /*previous*/)
 {
-    QGraphicsItem* graphicsItem = graphicsFromItem(_worldModel->data(current, WorldModel::ObjectRole).value<QObject*>());
+    QGraphicsItem* graphicsItem = graphicsFromItem(_worldModel->item(current));
     if(graphicsItem) graphicsItem->ensureVisible(0, 0, 1, 1);
 }
 
 void WorldScene::worldSelectionChanged(const QItemSelection& selected, const QItemSelection& deselected)
 {
     foreach(QModelIndex index, selected.indexes()) {
-        QGraphicsItem* item = _itemsHash.value(_worldModel->data(index, WorldModel::ObjectRole).value<QObject*>());
+        QGraphicsItem* item = _itemsHash.value(_worldModel->item(index));
         if(item) item->setSelected(true);
     }
     foreach(QModelIndex index, deselected.indexes()) {
-        QGraphicsItem* item = _itemsHash.value(_worldModel->data(index, WorldModel::ObjectRole).value<QObject*>());
+        QGraphicsItem* item = _itemsHash.value(_worldModel->item(index));
         if(item) item->setSelected(false);
     }
 }

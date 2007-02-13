@@ -21,11 +21,12 @@
 
 #include <cmath>
 
-#ifdef STEPCORE_WITH_QT
-#include "coulombforce.moc"
-#endif
-
 namespace StepCore {
+
+STEPCORE_META_OBJECT(CoulombForce, "Coulomb force", 0,
+    STEPCORE_SUPER_CLASS(Item) STEPCORE_SUPER_CLASS(Force),
+    STEPCORE_PROPERTY_RWS(double, electricConst, "Electric constant",
+                            electricConst, setElectricConst))
 
 CoulombForce::CoulombForce(double electricConst)
     : _electricConst(electricConst)

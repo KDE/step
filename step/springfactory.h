@@ -23,6 +23,7 @@
 #include "worldfactory.h"
 #include <stepcore/spring.h>
 
+/*
 class SpringCreator: public ItemCreator
 {
 public:
@@ -30,7 +31,7 @@ public:
                         : ItemCreator(scene, worldModel) {}
     QString name() const { return QString("Spring"); }
     bool sceneEvent(QEvent* event);
-};
+};*/
 
 class SpringHandlerGraphicsItem: public WorldGraphicsItem {
 public:
@@ -65,6 +66,7 @@ public:
     double rnorm() { return _rnorm; }
 
 protected:
+    void mouseSetPos(const QPointF& pos);
     QVariant itemChange(GraphicsItemChange change, const QVariant& value);
     StepCore::Spring* spring() const;
     double _rnorm;
@@ -79,6 +81,7 @@ protected:
     static const int RADIUS = 4;
 };
 
+/*
 class SpringFactory: public StepCore::SpringFactory, public ItemFactory
 {
     ItemCreator* newItemCreator(WorldScene* scene, WorldModel* worldModel) const {
@@ -87,7 +90,7 @@ class SpringFactory: public StepCore::SpringFactory, public ItemFactory
     QGraphicsItem* newGraphicsItem(StepCore::Item* item, WorldModel* worldModel) const {
         return new SpringGraphicsItem(item, worldModel);
     }
-};
+};*/
 
 
 #endif

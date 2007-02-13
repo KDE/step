@@ -20,12 +20,18 @@
 #include "particle.h"
 #include <cmath>
 
-#ifdef STEPCORE_WITH_QT
-#include "gravitation.moc"
-#endif
-
 namespace StepCore
 {
+
+STEPCORE_META_OBJECT(GravitationForce, "Gravitation force", 0,
+    STEPCORE_SUPER_CLASS(Item) STEPCORE_SUPER_CLASS(Force),
+    STEPCORE_PROPERTY_RWS(double, gravitationConst, "Gravitation constant",
+                            gravitationConst, setGravitationConst))
+
+STEPCORE_META_OBJECT(WeightForce, "Weight force", 0,
+    STEPCORE_SUPER_CLASS(Item) STEPCORE_SUPER_CLASS(Force),
+    STEPCORE_PROPERTY_RWS(double, weightConst, "Weight constant",
+                            weightConst, setWeightConst))
 
 GravitationForce::GravitationForce(double gravitationConst)
     : _gravitationConst(gravitationConst)

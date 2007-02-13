@@ -20,93 +20,41 @@
 #include "world.h"
 #include "solver.h"
 
-#ifdef STEPCORE_WITH_QT
-
 namespace StepCore {
 
 // XXX: locking
-void Factory::registerItemFactory(const ItemFactory* itemFactory)
+void Factory::registerMetaObject(const MetaObject* metaObject)
 {
-    _itemFactories.insert(itemFactory->name(), itemFactory);
+    _metaObjects.insert(metaObject->className(), metaObject);
 }
 
-void Factory::registerSolverFactory(const SolverFactory* solverFactory)
+const MetaObject* Factory::metaObject(const QString& name) const
 {
-    _solverFactories.insert(solverFactory->name(), solverFactory);
+    return _metaObjects.value(name, NULL);
 }
 
-void Factory::registerPropertyType(const PropertyType* propertyType)
+Object* Factory::newObject(const QString& name) const
 {
-    _propertyTypes.insert(propertyType->typeId(), propertyType);
-}
-
-const ItemFactory* Factory::itemFactory(const QString& name) const
-{
-    return _itemFactories.value(name, NULL);
-}
-
-const SolverFactory* Factory::solverFactory(const QString& name) const
-{
-    return _solverFactories.value(name, NULL);
-}
-
-const PropertyType* Factory::propertyType(int typeId) const
-{
-    return _propertyTypes.value(typeId, NULL);
-}
-
-const ItemFactory* Factory::itemFactory(const Item* item) const
-{
-    return itemFactory(QString(item->metaObject()->className()).remove("StepCore::"));
-}
-
-const SolverFactory* Factory::solverFactory(const Solver* solver) const
-{
-    return solverFactory(QString(solver->metaObject()->className()).remove("StepCore::"));
+    const MetaObject* metaObject = this->metaObject(name);
+    if(metaObject == NULL) return NULL;
+    return metaObject->newObject();
 }
 
 Item* Factory::newItem(const QString& name) const
 {
-    const ItemFactory* itemFactory = _itemFactories.value(name, NULL);
-    if(itemFactory == NULL) return NULL;
-    return itemFactory->newItem();
+    Object* obj = newObject(name);
+    Item* item = dynamic_cast<Item*>(obj);
+    if(item == NULL) delete obj;
+    return item;
 }
 
 Solver* Factory::newSolver(const QString& name) const
 {
-    const SolverFactory* solverFactory = _solverFactories.value(name, NULL);
-    if(solverFactory == NULL) return NULL;
-    return solverFactory->newSolver();
-}
-
-QString Factory::variantToString(const QVariant& variant) const
-{
-    int type = variant.userType();
-    if(type < (signed int) QVariant::UserType) return variant.toString();
-
-    const PropertyType* propertType = _propertyTypes.value(type, NULL);
-    if(propertType != NULL) return propertType->variantToString(variant);
-
-    qDebug("No registered function to convert SVariant of type "
-           "\"%s\" to QString", QMetaType::typeName(type));
-
-    return QString();
-}
-
-QVariant Factory::stringToVariant(int typeId, const QString& string) const
-{
-    if(typeId < (signed int) QVariant::UserType) return QVariant::fromValue(string);
-
-    const PropertyType* propertType = _propertyTypes.value(typeId, NULL);
-    if(propertType != NULL) return propertType->stringToVariant(string);
-
-    qDebug("No registered function to convert QString to QVariant of type "
-           "\"%s\"", QMetaType::typeName(typeId));
-
-    return QVariant();
+    Object* obj = newObject(name);
+    Solver* solver = dynamic_cast<Solver*>(obj);
+    if(solver == NULL) delete obj;
+    return solver;
 }
 
 } // namespace StepCore
-
-#endif
 

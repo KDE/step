@@ -23,29 +23,9 @@
 #ifndef STEPCORE_UTIL_H
 #define STEPCORE_UTIL_H
 
-#ifdef STEPCORE_WITH_QT
+#include <QtGlobal>
 
-#include <QObject>
-#include <QMetaType>
-namespace StepCore { class StepCoreObject: public QObject {}; }
 #define STEPCORE_PRINT_ERR(...) qCritical(__VA_ARGS__)
-
-#else // STEPCORE_WITH_QT
-
-#if defined(Q_OBJECT) || defined(Q_PROPERTY) || defined(Q_DECLARE_METATYPE)
-#error "Trying to build StepCore without QT, but QT headers are included !"
-#endif
-
-#define Q_OBJECT
-#define Q_PROPERTY(...)
-#define Q_DECLARE_METATYPE(...)
-
-namespace StepCore { class StepCoreObject: {}; }
-
-#include <stdio.h>
-#define STEPCORE_PRINT_ERR(...) fprintf(stderr, __VA_ARGS__)
-
-#endif // ! STEPCORE_WITH_QT
 
 #ifdef __GNUC__
 #define STEPCORE_UNUSED __attribute__((unused))
@@ -53,12 +33,17 @@ namespace StepCore { class StepCoreObject: {}; }
 #define STEPCORE_UNUSED
 #endif
 
-namespace StepCore {
-
 #ifdef NDEBUG
 #define STEPCORE_ASSERT_NOABORT(expr)
 #else // NDEBUG
 
+#define STEPCORE_ASSERT_NOABORT(expr) \
+    if( ! (expr) ) \
+        StepCore::_step_assert_noabort_helper<int> \
+            ( __STRING(expr), __LINE__, \
+              __FILE__, __PRETTY_FUNCTION__ )
+
+namespace StepCore {
 template<typename unused>
 void _step_assert_noabort_helper( const char *expr, int line,
                                    const char *file, const char *function )
@@ -68,16 +53,9 @@ void _step_assert_noabort_helper( const char *expr, int line,
                       "*** in function: %s\n",
                       line, file, expr, function);
 }
-
-#define STEPCORE_ASSERT_NOABORT(expr) \
-    if( ! (expr) ) \
-        StepCore::_step_assert_noabort_helper<int> \
-            ( __STRING(expr), __LINE__, \
-              __FILE__, __PRETTY_FUNCTION__ )
+} // namespace StepCore
 
 #endif // ! NDEBUG
-
-} // namespace StepCore
 
 #endif
 

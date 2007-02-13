@@ -18,7 +18,13 @@
 
 #include "solver.h"
 
-#ifdef STEPCORE_WITH_QT
-#include "solver.moc"
-#endif
+namespace StepCore {
 
+STEPCORE_META_OBJECT(Solver, "Solver", MetaObject::ABSTRACT, STEPCORE_SUPER_CLASS(Object),
+    STEPCORE_PROPERTY_R(int, dimension, "Count of dynamic variables", dimension)
+    STEPCORE_PROPERTY_RWS(double, toleranceAbs, "Allowed absolute tolerance", toleranceAbs, setToleranceAbs)
+    STEPCORE_PROPERTY_RWS(double, toleranceRel, "Allowed relative tolerance", toleranceRel, setToleranceRel)
+    STEPCORE_PROPERTY_R(double, localTolerance, "Computed local tolerance", localTolerance)
+    STEPCORE_PROPERTY_R(double, localError, "Computed local error", localError))
+
+} // namespace StepCore

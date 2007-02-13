@@ -27,6 +27,7 @@
 
 #include <cmath>
 
+/*
 bool SpringCreator::sceneEvent(QEvent* event)
 {
     QGraphicsSceneMouseEvent* mouseEvent = static_cast<QGraphicsSceneMouseEvent *>(event);
@@ -51,7 +52,7 @@ bool SpringCreator::sceneEvent(QEvent* event)
         return true;
     }
     return false;
-}
+}*/
 
 SpringHandlerGraphicsItem::SpringHandlerGraphicsItem(StepCore::Item* item, WorldModel* worldModel, 
                                 QGraphicsItem* parent, int num)
@@ -140,7 +141,7 @@ void SpringHandlerGraphicsItem::mouseReleaseEvent(QGraphicsSceneMouseEvent *even
 SpringGraphicsItem::SpringGraphicsItem(StepCore::Item* item, WorldModel* worldModel)
     : WorldGraphicsItem(item, worldModel)
 {
-    Q_ASSERT(qobject_cast<StepCore::Spring*>(_item) != NULL);
+    Q_ASSERT(dynamic_cast<StepCore::Spring*>(_item) != NULL);
     setFlag(QGraphicsItem::ItemIsSelectable);
     setZValue(150);
     _handler1 = new SpringHandlerGraphicsItem(item, worldModel, this, 1);
@@ -232,3 +233,28 @@ QVariant SpringGraphicsItem::itemChange(GraphicsItemChange change, const QVarian
     return WorldGraphicsItem::itemChange(change, value);
 }
 
+void SpringGraphicsItem::mouseSetPos(const QPointF& pos)
+{
+    _handler2->setKeepRest(true);
+
+    setDefaultPos1(pos);
+    setDefaultPos2(pos);
+
+    advance(1);
+    _handler1->advance(1);
+    _handler2->advance(1);
+
+    QList<QGraphicsItem*> items = scene()->items( pos );
+    QList<QGraphicsItem*>::iterator it = items.begin();
+    for(; it != items.end(); ++it) {
+        if(*it != this && *it != _handler1 && *it != _handler2) break;
+    }
+    if(it != items.end()) {
+        StepCore::Body* body = dynamic_cast<StepCore::Body*>(
+                                    static_cast<WorldScene*>(scene())->itemFromGraphics(*it));
+        if(body != NULL) {
+            static_cast<StepCore::Spring*>(_item)->setBodyPtr1(body);
+            _worldModel->setData(_worldModel->objectIndex(_item), QVariant(), WorldModel::ObjectRole);
+        }
+    }
+}

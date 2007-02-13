@@ -59,8 +59,7 @@ void WorldBrowserView::keyPressEvent(QKeyEvent* e)
     if(e->matches(QKeySequence::Delete)) {
         QModelIndexList selected = worldModel()->selectionModel()->selectedIndexes();
         foreach(QModelIndex index, selected) {
-            StepCore::Item* item = qobject_cast<StepCore::Item*>(
-                        worldModel()->data(index, WorldModel::ObjectRole).value<QObject*>());
+            StepCore::Item* item = worldModel()->item(index);
             if(item) worldModel()->deleteItem(item);
         }
         e->accept();

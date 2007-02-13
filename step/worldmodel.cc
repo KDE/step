@@ -33,7 +33,6 @@ WorldModel::WorldModel(QObject* parent)
     _selectionModel = new QItemSelectionModel(this, this);
     _worldFactory = new WorldFactory();
     _world = new StepCore::World();
-    _world->setParent(this);
     resetWorld();
 }
 
@@ -50,13 +49,13 @@ void WorldModel::clearWorld()
 
 void WorldModel::resetWorld()
 {
-    if(_world->objectName().isEmpty()) {
-        _world->setObjectName("world");
+    if(_world->name().isEmpty()) {
+        // XXX: set default name for unnamed objects in setData !
+        _world->setName(getUniqueName("World"));
     }
     if(NULL == _world->solver()) {
-        // XXX: change to EulerSolver or better move it away !
         _world->setSolver(new StepCore::EulerSolver());
-        _world->solver()->setObjectName("solver");
+        _world->solver()->setName(getUniqueName("EulerSolver"));
     }
     _world->doCalcFn();
 
@@ -89,11 +88,16 @@ QModelIndex WorldModel::itemIndex(int n) const
     return createIndex(n, 0, _world->items()[n]);
 }
 
-QModelIndex WorldModel::objectIndex(QObject* obj) const
+QModelIndex WorldModel::objectIndex(StepCore::Object* obj) const
 {
     if(obj == _world) return worldIndex();
     else if(obj == _world->solver()) return solverIndex();
-    else return itemIndex(_world->itemIndex(qobject_cast<const StepCore::Item*>(obj))); // XXX:assert ?
+    else return itemIndex(_world->itemIndex(dynamic_cast<const StepCore::Item*>(obj)));
+}
+
+StepCore::Item* WorldModel::item(const QModelIndex& index) const
+{
+    return dynamic_cast<StepCore::Item*>(object(index));
 }
 
 int WorldModel::itemCount() const
@@ -103,22 +107,17 @@ int WorldModel::itemCount() const
 
 QVariant WorldModel::data(const QModelIndex &index, int role) const
 {
-    QObject* obj = NULL;
-    if(index.isValid()) obj = static_cast<QObject*>(index.internalPointer());
+    StepCore::Object* obj = NULL;
+    if(index.isValid()) obj = static_cast<StepCore::Object*>(index.internalPointer());
 
     if(role == Qt::DisplayRole) {
         if(obj != NULL)
-            return QString("%1: %2").arg(obj->objectName().isEmpty() ? i18n("<unnamed>") : obj->objectName())
-                               .arg(QString(obj->metaObject()->className()).remove("StepCore::"));
+            return QString("%1: %2").arg(obj->name().isEmpty() ? i18n("<unnamed>") : obj->name())
+                                       .arg(obj->metaObject()->className());
 
     } else if(role == WorldModel::ObjectRole) {
-        return QVariant::fromValue<QObject*>(obj);
+        return QVariant::fromValue<void*>(obj);
 
-    } else if(role == WorldModel::NewGraphicsItemRole) {
-        StepCore::Item* item = qobject_cast<StepCore::Item*>(obj);
-        if(item == NULL) return QVariant::fromValue<void*>(NULL);
-        return QVariant::fromValue<void*>( // XXX: const_cast
-                        _worldFactory->newGraphicsItem(item, const_cast<WorldModel*>(this)));
     }
 
     return QVariant();
@@ -166,6 +165,14 @@ int WorldModel::columnCount(const QModelIndex& /*parent*/) const
     return 1;
 }
 
+StepCore::Item* WorldModel::newItem(const QString& name)
+{
+    StepCore::Item* item = _worldFactory->newItem(name);
+    if(item == NULL) return NULL;
+    item->setName(getUniqueName(name));
+    addItem(item); return item;
+}
+
 void WorldModel::addItem(StepCore::Item* item)
 {
     beginInsertRows(worldIndex(), itemCount(), itemCount());
@@ -202,7 +209,7 @@ bool WorldModel::doWorldEvolve(double delta)
 
 bool WorldModel::saveXml(QIODevice* device)
 {
-    StepCore::XmlFile file(device, _worldFactory);
+    StepCore::XmlFile file(device);
 
     if(file.save(_world)) {
         emit worldChanged(false);
@@ -216,33 +223,26 @@ bool WorldModel::saveXml(QIODevice* device)
 bool WorldModel::loadXml(QIODevice* device)
 {
     _world->clear();
-    StepCore::XmlFile file(device, _worldFactory);
-    bool ret = file.load(_world);
+    StepCore::XmlFile file(device);
+    bool ret = file.load(_world, _worldFactory);
     if(!ret) { _world->clear(); _errorString = file.errorString(); }
     resetWorld();
     return ret;
 }
 
-QString WorldModel::newItemName(QString className) const
+QString WorldModel::getUniqueName(QString className) const
 {
     className[0] = className[0].toLower();
     for(int n=1; ; ++n) {
         QString name = className + QString::number(n);
+        if(_world->name() == name) break;
+        if(_world->solver() && _world->solver()->name() == name) break;
         StepCore::World::ItemList::const_iterator it = _world->items().begin();
         for(; it != _world->items().end(); ++it) {
-            if((*it)->objectName() == name) break;
+            if((*it)->name() == name) break;
         }
         if(it == _world->items().end()) return name;
     }
-}
-
-QString WorldModel::variantToString(const QVariant& variant) const
-{
-    return _worldFactory->variantToString(variant);
-}
-
-QVariant WorldModel::stringToVariant(int typeId, const QString& string) const
-{
-    return _worldFactory->stringToVariant(typeId, string);
+    return QString();
 }
 

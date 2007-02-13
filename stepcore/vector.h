@@ -25,6 +25,7 @@
 
 #include <cmath>
 #include <cstring> // XXX ?
+#include <QMetaType>
 #include "util.h"
 
 namespace StepCore
@@ -254,6 +255,7 @@ Vector<T,N> operator/(const Vector<T,N>& a, T d)
 
 } // namespace StepCore
 
+// XXX: move it to types.h
 Q_DECLARE_METATYPE(StepCore::Vector2d)
 Q_DECLARE_METATYPE(StepCore::Vector3d)
 

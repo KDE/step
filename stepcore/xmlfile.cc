@@ -20,9 +20,11 @@
 
 #ifdef STEPCORE_WITH_QT
 
+#include "object.h"
 #include "world.h"
 #include "solver.h"
 #include "factory.h"
+
 #include <QTextStream>
 #include <QMetaProperty>
 #include <QXmlDefaultHandler>
@@ -34,8 +36,8 @@ const char* XmlFile::NAMESPACE_URI = "http://quantum.dgap.mipt.ru/StepCoreXML";
 const char* XmlFile::VERSION = "1.0";
 const int   XmlFile::INDENT = 4;
 
-XmlFile::XmlFile(QIODevice* device, const Factory* factory)
-    : _device(device), _factory(factory)
+XmlFile::XmlFile(QIODevice* device)
+    : _device(device)
 {
 }
 
@@ -83,23 +85,25 @@ QString XmlFile::escapeText(const QString& str)
     return result;
 }
 
-void XmlFile::saveProperties(int indent, const QObject* obj, QTextStream& stream)
+void XmlFile::saveProperties(int indent, const Object* obj, QTextStream& stream)
 {
-    for(int i = 0; i < obj->metaObject()->propertyCount(); ++i) {
-        QMetaProperty p = obj->metaObject()->property(i);
-        if(!p.isStored(obj)) continue;
-        stream << QString(indent*INDENT, ' ')
-               << "<" << p.name() << ">"
-               << _factory->variantToString(p.read(obj))
-               << "</" << p.name() << ">\n";
+    const MetaObject* metaObject = obj->metaObject();
+    for(int i = 0; i < metaObject->propertyCount(); ++i) {
+        const MetaProperty* p = metaObject->property(i);
+        if(p->isStored()) {
+            stream << QString(indent*INDENT, ' ')
+                   << "<" << p->name() << ">"
+                   << p->readString(obj)
+                   << "</" << p->name() << ">\n";
+        }
     }
 }
 
-void XmlFile::saveObject(int indent, const QString& tag, const QObject* obj, QTextStream& stream)
+void XmlFile::saveObject(int indent, const QString& tag, const Object* obj, QTextStream& stream)
 {
     if(obj == NULL) return;
     stream << QString(indent*INDENT, ' ') << "<" << tag
-           << " class=\"" << QString(obj->metaObject()->className()).remove("StepCore::") << "\">\n";
+           << " class=\"" << QString(obj->metaObject()->className()) << "\">\n";
     saveProperties(indent+1, obj, stream);
     stream << QString(indent*INDENT, ' ') << "</" << tag << ">\n";
 }
@@ -124,14 +128,15 @@ protected:
     World*         _world;
     const Factory* _factory;
 
-    QObject* _item;
-    int      _propertyIdx;
-    QString  _text;
-    QString  _errorString;
+    Object* _object;
+    const MetaProperty* _property;
+
+    QString _text;
+    QString _errorString;
 };
 
 XmlFileHandler::XmlFileHandler(World* world, const Factory* factory)
-    : _state(START), _world(world), _factory(factory), _item(NULL)
+    : _state(START), _world(world), _factory(factory), _object(NULL)
 {
 }
 
@@ -143,7 +148,7 @@ bool XmlFileHandler::startElement(const QString &namespaceURI, const QString &,
     switch(_state) {
     case START:
         if(qName == "world") {
-            _item = _world;
+            _object = _world;
             _state = WORLD;
         } else {
             _errorString = QObject::tr("The file is not a StepCoreXML file.");
@@ -153,32 +158,32 @@ bool XmlFileHandler::startElement(const QString &namespaceURI, const QString &,
 
     case WORLD:
         if(qName == "item") {
-            Item* obj = _factory->newItem(attributes.value("class")); 
-            if(obj == NULL) {
+            Item* item = _factory->newItem(attributes.value("class")); 
+            if(item == NULL) {
                 _errorString = QObject::tr("Unknown item type \"%1\"").arg(attributes.value("class"));
                 return false;
             }
-            _world->addItem(obj);
-            _item = obj;
+            _world->addItem(item);
+            _object = item;
             _state = ITEM;
             break;
         } else if(qName == "solver") {
-            Solver* obj = _factory->newSolver(attributes.value("class")); 
-            if(obj == NULL) {
+            Solver* solver = _factory->newSolver(attributes.value("class")); 
+            if(solver == NULL) {
                 _errorString = QObject::tr("Unknown solver type \"%1\"").arg(attributes.value("class"));
                 return false;
             }
-            _world->setSolver(obj);
-            _item = obj;
+            _world->setSolver(solver);
+            _object = solver;
             _state = ITEM;
             break;
         }
 
     case ITEM:
-        _propertyIdx = _item->metaObject()->indexOfProperty(qName.toAscii().constData());
-        if(_propertyIdx == -1 || !_item->metaObject()->property(_propertyIdx).isStored(_item)) {
-            _errorString = QObject::tr("Item \"%1\" has no property named \"%2\"")
-                                .arg(QString(_item->metaObject()->className()).remove("StepCore::")).arg(qName);
+        _property = _object->metaObject()->property(qName.toAscii().constData());
+        if(!_property || !_property->isStored()) {
+            _errorString = QObject::tr("Item \"%1\" has no stored property named \"%2\"")
+                                .arg(QString(_object->metaObject()->className())).arg(qName);
             return false;
         }
         _text.clear();
@@ -204,21 +209,19 @@ bool XmlFileHandler::endElement(const QString &namespaceURI, const QString &,
     switch(_state) {
     case WORLD_PROPERTY:
     case ITEM_PROPERTY:
-        {
-            QMetaProperty property = _item->metaObject()->property(_propertyIdx);
-            STEPCORE_ASSERT_NOABORT(property.write(_item, _factory->stringToVariant(property.userType(), _text)));
+        if(!_property->writeString(_object, _text)) {
+            _errorString = QObject::tr("Property \"%1\" has illegal value").arg(qName);
+            return false;
         }
         if(_state == WORLD_PROPERTY) _state = WORLD;
         else _state = ITEM;
         break;
 
     case ITEM:
-        _state = WORLD;
-        break;
+        _state = WORLD; break;
 
     case WORLD:
-        _state = END;
-        break;
+        _state = END; break;
 
     default:
         STEPCORE_ASSERT_NOABORT(false);
@@ -229,8 +232,7 @@ bool XmlFileHandler::endElement(const QString &namespaceURI, const QString &,
 
 bool XmlFileHandler::characters(const QString &str)
 {
-    //if(_state == WORLD_PROPERTY || _state == ITEM_PROPERTY)
-    _text += str;
+    if(_state == WORLD_PROPERTY || _state == ITEM_PROPERTY) _text += str;
     return true;
 }
 
@@ -248,9 +250,9 @@ QString XmlFileHandler::errorString() const
 
 } // namespace
 
-bool XmlFile::load(World* world)
+bool XmlFile::load(World* world, const Factory* factory)
 {
-    XmlFileHandler handler(world, _factory);
+    XmlFileHandler handler(world, factory);
     QXmlInputSource source(_device);
     QXmlSimpleReader reader;
 

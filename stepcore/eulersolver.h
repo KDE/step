@@ -24,7 +24,7 @@
 #define STEPCORE_EULERSOLVER_H
 
 #include "solver.h"
-#include "factory.h"
+#include "object.h"
 
 namespace StepCore {
 
@@ -38,10 +38,11 @@ namespace StepCore {
  */
 class EulerSolver: public Solver
 {
-    Q_OBJECT
+    //Q_OBJECT
+    STEPCORE_OBJECT(EulerSolver)
 
     /** Step size */
-    Q_PROPERTY(double stepSize READ stepSize WRITE setStepSize)
+    //Q_PROPERTY(double stepSize READ stepSize WRITE setStepSize)
 
 public:
     /** Constructs EulerSolver */
@@ -53,7 +54,7 @@ public:
     void setDimension(int dimension);
 
     /** Set step size */
-    double stepSize() { return _stepSize; }
+    double stepSize() const { return _stepSize; }
     /** Get step size */
     void setStepSize(double stepSize) { _stepSize = stepSize; }
 
@@ -67,9 +68,6 @@ protected:
     double* _ytemp;
     double* _ydiff;
 };
-
-/** \brief SolverFactory for EulerSolver */
-STEPCORE_SOLVER_FACTORY(EulerSolver)
 
 } // namespace StepCore
 

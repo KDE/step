@@ -17,55 +17,37 @@
 */
 
 /** \file types.h
- *  \brief Vector2dPropertyType and Vector3dPropertyType classes
+ *  \brief Type to and from string convertion helpers
  */
 
 #ifndef STEPCORE_TYPES_H
 #define STEPCORE_TYPES_H
 
-#include "util.h"
+#include "object.h"
 #include "vector.h"
-//#include "approx.h"
-
-#ifdef STEPCORE_WITH_QT
-
-#include "factory.h"
 
 namespace StepCore {
 
-/** \brief PropertyType factory for Vector2d
- */
-class Vector2dPropertyType: public PropertyType
+template<> inline QString typeToString(const Vector2d& v)
 {
-public:
-    int typeId() const { return qMetaTypeId<StepCore::Vector2d>(); }
-    QString variantToString(const QVariant& variant) const;
-    QVariant stringToVariant(const QString& string) const;
-};
+    return QString("(%1,%2)").arg(v[0]).arg(v[1]);
+}
 
-/** \brief PropertyType factory for Vector3d
- */
-class Vector3dPropertyType: public PropertyType
+template<> inline Vector2d stringToType(const QString& s, bool *ok)
 {
-public:
-    int typeId() const { return qMetaTypeId<StepCore::Vector3d>(); }
-    QString variantToString(const QVariant& variant) const;
-    QVariant stringToVariant(const QString& string) const;
-};
-
-/*
-class ApproxVector2dPropertyType: public PropertyType
-{
-public:
-    int typeId() const { return qMetaTypeId<StepCore::ApproxVector2d>(); }
-    QString variantToString(const QVariant& variant) const;
-    QVariant stringToVariant(const QString& string) const;
-};
-*/
+    // XXX: Write something better
+    if(ok) *ok = false;
+    QString s1 = s.trimmed();
+    if(!s1.startsWith('(') || !s1.endsWith(')')) return Vector2d();
+    s1 = s1.mid(1, s1.size()-2);    
+    bool ok1, ok2;
+    StepCore::Vector2d v(s1.section(',',0,0).toDouble(&ok1), s1.section(',',1,1).toDouble(&ok2));
+    if(!ok1 || !ok2) return v;
+    if(ok) *ok = true;
+    return v;
+}
 
 } // namespace StepCore
-
-#endif // STEPCORE_WITH_QT
 
 #endif
 

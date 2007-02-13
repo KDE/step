@@ -1,10 +1,10 @@
 
 set(stepcore_SRCS
+    object.cc
     constants.cc
     world.cc
     solver.cc
     factory.cc
-    types.cc
     xmlfile.cc
     particle.cc
     gravitation.cc

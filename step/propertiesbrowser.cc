@@ -21,6 +21,7 @@
 
 #include "worldmodel.h"
 #include "worldfactory.h"
+#include <stepcore/world.h>
 #include <QAbstractItemModel>
 #include <QTreeView>
 #include <QMetaProperty>
@@ -42,33 +43,38 @@ public:
     Qt::ItemFlags flags(const QModelIndex &index) const;
     bool setData(const QModelIndex &index, const QVariant &value, int role);
 
-    void setItem(QObject* item) { _item = item; reset(); }
-    QObject* item() { return _item; }
+    void setObject(StepCore::Object* object) { _object = object; reset(); }
+    StepCore::Object* object() { return _object; }
 
     void emitDataChanged() { emit dataChanged(createIndex(0,1), createIndex(rowCount()-1,1)); }
 
 protected:
     WorldModel* _worldModel;
-    QObject* _item;
+    StepCore::Object* _object;
 };
 
 PropertiesBrowserModel::PropertiesBrowserModel(WorldModel* worldModel, QObject* parent)
-    : QAbstractItemModel(parent), _worldModel(worldModel), _item(NULL)
+    : QAbstractItemModel(parent), _worldModel(worldModel), _object(NULL)
 {
 }
 
 QVariant PropertiesBrowserModel::data(const QModelIndex &index, int role) const
 {
-    if(_item == NULL) return QVariant();
+    if(_object == NULL) return QVariant();
 
     if(!index.isValid()) return QVariant();
 
+    const StepCore::MetaProperty* p = _object->metaObject()->property(index.row());
     if(role == Qt::DisplayRole || role == Qt::EditRole) {
-        if(index.column() == 0) return _item->metaObject()->property(index.row()).name();
+        if(index.column() == 0) return p->name();
         else if(index.column() == 1) {
-            QMetaProperty p = _item->metaObject()->property(index.row());
-            return _worldModel->variantToString(p.read(_item));
-        } else return QVariant();
+            /*if(p->userTypeId() < (int) QVariant::UserType) return p->readVariant(_object);
+            else*/ return p->readString(_object);
+        }
+    } else if(role == Qt::ForegroundRole && index.column() == 1) {
+        if(!p->isWritable()) return QBrush(Qt::darkGray); // XXX: how to get scheme color ?
+    } else if(role == Qt::ToolTipRole) {
+        return p->description(); // XXX: translation
     }
 
     return QVariant();
@@ -76,7 +82,7 @@ QVariant PropertiesBrowserModel::data(const QModelIndex &index, int role) const
 
 QModelIndex PropertiesBrowserModel::index(int row, int column, const QModelIndex &parent) const
 {
-    if(_item == NULL) return QModelIndex();
+    if(_object == NULL) return QModelIndex();
     if(!parent.isValid()) return createIndex(row, column);
     else return QModelIndex();
 }
@@ -88,9 +94,9 @@ QModelIndex PropertiesBrowserModel::parent(const QModelIndex& /*index*/) const
 
 int PropertiesBrowserModel::rowCount(const QModelIndex &parent) const
 {
-    if(_item == NULL) return 0;
+    if(_object == NULL) return 0;
     else if(parent.isValid()) return 0;
-    else return _item->metaObject()->propertyCount();
+    else return _object->metaObject()->propertyCount();
 }
 
 int PropertiesBrowserModel::columnCount(const QModelIndex& /*parent*/) const
@@ -111,9 +117,9 @@ QVariant PropertiesBrowserModel::headerData(int section, Qt::Orientation /*orien
 
 Qt::ItemFlags PropertiesBrowserModel::flags(const QModelIndex &index) const
 {
-    if(_item == NULL) QAbstractItemModel::flags(index);
+    if(_object == NULL) QAbstractItemModel::flags(index);
 
-    if(index.isValid() && index.column() == 1 && _item->metaObject()->property(index.row()).isWritable())
+    if(index.isValid() && index.column() == 1 && _object->metaObject()->property(index.row())->isWritable())
         return QAbstractItemModel::flags(index) | Qt::ItemIsEditable;
     else return QAbstractItemModel::flags(index);
 
@@ -121,15 +127,15 @@ Qt::ItemFlags PropertiesBrowserModel::flags(const QModelIndex &index) const
 
 bool PropertiesBrowserModel::setData(const QModelIndex &index, const QVariant &value, int role)
 {
-    if(_item == NULL) return false;
+    if(_object == NULL) return false;
 
     if(index.isValid() && index.column() == 1 && role == Qt::EditRole) {
-        QMetaProperty p = _item->metaObject()->property(index.row());
-        if(p.write(_item, _worldModel->stringToVariant(p.userType(), value.toString()))) {
-            emit dataChanged(index, index);
-            _worldModel->setData(_worldModel->objectIndex(_item), QVariant(), WorldModel::ObjectRole);
-            return true;
-        }
+        const StepCore::MetaProperty* p = _object->metaObject()->property(index.row());
+        /*if(p->userTypeId() < (int) QVariant::UserType) p->writeVariant(_object, value);
+        else */p->writeString(_object, value.toString());
+        emit dataChanged(index, index);
+        _worldModel->setData(_worldModel->objectIndex(_object),
+                                QVariant(), WorldModel::ObjectRole);
     }
     return false;
 }
@@ -155,12 +161,12 @@ PropertiesBrowser::PropertiesBrowser(WorldModel* worldModel, QWidget* parent, Qt
 
 void PropertiesBrowser::worldModelReset()
 {
-    _propertiesBrowserModel->setItem(NULL);
+    _propertiesBrowserModel->setObject(NULL);
 }
 
 void PropertiesBrowser::worldCurrentChanged(const QModelIndex& current, const QModelIndex& /*previous*/)
 {
-    _propertiesBrowserModel->setItem(_worldModel->data(current, WorldModel::ObjectRole).value<QObject*>());
+    _propertiesBrowserModel->setObject(_worldModel->object(current));
 }
 
 void PropertiesBrowser::worldDataChanged(const QModelIndex& /*topLeft*/, const QModelIndex& /*bottomRight*/)

@@ -23,7 +23,7 @@
 #ifndef STEPCORE_SOLVER_H
 #define STEPCORE_SOLVER_H
 
-#include "util.h"
+#include "object.h"
 
 namespace StepCore
 {
@@ -54,18 +54,19 @@ namespace StepCore
  *  If local error turns out to be greater then maximum allowed tolerance
  *  solver cancels current step and doEvolve() function returns false.
  */
-class Solver: public StepCoreObject
+class Solver: public Object
 {
-    Q_OBJECT
+    //Q_OBJECT
+    STEPCORE_OBJECT(Solver)
 
     /** Absolute allowed local tolerance */
-    Q_PROPERTY(double toleranceAbs READ toleranceAbs WRITE setToleranceAbs)
+    //Q_PROPERTY(double toleranceAbs READ toleranceAbs WRITE setToleranceAbs)
     /** Relative allowed local tolerance */
-    Q_PROPERTY(double toleranceRel READ toleranceRel WRITE setToleranceRel)
+    //Q_PROPERTY(double toleranceRel READ toleranceRel WRITE setToleranceRel)
     /** Local tolerance calculated at last step */
-    Q_PROPERTY(double localTolerance READ localTolerance STORED false)
+    //Q_PROPERTY(double localTolerance READ localTolerance STORED false)
     /** Local error estimation from last step */
-    Q_PROPERTY(double localError READ localError STORED false)
+    //Q_PROPERTY(double localError READ localError STORED false)
 
 public:
     /** Callback function type */

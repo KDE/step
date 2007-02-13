@@ -24,6 +24,7 @@
 #include <QEvent>
 #include <QPainter>
 
+/*
 bool ParticleCreator::sceneEvent(QEvent* event)
 {
     if(event->type() == QEvent::GraphicsSceneMousePress) {
@@ -37,17 +38,17 @@ bool ParticleCreator::sceneEvent(QEvent* event)
         return true;
     }
     return false;
-}
+}*/
 
 ParticleGraphicsItem::ParticleGraphicsItem(StepCore::Item* item, WorldModel* worldModel)
     : WorldGraphicsItem(item, worldModel)
 {
-    Q_ASSERT(qobject_cast<StepCore::Particle*>(_item) != NULL);
+    Q_ASSERT(dynamic_cast<StepCore::Particle*>(_item) != NULL);
     setFlag(QGraphicsItem::ItemIsSelectable);
     setFlag(QGraphicsItem::ItemIsMovable);
     setAcceptsHoverEvents(true);
     _velocityHandler = new ArrowHandlerGraphicsItem(item, worldModel, this,
-                   _item->metaObject()->property(_item->metaObject()->indexOfProperty("velocity"))); // XXX
+                   _item->metaObject()->property("velocity"));
     _velocityHandler->setVisible(false);
     //scene()->addItem(_velocityHandler);
 }

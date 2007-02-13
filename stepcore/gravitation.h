@@ -24,7 +24,7 @@
 #define STEPCORE_GRAVITATION_H
 
 #include "world.h"
-#include "factory.h"
+#include "object.h"
 #include "constants.h"
 
 namespace StepCore
@@ -50,10 +50,11 @@ namespace StepCore
  */
 class GravitationForce: public Item, public Force
 {
-    Q_OBJECT
+    //Q_OBJECT
+    STEPCORE_OBJECT(GravitationForce)
 
     /** Gravitational constant (default value is Constants::Gravitational) */
-    Q_PROPERTY(double gravitationConst READ gravitationConst WRITE setGravitationConst)
+    //Q_PROPERTY(double gravitationConst READ gravitationConst WRITE setGravitationConst)
 
 public:
     /** Constructs GravitationForce */
@@ -62,7 +63,7 @@ public:
     void calcForce();
 
     /** Get gravitational constant */
-    double gravitationConst() { return _gravitationConst; }
+    double gravitationConst() const { return _gravitationConst; }
     /** Set gravitational constant */
     void   setGravitationConst(double gravitationConst) { _gravitationConst = gravitationConst; }
 
@@ -86,11 +87,12 @@ protected:
  */
 class WeightForce: public Item, public Force
 {
-    Q_OBJECT
+    //Q_OBJECT
+    STEPCORE_OBJECT(WeightForce)
 
     /** Weight constant (standard acceleration of gravity on Earth, default value is
      *                   Constants::WeightAccel) */
-    Q_PROPERTY(double weightConst READ weightConst WRITE setWeightConst)
+    //Q_PROPERTY(double weightConst READ weightConst WRITE setWeightConst)
 
 public:
     /** Constructs WeightForce */
@@ -98,7 +100,7 @@ public:
     void calcForce();
 
     /** Get weight constant */
-    double weightConst() { return _weightConst; }
+    double weightConst() const { return _weightConst; }
     /** Set weight constant */
     void   setWeightConst(double weightConst) { _weightConst = weightConst; }
 
@@ -106,12 +108,6 @@ protected:
     double _weightConst;
 
 };
-
-/** \brief ItemFactory for GravitationForce */
-STEPCORE_ITEM_FACTORY2(GravitationForce, Item, Force)
-
-/** \brief ItemFactory for WeightForce */
-STEPCORE_ITEM_FACTORY2(WeightForce, Item, Force)
 
 } // namespace StepCore
 

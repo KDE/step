@@ -21,12 +21,15 @@
 
 #include <algorithm>
 
-#ifdef STEPCORE_WITH_QT
-#include "world.moc"
-#endif
-
 namespace StepCore
 {
+
+STEPCORE_META_OBJECT(Item, "Item", MetaObject::ABSTRACT, STEPCORE_SUPER_CLASS(Object),)
+STEPCORE_META_OBJECT(Body, "Body", MetaObject::ABSTRACT,,)
+STEPCORE_META_OBJECT(Force, "Force", MetaObject::ABSTRACT,,)
+
+STEPCORE_META_OBJECT(World, "World", 0, STEPCORE_SUPER_CLASS(Object),
+        STEPCORE_PROPERTY_RWS(double, time, "Current time", time, setTime))
 
 World::World()
     : _time(0), _solver(NULL), _variablesCount(0), _variables(NULL), _errors(NULL)
@@ -61,7 +64,7 @@ void World::clear()
     _time = 0;
 
 #ifdef STEPCORE_WITH_QT
-    setObjectName(QString());
+    setName(QString());
 #endif
 }
 

@@ -24,8 +24,9 @@
 #define STEPCORE_SPRING_H
 
 #include "world.h"
-#include "factory.h"
+#include "object.h"
 #include "particle.h"
+
 #include <QString>
 
 namespace StepCore
@@ -48,10 +49,6 @@ public:
     Body* bodyPtr2() { return _bodyPtr2; }
 
 #ifdef STEPCORE_WITH_QT
-    /** Get name of the first connected body */
-    QString body1() { return _bodyPtr1 ? dynamic_cast<Item*>(_bodyPtr1)->objectName() : QString(); }
-    /** Get name of the second connected body */
-    QString body2() { return _bodyPtr2 ? dynamic_cast<Item*>(_bodyPtr2)->objectName() : QString(); }
 #endif
 
 protected:
@@ -76,18 +73,19 @@ protected:
  */
 class Spring: public Item, public Force, public PairForce
 {
-    Q_OBJECT
+    //Q_OBJECT
+    STEPCORE_OBJECT(Spring)
 
     /** Rest length of the spring */
-    Q_PROPERTY(double restLength READ restLength WRITE setRestLength)
+    //Q_PROPERTY(double restLength READ restLength WRITE setRestLength)
     /** Current length of the spring */
-    Q_PROPERTY(double length READ length STORED false)
+    //Q_PROPERTY(double length READ length STORED false)
     /** Stiffness of the spring */
-    Q_PROPERTY(double stiffness READ stiffness WRITE setStiffness)
+    //Q_PROPERTY(double stiffness READ stiffness WRITE setStiffness)
     /** Name of the first connected body */
-    Q_PROPERTY(QString body1 READ body1 WRITE setBody1)
+    //Q_PROPERTY(QString body1 READ body1 WRITE setBody1)
     /** Name of the second connected body */
-    Q_PROPERTY(QString body2 READ body2 WRITE setBody2)
+    //Q_PROPERTY(QString body2 READ body2 WRITE setBody2)
 
 public:
     /** Constructs Spring */
@@ -119,6 +117,10 @@ public:
     void setBody1(const QString& body1);
     /** Set second connected body by name */
     void setBody2(const QString& body2);
+    /** Get name of the first connected body */
+    QString body1() const { return _bodyPtr1 ? dynamic_cast<Item*>(_bodyPtr1)->name() : QString(); }
+    /** Get name of the second connected body */
+    QString body2() const { return _bodyPtr2 ? dynamic_cast<Item*>(_bodyPtr2)->name() : QString(); }
 #endif
 
     void removeItem(Item* item);
@@ -127,9 +129,6 @@ protected:
     double _restLength;
     double _stiffness;
 };
-
-/** \brief ItemFactory for Spring */
-STEPCORE_ITEM_FACTORY2(Spring, Item, Force)
 
 } // namespace StepCore
 

@@ -23,16 +23,13 @@
 #ifndef STEPCORE_XMLFILE_H
 #define STEPCORE_XMLFILE_H
 
-#include "util.h"
-
-#ifdef STEPCORE_WITH_QT
-
 #include <QString>
 class QIODevice;
 class QTextStream;
 
 namespace StepCore {
 
+class Object;
 class World;
 class Factory;
 
@@ -43,9 +40,9 @@ class XmlFile {
 public:
     /** Constructs XmlFile
      *  \param device QIODevice to save or load file
-     *  \param factory Factory to use when saving or loading file
+     *  \todo TODO don't pass factory here !
      */
-    XmlFile(QIODevice* device, const Factory* factory);
+    XmlFile(QIODevice* device);
 
     /** Save world to XML file
      *  \param world World to save
@@ -56,23 +53,22 @@ public:
 
     /** Load world from XML file
      *  \param world World to which file should be loaded (should be empty)
+     *  \param factory Factory for creating new objects
      *  \return true on success, false on failure
      *          (with error message in errorString())
      */
-    bool load(World* world);
+    bool load(World* world, const Factory* factory);
 
     /** Get error message from last failed save() or load() */
     QString errorString() const;
 
 protected:
-    QIODevice*     _device;
-    const Factory* _factory;
-
+    QIODevice* _device;
     QString _errorString;
 
     QString escapeText(const QString& str);
-    void saveProperties(int indent, const QObject* obj, QTextStream& stream);
-    void saveObject(int indent, const QString& tag, const QObject* obj, QTextStream& stream);
+    void saveProperties(int indent, const Object* obj, QTextStream& stream);
+    void saveObject(int indent, const QString& tag, const Object* obj, QTextStream& stream);
 
 public:
     static const char* DOCKTYPE;
@@ -85,7 +81,5 @@ protected:
 
 }
 
-#endif // STEPCORE_WITH_QT
-
-#endif // STEPCORE_XMLFILE_H
+#endif
 

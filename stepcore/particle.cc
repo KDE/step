@@ -17,14 +17,20 @@
 */
 
 #include "particle.h"
+#include "types.h"
 #include <cstring>
-
-#ifdef STEPCORE_WITH_QT
-#include "particle.moc"
-#endif
 
 namespace StepCore
 {
+
+STEPCORE_META_OBJECT(Particle, "particle", 0, STEPCORE_SUPER_CLASS(Item) STEPCORE_SUPER_CLASS(Body),
+        STEPCORE_PROPERTY_RWS(StepCore::Vector2d, position, "position", position, setPosition)
+        STEPCORE_PROPERTY_RWS(StepCore::Vector2d, velocity, "velocity", velocity, setVelocity)
+        STEPCORE_PROPERTY_R(StepCore::Vector2d, force, "force", force)
+        STEPCORE_PROPERTY_RWS(double, mass, "mass", mass, setMass ))
+
+STEPCORE_META_OBJECT(ChargedParticle, "Charged particle", 0, STEPCORE_SUPER_CLASS(Particle),
+        STEPCORE_PROPERTY_RWS(double, charge, "charge", charge, setCharge))
 
 Particle::Particle(Vector2d position, Vector2d velocity, double mass)
     : _position(position), _velocity(velocity), _force(0), _mass(mass)

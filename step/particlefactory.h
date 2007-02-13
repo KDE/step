@@ -23,6 +23,7 @@
 #include "worldfactory.h"
 #include <stepcore/particle.h>
 
+/*
 class ParticleCreator: public ItemCreator
 {
 public:
@@ -38,7 +39,7 @@ public:
     ChargedParticleCreator(WorldScene* scene, WorldModel* worldModel)
                         : ParticleCreator(scene, worldModel) {}
     QString name() const { return QString("ChargedParticle"); }
-};
+};*/
 
 class ParticleGraphicsItem: public WorldGraphicsItem {
 public:
@@ -59,6 +60,7 @@ protected:
     static const int RADIUS = 7;
 };
 
+/*
 class ParticleFactory: public StepCore::ParticleFactory, public ItemFactory
 {
     ItemCreator* newItemCreator(WorldScene* scene, WorldModel* worldModel) const {
@@ -77,7 +79,7 @@ class ChargedParticleFactory: public StepCore::ChargedParticleFactory, public It
     QGraphicsItem* newGraphicsItem(StepCore::Item* item, WorldModel* worldModel) const {
         return new ParticleGraphicsItem(item, worldModel);
     }
-};
+};*/
 
 #endif
 

@@ -19,6 +19,7 @@
 #include "worldgraphics.h"
 
 #include "worldmodel.h"
+#include <stepcore/object.h>
 #include <stepcore/world.h>
 #include <stepcore/particle.h>
 #include <stepcore/spring.h>
@@ -158,11 +159,27 @@ QVariant WorldGraphicsItem::itemChange(GraphicsItemChange change, const QVariant
     return QGraphicsItem::itemChange(change, value);
 }
 
+bool WorldGraphicsItem::createItem(const QString& className, WorldModel* worldModel,
+                                        WorldScene* scene, QEvent* e)
+{
+    if(e->type() == QEvent::GraphicsSceneMousePress) {
+        StepCore::Item* item = worldModel->newItem(className); Q_ASSERT(item != NULL);
+        worldModel->selectionModel()->setCurrentIndex(worldModel->objectIndex(item),
+                                                    QItemSelectionModel::ClearAndSelect);
+        WorldGraphicsItem* graphicsItem = scene->graphicsFromItem(item);
+        if(graphicsItem == NULL) { e->accept(); return true; }
+
+        graphicsItem->mouseSetPos(static_cast<QGraphicsSceneMouseEvent*>(e)->scenePos());
+        return true;
+    }
+    return false;
+}
+
 ArrowHandlerGraphicsItem::ArrowHandlerGraphicsItem(StepCore::Item* item, WorldModel* worldModel, 
-                                QGraphicsItem* parent, const QMetaProperty& property)
+                         QGraphicsItem* parent, const StepCore::MetaProperty* property)
     : WorldGraphicsItem(item, worldModel, parent), _property(property)
 {
-    Q_ASSERT(_property.userType() == qMetaTypeId<StepCore::Vector2d>());
+    Q_ASSERT(_property->userTypeId() == qMetaTypeId<StepCore::Vector2d>());
     setFlag(QGraphicsItem::ItemIsMovable);
 }
 
@@ -178,7 +195,7 @@ void ArrowHandlerGraphicsItem::advance(int phase)
     prepareGeometryChange();
     double w = HANDLER_SIZE/currentViewScale()/2;
     _boundingRect = QRectF(-w, -w, w*2, w*2);
-    StepCore::Vector2d v = _property.read(_item).value<StepCore::Vector2d>();
+    StepCore::Vector2d v = _property->readVariant(_item).value<StepCore::Vector2d>();
     setPos(v[0], v[1]);
     update(); //XXX
 }
@@ -188,7 +205,7 @@ void ArrowHandlerGraphicsItem::mouseMoveEvent(QGraphicsSceneMouseEvent *event)
     if ((event->buttons() & Qt::LeftButton) && (flags() & ItemIsMovable)) {
         QPointF newPos(mapToParent(event->pos()) - matrix().map(event->buttonDownPos(Qt::LeftButton)));
         StepCore::Vector2d v(newPos.x(), newPos.y());
-        Q_ASSERT(_property.write(_item, QVariant::fromValue(v)));
+        Q_ASSERT(_property->writeVariant(_item, QVariant::fromValue(v)));
         _worldModel->setData(_worldModel->objectIndex(_item), QVariant(), WorldModel::ObjectRole);
     } else  event->ignore();
 }

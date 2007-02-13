@@ -20,6 +20,7 @@
 
 #include "worldmodel.h"
 #include "worldfactory.h"
+#include <stepcore/world.h>
 
 #include <klocale.h>
 
@@ -75,9 +76,13 @@ ItemPalette::ItemPalette(WorldModel* worldModel, QWidget* parent, Qt::WindowFlag
     _toolBar->addSeparator();
 
     /* Add bodies */
-    foreach(QString name, _worldModel->worldFactory()->itemFactories().keys()) {
-        const StepCore::ItemFactory* factory = _worldModel->worldFactory()->itemFactories()[name];
-        if(dynamic_cast<const StepCore::BodyFactory*>(factory) == NULL) continue;
+    QList<QString> metaObjects = _worldModel->worldFactory()->metaObjects().keys();
+    qSort(metaObjects);
+
+    foreach(QString name, metaObjects) {
+        const StepCore::MetaObject* metaObject = _worldModel->worldFactory()->metaObject(name);
+        if(metaObject == StepCore::Body::staticMetaObject()) continue;
+        if(!metaObject->inherits(StepCore::Body::staticMetaObject())) continue;
         QAction* action = new QAction(name, this);
         action->setCheckable(true);
         _actionGroup->addAction(action);
@@ -87,11 +92,10 @@ ItemPalette::ItemPalette(WorldModel* worldModel, QWidget* parent, Qt::WindowFlag
     /* Add forces */
     _toolBar->addSeparator();
 
-    QList<QString> itemFactories = _worldModel->worldFactory()->itemFactories().keys();
-    qSort(itemFactories);
-    foreach(QString name, itemFactories) {
-        const StepCore::ItemFactory* factory = _worldModel->worldFactory()->itemFactories()[name];
-        if(dynamic_cast<const StepCore::ForceFactory*>(factory) == NULL) continue;
+    foreach(QString name, metaObjects) {
+        const StepCore::MetaObject* metaObject = _worldModel->worldFactory()->metaObject(name);
+        if(metaObject == StepCore::Force::staticMetaObject()) continue;
+        if(!metaObject->inherits(StepCore::Force::staticMetaObject())) continue;
         QAction* action = new QAction(name, this);
         action->setCheckable(true);
         _actionGroup->addAction(action);

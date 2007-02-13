@@ -250,7 +250,12 @@ void MainWindow::simulationStop()
 
 void MainWindow::simulationFrame()
 {
-    worldModel->doWorldEvolve(1.0/FPS);
+    if(!worldModel->doWorldEvolve(0.1)) {
+        simulationStop();
+        QMessageBox::warning(this, i18n("Step"), // XXX: retrieve error message from solver !
+            i18n("Can't finish this step becouse local error is bigger then local tolerance.<br />"
+               "Please check solver settings and try again."));
+    }
 }
 
 /*

@@ -24,10 +24,11 @@
 #include <QHash>
 
 class WorldModel;
-class ItemCreator;
+//class ItemCreator;
 class QModelIndex;
 class QGraphicsItem;
 class QItemSelection;
+class WorldGraphicsItem;
 class QAction;
 
 namespace StepCore {
@@ -42,8 +43,8 @@ public:
     WorldScene(WorldModel* worldModel, QObject* parent = 0);
     ~WorldScene();
 
-    StepCore::Item* itemFromGraphics(QGraphicsItem* graphicsItem);
-    QGraphicsItem* graphicsFromItem(QObject* item);
+    StepCore::Item* itemFromGraphics(const QGraphicsItem* graphicsItem) const;
+    WorldGraphicsItem* graphicsFromItem(const StepCore::Item* item) const;
 
     void updateViewScale(); // Qt4.3 can help here
     double currentViewScale() { return _currentViewScale; }
@@ -72,9 +73,9 @@ protected:
 
 protected:
     WorldModel* _worldModel;
-    QHash<QObject*, QGraphicsItem*> _itemsHash;
-    ItemCreator* _itemCreator;
+    QHash<const StepCore::Item*, WorldGraphicsItem*> _itemsHash;
     double _currentViewScale;
+    QString _currentCreator;
 };
 
 class WorldGraphicsView: public QGraphicsView

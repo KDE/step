@@ -24,7 +24,7 @@
 #define STEPCORE_COULOMBFORCE_H
 
 #include "world.h"
-#include "factory.h"
+#include "object.h"
 #include "constants.h"
 
 namespace StepCore
@@ -52,10 +52,11 @@ namespace StepCore
  */
 class CoulombForce: public Item, public Force
 {
-    Q_OBJECT
+    //Q_OBJECT
+    STEPCORE_OBJECT(CoulombForce)
 
     /** Electric constant (default value is Constants::Electric) */
-    Q_PROPERTY(double electricConst READ electricConst WRITE setElectricConst)
+    //Q_PROPERTY(double electricConst READ electricConst WRITE setElectricConst)
 
 public:
     /** Constructs CoulombForce */
@@ -64,16 +65,13 @@ public:
     void calcForce();
 
     /** Get electric const */
-    double electricConst() { return _electricConst; }
+    double electricConst() const { return _electricConst; }
     /** Set electric const */
     void   setElectricConst(double electricConst) { _electricConst = electricConst; }
 
 protected:
     double _electricConst;
 };
-
-/** \brief ItemFactory for CoulombForce */
-STEPCORE_ITEM_FACTORY2(CoulombForce, Item, Force)
 
 } // namespace StepCore
 

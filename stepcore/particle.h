@@ -24,9 +24,8 @@
 #define STEPCORE_PARTICLE_H
 
 #include "world.h"
-#include "factory.h"
-#include "types.h"
-//#include "vector.h"
+#include "vector.h"
+#include "object.h"
 
 namespace StepCore {
 
@@ -35,16 +34,17 @@ namespace StepCore {
  */
 class Particle: public Item, public Body
 {
-    Q_OBJECT
+    //Q_OBJECT
+    STEPCORE_OBJECT(Particle)
 
     /** Position of the particle */
-    Q_PROPERTY(StepCore::Vector2d position READ position WRITE setPosition)
+    //Q_PROPERTY(StepCore::Vector2d position READ position WRITE setPosition)
     /** Velocity of the particle */
-    Q_PROPERTY(StepCore::Vector2d velocity READ velocity WRITE setVelocity)
+    //Q_PROPERTY(StepCore::Vector2d velocity READ velocity WRITE setVelocity)
     /** Force that acts upon particle */
-    Q_PROPERTY(StepCore::Vector2d force READ force STORED false)
+    //Q_PROPERTY(StepCore::Vector2d force READ force STORED false)
     /** Mass of the particle */
-    Q_PROPERTY(double mass READ mass WRITE setMass)
+    //Q_PROPERTY(double mass READ mass WRITE setMass)
 
 public:
     /** Constructs a particle */
@@ -70,7 +70,7 @@ public:
     void zeroForce() { _force.setZero(); }
 
     /** Get mass of the particle */
-    double mass() { return _mass; }
+    double mass() const { return _mass; }
     /** Set mass of the particle */
     void   setMass(double mass) { _mass = mass; }
 
@@ -93,10 +93,12 @@ protected:
  */
 class ChargedParticle: public Particle
 {
-    Q_OBJECT
+    //Q_OBJECT
+
+    STEPCORE_OBJECT(ChargedParticle)
 
     /** Charge of the particle */
-    Q_PROPERTY(double charge READ charge WRITE setCharge)
+    //Q_PROPERTY(double charge READ charge WRITE setCharge)
 
 public:
     /** Constructs a charged particle */
@@ -105,19 +107,13 @@ public:
                 : Particle(position, velocity, mass), _charge(charge) {}
 
     /** Charge of the particle */
-    double charge() { return _charge; }
+    double charge() const { return _charge; }
     /** Charge of the particle */
     void setCharge(double charge) { _charge = charge; }
 
 protected:
     double _charge;
 };
-
-/** \brief ItemFactory for Particle */
-STEPCORE_ITEM_FACTORY2(Particle, Item, Body)
-
-/** \brief ItemFactory for ChargedParticle */
-STEPCORE_ITEM_FACTORY(ChargedParticle, Particle)
 
 } // namespace StepCore
 

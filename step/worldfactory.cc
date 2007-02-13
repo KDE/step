@@ -20,8 +20,11 @@
 #include "worldgraphics.h"
 #include "worldmodel.h"
 
+#include <stepcore/world.h>
+#include <stepcore/particle.h>
 #include <stepcore/gravitation.h>
 #include <stepcore/coulombforce.h>
+#include <stepcore/spring.h>
 #include <stepcore/gslsolver.h>
 #include <stepcore/eulersolver.h>
 #include <stepcore/types.h>
@@ -32,6 +35,7 @@
 #include <QItemSelectionModel>
 #include <QEvent>
 
+/*
 bool ItemCreator::sceneEvent(QEvent* event)
 {
     if(event->type() == QEvent::GraphicsSceneMousePress) {
@@ -45,8 +49,8 @@ bool ItemCreator::sceneEvent(QEvent* event)
         return true;
     }
     return false;
-}
-
+}*/
+#if 0
 #define STEP_ITEM_CREATOR_FACTORY(ClassName) \
     class ClassName ## Creator: public ItemCreator { \
     public: \
@@ -80,48 +84,79 @@ public:
     StepCore::GslSolverFactory gslSolverFactory;
 #endif
 
+    StepCore::WorldFactory worldFactory;
+
     StepCore::Vector2dPropertyType vector2dPropertyType;
     StepCore::Vector3dPropertyType vector3dPropertyType;
     //StepCore::ApproxVector2dPropertyType approxVector2dPropertyType;
 };
+#endif
+
+
+template<typename T>
+WorldGraphicsItem* newGraphicsItemHelper(StepCore::Item* item, WorldModel* worldModel)
+{
+    return new T(item, worldModel);
+}
 
 WorldFactory::WorldFactory()
 {
-    d = new WorldFactoryPrivate();
-    registerItemFactory(&d->particleFactory);
-    registerItemFactory(&d->chargedParticleFactory);
+    #define __REGISTER(Class) registerMetaObject(StepCore::Class::staticMetaObject())
+    #define __REGISTER_EXT(Class, Graphics) \
+        static const ExtMetaObject extMetaObject ## Class = \
+                        { Graphics::createItem, newGraphicsItemHelper<Graphics> }; \
+        registerMetaObject(StepCore::Class::staticMetaObject()); \
+        _extMetaObjects.insert(StepCore::Class::staticMetaObject(), &extMetaObject ## Class);
 
-    registerItemFactory(&d->springFactory);
-    registerItemFactory(&d->weightForceFactory);
-    registerItemFactory(&d->gravitationForceFactory);
-    registerItemFactory(&d->coulombForceFactory);
+    __REGISTER(Object);
 
-    registerSolverFactory(&d->eulerSolverFactory);
+    __REGISTER(World);
+    __REGISTER(Item);
+    __REGISTER(Body);
+    __REGISTER(Force);
+
+    __REGISTER_EXT(Particle, ParticleGraphicsItem);
+    __REGISTER_EXT(ChargedParticle, ParticleGraphicsItem);
+
+    __REGISTER(GravitationForce);
+    __REGISTER(WeightForce);
+    __REGISTER(CoulombForce);
+
+    __REGISTER_EXT(Spring, SpringGraphicsItem);
+
+    __REGISTER(EulerSolver);
 
 #ifdef STEPCORE_WITH_GSL
-    registerSolverFactory(&d->gslSolverFactory);
+    __REGISTER(GslSolver);
 #endif
-
-    registerPropertyType(&d->vector2dPropertyType);
-    registerPropertyType(&d->vector3dPropertyType);
-    //registerPropertyType(&approxVector2dPropertyType);
 }
 
-WorldFactory::~WorldFactory()
+WorldGraphicsItem* WorldFactory::newGraphicsItem(StepCore::Item* item, WorldModel* worldModel) const
 {
-    delete d;
+    const ExtMetaObject *extMetaObject = _extMetaObjects.value(item->metaObject(), NULL);
+    if(extMetaObject && extMetaObject->newGraphicsItem)
+        return extMetaObject->newGraphicsItem(item, worldModel);
+    return NULL;
 }
 
-QGraphicsItem* WorldFactory::newGraphicsItem(StepCore::Item* item, WorldModel* worldModel) const
+bool WorldFactory::graphicsCreateItem(const QString& name, WorldModel* worldModel,
+                            WorldScene* scene, QEvent* e) const
 {
-    const ItemFactory* factory = dynamic_cast<const ItemFactory*>(itemFactory(item));
-    if(factory) return factory->newGraphicsItem(item, worldModel);
-    else return NULL;
+    const ExtMetaObject *extMetaObject = _extMetaObjects.value(metaObject(name), NULL);
+    if(extMetaObject && extMetaObject->graphicsCreateItem)
+        return extMetaObject->graphicsCreateItem(name, worldModel, scene, e);
+    else if(metaObject(name)->inherits(StepCore::Item::staticMetaObject())) 
+        return WorldGraphicsItem::createItem(name, worldModel, scene, e);
+    return true;
 }
 
+#if 0
 ItemCreator* WorldFactory::newItemCreator(const QString& name, WorldScene* scene, WorldModel* worldModel) const
 {
-    const ItemFactory* factory = dynamic_cast<const ItemFactory*>(itemFactory(name));
+    return NULL;
+    /*
+    const ItemFactory* factory = dynamic_cast<const ItemFactory*>(objectFactory(name));
     if(factory) return factory->newItemCreator(scene, worldModel);
-    else return NULL;
+    else return NULL;*/
 }
+#endif

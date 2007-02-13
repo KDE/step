@@ -25,6 +25,7 @@
 
 #include <vector> // XXX: replace if QT is enabled
 #include "util.h"
+#include "object.h"
 
 namespace StepCore
 {
@@ -34,9 +35,10 @@ class Solver;
 
 /** \brief The root class for any world items (bodies and forces)
  */
-class Item : public StepCoreObject
+class Item : public Object
 {
-    Q_OBJECT
+    /*Q_OBJECT*/
+    STEPCORE_OBJECT(Item)
 
 public:
     Item(): _world(NULL) {}
@@ -64,6 +66,8 @@ private:
  */
 class Body
 {
+    STEPCORE_OBJECT(Body)
+
 public:
     virtual ~Body() {}
 
@@ -90,6 +94,8 @@ public:
  */
 class Force
 {
+    STEPCORE_OBJECT(Force)
+
 public:
     virtual ~Force() {}
 
@@ -103,12 +109,13 @@ public:
  *  \brief Contains multiple Item, Solver and general properties such as time
  *  \todo Redesign to avoid variable copying (scatter/gatherVariables)
  */
-class World : public StepCoreObject
+class World : public Object
 {
-    Q_OBJECT
+    /*Q_OBJECT*/
+    STEPCORE_OBJECT(World)
 
     /** Current time */
-    Q_PROPERTY(double time READ time WRITE setTime)
+    //Q_PROPERTY(double time READ time WRITE setTime)
 
 public:
     /** List of pointers to Item */
@@ -126,9 +133,9 @@ public:
     void clear();
 
     /** Get current time */
-    double time() { return _time; }
+    double time() const { return _time; }
     /** Set current time */
-    void   setTime(double t) { _time = t; }
+    void setTime(double t) { _time = t; }
 
     /** Add new item to the world */
     void addItem(Item* item);
@@ -179,6 +186,11 @@ private:
     double* _errors;
 
 };
+
+/** \brief ObjectFactory for World */
+/*STEPCORE_OBJECT_FACTORY(World, STEPCORE_FACTORY_BASE1(Object), "World",
+   STEPCORE_PROPERTY_RW(World, double, time, "current time", STORED, time, setTime),
+   STEPCORE_PROPERTY_ADD(time))*/
 
 } // namespace StepCore
 

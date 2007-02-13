@@ -21,11 +21,15 @@
 #include <algorithm>
 #include <cmath>
 
-#ifdef STEPCORE_WITH_QT
-#include "spring.moc"
-#endif
-
 namespace StepCore {
+
+STEPCORE_META_OBJECT(Spring, "Massless spring", 0,
+    STEPCORE_SUPER_CLASS(Item) STEPCORE_SUPER_CLASS(Force),
+    STEPCORE_PROPERTY_RWS(double, restLength, "Rest length", restLength, setRestLength)
+    STEPCORE_PROPERTY_R  (double, length, "Current length", length)
+    STEPCORE_PROPERTY_RWS(double, stiffness, "Stiffness", stiffness, setStiffness)
+    STEPCORE_PROPERTY_RWS(QString, body1, "Body1", body1, setBody1)
+    STEPCORE_PROPERTY_RWS(QString, body2, "Body2", body2, setBody2))
 
 Spring::Spring(double restLength, double stiffness, Body* bodyPtr1, Body* bodyPtr2)
     : PairForce(bodyPtr1, bodyPtr2), _restLength(restLength), _stiffness(stiffness)
@@ -68,7 +72,7 @@ void Spring::calcForce()
 void Spring::setBody1(const QString& body1)
 {
     for(World::BodyList::const_iterator o = world()->bodies().begin(); o != world()->bodies().end(); ++o)
-        if(dynamic_cast<Item*>(*o)->objectName() == body1) {
+        if(dynamic_cast<Item*>(*o)->name() == body1) {
             setBodyPtr1(*o);
             return;
         }
@@ -77,7 +81,7 @@ void Spring::setBody1(const QString& body1)
 void Spring::setBody2(const QString& body2)
 {
     for(World::BodyList::const_iterator o = world()->bodies().begin(); o != world()->bodies().end(); ++o)
-        if(dynamic_cast<Item*>(*o)->objectName() == body2) {
+        if(dynamic_cast<Item*>(*o)->name() == body2) {
             setBodyPtr2(*o);
             return;
         }

@@ -22,6 +22,7 @@
 #include <QAbstractItemModel>
 
 namespace StepCore {
+    class Object;
     class World;
     class Item;
     class Solver;
@@ -35,21 +36,27 @@ class WorldModel: public QAbstractItemModel
     Q_OBJECT
 
 public:
-    enum { ObjectRole = Qt::UserRole, NewGraphicsItemRole };
+    enum { ObjectRole = Qt::UserRole };
 
     WorldModel(QObject* parent = 0);
     ~WorldModel();
     void clearWorld();
 
     QItemSelectionModel* selectionModel() const { return _selectionModel; }
-    WorldFactory* worldFactory() const { return _worldFactory; }
+    const WorldFactory* worldFactory() const { return _worldFactory; }
 
     // QModelIndex quick-access functions
     QModelIndex worldIndex() const;
     QModelIndex solverIndex() const;
-    QModelIndex itemIndex(int n) const;
-    QModelIndex objectIndex(QObject* obj) const;
+    QModelIndex objectIndex(StepCore::Object* obj) const;
+    StepCore::Object* object(const QModelIndex& index) const {
+        return reinterpret_cast<StepCore::Object*>(data(index, ObjectRole).value<void*>());
+    }
+
     int itemCount() const;
+    QModelIndex itemIndex(int n) const;
+    StepCore::Item* item(const QModelIndex& index) const;
+    StepCore::Item* item(int n) const { return item(itemIndex(n)); }
 
     // QAbstractItemModel functions
     // XXX: disallow external modifications - replace ObjectRole by PropertyRole
@@ -65,6 +72,7 @@ public:
     bool setData(const QModelIndex &index, const QVariant &value, int role);
 
     // Add/remove/set functions
+    StepCore::Item* newItem(const QString& name);
     void addItem(StepCore::Item* item);
     void deleteItem(StepCore::Item* item);
 
@@ -79,12 +87,7 @@ public:
     QString errorString() const { return _errorString; }
 
     // Names
-    QString newItemName(QString className) const;
-
-    // Helper functions
-    // XXX: use deeper tree to include properties ?
-    QString variantToString(const QVariant& variant) const;
-    QVariant stringToVariant(int typeId, const QString& string) const;
+    QString getUniqueName(QString className) const;
 
 signals:
     void worldChanged(bool modified);
@@ -96,7 +99,7 @@ protected:
 protected:
     StepCore::World* _world;
     QItemSelectionModel* _selectionModel;
-    WorldFactory* _worldFactory;
+    const WorldFactory* _worldFactory;
     QString _errorString;
 };
 

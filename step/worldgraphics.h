@@ -21,7 +21,6 @@
 
 #include <stepcore/vector.h>
 #include <QGraphicsItem>
-#include <QMetaProperty>
 #include <QRectF>
 #include <QColor>
 
@@ -29,15 +28,21 @@ namespace StepCore {
     class Item;
     class Particle;
     class Spring;
+    class MetaProperty;
 }
 class WorldModel;
+class WorldScene;
+class QEvent;
 
 class WorldGraphicsItem: public QGraphicsItem {
 public:
     WorldGraphicsItem(StepCore::Item* item, WorldModel* worldModel, QGraphicsItem* parent = 0);
     StepCore::Item* item() const { return _item; }
     QRectF boundingRect() const;
-    void advance(int phase) const;
+    //void advance(int phase) const;
+
+    static bool createItem(const QString& className, WorldModel* worldModel,
+                            WorldScene* scene, QEvent* e);
 
 protected:
     virtual void mouseSetPos(const QPointF& pos);
@@ -69,14 +74,14 @@ protected:
 class ArrowHandlerGraphicsItem: public WorldGraphicsItem {
 public:
     ArrowHandlerGraphicsItem(StepCore::Item* item, WorldModel* worldModel,
-                                QGraphicsItem* parent, const QMetaProperty& property);
+                        QGraphicsItem* parent, const StepCore::MetaProperty* property);
 
     void paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget);
     void advance(int phase);
 
 protected:
     void mouseMoveEvent(QGraphicsSceneMouseEvent *event);
-    QMetaProperty _property;
+    const StepCore::MetaProperty* _property;
 };
 
 #endif

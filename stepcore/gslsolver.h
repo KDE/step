@@ -27,7 +27,7 @@
 #if defined(STEPCORE_WITH_GSL) || defined(Q_MOC_RUN)
 
 #include "solver.h"
-#include "factory.h"
+#include "object.h"
 
 #include <gsl/gsl_odeiv.h>
 
@@ -44,10 +44,11 @@ namespace StepCore
  */
 class GslSolver: public Solver
 {
-    Q_OBJECT
+    //Q_OBJECT
+    STEPCORE_OBJECT(GslSolver)
 
     /** Step size */
-    Q_PROPERTY(double stepSize READ stepSize WRITE setStepSize)
+    //Q_PROPERTY(double stepSize READ stepSize WRITE setStepSize)
 
 public:
     /** Constructs GslSolver */
@@ -62,7 +63,7 @@ public:
     void setParams(void* params) { _gslSystem.params = _params = params; }
 
     /** Get step size */
-    double stepSize() { return _stepSize; }
+    double stepSize() const { return _stepSize; }
     /** Set step size */
     void setStepSize(double stepSize) { _stepSize = stepSize; }
 
@@ -84,9 +85,6 @@ protected:
     gsl_odeiv_system _gslSystem;
     gsl_odeiv_step*  _gslStep;
 };
-
-/** \brief SolverFactory for GslSolver */
-STEPCORE_SOLVER_FACTORY(GslSolver)
 
 } // namespace StepCore
 
