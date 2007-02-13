@@ -39,8 +39,8 @@ StepCore is distributed under the terms of the
 
 - Object oriented, easy to use
 - Accurate simulations, local error estimations
-- Properties reflections via Q_PROPERTY (requires Qt4)
-- Extensible \ref factory "Factory" classes (requires Qt4)
+- Reflections for all objects and properties
+- Factory for reflections and object creation
 - \ref xmlfile "XML file save and load" (requires Qt4)
 - \ref bodies "Bodies:"
  - Particle

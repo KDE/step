@@ -2,6 +2,7 @@
 #define STEPCORE_OBJECT_H
 
 /** \file object.h
+ *  \brief Object, MetaObject and MetaProperty classes
  */
 
 #include "util.h"
@@ -25,7 +26,9 @@ class MetaProperty;
         virtual const StepCore::MetaObject* metaObject() const { return &_metaObject; } \
     private:
 
-/** Object */
+/** \ingroup reflections
+ *  \brief Root of the StepCore classes hierarchy
+ */
 class Object
 {
     STEPCORE_OBJECT(Object)
@@ -33,33 +36,52 @@ class Object
 public:
     virtual ~Object() {}
 
+    /** Returns name of the object */
     const QString& name() const { return _name; }
+    /** Set name of the object */
     void setName(const QString& name) { _name = name; }
 
 protected:
     QString _name;
 };
 
-/** MetaProperty */
+/** \ingroup reflections
+ *  \brief Meta-information about property
+ */
 class MetaProperty
 {
 public:
-    enum { READABLE = 1, WRITABLE = 2, STORED = 4, };
+    enum {
+        READABLE = 1, ///< Property is readable
+        WRITABLE = 2, ///< Property is writable
+        STORED = 4    ///< Property should be stored
+    };
 
 public:
+    /** Returns property name */
     const char* name() const { return _name; }
+    /** Returns property description */
     const char* description() const { return _description; }
+    /** Returns property flags */
     int flags() const { return _flags; }
 
+    /** Returns property userType (see QMetaProperty) */
     int userTypeId() const { return _userTypeId; }
+    /** Read property as QVariant */
     QVariant readVariant(const Object* obj) const { return _readVariant(obj); }
+    /** Write property as QVariant. \return true on success */
     bool writeVariant(Object* obj, const QVariant& v) const { return _writeVariant(obj, v); }
 
+    /** Read property as string */
     QString readString(const Object* obj) const { return _readString(obj); }
+    /** Write property as string. \return true on success */
     bool writeString(Object* obj, const QString& s) const { return _writeString(obj, s); }
 
+    /** Returns true if this property is readable */
     bool isReadable() const { return _flags & READABLE; }
+    /** Returns true if this property is writable */
     bool isWritable() const { return _flags & WRITABLE; }
+    /** Returns true if this property should be stored */
     bool isStored() const { return _flags & STORED; }
 
 public:
@@ -73,29 +95,46 @@ public:
     bool (*const _writeString)(Object* obj, const QString& v);
 };
 
-/** MetaObject */
+/** \ingroup reflections
+ *  \brief Meta-information about class
+ */
 class MetaObject
 {
 public:
-    enum { ABSTRACT = 1 };
+    enum {
+        ABSTRACT = 1 ///< Class is abstract
+    };
 
 public:
+    /** Returns class name */
     const char* className() const { return _className; }
+    /** Returns class description */
     const char* description() const { return _description; }
 
+    /** Returns true if class is abstract */
     bool isAbstract() const { return _flags & ABSTRACT; }
+    /** Creates new object of this class */
     Object* newObject() const { return _newObject(); }
 
+    /** Returns number of direct bases */
     int superClassCount() const { return _superClassCount; }
+    /** Returns direct base */
     const MetaObject* superClass(int n) const { return _superClasses[n]; }
+    /** Returns true if this class inherits class described by obj */
     bool inherits(const MetaObject* obj) const;
+    /** Returns true if this class inherits class named name */
     bool inherits(const char* name) const;
 
+    /** Returns number of non-inherited properties */
     int classPropertyCount() const { return _classPropertyCount; }
+    /** Returns non-inherited property */
     const MetaProperty* classProperty(int n) const { return &_classProperties[n]; }
 
-    int propertyCount() const; // TODO caching
-    const MetaProperty* property(int n) const; // TODO caching
+    /** Returns property count */
+    int propertyCount() const; ///< \todo TODO caching
+    /** Returns property by index */
+    const MetaProperty* property(int n) const; ///< \todo TODO caching
+    /** Returns property by name */
     const MetaProperty* property(const char* name) const;
 
 public:

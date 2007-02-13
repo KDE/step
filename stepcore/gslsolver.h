@@ -44,11 +44,7 @@ namespace StepCore
  */
 class GslSolver: public Solver
 {
-    //Q_OBJECT
     STEPCORE_OBJECT(GslSolver)
-
-    /** Step size */
-    //Q_PROPERTY(double stepSize READ stepSize WRITE setStepSize)
 
 public:
     /** Constructs GslSolver */

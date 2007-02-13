@@ -73,19 +73,7 @@ protected:
  */
 class Spring: public Item, public Force, public PairForce
 {
-    //Q_OBJECT
     STEPCORE_OBJECT(Spring)
-
-    /** Rest length of the spring */
-    //Q_PROPERTY(double restLength READ restLength WRITE setRestLength)
-    /** Current length of the spring */
-    //Q_PROPERTY(double length READ length STORED false)
-    /** Stiffness of the spring */
-    //Q_PROPERTY(double stiffness READ stiffness WRITE setStiffness)
-    /** Name of the first connected body */
-    //Q_PROPERTY(QString body1 READ body1 WRITE setBody1)
-    /** Name of the second connected body */
-    //Q_PROPERTY(QString body2 READ body2 WRITE setBody2)
 
 public:
     /** Constructs Spring */

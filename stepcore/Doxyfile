@@ -232,10 +232,9 @@ SEARCH_INCLUDES        = YES
 INCLUDE_PATH           = 
 INCLUDE_FILE_PATTERNS  = 
 PREDEFINED             = STEPCORE_WITH_QT STEPCORE_WITH_GSL \
-                         "STEPCORE_UNUSED="
-EXPAND_AS_DEFINED      = STEPCORE_ITEM_FACTORY \
-                         STEPCORE_ITEM_FACTORY2 \
-                         STEPCORE_SOLVER_FACTORY
+                         "STEPCORE_UNUSED=" \
+                         "STEPCORE_OBJECT="
+EXPAND_AS_DEFINED      =
 SKIP_FUNCTION_MACROS   = NO
 #---------------------------------------------------------------------------
 # Configuration::additions related to external references   

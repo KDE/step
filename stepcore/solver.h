@@ -59,15 +59,6 @@ class Solver: public Object
     //Q_OBJECT
     STEPCORE_OBJECT(Solver)
 
-    /** Absolute allowed local tolerance */
-    //Q_PROPERTY(double toleranceAbs READ toleranceAbs WRITE setToleranceAbs)
-    /** Relative allowed local tolerance */
-    //Q_PROPERTY(double toleranceRel READ toleranceRel WRITE setToleranceRel)
-    /** Local tolerance calculated at last step */
-    //Q_PROPERTY(double localTolerance READ localTolerance STORED false)
-    /** Local error estimation from last step */
-    //Q_PROPERTY(double localError READ localError STORED false)
-
 public:
     /** Callback function type */
     typedef int (*Function)(double t, const double y[], double f[], void* params);

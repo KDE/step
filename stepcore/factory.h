@@ -32,17 +32,8 @@ namespace StepCore {
 class Item;
 class Solver;
 
-/** \ingroup factory
- *  \brief Container for all factory classes
- *
- *  Each Item (Body and Force) and Solver has its own factory class 
- *  to allow creation by class name. Each property type has its
- *  own factory class to allow converting to and from QString.
- *
- *  Program that uses StepCore library can extend factory classes
- *  to provide more functionality, for example creation of GUI
- *  classes for Object.
- *  \todo TODO move to object.h
+/** \ingroup reflections
+ *  \brief List of MetaObject
  */
 class Factory
 {
@@ -58,7 +49,9 @@ public:
 
     /** Create new Object by class name */
     Object* newObject(const QString& name) const;
+    /** Create new Item by class name */
     Item* newItem(const QString& name) const;
+    /** Create new Solver by class name */
     Solver* newSolver(const QString& name) const;
 
 protected:

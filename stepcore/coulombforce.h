@@ -52,11 +52,7 @@ namespace StepCore
  */
 class CoulombForce: public Item, public Force
 {
-    //Q_OBJECT
     STEPCORE_OBJECT(CoulombForce)
-
-    /** Electric constant (default value is Constants::Electric) */
-    //Q_PROPERTY(double electricConst READ electricConst WRITE setElectricConst)
 
 public:
     /** Constructs CoulombForce */

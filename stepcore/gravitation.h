@@ -50,11 +50,7 @@ namespace StepCore
  */
 class GravitationForce: public Item, public Force
 {
-    //Q_OBJECT
     STEPCORE_OBJECT(GravitationForce)
-
-    /** Gravitational constant (default value is Constants::Gravitational) */
-    //Q_PROPERTY(double gravitationConst READ gravitationConst WRITE setGravitationConst)
 
 public:
     /** Constructs GravitationForce */
@@ -87,16 +83,12 @@ protected:
  */
 class WeightForce: public Item, public Force
 {
-    //Q_OBJECT
     STEPCORE_OBJECT(WeightForce)
-
-    /** Weight constant (standard acceleration of gravity on Earth, default value is
-     *                   Constants::WeightAccel) */
-    //Q_PROPERTY(double weightConst READ weightConst WRITE setWeightConst)
 
 public:
     /** Constructs WeightForce */
     WeightForce(double weightConst = Constants::WeightAccel);
+
     void calcForce();
 
     /** Get weight constant */

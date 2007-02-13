@@ -33,7 +33,8 @@ namespace StepCore
 class World;
 class Solver;
 
-/** \brief The root class for any world items (bodies and forces)
+/** \ingroup world
+ *  \brief The root class for any world items (bodies and forces)
  */
 class Item : public Object
 {
@@ -114,9 +115,6 @@ class World : public Object
     /*Q_OBJECT*/
     STEPCORE_OBJECT(World)
 
-    /** Current time */
-    //Q_PROPERTY(double time READ time WRITE setTime)
-
 public:
     /** List of pointers to Item */
     typedef std::vector<Item*>  ItemList;
@@ -187,11 +185,6 @@ private:
 
 };
 
-/** \brief ObjectFactory for World */
-/*STEPCORE_OBJECT_FACTORY(World, STEPCORE_FACTORY_BASE1(Object), "World",
-   STEPCORE_PROPERTY_RW(World, double, time, "current time", STORED, time, setTime),
-   STEPCORE_PROPERTY_ADD(time))*/
-
 } // namespace StepCore
 
 /** \defgroup world World */
@@ -200,7 +193,7 @@ private:
 /** \defgroup bodies Physical bodies */
 /** \defgroup forces Physical forces */
 /** \defgroup solvers ODE Solvers */
-/** \defgroup factory Factory classes */
+/** \defgroup reflections Reflections */
 /** \defgroup xmlfile XML file IO */
 
 #endif

@@ -38,11 +38,7 @@ namespace StepCore {
  */
 class EulerSolver: public Solver
 {
-    //Q_OBJECT
     STEPCORE_OBJECT(EulerSolver)
-
-    /** Step size */
-    //Q_PROPERTY(double stepSize READ stepSize WRITE setStepSize)
 
 public:
     /** Constructs EulerSolver */

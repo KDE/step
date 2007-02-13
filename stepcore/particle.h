@@ -34,17 +34,7 @@ namespace StepCore {
  */
 class Particle: public Item, public Body
 {
-    //Q_OBJECT
     STEPCORE_OBJECT(Particle)
-
-    /** Position of the particle */
-    //Q_PROPERTY(StepCore::Vector2d position READ position WRITE setPosition)
-    /** Velocity of the particle */
-    //Q_PROPERTY(StepCore::Vector2d velocity READ velocity WRITE setVelocity)
-    /** Force that acts upon particle */
-    //Q_PROPERTY(StepCore::Vector2d force READ force STORED false)
-    /** Mass of the particle */
-    //Q_PROPERTY(double mass READ mass WRITE setMass)
 
 public:
     /** Constructs a particle */
@@ -93,12 +83,7 @@ protected:
  */
 class ChargedParticle: public Particle
 {
-    //Q_OBJECT
-
     STEPCORE_OBJECT(ChargedParticle)
-
-    /** Charge of the particle */
-    //Q_PROPERTY(double charge READ charge WRITE setCharge)
 
 public:
     /** Constructs a charged particle */
