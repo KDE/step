@@ -59,6 +59,7 @@ protected:
     WorldModel* _worldModel;
     QRectF _boundingRect;
     bool   _isMouseOverItem;
+    bool   _isMoving;
 
     double currentViewScale() const;
     QVariant itemChange(GraphicsItemChange change, const QVariant& value);

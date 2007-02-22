@@ -20,11 +20,9 @@
 #include "propertiesbrowser.moc"
 
 #include "worldmodel.h"
-#include "worldfactory.h"
-#include <stepcore/world.h>
+#include <stepcore/object.h>
 #include <QAbstractItemModel>
 #include <QTreeView>
-#include <QMetaProperty>
 #include <KLocale>
 
 class PropertiesBrowserModel: public QAbstractItemModel
@@ -69,7 +67,7 @@ QVariant PropertiesBrowserModel::data(const QModelIndex &index, int role) const
         if(index.column() == 0) return p->name();
         else if(index.column() == 1) {
             /*if(p->userTypeId() < (int) QVariant::UserType) return p->readVariant(_object);
-            else*/ return p->readString(_object);
+            else*/ return p->readString(_object); // XXX: default delegate for double looks ugly!
         }
     } else if(role == Qt::ForegroundRole && index.column() == 1) {
         if(!p->isWritable()) return QBrush(Qt::darkGray); // XXX: how to get scheme color ?
@@ -122,7 +120,6 @@ Qt::ItemFlags PropertiesBrowserModel::flags(const QModelIndex &index) const
     if(index.isValid() && index.column() == 1 && _object->metaObject()->property(index.row())->isWritable())
         return QAbstractItemModel::flags(index) | Qt::ItemIsEditable;
     else return QAbstractItemModel::flags(index);
-
 }
 
 bool PropertiesBrowserModel::setData(const QModelIndex &index, const QVariant &value, int role)
@@ -130,18 +127,13 @@ bool PropertiesBrowserModel::setData(const QModelIndex &index, const QVariant &v
     if(_object == NULL) return false;
 
     if(index.isValid() && index.column() == 1 && role == Qt::EditRole) {
-        const StepCore::MetaProperty* p = _object->metaObject()->property(index.row());
-        /*if(p->userTypeId() < (int) QVariant::UserType) p->writeVariant(_object, value);
-        else */p->writeString(_object, value.toString());
-        emit dataChanged(index, index);
-        _worldModel->setData(_worldModel->objectIndex(_object),
-                                QVariant(), WorldModel::ObjectRole);
+        _worldModel->setProperty(_object, _object->metaObject()->property(index.row()), value);
     }
     return false;
 }
 
 PropertiesBrowser::PropertiesBrowser(WorldModel* worldModel, QWidget* parent, Qt::WindowFlags flags)
-    : QDockWidget("Properties", parent, flags)
+    : QDockWidget(i18n("Properties"), parent, flags)
 {
     _worldModel = worldModel;
     _propertiesBrowserModel = new PropertiesBrowserModel(worldModel, this);

@@ -20,15 +20,19 @@
 #define STEP_WORLDMODEL_H
 
 #include <QAbstractItemModel>
+#include <QUndoCommand>
+#include <QVariant>
 
 namespace StepCore {
     class Object;
     class World;
     class Item;
     class Solver;
+    class MetaProperty;
 }
 
 class QItemSelectionModel;
+class QUndoStack;
 class WorldFactory;
 
 class WorldModel: public QAbstractItemModel
@@ -49,14 +53,15 @@ public:
     QModelIndex worldIndex() const;
     QModelIndex solverIndex() const;
     QModelIndex objectIndex(StepCore::Object* obj) const;
+    QModelIndex itemIndex(int n) const;
+    
     StepCore::Object* object(const QModelIndex& index) const {
         return reinterpret_cast<StepCore::Object*>(data(index, ObjectRole).value<void*>());
     }
 
-    int itemCount() const;
-    QModelIndex itemIndex(int n) const;
     StepCore::Item* item(const QModelIndex& index) const;
     StepCore::Item* item(int n) const { return item(itemIndex(n)); }
+    int itemCount() const;
 
     // QAbstractItemModel functions
     // XXX: disallow external modifications - replace ObjectRole by PropertyRole
@@ -73,10 +78,17 @@ public:
 
     // Add/remove/set functions
     StepCore::Item* newItem(const QString& name);
-    void addItem(StepCore::Item* item);
     void deleteItem(StepCore::Item* item);
 
     void setSolver(StepCore::Solver* solver);
+
+    // Undo/redo helpers
+    void beginMacro(const QString& text) { _undoStack->beginMacro(text); }
+    void endMacro() { _undoStack->endMacro(); }
+
+    // Property edit
+    void setProperty(StepCore::Object* object, const StepCore::MetaProperty* property,
+                        const QVariant& value, bool merge = false);
 
     // Evolve
     bool doWorldEvolve(double delta);
@@ -85,6 +97,9 @@ public:
     bool saveXml(QIODevice* device);
     bool loadXml(QIODevice* device);
     QString errorString() const { return _errorString; }
+
+    // Undo/redo
+    QUndoStack* undoStack() { return _undoStack; }
 
     // Names
     QString getUniqueName(QString className) const;
@@ -95,12 +110,18 @@ signals:
 protected:
     void resetWorld();
     void emitChanged();
+    void addItem(StepCore::Item* item);
+    void removeItem(StepCore::Item* item);
 
 protected:
     StepCore::World* _world;
     QItemSelectionModel* _selectionModel;
+    QUndoStack* _undoStack;
     const WorldFactory* _worldFactory;
     QString _errorString;
+
+    friend class UndoCommandProperty;
+    friend class UndoCommandItem;
 };
 
 #endif

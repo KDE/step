@@ -78,7 +78,7 @@ void World::addItem(Item* item)
     if(body) _bodies.push_back(body);
 }
 
-void World::deleteItem(Item* item)
+void World::removeItem(Item* item)
 {
     for(ItemList::iterator it = _items.begin(); it != _items.end(); ++it)
         (*it)->removeItem(item);
@@ -100,8 +100,12 @@ void World::deleteItem(Item* item)
         STEPCORE_ASSERT_NOABORT(b != _bodies.end());
         _bodies.erase(b);
     }
+}
 
-    delete(item);
+void World::deleteItem(Item* item)
+{
+    removeItem(item);
+    delete item;
 }
 
 int World::itemIndex(const Item* item) const

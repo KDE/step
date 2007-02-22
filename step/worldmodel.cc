@@ -24,13 +24,113 @@
 #include <stepcore/xmlfile.h>
 #include <stepcore/eulersolver.h>
 #include <QItemSelectionModel>
+#include <QUndoStack>
 #include <KLocale>
 
+class UndoCommandProperty: public QUndoCommand
+{
+public:
+    UndoCommandProperty(WorldModel* worldModel, StepCore::Object* object,
+                const StepCore::MetaProperty* property, const QVariant& newValue, bool merge = false);
+
+    int id() const { return _merge ? 1 : -1; }
+    bool mergeWith(const QUndoCommand* command);
+
+    void redo();
+    void undo();
+
+protected:
+    WorldModel* _worldModel;
+    StepCore::Object* _object;
+    const StepCore::MetaProperty* _property;
+    QVariant _oldValue;
+    QVariant _newValue;
+    bool     _merge;
+};
+
+class UndoCommandItem: public QUndoCommand
+{
+public:
+    UndoCommandItem(WorldModel* worldModel, StepCore::Item* item, bool create);
+    ~UndoCommandItem();
+    void redo();
+    void undo();
+protected:
+    WorldModel* _worldModel;
+    StepCore::Item* _item;
+    bool _create;
+    bool _shouldDelete;
+};
+
+UndoCommandProperty::UndoCommandProperty(WorldModel* worldModel, StepCore::Object* object,
+            const StepCore::MetaProperty* property, const QVariant& newValue, bool merge)
+        : _worldModel(worldModel), _object(object), _property(property),
+          _newValue(newValue), _merge(merge)
+{
+    _oldValue = _property->readVariant(_object);
+    setText(i18n("edit %1").arg(object->name()));
+    qDebug("edit %s, %s", object->name().toAscii().constData(), property->name());
+}
+
+void UndoCommandProperty::redo()
+{
+    bool ret;
+    if(_newValue.type() != QVariant::String) ret = _property->writeVariant(_object, _newValue);
+    else ret = _property->writeString(_object, _newValue.value<QString>());
+    Q_ASSERT(ret);
+    _worldModel->setData(_worldModel->objectIndex(_object),
+                                QVariant(), WorldModel::ObjectRole);
+}
+
+void UndoCommandProperty::undo()
+{
+    bool ret = _property->writeVariant(_object, _oldValue);
+    Q_ASSERT(ret);
+    _worldModel->setData(_worldModel->objectIndex(_object),
+                                QVariant(), WorldModel::ObjectRole);
+}
+
+bool UndoCommandProperty::mergeWith(const QUndoCommand* command)
+{
+    const UndoCommandProperty* cmd = dynamic_cast<const UndoCommandProperty*>(command);
+    Q_ASSERT(cmd != NULL);
+    if(cmd->_object != _object || cmd->_property != _property) return false;
+
+    _newValue = cmd->_newValue;
+    return true;
+}
+
+UndoCommandItem::UndoCommandItem(WorldModel* worldModel, StepCore::Item* item, bool create)
+    : _worldModel(worldModel), _item(item), _create(create), _shouldDelete(create)
+{
+    setText("TODO");
+    qDebug("new %s", item->name().toAscii().constData());
+}
+
+UndoCommandItem::~UndoCommandItem()
+{
+    if(_shouldDelete) delete _item;
+}
+
+void UndoCommandItem::redo()
+{
+    if(_create) _worldModel->addItem(_item);
+    else _worldModel->removeItem(_item);
+    _shouldDelete = !_create;
+}
+
+void UndoCommandItem::undo()
+{
+    if(_create) _worldModel->removeItem(_item);
+    else _worldModel->addItem(_item);
+    _shouldDelete = _create;
+}
 
 WorldModel::WorldModel(QObject* parent)
     : QAbstractItemModel(parent)
 {
     _selectionModel = new QItemSelectionModel(this, this);
+    _undoStack = new QUndoStack(this);
     _worldFactory = new WorldFactory();
     _world = new StepCore::World();
     resetWorld();
@@ -170,7 +270,13 @@ StepCore::Item* WorldModel::newItem(const QString& name)
     StepCore::Item* item = _worldFactory->newItem(name);
     if(item == NULL) return NULL;
     item->setName(getUniqueName(name));
-    addItem(item); return item;
+    _undoStack->push(new UndoCommandItem(this, item, true));
+    return item;
+}
+
+void WorldModel::deleteItem(StepCore::Item* item)
+{
+    _undoStack->push(new UndoCommandItem(this, item, false));
 }
 
 void WorldModel::addItem(StepCore::Item* item)
@@ -182,11 +288,11 @@ void WorldModel::addItem(StepCore::Item* item)
     emitChanged();
 }
 
-void WorldModel::deleteItem(StepCore::Item* item)
+void WorldModel::removeItem(StepCore::Item* item)
 {
     int itemIndex = _world->itemIndex(item);
     beginRemoveRows(worldIndex(), itemIndex, itemIndex);
-    _world->deleteItem(item);
+    _world->removeItem(item);
     _world->doCalcFn();
     endRemoveRows();
     emitChanged();
@@ -197,6 +303,12 @@ void WorldModel::setSolver(StepCore::Solver* solver)
     _world->setSolver(solver);
     _world->doCalcFn();
     emitChanged();
+}
+
+void WorldModel::setProperty(StepCore::Object* object, const StepCore::MetaProperty* property,
+                                const QVariant& value, bool merge)
+{
+    _undoStack->push(new UndoCommandProperty(this, object, property, value, merge));
 }
 
 bool WorldModel::doWorldEvolve(double delta)

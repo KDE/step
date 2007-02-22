@@ -86,6 +86,9 @@ protected:
     KAction* actionSimulationStart;
     KAction* actionSimulationStop;
 
+    KAction* actionUndo;
+    KAction* actionRedo;
+
     QString currentFileName;
     bool    modified;
 

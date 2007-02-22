@@ -37,7 +37,7 @@
 const QColor WorldGraphicsItem::SELECTION_COLOR = QColor(0xff, 0x70, 0x70);
 
 WorldGraphicsItem::WorldGraphicsItem(StepCore::Item* item, WorldModel* worldModel, QGraphicsItem* parent)
-    : QGraphicsItem(parent), _item(item), _worldModel(worldModel), _isMouseOverItem(false)
+    : QGraphicsItem(parent), _item(item), _worldModel(worldModel), _isMouseOverItem(false), _isMoving(false)
 {
     // XXX: use persistant indexes here and in propertiesbrowser
     setZValue(100);
@@ -69,6 +69,7 @@ void WorldGraphicsItem::drawArrow(QPainter* painter, const StepCore::Vector2d& v
 
 void WorldGraphicsItem::mouseSetPos(const QPointF& pos)
 {
+    Q_ASSERT(false);
     setPos(pos);
 }
 
@@ -88,8 +89,9 @@ void WorldGraphicsItem::mousePressEvent(QGraphicsSceneMouseEvent *event)
 
 void WorldGraphicsItem::mouseMoveEvent(QGraphicsSceneMouseEvent *event)
 {
-    if ((event->buttons() & Qt::LeftButton) && (flags() & ItemIsMovable)) {
-        // Handle ItemIsMovable.
+    if((event->buttons() & Qt::LeftButton) && (flags() & ItemIsMovable)) {
+        if(!_isMoving) { _worldModel->beginMacro("TODO"); _isMoving = true; }
+
         QPointF newPos(mapToParent(event->pos()) - matrix().map(event->buttonDownPos(Qt::LeftButton)));
         QPointF diff = newPos - pos();
 
@@ -101,16 +103,16 @@ void WorldGraphicsItem::mouseMoveEvent(QGraphicsSceneMouseEvent *event)
             while (parent && parent->isSelected())
                 selectedItems << parent;
         }
-        selectedItems << this;
+        if(!selectedItems.contains(this)) selectedItems << this;
 
         // Move all selected items
         foreach (QGraphicsItem *item, selectedItems) {
             if ((item->flags() & ItemIsMovable) && (!item->parentItem() || !item->parentItem()->isSelected())) {
                 WorldGraphicsItem* worldItem = qgraphicsitem_cast<WorldGraphicsItem*>(item);
                 if(worldItem) worldItem->mouseSetPos(item == this ? newPos : item->pos() + diff);
-                else item->setPos(item == this ? newPos : item->pos() + diff);
-                if (item->flags() & ItemIsSelectable)
-                    item->setSelected(true);
+                else { Q_ASSERT(false); item->setPos(item == this ? newPos : item->pos() + diff); }
+                //if (item->flags() & ItemIsSelectable) //XXX ?
+                //    item->setSelected(true);
             }
         }
     } else {
@@ -120,6 +122,7 @@ void WorldGraphicsItem::mouseMoveEvent(QGraphicsSceneMouseEvent *event)
 
 void WorldGraphicsItem::mouseReleaseEvent(QGraphicsSceneMouseEvent *event)
 {
+    if(_isMoving) { _worldModel->endMacro(); _isMoving = false; }
     if(flags() & ItemIsSelectable) {
         bool multiSelect = (event->modifiers() & Qt::ControlModifier) != 0;
         if(event->scenePos() == event->buttonDownScenePos(Qt::LeftButton)) {
@@ -163,13 +166,16 @@ bool WorldGraphicsItem::createItem(const QString& className, WorldModel* worldMo
                                         WorldScene* scene, QEvent* e)
 {
     if(e->type() == QEvent::GraphicsSceneMousePress) {
+        worldModel->beginMacro("TODO");
         StepCore::Item* item = worldModel->newItem(className); Q_ASSERT(item != NULL);
         worldModel->selectionModel()->setCurrentIndex(worldModel->objectIndex(item),
                                                     QItemSelectionModel::ClearAndSelect);
         WorldGraphicsItem* graphicsItem = scene->graphicsFromItem(item);
-        if(graphicsItem == NULL) { e->accept(); return true; }
-
-        graphicsItem->mouseSetPos(static_cast<QGraphicsSceneMouseEvent*>(e)->scenePos());
+        if(graphicsItem != NULL)
+            graphicsItem->mouseSetPos(static_cast<QGraphicsSceneMouseEvent*>(e)->scenePos());
+        else e->accept();
+        worldModel->endMacro();
+        
         return true;
     }
     return false;
@@ -203,10 +209,12 @@ void ArrowHandlerGraphicsItem::advance(int phase)
 void ArrowHandlerGraphicsItem::mouseMoveEvent(QGraphicsSceneMouseEvent *event)
 {
     if ((event->buttons() & Qt::LeftButton) && (flags() & ItemIsMovable)) {
+        if(!_isMoving) { _worldModel->beginMacro("TODO"); _isMoving = true; }
         QPointF newPos(mapToParent(event->pos()) - matrix().map(event->buttonDownPos(Qt::LeftButton)));
         StepCore::Vector2d v(newPos.x(), newPos.y());
-        Q_ASSERT(_property->writeVariant(_item, QVariant::fromValue(v)));
-        _worldModel->setData(_worldModel->objectIndex(_item), QVariant(), WorldModel::ObjectRole);
+        _worldModel->setProperty(_item, _property, QVariant::fromValue(v), true);
+        //Q_ASSERT(_property->writeVariant(_item, QVariant::fromValue(v)));
+        //_worldModel->setData(_worldModel->objectIndex(_item), QVariant(), WorldModel::ObjectRole);
     } else  event->ignore();
 }
 

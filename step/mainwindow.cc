@@ -37,6 +37,7 @@
 #include <QFile>
 #include <QTimer>
 #include <QGraphicsView>
+#include <QUndoStack>
 
 MainWindow::MainWindow()
 {
@@ -90,6 +91,13 @@ void MainWindow::setupActions()
     KStandardAction::save(this, SLOT(saveFile()), actionCollection());
     KStandardAction::saveAs(this, SLOT(saveFileAs()), actionCollection());
     KStandardAction::quit(this, SLOT(close()), actionCollection());
+
+    /* Edit menu */
+    actionRedo = KStandardAction::redo(worldModel->undoStack(), SLOT(redo()), actionCollection());
+    actionUndo = KStandardAction::undo(worldModel->undoStack(), SLOT(undo()), actionCollection());
+    actionRedo->setEnabled(false); actionUndo->setEnabled(false);
+    connect(worldModel->undoStack(), SIGNAL(canRedoChanged(bool)), actionRedo, SLOT(setEnabled(bool)));
+    connect(worldModel->undoStack(), SIGNAL(canUndoChanged(bool)), actionUndo, SLOT(setEnabled(bool)));
 
     /* Simulation menu */
     actionSimulation = static_cast<KAction*>(

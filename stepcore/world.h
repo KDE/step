@@ -137,6 +137,8 @@ public:
 
     /** Add new item to the world */
     void addItem(Item* item);
+    /** Remove item from the world (you should delete item youself) */
+    void removeItem(Item* item);
     /** Delete item from the world (it actually deletes item) */
     void deleteItem(Item* item);
     /** Finds item in items() */
