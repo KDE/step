@@ -95,9 +95,11 @@ public:
     /** Set stiffness of the spring */
     void   setStiffness(double stiffness) { _stiffness = stiffness; }
 
-    /** Set pointer to the first connected body */
+    /** Set pointer to the first connected body
+     * \todo XXX check world */
     void setBodyPtr1(Body* bodyPtr1) { _bodyPtr1 = dynamic_cast<Particle*>(bodyPtr1); }
-    /** Set pointer to the second connected body */
+    /** Set pointer to the second connected body
+     * \todo XXX check world */
     void setBodyPtr2(Body* bodyPtr2) { _bodyPtr2 = dynamic_cast<Particle*>(bodyPtr2); }
 
 #ifdef STEPCORE_WITH_QT
@@ -111,7 +113,8 @@ public:
     QString body2() const { return _bodyPtr2 ? dynamic_cast<Item*>(_bodyPtr2)->name() : QString(); }
 #endif
 
-    void removeItem(Item* item);
+    void worldItemRemoved(Item* item);
+    void setWorld(World* world);
 
 protected:
     double _restLength;

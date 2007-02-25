@@ -70,7 +70,7 @@ void World::clear()
 
 void World::addItem(Item* item)
 {
-    item->_world = this;
+    item->setWorld(this);
     _items.push_back(item);
     Force* force = dynamic_cast<Force*>(item);
     if(force) _forces.push_back(force);
@@ -81,7 +81,7 @@ void World::addItem(Item* item)
 void World::removeItem(Item* item)
 {
     for(ItemList::iterator it = _items.begin(); it != _items.end(); ++it)
-        (*it)->removeItem(item);
+        (*it)->worldItemRemoved(item);
 
     ItemList::iterator i = std::find(_items.begin(), _items.end(), item);
     STEPCORE_ASSERT_NOABORT(i != _items.end());
@@ -100,12 +100,6 @@ void World::removeItem(Item* item)
         STEPCORE_ASSERT_NOABORT(b != _bodies.end());
         _bodies.erase(b);
     }
-}
-
-void World::deleteItem(Item* item)
-{
-    removeItem(item);
-    delete item;
 }
 
 int World::itemIndex(const Item* item) const
@@ -209,6 +203,27 @@ inline int World::solverFunction(double t, const double y[], double f[])
 int World::solverFunction(double t, const double y[], double f[], void* params)
 {
     return static_cast<World*>(params)->solverFunction(t, y, f);
+}
+
+World& World::operator=(const World& world)
+{
+    if(this != &world) return *this;
+
+    clear();
+
+    _items.reserve(world._items.size());
+    for(ItemList::iterator it = world._items.begin(); it != world._items.end(); ++it)
+        _items.push_back((*it)->metaObject()->cloneObject(*it));
+    for(ItemList::iterator it = _items.begin(); it != _items.end(); ++it)
+        (*it)->setWorld(this); // XXX: implement it
+
+    checkVariablesCount();
+    setSolver(world._solver->metaObject()->cloneObject(world._solver));
+
+    setTime(world.time());
+    setName(world.name());
+
+    return *this;
 }
 
 } // namespace StepCore

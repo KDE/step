@@ -115,6 +115,8 @@ public:
     bool isAbstract() const { return _flags & ABSTRACT; }
     /** Creates new object of this class */
     Object* newObject() const { return _newObject(); }
+    /** Creates a copy of given object */
+    Object* cloneObject(const Object* obj) const { return _cloneObject(obj); }
 
     /** Returns number of direct bases */
     int superClassCount() const { return _superClassCount; }
@@ -142,6 +144,7 @@ public:
     const char* const _description;
     const int         _flags;
     Object* (*const _newObject)();
+    Object* (*const _cloneObject)(const Object*);
 
     const MetaObject**  _superClasses;
     const int           _superClassCount;
@@ -171,7 +174,7 @@ template<typename T> inline T variantToType(const QVariant& v, bool* ok) {
 }
 
 template<class C, typename T>
-struct PropertyHelper {
+struct MetaPropertyHelper {
 
     /* read */
     template<T (C::*_read)() const> static QVariant read(const Object* obj) {
@@ -244,13 +247,15 @@ struct PropertyHelper {
 };
 
 template<typename Class, int N>
-struct newObjectHelperStruct {
+struct MetawObjectHelper {
     static Object* newObjectHelper() { return new Class(); }
+    static Object* cloneObjectHelper(const Object* obj) { return new Class(obj); }
 };
 
 template<class Class>
-struct newObjectHelperStruct<Class, MetaObject::ABSTRACT> {
+struct MetaObjectHelper<Class, MetaObject::ABSTRACT> {
     static Object* newObjectHelper() { return NULL; }
+    static Object* cloneObjectHelper(const Object* obj) { return NULL; }
 };
 
 #define STEPCORE_META_OBJECT(_className, _description, _flags, __superClasses, __properties) \
@@ -258,7 +263,8 @@ struct newObjectHelperStruct<Class, MetaObject::ABSTRACT> {
     const StepCore::MetaObject*  _className::_superClasses[] = { __superClasses }; \
     const StepCore::MetaObject   _className::_metaObject = { \
         __STRING(_className), _description, _flags, \
-        StepCore::newObjectHelperStruct<_className, _flags & StepCore::MetaObject::ABSTRACT>::newObjectHelper, \
+        StepCore::MetaObjectHelper<_className, _flags & StepCore::MetaObject::ABSTRACT>::newObjectHelper, \
+        StepCore::MetaObjectHelper<_className, _flags & StepCore::MetaObject::ABSTRACT>::cloneObjectHelper, \
         _superClasses, sizeof(_superClasses)/sizeof(*_superClasses), \
         _classProperties, sizeof(_classProperties)/sizeof(*_classProperties) };
     
@@ -266,19 +272,19 @@ struct newObjectHelperStruct<Class, MetaObject::ABSTRACT> {
 
 #define STEPCORE_PROPERTY_R(_type, _name, _description, _read) \
     { __STRING(_name), _description, StepCore::MetaProperty::READABLE, qMetaTypeId<_type>(),  \
-      StepCore::PropertyHelper<_thisType, _type>::read<&_thisType::_read>, \
-      StepCore::PropertyHelper<_thisType, _type>::writeNull, \
-      StepCore::PropertyHelper<_thisType, _type>::readString<&_thisType::_read>, \
-      StepCore::PropertyHelper<_thisType, _type>::writeStringNull },
+      StepCore::MetaPropertyHelper<_thisType, _type>::read<&_thisType::_read>, \
+      StepCore::MetaPropertyHelper<_thisType, _type>::writeNull, \
+      StepCore::MetaPropertyHelper<_thisType, _type>::readString<&_thisType::_read>, \
+      StepCore::MetaPropertyHelper<_thisType, _type>::writeStringNull },
 
 #define STEPCORE_PROPERTY_RWS(_type, _name, _description, _read, _write) \
     { __STRING(_name), _description, \
       StepCore::MetaProperty::READABLE | StepCore::MetaProperty::WRITABLE | StepCore::MetaProperty::STORED, \
       qMetaTypeId<_type>(), \
-      StepCore::PropertyHelper<_thisType, _type>::read<&_thisType::_read>, \
-      StepCore::PropertyHelper<_thisType, _type>::write<&_thisType::_write>, \
-      StepCore::PropertyHelper<_thisType, _type>::readString<&_thisType::_read>, \
-      StepCore::PropertyHelper<_thisType, _type>::writeString<&_thisType::_write> },
+      StepCore::MetaPropertyHelper<_thisType, _type>::read<&_thisType::_read>, \
+      StepCore::MetaPropertyHelper<_thisType, _type>::write<&_thisType::_write>, \
+      StepCore::MetaPropertyHelper<_thisType, _type>::readString<&_thisType::_read>, \
+      StepCore::MetaPropertyHelper<_thisType, _type>::writeString<&_thisType::_write> },
 
 } // namespace StepCore
 

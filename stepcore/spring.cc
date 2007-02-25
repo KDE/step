@@ -87,10 +87,24 @@ void Spring::setBody2(const QString& body2)
         }
 }
 
-void Spring::removeItem(Item* item)
+void Spring::worldItemRemoved(Item* item)
 {
     if(item == dynamic_cast<Item*>(_bodyPtr1)) _bodyPtr1 = NULL;
     if(item == dynamic_cast<Item*>(_bodyPtr2)) _bodyPtr2 = NULL;
+}
+
+void Spring::setWorld(World* world)
+{
+    if(world == NULL) {
+        _bodyPtr1 = NULL;
+        _bodyPtr2 = NULL;
+    } else if(this->world() != NULL) { 
+        if(_bodyPtr1 != NULL)
+            _bodyPtr1 = world->items()[ this->world()->itemIndex(_bodyPtr1) ];
+        if(_bodyPtr2 != NULL)
+            _bodyPtr2 = world->items()[ this->world()->itemIndex(_bodyPtr2) ];
+    }
+    Item::setWorld(world);
 }
 
 } // namespace StepCore

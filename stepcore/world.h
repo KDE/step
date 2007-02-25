@@ -48,16 +48,21 @@ public:
     /** Called by the World when any item is removed from
      *         the world
      *  \param item Pointer to removed item
+     *  \todo XXX rename
      */
-    virtual void removeItem(Item* item STEPCORE_UNUSED) {}
+    virtual void worldItemRemoved(Item* item STEPCORE_UNUSED) {}
+
+    /** Set/change pointer to World in which this object lives
+     */
+    virtual void setWorld(World* world) { _world = world; }
 
     /** Get pointer to World in which this object lives
      *  \return Pointer to the World or NULL
      */
-    World* world() { return _world; }
+    World* world() const { return _world; }
+
 private:
     World* _world;
-    friend class World;
 };
 
 /** \ingroup bodies
@@ -140,7 +145,7 @@ public:
     /** Remove item from the world (you should delete item youself) */
     void removeItem(Item* item);
     /** Delete item from the world (it actually deletes item) */
-    void deleteItem(Item* item);
+    void deleteItem(Item* item) { removeItem(item); delete item; }
     /** Finds item in items() */
     int  itemIndex(const Item* item) const;
 
@@ -164,6 +169,9 @@ public:
      *  \todo Provide error message
      */
     bool doEvolve(double delta);
+
+    /** Assignment operator (deep copy) */
+    World& operator=(const World& world);
 
 private:
     void checkVariablesCount();
