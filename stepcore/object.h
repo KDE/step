@@ -116,7 +116,7 @@ public:
     /** Creates new object of this class */
     Object* newObject() const { return _newObject(); }
     /** Creates a copy of given object */
-    Object* cloneObject(const Object* obj) const { return _cloneObject(obj); }
+    Object* cloneObject(const Object& obj) const { return _cloneObject(obj); }
 
     /** Returns number of direct bases */
     int superClassCount() const { return _superClassCount; }
@@ -144,7 +144,7 @@ public:
     const char* const _description;
     const int         _flags;
     Object* (*const _newObject)();
-    Object* (*const _cloneObject)(const Object*);
+    Object* (*const _cloneObject)(const Object&);
 
     const MetaObject**  _superClasses;
     const int           _superClassCount;
@@ -247,15 +247,17 @@ struct MetaPropertyHelper {
 };
 
 template<typename Class, int N>
-struct MetawObjectHelper {
+struct MetaObjectHelper {
     static Object* newObjectHelper() { return new Class(); }
-    static Object* cloneObjectHelper(const Object* obj) { return new Class(obj); }
+    static Object* cloneObjectHelper(const Object& obj) {
+        return new Class(static_cast<const Class&>(obj));
+    }
 };
 
 template<class Class>
 struct MetaObjectHelper<Class, MetaObject::ABSTRACT> {
     static Object* newObjectHelper() { return NULL; }
-    static Object* cloneObjectHelper(const Object* obj) { return NULL; }
+    static Object* cloneObjectHelper(const Object& obj) { return NULL; }
 };
 
 #define STEPCORE_META_OBJECT(_className, _description, _flags, __superClasses, __properties) \

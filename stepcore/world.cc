@@ -212,13 +212,13 @@ World& World::operator=(const World& world)
     clear();
 
     _items.reserve(world._items.size());
-    for(ItemList::iterator it = world._items.begin(); it != world._items.end(); ++it)
-        _items.push_back((*it)->metaObject()->cloneObject(*it));
+    for(ItemList::const_iterator it = world._items.begin(); it != world._items.end(); ++it)
+        _items.push_back(static_cast<Item*>((*it)->metaObject()->cloneObject(*(*it))));
     for(ItemList::iterator it = _items.begin(); it != _items.end(); ++it)
         (*it)->setWorld(this); // XXX: implement it
 
     checkVariablesCount();
-    setSolver(world._solver->metaObject()->cloneObject(world._solver));
+    setSolver(static_cast<Solver*>(world._solver->metaObject()->cloneObject(*(world._solver))));
 
     setTime(world.time());
     setName(world.name());

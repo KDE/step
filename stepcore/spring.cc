@@ -100,9 +100,11 @@ void Spring::setWorld(World* world)
         _bodyPtr2 = NULL;
     } else if(this->world() != NULL) { 
         if(_bodyPtr1 != NULL)
-            _bodyPtr1 = world->items()[ this->world()->itemIndex(_bodyPtr1) ];
+            _bodyPtr1 = dynamic_cast<Body*>(
+                world->items()[ this->world()->itemIndex(dynamic_cast<const Item*>(_bodyPtr1)) ]);
         if(_bodyPtr2 != NULL)
-            _bodyPtr2 = world->items()[ this->world()->itemIndex(_bodyPtr2) ];
+            _bodyPtr2 = dynamic_cast<Body*>(
+                world->items()[ this->world()->itemIndex(dynamic_cast<const Item*>(_bodyPtr2)) ]);
     }
     Item::setWorld(world);
 }
