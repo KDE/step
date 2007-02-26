@@ -9,6 +9,7 @@ class MainTest: public QObject
 
 private slots:
     void testMetaObject();
+    void testWorldCopy();
 };
 
 

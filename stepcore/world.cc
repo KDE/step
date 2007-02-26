@@ -37,11 +37,39 @@ World::World()
     clear();
 }
 
+World::World(const World& world)
+    : _time(0), _solver(NULL), _variablesCount(0), _variables(NULL), _errors(NULL)
+{
+    clear();
+    *this = world;
+}
+
 World::~World()
 {
     clear();
     delete[] _variables;
     delete[] _errors;
+}
+
+World& World::operator=(const World& world)
+{
+    if(this == &world) return *this;
+
+    clear();
+
+    _items.reserve(world._items.size());
+    for(ItemList::const_iterator it = world._items.begin(); it != world._items.end(); ++it)
+        _items.push_back(static_cast<Item*>((*it)->metaObject()->cloneObject(*(*it))));
+    for(ItemList::iterator it = _items.begin(); it != _items.end(); ++it)
+        (*it)->setWorld(this); // XXX: implement it
+
+    checkVariablesCount();
+    setSolver(static_cast<Solver*>(world._solver->metaObject()->cloneObject(*(world._solver))));
+
+    setTime(world.time());
+    setName(world.name());
+
+    return *this;
 }
 
 void World::clear()
@@ -203,27 +231,6 @@ inline int World::solverFunction(double t, const double y[], double f[])
 int World::solverFunction(double t, const double y[], double f[], void* params)
 {
     return static_cast<World*>(params)->solverFunction(t, y, f);
-}
-
-World& World::operator=(const World& world)
-{
-    if(this != &world) return *this;
-
-    clear();
-
-    _items.reserve(world._items.size());
-    for(ItemList::const_iterator it = world._items.begin(); it != world._items.end(); ++it)
-        _items.push_back(static_cast<Item*>((*it)->metaObject()->cloneObject(*(*it))));
-    for(ItemList::iterator it = _items.begin(); it != _items.end(); ++it)
-        (*it)->setWorld(this); // XXX: implement it
-
-    checkVariablesCount();
-    setSolver(static_cast<Solver*>(world._solver->metaObject()->cloneObject(*(world._solver))));
-
-    setTime(world.time());
-    setName(world.name());
-
-    return *this;
 }
 
 } // namespace StepCore

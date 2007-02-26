@@ -185,6 +185,18 @@ void MainTest::testMetaObject()
     QCOMPARE( property->readString(object), QString("3") );
     QCOMPARE( property->readVariant(object).value<MetaObjectTestType>().value, 3 );
 
+    /* CloneObject */
+    StepCore::Object* clone = object->metaObject()->cloneObject(*object);
+    QCOMPARE( clone->name(), object->name() );
+    QCOMPARE( dynamic_cast<MetaObjectTestObject*>(clone)->property1(),
+              dynamic_cast<MetaObjectTestObject*>(object)->property1());
+    QCOMPARE( dynamic_cast<MetaObjectTestObject*>(clone)->property2(),
+              dynamic_cast<MetaObjectTestObject*>(object)->property2());
+    QCOMPARE( dynamic_cast<MetaObjectTestObject*>(clone)->property3().value,
+              dynamic_cast<MetaObjectTestObject*>(object)->property3().value);
+    QCOMPARE( dynamic_cast<MetaObjectTestObject*>(clone)->property4().value,
+              dynamic_cast<MetaObjectTestObject*>(object)->property4().value);
+
     delete object;
 }
 

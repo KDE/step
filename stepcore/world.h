@@ -129,8 +129,16 @@ public:
     typedef std::vector<Force*> ForceList;
 
 public:
+    /** Constructs empty World */
     World();
+    /** Constructs a copy of world (deep copy) */
+    World(const World& world);
+    /** Destroys World and all objects which belongs to it */
     ~World();
+
+    /** Assignment operator (deep copy) */
+    World& operator=(const World& world);
+
 
     /** Clear world (removes all items, solver and resets time) */
     void clear();
@@ -169,9 +177,6 @@ public:
      *  \todo Provide error message
      */
     bool doEvolve(double delta);
-
-    /** Assignment operator (deep copy) */
-    World& operator=(const World& world);
 
 private:
     void checkVariablesCount();

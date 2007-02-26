@@ -3,6 +3,7 @@ enable_testing()
 set(stepcore_tests_SRCS
     maintest.cc
     metaobject.cc
+    worldcopy.cc
 )
 
 if(STEPCORE_WITH_QT)
