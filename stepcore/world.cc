@@ -58,8 +58,14 @@ World& World::operator=(const World& world)
     clear();
 
     _items.reserve(world._items.size());
-    for(ItemList::const_iterator it = world._items.begin(); it != world._items.end(); ++it)
-        _items.push_back(static_cast<Item*>((*it)->metaObject()->cloneObject(*(*it))));
+    for(ItemList::const_iterator it = world._items.begin(); it != world._items.end(); ++it) {
+        StepCore::Item* item = static_cast<Item*>( (*it)->metaObject()->cloneObject(*(*it)) );
+        _items.push_back(item);
+        Force* force = dynamic_cast<Force*>(item);
+        if(force) _forces.push_back(force);
+        Body* body = dynamic_cast<Body*>(item);
+        if(body) _bodies.push_back(body);
+    }
     for(ItemList::iterator it = _items.begin(); it != _items.end(); ++it)
         (*it)->setWorld(this); // XXX: implement it
 

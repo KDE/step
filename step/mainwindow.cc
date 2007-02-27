@@ -35,16 +35,10 @@
 #include <KLocale>
 
 #include <QFile>
-#include <QTimer>
 #include <QGraphicsView>
-#include <QUndoStack>
 
 MainWindow::MainWindow()
 {
-    simulationTimer = new QTimer(this);
-    simulationTimer->setObjectName("simulationTimer");
-    simulationTimer->setInterval(1000/FPS);
-
     setCorner(Qt::TopLeftCorner, Qt::LeftDockWidgetArea);
     setCorner(Qt::BottomLeftCorner, Qt::LeftDockWidgetArea);
     setCorner(Qt::TopRightCorner, Qt::RightDockWidgetArea);
@@ -69,11 +63,11 @@ MainWindow::MainWindow()
     setCentralWidget(worldGraphicsView);
 
     QObject::connect(worldModel, SIGNAL(worldChanged(bool)), this, SLOT(setModified(bool)));
+    QObject::connect(worldModel, SIGNAL(simulationStopped(bool)), this, SLOT(simulationStopped(bool)));
     QObject::connect(itemPalette, SIGNAL(beginAddItem(const QString&)),
                                     worldScene, SLOT(beginAddItem(const QString&)));
     QObject::connect(worldScene, SIGNAL(endAddItem(const QString&, bool)),
                                     itemPalette, SLOT(endAddItem(const QString&, bool)));
-    QObject::connect(simulationTimer, SIGNAL(timeout()), this, SLOT(simulationFrame()));
 
     setupActions();
     setupGUI();
@@ -234,7 +228,7 @@ bool MainWindow::maybeSave()
 
 void MainWindow::simulationStartStop()
 {
-    if(simulationTimer->isActive()) simulationStop();
+    if(worldModel->isSimulationActive()) simulationStop();
     else simulationStart();
 }
 
@@ -244,26 +238,25 @@ void MainWindow::simulationStart()
     actionSimulationStop->setEnabled(true);
     actionSimulation->setText(i18n("&Stop"));
     actionSimulation->setIcon(KIcon("player_stop"));
-    simulationTimer->start();
+    worldModel->simulationStart();
 }
 
-void MainWindow::simulationStop()
+void MainWindow::simulationStopped(bool success)
 {
-    simulationTimer->stop();
     actionSimulationStart->setEnabled(true);
     actionSimulationStop->setEnabled(false);
     actionSimulation->setText(i18n("&Simulate"));
     actionSimulation->setIcon(KIcon("player_play"));
-}
-
-void MainWindow::simulationFrame()
-{
-    if(!worldModel->doWorldEvolve(0.1)) {
-        simulationStop();
-        QMessageBox::warning(this, i18n("Step"), // XXX: retrieve error message from solver !
-            i18n("Can't finish this step becouse local error is bigger then local tolerance.<br />"
+    if(!success) { // XXX: KMessageBox
+        KMessageBox::sorry(this, i18n("Can't finish this step becouse local error "
+               "is bigger then local tolerance. "
                "Please check solver settings and try again."));
     }
+}
+
+void MainWindow::simulationStop()
+{
+    worldModel->simulationStop();
 }
 
 /*

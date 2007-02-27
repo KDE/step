@@ -52,6 +52,9 @@ public:
     /** Constructs GslSolver */
     GslSolver(int dimension, Function function, void* params, double stepSize,
                 const gsl_odeiv_step_type* gslStepType = gsl_odeiv_step_rkf45);
+    /** Copy constructor */
+    GslSolver(const GslSolver& gslSolver);
+
     ~GslSolver();
 
     void setDimension(int dimension);

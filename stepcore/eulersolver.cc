@@ -40,6 +40,14 @@ EulerSolver::EulerSolver(int dimension, Function function, void* params, double 
     _ydiff = new double[_dimension];
 }
 
+EulerSolver::EulerSolver(const EulerSolver& eulerSolver)
+    : Solver(eulerSolver._dimension, eulerSolver._function, eulerSolver._params),
+      _stepSize(eulerSolver._stepSize)
+{
+    _ytemp = new double[_dimension];
+    _ydiff = new double[_dimension];
+}
+
 EulerSolver::~EulerSolver()
 {
     delete _ytemp;

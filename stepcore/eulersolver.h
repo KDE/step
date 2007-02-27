@@ -45,6 +45,9 @@ public:
     EulerSolver(double stepSize = 0.01);
     /** Constructs EulerSolver */
     EulerSolver(int dimension, Function function, void* params, double stepSize);
+    /** Copy constructor */
+    EulerSolver(const EulerSolver& eulerSolver);
+
     ~EulerSolver();
 
     void setDimension(int dimension);

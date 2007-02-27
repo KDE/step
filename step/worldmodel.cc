@@ -25,12 +25,13 @@
 #include <stepcore/eulersolver.h>
 #include <QItemSelectionModel>
 #include <QUndoStack>
+#include <QTimer>
 #include <KLocale>
 
-class UndoCommandProperty: public QUndoCommand
+class CommandEditProperty: public QUndoCommand
 {
 public:
-    UndoCommandProperty(WorldModel* worldModel, StepCore::Object* object,
+    CommandEditProperty(WorldModel* worldModel, StepCore::Object* object,
                 const StepCore::MetaProperty* property, const QVariant& newValue, bool merge = false);
 
     int id() const { return _merge ? 1 : -1; }
@@ -48,21 +49,7 @@ protected:
     bool     _merge;
 };
 
-class UndoCommandItem: public QUndoCommand
-{
-public:
-    UndoCommandItem(WorldModel* worldModel, StepCore::Item* item, bool create);
-    ~UndoCommandItem();
-    void redo();
-    void undo();
-protected:
-    WorldModel* _worldModel;
-    StepCore::Item* _item;
-    bool _create;
-    bool _shouldDelete;
-};
-
-UndoCommandProperty::UndoCommandProperty(WorldModel* worldModel, StepCore::Object* object,
+CommandEditProperty::CommandEditProperty(WorldModel* worldModel, StepCore::Object* object,
             const StepCore::MetaProperty* property, const QVariant& newValue, bool merge)
         : _worldModel(worldModel), _object(object), _property(property),
           _newValue(newValue), _merge(merge)
@@ -72,27 +59,22 @@ UndoCommandProperty::UndoCommandProperty(WorldModel* worldModel, StepCore::Objec
     qDebug("edit %s, %s", object->name().toAscii().constData(), property->name());
 }
 
-void UndoCommandProperty::redo()
+void CommandEditProperty::redo()
 {
-    bool ret;
-    if(_newValue.type() != QVariant::String) ret = _property->writeVariant(_object, _newValue);
-    else ret = _property->writeString(_object, _newValue.value<QString>());
-    Q_ASSERT(ret);
-    _worldModel->setData(_worldModel->objectIndex(_object),
-                                QVariant(), WorldModel::ObjectRole);
+    if(_newValue.type() != QVariant::String) _property->writeVariant(_object, _newValue);
+    else _property->writeString(_object, _newValue.value<QString>());
+    _worldModel->objectChanged(_object);
 }
 
-void UndoCommandProperty::undo()
+void CommandEditProperty::undo()
 {
-    bool ret = _property->writeVariant(_object, _oldValue);
-    Q_ASSERT(ret);
-    _worldModel->setData(_worldModel->objectIndex(_object),
-                                QVariant(), WorldModel::ObjectRole);
+    _property->writeVariant(_object, _oldValue);
+    _worldModel->objectChanged(_object);
 }
 
-bool UndoCommandProperty::mergeWith(const QUndoCommand* command)
+bool CommandEditProperty::mergeWith(const QUndoCommand* command)
 {
-    const UndoCommandProperty* cmd = dynamic_cast<const UndoCommandProperty*>(command);
+    const CommandEditProperty* cmd = dynamic_cast<const CommandEditProperty*>(command);
     Q_ASSERT(cmd != NULL);
     if(cmd->_object != _object || cmd->_property != _property) return false;
 
@@ -100,30 +82,91 @@ bool UndoCommandProperty::mergeWith(const QUndoCommand* command)
     return true;
 }
 
-UndoCommandItem::UndoCommandItem(WorldModel* worldModel, StepCore::Item* item, bool create)
+class CommandNewItem: public QUndoCommand
+{
+public:
+    CommandNewItem(WorldModel* worldModel, StepCore::Item* item, bool create);
+    ~CommandNewItem();
+    void redo();
+    void undo();
+protected:
+    WorldModel* _worldModel;
+    StepCore::Item* _item;
+    bool _create;
+    bool _shouldDelete;
+};
+
+CommandNewItem::CommandNewItem(WorldModel* worldModel, StepCore::Item* item, bool create)
     : _worldModel(worldModel), _item(item), _create(create), _shouldDelete(create)
 {
     setText("TODO");
     qDebug("new %s", item->name().toAscii().constData());
 }
 
-UndoCommandItem::~UndoCommandItem()
+CommandNewItem::~CommandNewItem()
 {
     if(_shouldDelete) delete _item;
 }
 
-void UndoCommandItem::redo()
+void CommandNewItem::redo()
 {
     if(_create) _worldModel->addItem(_item);
     else _worldModel->removeItem(_item);
     _shouldDelete = !_create;
 }
 
-void UndoCommandItem::undo()
+void CommandNewItem::undo()
 {
     if(_create) _worldModel->removeItem(_item);
     else _worldModel->addItem(_item);
     _shouldDelete = _create;
+}
+
+class CommandSimulate: public QUndoCommand
+{
+public:
+    CommandSimulate(WorldModel* worldModel);
+    ~CommandSimulate() { delete _worldCopy; }
+    void redo();
+    void undo();
+
+protected:
+    WorldModel* _worldModel;
+    StepCore::World* _worldCopy;
+    StepCore::World* _oldWorld;
+    StepCore::World* _newWorld;
+};
+
+CommandSimulate::CommandSimulate(WorldModel* worldModel)
+{
+    _worldModel = worldModel;
+    _oldWorld = _worldCopy = _worldModel->_world;
+    _newWorld = _worldModel->_world = new StepCore::World(*_oldWorld);
+    _worldModel->reset();
+    _worldModel->_selectionModel->setCurrentIndex( // XXX: preserve selection
+            _worldModel->worldIndex(), QItemSelectionModel::SelectCurrent);
+}
+
+void CommandSimulate::redo()
+{
+    if(_newWorld != _worldModel->_world) {
+        _worldModel->_world = _newWorld;
+        _worldCopy = _oldWorld;
+
+        _worldModel->reset();
+        _worldModel->_selectionModel->setCurrentIndex(
+                _worldModel->worldIndex(), QItemSelectionModel::SelectCurrent);
+    }
+}
+
+void CommandSimulate::undo()
+{
+    _worldModel->_world = _oldWorld;
+    _worldCopy = _newWorld;
+
+    _worldModel->reset();
+    _worldModel->_selectionModel->setCurrentIndex(
+            _worldModel->worldIndex(), QItemSelectionModel::SelectCurrent);
 }
 
 WorldModel::WorldModel(QObject* parent)
@@ -133,12 +176,18 @@ WorldModel::WorldModel(QObject* parent)
     _undoStack = new QUndoStack(this);
     _worldFactory = new WorldFactory();
     _world = new StepCore::World();
+    _simulationCommand = NULL;
+    _simulationTimer = new QTimer(this);
+    setSimulationFps(25); // XXX KConfig ?
+    QObject::connect(_simulationTimer, SIGNAL(timeout()),
+                        this, SLOT(simulationFrame()));
     resetWorld();
 }
 
 WorldModel::~WorldModel()
 {
     delete _worldFactory;
+    delete _world;
 }
 
 void WorldModel::clearWorld()
@@ -195,6 +244,20 @@ QModelIndex WorldModel::objectIndex(StepCore::Object* obj) const
     else return itemIndex(_world->itemIndex(dynamic_cast<const StepCore::Item*>(obj)));
 }
 
+StepCore::Object* WorldModel::object(const QModelIndex& index) const
+{
+    if(index.isValid()) return static_cast<StepCore::Object*>(index.internalPointer());
+    else return NULL;
+}
+
+void WorldModel::objectChanged(const StepCore::Object* /*object*/)
+{
+    //if(index.isValid()) {
+    _world->doCalcFn();
+    emitChanged();
+    //}
+}
+
 StepCore::Item* WorldModel::item(const QModelIndex& index) const
 {
     return dynamic_cast<StepCore::Item*>(object(index));
@@ -207,33 +270,16 @@ int WorldModel::itemCount() const
 
 QVariant WorldModel::data(const QModelIndex &index, int role) const
 {
-    StepCore::Object* obj = NULL;
-    if(index.isValid()) obj = static_cast<StepCore::Object*>(index.internalPointer());
+    if(!index.isValid()) return QVariant();
 
     if(role == Qt::DisplayRole) {
-        if(obj != NULL)
-            return QString("%1: %2").arg(obj->name().isEmpty() ? i18n("<unnamed>") : obj->name())
-                                       .arg(obj->metaObject()->className());
-
-    } else if(role == WorldModel::ObjectRole) {
-        return QVariant::fromValue<void*>(obj);
+        StepCore::Object* obj = static_cast<StepCore::Object*>(index.internalPointer());
+        return QString("%1: %2").arg(obj->name().isEmpty() ? i18n("<unnamed>") : obj->name())
+                                   .arg(obj->metaObject()->className());
 
     }
 
     return QVariant();
-}
-
-bool WorldModel::setData(const QModelIndex& index, const QVariant& /*value*/, int role)
-{
-    if(!index.isValid()) return false;
-
-    if(role == WorldModel::ObjectRole) {
-        _world->doCalcFn();
-        emitChanged();
-        return true;
-    }
-
-    return false;
 }
 
 QModelIndex WorldModel::index(int row, int /*column*/, const QModelIndex &parent) const
@@ -270,13 +316,13 @@ StepCore::Item* WorldModel::newItem(const QString& name)
     StepCore::Item* item = _worldFactory->newItem(name);
     if(item == NULL) return NULL;
     item->setName(getUniqueName(name));
-    _undoStack->push(new UndoCommandItem(this, item, true));
+    pushCommand(new CommandNewItem(this, item, true));
     return item;
 }
 
 void WorldModel::deleteItem(StepCore::Item* item)
 {
-    _undoStack->push(new UndoCommandItem(this, item, false));
+    pushCommand(new CommandNewItem(this, item, false));
 }
 
 void WorldModel::addItem(StepCore::Item* item)
@@ -305,10 +351,32 @@ void WorldModel::setSolver(StepCore::Solver* solver)
     emitChanged();
 }
 
+void WorldModel::pushCommand(QUndoCommand* command)
+{
+    if(!isSimulationActive()) {
+        _undoStack->push(command);
+    } else {
+        command->redo();
+        delete command;
+    }
+}
+
+void WorldModel::beginMacro(const QString& text)
+{
+    if(!isSimulationActive())
+        _undoStack->beginMacro(text);
+}
+
+void WorldModel::endMacro()
+{
+    if(!isSimulationActive())
+        _undoStack->endMacro();
+}
+
 void WorldModel::setProperty(StepCore::Object* object, const StepCore::MetaProperty* property,
                                 const QVariant& value, bool merge)
 {
-    _undoStack->push(new UndoCommandProperty(this, object, property, value, merge));
+    pushCommand(new CommandEditProperty(this, object, property, value, merge));
 }
 
 bool WorldModel::doWorldEvolve(double delta)
@@ -356,5 +424,42 @@ QString WorldModel::getUniqueName(QString className) const
         if(it == _world->items().end()) return name;
     }
     return QString();
+}
+
+void WorldModel::setSimulationFps(int simulationFps)
+{
+    _simulationFps = simulationFps;
+    _simulationTimer->setInterval(1000/simulationFps);
+}
+
+bool WorldModel::isSimulationActive()
+{
+    return _simulationTimer->isActive();
+}
+
+void WorldModel::simulationStart()
+{
+    _undoStack->beginMacro("TODO");
+    _simulationCommand = new CommandSimulate(this);
+    _simulationTimer->start();
+}
+
+void WorldModel::simulationStop(bool success)
+{
+    _simulationTimer->stop();
+    if(_simulationCommand) {
+        _undoStack->push(_simulationCommand);
+        _undoStack->endMacro();
+        _simulationCommand = NULL;
+    }
+    emit simulationStopped(success);
+}
+
+void WorldModel::simulationFrame()
+{
+    bool ret = _world->doEvolve(1.0/_simulationFps);
+    _world->doCalcFn();
+    emitChanged();
+    if(!ret) simulationStop(false);
 }
 

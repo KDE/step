@@ -33,15 +33,15 @@ namespace StepCore {
 
 class QItemSelectionModel;
 class QUndoStack;
+class QTimer;
 class WorldFactory;
+class CommandSimulate;
 
 class WorldModel: public QAbstractItemModel
 {
     Q_OBJECT
 
 public:
-    enum { ObjectRole = Qt::UserRole };
-
     WorldModel(QObject* parent = 0);
     ~WorldModel();
     void clearWorld();
@@ -55,9 +55,10 @@ public:
     QModelIndex objectIndex(StepCore::Object* obj) const;
     QModelIndex itemIndex(int n) const;
     
-    StepCore::Object* object(const QModelIndex& index) const {
-        return reinterpret_cast<StepCore::Object*>(data(index, ObjectRole).value<void*>());
-    }
+    // DO NOT change returned object directly: it breaks undo/redo
+    StepCore::Object* object(const QModelIndex& index) const;
+    // Only for UndoCommand* classes
+    void objectChanged(const StepCore::Object* object);
 
     StepCore::Item* item(const QModelIndex& index) const;
     StepCore::Item* item(int n) const { return item(itemIndex(n)); }
@@ -73,9 +74,6 @@ public:
     int rowCount(const QModelIndex &parent = QModelIndex()) const;
     int columnCount(const QModelIndex &parent = QModelIndex()) const;
 
-    // This used as notification only, actual editing is done outside
-    bool setData(const QModelIndex &index, const QVariant &value, int role);
-
     // Add/remove/set functions
     StepCore::Item* newItem(const QString& name);
     void deleteItem(StepCore::Item* item);
@@ -83,15 +81,13 @@ public:
     void setSolver(StepCore::Solver* solver);
 
     // Undo/redo helpers
-    void beginMacro(const QString& text) { _undoStack->beginMacro(text); }
-    void endMacro() { _undoStack->endMacro(); }
+    void pushCommand(QUndoCommand* command);
+    void beginMacro(const QString& text);
+    void endMacro();
 
     // Property edit
     void setProperty(StepCore::Object* object, const StepCore::MetaProperty* property,
                         const QVariant& value, bool merge = false);
-
-    // Evolve
-    bool doWorldEvolve(double delta);
 
     // Save/load
     bool saveXml(QIODevice* device);
@@ -104,14 +100,28 @@ public:
     // Names
     QString getUniqueName(QString className) const;
 
+    void setSimulationFps(int simulationFps);
+    int simulationFps() { return _simulationFps; }
+
+    bool isSimulationActive();
+
+public slots:
+    void simulationStart();
+    void simulationStop(bool success=true);
+
+protected slots:
+    void simulationFrame();
+
 signals:
     void worldChanged(bool modified);
+    void simulationStopped(bool success);
 
 protected:
     void resetWorld();
     void emitChanged();
     void addItem(StepCore::Item* item);
     void removeItem(StepCore::Item* item);
+    bool doWorldEvolve(double delta);
 
 protected:
     StepCore::World* _world;
@@ -120,8 +130,13 @@ protected:
     const WorldFactory* _worldFactory;
     QString _errorString;
 
-    friend class UndoCommandProperty;
-    friend class UndoCommandItem;
+    QTimer* _simulationTimer;
+    int     _simulationFps;
+    CommandSimulate* _simulationCommand;
+
+    friend class CommandEditProperty;
+    friend class CommandNewItem;
+    friend class CommandSimulate;
 };
 
 #endif

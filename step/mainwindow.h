@@ -27,7 +27,6 @@ class WorldScene;
 class WorldGraphicsView;
 class PropertiesBrowser;
 class ItemPalette;
-class QTimer;
 class KAction;
 
 class MainWindow : public KMainWindow
@@ -48,9 +47,7 @@ public slots:
     void simulationStartStop();
     void simulationStart();
     void simulationStop();
-
-protected slots:
-    void simulationFrame();
+    void simulationStopped(bool success);
 
     /*
 protected slots:
@@ -80,7 +77,6 @@ protected:
     ItemPalette*        itemPalette;
     WorldScene*         worldScene;
     WorldGraphicsView*  worldGraphicsView;
-    QTimer*             simulationTimer;
 
     KAction* actionSimulation;
     KAction* actionSimulationStart;

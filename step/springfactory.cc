@@ -86,23 +86,26 @@ void SpringHandlerGraphicsItem::mouseMoveEvent(QGraphicsSceneMouseEvent *event)
         QPointF newPos(mapToParent(event->pos()) - matrix().map(event->buttonDownPos(Qt::LeftButton)));
         QPointF newPPos(parentItem()->mapToParent(newPos));
         SpringGraphicsItem* item = qgraphicsitem_cast<SpringGraphicsItem*>(parentItem());
-        StepCore::Spring* spring = static_cast<StepCore::Spring*>(_item);
         if(_num == 1) item->setDefaultPos1(newPPos);
         else item->setDefaultPos2(newPPos);
 
         if(!_moving) {
             _moving = true;
-            if(_num == 1) spring->setBodyPtr1(NULL);
-            else spring->setBodyPtr2(NULL);
-            _worldModel->setData(_worldModel->objectIndex(_item), QVariant(), WorldModel::ObjectRole);
+            _worldModel->beginMacro(QString("TODO"));
+            if(_num == 1) //spring->setBodyPtr1(NULL);
+                _worldModel->setProperty(_item, _item->metaObject()->property("body1"), QString());
+            else //spring->setBodyPtr2(NULL);
+                _worldModel->setProperty(_item, _item->metaObject()->property("body2"), QString());
         }
 
         if(_keepRest) {
             item->advance(1);
-            spring->setRestLength(item->rnorm());
+            //spring->setRestLength(item->rnorm());
+            _worldModel->setProperty(_item, _item->metaObject()->property("restLength"),
+                                                    QVariant(item->rnorm()), true);
         }
 
-        _worldModel->setData(_worldModel->objectIndex(_item), QVariant(), WorldModel::ObjectRole);
+        item->advance(1);
 
     } else {
         event->ignore();
@@ -112,29 +115,35 @@ void SpringHandlerGraphicsItem::mouseMoveEvent(QGraphicsSceneMouseEvent *event)
 void SpringHandlerGraphicsItem::mouseReleaseEvent(QGraphicsSceneMouseEvent *event)
 {
     if(_moving) {
+        SpringGraphicsItem* item = qgraphicsitem_cast<SpringGraphicsItem*>(parentItem());
+
         QList<QGraphicsItem*> items = scene()->items( event->scenePos() );
         QList<QGraphicsItem*>::iterator it = items.begin();
         for(; it != items.end(); ++it) {
             if(*it != this && *it != parentItem()) break;
         }
         if(it != items.end()) {
-            StepCore::Body* body = dynamic_cast<StepCore::Body*>(
-                                        static_cast<WorldScene*>(scene())->itemFromGraphics(*it));
-            if(body != NULL) {
-                if(_num == 1) static_cast<StepCore::Spring*>(_item)->setBodyPtr1(body);
-                else static_cast<StepCore::Spring*>(_item)->setBodyPtr2(body);
+            StepCore::Item* worldItem = static_cast<WorldScene*>(scene())->itemFromGraphics(*it);
+            if(worldItem != NULL) {
+                if(_num == 1) //static_cast<StepCore::Spring*>(_item)->setBodyPtr1(body);
+                    _worldModel->setProperty(_item, _item->metaObject()->property("body1"), worldItem->name());
+                else //static_cast<StepCore::Spring*>(_item)->setBodyPtr2(body);
+                    _worldModel->setProperty(_item, _item->metaObject()->property("body2"), worldItem->name());
 
                 if(_keepRest) {
-                    SpringGraphicsItem* item = qgraphicsitem_cast<SpringGraphicsItem*>(parentItem());
                     item->advance(1);
-                    static_cast<StepCore::Spring*>(_item)->setRestLength(item->rnorm());
+                    _worldModel->setProperty(_item, _item->metaObject()->property("restLength"),
+                                                            QVariant(item->rnorm()), true);
+                    //static_cast<StepCore::Spring*>(_item)->setRestLength(item->rnorm());
                 }
-
-                _worldModel->setData(_worldModel->objectIndex(_item), QVariant(), WorldModel::ObjectRole);
             }
         }
+
+        item->advance(1);
+
         _moving = false;
         _keepRest = false;
+        _worldModel->endMacro();
     } else WorldGraphicsItem::mouseReleaseEvent(event);
 }
 
@@ -250,11 +259,9 @@ void SpringGraphicsItem::mouseSetPos(const QPointF& pos)
         if(*it != this && *it != _handler1 && *it != _handler2) break;
     }
     if(it != items.end()) {
-        StepCore::Body* body = dynamic_cast<StepCore::Body*>(
-                                    static_cast<WorldScene*>(scene())->itemFromGraphics(*it));
-        if(body != NULL) {
-            static_cast<StepCore::Spring*>(_item)->setBodyPtr1(body);
-            _worldModel->setData(_worldModel->objectIndex(_item), QVariant(), WorldModel::ObjectRole);
+        StepCore::Item* item = static_cast<WorldScene*>(scene())->itemFromGraphics(*it);
+        if(item != NULL) {
+            _worldModel->setProperty(_item, _item->metaObject()->property("body1"), item->name());
         }
     }
 }
