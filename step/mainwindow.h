@@ -42,12 +42,12 @@ public slots:
     bool saveFileAs(const QString& name = QString());
     bool saveFile();
 
-    void setModified(bool modified);
-
     void simulationStartStop();
     void simulationStart();
     void simulationStop();
     void simulationStopped(bool success);
+
+    void updateCaption();
 
     /*
 protected slots:
@@ -66,7 +66,6 @@ protected slots:
 
 protected:
     void setupActions();
-    void updateCaption();
     bool queryClose();
     bool maybeSave();
 
@@ -86,9 +85,6 @@ protected:
     KAction* actionRedo;
 
     QString currentFileName;
-    bool    modified;
-
-    static const int FPS = 25; //XXX
 };
 
 #endif

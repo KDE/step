@@ -190,12 +190,6 @@ WorldModel::~WorldModel()
     delete _world;
 }
 
-void WorldModel::clearWorld()
-{
-    _world->clear();
-    resetWorld();
-}
-
 void WorldModel::resetWorld()
 {
     if(_world->name().isEmpty()) {
@@ -209,8 +203,7 @@ void WorldModel::resetWorld()
     _world->doCalcFn();
 
     reset();
-    emit worldChanged(false);
-
+    _undoStack->clear();
     _selectionModel->setCurrentIndex(worldIndex(), QItemSelectionModel::SelectCurrent);
 }
 
@@ -219,7 +212,6 @@ void WorldModel::emitChanged()
     emit dataChanged(worldIndex(), worldIndex());
     emit dataChanged(solverIndex(), solverIndex());
     if(itemCount() > 0) emit dataChanged(itemIndex(0), itemIndex(itemCount()-1));
-    emit worldChanged(true);
 }
 
 QModelIndex WorldModel::worldIndex() const
@@ -387,12 +379,18 @@ bool WorldModel::doWorldEvolve(double delta)
     return ret;
 }
 
+void WorldModel::clearWorld()
+{
+    _world->clear();
+    resetWorld();
+}
+
 bool WorldModel::saveXml(QIODevice* device)
 {
     StepCore::XmlFile file(device);
 
     if(file.save(_world)) {
-        emit worldChanged(false);
+        _undoStack->setClean();
         return true;
     } else {
         _errorString = file.errorString();

@@ -44,7 +44,6 @@ class WorldModel: public QAbstractItemModel
 public:
     WorldModel(QObject* parent = 0);
     ~WorldModel();
-    void clearWorld();
 
     QItemSelectionModel* selectionModel() const { return _selectionModel; }
     const WorldFactory* worldFactory() const { return _worldFactory; }
@@ -90,6 +89,7 @@ public:
                         const QVariant& value, bool merge = false);
 
     // Save/load
+    void clearWorld();
     bool saveXml(QIODevice* device);
     bool loadXml(QIODevice* device);
     QString errorString() const { return _errorString; }
@@ -113,7 +113,6 @@ protected slots:
     void simulationFrame();
 
 signals:
-    void worldChanged(bool modified);
     void simulationStopped(bool success);
 
 protected:

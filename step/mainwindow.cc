@@ -62,7 +62,6 @@ MainWindow::MainWindow()
     worldGraphicsView = new WorldGraphicsView(worldScene, this);
     setCentralWidget(worldGraphicsView);
 
-    QObject::connect(worldModel, SIGNAL(worldChanged(bool)), this, SLOT(setModified(bool)));
     QObject::connect(worldModel, SIGNAL(simulationStopped(bool)), this, SLOT(simulationStopped(bool)));
     QObject::connect(itemPalette, SIGNAL(beginAddItem(const QString&)),
                                     worldScene, SLOT(beginAddItem(const QString&)));
@@ -73,7 +72,6 @@ MainWindow::MainWindow()
     setupGUI();
     statusBar()->show();
 
-    modified = false;
     newFile();
 }
 
@@ -92,6 +90,7 @@ void MainWindow::setupActions()
     actionRedo->setEnabled(false); actionUndo->setEnabled(false);
     connect(worldModel->undoStack(), SIGNAL(canRedoChanged(bool)), actionRedo, SLOT(setEnabled(bool)));
     connect(worldModel->undoStack(), SIGNAL(canUndoChanged(bool)), actionUndo, SLOT(setEnabled(bool)));
+    connect(worldModel->undoStack(), SIGNAL(cleanChanged(bool)), this, SLOT(updateCaption()));
 
     /* Simulation menu */
     actionSimulation = static_cast<KAction*>(
@@ -119,13 +118,7 @@ void MainWindow::updateCaption()
     QString shownName;
     if(currentFileName.isEmpty()) shownName = "untitled.step";
     else shownName = QFileInfo(currentFileName).fileName();
-    setCaption(shownName, modified);
-}
-
-void MainWindow::setModified(bool modified)
-{
-    this->modified = modified;
-    updateCaption();
+    setCaption(shownName, !worldModel->undoStack()->isClean());
 }
 
 bool MainWindow::queryClose()
@@ -159,7 +152,7 @@ bool MainWindow::openFile(const QString& name)
         if(fileName.isEmpty()) return false;
     }
 
-    modified = false;
+    worldModel->clearWorld();
     newFile();
 
     // TODO: KIO
@@ -216,7 +209,7 @@ bool MainWindow::saveFile()
 
 bool MainWindow::maybeSave()
 {
-    if(modified) {
+    if(!worldModel->undoStack()->isClean()) {
          int ret = KMessageBox::warningYesNoCancel(this, 
               i18n("The document has been modified.\nDo you want to save your changes?"),
               i18n("Warning - Step"), KStandardGuiItem::save(), KStandardGuiItem::discard());
@@ -249,7 +242,7 @@ void MainWindow::simulationStopped(bool success)
     actionSimulation->setIcon(KIcon("player_play"));
     if(!success) { // XXX: KMessageBox
         KMessageBox::sorry(this, i18n("Can't finish this step becouse local error "
-               "is bigger then local tolerance. "
+               "is bigger then local tolerance.\n"
                "Please check solver settings and try again."));
     }
 }
