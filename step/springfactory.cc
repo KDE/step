@@ -60,7 +60,7 @@ SpringHandlerGraphicsItem::SpringHandlerGraphicsItem(StepCore::Item* item, World
 {
     Q_ASSERT(_num == 1 || _num == 2);
     setFlag(QGraphicsItem::ItemIsMovable);
-    if(_num == 1) setPos(0, 0);
+    setPos(0, 0);
 }
 
 void SpringHandlerGraphicsItem::paint(QPainter* painter, const QStyleOptionGraphicsItem* /*option*/, QWidget* /*widget*/)
@@ -92,20 +92,18 @@ void SpringHandlerGraphicsItem::mouseMoveEvent(QGraphicsSceneMouseEvent *event)
         if(!_moving) {
             _moving = true;
             _worldModel->beginMacro(QString("TODO"));
-            if(_num == 1) //spring->setBodyPtr1(NULL);
-                _worldModel->setProperty(_item, _item->metaObject()->property("body1"), QString());
-            else //spring->setBodyPtr2(NULL);
-                _worldModel->setProperty(_item, _item->metaObject()->property("body2"), QString());
+            if(_num == 1) _worldModel->setProperty(_item, _item->metaObject()->property("body1"), QString());
+            else _worldModel->setProperty(_item, _item->metaObject()->property("body2"), QString());
         }
 
         if(_keepRest) {
             item->advance(1);
-            //spring->setRestLength(item->rnorm());
             _worldModel->setProperty(_item, _item->metaObject()->property("restLength"),
                                                     QVariant(item->rnorm()), true);
         }
 
         item->advance(1);
+        advance(1);
 
     } else {
         event->ignore();
@@ -140,6 +138,7 @@ void SpringHandlerGraphicsItem::mouseReleaseEvent(QGraphicsSceneMouseEvent *even
         }
 
         item->advance(1);
+        advance(1);
 
         _moving = false;
         _keepRest = false;
@@ -174,14 +173,26 @@ QPainterPath SpringGraphicsItem::shape() const
 
 void SpringGraphicsItem::paint(QPainter* painter, const QStyleOptionGraphicsItem* /*option*/, QWidget* /*widget*/)
 {
-    painter->setPen(QPen(Qt::green, 0));
-    painter->drawRect(QRectF(0, -_radius, _rnorm, _radius*2));
+    static const int seq[4] = { 0,1,0,-1 };
 
+    painter->setRenderHint(QPainter::Antialiasing, true);
     if(isSelected()) {
-        painter->setRenderHint(QPainter::Antialiasing, true);
         painter->setPen(QPen(SELECTION_COLOR, 0, Qt::DashLine));
         double m = SELECTION_MARGIN / currentViewScale();
         painter->drawRect(QRectF(-m, -_radius-m, _rnorm+m*2,  (_radius+m)*2));
+    }
+
+    painter->setPen(QPen(Qt::green, 0));
+
+    if(_rscale != 0) {
+        painter->scale( _rscale, _radius );
+        int n = int(_rnorm/_rscale) & ~1;
+        for(int i=1; i<=n; i++) {
+            painter->drawLine(QLineF( i-1, seq[(i-1)&3], i, seq[i&3] ));
+        }
+        painter->drawLine(QLineF(n, seq[n&3], _rnorm/_rscale, 0));
+    } else {
+        painter->drawLine(QLineF( 0, 0, _rnorm, 0 ));
     }
 }
 
@@ -209,10 +220,13 @@ void SpringGraphicsItem::advance(int phase)
 
     StepCore::Vector2d r = r2 - r1;
     _rnorm = r.norm();
-    //if(!spring()->bodyPtr1() || !spring()->bodyPtr2()) _radius = RADIUS;
-    if(_rnorm < spring()->restLength() / 4) _radius = RADIUS*4;
-    else if(_rnorm > spring()->restLength() * 4) _radius = RADIUS/4;
-    else _radius = spring()->restLength() / _rnorm * RADIUS;
+    
+    double sc = _rnorm / spring()->restLength();
+    if(sc < 1.41) {
+        _radius = sqrt(2-sc*sc)*RADIUS;
+        _rscale = sc*RADIUS;
+        if(_radius < 1) { _rscale = 0; _radius = 1; }
+    } else { _rscale = 0; _radius = 1; }
 
     setPos(r1[0], r1[1]);
     resetMatrix();
@@ -222,6 +236,7 @@ void SpringGraphicsItem::advance(int phase)
     double m = SELECTION_MARGIN / s;
     double u = 1/s;
     _radius /= s;
+    _rscale /= s;
     
     _boundingRect.setCoords(-m-u, -_radius-m-u, _rnorm+m*2+u, (_radius+m)*2+u);
 

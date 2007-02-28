@@ -127,7 +127,11 @@ bool PropertiesBrowserModel::setData(const QModelIndex &index, const QVariant &v
     if(_object == NULL) return false;
 
     if(index.isValid() && index.column() == 1 && role == Qt::EditRole) {
+        if(index.row() == 0) { // name // XXX: do it more generally
+            if(!_worldModel->checkUniqueName(value.toString())) return false; // XXX: error message
+        }
         _worldModel->setProperty(_object, _object->metaObject()->property(index.row()), value);
+        return true;
     }
     return false;
 }

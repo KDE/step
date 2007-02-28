@@ -99,6 +99,7 @@ public:
 
     // Names
     QString getUniqueName(QString className) const;
+    bool checkUniqueName(QString name) const;
 
     void setSimulationFps(int simulationFps);
     int simulationFps() { return _simulationFps; }

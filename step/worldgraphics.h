@@ -44,6 +44,13 @@ public:
     static bool createItem(const QString& className, WorldModel* worldModel,
                             WorldScene* scene, QEvent* e);
 
+    static StepCore::Vector2d pointToVector(const QPointF& point) {
+        return StepCore::Vector2d(point.x(), point.y());
+    }
+    static QPointF vectorToPoint(const StepCore::Vector2d& vector) {
+        return QPointF(vector[0], vector[1]);
+    }
+
 protected:
     virtual void mouseSetPos(const QPointF& pos);
 

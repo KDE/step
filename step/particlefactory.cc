@@ -130,7 +130,7 @@ void ParticleGraphicsItem::advance(int phase)
 void ParticleGraphicsItem::mouseSetPos(const QPointF& pos)
 {
     _worldModel->setProperty(_item, _item->metaObject()->property("position"),
-                                QVariant::fromValue(StepCore::Vector2d(pos.x(), pos.y())), true);
+                                QVariant::fromValue(pointToVector(pos)), true);
 }
 
 QVariant ParticleGraphicsItem::itemChange(GraphicsItemChange change, const QVariant& value)

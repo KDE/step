@@ -70,6 +70,7 @@ protected:
     QVariant itemChange(GraphicsItemChange change, const QVariant& value);
     StepCore::Spring* spring() const;
     double _rnorm;
+    double _rscale;
     double _radius;
 
     QPointF _defaultPos1;
@@ -78,7 +79,7 @@ protected:
     SpringHandlerGraphicsItem* _handler1;
     SpringHandlerGraphicsItem* _handler2;
 
-    static const int RADIUS = 4;
+    static const int RADIUS = 6;
 };
 
 /*

@@ -201,8 +201,7 @@ void ArrowHandlerGraphicsItem::advance(int phase)
     prepareGeometryChange();
     double w = HANDLER_SIZE/currentViewScale()/2;
     _boundingRect = QRectF(-w, -w, w*2, w*2);
-    StepCore::Vector2d v = _property->readVariant(_item).value<StepCore::Vector2d>();
-    setPos(v[0], v[1]);
+    setPos(vectorToPoint(_property->readVariant(_item).value<StepCore::Vector2d>()));
     update(); //XXX
 }
 
@@ -211,8 +210,7 @@ void ArrowHandlerGraphicsItem::mouseMoveEvent(QGraphicsSceneMouseEvent *event)
     if ((event->buttons() & Qt::LeftButton) && (flags() & ItemIsMovable)) {
         if(!_isMoving) { _worldModel->beginMacro("TODO"); _isMoving = true; }
         QPointF newPos(mapToParent(event->pos()) - matrix().map(event->buttonDownPos(Qt::LeftButton)));
-        StepCore::Vector2d v(newPos.x(), newPos.y());
-        _worldModel->setProperty(_item, _property, QVariant::fromValue(v), true);
+        _worldModel->setProperty(_item, _property, QVariant::fromValue(pointToVector(newPos)), true);
         //Q_ASSERT(_property->writeVariant(_item, QVariant::fromValue(v)));
         //_worldModel->setData(_worldModel->objectIndex(_item), QVariant(), WorldModel::ObjectRole);
     } else  event->ignore();

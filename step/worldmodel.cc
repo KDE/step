@@ -56,7 +56,6 @@ CommandEditProperty::CommandEditProperty(WorldModel* worldModel, StepCore::Objec
 {
     _oldValue = _property->readVariant(_object);
     setText(i18n("edit %1").arg(object->name()));
-    qDebug("edit %s, %s", object->name().toAscii().constData(), property->name());
 }
 
 void CommandEditProperty::redo()
@@ -100,7 +99,6 @@ CommandNewItem::CommandNewItem(WorldModel* worldModel, StepCore::Item* item, boo
     : _worldModel(worldModel), _item(item), _create(create), _shouldDelete(create)
 {
     setText("TODO");
-    qDebug("new %s", item->name().toAscii().constData());
 }
 
 CommandNewItem::~CommandNewItem()
@@ -193,7 +191,7 @@ WorldModel::~WorldModel()
 void WorldModel::resetWorld()
 {
     if(_world->name().isEmpty()) {
-        // XXX: set default name for unnamed objects in setData !
+        // XXX: check than loaded items has unique names !
         _world->setName(getUniqueName("World"));
     }
     if(NULL == _world->solver()) {
@@ -408,18 +406,24 @@ bool WorldModel::loadXml(QIODevice* device)
     return ret;
 }
 
+bool WorldModel::checkUniqueName(QString name) const
+{
+    if(name.isEmpty()) return false;
+    if(_world->name() == name) return false;
+    if(_world->solver() && _world->solver()->name() == name) return false;
+    StepCore::World::ItemList::const_iterator it = _world->items().begin();
+    for(; it != _world->items().end(); ++it) {
+        if((*it)->name() == name) return false;
+    }
+    return true;
+}
+
 QString WorldModel::getUniqueName(QString className) const
 {
     className[0] = className[0].toLower();
     for(int n=1; ; ++n) {
         QString name = className + QString::number(n);
-        if(_world->name() == name) break;
-        if(_world->solver() && _world->solver()->name() == name) break;
-        StepCore::World::ItemList::const_iterator it = _world->items().begin();
-        for(; it != _world->items().end(); ++it) {
-            if((*it)->name() == name) break;
-        }
-        if(it == _world->items().end()) return name;
+        if(checkUniqueName(name)) return name;
     }
     return QString();
 }
