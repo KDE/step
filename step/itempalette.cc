@@ -22,13 +22,14 @@
 #include "worldfactory.h"
 #include <stepcore/world.h>
 
-#include <klocale.h>
-
 #include <QToolBox>
 #include <QToolBar>
 #include <QAction>
 #include <QActionGroup>
 #include <QtAlgorithms>
+
+#include <KLocale>
+#include <KIcon>
 
 #include "itempalette.moc"
 
@@ -63,16 +64,20 @@ ItemPalette::ItemPalette(WorldModel* worldModel, QWidget* parent, Qt::WindowFlag
 
     _toolBar = new QToolBar(i18n("Palette"), this);
     _toolBar->setOrientation(Qt::Vertical);
+    _toolBar->setToolButtonStyle(Qt::ToolButtonTextBesideIcon);
+    _toolBar->setIconSize(QSize(22,22));
     setWidget(_toolBar);
 
     _actionGroup = new QActionGroup(this);
     _actionGroup->setExclusive(true);
 
-    _pointerAction = new QAction("Pointer", this);
+    _pointerAction = new QAction(i18n("Pointer"), this);
+    _pointerAction->setIcon(KIcon("pointer"));
     _pointerAction->setCheckable(true);
     _pointerAction->setChecked(true);
     _actionGroup->addAction(_pointerAction);
     _toolBar->addAction(_pointerAction);
+    _toolBar->widgetForAction(_pointerAction)->setSizePolicy(QSizePolicy::Expanding, QSizePolicy::Fixed);
     _toolBar->addSeparator();
 
     /* Add bodies */
@@ -85,9 +90,11 @@ ItemPalette::ItemPalette(WorldModel* worldModel, QWidget* parent, Qt::WindowFlag
         if(!metaObject->inherits(StepCore::Body::staticMetaObject())) continue;
         QAction* action = new QAction(metaObject->className(), this);
         action->setToolTip(metaObject->description());
+        action->setIcon(KIcon("misc"));
         action->setCheckable(true);
         _actionGroup->addAction(action);
         _toolBar->addAction(action);
+        _toolBar->widgetForAction(action)->setSizePolicy(QSizePolicy::Expanding, QSizePolicy::Fixed);
     }
 
     /* Add forces */
@@ -98,9 +105,12 @@ ItemPalette::ItemPalette(WorldModel* worldModel, QWidget* parent, Qt::WindowFlag
         if(metaObject == StepCore::Force::staticMetaObject()) continue;
         if(!metaObject->inherits(StepCore::Force::staticMetaObject())) continue;
         QAction* action = new QAction(name, this);
+        action->setToolTip(metaObject->description());
+        action->setIcon(KIcon("misc"));
         action->setCheckable(true);
         _actionGroup->addAction(action);
         _toolBar->addAction(action);
+        _toolBar->widgetForAction(action)->setSizePolicy(QSizePolicy::Expanding, QSizePolicy::Fixed);
     }
 
     QObject::connect(_actionGroup, SIGNAL(triggered(QAction*)), this, SLOT(actionTriggered(QAction*)));

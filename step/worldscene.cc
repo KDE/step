@@ -144,8 +144,12 @@ void WorldScene::beginAddItem(const QString& name)
         emit endAddItem(_itemCreator->className(), _itemCreator->item() != NULL);
         delete _itemCreator;
     }
-    _itemCreator = _worldModel->worldFactory()->newItemCreator(name, _worldModel, this);
-    Q_ASSERT(_itemCreator != NULL);
+    if(name == "Pointer") {
+        _itemCreator = NULL;
+    } else {
+        _itemCreator = _worldModel->worldFactory()->newItemCreator(name, _worldModel, this);
+        Q_ASSERT(_itemCreator != NULL);
+    }
 }
 
 bool WorldScene::event(QEvent* event)

@@ -37,3 +37,6 @@ target_link_libraries(step stepcore ${KDE4_KDEUI_LIBS} ${KDE4_KIO_LIBS})
 install(TARGETS step DESTINATION ${BIN_INSTALL_DIR})
 install(FILES stepui.rc DESTINATION  ${DATA_INSTALL_DIR}/step)
 
+add_subdirectory(icons)
+
+

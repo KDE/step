@@ -84,7 +84,9 @@ WorldFactory::WorldFactory()
 ItemCreator* WorldFactory::newItemCreator(const QString& className,
                     WorldModel* worldModel, WorldScene* worldScene) const
 {
-    const ExtMetaObject *extMetaObject = _extMetaObjects.value(metaObject(className), NULL);
+    const StepCore::MetaObject* mObject = metaObject(className);
+    if(!mObject) return false;
+    const ExtMetaObject *extMetaObject = _extMetaObjects.value(mObject, NULL);
     if(extMetaObject && extMetaObject->newItemCreator)
         return extMetaObject->newItemCreator(className, worldModel, worldScene);
     else return new ItemCreator(className, worldModel, worldScene);
