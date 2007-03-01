@@ -27,7 +27,7 @@ namespace StepCore
 {
 
 STEPCORE_META_OBJECT(GslSolver, "GSL solver", 0, STEPCORE_SUPER_CLASS(Solver),
-    STEPCORE_PROPERTY_RWS(double, stepSize, "Step size", stepSize, setStepSize))
+    STEPCORE_PROPERTY_RW(double, stepSize, "Step size", stepSize, setStepSize))
 
 GslSolver::GslSolver(double stepSize, const gsl_odeiv_step_type* gslStepType)
     : Solver(), _stepSize(stepSize), _gslStepType(gslStepType)

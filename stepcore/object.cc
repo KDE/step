@@ -4,7 +4,7 @@
 namespace StepCore {
 
 STEPCORE_META_OBJECT(Object, "Object", MetaObject::ABSTRACT,,
-        STEPCORE_PROPERTY_RWS(QString, name, "Object name", name, setName))
+        STEPCORE_PROPERTY_RW(QString, name, "Object name", name, setName))
 
 bool MetaObject::inherits(const MetaObject* obj) const
 {

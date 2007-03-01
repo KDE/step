@@ -36,6 +36,19 @@
 //XXX
 const QColor WorldGraphicsItem::SELECTION_COLOR = QColor(0xff, 0x70, 0x70);
 
+
+bool ItemCreator::sceneEvent(QEvent* event)
+{
+    if(event->type() == QEvent::GraphicsSceneMousePress) {
+        _item = _worldModel->newItem(_className); Q_ASSERT(_item != NULL);
+        _worldModel->selectionModel()->setCurrentIndex(_worldModel->objectIndex(_item),
+                                                    QItemSelectionModel::ClearAndSelect);
+        event->accept();
+        return true;
+    }
+    return false;
+}
+
 WorldGraphicsItem::WorldGraphicsItem(StepCore::Item* item, WorldModel* worldModel, QGraphicsItem* parent)
     : QGraphicsItem(parent), _item(item), _worldModel(worldModel), _isMouseOverItem(false), _isMoving(false)
 {
@@ -187,6 +200,7 @@ ArrowHandlerGraphicsItem::ArrowHandlerGraphicsItem(StepCore::Item* item, WorldMo
 {
     Q_ASSERT(_property->userTypeId() == qMetaTypeId<StepCore::Vector2d>());
     setFlag(QGraphicsItem::ItemIsMovable);
+    setZValue(500);
 }
 
 void ArrowHandlerGraphicsItem::paint(QPainter* painter, const QStyleOptionGraphicsItem* /*option*/, QWidget* /*widget*/)
@@ -210,7 +224,7 @@ void ArrowHandlerGraphicsItem::mouseMoveEvent(QGraphicsSceneMouseEvent *event)
     if ((event->buttons() & Qt::LeftButton) && (flags() & ItemIsMovable)) {
         if(!_isMoving) { _worldModel->beginMacro("TODO"); _isMoving = true; }
         QPointF newPos(mapToParent(event->pos()) - matrix().map(event->buttonDownPos(Qt::LeftButton)));
-        _worldModel->setProperty(_item, _property, QVariant::fromValue(pointToVector(newPos)), true);
+        _worldModel->setProperty(_item, _property, QVariant::fromValue(pointToVector(newPos)));
         //Q_ASSERT(_property->writeVariant(_item, QVariant::fromValue(v)));
         //_worldModel->setData(_worldModel->objectIndex(_item), QVariant(), WorldModel::ObjectRole);
     } else  event->ignore();

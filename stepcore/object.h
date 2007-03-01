@@ -54,7 +54,8 @@ public:
     enum {
         READABLE = 1, ///< Property is readable
         WRITABLE = 2, ///< Property is writable
-        STORED = 4    ///< Property should be stored
+        STORED = 4    ///< Property should be stored in file
+        //USER = 8      ///< Property should be shown in UI
     };
 
 public:
@@ -272,21 +273,28 @@ struct MetaObjectHelper<Class, MetaObject::ABSTRACT> {
     
 #define STEPCORE_SUPER_CLASS(_className) _className::staticMetaObject(),
 
-#define STEPCORE_PROPERTY_R(_type, _name, _description, _read) \
-    { __STRING(_name), _description, StepCore::MetaProperty::READABLE, qMetaTypeId<_type>(),  \
+#define STEPCORE_PROPERTY_RF(_type, _name, _description, _flags, _read) \
+    { __STRING(_name), _description, StepCore::MetaProperty::READABLE | _flags, qMetaTypeId<_type>(), \
       StepCore::MetaPropertyHelper<_thisType, _type>::read<&_thisType::_read>, \
       StepCore::MetaPropertyHelper<_thisType, _type>::writeNull, \
       StepCore::MetaPropertyHelper<_thisType, _type>::readString<&_thisType::_read>, \
       StepCore::MetaPropertyHelper<_thisType, _type>::writeStringNull },
 
-#define STEPCORE_PROPERTY_RWS(_type, _name, _description, _read, _write) \
+#define STEPCORE_PROPERTY_RWF(_type, _name, _description, _flags, _read, _write) \
     { __STRING(_name), _description, \
-      StepCore::MetaProperty::READABLE | StepCore::MetaProperty::WRITABLE | StepCore::MetaProperty::STORED, \
+      StepCore::MetaProperty::READABLE | StepCore::MetaProperty::WRITABLE | _flags, \
       qMetaTypeId<_type>(), \
       StepCore::MetaPropertyHelper<_thisType, _type>::read<&_thisType::_read>, \
       StepCore::MetaPropertyHelper<_thisType, _type>::write<&_thisType::_write>, \
       StepCore::MetaPropertyHelper<_thisType, _type>::readString<&_thisType::_read>, \
       StepCore::MetaPropertyHelper<_thisType, _type>::writeString<&_thisType::_write> },
+
+#define STEPCORE_PROPERTY_R(_type, _name, _description, _read) \
+    STEPCORE_PROPERTY_RF(_type, _name, _description, 0, _read)
+
+#define STEPCORE_PROPERTY_RW(_type, _name, _description, _read, _write) \
+    STEPCORE_PROPERTY_RWF(_type, _name, _description, \
+        StepCore::MetaProperty::STORED, _read, _write)
 
 } // namespace StepCore
 

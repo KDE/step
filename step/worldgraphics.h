@@ -34,6 +34,26 @@ class WorldModel;
 class WorldScene;
 class QEvent;
 
+class ItemCreator
+{
+public:
+    ItemCreator(const QString& className, WorldModel* worldModel, WorldScene* worldScene)
+           : _className(className), _worldModel(worldModel), _worldScene(worldScene), _item(NULL) {}
+    virtual ~ItemCreator() {}
+
+    QString className() const { return _className; }
+    StepCore::Item* item() const { return _item; }
+
+    virtual bool sceneEvent(QEvent* event);
+    virtual void abort() {};
+
+protected:
+    QString     _className;
+    WorldModel* _worldModel;
+    WorldScene* _worldScene;
+    StepCore::Item* _item;
+};
+
 class WorldGraphicsItem: public QGraphicsItem {
 public:
     WorldGraphicsItem(StepCore::Item* item, WorldModel* worldModel, QGraphicsItem* parent = 0);

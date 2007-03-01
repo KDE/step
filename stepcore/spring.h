@@ -26,6 +26,7 @@
 #include "world.h"
 #include "object.h"
 #include "particle.h"
+#include "vector.h"
 
 #include <QString>
 
@@ -77,7 +78,7 @@ class Spring: public Item, public Force, public PairForce
 
 public:
     /** Constructs Spring */
-    Spring(double restLength = 1, double stiffness = 1,
+    Spring(double restLength = 0, double stiffness = 1,
                 Body* bodyPtr1 = 0, Body* bodyPtr2 = 0);
 
     void calcForce();
@@ -88,7 +89,7 @@ public:
     void   setRestLength(double restLength) { _restLength = restLength; }
 
     /** Get current length of the spring */
-    double length() const;
+    double length() const { return (position2()-position1()).norm(); }
 
     /** Get stiffness of the spring */
     double stiffness() const { return _stiffness; }
@@ -113,12 +114,24 @@ public:
     QString body2() const { return _bodyPtr2 ? dynamic_cast<Item*>(_bodyPtr2)->name() : QString(); }
 #endif
 
+    /** Position of the first end of the spring */
+    Vector2d position1() const;
+    /** Set position of the first end of the spring (will be ignored the end is connected) */
+    void setPosition1(const Vector2d& position1) { if(!_bodyPtr1) _position1 = position1; }
+
+    /** Position of the second end of the spring */
+    Vector2d position2() const;
+    /** Set position of the second end of the spring (will be ignored the end is connected) */
+    void setPosition2(const Vector2d& position2) { if(!_bodyPtr2) _position2 = position2; }
+
     void worldItemRemoved(Item* item);
     void setWorld(World* world);
 
 protected:
     double _restLength;
     double _stiffness;
+    StepCore::Vector2d _position1;
+    StepCore::Vector2d _position2;
 };
 
 } // namespace StepCore

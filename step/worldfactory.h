@@ -26,44 +26,16 @@ class QGraphicsScene;
 class WorldModel;
 class WorldScene;
 class WorldGraphicsItem;
+class ItemCreator;
 
 namespace StepCore {
     class Item;
 }
 
-/*
-class ItemCreator
-{
-public:
-    ItemCreator(WorldScene* scene, WorldModel* worldModel)
-                        : _scene(scene), _worldModel(worldModel), _item(NULL) {}
-    virtual ~ItemCreator() {}
-    virtual QString name() const = 0;
-    virtual bool sceneEvent(QEvent* event);
-    StepCore::Item* item() const { return _item; }
-
-protected:
-    WorldScene* _scene;
-    WorldModel* _worldModel;
-    StepCore::Item* _item;
-};
-*/
-#if 0
-class ItemFactory
-{
-public:
-    virtual ~ItemFactory() {}
-    virtual ItemCreator* newItemCreator(WorldScene* /*scene*/, 
-                WorldModel* /*worldModel*/) const { return NULL; }
-    virtual QGraphicsItem* newGraphicsItem(StepCore::Item* /*item*/,
-                WorldModel* /*worldModel*/) const { return NULL; }
-};
-#endif
-
-
 struct ExtMetaObject
 {
-    bool (*graphicsCreateItem)(const QString&, WorldModel*, WorldScene*, QEvent*);
+    ItemCreator* (*newItemCreator)(const QString& className,
+                        WorldModel* worldModel, WorldScene* worldScene);
     WorldGraphicsItem* (*newGraphicsItem)(StepCore::Item*, WorldModel*);
 };
 
@@ -72,11 +44,10 @@ class WorldFactory: public StepCore::Factory
 public:
     WorldFactory();
 
-    bool graphicsCreateItem(const QString& name, WorldModel* worldModel,
-                                WorldScene* scene, QEvent* e) const;
+    ItemCreator* newItemCreator(const QString& className,
+                        WorldModel* worldModel, WorldScene* worldScene) const;
                                 
     WorldGraphicsItem* newGraphicsItem(StepCore::Item* item, WorldModel* worldModel) const;
-    //ItemCreator* newItemCreator(const QString& name, WorldScene* scene, WorldModel* worldModel) const;
 
 private:
     QHash<const void*, const ExtMetaObject*> _extMetaObjects;

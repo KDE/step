@@ -17,6 +17,7 @@
 */
 
 #include "spring.h"
+#include "types.h"
 
 #include <algorithm>
 #include <cmath>
@@ -25,25 +26,19 @@ namespace StepCore {
 
 STEPCORE_META_OBJECT(Spring, "Massless spring", 0,
     STEPCORE_SUPER_CLASS(Item) STEPCORE_SUPER_CLASS(Force),
-    STEPCORE_PROPERTY_RWS(double, restLength, "Rest length", restLength, setRestLength)
-    STEPCORE_PROPERTY_R  (double, length, "Current length", length)
-    STEPCORE_PROPERTY_RWS(double, stiffness, "Stiffness", stiffness, setStiffness)
-    STEPCORE_PROPERTY_RWS(QString, body1, "Body1", body1, setBody1)
-    STEPCORE_PROPERTY_RWS(QString, body2, "Body2", body2, setBody2))
+    STEPCORE_PROPERTY_RW(double, restLength, "Rest length", restLength, setRestLength)
+    STEPCORE_PROPERTY_R (double, length, "Current length", length)
+    STEPCORE_PROPERTY_RW(double, stiffness, "Stiffness", stiffness, setStiffness)
+    STEPCORE_PROPERTY_RW(QString, body1, "Body1", body1, setBody1)
+    STEPCORE_PROPERTY_RW(QString, body2, "Body2", body2, setBody2)
+    STEPCORE_PROPERTY_RW(StepCore::Vector2d, position1, "Position1", position1, setPosition1)
+    STEPCORE_PROPERTY_RW(StepCore::Vector2d, position2, "Position2", position2, setPosition2)
+    )
 
 Spring::Spring(double restLength, double stiffness, Body* bodyPtr1, Body* bodyPtr2)
-    : PairForce(bodyPtr1, bodyPtr2), _restLength(restLength), _stiffness(stiffness)
+    : PairForce(bodyPtr1, bodyPtr2), _restLength(restLength), _stiffness(stiffness),
+      _position1(0), _position2(0)
 {
-}
-
-double Spring::length() const
-{
-    Particle* p1 = dynamic_cast<Particle*>(_bodyPtr1);
-    Particle* p2 = dynamic_cast<Particle*>(_bodyPtr2);
-    if(!p1 || !p2) return nan("nan");
-
-    Vector2d r = p2->position() - p1->position();
-    return r.norm();
 }
 
 void Spring::calcForce()
@@ -59,14 +54,15 @@ void Spring::calcForce()
 
     Particle* p1 = dynamic_cast<Particle*>(_bodyPtr1);
     Particle* p2 = dynamic_cast<Particle*>(_bodyPtr2);
-    if(!p1 || !p2) return;
 
-    Vector2d r = p2->position() - p1->position();
+    Vector2d r = position2() - position1();
     double length = r.norm();
     Vector2d force = _stiffness * (length - _restLength) * r.unit();
-    p1->addForce(force);
-    force.invert();
-    p2->addForce(force);
+    if(p1) p1->addForce(force);
+    if(p2) {
+        force.invert();
+        p2->addForce(force);
+    }
 }
 
 void Spring::setBody1(const QString& body1)
@@ -76,6 +72,9 @@ void Spring::setBody1(const QString& body1)
             setBodyPtr1(*o);
             return;
         }
+    Particle* p1 = dynamic_cast<Particle*>(_bodyPtr1);
+    if(p1) _position1 = p1->position();
+    _bodyPtr1 = NULL;
 }
 
 void Spring::setBody2(const QString& body2)
@@ -85,12 +84,38 @@ void Spring::setBody2(const QString& body2)
             setBodyPtr2(*o);
             return;
         }
+    Particle* p2 = dynamic_cast<Particle*>(_bodyPtr2);
+    if(p2) _position2 = p2->position();
+    _bodyPtr2 = NULL;
+}
+
+Vector2d Spring::position1() const
+{
+    Particle* p1 = dynamic_cast<Particle*>(_bodyPtr1);
+    if(p1) return p1->position();
+    else return _position1;
+}
+
+Vector2d Spring::position2() const
+{
+    Particle* p2 = dynamic_cast<Particle*>(_bodyPtr2);
+    if(p2) return p2->position();
+    else return _position2;
 }
 
 void Spring::worldItemRemoved(Item* item)
 {
-    if(item == dynamic_cast<Item*>(_bodyPtr1)) _bodyPtr1 = NULL;
-    if(item == dynamic_cast<Item*>(_bodyPtr2)) _bodyPtr2 = NULL;
+    if(item == NULL) return;
+    if(item == dynamic_cast<Item*>(_bodyPtr1)) {
+        Particle* p1 = dynamic_cast<Particle*>(_bodyPtr1);
+        if(p1) _position1 = p1->position();
+        _bodyPtr1 = NULL;
+    }
+    if(item == dynamic_cast<Item*>(_bodyPtr2)) {
+        Particle* p2 = dynamic_cast<Particle*>(_bodyPtr2);
+        if(p2) _position2 = p2->position();
+        _bodyPtr2 = NULL;
+    }
 }
 
 void Spring::setWorld(World* world)

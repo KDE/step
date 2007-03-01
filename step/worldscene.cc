@@ -98,7 +98,7 @@ void WorldSceneAxes::advance(int phase)
 }
 
 WorldScene::WorldScene(WorldModel* worldModel, QObject* parent)
-    : QGraphicsScene(parent), _worldModel(worldModel)/*, _itemCreator(NULL)*/, _currentViewScale(1)
+    : QGraphicsScene(parent), _worldModel(worldModel), _currentViewScale(1), _itemCreator(NULL)
 {
     setItemIndexMethod(NoIndex);
     //XXX
@@ -138,38 +138,34 @@ WorldGraphicsItem* WorldScene::graphicsFromItem(const StepCore::Item* item) cons
 
 void WorldScene::beginAddItem(const QString& name)
 {
-    _currentCreator = name;
-/*    if(_itemCreator) {
-        emit endAddItem(_itemCreator->name(), false);
+    //_currentCreator = name;
+    if(_itemCreator) {
+        _itemCreator->abort();
+        emit endAddItem(_itemCreator->className(), _itemCreator->item() != NULL);
         delete _itemCreator;
     }
-    _itemCreator = _worldModel->worldFactory()->newItemCreator(name, this, _worldModel);
-    if(_itemCreator == NULL) {
-        emit endAddItem(name, false);
-        return;
-    }*/
+    _itemCreator = _worldModel->worldFactory()->newItemCreator(name, _worldModel, this);
+    Q_ASSERT(_itemCreator != NULL);
 }
 
 bool WorldScene::event(QEvent* event)
 {
     //qDebug("event, _currentCreator = %s", _currentCreator.toAscii().constData());
-    if(!_currentCreator.isEmpty()) {
+    /*if(!_currentCreator.isEmpty()) {
         if(_worldModel->worldFactory()->graphicsCreateItem(_currentCreator, _worldModel,
                             this, event)) {
             emit endAddItem(_currentCreator, true);
             _currentCreator.clear();
         }
         if(event->isAccepted()) return true;
-    }
-    /*
+    }*/
     if(_itemCreator) {
         if(_itemCreator->sceneEvent(event)) {
-            emit endAddItem(_itemCreator->name(), _itemCreator->item() != NULL);
-            delete _itemCreator;
-            _itemCreator = NULL;
+            emit endAddItem(_itemCreator->className(), _itemCreator->item() != NULL);
+            delete _itemCreator; _itemCreator = NULL;
         }
         if(event->isAccepted()) return true;
-    }*/
+    }
     return QGraphicsScene::event(event);
 }
 

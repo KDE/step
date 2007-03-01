@@ -24,7 +24,7 @@
 namespace StepCore {
 
 STEPCORE_META_OBJECT(EulerSolver, "Euler solver", 0, STEPCORE_SUPER_CLASS(Solver),
-    STEPCORE_PROPERTY_RWS(double, stepSize, "Step size", stepSize, setStepSize))
+    STEPCORE_PROPERTY_RW(double, stepSize, "Step size", stepSize, setStepSize))
 
 EulerSolver::EulerSolver(double stepSize)
     : Solver(), _stepSize(stepSize)

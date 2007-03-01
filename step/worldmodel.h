@@ -85,8 +85,7 @@ public:
     void endMacro();
 
     // Property edit
-    void setProperty(StepCore::Object* object, const StepCore::MetaProperty* property,
-                        const QVariant& value, bool merge = false);
+    void setProperty(StepCore::Object* object, const StepCore::MetaProperty* property, const QVariant& value);
 
     // Save/load
     void clearWorld();

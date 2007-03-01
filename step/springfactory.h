@@ -20,18 +20,15 @@
 #define STEP_SPRINGFACTORY_H
 
 #include "worldgraphics.h"
-#include "worldfactory.h"
 #include <stepcore/spring.h>
 
-/*
 class SpringCreator: public ItemCreator
 {
 public:
-    SpringCreator(WorldScene* scene, WorldModel* worldModel)
-                        : ItemCreator(scene, worldModel) {}
-    QString name() const { return QString("Spring"); }
+    SpringCreator(const QString& className, WorldModel* worldModel, WorldScene* worldScene)
+                        : ItemCreator(className, worldModel, worldScene) {}
     bool sceneEvent(QEvent* event);
-};*/
+};
 
 class SpringHandlerGraphicsItem: public WorldGraphicsItem {
 public:
@@ -40,14 +37,12 @@ public:
 
     void paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget);
     void advance(int phase);
-    void setKeepRest(bool keepRest) { _keepRest = keepRest; }
 
 protected:
     void mouseMoveEvent(QGraphicsSceneMouseEvent *event);
     void mouseReleaseEvent(QGraphicsSceneMouseEvent *event);
     int _num;
     bool _moving;
-    bool _keepRest;
 };
 
 class SpringGraphicsItem: public WorldGraphicsItem {
@@ -58,41 +53,20 @@ public:
     void paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget);
     void advance(int phase);
 
-    void setDefaultPos1(const QPointF& pos1) { _defaultPos1 = pos1; }
-    void setDefaultPos2(const QPointF& pos2) { _defaultPos2 = pos2; }
-
-    SpringHandlerGraphicsItem* handler1() { return _handler1; }
-    SpringHandlerGraphicsItem* handler2() { return _handler2; }
-    double rnorm() { return _rnorm; }
-
 protected:
-    void mouseSetPos(const QPointF& pos);
     QVariant itemChange(GraphicsItemChange change, const QVariant& value);
     StepCore::Spring* spring() const;
     double _rnorm;
     double _rscale;
     double _radius;
 
-    QPointF _defaultPos1;
-    QPointF _defaultPos2;
-
     SpringHandlerGraphicsItem* _handler1;
     SpringHandlerGraphicsItem* _handler2;
 
     static const int RADIUS = 6;
+
+    friend class SpringCreator;
 };
-
-/*
-class SpringFactory: public StepCore::SpringFactory, public ItemFactory
-{
-    ItemCreator* newItemCreator(WorldScene* scene, WorldModel* worldModel) const {
-        return new SpringCreator(scene, worldModel);
-    }
-    QGraphicsItem* newGraphicsItem(StepCore::Item* item, WorldModel* worldModel) const {
-        return new SpringGraphicsItem(item, worldModel);
-    }
-};*/
-
 
 #endif
 

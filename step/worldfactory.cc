@@ -35,63 +35,12 @@
 #include <QItemSelectionModel>
 #include <QEvent>
 
-/*
-bool ItemCreator::sceneEvent(QEvent* event)
+template<typename T>
+ItemCreator* newItemCreatorHelper(const QString& className,
+                    WorldModel* worldModel, WorldScene* worldScene)
 {
-    if(event->type() == QEvent::GraphicsSceneMousePress) {
-        _item = _worldModel->worldFactory()->newItem(name());
-        Q_ASSERT(_item != NULL);
-        _item->setObjectName(_worldModel->newItemName(name()));
-        _worldModel->addItem(_item);
-        _worldModel->selectionModel()->setCurrentIndex(_worldModel->objectIndex(_item),
-                                                    QItemSelectionModel::ClearAndSelect);
-        event->accept();
-        return true;
-    }
-    return false;
-}*/
-#if 0
-#define STEP_ITEM_CREATOR_FACTORY(ClassName) \
-    class ClassName ## Creator: public ItemCreator { \
-    public: \
-        ClassName ## Creator(WorldScene* scene, WorldModel* worldModel) \
-                        : ItemCreator(scene, worldModel) {} \
-        QString name() const { return QString(__STRING(ClassName)); } \
-    }; \
-    class ClassName ## Factory: public StepCore:: ClassName ## Factory, public ItemFactory { \
-    public: \
-        ItemCreator* newItemCreator(WorldScene* scene, WorldModel* worldModel) const { \
-            return new ClassName ## Creator(scene, worldModel); \
-        } \
-    };
-
-STEP_ITEM_CREATOR_FACTORY(GravitationForce)
-STEP_ITEM_CREATOR_FACTORY(WeightForce)
-STEP_ITEM_CREATOR_FACTORY(CoulombForce)
-
-class WorldFactoryPrivate {
-public:
-    ParticleFactory particleFactory;
-    ChargedParticleFactory chargedParticleFactory;
-    SpringFactory springFactory;
-
-    GravitationForceFactory gravitationForceFactory;
-    WeightForceFactory weightForceFactory;
-    CoulombForceFactory coulombForceFactory;
-
-    StepCore::EulerSolverFactory eulerSolverFactory;
-#ifdef STEPCORE_WITH_GSL
-    StepCore::GslSolverFactory gslSolverFactory;
-#endif
-
-    StepCore::WorldFactory worldFactory;
-
-    StepCore::Vector2dPropertyType vector2dPropertyType;
-    StepCore::Vector3dPropertyType vector3dPropertyType;
-    //StepCore::ApproxVector2dPropertyType approxVector2dPropertyType;
-};
-#endif
-
+    return new T(className, worldModel, worldScene);
+}
 
 template<typename T>
 WorldGraphicsItem* newGraphicsItemHelper(StepCore::Item* item, WorldModel* worldModel)
@@ -102,9 +51,9 @@ WorldGraphicsItem* newGraphicsItemHelper(StepCore::Item* item, WorldModel* world
 WorldFactory::WorldFactory()
 {
     #define __REGISTER(Class) registerMetaObject(StepCore::Class::staticMetaObject())
-    #define __REGISTER_EXT(Class, Graphics) \
+    #define __REGISTER_EXT(Class, GraphicsCreator, GraphicsItem) \
         static const ExtMetaObject extMetaObject ## Class = \
-                        { Graphics::createItem, newGraphicsItemHelper<Graphics> }; \
+                { newItemCreatorHelper<GraphicsCreator>, newGraphicsItemHelper<GraphicsItem> }; \
         registerMetaObject(StepCore::Class::staticMetaObject()); \
         _extMetaObjects.insert(StepCore::Class::staticMetaObject(), &extMetaObject ## Class);
 
@@ -115,20 +64,30 @@ WorldFactory::WorldFactory()
     __REGISTER(Body);
     __REGISTER(Force);
 
-    __REGISTER_EXT(Particle, ParticleGraphicsItem);
-    __REGISTER_EXT(ChargedParticle, ParticleGraphicsItem);
+    __REGISTER_EXT(Particle, ParticleCreator, ParticleGraphicsItem);
+    __REGISTER_EXT(ChargedParticle, ParticleCreator, ParticleGraphicsItem);
 
     __REGISTER(GravitationForce);
     __REGISTER(WeightForce);
     __REGISTER(CoulombForce);
 
-    __REGISTER_EXT(Spring, SpringGraphicsItem);
+    __REGISTER_EXT(Spring, SpringCreator, SpringGraphicsItem);
 
     __REGISTER(EulerSolver);
 
 #ifdef STEPCORE_WITH_GSL
     __REGISTER(GslSolver);
 #endif
+}
+
+
+ItemCreator* WorldFactory::newItemCreator(const QString& className,
+                    WorldModel* worldModel, WorldScene* worldScene) const
+{
+    const ExtMetaObject *extMetaObject = _extMetaObjects.value(metaObject(className), NULL);
+    if(extMetaObject && extMetaObject->newItemCreator)
+        return extMetaObject->newItemCreator(className, worldModel, worldScene);
+    else return new ItemCreator(className, worldModel, worldScene);
 }
 
 WorldGraphicsItem* WorldFactory::newGraphicsItem(StepCore::Item* item, WorldModel* worldModel) const
@@ -139,6 +98,7 @@ WorldGraphicsItem* WorldFactory::newGraphicsItem(StepCore::Item* item, WorldMode
     return NULL;
 }
 
+/*
 bool WorldFactory::graphicsCreateItem(const QString& name, WorldModel* worldModel,
                             WorldScene* scene, QEvent* e) const
 {
@@ -148,7 +108,7 @@ bool WorldFactory::graphicsCreateItem(const QString& name, WorldModel* worldMode
     else if(metaObject(name)->inherits(StepCore::Item::staticMetaObject())) 
         return WorldGraphicsItem::createItem(name, worldModel, scene, e);
     return true;
-}
+}*/
 
 #if 0
 ItemCreator* WorldFactory::newItemCreator(const QString& name, WorldScene* scene, WorldModel* worldModel) const

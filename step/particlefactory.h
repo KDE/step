@@ -20,26 +20,15 @@
 #define STEP_PARTICLEFACTORY_H
 
 #include "worldgraphics.h"
-#include "worldfactory.h"
 #include <stepcore/particle.h>
 
-/*
 class ParticleCreator: public ItemCreator
 {
 public:
-    ParticleCreator(WorldScene* scene, WorldModel* worldModel)
-                        : ItemCreator(scene, worldModel) {}
-    QString name() const { return QString("Particle"); }
+    ParticleCreator(const QString& className, WorldModel* worldModel, WorldScene* worldScene)
+                        : ItemCreator(className, worldModel, worldScene) {}
     bool sceneEvent(QEvent* event);
 };
-
-class ChargedParticleCreator: public ParticleCreator
-{
-public:
-    ChargedParticleCreator(WorldScene* scene, WorldModel* worldModel)
-                        : ParticleCreator(scene, worldModel) {}
-    QString name() const { return QString("ChargedParticle"); }
-};*/
 
 class ParticleGraphicsItem: public WorldGraphicsItem {
 public:
@@ -59,27 +48,6 @@ protected:
 
     static const int RADIUS = 7;
 };
-
-/*
-class ParticleFactory: public StepCore::ParticleFactory, public ItemFactory
-{
-    ItemCreator* newItemCreator(WorldScene* scene, WorldModel* worldModel) const {
-        return new ParticleCreator(scene, worldModel);
-    }
-    QGraphicsItem* newGraphicsItem(StepCore::Item* item, WorldModel* worldModel) const {
-        return new ParticleGraphicsItem(item, worldModel);
-    }
-};
-
-class ChargedParticleFactory: public StepCore::ChargedParticleFactory, public ItemFactory
-{
-    ItemCreator* newItemCreator(WorldScene* scene, WorldModel* worldModel) const {
-        return new ChargedParticleCreator(scene, worldModel);
-    }
-    QGraphicsItem* newGraphicsItem(StepCore::Item* item, WorldModel* worldModel) const {
-        return new ParticleGraphicsItem(item, worldModel);
-    }
-};*/
 
 #endif
 

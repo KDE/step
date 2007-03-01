@@ -19,26 +19,29 @@
 #include "particlefactory.h"
 
 #include "worldmodel.h"
+#include "worldfactory.h"
 #include <QItemSelectionModel>
 #include <QGraphicsSceneMouseEvent>
 #include <QEvent>
 #include <QPainter>
 
-/*
 bool ParticleCreator::sceneEvent(QEvent* event)
 {
     if(event->type() == QEvent::GraphicsSceneMousePress) {
-        QGraphicsSceneMouseEvent* mouseEvent = static_cast<QGraphicsSceneMouseEvent *>(event);
+        QGraphicsSceneMouseEvent* mouseEvent = static_cast<QGraphicsSceneMouseEvent*>(event);
         QPointF pos = mouseEvent->scenePos();
-        _item = _worldModel->worldFactory()->newItem(name());
-        Q_ASSERT(_item != NULL);
-        _item->setObjectName(_worldModel->newItemName(name()));
-        static_cast<StepCore::Particle*>(_item)->setPosition(StepCore::Vector2d(pos.x(), pos.y()));
-        _worldModel->addItem(_item);
+        QVariant vpos = QVariant::fromValue(WorldGraphicsItem::pointToVector(pos));
+        _worldModel->beginMacro("TODO");
+        _item = _worldModel->newItem(_className); Q_ASSERT(_item != NULL);
+        _worldModel->setProperty(_item, _item->metaObject()->property("position"), vpos);
+        _worldModel->selectionModel()->setCurrentIndex(_worldModel->objectIndex(_item),
+                                                    QItemSelectionModel::ClearAndSelect);
+        _worldModel->endMacro();
+        event->accept();
         return true;
     }
     return false;
-}*/
+}
 
 ParticleGraphicsItem::ParticleGraphicsItem(StepCore::Item* item, WorldModel* worldModel)
     : WorldGraphicsItem(item, worldModel)
@@ -57,15 +60,6 @@ inline StepCore::Particle* ParticleGraphicsItem::particle() const
 {
     return static_cast<StepCore::Particle*>(_item);
 }
-
-/*
-bool ParticleGraphicsItem::contains(const QPointF& point) const
-{
-    qreal r = point.x()*point.x() + point.y()*point.y();
-    if(r < (RADIUS+1)*(RADIUS+1)) return true;
-    else return false;
-}
-*/
 
 QPainterPath ParticleGraphicsItem::shape() const
 {
@@ -130,7 +124,7 @@ void ParticleGraphicsItem::advance(int phase)
 void ParticleGraphicsItem::mouseSetPos(const QPointF& pos)
 {
     _worldModel->setProperty(_item, _item->metaObject()->property("position"),
-                                QVariant::fromValue(pointToVector(pos)), true);
+                                QVariant::fromValue(pointToVector(pos)));
 }
 
 QVariant ParticleGraphicsItem::itemChange(GraphicsItemChange change, const QVariant& value)

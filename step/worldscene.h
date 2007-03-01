@@ -29,7 +29,7 @@ class QModelIndex;
 class QGraphicsItem;
 class QItemSelection;
 class WorldGraphicsItem;
-class QAction;
+class ItemCreator;
 
 namespace StepCore {
     class Item;
@@ -75,7 +75,7 @@ protected:
     WorldModel* _worldModel;
     QHash<const StepCore::Item*, WorldGraphicsItem*> _itemsHash;
     double _currentViewScale;
-    QString _currentCreator;
+    ItemCreator* _itemCreator;
 };
 
 class WorldGraphicsView: public QGraphicsView
