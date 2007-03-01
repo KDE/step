@@ -50,12 +50,15 @@ WorldGraphicsItem* newGraphicsItemHelper(StepCore::Item* item, WorldModel* world
 
 WorldFactory::WorldFactory()
 {
-    #define __REGISTER(Class) registerMetaObject(StepCore::Class::staticMetaObject())
+    #define __REGISTER(Class) \
+        registerMetaObject(StepCore::Class::staticMetaObject()); \
+        _orderedMetaObjects.push_back(QString(StepCore::Class::staticMetaObject()->className()))
     #define __REGISTER_EXT(Class, GraphicsCreator, GraphicsItem) \
         static const ExtMetaObject extMetaObject ## Class = \
                 { newItemCreatorHelper<GraphicsCreator>, newGraphicsItemHelper<GraphicsItem> }; \
         registerMetaObject(StepCore::Class::staticMetaObject()); \
-        _extMetaObjects.insert(StepCore::Class::staticMetaObject(), &extMetaObject ## Class);
+        _extMetaObjects.insert(StepCore::Class::staticMetaObject(), &extMetaObject ## Class); \
+        _orderedMetaObjects.push_back(QString(StepCore::Class::staticMetaObject()->className()))
 
     __REGISTER(Object);
 
@@ -67,11 +70,11 @@ WorldFactory::WorldFactory()
     __REGISTER_EXT(Particle, ParticleCreator, ParticleGraphicsItem);
     __REGISTER_EXT(ChargedParticle, ParticleCreator, ParticleGraphicsItem);
 
+    __REGISTER_EXT(Spring, SpringCreator, SpringGraphicsItem);
+
     __REGISTER(GravitationForce);
     __REGISTER(WeightForce);
     __REGISTER(CoulombForce);
-
-    __REGISTER_EXT(Spring, SpringCreator, SpringGraphicsItem);
 
     __REGISTER(EulerSolver);
 

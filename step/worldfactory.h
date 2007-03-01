@@ -49,8 +49,11 @@ public:
                                 
     WorldGraphicsItem* newGraphicsItem(StepCore::Item* item, WorldModel* worldModel) const;
 
+    QList<QString> orderedMetaObjects() const { return _orderedMetaObjects; }
+
 private:
     QHash<const void*, const ExtMetaObject*> _extMetaObjects;
+    QList<QString> _orderedMetaObjects;
 };
 
 #endif

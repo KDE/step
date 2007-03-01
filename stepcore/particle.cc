@@ -23,7 +23,7 @@
 namespace StepCore
 {
 
-STEPCORE_META_OBJECT(Particle, "particle", 0, STEPCORE_SUPER_CLASS(Item) STEPCORE_SUPER_CLASS(Body),
+STEPCORE_META_OBJECT(Particle, "Simple particle", 0, STEPCORE_SUPER_CLASS(Item) STEPCORE_SUPER_CLASS(Body),
         STEPCORE_PROPERTY_RW(StepCore::Vector2d, position, "position", position, setPosition)
         STEPCORE_PROPERTY_RW(StepCore::Vector2d, velocity, "velocity", velocity, setVelocity)
         STEPCORE_PROPERTY_R(StepCore::Vector2d, force, "force", force)
