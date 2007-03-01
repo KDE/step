@@ -201,7 +201,7 @@ void WorldScene::helpEvent(QGraphicsSceneHelpEvent *helpEvent)
         if(it->parentItem()) continue;
         StepCore::Item* item = itemFromGraphics(it);
         if(item) {
-            if(++count > 4) { text += QString("..."); break; }
+            if(++count > 4) { text += QString("<p>...</p>"); break; }
             text += _worldModel->createToolTip(item);
         }
     }
