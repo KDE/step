@@ -150,6 +150,7 @@ PropertiesBrowser::PropertiesBrowser(WorldModel* worldModel, QWidget* parent, Qt
     _treeView->setRootIsDecorated(false);
     //_treeView->setAlternatingRowColors(true);
     _treeView->setSelectionMode(QAbstractItemView::NoSelection);
+    _treeView->setEditTriggers(QAbstractItemView::CurrentChanged);
 
     worldCurrentChanged(_worldModel->worldIndex(), QModelIndex());
 
