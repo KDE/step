@@ -32,9 +32,9 @@ class CommandEditProperty: public QUndoCommand
 {
 public:
     CommandEditProperty(WorldModel* worldModel, StepCore::Object* object,
-                const StepCore::MetaProperty* property, const QVariant& newValue);
+                const StepCore::MetaProperty* property, const QVariant& newValue, bool merge);
 
-    int id() const { return 1; }
+    int id() const { return _merge ? 1 : -1; }
     bool mergeWith(const QUndoCommand* command);
 
     void redo();
@@ -43,6 +43,7 @@ public:
 protected:
     WorldModel* _worldModel;
     StepCore::Object* _object;
+    bool _merge;
     const StepCore::MetaProperty* _property[4];
     QVariant _oldValue[4];
     QVariant _newValue[4];
@@ -50,8 +51,8 @@ protected:
 
 /** We save four properties to allow command comprestion when changing several properties */
 CommandEditProperty::CommandEditProperty(WorldModel* worldModel, StepCore::Object* object,
-            const StepCore::MetaProperty* property, const QVariant& newValue)
-        : _worldModel(worldModel), _object(object)
+            const StepCore::MetaProperty* property, const QVariant& newValue, bool merge)
+        : _worldModel(worldModel), _object(object), _merge(merge)
 {
     memset(_property, 0, sizeof(_property));
     _property[0] = property;
@@ -329,6 +330,20 @@ void WorldModel::deleteItem(StepCore::Item* item)
     pushCommand(new CommandNewItem(this, item, false));
 }
 
+void WorldModel::deleteSelectedItems()
+{
+    QList<StepCore::Item*> items;
+    foreach(QModelIndex index, selectionModel()->selectedIndexes()) {
+        StepCore::Item* it = item(index); if(it) items << it;
+    }
+    if(!items.isEmpty()) {
+        beginMacro(items.count()==1 ? i18n("Delete %1", items[0]->metaObject()->className())
+                                    : i18n("Delete items"));
+        foreach(StepCore::Item* it, items) deleteItem(it);
+        endMacro();
+    }
+}
+
 void WorldModel::addItem(StepCore::Item* item)
 {
     beginInsertRows(worldIndex(), itemCount(), itemCount());
@@ -378,10 +393,10 @@ void WorldModel::endMacro()
 }
 
 void WorldModel::setProperty(StepCore::Object* object,
-            const StepCore::MetaProperty* property, const QVariant& value)
+            const StepCore::MetaProperty* property, const QVariant& value, bool merge)
 {
     Q_ASSERT(object != NULL); Q_ASSERT(property != NULL);
-    pushCommand(new CommandEditProperty(this, object, property, value));
+    pushCommand(new CommandEditProperty(this, object, property, value, merge));
 }
 
 bool WorldModel::doWorldEvolve(double delta)
@@ -456,7 +471,7 @@ bool WorldModel::isSimulationActive()
 
 void WorldModel::simulationStart()
 {
-    _undoStack->beginMacro("TODO");
+    _undoStack->beginMacro(i18n("Simulate"));
     _simulationCommand = new CommandSimulate(this);
     _simulationTimer->start();
 }

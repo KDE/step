@@ -76,25 +76,25 @@ public:
     // Add/remove/set functions
     StepCore::Item* newItem(const QString& name);
     void deleteItem(StepCore::Item* item);
+    void deleteSelectedItems();
 
     void setSolver(StepCore::Solver* solver);
 
     // Undo/redo helpers
+    QUndoStack* undoStack() { return _undoStack; }
     void pushCommand(QUndoCommand* command);
     void beginMacro(const QString& text);
     void endMacro();
 
     // Property edit
-    void setProperty(StepCore::Object* object, const StepCore::MetaProperty* property, const QVariant& value);
+    void setProperty(StepCore::Object* object, const StepCore::MetaProperty* property,
+                            const QVariant& value, bool merge = true);
 
     // Save/load
     void clearWorld();
     bool saveXml(QIODevice* device);
     bool loadXml(QIODevice* device);
     QString errorString() const { return _errorString; }
-
-    // Undo/redo
-    QUndoStack* undoStack() { return _undoStack; }
 
     // Names
     QString getUniqueName(QString className) const;

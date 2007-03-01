@@ -25,6 +25,7 @@
 #include <QGraphicsSceneMouseEvent>
 #include <QEvent>
 #include <QPainter>
+#include <KLocale>
 
 #include <cmath>
 
@@ -34,18 +35,19 @@ bool SpringCreator::sceneEvent(QEvent* event)
     if(event->type() == QEvent::GraphicsSceneMousePress && mouseEvent->button() == Qt::LeftButton) {
         QPointF pos = mouseEvent->scenePos();
         QVariant vpos = QVariant::fromValue(WorldGraphicsItem::pointToVector(pos));
-        _worldModel->beginMacro("TODO");
+        _worldModel->beginMacro(i18n("Create %1", _className));
         _item = _worldModel->newItem(className()); Q_ASSERT(_item != NULL);
-        _worldModel->setProperty(_item, _item->metaObject()->property("position1"), vpos);
-        _worldModel->setProperty(_item, _item->metaObject()->property("position2"), vpos);
 
         foreach(QGraphicsItem* it, _worldScene->items(pos)) {
             StepCore::Particle* particle = dynamic_cast<StepCore::Particle*>(_worldScene->itemFromGraphics(it));
             if(particle) {
-                _worldModel->setProperty(_item, _item->metaObject()->property("body1"), particle->name());
+                _worldModel->setProperty(_item, _item->metaObject()->property("body1"), particle->name(), false);
                 break;
             }
         }
+
+        _worldModel->setProperty(_item, _item->metaObject()->property("position1"), vpos);
+        _worldModel->setProperty(_item, _item->metaObject()->property("position2"), vpos);
 
         _worldModel->selectionModel()->setCurrentIndex(_worldModel->objectIndex(_item),
                                                 QItemSelectionModel::ClearAndSelect);
@@ -66,7 +68,7 @@ bool SpringCreator::sceneEvent(QEvent* event)
         foreach(QGraphicsItem* it, _worldScene->items(pos)) {
             StepCore::Particle* particle = dynamic_cast<StepCore::Particle*>(_worldScene->itemFromGraphics(it));
             if(particle) {
-                _worldModel->setProperty(_item, _item->metaObject()->property("body2"), particle->name());
+                _worldModel->setProperty(_item, _item->metaObject()->property("body2"), particle->name(), false);
                 _worldModel->setProperty(_item, _item->metaObject()->property("restLength"), 
                                                     static_cast<StepCore::Spring*>(_item)->length());
                 break;
@@ -112,9 +114,9 @@ void SpringHandlerGraphicsItem::mouseMoveEvent(QGraphicsSceneMouseEvent *event)
 
         if(!_moving) {
             _moving = true;
-            _worldModel->beginMacro(QString("TODO"));
-            if(_num == 1) _worldModel->setProperty(_item, _item->metaObject()->property("body1"), QString());
-            else          _worldModel->setProperty(_item, _item->metaObject()->property("body2"), QString());
+            _worldModel->beginMacro(i18n("Edit %1", _item->name()));
+            if(_num == 1) _worldModel->setProperty(_item, _item->metaObject()->property("body1"), QString(), false);
+            else          _worldModel->setProperty(_item, _item->metaObject()->property("body2"), QString(), false);
         }
 
         if(_num == 1) _worldModel->setProperty(_item, _item->metaObject()->property("position1"), vpos);
@@ -132,8 +134,8 @@ void SpringHandlerGraphicsItem::mouseReleaseEvent(QGraphicsSceneMouseEvent *even
             StepCore::Particle* particle = dynamic_cast<StepCore::Particle*>(
                                     static_cast<WorldScene*>(scene())->itemFromGraphics(it));
             if(particle) {
-                if(_num == 1) _worldModel->setProperty(_item, _item->metaObject()->property("body1"), particle->name());
-                else          _worldModel->setProperty(_item, _item->metaObject()->property("body2"), particle->name());
+                if(_num == 1) _worldModel->setProperty(_item, _item->metaObject()->property("body1"), particle->name(), false);
+                else          _worldModel->setProperty(_item, _item->metaObject()->property("body2"), particle->name(), false);
                 break;
             }
         }
@@ -238,25 +240,3 @@ QVariant SpringGraphicsItem::itemChange(GraphicsItemChange change, const QVarian
     return WorldGraphicsItem::itemChange(change, value);
 }
 
-/*
-void SpringGraphicsItem::mouseSetPos(const QPointF& pos)
-{
-    spring()->setPosition1(pointToVector(pos));
-    spring()->setPosition2(pointToVector(pos));
-
-    advance(1);
-    _handler1->advance(1);
-    _handler2->advance(1);
-
-    QList<QGraphicsItem*> items = scene()->items( pos );
-    QList<QGraphicsItem*>::iterator it = items.begin();
-    for(; it != items.end(); ++it) {
-        if(*it != this && *it != _handler1 && *it != _handler2) break;
-    }
-    if(it != items.end()) {
-        StepCore::Item* item = static_cast<WorldScene*>(scene())->itemFromGraphics(*it);
-        if(item != NULL) {
-            _worldModel->setProperty(_item, _item->metaObject()->property("body1"), item->name());
-        }
-    }
-}*/

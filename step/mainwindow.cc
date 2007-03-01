@@ -88,9 +88,14 @@ void MainWindow::setupActions()
     actionRedo = KStandardAction::redo(worldModel->undoStack(), SLOT(redo()), actionCollection());
     actionUndo = KStandardAction::undo(worldModel->undoStack(), SLOT(undo()), actionCollection());
     actionRedo->setEnabled(false); actionUndo->setEnabled(false);
+    actionRedo->setIconText(i18n("Redo")); actionUndo->setIconText(i18n("Undo"));
     connect(worldModel->undoStack(), SIGNAL(canRedoChanged(bool)), actionRedo, SLOT(setEnabled(bool)));
     connect(worldModel->undoStack(), SIGNAL(canUndoChanged(bool)), actionUndo, SLOT(setEnabled(bool)));
     connect(worldModel->undoStack(), SIGNAL(cleanChanged(bool)), this, SLOT(updateCaption()));
+    connect(worldModel->undoStack(), SIGNAL(undoTextChanged(const QString&)),
+                                 this, SLOT(undoTextChanged(const QString&)));
+    connect(worldModel->undoStack(), SIGNAL(redoTextChanged(const QString&)),
+                                 this, SLOT(redoTextChanged(const QString&)));
 
     /* Simulation menu */
     actionSimulation = static_cast<KAction*>(
@@ -250,6 +255,18 @@ void MainWindow::simulationStopped(bool success)
 void MainWindow::simulationStop()
 {
     worldModel->simulationStop();
+}
+
+void MainWindow::undoTextChanged(const QString& undoText)
+{
+    if(undoText.isEmpty()) actionUndo->setText(i18n("&Undo"));
+    else actionUndo->setText(i18n("&Undo: %1", undoText));
+}
+
+void MainWindow::redoTextChanged(const QString& redoText)
+{
+    if(redoText.isEmpty()) actionRedo->setText(i18n("Re&do"));
+    else actionRedo->setText(i18n("Re&do: %1", redoText));
 }
 
 /*

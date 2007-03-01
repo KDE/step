@@ -34,7 +34,6 @@ class ParticleGraphicsItem: public WorldGraphicsItem {
 public:
     ParticleGraphicsItem(StepCore::Item* item, WorldModel* worldModel);
 
-    //bool contains(const QPointF& point) const;
     QPainterPath shape() const;
     void paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget);
     void advance(int phase);

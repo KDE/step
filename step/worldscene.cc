@@ -183,13 +183,7 @@ void WorldScene::mousePressEvent(QGraphicsSceneMouseEvent* mouseEvent)
 void WorldScene::keyPressEvent(QKeyEvent* keyEvent)
 {
     if(keyEvent->matches(QKeySequence::Delete)) {
-        if(!selectedItems().isEmpty()) {
-            _worldModel->beginMacro("TODO");
-            while(!selectedItems().isEmpty()) {
-                _worldModel->deleteItem(itemFromGraphics(selectedItems()[0]));
-            }
-            _worldModel->endMacro();
-        }
+        _worldModel->deleteSelectedItems();
         keyEvent->accept();
     } else QGraphicsScene::keyPressEvent(keyEvent);
 }

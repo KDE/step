@@ -47,7 +47,10 @@ public slots:
     void simulationStop();
     void simulationStopped(bool success);
 
+protected slots:
     void updateCaption();
+    void undoTextChanged(const QString& undoText);
+    void redoTextChanged(const QString& redoText);
 
     /*
 protected slots:

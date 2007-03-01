@@ -98,25 +98,3 @@ WorldGraphicsItem* WorldFactory::newGraphicsItem(StepCore::Item* item, WorldMode
     return NULL;
 }
 
-/*
-bool WorldFactory::graphicsCreateItem(const QString& name, WorldModel* worldModel,
-                            WorldScene* scene, QEvent* e) const
-{
-    const ExtMetaObject *extMetaObject = _extMetaObjects.value(metaObject(name), NULL);
-    if(extMetaObject && extMetaObject->graphicsCreateItem)
-        return extMetaObject->graphicsCreateItem(name, worldModel, scene, e);
-    else if(metaObject(name)->inherits(StepCore::Item::staticMetaObject())) 
-        return WorldGraphicsItem::createItem(name, worldModel, scene, e);
-    return true;
-}*/
-
-#if 0
-ItemCreator* WorldFactory::newItemCreator(const QString& name, WorldScene* scene, WorldModel* worldModel) const
-{
-    return NULL;
-    /*
-    const ItemFactory* factory = dynamic_cast<const ItemFactory*>(objectFactory(name));
-    if(factory) return factory->newItemCreator(scene, worldModel);
-    else return NULL;*/
-}
-#endif

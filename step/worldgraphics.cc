@@ -27,6 +27,7 @@
 #include <QGraphicsScene>
 #include <QGraphicsSceneMouseEvent>
 #include <QPainter>
+#include <KLocale>
 
 #include <cmath>
 
@@ -40,9 +41,11 @@ const QColor WorldGraphicsItem::SELECTION_COLOR = QColor(0xff, 0x70, 0x70);
 bool ItemCreator::sceneEvent(QEvent* event)
 {
     if(event->type() == QEvent::GraphicsSceneMousePress) {
+        _worldModel->beginMacro(i18n("Create %1", _className));
         _item = _worldModel->newItem(_className); Q_ASSERT(_item != NULL);
         _worldModel->selectionModel()->setCurrentIndex(_worldModel->objectIndex(_item),
                                                     QItemSelectionModel::ClearAndSelect);
+        _worldModel->endMacro();
         event->accept();
         return true;
     }
@@ -103,7 +106,7 @@ void WorldGraphicsItem::mousePressEvent(QGraphicsSceneMouseEvent *event)
 void WorldGraphicsItem::mouseMoveEvent(QGraphicsSceneMouseEvent *event)
 {
     if((event->buttons() & Qt::LeftButton) && (flags() & ItemIsMovable)) {
-        if(!_isMoving) { _worldModel->beginMacro("TODO"); _isMoving = true; }
+        if(!_isMoving) { _worldModel->beginMacro(i18n("Edit %1", _item->name())); _isMoving = true; }
 
         QPointF newPos(mapToParent(event->pos()) - matrix().map(event->buttonDownPos(Qt::LeftButton)));
         QPointF diff = newPos - pos();
@@ -175,25 +178,6 @@ QVariant WorldGraphicsItem::itemChange(GraphicsItemChange change, const QVariant
     return QGraphicsItem::itemChange(change, value);
 }
 
-bool WorldGraphicsItem::createItem(const QString& className, WorldModel* worldModel,
-                                        WorldScene* scene, QEvent* e)
-{
-    if(e->type() == QEvent::GraphicsSceneMousePress) {
-        worldModel->beginMacro("TODO");
-        StepCore::Item* item = worldModel->newItem(className); Q_ASSERT(item != NULL);
-        worldModel->selectionModel()->setCurrentIndex(worldModel->objectIndex(item),
-                                                    QItemSelectionModel::ClearAndSelect);
-        WorldGraphicsItem* graphicsItem = scene->graphicsFromItem(item);
-        if(graphicsItem != NULL)
-            graphicsItem->mouseSetPos(static_cast<QGraphicsSceneMouseEvent*>(e)->scenePos());
-        else e->accept();
-        worldModel->endMacro();
-        
-        return true;
-    }
-    return false;
-}
-
 ArrowHandlerGraphicsItem::ArrowHandlerGraphicsItem(StepCore::Item* item, WorldModel* worldModel, 
                          QGraphicsItem* parent, const StepCore::MetaProperty* property)
     : WorldGraphicsItem(item, worldModel, parent), _property(property)
@@ -222,7 +206,7 @@ void ArrowHandlerGraphicsItem::advance(int phase)
 void ArrowHandlerGraphicsItem::mouseMoveEvent(QGraphicsSceneMouseEvent *event)
 {
     if ((event->buttons() & Qt::LeftButton) && (flags() & ItemIsMovable)) {
-        if(!_isMoving) { _worldModel->beginMacro("TODO"); _isMoving = true; }
+        if(!_isMoving) { _worldModel->beginMacro(i18n("Edit %1", _item->name())); _isMoving = true; }
         QPointF newPos(mapToParent(event->pos()) - matrix().map(event->buttonDownPos(Qt::LeftButton)));
         _worldModel->setProperty(_item, _property, QVariant::fromValue(pointToVector(newPos)));
         //Q_ASSERT(_property->writeVariant(_item, QVariant::fromValue(v)));

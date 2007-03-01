@@ -24,6 +24,7 @@
 #include <QGraphicsSceneMouseEvent>
 #include <QEvent>
 #include <QPainter>
+#include <KLocale>
 
 bool ParticleCreator::sceneEvent(QEvent* event)
 {
@@ -31,7 +32,7 @@ bool ParticleCreator::sceneEvent(QEvent* event)
         QGraphicsSceneMouseEvent* mouseEvent = static_cast<QGraphicsSceneMouseEvent*>(event);
         QPointF pos = mouseEvent->scenePos();
         QVariant vpos = QVariant::fromValue(WorldGraphicsItem::pointToVector(pos));
-        _worldModel->beginMacro("TODO");
+        _worldModel->beginMacro(i18n("Create %1", _className));
         _item = _worldModel->newItem(_className); Q_ASSERT(_item != NULL);
         _worldModel->setProperty(_item, _item->metaObject()->property("position"), vpos);
         _worldModel->selectionModel()->setCurrentIndex(_worldModel->objectIndex(_item),

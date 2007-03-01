@@ -59,10 +59,6 @@ public:
     WorldGraphicsItem(StepCore::Item* item, WorldModel* worldModel, QGraphicsItem* parent = 0);
     StepCore::Item* item() const { return _item; }
     QRectF boundingRect() const;
-    //void advance(int phase) const;
-
-    static bool createItem(const QString& className, WorldModel* worldModel,
-                            WorldScene* scene, QEvent* e);
 
     static StepCore::Vector2d pointToVector(const QPointF& point) {
         return StepCore::Vector2d(point.x(), point.y());

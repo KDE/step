@@ -57,15 +57,7 @@ void WorldBrowserView::reset()
 void WorldBrowserView::keyPressEvent(QKeyEvent* e)
 {
     if(e->matches(QKeySequence::Delete)) {
-        QModelIndexList selected = worldModel()->selectionModel()->selectedIndexes();
-        if(!selected.isEmpty()) {
-            worldModel()->beginMacro("TODO");
-            foreach(QModelIndex index, selected) {
-                StepCore::Item* item = worldModel()->item(index);
-                if(item) worldModel()->deleteItem(item);
-            }
-            worldModel()->endMacro();
-        }
+        worldModel()->deleteSelectedItems();
         e->accept();
     } else QTreeView::keyPressEvent(e);
 }

@@ -130,7 +130,7 @@ bool PropertiesBrowserModel::setData(const QModelIndex &index, const QVariant &v
         if(index.row() == 0) { // name // XXX: do it more generally
             if(!_worldModel->checkUniqueName(value.toString())) return false; // XXX: error message
         }
-        _worldModel->beginMacro("TODO");
+        _worldModel->beginMacro(i18n("Edit %1", _object->name()));
         _worldModel->setProperty(_object, _object->metaObject()->property(index.row()), value);
         _worldModel->endMacro();
         return true;
