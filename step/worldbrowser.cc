@@ -42,6 +42,9 @@ WorldBrowser::WorldBrowser(WorldModel* worldModel, QWidget* parent, Qt::WindowFl
 {
     _worldBrowserView = new WorldBrowserView(this);
     _worldBrowserView->header()->hide();
+    _worldBrowserView->setAllColumnsShowFocus(true);
+    _worldBrowserView->setRootIsDecorated(false);
+    _worldBrowserView->setItemsExpandable(false);
     _worldBrowserView->setModel(worldModel);
     _worldBrowserView->setSelectionModel(worldModel->selectionModel());
     _worldBrowserView->setSelectionMode(QAbstractItemView::ExtendedSelection); // XXX

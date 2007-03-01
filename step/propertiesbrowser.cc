@@ -146,6 +146,11 @@ PropertiesBrowser::PropertiesBrowser(WorldModel* worldModel, QWidget* parent, Qt
     _treeView = new QTreeView(this);
     _treeView->setModel(_propertiesBrowserModel);
 
+    _treeView->setAllColumnsShowFocus(true);
+    _treeView->setRootIsDecorated(false);
+    //_treeView->setAlternatingRowColors(true);
+    _treeView->setSelectionMode(QAbstractItemView::NoSelection);
+
     worldCurrentChanged(_worldModel->worldIndex(), QModelIndex());
 
     QObject::connect(_worldModel, SIGNAL(modelReset()), this, SLOT(worldModelReset()));

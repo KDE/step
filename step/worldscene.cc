@@ -281,6 +281,21 @@ void WorldScene::updateViewScale()
     }
 }
 
+QRectF WorldScene::calcItemsBoundingRect()
+{
+    return itemsBoundingRect();
+#if 0
+    QRectF boundingRect;
+    foreach(QGraphicsItem* item, items()) {
+        /*WorldGraphicsItem* wItem = qgraphicsitem_cast<WorldGraphicsItem*>(item);
+        if(wItem)*/ boundingRect |= item->sceneBoundingRect();
+            //sceneMatrix().mapRect(
+            //        wItem->boundingRect() | wItem->childrenBoundingRect());
+    }
+    return boundingRect;
+#endif
+}
+
 WorldGraphicsView::WorldGraphicsView(WorldScene* worldScene, QWidget* parent)
     : QGraphicsView(worldScene, parent)
 {
@@ -317,7 +332,7 @@ void WorldGraphicsView::fitToPage()
     double length = SCENE_LENGTH / s;
     //qDebug() << "length" << length;
     setSceneRect(-length, -length, length*2, length*2);
-    centerOn(0, 0);
+    centerOn(br.center());
     static_cast<WorldScene*>(scene())->updateViewScale();
 }
 
@@ -327,6 +342,7 @@ void WorldGraphicsView::actualSize()
     scale(1, -1);
     setSceneRect(-SCENE_LENGTH, -SCENE_LENGTH,
                   SCENE_LENGTH*2, SCENE_LENGTH*2);
+    centerOn(0, 0);
     static_cast<WorldScene*>(scene())->updateViewScale();
 }
 

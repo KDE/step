@@ -49,7 +49,7 @@ public:
     void updateViewScale(); // Qt4.3 can help here
     double currentViewScale() { return _currentViewScale; }
 
-    QRectF calcItemsBoundingRect() { return itemsBoundingRect(); } // XXX: exclude axes
+    QRectF calcItemsBoundingRect();
 
 public slots:
     void beginAddItem(const QString& name);
@@ -92,7 +92,7 @@ public slots:
     void actualSize();
 
 protected:
-    static const int SCENE_LENGTH = 1000;
+    static const int SCENE_LENGTH = 2000;
 };
 
 #endif
