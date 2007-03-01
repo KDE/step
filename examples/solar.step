@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE StepCoreXML>
+<world xmlns="http://quantum.dgap.mipt.ru/StepCoreXML" version="1.0">
+    <name>Solar System</name>
+    <time>0</time>
+    <timeScale>10000000</timeScale>
+
+    <item class="Particle">
+        <name>Sun</name>
+        <position>(0,0)</position>
+        <velocity>(0,0)</velocity>
+        <mass>1.989e+30</mass>
+    </item>
+
+    <item class="Particle">
+        <name>Mercury</name>
+        <position>(1.57195e+10,4.76485e+10)</position>
+        <velocity>(48137,-25664.8)</velocity>
+        <mass>3.286e+23</mass>
+    </item>
+
+    <item class="Particle">
+        <name>Venus</name>
+        <position>(-9.14048e+10,5.91858e+10)</position>
+        <velocity>(18977.1,29140.2)</velocity>
+        <mass>4.869e+24</mass>
+    </item>
+
+    <item class="Particle">
+        <name>Earth</name>
+        <position>(-1.17486e+11,-9.50283e+10)</position>
+        <velocity>(-18733.3,22730.2)</velocity>
+        <mass>5.974e+24</mass>
+    </item>
+
+    <item class="Particle">
+        <name>Mars</name>
+        <position>(1.70757e+11,-1.79304e+11)</position>
+        <velocity>(-15503.1,-15759.7)</velocity>
+        <mass>6.392e+23</mass>
+    </item>
+
+    <item class="Particle">
+        <name>Jupiter</name>
+        <position>(-5.67632e+11,-5.78742e+11)</position>
+        <velocity>(-8737.98,9010.96)</velocity>
+        <mass>1.899e+27</mass>
+    </item>
+
+    <item class="Particle">
+        <name>Saturn</name>
+        <position>(1.02128e+12,-9.06772e+11)</position>
+        <velocity>(-6424.65,-7693.89)</velocity>
+        <mass>5.687e+26</mass>
+    </item>
+
+    <item class="Particle">
+        <name>Uranus</name>
+        <position>(-9.61966e+11,2.8454e+12)</position>
+        <velocity>(6161.44,2082.43)</velocity>
+        <mass>8.722e+25</mass>
+    </item>
+
+    <item class="Particle">
+        <name>Neptune</name>
+        <position>(-3.0259e+12,3.32558e+12)</position>
+        <velocity>(4087.25,3718.56)</velocity>
+        <mass>1.027e+26</mass>
+    </item>
+
+    <item class="Particle">
+        <name>Pluto</name>
+        <position>(-4.59762e+12,-4.03292e+11)</position>
+        <velocity>(-1419.21,5569.45)</velocity>
+        <mass>1.195e+22</mass>
+    </item>
+
+    <item class="GravitationForce">
+        <name>gravitationForce</name>
+        <gravitationConst>6.6742e-11</gravitationConst>
+    </item>
+
+    <solver class="EulerSolver">
+        <name>solver</name>
+        <toleranceAbs>0</toleranceAbs>
+        <toleranceRel>0.01</toleranceRel>
+        <stepSize>10000</stepSize>
+    </solver>
+
+</world>
