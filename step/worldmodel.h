@@ -90,6 +90,9 @@ public:
     void setProperty(StepCore::Object* object, const StepCore::MetaProperty* property,
                             const QVariant& value, bool merge = true);
 
+    // Tooltip
+    QString createToolTip(const StepCore::Object* object) const;
+
     // Save/load
     void clearWorld();
     bool saveXml(QIODevice* device);

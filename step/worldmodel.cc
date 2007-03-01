@@ -276,12 +276,13 @@ int WorldModel::itemCount() const
 QVariant WorldModel::data(const QModelIndex &index, int role) const
 {
     if(!index.isValid()) return QVariant();
+    StepCore::Object* obj = static_cast<StepCore::Object*>(index.internalPointer());
 
     if(role == Qt::DisplayRole) {
-        StepCore::Object* obj = static_cast<StepCore::Object*>(index.internalPointer());
         return QString("%1: %2").arg(obj->name().isEmpty() ? i18n("<unnamed>") : obj->name())
                                    .arg(obj->metaObject()->className());
-
+    } else if(role == Qt::ToolTipRole) {
+        return createToolTip(obj);
     }
 
     return QVariant();
@@ -397,6 +398,21 @@ void WorldModel::setProperty(StepCore::Object* object,
 {
     Q_ASSERT(object != NULL); Q_ASSERT(property != NULL);
     pushCommand(new CommandEditProperty(this, object, property, value, merge));
+}
+
+QString WorldModel::createToolTip(const StepCore::Object* object) const
+{
+    QString toolTip = i18n("<nobr><h4><u>%1: %2</u></h4></nobr>",
+                    object->name(), object->metaObject()->className());
+    toolTip += "<table>";
+    for(int i=0; i<object->metaObject()->propertyCount(); ++i) {
+        const StepCore::MetaProperty* p = object->metaObject()->property(i);
+        toolTip += i18n("<tr><td>%1&nbsp;&nbsp;</td><td>%2</td></tr>",
+                    p->name(), p->readString(object));
+    }
+    toolTip += "</table>";
+    //qDebug("%s", toolTip.toAscii().constData());
+    return toolTip;
 }
 
 bool WorldModel::doWorldEvolve(double delta)
