@@ -174,6 +174,7 @@ bool MainWindow::openFile(const QString& name)
         return false;
     }
 
+    worldGraphicsView->fitToPage();
     currentFileName = fileName;
     updateCaption();
     return true;

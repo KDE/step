@@ -43,8 +43,7 @@ GslSolver::GslSolver(int dimension, Function function, void* params,
 }
 
 GslSolver::GslSolver(const GslSolver& gslSolver)
-    : Solver(gslSolver._dimension, gslSolver._function, gslSolver._params),
-      _stepSize(gslSolver._stepSize), _gslStepType(gslSolver._gslStepType)
+    : Solver(gslSolver), _stepSize(gslSolver._stepSize), _gslStepType(gslSolver._gslStepType)
 {
     init();
 }

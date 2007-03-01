@@ -148,6 +148,11 @@ public:
     /** Set current time */
     void setTime(double t) { _time = t; }
 
+    /** Get simulation speed scale */
+    double timeScale() const { return _timeScale; }
+    /** Set simulation speed scale */
+    void setTimeScale(double timeScale) { _timeScale = timeScale; }
+
     /** Add new item to the world */
     void addItem(Item* item);
     /** Remove item from the world (you should delete item youself) */
@@ -189,6 +194,7 @@ private:
 
 private:
     double    _time;
+    double    _timeScale;
     ItemList  _items;
     BodyList  _bodies;
     ForceList _forces;

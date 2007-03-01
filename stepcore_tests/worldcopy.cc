@@ -73,6 +73,7 @@ void MainTest::testWorldCopy()
 
     world->setName("world1");
     world->setTime(10);
+    world->setTimeScale(20);
     world->items()[0]->setName("item0");
     world->items()[1]->setName("item1");
     world->solver()->setName("solver1");
@@ -85,6 +86,7 @@ void MainTest::testWorldCopy()
     
     QCOMPARE(world1->name(), world->name());
     QCOMPARE(world1->time(), world->time());
+    QCOMPARE(world1->timeScale(), world->timeScale());
     QCOMPARE(world1->items().size(), world->items().size());
     QCOMPARE(world1->bodies().size(), world->bodies().size());
     QCOMPARE(world1->forces().size(), world->forces().size());

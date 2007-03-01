@@ -29,16 +29,17 @@ STEPCORE_META_OBJECT(Body, "Body", MetaObject::ABSTRACT,,)
 STEPCORE_META_OBJECT(Force, "Force", MetaObject::ABSTRACT,,)
 
 STEPCORE_META_OBJECT(World, "World", 0, STEPCORE_SUPER_CLASS(Object),
-        STEPCORE_PROPERTY_RW(double, time, "Current time", time, setTime))
+        STEPCORE_PROPERTY_RW(double, time, "Current time", time, setTime)
+        STEPCORE_PROPERTY_RW(double, timeScale, "Simulation speed scale", timeScale, setTimeScale))
 
 World::World()
-    : _time(0), _solver(NULL), _variablesCount(0), _variables(NULL), _errors(NULL)
+    : _time(0), _timeScale(1), _solver(NULL), _variablesCount(0), _variables(NULL), _errors(NULL)
 {
     clear();
 }
 
 World::World(const World& world)
-    : _time(0), _solver(NULL), _variablesCount(0), _variables(NULL), _errors(NULL)
+    : _time(0), _timeScale(1), _solver(NULL), _variablesCount(0), _variables(NULL), _errors(NULL)
 {
     clear();
     *this = world;
@@ -73,6 +74,7 @@ World& World::operator=(const World& world)
     setSolver(static_cast<Solver*>(world._solver->metaObject()->cloneObject(*(world._solver))));
 
     setTime(world.time());
+    setTimeScale(world.timeScale());
     setName(world.name());
 
     return *this;
@@ -96,6 +98,7 @@ void World::clear()
     _errors = new double[_variablesCount];
 
     _time = 0;
+    _timeScale = 1;
 
 #ifdef STEPCORE_WITH_QT
     setName(QString());
@@ -171,7 +174,7 @@ bool World::doEvolve(double delta)
     gatherVariables();
 
     double time = _time;
-    bool ret = _solver->doEvolve(&time, time+delta, _variables, _errors);
+    bool ret = _solver->doEvolve(&time, time+delta*_timeScale, _variables, _errors);
     _time = time;
 
     scatterVariables();
