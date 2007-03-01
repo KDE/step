@@ -223,7 +223,6 @@ void SpringGraphicsItem::advance(int phase)
     
     _boundingRect.setCoords(-m-u, -_radius-m-u, _rnorm+m*2+u, (_radius+m)*2+u);
 
-    setToolTip(_worldModel->createToolTip(_item));
     update(); // XXX: documentation says this is unnessesary, but it doesn't work without it
 }
 

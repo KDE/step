@@ -70,6 +70,7 @@ protected:
     bool event(QEvent* event);
     void mousePressEvent(QGraphicsSceneMouseEvent* mouseEvent);
     void keyPressEvent(QKeyEvent* keyEvent);
+    void helpEvent(QGraphicsSceneHelpEvent *helpEvent);
 
 protected:
     WorldModel* _worldModel;

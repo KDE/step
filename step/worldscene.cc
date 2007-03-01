@@ -31,8 +31,7 @@
 #include <QItemSelectionModel>
 #include <QPainter>
 #include <QAction>
-
-#include <QDebug>
+#include <QToolTip>
 
 class WorldSceneAxes: public QGraphicsItem
 {
@@ -190,6 +189,26 @@ void WorldScene::keyPressEvent(QKeyEvent* keyEvent)
         _worldModel->deleteSelectedItems();
         keyEvent->accept();
     } else QGraphicsScene::keyPressEvent(keyEvent);
+}
+
+void WorldScene::helpEvent(QGraphicsSceneHelpEvent *helpEvent)
+{
+    QString text;
+    QPoint point;
+
+    int count = 0;
+    foreach(QGraphicsItem* it, items(helpEvent->scenePos())) {
+        if(it->parentItem()) continue;
+        StepCore::Item* item = itemFromGraphics(it);
+        if(item) {
+            if(++count > 4) { text += QString("..."); break; }
+            text += _worldModel->createToolTip(item);
+        }
+    }
+
+    // Show or hide the tooltip
+    if(!text.isEmpty()) point = helpEvent->screenPos();
+    QToolTip::showText(point, text);
 }
 
 /*

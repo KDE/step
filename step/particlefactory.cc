@@ -119,7 +119,6 @@ void ParticleGraphicsItem::advance(int phase)
                     | QRectF(0, 0, a[0], a[1]).normalized();
     _boundingRect.adjust(-ARROW_STROKE,-ARROW_STROKE,ARROW_STROKE,ARROW_STROKE);
     setPos(r[0], r[1]);
-    setToolTip(_worldModel->createToolTip(_item));
     update(); // XXX: documentation says this is unnessesary, but it doesn't work without it
 }
 

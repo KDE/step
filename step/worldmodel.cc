@@ -402,6 +402,7 @@ void WorldModel::setProperty(StepCore::Object* object,
 
 QString WorldModel::createToolTip(const StepCore::Object* object) const
 {
+    Q_ASSERT(object != NULL);
     QString toolTip = i18n("<nobr><h4><u>%1: %2</u></h4></nobr>",
                     object->name(), object->metaObject()->className());
     toolTip += "<table>";
