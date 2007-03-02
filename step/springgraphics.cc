@@ -16,7 +16,7 @@
    Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
 */
 
-#include "springfactory.h"
+#include "springgraphics.h"
 
 #include "worldmodel.h"
 #include "worldscene.h"

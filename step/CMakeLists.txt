@@ -7,8 +7,8 @@ set(step_SRCS
     propertiesbrowser.cc
     itempalette.cc
     worldfactory.cc
-    particlefactory.cc
-    springfactory.cc
+    particlegraphics.cc
+    springgraphics.cc
     main.cc
 )
 

@@ -103,6 +103,7 @@ void MainWindow::setupActions()
     actionDelete = actionCollection()->add<KAction>("edit_delete", worldModel, SLOT(deleteSelectedItems()));
     actionDelete->setText(i18n("&Delete"));
     actionDelete->setIcon(KIcon("editdelete"));
+    actionDelete->setShortcut(KShortcut(Qt::CTRL+Qt::Key_Delete));
     actionDelete->setEnabled(false);
 
     /* Simulation menu */

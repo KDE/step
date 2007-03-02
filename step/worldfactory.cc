@@ -29,8 +29,8 @@
 #include <stepcore/eulersolver.h>
 #include <stepcore/types.h>
 
-#include "particlefactory.h"
-#include "springfactory.h"
+#include "particlegraphics.h"
+#include "springgraphics.h"
 
 #include <QItemSelectionModel>
 #include <QEvent>
