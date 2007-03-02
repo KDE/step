@@ -41,59 +41,61 @@ public:
     void undo();
 
 protected:
-    WorldModel* _worldModel;
-    StepCore::Object* _object;
+    /* It's important to properly compress commands
+     *  or the stack becomes too big and slow */
+    struct EditProperty {
+        StepCore::Object* object;
+        const StepCore::MetaProperty* property;
+        QVariant oldValue;
+        QVariant newValue;
+    };
+
     bool _merge;
-    const StepCore::MetaProperty* _property[4];
-    QVariant _oldValue[4];
-    QVariant _newValue[4];
+    WorldModel* _worldModel;
+    QList<EditProperty> _commands;
+    QList<StepCore::Object*> _objects;
 };
 
-/** We save four properties to allow command comprestion when changing several properties */
 CommandEditProperty::CommandEditProperty(WorldModel* worldModel, StepCore::Object* object,
             const StepCore::MetaProperty* property, const QVariant& newValue, bool merge)
-        : _worldModel(worldModel), _object(object), _merge(merge)
+        : _merge(merge), _worldModel(worldModel)
 {
-    memset(_property, 0, sizeof(_property));
-    _property[0] = property;
-    _newValue[0] = newValue;
-    _oldValue[0] = property->readVariant(_object);
+    EditProperty p = { object, property, property->readVariant(object), newValue };
+    _commands << p; _objects << object;
 }
 
 void CommandEditProperty::redo()
 {
-    for(int i=0; i<4 && _property[i]; ++i) {
-        if(_newValue[i].type() != QVariant::String) _property[i]->writeVariant(_object, _newValue[i]);
-        else _property[i]->writeString(_object, _newValue[i].value<QString>());
+    foreach(EditProperty p, _commands) {
+        if(p.newValue.type() != QVariant::String) p.property->writeVariant(p.object, p.newValue);
+        else p.property->writeString(p.object, p.newValue.value<QString>());
     }
-    _worldModel->objectChanged(_object);
+    foreach(StepCore::Object* object, _objects) _worldModel->objectChanged(object);
 }
 
 void CommandEditProperty::undo()
 {
-    for(int i=0; i<4 && _property[i]; ++i)
-        _property[i]->writeVariant(_object, _oldValue[i]);
-    _worldModel->objectChanged(_object);
+    foreach(EditProperty p, _commands) p.property->writeVariant(p.object, p.oldValue);
+    foreach(StepCore::Object* object, _objects) _worldModel->objectChanged(object);
 }
 
 bool CommandEditProperty::mergeWith(const QUndoCommand* command)
 {
     const CommandEditProperty* cmd = dynamic_cast<const CommandEditProperty*>(command);
     Q_ASSERT(cmd != NULL);
-    if(cmd->_object != _object || cmd->_property[1] != NULL) return false;
+    if(cmd->_commands.count() != 1) return false;
 
-    int i;
-    for(i=0; i<4 && _property[i]; ++i) {
-        if(_property[i] == cmd->_property[0]) {
-            _newValue[i] = cmd->_newValue[i]; return true;
+    EditProperty p1 = cmd->_commands[0];
+    for(int i=0; i < _commands.count(); ++i) {
+        if(_commands[i].object == p1.object && _commands[i].property == p1.property) {
+            _commands[i].newValue = p1.newValue;
+            if(!_objects.contains(p1.object)) _objects << p1.object;
+            return true;
         }
     }
-    if(i < 4) {
-        _property[i] = cmd->_property[0];
-        _newValue[i] = cmd->_newValue[i]; return true;
-    }
-
-    return false;
+    _commands << p1;
+    if(!_objects.contains(p1.object)) _objects << p1.object;
+    return true;
 }
 
 class CommandNewItem: public QUndoCommand
