@@ -120,9 +120,10 @@ void MainWindow::setupActions()
     simulationStop();
 
     /* View menu */
+    KStandardAction::actualSize(worldGraphicsView, SLOT(actualSize()), actionCollection());
+    KStandardAction::fitToPage(worldGraphicsView, SLOT(fitToPage()), actionCollection());
     KStandardAction::zoomIn(worldGraphicsView, SLOT(zoomIn()), actionCollection());
     KStandardAction::zoomOut(worldGraphicsView, SLOT(zoomOut()), actionCollection());
-    KStandardAction::fitToPage(worldGraphicsView, SLOT(fitToPage()), actionCollection());
 }
 
 void MainWindow::updateCaption()

@@ -72,8 +72,8 @@ WorldFactory::WorldFactory()
 
     __REGISTER_EXT(Spring, SpringCreator, SpringGraphicsItem);
 
-    __REGISTER(GravitationForce);
     __REGISTER(WeightForce);
+    __REGISTER(GravitationForce);
     __REGISTER(CoulombForce);
 
     __REGISTER(EulerSolver);
