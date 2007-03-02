@@ -152,20 +152,46 @@ public:
     void undo();
 
 protected:
+    typedef QPair<int, int> PairInt;
+    PairInt indexToPair(QModelIndex index);
+    QModelIndex pairToIndex(PairInt pair);
+
     WorldModel* _worldModel;
     StepCore::World* _worldCopy;
     StepCore::World* _oldWorld;
     StepCore::World* _newWorld;
 };
 
+CommandSimulate::PairInt CommandSimulate::indexToPair(QModelIndex index)
+{
+    if(index.parent().isValid()) return PairInt(1, index.row());
+    else return PairInt(0, index.row());
+}
+
+QModelIndex CommandSimulate::pairToIndex(CommandSimulate::PairInt pair)
+{
+    if(pair.first == 0) {
+        if(pair.second == 0) return _worldModel->worldIndex();
+        else return _worldModel->solverIndex();
+    } else return _worldModel->itemIndex(pair.second);
+}
+
 CommandSimulate::CommandSimulate(WorldModel* worldModel)
 {
     _worldModel = worldModel;
     _oldWorld = _worldCopy = _worldModel->_world;
+
+    QList<PairInt> selection;
+    foreach(QModelIndex index, _worldModel->_selectionModel->selection().indexes())
+        selection << indexToPair(index);
+    PairInt current = indexToPair(_worldModel->_selectionModel->currentIndex());
+
     _newWorld = _worldModel->_world = new StepCore::World(*_oldWorld);
     _worldModel->reset();
-    _worldModel->_selectionModel->setCurrentIndex( // XXX: preserve selection
-            _worldModel->worldIndex(), QItemSelectionModel::SelectCurrent);
+
+    foreach(PairInt pair, selection)
+        _worldModel->_selectionModel->select(pairToIndex(pair), QItemSelectionModel::Select);
+    _worldModel->_selectionModel->setCurrentIndex(pairToIndex(current), QItemSelectionModel::Current);
 }
 
 void CommandSimulate::redo()
@@ -337,7 +363,7 @@ StepCore::Item* WorldModel::newItem(const QString& name)
     pushCommand(new CommandNewItem(this, item, true));
     return item;
 }
-
+        
 StepCore::Solver* WorldModel::newSolver(const QString& name)
 {
     StepCore::Solver* solver = _worldFactory->newSolver(name);
