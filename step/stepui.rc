@@ -13,8 +13,8 @@
     <Action name="simulation_start_stop" />
   </ToolBar>
   <MenuBar>
-    <Menu name="file" >
-      <text>&amp;File</text>
+    <Menu name="edit" >
+      <Action name="edit_delete" />
     </Menu>
     <Menu name="simulation" >
       <text>&amp;Simulation</text>

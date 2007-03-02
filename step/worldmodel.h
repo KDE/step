@@ -76,7 +76,6 @@ public:
     // Add/remove/set functions
     StepCore::Item* newItem(const QString& name);
     void deleteItem(StepCore::Item* item);
-    void deleteSelectedItems();
 
     void setSolver(StepCore::Solver* solver);
 
@@ -111,6 +110,7 @@ public:
 public slots:
     void simulationStart();
     void simulationStop(bool success=true);
+    void deleteSelectedItems();
 
 protected slots:
     void simulationFrame();

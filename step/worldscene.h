@@ -71,6 +71,7 @@ protected:
     void mousePressEvent(QGraphicsSceneMouseEvent* mouseEvent);
     void keyPressEvent(QKeyEvent* keyEvent);
     void helpEvent(QGraphicsSceneHelpEvent *helpEvent);
+    //void contextMenuEvent(QGraphicsSceneContextMenuEvent* contextMenuEvent);
 
 protected:
     WorldModel* _worldModel;

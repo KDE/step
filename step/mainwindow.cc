@@ -36,6 +36,7 @@
 
 #include <QFile>
 #include <QGraphicsView>
+#include <QItemSelectionModel>
 
 MainWindow::MainWindow()
 {
@@ -63,6 +64,8 @@ MainWindow::MainWindow()
     setCentralWidget(worldGraphicsView);
 
     QObject::connect(worldModel, SIGNAL(simulationStopped(bool)), this, SLOT(simulationStopped(bool)));
+    QObject::connect(worldModel->selectionModel(), SIGNAL(selectionChanged(const QItemSelection&, const QItemSelection&)),
+                                          this, SLOT(worldSelectionChanged(const QItemSelection&, const QItemSelection&)));
     QObject::connect(itemPalette, SIGNAL(beginAddItem(const QString&)),
                                     worldScene, SLOT(beginAddItem(const QString&)));
     QObject::connect(worldScene, SIGNAL(endAddItem(const QString&, bool)),
@@ -97,17 +100,20 @@ void MainWindow::setupActions()
     connect(worldModel->undoStack(), SIGNAL(redoTextChanged(const QString&)),
                                  this, SLOT(redoTextChanged(const QString&)));
 
+    actionDelete = actionCollection()->add<KAction>("edit_delete", worldModel, SLOT(deleteSelectedItems()));
+    actionDelete->setText(i18n("&Delete"));
+    actionDelete->setIcon(KIcon("editdelete"));
+    actionDelete->setEnabled(false);
+
     /* Simulation menu */
-    actionSimulation = static_cast<KAction*>(
-        actionCollection()->addAction("simulation_start_stop", this, SLOT(simulationStartStop())));
-    actionSimulationStart = static_cast<KAction*>(
-        actionCollection()->addAction("simulation_start", this, SLOT(simulationStartStop())));
-    actionSimulationStop = static_cast<KAction*>(
-        actionCollection()->addAction("simulation_stop", this, SLOT(simulationStartStop())));
+    actionSimulationStart = actionCollection()->add<KAction>("simulation_start", this, SLOT(simulationStart()));
+    actionSimulationStop = actionCollection()->add<KAction>("simulation_stop", this, SLOT(simulationStop()));
+    actionSimulation = actionCollection()->add<KAction>("simulation_start_stop", this, SLOT(simulationStartStop()));
 
     actionSimulationStart->setText(i18n("&Start"));
     actionSimulationStart->setIcon(KIcon("player_play"));
-    actionSimulationStop->setText(i18n("&Stop"));
+
+    actionSimulationStop->setText(i18n("S&top"));
     actionSimulationStop->setIcon(KIcon("player_stop"));
 
     simulationStop();
@@ -268,6 +274,17 @@ void MainWindow::redoTextChanged(const QString& redoText)
 {
     if(redoText.isEmpty()) actionRedo->setText(i18n("Re&do"));
     else actionRedo->setText(i18n("Re&do: %1", redoText));
+}
+
+void MainWindow::worldSelectionChanged(const QItemSelection&, const QItemSelection&)
+{
+    foreach(QModelIndex index, worldModel->selectionModel()->selection().indexes()) {
+        if(worldModel->item(index)) {
+            actionDelete->setEnabled(true);
+            return;
+        }
+    }
+    actionDelete->setEnabled(false);
 }
 
 /*

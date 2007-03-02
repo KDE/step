@@ -211,18 +211,6 @@ void WorldScene::helpEvent(QGraphicsSceneHelpEvent *helpEvent)
     QToolTip::showText(point, text);
 }
 
-/*
-void WorldScene::pObjectAdded(PObject* pObject)
-{
-    addItem(pObject->graphicsItem());
-}
-
-void WorldScene::pObjectRemoved(PObject* pObject)
-{
-    removeItem(pObject->graphicsItem());
-}
-*/
-
 void WorldScene::worldModelReset()
 {
     /* Clear */

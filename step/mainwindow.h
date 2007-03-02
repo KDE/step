@@ -28,6 +28,7 @@ class WorldGraphicsView;
 class PropertiesBrowser;
 class ItemPalette;
 class KAction;
+class QItemSelection;
 
 class MainWindow : public KMainWindow
 {
@@ -51,6 +52,7 @@ protected slots:
     void updateCaption();
     void undoTextChanged(const QString& undoText);
     void redoTextChanged(const QString& redoText);
+    void worldSelectionChanged(const QItemSelection&, const QItemSelection&);
 
     /*
 protected slots:
@@ -86,6 +88,7 @@ protected:
 
     KAction* actionUndo;
     KAction* actionRedo;
+    KAction* actionDelete;
 
     QString currentFileName;
 };
