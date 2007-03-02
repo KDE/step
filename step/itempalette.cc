@@ -86,13 +86,7 @@ ItemPalette::ItemPalette(WorldModel* worldModel, QWidget* parent, Qt::WindowFlag
         const StepCore::MetaObject* metaObject = _worldModel->worldFactory()->metaObject(name);
         if(metaObject == StepCore::Body::staticMetaObject()) continue;
         if(!metaObject->inherits(StepCore::Body::staticMetaObject())) continue;
-        QAction* action = new QAction(metaObject->className(), this);
-        action->setToolTip(metaObject->description());
-        action->setIcon(KIcon("misc"));
-        action->setCheckable(true);
-        _actionGroup->addAction(action);
-        _toolBar->addAction(action);
-        _toolBar->widgetForAction(action)->setSizePolicy(QSizePolicy::Expanding, QSizePolicy::Fixed);
+        addObject(metaObject);
     }
 
     /* Add forces */
@@ -101,16 +95,22 @@ ItemPalette::ItemPalette(WorldModel* worldModel, QWidget* parent, Qt::WindowFlag
         const StepCore::MetaObject* metaObject = _worldModel->worldFactory()->metaObject(name);
         if(metaObject == StepCore::Force::staticMetaObject()) continue;
         if(!metaObject->inherits(StepCore::Force::staticMetaObject())) continue;
-        QAction* action = new QAction(name, this);
-        action->setToolTip(metaObject->description());
-        action->setIcon(KIcon("misc"));
-        action->setCheckable(true);
-        _actionGroup->addAction(action);
-        _toolBar->addAction(action);
-        _toolBar->widgetForAction(action)->setSizePolicy(QSizePolicy::Expanding, QSizePolicy::Fixed);
+        addObject(metaObject);
     }
 
     QObject::connect(_actionGroup, SIGNAL(triggered(QAction*)), this, SLOT(actionTriggered(QAction*)));
+}
+
+void ItemPalette::addObject(const StepCore::MetaObject* metaObject)
+{
+    QAction* action = new QAction(metaObject->className(), this);
+    action->setToolTip(metaObject->description());
+    action->setIcon(KIcon(QString("step_object_") + metaObject->className()));
+    action->setCheckable(true);
+
+    _actionGroup->addAction(action);
+    _toolBar->addAction(action);
+    _toolBar->widgetForAction(action)->setSizePolicy(QSizePolicy::Expanding, QSizePolicy::Fixed);
 }
 
 void ItemPalette::actionTriggered(QAction* action)

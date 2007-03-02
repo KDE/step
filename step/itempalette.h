@@ -27,6 +27,8 @@ class QToolBar;
 class QAction;
 class QActionGroup;
 
+namespace StepCore { class MetaObject; }
+
 class ItemPalette: public QDockWidget
 {
     Q_OBJECT
@@ -44,6 +46,8 @@ protected slots:
     void actionTriggered(QAction* action);
 
 protected:
+    void addObject(const StepCore::MetaObject* metaObject);
+
     WorldModel* _worldModel;
     QToolBar*   _toolBar;
 
