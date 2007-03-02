@@ -173,6 +173,8 @@ public:
     Solver* solver() const { return _solver; }
     /** Set new solver (and delete the old one) */
     void setSolver(Solver* solver);
+    /** Get current solver and remove it from world */
+    Solver* removeSolver();
 
     /** Calculate all forces */
     void doCalcFn();

@@ -84,7 +84,7 @@ ItemPalette::ItemPalette(WorldModel* worldModel, QWidget* parent, Qt::WindowFlag
     /* Add bodies */
     foreach(QString name, _worldModel->worldFactory()->orderedMetaObjects()) {
         const StepCore::MetaObject* metaObject = _worldModel->worldFactory()->metaObject(name);
-        if(metaObject == StepCore::Body::staticMetaObject()) continue;
+        if(metaObject->isAbstract()) continue;
         if(!metaObject->inherits(StepCore::Body::staticMetaObject())) continue;
         addObject(metaObject);
     }
@@ -93,7 +93,7 @@ ItemPalette::ItemPalette(WorldModel* worldModel, QWidget* parent, Qt::WindowFlag
     _toolBar->addSeparator();
     foreach(QString name, _worldModel->worldFactory()->orderedMetaObjects()) {
         const StepCore::MetaObject* metaObject = _worldModel->worldFactory()->metaObject(name);
-        if(metaObject == StepCore::Force::staticMetaObject()) continue;
+        if(metaObject->isAbstract()) continue;
         if(!metaObject->inherits(StepCore::Force::staticMetaObject())) continue;
         addObject(metaObject);
     }

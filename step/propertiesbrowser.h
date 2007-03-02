@@ -20,10 +20,28 @@
 #define STEP_PROPERTIESBROWSER_H
 
 #include <QDockWidget>
+#include <QItemDelegate>
 class PropertiesBrowserModel;
 class WorldModel;
 class QTreeView;
 class QModelIndex;
+class QAbstractItemModel;
+
+class PropertiesBrowserDelegate: public QItemDelegate
+{
+    Q_OBJECT
+public:
+    PropertiesBrowserDelegate(QObject* parent = 0): QItemDelegate(parent), _editor(NULL) {}
+    QWidget* createEditor(QWidget* parent, const QStyleOptionViewItem& option,
+                           const QModelIndex& index) const;
+    void setEditorData(QWidget* editor, const QModelIndex& index) const;
+    void setModelData(QWidget* editor, QAbstractItemModel* model,
+                       const QModelIndex& index) const;
+protected slots:
+    void comboBoxActivated(int index);
+protected:
+    QWidget* _editor;
+};
 
 class PropertiesBrowser: public QDockWidget
 {

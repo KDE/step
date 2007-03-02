@@ -67,6 +67,9 @@ public:
     Solver(int dimension = 0, Function function = NULL, void* params = NULL);
     virtual ~Solver() {}
 
+    /** Get solver type */
+    QString solverType() const { return metaObject()->className(); }
+
     /** Get ODE dimension */
     int dimension() const { return _dimension; }
     /** Set ODE dimension */

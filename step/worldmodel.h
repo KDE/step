@@ -77,7 +77,8 @@ public:
     StepCore::Item* newItem(const QString& name);
     void deleteItem(StepCore::Item* item);
 
-    void setSolver(StepCore::Solver* solver);
+    //void setSolver(StepCore::Solver* solver);
+    StepCore::Solver* newSolver(const QString& name);
 
     // Undo/redo helpers
     QUndoStack* undoStack() { return _undoStack; }
@@ -126,6 +127,7 @@ protected:
     void emitChanged();
     void addItem(StepCore::Item* item);
     void removeItem(StepCore::Item* item);
+    StepCore::Solver* swapSolver(StepCore::Solver* solver);
     bool doWorldEvolve(double delta);
 
 protected:
@@ -143,6 +145,7 @@ protected:
 
     friend class CommandEditProperty;
     friend class CommandNewItem;
+    friend class CommandSetSolver;
     friend class CommandSimulate;
 };
 

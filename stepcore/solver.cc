@@ -21,6 +21,7 @@
 namespace StepCore {
 
 STEPCORE_META_OBJECT(Solver, "Solver", MetaObject::ABSTRACT, STEPCORE_SUPER_CLASS(Object),
+    STEPCORE_PROPERTY_R(QString, solverType, "Solver type", solverType)
     STEPCORE_PROPERTY_R(int, dimension, "Count of dynamic variables", dimension)
     STEPCORE_PROPERTY_RW(double, toleranceAbs, "Allowed absolute tolerance", toleranceAbs, setToleranceAbs)
     STEPCORE_PROPERTY_RW(double, toleranceRel, "Allowed relative tolerance", toleranceRel, setToleranceRel)

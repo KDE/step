@@ -19,11 +19,23 @@
 #include "propertiesbrowser.h"
 #include "propertiesbrowser.moc"
 
+#include "worldfactory.h"
+
 #include "worldmodel.h"
 #include <stepcore/object.h>
+#include <stepcore/solver.h>
 #include <QAbstractItemModel>
+#include <QStandardItemModel>
+#include <QItemEditorFactory>
+#include <QComboBox>
 #include <QTreeView>
 #include <KLocale>
+
+class ChoicesModel: public QStandardItemModel
+{
+public: ChoicesModel(QObject* parent = 0): QStandardItemModel(parent) {}
+};
+Q_DECLARE_METATYPE(ChoicesModel*)
 
 class PropertiesBrowserModel: public QAbstractItemModel
 {
@@ -49,11 +61,19 @@ public:
 protected:
     WorldModel* _worldModel;
     StepCore::Object* _object;
+    ChoicesModel* _solverChoices;
 };
 
 PropertiesBrowserModel::PropertiesBrowserModel(WorldModel* worldModel, QObject* parent)
     : QAbstractItemModel(parent), _worldModel(worldModel), _object(NULL)
 {
+    _solverChoices = new ChoicesModel(this);
+    foreach(QString name, _worldModel->worldFactory()->orderedMetaObjects()) {
+        const StepCore::MetaObject* metaObject = _worldModel->worldFactory()->metaObject(name);
+        if(metaObject->isAbstract()) continue;
+        if(!metaObject->inherits(StepCore::Solver::staticMetaObject())) continue;
+        _solverChoices->appendRow(new QStandardItem(QString(metaObject->className())));
+    }
 }
 
 QVariant PropertiesBrowserModel::data(const QModelIndex &index, int role) const
@@ -66,11 +86,17 @@ QVariant PropertiesBrowserModel::data(const QModelIndex &index, int role) const
     if(role == Qt::DisplayRole || role == Qt::EditRole) {
         if(index.column() == 0) return p->name();
         else if(index.column() == 1) {
+            if(role == Qt::EditRole && index.row() == 1 && dynamic_cast<StepCore::Solver*>(_object)) {
+                return QVariant::fromValue(_solverChoices);
+            }
             /*if(p->userTypeId() < (int) QVariant::UserType) return p->readVariant(_object);
             else*/ return p->readString(_object); // XXX: default delegate for double looks ugly!
         }
     } else if(role == Qt::ForegroundRole && index.column() == 1) {
-        if(!p->isWritable()) return QBrush(Qt::darkGray); // XXX: how to get scheme color ?
+        if(!p->isWritable()) {
+            if(index.row() != 1 || !dynamic_cast<StepCore::Solver*>(_object))
+                return QBrush(Qt::darkGray); // XXX: how to get scheme color ?
+        }
     } else if(role == Qt::ToolTipRole) {
         return p->description(); // XXX: translation
     }
@@ -115,11 +141,14 @@ QVariant PropertiesBrowserModel::headerData(int section, Qt::Orientation /*orien
 
 Qt::ItemFlags PropertiesBrowserModel::flags(const QModelIndex &index) const
 {
-    if(_object == NULL) QAbstractItemModel::flags(index);
+    Qt::ItemFlags flags = QAbstractItemModel::flags(index);
 
-    if(index.isValid() && index.column() == 1 && _object->metaObject()->property(index.row())->isWritable())
-        return QAbstractItemModel::flags(index) | Qt::ItemIsEditable;
-    else return QAbstractItemModel::flags(index);
+    if(_object && index.isValid() && index.column() == 1) {
+        if(_object->metaObject()->property(index.row())->isWritable() ||
+            (index.row()==1 && dynamic_cast<StepCore::Solver*>(_object))) flags |= Qt::ItemIsEditable;
+    }
+
+    return flags;
 }
 
 bool PropertiesBrowserModel::setData(const QModelIndex &index, const QVariant &value, int role)
@@ -130,12 +159,67 @@ bool PropertiesBrowserModel::setData(const QModelIndex &index, const QVariant &v
         if(index.row() == 0) { // name // XXX: do it more generally
             if(!_worldModel->checkUniqueName(value.toString())) return false; // XXX: error message
         }
-        _worldModel->beginMacro(i18n("Edit %1", _object->name()));
-        _worldModel->setProperty(_object, _object->metaObject()->property(index.row()), value);
-        _worldModel->endMacro();
+        if(index.row() == 1 && dynamic_cast<StepCore::Solver*>(_object)) {
+            if(value.toString() != _object->metaObject()->className()) {
+                _worldModel->beginMacro(i18n("Change solver type"));
+                _object = _worldModel->newSolver(value.toString());
+                Q_ASSERT(_object != NULL);
+                _worldModel->endMacro();
+                reset();
+            }
+        } else {
+            _worldModel->beginMacro(i18n("Edit %1", _object->name()));
+            _worldModel->setProperty(_object, _object->metaObject()->property(index.row()), value);
+            _worldModel->endMacro();
+        }
         return true;
     }
     return false;
+}
+
+QWidget* PropertiesBrowserDelegate::createEditor(QWidget* parent,
+                const QStyleOptionViewItem& /*option*/, const QModelIndex& index) const
+{
+    QVariant data = index.data(Qt::EditRole);
+    int userType = data.userType();
+    if(userType == qMetaTypeId<ChoicesModel*>()) {
+        QComboBox* editor = new QComboBox(parent);
+        editor->setModel(data.value<ChoicesModel*>());
+        editor->installEventFilter(const_cast<PropertiesBrowserDelegate*>(this));
+        connect(editor, SIGNAL(activated(int)), this, SLOT(comboBoxActivated(int)));
+        const_cast<PropertiesBrowserDelegate*>(this)->_editor = editor;
+        return editor;
+    } else {
+        const QItemEditorFactory *factory = itemEditorFactory();
+        if(!factory) factory = QItemEditorFactory::defaultFactory();
+        return factory->createEditor(static_cast<QVariant::Type>(userType), parent);
+    }
+}
+
+void PropertiesBrowserDelegate::setEditorData(QWidget* editor, const QModelIndex& index) const
+{
+    QComboBox* cb = qobject_cast<QComboBox*>(editor);
+    if(cb) {
+        QVariant data = index.data(Qt::DisplayRole);
+        ChoicesModel* cm = static_cast<ChoicesModel*>(cb->model());
+        QList<QStandardItem*> items = cm->findItems(data.toString());
+        Q_ASSERT(items.count() == 1);
+        cb->setCurrentIndex( cm->indexFromItem(items[0]).row() );
+    } else QItemDelegate::setEditorData(editor, index);
+}
+
+void PropertiesBrowserDelegate::setModelData(QWidget* editor, QAbstractItemModel* model,
+                   const QModelIndex& index) const
+{
+    QComboBox* cb = qobject_cast<QComboBox*>(editor);
+    if(cb) {
+        model->setData(index, cb->currentText());
+    } else QItemDelegate::setModelData(editor, model, index);
+}
+
+void PropertiesBrowserDelegate::comboBoxActivated(int /*index*/)
+{
+    emit commitData(_editor);
 }
 
 PropertiesBrowser::PropertiesBrowser(WorldModel* worldModel, QWidget* parent, Qt::WindowFlags flags)
@@ -151,6 +235,7 @@ PropertiesBrowser::PropertiesBrowser(WorldModel* worldModel, QWidget* parent, Qt
     //_treeView->setAlternatingRowColors(true);
     _treeView->setSelectionMode(QAbstractItemView::NoSelection);
     _treeView->setEditTriggers(QAbstractItemView::CurrentChanged);
+    _treeView->setItemDelegate(new PropertiesBrowserDelegate(_treeView));
 
     worldCurrentChanged(_worldModel->worldIndex(), QModelIndex());
 

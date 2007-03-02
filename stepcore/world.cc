@@ -157,6 +157,13 @@ void World::setSolver(Solver* solver)
     }
 }
 
+Solver* World::removeSolver()
+{
+    Solver* solver = _solver;
+    _solver = NULL;
+    return solver;
+}
+
 void World::doCalcFn()
 {
     STEPCORE_ASSERT_NOABORT(_solver != NULL);

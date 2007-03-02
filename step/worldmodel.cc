@@ -103,8 +103,9 @@ bool CommandEditProperty::mergeWith(const QUndoCommand* command)
 class CommandNewItem: public QUndoCommand
 {
 public:
-    CommandNewItem(WorldModel* worldModel, StepCore::Item* item, bool create);
-    ~CommandNewItem();
+    CommandNewItem(WorldModel* worldModel, StepCore::Item* item, bool create)
+        : _worldModel(worldModel), _item(item), _create(create), _shouldDelete(create) {}
+    ~CommandNewItem() { if(_shouldDelete) delete _item; }
     void redo();
     void undo();
 protected:
@@ -113,17 +114,6 @@ protected:
     bool _create;
     bool _shouldDelete;
 };
-
-CommandNewItem::CommandNewItem(WorldModel* worldModel, StepCore::Item* item, bool create)
-    : _worldModel(worldModel), _item(item), _create(create), _shouldDelete(create)
-{
-    setText("TODO");
-}
-
-CommandNewItem::~CommandNewItem()
-{
-    if(_shouldDelete) delete _item;
-}
 
 void CommandNewItem::redo()
 {
@@ -138,6 +128,20 @@ void CommandNewItem::undo()
     else _worldModel->addItem(_item);
     _shouldDelete = _create;
 }
+
+class CommandSetSolver: public QUndoCommand
+{
+public:
+    CommandSetSolver(WorldModel* worldModel, StepCore::Solver* solver)
+            : _worldModel(worldModel), _solver(solver) {}
+    ~CommandSetSolver() { delete _solver; }
+    void redo() { _solver = _worldModel->swapSolver(_solver); }
+    void undo() { _solver = _worldModel->swapSolver(_solver); }
+
+protected:
+    WorldModel* _worldModel;
+    StepCore::Solver* _solver;
+};
 
 class CommandSimulate: public QUndoCommand
 {
@@ -312,7 +316,10 @@ QModelIndex WorldModel::parent(const QModelIndex &index) const
 
 int WorldModel::rowCount(const QModelIndex &parent) const
 {
-    if(!parent.isValid()) return 2;
+    if(!parent.isValid()) {
+        if(_world->solver()) return 2;
+        else return 1;
+    }
     else if(parent.internalPointer() == _world) return itemCount();
     else return 0;
 }
@@ -329,6 +336,16 @@ StepCore::Item* WorldModel::newItem(const QString& name)
     item->setName(getUniqueName(name));
     pushCommand(new CommandNewItem(this, item, true));
     return item;
+}
+
+StepCore::Solver* WorldModel::newSolver(const QString& name)
+{
+    StepCore::Solver* solver = _worldFactory->newSolver(name);
+    if(solver == NULL) return NULL;
+    //solver->setName(_world->solver()->name());
+    solver->setName(getUniqueName(name)); // XXX: is it better ?
+    pushCommand(new CommandSetSolver(this, solver));
+    return solver;
 }
 
 void WorldModel::deleteItem(StepCore::Item* item)
@@ -369,11 +386,20 @@ void WorldModel::removeItem(StepCore::Item* item)
     emitChanged();
 }
 
-void WorldModel::setSolver(StepCore::Solver* solver)
+StepCore::Solver* WorldModel::swapSolver(StepCore::Solver* solver)
 {
+    bool selected = selectionModel()->isSelected(solverIndex());
+    beginRemoveRows(QModelIndex(), 1, 1);
+    StepCore::Solver* oldSolver = _world->removeSolver();
+    endRemoveRows();
+    beginInsertRows(QModelIndex(), 1, 1);
     _world->setSolver(solver);
+    endInsertRows();
+    selectionModel()->select(solverIndex(), selected ? QItemSelectionModel::SelectCurrent :
+                                                       QItemSelectionModel::Current);
     _world->doCalcFn();
     emitChanged();
+    return oldSolver;
 }
 
 void WorldModel::pushCommand(QUndoCommand* command)
