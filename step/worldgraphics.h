@@ -68,7 +68,7 @@ public:
     }
 
 protected:
-    virtual void mouseSetPos(const QPointF& pos);
+    virtual void mouseSetPos(const QPointF& pos, const QPointF& diff);
 
     void mousePressEvent(QGraphicsSceneMouseEvent* event);
     void mouseMoveEvent(QGraphicsSceneMouseEvent* event);
@@ -80,9 +80,9 @@ protected:
 protected:
     StepCore::Item* _item;
     WorldModel* _worldModel;
-    QRectF _boundingRect;
-    bool   _isMouseOverItem;
-    bool   _isMoving;
+    QRectF  _boundingRect;
+    bool    _isMouseOverItem;
+    bool    _isMoving;
 
     double currentViewScale() const;
     QVariant itemChange(GraphicsItemChange change, const QVariant& value);

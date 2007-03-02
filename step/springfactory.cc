@@ -150,6 +150,7 @@ SpringGraphicsItem::SpringGraphicsItem(StepCore::Item* item, WorldModel* worldMo
 {
     Q_ASSERT(dynamic_cast<StepCore::Spring*>(_item) != NULL);
     setFlag(QGraphicsItem::ItemIsSelectable);
+    setFlag(QGraphicsItem::ItemIsMovable);
     setZValue(150);
     _handler1 = new SpringHandlerGraphicsItem(item, worldModel, this, 1);
     _handler2 = new SpringHandlerGraphicsItem(item, worldModel, this, 2);
@@ -238,5 +239,31 @@ QVariant SpringGraphicsItem::itemChange(GraphicsItemChange change, const QVarian
         }
     }
     return WorldGraphicsItem::itemChange(change, value);
+}
+
+void SpringGraphicsItem::mouseSetPos(const QPointF& /*pos*/, const QPointF& diff)
+{
+    StepCore::Item* item1 = dynamic_cast<StepCore::Item*>(spring()->bodyPtr1());
+    StepCore::Item* item2 = dynamic_cast<StepCore::Item*>(spring()->bodyPtr2());
+
+    if(item1) {
+        WorldGraphicsItem* gItem = dynamic_cast<WorldScene*>(scene())->graphicsFromItem(item1);
+        Q_ASSERT(gItem != NULL);
+        if(!gItem->isSelected())
+            _worldModel->setProperty(_item, _item->metaObject()->property("body1"), QString(), false);
+    }
+    if(item2) {
+        WorldGraphicsItem* gItem = dynamic_cast<WorldScene*>(scene())->graphicsFromItem(item2);
+        Q_ASSERT(gItem != NULL);
+        if(!gItem->isSelected())
+            _worldModel->setProperty(_item, _item->metaObject()->property("body2"), QString(), false);
+    }
+
+    if(!spring()->bodyPtr1())
+        _worldModel->setProperty(_item, _item->metaObject()->property("position1"), 
+            QVariant::fromValue( spring()->position1() + pointToVector(diff) ));
+    if(!spring()->bodyPtr2())
+        _worldModel->setProperty(_item, _item->metaObject()->property("position2"),
+            QVariant::fromValue( spring()->position2() + pointToVector(diff) ));
 }
 

@@ -33,6 +33,7 @@
 
 // XXX
 #include "worldscene.h"
+#include <QDebug>
 
 //XXX
 const QColor WorldGraphicsItem::SELECTION_COLOR = QColor(0xff, 0x70, 0x70);
@@ -83,7 +84,7 @@ void WorldGraphicsItem::drawArrow(QPainter* painter, const StepCore::Vector2d& v
     }
 }
 
-void WorldGraphicsItem::mouseSetPos(const QPointF& pos)
+void WorldGraphicsItem::mouseSetPos(const QPointF& pos, const QPointF& /*diff*/)
 {
     Q_ASSERT(false);
     setPos(pos);
@@ -108,6 +109,7 @@ void WorldGraphicsItem::mouseMoveEvent(QGraphicsSceneMouseEvent *event)
     if((event->buttons() & Qt::LeftButton) && (flags() & ItemIsMovable)) {
         if(!_isMoving) { _worldModel->beginMacro(i18n("Edit %1", _item->name())); _isMoving = true; }
 
+        QPointF pdiff(mapToParent(event->pos()) - mapToParent(event->lastPos()));
         QPointF newPos(mapToParent(event->pos()) - matrix().map(event->buttonDownPos(Qt::LeftButton)));
         QPointF diff = newPos - pos();
 
@@ -125,7 +127,7 @@ void WorldGraphicsItem::mouseMoveEvent(QGraphicsSceneMouseEvent *event)
         foreach (QGraphicsItem *item, selectedItems) {
             if ((item->flags() & ItemIsMovable) && (!item->parentItem() || !item->parentItem()->isSelected())) {
                 WorldGraphicsItem* worldItem = qgraphicsitem_cast<WorldGraphicsItem*>(item);
-                if(worldItem) worldItem->mouseSetPos(item == this ? newPos : item->pos() + diff);
+                if(worldItem) worldItem->mouseSetPos(item == this ? newPos : item->pos() + diff, pdiff);
                 else { Q_ASSERT(false); item->setPos(item == this ? newPos : item->pos() + diff); }
                 //if (item->flags() & ItemIsSelectable) //XXX ?
                 //    item->setSelected(true);

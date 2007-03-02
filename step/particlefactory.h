@@ -40,7 +40,7 @@ public:
 
 protected:
     QVariant itemChange(GraphicsItemChange change, const QVariant& value);
-    void mouseSetPos(const QPointF& pos);
+    void mouseSetPos(const QPointF& pos, const QPointF& diff);
     StepCore::Particle* particle() const;
 
     ArrowHandlerGraphicsItem *_velocityHandler;
