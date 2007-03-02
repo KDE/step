@@ -124,6 +124,7 @@ void WorldGraphicsItem::mouseMoveEvent(QGraphicsSceneMouseEvent *event)
         if(!selectedItems.contains(this)) selectedItems << this;
 
         // Move all selected items
+        _worldModel->beginUpdate();
         foreach (QGraphicsItem *item, selectedItems) {
             if ((item->flags() & ItemIsMovable) && (!item->parentItem() || !item->parentItem()->isSelected())) {
                 WorldGraphicsItem* worldItem = qgraphicsitem_cast<WorldGraphicsItem*>(item);
@@ -133,6 +134,7 @@ void WorldGraphicsItem::mouseMoveEvent(QGraphicsSceneMouseEvent *event)
                 //    item->setSelected(true);
             }
         }
+        _worldModel->endUpdate();
     } else {
         event->ignore();
     }

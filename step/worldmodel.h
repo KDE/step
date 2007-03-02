@@ -85,6 +85,9 @@ public:
     void beginMacro(const QString& text);
     void endMacro();
 
+    void beginUpdate() { ++_updating; }
+    void endUpdate() { if(!--_updating) objectChanged(NULL); }
+
     // Property edit
     void setProperty(StepCore::Object* object, const StepCore::MetaProperty* property,
                             const QVariant& value, bool merge = true);
@@ -131,6 +134,8 @@ protected:
     QUndoStack* _undoStack;
     const WorldFactory* _worldFactory;
     QString _errorString;
+
+    int _updating;
 
     QTimer* _simulationTimer;
     int     _simulationFps;

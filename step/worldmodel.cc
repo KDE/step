@@ -53,7 +53,7 @@ protected:
     bool _merge;
     WorldModel* _worldModel;
     QList<EditProperty> _commands;
-    QList<StepCore::Object*> _objects;
+    //QList<StepCore::Object*> _objects;
 };
 
 CommandEditProperty::CommandEditProperty(WorldModel* worldModel, StepCore::Object* object,
@@ -61,7 +61,7 @@ CommandEditProperty::CommandEditProperty(WorldModel* worldModel, StepCore::Objec
         : _merge(merge), _worldModel(worldModel)
 {
     EditProperty p = { object, property, property->readVariant(object), newValue };
-    _commands << p; _objects << object;
+    _commands << p;// _objects << object;
 }
 
 void CommandEditProperty::redo()
@@ -70,13 +70,15 @@ void CommandEditProperty::redo()
         if(p.newValue.type() != QVariant::String) p.property->writeVariant(p.object, p.newValue);
         else p.property->writeString(p.object, p.newValue.value<QString>());
     }
-    foreach(StepCore::Object* object, _objects) _worldModel->objectChanged(object);
+    _worldModel->objectChanged(NULL);
+    //foreach(StepCore::Object* object, _objects) _worldModel->objectChanged(object);
 }
 
 void CommandEditProperty::undo()
 {
     foreach(EditProperty p, _commands) p.property->writeVariant(p.object, p.oldValue);
-    foreach(StepCore::Object* object, _objects) _worldModel->objectChanged(object);
+    _worldModel->objectChanged(NULL);
+    //foreach(StepCore::Object* object, _objects) _worldModel->objectChanged(object);
 }
 
 bool CommandEditProperty::mergeWith(const QUndoCommand* command)
@@ -89,12 +91,12 @@ bool CommandEditProperty::mergeWith(const QUndoCommand* command)
     for(int i=0; i < _commands.count(); ++i) {
         if(_commands[i].object == p1.object && _commands[i].property == p1.property) {
             _commands[i].newValue = p1.newValue;
-            if(!_objects.contains(p1.object)) _objects << p1.object;
+            //if(!_objects.contains(p1.object)) _objects << p1.object;
             return true;
         }
     }
     _commands << p1;
-    if(!_objects.contains(p1.object)) _objects << p1.object;
+    //if(!_objects.contains(p1.object)) _objects << p1.object;
     return true;
 }
 
@@ -196,6 +198,7 @@ WorldModel::WorldModel(QObject* parent)
     setSimulationFps(25); // XXX KConfig ?
     QObject::connect(_simulationTimer, SIGNAL(timeout()),
                         this, SLOT(simulationFrame()));
+    _updating = 0;
     resetWorld();
 }
 
@@ -259,10 +262,10 @@ StepCore::Object* WorldModel::object(const QModelIndex& index) const
 
 void WorldModel::objectChanged(const StepCore::Object* /*object*/)
 {
-    //if(index.isValid()) {
-    _world->doCalcFn();
-    emitChanged();
-    //}
+    if(!_updating) {
+        _world->doCalcFn();
+        emitChanged();
+    }
 }
 
 StepCore::Item* WorldModel::item(const QModelIndex& index) const
