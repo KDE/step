@@ -17,7 +17,7 @@
 */
 
 /** \file eulersolver.h
- *  \brief EulerSolver class
+ *  \brief GenericEulerSolver, EulerSolver and AdaptiveEulerSolver classes
  */
 
 #ifndef STEPCORE_EULERSOLVER_H
@@ -29,26 +29,26 @@
 namespace StepCore {
 
 /** \ingroup solvers
- *  \brief Euler solver with error estimation
+ *  \brief Adaptive and non-adaptive Euler solver with error estimation
  *  
  *  See http://en.wikipedia.org/wiki/Numerical_ordinary_differential_equations#The_Euler_method
  *  and http://en.wikipedia.org/wiki/Adaptive_step_size
  *
- *  \todo tests, adaptive step size
+ *  \todo tests
  */
-class EulerSolver: public Solver
+class GenericEulerSolver: public Solver
 {
-    STEPCORE_OBJECT(EulerSolver)
+    STEPCORE_OBJECT(GenericEulerSolver)
 
 public:
-    /** Constructs EulerSolver */
-    EulerSolver(double stepSize = 0.01);
-    /** Constructs EulerSolver */
-    EulerSolver(int dimension, Function function, void* params, double stepSize);
+    /** Constructs GenericEulerSolver */
+    GenericEulerSolver(double stepSize, bool adaptive);
+    /** Constructs GenericEulerSolver */
+    GenericEulerSolver(int dimension, Function function, void* params, double stepSize, bool adaptive);
     /** Copy constructor */
-    EulerSolver(const EulerSolver& eulerSolver);
+    GenericEulerSolver(const GenericEulerSolver& eulerSolver);
 
-    ~EulerSolver();
+    ~GenericEulerSolver();
 
     void setDimension(int dimension);
 
@@ -64,8 +64,38 @@ protected:
     bool doStep(double t, double stepSize, double y[], double yerr[]);
 
     double  _stepSize;
+    bool    _adaptive;
     double* _ytemp;
     double* _ydiff;
+};
+
+/** \ingroup solvers
+ *  \brief Non-adaptive Euler solver
+ */
+class EulerSolver: public GenericEulerSolver
+{
+    STEPCORE_OBJECT(EulerSolver)
+public:
+    EulerSolver(double stepSize = 0.01): GenericEulerSolver(stepSize, false) {}
+    EulerSolver(int dimension, Function function, void* params, double stepSize)
+                    : GenericEulerSolver(dimension, function, params, stepSize, false) {}
+    EulerSolver(const EulerSolver& eulerSolver): GenericEulerSolver(eulerSolver) {}
+    double stepSize() const { return _stepSize; }
+    void setStepSize(double stepSize) { _stepSize = stepSize; }
+};
+
+/** \ingroup solvers
+ *  \brief Adaptive Euler solver
+ */
+class AdaptiveEulerSolver: public GenericEulerSolver
+{
+    STEPCORE_OBJECT(AdaptiveEulerSolver)
+public:
+    AdaptiveEulerSolver(): GenericEulerSolver(1, true) {}
+    AdaptiveEulerSolver(int dimension, Function function, void* params)
+                    : GenericEulerSolver(dimension, function, params, 1, true) {}
+    AdaptiveEulerSolver(const AdaptiveEulerSolver& eulerSolver): GenericEulerSolver(eulerSolver) {}
+    double stepSize() const { return _stepSize; }
 };
 
 } // namespace StepCore

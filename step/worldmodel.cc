@@ -245,7 +245,7 @@ void WorldModel::resetWorld()
         _world->setName(getUniqueName("world"));
     }
     if(NULL == _world->solver()) {
-        _world->setSolver(new StepCore::EulerSolver());
+        _world->setSolver(new StepCore::AdaptiveEulerSolver());
         _world->solver()->setName(getUniqueName("solver"));
     }
     _world->doCalcFn();

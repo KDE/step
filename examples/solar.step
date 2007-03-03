@@ -80,11 +80,10 @@
         <gravitationConst>6.6742e-11</gravitationConst>
     </item>
 
-    <solver class="EulerSolver">
+    <solver class="AdaptiveEulerSolver">
         <name>solver</name>
         <toleranceAbs>100000</toleranceAbs>
         <toleranceRel>0.001</toleranceRel>
-        <stepSize>10000</stepSize>
     </solver>
 
 </world>

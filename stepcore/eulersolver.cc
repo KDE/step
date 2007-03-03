@@ -23,37 +23,42 @@
 
 namespace StepCore {
 
-STEPCORE_META_OBJECT(EulerSolver, "Euler solver", 0, STEPCORE_SUPER_CLASS(Solver),
+STEPCORE_META_OBJECT(GenericEulerSolver, "Generic Euler solver", MetaObject::ABSTRACT, STEPCORE_SUPER_CLASS(Solver),)
+
+STEPCORE_META_OBJECT(EulerSolver, "Non-adaptive Euler solver", 0, STEPCORE_SUPER_CLASS(GenericEulerSolver),
     STEPCORE_PROPERTY_RW(double, stepSize, "Step size", stepSize, setStepSize))
 
-EulerSolver::EulerSolver(double stepSize)
-    : Solver(), _stepSize(stepSize)
+STEPCORE_META_OBJECT(AdaptiveEulerSolver, "Adaptive Euler solver", 0, STEPCORE_SUPER_CLASS(GenericEulerSolver),
+    STEPCORE_PROPERTY_R(double, stepSize, "Step size", stepSize))
+
+GenericEulerSolver::GenericEulerSolver(double stepSize, bool adaptive)
+    : Solver(), _stepSize(stepSize), _adaptive(adaptive)
 {
     _ytemp = new double[_dimension];
     _ydiff = new double[_dimension];
 }
 
-EulerSolver::EulerSolver(int dimension, Function function, void* params, double stepSize)
-    : Solver(dimension, function, params), _stepSize(stepSize)
+GenericEulerSolver::GenericEulerSolver(int dimension, Function function, void* params, double stepSize, bool adaptive)
+    : Solver(dimension, function, params), _stepSize(stepSize), _adaptive(adaptive)
 {
     _ytemp = new double[_dimension];
     _ydiff = new double[_dimension];
 }
 
-EulerSolver::EulerSolver(const EulerSolver& eulerSolver)
-    : Solver(eulerSolver), _stepSize(eulerSolver._stepSize)
+GenericEulerSolver::GenericEulerSolver(const GenericEulerSolver& eulerSolver)
+    : Solver(eulerSolver), _stepSize(eulerSolver._stepSize), _adaptive(eulerSolver._adaptive)
 {
     _ytemp = new double[_dimension];
     _ydiff = new double[_dimension];
 }
 
-EulerSolver::~EulerSolver()
+GenericEulerSolver::~GenericEulerSolver()
 {
     delete _ytemp;
     delete _ydiff;
 }
 
-void EulerSolver::setDimension(int dimension)
+void GenericEulerSolver::setDimension(int dimension)
 {
     if(dimension != _dimension) {
         delete _ytemp;
@@ -64,13 +69,13 @@ void EulerSolver::setDimension(int dimension)
     }
 }
 
-void EulerSolver::doCalcFn(double* t, double y[], double f[])
+void GenericEulerSolver::doCalcFn(double* t, double y[], double f[])
 {
     _function(*t, y, _ydiff, _params);
     if(f != NULL) std::memcpy(f, _ydiff, _dimension*sizeof(*f));
 }
 
-bool EulerSolver::doStep(double t, double stepSize, double y[], double yerr[])
+bool GenericEulerSolver::doStep(double t, double stepSize, double y[], double yerr[])
 {
     std::memset(yerr, 0, _dimension*sizeof(*yerr));
     _localError = 0;
@@ -107,13 +112,27 @@ bool EulerSolver::doStep(double t, double stepSize, double y[], double yerr[])
     return true;
 }
 
-bool EulerSolver::doEvolve(double* t, double t1, double y[], double yerr[])
+bool GenericEulerSolver::doEvolve(double* t, double t1, double y[], double yerr[])
 {
+    const double S = 0.9;
+
     while(*t < t1) {
         bool result = doStep(*t, _stepSize < t1-*t ? _stepSize : t1-*t, y, yerr);
-        if(!result) {
-            /*if(!_adaptive)*/ return false;
-            
+
+        if(_adaptive) {
+            if(_localErrorRatio > 1.1) {
+                double r = S / _localErrorRatio;
+                if(r<0.2) r = 0.2;
+                _stepSize *= r;
+            } else if(_localErrorRatio < 0.5) {
+                double r = S / pow(_localErrorRatio, 0.5);
+                if(r>5.0) r = 5.0;
+                if(r<1.0) r = 1.0;
+                _stepSize *= r;
+            }
+            if(!result) continue;
+        } else {
+            if(!result) return false;
         }
 
         *t = _stepSize < t1-*t ? *t + _stepSize : t1;

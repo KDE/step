@@ -78,6 +78,7 @@ WorldFactory::WorldFactory()
     __REGISTER(CoulombForce);
 
     __REGISTER(EulerSolver);
+    __REGISTER(AdaptiveEulerSolver);
 
 #ifdef STEPCORE_WITH_GSL
     __REGISTER(GslRK2Solver);

@@ -50,11 +50,10 @@
         <electricConst>8.854e-12</electricConst>
     </item>
 
-    <solver class="EulerSolver">
+    <solver class="AdaptiveEulerSolver">
         <name>solver</name>
         <toleranceAbs>0.001</toleranceAbs>
         <toleranceRel>0.001</toleranceRel>
-        <stepSize>0.01</stepSize>
     </solver>
 
 </world>
