@@ -242,11 +242,11 @@ void WorldModel::resetWorld()
 {
     if(_world->name().isEmpty()) {
         // XXX: check than loaded items has unique names !
-        _world->setName(getUniqueName("World"));
+        _world->setName(getUniqueName("world"));
     }
     if(NULL == _world->solver()) {
         _world->setSolver(new StepCore::EulerSolver());
-        _world->solver()->setName(getUniqueName("EulerSolver"));
+        _world->solver()->setName(getUniqueName("solver"));
     }
     _world->doCalcFn();
 
@@ -368,8 +368,21 @@ StepCore::Solver* WorldModel::newSolver(const QString& name)
 {
     StepCore::Solver* solver = _worldFactory->newSolver(name);
     if(solver == NULL) return NULL;
+
+    // Copy similary named properties
+    // XXX: is it right ?
+    StepCore::Solver* oldSolver = _world->solver();
+    for(int i=0; i<oldSolver->metaObject()->propertyCount(); ++i) {
+        const StepCore::MetaProperty* oldProperty = oldSolver->metaObject()->property(i);
+        const StepCore::MetaProperty* newProperty = solver->metaObject()->property(oldProperty->name());
+        if(newProperty) {
+            newProperty->writeVariant(solver, oldProperty->readVariant(oldSolver));
+        }
+    }
+
     //solver->setName(_world->solver()->name());
-    solver->setName(getUniqueName(name)); // XXX: is it better ?
+    //solver->setName(getUniqueName(name)); // XXX: is it better ?
+
     pushCommand(new CommandSetSolver(this, solver));
     return solver;
 }
