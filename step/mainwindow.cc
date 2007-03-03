@@ -136,6 +136,7 @@ void MainWindow::updateCaption()
 
 bool MainWindow::queryClose()
 {
+    if(worldModel->isSimulationActive()) simulationStop();
     if(maybeSave()) {
         return true;
     } else {
@@ -145,6 +146,7 @@ bool MainWindow::queryClose()
 
 bool MainWindow::newFile()
 {
+    if(worldModel->isSimulationActive()) simulationStop();
     if(!maybeSave()) return false;
 
     worldModel->clearWorld();
@@ -157,6 +159,7 @@ bool MainWindow::newFile()
 
 bool MainWindow::openFile(const QString& name)
 {
+    if(worldModel->isSimulationActive()) simulationStop();
     if(!maybeSave()) return false;
 
     QString fileName = name;
@@ -190,6 +193,7 @@ bool MainWindow::openFile(const QString& name)
 
 bool MainWindow::saveFileAs(const QString& name)
 {
+    if(worldModel->isSimulationActive()) simulationStop();
     QString fileName = name;
     if(fileName.isEmpty()) {
         fileName = KFileDialog::getSaveFileName(KUrl::fromPath(currentFileName),
@@ -218,6 +222,7 @@ bool MainWindow::saveFileAs(const QString& name)
 
 bool MainWindow::saveFile()
 {
+    if(worldModel->isSimulationActive()) simulationStop();
     return saveFileAs(currentFileName);
 }
 
