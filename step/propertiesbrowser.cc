@@ -24,6 +24,7 @@
 #include "worldmodel.h"
 #include <stepcore/object.h>
 #include <stepcore/solver.h>
+#include <stepcore/types.h>
 #include <QAbstractItemModel>
 #include <QStandardItemModel>
 #include <QItemEditorFactory>
@@ -89,12 +90,25 @@ QVariant PropertiesBrowserModel::data(const QModelIndex &index, int role) const
     if(role == Qt::DisplayRole || role == Qt::EditRole) {
         if(index.column() == 0) return p->name();
         else if(index.column() == 1) {
+
+            // Solver type combobox ?
             if(index.row() == 1 && dynamic_cast<StepCore::Solver*>(_object)) {
                 if(role == Qt::DisplayRole) return p->readString(_object).replace("Solver", "");
                 else return QVariant::fromValue(_solverChoices);
             }
-            /*if(p->userTypeId() < (int) QVariant::UserType) return p->readVariant(_object);
-            else*/ return p->readString(_object); // XXX: default delegate for double looks ugly!
+
+            // Common property types
+            if(p->userTypeId() == QMetaType::Double) {
+                return QString::number(p->readVariant(_object).toDouble(), 'g', 4); // XXX: make precision configurable
+            } else if(p->userTypeId() == qMetaTypeId<StepCore::Vector2d>()) {
+                StepCore::Vector2d v = p->readVariant(_object).value<StepCore::Vector2d>();
+                return QString("(%1,%2)").arg(v[0], 0, 'g', 4).arg(v[1], 0, 'g', 4);
+            } else {
+                // default type
+                return p->readString(_object);
+            }
+            ///*if(p->userTypeId() < (int) QVariant::UserType) return p->readVariant(_object);
+            //else*/ return p->readString(_object); // XXX: default delegate for double looks ugly!
         }
     } else if(role == Qt::ForegroundRole && index.column() == 1) {
         if(!p->isWritable()) {

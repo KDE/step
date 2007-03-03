@@ -5,6 +5,7 @@
 * rigid bodies
 * collision detection with friction
 * adaptive timestep solvers (DONE)
+* correctly handle stiff ODE
 * separate position and coordinate 
   (for independent tolerance settings, symplectic solvers)
 * global error estimation (requires jacobian ?)
