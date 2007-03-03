@@ -83,6 +83,10 @@ WorldFactory::WorldFactory()
     __REGISTER(GslRK2Solver);
     __REGISTER(GslRK4Solver);
     __REGISTER(GslRKF45Solver);
+    __REGISTER(GslRKCKSolver);
+    __REGISTER(GslRK8PDSolver);
+    __REGISTER(GslRK2IMPSolver);
+    __REGISTER(GslRK4IMPSolver);
 #endif
 }
 

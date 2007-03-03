@@ -72,7 +72,8 @@ PropertiesBrowserModel::PropertiesBrowserModel(WorldModel* worldModel, QObject* 
         const StepCore::MetaObject* metaObject = _worldModel->worldFactory()->metaObject(name);
         if(metaObject->isAbstract()) continue;
         if(!metaObject->inherits(StepCore::Solver::staticMetaObject())) continue;
-        QStandardItem* item = new QStandardItem(QString(metaObject->className()));
+        QString solverName = QString(metaObject->className()).replace("Solver", "");
+        QStandardItem* item = new QStandardItem(solverName);
         item->setToolTip(QString(metaObject->description()));
         _solverChoices->appendRow(item);
     }
@@ -88,8 +89,9 @@ QVariant PropertiesBrowserModel::data(const QModelIndex &index, int role) const
     if(role == Qt::DisplayRole || role == Qt::EditRole) {
         if(index.column() == 0) return p->name();
         else if(index.column() == 1) {
-            if(role == Qt::EditRole && index.row() == 1 && dynamic_cast<StepCore::Solver*>(_object)) {
-                return QVariant::fromValue(_solverChoices);
+            if(index.row() == 1 && dynamic_cast<StepCore::Solver*>(_object)) {
+                if(role == Qt::DisplayRole) return p->readString(_object).replace("Solver", "");
+                else return QVariant::fromValue(_solverChoices);
             }
             /*if(p->userTypeId() < (int) QVariant::UserType) return p->readVariant(_object);
             else*/ return p->readString(_object); // XXX: default delegate for double looks ugly!
@@ -107,6 +109,32 @@ QVariant PropertiesBrowserModel::data(const QModelIndex &index, int role) const
     }
 
     return QVariant();
+}
+
+bool PropertiesBrowserModel::setData(const QModelIndex &index, const QVariant &value, int role)
+{
+    if(_object == NULL) return false;
+
+    if(index.isValid() && index.column() == 1 && role == Qt::EditRole) {
+        if(index.row() == 0) { // name // XXX: do it more generally
+            if(!_worldModel->checkUniqueName(value.toString())) return false; // XXX: error message
+        }
+        if(index.row() == 1 && dynamic_cast<StepCore::Solver*>(_object)) {
+            if(value.toString() != _object->metaObject()->className()) {
+                _worldModel->beginMacro(i18n("Change solver type"));
+                _object = _worldModel->newSolver(value.toString() + "Solver");
+                Q_ASSERT(_object != NULL);
+                _worldModel->endMacro();
+                reset();
+            }
+        } else {
+            _worldModel->beginMacro(i18n("Edit %1", _object->name()));
+            _worldModel->setProperty(_object, _object->metaObject()->property(index.row()), value);
+            _worldModel->endMacro();
+        }
+        return true;
+    }
+    return false;
 }
 
 QModelIndex PropertiesBrowserModel::index(int row, int column, const QModelIndex &parent) const
@@ -154,32 +182,6 @@ Qt::ItemFlags PropertiesBrowserModel::flags(const QModelIndex &index) const
     }
 
     return flags;
-}
-
-bool PropertiesBrowserModel::setData(const QModelIndex &index, const QVariant &value, int role)
-{
-    if(_object == NULL) return false;
-
-    if(index.isValid() && index.column() == 1 && role == Qt::EditRole) {
-        if(index.row() == 0) { // name // XXX: do it more generally
-            if(!_worldModel->checkUniqueName(value.toString())) return false; // XXX: error message
-        }
-        if(index.row() == 1 && dynamic_cast<StepCore::Solver*>(_object)) {
-            if(value.toString() != _object->metaObject()->className()) {
-                _worldModel->beginMacro(i18n("Change solver type"));
-                _object = _worldModel->newSolver(value.toString());
-                Q_ASSERT(_object != NULL);
-                _worldModel->endMacro();
-                reset();
-            }
-        } else {
-            _worldModel->beginMacro(i18n("Edit %1", _object->name()));
-            _worldModel->setProperty(_object, _object->metaObject()->property(index.row()), value);
-            _worldModel->endMacro();
-        }
-        return true;
-    }
-    return false;
 }
 
 QWidget* PropertiesBrowserDelegate::createEditor(QWidget* parent,

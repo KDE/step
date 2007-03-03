@@ -35,6 +35,14 @@ STEPCORE_META_OBJECT(GslRK4Solver, "Runge-Kutta classical fourth-order solver fr
                         0, STEPCORE_SUPER_CLASS(GslSolver),)
 STEPCORE_META_OBJECT(GslRKF45Solver, "Runge-Kutta-Fehlberg (4,5) solver from GSL library",
                         0, STEPCORE_SUPER_CLASS(GslSolver),)
+STEPCORE_META_OBJECT(GslRKCKSolver, "Runge-Kutta Cash-Karp (4,5) solver from GSL library",
+                        0, STEPCORE_SUPER_CLASS(GslSolver),)
+STEPCORE_META_OBJECT(GslRK8PDSolver, "Runge-Kutta Prince-Dormand (8,9) solver from GSL library",
+                        0, STEPCORE_SUPER_CLASS(GslSolver),)
+STEPCORE_META_OBJECT(GslRK2IMPSolver, "Runge-Kutta implicit second-order solver from GSL library",
+                        0, STEPCORE_SUPER_CLASS(GslSolver),)
+STEPCORE_META_OBJECT(GslRK4IMPSolver, "Runge-Kutta implicit fourth-order solver from GSL library",
+                        0, STEPCORE_SUPER_CLASS(GslSolver),)
 
 GslSolver::GslSolver(double stepSize, const gsl_odeiv_step_type* gslStepType)
     : Solver(), _stepSize(stepSize), _gslStepType(gslStepType)

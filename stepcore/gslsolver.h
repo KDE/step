@@ -98,6 +98,10 @@ public: \
 STEPCORE_DECLARE_GSLSOLVER(GslRK2Solver, gsl_odeiv_step_rk2);
 STEPCORE_DECLARE_GSLSOLVER(GslRK4Solver, gsl_odeiv_step_rk4);
 STEPCORE_DECLARE_GSLSOLVER(GslRKF45Solver, gsl_odeiv_step_rkf45);
+STEPCORE_DECLARE_GSLSOLVER(GslRKCKSolver, gsl_odeiv_step_rkck);
+STEPCORE_DECLARE_GSLSOLVER(GslRK8PDSolver, gsl_odeiv_step_rk8pd);
+STEPCORE_DECLARE_GSLSOLVER(GslRK2IMPSolver, gsl_odeiv_step_rk2imp);
+STEPCORE_DECLARE_GSLSOLVER(GslRK4IMPSolver, gsl_odeiv_step_rk4imp);
 
 } // namespace StepCore
 
