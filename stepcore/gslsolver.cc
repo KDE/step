@@ -26,77 +26,77 @@
 namespace StepCore
 {
 
-STEPCORE_META_OBJECT(GslSolver, "GSL solver", MetaObject::ABSTRACT, STEPCORE_SUPER_CLASS(Solver),)
+STEPCORE_META_OBJECT(GslGenericSolver, "GSL generic solver", MetaObject::ABSTRACT, STEPCORE_SUPER_CLASS(Solver),)
 
-STEPCORE_META_OBJECT(GslNonAdaptiveSolver, "GSL non-adaptive solver", MetaObject::ABSTRACT,
-    STEPCORE_SUPER_CLASS(GslSolver),
+STEPCORE_META_OBJECT(GslSolver, "GSL non-adaptive solver", MetaObject::ABSTRACT,
+    STEPCORE_SUPER_CLASS(GslGenericSolver),
     STEPCORE_PROPERTY_RW(double, stepSize, "Step size", stepSize, setStepSize))
 
 STEPCORE_META_OBJECT(GslAdaptiveSolver, "GSL adaptive solver", MetaObject::ABSTRACT,
-    STEPCORE_SUPER_CLASS(GslSolver),
+    STEPCORE_SUPER_CLASS(GslGenericSolver),
     STEPCORE_PROPERTY_R (double, stepSize, "Step size", stepSize))
 
 STEPCORE_META_OBJECT(GslRK2Solver, "Runge-Kutta second-order solver from GSL library",
-                        0, STEPCORE_SUPER_CLASS(GslNonAdaptiveSolver),)
+                        0, STEPCORE_SUPER_CLASS(GslSolver),)
 STEPCORE_META_OBJECT(GslAdaptiveRK2Solver, "Adaptive Runge-Kutta second-order solver from GSL library",
                         0, STEPCORE_SUPER_CLASS(GslAdaptiveSolver),)
 
 STEPCORE_META_OBJECT(GslRK4Solver, "Runge-Kutta classical fourth-order solver from GSL library",
-                        0, STEPCORE_SUPER_CLASS(GslNonAdaptiveSolver),)
+                        0, STEPCORE_SUPER_CLASS(GslSolver),)
 STEPCORE_META_OBJECT(GslAdaptiveRK4Solver, "Adaptive Runge-Kutta classical fourth-order solver from GSL library",
                         0, STEPCORE_SUPER_CLASS(GslAdaptiveSolver),)
 
 STEPCORE_META_OBJECT(GslRKF45Solver, "Runge-Kutta-Fehlberg (4,5) solver from GSL library",
-                        0, STEPCORE_SUPER_CLASS(GslNonAdaptiveSolver),)
+                        0, STEPCORE_SUPER_CLASS(GslSolver),)
 STEPCORE_META_OBJECT(GslAdaptiveRKF45Solver, "Adaptive Runge-Kutta-Fehlberg (4,5) solver from GSL library",
                         0, STEPCORE_SUPER_CLASS(GslAdaptiveSolver),)
 
 STEPCORE_META_OBJECT(GslRKCKSolver, "Runge-Kutta Cash-Karp (4,5) solver from GSL library",
-                        0, STEPCORE_SUPER_CLASS(GslNonAdaptiveSolver),)
+                        0, STEPCORE_SUPER_CLASS(GslSolver),)
 STEPCORE_META_OBJECT(GslAdaptiveRKCKSolver, "Adaptive Runge-Kutta Cash-Karp (4,5) solver from GSL library",
                         0, STEPCORE_SUPER_CLASS(GslAdaptiveSolver),)
 
 STEPCORE_META_OBJECT(GslRK8PDSolver, "Runge-Kutta Prince-Dormand (8,9) solver from GSL library",
-                        0, STEPCORE_SUPER_CLASS(GslNonAdaptiveSolver),)
+                        0, STEPCORE_SUPER_CLASS(GslSolver),)
 STEPCORE_META_OBJECT(GslAdaptiveRK8PDSolver, "Adaptive Runge-Kutta Prince-Dormand (8,9) solver from GSL library",
                         0, STEPCORE_SUPER_CLASS(GslAdaptiveSolver),)
 
 STEPCORE_META_OBJECT(GslRK2IMPSolver, "Runge-Kutta implicit second-order solver from GSL library",
-                        0, STEPCORE_SUPER_CLASS(GslNonAdaptiveSolver),)
+                        0, STEPCORE_SUPER_CLASS(GslSolver),)
 STEPCORE_META_OBJECT(GslAdaptiveRK2IMPSolver, "Adaptive Runge-Kutta implicit second-order solver from GSL library",
                         0, STEPCORE_SUPER_CLASS(GslAdaptiveSolver),)
 
 STEPCORE_META_OBJECT(GslRK4IMPSolver, "Runge-Kutta implicit fourth-order solver from GSL library",
-                        0, STEPCORE_SUPER_CLASS(GslNonAdaptiveSolver),)
+                        0, STEPCORE_SUPER_CLASS(GslSolver),)
 STEPCORE_META_OBJECT(GslAdaptiveRK4IMPSolver, "Adaptive Runge-Kutta implicit fource-order solver from GSL library",
                         0, STEPCORE_SUPER_CLASS(GslAdaptiveSolver),)
 
-GslSolver::GslSolver(double stepSize, bool adaptive, const gsl_odeiv_step_type* gslStepType)
+GslGenericSolver::GslGenericSolver(double stepSize, bool adaptive, const gsl_odeiv_step_type* gslStepType)
     : Solver(), _stepSize(stepSize), _adaptive(adaptive), _gslStepType(gslStepType)
 {
     init();
 }
 
-GslSolver::GslSolver(int dimension, Function function, void* params,
+GslGenericSolver::GslGenericSolver(int dimension, Function function, void* params,
                             double stepSize, bool adaptive, const gsl_odeiv_step_type* gslStepType)
     : Solver(dimension, function, params), _stepSize(stepSize), _adaptive(adaptive), _gslStepType(gslStepType)
 {
     init();
 }
 
-GslSolver::GslSolver(const GslSolver& gslSolver)
+GslGenericSolver::GslGenericSolver(const GslGenericSolver& gslSolver)
     : Solver(gslSolver), _stepSize(gslSolver._stepSize),
       _adaptive(gslSolver._adaptive), _gslStepType(gslSolver._gslStepType)
 {
     init();
 }
 
-GslSolver::~GslSolver()
+GslGenericSolver::~GslGenericSolver()
 {
     fini();
 }
 
-void GslSolver::init()
+void GslGenericSolver::init()
 {
     _ytemp = new double[_dimension];
     _ydiff = new double[_dimension];
@@ -120,7 +120,7 @@ void GslSolver::init()
     }
 }
 
-void GslSolver::fini()
+void GslGenericSolver::fini()
 {
     delete[] _ytemp; delete[] _ydiff;
     if(_gslStep != NULL) gsl_odeiv_step_free(_gslStep);
@@ -128,14 +128,14 @@ void GslSolver::fini()
     if(_gslEvolve != NULL) gsl_odeiv_evolve_free(_gslEvolve);
 }
 
-void GslSolver::doCalcFn(double* t, double y[], double f[])
+void GslGenericSolver::doCalcFn(double* t, double y[], double f[])
 {
     GSL_ODEIV_FN_EVAL(&_gslSystem, *t, y, _ydiff);
     if(f != NULL) std::memcpy(f, _ydiff, _dimension*sizeof(*f));
     //_hasSavedState = true;
 }
 
-bool GslSolver::doEvolve(double* t, double t1, double y[], double yerr[])
+bool GslGenericSolver::doEvolve(double* t, double t1, double y[], double yerr[])
 {
     //STEPCORE_ASSERT_NOABORT(_dimension != 0);
 

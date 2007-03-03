@@ -17,7 +17,7 @@
 */
 
 /** \file gslsolver.h
- *  \brief GslSolver class
+ *  \brief GslGenericSolver, GslSolver and GslAdaptiveSolver classes
  */
 
 #ifndef STEPCORE_GSLSOLVER_H
@@ -41,20 +41,20 @@ namespace StepCore
  *  and http://en.wikipedia.org/wiki/Numerical_ordinary_differential_equations
  *
  */
-class GslSolver: public Solver
+class GslGenericSolver: public Solver
 {
-    STEPCORE_OBJECT(GslSolver)
+    STEPCORE_OBJECT(GslGenericSolver)
 
 public:
     /** Constructs GslSolver */
-    GslSolver(double stepSize, bool adaptive, const gsl_odeiv_step_type* gslStepType);
+    GslGenericSolver(double stepSize, bool adaptive, const gsl_odeiv_step_type* gslStepType);
     /** Constructs GslSolver */
-    GslSolver(int dimension, Function function, void* params, double stepSize,
+    GslGenericSolver(int dimension, Function function, void* params, double stepSize,
                 bool adaptive, const gsl_odeiv_step_type* gslStepType);
     /** Copy constructor */
-    GslSolver(const GslSolver& gslSolver);
+    GslGenericSolver(const GslGenericSolver& gslSolver);
 
-    ~GslSolver();
+    ~GslGenericSolver();
 
     void setDimension(int dimension) { fini(); _dimension = dimension; init(); }
     void setToleranceAbs(double toleranceAbs) { fini(); _toleranceAbs = toleranceAbs; init(); }
@@ -93,16 +93,16 @@ protected:
 /** \ingroup solvers
  *  \brief Non-adaptive solvers from GSL library
  */
-class GslNonAdaptiveSolver: public GslSolver
+class GslSolver: public GslGenericSolver
 {
-    STEPCORE_OBJECT(GslNonAdaptiveSolver)
+    STEPCORE_OBJECT(GslSolver)
 public:
-    GslNonAdaptiveSolver(double stepSize, const gsl_odeiv_step_type* gslStepType):
-                            GslSolver(stepSize, false, gslStepType) {}
-    GslNonAdaptiveSolver(int dimension, Function function, void* params, double stepSize,
+    GslSolver(double stepSize, const gsl_odeiv_step_type* gslStepType):
+                            GslGenericSolver(stepSize, false, gslStepType) {}
+    GslSolver(int dimension, Function function, void* params, double stepSize,
                             const gsl_odeiv_step_type* gslStepType)
-                    : GslSolver(dimension, function, params, stepSize, false, gslStepType) {}
-    GslNonAdaptiveSolver(const GslNonAdaptiveSolver& gslSolver): GslSolver(gslSolver) {}
+                    : GslGenericSolver(dimension, function, params, stepSize, false, gslStepType) {}
+    GslSolver(const GslSolver& gslSolver): GslGenericSolver(gslSolver) {}
     double stepSize() const { return _stepSize; }
     void setStepSize(double stepSize) { _stepSize = stepSize; }
 };
@@ -110,27 +110,27 @@ public:
 /** \ingroup solvers
  *  \brief Adaptive solvers from GSL library
  */
-class GslAdaptiveSolver: public GslSolver
+class GslAdaptiveSolver: public GslGenericSolver
 {
     STEPCORE_OBJECT(GslAdaptiveSolver)
 public:
     GslAdaptiveSolver(const gsl_odeiv_step_type* gslStepType):
-                            GslSolver(1, true, gslStepType) {}
+                            GslGenericSolver(1, true, gslStepType) {}
     GslAdaptiveSolver(int dimension, Function function, void* params,
                             const gsl_odeiv_step_type* gslStepType)
-                    : GslSolver(dimension, function, params, 1, true, gslStepType) {}
-    GslAdaptiveSolver(const GslAdaptiveSolver& gslSolver): GslSolver(gslSolver) {}
+                    : GslGenericSolver(dimension, function, params, 1, true, gslStepType) {}
+    GslAdaptiveSolver(const GslAdaptiveSolver& gslSolver): GslGenericSolver(gslSolver) {}
     double stepSize() const { return _stepSize; }
 };
 
 #define STEPCORE_DECLARE_GSLSOLVER(Class, type) \
-class Gsl##Class##Solver: public GslNonAdaptiveSolver { \
+class Gsl##Class##Solver: public GslSolver { \
     STEPCORE_OBJECT(Gsl##Class##Solver) \
 public: \
-    Gsl##Class##Solver(double stepSize = 0.01): GslNonAdaptiveSolver(stepSize, gsl_odeiv_step_##type) {} \
+    Gsl##Class##Solver(double stepSize = 0.01): GslSolver(stepSize, gsl_odeiv_step_##type) {} \
     Gsl##Class##Solver(int dimension, Function function, void* params, double stepSize) \
-                 : GslNonAdaptiveSolver(dimension, function, params, stepSize, gsl_odeiv_step_##type) {} \
-    Gsl##Class##Solver(const Gsl##Class##Solver& gslSolver): GslNonAdaptiveSolver(gslSolver) {} \
+                 : GslSolver(dimension, function, params, stepSize, gsl_odeiv_step_##type) {} \
+    Gsl##Class##Solver(const Gsl##Class##Solver& gslSolver): GslSolver(gslSolver) {} \
 };
 
 #define STEPCORE_DECLARE_GSLASOLVER(Class, type) \
