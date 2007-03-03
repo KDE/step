@@ -72,7 +72,9 @@ PropertiesBrowserModel::PropertiesBrowserModel(WorldModel* worldModel, QObject* 
         const StepCore::MetaObject* metaObject = _worldModel->worldFactory()->metaObject(name);
         if(metaObject->isAbstract()) continue;
         if(!metaObject->inherits(StepCore::Solver::staticMetaObject())) continue;
-        _solverChoices->appendRow(new QStandardItem(QString(metaObject->className())));
+        QStandardItem* item = new QStandardItem(QString(metaObject->className()));
+        item->setToolTip(QString(metaObject->description()));
+        _solverChoices->appendRow(item);
     }
 }
 
@@ -98,6 +100,9 @@ QVariant PropertiesBrowserModel::data(const QModelIndex &index, int role) const
                 return QBrush(Qt::darkGray); // XXX: how to get scheme color ?
         }
     } else if(role == Qt::ToolTipRole) {
+        if(index.row() == 1 && index.column() == 1 && dynamic_cast<StepCore::Solver*>(_object)) {
+            return _object->metaObject()->description();
+        }
         return p->description(); // XXX: translation
     }
 

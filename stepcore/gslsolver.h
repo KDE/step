@@ -48,10 +48,10 @@ class GslSolver: public Solver
 
 public:
     /** Constructs GslSolver */
-    GslSolver(double stepSize = 0.01, const gsl_odeiv_step_type* gslStepType = gsl_odeiv_step_rkf45);
+    GslSolver(double stepSize, const gsl_odeiv_step_type* gslStepType);
     /** Constructs GslSolver */
     GslSolver(int dimension, Function function, void* params, double stepSize,
-                const gsl_odeiv_step_type* gslStepType = gsl_odeiv_step_rkf45);
+                const gsl_odeiv_step_type* gslStepType);
     /** Copy constructor */
     GslSolver(const GslSolver& gslSolver);
 
@@ -84,6 +84,20 @@ protected:
     gsl_odeiv_system _gslSystem;
     gsl_odeiv_step*  _gslStep;
 };
+
+#define STEPCORE_DECLARE_GSLSOLVER(Class, type) \
+class Class: public GslSolver { \
+    STEPCORE_OBJECT(Class) \
+public: \
+    Class(double stepSize = 0.01): GslSolver(stepSize, type) {} \
+    Class(int dimension, Function function, void* params, double stepSize) \
+                    : GslSolver(dimension, function, params, stepSize, type) {} \
+    Class(const Class& gslSolver): GslSolver(gslSolver) {} \
+};
+
+STEPCORE_DECLARE_GSLSOLVER(GslRK2Solver, gsl_odeiv_step_rk2);
+STEPCORE_DECLARE_GSLSOLVER(GslRK4Solver, gsl_odeiv_step_rk4);
+STEPCORE_DECLARE_GSLSOLVER(GslRKF45Solver, gsl_odeiv_step_rkf45);
 
 } // namespace StepCore
 

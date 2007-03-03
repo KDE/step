@@ -26,8 +26,15 @@
 namespace StepCore
 {
 
-STEPCORE_META_OBJECT(GslSolver, "GSL solver", 0, STEPCORE_SUPER_CLASS(Solver),
+STEPCORE_META_OBJECT(GslSolver, "GSL solver", MetaObject::ABSTRACT, STEPCORE_SUPER_CLASS(Solver),
     STEPCORE_PROPERTY_RW(double, stepSize, "Step size", stepSize, setStepSize))
+
+STEPCORE_META_OBJECT(GslRK2Solver, "Runge-Kutta second-order solver from GSL library",
+                        0, STEPCORE_SUPER_CLASS(GslSolver),)
+STEPCORE_META_OBJECT(GslRK4Solver, "Runge-Kutta classical fourth-order solver from GSL library",
+                        0, STEPCORE_SUPER_CLASS(GslSolver),)
+STEPCORE_META_OBJECT(GslRKF45Solver, "Runge-Kutta-Fehlberg (4,5) solver from GSL library",
+                        0, STEPCORE_SUPER_CLASS(GslSolver),)
 
 GslSolver::GslSolver(double stepSize, const gsl_odeiv_step_type* gslStepType)
     : Solver(), _stepSize(stepSize), _gslStepType(gslStepType)

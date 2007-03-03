@@ -66,6 +66,7 @@ WorldFactory::WorldFactory()
     __REGISTER(Item);
     __REGISTER(Body);
     __REGISTER(Force);
+    __REGISTER(Solver);
 
     __REGISTER_EXT(Particle, ParticleCreator, ParticleGraphicsItem);
     __REGISTER_EXT(ChargedParticle, ParticleCreator, ParticleGraphicsItem);
@@ -79,7 +80,9 @@ WorldFactory::WorldFactory()
     __REGISTER(EulerSolver);
 
 #ifdef STEPCORE_WITH_GSL
-    __REGISTER(GslSolver);
+    __REGISTER(GslRK2Solver);
+    __REGISTER(GslRK4Solver);
+    __REGISTER(GslRKF45Solver);
 #endif
 }
 
