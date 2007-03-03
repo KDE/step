@@ -375,7 +375,7 @@ StepCore::Solver* WorldModel::newSolver(const QString& name)
     for(int i=0; i<oldSolver->metaObject()->propertyCount(); ++i) {
         const StepCore::MetaProperty* oldProperty = oldSolver->metaObject()->property(i);
         const StepCore::MetaProperty* newProperty = solver->metaObject()->property(oldProperty->name());
-        if(newProperty) {
+        if(newProperty && newProperty->isWritable()) {
             newProperty->writeVariant(solver, oldProperty->readVariant(oldSolver));
         }
     }
@@ -428,14 +428,15 @@ void WorldModel::removeItem(StepCore::Item* item)
 StepCore::Solver* WorldModel::swapSolver(StepCore::Solver* solver)
 {
     bool selected = selectionModel()->isSelected(solverIndex());
+    bool current = selectionModel()->currentIndex() == solverIndex();
     beginRemoveRows(QModelIndex(), 1, 1);
     StepCore::Solver* oldSolver = _world->removeSolver();
     endRemoveRows();
     beginInsertRows(QModelIndex(), 1, 1);
     _world->setSolver(solver);
     endInsertRows();
-    selectionModel()->select(solverIndex(), selected ? QItemSelectionModel::SelectCurrent :
-                                                       QItemSelectionModel::Current);
+    if(selected) selectionModel()->select(solverIndex(), QItemSelectionModel::Select);
+    if(current) selectionModel()->setCurrentIndex(solverIndex(), QItemSelectionModel::Current);
     _world->doCalcFn();
     emitChanged();
     return oldSolver;

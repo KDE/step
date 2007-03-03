@@ -87,6 +87,14 @@ WorldFactory::WorldFactory()
     __REGISTER(GslRK8PDSolver);
     __REGISTER(GslRK2IMPSolver);
     __REGISTER(GslRK4IMPSolver);
+
+    __REGISTER(GslAdaptiveRK2Solver);
+    __REGISTER(GslAdaptiveRK4Solver);
+    __REGISTER(GslAdaptiveRKF45Solver);
+    __REGISTER(GslAdaptiveRKCKSolver);
+    __REGISTER(GslAdaptiveRK8PDSolver);
+    __REGISTER(GslAdaptiveRK2IMPSolver);
+    __REGISTER(GslAdaptiveRK4IMPSolver);
 #endif
 }
 
