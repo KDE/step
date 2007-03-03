@@ -4,7 +4,9 @@
 * movement restrictions
 * rigid bodies
 * collision detection with friction
-* adaptive timestep solvers (almost done)
+* adaptive timestep solvers (DONE)
+* separate position and coordinate 
+  (for independent tolerance settings, symplectic solvers)
 * global error estimation (requires jacobian ?)
 * symplectic and other nice solvers
 * molecular dynamics (potentials etc.)

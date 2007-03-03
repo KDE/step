@@ -82,8 +82,8 @@
 
     <solver class="EulerSolver">
         <name>solver</name>
-        <toleranceAbs>0</toleranceAbs>
-        <toleranceRel>0.01</toleranceRel>
+        <toleranceAbs>100000</toleranceAbs>
+        <toleranceRel>0.001</toleranceRel>
         <stepSize>10000</stepSize>
     </solver>
 

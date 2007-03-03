@@ -43,16 +43,28 @@ namespace StepCore
  *  Dimension of system is provided via setDimension(),
  *  function \f$f\f$ is provided via setFunction().
  *
- *  It also provides interface for setting maximum allowed local
- *  tolerance. It can be defined using two properties: toleranceAbs and
- *  toleranceRel. Maximum allowed tolerance should be calculated using the
- *  following formula:
+ *  It also provides interface for setting allowed local tolerance.
+ *  It can be defined using two properties: toleranceAbs and toleranceRel.
+ *
+ *  On each step solver calculates local error estimation (which depends on
+ *  used integration method) and local error ratio for each variable
+ *  using the following formula:
  *  \f[
- *      \mbox{maxLocalTolerance} = \mbox{toleranceAbs}
- *                         + \mbox{toleranceRel} \cdot \max_i( y_i )
+ *      \mbox{localErrorRatio}_i = \frac{|\mbox{localError}_i|}
+ *          {\mbox{toleranceAbs} + \mbox{toleranceRel} \cdot | y_i |}
  *  \f]
- *  If local error turns out to be greater then maximum allowed tolerance
- *  solver cancels current step and doEvolve() function returns false.
+ *
+ *  Non-adaptive solvers cancel current step if maximal local error ratio is
+ *  bigger than 1.1 (exact value depends on solver) and doEvolve() function
+ *  returns false.
+ *
+ *  Adaptive solvers use maximal local error ratio to change time step until
+ *  the ratio becomes almost equal 1. If it can't be made smaller than 1.1
+ *  (exact value depends on solver), solvers cancel current step and doEvolve()
+ *  function returns false. 
+ *
+ *  Maximal (over all variables) error estimation and error ratio from last
+ *  time step can be obtained using localError() and localErrorRatio() methods.
  */
 class Solver: public Object
 {
@@ -95,10 +107,10 @@ public:
     /** Set relative allowed local tolerance */
     virtual void setToleranceRel(double toleranceRel) { _toleranceRel = toleranceRel; }
 
-    /** Get local tolerance calculated at last step */
-    double localTolerance() const { return _localTolerance; }
     /** Get error estimation from last step */
     double localError() const { return _localError; }
+    /** Get local tolerance calculated at last step */
+    double localErrorRatio() const { return _localErrorRatio; }
 
     /** Calculate function value */
     virtual void doCalcFn(double* t, double y[], double f[] = 0) = 0;
@@ -120,13 +132,13 @@ protected:
 
     double   _toleranceAbs;
     double   _toleranceRel;
-    double   _localTolerance;
     double   _localError;
+    double   _localErrorRatio;
 };
 
 inline Solver::Solver(int dimension, Function function, void* params)
      : _dimension(dimension), _function(function), _params(params),
-       _toleranceAbs(0), _toleranceRel(0.01), _localTolerance(0), _localError(0)
+       _toleranceAbs(0.001), _toleranceRel(0.001), _localError(0), _localErrorRatio(0)
 {
 }
 

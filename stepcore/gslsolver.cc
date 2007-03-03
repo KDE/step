@@ -164,14 +164,15 @@ bool GslGenericSolver::doEvolve(double* t, double t1, double y[], double yerr[])
         }
         STEPCORE_ASSERT_NOABORT(0 == gsl_result);
 
-        _localTolerance = 0;
         _localError = 0;
+        _localErrorRatio = 0;
         for(int i=0; i<_dimension; ++i) {
-            if(fabs(yerr[i]) > _localError) _localError = fabs(yerr[i]);
-            if(fabs(y[i]) > _localTolerance) _localTolerance = fabs(y[i]);
+            double error = fabs(yerr[i]);
+            if(error > _localError) _localError = error;
+            double errorRatio = error / (_toleranceAbs + _toleranceRel * fabs(_ytemp[i]));
+            if(errorRatio > _localErrorRatio) _localErrorRatio = errorRatio;
         }
-        _localTolerance = _toleranceAbs + _toleranceRel * _localTolerance;
-        if(_localError > _localTolerance) return false;
+        if(_localErrorRatio > 1.1) return false;
 
         std::memcpy(y, _ytemp, _dimension*sizeof(*y)); *t = tt;
     }

@@ -3,6 +3,7 @@
 <world xmlns="http://quantum.dgap.mipt.ru/StepCoreXML" version="1.0">
     <name>world</name>
     <time>0</time>
+    <timeScale>1</timeScale>
 
     <item class="Particle">
         <name>particle1</name>
@@ -24,6 +25,8 @@
         <stiffness>1</stiffness>
         <body1>particle1</body1>
         <body2>particle2</body2>
+        <position1>(-77,79)</position1>
+        <position2>(13,79)</position2>
     </item>
 
     <item class="ChargedParticle">
@@ -49,8 +52,8 @@
 
     <solver class="EulerSolver">
         <name>solver</name>
-        <toleranceAbs>0</toleranceAbs>
-        <toleranceRel>0.01</toleranceRel>
+        <toleranceAbs>0.001</toleranceAbs>
+        <toleranceRel>0.001</toleranceRel>
         <stepSize>0.01</stepSize>
     </solver>
 

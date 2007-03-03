@@ -72,8 +72,9 @@ void EulerSolver::doCalcFn(double* t, double y[], double f[])
 
 bool EulerSolver::doStep(double t, double stepSize, double y[], double yerr[])
 {
-    _localTolerance = 0;
+    std::memset(yerr, 0, _dimension*sizeof(*yerr));
     _localError = 0;
+    _localErrorRatio = 0;
 
     _function(t, y, _ydiff, _params);
 
@@ -92,14 +93,15 @@ bool EulerSolver::doStep(double t, double stepSize, double y[], double yerr[])
         yerr[i] += _ytemp[i];
         // Solution improvement
         _ytemp[i] += yerr[i];
-        // Maximum error calculation
-        if(fabs(yerr[i]) > _localError) _localError = fabs(yerr[i]);
-        // Maximum local tolerance calculation
-        if(fabs(y[i]) > _localTolerance) _localTolerance = fabs(y[i]);
+        // Maximal error calculation
+        double error = fabs(yerr[i]);
+        if(error > _localError) _localError = error;
+        // Maximal error ration calculation
+        double errorRatio = error / (_toleranceAbs + _toleranceRel * fabs(_ytemp[i]));
+        if(errorRatio > _localErrorRatio) _localErrorRatio = errorRatio;
     }
 
-    _localTolerance = _toleranceAbs + _toleranceRel * _localTolerance;
-    if(_localError > _localTolerance) return false;
+    if(_localErrorRatio > 1.1) return false;
 
     std::memcpy(y, _ytemp, _dimension*sizeof(*y));
     return true;
@@ -107,9 +109,13 @@ bool EulerSolver::doStep(double t, double stepSize, double y[], double yerr[])
 
 bool EulerSolver::doEvolve(double* t, double t1, double y[], double yerr[])
 {
-    std::memset(yerr, 0, _dimension*sizeof(*yerr));
     while(*t < t1) {
-        if(!doStep(*t, _stepSize < t1-*t ? _stepSize : t1-*t, y, yerr)) return false;
+        bool result = doStep(*t, _stepSize < t1-*t ? _stepSize : t1-*t, y, yerr);
+        if(!result) {
+            /*if(!_adaptive)*/ return false;
+            
+        }
+
         *t = _stepSize < t1-*t ? *t + _stepSize : t1;
     }
     return true;
