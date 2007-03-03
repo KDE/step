@@ -294,17 +294,12 @@ void WorldScene::updateViewScale()
 
 QRectF WorldScene::calcItemsBoundingRect()
 {
-    return itemsBoundingRect();
-#if 0
     QRectF boundingRect;
     foreach(QGraphicsItem* item, items()) {
-        /*WorldGraphicsItem* wItem = qgraphicsitem_cast<WorldGraphicsItem*>(item);
-        if(wItem)*/ boundingRect |= item->sceneBoundingRect();
-            //sceneMatrix().mapRect(
-            //        wItem->boundingRect() | wItem->childrenBoundingRect());
+        WorldGraphicsItem* wItem = qgraphicsitem_cast<WorldGraphicsItem*>(item);
+        if(wItem) boundingRect |= item->sceneBoundingRect();
     }
     return boundingRect;
-#endif
 }
 
 WorldGraphicsView::WorldGraphicsView(WorldScene* worldScene, QWidget* parent)
