@@ -102,7 +102,7 @@ void MainWindow::setupActions()
 
     actionDelete = actionCollection()->add<KAction>("edit_delete", worldModel, SLOT(deleteSelectedItems()));
     actionDelete->setText(i18n("&Delete"));
-    actionDelete->setIcon(KIcon("editdelete"));
+    actionDelete->setIcon(KIcon("edit-delete"));
     actionDelete->setShortcut(KShortcut(Qt::CTRL+Qt::Key_Delete));
     actionDelete->setEnabled(false);
 
@@ -112,10 +112,10 @@ void MainWindow::setupActions()
     actionSimulation = actionCollection()->add<KAction>("simulation_start_stop", this, SLOT(simulationStartStop()));
 
     actionSimulationStart->setText(i18n("&Start"));
-    actionSimulationStart->setIcon(KIcon("player_play"));
+    actionSimulationStart->setIcon(KIcon("media-playback-start"));
 
     actionSimulationStop->setText(i18n("S&top"));
-    actionSimulationStop->setIcon(KIcon("player_stop"));
+    actionSimulationStop->setIcon(KIcon("media-playback-stop"));
 
     simulationStop();
 
@@ -249,7 +249,7 @@ void MainWindow::simulationStart()
     actionSimulationStart->setEnabled(false);
     actionSimulationStop->setEnabled(true);
     actionSimulation->setText(i18n("&Stop"));
-    actionSimulation->setIcon(KIcon("player_stop"));
+    actionSimulation->setIcon(KIcon("media-playback-stop"));
     worldModel->simulationStart();
 }
 
@@ -258,7 +258,7 @@ void MainWindow::simulationStopped(bool success)
     actionSimulationStart->setEnabled(true);
     actionSimulationStop->setEnabled(false);
     actionSimulation->setText(i18n("&Simulate"));
-    actionSimulation->setIcon(KIcon("player_play"));
+    actionSimulation->setIcon(KIcon("media-playback-start"));
     if(!success) { // XXX: KMessageBox
         KMessageBox::sorry(this, i18n("Can't finish this step becouse local error "
                "is bigger then local tolerance.\n"
