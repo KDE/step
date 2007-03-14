@@ -52,12 +52,9 @@ template<> inline QString typeToString(const std::vector<Vector2d>& v)
 {
     QString ret;
     for(std::vector<Vector2d>::const_iterator it = v.begin(); it != v.end(); ++it) {
-        if(ret.isEmpty()) ret = QString("(");
-        else ret += ",";
+        if(!ret.isEmpty()) ret += ",";
         ret += QString("(%1,%2)").arg((*it)[0]).arg((*it)[1]);
     }
-    if(ret.isEmpty()) ret = QString("()");
-    else ret += ")";
     return ret;
 }
 
@@ -67,8 +64,8 @@ template<> inline std::vector<Vector2d> stringToType(const QString& s, bool *ok)
     std::vector<Vector2d> ret;
     if(ok) *ok = false;
     QString s1 = s.trimmed();
-    if(!s1.startsWith('(') || !s1.endsWith(')')) return ret;
-    s1 = s1.mid(1, s1.size()-2).trimmed();
+    //if(!s1.startsWith('(') || !s1.endsWith(')')) return ret;
+    //s1 = s1.mid(1, s1.size()-2).trimmed();
     while(s1[0] == '(' && s1.contains(')')) {
         bool ok; double d1, d2;
         s1 = s1.mid(1);

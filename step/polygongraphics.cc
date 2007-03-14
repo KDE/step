@@ -22,24 +22,60 @@
 #include "worldmodel.h"
 #include "worldfactory.h"
 #include <QItemSelectionModel>
-#include <QGraphicsSceneMouseEvent>
 #include <QEvent>
+#include <QGraphicsSceneMouseEvent>
+#include <QKeyEvent>
 #include <QPainter>
 #include <KLocale>
 
 bool PolygonCreator::sceneEvent(QEvent* event)
 {
-    if(event->type() == QEvent::GraphicsSceneMousePress) {
-        QGraphicsSceneMouseEvent* mouseEvent = static_cast<QGraphicsSceneMouseEvent*>(event);
+    QGraphicsSceneMouseEvent* mouseEvent = static_cast<QGraphicsSceneMouseEvent*>(event);
+
+    if(!_item && event->type() == QEvent::GraphicsSceneMousePress && mouseEvent->button() == Qt::LeftButton) {
         QPointF pos = mouseEvent->scenePos();
         QVariant vpos = QVariant::fromValue(WorldGraphicsItem::pointToVector(pos));
+
         _worldModel->beginMacro(i18n("Create %1", _className));
         _item = _worldModel->newItem(_className); Q_ASSERT(_item != NULL);
         _worldModel->setProperty(_item, _item->metaObject()->property("position"), vpos);
-        _worldModel->setProperty(_item, _item->metaObject()->property("vertexes"),
-                                        QString("((10,10),(10,-10),(-10,-10),(-10,10))"));
+        _worldModel->setProperty(_item, _item->metaObject()->property("vertexes"), QString("(0,0)"));
         _worldModel->selectionModel()->setCurrentIndex(_worldModel->objectIndex(_item),
                                                     QItemSelectionModel::ClearAndSelect);
+
+        event->accept();
+        return false;
+
+    } else if(_item && event->type() == QEvent::GraphicsSceneMousePress) {
+        event->accept();
+        return false;
+
+    } else if(_item && (event->type() == QEvent::GraphicsSceneMouseMove ||
+                        event->type() == QEvent::GraphicsSceneMouseRelease)) {
+
+        QPointF pos = mouseEvent->scenePos();
+        StepCore::Vector2d v = WorldGraphicsItem::pointToVector(pos);
+
+        QString vertexes = _item->metaObject()->property("vertexes")->readString(_item).section(',', 0, -3);
+        if(vertexes.isEmpty()) {
+            _worldModel->setProperty(_item, _item->metaObject()->property("position"), QVariant::fromValue(v));
+            vertexes = QString("(0,0)"); v.setZero();
+        } else {
+            v -= static_cast<StepCore::Polygon*>(_item)->position();
+            vertexes += QString(",(%1,%2)").arg(v[0]).arg(v[1]);
+            _worldModel->setProperty(_item, _item->metaObject()->property("vertexes"), vertexes);
+        }
+
+        if(event->type() == QEvent::GraphicsSceneMouseRelease) {
+            vertexes += QString(",(%1,%2)").arg(v[0]).arg(v[1]);
+            _worldModel->setProperty(_item, _item->metaObject()->property("vertexes"), vertexes);
+        }
+        
+        event->accept();
+        return false;
+
+    } else if(_item && event->type() == QEvent::KeyPress &&
+                static_cast<QKeyEvent*>(event)->key() == Qt::Key_Return) {
         _worldModel->endMacro();
         event->accept();
         return true;
@@ -128,6 +164,7 @@ void PolygonGraphicsItem::advance(int phase)
     double s = currentViewScale();
 
     _painterPath = QPainterPath();
+    _painterPath.setFillRule(Qt::WindingFill);
 
     if(polygon()->vertexes().size() > 0) {
         _painterPath.moveTo(vectorToPoint( polygon()->vertexes()[0] ));
