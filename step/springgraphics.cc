@@ -40,14 +40,7 @@ bool SpringCreator::sceneEvent(QEvent* event)
 
         _worldModel->setProperty(_item, _item->metaObject()->property("localPosition1"), vpos);
         _worldModel->setProperty(_item, _item->metaObject()->property("localPosition2"), vpos);
-
-        foreach(QGraphicsItem* it, _worldScene->items(pos)) {
-            StepCore::Item* item = _worldScene->itemFromGraphics(it);
-            if(dynamic_cast<StepCore::Particle*>(item) || dynamic_cast<StepCore::RigidBody*>(item)) {
-                _worldModel->setProperty(_item, _item->metaObject()->property("body1"), item->name(), false);
-                break;
-            }
-        }
+        tryAttach(pos, 1);
 
         _worldModel->selectionModel()->setCurrentIndex(_worldModel->objectIndex(_item),
                                                 QItemSelectionModel::ClearAndSelect);
@@ -64,21 +57,35 @@ bool SpringCreator::sceneEvent(QEvent* event)
 
     } else if(event->type() == QEvent::GraphicsSceneMouseRelease) {
         QPointF pos = mouseEvent->scenePos();
-
-        foreach(QGraphicsItem* it, _worldScene->items(pos)) {
-            StepCore::Item* item = _worldScene->itemFromGraphics(it);
-            if(dynamic_cast<StepCore::Particle*>(item) || dynamic_cast<StepCore::RigidBody*>(item)) {
-                _worldModel->setProperty(_item, _item->metaObject()->property("body2"), item->name(), false);
-                _worldModel->setProperty(_item, _item->metaObject()->property("restLength"), 
-                                                    static_cast<StepCore::Spring*>(_item)->length());
-                break;
-            }
-        }
+        tryAttach(pos, 2);
 
         _worldModel->endMacro();
         event->accept(); return true;
     }
     return false;
+}
+
+void SpringCreator::tryAttach(const QPointF& pos, int num)
+{
+    foreach(QGraphicsItem* it, _worldScene->items(pos)) {
+        StepCore::Item* item = _worldScene->itemFromGraphics(it);
+        if(dynamic_cast<StepCore::Particle*>(item) || dynamic_cast<StepCore::RigidBody*>(item)) {
+            if(num == 1) _worldModel->setProperty(_item, _item->metaObject()->property("body1"), item->name(), false);
+            else         _worldModel->setProperty(_item, _item->metaObject()->property("body2"), item->name(), false);
+
+            if(dynamic_cast<StepCore::RigidBody*>(item)) {
+                StepCore::Vector2d lPos =
+                    dynamic_cast<StepCore::RigidBody*>(item)->pointWorldToLocal(WorldGraphicsItem::pointToVector(pos));
+                if(num == 1) _worldModel->setProperty(_item, _item->metaObject()->property("localPosition1"), QVariant::fromValue(lPos));
+                else         _worldModel->setProperty(_item, _item->metaObject()->property("localPosition2"), QVariant::fromValue(lPos));
+            }
+
+            _worldModel->setProperty(_item, _item->metaObject()->property("restLength"), 
+                                                static_cast<StepCore::Spring*>(_item)->length());
+            break;
+        }
+    }
+
 }
 
 SpringHandlerGraphicsItem::SpringHandlerGraphicsItem(StepCore::Item* item, WorldModel* worldModel, 
@@ -132,11 +139,20 @@ void SpringHandlerGraphicsItem::mouseMoveEvent(QGraphicsSceneMouseEvent *event)
 void SpringHandlerGraphicsItem::mouseReleaseEvent(QGraphicsSceneMouseEvent *event)
 {
     if(_moving) {
-        foreach(QGraphicsItem* it, scene()->items(event->scenePos())) {
+        QPointF pos = event->scenePos();
+        foreach(QGraphicsItem* it, scene()->items(pos)) {
             StepCore::Item* item = static_cast<WorldScene*>(scene())->itemFromGraphics(it);
             if(dynamic_cast<StepCore::Particle*>(item) || dynamic_cast<StepCore::RigidBody*>(item)) {
                 if(_num == 1) _worldModel->setProperty(_item, _item->metaObject()->property("body1"), item->name(), false);
                 else          _worldModel->setProperty(_item, _item->metaObject()->property("body2"), item->name(), false);
+
+                if(dynamic_cast<StepCore::RigidBody*>(item)) {
+                    StepCore::Vector2d lPos =
+                        dynamic_cast<StepCore::RigidBody*>(item)->pointWorldToLocal(WorldGraphicsItem::pointToVector(pos));
+                    if(_num == 1) _worldModel->setProperty(_item, _item->metaObject()->property("localPosition1"), QVariant::fromValue(lPos));
+                    else          _worldModel->setProperty(_item, _item->metaObject()->property("localPosition2"), QVariant::fromValue(lPos));
+                }
+
                 break;
             }
         }

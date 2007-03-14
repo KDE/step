@@ -28,6 +28,9 @@ public:
     SpringCreator(const QString& className, WorldModel* worldModel, WorldScene* worldScene)
                         : ItemCreator(className, worldModel, worldScene) {}
     bool sceneEvent(QEvent* event);
+
+protected:
+    void tryAttach(const QPointF& pos, int num);
 };
 
 class SpringHandlerGraphicsItem: public WorldGraphicsItem {
