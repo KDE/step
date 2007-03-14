@@ -31,13 +31,15 @@ STEPCORE_META_OBJECT(Spring, "Massless spring", 0,
     STEPCORE_PROPERTY_RW(double, stiffness, "Stiffness", stiffness, setStiffness)
     STEPCORE_PROPERTY_RW(QString, body1, "Body1", body1, setBody1)
     STEPCORE_PROPERTY_RW(QString, body2, "Body2", body2, setBody2)
-    STEPCORE_PROPERTY_RW(StepCore::Vector2d, position1, "Position1", position1, setPosition1)
-    STEPCORE_PROPERTY_RW(StepCore::Vector2d, position2, "Position2", position2, setPosition2)
+    STEPCORE_PROPERTY_RW(StepCore::Vector2d, localPosition1, "Local position 1", localPosition1, setLocalPosition1)
+    STEPCORE_PROPERTY_RW(StepCore::Vector2d, localPosition2, "Local position 2", localPosition2, setLocalPosition2)
+    STEPCORE_PROPERTY_R (StepCore::Vector2d, position1, "Position1", position1)
+    STEPCORE_PROPERTY_R (StepCore::Vector2d, position2, "Position2", position2)
     )
 
 Spring::Spring(double restLength, double stiffness, Body* bodyPtr1, Body* bodyPtr2)
     : PairForce(bodyPtr1, bodyPtr2), _restLength(restLength), _stiffness(stiffness),
-      _position1(0), _position2(0)
+      _localPosition1(0), _localPosition2(0) //, _position1(0), _position2(0)
 {
 }
 
@@ -55,14 +57,19 @@ void Spring::calcForce()
     Particle* p1 = dynamic_cast<Particle*>(_bodyPtr1);
     Particle* p2 = dynamic_cast<Particle*>(_bodyPtr2);
 
+    RigidBody* r1 = dynamic_cast<RigidBody*>(_bodyPtr1);
+    RigidBody* r2 = dynamic_cast<RigidBody*>(_bodyPtr2);
+
     Vector2d r = position2() - position1();
     double length = r.norm();
     Vector2d force = _stiffness * (length - _restLength) * r.unit();
+    
     if(p1) p1->addForce(force);
-    if(p2) {
-        force.invert();
-        p2->addForce(force);
-    }
+    else if(r1) r1->applyForce(force, position1());
+
+    force.invert();
+    if(p2) p2->addForce(force);
+    else if(r2) r2->applyForce(force, position2());
 }
 
 void Spring::setBody1(const QString& body1)
@@ -72,9 +79,7 @@ void Spring::setBody1(const QString& body1)
             setBodyPtr1(*o);
             return;
         }
-    Particle* p1 = dynamic_cast<Particle*>(_bodyPtr1);
-    if(p1) _position1 = p1->position();
-    _bodyPtr1 = NULL;
+    setBodyPtr1(NULL);
 }
 
 void Spring::setBody2(const QString& body2)
@@ -84,23 +89,57 @@ void Spring::setBody2(const QString& body2)
             setBodyPtr2(*o);
             return;
         }
-    Particle* p2 = dynamic_cast<Particle*>(_bodyPtr2);
-    if(p2) _position2 = p2->position();
-    _bodyPtr2 = NULL;
+    setBodyPtr2(NULL);
+}
+
+void Spring::setBodyPtr1(Body* bodyPtr1)
+{
+    if(dynamic_cast<Particle*>(bodyPtr1) || dynamic_cast<RigidBody*>(bodyPtr1)) {
+        _localPosition1.setZero();
+        _bodyPtr1 = bodyPtr1;
+    } else {
+        Particle* p1 = dynamic_cast<Particle*>(_bodyPtr1);
+        RigidBody* r1 = dynamic_cast<RigidBody*>(_bodyPtr1);
+        if(p1) _localPosition1 = p1->position();
+        else if(r1) _localPosition1 = r1->position();
+        _bodyPtr1 = NULL;
+    }
+}
+
+void Spring::setBodyPtr2(Body* bodyPtr2)
+{
+    if(dynamic_cast<Particle*>(bodyPtr2) || dynamic_cast<RigidBody*>(bodyPtr2)) {
+        _localPosition2.setZero();
+        _bodyPtr2 = bodyPtr2;
+    } else {
+        Particle* p2 = dynamic_cast<Particle*>(_bodyPtr2);
+        RigidBody* r2 = dynamic_cast<RigidBody*>(_bodyPtr2);
+        if(p2) _localPosition2 = p2->position();
+        else if(r2) _localPosition2 = r2->position();
+        _bodyPtr2 = NULL;
+    }
 }
 
 Vector2d Spring::position1() const
 {
     Particle* p1 = dynamic_cast<Particle*>(_bodyPtr1);
-    if(p1) return p1->position();
-    else return _position1;
+    if(p1) return p1->position() + _localPosition1;
+
+    RigidBody* r1 = dynamic_cast<RigidBody*>(_bodyPtr1);
+    if(r1) return r1->pointLocalToWorld(_localPosition1);
+
+    return _localPosition1;
 }
 
 Vector2d Spring::position2() const
 {
     Particle* p2 = dynamic_cast<Particle*>(_bodyPtr2);
-    if(p2) return p2->position();
-    else return _position2;
+    if(p2) return p2->position() + _localPosition2;
+
+    RigidBody* r2 = dynamic_cast<RigidBody*>(_bodyPtr2);
+    if(r2) return r2->pointLocalToWorld(_localPosition2);
+
+    return _localPosition2;
 }
 
 void Spring::worldItemRemoved(Item* item)
@@ -108,12 +147,16 @@ void Spring::worldItemRemoved(Item* item)
     if(item == NULL) return;
     if(item == dynamic_cast<Item*>(_bodyPtr1)) {
         Particle* p1 = dynamic_cast<Particle*>(_bodyPtr1);
-        if(p1) _position1 = p1->position();
+        RigidBody* r1 = dynamic_cast<RigidBody*>(_bodyPtr1);
+        if(p1) _localPosition1 = p1->position();
+        else if(r1) _localPosition1 = r1->position();
         _bodyPtr1 = NULL;
     }
     if(item == dynamic_cast<Item*>(_bodyPtr2)) {
         Particle* p2 = dynamic_cast<Particle*>(_bodyPtr2);
-        if(p2) _position2 = p2->position();
+        RigidBody* r2 = dynamic_cast<RigidBody*>(_bodyPtr2);
+        if(p2) _localPosition2 = p2->position();
+        else if(r2) _localPosition2 = r2->position();
         _bodyPtr2 = NULL;
     }
 }

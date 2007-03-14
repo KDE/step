@@ -4,6 +4,7 @@
 * movement restrictions
 * rigid bodies
 * collision detection with friction
+* custom properties for bodies, make charge custom property (?)
 * adaptive timestep solvers (DONE)
 * correctly handle stiff ODE
 * separate position and coordinate 
@@ -21,6 +22,9 @@ Doxygen-generated documentation and in the source
 code (marked as TODO or XXX).
 
 2. Step.
+* do calculations in separate thread
+* use statusbar or small graphicsitem to notify
+  user when creating items
 * saving animation (navigation through time)
 * user-editable notes
 * custom scene background

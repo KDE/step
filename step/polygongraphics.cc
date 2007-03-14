@@ -1,0 +1,167 @@
+/* This file is part of Step.
+   Copyright (C) 2007 Vladimir Kuznetsov <ks.vladimir@gmail.com>
+
+   Step is free software; you can redistribute it and/or modify
+   it under the terms of the GNU General Public License as published by
+   the Free Software Foundation; either version 2 of the License, or
+   (at your option) any later version.
+
+   Step is distributed in the hope that it will be useful,
+   but WITHOUT ANY WARRANTY; without even the implied warranty of
+   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+   GNU General Public License for more details.
+
+   You should have received a copy of the GNU General Public License
+   along with Step; if not, write to the Free Software
+   Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
+*/
+
+#include "polygongraphics.h"
+
+#include <stepcore/constants.h>
+#include "worldmodel.h"
+#include "worldfactory.h"
+#include <QItemSelectionModel>
+#include <QGraphicsSceneMouseEvent>
+#include <QEvent>
+#include <QPainter>
+#include <KLocale>
+
+bool PolygonCreator::sceneEvent(QEvent* event)
+{
+    if(event->type() == QEvent::GraphicsSceneMousePress) {
+        QGraphicsSceneMouseEvent* mouseEvent = static_cast<QGraphicsSceneMouseEvent*>(event);
+        QPointF pos = mouseEvent->scenePos();
+        QVariant vpos = QVariant::fromValue(WorldGraphicsItem::pointToVector(pos));
+        _worldModel->beginMacro(i18n("Create %1", _className));
+        _item = _worldModel->newItem(_className); Q_ASSERT(_item != NULL);
+        _worldModel->setProperty(_item, _item->metaObject()->property("position"), vpos);
+        _worldModel->setProperty(_item, _item->metaObject()->property("vertexes"),
+                                        QString("((10,10),(10,-10),(-10,-10),(-10,10))"));
+        _worldModel->selectionModel()->setCurrentIndex(_worldModel->objectIndex(_item),
+                                                    QItemSelectionModel::ClearAndSelect);
+        _worldModel->endMacro();
+        event->accept();
+        return true;
+    }
+    return false;
+}
+
+PolygonGraphicsItem::PolygonGraphicsItem(StepCore::Item* item, WorldModel* worldModel)
+    : WorldGraphicsItem(item, worldModel)
+{
+    Q_ASSERT(dynamic_cast<StepCore::Polygon*>(_item) != NULL);
+    setFlag(QGraphicsItem::ItemIsSelectable);
+    setFlag(QGraphicsItem::ItemIsMovable);
+    setAcceptsHoverEvents(true);
+    _velocityHandler = new ArrowHandlerGraphicsItem(item, worldModel, this,
+                   _item->metaObject()->property("velocity"));
+    _velocityHandler->setVisible(false);
+    //scene()->addItem(_velocityHandler);
+}
+
+inline StepCore::Polygon* PolygonGraphicsItem::polygon() const
+{
+    return static_cast<StepCore::Polygon*>(_item);
+}
+
+QPainterPath PolygonGraphicsItem::shape() const
+{
+    return _painterPath;
+    //QPainterPath path;
+    //double radius = (RADIUS+1)/currentViewScale();
+    //path.addEllipse(QRectF(-radius,-radius,radius*2,radius*2));
+    //return path;
+}
+
+void PolygonGraphicsItem::paint(QPainter* painter, const QStyleOptionGraphicsItem* /*option*/, QWidget* /*widget*/)
+{
+    //painter->setPen(QPen(Qt::green, 0));
+    //painter->drawRect(boundingRect());
+
+    //painter->save();
+    int renderHints = painter->renderHints();
+    painter->setRenderHint(QPainter::Antialiasing, true);
+    painter->setPen(QPen(Qt::black, 0));
+    painter->setBrush(QBrush(Qt::black));
+    painter->drawPath(_painterPath);
+    //painter->rotate(polygon()->angle() * 180 / StepCore::Constants::Pi);
+    //painter->drawRect(QRectF(-radius,-radius,radius*2,radius*2));
+    //painter->setBrush(QBrush());
+    painter->setRenderHint(QPainter::Antialiasing, renderHints & QPainter::Antialiasing);
+    //painter->restore();
+
+    if(isSelected()) {
+        // XXX: do it better
+        double s = currentViewScale();
+        QRectF rect = _painterPath.boundingRect();
+        rect.adjust(-SELECTION_MARGIN/s, -SELECTION_MARGIN/s, SELECTION_MARGIN/s, SELECTION_MARGIN/s);
+        //double bs = qMin((b.width() + 2*SELECTION_MARGIN/s)/b.width(), (b.height() + 2*SELECTION_MARGIN/s)/b.height());
+        //QPainterPath selPainterPath = QMatrix().scale(bs, bs).map(_painterPath);
+        //
+        painter->setRenderHint(QPainter::Antialiasing, true);
+        painter->setPen(QPen(SELECTION_COLOR, 0, Qt::DashLine));
+        painter->setBrush(QBrush());
+        painter->drawRect(rect);
+        //radius = (RADIUS+SELECTION_MARGIN)/s;
+        //painter->drawEllipse(QRectF(-radius, -radius, radius*2, radius*2));
+        //painter->drawPath(_painterPath);
+        painter->setRenderHint(QPainter::Antialiasing, renderHints & QPainter::Antialiasing);
+    }
+
+    if(isSelected() || _isMouseOverItem) {
+        painter->setPen(QPen(Qt::blue, 0));
+        drawArrow(painter, polygon()->velocity());
+        painter->setPen(QPen(Qt::red, 0));
+        drawArrow(painter, polygon()->force()/polygon()->mass());
+    }
+}
+
+void PolygonGraphicsItem::advance(int phase)
+{
+    if(phase == 0) return;
+    prepareGeometryChange();
+
+    const StepCore::Vector2d& r = polygon()->position();
+    const StepCore::Vector2d& v = polygon()->velocity();
+    const StepCore::Vector2d  a = polygon()->force() / polygon()->mass();
+    double s = currentViewScale();
+
+    _painterPath = QPainterPath();
+
+    if(polygon()->vertexes().size() > 0) {
+        _painterPath.moveTo(vectorToPoint( polygon()->vertexes()[0] ));
+        for(unsigned int i=1; i<polygon()->vertexes().size(); ++i) {
+            _painterPath.lineTo(vectorToPoint( polygon()->vertexes()[i] ));
+        }
+        _painterPath.closeSubpath();
+        _painterPath = QMatrix().rotate(polygon()->angle() * 180 / StepCore::Constants::Pi).map(_painterPath);
+    } else _painterPath.addEllipse(-1/s, -1/s, 2/s, 2/s);
+
+    _boundingRect = _painterPath.boundingRect() 
+                    | QRectF(0, 0, v[0], v[1]).normalized()
+                    | QRectF(0, 0, a[0], a[1]).normalized();
+    _boundingRect.adjust(-ARROW_STROKE-SELECTION_MARGIN,-ARROW_STROKE-SELECTION_MARGIN,
+                          ARROW_STROKE+SELECTION_MARGIN, ARROW_STROKE+SELECTION_MARGIN);
+    setPos(r[0], r[1]);
+    update(); // XXX: documentation says this is unnessesary, but it doesn't work without it
+}
+
+void PolygonGraphicsItem::mouseSetPos(const QPointF& pos, const QPointF& /*diff*/)
+{
+    _worldModel->setProperty(_item, _item->metaObject()->property("position"),
+                                QVariant::fromValue(pointToVector(pos)));
+}
+
+QVariant PolygonGraphicsItem::itemChange(GraphicsItemChange change, const QVariant& value)
+{
+    if(change == QGraphicsItem::ItemSelectedChange && scene()) {
+        if(value.toBool()) {
+            _velocityHandler->setVisible(true);
+        } else {
+            _velocityHandler->setVisible(false);
+        }
+    }
+    return WorldGraphicsItem::itemChange(change, value);
+}
+

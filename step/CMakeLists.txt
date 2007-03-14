@@ -8,6 +8,7 @@ set(step_SRCS
     itempalette.cc
     worldfactory.cc
     particlegraphics.cc
+    polygongraphics.cc
     springgraphics.cc
     main.cc
 )

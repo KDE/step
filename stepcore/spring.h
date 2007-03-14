@@ -26,6 +26,7 @@
 #include "world.h"
 #include "object.h"
 #include "particle.h"
+#include "rigidbody.h"
 #include "vector.h"
 
 #include <QString>
@@ -98,10 +99,10 @@ public:
 
     /** Set pointer to the first connected body
      * \todo XXX check world */
-    void setBodyPtr1(Body* bodyPtr1) { _bodyPtr1 = dynamic_cast<Particle*>(bodyPtr1); }
+    void setBodyPtr1(Body* bodyPtr1);
     /** Set pointer to the second connected body
      * \todo XXX check world */
-    void setBodyPtr2(Body* bodyPtr2) { _bodyPtr2 = dynamic_cast<Particle*>(bodyPtr2); }
+    void setBodyPtr2(Body* bodyPtr2);
 
 #ifdef STEPCORE_WITH_QT
     /** Set first connected body by name */
@@ -114,15 +115,28 @@ public:
     QString body2() const { return _bodyPtr2 ? dynamic_cast<Item*>(_bodyPtr2)->name() : QString(); }
 #endif
 
+    /** Local position of the first end of the spring on the body
+     *  or in the world (if the end is not connected) */
+    Vector2d localPosition1() const { return _localPosition1; }
+    /** Set local position of the first end of the spring on the body
+     *  or in the world (if the end is not connected) */
+    void setLocalPosition1(const Vector2d& localPosition1) { _localPosition1 = localPosition1; }
+    /** Local position of the second end of the spring on the body
+     *  or in the world (if the end is not connected) */
+    Vector2d localPosition2() const { return _localPosition2; }
+    /** Set local position of the second end of the spring on the body
+     *  or in the world (if the end is not connected) */
+    void setLocalPosition2(const Vector2d& localPosition2) { _localPosition2 = localPosition2; }
+
     /** Position of the first end of the spring */
     Vector2d position1() const;
     /** Set position of the first end of the spring (will be ignored the end is connected) */
-    void setPosition1(const Vector2d& position1) { if(!_bodyPtr1) _position1 = position1; }
+    //void setPosition1(const Vector2d& position1) { if(!_bodyPtr1) _position1 = position1; }
 
     /** Position of the second end of the spring */
     Vector2d position2() const;
     /** Set position of the second end of the spring (will be ignored the end is connected) */
-    void setPosition2(const Vector2d& position2) { if(!_bodyPtr2) _position2 = position2; }
+    //void setPosition2(const Vector2d& position2) { if(!_bodyPtr2) _position2 = position2; }
 
     void worldItemRemoved(Item* item);
     void setWorld(World* world);
@@ -130,8 +144,10 @@ public:
 protected:
     double _restLength;
     double _stiffness;
-    StepCore::Vector2d _position1;
-    StepCore::Vector2d _position2;
+    StepCore::Vector2d _localPosition1;
+    StepCore::Vector2d _localPosition2;
+    //StepCore::Vector2d _position1;
+    //StepCore::Vector2d _position2;
 };
 
 } // namespace StepCore

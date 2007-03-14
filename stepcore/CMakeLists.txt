@@ -7,6 +7,7 @@ set(stepcore_SRCS
     factory.cc
     xmlfile.cc
     particle.cc
+    rigidbody.cc
     gravitation.cc
     coulombforce.cc
     spring.cc

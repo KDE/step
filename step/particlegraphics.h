@@ -16,8 +16,8 @@
    Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
 */
 
-#ifndef STEP_PARTICLEFACTORY_H
-#define STEP_PARTICLEFACTORY_H
+#ifndef STEP_PARTICLEGRAPHICS_H
+#define STEP_PARTICLEGRAPHICS_H
 
 #include "worldgraphics.h"
 #include <stepcore/particle.h>

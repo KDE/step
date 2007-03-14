@@ -25,6 +25,7 @@
 
 #include "object.h"
 #include "vector.h"
+#include <vector>
 
 namespace StepCore {
 
@@ -47,7 +48,52 @@ template<> inline Vector2d stringToType(const QString& s, bool *ok)
     return v;
 }
 
+template<> inline QString typeToString(const std::vector<Vector2d>& v)
+{
+    QString ret;
+    for(std::vector<Vector2d>::const_iterator it = v.begin(); it != v.end(); ++it) {
+        if(ret.isEmpty()) ret = QString("(");
+        else ret += ",";
+        ret += QString("(%1,%2)").arg((*it)[0]).arg((*it)[1]);
+    }
+    if(ret.isEmpty()) ret = QString("()");
+    else ret += ")";
+    return ret;
+}
+
+template<> inline std::vector<Vector2d> stringToType(const QString& s, bool *ok)
+{
+    // XXX: Write something better
+    std::vector<Vector2d> ret;
+    if(ok) *ok = false;
+    QString s1 = s.trimmed();
+    if(!s1.startsWith('(') || !s1.endsWith(')')) return ret;
+    s1 = s1.mid(1, s1.size()-2).trimmed();
+    while(s1[0] == '(' && s1.contains(')')) {
+        bool ok; double d1, d2;
+        s1 = s1.mid(1);
+        d1 = s1.section(',',0,0).toDouble(&ok);
+        if(!ok) return std::vector<Vector2d>();
+        s1 = s1.section(',',1);
+        d2 = s1.section(')',0,0).toDouble(&ok);
+        if(!ok) return std::vector<Vector2d>();
+        s1 = s1.section(')',1).trimmed();
+        ret.push_back(Vector2d(d1, d2));
+        if(s1.isEmpty()) break;
+        if(s1[0] != ',') return std::vector<Vector2d>();
+        s1 = s1.mid(1).trimmed();
+    }
+    if(!s1.isEmpty()) return std::vector<Vector2d>();
+    if(ok) *ok = true;
+    return ret;
+}
+
 } // namespace StepCore
+
+#ifdef STEPCORE_WITH_QT
+Q_DECLARE_METATYPE(std::vector<StepCore::Vector2d>)
+#endif
+
 
 #endif
 

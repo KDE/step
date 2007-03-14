@@ -57,7 +57,7 @@ WorldGraphicsItem::WorldGraphicsItem(StepCore::Item* item, WorldModel* worldMode
     : QGraphicsItem(parent), _item(item), _worldModel(worldModel), _isMouseOverItem(false), _isMoving(false)
 {
     // XXX: use persistant indexes here and in propertiesbrowser
-    setZValue(100);
+    setZValue(BODY_ZVALUE);
 }
 
 QRectF WorldGraphicsItem::boundingRect() const
@@ -188,7 +188,7 @@ ArrowHandlerGraphicsItem::ArrowHandlerGraphicsItem(StepCore::Item* item, WorldMo
 {
     Q_ASSERT(_property->userTypeId() == qMetaTypeId<StepCore::Vector2d>());
     setFlag(QGraphicsItem::ItemIsMovable);
-    setZValue(500);
+    setZValue(HANDLER_ZVALUE);
 }
 
 void ArrowHandlerGraphicsItem::paint(QPainter* painter, const QStyleOptionGraphicsItem* /*option*/, QWidget* /*widget*/)

@@ -16,38 +16,28 @@
    Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
 */
 
-#ifndef STEP_SPRINGGRAPHICS_H
-#define STEP_SPRINGGRAPHICS_H
+#ifndef STEP_POLYGONGRAPHICS_H
+#define STEP_POLYGONGRAPHICS_H
+
+/*+++++++++ XXX +++++++++++
+ * This need to be redone
+ */
 
 #include "worldgraphics.h"
-#include <stepcore/spring.h>
+#include <QPainterPath>
+#include <stepcore/rigidbody.h>
 
-class SpringCreator: public ItemCreator
+class PolygonCreator: public ItemCreator
 {
 public:
-    SpringCreator(const QString& className, WorldModel* worldModel, WorldScene* worldScene)
+    PolygonCreator(const QString& className, WorldModel* worldModel, WorldScene* worldScene)
                         : ItemCreator(className, worldModel, worldScene) {}
     bool sceneEvent(QEvent* event);
 };
 
-class SpringHandlerGraphicsItem: public WorldGraphicsItem {
+class PolygonGraphicsItem: public WorldGraphicsItem {
 public:
-    SpringHandlerGraphicsItem(StepCore::Item* item, WorldModel* worldModel,
-                                QGraphicsItem* parent, int num);
-
-    void paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget);
-    void advance(int phase);
-
-protected:
-    void mouseMoveEvent(QGraphicsSceneMouseEvent *event);
-    void mouseReleaseEvent(QGraphicsSceneMouseEvent *event);
-    int _num;
-    bool _moving;
-};
-
-class SpringGraphicsItem: public WorldGraphicsItem {
-public:
-    SpringGraphicsItem(StepCore::Item* item, WorldModel* worldModel);
+    PolygonGraphicsItem(StepCore::Item* item, WorldModel* worldModel);
 
     QPainterPath shape() const;
     void paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget);
@@ -56,17 +46,12 @@ public:
 protected:
     QVariant itemChange(GraphicsItemChange change, const QVariant& value);
     void mouseSetPos(const QPointF& pos, const QPointF& diff);
-    StepCore::Spring* spring() const;
-    double _rnorm;
-    double _rscale;
-    double _radius;
+    StepCore::Polygon* polygon() const;
+    QPainterPath _painterPath;
 
-    SpringHandlerGraphicsItem* _handler1;
-    SpringHandlerGraphicsItem* _handler2;
+    ArrowHandlerGraphicsItem *_velocityHandler;
 
-    static const int RADIUS = 6;
-
-    friend class SpringCreator;
+    static const int RADIUS = 7;
 };
 
 #endif

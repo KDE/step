@@ -93,6 +93,10 @@ protected:
     static const int SELECTION_MARGIN = 4;
     static const int ARROW_STROKE = 6;
     static const int HANDLER_SIZE = 6;
+
+    static const int BODY_ZVALUE = 100;
+    static const int FORCE_ZVALUE = 200;
+    static const int HANDLER_ZVALUE = 500;
 };
 
 class ArrowHandlerGraphicsItem: public WorldGraphicsItem {

@@ -22,6 +22,7 @@
 
 #include <stepcore/world.h>
 #include <stepcore/particle.h>
+#include <stepcore/rigidbody.h>
 #include <stepcore/gravitation.h>
 #include <stepcore/coulombforce.h>
 #include <stepcore/spring.h>
@@ -30,6 +31,7 @@
 #include <stepcore/types.h>
 
 #include "particlegraphics.h"
+#include "polygongraphics.h"
 #include "springgraphics.h"
 
 #include <QItemSelectionModel>
@@ -70,6 +72,8 @@ WorldFactory::WorldFactory()
 
     __REGISTER_EXT(Particle, ParticleCreator, ParticleGraphicsItem);
     __REGISTER_EXT(ChargedParticle, ParticleCreator, ParticleGraphicsItem);
+
+    __REGISTER_EXT(Polygon, PolygonCreator, PolygonGraphicsItem);
 
     __REGISTER_EXT(Spring, SpringCreator, SpringGraphicsItem);
 
