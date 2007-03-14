@@ -73,12 +73,12 @@ void SpringCreator::tryAttach(const QPointF& pos, int num)
             if(num == 1) _worldModel->setProperty(_item, _item->metaObject()->property("body1"), item->name(), false);
             else         _worldModel->setProperty(_item, _item->metaObject()->property("body2"), item->name(), false);
 
-            if(dynamic_cast<StepCore::RigidBody*>(item)) {
-                StepCore::Vector2d lPos =
-                    dynamic_cast<StepCore::RigidBody*>(item)->pointWorldToLocal(WorldGraphicsItem::pointToVector(pos));
-                if(num == 1) _worldModel->setProperty(_item, _item->metaObject()->property("localPosition1"), QVariant::fromValue(lPos));
-                else         _worldModel->setProperty(_item, _item->metaObject()->property("localPosition2"), QVariant::fromValue(lPos));
-            }
+            StepCore::Vector2d lPos(0, 0);
+            if(dynamic_cast<StepCore::RigidBody*>(item))
+                lPos = dynamic_cast<StepCore::RigidBody*>(item)->pointWorldToLocal(WorldGraphicsItem::pointToVector(pos));
+
+            if(num == 1) _worldModel->setProperty(_item, _item->metaObject()->property("localPosition1"), QVariant::fromValue(lPos));
+            else         _worldModel->setProperty(_item, _item->metaObject()->property("localPosition2"), QVariant::fromValue(lPos));
 
             _worldModel->setProperty(_item, _item->metaObject()->property("restLength"), 
                                                 static_cast<StepCore::Spring*>(_item)->length());
@@ -146,12 +146,12 @@ void SpringHandlerGraphicsItem::mouseReleaseEvent(QGraphicsSceneMouseEvent *even
                 if(_num == 1) _worldModel->setProperty(_item, _item->metaObject()->property("body1"), item->name(), false);
                 else          _worldModel->setProperty(_item, _item->metaObject()->property("body2"), item->name(), false);
 
-                if(dynamic_cast<StepCore::RigidBody*>(item)) {
-                    StepCore::Vector2d lPos =
-                        dynamic_cast<StepCore::RigidBody*>(item)->pointWorldToLocal(WorldGraphicsItem::pointToVector(pos));
-                    if(_num == 1) _worldModel->setProperty(_item, _item->metaObject()->property("localPosition1"), QVariant::fromValue(lPos));
-                    else          _worldModel->setProperty(_item, _item->metaObject()->property("localPosition2"), QVariant::fromValue(lPos));
-                }
+                StepCore::Vector2d lPos(0, 0);
+                if(dynamic_cast<StepCore::RigidBody*>(item))
+                    lPos = dynamic_cast<StepCore::RigidBody*>(item)->pointWorldToLocal(WorldGraphicsItem::pointToVector(pos));
+
+                if(_num == 1) _worldModel->setProperty(_item, _item->metaObject()->property("localPosition1"), QVariant::fromValue(lPos));
+                else          _worldModel->setProperty(_item, _item->metaObject()->property("localPosition2"), QVariant::fromValue(lPos));
 
                 break;
             }
@@ -288,14 +288,20 @@ void SpringGraphicsItem::mouseSetPos(const QPointF& /*pos*/, const QPointF& diff
     if(item1) {
         WorldGraphicsItem* gItem = dynamic_cast<WorldScene*>(scene())->graphicsFromItem(item1);
         Q_ASSERT(gItem != NULL);
-        if(!gItem->isSelected())
+        if(!gItem->isSelected()) {
+            _worldModel->setProperty(_item, _item->metaObject()->property("localPosition1"),
+                                        _item->metaObject()->property("position1")->readVariant(_item));
             _worldModel->setProperty(_item, _item->metaObject()->property("body1"), QString(), false);
+        }
     }
     if(item2) {
         WorldGraphicsItem* gItem = dynamic_cast<WorldScene*>(scene())->graphicsFromItem(item2);
         Q_ASSERT(gItem != NULL);
-        if(!gItem->isSelected())
+        if(!gItem->isSelected()) {
+            _worldModel->setProperty(_item, _item->metaObject()->property("localPosition2"),
+                                        _item->metaObject()->property("position2")->readVariant(_item));
             _worldModel->setProperty(_item, _item->metaObject()->property("body2"), QString(), false);
+        }
     }
 
     if(!spring()->bodyPtr1())

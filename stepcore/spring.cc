@@ -95,13 +95,13 @@ void Spring::setBody2(const QString& body2)
 void Spring::setBodyPtr1(Body* bodyPtr1)
 {
     if(dynamic_cast<Particle*>(bodyPtr1) || dynamic_cast<RigidBody*>(bodyPtr1)) {
-        _localPosition1.setZero();
+        //_localPosition1.setZero();
         _bodyPtr1 = bodyPtr1;
     } else {
-        Particle* p1 = dynamic_cast<Particle*>(_bodyPtr1);
-        RigidBody* r1 = dynamic_cast<RigidBody*>(_bodyPtr1);
-        if(p1) _localPosition1 = p1->position();
-        else if(r1) _localPosition1 = r1->position();
+        //Particle* p1 = dynamic_cast<Particle*>(_bodyPtr1);
+        //RigidBody* r1 = dynamic_cast<RigidBody*>(_bodyPtr1);
+        //if(p1) _localPosition1 = p1->position();
+        //else if(r1) _localPosition1 = r1->position();
         _bodyPtr1 = NULL;
     }
 }
@@ -109,13 +109,13 @@ void Spring::setBodyPtr1(Body* bodyPtr1)
 void Spring::setBodyPtr2(Body* bodyPtr2)
 {
     if(dynamic_cast<Particle*>(bodyPtr2) || dynamic_cast<RigidBody*>(bodyPtr2)) {
-        _localPosition2.setZero();
+        //_localPosition2.setZero();
         _bodyPtr2 = bodyPtr2;
     } else {
-        Particle* p2 = dynamic_cast<Particle*>(_bodyPtr2);
-        RigidBody* r2 = dynamic_cast<RigidBody*>(_bodyPtr2);
-        if(p2) _localPosition2 = p2->position();
-        else if(r2) _localPosition2 = r2->position();
+        //Particle* p2 = dynamic_cast<Particle*>(_bodyPtr2);
+        //RigidBody* r2 = dynamic_cast<RigidBody*>(_bodyPtr2);
+        //if(p2) _localPosition2 = p2->position();
+        //else if(r2) _localPosition2 = r2->position();
         _bodyPtr2 = NULL;
     }
 }
@@ -146,17 +146,17 @@ void Spring::worldItemRemoved(Item* item)
 {
     if(item == NULL) return;
     if(item == dynamic_cast<Item*>(_bodyPtr1)) {
-        Particle* p1 = dynamic_cast<Particle*>(_bodyPtr1);
-        RigidBody* r1 = dynamic_cast<RigidBody*>(_bodyPtr1);
-        if(p1) _localPosition1 = p1->position();
-        else if(r1) _localPosition1 = r1->position();
+        //Particle* p1 = dynamic_cast<Particle*>(_bodyPtr1);
+        //RigidBody* r1 = dynamic_cast<RigidBody*>(_bodyPtr1);
+        //if(p1) _localPosition1 = p1->position();
+        //else if(r1) _localPosition1 = r1->position();
         _bodyPtr1 = NULL;
     }
     if(item == dynamic_cast<Item*>(_bodyPtr2)) {
-        Particle* p2 = dynamic_cast<Particle*>(_bodyPtr2);
-        RigidBody* r2 = dynamic_cast<RigidBody*>(_bodyPtr2);
-        if(p2) _localPosition2 = p2->position();
-        else if(r2) _localPosition2 = r2->position();
+        //Particle* p2 = dynamic_cast<Particle*>(_bodyPtr2);
+        //RigidBody* r2 = dynamic_cast<RigidBody*>(_bodyPtr2);
+        //if(p2) _localPosition2 = p2->position();
+        //else if(r2) _localPosition2 = r2->position();
         _bodyPtr2 = NULL;
     }
 }
