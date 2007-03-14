@@ -33,6 +33,10 @@ public:
     PolygonCreator(const QString& className, WorldModel* worldModel, WorldScene* worldScene)
                         : ItemCreator(className, worldModel, worldScene) {}
     bool sceneEvent(QEvent* event);
+
+protected:
+    void fixCenterOfMass();
+    void fixInertia();
 };
 
 class PolygonGraphicsItem: public WorldGraphicsItem {

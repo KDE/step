@@ -19,6 +19,7 @@
 #include "polygongraphics.h"
 
 #include <stepcore/constants.h>
+#include <stepcore/types.h>
 #include "worldmodel.h"
 #include "worldfactory.h"
 #include <QItemSelectionModel>
@@ -27,6 +28,83 @@
 #include <QKeyEvent>
 #include <QPainter>
 #include <KLocale>
+
+void PolygonCreator::fixCenterOfMass()
+{
+    std::vector<StepCore::Vector2d> v = static_cast<StepCore::Polygon*>(_item)->vertexes();
+    StepCore::Vector2d position = static_cast<StepCore::Polygon*>(_item)->position();
+
+    StepCore::Vector2d center(0, 0);
+    double area_i, area = 0;
+    unsigned int i;
+
+    if(v.size() == 1) center = v[0];
+    else {
+        if(v.size() > 2) {
+            for(i=0; i+1<v.size(); ++i) {
+                area_i = (v[i][0]*v[i+1][1] - v[i][1]*v[i+1][0]) / 2;
+                center += (v[i] + v[i+1]) * (area_i/3);
+                area += area_i;
+            }
+            area_i = (v[i][0]*v[0][1] - v[i][1]*v[0][0]) / 2;
+            center += (v[i] + v[0]) * (area_i/3);
+            area += area_i;
+        }
+
+        if(area == 0) { // all vertexes on one line
+            center.setZero();
+            for(i=0; i+1<v.size(); ++i) {
+                area_i = (v[i+1] - v[i]).norm();
+                center += (v[i] + v[i+1]) * (area_i/2);
+                area += area_i;
+            }
+        }
+
+        if(area == 0) center = v[0]; // all vertexes are at one point
+        else center /= area;
+    }
+
+    for(i=0; i<v.size(); ++i) v[i] -= center;
+    _worldModel->setProperty(_item, _item->metaObject()->property("position"), QVariant::fromValue(position + center));
+    _worldModel->setProperty(_item, _item->metaObject()->property("vertexes"), QVariant::fromValue(v));
+}
+
+void PolygonCreator::fixInertia()
+{
+    // XXX: unite it with fixCenterOfMass
+    const std::vector<StepCore::Vector2d>& v = static_cast<StepCore::Polygon*>(_item)->vertexes();
+    double mass = static_cast<StepCore::Polygon*>(_item)->mass();
+    double area_i, area = 0;
+    double inertia = 0;
+    unsigned int i;
+
+    if(v.size() > 2) {
+        if(v.size() > 2) {
+            for(i=0; i+1<v.size(); ++i) {
+                area_i = (v[i][0]*v[i+1][1] - v[i][1]*v[i+1][0]) / 2;
+                inertia += (v[i].norm2() + v[i].innerProduct(v[i+1]) + v[i+1].norm2())*(area_i/6);
+                area += area_i;
+            }
+            area_i = (v[i][0]*v[0][1] - v[i][1]*v[0][0]) / 2;
+            inertia += (v[i].norm2() + v[i].innerProduct(v[0]) + v[0].norm2())*(area_i/6);
+            area += area_i;
+        }
+    }
+
+    if(area == 0) { // all vertexes on one line
+        inertia = 0;
+        for(i=0; i+1<v.size(); ++i) {
+            area_i = (v[i+1] - v[i]).norm();
+            inertia += area_i*area_i*area_i / 12 + area_i * (v[i]+v[i+1]).norm2() / 4;
+            area += area_i;
+        }
+
+        if(area == 0) inertia = 0; // all vertexes are at one point
+        else inertia /= area;
+    }
+
+    _worldModel->setProperty(_item, _item->metaObject()->property("inertia"), QVariant::fromValue(inertia*mass));
+}
 
 bool PolygonCreator::sceneEvent(QEvent* event)
 {
@@ -71,11 +149,15 @@ bool PolygonCreator::sceneEvent(QEvent* event)
             _worldModel->setProperty(_item, _item->metaObject()->property("vertexes"), vertexes);
         }
         
+        //fixCenterOfMass();
+        //fixInertia();
         event->accept();
         return false;
 
     } else if(_item && event->type() == QEvent::KeyPress &&
                 static_cast<QKeyEvent*>(event)->key() == Qt::Key_Return) {
+        fixCenterOfMass();
+        fixInertia();
         _worldModel->endMacro();
         event->accept();
         return true;
