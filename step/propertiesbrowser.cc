@@ -212,11 +212,10 @@ bool PropertiesBrowserModel::setData(const QModelIndex &index, const QVariant &v
                         p->readVariant(_object).value<std::vector<StepCore::Vector2d> >();
             bool ok;
             v[index.row()] = StepCore::stringToType<StepCore::Vector2d>(value.toString(), &ok);
-            if(!ok) return false;
+            if(!ok) return true; // dataChanged should be emitted anyway
             _worldModel->beginMacro(i18n("Edit %1", _object->name()));
             _worldModel->setProperty(_object, p, QVariant::fromValue(v));
             _worldModel->endMacro();
-            return true;
         }
         return true;
     }
@@ -346,6 +345,8 @@ PropertiesBrowser::PropertiesBrowser(WorldModel* worldModel, QWidget* parent, Qt
     worldCurrentChanged(_worldModel->worldIndex(), QModelIndex());
 
     QObject::connect(_worldModel, SIGNAL(modelReset()), this, SLOT(worldModelReset()));
+    QObject::connect(_propertiesBrowserModel, SIGNAL(dataChanged(const QModelIndex&, const QModelIndex&)),
+                                          this, SLOT(dataChanged(const QModelIndex&, const QModelIndex&)));
     QObject::connect(_worldModel, SIGNAL(dataChanged(const QModelIndex&, const QModelIndex&)),
                          this, SLOT(worldDataChanged(const QModelIndex&, const QModelIndex&)));
     QObject::connect(_worldModel->selectionModel(), SIGNAL(currentChanged(const QModelIndex&, const QModelIndex&)),
@@ -368,7 +369,10 @@ void PropertiesBrowser::worldCurrentChanged(const QModelIndex& current, const QM
 void PropertiesBrowser::worldDataChanged(const QModelIndex& /*topLeft*/, const QModelIndex& /*bottomRight*/)
 {
     _propertiesBrowserModel->emitDataChanged();
-    //_treeView->expandAll();
 }
 
+void PropertiesBrowser::dataChanged(const QModelIndex& /*topLeft*/, const QModelIndex& /*bottomRight*/)
+{
+    _treeView->selectionModel()->setCurrentIndex(QModelIndex(), QItemSelectionModel::Current);
+}
 
