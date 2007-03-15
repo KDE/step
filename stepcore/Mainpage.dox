@@ -118,12 +118,8 @@ manage all movement restrictions - anchors, collisions, etc. Restrictions
 will be calculated after Forces and will compute force adjustments. More
 details are still to be decided.
 
-Qt in StepCore is used as a quick way to implement reflections (Q_PROPERTY)
-and XML file support. Currently StepCore can be compiled without Qt (and
-without reflections and XML file support) and in the future dependency on
-Qt can be removed completely (by moving XmlFile support to Step and
-providing manual reflections in Factory classes - it will allow some new
-features for Step as well).
+StepCore still depends on Qt (it uses QString, QVariant and QXml), this
+dependency will be removed in the future.
 
 Vector is a template for generic fixed-length vector with some common
 methods on it. This is quite simple, if StepCore will require more I will
