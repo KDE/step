@@ -1,32 +1,76 @@
-## 
-## Try to find gnu scientific library GSL  
-## (see http://www.gnu.org/software/gsl/)
-## Once run this will define: 
-## 
-## GSL_FOUND       = system has GSL lib
-##
-## GSL_LIBRARIES   = full path to the libraries
-##    on Unix/Linux with additional linker flags from "gsl-config --libs"
-## 
-## CMAKE_GSL_CXX_FLAGS  = Unix compiler flags for GSL, essentially "`gsl-config --cxxflags`"
-##
-## GSL_INCLUDE_DIR      = where to find headers 
-##
-## GSL_LINK_DIRECTORIES = link directories, useful for rpath on Unix
-## GSL_EXE_LINKER_FLAGS = rpath on Unix
-##
-## Felix Woelk 07/2004
-## minor corrections Jan Woetzel
-##
-## www.mip.informatik.uni-kiel.de
-## --------------------------------
+# Try to find gnu scientific library GSL
+# See 
+# http://www.gnu.org/software/gsl/  and 
+# http://gnuwin32.sourceforge.net/packages/gsl.htm
+#
+# Once run this will define: 
+# 
+# GSL_FOUND       = system has GSL lib
+#
+# GSL_LIBRARIES   = full path to the libraries
+#    on Unix/Linux with additional linker flags from "gsl-config --libs"
+# 
+# CMAKE_GSL_CXX_FLAGS  = Unix compiler flags for GSL, essentially "`gsl-config --cxxflags`"
+#
+# GSL_INCLUDE_DIR      = where to find headers 
+#
+# GSL_LINK_DIRECTORIES = link directories, useful for rpath on Unix
+# GSL_EXE_LINKER_FLAGS = rpath on Unix
+#
+# Felix Woelk 07/2004
+# Jan Woetzel
+#
+# www.mip.informatik.uni-kiel.de
+# --------------------------------
 
 IF(WIN32)
-  MESSAGE(SEND_ERROR "FindGSL.cmake: gnu scientific library GSL not (yet) supported on WIN32")
+  # JW tested with gsl-1.8, Windows XP, MSVS 7.1
+  SET(GSL_POSSIBLE_ROOT_DIRS
+    ${GSL_ROOT_DIR}
+    $ENV{GSL_ROOT_DIR}
+    ${GSL_DIR}
+    ${GSL_HOME}    
+    $ENV{GSL_DIR}
+    $ENV{GSL_HOME}
+    $ENV{EXTRA}
+    "C:/home/jw/source2/gsl-1.8"
+    )
+  FIND_PATH(GSL_INCLUDE_DIR
+    NAMES gsl/gsl_cdf.h gsl/gsl_randist.h
+    PATHS ${GSL_POSSIBLE_ROOT_DIRS}
+    PATH_SUFFIXES include
+    DOC "GSL header include dir"
+    )
   
+  FIND_LIBRARY(GSL_GSL_LIBRARY
+    NAMES gsl libgsl
+    PATHS  ${GSL_POSSIBLE_ROOT_DIRS}
+    PATH_SUFFIXES lib
+    DOC "GSL library dir" )  
+  
+  FIND_LIBRARY(GSL_GSLCBLAS_LIBRARY
+    NAMES gslcblas libgslcblas
+    PATHS  ${GSL_POSSIBLE_ROOT_DIRS}
+    PATH_SUFFIXES lib
+    DOC "GSL cblas library dir" )
+  
+  SET(GSL_LIBRARIES ${GSL_GSL_LIBRARY})
+
+  #MESSAGE("DBG\n"
+  #  "GSL_GSL_LIBRARY=${GSL_GSL_LIBRARY}\n"
+  #  "GSL_GSLCBLAS_LIBRARY=${GSL_GSLCBLAS_LIBRARY}\n"
+  #  "GSL_LIBRARIES=${GSL_LIBRARIES}")
+
+
 ELSE(WIN32)
+  
   IF(UNIX) 
-    SET(GSL_CONFIG_PREFER_PATH "$ENV{GSL_HOME}/bin" CACHE STRING "preferred path to OpenSG (osg-config)")
+    SET(GSL_CONFIG_PREFER_PATH 
+      "$ENV{GSL_DIR}/bin"
+      "$ENV{GSL_DIR}"
+      "$ENV{GSL_HOME}/bin" 
+      "$ENV{GSL_HOME}" 
+      CACHE STRING "preferred path to GSL (gsl-config)")
     FIND_PROGRAM(GSL_CONFIG gsl-config
       ${GSL_CONFIG_PREFER_PATH}
       /usr/bin/
@@ -46,20 +90,20 @@ ELSE(WIN32)
       # set link libraries and link flags
       SET(GSL_LIBRARIES "`${GSL_CONFIG} --libs`")
       
-      ## extract link dirs for rpath  
+      # extract link dirs for rpath  
       EXEC_PROGRAM(${GSL_CONFIG}
         ARGS --libs
         OUTPUT_VARIABLE GSL_CONFIG_LIBS )
 
-      ## split off the link dirs (for rpath)
-      ## use regular expression to match wildcard equivalent "-L*<endchar>"
-      ## with <endchar> is a space or a semicolon
+      # split off the link dirs (for rpath)
+      # use regular expression to match wildcard equivalent "-L*<endchar>"
+      # with <endchar> is a space or a semicolon
       STRING(REGEX MATCHALL "[-][L]([^ ;])+" 
         GSL_LINK_DIRECTORIES_WITH_PREFIX 
         "${GSL_CONFIG_LIBS}" )
-        #      MESSAGE("DBG  GSL_LINK_DIRECTORIES_WITH_PREFIX=${GSL_LINK_DIRECTORIES_WITH_PREFIX}")
+      #      MESSAGE("DBG  GSL_LINK_DIRECTORIES_WITH_PREFIX=${GSL_LINK_DIRECTORIES_WITH_PREFIX}")
 
-      ## remove prefix -L because we need the pure directory for LINK_DIRECTORIES
+      # remove prefix -L because we need the pure directory for LINK_DIRECTORIES
       
       IF (GSL_LINK_DIRECTORIES_WITH_PREFIX)
         STRING(REGEX REPLACE "[-][L]" "" GSL_LINK_DIRECTORIES ${GSL_LINK_DIRECTORIES_WITH_PREFIX} )
@@ -76,7 +120,7 @@ ELSE(WIN32)
         GSL_LIBRARIES
         GSL_LINK_DIRECTORIES
         GSL_DEFINITIONS
-      )
+	)
       MESSAGE(STATUS "Using GSL from ${GSL_PREFIX}")
       
     ELSE(GSL_CONFIG)
