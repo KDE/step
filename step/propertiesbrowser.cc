@@ -34,8 +34,10 @@
 
 class ChoicesModel: public QStandardItemModel
 {
-public: ChoicesModel(QObject* parent = 0): QStandardItemModel(parent) {}
+public:
+    ChoicesModel(QObject* parent = 0): QStandardItemModel(parent) {}
 };
+
 Q_DECLARE_METATYPE(ChoicesModel*)
 
 class PropertiesBrowserModel: public QAbstractItemModel
@@ -54,15 +56,16 @@ public:
     Qt::ItemFlags flags(const QModelIndex &index) const;
     bool setData(const QModelIndex &index, const QVariant &value, int role);
 
-    void setObject(StepCore::Object* object) { _object = object; reset(); }
+    void setObject(StepCore::Object* object);
     StepCore::Object* object() { return _object; }
 
-    void emitDataChanged() { emit dataChanged(createIndex(0,1), createIndex(rowCount()-1,1)); }
+    void emitDataChanged();
 
 protected:
     WorldModel* _worldModel;
     StepCore::Object* _object;
     ChoicesModel* _solverChoices;
+    QList<int> _subRows;
 };
 
 PropertiesBrowserModel::PropertiesBrowserModel(WorldModel* worldModel, QObject* parent)
@@ -80,46 +83,102 @@ PropertiesBrowserModel::PropertiesBrowserModel(WorldModel* worldModel, QObject* 
     }
 }
 
+void PropertiesBrowserModel::setObject(StepCore::Object* object)
+{
+    _object = object;
+
+    _subRows.clear();
+    if(_object != NULL)
+        for(int i=0; i<_object->metaObject()->propertyCount(); ++i) {
+            const StepCore::MetaProperty* p = _object->metaObject()->property(i);
+            if(p->userTypeId() == qMetaTypeId<std::vector<StepCore::Vector2d> >())
+                _subRows << p->readVariant(_object).value<std::vector<StepCore::Vector2d> >().size();
+            else _subRows << 0;
+
+        }
+
+    reset();
+}
+
+void PropertiesBrowserModel::emitDataChanged()
+{
+    for(int i=0; i<rowCount(); i++) {
+        const StepCore::MetaProperty* p = _object->metaObject()->property(i);
+        if(p->userTypeId() == qMetaTypeId<std::vector<StepCore::Vector2d> >()) {
+            int r = p->readVariant(_object).value<std::vector<StepCore::Vector2d> >().size();
+            if(r > _subRows[i]) {
+                beginInsertRows(index(i, 0), _subRows[i], r-1);
+                _subRows[i] = r;
+                endInsertRows();
+            } else if(r < _subRows[i]) {
+                beginRemoveRows(index(i, 0), r, _subRows[i]-1);
+                _subRows[i] = r;
+                endRemoveRows();
+            }
+            if(r != 0) emit dataChanged(index(0,0,index(i,0)), index(r-1,1,index(i,0)));
+        }
+    }
+    emit dataChanged(index(0,1), index(rowCount()-1,1));
+}
+
 QVariant PropertiesBrowserModel::data(const QModelIndex &index, int role) const
 {
     if(_object == NULL) return QVariant();
 
     if(!index.isValid()) return QVariant();
 
-    const StepCore::MetaProperty* p = _object->metaObject()->property(index.row());
-    if(role == Qt::DisplayRole || role == Qt::EditRole) {
-        if(index.column() == 0) return p->name();
-        else if(index.column() == 1) {
+    if(index.internalId() == 0) {
+        const StepCore::MetaProperty* p = _object->metaObject()->property(index.row());
+        if(role == Qt::DisplayRole || role == Qt::EditRole) {
+            if(index.column() == 0) return p->name();
+            else if(index.column() == 1) {
 
-            // Solver type combobox ?
-            if(index.row() == 1 && dynamic_cast<StepCore::Solver*>(_object)) {
-                if(role == Qt::DisplayRole) return p->readString(_object).replace("Solver", "");
-                else return QVariant::fromValue(_solverChoices);
-            }
+                // Solver type combobox ?
+                if(index.row() == 1 && dynamic_cast<StepCore::Solver*>(_object)) {
+                    if(role == Qt::DisplayRole) return p->readString(_object).replace("Solver", "");
+                    else return QVariant::fromValue(_solverChoices);
+                }
 
-            // Common property types
-            if(p->userTypeId() == QMetaType::Double) {
-                return QString::number(p->readVariant(_object).toDouble(), 'g', 4); // XXX: make precision configurable
-            } else if(p->userTypeId() == qMetaTypeId<StepCore::Vector2d>()) {
-                StepCore::Vector2d v = p->readVariant(_object).value<StepCore::Vector2d>();
-                return QString("(%1,%2)").arg(v[0], 0, 'g', 4).arg(v[1], 0, 'g', 4);
-            } else {
-                // default type
-                return p->readString(_object);
+                // Common property types
+                if(p->userTypeId() == QMetaType::Double) {
+                    return QString::number(p->readVariant(_object).toDouble(), 'g', 4); // XXX: make precision configurable
+                } else if(p->userTypeId() == qMetaTypeId<StepCore::Vector2d>()) {
+                    StepCore::Vector2d v = p->readVariant(_object).value<StepCore::Vector2d>();
+                    return QString("(%1,%2)").arg(v[0], 0, 'g', 4).arg(v[1], 0, 'g', 4);
+                } else {
+                    // default type
+                    return p->readString(_object);
+                }
+                ///*if(p->userTypeId() < (int) QVariant::UserType) return p->readVariant(_object);
+                //else*/ return p->readString(_object); // XXX: default delegate for double looks ugly!
             }
-            ///*if(p->userTypeId() < (int) QVariant::UserType) return p->readVariant(_object);
-            //else*/ return p->readString(_object); // XXX: default delegate for double looks ugly!
+        } else if(role == Qt::ForegroundRole && index.column() == 1) {
+            if(!p->isWritable()) {
+                if(index.row() != 1 || !dynamic_cast<StepCore::Solver*>(_object))
+                    return QBrush(Qt::darkGray); // XXX: how to get scheme color ?
+            }
+        } else if(role == Qt::ToolTipRole) {
+            if(index.row() == 1 && index.column() == 1 && dynamic_cast<StepCore::Solver*>(_object)) {
+                return _object->metaObject()->description();
+            }
+            return p->description(); // XXX: translation
         }
-    } else if(role == Qt::ForegroundRole && index.column() == 1) {
-        if(!p->isWritable()) {
-            if(index.row() != 1 || !dynamic_cast<StepCore::Solver*>(_object))
+    } else { // index.internalId() != 0
+        const StepCore::MetaProperty* p = _object->metaObject()->property(index.internalId()-1);
+        if(role == Qt::DisplayRole || role == Qt::EditRole) {
+            if(index.column() == 0) return QString("%1[%2]").arg(p->name()).arg(index.row());
+            else if(index.column() == 1) {
+                StepCore::Vector2d v =
+                        p->readVariant(_object).value<std::vector<StepCore::Vector2d> >()[index.row()];
+                return QString("(%1,%2)").arg(v[0], 0, 'g', 4).arg(v[1], 0, 'g', 4); // XXX: precision
+            }
+        } else if(role == Qt::ForegroundRole && index.column() == 1) {
+            if(!p->isWritable()) {
                 return QBrush(Qt::darkGray); // XXX: how to get scheme color ?
+            }
+        } else if(role == Qt::ToolTipRole) {
+            return p->description(); // XXX: translation
         }
-    } else if(role == Qt::ToolTipRole) {
-        if(index.row() == 1 && index.column() == 1 && dynamic_cast<StepCore::Solver*>(_object)) {
-            return _object->metaObject()->description();
-        }
-        return p->description(); // XXX: translation
     }
 
     return QVariant();
@@ -130,21 +189,34 @@ bool PropertiesBrowserModel::setData(const QModelIndex &index, const QVariant &v
     if(_object == NULL) return false;
 
     if(index.isValid() && index.column() == 1 && role == Qt::EditRole) {
-        if(index.row() == 0) { // name // XXX: do it more generally
-            if(!_worldModel->checkUniqueName(value.toString())) return false; // XXX: error message
-        }
-        if(index.row() == 1 && dynamic_cast<StepCore::Solver*>(_object)) {
-            if(value.toString() != _object->metaObject()->className()) {
-                _worldModel->beginMacro(i18n("Change solver type"));
-                _object = _worldModel->newSolver(value.toString() + "Solver");
-                Q_ASSERT(_object != NULL);
+        if(index.internalId() == 0) {
+            if(index.row() == 0) { // name // XXX: do it more generally
+                if(!_worldModel->checkUniqueName(value.toString())) return false; // XXX: error message
+            }
+            if(index.row() == 1 && dynamic_cast<StepCore::Solver*>(_object)) {
+                if(value.toString() != _object->metaObject()->className()) {
+                    _worldModel->beginMacro(i18n("Change solver type"));
+                    _object = _worldModel->newSolver(value.toString() + "Solver");
+                    Q_ASSERT(_object != NULL);
+                    _worldModel->endMacro();
+                    reset();
+                }
+            } else {
+                _worldModel->beginMacro(i18n("Edit %1", _object->name()));
+                _worldModel->setProperty(_object, _object->metaObject()->property(index.row()), value);
                 _worldModel->endMacro();
-                reset();
             }
         } else {
+            const StepCore::MetaProperty* p = _object->metaObject()->property(index.internalId()-1);
+            std::vector<StepCore::Vector2d> v =
+                        p->readVariant(_object).value<std::vector<StepCore::Vector2d> >();
+            bool ok;
+            v[index.row()] = StepCore::stringToType<StepCore::Vector2d>(value.toString(), &ok);
+            if(!ok) return false;
             _worldModel->beginMacro(i18n("Edit %1", _object->name()));
-            _worldModel->setProperty(_object, _object->metaObject()->property(index.row()), value);
+            _worldModel->setProperty(_object, p, QVariant::fromValue(v));
             _worldModel->endMacro();
+            return true;
         }
         return true;
     }
@@ -155,18 +227,27 @@ QModelIndex PropertiesBrowserModel::index(int row, int column, const QModelIndex
 {
     if(_object == NULL) return QModelIndex();
     if(!parent.isValid()) return createIndex(row, column);
-    else return QModelIndex();
+
+    if(parent.internalId() == 0 && _subRows[parent.row()] != 0)
+        return createIndex(row, column, parent.row()+1);
+
+    return QModelIndex();
 }
 
-QModelIndex PropertiesBrowserModel::parent(const QModelIndex& /*index*/) const
+QModelIndex PropertiesBrowserModel::parent(const QModelIndex& index) const
 {
+    if(index.isValid() && index.internalId() != 0)
+        return createIndex(index.internalId()-1, 0, 0);
     return QModelIndex();
 }
 
 int PropertiesBrowserModel::rowCount(const QModelIndex &parent) const
 {
     if(_object == NULL) return 0;
-    else if(parent.isValid()) return 0;
+    else if(parent.isValid()) {
+        if(parent.column() == 0 && parent.internalId() == 0) return _subRows[parent.row()];
+        return 0;
+    }
     else return _object->metaObject()->propertyCount();
 }
 
@@ -191,8 +272,12 @@ Qt::ItemFlags PropertiesBrowserModel::flags(const QModelIndex &index) const
     Qt::ItemFlags flags = QAbstractItemModel::flags(index);
 
     if(_object && index.isValid() && index.column() == 1) {
-        if(_object->metaObject()->property(index.row())->isWritable() ||
-            (index.row()==1 && dynamic_cast<StepCore::Solver*>(_object))) flags |= Qt::ItemIsEditable;
+        if(index.internalId() == 0) {
+            if(_object->metaObject()->property(index.row())->isWritable() ||
+                (index.row()==1 && dynamic_cast<StepCore::Solver*>(_object))) flags |= Qt::ItemIsEditable;
+        } else {
+            if(_object->metaObject()->property(index.internalId()-1)->isWritable()) flags |= Qt::ItemIsEditable;
+        }
     }
 
     return flags;
@@ -277,11 +362,13 @@ void PropertiesBrowser::worldModelReset()
 void PropertiesBrowser::worldCurrentChanged(const QModelIndex& current, const QModelIndex& /*previous*/)
 {
     _propertiesBrowserModel->setObject(_worldModel->object(current));
+    _treeView->expandAll();
 }
 
 void PropertiesBrowser::worldDataChanged(const QModelIndex& /*topLeft*/, const QModelIndex& /*bottomRight*/)
 {
     _propertiesBrowserModel->emitDataChanged();
+    //_treeView->expandAll();
 }
 
 
