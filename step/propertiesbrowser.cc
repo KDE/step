@@ -339,18 +339,21 @@ PropertiesBrowser::PropertiesBrowser(WorldModel* worldModel, QWidget* parent, Qt
     _treeView->setRootIsDecorated(false);
     //_treeView->setAlternatingRowColors(true);
     _treeView->setSelectionMode(QAbstractItemView::NoSelection);
+    _treeView->setSelectionBehavior(QTreeView::SelectRows);
     _treeView->setEditTriggers(QAbstractItemView::AllEditTriggers);
+    //_treeView->setEditTriggers(QAbstractItemView::EditKeyPressed | QAbstractItemView::AnyKeyPressed);
     _treeView->setItemDelegate(new PropertiesBrowserDelegate(_treeView));
 
     worldCurrentChanged(_worldModel->worldIndex(), QModelIndex());
 
     QObject::connect(_worldModel, SIGNAL(modelReset()), this, SLOT(worldModelReset()));
-    QObject::connect(_propertiesBrowserModel, SIGNAL(dataChanged(const QModelIndex&, const QModelIndex&)),
-                                          this, SLOT(dataChanged(const QModelIndex&, const QModelIndex&)));
     QObject::connect(_worldModel, SIGNAL(dataChanged(const QModelIndex&, const QModelIndex&)),
                          this, SLOT(worldDataChanged(const QModelIndex&, const QModelIndex&)));
     QObject::connect(_worldModel->selectionModel(), SIGNAL(currentChanged(const QModelIndex&, const QModelIndex&)),
                                            this, SLOT(worldCurrentChanged(const QModelIndex&, const QModelIndex&)));
+
+    QObject::connect(_treeView->selectionModel(), SIGNAL(currentChanged(const QModelIndex&, const QModelIndex&)),
+                                              this, SLOT(currentChanged(const QModelIndex&, const QModelIndex&)));
 
     setWidget(_treeView);
 }
@@ -371,8 +374,9 @@ void PropertiesBrowser::worldDataChanged(const QModelIndex& /*topLeft*/, const Q
     _propertiesBrowserModel->emitDataChanged();
 }
 
-void PropertiesBrowser::dataChanged(const QModelIndex& /*topLeft*/, const QModelIndex& /*bottomRight*/)
+void PropertiesBrowser::currentChanged(const QModelIndex& current, const QModelIndex& /*previous*/)
 {
-    _treeView->selectionModel()->setCurrentIndex(QModelIndex(), QItemSelectionModel::Current);
+    if(current.isValid() && current.column() == 0)
+        _treeView->selectionModel()->setCurrentIndex(current.sibling(current.row(), 1), QItemSelectionModel::Current);
 }
 
