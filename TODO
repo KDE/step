@@ -2,7 +2,7 @@
 
 * unit tests
 * movement restrictions
-* rigid bodies
+* rigid bodies (DONE)
 * collision detection with friction
 * custom properties for bodies, make charge custom property (?)
 * adaptive timestep solvers (DONE)
@@ -26,6 +26,7 @@ code (marked as TODO or XXX).
 * use statusbar or small graphicsitem to notify
   user when creating items
 * saving animation (navigation through time)
+* units for all quantitis, units conversion
 * user-editable notes
 * custom scene background
 * nice-looking descriptions for all bodies and parameters
