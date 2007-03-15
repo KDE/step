@@ -23,6 +23,7 @@
 #include <stepcore/world.h>
 #include <stepcore/xmlfile.h>
 #include <stepcore/eulersolver.h>
+#include <stepcore/types.h>
 #include <QItemSelectionModel>
 #include <QUndoStack>
 #include <QTimer>
@@ -479,8 +480,10 @@ QString WorldModel::createToolTip(const StepCore::Object* object) const
     toolTip += "<table>";
     for(int i=0; i<object->metaObject()->propertyCount(); ++i) {
         const StepCore::MetaProperty* p = object->metaObject()->property(i);
-        toolTip += i18n("<tr><td>%1&nbsp;&nbsp;</td><td>%2</td></tr>",
-                    p->name(), p->readString(object));
+        QString value = p->readString(object);
+        if(p->userTypeId() == qMetaTypeId<std::vector<StepCore::Vector2d> >())
+            value.replace("),(", ")<br />(");
+        toolTip += i18n("<tr><td>%1&nbsp;&nbsp;</td><td>%2</td></tr>", p->name(), value);
     }
     toolTip += "</table>";
     //qDebug("%s", toolTip.toAscii().constData());
