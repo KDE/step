@@ -29,6 +29,9 @@
 
 namespace StepCore {
 
+/** \ingroup bodies
+ *  \brief Rigid body
+ */
 class RigidBody: public Item, public Body
 {
     STEPCORE_OBJECT(RigidBody)
@@ -54,9 +57,10 @@ public:
     /** Set velocity of the particle */
     void setVelocity(const Vector2d& velocity) { _velocity = velocity; }
 
+    /** Get angular velocity of the body */
     double angularVelocity() const { return _angularVelocity; }
+    /** Set angular velocity of the body */
     void setAngularVelocity(double angularVelocity) { _angularVelocity = angularVelocity; }
-
 
     /** Get force that acts upon the body */
     const Vector2d& force() const { return _force; }
@@ -69,7 +73,11 @@ public:
     void setTorque(double torque) { _torque = torque; }
 
     //void applyForceLocal(const Vector2d& localPosition = Vector2d(0,0));
+
+    /** Apply force to the body at given position (in World coordinates) */
     void applyForce(Vector2d force, Vector2d position);
+
+    /** Apply torque to the body */
     void applyTorque(double torque);
 
     /** Get mass of the body */
@@ -77,9 +85,9 @@ public:
     /** Set mass of the body */
     void   setMass(double mass) { _mass = mass; }
 
-    /** Get inertia of the body */
+    /** Get inertia "tensor" of the body */
     double inertia() const { return _inertia; }
-    /** Set inertia of the body */
+    /** Set inertia "tensor" of the body */
     void   setInertia(double inertia) { _inertia = inertia; }
 
 
@@ -122,14 +130,20 @@ protected:
     double   _inertia;
 };
 
+/** \ingroup bodies
+ *  \brief Rigid polygon
+ */
 class Polygon: public RigidBody
 {
     STEPCORE_OBJECT(Polygon)
 public:
 
+    /** Get vertex list (constant) */
     const std::vector<Vector2d>& vertexes() const { return _vertexes; }
-    void setVertexes(const std::vector<Vector2d>& vertexes) { _vertexes = vertexes; }
+    /** Get vertex list (editable) */
     std::vector<Vector2d>& vertexes() { return _vertexes; }
+    /** Set vertex list */
+    void setVertexes(const std::vector<Vector2d>& vertexes) { _vertexes = vertexes; }
 
 protected:
     std::vector<Vector2d> _vertexes;

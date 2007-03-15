@@ -36,7 +36,7 @@ STEPCORE_META_OBJECT(RigidBody, "Generic rigid body", 0, STEPCORE_SUPER_CLASS(It
         STEPCORE_PROPERTY_RW(double, mass, "Total mass of the body", mass, setMass)
         STEPCORE_PROPERTY_RW(double, inertia, "Inertia \"tensor\" of the body", inertia, setInertia))
 
-STEPCORE_META_OBJECT(Polygon, "Generic polygon body", 0, STEPCORE_SUPER_CLASS(RigidBody),
+STEPCORE_META_OBJECT(Polygon, "Rigid polygon body", 0, STEPCORE_SUPER_CLASS(RigidBody),
         STEPCORE_PROPERTY_RW(std::vector<StepCore::Vector2d>, vertexes, "Vertex list", vertexes, setVertexes))
 
 RigidBody::RigidBody(Vector2d position, double angle,
