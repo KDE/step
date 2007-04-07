@@ -243,8 +243,8 @@ struct MetaPropertyHelper {
 
     static QVariant readNull(const Object* obj) { return QVariant(); }
     static QString readStringNull(const Object* obj) { return QString(); }
-    static bool writeNull(Object* obj, const QVariant& v) { return false; }
-    static bool writeStringNull(Object* obj, const QString& s) { return false; }
+    static bool writeNull(Object* obj, const QVariant& v) { Q_UNUSED(obj) Q_UNUSED(v) return false; }
+    static bool writeStringNull(Object* obj, const QString& s) { Q_UNUSED(obj) Q_UNUSED(s) return false; }
 };
 
 template<typename Class, int N>
@@ -258,7 +258,7 @@ struct MetaObjectHelper {
 template<class Class>
 struct MetaObjectHelper<Class, MetaObject::ABSTRACT> {
     static Object* newObjectHelper() { return NULL; }
-    static Object* cloneObjectHelper(const Object& obj) { return NULL; }
+    static Object* cloneObjectHelper(const Object& obj) { Q_UNUSED(obj) return NULL; }
 };
 
 #define STEPCORE_META_OBJECT(_className, _description, _flags, __superClasses, __properties) \
