@@ -19,7 +19,7 @@
 #ifndef STEP_MAINWINDOW_H
 #define STEP_MAINWINDOW_H
 
-#include <KMainWindow>
+#include <kxmlguiwindow.h>
 
 class WorldModel;
 class WorldBrowser;
@@ -30,7 +30,7 @@ class ItemPalette;
 class KAction;
 class QItemSelection;
 
-class MainWindow : public KMainWindow
+class MainWindow : public KXmlGuiWindow
 {
     Q_OBJECT
 
