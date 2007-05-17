@@ -234,7 +234,8 @@ INCLUDE_FILE_PATTERNS  =
 PREDEFINED             = STEPCORE_WITH_QT STEPCORE_WITH_GSL \
                          "STEPCORE_UNUSED=" \
                          "STEPCORE_OBJECT="
-EXPAND_AS_DEFINED      =
+EXPAND_AS_DEFINED      = STEPCORE_DECLARE_GSLSOLVER \
+                         STEPCORE_DECLARE_GSLASOLVER
 SKIP_FUNCTION_MACROS   = NO
 #---------------------------------------------------------------------------
 # Configuration::additions related to external references   

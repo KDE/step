@@ -74,10 +74,10 @@ public:
 
     //void applyForceLocal(const Vector2d& localPosition = Vector2d(0,0));
 
-    /** Apply force to the body at given position (in World coordinates) */
+    /** Apply force (and torque) to the body at given position (in World coordinates) */
     void applyForce(Vector2d force, Vector2d position);
 
-    /** Apply torque to the body */
+    /** Apply torque (but no force) to the body */
     void applyTorque(double torque);
 
     /** Get mass of the body */

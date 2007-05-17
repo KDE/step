@@ -143,39 +143,88 @@ public: \
     GslAdaptive##Class##Solver(const GslAdaptive##Class##Solver& gslSolver): GslAdaptiveSolver(gslSolver) {} \
 };
 
-/** \ingroup solvers \brief Runge-Kutta second-order solver from GSL library */
+/** \ingroup solvers
+ *  \class GslRK2Solver
+ *  \brief Runge-Kutta second-order solver from GSL library
+ */
 STEPCORE_DECLARE_GSLSOLVER(RK2, rk2);
-/** \ingroup solvers \brief Runge-Kutta second-order solver from GSL library */
+
+/** \ingroup solvers
+ *  \class GslAdaptiveRK2Solver
+ *  \brief Adaptive Runge-Kutta second-order solver from GSL library
+ */
 STEPCORE_DECLARE_GSLASOLVER(RK2, rk2);
 
-/** \ingroup solvers \brief Runge-Kutta classical fourth-order solver from GSL library */
+/** \ingroup solvers
+ *  \class GslRK4Solver
+ *  \brief Runge-Kutta classical fourth-order solver from GSL library
+ */
 STEPCORE_DECLARE_GSLSOLVER(RK4, rk4);
-/** \ingroup solvers \brief Runge-Kutta classical fourth-order solver from GSL library */
+
+/** \ingroup solvers
+ *  \class GslAdaptiveRK4Solver
+ *  \brief Adaptive Runge-Kutta classical fourth-order solver from GSL library 
+ */
 STEPCORE_DECLARE_GSLASOLVER(RK4, rk4);
 
-/** \ingroup solvers \brief Runge-Kutta-Fehlberg (4,5) solver from GSL library */
+/** \ingroup solvers
+ *  \class GslRKF45Solver
+ *  \brief Runge-Kutta-Fehlberg (4,5) solver from GSL library
+ */
 STEPCORE_DECLARE_GSLSOLVER(RKF45, rkf45);
-/** \ingroup solvers \brief Runge-Kutta-Fehlberg (4,5) solver from GSL library */
+
+/** \ingroup solvers
+ *  \class AdaptiveGslRKF45Solver
+ *  \brief Adaptive Runge-Kutta-Fehlberg (4,5) solver from GSL library
+ */
 STEPCORE_DECLARE_GSLASOLVER(RKF45, rkf45);
 
-/** \ingroup solvers \brief Runge-Kutta Cash-Karp (4,5) solver from GSL library */
+/** \ingroup solvers
+ *  \class GslRKCKSolver
+ *  \brief Runge-Kutta Cash-Karp (4,5) solver from GSL library
+ */
 STEPCORE_DECLARE_GSLSOLVER(RKCK, rkck);
-/** \ingroup solvers \brief Runge-Kutta Cash-Karp (4,5) solver from GSL library */
+
+/** \ingroup solvers
+ *  \class AdaptiveGslRKCKSolver
+ *  \brief Adaptive Runge-Kutta Cash-Karp (4,5) solver from GSL library
+ */
 STEPCORE_DECLARE_GSLASOLVER(RKCK, rkck);
 
-/** \ingroup solvers \brief Runge-Kutta Prince-Dormand (8,9) solver from GSL library */
+/** \ingroup solvers
+ *  \class GslRK8PDSolver
+ *  \brief Runge-Kutta Prince-Dormand (8,9) solver from GSL library
+ */
 STEPCORE_DECLARE_GSLSOLVER(RK8PD, rk8pd);
-/** \ingroup solvers \brief Runge-Kutta Prince-Dormand (8,9) solver from GSL library */
+
+/** \ingroup solvers
+ *  \class GslAdaptiveRK8PDSolver
+ *  \brief Adaptive Runge-Kutta Prince-Dormand (8,9) solver from GSL library
+ */
 STEPCORE_DECLARE_GSLASOLVER(RK8PD, rk8pd);
 
-/** \ingroup solvers \brief Runge-Kutta implicit second-order solver from GSL library */
+/** \ingroup solvers
+ *  \class GslRK2IMPSolver
+ *  \brief Runge-Kutta implicit second-order solver from GSL library
+ */
 STEPCORE_DECLARE_GSLSOLVER(RK2IMP, rk2imp);
-/** \ingroup solvers \brief Runge-Kutta Prince-Dormand (8,9) solver from GSL library */
+
+/** \ingroup solvers
+ *  \class GslAdaptiveRK2IMPSolver
+ *  \brief Adaptive Runge-Kutta Prince-Dormand (8,9) solver from GSL library
+ */
 STEPCORE_DECLARE_GSLASOLVER(RK2IMP, rk2imp);
 
-/** \ingroup solvers \brief Runge-Kutta implicit fourth-order solver from GSL library */
+/** \ingroup solvers
+ *  \class GslRK4IMPSolver
+ *  \brief Runge-Kutta implicit fourth-order solver from GSL library
+ */
 STEPCORE_DECLARE_GSLSOLVER(RK4IMP, rk4imp);
-/** \ingroup solvers \brief Runge-Kutta implicit fourth-order solver from GSL library */
+
+/** \ingroup solvers
+ *  \class GslAdaptiveRK4IMPSolver
+ *  \brief Runge-Kutta implicit fourth-order solver from GSL library
+ */
 STEPCORE_DECLARE_GSLASOLVER(RK4IMP, rk4imp);
 
 } // namespace StepCore
