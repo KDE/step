@@ -4,6 +4,7 @@ set(stepcore_tests_SRCS
     maintest.cc
     metaobject.cc
     worldcopy.cc
+    contacts.cc
 )
 
 if(STEPCORE_WITH_QT)
@@ -21,6 +22,8 @@ include(${QT_USE_FILE})
 
 include_directories(${CMAKE_CURRENT_BINARY_DIR})
 qt4_automoc(${stepcore_tests_SRCS})
+
+add_definitions(-Wall) # XXX ?
 
 add_executable(tests ${stepcore_tests_SRCS})
 target_link_libraries(tests stepcore ${QT_LIBRARIES})

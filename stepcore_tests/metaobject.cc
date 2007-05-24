@@ -18,6 +18,7 @@ class MetaObjectTestInterface
     STEPCORE_OBJECT(MetaObjectTestInterface)
 
 public:
+    virtual ~MetaObjectTestInterface() {}
     double property1() const { return _property1; }
     void setProperty1(double property1) { _property1 = property1; }
 

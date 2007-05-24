@@ -32,6 +32,7 @@ namespace StepCore
 
 class World;
 class Solver;
+class ContactSolver;
 
 /** \ingroup world
  *  \brief The root class for any world items (bodies and forces)
@@ -169,12 +170,19 @@ public:
     /** Get list of all forces in the World */
     const ForceList& forces() const { return _forces; }
 
-    /** Get current solver */
+    /** Get current Solver */
     Solver* solver() const { return _solver; }
-    /** Set new solver (and delete the old one) */
+    /** Set new Solver (and delete the old one) */
     void setSolver(Solver* solver);
-    /** Get current solver and remove it from world */
+    /** Get current Solver and remove it from world */
     Solver* removeSolver();
+
+    /** Get current ContactSolver */
+    ContactSolver* contactSolver() const { return _contactSolver; }
+    /** Set new ContactSolver (and delete the old one) */
+    void setContactSolver(ContactSolver* contactSolver);
+    /** Get current ContactSolver and remove it from world */
+    ContactSolver* removeContactSolver();
 
     /** Calculate all forces */
     void doCalcFn();
@@ -200,7 +208,9 @@ private:
     ItemList  _items;
     BodyList  _bodies;
     ForceList _forces;
-    Solver*   _solver;
+
+    Solver*        _solver;
+    ContactSolver* _contactSolver;
 
     int     _variablesCount;
     double* _variables;

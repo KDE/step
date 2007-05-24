@@ -58,7 +58,7 @@ void RigidBody::applyTorque(double torque)
     _torque += torque;
 }
 
-Vector2d RigidBody::pointLocalToWorld(const Vector2d& p)
+Vector2d RigidBody::pointLocalToWorld(const Vector2d& p) const
 {
     double c = cos(_angle);
     double s = sin(_angle);
@@ -66,7 +66,7 @@ Vector2d RigidBody::pointLocalToWorld(const Vector2d& p)
                      p[0]*s + p[1]*c + _position[1]);
 }
 
-Vector2d RigidBody::pointWorldToLocal(const Vector2d& p)
+Vector2d RigidBody::pointWorldToLocal(const Vector2d& p) const
 {
     double c = cos(_angle);
     double s = sin(_angle);

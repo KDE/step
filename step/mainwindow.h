@@ -19,7 +19,7 @@
 #ifndef STEP_MAINWINDOW_H
 #define STEP_MAINWINDOW_H
 
-#include <kxmlguiwindow.h>
+#include <KXmlGuiWindow>
 
 class WorldModel;
 class WorldBrowser;

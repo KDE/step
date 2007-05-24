@@ -65,7 +65,7 @@ void MainTest::testWorldCopy()
     StepCore::World* world = new StepCore::World();
     world->addItem(new WorldCopyTestItem());
     world->addItem(new WorldCopyTestItem());
-    world->setSolver(new WorldCopyTestSolver);
+    world->setSolver(new WorldCopyTestSolver());
 
     QVERIFY( world->items().size() == 2 );
     QVERIFY( world->bodies().size() == 2 );

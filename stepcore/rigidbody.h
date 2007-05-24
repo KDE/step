@@ -99,9 +99,9 @@ public:
 #endif
 
     /** Translate local coordinates on body to world coordinates */
-    Vector2d pointLocalToWorld(const Vector2d& p);
+    Vector2d pointLocalToWorld(const Vector2d& p) const;
     /** Translate world coordinates to local coordinates on body */
-    Vector2d pointWorldToLocal(const Vector2d& p);
+    Vector2d pointWorldToLocal(const Vector2d& p) const;
 
     //---------- Integration over body
 
@@ -137,16 +137,17 @@ class Polygon: public RigidBody
 {
     STEPCORE_OBJECT(Polygon)
 public:
+    typedef std::vector<Vector2d> VertexList;
 
     /** Get vertex list (constant) */
-    const std::vector<Vector2d>& vertexes() const { return _vertexes; }
+    const VertexList& vertexes() const { return _vertexes; }
     /** Get vertex list (editable) */
-    std::vector<Vector2d>& vertexes() { return _vertexes; }
+    VertexList& vertexes() { return _vertexes; }
     /** Set vertex list */
-    void setVertexes(const std::vector<Vector2d>& vertexes) { _vertexes = vertexes; }
+    void setVertexes(const VertexList& vertexes) { _vertexes = vertexes; }
 
 protected:
-    std::vector<Vector2d> _vertexes;
+    VertexList _vertexes;
 };
 
 } // namespace StepCore

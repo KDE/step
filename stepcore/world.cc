@@ -18,6 +18,7 @@
 
 #include "world.h"
 #include "solver.h"
+#include "contactsolver.h"
 
 #include <algorithm>
 
@@ -162,6 +163,19 @@ Solver* World::removeSolver()
     Solver* solver = _solver;
     _solver = NULL;
     return solver;
+}
+
+void World::setContactSolver(ContactSolver* contactSolver)
+{
+    delete _contactSolver;
+    _contactSolver = contactSolver;
+}
+
+ContactSolver* World::removeContactSolver()
+{
+    ContactSolver* contactSolver = _contactSolver;
+    _contactSolver = NULL;
+    return contactSolver;
 }
 
 void World::doCalcFn()
