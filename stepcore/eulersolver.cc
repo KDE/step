@@ -121,7 +121,9 @@ int GenericEulerSolver::doEvolve(double* t, double t1, double y[], double yerr[]
     const double S = 0.9;
 
     while(*t < t1) {
-        int result = doStep(*t, _stepSize < t1-*t ? _stepSize : t1-*t, y, yerr);
+        double t11 = _stepSize < t1-*t ? *t + _stepSize : t1;
+        int result = doStep(*t, t11 - *t, y, yerr);
+
         if(result != OK && result != ToleranceError) return result;
 
         if(_adaptive) {
@@ -133,14 +135,15 @@ int GenericEulerSolver::doEvolve(double* t, double t1, double y[], double yerr[]
                 double r = S / pow(_localErrorRatio, 0.5);
                 if(r>5.0) r = 5.0;
                 if(r<1.0) r = 1.0;
-                _stepSize *= r;
+                double newStepSize = _stepSize*r;
+                if(newStepSize < t11 - *t) _stepSize *= newStepSize;
             }
             if(result != OK) continue;
         } else {
             if(result != OK) return ToleranceError;
         }
 
-        *t = _stepSize < t1-*t ? *t + _stepSize : t1;
+        *t = t11;
     }
     return OK;
 }
