@@ -186,35 +186,6 @@ ContactSolver* World::removeContactSolver()
     return contactSolver;
 }
 
-int World::doCalcFn()
-{
-    STEPCORE_ASSERT_NOABORT(_solver != NULL);
-
-    checkVariablesCount();
-    gatherVariables();
-    return _solver->doCalcFn(&_time, _variables);
-}
-
-int World::doEvolve(double delta)
-{
-    STEPCORE_ASSERT_NOABORT(_solver != NULL);
-
-    checkVariablesCount();
-    gatherVariables();
-
-    double time = _time;
-    int ret = _solver->doEvolve(&time, time+delta*_timeScale, _variables, _errors);
-    _time = time;
-
-    while(ret == Solver::CollisionDetected) {
-        // Try smaller timesteps
-        break;
-    }
-
-    scatterVariables();
-    return ret;
-}
-
 void World::checkVariablesCount()
 {
     int variablesCount = 0;
@@ -258,6 +229,36 @@ void World::scatterVariables(const double* variables)
         (*b)->setVariables(variables + index);
         index += (*b)->variablesCount();
     }
+}
+
+int World::doCalcFn()
+{
+    STEPCORE_ASSERT_NOABORT(_solver != NULL);
+
+    checkVariablesCount();
+    gatherVariables();
+    return _solver->doCalcFn(&_time, _variables);
+}
+
+int World::doEvolve(double delta)
+{
+    STEPCORE_ASSERT_NOABORT(_solver != NULL);
+
+    checkVariablesCount();
+    gatherVariables();
+
+    double time = _time;
+    int ret = _solver->doEvolve(&time, time+delta*_timeScale, _variables, _errors);
+    _time = time;
+
+    while(ret == Solver::CollisionDetected) {
+        //XXX int ret = _solver->doEvolve(&time, time+_solver->stepSize()/2, _variables, _errors);
+        // Try smaller timesteps
+        break;
+    }
+
+    scatterVariables();
+    return ret;
 }
 
 inline int World::solverFunction(double t, const double y[], double f[])
