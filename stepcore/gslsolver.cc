@@ -29,12 +29,10 @@ namespace StepCore
 STEPCORE_META_OBJECT(GslGenericSolver, "GSL generic solver", MetaObject::ABSTRACT, STEPCORE_SUPER_CLASS(Solver),)
 
 STEPCORE_META_OBJECT(GslSolver, "GSL non-adaptive solver", MetaObject::ABSTRACT,
-    STEPCORE_SUPER_CLASS(GslGenericSolver),
-    STEPCORE_PROPERTY_RW(double, stepSize, "Step size", stepSize, setStepSize))
+    STEPCORE_SUPER_CLASS(GslGenericSolver),)
 
 STEPCORE_META_OBJECT(GslAdaptiveSolver, "GSL adaptive solver", MetaObject::ABSTRACT,
-    STEPCORE_SUPER_CLASS(GslGenericSolver),
-    STEPCORE_PROPERTY_R (double, stepSize, "Step size", stepSize))
+    STEPCORE_SUPER_CLASS(GslGenericSolver),)
 
 STEPCORE_META_OBJECT(GslRK2Solver, "Runge-Kutta second-order solver from GSL library",
                         0, STEPCORE_SUPER_CLASS(GslSolver),)
@@ -72,21 +70,20 @@ STEPCORE_META_OBJECT(GslAdaptiveRK4IMPSolver, "Adaptive Runge-Kutta implicit fou
                         0, STEPCORE_SUPER_CLASS(GslAdaptiveSolver),)
 
 GslGenericSolver::GslGenericSolver(double stepSize, bool adaptive, const gsl_odeiv_step_type* gslStepType)
-    : Solver(), _stepSize(stepSize), _adaptive(adaptive), _gslStepType(gslStepType)
+    : Solver(stepSize), _adaptive(adaptive), _gslStepType(gslStepType)
 {
     init();
 }
 
 GslGenericSolver::GslGenericSolver(int dimension, Function function, void* params,
                             double stepSize, bool adaptive, const gsl_odeiv_step_type* gslStepType)
-    : Solver(dimension, function, params), _stepSize(stepSize), _adaptive(adaptive), _gslStepType(gslStepType)
+    : Solver(dimension, function, params, stepSize),  _adaptive(adaptive), _gslStepType(gslStepType)
 {
     init();
 }
 
 GslGenericSolver::GslGenericSolver(const GslGenericSolver& gslSolver)
-    : Solver(gslSolver), _stepSize(gslSolver._stepSize),
-      _adaptive(gslSolver._adaptive), _gslStepType(gslSolver._gslStepType)
+    : Solver(gslSolver), _adaptive(gslSolver._adaptive), _gslStepType(gslSolver._gslStepType)
 {
     init();
 }

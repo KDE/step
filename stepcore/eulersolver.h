@@ -52,18 +52,12 @@ public:
 
     void setDimension(int dimension);
 
-    /** Set step size */
-    double stepSize() const { return _stepSize; }
-    /** Get step size */
-    void setStepSize(double stepSize) { _stepSize = stepSize; }
-
     int doCalcFn(double* t, double y[], double f[] = 0);
     int doEvolve(double* t, double t1, double y[], double yerr[]);
 
 protected:
     int doStep(double t, double stepSize, double y[], double yerr[]);
 
-    double  _stepSize;
     bool    _adaptive;
     double* _ytemp;
     double* _ydiff;
@@ -80,8 +74,6 @@ public:
     EulerSolver(int dimension, Function function, void* params, double stepSize)
                     : GenericEulerSolver(dimension, function, params, stepSize, false) {}
     EulerSolver(const EulerSolver& eulerSolver): GenericEulerSolver(eulerSolver) {}
-    double stepSize() const { return _stepSize; }
-    void setStepSize(double stepSize) { _stepSize = stepSize; }
 };
 
 /** \ingroup solvers
@@ -95,7 +87,6 @@ public:
     AdaptiveEulerSolver(int dimension, Function function, void* params)
                     : GenericEulerSolver(dimension, function, params, 1, true) {}
     AdaptiveEulerSolver(const AdaptiveEulerSolver& eulerSolver): GenericEulerSolver(eulerSolver) {}
-    double stepSize() const { return _stepSize; }
 };
 
 } // namespace StepCore

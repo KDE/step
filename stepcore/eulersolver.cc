@@ -24,29 +24,25 @@
 namespace StepCore {
 
 STEPCORE_META_OBJECT(GenericEulerSolver, "Generic Euler solver", MetaObject::ABSTRACT, STEPCORE_SUPER_CLASS(Solver),)
-
-STEPCORE_META_OBJECT(EulerSolver, "Non-adaptive Euler solver", 0, STEPCORE_SUPER_CLASS(GenericEulerSolver),
-    STEPCORE_PROPERTY_RW(double, stepSize, "Step size", stepSize, setStepSize))
-
-STEPCORE_META_OBJECT(AdaptiveEulerSolver, "Adaptive Euler solver", 0, STEPCORE_SUPER_CLASS(GenericEulerSolver),
-    STEPCORE_PROPERTY_R(double, stepSize, "Step size", stepSize))
+STEPCORE_META_OBJECT(EulerSolver, "Non-adaptive Euler solver", 0, STEPCORE_SUPER_CLASS(GenericEulerSolver),)
+STEPCORE_META_OBJECT(AdaptiveEulerSolver, "Adaptive Euler solver", 0, STEPCORE_SUPER_CLASS(GenericEulerSolver),)
 
 GenericEulerSolver::GenericEulerSolver(double stepSize, bool adaptive)
-    : Solver(), _stepSize(stepSize), _adaptive(adaptive)
+    : Solver(stepSize), _adaptive(adaptive)
 {
     _ytemp = new double[_dimension];
     _ydiff = new double[_dimension];
 }
 
 GenericEulerSolver::GenericEulerSolver(int dimension, Function function, void* params, double stepSize, bool adaptive)
-    : Solver(dimension, function, params), _stepSize(stepSize), _adaptive(adaptive)
+    : Solver(dimension, function, params, stepSize), _adaptive(adaptive)
 {
     _ytemp = new double[_dimension];
     _ydiff = new double[_dimension];
 }
 
 GenericEulerSolver::GenericEulerSolver(const GenericEulerSolver& eulerSolver)
-    : Solver(eulerSolver), _stepSize(eulerSolver._stepSize), _adaptive(eulerSolver._adaptive)
+    : Solver(eulerSolver), _adaptive(eulerSolver._adaptive)
 {
     _ytemp = new double[_dimension];
     _ydiff = new double[_dimension];
@@ -136,7 +132,7 @@ int GenericEulerSolver::doEvolve(double* t, double t1, double y[], double yerr[]
                 if(r>5.0) r = 5.0;
                 if(r<1.0) r = 1.0;
                 double newStepSize = _stepSize*r;
-                if(newStepSize < t11 - *t) _stepSize *= newStepSize;
+                if(newStepSize < t1 - t11) _stepSize = newStepSize;
             }
             if(result != OK) continue;
         } else {

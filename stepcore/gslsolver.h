@@ -63,11 +63,6 @@ public:
     void setFunction(Function function) { _gslSystem.function = _function = function; }
     void setParams(void* params) { _gslSystem.params = _params = params; }
 
-    /** Get step size */
-    double stepSize() const { return _stepSize; }
-    /** Set step size */
-    void setStepSize(double stepSize) { _stepSize = stepSize; }
-
     int doCalcFn(double* t, double y[], double f[] = 0);
     int doEvolve(double* t, double t1, double y[], double yerr[]);
 
@@ -75,7 +70,6 @@ protected:
     void init();
     void fini();
 
-    double _stepSize;
     bool   _adaptive;
 
     //gsl_odeiv_control*  _gslControl;
@@ -103,8 +97,6 @@ public:
                             const gsl_odeiv_step_type* gslStepType)
                     : GslGenericSolver(dimension, function, params, stepSize, false, gslStepType) {}
     GslSolver(const GslSolver& gslSolver): GslGenericSolver(gslSolver) {}
-    double stepSize() const { return _stepSize; }
-    void setStepSize(double stepSize) { _stepSize = stepSize; }
 };
 
 /** \ingroup solvers
@@ -120,7 +112,6 @@ public:
                             const gsl_odeiv_step_type* gslStepType)
                     : GslGenericSolver(dimension, function, params, 1, true, gslStepType) {}
     GslAdaptiveSolver(const GslAdaptiveSolver& gslSolver): GslGenericSolver(gslSolver) {}
-    double stepSize() const { return _stepSize; }
 };
 
 #define STEPCORE_DECLARE_GSLSOLVER(Class, type) \

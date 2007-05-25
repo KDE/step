@@ -76,7 +76,11 @@ public:
     typedef int (*Function)(double t, const double y[], double f[], void* params);
 
     /** Cunstructs a solver */
-    Solver(int dimension = 0, Function function = NULL, void* params = NULL);
+    Solver(int dimension = 0, Function function = NULL,
+                void* params = NULL, double stepSize = 0.001);
+    /** Cunstructs a solver */
+    Solver(double stepSize);
+
     virtual ~Solver() {}
 
     /** Get solver type */
@@ -96,6 +100,11 @@ public:
     void* params() const { return _params; }
     /** Set callback function params */
     virtual void setParams(void* params) { _params = params; }
+
+    /** Get step size */
+    double stepSize() const { return _stepSize; }
+    /** Set step size (solver can adjust it later) */
+    virtual void setStepSize(double stepSize) { _stepSize = stepSize; }
 
     /** Get absolute allowed local tolerance */
     double toleranceAbs() const { return _toleranceAbs; }
@@ -134,14 +143,21 @@ protected:
     Function _function;
     void*    _params;
 
+    double   _stepSize;
     double   _toleranceAbs;
     double   _toleranceRel;
     double   _localError;
     double   _localErrorRatio;
 };
 
-inline Solver::Solver(int dimension, Function function, void* params)
-     : _dimension(dimension), _function(function), _params(params),
+inline Solver::Solver(int dimension, Function function, void* params, double stepSize)
+     : _dimension(dimension), _function(function), _params(params), _stepSize(stepSize),
+       _toleranceAbs(0.001), _toleranceRel(0.001), _localError(0), _localErrorRatio(0)
+{
+}
+
+inline Solver::Solver(double stepSize)
+     : _dimension(0), _function(0), _params(0), _stepSize(stepSize),
        _toleranceAbs(0.001), _toleranceRel(0.001), _localError(0), _localErrorRatio(0)
 {
 }

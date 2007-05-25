@@ -297,7 +297,10 @@ int DantzigLCPContactSolver::solveCollisions(World::BodyList& bodies)
             contact.body0 = bodies[i];
             contact.body1 = bodies[j];
             checkContact(&contact);
-            if(contact.state == Intersected) return -1;
+            if(contact.state == Intersected) {
+                delete[] contacts;
+                return -1;
+            }
         }
     }
 
@@ -307,6 +310,7 @@ int DantzigLCPContactSolver::solveCollisions(World::BodyList& bodies)
 
     // Solve colliding contact
 
+    delete[] contacts;
     return 0;
 }
 

@@ -206,6 +206,11 @@ int World::doEvolve(double delta)
     int ret = _solver->doEvolve(&time, time+delta*_timeScale, _variables, _errors);
     _time = time;
 
+    while(ret == Solver::CollisionDetected) {
+        // Try smaller timesteps
+        break;
+    }
+
     scatterVariables();
     return ret;
 }
