@@ -69,19 +69,21 @@ void GenericEulerSolver::setDimension(int dimension)
     }
 }
 
-void GenericEulerSolver::doCalcFn(double* t, double y[], double f[])
+int GenericEulerSolver::doCalcFn(double* t, double y[], double f[])
 {
-    _function(*t, y, _ydiff, _params);
+    int ret = _function(*t, y, _ydiff, _params);
     if(f != NULL) std::memcpy(f, _ydiff, _dimension*sizeof(*f));
+    return ret;
 }
 
-bool GenericEulerSolver::doStep(double t, double stepSize, double y[], double yerr[])
+int GenericEulerSolver::doStep(double t, double stepSize, double y[], double yerr[])
 {
     std::memset(yerr, 0, _dimension*sizeof(*yerr));
     _localError = 0;
     _localErrorRatio = 0;
 
-    _function(t, y, _ydiff, _params);
+    int ret = _function(t, y, _ydiff, _params);
+    if(ret != OK) return ret;
 
     for(int i=0; i<_dimension; ++i) {
         // Error estimation: integration with timestep = stepSize
@@ -90,7 +92,9 @@ bool GenericEulerSolver::doStep(double t, double stepSize, double y[], double ye
         _ytemp[i] = y[i] + stepSize/2*_ydiff[i];
     }
 
-    _function(t + stepSize/2, _ytemp, _ydiff, _params);
+    ret = _function(t + stepSize/2, _ytemp, _ydiff, _params);
+    if(ret != OK) return ret;
+
     for(int i=0; i<_dimension; ++i) {
         // Second integration with timestep = stepSize/2
         _ytemp[i] += stepSize/2*_ydiff[i];
@@ -106,18 +110,19 @@ bool GenericEulerSolver::doStep(double t, double stepSize, double y[], double ye
         if(errorRatio > _localErrorRatio) _localErrorRatio = errorRatio;
     }
 
-    if(_localErrorRatio > 1.1) return false;
+    if(_localErrorRatio > 1.1) return ToleranceError;
 
     std::memcpy(y, _ytemp, _dimension*sizeof(*y));
-    return true;
+    return OK;
 }
 
-bool GenericEulerSolver::doEvolve(double* t, double t1, double y[], double yerr[])
+int GenericEulerSolver::doEvolve(double* t, double t1, double y[], double yerr[])
 {
     const double S = 0.9;
 
     while(*t < t1) {
-        bool result = doStep(*t, _stepSize < t1-*t ? _stepSize : t1-*t, y, yerr);
+        int result = doStep(*t, _stepSize < t1-*t ? _stepSize : t1-*t, y, yerr);
+        if(result != OK && result != ToleranceError) return result;
 
         if(_adaptive) {
             if(_localErrorRatio > 1.1) {
@@ -130,14 +135,14 @@ bool GenericEulerSolver::doEvolve(double* t, double t1, double y[], double yerr[
                 if(r<1.0) r = 1.0;
                 _stepSize *= r;
             }
-            if(!result) continue;
+            if(result != OK) continue;
         } else {
-            if(!result) return false;
+            if(result != OK) return ToleranceError;
         }
 
         *t = _stepSize < t1-*t ? *t + _stepSize : t1;
     }
-    return true;
+    return OK;
 }
 
 } // namespace StepCore

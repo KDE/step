@@ -51,6 +51,7 @@ public:
     // QModelIndex quick-access functions
     QModelIndex worldIndex() const;
     QModelIndex solverIndex() const;
+    QModelIndex contactSolverIndex() const;
     QModelIndex objectIndex(StepCore::Object* obj) const;
     QModelIndex itemIndex(int n) const;
     
@@ -113,14 +114,14 @@ public:
 
 public slots:
     void simulationStart();
-    void simulationStop(bool success=true);
+    void simulationStop(int result=0);
     void deleteSelectedItems();
 
 protected slots:
     void simulationFrame();
 
 signals:
-    void simulationStopped(bool success);
+    void simulationStopped(int result);
 
 protected:
     void resetWorld();
@@ -128,7 +129,7 @@ protected:
     void addItem(StepCore::Item* item);
     void removeItem(StepCore::Item* item);
     StepCore::Solver* swapSolver(StepCore::Solver* solver);
-    bool doWorldEvolve(double delta);
+    int doWorldEvolve(double delta);
 
 protected:
     StepCore::World* _world;

@@ -36,6 +36,11 @@ DantzigLCPContactSolver::ContactState DantzigLCPContactSolver::checkContact(Cont
         return contact->state = Unknown;
     }
 
+    if(polygon0->vertexes().size() == 0 ||
+            polygon1->vertexes().size() == 0) {
+        return contact->state = Unknown;
+    }
+
     // Algorithm description can be found in 
     // "A Fast and Robust GJK Implementation for
     //    Collision Detection of Convex Objects"
@@ -284,6 +289,18 @@ DantzigLCPContactSolver::ContactState DantzigLCPContactSolver::checkContact(Cont
 int DantzigLCPContactSolver::solveCollisions(World::BodyList& bodies)
 {
     // Detect and classify contacts
+    unsigned int bs = bodies.size();
+    Contact* contacts = new Contact[bs*bs];
+    for(unsigned int i=0; i<bodies.size(); ++i) {
+        for(unsigned int j=i+1; j<bodies.size(); ++j) {
+            Contact& contact = contacts[i*bs+j];
+            contact.body0 = bodies[i];
+            contact.body1 = bodies[j];
+            checkContact(&contact);
+            if(contact.state == Intersected) return -1;
+        }
+    }
+
     //findClosestPoints(dynamic_cast<Polygon*>(bodies.at(0)), dynamic_cast<Polygon*>(bodies.at(1)));
 
     // If there are penetrations abort the solver and try again with lower timestep

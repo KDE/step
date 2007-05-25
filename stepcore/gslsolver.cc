@@ -128,14 +128,15 @@ void GslGenericSolver::fini()
     if(_gslEvolve != NULL) gsl_odeiv_evolve_free(_gslEvolve);
 }
 
-void GslGenericSolver::doCalcFn(double* t, double y[], double f[])
+int GslGenericSolver::doCalcFn(double* t, double y[], double f[])
 {
-    GSL_ODEIV_FN_EVAL(&_gslSystem, *t, y, _ydiff);
+    int ret = GSL_ODEIV_FN_EVAL(&_gslSystem, *t, y, _ydiff);
     if(f != NULL) std::memcpy(f, _ydiff, _dimension*sizeof(*f));
+    return ret;
     //_hasSavedState = true;
 }
 
-bool GslGenericSolver::doEvolve(double* t, double t1, double y[], double yerr[])
+int GslGenericSolver::doEvolve(double* t, double t1, double y[], double yerr[])
 {
     //STEPCORE_ASSERT_NOABORT(_dimension != 0);
 
@@ -162,8 +163,9 @@ bool GslGenericSolver::doEvolve(double* t, double t1, double y[], double yerr[])
                                                 _ytemp, yerr, NULL, NULL, &_gslSystem);
             tt = _stepSize < t1-tt ? tt + _stepSize : t1;
         }
-        STEPCORE_ASSERT_NOABORT(0 == gsl_result);
+        if(gsl_result != 0) return gsl_result;
 
+        // XXX: Do we need to check it ?
         _localError = 0;
         _localErrorRatio = 0;
         for(int i=0; i<_dimension; ++i) {
@@ -172,12 +174,12 @@ bool GslGenericSolver::doEvolve(double* t, double t1, double y[], double yerr[])
             double errorRatio = error / (_toleranceAbs + _toleranceRel * fabs(_ytemp[i]));
             if(errorRatio > _localErrorRatio) _localErrorRatio = errorRatio;
         }
-        if(_localErrorRatio > 1.1) return false;
+        if(_localErrorRatio > 1.1) return ToleranceError;
 
         std::memcpy(y, _ytemp, _dimension*sizeof(*y)); *t = tt;
     }
 
-    return true;
+    return OK;
 }
 
 } // namespace StepCore

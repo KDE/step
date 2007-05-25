@@ -25,6 +25,9 @@
 #include "propertiesbrowser.h"
 #include "itempalette.h"
 
+#include <stepcore/solver.h>
+#include <stepcore/contactsolver.h>
+
 #include <KAction>
 #include <KActionCollection>
 #include <KStandardAction>
@@ -63,7 +66,7 @@ MainWindow::MainWindow()
     worldGraphicsView = new WorldGraphicsView(worldScene, this);
     setCentralWidget(worldGraphicsView);
 
-    QObject::connect(worldModel, SIGNAL(simulationStopped(bool)), this, SLOT(simulationStopped(bool)));
+    QObject::connect(worldModel, SIGNAL(simulationStopped(int)), this, SLOT(simulationStopped(int)));
     QObject::connect(worldModel->selectionModel(), SIGNAL(selectionChanged(const QItemSelection&, const QItemSelection&)),
                                           this, SLOT(worldSelectionChanged(const QItemSelection&, const QItemSelection&)));
     QObject::connect(itemPalette, SIGNAL(beginAddItem(const QString&)),
@@ -253,16 +256,22 @@ void MainWindow::simulationStart()
     worldModel->simulationStart();
 }
 
-void MainWindow::simulationStopped(bool success)
+void MainWindow::simulationStopped(int result)
 {
     actionSimulationStart->setEnabled(true);
     actionSimulationStop->setEnabled(false);
     actionSimulation->setText(i18n("&Simulate"));
     actionSimulation->setIcon(KIcon("media-playback-start"));
-    if(!success) { // XXX: KMessageBox
+    if(result == StepCore::Solver::ToleranceError) {
         KMessageBox::sorry(this, i18n("Can't finish this step becouse local error "
                "is bigger then local tolerance.\n"
                "Please check solver settings and try again."));
+    } else if(result == StepCore::Solver::CollisionDetected) {
+        KMessageBox::sorry(this, i18n("Can't finish this step becouse the are collisions "
+               "which can not be resolved automatically.\n"
+               "Please move colliding objects appart and try again."));
+    } else if(result != StepCore::Solver::OK) {\
+        KMessageBox::sorry(this, i18n("Can't finish this step becouse of unknown error."));
     }
 }
 

@@ -185,13 +185,13 @@ public:
     ContactSolver* removeContactSolver();
 
     /** Calculate all forces */
-    void doCalcFn();
+    int doCalcFn();
     /** Integrate.
      *  \param delta Integration interval
      *  \return true on success, false on failure (too big local error)
      *  \todo Provide error message
      */
-    bool doEvolve(double delta);
+    int doEvolve(double delta);
 
 private:
     void checkVariablesCount();

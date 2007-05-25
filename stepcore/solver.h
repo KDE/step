@@ -113,7 +113,7 @@ public:
     double localErrorRatio() const { return _localErrorRatio; }
 
     /** Calculate function value */
-    virtual void doCalcFn(double* t, double y[], double f[] = 0) = 0;
+    virtual int doCalcFn(double* t, double y[], double f[] = 0) = 0;
 
     /** Integrate.
      *  \param t Current time (will be updated by the new value)
@@ -123,7 +123,11 @@ public:
      *  \return true on success, false on failure (too big local error)
      *  \todo Provide error message
      */
-    virtual bool doEvolve(double* t, double t1, double y[], double yerr[]) = 0;
+    virtual int doEvolve(double* t, double t1, double y[], double yerr[]) = 0;
+
+public:
+    /** Status codes for doCalcFn and doEvolve */
+    enum { OK = 0, ToleranceError = 2048, CollisionDetected = 4096 };
 
 protected:
     int      _dimension;

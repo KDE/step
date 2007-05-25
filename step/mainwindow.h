@@ -46,7 +46,7 @@ public slots:
     void simulationStartStop();
     void simulationStart();
     void simulationStop();
-    void simulationStopped(bool success);
+    void simulationStopped(int result);
 
 protected slots:
     void updateCaption();

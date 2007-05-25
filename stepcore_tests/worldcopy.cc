@@ -36,8 +36,8 @@ class WorldCopyTestSolver: public StepCore::Solver
     STEPCORE_OBJECT(WorldCopyTestSolver)
 
 public:
-    void doCalcFn(double* t, double y[], double f[] = 0) {};
-    bool doEvolve(double* t, double t1, double y[], double yerr[]) { return false; }
+    int doCalcFn(double* t, double y[], double f[] = 0) { return OK; };
+    int doEvolve(double* t, double t1, double y[], double yerr[]) { return OK; }
 };
 
 STEPCORE_META_OBJECT(WorldCopyTestItem,   "TestItem", 0, STEPCORE_SUPER_CLASS(StepCore::Item),)

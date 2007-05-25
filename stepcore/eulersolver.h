@@ -57,11 +57,11 @@ public:
     /** Get step size */
     void setStepSize(double stepSize) { _stepSize = stepSize; }
 
-    void doCalcFn(double* t, double y[], double f[] = 0);
-    bool doEvolve(double* t, double t1, double y[], double yerr[]);
+    int doCalcFn(double* t, double y[], double f[] = 0);
+    int doEvolve(double* t, double t1, double y[], double yerr[]);
 
 protected:
-    bool doStep(double t, double stepSize, double y[], double yerr[]);
+    int doStep(double t, double stepSize, double y[], double yerr[]);
 
     double  _stepSize;
     bool    _adaptive;

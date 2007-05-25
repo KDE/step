@@ -34,13 +34,15 @@ STEPCORE_META_OBJECT(World, "World", 0, STEPCORE_SUPER_CLASS(Object),
         STEPCORE_PROPERTY_RW(double, timeScale, "Simulation speed scale", timeScale, setTimeScale))
 
 World::World()
-    : _time(0), _timeScale(1), _solver(NULL), _variablesCount(0), _variables(NULL), _errors(NULL)
+    : _time(0), _timeScale(1), _solver(NULL), _contactSolver(0),
+      _variablesCount(0), _variables(NULL), _errors(NULL)
 {
     clear();
 }
 
 World::World(const World& world)
-    : _time(0), _timeScale(1), _solver(NULL), _variablesCount(0), _variables(NULL), _errors(NULL)
+    : _time(0), _timeScale(1), _solver(NULL), _contactSolver(0),
+      _variablesCount(0), _variables(NULL), _errors(NULL)
 {
     clear();
     *this = world;
@@ -72,7 +74,13 @@ World& World::operator=(const World& world)
         (*it)->setWorld(this); // XXX: implement it
 
     checkVariablesCount();
-    setSolver(static_cast<Solver*>(world._solver->metaObject()->cloneObject(*(world._solver))));
+
+    if(world._solver) setSolver(static_cast<Solver*>(world._solver->metaObject()->cloneObject(*(world._solver))));
+    else setSolver(0);
+
+    if(world._contactSolver) setContactSolver(static_cast<ContactSolver*>(
+                                       world._contactSolver->metaObject()->cloneObject(*(world._contactSolver))));
+    else setContactSolver(0);
 
     setTime(world.time());
     setTimeScale(world.timeScale());
@@ -178,16 +186,16 @@ ContactSolver* World::removeContactSolver()
     return contactSolver;
 }
 
-void World::doCalcFn()
+int World::doCalcFn()
 {
     STEPCORE_ASSERT_NOABORT(_solver != NULL);
 
     checkVariablesCount();
     gatherVariables();
-    _solver->doCalcFn(&_time, _variables);
+    return _solver->doCalcFn(&_time, _variables);
 }
 
-bool World::doEvolve(double delta)
+int World::doEvolve(double delta)
 {
     STEPCORE_ASSERT_NOABORT(_solver != NULL);
 
@@ -195,7 +203,7 @@ bool World::doEvolve(double delta)
     gatherVariables();
 
     double time = _time;
-    bool ret = _solver->doEvolve(&time, time+delta*_timeScale, _variables, _errors);
+    int ret = _solver->doEvolve(&time, time+delta*_timeScale, _variables, _errors);
     _time = time;
 
     scatterVariables();
@@ -251,9 +259,17 @@ inline int World::solverFunction(double t, const double y[], double f[])
 {
     _time = t;
     scatterVariables(y); // this will reset force
+
     for(ForceList::iterator force = _forces.begin(); force != _forces.end(); ++force) {
         (*force)->calcForce();
     }
+
+    if(_contactSolver) { // XXX: do it before force calculation
+                         // if we are called from the Solver::doEvolve
+        if(0 != _contactSolver->solveCollisions(_bodies))
+            return Solver::CollisionDetected;
+    }
+
     gatherDerivatives(f);
     return 0;
 }

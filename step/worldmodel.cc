@@ -23,6 +23,7 @@
 #include <stepcore/world.h>
 #include <stepcore/xmlfile.h>
 #include <stepcore/eulersolver.h>
+#include <stepcore/contactsolver.h>
 #include <stepcore/types.h>
 #include <QItemSelectionModel>
 #include <QUndoStack>
@@ -173,7 +174,9 @@ QModelIndex CommandSimulate::pairToIndex(CommandSimulate::PairInt pair)
 {
     if(pair.first == 0) {
         if(pair.second == 0) return _worldModel->worldIndex();
-        else return _worldModel->solverIndex();
+        else if(pair.second == 1) return _worldModel->solverIndex();
+        else if(pair.second == 2) return _worldModel->contactSolverIndex();
+        else return QModelIndex();
     } else return _worldModel->itemIndex(pair.second);
 }
 
@@ -242,12 +245,16 @@ WorldModel::~WorldModel()
 void WorldModel::resetWorld()
 {
     if(_world->name().isEmpty()) {
-        // XXX: check than loaded items has unique names !
+        // XXX: check that loaded items has unique names !
         _world->setName(getUniqueName("world"));
     }
     if(NULL == _world->solver()) {
         _world->setSolver(new StepCore::AdaptiveEulerSolver());
         _world->solver()->setName(getUniqueName("solver"));
+    }
+    if(NULL == _world->contactSolver()) {
+        _world->setContactSolver(new StepCore::DantzigLCPContactSolver());
+        _world->contactSolver()->setName(getUniqueName("contactSolver"));
     }
     _world->doCalcFn();
 
@@ -260,6 +267,7 @@ void WorldModel::emitChanged()
 {
     emit dataChanged(worldIndex(), worldIndex());
     emit dataChanged(solverIndex(), solverIndex());
+    emit dataChanged(contactSolverIndex(), contactSolverIndex());
     if(itemCount() > 0) emit dataChanged(itemIndex(0), itemIndex(itemCount()-1));
 }
 
@@ -273,6 +281,11 @@ QModelIndex WorldModel::solverIndex() const
     return createIndex(1, 0, _world->solver());
 }
 
+QModelIndex WorldModel::contactSolverIndex() const
+{
+    return createIndex(2, 0, _world->contactSolver());
+}
+
 QModelIndex WorldModel::itemIndex(int n) const
 {
     return createIndex(n, 0, _world->items()[n]);
@@ -282,6 +295,7 @@ QModelIndex WorldModel::objectIndex(StepCore::Object* obj) const
 {
     if(obj == _world) return worldIndex();
     else if(obj == _world->solver()) return solverIndex();
+    else if(obj == _world->contactSolver()) return contactSolverIndex();
     else return itemIndex(_world->itemIndex(dynamic_cast<const StepCore::Item*>(obj)));
 }
 
@@ -329,6 +343,7 @@ QModelIndex WorldModel::index(int row, int /*column*/, const QModelIndex &parent
     if(!parent.isValid()) {
         if(row == 0) return worldIndex();
         else if(row == 1) return solverIndex();
+        else if(row == 2) return contactSolverIndex();
     } else if(parent.internalPointer() == _world) return itemIndex(row);
     return QModelIndex();
 }
@@ -338,14 +353,22 @@ QModelIndex WorldModel::parent(const QModelIndex &index) const
     if(!index.isValid()) return QModelIndex();
     else if(index.internalPointer() == _world) return QModelIndex();
     else if(index.internalPointer() == _world->solver()) return QModelIndex();
+    else if(index.internalPointer() == _world->contactSolver()) return QModelIndex();
     return worldIndex();
 }
 
 int WorldModel::rowCount(const QModelIndex &parent) const
 {
     if(!parent.isValid()) {
-        if(_world->solver()) return 2;
-        else return 1;
+        Q_ASSERT(_world->solver());
+        Q_ASSERT(_world->contactSolver());
+        return 3;
+        /*
+        int count = 1;
+        if(_world->solver()) ++count;
+        if(_world->contactSolver()) ++count;
+        return count;
+        */
     }
     else if(parent.internalPointer() == _world) return itemCount();
     else return 0;
@@ -490,9 +513,9 @@ QString WorldModel::createToolTip(const StepCore::Object* object) const
     return toolTip;
 }
 
-bool WorldModel::doWorldEvolve(double delta)
+int WorldModel::doWorldEvolve(double delta)
 {
-    bool ret = _world->doEvolve(delta);
+    int ret = _world->doEvolve(delta);
     _world->doCalcFn();
     emitChanged();
     return ret;
@@ -532,6 +555,7 @@ bool WorldModel::checkUniqueName(QString name) const
     if(name.isEmpty()) return false;
     if(_world->name() == name) return false;
     if(_world->solver() && _world->solver()->name() == name) return false;
+    if(_world->contactSolver() && _world->contactSolver()->name() == name) return false;
     StepCore::World::ItemList::const_iterator it = _world->items().begin();
     for(; it != _world->items().end(); ++it) {
         if((*it)->name() == name) return false;
@@ -567,7 +591,7 @@ void WorldModel::simulationStart()
     _simulationTimer->start();
 }
 
-void WorldModel::simulationStop(bool success)
+void WorldModel::simulationStop(int result)
 {
     _simulationTimer->stop();
     if(_simulationCommand) {
@@ -575,14 +599,14 @@ void WorldModel::simulationStop(bool success)
         _undoStack->endMacro();
         _simulationCommand = NULL;
     }
-    emit simulationStopped(success);
+    emit simulationStopped(result);
 }
 
 void WorldModel::simulationFrame()
 {
-    bool ret = _world->doEvolve(1.0/_simulationFps);
+    int result = _world->doEvolve(1.0/_simulationFps);
     _world->doCalcFn();
     emitChanged();
-    if(!ret) simulationStop(false);
+    if(result != StepCore::Solver::OK) simulationStop(result);
 }
 
