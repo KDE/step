@@ -25,6 +25,7 @@
 
 #include "object.h"
 #include "world.h"
+#include "vector.h"
 
 namespace StepCore
 {
@@ -40,8 +41,8 @@ public:
     virtual ~ContactSolver() {}
 
     // TODO: add errors
-    virtual int solveCollisions(double time, World::BodyList& bodies) = 0;
-    virtual int solveConstraints(double time, World::BodyList& bodies) = 0;
+    virtual int solveCollisions(World::BodyList& bodies) = 0;
+    virtual int solveConstraints(World::BodyList& bodies) = 0;
 };
 
 class DantzigLCPContactSolver : public ContactSolver
@@ -49,16 +50,25 @@ class DantzigLCPContactSolver : public ContactSolver
     STEPCORE_OBJECT(DantzigLCPContactSolver)
 
 public:
-    int solveCollisions(double time, World::BodyList& bodies);
-    int solveConstraints(double time, World::BodyList& bodies);
+    int solveCollisions(World::BodyList& bodies);
+    int solveConstraints(World::BodyList& bodies);
 
-private:
-    struct Collision {
-        Body* body1;
-        Body* body2;
+    enum ContactState {
+        Unknown, Separated, Intersected, Contacted
     };
 
-    int findClosestPoints(const Polygon* polygon1, const Polygon* polygon2);
+    struct Contact {
+        Body* body0;
+        Body* body1;
+        ContactState state;
+        double   distance;
+        Vector2d normal;
+        int      pointsCount;
+        Vector2d points[2];
+    };
+
+    ContactState checkContact(Contact* contact);
+    //int findClosestPoints(const Polygon* polygon1, const Polygon* polygon2);
 };
 
 } // namespace StepCore

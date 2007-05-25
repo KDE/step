@@ -28,8 +28,14 @@ STEPCORE_META_OBJECT(ContactSolver, "ContactSolver", MetaObject::ABSTRACT,
 STEPCORE_META_OBJECT(DantzigLCPContactSolver, "DantzigLCPContactSolver", 0,
                         STEPCORE_SUPER_CLASS(ContactSolver),)
 
-int DantzigLCPContactSolver::findClosestPoints(const Polygon* polygon0, const Polygon* polygon1)
+DantzigLCPContactSolver::ContactState DantzigLCPContactSolver::checkContact(Contact* contact)
 {
+    Polygon* polygon0 = dynamic_cast<Polygon*>(contact->body0);
+    Polygon* polygon1 = dynamic_cast<Polygon*>(contact->body1);
+    if(!polygon0 || !polygon1) {
+        return contact->state = Unknown;
+    }
+
     // Algorithm description can be found in 
     // "A Fast and Robust GJK Implementation for
     //    Collision Detection of Convex Objects"
@@ -163,6 +169,7 @@ int DantzigLCPContactSolver::findClosestPoints(const Polygon* polygon0, const Po
     }
 
     if(intersects) {
+        /*
         qDebug("penetration detected");
         qDebug("iteration = %d", iteration);
         qDebug("simplexes:");
@@ -170,9 +177,11 @@ int DantzigLCPContactSolver::findClosestPoints(const Polygon* polygon0, const Po
         for(int i=0; i<wsize; ++i) {
             qDebug("    %d    %d", wi[0][i], wi[1][i]);
         }
-        return -1;
+        */
+        return contact->state = Intersected;
     }
 
+    /*
     qDebug("distance = %f", v.norm());
     Vector2d v1 = v / v.norm();
     qDebug("normal = (%f,%f)", v1[0], v1[1]);
@@ -184,91 +193,98 @@ int DantzigLCPContactSolver::findClosestPoints(const Polygon* polygon0, const Po
     }
     qDebug("contact points:");
     qDebug("    (%f,%f)    (%f,%f)", vv[0][0], vv[0][1], vv[1][0], vv[1][1]);
+    */
 
-    // If the objects are close enough we need to find contact manifold
     double vnorm = v.norm();
-    if(vnorm < 0.01) { // XXX: tolerance: made it configurable
-        // We are going to find simplexes (lines) that are 'most parallel'
-        // to contact plane and look for contact manifold among them. It
-        // works for almost all cases when adjacent polygon edges are
-        // not parallel
-        Vector2d vunit = v / vnorm;
-        Vector2d wm[0][2];
+    contact->distance = vnorm;
+    contact->normal = v/vnorm;
 
-        bool m_is_point = false;
-        for(int i=0; i<2; ++i) {
-            wm[i][0] = vertexes[i][ wi[i][0] ];
-
-            if(wsize < 2 || wi[i][0] == wi[i][1]) { // vertex contact
-                // Check two adjacent edges
-                int ai1 = wi[i][0] - 1; if(ai1 < 0) ai1 = vertexes[i].size()-1;
-                Vector2d av1 = vertexes[i][ai1];
-                Vector2d dv1 = wm[i][0] - av1;
-                double dist1 = vunit.innerProduct( dv1 ) * (i==0 ? 1 : -1);
-                double angle1 = dist1 / dv1.norm();
-
-                int ai2 = wi[i][0] + 1; if(ai2 >= (int) vertexes[i].size()) ai2 = 0;
-                Vector2d av2 = vertexes[i][ai2];
-                Vector2d dv2 = wm[i][0] - av2;
-                double dist2 = vunit.innerProduct( dv2 ) * (i==0 ? 1 : -1);
-                double angle2 = dist2 / dv2.norm();
-
-                if(angle1 <= angle2 && angle1 < 0.01 && dist1+vnorm < 0.01) { // XXX: tolerance
-                    wm[i][1] = av1;
-                } else if(angle2 <= angle1 && angle2 < 0.01 && dist2+vnorm < 0.01) { // XXX: tolerance
-                    wm[i][1] = av2;
-                } else {
-                    wm[i][1] = wm[i][0]; m_is_point = true;
-                    break;
-                }
-            } else { // edge contact
-                wm[i][1] = vertexes[i][ wi[i][1] ];
-            }
-        }
-
-        // Find intersection of two lines
-        if(!m_is_point) {
-            Vector2d vunit_o(-vunit[1], vunit[0]);
-            double wm_o[2][2];
-
-            for(int i=0; i<2; ++i) {
-                wm_o[i][0] = vunit_o.innerProduct(wm[i][0]);
-                wm_o[i][1] = vunit_o.innerProduct(wm[i][1]);
-
-                if(wm_o[i][0] > wm_o[i][1]) {
-                    std::swap(wm_o[i][0], wm_o[i][1]);
-                    std::swap(wm[i][0], wm[i][1]);
-                }
-            }
-
-            Vector2d m[2];
-            if(wm_o[0][0] > wm_o[1][0]) m[0] = wm[0][0];
-            else m[0] = wm[1][0];
-
-            if(wm_o[0][1] < wm_o[1][1]) m[1] = wm[0][1];
-            else m[1] = wm[1][1];
-
-            if((m[1] - m[0]).norm() > 0.01) { // XXX: tolerance
-                for(int i=0; i<2; ++i) {
-                    qDebug("contact%d: (%f,%f)", i, m[i][0], m[i][1]);
-                }
-                return 0;
-            }
-        }
-
-        qDebug("contact is one point: (%f %f) (%f %f)", vv[0][0], vv[0][1], vv[1][0], vv[1][1]);
-
-        return 0;
+    if(vnorm > 0.01) { // XXX: tolerance: made it configurable
+        return contact->state = Separated;
     }
 
-    return 1;
+    // If the objects are close enough we need to find contact manifold
+    // We are going to find simplexes (lines) that are 'most parallel'
+    // to contact plane and look for contact manifold among them. It
+    // works for almost all cases when adjacent polygon edges are
+    // not parallel
+    Vector2d vunit = v / vnorm;
+    Vector2d wm[2][2];
+
+    bool m_is_point = false;
+    for(int i=0; i<2; ++i) {
+        wm[i][0] = vertexes[i][ wi[i][0] ];
+
+        if(wsize < 2 || wi[i][0] == wi[i][1]) { // vertex contact
+            // Check two adjacent edges
+            int ai1 = wi[i][0] - 1; if(ai1 < 0) ai1 = vertexes[i].size()-1;
+            Vector2d av1 = vertexes[i][ai1];
+            Vector2d dv1 = wm[i][0] - av1;
+            double dist1 = vunit.innerProduct( dv1 ) * (i==0 ? 1 : -1);
+            double angle1 = dist1 / dv1.norm();
+
+            int ai2 = wi[i][0] + 1; if(ai2 >= (int) vertexes[i].size()) ai2 = 0;
+            Vector2d av2 = vertexes[i][ai2];
+            Vector2d dv2 = wm[i][0] - av2;
+            double dist2 = vunit.innerProduct( dv2 ) * (i==0 ? 1 : -1);
+            double angle2 = dist2 / dv2.norm();
+
+            if(angle1 <= angle2 && angle1 < 0.01 && dist1+vnorm < 0.01) { // XXX: tolerance
+                wm[i][1] = av1;
+            } else if(angle2 <= angle1 && angle2 < 0.01 && dist2+vnorm < 0.01) { // XXX: tolerance
+                wm[i][1] = av2;
+            } else {
+                wm[i][1] = wm[i][0]; m_is_point = true;
+                break;
+            }
+        } else { // edge contact
+            wm[i][1] = vertexes[i][ wi[i][1] ];
+        }
+    }
+
+    // Find intersection of two lines
+    if(!m_is_point) {
+        Vector2d vunit_o(-vunit[1], vunit[0]);
+        double wm_o[2][2];
+
+        for(int i=0; i<2; ++i) {
+            wm_o[i][0] = vunit_o.innerProduct(wm[i][0]);
+            wm_o[i][1] = vunit_o.innerProduct(wm[i][1]);
+
+            if(wm_o[i][0] > wm_o[i][1]) {
+                std::swap(wm_o[i][0], wm_o[i][1]);
+                std::swap(wm[i][0], wm[i][1]);
+            }
+        }
+
+        if(wm_o[0][0] > wm_o[1][0]) contact->points[0] = wm[0][0];
+        else contact->points[0] = wm[1][0];
+
+        if(wm_o[0][1] < wm_o[1][1]) contact->points[1] = wm[0][1];
+        else contact->points[1] = wm[1][1];
+
+        // TODO: interpolate to midpoint
+        if((contact->points[1] - contact->points[0]).norm() > 0.01) { // XXX: tolerance
+            /*
+            for(int i=0; i<2; ++i) {
+                qDebug("contact%d: (%f,%f)", i, contact->points[i][0], contact->points[i][1]);
+            }
+            */
+            contact->pointsCount = 2;
+            return contact->state = Contacted;
+        }
+    }
+
+    contact->pointsCount = 1;
+    contact->points[0] = vv[0]; // TODO: interpolate vv[0] and vv[1]
+    //qDebug("contact is one point: (%f %f) (%f %f)", vv[0][0], vv[0][1], vv[1][0], vv[1][1]);
+    return contact->state = Contacted;
 }
 
-
-int DantzigLCPContactSolver::solveCollisions(double time, World::BodyList& bodies)
+int DantzigLCPContactSolver::solveCollisions(World::BodyList& bodies)
 {
     // Detect and classify contacts
-    findClosestPoints(dynamic_cast<Polygon*>(bodies.at(0)), dynamic_cast<Polygon*>(bodies.at(1)));
+    //findClosestPoints(dynamic_cast<Polygon*>(bodies.at(0)), dynamic_cast<Polygon*>(bodies.at(1)));
 
     // If there are penetrations abort the solver and try again with lower timestep
 
@@ -277,7 +293,7 @@ int DantzigLCPContactSolver::solveCollisions(double time, World::BodyList& bodie
     return 0;
 }
 
-int DantzigLCPContactSolver::solveConstraints(double time, World::BodyList& bodies)
+int DantzigLCPContactSolver::solveConstraints(World::BodyList& bodies)
 {
 
     return 0;
