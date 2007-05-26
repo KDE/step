@@ -272,7 +272,7 @@ int World::doEvolve(double delta)
             //      to collision point and ContactSolver have resolved collision
             // We can't simply change Solver::stepSize since adaptive solvers can
             // abuse our settings so we have to step manually
-            double stepSize = (_collisionTime - _time)/2;
+            double stepSize = fmin((_collisionTime - _time)/2, targetTime-_time);
             double collisionEndTime = fmin(_time + stepSize*3, targetTime);
 
             do {
@@ -282,9 +282,9 @@ int World::doEvolve(double delta)
                 _time = time;
 
                 if(ret == Solver::PenetrationDetected || ret == Solver::CollisionDetected) {
-                    stepSize /= 2;
-                    collisionEndTime = _time + stepSize*3;
-                    STEPCORE_ASSERT_NOABORT(collisionEndTime <= targetTime);
+                    stepSize = fmin(stepSize/2, targetTime-_time);
+                    collisionEndTime = fmin(_time + stepSize*3, targetTime);
+                    STEPCORE_ASSERT_NOABORT(stepSize > 0);
                     // XXX: what to do if stepSize becomes too small ?
                 } else if(ret == Solver::OK) {
                     if(_collisionTime > _collisionExpectedTime) {

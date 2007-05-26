@@ -343,9 +343,9 @@ int DantzigLCPContactSolver::solveCollisions(World::BodyList& bodies)
     }
 
     // Solve collisions
-    for(unsigned int i=0; i<bodies.size(); ++i) {
-        for(unsigned int j=i+1; j<bodies.size(); ++j) {
-            Contact& contact = contacts[i*bs+j];
+    for(unsigned int i0=0; i0<bodies.size(); ++i0) {
+        for(unsigned int i1=i0+1; i1<bodies.size(); ++i1) {
+            Contact& contact = contacts[i0*bs+i1];
             if(contact.state == Colliding) {
                 RigidBody* body0 = dynamic_cast<RigidBody*>(contact.body0);
                 RigidBody* body1 = dynamic_cast<RigidBody*>(contact.body1);
@@ -355,16 +355,31 @@ int DantzigLCPContactSolver::solveCollisions(World::BodyList& bodies)
                 
                 // calculate impulse
                 double b = 1; // coefficient of bounceness
-                double d = 1/body0->mass() + 1/body1->mass();
+
+                Vector2d r0 = contact.points[0] - body0->position();
+                Vector2d r1 = contact.points[0] - body1->position();
+
+                double r0n = r0[0]*contact.normal[1] - r0[1]*contact.normal[0];
+                double r1n = r1[0]*contact.normal[1] - r1[1]*contact.normal[0];
+
+                double term0 = contact.normal.innerProduct(
+                            Vector2d( -r0n*r0[1], r0n*r0[0] )) / body0->inertia();
+                double term1 = contact.normal.innerProduct(
+                            Vector2d( -r1n*r1[1], r1n*r1[0] )) / body1->inertia();
+
+                double term2 = 1/body0->mass() + 1/body1->mass();
+
                 qDebug("vel0=(%f,%f) vel1=(%f,%f)", body0->velocity()[0], body0->velocity()[1],
                                                     body1->velocity()[0], body1->velocity()[1]);
                 qDebug("body0=%#x, body1=%#x", body0, body1);
-                qDebug("vrel=%f d=%f", vrel, d);
+                qDebug("vrel=%f", vrel);
                 qDebug("normal=(%f,%f)", contact.normal[0], contact.normal[1]);
-                Vector2d j = contact.normal * ( -(1+b)*vrel / d );
+                Vector2d j = contact.normal * ( -(1+b)*vrel / (term0 + term1 + term2) );
                 qDebug("mass0=%f mass1=%f j=(%f,%f)", body0->mass(), body1->mass(), j[0], j[1]);
                 body0->setVelocity(body0->velocity() - j / body0->mass());
                 body1->setVelocity(body1->velocity() + j / body1->mass());
+                body0->setAngularVelocity(body0->angularVelocity() - j.norm() * r0n / body0->inertia());
+                body1->setAngularVelocity(body1->angularVelocity() + j.norm() * r1n / body1->inertia());
 
                 double vrel1 = contact.normal.innerProduct(
                                 body1->velocityWorld(contact.points[0]) -
