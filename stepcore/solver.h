@@ -136,7 +136,11 @@ public:
 
 public:
     /** Status codes for doCalcFn and doEvolve */
-    enum { OK = 0, ToleranceError = 2048, CollisionDetected = 4096 };
+    enum { OK = 0,
+           ToleranceError = 2048,
+           CollisionDetected = 4096,
+           PenetrationDetected = 4097
+    };
 
 protected:
     int      _dimension;

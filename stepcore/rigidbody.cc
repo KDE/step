@@ -58,6 +58,12 @@ void RigidBody::applyTorque(double torque)
     _torque += torque;
 }
 
+Vector2d RigidBody::velocityWorld(const Vector2d& worldPoint) const
+{
+    Vector2d p = (worldPoint - _position)*_angularVelocity;
+    return _velocity + Vector2d(-p[1], p[0]);
+}
+
 Vector2d RigidBody::pointLocalToWorld(const Vector2d& p) const
 {
     double c = cos(_angle);

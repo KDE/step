@@ -37,8 +37,27 @@ class ContactSolver : public Object
     STEPCORE_OBJECT(ContactSolver)
 
 public:
+    enum ContactState {
+        Unknown, Separated, Contacted, Colliding, Intersected
+    };
+
+    struct Contact {
+        Body* body0;
+        Body* body1;
+        ContactState state;
+        double   distance;
+        Vector2d normal;        // from body0 to body1
+        int      pointsCount;   // either one or two
+        Vector2d points[2];     // on body0 or body1 or mixed
+        double   vrel[2];       // relative velocities
+    };
+
+
     ContactSolver() {}
     virtual ~ContactSolver() {}
+
+    virtual ContactState checkContact(Contact* contact) = 0;
+    virtual ContactState checkContacts(World::BodyList& bodies) = 0;
 
     // TODO: add errors
     virtual int solveCollisions(World::BodyList& bodies) = 0;
@@ -50,25 +69,19 @@ class DantzigLCPContactSolver : public ContactSolver
     STEPCORE_OBJECT(DantzigLCPContactSolver)
 
 public:
-    int solveCollisions(World::BodyList& bodies);
-    int solveConstraints(World::BodyList& bodies);
-
-    enum ContactState {
-        Unknown, Separated, Intersected, Contacted
-    };
-
-    struct Contact {
-        Body* body0;
-        Body* body1;
-        ContactState state;
-        double   distance;
-        Vector2d normal;
-        int      pointsCount;
-        Vector2d points[2];
+    enum {
+        OK = 0,
+        CollisionDetected = 4096,
+        PenetrationDetected = 4097
     };
 
     ContactState checkContact(Contact* contact);
+    ContactState checkContacts(World::BodyList& bodies);
     //int findClosestPoints(const Polygon* polygon1, const Polygon* polygon2);
+
+    int solveCollisions(World::BodyList& bodies);
+    int solveConstraints(World::BodyList& bodies);
+
 };
 
 } // namespace StepCore

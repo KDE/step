@@ -56,6 +56,8 @@ public:
     const Vector2d& velocity() const { return _velocity; }
     /** Set velocity of the particle */
     void setVelocity(const Vector2d& velocity) { _velocity = velocity; }
+    /** Get velocity of given (world) point on the body */
+    Vector2d velocityWorld(const Vector2d& worldPoint) const;
 
     /** Get angular velocity of the body */
     double angularVelocity() const { return _angularVelocity; }

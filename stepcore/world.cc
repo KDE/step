@@ -86,6 +86,9 @@ World& World::operator=(const World& world)
     setTimeScale(world.timeScale());
     setName(world.name());
 
+    _collisionExpectedTime = world._collisionExpectedTime;
+    _collisionTime = world._collisionTime;
+
     return *this;
 }
 
@@ -108,6 +111,9 @@ void World::clear()
 
     _time = 0;
     _timeScale = 1;
+
+    _collisionExpectedTime = HUGE_VAL;
+    _collisionTime = HUGE_VAL;
 
 #ifdef STEPCORE_WITH_QT
     setName(QString());
@@ -247,16 +253,55 @@ int World::doEvolve(double delta)
     checkVariablesCount();
     gatherVariables();
 
-    double time = _time;
-    int ret = _solver->doEvolve(&time, time+delta*_timeScale, _variables, _errors);
-    _time = time;
+    int ret = Solver::OK;
+    double targetTime = _time + delta*_timeScale;
+    
+    while(_time < targetTime) {
+        double time = _time;
+        _collisionExpectedTime = HUGE_VAL;
+        ret = _solver->doEvolve(&time, targetTime, _variables, _errors);
+        _time = time;
 
-    while(ret == Solver::CollisionDetected) {
-        //XXX int ret = _solver->doEvolve(&time, time+_solver->stepSize()/2, _variables, _errors);
-        // Try smaller timesteps
-        break;
+        if(ret == Solver::CollisionDetected ||
+           ret == Solver::PenetrationDetected) {
+            // If we have stopped on collision
+            // 1. Decrease timestep to stop before collision
+            // 2. Proceed with decresed timestep until
+            //    - we have meet collision again: go to 1
+            //    - we pass collision point: it means that we have come close enough
+            //      to collision point and ContactSolver have resolved collision
+            // We can't simply change Solver::stepSize since adaptive solvers can
+            // abuse our settings so we have to step manually
+            double stepSize = (_collisionTime - _time)/2;
+            double collisionEndTime = fmin(_time + stepSize*3, targetTime);
+
+            do {
+                _collisionExpectedTime = time+stepSize-fmin(stepSize, _solver->stepSize())*1e-10;
+                _collisionTime = -HUGE_VAL;
+                ret = _solver->doEvolve(&time, time+stepSize, _variables, _errors);
+                _time = time;
+
+                if(ret == Solver::PenetrationDetected || ret == Solver::CollisionDetected) {
+                    stepSize /= 2;
+                    collisionEndTime = _time + stepSize*3;
+                    STEPCORE_ASSERT_NOABORT(collisionEndTime <= targetTime);
+                    // XXX: what to do if stepSize becomes too small ?
+                } else if(ret == Solver::OK) {
+                    if(_collisionTime > _collisionExpectedTime) {
+                        // We are at collision point
+                        scatterVariables();
+                        int ret1 = _contactSolver->solveCollisions(_bodies);
+                        STEPCORE_ASSERT_NOABORT(ret1 == DantzigLCPContactSolver::CollisionDetected);
+                        gatherVariables();
+                    }
+                    
+                } else goto out;
+
+            } while(_time <= collisionEndTime);
+        } else if(ret != Solver::OK) goto out;
     }
 
+out:
     scatterVariables();
     return ret;
 }
@@ -272,8 +317,15 @@ inline int World::solverFunction(double t, const double y[], double f[])
 
     if(_contactSolver) { // XXX: do it before force calculation
                          // if we are called from the Solver::doEvolve
-        if(0 != _contactSolver->solveCollisions(_bodies))
-            return Solver::CollisionDetected;
+        DantzigLCPContactSolver::ContactState state = _contactSolver->checkContacts(_bodies);
+        if(state == DantzigLCPContactSolver::Intersected) {
+            _collisionTime = t;
+            return Solver::PenetrationDetected;
+        } else if(state == DantzigLCPContactSolver::Colliding) {
+            _collisionTime = t;
+            if(t < _collisionExpectedTime)
+                return DantzigLCPContactSolver::CollisionDetected;
+        }
     }
 
     gatherDerivatives(f);

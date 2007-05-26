@@ -108,6 +108,10 @@ int GenericEulerSolver::doStep(double t, double stepSize, double y[], double yer
 
     if(_localErrorRatio > 1.1) return ToleranceError;
 
+    // XXX
+    ret = _function(t + stepSize, _ytemp, _ydiff, _params);
+    if(ret != OK) return ret;
+
     std::memcpy(y, _ytemp, _dimension*sizeof(*y));
     return OK;
 }
