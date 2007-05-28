@@ -73,10 +73,11 @@ double WorldGraphicsItem::currentViewScale() const
 
 void WorldGraphicsItem::drawArrow(QPainter* painter, const StepCore::Vector2d& v)
 {
-    if(v.norm2() > ARROW_STROKE*ARROW_STROKE) { // do not draw too small vectors
+    double s = currentViewScale();
+    if(v.norm2()*s*s > ARROW_STROKE*ARROW_STROKE) { // do not draw too small vectors
         painter->drawLine(QLineF(0, 0, v[0], v[1]));
 
-        const StepCore::Vector2d vn = v * (ARROW_STROKE / currentViewScale() / v.norm());
+        const StepCore::Vector2d vn = v * (ARROW_STROKE / s / v.norm());
         painter->drawLine(QLineF(v[0], v[1], v[0] - 0.866*vn[0] - 0.5  *vn[1],
                                              v[1] + 0.5  *vn[0] - 0.866*vn[1]));
         painter->drawLine(QLineF(v[0], v[1], v[0] - 0.866*vn[0] + 0.5  *vn[1],

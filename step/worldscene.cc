@@ -345,7 +345,7 @@ void WorldGraphicsView::fitToPage()
 void WorldGraphicsView::actualSize()
 {
     resetMatrix();
-    scale(1, -1);
+    scale(100, -100);
     setSceneRect(-SCENE_LENGTH, -SCENE_LENGTH,
                   SCENE_LENGTH*2, SCENE_LENGTH*2);
     centerOn(0, 0);

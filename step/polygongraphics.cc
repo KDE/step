@@ -103,7 +103,7 @@ void PolygonCreator::fixInertia()
         else inertia /= area;
     }
 
-    inertia = inertia * mass * (0.001*0.001); // 1px = 1mm XXX XXX XXX
+    inertia = inertia * mass; // 1 = 1m XXX XXX XXX
     _worldModel->setProperty(_item, _item->metaObject()->property("inertia"), QVariant::fromValue(inertia));
 }
 
