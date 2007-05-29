@@ -4,7 +4,7 @@ set(stepcore_SRCS
     constants.cc
     world.cc
     solver.cc
-    contactsolver.cc
+    collisionsolver.cc
     factory.cc
     xmlfile.cc
     particle.cc
