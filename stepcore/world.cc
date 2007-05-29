@@ -257,8 +257,12 @@ int World::doEvolve(double delta)
     double targetTime = _time + delta*_timeScale;
     
     while(_time < targetTime) {
+        STEPCORE_ASSERT_NOABORT( targetTime - _time > _solver->stepSize() / 1000 );
+        if( !(   targetTime - _time > _solver->stepSize() / 1000 ) ) {
+                    qDebug("* %e %e %e", targetTime, _time, _solver->stepSize());
+        }
         double time = _time;
-        _collisionExpectedTime = HUGE_VAL;
+        //_collisionExpectedTime = HUGE_VAL;
         ret = _solver->doEvolve(&time, targetTime, _variables, _errors);
         _time = time;
 
@@ -272,32 +276,36 @@ int World::doEvolve(double delta)
             //      to collision point and ContactSolver have resolved collision
             // We can't simply change Solver::stepSize since adaptive solvers can
             // abuse our settings so we have to step manually
-            double stepSize = fmin((_collisionTime - _time)/2, targetTime-_time);
+            //STEPCORE_ASSERT_NOABORT(_collisionTime <= targetTime);
+            //STEPCORE_ASSERT_NOABORT(_collisionTime > _time);
+            double stepSize = fmin(_solver->stepSize() / 2, targetTime - _time);
             double collisionEndTime = fmin(_time + stepSize*3, targetTime);
 
             do {
-                _collisionExpectedTime = time+stepSize-fmin(stepSize, _solver->stepSize())*1e-10;
-                _collisionTime = -HUGE_VAL;
-                ret = _solver->doEvolve(&time, time+stepSize, _variables, _errors);
+                double endTime = stepSize < collisionEndTime - time ? time+stepSize : collisionEndTime;
+                //_collisionExpectedTime = endTime-fmin(stepSize, _solver->stepSize())*1e-5;
+                //_collisionTime = -HUGE_VAL;
+                ret = _solver->doEvolve(&time, endTime, _variables, _errors);
                 _time = time;
 
                 if(ret == Solver::PenetrationDetected || ret == Solver::CollisionDetected) {
-                    stepSize = fmin(stepSize/2, targetTime-_time);
+                    //STEPCORE_ASSERT_NOABORT(_collisionTime > _time);
+                    //STEPCORE_ASSERT_NOABORT(_collisionTime < _collisionExpectedTime);
+                    stepSize = fmin(stepSize/2, targetTime - _time);
                     collisionEndTime = fmin(_time + stepSize*3, targetTime);
-                    STEPCORE_ASSERT_NOABORT(stepSize > 0);
+                    //STEPCORE_ASSERT_NOABORT(_time + stepSize != _time);
                     // XXX: what to do if stepSize becomes too small ?
                 } else if(ret == Solver::OK) {
-                    if(_collisionTime > _collisionExpectedTime) {
+                    //if(_collisionTime > _collisionExpectedTime) {
                         // We are at collision point
                         scatterVariables();
                         int ret1 = _contactSolver->solveCollisions(_bodies);
-                        STEPCORE_ASSERT_NOABORT(ret1 == DantzigLCPContactSolver::CollisionDetected);
+                        //STEPCORE_ASSERT_NOABORT(ret1 == DantzigLCPContactSolver::CollisionDetected);
                         gatherVariables();
-                    }
-                    
+                    //}
                 } else goto out;
 
-            } while(_time <= collisionEndTime);
+            } while(_time + stepSize/1000 <= collisionEndTime); // XXX
         } else if(ret != Solver::OK) goto out;
     }
 
@@ -319,13 +327,18 @@ inline int World::solverFunction(double t, const double y[], double f[])
                          // if we are called from the Solver::doEvolve
         DantzigLCPContactSolver::ContactState state = _contactSolver->checkContacts(_bodies);
         if(state == DantzigLCPContactSolver::Intersected) {
-            _collisionTime = t;
+            //_collisionTime = t;
             return Solver::PenetrationDetected;
-        } else if(state == DantzigLCPContactSolver::Colliding) {
-            _collisionTime = t;
-            if(t < _collisionExpectedTime)
-                return DantzigLCPContactSolver::CollisionDetected;
-        }
+        } //else if(state == DantzigLCPContactSolver::Colliding) {
+            // XXX: We are not stopping on colliding contact
+            // and resolving them only at the end of timestep
+            // XXX: is it right solution ? Shouldn't we try to find
+            // contact point more exactly for example using binary search ?
+            //_collisionTime = t;
+            //_collisionTime = t;
+            //if(t < _collisionExpectedTime)
+            //    return DantzigLCPContactSolver::CollisionDetected;
+        //}
     }
 
     gatherDerivatives(f);

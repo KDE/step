@@ -76,6 +76,8 @@ protected:
     //gsl_odeiv_evolve*   _gslEvolve;
     double* _ytemp;
     double* _ydiff;
+    double* _dydt_in;
+    double* _dydt_out;
 
     const gsl_odeiv_step_type* _gslStepType;
     gsl_odeiv_system   _gslSystem;

@@ -97,6 +97,8 @@ void GslGenericSolver::init()
 {
     _ytemp = new double[_dimension];
     _ydiff = new double[_dimension];
+    _dydt_in  = new double[_dimension];
+    _dydt_out = new double[_dimension];
 
     _gslStep = gsl_odeiv_step_alloc(_gslStepType, _dimension);
     STEPCORE_ASSERT_NOABORT(NULL != _gslStep);
@@ -120,6 +122,7 @@ void GslGenericSolver::init()
 void GslGenericSolver::fini()
 {
     delete[] _ytemp; delete[] _ydiff;
+    delete[] _dydt_in; delete[] _dydt_out;
     if(_gslStep != NULL) gsl_odeiv_step_free(_gslStep);
     if(_gslControl != NULL) gsl_odeiv_control_free(_gslControl);
     if(_gslEvolve != NULL) gsl_odeiv_evolve_free(_gslEvolve);
@@ -135,6 +138,8 @@ int GslGenericSolver::doCalcFn(double* t, double y[], double f[])
 
 int GslGenericSolver::doEvolve(double* t, double t1, double y[], double yerr[])
 {
+    STEPCORE_ASSERT_NOABORT(*t + _stepSize != *t);
+    STEPCORE_ASSERT_NOABORT(*t != t1);
     //STEPCORE_ASSERT_NOABORT(_dimension != 0);
 
     /*
@@ -146,18 +151,25 @@ int GslGenericSolver::doEvolve(double* t, double t1, double y[], double yerr[])
     }
     */
 
+    int gsl_result;
     std::memcpy(_ytemp, y, _dimension*sizeof(*_ytemp));
+
+    if(!_adaptive) {
+        gsl_result = GSL_ODEIV_FN_EVAL(&_gslSystem, *t, y, _dydt_in);
+        if(gsl_result != 0) return gsl_result;
+    }
+
     while(*t < t1) {
         double tt = *t;
-        int gsl_result;
         if(_adaptive) {
             gsl_odeiv_evolve_reset(_gslEvolve); // XXX
             gsl_result = gsl_odeiv_evolve_apply(_gslEvolve, _gslControl, _gslStep, &_gslSystem,
                                             &tt, t1, &_stepSize, _ytemp);
             std::memcpy(yerr, _gslEvolve->yerr, _dimension*sizeof(*yerr));
         } else {
+            STEPCORE_ASSERT_NOABORT(t1-tt > _stepSize/100);
             gsl_result = gsl_odeiv_step_apply(_gslStep, tt, (_stepSize < t1-tt ? _stepSize : t1-tt),
-                                                _ytemp, yerr, NULL, NULL, &_gslSystem);
+                                                _ytemp, yerr, _dydt_in, _dydt_out, &_gslSystem);
             tt = _stepSize < t1-tt ? tt + _stepSize : t1;
         }
         if(gsl_result != 0) return gsl_result;
@@ -173,7 +185,9 @@ int GslGenericSolver::doEvolve(double* t, double t1, double y[], double yerr[])
         }
         if(_localErrorRatio > 1.1) return ToleranceError;
 
-        std::memcpy(y, _ytemp, _dimension*sizeof(*y)); *t = tt;
+        *t = tt;
+        std::memcpy(y, _ytemp, _dimension*sizeof(*y));
+        if(!_adaptive) std::memcpy(_dydt_in, _dydt_out, _dimension*sizeof(*_dydt_in));
     }
 
     return OK;

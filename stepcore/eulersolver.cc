@@ -118,9 +118,18 @@ int GenericEulerSolver::doStep(double t, double stepSize, double y[], double yer
 
 int GenericEulerSolver::doEvolve(double* t, double t1, double y[], double yerr[])
 {
+    STEPCORE_ASSERT_NOABORT(*t + _stepSize != *t);
+    STEPCORE_ASSERT_NOABORT(*t != t1);
+
+    #ifndef NDEBUG
+    double realStepSize = fmin( _stepSize, t1 - *t );
+    #endif
+
     const double S = 0.9;
 
     while(*t < t1) {
+        STEPCORE_ASSERT_NOABORT(t1-*t > realStepSize/1000);
+
         double t11 = _stepSize < t1-*t ? *t + _stepSize : t1;
         int result = doStep(*t, t11 - *t, y, yerr);
 
