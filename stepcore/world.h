@@ -216,8 +216,8 @@ private:
     double* _variables;
     double* _errors;
 
-    double  _collisionExpectedTime;
-    double  _collisionTime;
+    bool    _stopOnCollision;
+    bool    _stopOnPenetration;
 };
 
 } // namespace StepCore

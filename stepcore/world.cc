@@ -86,8 +86,8 @@ World& World::operator=(const World& world)
     setTimeScale(world.timeScale());
     setName(world.name());
 
-    _collisionExpectedTime = world._collisionExpectedTime;
-    _collisionTime = world._collisionTime;
+    _stopOnCollision = world._stopOnCollision;
+    _stopOnPenetration = world._stopOnPenetration;
 
     return *this;
 }
@@ -112,8 +112,8 @@ void World::clear()
     _time = 0;
     _timeScale = 1;
 
-    _collisionExpectedTime = HUGE_VAL;
-    _collisionTime = HUGE_VAL;
+    _stopOnCollision = false;
+    _stopOnPenetration = false;
 
 #ifdef STEPCORE_WITH_QT
     setName(QString());
@@ -241,6 +241,8 @@ int World::doCalcFn()
 {
     STEPCORE_ASSERT_NOABORT(_solver != NULL);
 
+    _stopOnCollision = false;
+    _stopOnPenetration = false;
     checkVariablesCount();
     gatherVariables();
     return _solver->doCalcFn(&_time, _variables);
@@ -263,6 +265,8 @@ int World::doEvolve(double delta)
         }
         double time = _time;
         //_collisionExpectedTime = HUGE_VAL;
+        _stopOnCollision = true;
+        _stopOnPenetration = true;
         ret = _solver->doEvolve(&time, targetTime, _variables, _errors);
         _time = time;
 
@@ -280,6 +284,7 @@ int World::doEvolve(double delta)
             //STEPCORE_ASSERT_NOABORT(_collisionTime > _time);
             double stepSize = fmin(_solver->stepSize() / 2, targetTime - _time);
             double collisionEndTime = fmin(_time + stepSize*3, targetTime);
+            _stopOnCollision = false;
 
             do {
                 double endTime = stepSize < collisionEndTime - time ? time+stepSize : collisionEndTime;
@@ -319,17 +324,14 @@ inline int World::solverFunction(double t, const double y[], double f[])
     _time = t;
     scatterVariables(y); // this will reset force
 
-    for(ForceList::iterator force = _forces.begin(); force != _forces.end(); ++force) {
-        (*force)->calcForce();
-    }
-
     if(_contactSolver) { // XXX: do it before force calculation
                          // if we are called from the Solver::doEvolve
         DantzigLCPContactSolver::ContactState state = _contactSolver->checkContacts(_bodies);
-        if(state == DantzigLCPContactSolver::Intersected) {
+        if(state == DantzigLCPContactSolver::Intersected && _stopOnPenetration) {
             //_collisionTime = t;
             return Solver::PenetrationDetected;
-        } //else if(state == DantzigLCPContactSolver::Colliding) {
+        } else if(state == DantzigLCPContactSolver::Colliding && _stopOnCollision) {
+            return Solver::CollisionDetected;
             // XXX: We are not stopping on colliding contact
             // and resolving them only at the end of timestep
             // XXX: is it right solution ? Shouldn't we try to find
@@ -338,7 +340,11 @@ inline int World::solverFunction(double t, const double y[], double f[])
             //_collisionTime = t;
             //if(t < _collisionExpectedTime)
             //    return DantzigLCPContactSolver::CollisionDetected;
-        //}
+        }
+    }
+
+    for(ForceList::iterator force = _forces.begin(); force != _forces.end(); ++force) {
+        (*force)->calcForce();
     }
 
     gatherDerivatives(f);
