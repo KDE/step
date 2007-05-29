@@ -23,6 +23,7 @@
 #include "object.h"
 #include "world.h"
 #include "solver.h"
+#include "collisionsolver.h"
 #include "factory.h"
 
 #include <QTextStream>
@@ -70,6 +71,7 @@ bool XmlFile::save(const World* world)
     }
 
     saveObject(1, "solver", world->solver(), stream);
+    saveObject(1, "collisionSolver", world->collisionSolver(), stream);
     stream << "\n";
     stream << "</world>\n";
 
@@ -175,6 +177,16 @@ bool XmlFileHandler::startElement(const QString &namespaceURI, const QString &,
             }
             _world->setSolver(solver);
             _object = solver;
+            _state = ITEM;
+            break;
+        } else if(qName == "collisionSolver") {
+            CollisionSolver* collisionSolver = _factory->newCollisionSolver(attributes.value("class")); 
+            if(collisionSolver == NULL) {
+                _errorString = QObject::tr("Unknown collisionSolver type \"%1\"").arg(attributes.value("class"));
+                return false;
+            }
+            _world->setCollisionSolver(collisionSolver);
+            _object = collisionSolver;
             _state = ITEM;
             break;
         }

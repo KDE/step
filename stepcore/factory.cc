@@ -19,6 +19,7 @@
 #include "factory.h"
 #include "world.h"
 #include "solver.h"
+#include "collisionsolver.h"
 
 namespace StepCore {
 
@@ -52,6 +53,14 @@ Solver* Factory::newSolver(const QString& name) const
 {
     Object* obj = newObject(name);
     Solver* solver = dynamic_cast<Solver*>(obj);
+    if(solver == NULL) delete obj;
+    return solver;
+}
+
+CollisionSolver* Factory::newCollisionSolver(const QString& name) const
+{
+    Object* obj = newObject(name);
+    CollisionSolver* solver = dynamic_cast<CollisionSolver*>(obj);
     if(solver == NULL) delete obj;
     return solver;
 }

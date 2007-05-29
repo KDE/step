@@ -28,6 +28,7 @@
 #include <stepcore/spring.h>
 #include <stepcore/gslsolver.h>
 #include <stepcore/eulersolver.h>
+#include <stepcore/collisionsolver.h>
 #include <stepcore/types.h>
 
 #include "particlegraphics.h"
@@ -69,6 +70,7 @@ WorldFactory::WorldFactory()
     __REGISTER(Body);
     __REGISTER(Force);
     __REGISTER(Solver);
+    __REGISTER(CollisionSolver);
 
     __REGISTER_EXT(Particle, ParticleCreator, ParticleGraphicsItem);
     __REGISTER_EXT(ChargedParticle, ParticleCreator, ParticleGraphicsItem);
@@ -83,6 +85,8 @@ WorldFactory::WorldFactory()
 
     __REGISTER(EulerSolver);
     __REGISTER(AdaptiveEulerSolver);
+
+    __REGISTER(GJKCollisionSolver);
 
 #ifdef STEPCORE_WITH_GSL
     __REGISTER(GslRK2Solver);

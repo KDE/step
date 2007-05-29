@@ -31,6 +31,7 @@ namespace StepCore {
 
 class Item;
 class Solver;
+class CollisionSolver;
 
 /** \ingroup reflections
  *  \brief List of MetaObject
@@ -53,6 +54,8 @@ public:
     Item* newItem(const QString& name) const;
     /** Create new Solver by class name */
     Solver* newSolver(const QString& name) const;
+    /** Create new CollisionSolver by class name */
+    CollisionSolver* newCollisionSolver(const QString& name) const;
 
 protected:
     QHash<QString, const MetaObject*> _metaObjects;
