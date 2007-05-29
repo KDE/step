@@ -23,7 +23,7 @@
 #include <stepcore/world.h>
 #include <stepcore/xmlfile.h>
 #include <stepcore/eulersolver.h>
-#include <stepcore/contactsolver.h>
+#include <stepcore/collisionsolver.h>
 #include <stepcore/types.h>
 #include <QItemSelectionModel>
 #include <QUndoStack>
@@ -175,7 +175,7 @@ QModelIndex CommandSimulate::pairToIndex(CommandSimulate::PairInt pair)
     if(pair.first == 0) {
         if(pair.second == 0) return _worldModel->worldIndex();
         else if(pair.second == 1) return _worldModel->solverIndex();
-        else if(pair.second == 2) return _worldModel->contactSolverIndex();
+        else if(pair.second == 2) return _worldModel->collisionSolverIndex();
         else return QModelIndex();
     } else return _worldModel->itemIndex(pair.second);
 }
@@ -252,9 +252,9 @@ void WorldModel::resetWorld()
         _world->setSolver(new StepCore::AdaptiveEulerSolver());
         _world->solver()->setName(getUniqueName("solver"));
     }
-    if(NULL == _world->contactSolver()) {
-        _world->setContactSolver(new StepCore::DantzigLCPContactSolver());
-        _world->contactSolver()->setName(getUniqueName("contactSolver"));
+    if(NULL == _world->collisionSolver()) {
+        _world->setCollisionSolver(new StepCore::GJKCollisionSolver());
+        _world->collisionSolver()->setName(getUniqueName("collisionSolver"));
     }
     _world->doCalcFn();
 
@@ -267,7 +267,7 @@ void WorldModel::emitChanged()
 {
     emit dataChanged(worldIndex(), worldIndex());
     emit dataChanged(solverIndex(), solverIndex());
-    emit dataChanged(contactSolverIndex(), contactSolverIndex());
+    emit dataChanged(collisionSolverIndex(), collisionSolverIndex());
     if(itemCount() > 0) emit dataChanged(itemIndex(0), itemIndex(itemCount()-1));
 }
 
@@ -281,9 +281,9 @@ QModelIndex WorldModel::solverIndex() const
     return createIndex(1, 0, _world->solver());
 }
 
-QModelIndex WorldModel::contactSolverIndex() const
+QModelIndex WorldModel::collisionSolverIndex() const
 {
-    return createIndex(2, 0, _world->contactSolver());
+    return createIndex(2, 0, _world->collisionSolver());
 }
 
 QModelIndex WorldModel::itemIndex(int n) const
@@ -295,7 +295,7 @@ QModelIndex WorldModel::objectIndex(StepCore::Object* obj) const
 {
     if(obj == _world) return worldIndex();
     else if(obj == _world->solver()) return solverIndex();
-    else if(obj == _world->contactSolver()) return contactSolverIndex();
+    else if(obj == _world->collisionSolver()) return collisionSolverIndex();
     else return itemIndex(_world->itemIndex(dynamic_cast<const StepCore::Item*>(obj)));
 }
 
@@ -343,7 +343,7 @@ QModelIndex WorldModel::index(int row, int /*column*/, const QModelIndex &parent
     if(!parent.isValid()) {
         if(row == 0) return worldIndex();
         else if(row == 1) return solverIndex();
-        else if(row == 2) return contactSolverIndex();
+        else if(row == 2) return collisionSolverIndex();
     } else if(parent.internalPointer() == _world) return itemIndex(row);
     return QModelIndex();
 }
@@ -353,7 +353,7 @@ QModelIndex WorldModel::parent(const QModelIndex &index) const
     if(!index.isValid()) return QModelIndex();
     else if(index.internalPointer() == _world) return QModelIndex();
     else if(index.internalPointer() == _world->solver()) return QModelIndex();
-    else if(index.internalPointer() == _world->contactSolver()) return QModelIndex();
+    else if(index.internalPointer() == _world->collisionSolver()) return QModelIndex();
     return worldIndex();
 }
 
@@ -361,12 +361,12 @@ int WorldModel::rowCount(const QModelIndex &parent) const
 {
     if(!parent.isValid()) {
         Q_ASSERT(_world->solver());
-        Q_ASSERT(_world->contactSolver());
+        Q_ASSERT(_world->collisionSolver());
         return 3;
         /*
         int count = 1;
         if(_world->solver()) ++count;
-        if(_world->contactSolver()) ++count;
+        if(_world->collisionSolver()) ++count;
         return count;
         */
     }
@@ -555,7 +555,7 @@ bool WorldModel::checkUniqueName(QString name) const
     if(name.isEmpty()) return false;
     if(_world->name() == name) return false;
     if(_world->solver() && _world->solver()->name() == name) return false;
-    if(_world->contactSolver() && _world->contactSolver()->name() == name) return false;
+    if(_world->collisionSolver() && _world->collisionSolver()->name() == name) return false;
     StepCore::World::ItemList::const_iterator it = _world->items().begin();
     for(; it != _world->items().end(); ++it) {
         if((*it)->name() == name) return false;

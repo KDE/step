@@ -51,7 +51,7 @@ public:
     // QModelIndex quick-access functions
     QModelIndex worldIndex() const;
     QModelIndex solverIndex() const;
-    QModelIndex contactSolverIndex() const;
+    QModelIndex collisionSolverIndex() const;
     QModelIndex objectIndex(StepCore::Object* obj) const;
     QModelIndex itemIndex(int n) const;
     

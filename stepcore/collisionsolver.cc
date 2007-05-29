@@ -16,29 +16,29 @@
    Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
 */
 
-#include "contactsolver.h"
+#include "collisionsolver.h"
 #include "rigidbody.h"
 
 #include <algorithm>
 
 namespace StepCore {
 
-STEPCORE_META_OBJECT(ContactSolver, "ContactSolver", MetaObject::ABSTRACT,
+STEPCORE_META_OBJECT(CollisionSolver, "CollisionSolver", MetaObject::ABSTRACT,
                         STEPCORE_SUPER_CLASS(Object),)
-STEPCORE_META_OBJECT(DantzigLCPContactSolver, "DantzigLCPContactSolver", 0,
-                        STEPCORE_SUPER_CLASS(ContactSolver),)
+STEPCORE_META_OBJECT(GJKCollisionSolver, "GJKCollisionSolver", 0,
+                        STEPCORE_SUPER_CLASS(CollisionSolver),)
 
-ContactSolver::ContactState DantzigLCPContactSolver::checkContact(Contact* contact)
+int GJKCollisionSolver::checkContact(Contact* contact)
 {
     Polygon* polygon0 = dynamic_cast<Polygon*>(contact->body0);
     Polygon* polygon1 = dynamic_cast<Polygon*>(contact->body1);
     if(!polygon0 || !polygon1) {
-        return contact->state = Unknown;
+        return contact->state = Contact::Unknown;
     }
 
     if(polygon0->vertexes().size() == 0 ||
             polygon1->vertexes().size() == 0) {
-        return contact->state = Unknown;
+        return contact->state = Contact::Unknown;
     }
 
     // Algorithm description can be found in 
@@ -183,7 +183,7 @@ ContactSolver::ContactState DantzigLCPContactSolver::checkContact(Contact* conta
             qDebug("    %d    %d", wi[0][i], wi[1][i]);
         }
         */
-        return contact->state = Intersected;
+        return contact->state = Contact::Intersected;
     }
 
     /*
@@ -205,7 +205,7 @@ ContactSolver::ContactState DantzigLCPContactSolver::checkContact(Contact* conta
     contact->normal = v/vnorm;
 
     if(vnorm > 0.01) { // XXX: tolerance: made it configurable
-        return contact->state = Separated;
+        return contact->state = Contact::Separated;
     }
 
     // If the objects are close enough we need to find contact manifold
@@ -283,8 +283,8 @@ ContactSolver::ContactState DantzigLCPContactSolver::checkContact(Contact* conta
                                 polygon1->velocityWorld(contact->points[1]) -
                                 polygon0->velocityWorld(contact->points[1]));
             if(contact->vrel[0] < 0 || contact->vrel[1] < 0)
-                return contact->state = Colliding;
-            return contact->state = Contacted;
+                return contact->state = Contact::Colliding;
+            return contact->state = Contact::Contacted;
         }
     }
 
@@ -295,13 +295,13 @@ ContactSolver::ContactState DantzigLCPContactSolver::checkContact(Contact* conta
                         polygon1->velocityWorld(contact->points[0]) -
                         polygon0->velocityWorld(contact->points[0]));
     if(contact->vrel[0] < 0)
-        return contact->state = Colliding;
-    return contact->state = Contacted;
+        return contact->state = Contact::Colliding;
+    return contact->state = Contact::Contacted;
 }
 
-ContactSolver::ContactState DantzigLCPContactSolver::checkContacts(World::BodyList& bodies)
+int GJKCollisionSolver::checkContacts(World::BodyList& bodies)
 {
-    ContactState state = Unknown;
+    int state = Contact::Unknown;
 
     // Detect and classify contacts
     unsigned int bs = bodies.size();
@@ -313,7 +313,7 @@ ContactSolver::ContactState DantzigLCPContactSolver::checkContacts(World::BodyLi
             contact.body1 = bodies[j];
             checkContact(&contact);
             if(contact.state > state) state = contact.state;
-            if(contact.state == Intersected) goto out;
+            if(contact.state == Contact::Intersected) goto out;
         }
     }
 
@@ -322,9 +322,9 @@ out:
     return state;
 }
 
-int DantzigLCPContactSolver::solveCollisions(World::BodyList& bodies)
+int GJKCollisionSolver::solveCollisions(World::BodyList& bodies)
 {
-    int ret = OK;
+    int ret = 0;
 
     // Detect and classify contacts
     unsigned int bs = bodies.size();
@@ -335,8 +335,8 @@ int DantzigLCPContactSolver::solveCollisions(World::BodyList& bodies)
             contact.body0 = bodies[i];
             contact.body1 = bodies[j];
             checkContact(&contact);
-            if(contact.state == Intersected) {
-                ret = PenetrationDetected;
+            if(contact.state == Contact::Intersected) {
+                ret = 1;// PenetrationDetected;
                 goto out;
             }
         }
@@ -346,7 +346,7 @@ int DantzigLCPContactSolver::solveCollisions(World::BodyList& bodies)
     for(unsigned int i0=0; i0<bodies.size(); ++i0) {
         for(unsigned int i1=i0+1; i1<bodies.size(); ++i1) {
             Contact& contact = contacts[i0*bs+i1];
-            if(contact.state == Colliding) {
+            if(contact.state == Contact::Colliding) {
                 RigidBody* body0 = dynamic_cast<RigidBody*>(contact.body0);
                 RigidBody* body1 = dynamic_cast<RigidBody*>(contact.body1);
                 STEPCORE_ASSERT_NOABORT( body0 && body1 );
@@ -389,8 +389,8 @@ int DantzigLCPContactSolver::solveCollisions(World::BodyList& bodies)
                 qDebug("vel0=(%f,%f) vel1=(%f,%f)", body0->velocity()[0], body0->velocity()[1],
                                                     body1->velocity()[0], body1->velocity()[1]);
                 qDebug("");
-                contact.state = Contacted;
-                ret = CollisionDetected;
+                contact.state = Contact::Contacted;
+                ret = 2;//CollisionDetected;
             }
         }
     }
@@ -406,7 +406,7 @@ out:
     return ret;
 }
 
-int DantzigLCPContactSolver::solveConstraints(World::BodyList& bodies)
+int GJKCollisionSolver::solveConstraints(World::BodyList& bodies)
 {
 
     return 0;

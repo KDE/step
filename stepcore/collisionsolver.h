@@ -16,12 +16,12 @@
    Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
 */
 
-/** \file contactsolver.h
- *  \brief ContactSolver interface
+/** \file collisionsolver.h
+ *  \brief CollisionSolver interface
  */
 
-#ifndef STEPCORE_CONTACTSOLVER_H
-#define STEPCORE_CONTACTSOLVER_H
+#ifndef STEPCORE_COLLISIONSOLVER_H
+#define STEPCORE_COLLISIONSOLVER_H
 
 #include "object.h"
 #include "world.h"
@@ -31,52 +31,83 @@ namespace StepCore
 {
 
 class Polygon;
+class Body;
 
-class ContactSolver : public Object
+/** \ingroup contacts
+ *  \brief Description of contact between to bodies
+ */
+struct Contact {
+    enum {
+        Unknown,        /**< Contact state was not (can not) be determined */
+        Separated,      /**< Bodies are far away */
+        Separating,     /**< Bodies are contacted but moving apart */
+        Contacted,      /**< Bodies are contacted but resting */
+        Colliding,      /**< Bodies are collising */
+        Intersected     /**< Bodies are interpenetrating */
+    };
+    Body*    body0;
+    Body*    body1;
+    int      state;         /**< Contact state */
+    double   distance;      /**< Distance between bodies */
+    Vector2d normal;        /**< Contact normal (pointing from body0 to body1) */
+    int      pointsCount;   /**< Count of contact points (either one or two) */
+    Vector2d points[2];     /**< Contact points */
+    double   vrel[2];       /**< Relative velocities at contact points */
+};
+
+/** \ingroup contacts
+ *  \brief Collision solver interface
+ *
+ *  Provides generic interface for collision solvers.
+ */
+class CollisionSolver : public Object
 {
-    STEPCORE_OBJECT(ContactSolver)
+    STEPCORE_OBJECT(CollisionSolver)
 
 public:
-    enum ContactState {
-        Unknown, Separated, Contacted, Colliding, Intersected
-    };
+    CollisionSolver() {}
+    virtual ~CollisionSolver() {}
 
-    struct Contact {
-        Body* body0;
-        Body* body1;
-        ContactState state;
-        double   distance;
-        Vector2d normal;        // from body0 to body1
-        int      pointsCount;   // either one or two
-        Vector2d points[2];     // on body0 or body1 or mixed
-        double   vrel[2];       // relative velocities
-    };
+    /** Check (and update) state of the contact
+     *  \param contact contact to check (only body0 and body1 fields must be set)
+     *  \return state of the contact (equals to contact->state)
+     */
+    virtual int checkContact(Contact* contact) = 0;
 
-
-    ContactSolver() {}
-    virtual ~ContactSolver() {}
-
-    virtual ContactState checkContact(Contact* contact) = 0;
-    virtual ContactState checkContacts(World::BodyList& bodies) = 0;
+    /** Check contacts between several bodies
+     *  \param bodies list of bodies to check
+     *  \return maximum contact state (i.e. maximum value of Contact::state)
+     */
+    virtual int checkContacts(World::BodyList& bodies) = 0;
 
     // TODO: add errors
     virtual int solveCollisions(World::BodyList& bodies) = 0;
     virtual int solveConstraints(World::BodyList& bodies) = 0;
 };
 
-class DantzigLCPContactSolver : public ContactSolver
+/** \ingroup contacts
+ *  \brief Discrete collision solver using Gilbert-Johnson-Keerthi distance algorithm
+ *
+ *  Objects are treated as colliding if distance between them are greater then zero
+ *  but smaller then certain small value. If distance is less then zero objects are
+ *  always treated as interpenetrating - this signals World::doEvolve to invalidate
+ *  current time step and try with smaller stepSize until objects are colliding but
+ *  not interpenetrating.
+ */
+class GJKCollisionSolver : public CollisionSolver
 {
-    STEPCORE_OBJECT(DantzigLCPContactSolver)
+    STEPCORE_OBJECT(GJKCollisionSolver)
 
 public:
+    /*
     enum {
         OK = 0,
         CollisionDetected = 4096,
         PenetrationDetected = 4097
-    };
+    };*/
 
-    ContactState checkContact(Contact* contact);
-    ContactState checkContacts(World::BodyList& bodies);
+    int checkContact(Contact* contact);
+    int checkContacts(World::BodyList& bodies);
     //int findClosestPoints(const Polygon* polygon1, const Polygon* polygon2);
 
     int solveCollisions(World::BodyList& bodies);

@@ -26,7 +26,7 @@
 #include "itempalette.h"
 
 #include <stepcore/solver.h>
-#include <stepcore/contactsolver.h>
+#include <stepcore/collisionsolver.h>
 
 #include <KAction>
 #include <KActionCollection>

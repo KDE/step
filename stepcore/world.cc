@@ -18,7 +18,7 @@
 
 #include "world.h"
 #include "solver.h"
-#include "contactsolver.h"
+#include "collisionsolver.h"
 
 #include <algorithm>
 
@@ -34,14 +34,14 @@ STEPCORE_META_OBJECT(World, "World", 0, STEPCORE_SUPER_CLASS(Object),
         STEPCORE_PROPERTY_RW(double, timeScale, "Simulation speed scale", timeScale, setTimeScale))
 
 World::World()
-    : _time(0), _timeScale(1), _solver(NULL), _contactSolver(0),
+    : _time(0), _timeScale(1), _solver(NULL), _collisionSolver(0),
       _variablesCount(0), _variables(NULL), _errors(NULL)
 {
     clear();
 }
 
 World::World(const World& world)
-    : _time(0), _timeScale(1), _solver(NULL), _contactSolver(0),
+    : _time(0), _timeScale(1), _solver(NULL), _collisionSolver(0),
       _variablesCount(0), _variables(NULL), _errors(NULL)
 {
     clear();
@@ -78,9 +78,9 @@ World& World::operator=(const World& world)
     if(world._solver) setSolver(static_cast<Solver*>(world._solver->metaObject()->cloneObject(*(world._solver))));
     else setSolver(0);
 
-    if(world._contactSolver) setContactSolver(static_cast<ContactSolver*>(
-                                       world._contactSolver->metaObject()->cloneObject(*(world._contactSolver))));
-    else setContactSolver(0);
+    if(world._collisionSolver) setCollisionSolver(static_cast<CollisionSolver*>(
+                                       world._collisionSolver->metaObject()->cloneObject(*(world._collisionSolver))));
+    else setCollisionSolver(0);
 
     setTime(world.time());
     setTimeScale(world.timeScale());
@@ -179,17 +179,17 @@ Solver* World::removeSolver()
     return solver;
 }
 
-void World::setContactSolver(ContactSolver* contactSolver)
+void World::setCollisionSolver(CollisionSolver* collisionSolver)
 {
-    delete _contactSolver;
-    _contactSolver = contactSolver;
+    delete _collisionSolver;
+    _collisionSolver = collisionSolver;
 }
 
-ContactSolver* World::removeContactSolver()
+CollisionSolver* World::removeCollisionSolver()
 {
-    ContactSolver* contactSolver = _contactSolver;
-    _contactSolver = NULL;
-    return contactSolver;
+    CollisionSolver* collisionSolver = _collisionSolver;
+    _collisionSolver = NULL;
+    return collisionSolver;
 }
 
 void World::checkVariablesCount()
@@ -277,7 +277,7 @@ int World::doEvolve(double delta)
             // 2. Proceed with decresed timestep until
             //    - we have meet collision again: go to 1
             //    - we pass collision point: it means that we have come close enough
-            //      to collision point and ContactSolver have resolved collision
+            //      to collision point and CollisionSolver have resolved collision
             // We can't simply change Solver::stepSize since adaptive solvers can
             // abuse our settings so we have to step manually
             //STEPCORE_ASSERT_NOABORT(_collisionTime <= targetTime);
@@ -304,8 +304,8 @@ int World::doEvolve(double delta)
                     //if(_collisionTime > _collisionExpectedTime) {
                         // We are at collision point
                         scatterVariables();
-                        int ret1 = _contactSolver->solveCollisions(_bodies);
-                        //STEPCORE_ASSERT_NOABORT(ret1 == DantzigLCPContactSolver::CollisionDetected);
+                        int ret1 = _collisionSolver->solveCollisions(_bodies);
+                        //STEPCORE_ASSERT_NOABORT(ret1 == CollisionSolver::CollisionDetected);
                         gatherVariables();
                     //}
                 } else goto out;
@@ -324,13 +324,13 @@ inline int World::solverFunction(double t, const double y[], double f[])
     _time = t;
     scatterVariables(y); // this will reset force
 
-    if(_contactSolver) { // XXX: do it before force calculation
+    if(_collisionSolver) { // XXX: do it before force calculation
                          // if we are called from the Solver::doEvolve
-        DantzigLCPContactSolver::ContactState state = _contactSolver->checkContacts(_bodies);
-        if(state == DantzigLCPContactSolver::Intersected && _stopOnPenetration) {
+        int state = _collisionSolver->checkContacts(_bodies);
+        if(state == Contact::Intersected && _stopOnPenetration) {
             //_collisionTime = t;
             return Solver::PenetrationDetected;
-        } else if(state == DantzigLCPContactSolver::Colliding && _stopOnCollision) {
+        } else if(state == Contact::Colliding && _stopOnCollision) {
             return Solver::CollisionDetected;
             // XXX: We are not stopping on colliding contact
             // and resolving them only at the end of timestep
@@ -339,7 +339,7 @@ inline int World::solverFunction(double t, const double y[], double f[])
             //_collisionTime = t;
             //_collisionTime = t;
             //if(t < _collisionExpectedTime)
-            //    return DantzigLCPContactSolver::CollisionDetected;
+            //    return DantzigLCPCollisionSolver::CollisionDetected;
         }
     }
 

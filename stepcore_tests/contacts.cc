@@ -1,11 +1,11 @@
 #include "maintest.h"
 
-#include <stepcore/contactsolver.h>
+#include <stepcore/collisionsolver.h>
 #include <stepcore/rigidbody.h>
 #include <stepcore/types.h>
 #include <cmath>
 
-typedef StepCore::DantzigLCPContactSolver ContactSolver;
+typedef StepCore::GJKCollisionSolver CollisionSolver;
 
 void MainTest::testCollisionDetection_data()
 {
@@ -33,90 +33,90 @@ void MainTest::testCollisionDetection_data()
     QTest::newRow("vertex-vertex-1")
             << vertexes << StepCore::Vector2d(0,0) << 0.0
             << vertexes << StepCore::Vector2d(4,4) << 0.0
-            << int(ContactSolver::Separated) << StepCore::Vector2d(2,2);
+            << int(StepCore::Contact::Separated) << StepCore::Vector2d(2,2);
 
     QTest::newRow("vertex-edge-1")
             << vertexes << StepCore::Vector2d(0,0) << 0.0
             << vertexes << StepCore::Vector2d(4,4) << M_PI_4
-            << int(ContactSolver::Separated) << StepCore::Vector2d(3-M_SQRT1_2, 3-M_SQRT1_2);
+            << int(StepCore::Contact::Separated) << StepCore::Vector2d(3-M_SQRT1_2, 3-M_SQRT1_2);
 
     QTest::newRow("vertex-edge-2")
             << vertexes << StepCore::Vector2d(0,0) << 0.0
             << vertexes << StepCore::Vector2d(3,0) << M_PI_4
-            << int(ContactSolver::Separated) << StepCore::Vector2d(2-M_SQRT2,0);
+            << int(StepCore::Contact::Separated) << StepCore::Vector2d(2-M_SQRT2,0);
 
     QTest::newRow("edge-edge-1")
             << vertexes << StepCore::Vector2d(0,0) << 0.0
             << vertexes << StepCore::Vector2d(4,0) << 0.0
-            << int(ContactSolver::Separated) << StepCore::Vector2d(2,0);
+            << int(StepCore::Contact::Separated) << StepCore::Vector2d(2,0);
 
     QTest::newRow("edge-edge-2")
             << vertexes << StepCore::Vector2d(0,0) << 0.0
             << vertexes << StepCore::Vector2d(4,1) << 0.0
-            << int(ContactSolver::Separated) << StepCore::Vector2d(2,0);
+            << int(StepCore::Contact::Separated) << StepCore::Vector2d(2,0);
 
     QTest::newRow("contact-vertex-vertex-1")
             << vertexes << StepCore::Vector2d(0,0) << 0.0
             << vertexes << StepCore::Vector2d(2.001,2.001) << 0.0
-            << int(ContactSolver::Contacted) << StepCore::Vector2d(0.001,0.001)
+            << int(StepCore::Contact::Contacted) << StepCore::Vector2d(0.001,0.001)
             << 1 << StepCore::Vector2d(1,1);
 
     QTest::newRow("contact-vertex-edge-1")
             << vertexes << StepCore::Vector2d(0,0) << 0.0
             << vertexes << StepCore::Vector2d(1.001+M_SQRT1_2,1.001+M_SQRT1_2) << M_PI_4
-            << int(ContactSolver::Contacted) << StepCore::Vector2d(0.001, 0.001)
+            << int(StepCore::Contact::Contacted) << StepCore::Vector2d(0.001, 0.001)
             << 1 << StepCore::Vector2d(1,1);
 
     QTest::newRow("contact-vertex-edge-2")
             << vertexes << StepCore::Vector2d(0,0) << 0.0
             << vertexes << StepCore::Vector2d(1.001+M_SQRT2,0) << M_PI_4
-            << int(ContactSolver::Contacted) << StepCore::Vector2d(0.001,0)
+            << int(StepCore::Contact::Contacted) << StepCore::Vector2d(0.001,0)
             << 1 << StepCore::Vector2d(1,0);
 
     QTest::newRow("contact-edge-edge-1")
             << vertexes << StepCore::Vector2d(0,0) << 0.0
             << vertexes << StepCore::Vector2d(2.001,0) << 0.0
-            << int(ContactSolver::Contacted) << StepCore::Vector2d(0.001,0)
+            << int(StepCore::Contact::Contacted) << StepCore::Vector2d(0.001,0)
             << 2 << StepCore::Vector2d(1,1) << StepCore::Vector2d(1,-1);
 
     QTest::newRow("contact-edge-edge-2")
             << vertexes << StepCore::Vector2d(0,0) << 0.0
             << vertexes << StepCore::Vector2d(2.001,0) << 0.00001
-            << int(ContactSolver::Contacted) << StepCore::Vector2d(0.00099,0)
+            << int(StepCore::Contact::Contacted) << StepCore::Vector2d(0.00099,0)
             << 2 << StepCore::Vector2d(1.000990,0.999990) << StepCore::Vector2d(1,-1);
 
     QTest::newRow("contact-edge-edge-3")
             << vertexes << StepCore::Vector2d(0,0) << 0.0
             << vertexes << StepCore::Vector2d(2.001,1) << 0.0
-            << int(ContactSolver::Contacted) << StepCore::Vector2d(0.001,0)
+            << int(StepCore::Contact::Contacted) << StepCore::Vector2d(0.001,0)
             << 2 << StepCore::Vector2d(1,1) << StepCore::Vector2d(1,0);
 
     QTest::newRow("contact-edge-edge-4")
             << vertexes << StepCore::Vector2d(0,0) << 0.0
             << vertexes << StepCore::Vector2d(2.001,1) << 0.00001
-            << int(ContactSolver::Contacted) << StepCore::Vector2d(1,1e-5)*9.999999e-04
+            << int(StepCore::Contact::Contacted) << StepCore::Vector2d(1,1e-5)*9.999999e-04
             << 2 << StepCore::Vector2d(1,1) << StepCore::Vector2d(1.001010,-0.000010);
 
     QTest::newRow("intersection-vertex-vertex-1")
             << vertexes << StepCore::Vector2d(0,0) << 0.0
             << vertexes << StepCore::Vector2d(1.9,1.9) << 0.0
-            << int(ContactSolver::Intersected);
+            << int(StepCore::Contact::Intersected);
 
     QTest::newRow("intersection-vertex-vertex-2")
             << vertexes << StepCore::Vector2d(0,0) << 0.0
             << vertexes << StepCore::Vector2d(1.7,1.9) << 0.0
-            << int(ContactSolver::Intersected);
+            << int(StepCore::Contact::Intersected);
 
     QTest::newRow("intersection-vertex-vertex-3")
             << vertexes << StepCore::Vector2d(0,0) << 0.0
             << vertexes << StepCore::Vector2d(2,1) << M_PI_4
-            << int(ContactSolver::Intersected);
+            << int(StepCore::Contact::Intersected);
 
 
     QTest::newRow("intersection-vertex-edge-1")
             << vertexes << StepCore::Vector2d(0,0) << 0.0
             << vertexes << StepCore::Vector2d(2,0) << M_PI_4
-            << int(ContactSolver::Intersected);
+            << int(StepCore::Contact::Intersected);
 }
 
 void MainTest::testCollisionDetection()
@@ -147,19 +147,18 @@ void MainTest::testCollisionDetection()
     polygon1->setPosition(position1);
     polygon1->setAngle(angle1);
 
-    StepCore::DantzigLCPContactSolver *contactSolver =
-            new StepCore::DantzigLCPContactSolver();
+    CollisionSolver *collisionSolver = new CollisionSolver();
 
-    StepCore::DantzigLCPContactSolver::Contact contact;
+    StepCore::Contact contact;
     contact.body0 = polygon0;
     contact.body1 = polygon1;
 
-    contactSolver->checkContact(&contact);
+    collisionSolver->checkContact(&contact);
 
     QCOMPARE(int(contact.state), state);
     
-    if(state == int(ContactSolver::Separated) ||
-       state == int(ContactSolver::Contacted)) {
+    if(state == int(StepCore::Contact::Separated) ||
+       state == int(StepCore::Contact::Contacted)) {
         QFETCH(StepCore::Vector2d, distance);
         StepCore::Vector2d normal = distance / distance.norm();
         //qDebug("(%e %e)*%e", contact.normal[0], contact.normal[1], contact.distance);
@@ -168,7 +167,7 @@ void MainTest::testCollisionDetection()
                  fabs(contact.normal[1] - normal[1]) < 1e-10 );
     }
 
-    if(state == int(ContactSolver::Contacted)) {
+    if(state == int(StepCore::Contact::Contacted)) {
         QFETCH(StepCore::Vector2d, distance);
         StepCore::Vector2d normal = distance / distance.norm();
 
@@ -198,7 +197,7 @@ void MainTest::testCollisionDetection()
         }
     }
 
-    delete contactSolver;
+    delete collisionSolver;
     delete polygon1;
     delete polygon0;
 }
