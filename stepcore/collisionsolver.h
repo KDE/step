@@ -45,8 +45,8 @@ struct Contact {
         Colliding,      /**< Bodies are collising */
         Intersected     /**< Bodies are interpenetrating */
     };
-    Body*    body0;
-    Body*    body1;
+    Body*    body0;         /**< Body0 */
+    Body*    body1;         /**< Body1 */
     int      state;         /**< Contact state */
     double   distance;      /**< Distance between bodies */
     Vector2d normal;        /**< Contact normal (pointing from body0 to body1) */
@@ -82,7 +82,6 @@ public:
 
     // TODO: add errors
     virtual int solveCollisions(World::BodyList& bodies) = 0;
-    virtual int solveConstraints(World::BodyList& bodies) = 0;
 };
 
 /** \ingroup contacts

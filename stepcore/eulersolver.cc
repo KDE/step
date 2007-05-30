@@ -78,8 +78,8 @@ int GenericEulerSolver::doStep(double t, double stepSize, double y[], double yer
     _localError = 0;
     _localErrorRatio = 0;
 
-    int ret = _function(t, y, _ydiff, _params);
-    if(ret != OK) return ret;
+    //int ret = _function(t, y, _ydiff, _params);
+    //if(ret != OK) return ret;
 
     for(int i=0; i<_dimension; ++i) {
         // Error estimation: integration with timestep = stepSize
@@ -88,7 +88,7 @@ int GenericEulerSolver::doStep(double t, double stepSize, double y[], double yer
         _ytemp[i] = y[i] + stepSize/2*_ydiff[i];
     }
 
-    ret = _function(t + stepSize/2, _ytemp, _ydiff, _params);
+    int ret = _function(t + stepSize/2, _ytemp, _ydiff, _params);
     if(ret != OK) return ret;
 
     for(int i=0; i<_dimension; ++i) {
@@ -126,12 +126,16 @@ int GenericEulerSolver::doEvolve(double* t, double t1, double y[], double yerr[]
     #endif
 
     const double S = 0.9;
+    int result;
+
+    result = _function(*t, y, _ydiff, _params);
+    if(result != OK) return result;
 
     while(*t < t1) {
         STEPCORE_ASSERT_NOABORT(t1-*t > realStepSize/1000);
 
         double t11 = _stepSize < t1-*t ? *t + _stepSize : t1;
-        int result = doStep(*t, t11 - *t, y, yerr);
+        result = doStep(*t, t11 - *t, y, yerr);
 
         if(result != OK && result != ToleranceError) return result;
 
@@ -147,7 +151,11 @@ int GenericEulerSolver::doEvolve(double* t, double t1, double y[], double yerr[]
                 double newStepSize = _stepSize*r;
                 if(newStepSize < t1 - t11) _stepSize = newStepSize;
             }
-            if(result != OK) continue;
+            if(result != OK) {
+                result = _function(*t, y, _ydiff, _params);
+                if(result != OK) return result;
+                continue;
+            }
         } else {
             if(result != OK) return ToleranceError;
         }
