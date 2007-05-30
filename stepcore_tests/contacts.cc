@@ -148,6 +148,7 @@ void MainTest::testCollisionDetection()
     polygon1->setAngle(angle1);
 
     CollisionSolver *collisionSolver = new CollisionSolver();
+    collisionSolver->setToleranceAbs(0.01);
 
     StepCore::Contact contact;
     contact.body0 = polygon0;
@@ -178,6 +179,10 @@ void MainTest::testCollisionDetection()
 
         if(pointsCount == 1) {
             QFETCH(StepCore::Vector2d, point0);
+            //qDebug("l: %e",  line.innerProduct(contact.points[0] - point0));
+            //qDebug("n: %e",  normal.innerProduct(contact.points[0] - point0));
+            //qDebug("%e %e", contact.points[0][0], contact.points[0][1]);
+
             QVERIFY( fabs(line.innerProduct(contact.points[0] - point0)) < 1e-10 );
             QVERIFY( fabs(normal.innerProduct(contact.points[0] - point0)) < 0.02 );
 

@@ -304,7 +304,7 @@ int World::doEvolve(double delta)
                     //if(_collisionTime > _collisionExpectedTime) {
                         // We are at collision point
                         scatterVariables();
-                        int ret1 = _collisionSolver->solveCollisions(_bodies);
+                        _collisionSolver->solveCollisions(_bodies);
                         //STEPCORE_ASSERT_NOABORT(ret1 == CollisionSolver::CollisionDetected);
                         gatherVariables();
                     //}

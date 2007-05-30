@@ -34,11 +34,12 @@ class Polygon;
 class Body;
 
 /** \ingroup contacts
- *  \brief Description of contact between to bodies
+ *  \brief Description of contact between two bodies
  */
 struct Contact {
     enum {
-        Unknown,        /**< Contact state was not (can not) be determined */
+        Unknown,        /**< Contact state was not (can not) be determined
+                             (if state == Unknown all other fields are not used) */
         Separated,      /**< Bodies are far away */
         Separating,     /**< Bodies are contacted but moving apart */
         Contacted,      /**< Bodies are contacted but resting */
@@ -47,11 +48,12 @@ struct Contact {
     };
     Body*    body0;         /**< Body0 */
     Body*    body1;         /**< Body1 */
-    int      state;         /**< Contact state */
+    int      state;         /**< Contact state (maximum of pointsState if pointsCount > 0) */
     double   distance;      /**< Distance between bodies */
     Vector2d normal;        /**< Contact normal (pointing from body0 to body1) */
     int      pointsCount;   /**< Count of contact points (either one or two) */
-    Vector2d points[2];     /**< Contact points */
+    int      pointsState[2];/**< Contact point states */
+    Vector2d points[2];     /**< Contact point coordinated */
     double   vrel[2];       /**< Relative velocities at contact points */
 };
 

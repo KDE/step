@@ -34,6 +34,7 @@ int GJKCollisionSolver::checkContact(Contact* contact)
 {
     Polygon* polygon0 = dynamic_cast<Polygon*>(contact->body0);
     Polygon* polygon1 = dynamic_cast<Polygon*>(contact->body1);
+
     if(!polygon0 || !polygon1) {
         return contact->state = Contact::Unknown;
     }
@@ -185,6 +186,9 @@ int GJKCollisionSolver::checkContact(Contact* contact)
             qDebug("    %d    %d", wi[0][i], wi[1][i]);
         }
         */
+        contact->distance = 0;
+        contact->normal.setZero();
+        contact->pointsCount = 0;
         return contact->state = Contact::Intersected;
     }
 
@@ -205,10 +209,10 @@ int GJKCollisionSolver::checkContact(Contact* contact)
     double vnorm = v.norm();
     contact->distance = vnorm;
     contact->normal = v/vnorm;
+    contact->pointsCount = 0;
+    contact->state = Contact::Separated;
 
-    if(vnorm > _toleranceAbs) {
-        return contact->state = Contact::Separated;
-    }
+    if(vnorm > _toleranceAbs) return contact->state;
 
     // If the objects are close enough we need to find contact manifold
     // We are going to find simplexes (lines) that are 'most parallel'
@@ -218,7 +222,6 @@ int GJKCollisionSolver::checkContact(Contact* contact)
     Vector2d vunit = v / vnorm;
     Vector2d wm[2][2];
 
-    bool m_is_point = false;
     for(int i=0; i<2; ++i) {
         wm[i][0] = vertexes[i][ wi[i][0] ];
 
@@ -241,7 +244,7 @@ int GJKCollisionSolver::checkContact(Contact* contact)
             } else if(angle2 <= angle1 && dist2 < (_toleranceAbs-vnorm)/2) {
                 wm[i][1] = av2;
             } else {
-                wm[i][1] = wm[i][0]; m_is_point = true;
+                wm[i][1] = wm[i][0]; contact->pointsCount = 1;
                 break;
             }
         } else { // edge contact
@@ -250,7 +253,7 @@ int GJKCollisionSolver::checkContact(Contact* contact)
     }
 
     // Find intersection of two lines
-    if(!m_is_point) {
+    if(contact->pointsCount != 1) {
         Vector2d vunit_o(-vunit[1], vunit[0]);
         double wm_o[2][2];
 
@@ -278,8 +281,6 @@ int GJKCollisionSolver::checkContact(Contact* contact)
             }
             */
             contact->pointsCount = 2;
-        } else {
-            m_is_point = true;
         }
         /*
             contact->vrel[0] = contact->normal.innerProduct(
@@ -297,7 +298,7 @@ int GJKCollisionSolver::checkContact(Contact* contact)
         */
     }
 
-    if(m_is_point) {
+    if(contact->pointsCount != 2) {
         contact->pointsCount = 1;
         contact->points[0] = vv[0]; // TODO: interpolate vv[0] and vv[1]
         //qDebug("contact is one point: (%f %f) (%f %f)", vv[0][0], vv[0][1], vv[1][0], vv[1][1]);
@@ -307,10 +308,18 @@ int GJKCollisionSolver::checkContact(Contact* contact)
         contact->vrel[i] = contact->normal.innerProduct(
                         polygon1->velocityWorld(contact->points[i]) -
                         polygon0->velocityWorld(contact->points[i]));
+
+        if(contact->vrel[i] < 0)
+            contact->pointsState[i] = Contact::Colliding;
+        else if(contact->vrel[i] < _toleranceAbs) // XXX: tolerance
+            contact->pointsState[i] = Contact::Contacted;
+        else contact->pointsState[i] = Contact::Separating;
+
+        if(contact->pointsState[i] > contact->state)
+            contact->state = contact->pointsState[i];
     }
-    if(contact->vrel[0] < 0)
-        return contact->state = Contact::Colliding;
-    return contact->state = Contact::Contacted;
+
+    return contact->state;
 }
 
 int GJKCollisionSolver::checkContacts(World::BodyList& bodies)
@@ -370,8 +379,9 @@ int GJKCollisionSolver::solveCollisions(World::BodyList& bodies)
                 // calculate impulse
                 double b = 1; // coefficient of bounceness
 
-                Vector2d r0 = contact.points[0] - body0->position();
-                Vector2d r1 = contact.points[0] - body1->position();
+                int pointNum = (contact.pointsState[0] == Contact::Colliding ? 0 : 1);
+                Vector2d r0 = contact.points[pointNum] - body0->position();
+                Vector2d r1 = contact.points[pointNum] - body1->position();
 
                 double r0n = r0[0]*contact.normal[1] - r0[1]*contact.normal[0];
                 double r1n = r1[0]*contact.normal[1] - r1[1]*contact.normal[0];
@@ -385,7 +395,7 @@ int GJKCollisionSolver::solveCollisions(World::BodyList& bodies)
 
                 qDebug("vel0=(%f,%f) vel1=(%f,%f)", body0->velocity()[0], body0->velocity()[1],
                                                     body1->velocity()[0], body1->velocity()[1]);
-                qDebug("body0=%#x, body1=%#x", body0, body1);
+                qDebug("body0=%#x, body1=%#x", int(body0), int(body1));
                 qDebug("vrel=%f", vrel);
                 qDebug("normal=(%f,%f)", contact.normal[0], contact.normal[1]);
                 Vector2d j = contact.normal * ( -(1+b)*vrel / (term0 + term1 + term2) );
@@ -396,14 +406,15 @@ int GJKCollisionSolver::solveCollisions(World::BodyList& bodies)
                 body1->setAngularVelocity(body1->angularVelocity() + j.norm() * r1n / body1->inertia());
 
                 double vrel1 = contact.normal.innerProduct(
-                                body1->velocityWorld(contact.points[0]) -
-                                body0->velocityWorld(contact.points[0]));
+                                body1->velocityWorld(contact.points[pointNum]) -
+                                body0->velocityWorld(contact.points[pointNum]));
                 STEPCORE_ASSERT_NOABORT(vrel1 >= 0);
                 qDebug("vrel1 = %f", vrel1);
                 qDebug("vel0=(%f,%f) vel1=(%f,%f)", body0->velocity()[0], body0->velocity()[1],
                                                     body1->velocity()[0], body1->velocity()[1]);
-                qDebug("");
-                contact.state = Contact::Contacted;
+                qDebug(" ");
+                contact.pointsState[pointNum] = Contact::Separating;
+                contact.state = Contact::Separating; // XXX
                 ret = 2;//CollisionDetected;
             }
         }
