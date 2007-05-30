@@ -65,8 +65,15 @@ class CollisionSolver : public Object
     STEPCORE_OBJECT(CollisionSolver)
 
 public:
-    CollisionSolver() {}
+    CollisionSolver(): _toleranceAbs(0.001), _localError(0) {}
     virtual ~CollisionSolver() {}
+
+    /** Get absolute allowed tolerance */
+    double toleranceAbs() const { return _toleranceAbs; }
+    /** Set absolute allowed tolerance */
+    virtual void setToleranceAbs(double toleranceAbs) { _toleranceAbs = toleranceAbs; }
+    /** Get error estimation from last step */
+    double localError() const { return _localError; }
 
     /** Check (and update) state of the contact
      *  \param contact contact to check (only body0 and body1 fields must be set)
@@ -82,6 +89,11 @@ public:
 
     // TODO: add errors
     virtual int solveCollisions(World::BodyList& bodies) = 0;
+
+protected:
+    double _toleranceAbs;
+    //double _toleranceRel;
+    double _localError;
 };
 
 /** \ingroup contacts
@@ -111,7 +123,6 @@ public:
 
     int solveCollisions(World::BodyList& bodies);
     int solveConstraints(World::BodyList& bodies);
-
 };
 
 } // namespace StepCore

@@ -23,8 +23,10 @@
 
 namespace StepCore {
 
-STEPCORE_META_OBJECT(CollisionSolver, "CollisionSolver", MetaObject::ABSTRACT,
-                        STEPCORE_SUPER_CLASS(Object),)
+STEPCORE_META_OBJECT(CollisionSolver, "CollisionSolver", MetaObject::ABSTRACT, STEPCORE_SUPER_CLASS(Object),
+    STEPCORE_PROPERTY_RW(double, toleranceAbs, "Allowed absolute tolerance", toleranceAbs, setToleranceAbs)
+    STEPCORE_PROPERTY_R(double, localError, "Maximal local error during last step", localError))
+
 STEPCORE_META_OBJECT(GJKCollisionSolver, "GJKCollisionSolver", 0,
                         STEPCORE_SUPER_CLASS(CollisionSolver),)
 
@@ -74,14 +76,14 @@ int GJKCollisionSolver::checkContact(Contact* contact)
     bool intersects = false;
     unsigned int iteration = 0;
     for(;; ++iteration) {
-        STEPCORE_ASSERT_NOABORT( iteration < vertexes[0].size()*vertexes[1].size() );
+        //STEPCORE_ASSERT_NOABORT( iteration < vertexes[0].size()*vertexes[1].size() );
 
         double smin = v.norm2();
 
         // Check for penetration (part 1)
         // If we are closer to the origin then given tolerance
         // we should stop just now to avoid computational errors later
-        if(smin < (1e-5)*(1e-5)) { // TODO XXX: tolerance
+        if(smin < _toleranceAbs*_toleranceAbs*1e-4) { // XXX: separate tolerance for penetration ?
             intersects = true;
             break;
         }
@@ -93,7 +95,7 @@ int GJKCollisionSolver::checkContact(Contact* contact)
             for(unsigned int i1=0; i1<vertexes[1].size(); ++i1) {
                 Vector2d sn = vertexes[1][i1] - vertexes[0][i0];
                 double scurr = v.innerProduct(sn);
-                if(smin - scurr > 1e-10) { // TODO XXX: tolerance
+                if(smin - scurr > _toleranceAbs*_toleranceAbs*1e-4) { // XXX: separate tolerance ?
                     smin = scurr;
                     s = sn;
                     si[0] = i0;
@@ -204,7 +206,7 @@ int GJKCollisionSolver::checkContact(Contact* contact)
     contact->distance = vnorm;
     contact->normal = v/vnorm;
 
-    if(vnorm > 0.01) { // XXX: tolerance: made it configurable
+    if(vnorm > _toleranceAbs) {
         return contact->state = Contact::Separated;
     }
 
@@ -234,9 +236,9 @@ int GJKCollisionSolver::checkContact(Contact* contact)
             double dist2 = vunit.innerProduct( dv2 ) * (i==0 ? 1 : -1);
             double angle2 = dist2 / dv2.norm();
 
-            if(angle1 <= angle2 && angle1 < 0.01 && dist1+vnorm < 0.01) { // XXX: tolerance
+            if(angle1 <= angle2 && dist1 < (_toleranceAbs-vnorm)/2) {
                 wm[i][1] = av1;
-            } else if(angle2 <= angle1 && angle2 < 0.01 && dist2+vnorm < 0.01) { // XXX: tolerance
+            } else if(angle2 <= angle1 && dist2 < (_toleranceAbs-vnorm)/2) {
                 wm[i][1] = av2;
             } else {
                 wm[i][1] = wm[i][0]; m_is_point = true;
@@ -269,13 +271,17 @@ int GJKCollisionSolver::checkContact(Contact* contact)
         else contact->points[1] = wm[1][1];
 
         // TODO: interpolate to midpoint
-        if((contact->points[1] - contact->points[0]).norm() > 0.01) { // XXX: tolerance
+        if((contact->points[1] - contact->points[0]).norm() > _toleranceAbs) {
             /*
             for(int i=0; i<2; ++i) {
                 qDebug("contact%d: (%f,%f)", i, contact->points[i][0], contact->points[i][1]);
             }
             */
             contact->pointsCount = 2;
+        } else {
+            m_is_point = true;
+        }
+        /*
             contact->vrel[0] = contact->normal.innerProduct(
                                 polygon1->velocityWorld(contact->points[0]) -
                                 polygon0->velocityWorld(contact->points[0]));
@@ -284,16 +290,24 @@ int GJKCollisionSolver::checkContact(Contact* contact)
                                 polygon0->velocityWorld(contact->points[1]));
             if(contact->vrel[0] < 0 || contact->vrel[1] < 0)
                 return contact->state = Contact::Colliding;
-            return contact->state = Contact::Contacted;
+            else if(contact->vrel[0] < _toleranceAbs || contact->vrel[1] < _toleranceAbs) // XXX: tolerance
+                return contact->state = Colliding::Contacted;
+            return contact->state = Contact::Separating;
         }
+        */
     }
 
-    contact->pointsCount = 1;
-    contact->points[0] = vv[0]; // TODO: interpolate vv[0] and vv[1]
-    //qDebug("contact is one point: (%f %f) (%f %f)", vv[0][0], vv[0][1], vv[1][0], vv[1][1]);
-    contact->vrel[0] = contact->normal.innerProduct(
-                        polygon1->velocityWorld(contact->points[0]) -
-                        polygon0->velocityWorld(contact->points[0]));
+    if(m_is_point) {
+        contact->pointsCount = 1;
+        contact->points[0] = vv[0]; // TODO: interpolate vv[0] and vv[1]
+        //qDebug("contact is one point: (%f %f) (%f %f)", vv[0][0], vv[0][1], vv[1][0], vv[1][1]);
+    }
+
+    for(int i=0; i<contact->pointsCount; ++i) {
+        contact->vrel[i] = contact->normal.innerProduct(
+                        polygon1->velocityWorld(contact->points[i]) -
+                        polygon0->velocityWorld(contact->points[i]));
+    }
     if(contact->vrel[0] < 0)
         return contact->state = Contact::Colliding;
     return contact->state = Contact::Contacted;
