@@ -39,3 +39,15 @@ code (marked as TODO or XXX).
 More TODO items for Step can be found in the source code
 (marked as TODO or XXX).
 
+3. Future ideas
+
+* Create a game based on Step. Original idea by Jason Harris:
+On each level, you were given a goal and a list of equipment that 
+you could use to build a machine to achieve the goal.  The equipment could 
+include lots of different stuff: balls of various types (tennis, bowling, 
+baseball), springs, trampolines, guns, ropes, pulleys, belts, gears, conveyor 
+belts, cats, mice, light bulbs, elecric fans, model rockets, TNT, etc.  You 
+would place all this stuff on the playing field, press "Go", and see if the 
+level's goal was achieved by your machine.  If not, you would modify the 
+machine and try again.  It was a lot of fun for a young proto-physicist :)
+
