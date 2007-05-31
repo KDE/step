@@ -192,6 +192,9 @@ public:
      *  \todo Provide error message
      */
     int doEvolve(double delta);
+    
+    bool evolveAbort() { return _evolveAbort; }
+    void setEvolveAbort(bool evolveAbort = true) { _evolveAbort = evolveAbort; }
 
 private:
     void checkVariablesCount();
@@ -218,6 +221,7 @@ private:
 
     bool    _stopOnCollision;
     bool    _stopOnPenetration;
+    bool    _evolveAbort;
 };
 
 } // namespace StepCore

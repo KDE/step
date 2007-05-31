@@ -230,14 +230,27 @@ WorldModel::WorldModel(QObject* parent)
     _simulationCommand = NULL;
     _simulationTimer = new QTimer(this);
     setSimulationFps(25); // XXX KConfig ?
-    QObject::connect(_simulationTimer, SIGNAL(timeout()),
-                        this, SLOT(simulationFrame()));
+
     _updating = 0;
     resetWorld();
+
+    _simulationMutex = new QMutex();
+    _simulationThread = new SimulationThread(&_world, _simulationMutex);
+
+    QObject::connect(_simulationTimer, SIGNAL(timeout()),
+                        this, SLOT(simulationFrameBegin()));
+    QObject::connect(this, SIGNAL(simulationDoFrame(double)),
+                        _simulationThread, SLOT(doWorldEvolve(double)));
+    QObject::connect(_simulationThread, SIGNAL(worldEvolveDone(int)),
+                        this, SLOT(simulationFrameEnd(int)));
 }
 
 WorldModel::~WorldModel()
 {
+    _simulationThread->quit();
+    _simulationThread->wait();
+    delete _simulationThread;
+    delete _simulationMutex;
     delete _worldFactory;
     delete _world;
 }
@@ -513,14 +526,6 @@ QString WorldModel::createToolTip(const StepCore::Object* object) const
     return toolTip;
 }
 
-int WorldModel::doWorldEvolve(double delta)
-{
-    int ret = _world->doEvolve(delta);
-    _world->doCalcFn();
-    emitChanged();
-    return ret;
-}
-
 void WorldModel::clearWorld()
 {
     _world->clear();
@@ -586,27 +591,55 @@ bool WorldModel::isSimulationActive()
 
 void WorldModel::simulationStart()
 {
+    Q_ASSERT(!isSimulationActive());
+    Q_ASSERT(!_simulationCommand);
+
     _undoStack->beginMacro(i18n("Simulate"));
     _simulationCommand = new CommandSimulate(this);
+    _world->setEvolveAbort(false);
     _simulationTimer->start();
 }
 
-void WorldModel::simulationStop(int result)
+void WorldModel::simulationStop()
 {
-    _simulationTimer->stop();
-    if(_simulationCommand) {
-        _undoStack->push(_simulationCommand);
-        _undoStack->endMacro();
-        _simulationCommand = NULL;
-    }
-    emit simulationStopped(result);
+    Q_ASSERT(isSimulationActive());
+    Q_ASSERT(_simulationCommand);
+    _world->setEvolveAbort(true);
 }
 
-void WorldModel::simulationFrame()
+void SimulationThread::doWorldEvolve(double delta)
 {
-    int result = _world->doEvolve(1.0/_simulationFps);
+    _mutex->lock();
+    int result = (*_world)->doEvolve(delta);
+    _mutex->unlock();
+    emit worldEvolveDone(result);
+}
+
+void WorldModel::simulationFrameBegin()
+{
+    Q_ASSERT(isSimulationActive());
+    Q_ASSERT(_simulationCommand);
+    emit simulationDoFrame(1.0/_simulationFps);
+}
+
+void WorldModel::simulationFrameEnd(int result)
+{
+    Q_ASSERT(isSimulationActive());
+    Q_ASSERT(_simulationCommand);
+
     _world->doCalcFn();
     emitChanged();
-    if(result != StepCore::Solver::OK) simulationStop(result);
+
+    if(result != StepCore::Solver::OK) {
+        if(result == StepCore::Solver::Aborted)
+            result = StepCore::Solver::OK;
+        if(_simulationCommand) {
+            _undoStack->push(_simulationCommand);
+            _undoStack->endMacro();
+            _simulationCommand = NULL;
+        }
+        _simulationTimer->stop();
+        emit simulationStopped(result);
+    }
 }
 

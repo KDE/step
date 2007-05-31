@@ -22,6 +22,8 @@
 #include <QAbstractItemModel>
 #include <QUndoCommand>
 #include <QVariant>
+#include <QThread>
+#include <QMutex>
 
 namespace StepCore {
     class Object;
@@ -36,6 +38,31 @@ class QUndoStack;
 class QTimer;
 class WorldFactory;
 class CommandSimulate;
+
+/* Simulation thread only changes properties of items,
+ * not their count or addresses, so locking is required for
+ *  - any writes
+ *  - reads of item properties
+ */
+class SimulationThread: public QThread
+{
+    Q_OBJECT
+
+public:
+    SimulationThread(StepCore::World** world, QMutex* mutex)
+        : _world(world), _mutex(mutex) {}
+    void run() { exec(); }
+
+public slots:
+    void doWorldEvolve(double delta);
+
+signals:
+    void worldEvolveDone(int result);
+
+protected:
+    StepCore::World** _world;
+    QMutex*           _mutex;
+};
 
 class WorldModel: public QAbstractItemModel
 {
@@ -114,14 +141,17 @@ public:
 
 public slots:
     void simulationStart();
-    void simulationStop(int result=0);
+    void simulationStop();
+
     void deleteSelectedItems();
 
 protected slots:
-    void simulationFrame();
+    void simulationFrameBegin();
+    void simulationFrameEnd(int result);
 
 signals:
     void simulationStopped(int result);
+    void simulationDoFrame(double delta);
 
 protected:
     void resetWorld();
@@ -129,7 +159,6 @@ protected:
     void addItem(StepCore::Item* item);
     void removeItem(StepCore::Item* item);
     StepCore::Solver* swapSolver(StepCore::Solver* solver);
-    int doWorldEvolve(double delta);
 
 protected:
     StepCore::World* _world;
@@ -140,9 +169,12 @@ protected:
 
     int _updating;
 
-    QTimer* _simulationTimer;
-    int     _simulationFps;
-    CommandSimulate* _simulationCommand;
+    QTimer*           _simulationTimer;
+    int               _simulationFps;
+    CommandSimulate*  _simulationCommand;
+
+    QMutex*           _simulationMutex;
+    SimulationThread* _simulationThread;
 
     friend class CommandEditProperty;
     friend class CommandNewItem;

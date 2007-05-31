@@ -120,7 +120,7 @@ void MainWindow::setupActions()
     actionSimulationStop->setText(i18n("S&top"));
     actionSimulationStop->setIcon(KIcon("media-playback-stop"));
 
-    simulationStop();
+    simulationStopped(0);
 
     /* View menu */
     KStandardAction::actualSize(worldGraphicsView, SLOT(actualSize()), actionCollection());

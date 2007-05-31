@@ -88,6 +88,7 @@ World& World::operator=(const World& world)
 
     _stopOnCollision = world._stopOnCollision;
     _stopOnPenetration = world._stopOnPenetration;
+    _evolveAbort = world._evolveAbort;
 
     return *this;
 }
@@ -114,6 +115,7 @@ void World::clear()
 
     _stopOnCollision = false;
     _stopOnPenetration = false;
+    _evolveAbort = false;
 
 #ifdef STEPCORE_WITH_QT
     setName(QString());
@@ -321,6 +323,8 @@ out:
 
 inline int World::solverFunction(double t, const double y[], double f[])
 {
+    if(_evolveAbort) return Solver::Aborted;
+
     _time = t;
     scatterVariables(y); // this will reset force
 
