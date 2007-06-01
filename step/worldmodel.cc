@@ -257,6 +257,7 @@ WorldModel::~WorldModel()
 
 void WorldModel::resetWorld()
 {
+    Q_ASSERT(!isSimulationActive());
     if(_world->name().isEmpty()) {
         // XXX: check that loaded items has unique names !
         _world->setName(getUniqueName("world"));
@@ -491,12 +492,14 @@ void WorldModel::pushCommand(QUndoCommand* command)
 
 void WorldModel::beginMacro(const QString& text)
 {
+    // XXX: simulation could be started (by hotkey) during macro creation
     if(!isSimulationActive())
         _undoStack->beginMacro(text);
 }
 
 void WorldModel::endMacro()
 {
+    // XXX: simulation could be stopped during macro creation
     if(!isSimulationActive())
         _undoStack->endMacro();
 }
@@ -607,14 +610,6 @@ void WorldModel::simulationStop()
     _world->setEvolveAbort(true);
 }
 
-void SimulationThread::doWorldEvolve(double delta)
-{
-    _mutex->lock();
-    int result = (*_world)->doEvolve(delta);
-    _mutex->unlock();
-    emit worldEvolveDone(result);
-}
-
 void WorldModel::simulationFrameBegin()
 {
     Q_ASSERT(isSimulationActive());
@@ -641,5 +636,13 @@ void WorldModel::simulationFrameEnd(int result)
         _simulationTimer->stop();
         emit simulationStopped(result);
     }
+}
+
+void SimulationThread::doWorldEvolve(double delta)
+{
+    _mutex->lock();
+    int result = (*_world)->doEvolve(delta);
+    _mutex->unlock();
+    emit worldEvolveDone(result);
 }
 

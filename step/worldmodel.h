@@ -84,17 +84,12 @@ public:
     
     // DO NOT change returned object directly: it breaks undo/redo
     StepCore::Object* object(const QModelIndex& index) const;
-    // Only for UndoCommand* classes
-    void objectChanged(const StepCore::Object* object);
 
     StepCore::Item* item(const QModelIndex& index) const;
     StepCore::Item* item(int n) const { return item(itemIndex(n)); }
     int itemCount() const;
 
     // QAbstractItemModel functions
-    // XXX: disallow external modifications - replace ObjectRole by PropertyRole
-    //      or include properties in the tree
-    // XXX: All modification should be done through setData
     QVariant data(const QModelIndex &index, int role) const;
     QModelIndex index(int row, int column, const QModelIndex &parent = QModelIndex()) const;
     QModelIndex parent(const QModelIndex &index) const;
@@ -159,6 +154,9 @@ protected:
     void addItem(StepCore::Item* item);
     void removeItem(StepCore::Item* item);
     StepCore::Solver* swapSolver(StepCore::Solver* solver);
+
+    // Only for UndoCommand* classes
+    void objectChanged(const StepCore::Object* object);
 
 protected:
     StepCore::World* _world;
