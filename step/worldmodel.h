@@ -24,6 +24,7 @@
 #include <QVariant>
 #include <QThread>
 #include <QMutex>
+#include <QWaitCondition>
 
 namespace StepCore {
     class Object;
@@ -50,10 +51,10 @@ class SimulationThread: public QThread
 
 public:
     SimulationThread(StepCore::World** world, QMutex* mutex)
-        : _world(world), _mutex(mutex) {}
-    void run() { exec(); }
+        : _world(world), _mutex(mutex), _stopThread(0), _delta(0) {}
+    ~SimulationThread();
 
-public slots:
+    void run();
     void doWorldEvolve(double delta);
 
 signals:
@@ -62,6 +63,9 @@ signals:
 protected:
     StepCore::World** _world;
     QMutex*           _mutex;
+    QWaitCondition    _waitCondition;
+    bool              _stopThread;
+    double            _delta;
 };
 
 class WorldModel: public QAbstractItemModel
@@ -146,7 +150,6 @@ protected slots:
 
 signals:
     void simulationStopped(int result);
-    void simulationDoFrame(double delta);
 
 protected:
     void resetWorld();
@@ -173,6 +176,9 @@ protected:
 
     QMutex*           _simulationMutex;
     SimulationThread* _simulationThread;
+
+    bool _simulationFrameWaiting;
+    bool _simulationFrameSkipped;
 
     friend class CommandEditProperty;
     friend class CommandNewItem;

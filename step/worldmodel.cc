@@ -236,19 +236,19 @@ WorldModel::WorldModel(QObject* parent)
 
     _simulationMutex = new QMutex();
     _simulationThread = new SimulationThread(&_world, _simulationMutex);
+    _simulationThread->start();
+
+    _simulationFrameWaiting = false;
+    _simulationFrameSkipped = false;
 
     QObject::connect(_simulationTimer, SIGNAL(timeout()),
                         this, SLOT(simulationFrameBegin()));
-    QObject::connect(this, SIGNAL(simulationDoFrame(double)),
-                        _simulationThread, SLOT(doWorldEvolve(double)));
     QObject::connect(_simulationThread, SIGNAL(worldEvolveDone(int)),
-                        this, SLOT(simulationFrameEnd(int)));
+                        this, SLOT(simulationFrameEnd(int)), Qt::QueuedConnection);
 }
 
 WorldModel::~WorldModel()
 {
-    _simulationThread->quit();
-    _simulationThread->wait();
     delete _simulationThread;
     delete _simulationMutex;
     delete _worldFactory;
@@ -600,6 +600,8 @@ void WorldModel::simulationStart()
     _undoStack->beginMacro(i18n("Simulate"));
     _simulationCommand = new CommandSimulate(this);
     _world->setEvolveAbort(false);
+    _simulationFrameWaiting = false;
+    _simulationFrameSkipped = false;
     _simulationTimer->start();
 }
 
@@ -614,13 +616,25 @@ void WorldModel::simulationFrameBegin()
 {
     Q_ASSERT(isSimulationActive());
     Q_ASSERT(_simulationCommand);
-    emit simulationDoFrame(1.0/_simulationFps);
+
+    if(_simulationFrameWaiting) { // TODO: warn user
+        qDebug("frame skipped!");
+        _simulationFrameSkipped = true;
+        return;
+    }
+
+    qDebug("emit simulationDoFrame() t=%#x", int(QThread::currentThread()));
+    _simulationFrameWaiting = true;
+    _simulationThread->doWorldEvolve(1.0/_simulationFps);
+    qDebug("emited simulationDoFrame()");
 }
 
 void WorldModel::simulationFrameEnd(int result)
 {
     Q_ASSERT(isSimulationActive());
     Q_ASSERT(_simulationCommand);
+
+    qDebug("simulationFrameEnd");
 
     _world->doCalcFn();
     emitChanged();
@@ -635,14 +649,55 @@ void WorldModel::simulationFrameEnd(int result)
         }
         _simulationTimer->stop();
         emit simulationStopped(result);
+        return;
     }
+
+    _simulationFrameWaiting = false;
+    if(_simulationFrameSkipped) {
+        _simulationFrameSkipped = false;
+        simulationFrameBegin();
+    }
+}
+
+void SimulationThread::run()
+{
+    _mutex->lock();
+    forever {
+        _waitCondition.wait(_mutex);
+        
+        if(_stopThread) break;
+
+        qDebug("begin doWorldEvolve() t=%#x", int(QThread::currentThread()));
+        int result = (*_world)->doEvolve(_delta);
+        qDebug("end doWorldEvolve()");
+
+        emit worldEvolveDone(result);
+    }
+    _mutex->unlock();
 }
 
 void SimulationThread::doWorldEvolve(double delta)
 {
+    // XXX: ensure that previous frame was finished
+        _mutex->lock();
+        _delta = delta;
+        _waitCondition.wakeOne();
+        _mutex->unlock();
+    //}
+    /*
     _mutex->lock();
+    qDebug("begin doWorldEvolve() t=%#x", int(QThread::currentThread()));
     int result = (*_world)->doEvolve(delta);
+    qDebug("end doWorldEvolve()");
     _mutex->unlock();
     emit worldEvolveDone(result);
+    */
+}
+
+SimulationThread::~SimulationThread()
+{
+    _stopThread = true;
+    _waitCondition.wakeOne();
+    wait();
 }
 
