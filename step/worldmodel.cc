@@ -234,12 +234,12 @@ WorldModel::WorldModel(QObject* parent)
     _updating = 0;
     resetWorld();
 
-    _simulationMutex = new QMutex();
-    _simulationThread = new SimulationThread(&_world, _simulationMutex);
+    _simulationThread = new SimulationThread(&_world);
     _simulationThread->start();
 
     _simulationFrameWaiting = false;
     _simulationFrameSkipped = false;
+    _simulationStopping = false;
 
     QObject::connect(_simulationTimer, SIGNAL(timeout()),
                         this, SLOT(simulationFrameBegin()));
@@ -250,7 +250,6 @@ WorldModel::WorldModel(QObject* parent)
 WorldModel::~WorldModel()
 {
     delete _simulationThread;
-    delete _simulationMutex;
     delete _worldFactory;
     delete _world;
 }
@@ -581,6 +580,32 @@ QString WorldModel::getUniqueName(QString className) const
     return QString();
 }
 
+void WorldModel::forceLock()
+{
+    // Try to lock but do not wait mode than one frame
+    if(_simulationThread->mutex()->tryLock(1000/_simulationFps))
+        return;
+
+    Q_ASSERT(isSimulationActive());
+    Q_ASSERT(_simulationCommand);
+    Q_ASSERT(_simulationFrameWaiting);
+    Q_ASSERT(!_simulationStopping);
+
+    // Current frame will be aborted but simulationFrameEnd
+    // will be called only when we return to the event loop
+    // (which supposed to be after the mutex is unlocked)
+    _world->setEvolveAbort(true);
+
+    // Mutex will be locked as soon as current frame is aborted
+    _simulationThread->mutex()->lock();
+}
+
+void WorldModel::forceUnlock()
+{
+    _simulationThread->mutex()->unlock();
+    // If frame was aborted it will be resumed in simulationFrameEnd
+}
+
 void WorldModel::setSimulationFps(int simulationFps)
 {
     _simulationFps = simulationFps;
@@ -602,6 +627,7 @@ void WorldModel::simulationStart()
     _world->setEvolveAbort(false);
     _simulationFrameWaiting = false;
     _simulationFrameSkipped = false;
+    _simulationStopping = false;
     _simulationTimer->start();
 }
 
@@ -609,13 +635,18 @@ void WorldModel::simulationStop()
 {
     Q_ASSERT(isSimulationActive());
     Q_ASSERT(_simulationCommand);
-    _world->setEvolveAbort(true);
+    _simulationStopping = true;
+    if(_simulationFrameWaiting)
+        _world->setEvolveAbort(true);
+    else
+        simulationFrameEnd(0);
 }
 
 void WorldModel::simulationFrameBegin()
 {
     Q_ASSERT(isSimulationActive());
     Q_ASSERT(_simulationCommand);
+    Q_ASSERT(!_simulationStopping);
 
     if(_simulationFrameWaiting) { // TODO: warn user
         qDebug("frame skipped!");
@@ -633,20 +664,27 @@ void WorldModel::simulationFrameEnd(int result)
 {
     Q_ASSERT(isSimulationActive());
     Q_ASSERT(_simulationCommand);
+    Q_ASSERT(_simulationFrameWaiting);
 
     qDebug("simulationFrameEnd");
 
+    // It's OK to be aborted
+    if(result == StepCore::Solver::Aborted)
+        result = StepCore::Solver::OK;
+
+    // If current frame was aborted we can resume it now
+    _world->setEvolveAbort(false);
+
+    // Update GUI
     _world->doCalcFn();
     emitChanged();
 
-    if(result != StepCore::Solver::OK) {
-        if(result == StepCore::Solver::Aborted)
-            result = StepCore::Solver::OK;
-        if(_simulationCommand) {
-            _undoStack->push(_simulationCommand);
-            _undoStack->endMacro();
-            _simulationCommand = NULL;
-        }
+    // Stop if requested or simulation error occured
+    if(_simulationStopping || result != StepCore::Solver::OK) {
+        _undoStack->push(_simulationCommand);
+        _undoStack->endMacro();
+        _simulationCommand = NULL;
+
         _simulationTimer->stop();
         emit simulationStopped(result);
         return;
@@ -661,9 +699,9 @@ void WorldModel::simulationFrameEnd(int result)
 
 void SimulationThread::run()
 {
-    _mutex->lock();
+    _mutex.lock();
     forever {
-        _waitCondition.wait(_mutex);
+        _waitCondition.wait(&_mutex);
         
         if(_stopThread) break;
 
@@ -673,16 +711,16 @@ void SimulationThread::run()
 
         emit worldEvolveDone(result);
     }
-    _mutex->unlock();
+    _mutex.unlock();
 }
 
 void SimulationThread::doWorldEvolve(double delta)
 {
     // XXX: ensure that previous frame was finished
-        _mutex->lock();
-        _delta = delta;
-        _waitCondition.wakeOne();
-        _mutex->unlock();
+    _mutex.lock();
+    _delta = delta;
+    _waitCondition.wakeOne();
+    _mutex.unlock();
     //}
     /*
     _mutex->lock();

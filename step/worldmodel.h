@@ -50,22 +50,23 @@ class SimulationThread: public QThread
     Q_OBJECT
 
 public:
-    SimulationThread(StepCore::World** world, QMutex* mutex)
-        : _world(world), _mutex(mutex), _stopThread(0), _delta(0) {}
+    SimulationThread(StepCore::World** world)
+        : _world(world), _stopThread(0), _delta(0) {}
     ~SimulationThread();
 
     void run();
     void doWorldEvolve(double delta);
+    QMutex* mutex() { return &_mutex; }
 
 signals:
     void worldEvolveDone(int result);
 
 protected:
     StepCore::World** _world;
-    QMutex*           _mutex;
-    QWaitCondition    _waitCondition;
     bool              _stopThread;
     double            _delta;
+    QMutex            _mutex;
+    QWaitCondition    _waitCondition;
 };
 
 class WorldModel: public QAbstractItemModel
@@ -133,6 +134,11 @@ public:
     QString getUniqueName(QString className) const;
     bool checkUniqueName(QString name) const;
 
+    // Locking
+    void forceLock();
+    void forceUnlock();
+
+    // Simulation
     void setSimulationFps(int simulationFps);
     int simulationFps() { return _simulationFps; }
 
@@ -173,12 +179,11 @@ protected:
     QTimer*           _simulationTimer;
     int               _simulationFps;
     CommandSimulate*  _simulationCommand;
-
-    QMutex*           _simulationMutex;
     SimulationThread* _simulationThread;
 
     bool _simulationFrameWaiting;
     bool _simulationFrameSkipped;
+    bool _simulationStopping;
 
     friend class CommandEditProperty;
     friend class CommandNewItem;
