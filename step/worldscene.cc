@@ -186,6 +186,7 @@ void WorldScene::mousePressEvent(QGraphicsSceneMouseEvent* mouseEvent)
 void WorldScene::keyPressEvent(QKeyEvent* keyEvent)
 {
     if(keyEvent->matches(QKeySequence::Delete)) {
+        _worldModel->simulationPause();
         _worldModel->deleteSelectedItems();
         keyEvent->accept();
     } else QGraphicsScene::keyPressEvent(keyEvent);
@@ -200,6 +201,7 @@ void WorldScene::helpEvent(QGraphicsSceneHelpEvent *helpEvent)
     foreach(QGraphicsItem* it, items(helpEvent->scenePos())) {
         if(it->parentItem()) continue;
         StepCore::Item* item = itemFromGraphics(it);
+        _worldModel->simulationPause();
         if(item) {
             if(++count > 4) { text += QString("<p>...</p>"); break; }
             text += _worldModel->createToolTip(item);

@@ -25,6 +25,7 @@
 #include <stepcore/eulersolver.h>
 #include <stepcore/collisionsolver.h>
 #include <stepcore/types.h>
+#include <QApplication>
 #include <QItemSelectionModel>
 #include <QUndoStack>
 #include <QTimer>
@@ -231,15 +232,16 @@ WorldModel::WorldModel(QObject* parent)
     _simulationTimer = new QTimer(this);
     setSimulationFps(25); // XXX KConfig ?
 
-    _updating = 0;
-    resetWorld();
-
     _simulationThread = new SimulationThread(&_world);
     _simulationThread->start();
+
+    _updating = 0;
+    resetWorld();
 
     _simulationFrameWaiting = false;
     _simulationFrameSkipped = false;
     _simulationStopping = false;
+    _simulationPaused = false;
 
     QObject::connect(_simulationTimer, SIGNAL(timeout()),
                         this, SLOT(simulationFrameBegin()));
@@ -345,7 +347,8 @@ QVariant WorldModel::data(const QModelIndex &index, int role) const
         return QString("%1: %2").arg(obj->name().isEmpty() ? i18n("<unnamed>") : obj->name())
                                    .arg(obj->metaObject()->className());
     } else if(role == Qt::ToolTipRole) {
-        return createToolTip(obj);
+        const_cast<WorldModel*>(this)->simulationPause();
+        return createToolTip(obj); // XXX
     }
 
     return QVariant();
@@ -431,6 +434,7 @@ void WorldModel::deleteItem(StepCore::Item* item)
 
 void WorldModel::deleteSelectedItems()
 {
+    simulationPause();
     QList<StepCore::Item*> items;
     foreach(QModelIndex index, selectionModel()->selectedIndexes()) {
         StepCore::Item* it = item(index); if(it) items << it;
@@ -580,30 +584,30 @@ QString WorldModel::getUniqueName(QString className) const
     return QString();
 }
 
-void WorldModel::forceLock()
+void WorldModel::simulationPause()
 {
+    if(!_simulationFrameWaiting || _simulationPaused) return;
+
     // Try to lock but do not wait mode than one frame
-    if(_simulationThread->mutex()->tryLock(1000/_simulationFps))
-        return;
+    if(_simulationThread->mutex()->tryLock(1000/_simulationFps)) {
+        // We still need to setAbortEvolve(true) since
+        // _simulationThread->doWorldEvolve() could be called before
+        _world->setEvolveAbort(true);
+    } else {
+        Q_ASSERT(isSimulationActive());
+        Q_ASSERT(_simulationCommand);
+        Q_ASSERT(_simulationFrameWaiting);
+        //Q_ASSERT(!_simulationStopping);
 
-    Q_ASSERT(isSimulationActive());
-    Q_ASSERT(_simulationCommand);
-    Q_ASSERT(_simulationFrameWaiting);
-    Q_ASSERT(!_simulationStopping);
+        _world->setEvolveAbort(true);
 
-    // Current frame will be aborted but simulationFrameEnd
-    // will be called only when we return to the event loop
-    // (which supposed to be after the mutex is unlocked)
-    _world->setEvolveAbort(true);
-
-    // Mutex will be locked as soon as current frame is aborted
-    _simulationThread->mutex()->lock();
-}
-
-void WorldModel::forceUnlock()
-{
+        // Mutex will be locked as soon as current frame is aborted
+        _simulationThread->mutex()->lock();
+    }
+    // We can release mutex just now since new simulation frame can
+    // only be started from this thread when control returns to event loop
     _simulationThread->mutex()->unlock();
-    // If frame was aborted it will be resumed in simulationFrameEnd
+    _simulationPaused = true;
 }
 
 void WorldModel::setSimulationFps(int simulationFps)
@@ -628,6 +632,7 @@ void WorldModel::simulationStart()
     _simulationFrameWaiting = false;
     _simulationFrameSkipped = false;
     _simulationStopping = false;
+    _simulationPaused = false;
     _simulationTimer->start();
 }
 
@@ -636,10 +641,11 @@ void WorldModel::simulationStop()
     Q_ASSERT(isSimulationActive());
     Q_ASSERT(_simulationCommand);
     _simulationStopping = true;
-    if(_simulationFrameWaiting)
-        _world->setEvolveAbort(true);
-    else
+    if(_simulationFrameWaiting) {
+        simulationPause();
+    } else {
         simulationFrameEnd(0);
+    }
 }
 
 void WorldModel::simulationFrameBegin()
@@ -656,6 +662,7 @@ void WorldModel::simulationFrameBegin()
 
     qDebug("emit simulationDoFrame() t=%#x", int(QThread::currentThread()));
     _simulationFrameWaiting = true;
+    _simulationPaused = false;
     _simulationThread->doWorldEvolve(1.0/_simulationFps);
     qDebug("emited simulationDoFrame()");
 }
@@ -664,20 +671,24 @@ void WorldModel::simulationFrameEnd(int result)
 {
     Q_ASSERT(isSimulationActive());
     Q_ASSERT(_simulationCommand);
-    Q_ASSERT(_simulationFrameWaiting);
+    Q_ASSERT(_simulationFrameWaiting || _simulationStopping);
 
     qDebug("simulationFrameEnd");
 
     // It's OK to be aborted
-    if(result == StepCore::Solver::Aborted)
+    if(result == StepCore::Solver::Aborted) {
+        qDebug("simulation frame aborted!");
         result = StepCore::Solver::OK;
-
-    // If current frame was aborted we can resume it now
-    _world->setEvolveAbort(false);
+    }
 
     // Update GUI
     _world->doCalcFn();
+
+    _simulationFrameWaiting = false;
     emitChanged();
+
+    // If current frame was aborted we can resume it now
+    _world->setEvolveAbort(false);
 
     // Stop if requested or simulation error occured
     if(_simulationStopping || result != StepCore::Solver::OK) {
@@ -690,10 +701,11 @@ void WorldModel::simulationFrameEnd(int result)
         return;
     }
 
-    _simulationFrameWaiting = false;
     if(_simulationFrameSkipped) {
         _simulationFrameSkipped = false;
-        simulationFrameBegin();
+        QApplication::processEvents();
+        if(!_simulationFrameWaiting)
+            simulationFrameBegin();
     }
 }
 
@@ -705,9 +717,14 @@ void SimulationThread::run()
         
         if(_stopThread) break;
 
-        qDebug("begin doWorldEvolve() t=%#x", int(QThread::currentThread()));
-        int result = (*_world)->doEvolve(_delta);
-        qDebug("end doWorldEvolve()");
+        int result;
+        if(! (*_world)->evolveAbort()) {
+            qDebug("begin doWorldEvolve() t=%#x", int(QThread::currentThread()));
+            result = (*_world)->doEvolve(_delta);
+            qDebug("end doWorldEvolve()");
+        } else {
+            result = StepCore::Solver::Aborted;
+        }
 
         emit worldEvolveDone(result);
     }

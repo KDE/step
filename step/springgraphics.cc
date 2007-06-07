@@ -35,6 +35,7 @@ bool SpringCreator::sceneEvent(QEvent* event)
     if(event->type() == QEvent::GraphicsSceneMousePress && mouseEvent->button() == Qt::LeftButton) {
         QPointF pos = mouseEvent->scenePos();
         QVariant vpos = QVariant::fromValue(WorldGraphicsItem::pointToVector(pos));
+        _worldModel->simulationPause();
         _worldModel->beginMacro(i18n("Create %1", _className));
         _item = _worldModel->newItem(className()); Q_ASSERT(_item != NULL);
 
@@ -50,6 +51,7 @@ bool SpringCreator::sceneEvent(QEvent* event)
                     mouseEvent->buttons() & Qt::LeftButton) {
         QPointF pos = mouseEvent->scenePos();
         QVariant vpos = QVariant::fromValue(WorldGraphicsItem::pointToVector(pos));
+        _worldModel->simulationPause();
         _worldModel->setProperty(_item, _item->metaObject()->property("localPosition2"), vpos);
         _worldModel->setProperty(_item, _item->metaObject()->property("restLength"), 
                                                     static_cast<StepCore::Spring*>(_item)->length());
@@ -108,6 +110,7 @@ void SpringHandlerGraphicsItem::advance(int phase)
 {
     if(phase == 0) return;
     prepareGeometryChange();
+    _worldModel->simulationPause();
     double w = HANDLER_SIZE/currentViewScale()/2;
     _boundingRect = QRectF(-w, -w, w*2, w*2);
     if(_num == 2)
@@ -121,6 +124,7 @@ void SpringHandlerGraphicsItem::mouseMoveEvent(QGraphicsSceneMouseEvent *event)
         QPointF newPos(mapToParent(event->pos()) - matrix().map(event->buttonDownPos(Qt::LeftButton)));
         QVariant vpos = QVariant::fromValue(pointToVector(parentItem()->mapToParent(newPos)));
 
+        _worldModel->simulationPause();
         if(!_moving) {
             _moving = true;
             _worldModel->beginMacro(i18n("Edit %1", _item->name()));
@@ -143,6 +147,7 @@ void SpringHandlerGraphicsItem::mouseReleaseEvent(QGraphicsSceneMouseEvent *even
         foreach(QGraphicsItem* it, scene()->items(pos)) {
             StepCore::Item* item = static_cast<WorldScene*>(scene())->itemFromGraphics(it);
             if(dynamic_cast<StepCore::Particle*>(item) || dynamic_cast<StepCore::RigidBody*>(item)) {
+                _worldModel->simulationPause();
                 if(_num == 1) _worldModel->setProperty(_item, _item->metaObject()->property("body1"), item->name(), false);
                 else          _worldModel->setProperty(_item, _item->metaObject()->property("body2"), item->name(), false);
 
@@ -187,6 +192,7 @@ QPainterPath SpringGraphicsItem::shape() const
     double u = 1/currentViewScale();
     path.addRect(QRectF(-u, -_radius-u, _rnorm+u, _radius*2+u));
 
+    _worldModel->simulationPause();
     StepCore::Vector2d r = spring()->position2() - spring()->position1();
     return QMatrix().rotate(atan2(r[1], r[0])*180/3.14).map(path);
 }
@@ -195,6 +201,7 @@ void SpringGraphicsItem::paint(QPainter* painter, const QStyleOptionGraphicsItem
 {
     static const int seq[4] = { 0,1,0,-1 };
 
+    _worldModel->simulationPause();
     StepCore::Vector2d r = spring()->position2() - spring()->position1();
 
     painter->setPen(QPen(Qt::green, 0));
@@ -232,6 +239,7 @@ void SpringGraphicsItem::advance(int phase)
 
     prepareGeometryChange();
 
+    _worldModel->simulationPause();
     StepCore::Vector2d r = spring()->position2() - spring()->position1();
     _rnorm = r.norm();
     
@@ -282,6 +290,7 @@ QVariant SpringGraphicsItem::itemChange(GraphicsItemChange change, const QVarian
 
 void SpringGraphicsItem::mouseSetPos(const QPointF& /*pos*/, const QPointF& diff)
 {
+    _worldModel->simulationPause();
     StepCore::Item* item1 = dynamic_cast<StepCore::Item*>(spring()->bodyPtr1());
     StepCore::Item* item2 = dynamic_cast<StepCore::Item*>(spring()->bodyPtr2());
 

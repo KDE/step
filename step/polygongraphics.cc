@@ -115,6 +115,7 @@ bool PolygonCreator::sceneEvent(QEvent* event)
         QPointF pos = mouseEvent->scenePos();
         QVariant vpos = QVariant::fromValue(WorldGraphicsItem::pointToVector(pos));
 
+        _worldModel->simulationPause();
         _worldModel->beginMacro(i18n("Create %1", _className));
         _item = _worldModel->newItem(_className); Q_ASSERT(_item != NULL);
         _worldModel->setProperty(_item, _item->metaObject()->property("position"), vpos);
@@ -135,6 +136,7 @@ bool PolygonCreator::sceneEvent(QEvent* event)
         QPointF pos = mouseEvent->scenePos();
         StepCore::Vector2d v = WorldGraphicsItem::pointToVector(pos);
 
+        _worldModel->simulationPause();
         QString vertexes = _item->metaObject()->property("vertexes")->readString(_item).section(',', 0, -3);
         if(vertexes.isEmpty()) {
             _worldModel->setProperty(_item, _item->metaObject()->property("position"), QVariant::fromValue(v));
@@ -241,6 +243,7 @@ void PolygonGraphicsItem::advance(int phase)
     if(phase == 0) return;
     prepareGeometryChange();
 
+    _worldModel->simulationPause();
     const StepCore::Vector2d& r = polygon()->position();
     const StepCore::Vector2d& v = polygon()->velocity();
     const StepCore::Vector2d  a = polygon()->force() / polygon()->mass();
@@ -269,6 +272,7 @@ void PolygonGraphicsItem::advance(int phase)
 
 void PolygonGraphicsItem::mouseSetPos(const QPointF& pos, const QPointF& /*diff*/)
 {
+    _worldModel->simulationPause();
     _worldModel->setProperty(_item, _item->metaObject()->property("position"),
                                 QVariant::fromValue(pointToVector(pos)));
 }

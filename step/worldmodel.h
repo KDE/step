@@ -134,15 +134,15 @@ public:
     QString getUniqueName(QString className) const;
     bool checkUniqueName(QString name) const;
 
-    // Locking
-    void forceLock();
-    void forceUnlock();
-
     // Simulation
     void setSimulationFps(int simulationFps);
     int simulationFps() { return _simulationFps; }
 
     bool isSimulationActive();
+
+    // Pause simulation until control
+    // returns to event loop
+    void simulationPause();
 
 public slots:
     void simulationStart();
@@ -184,6 +184,7 @@ protected:
     bool _simulationFrameWaiting;
     bool _simulationFrameSkipped;
     bool _simulationStopping;
+    bool _simulationPaused;
 
     friend class CommandEditProperty;
     friend class CommandNewItem;

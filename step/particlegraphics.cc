@@ -29,6 +29,7 @@
 bool ParticleCreator::sceneEvent(QEvent* event)
 {
     if(event->type() == QEvent::GraphicsSceneMousePress) {
+        _worldModel->simulationPause();
         QGraphicsSceneMouseEvent* mouseEvent = static_cast<QGraphicsSceneMouseEvent*>(event);
         QPointF pos = mouseEvent->scenePos();
         QVariant vpos = QVariant::fromValue(WorldGraphicsItem::pointToVector(pos));
@@ -108,6 +109,7 @@ void ParticleGraphicsItem::advance(int phase)
     if(phase == 0) return;
     prepareGeometryChange();
 
+    _worldModel->simulationPause();
     const StepCore::Vector2d& r = particle()->position();
     const StepCore::Vector2d& v = particle()->velocity();
     const StepCore::Vector2d  a = particle()->force() / particle()->mass();
@@ -124,6 +126,7 @@ void ParticleGraphicsItem::advance(int phase)
 
 void ParticleGraphicsItem::mouseSetPos(const QPointF& pos, const QPointF& /*diff*/)
 {
+    _worldModel->simulationPause();
     _worldModel->setProperty(_item, _item->metaObject()->property("position"),
                                 QVariant::fromValue(pointToVector(pos)));
 }

@@ -72,6 +72,8 @@ PropertiesBrowserModel::PropertiesBrowserModel(WorldModel* worldModel, QObject* 
     : QAbstractItemModel(parent), _worldModel(worldModel), _object(NULL)
 {
     _solverChoices = new ChoicesModel(this);
+
+    // Prepare solver list
     foreach(QString name, _worldModel->worldFactory()->orderedMetaObjects()) {
         const StepCore::MetaObject* metaObject = _worldModel->worldFactory()->metaObject(name);
         if(metaObject->isAbstract()) continue;
@@ -88,20 +90,22 @@ void PropertiesBrowserModel::setObject(StepCore::Object* object)
     _object = object;
 
     _subRows.clear();
-    if(_object != NULL)
+    if(_object != NULL) {
+        _worldModel->simulationPause();
         for(int i=0; i<_object->metaObject()->propertyCount(); ++i) {
             const StepCore::MetaProperty* p = _object->metaObject()->property(i);
             if(p->userTypeId() == qMetaTypeId<std::vector<StepCore::Vector2d> >())
                 _subRows << p->readVariant(_object).value<std::vector<StepCore::Vector2d> >().size();
             else _subRows << 0;
-
         }
+    }
 
     reset();
 }
 
 void PropertiesBrowserModel::emitDataChanged()
 {
+    _worldModel->simulationPause();
     for(int i=0; i<rowCount(); i++) {
         const StepCore::MetaProperty* p = _object->metaObject()->property(i);
         if(p->userTypeId() == qMetaTypeId<std::vector<StepCore::Vector2d> >()) {
@@ -132,6 +136,7 @@ QVariant PropertiesBrowserModel::data(const QModelIndex &index, int role) const
         if(role == Qt::DisplayRole || role == Qt::EditRole) {
             if(index.column() == 0) return p->name();
             else if(index.column() == 1) {
+                _worldModel->simulationPause();
 
                 // Solver type combobox ?
                 if(index.row() == 1 && dynamic_cast<StepCore::Solver*>(_object)) {
@@ -168,6 +173,7 @@ QVariant PropertiesBrowserModel::data(const QModelIndex &index, int role) const
         if(role == Qt::DisplayRole || role == Qt::EditRole) {
             if(index.column() == 0) return QString("%1[%2]").arg(p->name()).arg(index.row());
             else if(index.column() == 1) {
+                _worldModel->simulationPause();
                 StepCore::Vector2d v =
                         p->readVariant(_object).value<std::vector<StepCore::Vector2d> >()[index.row()];
                 return QString("(%1,%2)").arg(v[0], 0, 'g', 4).arg(v[1], 0, 'g', 4); // XXX: precision
@@ -189,6 +195,7 @@ bool PropertiesBrowserModel::setData(const QModelIndex &index, const QVariant &v
     if(_object == NULL) return false;
 
     if(index.isValid() && index.column() == 1 && role == Qt::EditRole) {
+        _worldModel->simulationPause();
         if(index.internalId() == 0) {
             if(index.row() == 0) { // name // XXX: do it more generally
                 if(!_worldModel->checkUniqueName(value.toString())) return false; // XXX: error message

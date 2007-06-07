@@ -42,6 +42,7 @@ const QColor WorldGraphicsItem::SELECTION_COLOR = QColor(0xff, 0x70, 0x70);
 bool ItemCreator::sceneEvent(QEvent* event)
 {
     if(event->type() == QEvent::GraphicsSceneMousePress) {
+        _worldModel->simulationPause();
         _worldModel->beginMacro(i18n("Create %1", _className));
         _item = _worldModel->newItem(_className); Q_ASSERT(_item != NULL);
         _worldModel->selectionModel()->setCurrentIndex(_worldModel->objectIndex(_item),
@@ -204,6 +205,7 @@ void ArrowHandlerGraphicsItem::advance(int phase)
     prepareGeometryChange();
     double w = HANDLER_SIZE/currentViewScale()/2;
     _boundingRect = QRectF(-w, -w, w*2, w*2);
+    _worldModel->simulationPause();
     setPos(vectorToPoint(_property->readVariant(_item).value<StepCore::Vector2d>()));
     update(); //XXX
 }
@@ -213,6 +215,7 @@ void ArrowHandlerGraphicsItem::mouseMoveEvent(QGraphicsSceneMouseEvent *event)
     if ((event->buttons() & Qt::LeftButton) && (flags() & ItemIsMovable)) {
         if(!_isMoving) { _worldModel->beginMacro(i18n("Edit %1", _item->name())); _isMoving = true; }
         QPointF newPos(mapToParent(event->pos()) - matrix().map(event->buttonDownPos(Qt::LeftButton)));
+        _worldModel->simulationPause();
         _worldModel->setProperty(_item, _property, QVariant::fromValue(pointToVector(newPos)));
         //Q_ASSERT(_property->writeVariant(_item, QVariant::fromValue(v)));
         //_worldModel->setData(_worldModel->objectIndex(_item), QVariant(), WorldModel::ObjectRole);
