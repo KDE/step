@@ -42,6 +42,7 @@ protected:
 class PolygonGraphicsItem: public WorldGraphicsItem {
 public:
     PolygonGraphicsItem(StepCore::Item* item, WorldModel* worldModel);
+    ~PolygonGraphicsItem();
 
     QPainterPath shape() const;
     void paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget);

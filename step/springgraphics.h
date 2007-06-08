@@ -51,6 +51,7 @@ protected:
 class SpringGraphicsItem: public WorldGraphicsItem {
 public:
     SpringGraphicsItem(StepCore::Item* item, WorldModel* worldModel);
+    ~SpringGraphicsItem();
 
     QPainterPath shape() const;
     void paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget);

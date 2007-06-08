@@ -33,6 +33,7 @@ public:
 class ParticleGraphicsItem: public WorldGraphicsItem {
 public:
     ParticleGraphicsItem(StepCore::Item* item, WorldModel* worldModel);
+    ~ParticleGraphicsItem();
 
     QPainterPath shape() const;
     void paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget);
