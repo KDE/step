@@ -16,32 +16,42 @@
    Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
 */
 
-#ifndef STEP_POLYGONGRAPHICS_H
-#define STEP_POLYGONGRAPHICS_H
-
-/*+++++++++ XXX +++++++++++
- * This need to be redone
- */
+#ifndef STEP_TOOLGRAPHICS_H
+#define STEP_TOOLGRAPHICS_H
 
 #include "worldgraphics.h"
-#include <QPainterPath>
-#include <stepcore/rigidbody.h>
+#include <stepcore/tool.h>
+#include <QGraphicsTextItem>
+#include <QTextEdit>
 
-class PolygonCreator: public ItemCreator
+class NoteCreator: public ItemCreator
 {
 public:
-    PolygonCreator(const QString& className, WorldModel* worldModel, WorldScene* worldScene)
+    NoteCreator(const QString& className, WorldModel* worldModel, WorldScene* worldScene)
                         : ItemCreator(className, worldModel, worldScene) {}
     bool sceneEvent(QEvent* event);
-
-protected:
-    void fixCenterOfMass();
-    void fixInertia();
 };
 
-class PolygonGraphicsItem: public WorldGraphicsItem {
+class NoteWidgetItem: public QGraphicsItem
+{
 public:
-    PolygonGraphicsItem(StepCore::Item* item, WorldModel* worldModel);
+    NoteWidgetItem(QGraphicsItem *parent = 0);
+    ~NoteWidgetItem();
+
+    QRectF boundingRect() const;
+    void paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget = 0);
+
+protected:
+    //bool eventFilter(QObject *watched, QEvent *event);
+
+private:
+    void adjust();
+    QTextEdit* _textEdit;
+};
+
+class NoteGraphicsItem: public WorldGraphicsItem {
+public:
+    NoteGraphicsItem(StepCore::Item* item, WorldModel* worldModel);
 
     QPainterPath shape() const;
     void paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget);
@@ -50,12 +60,21 @@ public:
 protected:
     QVariant itemChange(GraphicsItemChange change, const QVariant& value);
     void mouseSetPos(const QPointF& pos, const QPointF& diff);
-    StepCore::Polygon* polygon() const;
-    QPainterPath _painterPath;
+    StepCore::Note* note() const;
+    NoteWidgetItem* _widgetItem;
+    QGraphicsTextItem* _textItem;
 
-    ArrowHandlerGraphicsItem *_velocityHandler;
+    /*
+    double _rnorm;
+    double _rscale;
+    double _radius;
 
-    static const int RADIUS = 7;
+    SpringHandlerGraphicsItem* _handler1;
+    SpringHandlerGraphicsItem* _handler2;
+
+    static const int RADIUS = 6;
+    friend class NoteCreator;
+    */
 };
 
 #endif

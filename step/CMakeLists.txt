@@ -10,6 +10,7 @@ set(step_SRCS
     particlegraphics.cc
     polygongraphics.cc
     springgraphics.cc
+    toolgraphics.cc
     main.cc
 )
 

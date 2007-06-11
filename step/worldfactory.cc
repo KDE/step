@@ -29,11 +29,13 @@
 #include <stepcore/gslsolver.h>
 #include <stepcore/eulersolver.h>
 #include <stepcore/collisionsolver.h>
+#include <stepcore/tool.h>
 #include <stepcore/types.h>
 
 #include "particlegraphics.h"
 #include "polygongraphics.h"
 #include "springgraphics.h"
+#include "toolgraphics.h"
 
 #include <QItemSelectionModel>
 #include <QEvent>
@@ -105,6 +107,8 @@ WorldFactory::WorldFactory()
     __REGISTER(GslAdaptiveRK2IMPSolver);
     __REGISTER(GslAdaptiveRK4IMPSolver);
 #endif
+
+    __REGISTER_EXT(Note, NoteCreator, NoteGraphicsItem);
 }
 
 

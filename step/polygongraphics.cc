@@ -181,11 +181,6 @@ PolygonGraphicsItem::PolygonGraphicsItem(StepCore::Item* item, WorldModel* world
     //scene()->addItem(_velocityHandler);
 }
 
-PolygonGraphicsItem::~PolygonGraphicsItem()
-{
-    delete _velocityHandler;
-}
-
 inline StepCore::Polygon* PolygonGraphicsItem::polygon() const
 {
     return static_cast<StepCore::Polygon*>(_item);

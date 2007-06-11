@@ -98,6 +98,15 @@ ItemPalette::ItemPalette(WorldModel* worldModel, QWidget* parent, Qt::WindowFlag
         addObject(metaObject);
     }
 
+    /* Add tools */
+    _toolBar->addSeparator();
+    foreach(QString name, _worldModel->worldFactory()->orderedMetaObjects()) {
+        const StepCore::MetaObject* metaObject = _worldModel->worldFactory()->metaObject(name);
+        if(metaObject->isAbstract()) continue;
+        if(!metaObject->inherits(StepCore::Tool::staticMetaObject())) continue;
+        addObject(metaObject);
+    }
+
     QObject::connect(_actionGroup, SIGNAL(triggered(QAction*)), this, SLOT(actionTriggered(QAction*)));
 }
 

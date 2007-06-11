@@ -180,12 +180,6 @@ SpringGraphicsItem::SpringGraphicsItem(StepCore::Item* item, WorldModel* worldMo
     _handler2->setVisible(false);
 }
 
-SpringGraphicsItem::~SpringGraphicsItem()
-{
-    delete _handler1;
-    delete _handler2;
-}
-
 inline StepCore::Spring* SpringGraphicsItem::spring() const
 {
     return static_cast<StepCore::Spring*>(_item);

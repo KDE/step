@@ -13,6 +13,7 @@ set(stepcore_SRCS
     coulombforce.cc
     spring.cc
     eulersolver.cc
+    tool.cc
 )
 
 if(STEPCORE_WITH_GSL)

@@ -112,6 +112,19 @@ public:
     virtual void calcForce() = 0;
 };
 
+/**
+ *  \brief Tools base clase
+ *
+ *  Tools are not physical objects in simulation but utilities to control
+ *  simulation or obtain some information
+ */
+class Tool
+{
+    STEPCORE_OBJECT(Tool)
+public:
+    virtual ~Tool() {}
+};
+
 /** \ingroup world
  *  \brief Contains multiple Item, Solver and general properties such as time
  *  \todo Redesign to avoid variable copying (scatter/gatherVariables)

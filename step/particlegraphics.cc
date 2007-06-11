@@ -58,11 +58,6 @@ ParticleGraphicsItem::ParticleGraphicsItem(StepCore::Item* item, WorldModel* wor
     //scene()->addItem(_velocityHandler);
 }
 
-ParticleGraphicsItem::~ParticleGraphicsItem()
-{
-    delete _velocityHandler;
-}
-
 inline StepCore::Particle* ParticleGraphicsItem::particle() const
 {
     return static_cast<StepCore::Particle*>(_item);

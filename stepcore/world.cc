@@ -28,6 +28,7 @@ namespace StepCore
 STEPCORE_META_OBJECT(Item, "Item", MetaObject::ABSTRACT, STEPCORE_SUPER_CLASS(Object),)
 STEPCORE_META_OBJECT(Body, "Body", MetaObject::ABSTRACT,,)
 STEPCORE_META_OBJECT(Force, "Force", MetaObject::ABSTRACT,,)
+STEPCORE_META_OBJECT(Tool, "Tool", MetaObject::ABSTRACT,,)
 
 STEPCORE_META_OBJECT(World, "World", 0, STEPCORE_SUPER_CLASS(Object),
         STEPCORE_PROPERTY_RW(double, time, "Current time", time, setTime)
