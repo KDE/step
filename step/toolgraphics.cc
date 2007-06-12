@@ -17,11 +17,13 @@
 */
 
 #include "toolgraphics.h"
+#include "toolgraphics.moc"
 
 #include "worldmodel.h"
 #include "worldfactory.h"
 #include <QItemSelectionModel>
 #include <QGraphicsSceneMouseEvent>
+#include <QStyleOptionGraphicsItem>
 #include <QGraphicsView>
 #include <QEvent>
 #include <QPainter>
@@ -38,7 +40,7 @@ bool NoteCreator::sceneEvent(QEvent* event)
         _item = _worldModel->newItem(_className); Q_ASSERT(_item != NULL);
         _worldModel->setProperty(_item, _item->metaObject()->property("position"), vpos);
         _worldModel->selectionModel()->setCurrentIndex(_worldModel->objectIndex(_item),
-                                                    QItemSelectionModel::ClearAndSelect);
+                              QItemSelectionModel::ClearAndSelect | QItemSelectionModel::Current);
         _worldModel->endMacro();
         event->accept();
         return true;
@@ -46,85 +48,45 @@ bool NoteCreator::sceneEvent(QEvent* event)
     return false;
 }
 
-NoteWidgetItem::NoteWidgetItem(QGraphicsItem *parent)
-    : QGraphicsItem(parent)
+NoteTextItem::NoteTextItem(NoteGraphicsItem* noteItem, QGraphicsItem* parent)
+    : QGraphicsTextItem(parent), _noteItem(noteItem)
 {
-    setFlag(ItemIgnoresTransformations);
-    _textEdit = new QTextEdit();
-    _textEdit->setFrameStyle(QFrame::NoFrame);
-    //_textEdit->setFrameStyle(QFrame::StyledPanel | QFrame::Plain);
-
-    /*
-    QPalette palette = _textEdit->viewport()->palette();
-    palette.setColor(_textEdit->viewport()->backgroundRole(), Qt::yellow);
-    _textEdit->viewport()->setPalette(palette);
-    */
-
-    _textEdit->resize(150,100);
-    //_textEdit->installEventFilter(this);
+    setPlainText(emptyNotice());
 }
 
-NoteWidgetItem::~NoteWidgetItem()
+QString NoteTextItem::emptyNotice() const
 {
-    delete _textEdit;
+    return i18n("Click to enter a text");
 }
 
-QRectF NoteWidgetItem::boundingRect() const
+void NoteTextItem::paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget)
 {
-    return QRectF(0, 0, _textEdit->width(), _textEdit->height());
+    QStyleOptionGraphicsItem opt = *option; // XXX: are there any documented way to do this ?
+    if(_noteItem->isSelected()) opt.state |=  QStyle::State_HasFocus;
+    QGraphicsTextItem::paint(painter, &opt, widget);
 }
 
-void NoteWidgetItem::paint(QPainter *, const QStyleOptionGraphicsItem *, QWidget *)
+void NoteTextItem::focusInEvent(QFocusEvent *event)
 {
-    adjust();
-}
-
-/*
-bool NoteWidgetItem::eventFilter(QObject *watched, QEvent *event)
-{
-    // Adjust the item when it's reparented or resized.
-    if(watched == _textEdit) {
-        switch (event->type()) {
-        case QEvent::Resize:
-        case QEvent::ParentChange:
-            //adjust();
-            break;
-        default:
-            break;
-        }
+    if(_noteItem->note()->text().isEmpty()) {
+        _noteItem->_updating = true;
+        setPlainText("");
+        _noteItem->advance(1);
+        _noteItem->_updating = false;
     }
-
-    return QObject::eventFilter(watched, event);
+    QGraphicsTextItem::focusInEvent(event);
 }
-*/
 
-void NoteWidgetItem::adjust()
+void NoteTextItem::focusOutEvent(QFocusEvent *event)
 {
-    QGraphicsScene *scene = this->scene();
-    if (!scene) return;
-
-    QList<QGraphicsView *> views = scene->views();
-    if(views.size() < 1) return;
-    QGraphicsView *activeView = views.first();
-
-    // Check if the item is visible in the active view.
-    /*
-    QTransform itemTransform = deviceTransform(activeView->viewportTransform());
-    bool visibleInActiveView = (itemTransform.mapRect(QRect(0, 0, _textEdit->width(), _textEdit->height()))
-                                    .intersects(activeView->viewport()->rect()));
-    if (!visibleInActiveView) return;*/
-
-    // Reparent the widget if necessary.
-    if(_textEdit->parentWidget() != activeView->viewport())
-        _textEdit->setParent(activeView->viewport());
-
-    // Move the widget to its new viewport position.
-    QTransform itemTransform = deviceTransform(activeView->viewportTransform());
-    QPoint viewportPos = itemTransform.map(QPointF(0, 0)).toPoint();
-    _textEdit->move(viewportPos);
-    _textEdit->show();
+    if(_noteItem->note()->text().isEmpty()) {
+        _noteItem->_updating = true;
+        setPlainText(emptyNotice());
+        _noteItem->advance(1);
+        _noteItem->_updating = false;
+    }
+    QGraphicsTextItem::focusOutEvent(event);
 }
-
 
 NoteGraphicsItem::NoteGraphicsItem(StepCore::Item* item, WorldModel* worldModel)
     : WorldGraphicsItem(item, worldModel)
@@ -134,21 +96,13 @@ NoteGraphicsItem::NoteGraphicsItem(StepCore::Item* item, WorldModel* worldModel)
     setFlag(QGraphicsItem::ItemIsMovable);
     setAcceptsHoverEvents(true);
 
-    _widgetItem = new NoteWidgetItem(this);
-
-    /*
-    _textItem = new QGraphicsTextItem(this);
-    //_textItem->setFlag(QGraphicsItem::ItemIgnoresTransformations, true);
-    _textItem->setPlainText("Hello");
+    _textItem = new NoteTextItem(this, this);
     _textItem->setTextInteractionFlags(Qt::TextEditorInteraction);
-    */
+    _textItem->scale(1, -1);
+    _lastScale = 1;
+    _updating = false;
+    connect(_textItem->document(), SIGNAL(contentsChanged()), this, SLOT(contentsChanged()));
     advance(1);
-    //_textItem->adjustSize();
-    //_textItem->setVisible(true);
-    //_boundingRect = _textItem->boundingRect();
-    //kDebug() << _boundingRect << endl;
-    //_boundingRect.setY(-_boundingRect.y());
-    //_boundingRect.setHeight(-_boundingRect.height());
 }
 
 inline StepCore::Note* NoteGraphicsItem::note() const
@@ -161,21 +115,14 @@ QPainterPath NoteGraphicsItem::shape() const
     QPainterPath path;
     path.addRect(_boundingRect);
     return path;
-    /*
-    QPainterPath path;
-    //return path;
-    double radius = (6+1)/currentViewScale();
-    path.addEllipse(QRectF(-radius,-radius,radius*2,radius*2));
-    return path;
-    */
 }
 
-void NoteGraphicsItem::paint(QPainter* painter, const QStyleOptionGraphicsItem* /*option*/, QWidget* /*widget*/)
+void NoteGraphicsItem::paint(QPainter* /*painter*/, const QStyleOptionGraphicsItem* /*option*/, QWidget* /*widget*/)
 {
-    painter->setPen(QPen(Qt::black, 0));
+    /*painter->setPen(QPen(Qt::black, 0));
     painter->setBrush(QBrush(Qt::lightGray));
     QRectF rect = boundingRect();
-    painter->drawRect(rect);
+    painter->drawRect(rect);*/
     /*
     double s = currentViewScale();
     painter->setPen(QPen(Qt::gray, 0));
@@ -209,29 +156,47 @@ void NoteGraphicsItem::paint(QPainter* painter, const QStyleOptionGraphicsItem* 
 void NoteGraphicsItem::advance(int phase)
 {
     if(phase == 0) return;
-    prepareGeometryChange();
 
     _worldModel->simulationPause();
-    const StepCore::Vector2d& r = note()->position();
+    if(!_updating && _textItem->toPlainText() != note()->text()) {
+        _updating = true;
+        if(!_textItem->hasFocus() && note()->text().isEmpty()) {
+            _textItem->setPlainText(_textItem->emptyNotice());
+        } else {
+            _textItem->setPlainText(note()->text());
+        }
+        _updating = false;
+    }
+
     double s = currentViewScale();
+    if(s != _lastScale) {
+        _textItem->resetTransform();
+        _textItem->scale(1/s, -1/s);
+        _lastScale = s;
+    }
+    
+    QPointF r = vectorToPoint(note()->position());
+    QSizeF  size = _textItem->boundingRect().size()/s;
+    size.setHeight(-size.height());
 
-    /*
-    _widgetItem->resetTransform();
-    _widgetItem->scale(1/s, -1/s);
-    */
-
-    _widgetItem->setPos( 2/s, -10/s );
-
-    _boundingRect.setX(0);
-    _boundingRect.setY(0);
-    _boundingRect.setWidth((_widgetItem->boundingRect().width()+4) / s);
-    _boundingRect.setHeight(- (_widgetItem->boundingRect().height()+12) / s);
-
-    kDebug() << _boundingRect << endl;
-    //_boundingRect.adjust(-1/s,-1/s,1/s,1/s);
-
-    setPos(r[0], r[1]);
+    if(size != _boundingRect.size()) {
+        prepareGeometryChange();
+        _boundingRect.setSize(size);
+    }
+    
+    if(r != pos()) setPos(r);
     update(); // XXX: documentation says this is unnessesary, but it doesn't work without it
+}
+
+void NoteGraphicsItem::contentsChanged()
+{
+    if(!_updating) {
+        _updating = true;
+        _worldModel->simulationPause();
+        _worldModel->setProperty(_item, _item->metaObject()->property("text"),
+                                QVariant::fromValue( _textItem->toPlainText() ));
+        _updating = false;
+    }
 }
 
 void NoteGraphicsItem::mouseSetPos(const QPointF& pos, const QPointF& /*diff*/)

@@ -125,7 +125,7 @@ WorldScene::~WorldScene()
 StepCore::Item* WorldScene::itemFromGraphics(const QGraphicsItem* graphicsItem) const
 {
     const WorldGraphicsItem* worldGraphicsItem =
-            qgraphicsitem_cast<const WorldGraphicsItem*>(graphicsItem);
+            dynamic_cast<const WorldGraphicsItem*>(graphicsItem);
     if(worldGraphicsItem != NULL) return worldGraphicsItem->item();
     else return NULL;
 }
@@ -298,7 +298,7 @@ QRectF WorldScene::calcItemsBoundingRect()
 {
     QRectF boundingRect;
     foreach(QGraphicsItem* item, items()) {
-        WorldGraphicsItem* wItem = qgraphicsitem_cast<WorldGraphicsItem*>(item);
+        WorldGraphicsItem* wItem = dynamic_cast<WorldGraphicsItem*>(item);
         if(wItem) boundingRect |= item->sceneBoundingRect();
     }
     return boundingRect;

@@ -129,7 +129,7 @@ void WorldGraphicsItem::mouseMoveEvent(QGraphicsSceneMouseEvent *event)
         _worldModel->beginUpdate();
         foreach (QGraphicsItem *item, selectedItems) {
             if ((item->flags() & ItemIsMovable) && (!item->parentItem() || !item->parentItem()->isSelected())) {
-                WorldGraphicsItem* worldItem = qgraphicsitem_cast<WorldGraphicsItem*>(item);
+                WorldGraphicsItem* worldItem = dynamic_cast<WorldGraphicsItem*>(item);
                 if(worldItem) worldItem->mouseSetPos(item == this ? newPos : item->pos() + diff, pdiff);
                 else { Q_ASSERT(false); item->setPos(item == this ? newPos : item->pos() + diff); }
                 //if (item->flags() & ItemIsSelectable) //XXX ?

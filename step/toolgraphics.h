@@ -21,6 +21,7 @@
 
 #include "worldgraphics.h"
 #include <stepcore/tool.h>
+#include <QObject>
 #include <QGraphicsTextItem>
 #include <QTextEdit>
 
@@ -32,24 +33,24 @@ public:
     bool sceneEvent(QEvent* event);
 };
 
-class NoteWidgetItem: public QGraphicsItem
+class NoteGraphicsItem;
+class NoteTextItem: public QGraphicsTextItem
 {
 public:
-    NoteWidgetItem(QGraphicsItem *parent = 0);
-    ~NoteWidgetItem();
-
-    QRectF boundingRect() const;
-    void paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget = 0);
+    NoteTextItem(NoteGraphicsItem* noteItem, QGraphicsItem* parent = 0);
+    void paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget);
+    QString emptyNotice() const;
 
 protected:
-    //bool eventFilter(QObject *watched, QEvent *event);
-
-private:
-    void adjust();
-    QTextEdit* _textEdit;
+    void focusInEvent(QFocusEvent *event);
+    void focusOutEvent(QFocusEvent *event);
+    NoteGraphicsItem* _noteItem;
 };
 
-class NoteGraphicsItem: public WorldGraphicsItem {
+class NoteGraphicsItem: public QObject, public WorldGraphicsItem
+{
+    Q_OBJECT
+
 public:
     NoteGraphicsItem(StepCore::Item* item, WorldModel* worldModel);
 
@@ -57,24 +58,18 @@ public:
     void paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget);
     void advance(int phase);
 
+protected slots:
+    void contentsChanged();
+
 protected:
     QVariant itemChange(GraphicsItemChange change, const QVariant& value);
     void mouseSetPos(const QPointF& pos, const QPointF& diff);
     StepCore::Note* note() const;
-    NoteWidgetItem* _widgetItem;
-    QGraphicsTextItem* _textItem;
+    NoteTextItem*   _textItem;
+    bool            _updating;
+    double          _lastScale;
 
-    /*
-    double _rnorm;
-    double _rscale;
-    double _radius;
-
-    SpringHandlerGraphicsItem* _handler1;
-    SpringHandlerGraphicsItem* _handler2;
-
-    static const int RADIUS = 6;
-    friend class NoteCreator;
-    */
+    friend class NoteTextItem;
 };
 
 #endif
