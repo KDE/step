@@ -33,6 +33,7 @@ namespace StepCore
 class World;
 class Solver;
 class CollisionSolver;
+class ConstraintSolver;
 
 /** \ingroup world
  *  \brief The root class for any world items (bodies and forces)
@@ -176,6 +177,13 @@ public:
     /** Finds item in items() */
     int  itemIndex(const Item* item) const;
 
+    /** Get item by its index */
+    Item* item(int index) const { return _items[index]; }
+    /** Get item by its name */
+    Item* item(const QString& name) const;
+    /** Get object (item, solver, *Solver or worls itself) by its name */
+    Object* object(const QString& name);
+
     /** Get list of all items in the World */
     const ItemList&  items() const  { return _items; }
     /** Get list of all bodies in the World */
@@ -197,6 +205,13 @@ public:
     /** Get current CollisionSolver and remove it from world */
     CollisionSolver* removeCollisionSolver();
 
+    /** Get current ConstraintSolver */
+    ConstraintSolver* constraintSolver() const { return _constraintSolver; }
+    /** Set new ConstraintSolver (and delete the old one) */
+    void setConstraintSolver(ConstraintSolver* constraintSolver);
+    /** Get current ConstraintSolver and remove it from world */
+    ConstraintSolver* removeConstraintSolver();
+
     /** Calculate all forces */
     int doCalcFn();
     /** Integrate.
@@ -206,7 +221,10 @@ public:
      */
     int doEvolve(double delta);
     
+    /** Get evolveAbort flag (can be called from separate thread) */
     bool evolveAbort() { return _evolveAbort; }
+    /** Set evolveAbort flag (can be called from separate thread). When the flag is set
+     *  current (or any subsequent) doEvolve operation will be aborted as soon as possible. */
     void setEvolveAbort(bool evolveAbort = true) { _evolveAbort = evolveAbort; }
 
 private:
@@ -227,6 +245,7 @@ private:
 
     Solver*        _solver;
     CollisionSolver* _collisionSolver;
+    ConstraintSolver* _constraintSolver;
 
     int     _variablesCount;
     double* _variables;

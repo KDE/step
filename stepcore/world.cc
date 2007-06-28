@@ -35,14 +35,16 @@ STEPCORE_META_OBJECT(World, "World", 0, STEPCORE_SUPER_CLASS(Object),
         STEPCORE_PROPERTY_RW(double, timeScale, "Simulation speed scale", timeScale, setTimeScale))
 
 World::World()
-    : _time(0), _timeScale(1), _solver(NULL), _collisionSolver(0),
+    : _time(0), _timeScale(1), _solver(NULL),
+      _collisionSolver(0), _constraintSolver(NULL),
       _variablesCount(0), _variables(NULL), _errors(NULL)
 {
     clear();
 }
 
 World::World(const World& world)
-    : _time(0), _timeScale(1), _solver(NULL), _collisionSolver(0),
+    : _time(0), _timeScale(1), _solver(NULL),
+      _collisionSolver(0), _constraintSolver(NULL),
       _variablesCount(0), _variables(NULL), _errors(NULL)
 {
     clear();
@@ -76,12 +78,17 @@ World& World::operator=(const World& world)
 
     checkVariablesCount();
 
-    if(world._solver) setSolver(static_cast<Solver*>(world._solver->metaObject()->cloneObject(*(world._solver))));
+    if(world._solver) setSolver(static_cast<Solver*>(
+                world._solver->metaObject()->cloneObject(*(world._solver))));
     else setSolver(0);
 
     if(world._collisionSolver) setCollisionSolver(static_cast<CollisionSolver*>(
-                                       world._collisionSolver->metaObject()->cloneObject(*(world._collisionSolver))));
+               world._collisionSolver->metaObject()->cloneObject(*(world._collisionSolver))));
     else setCollisionSolver(0);
+
+    /*if(world._constraintSolver) setConstraintSolver(static_cast<ConstraintSolver*>(
+               world._constraintSolver->metaObject()->cloneObject(*(world._constraintSolver))));
+    else setConstraintSolver(0);*/
 
     setTime(world.time());
     setTimeScale(world.timeScale());
@@ -164,6 +171,23 @@ int World::itemIndex(const Item* item) const
     return std::distance(_items.begin(), o);
 }
 
+Item* World::item(const QString& name) const
+{
+    for(ItemList::const_iterator o = _items.begin(); o != _items.end(); ++o) {
+        if((*o)->name() == name) return *o;
+    }
+    return NULL;
+}
+
+Object* World::object(const QString& name)
+{
+    if(this->name() == name) return this;
+    else if(_solver && _solver->name() == name) return _solver;
+    else if(_collisionSolver && _collisionSolver->name() == name) return _collisionSolver;
+    //else if(_constraintSolver && _constraintSolver->name() == name) return _constraintSolver;
+    else return item(name);
+}
+
 void World::setSolver(Solver* solver)
 {
     delete _solver;
@@ -194,6 +218,21 @@ CollisionSolver* World::removeCollisionSolver()
     _collisionSolver = NULL;
     return collisionSolver;
 }
+
+/*
+void World::setConstraintSolver(ConstraintSolver* constraintSolver)
+{
+    delete _constraintSolver;
+    _constraintSolver = constraintSolver;
+}
+
+ConstraintSolver* World::removeConstraintSolver()
+{
+    ConstraintSolver* constraintSolver = _constraintSolver;
+    _constraintSolver = NULL;
+    return constraintSolver;
+}
+*/
 
 void World::checkVariablesCount()
 {
