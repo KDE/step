@@ -333,11 +333,6 @@ StepCore::Item* WorldModel::item(const QModelIndex& index) const
     return dynamic_cast<StepCore::Item*>(object(index));
 }
 
-int WorldModel::itemCount() const
-{
-    return _world->items().size();
-}
-
 QVariant WorldModel::data(const QModelIndex &index, int role) const
 {
     if(!index.isValid()) return QVariant();

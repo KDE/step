@@ -19,6 +19,9 @@
 #include "toolgraphics.h"
 #include "toolgraphics.moc"
 
+#include <stepcore/solver.h>
+#include <stepcore/collisionsolver.h>
+
 #include "worldmodel.h"
 #include "worldfactory.h"
 #include <QItemSelectionModel>
@@ -26,8 +29,13 @@
 #include <QStyleOptionGraphicsItem>
 #include <QGraphicsScene>
 #include <QGraphicsView>
+#include <QTextDocument>
 #include <QEvent>
 #include <QPainter>
+#include <QGridLayout>
+#include <QComboBox>
+#include <QLabel>
+#include <KPlotWidget>
 #include <KLocale>
 
 NoteTextItem::NoteTextItem(NoteGraphicsItem* noteItem, QGraphicsItem* parent)
@@ -187,6 +195,77 @@ QVariant NoteGraphicsItem::itemChange(GraphicsItemChange change, const QVariant&
     return WorldGraphicsItem::itemChange(change, value);
 }
 
+GraphWidget::GraphWidget(GraphGraphicsItem* graphItem, QWidget *parent)
+    : QWidget(parent), _graphItem(graphItem)
+{
+    QGridLayout *gridLayout = new QGridLayout(this);
+    gridLayout->setColumnStretch(0, 0);
+    gridLayout->setColumnStretch(1, 5);
+    gridLayout->setColumnStretch(2, 5);
+    gridLayout->setColumnStretch(3, 1);
+
+    gridLayout->setRowStretch(0, 0);
+    gridLayout->setRowStretch(1, 1);
+    gridLayout->setRowStretch(2, 0);
+    gridLayout->setRowStretch(3, 0);
+
+    _name = new QLabel(_graphItem->graph()->name(), this);
+    _name->setAlignment(Qt::AlignHCenter);
+    QFont font = _name->font(); font.setBold(true); _name->setFont(font);
+    gridLayout->addWidget(_name, 0, 0, 1, -1);
+
+    _plotWidget = new KPlotWidget(this);
+    _plotWidget->setBackgroundColor(Qt::white);
+    _plotWidget->setForegroundColor(Qt::black);
+    //_plotWidget->setLeftPadding(0);
+    _plotWidget->setTopPadding(2);
+    _plotWidget->setRightPadding(3);
+    gridLayout->addWidget(_plotWidget, 1, 0, 1, -1);
+
+    QLabel* label1 = new QLabel("x:", this);
+    gridLayout->addWidget(label1, 2, 0, 1, 1);
+
+    _object1 = new QComboBox(this);
+    gridLayout->addWidget(_object1, 2, 1, 1, 1);
+
+    _property1 = new QComboBox(this);
+    gridLayout->addWidget(_property1, 2, 2, 1, 1);
+
+    _index1 = new QComboBox(this);
+    gridLayout->addWidget(_index1, 2, 3, 1, 1);
+
+    QLabel* label2 = new QLabel("y:", this);
+    gridLayout->addWidget(label2, 3, 0, 1, 1);
+
+    _object2 = new QComboBox(this);
+    gridLayout->addWidget(_object2, 3, 1, 1, 1);
+
+    _property2 = new QComboBox(this);
+    gridLayout->addWidget(_property2, 3, 2, 1, 1);
+
+    _index2 = new QComboBox(this);
+    gridLayout->addWidget(_index2, 3, 3, 1, 1);
+
+    _object2->setModel(_object1->model());
+
+    worldDataChanged(QModelIndex(), QModelIndex());
+}
+
+void GraphWidget::worldDataChanged(const QModelIndex& /*topLeft*/, const QModelIndex& /*bottomRight*/)
+{
+    _object1->clear();
+    _object2->clear();
+
+    _object1->addItem(_graphItem->_worldModel->world()->name());
+
+    for(int i=0; i<_graphItem->_worldModel->itemCount(); ++i) {
+        _object1->addItem(_graphItem->_worldModel->item(i)->name());
+    }
+
+    _object1->addItem(_graphItem->_worldModel->solver()->name());
+    _object1->addItem(_graphItem->_worldModel->collisionSolver()->name());
+}
+
 GraphGraphicsItem::GraphGraphicsItem(StepCore::Item* item, WorldModel* worldModel)
     : WorldGraphicsItem(item, worldModel)
 {
@@ -195,12 +274,17 @@ GraphGraphicsItem::GraphGraphicsItem(StepCore::Item* item, WorldModel* worldMode
     setFlag(QGraphicsItem::ItemIsMovable);
     setAcceptsHoverEvents(true);
 
-    plotWidget = new KPlotWidget();
+    _graphWidget = new GraphWidget(this);
 
     _boundingRect = QRectF(0, 0, 0, 0);
     _lastScale = 1;
     scale(1, -1);
     advance(1);
+}
+
+GraphGraphicsItem::~GraphGraphicsItem()
+{
+    delete _graphWidget;
 }
 
 inline StepCore::Graph* GraphGraphicsItem::graph() const
@@ -211,7 +295,7 @@ inline StepCore::Graph* GraphGraphicsItem::graph() const
 void GraphGraphicsItem::paint(QPainter* painter, const QStyleOptionGraphicsItem* /*option*/, QWidget* /*widget*/)
 {
     painter->setPen(QPen(Qt::black, 0));
-    painter->setBrush(QBrush(Qt::lightGray));
+    painter->setBrush(QBrush(Qt::white));
     QRectF rect = boundingRect();
     painter->drawRect(rect);
 }
@@ -244,26 +328,24 @@ void GraphGraphicsItem::advance(int phase)
         QGraphicsView* activeView = scene()->views().first();
 
         // Reparent the widget if necessary.
-        if(plotWidget->parentWidget() != activeView->viewport()) {
-           plotWidget->setParent(activeView->viewport());
-           plotWidget->show();
+        if(_graphWidget->parentWidget() != activeView->viewport()) {
+           _graphWidget->setParent(activeView->viewport());
+           _graphWidget->show();
         }
 
         QTransform itemTransform = deviceTransform(activeView->viewportTransform());
-        QPoint viewportPos = itemTransform.map(QPointF(0, 0)).toPoint() + QPoint(2,2);
-        plotWidget->move(viewportPos);
+        QPoint viewportPos = itemTransform.map(QPointF(0, 0)).toPoint() + QPoint(1,1);
+        _graphWidget->move(viewportPos);
 
-        if(plotWidget->size() != _boundingRect.size()) {
-            plotWidget->resize(vss.toSize());
+        if(_graphWidget->size() != _boundingRect.size()) {
+            _graphWidget->resize(vss.toSize());
         }
-
-        //plotWidget->show();
     }
 
     if(r != pos()) setPos(r);
-    if(vss + QSizeF(4,4) != _boundingRect.size()) {
+    if(vss + QSizeF(2,2) != _boundingRect.size()) {
         prepareGeometryChange();
-        _boundingRect.setSize(vss + QSizeF(4,4));
+        _boundingRect.setSize(vss + QSizeF(2,2));
     }
 
 

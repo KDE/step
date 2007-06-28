@@ -26,11 +26,14 @@
 #include <QMutex>
 #include <QWaitCondition>
 
+#include <stepcore/world.h>
+
 namespace StepCore {
     class Object;
     class World;
     class Item;
     class Solver;
+    class CollisionSolver;
     class MetaProperty;
 }
 
@@ -89,10 +92,13 @@ public:
     
     // DO NOT change returned object directly: it breaks undo/redo
     StepCore::Object* object(const QModelIndex& index) const;
+    StepCore::World* world() const { return _world; }
+    StepCore::Solver* solver() const { return _world->solver(); }
+    StepCore::CollisionSolver* collisionSolver() const { return _world->collisionSolver(); }
 
     StepCore::Item* item(const QModelIndex& index) const;
-    StepCore::Item* item(int n) const { return item(itemIndex(n)); }
-    int itemCount() const;
+    StepCore::Item* item(int n) const { return _world->items()[n]; }
+    int itemCount() const { return _world->items().size(); }
 
     // QAbstractItemModel functions
     QVariant data(const QModelIndex &index, int role) const;

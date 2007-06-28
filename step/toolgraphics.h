@@ -21,10 +21,8 @@
 
 #include "worldgraphics.h"
 #include <stepcore/tool.h>
-#include <QObject>
 #include <QGraphicsTextItem>
-#include <QTextEdit>
-#include <KPlotWidget>
+#include <QWidget>
 
 class NoteGraphicsItem;
 class NoteTextItem: public QGraphicsTextItem
@@ -63,10 +61,38 @@ protected:
     friend class NoteTextItem;
 };
 
+class KPlotWidget;
+class QComboBox;
+class QModelIndex;
+class GraphGraphicsItem;
+class QLabel;
+class GraphWidget: public QWidget
+{
+    Q_OBJECT
+
+public:
+    GraphWidget(GraphGraphicsItem* graphItem, QWidget *parent = 0);
+
+protected slots:
+    void worldDataChanged(const QModelIndex& topLeft, const QModelIndex& bottomRight);
+
+protected:
+    GraphGraphicsItem* _graphItem;
+    KPlotWidget*       _plotWidget;
+    QLabel*     _name;
+    QComboBox*  _object1;
+    QComboBox*  _property1;
+    QComboBox*  _index1;
+    QComboBox*  _object2;
+    QComboBox*  _property2;
+    QComboBox*  _index2;
+};
+
 class GraphGraphicsItem: public WorldGraphicsItem
 {
 public:
     GraphGraphicsItem(StepCore::Item* item, WorldModel* worldModel);
+    ~GraphGraphicsItem();
 
     void paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget);
     void advance(int phase);
@@ -80,7 +106,7 @@ protected:
     StepCore::Graph* graph() const;
 
     double _lastScale;
-    KPlotWidget *plotWidget;
+    GraphWidget *_graphWidget;
     //QVariant itemChange(GraphicsItemChange change, const QVariant& value);
     //void mouseSetPos(const QPointF& pos, const QPointF& diff);
     
@@ -88,7 +114,7 @@ protected:
     //bool            _updating;
     //double          _lastScale;
 
-    //friend class NoteTextItem;
+    friend class GraphWidget;
 };
 
 

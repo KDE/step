@@ -52,7 +52,7 @@ class Graph: public Item, public Tool
     STEPCORE_OBJECT(Graph)
 
 public:
-    Graph(Vector2d position = Vector2d(0), Vector2d size = Vector2d(300,200));
+    Graph(Vector2d position = Vector2d(0), Vector2d size = Vector2d(400,400));
 
     const Vector2d& position() const { return _position; }
     void setPosition(const Vector2d& position) { _position = position; }
