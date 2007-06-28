@@ -34,30 +34,6 @@
 namespace StepCore
 {
 
-/** \brief Helper class for forces that act between two selected bodies
- *
- * \todo create force.h for such things; MultiPairForce is also good idea
- */
-class PairForce
-{
-public:
-    /** Constructs PairForce */
-    PairForce(Body* bodyPtr1 = 0, Body* bodyPtr2 = 0)
-            : _bodyPtr1(bodyPtr1), _bodyPtr2(bodyPtr2) {}
-
-    /** Get pointer to the first body */
-    Body* bodyPtr1() { return _bodyPtr1; }
-    /** Get pointer to the second body */
-    Body* bodyPtr2() { return _bodyPtr2; }
-
-#ifdef STEPCORE_WITH_QT
-#endif
-
-protected:
-    Body* _bodyPtr1;
-    Body* _bodyPtr2;
-};
-
 /** \ingroup forces
  *  \brief Massless spring
  *
@@ -73,7 +49,7 @@ protected:
  *  
  *  \todo how to move setBody1() and setBody2() to PairForce ?
  */
-class Spring: public Item, public Force, public PairForce
+class Spring: public Item, public Force
 {
     STEPCORE_OBJECT(Spring)
 
@@ -97,23 +73,27 @@ public:
     /** Set stiffness of the spring */
     void   setStiffness(double stiffness) { _stiffness = stiffness; }
 
-    /** Set pointer to the first connected body
-     * \todo XXX check world */
+    /** Get pointer to the first body */
+    Body* bodyPtr1() { return _bodyPtr1; }
+
+    /** Set pointer to the first connected body */
     void setBodyPtr1(Body* bodyPtr1);
-    /** Set pointer to the second connected body
-     * \todo XXX check world */
+
+    /** Get pointer to the second body */
+    Body* bodyPtr2() { return _bodyPtr2; }
+
+    /** Set pointer to the second connected body */
     void setBodyPtr2(Body* bodyPtr2);
 
-#ifdef STEPCORE_WITH_QT
     /** Set first connected body by name */
-    void setBody1(const QString& body1);
-    /** Set second connected body by name */
-    void setBody2(const QString& body2);
+    void setBody1(const QString& body1) { setBodyPtr1(dynamic_cast<Body*>(world()->item(body1))); }
     /** Get name of the first connected body */
     QString body1() const { return _bodyPtr1 ? dynamic_cast<Item*>(_bodyPtr1)->name() : QString(); }
+
+    /** Set second connected body by name */
+    void setBody2(const QString& body2) { setBodyPtr2(dynamic_cast<Body*>(world()->item(body2))); }
     /** Get name of the second connected body */
     QString body2() const { return _bodyPtr2 ? dynamic_cast<Item*>(_bodyPtr2)->name() : QString(); }
-#endif
 
     /** Local position of the first end of the spring on the body
      *  or in the world (if the end is not connected) */
@@ -121,6 +101,7 @@ public:
     /** Set local position of the first end of the spring on the body
      *  or in the world (if the end is not connected) */
     void setLocalPosition1(const Vector2d& localPosition1) { _localPosition1 = localPosition1; }
+
     /** Local position of the second end of the spring on the body
      *  or in the world (if the end is not connected) */
     Vector2d localPosition2() const { return _localPosition2; }
@@ -142,6 +123,8 @@ public:
     void setWorld(World* world);
 
 protected:
+    Body* _bodyPtr1;
+    Body* _bodyPtr2;
     double _restLength;
     double _stiffness;
     StepCore::Vector2d _localPosition1;

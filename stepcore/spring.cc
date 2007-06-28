@@ -38,7 +38,7 @@ STEPCORE_META_OBJECT(Spring, "Massless spring", 0,
     )
 
 Spring::Spring(double restLength, double stiffness, Body* bodyPtr1, Body* bodyPtr2)
-    : PairForce(bodyPtr1, bodyPtr2), _restLength(restLength), _stiffness(stiffness),
+    : _bodyPtr1(bodyPtr1), _bodyPtr2(bodyPtr2), _restLength(restLength), _stiffness(stiffness),
       _localPosition1(0), _localPosition2(0) //, _position1(0), _position2(0)
 {
 }
@@ -70,26 +70,6 @@ void Spring::calcForce()
     force.invert();
     if(p2) p2->addForce(force);
     else if(r2) r2->applyForce(force, position2());
-}
-
-void Spring::setBody1(const QString& body1)
-{
-    for(World::BodyList::const_iterator o = world()->bodies().begin(); o != world()->bodies().end(); ++o)
-        if(dynamic_cast<Item*>(*o)->name() == body1) {
-            setBodyPtr1(*o);
-            return;
-        }
-    setBodyPtr1(NULL);
-}
-
-void Spring::setBody2(const QString& body2)
-{
-    for(World::BodyList::const_iterator o = world()->bodies().begin(); o != world()->bodies().end(); ++o)
-        if(dynamic_cast<Item*>(*o)->name() == body2) {
-            setBodyPtr2(*o);
-            return;
-        }
-    setBodyPtr2(NULL);
 }
 
 void Spring::setBodyPtr1(Body* bodyPtr1)
