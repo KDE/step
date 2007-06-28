@@ -22,14 +22,6 @@
 #include "worldgraphics.h"
 #include <stepcore/particle.h>
 
-class ParticleCreator: public ItemCreator
-{
-public:
-    ParticleCreator(const QString& className, WorldModel* worldModel, WorldScene* worldScene)
-                        : ItemCreator(className, worldModel, worldScene) {}
-    bool sceneEvent(QEvent* event);
-};
-
 class ParticleGraphicsItem: public WorldGraphicsItem {
 public:
     ParticleGraphicsItem(StepCore::Item* item, WorldModel* worldModel);

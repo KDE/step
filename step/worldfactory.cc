@@ -74,8 +74,8 @@ WorldFactory::WorldFactory()
     __REGISTER(Solver);
     __REGISTER(CollisionSolver);
 
-    __REGISTER_EXT(Particle, ParticleCreator, ParticleGraphicsItem);
-    __REGISTER_EXT(ChargedParticle, ParticleCreator, ParticleGraphicsItem);
+    __REGISTER_EXT(Particle, ItemCreator, ParticleGraphicsItem);
+    __REGISTER_EXT(ChargedParticle, ItemCreator, ParticleGraphicsItem);
 
     __REGISTER_EXT(Polygon, PolygonCreator, PolygonGraphicsItem);
 
@@ -108,7 +108,7 @@ WorldFactory::WorldFactory()
     __REGISTER(GslAdaptiveRK4IMPSolver);
 #endif
 
-    __REGISTER_EXT(Note, NoteCreator, NoteGraphicsItem);
+    __REGISTER_EXT(Note, ItemCreator, NoteGraphicsItem);
 }
 
 

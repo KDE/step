@@ -25,14 +25,6 @@
 #include <QGraphicsTextItem>
 #include <QTextEdit>
 
-class NoteCreator: public ItemCreator
-{
-public:
-    NoteCreator(const QString& className, WorldModel* worldModel, WorldScene* worldScene)
-                        : ItemCreator(className, worldModel, worldScene) {}
-    bool sceneEvent(QEvent* event);
-};
-
 class NoteGraphicsItem;
 class NoteTextItem: public QGraphicsTextItem
 {
@@ -70,14 +62,6 @@ protected:
     double          _lastScale;
 
     friend class NoteTextItem;
-};
-
-class GraphCreator: public ItemCreator
-{
-public:
-    GraphCreator(const QString& className, WorldModel* worldModel, WorldScene* worldScene)
-                        : ItemCreator(className, worldModel, worldScene) {}
-    bool sceneEvent(QEvent* event);
 };
 
 class GraphGraphicsItem: public WorldGraphicsItem

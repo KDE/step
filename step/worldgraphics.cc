@@ -43,10 +43,19 @@ bool ItemCreator::sceneEvent(QEvent* event)
 {
     if(event->type() == QEvent::GraphicsSceneMousePress) {
         _worldModel->simulationPause();
+
         _worldModel->beginMacro(i18n("Create %1", _className));
         _item = _worldModel->newItem(_className); Q_ASSERT(_item != NULL);
         _worldModel->selectionModel()->setCurrentIndex(_worldModel->objectIndex(_item),
                                                     QItemSelectionModel::ClearAndSelect);
+
+        if(_item->metaObject()->property("position") != NULL) {
+            QGraphicsSceneMouseEvent* mouseEvent = static_cast<QGraphicsSceneMouseEvent*>(event);
+            QPointF pos = mouseEvent->scenePos();
+            QVariant vpos = QVariant::fromValue(WorldGraphicsItem::pointToVector(pos));
+            _worldModel->setProperty(_item, _item->metaObject()->property("position"), vpos);
+        }
+
         _worldModel->endMacro();
         event->accept();
         return true;
