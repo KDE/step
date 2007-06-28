@@ -72,5 +72,41 @@ protected:
     friend class NoteTextItem;
 };
 
+class GraphCreator: public ItemCreator
+{
+public:
+    GraphCreator(const QString& className, WorldModel* worldModel, WorldScene* worldScene)
+                        : ItemCreator(className, worldModel, worldScene) {}
+    bool sceneEvent(QEvent* event);
+};
+
+class GraphGraphicsItem: public WorldGraphicsItem
+{
+public:
+    GraphGraphicsItem(StepCore::Item* item, WorldModel* worldModel);
+
+    /*
+    QPainterPath shape() const;
+    void paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget);
+    void advance(int phase);
+    */
+
+/*
+protected slots:
+    void contentsChanged();
+    */
+
+protected:
+    //QVariant itemChange(GraphicsItemChange change, const QVariant& value);
+    //void mouseSetPos(const QPointF& pos, const QPointF& diff);
+    //StepCore::Graph* graph() const;
+    //NoteTextItem*   _textItem;
+    //bool            _updating;
+    //double          _lastScale;
+
+    //friend class NoteTextItem;
+};
+
+
 #endif
 

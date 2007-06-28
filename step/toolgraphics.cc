@@ -219,3 +219,31 @@ QVariant NoteGraphicsItem::itemChange(GraphicsItemChange change, const QVariant&
     return WorldGraphicsItem::itemChange(change, value);
 }
 
+bool GraphCreator::sceneEvent(QEvent* event)
+{
+    if(event->type() == QEvent::GraphicsSceneMousePress) {
+        _worldModel->simulationPause();
+        QGraphicsSceneMouseEvent* mouseEvent = static_cast<QGraphicsSceneMouseEvent*>(event);
+        QPointF pos = mouseEvent->scenePos();
+        QVariant vpos = QVariant::fromValue(WorldGraphicsItem::pointToVector(pos));
+        _worldModel->beginMacro(i18n("Create %1", _className));
+        _item = _worldModel->newItem(_className); Q_ASSERT(_item != NULL);
+        _worldModel->setProperty(_item, _item->metaObject()->property("position"), vpos);
+        _worldModel->selectionModel()->setCurrentIndex(_worldModel->objectIndex(_item),
+                              QItemSelectionModel::ClearAndSelect | QItemSelectionModel::Current);
+        _worldModel->endMacro();
+        event->accept();
+        return true;
+    }
+    return false;
+}
+
+GraphGraphicsItem::GraphGraphicsItem(StepCore::Item* item, WorldModel* worldModel)
+    : WorldGraphicsItem(item, worldModel)
+{
+    Q_ASSERT(dynamic_cast<StepCore::Note*>(_item) != NULL);
+    setFlag(QGraphicsItem::ItemIsSelectable);
+    setFlag(QGraphicsItem::ItemIsMovable);
+    setAcceptsHoverEvents(true);
+}
+
