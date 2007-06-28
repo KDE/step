@@ -655,16 +655,16 @@ void WorldModel::simulationFrameBegin()
     Q_ASSERT(!_simulationStopping);
 
     if(_simulationFrameWaiting) { // TODO: warn user
-        qDebug("frame skipped!");
+        //qDebug("frame skipped!");
         _simulationFrameSkipped = true;
         return;
     }
 
-    qDebug("emit simulationDoFrame() t=%#x", int(QThread::currentThread()));
+    //qDebug("emit simulationDoFrame() t=%#x", int(QThread::currentThread()));
     _simulationFrameWaiting = true;
     _simulationPaused = false;
     _simulationThread->doWorldEvolve(1.0/_simulationFps);
-    qDebug("emited simulationDoFrame()");
+    //qDebug("emited simulationDoFrame()");
 }
 
 void WorldModel::simulationFrameEnd(int result)
@@ -673,11 +673,11 @@ void WorldModel::simulationFrameEnd(int result)
     Q_ASSERT(_simulationCommand);
     Q_ASSERT(_simulationFrameWaiting || _simulationStopping);
 
-    qDebug("simulationFrameEnd");
+    //qDebug("simulationFrameEnd");
 
     // It's OK to be aborted
     if(result == StepCore::Solver::Aborted) {
-        qDebug("simulation frame aborted!");
+        //qDebug("simulation frame aborted!");
         result = StepCore::Solver::OK;
     }
 
@@ -719,9 +719,9 @@ void SimulationThread::run()
 
         int result;
         if(! (*_world)->evolveAbort()) {
-            qDebug("begin doWorldEvolve() t=%#x", int(QThread::currentThread()));
+            //qDebug("begin doWorldEvolve() t=%#x", int(QThread::currentThread()));
             result = (*_world)->doEvolve(_delta);
-            qDebug("end doWorldEvolve()");
+            //qDebug("end doWorldEvolve()");
         } else {
             result = StepCore::Solver::Aborted;
         }
