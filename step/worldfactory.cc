@@ -109,6 +109,7 @@ WorldFactory::WorldFactory()
 #endif
 
     __REGISTER_EXT(Note, ItemCreator, NoteGraphicsItem);
+    __REGISTER_EXT(Graph, ItemCreator, GraphGraphicsItem);
 }
 
 

@@ -24,6 +24,7 @@
 #include <QObject>
 #include <QGraphicsTextItem>
 #include <QTextEdit>
+#include <KPlotWidget>
 
 class NoteGraphicsItem;
 class NoteTextItem: public QGraphicsTextItem
@@ -46,7 +47,6 @@ class NoteGraphicsItem: public QObject, public WorldGraphicsItem
 public:
     NoteGraphicsItem(StepCore::Item* item, WorldModel* worldModel);
 
-    QPainterPath shape() const;
     void paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget);
     void advance(int phase);
 
@@ -55,7 +55,6 @@ protected slots:
 
 protected:
     QVariant itemChange(GraphicsItemChange change, const QVariant& value);
-    void mouseSetPos(const QPointF& pos, const QPointF& diff);
     StepCore::Note* note() const;
     NoteTextItem*   _textItem;
     bool            _updating;
@@ -69,11 +68,8 @@ class GraphGraphicsItem: public WorldGraphicsItem
 public:
     GraphGraphicsItem(StepCore::Item* item, WorldModel* worldModel);
 
-    /*
-    QPainterPath shape() const;
     void paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget);
     void advance(int phase);
-    */
 
 /*
 protected slots:
@@ -81,9 +77,13 @@ protected slots:
     */
 
 protected:
+    StepCore::Graph* graph() const;
+
+    double _lastScale;
+    KPlotWidget *plotWidget;
     //QVariant itemChange(GraphicsItemChange change, const QVariant& value);
     //void mouseSetPos(const QPointF& pos, const QPointF& diff);
-    //StepCore::Graph* graph() const;
+    
     //NoteTextItem*   _textItem;
     //bool            _updating;
     //double          _lastScale;

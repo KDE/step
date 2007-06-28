@@ -24,6 +24,7 @@
 #include <QItemSelectionModel>
 #include <QGraphicsSceneMouseEvent>
 #include <QStyleOptionGraphicsItem>
+#include <QGraphicsScene>
 #include <QGraphicsView>
 #include <QEvent>
 #include <QPainter>
@@ -89,13 +90,6 @@ NoteGraphicsItem::NoteGraphicsItem(StepCore::Item* item, WorldModel* worldModel)
 inline StepCore::Note* NoteGraphicsItem::note() const
 {
     return static_cast<StepCore::Note*>(_item);
-}
-
-QPainterPath NoteGraphicsItem::shape() const
-{
-    QPainterPath path;
-    path.addRect(_boundingRect);
-    return path;
 }
 
 void NoteGraphicsItem::paint(QPainter* /*painter*/, const QStyleOptionGraphicsItem* /*option*/, QWidget* /*widget*/)
@@ -180,13 +174,6 @@ void NoteGraphicsItem::contentsChanged()
     }
 }
 
-void NoteGraphicsItem::mouseSetPos(const QPointF& pos, const QPointF& /*diff*/)
-{
-    _worldModel->simulationPause();
-    _worldModel->setProperty(_item, _item->metaObject()->property("position"),
-                                QVariant::fromValue( pointToVector(pos) ));
-}
-
 QVariant NoteGraphicsItem::itemChange(GraphicsItemChange change, const QVariant& value)
 {
     /*
@@ -203,9 +190,83 @@ QVariant NoteGraphicsItem::itemChange(GraphicsItemChange change, const QVariant&
 GraphGraphicsItem::GraphGraphicsItem(StepCore::Item* item, WorldModel* worldModel)
     : WorldGraphicsItem(item, worldModel)
 {
-    Q_ASSERT(dynamic_cast<StepCore::Note*>(_item) != NULL);
+    Q_ASSERT(dynamic_cast<StepCore::Graph*>(_item) != NULL);
     setFlag(QGraphicsItem::ItemIsSelectable);
     setFlag(QGraphicsItem::ItemIsMovable);
     setAcceptsHoverEvents(true);
+
+    plotWidget = new KPlotWidget();
+
+    _boundingRect = QRectF(0, 0, 0, 0);
+    _lastScale = 1;
+    scale(1, -1);
+    advance(1);
+}
+
+inline StepCore::Graph* GraphGraphicsItem::graph() const
+{
+    return static_cast<StepCore::Graph*>(_item);
+}
+
+void GraphGraphicsItem::paint(QPainter* painter, const QStyleOptionGraphicsItem* /*option*/, QWidget* /*widget*/)
+{
+    painter->setPen(QPen(Qt::black, 0));
+    painter->setBrush(QBrush(Qt::lightGray));
+    QRectF rect = boundingRect();
+    painter->drawRect(rect);
+}
+
+void GraphGraphicsItem::advance(int phase)
+{
+    if(phase == 0) return;
+
+    double s = currentViewScale();
+    if(s != _lastScale) {
+        resetTransform();
+        scale(1/s, -1/s);
+        _lastScale = s;
+    }
+    
+    QPointF r = vectorToPoint(graph()->position());
+    StepCore::Vector2d vs = graph()->size();
+    QSizeF vss(vs[0], vs[1]);
+
+    /*
+    QSizeF  size = _textItem->boundingRect().size()/s;
+    size.setHeight(-size.height());
+
+    if(size != _boundingRect.size()) {
+        prepareGeometryChange();
+        _boundingRect.setSize(size);
+    }*/
+
+    if(scene() && !scene()->views().isEmpty()) {
+        QGraphicsView* activeView = scene()->views().first();
+
+        // Reparent the widget if necessary.
+        if(plotWidget->parentWidget() != activeView->viewport()) {
+           plotWidget->setParent(activeView->viewport());
+           plotWidget->show();
+        }
+
+        QTransform itemTransform = deviceTransform(activeView->viewportTransform());
+        QPoint viewportPos = itemTransform.map(QPointF(0, 0)).toPoint() + QPoint(2,2);
+        plotWidget->move(viewportPos);
+
+        if(plotWidget->size() != _boundingRect.size()) {
+            plotWidget->resize(vss.toSize());
+        }
+
+        //plotWidget->show();
+    }
+
+    if(r != pos()) setPos(r);
+    if(vss + QSizeF(4,4) != _boundingRect.size()) {
+        prepareGeometryChange();
+        _boundingRect.setSize(vss + QSizeF(4,4));
+    }
+
+
+    update(); // XXX: documentation says this is unnessesary, but it doesn't work without it
 }
 

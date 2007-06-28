@@ -105,13 +105,6 @@ void ParticleGraphicsItem::advance(int phase)
     update(); // XXX: documentation says this is unnessesary, but it doesn't work without it
 }
 
-void ParticleGraphicsItem::mouseSetPos(const QPointF& pos, const QPointF& /*diff*/)
-{
-    _worldModel->simulationPause();
-    _worldModel->setProperty(_item, _item->metaObject()->property("position"),
-                                QVariant::fromValue(pointToVector(pos)));
-}
-
 QVariant ParticleGraphicsItem::itemChange(GraphicsItemChange change, const QVariant& value)
 {
     if(change == QGraphicsItem::ItemSelectedChange && scene()) {

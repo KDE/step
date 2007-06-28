@@ -28,15 +28,27 @@ STEPCORE_META_OBJECT(Note, "Note", 0,
 
 STEPCORE_META_OBJECT(Graph, "Graph", 0,
     STEPCORE_SUPER_CLASS(Item) STEPCORE_SUPER_CLASS(Tool),
+    STEPCORE_PROPERTY_RW(StepCore::Vector2d, position, "Position", position, setPosition)
+    STEPCORE_PROPERTY_RW(StepCore::Vector2d, size, "Size", size, setSize)
     STEPCORE_PROPERTY_RW(QString, object1, "object1", object1, setObject1)
     STEPCORE_PROPERTY_RW(QString, property1, "property1", property1, setProperty1)
     STEPCORE_PROPERTY_RW(int, index, "vector index1", index1, setIndex1)
     STEPCORE_PROPERTY_RW(QString, object2, "object2", object2, setObject2)
     STEPCORE_PROPERTY_RW(QString, property2, "property2", property2, setProperty2)
     STEPCORE_PROPERTY_RW(int, index, "vector index2", index2, setIndex2)
-    STEPCORE_PROPERTY_RW(StepCore::Vector2d, position, "Position", position, setPosition)
-    //STEPCORE_PROPERTY_RW(StepCore::Vector2d, position, "Position", position, setPosition)
     )
+
+Note::Note(Vector2d position, QString text)
+    : _position(position), _text(text)
+{
+}
+
+Graph::Graph(Vector2d position, Vector2d size)
+    : _position(position), _size(size),
+      _objectPtr1(0), _propertyPtr1(0), _index1(0),
+      _objectPtr2(0), _propertyPtr2(0), _index2(0)
+{
+}
 
 void Graph::setObject1(const QString& object1)
 {

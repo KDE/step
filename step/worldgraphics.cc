@@ -49,11 +49,12 @@ bool ItemCreator::sceneEvent(QEvent* event)
         _worldModel->selectionModel()->setCurrentIndex(_worldModel->objectIndex(_item),
                                                     QItemSelectionModel::ClearAndSelect);
 
-        if(_item->metaObject()->property("position") != NULL) {
+        const StepCore::MetaProperty* property = _item->metaObject()->property("position");
+        if(property != NULL) {
             QGraphicsSceneMouseEvent* mouseEvent = static_cast<QGraphicsSceneMouseEvent*>(event);
             QPointF pos = mouseEvent->scenePos();
             QVariant vpos = QVariant::fromValue(WorldGraphicsItem::pointToVector(pos));
-            _worldModel->setProperty(_item, _item->metaObject()->property("position"), vpos);
+            _worldModel->setProperty(_item, property, vpos);
         }
 
         _worldModel->endMacro();
@@ -97,8 +98,14 @@ void WorldGraphicsItem::drawArrow(QPainter* painter, const StepCore::Vector2d& v
 
 void WorldGraphicsItem::mouseSetPos(const QPointF& pos, const QPointF& /*diff*/)
 {
-    Q_ASSERT(false);
-    setPos(pos);
+    const StepCore::MetaProperty* property = _item->metaObject()->property("position");
+    if(property != NULL) {
+        _worldModel->simulationPause();
+        _worldModel->setProperty(_item, property,
+                                QVariant::fromValue( pointToVector(pos) ));
+    } else {
+        Q_ASSERT(false);
+    }
 }
 
 void WorldGraphicsItem::mousePressEvent(QGraphicsSceneMouseEvent *event)

@@ -34,6 +34,8 @@ class Note: public Item, public Tool
     STEPCORE_OBJECT(Note)
 
 public:
+    Note(Vector2d position = Vector2d(0), QString text = QString());
+
     const QString& text() const { return _text; }
     void setText(const QString& text) { _text = text; }
 
@@ -41,8 +43,8 @@ public:
     void setPosition(const Vector2d& position) { _position = position; }
 
 private:
-    QString  _text;
     Vector2d _position;
+    QString  _text;
 };
 
 class Graph: public Item, public Tool
@@ -50,8 +52,13 @@ class Graph: public Item, public Tool
     STEPCORE_OBJECT(Graph)
 
 public:
+    Graph(Vector2d position = Vector2d(0), Vector2d size = Vector2d(300,200));
+
     const Vector2d& position() const { return _position; }
     void setPosition(const Vector2d& position) { _position = position; }
+
+    const Vector2d& size() const { return _size; }
+    void setSize(const Vector2d& size) { _size = size; }
 
     const Object* objectPtr1() const { return _objectPtr1; }
     void setObjectPtr1(const Object* objectPtr1) { _objectPtr1 = objectPtr1; }
@@ -94,10 +101,11 @@ private:
     Vector2d _size;
 
     const Object* _objectPtr1;
-    const Object* _objectPtr2;
     const MetaProperty* _propertyPtr1;
-    const MetaProperty* _propertyPtr2;
     int _index1;
+
+    const Object* _objectPtr2;
+    const MetaProperty* _propertyPtr2;
     int _index2;
 
     std::vector<Vector2d> _points;
