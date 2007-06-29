@@ -283,6 +283,7 @@ void WorldScene::worldSelectionChanged(const QItemSelection& selected, const QIt
 
 void WorldScene::worldDataChanged(const QModelIndex& /*topLeft*/, const QModelIndex& /*bottomRight*/)
 {
+    _worldModel->simulationPause();
     advance(); // XXX ?
 }
 
@@ -290,6 +291,7 @@ void WorldScene::updateViewScale()
 {
     if(!views().isEmpty()) {
         _currentViewScale = views()[0]->matrix().m11();
+        _worldModel->simulationPause();
         advance();
     }
 }

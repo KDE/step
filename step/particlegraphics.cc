@@ -90,7 +90,6 @@ void ParticleGraphicsItem::advance(int phase)
     if(phase == 0) return;
     prepareGeometryChange();
 
-    _worldModel->simulationPause();
     const StepCore::Vector2d& r = particle()->position();
     const StepCore::Vector2d& v = particle()->velocity();
     const StepCore::Vector2d  a = particle()->force() / particle()->mass();

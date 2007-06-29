@@ -223,7 +223,6 @@ void ArrowHandlerGraphicsItem::advance(int phase)
     prepareGeometryChange();
     double w = HANDLER_SIZE/currentViewScale()/2;
     _boundingRect = QRectF(-w, -w, w*2, w*2);
-    _worldModel->simulationPause();
     setPos(vectorToPoint(_property->readVariant(_item).value<StepCore::Vector2d>()));
     update(); //XXX
 }

@@ -56,7 +56,7 @@ protected:
     QVariant itemChange(GraphicsItemChange change, const QVariant& value);
     StepCore::Note* note() const;
     NoteTextItem*   _textItem;
-    bool            _updating;
+    int             _updating;
     double          _lastScale;
 
     friend class NoteTextItem;
@@ -112,18 +112,20 @@ public:
 
 protected slots:
     void objectSelected(const QString& text);
+    void propertySelected(const QString& text);
+    void indexSelected(const QString& text);
 
 protected:
     GraphGraphicsItem* _graphItem;
     KPlotWidget*       _plotWidget;
     QLabel*     _name;
-    QComboBox*  _object1;
-    QComboBox*  _property1;
-    QComboBox*  _index1;
-    QComboBox*  _object2;
-    QComboBox*  _property2;
-    QComboBox*  _index2;
-    bool        _updating;
+    QComboBox*  _object[2];
+    QComboBox*  _property[2];
+    QComboBox*  _index[2];
+
+    StepCore::Graph* _graph;
+    WorldModel* _worldModel;
+    int         _updating;
 };
 
 class GraphGraphicsItem: public WorldGraphicsItem

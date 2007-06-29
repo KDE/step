@@ -243,7 +243,6 @@ void PolygonGraphicsItem::advance(int phase)
     if(phase == 0) return;
     prepareGeometryChange();
 
-    _worldModel->simulationPause();
     const StepCore::Vector2d& r = polygon()->position();
     const StepCore::Vector2d& v = polygon()->velocity();
     const StepCore::Vector2d  a = polygon()->force() / polygon()->mass();

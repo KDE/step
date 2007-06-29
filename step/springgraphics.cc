@@ -110,7 +110,6 @@ void SpringHandlerGraphicsItem::advance(int phase)
 {
     if(phase == 0) return;
     prepareGeometryChange();
-    _worldModel->simulationPause();
     double w = HANDLER_SIZE/currentViewScale()/2;
     _boundingRect = QRectF(-w, -w, w*2, w*2);
     if(_num == 2)
@@ -239,7 +238,6 @@ void SpringGraphicsItem::advance(int phase)
 
     prepareGeometryChange();
 
-    _worldModel->simulationPause();
     StepCore::Vector2d r = spring()->position2() - spring()->position1();
     _rnorm = r.norm();
     

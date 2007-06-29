@@ -32,10 +32,10 @@ STEPCORE_META_OBJECT(Graph, "Graph", 0,
     STEPCORE_PROPERTY_RW(StepCore::Vector2d, size, "Size", size, setSize)
     STEPCORE_PROPERTY_RW(QString, object1, "object1", object1, setObject1)
     STEPCORE_PROPERTY_RW(QString, property1, "property1", property1, setProperty1)
-    STEPCORE_PROPERTY_RW(int, index, "vector index1", index1, setIndex1)
+    STEPCORE_PROPERTY_RW(int, index1, "vector index1", index1, setIndex1)
     STEPCORE_PROPERTY_RW(QString, object2, "object2", object2, setObject2)
     STEPCORE_PROPERTY_RW(QString, property2, "property2", property2, setProperty2)
-    STEPCORE_PROPERTY_RW(int, index, "vector index2", index2, setIndex2)
+    STEPCORE_PROPERTY_RW(int, index2, "vector index2", index2, setIndex2)
     )
 
 Note::Note(Vector2d position, QString text)

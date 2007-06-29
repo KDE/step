@@ -59,10 +59,10 @@ void NoteTextItem::paint(QPainter *painter, const QStyleOptionGraphicsItem *opti
 void NoteTextItem::focusInEvent(QFocusEvent *event)
 {
     if(_noteItem->note()->text().isEmpty()) {
-        _noteItem->_updating = true;
+        ++_noteItem->_updating;
         setPlainText("");
         _noteItem->advance(1);
-        _noteItem->_updating = false;
+        --_noteItem->_updating;
     }
     QGraphicsTextItem::focusInEvent(event);
 }
@@ -70,10 +70,10 @@ void NoteTextItem::focusInEvent(QFocusEvent *event)
 void NoteTextItem::focusOutEvent(QFocusEvent *event)
 {
     if(_noteItem->note()->text().isEmpty()) {
-        _noteItem->_updating = true;
+        ++_noteItem->_updating;
         setPlainText(emptyNotice());
         _noteItem->advance(1);
-        _noteItem->_updating = false;
+        --_noteItem->_updating;
     }
     QGraphicsTextItem::focusOutEvent(event);
 }
@@ -90,7 +90,7 @@ NoteGraphicsItem::NoteGraphicsItem(StepCore::Item* item, WorldModel* worldModel)
     _textItem->setTextInteractionFlags(Qt::TextEditorInteraction);
     _textItem->scale(1, -1);
     _lastScale = 1;
-    _updating = false;
+    _updating = 0;
     connect(_textItem->document(), SIGNAL(contentsChanged()), this, SLOT(contentsChanged()));
     advance(1);
 }
@@ -140,15 +140,14 @@ void NoteGraphicsItem::advance(int phase)
 {
     if(phase == 0) return;
 
-    _worldModel->simulationPause();
     if(!_updating && _textItem->toPlainText() != note()->text()) {
-        _updating = true;
+        ++_updating;
         if(!_textItem->hasFocus() && note()->text().isEmpty()) {
             _textItem->setPlainText(_textItem->emptyNotice());
         } else {
             _textItem->setPlainText(note()->text());
         }
-        _updating = false;
+        --_updating;
     }
 
     double s = currentViewScale();
@@ -174,11 +173,11 @@ void NoteGraphicsItem::advance(int phase)
 void NoteGraphicsItem::contentsChanged()
 {
     if(!_updating) {
-        _updating = true;
+        ++_updating;
         _worldModel->simulationPause();
         _worldModel->setProperty(_item, _item->metaObject()->property("text"),
                                 QVariant::fromValue( _textItem->toPlainText() ));
-        _updating = false;
+        --_updating;
     }
 }
 
@@ -249,20 +248,22 @@ GraphFlatWorldModel::GraphFlatWorldModel(WorldModel* worldModel, QObject* parent
 GraphWidget::GraphWidget(GraphGraphicsItem* graphItem, QWidget *parent)
     : QWidget(parent), _graphItem(graphItem)
 {
-    _updating = false;
+    _updating = 0;
+    _graph = _graphItem->graph();
+    _worldModel = _graphItem->_worldModel;
 
     QGridLayout *gridLayout = new QGridLayout(this);
     gridLayout->setColumnStretch(0, 0);
     gridLayout->setColumnStretch(1, 5);
     gridLayout->setColumnStretch(2, 5);
-    gridLayout->setColumnStretch(3, 1);
+    gridLayout->setColumnStretch(3, 0);
 
     gridLayout->setRowStretch(0, 0);
     gridLayout->setRowStretch(1, 1);
     gridLayout->setRowStretch(2, 0);
     gridLayout->setRowStretch(3, 0);
 
-    _name = new QLabel(_graphItem->graph()->name(), this);
+    _name = new QLabel(_graph->name(), this);
     _name->setAlignment(Qt::AlignHCenter);
     QFont font = _name->font(); font.setBold(true); _name->setFont(font);
     gridLayout->addWidget(_name, 0, 0, 1, -1);
@@ -275,38 +276,35 @@ GraphWidget::GraphWidget(GraphGraphicsItem* graphItem, QWidget *parent)
     _plotWidget->setRightPadding(3);
     gridLayout->addWidget(_plotWidget, 1, 0, 1, -1);
 
-    QLabel* label1 = new QLabel("x:", this);
-    gridLayout->addWidget(label1, 2, 0, 1, 1);
+    QAbstractItemModel* model = new GraphFlatWorldModel(_worldModel, this);
+    for(int i=0; i<2; ++i) {
+        QLabel* label = new QLabel(i==0 ? "x:" : "y:", this);
+        gridLayout->addWidget(label, 2+i, 0, 1, 1);
 
-    _object1 = new QComboBox(this);
-    gridLayout->addWidget(_object1, 2, 1, 1, 1);
+        _object[i] = new QComboBox(this);
+        _object[i]->setToolTip("Object name");
+        gridLayout->addWidget(_object[i], 2+i, 1, 1, 1);
 
-    _property1 = new QComboBox(this);
-    gridLayout->addWidget(_property1, 2, 2, 1, 1);
+        _property[i] = new QComboBox(this);
+        _property[i]->setToolTip("Property name");
+        _property[i]->setEnabled(false);
+        gridLayout->addWidget(_property[i], 2+i, 2, 1, 1);
 
-    _index1 = new QComboBox(this);
-    gridLayout->addWidget(_index1, 2, 3, 1, 1);
+        _index[i] = new QComboBox(this);
+        _index[i]->setToolTip("Vector index");
+        _index[i]->setMinimumContentsLength(1);
+        _index[i]->setSizeAdjustPolicy(QComboBox::AdjustToMinimumContentsLength);
+        _index[i]->hide();
+        gridLayout->addWidget(_index[i], 2+i, 3, 1, 1);
 
-    QLabel* label2 = new QLabel("y:", this);
-    gridLayout->addWidget(label2, 3, 0, 1, 1);
-
-    _object2 = new QComboBox(this);
-    gridLayout->addWidget(_object2, 3, 1, 1, 1);
-
-    _property2 = new QComboBox(this);
-    gridLayout->addWidget(_property2, 3, 2, 1, 1);
-
-    _index2 = new QComboBox(this);
-    gridLayout->addWidget(_index2, 3, 3, 1, 1);
-
-    _object1->setModel(new GraphFlatWorldModel(_graphItem->_worldModel, this));
-    //_object1->setRootModelIndex(_graphItem->_worldModel->worldIndex());
-    _object2->setModel(_object1->model());
-
-    connect(_object1, SIGNAL(currentIndexChanged(const QString&)),
+        _object[i]->setModel(model);
+        connect(_object[i], SIGNAL(currentIndexChanged(const QString&)),
                 this, SLOT(objectSelected(const QString&)));
-    connect(_object2, SIGNAL(currentIndexChanged(const QString&)),
-                this, SLOT(objectSelected(const QString&)));
+        connect(_property[i], SIGNAL(currentIndexChanged(const QString&)),
+                this, SLOT(propertySelected(const QString&)));
+        connect(_index[i], SIGNAL(currentIndexChanged(const QString&)),
+                this, SLOT(indexSelected(const QString&)));
+    }
 }
 
 GraphWidget::~GraphWidget()
@@ -317,28 +315,115 @@ GraphWidget::~GraphWidget()
 
 void GraphWidget::objectSelected(const QString& text)
 {
-    const StepCore::MetaProperty* property;
-    if(sender() == _object1) property = _graphItem->graph()->metaObject()->property("object1");
-    else property = _graphItem->graph()->metaObject()->property("object2");
+    int n = (sender() == _object[0] ? 0 : 1);
+
+    bool macro = false;
 
     if(!_updating) {
-        _updating = true;
-        _graphItem->_worldModel->simulationPause();
-        _graphItem->_worldModel->setProperty(_graphItem->graph(), property, text);
-        _updating = false;
+        ++_updating;
+        macro = true;
+        _worldModel->simulationPause();
+        _worldModel->beginMacro(i18n("Edit %1", _graph->name()));
+        _worldModel->setProperty(_graph,
+                _graph->metaObject()->property(n==0 ? "object1":"object2"), text);
+        //_worldModel->endMacro();
+        --_updating;
+    }
+
+    ++_updating;
+    _property[n]->clear();
+    const StepCore::Object* obj = (n==0 ? _graph->objectPtr1() : _graph->objectPtr2());
+    if(obj) {
+        for(int i=0; i<obj->metaObject()->propertyCount(); ++i) {
+            const StepCore::MetaProperty* p = obj->metaObject()->property(i);
+            if(p->userTypeId() == qMetaTypeId<double>() || p->userTypeId() == qMetaTypeId<StepCore::Vector2d>())
+                _property[n]->addItem(p->name());
+        }
+        _property[n]->setEnabled(true);
+    } else _property[n]->setEnabled(false);
+
+    _property[n]->setCurrentIndex(-1);
+    if(macro) {
+        _worldModel->setProperty(_graph,
+                _graph->metaObject()->property(n==0 ? "property1":"property2"), _property[n]->itemText(0));
+        _property[n]->setCurrentIndex(0);
+        _worldModel->endMacro();
+    }
+    --_updating;
+}
+
+void GraphWidget::propertySelected(const QString& text)
+{
+    int n = (sender() == _property[0] ? 0 : 1);
+
+    if(!_updating) {
+        ++_updating;
+        _worldModel->beginMacro(i18n("Edit %1", _graph->name()));
+        _worldModel->simulationPause();
+        _worldModel->setProperty(_graph,
+                _graph->metaObject()->property(n==0 ? "property1":"property2"), text);
+        _worldModel->endMacro();
+        --_updating;
+    }
+
+    ++_updating;
+    _index[n]->clear();
+    const StepCore::MetaProperty* p = (n==0 ? _graph->propertyPtr1() : _graph->propertyPtr2());
+    if(p) {
+        if(p->userTypeId() == qMetaTypeId<StepCore::Vector2d>()) {
+            _index[n]->addItem("0");
+            _index[n]->addItem("1");
+            _index[n]->setCurrentIndex( n==0 ? _graph->index1() : _graph->index2() );
+            if(_index[n]->isHidden()) _index[n]->show();
+        } else {
+            if(_index[n]->isVisible()) _index[n]->hide();
+        }
+    } else {
+        if(_index[n]->isVisible()) _index[n]->hide();
+    }
+    --_updating;
+}
+
+void GraphWidget::indexSelected(const QString& text)
+{
+    int n = (sender() == _index[0] ? 0 : 1);
+
+    if(!_updating) {
+        ++_updating;
+        _worldModel->beginMacro(i18n("Edit %1", _graph->name()));
+        _worldModel->simulationPause();
+        _worldModel->setProperty(_graph,
+                _graph->metaObject()->property(n==0 ? "index1":"index2"), text);
+        _worldModel->endMacro();
+        --_updating;
     }
 }
 
 void GraphWidget::advance()
 {
     if(!_updating) {
-        _updating = true;
-        _name->setText(_graphItem->graph()->name());
-        if(_graphItem->graph()->object1() != _object1->currentText())
-            _object1->setCurrentIndex(_object1->findData(_graphItem->graph()->object1(), Qt::DisplayRole));
-        if(_graphItem->graph()->object2() != _object2->currentText())
-            _object2->setCurrentIndex(_object2->findData(_graphItem->graph()->object2(), Qt::DisplayRole));
-        _updating = false;
+        ++_updating;
+        _name->setText(_graph->name());
+
+        if(_graph->object1() != _object[0]->currentText())
+            _object[0]->setCurrentIndex(_object[0]->findData(_graph->object1(), Qt::DisplayRole));
+        if(_graph->object2() != _object[1]->currentText())
+            _object[1]->setCurrentIndex(_object[1]->findData(_graph->object2(), Qt::DisplayRole));
+
+        if(_graph->property1() != _property[0]->currentText())
+            _property[0]->setCurrentIndex(_property[0]->findData(_graph->property1(), Qt::DisplayRole));
+        if(_graph->property1() != _property[1]->currentText())
+            _property[1]->setCurrentIndex(_property[1]->findData(_graph->property2(), Qt::DisplayRole));
+
+        if(_graph->property1() != _property[0]->currentText())
+            _property[0]->setCurrentIndex(_property[0]->findData(_graph->property1(), Qt::DisplayRole));
+        if(_graph->property1() != _property[1]->currentText())
+            _property[1]->setCurrentIndex(_property[1]->findData(_graph->property2(), Qt::DisplayRole));
+
+        if(_index[0]->isVisible()) _index[0]->setCurrentIndex(_graph->index1());
+        if(_index[1]->isVisible()) _index[1]->setCurrentIndex(_graph->index2());
+
+        --_updating;
     }
 }
 
