@@ -195,9 +195,62 @@ QVariant NoteGraphicsItem::itemChange(GraphicsItemChange change, const QVariant&
     return WorldGraphicsItem::itemChange(change, value);
 }
 
+
+QModelIndex GraphFlatWorldModel::index(int row, int column, const QModelIndex &parent) const
+{
+    if(!parent.isValid()) return createIndex(row, column);
+    else return QModelIndex();
+}
+
+int GraphFlatWorldModel::rowCount(const QModelIndex &parent) const
+{
+    if(!parent.isValid()) return _worldModel->rowCount() + _worldModel->itemCount();
+    else return 0;
+}
+
+int GraphFlatWorldModel::mapRow(const QModelIndex& sourceParent, int sourceRow)
+{
+    if(sourceParent.isValid()) {
+        return sourceRow + 1;
+    } else {
+        if(sourceRow > 0) return sourceRow + _worldModel->itemCount();
+        else return sourceRow;
+    }
+}
+
+QVariant GraphFlatWorldModel::data(const QModelIndex &index, int role) const
+{
+    if(index.isValid() && role == Qt::DisplayRole) {
+        if(index.row() == 0) return _worldModel->world()->name();
+        if(index.row() < _worldModel->itemCount()+1)
+            return _worldModel->item(index.row()-1)->name();
+        else return _worldModel->object(_worldModel->index(
+                        index.row()-_worldModel->itemCount(), 0))->name();
+    }
+    return QVariant();
+}
+
+GraphFlatWorldModel::GraphFlatWorldModel(WorldModel* worldModel, QObject* parent)
+    : QAbstractItemModel(parent), _worldModel(worldModel)
+{
+    connect(_worldModel, SIGNAL(dataChanged(QModelIndex,QModelIndex)),
+            this, SLOT(sourceDataChanged(QModelIndex,QModelIndex)));
+    connect(_worldModel, SIGNAL(rowsAboutToBeInserted(QModelIndex,int,int)),
+            this, SLOT(sourceRowsAboutToBeInserted(QModelIndex,int,int)));
+    connect(_worldModel, SIGNAL(rowsInserted(QModelIndex,int,int)),
+            this, SLOT(sourceRowsInserted(QModelIndex,int,int)));
+    connect(_worldModel, SIGNAL(rowsAboutToBeRemoved(QModelIndex,int,int)),
+            this, SLOT(sourceRowsAboutToBeRemoved(QModelIndex,int,int)));
+    connect(_worldModel, SIGNAL(rowsRemoved(QModelIndex,int,int)),
+            this, SLOT(sourceRowsRemoved(QModelIndex,int,int)));
+    connect(_worldModel, SIGNAL(modelReset()), this, SIGNAL(modelReset()));
+}
+
 GraphWidget::GraphWidget(GraphGraphicsItem* graphItem, QWidget *parent)
     : QWidget(parent), _graphItem(graphItem)
 {
+    _updating = false;
+
     QGridLayout *gridLayout = new QGridLayout(this);
     gridLayout->setColumnStretch(0, 0);
     gridLayout->setColumnStretch(1, 5);
@@ -246,24 +299,43 @@ GraphWidget::GraphWidget(GraphGraphicsItem* graphItem, QWidget *parent)
     _index2 = new QComboBox(this);
     gridLayout->addWidget(_index2, 3, 3, 1, 1);
 
+    _object1->setModel(new GraphFlatWorldModel(_graphItem->_worldModel, this));
+    //_object1->setRootModelIndex(_graphItem->_worldModel->worldIndex());
     _object2->setModel(_object1->model());
 
-    worldDataChanged(QModelIndex(), QModelIndex());
+    connect(_object1, SIGNAL(currentIndexChanged(const QString&)),
+                this, SLOT(objectSelected(const QString&)));
+    connect(_object2, SIGNAL(currentIndexChanged(const QString&)),
+                this, SLOT(objectSelected(const QString&)));
 }
 
-void GraphWidget::worldDataChanged(const QModelIndex& /*topLeft*/, const QModelIndex& /*bottomRight*/)
+GraphWidget::~GraphWidget()
 {
-    _object1->clear();
-    _object2->clear();
+    _plotWidget->hide(); // BUG ?
+    delete _plotWidget;
+}
 
-    _object1->addItem(_graphItem->_worldModel->world()->name());
+void GraphWidget::objectSelected(const QString& text)
+{
+    const StepCore::MetaProperty* property;
+    if(sender() == _object1) property = _graphItem->graph()->metaObject()->property("object1");
+    else property = _graphItem->graph()->metaObject()->property("object2");
 
-    for(int i=0; i<_graphItem->_worldModel->itemCount(); ++i) {
-        _object1->addItem(_graphItem->_worldModel->item(i)->name());
+    _updating = true;
+    _graphItem->_worldModel->simulationPause();
+    _graphItem->_worldModel->setProperty(_graphItem->graph(), property, text);
+    _updating = false;
+}
+
+void GraphWidget::advance()
+{
+    if(!_updating) {
+        _name->setText(_graphItem->graph()->name());
+        if(_graphItem->graph()->object1() != _object1->currentText())
+            _object1->setCurrentIndex(_object1->findData(_graphItem->graph()->object1(), Qt::DisplayRole));
+        if(_graphItem->graph()->object2() != _object2->currentText())
+            _object2->setCurrentIndex(_object2->findData(_graphItem->graph()->object2(), Qt::DisplayRole));
     }
-
-    _object1->addItem(_graphItem->_worldModel->solver()->name());
-    _object1->addItem(_graphItem->_worldModel->collisionSolver()->name());
 }
 
 GraphGraphicsItem::GraphGraphicsItem(StepCore::Item* item, WorldModel* worldModel)
@@ -340,6 +412,8 @@ void GraphGraphicsItem::advance(int phase)
         if(_graphWidget->size() != _boundingRect.size()) {
             _graphWidget->resize(vss.toSize());
         }
+
+        _graphWidget->advance();
     }
 
     if(r != pos()) setPos(r);

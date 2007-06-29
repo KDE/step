@@ -22,6 +22,7 @@
 #include "worldgraphics.h"
 #include <stepcore/tool.h>
 #include <QGraphicsTextItem>
+#include <QAbstractItemModel>
 #include <QWidget>
 
 class NoteGraphicsItem;
@@ -66,15 +67,51 @@ class QComboBox;
 class QModelIndex;
 class GraphGraphicsItem;
 class QLabel;
+
+class GraphFlatWorldModel: public QAbstractItemModel
+{
+    Q_OBJECT
+
+public:
+    GraphFlatWorldModel(WorldModel* worldModel, QObject* parent = 0);
+    QModelIndex index(int row, int column, const QModelIndex &parent = QModelIndex()) const;
+
+    QModelIndex parent(const QModelIndex &) const { return QModelIndex(); }
+    int columnCount(const QModelIndex &parent = QModelIndex()) const { Q_UNUSED(parent); return 1; }
+    int rowCount(const QModelIndex &parent = QModelIndex()) const;
+
+    QVariant data(const QModelIndex &index, int role) const;
+
+protected slots:
+    void sourceDataChanged(const QModelIndex&, const QModelIndex&) {
+        emit dataChanged(index(0, 0), index(rowCount(), 0));
+    }
+    void sourceRowsAboutToBeInserted(const QModelIndex& parent, int start, int end) {
+        beginInsertRows(QModelIndex(), mapRow(parent, start), mapRow(parent, end));
+    }
+    void sourceRowsAboutToBeRemoved(const QModelIndex& parent, int start, int end) {
+        beginRemoveRows(QModelIndex(), mapRow(parent, start), mapRow(parent, end));
+    }
+    void sourceRowsInserted(const QModelIndex&, int, int) { endInsertRows(); }
+    void sourceRowsRemoved(const QModelIndex&, int, int) { endRemoveRows(); }
+
+protected:
+    int mapRow(const QModelIndex& sourceParent, int sourceRow);
+    WorldModel* _worldModel;
+};
+
 class GraphWidget: public QWidget
 {
     Q_OBJECT
 
 public:
     GraphWidget(GraphGraphicsItem* graphItem, QWidget *parent = 0);
+    ~GraphWidget();
+
+    void advance();
 
 protected slots:
-    void worldDataChanged(const QModelIndex& topLeft, const QModelIndex& bottomRight);
+    void objectSelected(const QString& text);
 
 protected:
     GraphGraphicsItem* _graphItem;
@@ -86,6 +123,7 @@ protected:
     QComboBox*  _object2;
     QComboBox*  _property2;
     QComboBox*  _index2;
+    bool        _updating;
 };
 
 class GraphGraphicsItem: public WorldGraphicsItem
@@ -96,11 +134,6 @@ public:
 
     void paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget);
     void advance(int phase);
-
-/*
-protected slots:
-    void contentsChanged();
-    */
 
 protected:
     StepCore::Graph* graph() const;

@@ -280,6 +280,7 @@ void WorldModel::resetWorld()
 
 void WorldModel::emitChanged()
 {
+    // XXX
     emit dataChanged(worldIndex(), worldIndex());
     emit dataChanged(solverIndex(), solverIndex());
     emit dataChanged(collisionSolverIndex(), collisionSolverIndex());
