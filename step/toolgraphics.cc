@@ -321,20 +321,24 @@ void GraphWidget::objectSelected(const QString& text)
     if(sender() == _object1) property = _graphItem->graph()->metaObject()->property("object1");
     else property = _graphItem->graph()->metaObject()->property("object2");
 
-    _updating = true;
-    _graphItem->_worldModel->simulationPause();
-    _graphItem->_worldModel->setProperty(_graphItem->graph(), property, text);
-    _updating = false;
+    if(!_updating) {
+        _updating = true;
+        _graphItem->_worldModel->simulationPause();
+        _graphItem->_worldModel->setProperty(_graphItem->graph(), property, text);
+        _updating = false;
+    }
 }
 
 void GraphWidget::advance()
 {
     if(!_updating) {
+        _updating = true;
         _name->setText(_graphItem->graph()->name());
         if(_graphItem->graph()->object1() != _object1->currentText())
             _object1->setCurrentIndex(_object1->findData(_graphItem->graph()->object1(), Qt::DisplayRole));
         if(_graphItem->graph()->object2() != _object2->currentText())
             _object2->setCurrentIndex(_object2->findData(_graphItem->graph()->object2(), Qt::DisplayRole));
+        _updating = false;
     }
 }
 

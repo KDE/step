@@ -63,6 +63,7 @@ CommandEditProperty::CommandEditProperty(WorldModel* worldModel, StepCore::Objec
             const StepCore::MetaProperty* property, const QVariant& newValue, bool merge)
         : _merge(merge), _worldModel(worldModel)
 {
+    //kDebug() << "CommandEditProperty: " << object->name() << " " << property->name() << " " << newValue.toString() << endl;
     EditProperty p = { object, property, property->readVariant(object), newValue };
     _commands << p;// _objects << object;
 }
