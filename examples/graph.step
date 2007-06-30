@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE StepCoreXML>
+<world xmlns="http://quantum.dgap.mipt.ru/StepCoreXML" version="1.0">
+    <name>world1</name>
+    <time>0</time>
+    <timeScale>1</timeScale>
+
+    <item class="Particle">
+        <name>particle1</name>
+        <position>(-2.31,0.42)</position>
+        <velocity>(0,0)</velocity>
+        <mass>1</mass>
+    </item>
+
+    <item class="Particle">
+        <name>particle2</name>
+        <position>(1.28,0.43)</position>
+        <velocity>(0,0)</velocity>
+        <mass>inf</mass>
+    </item>
+
+    <item class="Spring">
+        <name>spring1</name>
+        <restLength>2.63017109709616</restLength>
+        <stiffness>1</stiffness>
+        <body1>particle1</body1>
+        <body2>particle2</body2>
+        <localPosition1>(0,0)</localPosition1>
+        <localPosition2>(0,0)</localPosition2>
+    </item>
+
+    <item class="Graph">
+        <name>graph1</name>
+        <position>(-1.74,0.08)</position>
+        <size>(400,400)</size>
+        <object1>world1</object1>
+        <property1>time</property1>
+        <index1>0</index1>
+        <object2>particle1</object2>
+        <property2>position</property2>
+        <index2>0</index2>
+        <limitsX>(0,10)</limitsX>
+        <limitsY>(-5,1)</limitsY>
+        <points>(0,-2.03)</points>
+    </item>
+
+    <solver class="AdaptiveEulerSolver">
+        <name>solver1</name>
+        <stepSize>1</stepSize>
+        <toleranceAbs>0.001</toleranceAbs>
+        <toleranceRel>0.001</toleranceRel>
+    </solver>
+    <collisionSolver class="GJKCollisionSolver">
+        <name>collisionSolver1</name>
+        <toleranceAbs>0.001</toleranceAbs>
+    </collisionSolver>
+
+</world>
