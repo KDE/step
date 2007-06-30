@@ -23,6 +23,7 @@
 #include "worldscene.h"
 #include "worldbrowser.h"
 #include "propertiesbrowser.h"
+#include "infobrowser.h"
 #include "itempalette.h"
 
 #include <stepcore/solver.h>
@@ -61,6 +62,10 @@ MainWindow::MainWindow()
     propertiesBrowser = new PropertiesBrowser(worldModel, this);
     propertiesBrowser->setObjectName("propertiesBrowser");
     addDockWidget(Qt::RightDockWidgetArea, propertiesBrowser);
+
+    infoBrowser = new InfoBrowser(worldModel, this);
+    infoBrowser->setObjectName("infoBrowser");
+    addDockWidget(Qt::RightDockWidgetArea, infoBrowser);
 
     worldScene = new WorldScene(worldModel);
     worldGraphicsView = new WorldGraphicsView(worldScene, this);

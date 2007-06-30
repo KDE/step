@@ -75,6 +75,8 @@ protected:
 class WorldModel: public QAbstractItemModel
 {
     Q_OBJECT
+public:
+    enum { ObjectNameRole = Qt::UserRole+1, ClassNameRole };
 
 public:
     WorldModel(QObject* parent = 0);

@@ -346,6 +346,10 @@ QVariant WorldModel::data(const QModelIndex &index, int role) const
     } else if(role == Qt::ToolTipRole) {
         const_cast<WorldModel*>(this)->simulationPause();
         return createToolTip(obj); // XXX
+    } else if(role == ObjectNameRole) {
+        return obj->name();
+    } else if(role == ClassNameRole) {
+        return obj->metaObject()->className();
     }
 
     return QVariant();
@@ -701,7 +705,7 @@ void WorldModel::simulationFrameEnd(int result)
 
     if(_simulationFrameSkipped) {
         _simulationFrameSkipped = false;
-        QApplication::processEvents();
+        QApplication::processEvents(); // XXX
         if(!_simulationFrameWaiting)
             simulationFrameBegin();
     }

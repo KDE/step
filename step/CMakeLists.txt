@@ -5,6 +5,7 @@ set(step_SRCS
     worldgraphics.cc
     worldbrowser.cc
     propertiesbrowser.cc
+    infobrowser.cc
     itempalette.cc
     worldfactory.cc
     particlegraphics.cc
@@ -34,11 +35,12 @@ kde4_automoc(${step_SRCS})
 include_directories(${CMAKE_CURRENT_BINARY_DIR})
 
 kde4_add_executable(step ${step_SRCS})
-target_link_libraries(step stepcore ${KDE4_KDEUI_LIBS} ${KDE4_KIO_LIBS})
+target_link_libraries(step stepcore ${KDE4_KDEUI_LIBS} ${KDE4_KIO_LIBS} ${KDE4_KHTML_LIBS})
 
 install(TARGETS step DESTINATION ${BIN_INSTALL_DIR})
 install(FILES stepui.rc DESTINATION  ${DATA_INSTALL_DIR}/step)
 
 add_subdirectory(icons)
+add_subdirectory(objinfo)
 
 

@@ -26,6 +26,7 @@ class WorldBrowser;
 class WorldScene;
 class WorldGraphicsView;
 class PropertiesBrowser;
+class InfoBrowser;
 class ItemPalette;
 class KAction;
 class QItemSelection;
@@ -78,6 +79,7 @@ protected:
     WorldModel*         worldModel;
     WorldBrowser*       worldBrowser;
     PropertiesBrowser*  propertiesBrowser;
+    InfoBrowser*        infoBrowser;
     ItemPalette*        itemPalette;
     WorldScene*         worldScene;
     WorldGraphicsView*  worldGraphicsView;
