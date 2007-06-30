@@ -36,6 +36,7 @@
 #include <QComboBox>
 #include <QLabel>
 #include <KPlotWidget>
+#include <KPlotObject>
 #include <KLocale>
 
 NoteTextItem::NoteTextItem(NoteGraphicsItem* noteItem, QGraphicsItem* parent)
@@ -249,6 +250,8 @@ GraphWidget::GraphWidget(GraphGraphicsItem* graphItem, QWidget *parent)
     : QWidget(parent), _graphItem(graphItem)
 {
     _updating = 0;
+    _lastPointTime = -HUGE_VALF;
+
     _graph = _graphItem->graph();
     _worldModel = _graphItem->_worldModel;
 
@@ -274,6 +277,21 @@ GraphWidget::GraphWidget(GraphGraphicsItem* graphItem, QWidget *parent)
     //_plotWidget->setLeftPadding(0);
     _plotWidget->setTopPadding(2);
     _plotWidget->setRightPadding(3);
+
+    _plotObject = new KPlotObject(Qt::black/*int(KPlotObject::Points|KPlotObject::Lines)*/);
+    _plotObject->setShowPoints(true);
+    _plotObject->setShowLines(true);
+    _plotObject->setPointStyle(KPlotObject::Square);
+
+    //_plotWidget->setAntialiasing(true);
+    _plotWidget->addPlotObject(_plotObject);
+
+    /*
+    _plotObject->addPoint(0.5, 0.5);
+    _plotObject->addPoint(0.7, 0.7);
+    _plotObject->addPoint(0.9, 0.9);
+    */
+
     gridLayout->addWidget(_plotWidget, 1, 0, 1, -1);
 
     QAbstractItemModel* model = new GraphFlatWorldModel(_worldModel, this);
@@ -298,6 +316,7 @@ GraphWidget::GraphWidget(GraphGraphicsItem* graphItem, QWidget *parent)
         gridLayout->addWidget(_index[i], 2+i, 3, 1, 1);
 
         _object[i]->setModel(model);
+        _object[i]->setCurrentIndex(-1);
         connect(_object[i], SIGNAL(currentIndexChanged(const QString&)),
                 this, SLOT(objectSelected(const QString&)));
         connect(_property[i], SIGNAL(currentIndexChanged(const QString&)),
@@ -305,6 +324,10 @@ GraphWidget::GraphWidget(GraphGraphicsItem* graphItem, QWidget *parent)
         connect(_index[i], SIGNAL(currentIndexChanged(const QString&)),
                 this, SLOT(indexSelected(const QString&)));
     }
+
+    _doclear = 0;
+    advance();
+    _doclear = 1;
 }
 
 GraphWidget::~GraphWidget()
@@ -377,9 +400,11 @@ void GraphWidget::propertySelected(const QString& text)
             if(_index[n]->isHidden()) _index[n]->show();
         } else {
             if(_index[n]->isVisible()) _index[n]->hide();
+            indexSelected(QString());
         }
     } else {
         if(_index[n]->isVisible()) _index[n]->hide();
+        indexSelected(QString());
     }
     --_updating;
 }
@@ -397,6 +422,15 @@ void GraphWidget::indexSelected(const QString& text)
         _worldModel->endMacro();
         --_updating;
     }
+
+    if(_doclear) {
+        _graph->clearPoints();
+        _lastPointTime = -HUGE_VALF;
+        recordPoint();
+    } else {
+        _lastPointTime = _worldModel->world()->time();
+    }
+    advance();
 }
 
 void GraphWidget::advance()
@@ -415,15 +449,37 @@ void GraphWidget::advance()
         if(_graph->property1() != _property[1]->currentText())
             _property[1]->setCurrentIndex(_property[1]->findData(_graph->property2(), Qt::DisplayRole));
 
-        if(_graph->property1() != _property[0]->currentText())
-            _property[0]->setCurrentIndex(_property[0]->findData(_graph->property1(), Qt::DisplayRole));
-        if(_graph->property1() != _property[1]->currentText())
-            _property[1]->setCurrentIndex(_property[1]->findData(_graph->property2(), Qt::DisplayRole));
-
         if(_index[0]->isVisible()) _index[0]->setCurrentIndex(_graph->index1());
         if(_index[1]->isVisible()) _index[1]->setCurrentIndex(_graph->index2());
 
         --_updating;
+    }
+
+    if(_worldModel->world()->time() > _lastPointTime
+                + 1.0/_worldModel->simulationFps() - 1e-2/_worldModel->simulationFps()) {
+        recordPoint();
+    }
+
+    const StepCore::Vector2d& limX = _graph->limitsX();
+    const StepCore::Vector2d& limY = _graph->limitsY();
+    _plotWidget->setLimits(limX[0], limX[1], limY[0], limY[1]);
+
+    _plotObject->clearPoints();
+    for(int i=0; i<(int)_graph->points().size(); ++i) {
+        StepCore::Vector2d p = _graph->points()[i];
+        _plotObject->addPoint(p[0], p[1]);
+    }
+    _plotWidget->update();
+}
+
+void GraphWidget::recordPoint()
+{
+    bool ok;
+    StepCore::Vector2d point = _graph->recordPoint(&ok);
+    if(ok) {
+        _lastPointTime = _worldModel->world()->time();
+    } else {
+        _lastPointTime = -HUGE_VALF;
     }
 }
 

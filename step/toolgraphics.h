@@ -63,6 +63,7 @@ protected:
 };
 
 class KPlotWidget;
+class KPlotObject;
 class QComboBox;
 class QModelIndex;
 class GraphGraphicsItem;
@@ -114,10 +115,12 @@ protected slots:
     void objectSelected(const QString& text);
     void propertySelected(const QString& text);
     void indexSelected(const QString& text);
+    void recordPoint();
 
 protected:
     GraphGraphicsItem* _graphItem;
     KPlotWidget*       _plotWidget;
+    KPlotObject*       _plotObject;
     QLabel*     _name;
     QComboBox*  _object[2];
     QComboBox*  _property[2];
@@ -126,6 +129,9 @@ protected:
     StepCore::Graph* _graph;
     WorldModel* _worldModel;
     int         _updating;
+    int         _doclear;
+
+    double      _lastPointTime;
 };
 
 class GraphGraphicsItem: public WorldGraphicsItem

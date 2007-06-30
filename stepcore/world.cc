@@ -73,18 +73,6 @@ World& World::operator=(const World& world)
         Body* body = dynamic_cast<Body*>(item);
         if(body) _bodies.push_back(body);
     }
-    for(ItemList::iterator it = _items.begin(); it != _items.end(); ++it)
-        (*it)->setWorld(this); // XXX: implement it
-
-    checkVariablesCount();
-
-    if(world._solver) setSolver(static_cast<Solver*>(
-                world._solver->metaObject()->cloneObject(*(world._solver))));
-    else setSolver(0);
-
-    if(world._collisionSolver) setCollisionSolver(static_cast<CollisionSolver*>(
-               world._collisionSolver->metaObject()->cloneObject(*(world._collisionSolver))));
-    else setCollisionSolver(0);
 
     /*if(world._constraintSolver) setConstraintSolver(static_cast<ConstraintSolver*>(
                world._constraintSolver->metaObject()->cloneObject(*(world._constraintSolver))));
@@ -97,6 +85,19 @@ World& World::operator=(const World& world)
     _stopOnCollision = world._stopOnCollision;
     _stopOnPenetration = world._stopOnPenetration;
     _evolveAbort = world._evolveAbort;
+
+    if(world._solver) setSolver(static_cast<Solver*>(
+                world._solver->metaObject()->cloneObject(*(world._solver))));
+    else setSolver(0);
+
+    if(world._collisionSolver) setCollisionSolver(static_cast<CollisionSolver*>(
+               world._collisionSolver->metaObject()->cloneObject(*(world._collisionSolver))));
+    else setCollisionSolver(0);
+
+    for(ItemList::iterator it = _items.begin(); it != _items.end(); ++it)
+        (*it)->setWorld(this); // XXX: implement it
+
+    checkVariablesCount();
 
     return *this;
 }

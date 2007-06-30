@@ -591,6 +591,7 @@ void WorldModel::simulationPause()
         // _simulationThread->doWorldEvolve() could be called before
         _world->setEvolveAbort(true);
     } else {
+        //kDebug() << "simulationPause: simulation aborted" << endl;
         Q_ASSERT(isSimulationActive());
         Q_ASSERT(_simulationCommand);
         Q_ASSERT(_simulationFrameWaiting);

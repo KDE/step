@@ -61,13 +61,13 @@ public:
     void setSize(const Vector2d& size) { _size = size; }
 
     const Object* objectPtr1() const { return _objectPtr1; }
-    void setObjectPtr1(const Object* objectPtr1) { _objectPtr1 = objectPtr1; }
+    void setObjectPtr1(const Object* objectPtr1) { _objectPtr1 = objectPtr1; setPropertyPtr1(0); }
 
     QString object1() const { return _objectPtr1 ? _objectPtr1->name() : QString(); }
-    void setObject1(const QString& object1);
+    void setObject1(const QString& object1) { setObjectPtr1(world()->object(object1)); }
 
     const MetaProperty* propertyPtr1() const { return _propertyPtr1; }
-    void setPropertyPtr1(const MetaProperty* propertyPtr1) { _propertyPtr1 = propertyPtr1; }
+    void setPropertyPtr1(const MetaProperty* propertyPtr1) { _propertyPtr1 = propertyPtr1; setIndex1(0); }
     
     QString property1() const { return _propertyPtr1 ? _propertyPtr1->name() : QString(); }
     void setProperty1(const QString& property1);
@@ -76,13 +76,13 @@ public:
     void setIndex1(int index1) { _index1 = index1; }
 
     const Object* objectPtr2() const { return _objectPtr2; }
-    void setObjectPtr2(const Object* objectPtr2) { _objectPtr2 = objectPtr2; }
+    void setObjectPtr2(const Object* objectPtr2) { _objectPtr2 = objectPtr2; setPropertyPtr2(0); }
 
     QString object2() const { return _objectPtr2 ? _objectPtr2->name() : QString(); }
-    void setObject2(const QString& object2);
+    void setObject2(const QString& object2) { setObjectPtr2(world()->object(object2)); }
 
     const MetaProperty* propertyPtr2() const { return _propertyPtr2; }
-    void setPropertyPtr2(const MetaProperty* propertyPtr2) { _propertyPtr2 = propertyPtr2; }
+    void setPropertyPtr2(const MetaProperty* propertyPtr2) { _propertyPtr2 = propertyPtr2; setIndex2(0); }
 
     QString property2() const { return _propertyPtr2 ? _propertyPtr2->name() : QString(); }
     void setProperty2(const QString& property2);
@@ -90,8 +90,21 @@ public:
     int index2() const { return _index2; }
     void setIndex2(int index2) { _index2 = index2; }
 
-    void clear();
-    void measure();
+    const Vector2d& limitsX() const { return _limitsX; }
+    void setLimitsX(const Vector2d& limitsX) { _limitsX = limitsX; }
+
+    const Vector2d& limitsY() const { return _limitsY; }
+    void setLimitsY(const Vector2d& limitsY) { _limitsY = limitsY; }
+
+    const std::vector<Vector2d>& points() const { return _points; }
+    void setPoints(const std::vector<Vector2d>& points) { _points = points; }
+
+    void clearPoints();
+    Vector2d recordPoint(bool* ok = 0);
+    Vector2d measurePoint(bool* ok = 0);
+
+    void worldItemRemoved(Item* item);
+    void setWorld(World* world);
 
 private:
     double getValue(const QVariant& v, int index, bool* ok = 0);
@@ -107,6 +120,9 @@ private:
     const Object* _objectPtr2;
     const MetaProperty* _propertyPtr2;
     int _index2;
+
+    Vector2d    _limitsX;
+    Vector2d    _limitsY;
 
     std::vector<Vector2d> _points;
 };

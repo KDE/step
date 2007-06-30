@@ -36,6 +36,9 @@ STEPCORE_META_OBJECT(Graph, "Graph", 0,
     STEPCORE_PROPERTY_RW(QString, object2, "object2", object2, setObject2)
     STEPCORE_PROPERTY_RW(QString, property2, "property2", property2, setProperty2)
     STEPCORE_PROPERTY_RW(int, index2, "vector index2", index2, setIndex2)
+    STEPCORE_PROPERTY_RW(StepCore::Vector2d, limitsX, "Limits along X axis", limitsX, setLimitsX)
+    STEPCORE_PROPERTY_RW(StepCore::Vector2d, limitsY, "Limits along Y axis", limitsY, setLimitsY)
+    STEPCORE_PROPERTY_RW(std::vector<StepCore::Vector2d>, points, "points", points, setPoints)
     )
 
 Note::Note(Vector2d position, QString text)
@@ -46,43 +49,26 @@ Note::Note(Vector2d position, QString text)
 Graph::Graph(Vector2d position, Vector2d size)
     : _position(position), _size(size),
       _objectPtr1(0), _propertyPtr1(0), _index1(0),
-      _objectPtr2(0), _propertyPtr2(0), _index2(0)
+      _objectPtr2(0), _propertyPtr2(0), _index2(0),
+      _limitsX(0,1), _limitsY(0,1)
 {
-}
-
-void Graph::setObject1(const QString& object1)
-{
-    _objectPtr1 = world()->object(object1);
-    _propertyPtr1 = NULL;
-    _index1 = 0;
-}
-
-void Graph::setObject2(const QString& object2)
-{
-    _objectPtr2 = world()->object(object2);
-    _propertyPtr2 = NULL;
-    _index2 = 0;
 }
 
 void Graph::setProperty1(const QString& property1)
 {
-    if(_objectPtr1) {
-        _propertyPtr1 = _objectPtr1->metaObject()->property(
-                                property1.toAscii().constData());
-        _index1 = 0;
-    }
+    if(_objectPtr1)
+        setPropertyPtr1(_objectPtr1->metaObject()->property(
+                                property1.toAscii().constData()));
 }
 
 void Graph::setProperty2(const QString& property2)
 {
-    if(_objectPtr2) {
-        _propertyPtr2 = _objectPtr2->metaObject()->property(
-                                property2.toAscii().constData());
-        _index2 = 0;
-    }
+    if(_objectPtr2)
+        setPropertyPtr2(_objectPtr2->metaObject()->property(
+                                property2.toAscii().constData()));
 }
 
-void Graph::clear()
+void Graph::clearPoints()
 {
     _points.clear();
 }
@@ -101,13 +87,57 @@ double Graph::getValue(const QVariant& v, int index, bool *ok)
     return 0.0;
 }
 
-void Graph::measure()
+Vector2d Graph::measurePoint(bool* ok)
 {
     if(_objectPtr1 && _objectPtr2 && _propertyPtr1 && _propertyPtr2) {
-        Vector2d point(getValue(_propertyPtr1->readVariant(_objectPtr1), _index1),
-                       getValue(_propertyPtr2->readVariant(_objectPtr2), _index2));
-        _points.push_back(point);
+        bool ok1, ok2;
+        Vector2d point(getValue(_propertyPtr1->readVariant(_objectPtr1), _index1, &ok1),
+                       getValue(_propertyPtr2->readVariant(_objectPtr2), _index2, &ok2));
+        if(ok1 && ok2) {
+            if(ok) *ok = true;
+            return point;
+        }
     }
+
+    if(ok) *ok = false;
+    return Vector2d(0);
+}
+
+Vector2d Graph::recordPoint(bool* ok)
+{
+    bool ok1;
+    Vector2d point(measurePoint(&ok1));
+    if(ok1) {
+        if(ok) *ok = true;
+        _points.push_back(point);
+        return point;
+    }
+
+    if(ok) *ok = false;
+    return Vector2d(0);
+}
+
+void Graph::worldItemRemoved(Item* item)
+{
+    if(item == 0) return;
+    if(item == _objectPtr1) setObjectPtr1(0);
+    if(item == _objectPtr2) setObjectPtr2(0);
+}
+
+void Graph::setWorld(World* world)
+{
+    if(world == NULL) {
+        setObjectPtr1(0);
+        setObjectPtr2(0);
+    } else if(this->world() != NULL) { 
+        if(_objectPtr1 != NULL) {
+            qDebug("%s", _objectPtr1->name().toAscii().constData());
+            qDebug("%s", world->name().toAscii().constData());
+            _objectPtr1 = world->object(_objectPtr1->name());
+        }
+        if(_objectPtr2 != NULL) _objectPtr2 = world->object(_objectPtr2->name());
+    }
+    Item::setWorld(world);
 }
 
 } // namespace StepCore
