@@ -24,14 +24,14 @@ namespace StepCore
 {
 
 STEPCORE_META_OBJECT(RigidBody, "Generic rigid body", 0, STEPCORE_SUPER_CLASS(Item) STEPCORE_SUPER_CLASS(Body),
-        STEPCORE_PROPERTY_RW(StepCore::Vector2d, position, "Position of the center of mass", position, setPosition)
-        STEPCORE_PROPERTY_RW(double, angle, "Rotation angle", angle, setAngle)
+        STEPCORE_PROPERTY_RW_D(StepCore::Vector2d, position, "Position of the center of mass", position, setPosition)
+        STEPCORE_PROPERTY_RW_D(double, angle, "Rotation angle", angle, setAngle)
 
-        STEPCORE_PROPERTY_RW(StepCore::Vector2d, velocity, "Velocity of the center of mass", velocity, setVelocity)
-        STEPCORE_PROPERTY_RW(double, angularVelocity, "Angular velocity", angularVelocity, setAngularVelocity)
+        STEPCORE_PROPERTY_RW_D(StepCore::Vector2d, velocity, "Velocity of the center of mass", velocity, setVelocity)
+        STEPCORE_PROPERTY_RW_D(double, angularVelocity, "Angular velocity", angularVelocity, setAngularVelocity)
 
-        STEPCORE_PROPERTY_R(StepCore::Vector2d, force, "Force at the center of mass", force)
-        STEPCORE_PROPERTY_R(double, torque, "Torque at the center of mass", torque)
+        STEPCORE_PROPERTY_R_D(StepCore::Vector2d, force, "Force at the center of mass", force)
+        STEPCORE_PROPERTY_R_D(double, torque, "Torque at the center of mass", torque)
 
         STEPCORE_PROPERTY_RW(double, mass, "Total mass of the body", mass, setMass)
         STEPCORE_PROPERTY_RW(double, inertia, "Inertia \"tensor\" of the body", inertia, setInertia))

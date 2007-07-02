@@ -25,7 +25,7 @@ namespace StepCore {
 
 STEPCORE_META_OBJECT(CollisionSolver, "CollisionSolver", MetaObject::ABSTRACT, STEPCORE_SUPER_CLASS(Object),
     STEPCORE_PROPERTY_RW(double, toleranceAbs, "Allowed absolute tolerance", toleranceAbs, setToleranceAbs)
-    STEPCORE_PROPERTY_R(double, localError, "Maximal local error during last step", localError))
+    STEPCORE_PROPERTY_R_D(double, localError, "Maximal local error during last step", localError))
 
 STEPCORE_META_OBJECT(GJKCollisionSolver, "GJKCollisionSolver", 0,
                         STEPCORE_SUPER_CLASS(CollisionSolver),)

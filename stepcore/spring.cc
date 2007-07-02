@@ -27,14 +27,14 @@ namespace StepCore {
 STEPCORE_META_OBJECT(Spring, "Massless spring", 0,
     STEPCORE_SUPER_CLASS(Item) STEPCORE_SUPER_CLASS(Force),
     STEPCORE_PROPERTY_RW(double, restLength, "Rest length", restLength, setRestLength)
-    STEPCORE_PROPERTY_R (double, length, "Current length", length)
+    STEPCORE_PROPERTY_R_D(double, length, "Current length", length)
     STEPCORE_PROPERTY_RW(double, stiffness, "Stiffness", stiffness, setStiffness)
     STEPCORE_PROPERTY_RW(QString, body1, "Body1", body1, setBody1)
     STEPCORE_PROPERTY_RW(QString, body2, "Body2", body2, setBody2)
     STEPCORE_PROPERTY_RW(StepCore::Vector2d, localPosition1, "Local position 1", localPosition1, setLocalPosition1)
     STEPCORE_PROPERTY_RW(StepCore::Vector2d, localPosition2, "Local position 2", localPosition2, setLocalPosition2)
-    STEPCORE_PROPERTY_R (StepCore::Vector2d, position1, "Position1", position1)
-    STEPCORE_PROPERTY_R (StepCore::Vector2d, position2, "Position2", position2)
+    STEPCORE_PROPERTY_R_D(StepCore::Vector2d, position1, "Position1", position1)
+    STEPCORE_PROPERTY_R_D(StepCore::Vector2d, position2, "Position2", position2)
     )
 
 Spring::Spring(double restLength, double stiffness, Body* bodyPtr1, Body* bodyPtr2)

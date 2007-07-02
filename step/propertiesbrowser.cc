@@ -59,7 +59,7 @@ public:
     void setObject(StepCore::Object* object);
     StepCore::Object* object() { return _object; }
 
-    void emitDataChanged();
+    void emitDataChanged(bool dynamicOnly);
 
 protected:
     WorldModel* _worldModel;
@@ -103,11 +103,12 @@ void PropertiesBrowserModel::setObject(StepCore::Object* object)
     reset();
 }
 
-void PropertiesBrowserModel::emitDataChanged()
+void PropertiesBrowserModel::emitDataChanged(bool dynamicOnly)
 {
     _worldModel->simulationPause();
     for(int i=0; i<rowCount(); i++) {
         const StepCore::MetaProperty* p = _object->metaObject()->property(i);
+        if(dynamicOnly && !p->isDynamic()) continue;
         if(p->userTypeId() == qMetaTypeId<std::vector<StepCore::Vector2d> >()) {
             int r = p->readVariant(_object).value<std::vector<StepCore::Vector2d> >().size();
             if(r > _subRows[i]) {
@@ -119,10 +120,11 @@ void PropertiesBrowserModel::emitDataChanged()
                 _subRows[i] = r;
                 endRemoveRows();
             }
-            if(r != 0) emit dataChanged(index(0,0,index(i,0)), index(r-1,1,index(i,0)));
+            if(r != 0) emit dataChanged(index(0,0,index(i,0)), index(r-1,1,index(i,0))); // XXX?
         }
+        emit dataChanged(index(i,1), index(i,1));
     }
-    emit dataChanged(index(0,1), index(rowCount()-1,1));
+    //emit dataChanged(index(0,1), index(rowCount()-1,1));
 }
 
 QVariant PropertiesBrowserModel::data(const QModelIndex &index, int role) const
@@ -378,7 +380,7 @@ void PropertiesBrowser::worldCurrentChanged(const QModelIndex& current, const QM
 
 void PropertiesBrowser::worldDataChanged(bool dynamicOnly)
 {
-    _propertiesBrowserModel->emitDataChanged();
+    _propertiesBrowserModel->emitDataChanged(dynamicOnly);
 }
 
 void PropertiesBrowser::currentChanged(const QModelIndex& current, const QModelIndex& /*previous*/)

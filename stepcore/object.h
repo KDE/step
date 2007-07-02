@@ -54,8 +54,9 @@ public:
     enum {
         READABLE = 1, ///< Property is readable
         WRITABLE = 2, ///< Property is writable
-        STORED = 4    ///< Property should be stored in file
+        STORED = 4,   ///< Property should be stored in file
         //USER = 8      ///< Property should be shown in UI
+        DYNAMIC = 32  ///< Variable changes during simulation
     };
 
 public:
@@ -84,6 +85,8 @@ public:
     bool isWritable() const { return _flags & WRITABLE; }
     /** Returns true if this property should be stored */
     bool isStored() const { return _flags & STORED; }
+    /** Returns true if this property is dynamic (changes during simulation) */
+    bool isDynamic() const { return _flags & DYNAMIC; }
 
 public:
     const QString _name;
@@ -304,6 +307,13 @@ struct MetaObjectHelper<Class, MetaObject::ABSTRACT> {
 #define STEPCORE_PROPERTY_RW(_type, _name, _description, _read, _write) \
     STEPCORE_PROPERTY_RWF(_type, _name, _description, \
         StepCore::MetaProperty::STORED, _read, _write)
+
+#define STEPCORE_PROPERTY_R_D(_type, _name, _description, _read) \
+    STEPCORE_PROPERTY_RF(_type, _name, _description, StepCore::MetaProperty::DYNAMIC, _read)
+
+#define STEPCORE_PROPERTY_RW_D(_type, _name, _description, _read, _write) \
+    STEPCORE_PROPERTY_RWF(_type, _name, _description, \
+        StepCore::MetaProperty::STORED | StepCore::MetaProperty::DYNAMIC, _read, _write)
 
 } // namespace StepCore
 
