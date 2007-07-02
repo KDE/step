@@ -52,8 +52,8 @@ public:
 
 protected slots:
     void worldModelReset();
+    void worldDataChanged(bool dynamicOnly);
     void worldCurrentChanged(const QModelIndex& current, const QModelIndex& previous);
-    void worldDataChanged(const QModelIndex& topLeft, const QModelIndex& bottomRight);
     void currentChanged(const QModelIndex& current, const QModelIndex& previous);
 
 protected:

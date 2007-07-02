@@ -354,8 +354,8 @@ PropertiesBrowser::PropertiesBrowser(WorldModel* worldModel, QWidget* parent, Qt
     worldCurrentChanged(_worldModel->worldIndex(), QModelIndex());
 
     QObject::connect(_worldModel, SIGNAL(modelReset()), this, SLOT(worldModelReset()));
-    QObject::connect(_worldModel, SIGNAL(dataChanged(const QModelIndex&, const QModelIndex&)),
-                         this, SLOT(worldDataChanged(const QModelIndex&, const QModelIndex&)));
+    QObject::connect(_worldModel, SIGNAL(worldDataChanged(bool)), this, SLOT(worldDataChanged(bool)));
+
     QObject::connect(_worldModel->selectionModel(), SIGNAL(currentChanged(const QModelIndex&, const QModelIndex&)),
                                            this, SLOT(worldCurrentChanged(const QModelIndex&, const QModelIndex&)));
 
@@ -376,7 +376,7 @@ void PropertiesBrowser::worldCurrentChanged(const QModelIndex& current, const QM
     _treeView->expandAll();
 }
 
-void PropertiesBrowser::worldDataChanged(const QModelIndex& /*topLeft*/, const QModelIndex& /*bottomRight*/)
+void PropertiesBrowser::worldDataChanged(bool dynamicOnly)
 {
     _propertiesBrowserModel->emitDataChanged();
 }

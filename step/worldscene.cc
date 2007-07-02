@@ -104,8 +104,7 @@ WorldScene::WorldScene(WorldModel* worldModel, QObject* parent)
     worldModelReset();
 
     QObject::connect(_worldModel, SIGNAL(modelReset()), this, SLOT(worldModelReset()));
-    QObject::connect(_worldModel, SIGNAL(dataChanged(const QModelIndex&, const QModelIndex&)),
-                         this, SLOT(worldDataChanged(const QModelIndex&, const QModelIndex&)));
+    QObject::connect(_worldModel, SIGNAL(worldDataChanged(bool)), this, SLOT(worldDataChanged(bool)));
     QObject::connect(_worldModel->selectionModel(), SIGNAL(currentChanged(const QModelIndex&, const QModelIndex&)),
                                            this, SLOT(worldCurrentChanged(const QModelIndex&, const QModelIndex&)));
     QObject::connect(_worldModel->selectionModel(), SIGNAL(selectionChanged(const QItemSelection&, const QItemSelection&)),
@@ -279,10 +278,9 @@ void WorldScene::worldSelectionChanged(const QItemSelection& selected, const QIt
     }
 }
 
-void WorldScene::worldDataChanged(const QModelIndex& /*topLeft*/, const QModelIndex& /*bottomRight*/)
+void WorldScene::worldDataChanged(bool)
 {
     _worldModel->simulationPause();
-    //advance();
     foreach (QGraphicsItem *item, items()) item->advance(1);
 }
 

@@ -123,7 +123,7 @@ public:
     void endMacro();
 
     void beginUpdate() { ++_updating; }
-    void endUpdate() { if(!--_updating) objectChanged(NULL); }
+    void endUpdate() { if(!--_updating) emitChanged(false); }
 
     // Property edit
     void setProperty(StepCore::Object* object, const StepCore::MetaProperty* property,
@@ -163,17 +163,18 @@ protected slots:
     void simulationFrameEnd(int result);
 
 signals:
+    void worldDataChanged(bool dynamicOnly);
     void simulationStopped(int result);
 
 protected:
     void resetWorld();
-    void emitChanged();
+    void emitChanged(bool dynamicOnly = true);
     void addItem(StepCore::Item* item);
     void removeItem(StepCore::Item* item);
     StepCore::Solver* swapSolver(StepCore::Solver* solver);
 
     // Only for UndoCommand* classes
-    void objectChanged(const StepCore::Object* object);
+    //void objectChanged(const StepCore::Object* object);
 
 protected:
     StepCore::World* _world;

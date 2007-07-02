@@ -74,14 +74,16 @@ void CommandEditProperty::redo()
         if(p.newValue.type() != QVariant::String) p.property->writeVariant(p.object, p.newValue);
         else p.property->writeString(p.object, p.newValue.value<QString>());
     }
-    _worldModel->objectChanged(NULL);
+    //_worldModel->objectChanged(NULL);
+    _worldModel->emitChanged(false);
     //foreach(StepCore::Object* object, _objects) _worldModel->objectChanged(object);
 }
 
 void CommandEditProperty::undo()
 {
     foreach(EditProperty p, _commands) p.property->writeVariant(p.object, p.oldValue);
-    _worldModel->objectChanged(NULL);
+    //_worldModel->objectChanged(NULL);
+    _worldModel->emitChanged(false);
     //foreach(StepCore::Object* object, _objects) _worldModel->objectChanged(object);
 }
 
@@ -279,12 +281,13 @@ void WorldModel::resetWorld()
     _selectionModel->setCurrentIndex(worldIndex(), QItemSelectionModel::SelectCurrent);
 }
 
-void WorldModel::emitChanged()
+void WorldModel::emitChanged(bool dynamicOnly)
 {
-    // XXX
-    //kDebug() << "emitChanged" << endl;
-    emit dataChanged(worldIndex(), collisionSolverIndex());
-    //if(itemCount() > 0) emit dataChanged(itemIndex(0), itemIndex(itemCount()-1));
+    if(!_updating) {
+        _world->doCalcFn();
+        emit worldDataChanged(dynamicOnly);
+        if(!dynamicOnly) emit dataChanged(worldIndex(), collisionSolverIndex());
+    }
 }
 
 QModelIndex WorldModel::worldIndex() const
@@ -321,13 +324,15 @@ StepCore::Object* WorldModel::object(const QModelIndex& index) const
     else return NULL;
 }
 
+#if 0
 void WorldModel::objectChanged(const StepCore::Object* /*object*/)
 {
     if(!_updating) {
         _world->doCalcFn();
-        emitChanged();
+        emitChanged(false);
     }
 }
+#endif
 
 StepCore::Item* WorldModel::item(const QModelIndex& index) const
 {
@@ -451,7 +456,6 @@ void WorldModel::addItem(StepCore::Item* item)
 {
     beginInsertRows(worldIndex(), itemCount(), itemCount());
     _world->addItem(item);
-    _world->doCalcFn();
     endInsertRows();
     emitChanged();
 }
@@ -461,7 +465,6 @@ void WorldModel::removeItem(StepCore::Item* item)
     int itemIndex = _world->itemIndex(item);
     beginRemoveRows(worldIndex(), itemIndex, itemIndex);
     _world->removeItem(item);
-    _world->doCalcFn();
     endRemoveRows();
     emitChanged();
 }
@@ -478,7 +481,6 @@ StepCore::Solver* WorldModel::swapSolver(StepCore::Solver* solver)
     endInsertRows();
     if(selected) selectionModel()->select(solverIndex(), QItemSelectionModel::Select);
     if(current) selectionModel()->setCurrentIndex(solverIndex(), QItemSelectionModel::Current);
-    _world->doCalcFn();
     emitChanged();
     return oldSolver;
 }
@@ -684,8 +686,6 @@ void WorldModel::simulationFrameEnd(int result)
     }
 
     // Update GUI
-    _world->doCalcFn();
-
     _simulationFrameWaiting = false;
     emitChanged();
 
