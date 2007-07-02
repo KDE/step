@@ -30,19 +30,16 @@ static const char description[] =
 
 static const char version[] = STEP_VERSION;
 
-static KCmdLineOptions options[] =
-{
-    { "+[file]", I18N_NOOP( "Document to open" ), 0 },
-    KCmdLineLastOption
-};
-
 int main(int argc, char* argv[])
 {
-    KAboutData aboutData("step", I18N_NOOP("Step"), version, description,
-                     KAboutData::License_GPL, "(C) 2007 Vladimir Kuznetsov", 0, "http://stepcore.sf.net");
-    aboutData.addAuthor("Vladimir Kuznetsov", 0, "ks.vladimir@gmail.com", 0);
+    KAboutData aboutData("step", 0, ki18n("Step"), version, ki18n(description),
+                     KAboutData::License_GPL, ki18n("(C) 2007 Vladimir Kuznetsov"), KLocalizedString(), "http://stepcore.sf.net");
+    aboutData.addAuthor(ki18n("Vladimir Kuznetsov"), KLocalizedString(), "ks.vladimir@gmail.com");
 
     KCmdLineArgs::init(argc, argv, &aboutData);
+
+    KCmdLineOptions options;
+    options.add("+[file]", ki18n( "Document to open" ));
     KCmdLineArgs::addCmdLineOptions(options);
 
     KApplication app;
