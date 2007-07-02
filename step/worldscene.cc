@@ -67,8 +67,6 @@ QPainterPath WorldSceneAxes::shape() const
 
 void WorldSceneAxes::paint(QPainter* painter, const QStyleOptionGraphicsItem* /*option*/, QWidget* /*widget*/)
 {
-    if(!scene() || scene()->views().count() == 0) return;
-
     painter->setPen(QPen(Qt::gray, 0));//, Qt::DotLine, Qt::SquareCap, Qt::RoundJoin));
     painter->drawLine(QLineF(0, -LENGTH, 0, LENGTH));
     painter->drawLine(QLineF(-LENGTH, 0, LENGTH, 0));
@@ -92,7 +90,7 @@ void WorldSceneAxes::advance(int phase)
         _viewScale = static_cast<WorldScene*>(scene())->currentViewScale();
         resetMatrix();
         scale(1/_viewScale, -1/_viewScale);
-        update(); // XXX: documentation says this is unnessesary, but it doesn't work without it
+        //update(); // XXX: documentation says this is unnessesary, but it doesn't work without it
     }
 }
 
@@ -284,7 +282,8 @@ void WorldScene::worldSelectionChanged(const QItemSelection& selected, const QIt
 void WorldScene::worldDataChanged(const QModelIndex& /*topLeft*/, const QModelIndex& /*bottomRight*/)
 {
     _worldModel->simulationPause();
-    advance(); // XXX ?
+    //advance();
+    foreach (QGraphicsItem *item, items()) item->advance(1);
 }
 
 void WorldScene::updateViewScale()

@@ -68,6 +68,9 @@ public:
     }
 
 protected:
+//    virtual void scaleChanged();
+//#error dataChanged
+//#error scaleChanged
     virtual void mouseSetPos(const QPointF& pos, const QPointF& diff);
 
     void mousePressEvent(QGraphicsSceneMouseEvent* event);

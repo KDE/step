@@ -282,10 +282,9 @@ void WorldModel::resetWorld()
 void WorldModel::emitChanged()
 {
     // XXX
-    emit dataChanged(worldIndex(), worldIndex());
-    emit dataChanged(solverIndex(), solverIndex());
-    emit dataChanged(collisionSolverIndex(), collisionSolverIndex());
-    if(itemCount() > 0) emit dataChanged(itemIndex(0), itemIndex(itemCount()-1));
+    //kDebug() << "emitChanged" << endl;
+    emit dataChanged(worldIndex(), collisionSolverIndex());
+    //if(itemCount() > 0) emit dataChanged(itemIndex(0), itemIndex(itemCount()-1));
 }
 
 QModelIndex WorldModel::worldIndex() const
@@ -663,6 +662,7 @@ void WorldModel::simulationFrameBegin()
     }
 
     //qDebug("emit simulationDoFrame() t=%#x", int(QThread::currentThread()));
+    //kDebug() << "simulationFrameBegin" << endl;
     _simulationFrameWaiting = true;
     _simulationPaused = false;
     _simulationThread->doWorldEvolve(1.0/_simulationFps);
@@ -675,7 +675,7 @@ void WorldModel::simulationFrameEnd(int result)
     Q_ASSERT(_simulationCommand);
     Q_ASSERT(_simulationFrameWaiting || _simulationStopping);
 
-    //qDebug("simulationFrameEnd");
+    //kDebug() << "simulationFrameEnd" << endl;
 
     // It's OK to be aborted
     if(result == StepCore::Solver::Aborted) {

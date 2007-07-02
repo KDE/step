@@ -60,9 +60,9 @@ public:
 
 public:
     /** Returns property name */
-    const char* name() const { return _name; }
+    const QString& name() const { return _name; }
     /** Returns property description */
-    const char* description() const { return _description; }
+    const QString& description() const { return _description; }
     /** Returns property flags */
     int flags() const { return _flags; }
 
@@ -86,8 +86,8 @@ public:
     bool isStored() const { return _flags & STORED; }
 
 public:
-    const char* const _name;
-    const char* const _description;
+    const QString _name;
+    const QString _description;
     const int _flags;
     const int _userTypeId;
     QVariant (*const _readVariant)(const Object* obj);
@@ -108,9 +108,9 @@ public:
 
 public:
     /** Returns class name */
-    const char* className() const { return _className; }
+    const QString& className() const { return _className; }
     /** Returns class description */
-    const char* description() const { return _description; }
+    const QString& description() const { return _description; }
 
     /** Returns true if class is abstract */
     bool isAbstract() const { return _flags & ABSTRACT; }
@@ -134,23 +134,30 @@ public:
     const MetaProperty* classProperty(int n) const { return &_classProperties[n]; }
 
     /** Returns property count */
-    int propertyCount() const; ///< \todo TODO caching
+    int propertyCount() const { if(!_initialized) init(); return _allPropertyCount; }
     /** Returns property by index */
-    const MetaProperty* property(int n) const; ///< \todo TODO caching
+    const MetaProperty* property(int n) const { if(!_initialized) init(); return _allProperties[n]; }
     /** Returns property by name */
-    const MetaProperty* property(const char* name) const;
+    const MetaProperty* property(const QString& name) const;
 
 public:
-    const char* const _className;
-    const char* const _description;
+    void init() const;
+    void copyProperties(const MetaProperty** dest) const;
+
+    const QString     _className;
+    const QString     _description;
     const int         _flags;
     Object* (*const _newObject)();
     Object* (*const _cloneObject)(const Object&);
 
-    const MetaObject**  _superClasses;
-    const int           _superClassCount;
-    const MetaProperty* _classProperties;
-    const int           _classPropertyCount;
+    const MetaObject**  const _superClasses;
+    const int                 _superClassCount;
+    const MetaProperty* const _classProperties;
+    const int                 _classPropertyCount;
+
+    mutable bool                 _initialized;
+    mutable const MetaProperty** _allProperties;
+    mutable int                  _allPropertyCount;
 };
 
 /* Helper functions TODO: namespace of class ? */
@@ -261,15 +268,17 @@ struct MetaObjectHelper<Class, MetaObject::ABSTRACT> {
     static Object* cloneObjectHelper(const Object& obj) { Q_UNUSED(obj) return NULL; }
 };
 
+#define _STEPCORE_PROPERTY_NULL { QString(""), QString(""), 0,0,0,0,0,0 }
+
 #define STEPCORE_META_OBJECT(_className, _description, _flags, __superClasses, __properties) \
-    const StepCore::MetaProperty _className::_classProperties[] = { __properties }; \
+    const StepCore::MetaProperty _className::_classProperties[] = { _STEPCORE_PROPERTY_NULL, __properties }; \
     const StepCore::MetaObject*  _className::_superClasses[] = { __superClasses }; \
     const StepCore::MetaObject   _className::_metaObject = { \
-        __STRING(_className), _description, _flags, \
+        QString(__STRING(_className)), QString(_description), _flags, \
         StepCore::MetaObjectHelper<_className, _flags & StepCore::MetaObject::ABSTRACT>::newObjectHelper, \
         StepCore::MetaObjectHelper<_className, _flags & StepCore::MetaObject::ABSTRACT>::cloneObjectHelper, \
         _superClasses, sizeof(_superClasses)/sizeof(*_superClasses), \
-        _classProperties, sizeof(_classProperties)/sizeof(*_classProperties) };
+        _classProperties+1, sizeof(_classProperties)/sizeof(*_classProperties)-1, false, 0, 0 };
     
 #define STEPCORE_SUPER_CLASS(_className) _className::staticMetaObject(),
 

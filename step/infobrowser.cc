@@ -63,14 +63,14 @@ void InfoBrowser::showEvent(QShowEvent* event)
 void InfoBrowser::worldCurrentChanged(const QModelIndex& current, const QModelIndex& /*previous*/)
 {
     if(isHidden()) return;
-    QString className = _worldModel->data(current, WorldModel::ClassNameRole).toString();
+    QString className = current.data(WorldModel::ClassNameRole).toString();
     QString fileName = KStandardDirs::locate("data", QString("step/objinfo/%1.html").arg(className));
     if(!fileName.isEmpty()) {
         _htmlPart->openUrl(fileName);
     } else {
         _htmlPart->openStream( "text/html", KUrl() );
         _htmlPart->writeStream( i18n("<html><body><p>Documentation for %1 not found.</p></body></html>",
-                    _worldModel->data(current, WorldModel::ClassNameRole).toString()).toAscii() );
+                        current.data(WorldModel::ClassNameRole).toString()).toAscii() );
         _htmlPart->closeStream();
     }
 }

@@ -88,6 +88,7 @@ void ParticleGraphicsItem::paint(QPainter* painter, const QStyleOptionGraphicsIt
 void ParticleGraphicsItem::advance(int phase)
 {
     if(phase == 0) return;
+    //kDebug() << "particle advance" << endl;
     prepareGeometryChange();
 
     const StepCore::Vector2d& r = particle()->position();
