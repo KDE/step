@@ -130,11 +130,7 @@ void Graph::setWorld(World* world)
         setObjectPtr1(0);
         setObjectPtr2(0);
     } else if(this->world() != NULL) { 
-        if(_objectPtr1 != NULL) {
-            qDebug("%s", _objectPtr1->name().toAscii().constData());
-            qDebug("%s", world->name().toAscii().constData());
-            _objectPtr1 = world->object(_objectPtr1->name());
-        }
+        if(_objectPtr1 != NULL) _objectPtr1 = world->object(_objectPtr1->name());
         if(_objectPtr2 != NULL) _objectPtr2 = world->object(_objectPtr2->name());
     }
     Item::setWorld(world);

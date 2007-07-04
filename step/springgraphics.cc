@@ -106,12 +106,15 @@ void SpringHandlerGraphicsItem::paint(QPainter* painter, const QStyleOptionGraph
     painter->drawRect(_boundingRect);
 }
 
-void SpringHandlerGraphicsItem::advance(int phase)
+void SpringHandlerGraphicsItem::viewScaleChanged()
 {
-    if(phase == 0) return;
     prepareGeometryChange();
     double w = HANDLER_SIZE/currentViewScale()/2;
     _boundingRect = QRectF(-w, -w, w*2, w*2);
+}
+
+void SpringHandlerGraphicsItem::worldDataChanged(bool)
+{
     if(_num == 2)
         setPos(vectorToPoint(static_cast<StepCore::Spring*>(_item)->position2()-
                              static_cast<StepCore::Spring*>(_item)->position1()));
@@ -186,6 +189,8 @@ inline StepCore::Spring* SpringGraphicsItem::spring() const
 
 QPainterPath SpringGraphicsItem::shape() const
 {
+    return _painterPath;
+    /*
     QPainterPath path;
 
     double u = 1/currentViewScale();
@@ -194,6 +199,7 @@ QPainterPath SpringGraphicsItem::shape() const
     _worldModel->simulationPause();
     StepCore::Vector2d r = spring()->position2() - spring()->position1();
     return QMatrix().rotate(atan2(r[1], r[0])*180/3.14).map(path);
+    */
 }
 
 void SpringGraphicsItem::paint(QPainter* painter, const QStyleOptionGraphicsItem* /*option*/, QWidget* /*widget*/)
@@ -232,10 +238,8 @@ void SpringGraphicsItem::paint(QPainter* painter, const QStyleOptionGraphicsItem
     }
 }
 
-void SpringGraphicsItem::advance(int phase)
+void SpringGraphicsItem::viewScaleChanged()
 {
-    if(phase == 0) return;
-
     prepareGeometryChange();
 
     StepCore::Vector2d r = spring()->position2() - spring()->position1();
@@ -247,8 +251,6 @@ void SpringGraphicsItem::advance(int phase)
         _rscale = sc*RADIUS;
         if(_radius < 1) { _rscale = 0; _radius = 1; }
     } else { _rscale = 0; _radius = 1; }
-
-    setPos(vectorToPoint(spring()->position1()));
 
     double s = currentViewScale();
     double m = (SELECTION_MARGIN+1) / s;
@@ -268,22 +270,35 @@ void SpringGraphicsItem::advance(int phase)
         StepCore::Vector2d rd2 = r2->position() - spring()->position2();
         _boundingRect |= QRectF(r[0], r[1], rd2[0], rd2[1]).normalized();
     }
+
+    double u = 1/s;
+    _painterPath.addRect(QRectF(-u, -_radius-u, _rnorm+u, _radius*2+u));
+    _painterPath = QMatrix().rotate(atan2(r[1], r[0])*180/3.14).map(_painterPath);
         
-    update(); // XXX: documentation says this is unnessesary, but it doesn't work without it
+    //update(); // XXX: documentation says this is unnessesary, but it doesn't work without it
 }
 
-QVariant SpringGraphicsItem::itemChange(GraphicsItemChange change, const QVariant& value)
+void SpringGraphicsItem::worldDataChanged(bool dynamicOnly)
 {
-    if(change == QGraphicsItem::ItemSelectedChange && scene()) {
-        if(value.toBool()) {
-            _handler1->setVisible(true);
-            _handler2->setVisible(true);
-        } else {
-            _handler1->setVisible(false);
-            _handler2->setVisible(false);
-        }
+    Q_UNUSED(dynamicOnly)
+    // XXX: TODO do not redraw everything each time
+    setPos(vectorToPoint(spring()->position1()));
+    viewScaleChanged();
+    update();
+}
+
+void SpringGraphicsItem::stateChanged()
+{
+    if(_isSelected) {
+        _handler1->setVisible(true);
+        _handler2->setVisible(true);
     }
-    return WorldGraphicsItem::itemChange(change, value);
+    else {
+        _handler1->setVisible(false);
+        _handler2->setVisible(false);
+    }
+    viewScaleChanged();
+    update();
 }
 
 void SpringGraphicsItem::mouseSetPos(const QPointF& /*pos*/, const QPointF& diff)

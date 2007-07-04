@@ -67,10 +67,11 @@ public:
         return QPointF(vector[0], vector[1]);
     }
 
+    virtual void viewScaleChanged();
+    virtual void stateChanged();
+    virtual void worldDataChanged(bool dynamicOnly);
+
 protected:
-//    virtual void scaleChanged();
-//#error dataChanged
-//#error scaleChanged
     virtual void mouseSetPos(const QPointF& pos, const QPointF& diff);
 
     void mousePressEvent(QGraphicsSceneMouseEvent* event);
@@ -85,6 +86,7 @@ protected:
     WorldModel* _worldModel;
     QRectF  _boundingRect;
     bool    _isMouseOverItem;
+    bool    _isSelected;
     bool    _isMoving;
 
     double currentViewScale() const;
@@ -108,7 +110,9 @@ public:
                         QGraphicsItem* parent, const StepCore::MetaProperty* property);
 
     void paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget);
-    void advance(int phase);
+
+    void viewScaleChanged();
+    void worldDataChanged(bool);
 
 protected:
     void mouseMoveEvent(QGraphicsSceneMouseEvent *event);

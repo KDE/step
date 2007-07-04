@@ -40,7 +40,8 @@ public:
     QRectF boundingRect() const;
     QPainterPath shape() const;
     void paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget);
-    void advance(int phase);
+    void viewScaleChanged();
+
 protected:
     QRectF _boundingRect;
     double _viewScale;
@@ -82,16 +83,12 @@ void WorldSceneAxes::paint(QPainter* painter, const QStyleOptionGraphicsItem* /*
                                                 QString::number( LENGTH/_viewScale ));
 }
 
-void WorldSceneAxes::advance(int phase)
+void WorldSceneAxes::viewScaleChanged()
 {
-    if(phase == 0) return;
-    if(scene()) {
-        prepareGeometryChange();
-        _viewScale = static_cast<WorldScene*>(scene())->currentViewScale();
-        resetMatrix();
-        scale(1/_viewScale, -1/_viewScale);
-        //update(); // XXX: documentation says this is unnessesary, but it doesn't work without it
-    }
+    prepareGeometryChange();
+    _viewScale = static_cast<WorldScene*>(scene())->currentViewScale();
+    resetMatrix();
+    scale(1/_viewScale, -1/_viewScale);
 }
 
 WorldScene::WorldScene(WorldModel* worldModel, QObject* parent)
@@ -222,8 +219,9 @@ void WorldScene::worldModelReset()
 
     /* Axes */
     //new WorldSceneAxes(0, this);
-    addItem(new WorldSceneAxes());
-    advance();
+    WorldSceneAxes* axes = new WorldSceneAxes();
+    addItem(axes);
+    axes->viewScaleChanged();
 
     /* Check for new items */
     for(int i=0; i<_worldModel->itemCount(); ++i) {
@@ -242,7 +240,14 @@ void WorldScene::worldRowsInserted(const QModelIndex& parent, int start, int end
         if(graphicsItem) {
             _itemsHash.insert(item, graphicsItem);
             addItem(graphicsItem);
-            graphicsItem->advance(1);
+            graphicsItem->viewScaleChanged();
+            graphicsItem->worldDataChanged(false);
+            foreach(QGraphicsItem *item, items()) {
+                if(graphicsItem->isAncestorOf(item)) {
+                    WorldGraphicsItem* gItem = dynamic_cast<WorldGraphicsItem*>(item);
+                    if(gItem) gItem->viewScaleChanged();
+                }
+            }
         }
     }
 }
@@ -278,10 +283,13 @@ void WorldScene::worldSelectionChanged(const QItemSelection& selected, const QIt
     }
 }
 
-void WorldScene::worldDataChanged(bool)
+void WorldScene::worldDataChanged(bool dynamicOnly)
 {
     _worldModel->simulationPause();
-    foreach (QGraphicsItem *item, items()) item->advance(1);
+    foreach (QGraphicsItem *item, items()) {
+        WorldGraphicsItem* gItem = dynamic_cast<WorldGraphicsItem*>(item);
+        if(gItem) gItem->worldDataChanged(dynamicOnly);
+    }
 }
 
 void WorldScene::updateViewScale()
@@ -289,7 +297,14 @@ void WorldScene::updateViewScale()
     if(!views().isEmpty()) {
         _currentViewScale = views()[0]->matrix().m11();
         _worldModel->simulationPause();
-        advance();
+        foreach (QGraphicsItem *item, items()) {
+            WorldGraphicsItem* gItem = dynamic_cast<WorldGraphicsItem*>(item);
+            if(gItem) gItem->viewScaleChanged();
+            else {
+                WorldSceneAxes* aItem = dynamic_cast<WorldSceneAxes*>(item);
+                if(aItem) aItem->viewScaleChanged();
+            }
+        }
     }
 }
 

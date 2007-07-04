@@ -137,6 +137,7 @@ bool PolygonCreator::sceneEvent(QEvent* event)
         StepCore::Vector2d v = WorldGraphicsItem::pointToVector(pos);
 
         _worldModel->simulationPause();
+        // XXX: don't use strings !
         QString vertexes = _item->metaObject()->property("vertexes")->readString(_item).section(',', 0, -3);
         if(vertexes.isEmpty()) {
             _worldModel->setProperty(_item, _item->metaObject()->property("position"), QVariant::fromValue(v));
@@ -212,7 +213,7 @@ void PolygonGraphicsItem::paint(QPainter* painter, const QStyleOptionGraphicsIte
     painter->setRenderHint(QPainter::Antialiasing, renderHints & QPainter::Antialiasing);
     //painter->restore();
 
-    if(isSelected()) {
+    if(_isSelected) {
         // XXX: do it better
         double s = currentViewScale();
         QRectF rect = _painterPath.boundingRect();
@@ -230,7 +231,7 @@ void PolygonGraphicsItem::paint(QPainter* painter, const QStyleOptionGraphicsIte
         painter->setRenderHint(QPainter::Antialiasing, renderHints & QPainter::Antialiasing);
     }
 
-    if(isSelected() || _isMouseOverItem) {
+    if(_isSelected || _isMouseOverItem) {
         painter->setPen(QPen(Qt::blue, 0));
         drawArrow(painter, polygon()->velocity());
         painter->setPen(QPen(Qt::red, 0));
@@ -238,12 +239,10 @@ void PolygonGraphicsItem::paint(QPainter* painter, const QStyleOptionGraphicsIte
     }
 }
 
-void PolygonGraphicsItem::advance(int phase)
+void PolygonGraphicsItem::viewScaleChanged()
 {
-    if(phase == 0) return;
     prepareGeometryChange();
 
-    const StepCore::Vector2d& r = polygon()->position();
     const StepCore::Vector2d& v = polygon()->velocity();
     const StepCore::Vector2d  a = polygon()->force() / polygon()->mass();
     double s = currentViewScale();
@@ -265,26 +264,22 @@ void PolygonGraphicsItem::advance(int phase)
                     | QRectF(0, 0, a[0], a[1]).normalized();
     _boundingRect.adjust(-ARROW_STROKE-SELECTION_MARGIN,-ARROW_STROKE-SELECTION_MARGIN,
                           ARROW_STROKE+SELECTION_MARGIN, ARROW_STROKE+SELECTION_MARGIN);
-    setPos(r[0], r[1]);
-    update(); // XXX: documentation says this is unnessesary, but it doesn't work without it
 }
 
-void PolygonGraphicsItem::mouseSetPos(const QPointF& pos, const QPointF& /*diff*/)
+void PolygonGraphicsItem::worldDataChanged(bool dynamicOnly)
 {
-    _worldModel->simulationPause();
-    _worldModel->setProperty(_item, _item->metaObject()->property("position"),
-                                QVariant::fromValue(pointToVector(pos)));
+    Q_UNUSED(dynamicOnly)
+    // XXX: TODO do not redraw everything each time
+    setPos(vectorToPoint(polygon()->position()));
+    viewScaleChanged();
+    update();
 }
 
-QVariant PolygonGraphicsItem::itemChange(GraphicsItemChange change, const QVariant& value)
+void PolygonGraphicsItem::stateChanged()
 {
-    if(change == QGraphicsItem::ItemSelectedChange && scene()) {
-        if(value.toBool()) {
-            _velocityHandler->setVisible(true);
-        } else {
-            _velocityHandler->setVisible(false);
-        }
-    }
-    return WorldGraphicsItem::itemChange(change, value);
+    if(_isSelected) _velocityHandler->setVisible(true);
+    else _velocityHandler->setVisible(false);
+    viewScaleChanged();
+    update();
 }
 

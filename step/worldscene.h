@@ -59,7 +59,7 @@ signals:
 
 protected slots:
     void worldModelReset();
-    void worldDataChanged(bool);
+    void worldDataChanged(bool dynamicOnly);
     void worldCurrentChanged(const QModelIndex& current, const QModelIndex& previous);
     void worldSelectionChanged(const QItemSelection& selected, const QItemSelection& deselected);
     

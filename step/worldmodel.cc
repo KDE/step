@@ -70,20 +70,26 @@ CommandEditProperty::CommandEditProperty(WorldModel* worldModel, StepCore::Objec
 
 void CommandEditProperty::redo()
 {
-    foreach(EditProperty p, _commands) {
+    bool dynamicOnly = true;
+    foreach(const EditProperty& p, _commands) {
         if(p.newValue.type() != QVariant::String) p.property->writeVariant(p.object, p.newValue);
         else p.property->writeString(p.object, p.newValue.value<QString>());
+        if(!p.property->isDynamic()) dynamicOnly = false;
     }
     //_worldModel->objectChanged(NULL);
-    _worldModel->emitChanged(false);
+    _worldModel->emitChanged(dynamicOnly);
     //foreach(StepCore::Object* object, _objects) _worldModel->objectChanged(object);
 }
 
 void CommandEditProperty::undo()
 {
-    foreach(EditProperty p, _commands) p.property->writeVariant(p.object, p.oldValue);
+    bool dynamicOnly = true;
+    foreach(const EditProperty& p, _commands) {
+        p.property->writeVariant(p.object, p.oldValue);
+        if(!p.property->isDynamic()) dynamicOnly = false;
+    }
     //_worldModel->objectChanged(NULL);
-    _worldModel->emitChanged(false);
+    _worldModel->emitChanged(dynamicOnly);
     //foreach(StepCore::Object* object, _objects) _worldModel->objectChanged(object);
 }
 
@@ -239,6 +245,7 @@ WorldModel::WorldModel(QObject* parent)
     _simulationThread->start();
 
     _updating = 0;
+    _updatingDynamicOnly = true;
     resetWorld();
 
     _simulationFrameWaiting = false;
@@ -286,7 +293,19 @@ void WorldModel::emitChanged(bool dynamicOnly)
     if(!_updating) {
         _world->doCalcFn();
         emit worldDataChanged(dynamicOnly);
-        if(!dynamicOnly) emit dataChanged(worldIndex(), collisionSolverIndex());
+        if(!dynamicOnly) {
+            emit dataChanged(worldIndex(), collisionSolverIndex());
+        }
+    } else if(!dynamicOnly) {
+        _updatingDynamicOnly = false;
+    }
+}
+
+void WorldModel::endUpdate()
+{
+    if(!--_updating) {
+        emitChanged(_updatingDynamicOnly);
+        _updatingDynamicOnly = true;
     }
 }
 

@@ -47,13 +47,14 @@ public:
     NoteGraphicsItem(StepCore::Item* item, WorldModel* worldModel);
 
     void paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget);
-    void advance(int phase);
+
+    void viewScaleChanged();
+    void worldDataChanged(bool dynamicOnly);
 
 protected slots:
     void contentsChanged();
 
 protected:
-    QVariant itemChange(GraphicsItemChange change, const QVariant& value);
     StepCore::Note* note() const;
     NoteTextItem*   _textItem;
     int             _updating;
@@ -109,7 +110,7 @@ public:
     GraphWidget(GraphGraphicsItem* graphItem, QWidget *parent = 0);
     ~GraphWidget();
 
-    void advance();
+    void worldDataChanged();
 
 protected slots:
     void objectSelected(const QString& text);
@@ -132,6 +133,8 @@ protected:
     int         _doclear;
 
     double      _lastPointTime;
+
+    friend class GraphGraphicsItem;
 };
 
 class GraphGraphicsItem: public WorldGraphicsItem
@@ -141,7 +144,9 @@ public:
     ~GraphGraphicsItem();
 
     void paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget);
-    void advance(int phase);
+
+    void viewScaleChanged();
+    void worldDataChanged(bool);
 
 protected:
     StepCore::Graph* graph() const;

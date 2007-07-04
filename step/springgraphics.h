@@ -39,7 +39,9 @@ public:
                                 QGraphicsItem* parent, int num);
 
     void paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget);
-    void advance(int phase);
+
+    void viewScaleChanged();
+    void worldDataChanged(bool);
 
 protected:
     void mouseMoveEvent(QGraphicsSceneMouseEvent *event);
@@ -54,12 +56,15 @@ public:
 
     QPainterPath shape() const;
     void paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget);
-    void advance(int phase);
+
+    void viewScaleChanged();
+    void stateChanged();
+    void worldDataChanged(bool);
 
 protected:
-    QVariant itemChange(GraphicsItemChange change, const QVariant& value);
     void mouseSetPos(const QPointF& pos, const QPointF& diff);
     StepCore::Spring* spring() const;
+    QPainterPath _painterPath;
     double _rnorm;
     double _rscale;
     double _radius;

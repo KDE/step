@@ -62,7 +62,7 @@ void NoteTextItem::focusInEvent(QFocusEvent *event)
     if(_noteItem->note()->text().isEmpty()) {
         ++_noteItem->_updating;
         setPlainText("");
-        _noteItem->advance(1);
+        _noteItem->worldDataChanged(false);
         --_noteItem->_updating;
     }
     QGraphicsTextItem::focusInEvent(event);
@@ -73,7 +73,7 @@ void NoteTextItem::focusOutEvent(QFocusEvent *event)
     if(_noteItem->note()->text().isEmpty()) {
         ++_noteItem->_updating;
         setPlainText(emptyNotice());
-        _noteItem->advance(1);
+        _noteItem->worldDataChanged(false);
         --_noteItem->_updating;
     }
     QGraphicsTextItem::focusOutEvent(event);
@@ -93,7 +93,7 @@ NoteGraphicsItem::NoteGraphicsItem(StepCore::Item* item, WorldModel* worldModel)
     _lastScale = 1;
     _updating = 0;
     connect(_textItem->document(), SIGNAL(contentsChanged()), this, SLOT(contentsChanged()));
-    advance(1);
+    worldDataChanged(false);
 }
 
 inline StepCore::Note* NoteGraphicsItem::note() const
@@ -137,20 +137,8 @@ void NoteGraphicsItem::paint(QPainter* /*painter*/, const QStyleOptionGraphicsIt
     }*/
 }
 
-void NoteGraphicsItem::advance(int phase)
+void NoteGraphicsItem::viewScaleChanged()
 {
-    if(phase == 0) return;
-
-    if(!_updating && _textItem->toPlainText() != note()->text()) {
-        ++_updating;
-        if(!_textItem->hasFocus() && note()->text().isEmpty()) {
-            _textItem->setPlainText(_textItem->emptyNotice());
-        } else {
-            _textItem->setPlainText(note()->text());
-        }
-        --_updating;
-    }
-
     double s = currentViewScale();
     if(s != _lastScale) {
         _textItem->resetTransform();
@@ -158,7 +146,6 @@ void NoteGraphicsItem::advance(int phase)
         _lastScale = s;
     }
     
-    QPointF r = vectorToPoint(note()->position());
     QSizeF  size = _textItem->boundingRect().size()/s;
     size.setHeight(-size.height());
 
@@ -166,9 +153,24 @@ void NoteGraphicsItem::advance(int phase)
         prepareGeometryChange();
         _boundingRect.setSize(size);
     }
-    
-    if(r != pos()) setPos(r);
-    update(); // XXX: documentation says this is unnessesary, but it doesn't work without it
+}
+
+void NoteGraphicsItem::worldDataChanged(bool dynamicOnly)
+{
+    if(!dynamicOnly) {
+        setPos(vectorToPoint(note()->position()));
+        if(!_updating && _textItem->toPlainText() != note()->text()) {
+            ++_updating;
+            if(!_textItem->hasFocus() && note()->text().isEmpty()) {
+                _textItem->setPlainText(_textItem->emptyNotice());
+            } else {
+                _textItem->setPlainText(note()->text());
+            }
+            --_updating;
+        }
+        viewScaleChanged();
+        update();
+    }
 }
 
 void NoteGraphicsItem::contentsChanged()
@@ -181,20 +183,6 @@ void NoteGraphicsItem::contentsChanged()
         --_updating;
     }
 }
-
-QVariant NoteGraphicsItem::itemChange(GraphicsItemChange change, const QVariant& value)
-{
-    /*
-    if(change == QGraphicsItem::ItemSelectedChange && scene()) {
-        if(value.toBool()) {
-            _velocityHandler->setVisible(true);
-        } else {
-            _velocityHandler->setVisible(false);
-        }
-    }*/
-    return WorldGraphicsItem::itemChange(change, value);
-}
-
 
 QModelIndex GraphFlatWorldModel::index(int row, int column, const QModelIndex &parent) const
 {
@@ -326,7 +314,7 @@ GraphWidget::GraphWidget(GraphGraphicsItem* graphItem, QWidget *parent)
     }
 
     _doclear = 0;
-    advance();
+    worldDataChanged();
     _doclear = 1;
 }
 
@@ -430,10 +418,10 @@ void GraphWidget::indexSelected(const QString& text)
     } else {
         _lastPointTime = _worldModel->world()->time();
     }
-    advance();
+    worldDataChanged();
 }
 
-void GraphWidget::advance()
+void GraphWidget::worldDataChanged()
 {
     if(!_updating) {
         ++_updating;
@@ -496,7 +484,6 @@ GraphGraphicsItem::GraphGraphicsItem(StepCore::Item* item, WorldModel* worldMode
     _boundingRect = QRectF(0, 0, 0, 0);
     _lastScale = 1;
     scale(1, -1);
-    advance(1);
 }
 
 GraphGraphicsItem::~GraphGraphicsItem()
@@ -517,10 +504,8 @@ void GraphGraphicsItem::paint(QPainter* painter, const QStyleOptionGraphicsItem*
     painter->drawRect(rect);
 }
 
-void GraphGraphicsItem::advance(int phase)
+void GraphGraphicsItem::viewScaleChanged()
 {
-    if(phase == 0) return;
-
     double s = currentViewScale();
     if(s != _lastScale) {
         resetTransform();
@@ -528,10 +513,6 @@ void GraphGraphicsItem::advance(int phase)
         _lastScale = s;
     }
     
-    QPointF r = vectorToPoint(graph()->position());
-    StepCore::Vector2d vs = graph()->size();
-    QSizeF vss(vs[0], vs[1]);
-
     /*
     QSizeF  size = _textItem->boundingRect().size()/s;
     size.setHeight(-size.height());
@@ -540,6 +521,16 @@ void GraphGraphicsItem::advance(int phase)
         prepareGeometryChange();
         _boundingRect.setSize(size);
     }*/
+
+    setPos(vectorToPoint(graph()->position()));
+
+    StepCore::Vector2d vs = graph()->size();
+    QSizeF vss(vs[0]+2, vs[1]+2);
+
+    if(vss != _boundingRect.size()) {
+        prepareGeometryChange();
+        _boundingRect.setSize(vss);
+    }
 
     if(scene() && !scene()->views().isEmpty()) {
         QGraphicsView* activeView = scene()->views().first();
@@ -555,19 +546,16 @@ void GraphGraphicsItem::advance(int phase)
         _graphWidget->move(viewportPos);
 
         if(_graphWidget->size() != _boundingRect.size()) {
-            _graphWidget->resize(vss.toSize());
+            _graphWidget->resize(vss.toSize() - QSize(2,2));
         }
-
-        _graphWidget->advance();
     }
+}
 
-    if(r != pos()) setPos(r);
-    if(vss + QSizeF(2,2) != _boundingRect.size()) {
-        prepareGeometryChange();
-        _boundingRect.setSize(vss + QSizeF(2,2));
+void GraphGraphicsItem::worldDataChanged(bool dynamicOnly)
+{
+    if(!dynamicOnly) {
+        viewScaleChanged();
     }
-
-
-    update(); // XXX: documentation says this is unnessesary, but it doesn't work without it
+    _graphWidget->worldDataChanged();
 }
 

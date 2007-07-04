@@ -39,17 +39,19 @@ protected:
     void fixInertia();
 };
 
-class PolygonGraphicsItem: public WorldGraphicsItem {
+class PolygonGraphicsItem: public WorldGraphicsItem
+{
 public:
     PolygonGraphicsItem(StepCore::Item* item, WorldModel* worldModel);
 
     QPainterPath shape() const;
     void paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget);
-    void advance(int phase);
+
+    void viewScaleChanged();
+    void stateChanged();
+    void worldDataChanged(bool dynamicOnly);
 
 protected:
-    QVariant itemChange(GraphicsItemChange change, const QVariant& value);
-    void mouseSetPos(const QPointF& pos, const QPointF& diff);
     StepCore::Polygon* polygon() const;
     QPainterPath _painterPath;
 

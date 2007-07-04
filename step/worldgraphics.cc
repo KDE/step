@@ -65,7 +65,8 @@ bool ItemCreator::sceneEvent(QEvent* event)
 }
 
 WorldGraphicsItem::WorldGraphicsItem(StepCore::Item* item, WorldModel* worldModel, QGraphicsItem* parent)
-    : QGraphicsItem(parent), _item(item), _worldModel(worldModel), _isMouseOverItem(false), _isMoving(false)
+    : QGraphicsItem(parent), _item(item), _worldModel(worldModel),
+      _isMouseOverItem(false), _isSelected(false), _isMoving(false)
 {
     // XXX: use persistant indexes here and in propertiesbrowser
     setZValue(BODY_ZVALUE);
@@ -181,13 +182,15 @@ void WorldGraphicsItem::mouseReleaseEvent(QGraphicsSceneMouseEvent *event)
 void WorldGraphicsItem::hoverEnterEvent(QGraphicsSceneHoverEvent* /*event*/)
 {
     _isMouseOverItem = true;
-    update(_boundingRect);
+    stateChanged();
+    //update(_boundingRect);
 }
 
 void WorldGraphicsItem::hoverLeaveEvent(QGraphicsSceneHoverEvent* /*event*/)
 {
     _isMouseOverItem = false;
-    update(_boundingRect);
+    stateChanged();
+    //update(_boundingRect);
 }
 
 QVariant WorldGraphicsItem::itemChange(GraphicsItemChange change, const QVariant& value)
@@ -198,8 +201,22 @@ QVariant WorldGraphicsItem::itemChange(GraphicsItemChange change, const QVariant
             _worldModel->selectionModel()->setCurrentIndex(index, QItemSelectionModel::Select);
         else if(!value.toBool() && _worldModel->selectionModel()->isSelected(index))
             _worldModel->selectionModel()->select(index, QItemSelectionModel::Deselect);
+        _isSelected = value.toBool();
+        stateChanged();
     }
     return QGraphicsItem::itemChange(change, value);
+}
+
+void WorldGraphicsItem::viewScaleChanged()
+{
+}
+
+void WorldGraphicsItem::worldDataChanged(bool)
+{
+}
+
+void WorldGraphicsItem::stateChanged()
+{
 }
 
 ArrowHandlerGraphicsItem::ArrowHandlerGraphicsItem(StepCore::Item* item, WorldModel* worldModel, 
@@ -217,14 +234,18 @@ void ArrowHandlerGraphicsItem::paint(QPainter* painter, const QStyleOptionGraphi
     painter->drawRect(_boundingRect);
 }
 
-void ArrowHandlerGraphicsItem::advance(int phase)
+void ArrowHandlerGraphicsItem::viewScaleChanged()
 {
-    if(phase == 0) return;
+    //kDebug() << "ArrowHandlerGraphicsItem::viewScaleChanged()" << endl;
     prepareGeometryChange();
     double w = HANDLER_SIZE/currentViewScale()/2;
     _boundingRect = QRectF(-w, -w, w*2, w*2);
+}
+
+void ArrowHandlerGraphicsItem::worldDataChanged(bool)
+{
+    //kDebug() << "ArrowHandlerGraphicsItem::worldDataChanged()" << endl;
     setPos(vectorToPoint(_property->readVariant(_item).value<StepCore::Vector2d>()));
-    update(); //XXX
 }
 
 void ArrowHandlerGraphicsItem::mouseMoveEvent(QGraphicsSceneMouseEvent *event)

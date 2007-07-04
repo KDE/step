@@ -33,6 +33,7 @@ ParticleGraphicsItem::ParticleGraphicsItem(StepCore::Item* item, WorldModel* wor
     setFlag(QGraphicsItem::ItemIsSelectable);
     setFlag(QGraphicsItem::ItemIsMovable);
     setAcceptsHoverEvents(true);
+    _lastArrowRadius = -1;
     _velocityHandler = new ArrowHandlerGraphicsItem(item, worldModel, this,
                    _item->metaObject()->property("velocity"));
     _velocityHandler->setVisible(false);
@@ -68,7 +69,7 @@ void ParticleGraphicsItem::paint(QPainter* painter, const QStyleOptionGraphicsIt
     painter->setBrush(QBrush());
     painter->setRenderHint(QPainter::Antialiasing, renderHints & QPainter::Antialiasing);
 
-    if(isSelected()) {
+    if(_isSelected) {
         painter->setRenderHint(QPainter::Antialiasing, true);
         painter->setPen(QPen(SELECTION_COLOR, 0, Qt::DashLine));
         //painter->setBrush(QBrush(QColor(0, 0x99, 0xff)));
@@ -77,7 +78,7 @@ void ParticleGraphicsItem::paint(QPainter* painter, const QStyleOptionGraphicsIt
         painter->setRenderHint(QPainter::Antialiasing, renderHints & QPainter::Antialiasing);
     }
 
-    if(isSelected() || _isMouseOverItem) {
+    if(_isMouseOverItem || _isSelected) {
         painter->setPen(QPen(Qt::blue, 0));
         drawArrow(painter, particle()->velocity());
         painter->setPen(QPen(Qt::red, 0));
@@ -85,35 +86,46 @@ void ParticleGraphicsItem::paint(QPainter* painter, const QStyleOptionGraphicsIt
     }
 }
 
-void ParticleGraphicsItem::advance(int phase)
+void ParticleGraphicsItem::viewScaleChanged()
 {
-    if(phase == 0) return;
-    //kDebug() << "particle advance" << endl;
     prepareGeometryChange();
 
-    const StepCore::Vector2d& r = particle()->position();
-    const StepCore::Vector2d& v = particle()->velocity();
-    const StepCore::Vector2d  a = particle()->force() / particle()->mass();
     double s = currentViewScale();
+    _boundingRect = QRectF((-RADIUS-SELECTION_MARGIN)/s,  (-RADIUS-SELECTION_MARGIN)/s,
+                            (RADIUS+SELECTION_MARGIN)*2/s,(RADIUS+SELECTION_MARGIN)*2/s);
 
-    _boundingRect = QRectF((-RADIUS-SELECTION_MARGIN)/s,    (-RADIUS-SELECTION_MARGIN)/s,
-                            (RADIUS+SELECTION_MARGIN)*2/s,(RADIUS+SELECTION_MARGIN)*2/s) 
-                    | QRectF(0, 0, v[0], v[1]).normalized()
-                    | QRectF(0, 0, a[0], a[1]).normalized();
-    _boundingRect.adjust(-ARROW_STROKE,-ARROW_STROKE,ARROW_STROKE,ARROW_STROKE);
-    setPos(r[0], r[1]);
-    update(); // XXX: documentation says this is unnessesary, but it doesn't work without it
+    if(_isMouseOverItem || _isSelected) {
+        if(_lastArrowRadius < 0) {
+            double vnorm = particle()->velocity().norm();
+            double anorm = particle()->force().norm() / particle()->mass();
+            _lastArrowRadius = qMax(vnorm, anorm) + ARROW_STROKE;
+        }
+        _boundingRect |= QRectF(-_lastArrowRadius, -_lastArrowRadius,
+                                    2*_lastArrowRadius, 2*_lastArrowRadius);
+    }
 }
 
-QVariant ParticleGraphicsItem::itemChange(GraphicsItemChange change, const QVariant& value)
+void ParticleGraphicsItem::worldDataChanged(bool)
 {
-    if(change == QGraphicsItem::ItemSelectedChange && scene()) {
-        if(value.toBool()) {
-            _velocityHandler->setVisible(true);
-        } else {
-            _velocityHandler->setVisible(false);
+    if(_isMouseOverItem || _isSelected) {
+        double vnorm = particle()->velocity().norm();
+        double anorm = particle()->force().norm() / particle()->mass();
+        double arrowRadius = qMax(vnorm, anorm) + ARROW_STROKE;
+        if(arrowRadius > _lastArrowRadius || arrowRadius < _lastArrowRadius/2) {
+            _lastArrowRadius = arrowRadius;
+            viewScaleChanged();
         }
+        update();
     }
-    return WorldGraphicsItem::itemChange(change, value);
+    setPos(vectorToPoint(particle()->position()));
+}
+
+void ParticleGraphicsItem::stateChanged()
+{
+    if(_isSelected) _velocityHandler->setVisible(true);
+    else _velocityHandler->setVisible(false);
+    if(!_isMouseOverItem && !_isSelected) _lastArrowRadius = -1;
+    viewScaleChanged();
+    update();
 }
 

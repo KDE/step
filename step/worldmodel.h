@@ -123,7 +123,7 @@ public:
     void endMacro();
 
     void beginUpdate() { ++_updating; }
-    void endUpdate() { if(!--_updating) emitChanged(false); }
+    void endUpdate();
 
     // Property edit
     void setProperty(StepCore::Object* object, const StepCore::MetaProperty* property,
@@ -183,7 +183,8 @@ protected:
     const WorldFactory* _worldFactory;
     QString _errorString;
 
-    int _updating;
+    int  _updating;
+    bool _updatingDynamicOnly;
 
     QTimer*           _simulationTimer;
     int               _simulationFps;

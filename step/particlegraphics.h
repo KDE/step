@@ -28,13 +28,16 @@ public:
 
     QPainterPath shape() const;
     void paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget);
-    void advance(int phase);
+
+    void viewScaleChanged();
+    void stateChanged();
+    void worldDataChanged(bool);
 
 protected:
-    QVariant itemChange(GraphicsItemChange change, const QVariant& value);
     StepCore::Particle* particle() const;
 
     ArrowHandlerGraphicsItem *_velocityHandler;
+    double _lastArrowRadius;
 
     static const int RADIUS = 7;
 };
