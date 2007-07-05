@@ -564,6 +564,14 @@ GraphGraphicsItem::GraphGraphicsItem(StepCore::Item* item, WorldModel* worldMode
     //_plotWidget->setTopPadding(2);
     //_plotWidget->setRightPadding(3);
 
+    _plotObject = new KPlotObject(Qt::black);
+    _plotObject->setShowPoints(true);
+    _plotObject->setShowLines(true);
+    _plotObject->setPointStyle(KPlotObject::Square);
+
+    //_plotWidget->setAntialiasing(true);
+    _plotWidget->addPlotObject(_plotObject);
+
     _clearAction = new KAction(i18n("Clear graph"), this);
     _configureAction = new KAction(i18n("Configure graph..."), this);
     connect(_configureAction, SIGNAL(triggered()), this, SLOT(configure()));
@@ -599,6 +607,9 @@ void GraphGraphicsItem::configure()
                                     graph()->propertyX(), graph()->indexX());
     _confUi->dataSourceY->setDataSource(_worldModel, graph()->objectY(),
                                     graph()->propertyY(), graph()->indexY());
+
+    _confUi->checkBoxAutoX->setChecked(graph()->autoLimitsX());
+    _confUi->checkBoxAutoY->setChecked(graph()->autoLimitsY());
 
     _confUi->lineEditMinX->setText(QString::number(graph()->limitsX()[0]));
     _confUi->lineEditMaxX->setText(QString::number(graph()->limitsX()[1]));
@@ -644,6 +655,11 @@ void GraphGraphicsItem::confApply()
                                 _confUi->dataSourceY->dataProperty());
     _worldModel->setProperty(graph(), graph()->metaObject()->property("indexY"),
                                 _confUi->dataSourceY->dataIndex());
+
+    _worldModel->setProperty(graph(), graph()->metaObject()->property("autoLimitsX"),
+                                _confUi->checkBoxAutoX->isChecked());
+    _worldModel->setProperty(graph(), graph()->metaObject()->property("autoLimitsY"),
+                                _confUi->checkBoxAutoY->isChecked());
 
     StepCore::Vector2d limitsX(_confUi->lineEditMinX->text().toDouble(),
                                _confUi->lineEditMaxX->text().toDouble());
@@ -719,7 +735,9 @@ void GraphGraphicsItem::viewScaleChanged()
 
         QTransform itemTransform = deviceTransform(activeView->viewportTransform());
         QPoint viewportPos = itemTransform.map(QPointF(0, 0)).toPoint() + QPoint(1,1);
-        _plotWidget->move(viewportPos);
+
+        if(_plotWidget->pos() != viewportPos)
+            _plotWidget->move(viewportPos);
 
         if(_plotWidget->size() != _boundingRect.size())
             _plotWidget->resize(vss.toSize() - QSize(2,2));
@@ -731,9 +749,48 @@ void GraphGraphicsItem::stateChanged()
     update();
 }
 
+void GraphGraphicsItem::adjustLimits()
+{
+    double minX =  HUGE_VAL, minY =  HUGE_VAL;
+    double maxX = -HUGE_VAL, maxY = -HUGE_VAL;
+
+    if(graph()->autoLimitsX() || graph()->autoLimitsY()) {
+        for(int i=0; i<(int) graph()->points().size(); ++i) {
+            StepCore::Vector2d p = graph()->points()[i];
+            if(p[0] < minX) minX = p[0];
+            if(p[0] > maxX) maxX = p[0];
+            if(p[1] < minY) minY = p[1];
+            if(p[1] > maxY) maxY = p[1];
+        }
+    }
+
+    if(!graph()->autoLimitsX() || graph()->points().empty()) {
+        minX = graph()->limitsX()[0];
+        maxX = graph()->limitsX()[1];
+    } else {
+        double range = maxX - minX;
+        if(range != 0) { minX -= 0.1*range; maxX += 0.1*range; }
+        else { minX -= 0.5; maxX += 0.5; }
+    }
+
+    if(!graph()->autoLimitsY() || graph()->points().empty()) {
+        minY = graph()->limitsY()[0];
+        maxY = graph()->limitsY()[1];
+    } else {
+        double range = maxY - minY;
+        if(range != 0) { minY -= 0.1*range; maxY += 0.1*range; }
+        else { minY -= 0.5; maxY += 0.5; }
+    }
+
+    _plotWidget->setLimits(minX, maxX, minY, maxY);
+}
+
 void GraphGraphicsItem::worldDataChanged(bool dynamicOnly)
 {
     if(!dynamicOnly) {
+        viewScaleChanged();
+
+        // Labels
         QString labelX, labelY;
         if(graph()->isValidX()) {
             labelX = i18n("%1.%2", graph()->objectX(), graph()->propertyX());
@@ -745,9 +802,28 @@ void GraphGraphicsItem::worldDataChanged(bool dynamicOnly)
         }
         _plotWidget->axis( KPlotWidget::BottomAxis )->setLabel(labelX);
         _plotWidget->axis( KPlotWidget::LeftAxis )->setLabel(labelY);
+
+        // Points
+        _plotObject->clearPoints();
+        for(int i=0; i<(int) graph()->points().size(); ++i) {
+            StepCore::Vector2d p = graph()->points()[i];
+            _plotObject->addPoint(p[0], p[1]);
+        }
+
+        adjustLimits();
         _plotWidget->update();
-        viewScaleChanged();
+
+    } else if(_worldModel->world()->time() > _lastPointTime
+                + 1.0/_worldModel->simulationFps() - 1e-2/_worldModel->simulationFps()) {
+        bool ok;
+        StepCore::Vector2d point = graph()->recordPoint(&ok);
+        if(ok) {
+            _plotObject->addPoint(point[0], point[1]);
+            if(graph()->autoLimitsX() || graph()->autoLimitsY()) 
+                adjustLimits();
+            _plotWidget->update();
+        }
+        _lastPointTime = _worldModel->world()->time();
     }
-    //_graphWidget->worldDataChanged();
 }
 

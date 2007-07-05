@@ -162,11 +162,13 @@ protected slots:
 
 protected:
     StepCore::Graph* graph() const;
+    void adjustLimits();
 
     double _lastScale;
     double _lastPointTime;
 
-    KPlotWidget *_plotWidget;
+    KPlotWidget* _plotWidget;
+    KPlotObject* _plotObject;
     KAction* _clearAction;
     KAction* _configureAction;
 

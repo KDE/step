@@ -84,6 +84,12 @@ public:
     int indexY() const { return _indexY; }
     void setIndexY(int indexY) { _indexY = indexY; }
 
+    bool autoLimitsX() const { return _autoLimitsX; }
+    void setAutoLimitsX(bool autoLimitsX) { _autoLimitsX = autoLimitsX; }
+
+    bool autoLimitsY() const { return _autoLimitsY; }
+    void setAutoLimitsY(bool autoLimitsY) { _autoLimitsY = autoLimitsY; }
+
     const Vector2d& limitsX() const { return _limitsX; }
     void setLimitsX(const Vector2d& limitsX) { _limitsX = limitsX; }
 
@@ -126,6 +132,9 @@ private:
     const Object* _objectYPtr;
     QString       _propertyY;
     int           _indexY;
+
+    bool        _autoLimitsX;
+    bool        _autoLimitsY;
 
     Vector2d    _limitsX;
     Vector2d    _limitsY;
