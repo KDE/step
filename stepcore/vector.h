@@ -111,6 +111,11 @@ public:
     /** Calculate a / d */
     template<typename T1, int N1> friend Vector<T1,N1> operator/(const Vector<T1,N1>& a, T1 d);
 
+    /** Compare *this and b */
+    bool operator==(const Vector<T,N>& b);
+    /** Compare *this and b */
+    bool operator!=(const Vector<T,N>& b);
+
 protected:
     T _array[N];
 };
@@ -251,6 +256,18 @@ template<typename T, int N>
 Vector<T,N> operator/(const Vector<T,N>& a, T d)
 {
     return (1/d)*a;
+}
+
+template<typename T, int N>
+bool Vector<T,N>::operator==(const Vector<T,N>& b)
+{
+    return std::memcmp(_array, b._array, N*sizeof(*_array)) == 0;
+}
+
+template<typename T, int N>
+bool Vector<T,N>::operator!=(const Vector<T,N>& b)
+{
+    return std::memcmp(_array, b._array, N*sizeof(*_array)) != 0;
 }
 
 } // namespace StepCore

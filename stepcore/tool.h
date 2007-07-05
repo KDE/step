@@ -52,7 +52,7 @@ class Graph: public Item, public Tool
     STEPCORE_OBJECT(Graph)
 
 public:
-    Graph(Vector2d position = Vector2d(0), Vector2d size = Vector2d(400,400));
+    Graph(Vector2d position = Vector2d(0), Vector2d size = Vector2d(400,300));
 
     const Vector2d& position() const { return _position; }
     void setPosition(const Vector2d& position) { _position = position; }
@@ -60,35 +60,29 @@ public:
     const Vector2d& size() const { return _size; }
     void setSize(const Vector2d& size) { _size = size; }
 
-    const Object* objectPtr1() const { return _objectPtr1; }
-    void setObjectPtr1(const Object* objectPtr1) { _objectPtr1 = objectPtr1; setPropertyPtr1(0); }
+    const Object* objectXPtr() const { return _objectXPtr; }
+    void setObjectXPtr(const Object* objectXPtr) { _objectXPtr = objectXPtr; }
 
-    QString object1() const { return _objectPtr1 ? _objectPtr1->name() : QString(); }
-    void setObject1(const QString& object1) { setObjectPtr1(world()->object(object1)); }
-
-    const MetaProperty* propertyPtr1() const { return _propertyPtr1; }
-    void setPropertyPtr1(const MetaProperty* propertyPtr1) { _propertyPtr1 = propertyPtr1; setIndex1(0); }
+    QString objectX() const { return _objectXPtr ? _objectXPtr->name() : QString(); }
+    void setObjectX(const QString& objectX) { setObjectXPtr(world()->object(objectX)); }
     
-    QString property1() const { return _propertyPtr1 ? _propertyPtr1->name() : QString(); }
-    void setProperty1(const QString& property1);
+    QString propertyX() const { return _propertyX; }
+    void setPropertyX(const QString& propertyX) { _propertyX = propertyX; }
 
-    int index1() const { return _index1; }
-    void setIndex1(int index1) { _index1 = index1; }
+    int indexX() const { return _indexX; }
+    void setIndexX(int indexX) { _indexX = indexX; }
 
-    const Object* objectPtr2() const { return _objectPtr2; }
-    void setObjectPtr2(const Object* objectPtr2) { _objectPtr2 = objectPtr2; setPropertyPtr2(0); }
+    const Object* objectYPtr() const { return _objectYPtr; }
+    void setObjectYPtr(const Object* objectYPtr) { _objectYPtr = objectYPtr; }
 
-    QString object2() const { return _objectPtr2 ? _objectPtr2->name() : QString(); }
-    void setObject2(const QString& object2) { setObjectPtr2(world()->object(object2)); }
+    QString objectY() const { return _objectYPtr ? _objectYPtr->name() : QString(); }
+    void setObjectY(const QString& objectY) { setObjectYPtr(world()->object(objectY)); }
 
-    const MetaProperty* propertyPtr2() const { return _propertyPtr2; }
-    void setPropertyPtr2(const MetaProperty* propertyPtr2) { _propertyPtr2 = propertyPtr2; setIndex2(0); }
+    QString propertyY() const { return _propertyY; }
+    void setPropertyY(const QString& propertyY) { _propertyY = propertyY; }
 
-    QString property2() const { return _propertyPtr2 ? _propertyPtr2->name() : QString(); }
-    void setProperty2(const QString& property2);
-
-    int index2() const { return _index2; }
-    void setIndex2(int index2) { _index2 = index2; }
+    int indexY() const { return _indexY; }
+    void setIndexY(int indexY) { _indexY = indexY; }
 
     const Vector2d& limitsX() const { return _limitsX; }
     void setLimitsX(const Vector2d& limitsX) { _limitsX = limitsX; }
@@ -99,6 +93,18 @@ public:
     const std::vector<Vector2d>& points() const { return _points; }
     void setPoints(const std::vector<Vector2d>& points) { _points = points; }
 
+    const MetaProperty* propertyXPtr() const {
+        return _objectXPtr ? _objectXPtr->metaObject()->property(_propertyX) : 0;
+    }
+
+    const MetaProperty* propertyYPtr() const {
+        return _objectYPtr ? _objectYPtr->metaObject()->property(_propertyY) : 0;
+    }
+
+    bool isValidX() const;
+    bool isValidY() const;
+    bool isValid() const { return isValidX() && isValidY(); }
+
     void clearPoints();
     Vector2d recordPoint(bool* ok = 0);
     Vector2d measurePoint(bool* ok = 0);
@@ -107,19 +113,19 @@ public:
     void setWorld(World* world);
 
 private:
-    double getValue(const QVariant& v, int index, bool* ok = 0);
+    double getValue(const QVariant& v, int index, bool* ok = 0) const;
 
 private:
     Vector2d _position;
     Vector2d _size;
 
-    const Object* _objectPtr1;
-    const MetaProperty* _propertyPtr1;
-    int _index1;
+    const Object* _objectXPtr;
+    QString       _propertyX;
+    int           _indexX;
 
-    const Object* _objectPtr2;
-    const MetaProperty* _propertyPtr2;
-    int _index2;
+    const Object* _objectYPtr;
+    QString       _propertyY;
+    int           _indexY;
 
     Vector2d    _limitsX;
     Vector2d    _limitsY;

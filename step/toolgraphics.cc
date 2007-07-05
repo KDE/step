@@ -39,6 +39,7 @@
 #include <QLabel>
 #include <KPlotWidget>
 #include <KPlotObject>
+#include <KPlotAxis>
 #include <KDialog>
 #include <KAction>
 #include <KLocale>
@@ -188,151 +189,7 @@ void NoteGraphicsItem::contentsChanged()
     }
 }
 
-DataSourceWidget::DataSourceWidget(QWidget* parent)
-    : QWidget(parent), _worldModel(0)
-{
-    _updating = 0;
-
-    QHBoxLayout *layout = new QHBoxLayout(this);
-
-    _object = new QComboBox(this);
-    _object->setToolTip("Object name");
-    layout->addWidget(_object, 1);
-
-    _property = new QComboBox(this);
-    _property->setToolTip("Property name");
-    _property->setEnabled(false);
-    layout->addWidget(_property, 1);
-
-    _index = new QComboBox(this);
-    _index->setToolTip("Vector index");
-    _index->setMinimumContentsLength(1);
-    _index->setSizeAdjustPolicy(QComboBox::AdjustToMinimumContentsLength);
-    _index->hide();
-    layout->addWidget(_index, 0);
-
-    connect(_object, SIGNAL(activated(const QString&)),
-            this, SLOT(objectSelected(const QString&)));
-    connect(_property, SIGNAL(activated(const QString&)),
-            this, SLOT(propertySelected(const QString&)));
-    connect(_index, SIGNAL(activated(const QString&)),
-            this, SLOT(indexSelected(const QString&)));
-}
-
-void DataSourceWidget::setDataSource(WorldModel* worldModel, const QString& object,
-                                        const QString& property, int index)
-{
-    _worldModel = worldModel;
-    if(!_worldModel) return;
-
-    ++_updating;
-
-    _object->clear();
-    _object->addItem(_worldModel->world()->name());
-    for(int i=0; i<_worldModel->itemCount(); ++i)
-        _object->addItem(_worldModel->item(i)->name());
-    for(int i=1; i<_worldModel->rowCount(); ++i)
-        _object->addItem(_worldModel->index(i, 0).data(WorldModel::ObjectNameRole).toString());
-    _object->setCurrentIndex( _object->findData(object, Qt::DisplayRole) );
-    _property->setCurrentIndex( _property->findData(property, Qt::DisplayRole) );
-    _index->setCurrentIndex( index );
-
-    --_updating;
-}
-
-void DataSourceWidget::objectSelected(const QString& text)
-{
-    if(!_worldModel) return;
-    kDebug() << "objectSelected" << endl;
-    _property->clear();
-
-    const StepCore::Object* obj = _worldModel->object(text);
-    if(obj != 0) {
-        _property->setEnabled(true);
-        for(int i=0; i<obj->metaObject()->propertyCount(); ++i)
-            _property->addItem(obj->metaObject()->property(i)->name());
-    } else {
-        _property->setEnabled(false);
-        if(!_updating) emit dataSourceSelected(text, QString(), 0);
-    }
-}
-
-void DataSourceWidget::propertySelected(const QString& text)
-{
-    if(!_worldModel) return;
-    kDebug() << "propertySelected" << endl;
-    const StepCore::Object* obj = _worldModel->object(_object->currentText());
-    const StepCore::MetaProperty* pr = obj ? obj->metaObject()->property(text) : 0;
-
-    if(pr != 0 && pr->userTypeId() == qMetaTypeId<StepCore::Vector2d>()) {
-        _index->clear();
-        _index->addItem("0");
-        _index->addItem("1");
-        _index->show();
-        return;
-    }
-
-    _index->hide();
-    emit dataSourceSelected(_object->currentText(), text, 0);
-}
-
-void DataSourceWidget::indexSelected(const QString& text)
-{
-    if(!_worldModel) return;
-    kDebug() << "indexSelected" << endl;
-    emit dataSourceSelected(_object->currentText(), _property->currentText(), text.toInt());
-}
-
-QModelIndex GraphFlatWorldModel::index(int row, int column, const QModelIndex &parent) const
-{
-    if(!parent.isValid()) return createIndex(row, column);
-    else return QModelIndex();
-}
-
-int GraphFlatWorldModel::rowCount(const QModelIndex &parent) const
-{
-    if(!parent.isValid()) return _worldModel->rowCount() + _worldModel->itemCount();
-    else return 0;
-}
-
-int GraphFlatWorldModel::mapRow(const QModelIndex& sourceParent, int sourceRow)
-{
-    if(sourceParent.isValid()) {
-        return sourceRow + 1;
-    } else {
-        if(sourceRow > 0) return sourceRow + _worldModel->itemCount();
-        else return sourceRow;
-    }
-}
-
-QVariant GraphFlatWorldModel::data(const QModelIndex &index, int role) const
-{
-    if(index.isValid() && role == Qt::DisplayRole) {
-        if(index.row() == 0) return _worldModel->world()->name();
-        if(index.row() < _worldModel->itemCount()+1)
-            return _worldModel->item(index.row()-1)->name();
-        else return _worldModel->object(_worldModel->index(
-                        index.row()-_worldModel->itemCount(), 0))->name();
-    }
-    return QVariant();
-}
-
-GraphFlatWorldModel::GraphFlatWorldModel(WorldModel* worldModel, QObject* parent)
-    : QAbstractItemModel(parent), _worldModel(worldModel)
-{
-    connect(_worldModel, SIGNAL(dataChanged(QModelIndex,QModelIndex)),
-            this, SLOT(sourceDataChanged(QModelIndex,QModelIndex)));
-    connect(_worldModel, SIGNAL(rowsAboutToBeInserted(QModelIndex,int,int)),
-            this, SLOT(sourceRowsAboutToBeInserted(QModelIndex,int,int)));
-    connect(_worldModel, SIGNAL(rowsInserted(QModelIndex,int,int)),
-            this, SLOT(sourceRowsInserted(QModelIndex,int,int)));
-    connect(_worldModel, SIGNAL(rowsAboutToBeRemoved(QModelIndex,int,int)),
-            this, SLOT(sourceRowsAboutToBeRemoved(QModelIndex,int,int)));
-    connect(_worldModel, SIGNAL(rowsRemoved(QModelIndex,int,int)),
-            this, SLOT(sourceRowsRemoved(QModelIndex,int,int)));
-    connect(_worldModel, SIGNAL(modelReset()), this, SIGNAL(modelReset()));
-}
-
+#if 0
 GraphWidget::GraphWidget(GraphGraphicsItem* graphItem, QWidget *parent)
     : QWidget(parent), _graphItem(graphItem)
 {
@@ -381,6 +238,7 @@ GraphWidget::GraphWidget(GraphGraphicsItem* graphItem, QWidget *parent)
 
     gridLayout->addWidget(_plotWidget, 1, 0, 1, -1);
 
+    /*
     QAbstractItemModel* model = new GraphFlatWorldModel(_worldModel, this);
     for(int i=0; i<2; ++i) {
         QLabel* label = new QLabel(i==0 ? "x:" : "y:", this);
@@ -411,6 +269,7 @@ GraphWidget::GraphWidget(GraphGraphicsItem* graphItem, QWidget *parent)
         connect(_index[i], SIGNAL(currentIndexChanged(const QString&)),
                 this, SLOT(indexSelected(const QString&)));
     }
+    */
 
     _clearAction = new KAction(i18n("Clear graph"), this);
     _configureAction = new KAction(i18n("Configure graph..."), this);
@@ -441,6 +300,7 @@ void GraphWidget::configure()
     confUi.setupUi(confDialog->mainWidget());
     confUi.dataSourceX->setDataSource(_worldModel);
     confUi.dataSourceY->setDataSource(_worldModel);
+    kDebug() << confUi.dataSourceX->minimumSizeHint() << endl;
     confDialog->exec();
     kDebug() << "exec finished" << endl;
     delete confDialog;
@@ -465,7 +325,7 @@ void GraphWidget::objectSelected(const QString& text)
 
     ++_updating;
     _property[n]->clear();
-    const StepCore::Object* obj = (n==0 ? _graph->objectPtr1() : _graph->objectPtr2());
+    const StepCore::Object* obj = (n==0 ? _graph->objectXPtr() : _graph->objectYPtr());
     if(obj) {
         for(int i=0; i<obj->metaObject()->propertyCount(); ++i) {
             const StepCore::MetaProperty* p = obj->metaObject()->property(i);
@@ -501,7 +361,7 @@ void GraphWidget::propertySelected(const QString& text)
 
     ++_updating;
     _index[n]->clear();
-    const StepCore::MetaProperty* p = (n==0 ? _graph->propertyPtr1() : _graph->propertyPtr2());
+    const StepCore::MetaProperty* p = (n==0 ? _graph->propertyXPtr() : _graph->propertyYPtr());
     if(p) {
         if(p->userTypeId() == qMetaTypeId<StepCore::Vector2d>()) {
             _index[n]->addItem("0");
@@ -592,6 +452,102 @@ void GraphWidget::recordPoint()
         _lastPointTime = -HUGE_VALF;
     }
 }
+#endif
+
+DataSourceWidget::DataSourceWidget(QWidget* parent)
+    : QWidget(parent), _worldModel(0)
+{
+    QHBoxLayout *layout = new QHBoxLayout(this);
+    layout->setContentsMargins(0,0,0,0);
+
+    _object = new QComboBox(this);
+    _object->setToolTip("Object name");
+    layout->addWidget(_object, 1);
+
+    _property = new QComboBox(this);
+    _property->setToolTip("Property name");
+    _property->setEnabled(false);
+    layout->addWidget(_property, 1);
+
+    _index = new QComboBox(this);
+    _index->setToolTip("Vector index");
+    _index->setMinimumContentsLength(1);
+    _index->setSizeAdjustPolicy(QComboBox::AdjustToMinimumContentsLength);
+    layout->addWidget(_index, 0);
+
+    connect(_object, SIGNAL(activated(const QString&)),
+            this, SLOT(objectSelected(const QString&)));
+    connect(_property, SIGNAL(activated(const QString&)),
+            this, SLOT(propertySelected(const QString&)));
+
+    connect(_object, SIGNAL(activated(const QString&)),
+            this, SIGNAL(dataSourceChanged()));
+    connect(_property, SIGNAL(activated(const QString&)),
+            this, SIGNAL(dataSourceChanged()));
+    connect(_index, SIGNAL(activated(const QString&)),
+            this, SIGNAL(dataSourceChanged()));
+}
+
+void DataSourceWidget::setDataSource(WorldModel* worldModel, const QString& object,
+                                        const QString& property, int index)
+{
+    _worldModel = worldModel;
+    if(!_worldModel) return;
+
+    _object->clear();
+    _object->addItem(_worldModel->world()->name());
+    for(int i=0; i<_worldModel->itemCount(); ++i)
+        _object->addItem(_worldModel->item(i)->name());
+    for(int i=1; i<_worldModel->rowCount(); ++i)
+        _object->addItem(_worldModel->index(i, 0).data(WorldModel::ObjectNameRole).toString());
+
+    _object->setCurrentIndex( _object->findData(object, Qt::DisplayRole) );
+    objectSelected(object);
+
+    _property->setCurrentIndex( _property->findData(property, Qt::DisplayRole) );
+    propertySelected(property);
+
+    _index->setCurrentIndex( index );
+}
+
+void DataSourceWidget::objectSelected(const QString& text)
+{
+    Q_ASSERT(_worldModel);
+
+    _property->clear();
+
+    const StepCore::Object* obj = _worldModel->object(text);
+    if(obj != 0) {
+        _property->setEnabled(true);
+        for(int i=0; i<obj->metaObject()->propertyCount(); ++i) {
+            const StepCore::MetaProperty* pr = obj->metaObject()->property(i);
+            if(pr->userTypeId() == qMetaTypeId<double>() ||
+                        pr->userTypeId() == qMetaTypeId<StepCore::Vector2d>()) {
+                _property->addItem(pr->name());
+            }
+        }
+        propertySelected(_property->currentText());
+    } else {
+        _property->setEnabled(false);
+    }
+}
+
+void DataSourceWidget::propertySelected(const QString& text)
+{
+    Q_ASSERT(_worldModel);
+
+    const StepCore::Object* obj = _worldModel->object(_object->currentText());
+    const StepCore::MetaProperty* pr = obj ? obj->metaObject()->property(text) : 0;
+
+    _index->clear();
+    if(pr != 0 && pr->userTypeId() == qMetaTypeId<StepCore::Vector2d>()) {
+        _index->setEnabled(true);
+        _index->addItem("0");
+        _index->addItem("1");
+    } else {
+        _index->setEnabled(false);
+    }
+}
 
 GraphGraphicsItem::GraphGraphicsItem(StepCore::Item* item, WorldModel* worldModel)
     : WorldGraphicsItem(item, worldModel)
@@ -601,16 +557,112 @@ GraphGraphicsItem::GraphGraphicsItem(StepCore::Item* item, WorldModel* worldMode
     setFlag(QGraphicsItem::ItemIsMovable);
     setAcceptsHoverEvents(true);
 
-    _graphWidget = new GraphWidget(this);
+    _plotWidget = new KPlotWidget();
+    _plotWidget->setBackgroundColor(Qt::white);
+    _plotWidget->setForegroundColor(Qt::black);
+    //_plotWidget->setLeftPadding(0);
+    //_plotWidget->setTopPadding(2);
+    //_plotWidget->setRightPadding(3);
+
+    _clearAction = new KAction(i18n("Clear graph"), this);
+    _configureAction = new KAction(i18n("Configure graph..."), this);
+    connect(_configureAction, SIGNAL(triggered()), this, SLOT(configure()));
+    _plotWidget->addAction(_clearAction);
+    _plotWidget->addAction(_configureAction);
+    _plotWidget->setContextMenuPolicy(Qt::ActionsContextMenu);
 
     _boundingRect = QRectF(0, 0, 0, 0);
     _lastScale = 1;
     scale(1, -1);
+
+    _lastPointTime = -HUGE_VAL;
+
+    _confUi = 0;
 }
 
 GraphGraphicsItem::~GraphGraphicsItem()
 {
-    delete _graphWidget;
+    delete _plotWidget;
+}
+
+void GraphGraphicsItem::configure()
+{
+    _confDialog = new KDialog(_plotWidget);
+    
+    _confDialog->setCaption(i18n("Configure graph"));
+    _confDialog->setButtons(KDialog::Ok | KDialog::Cancel | KDialog::Apply);
+
+    _confUi = new Ui::WidgetConfigureGraph;
+    _confUi->setupUi(_confDialog->mainWidget());
+
+    _confUi->dataSourceX->setDataSource(_worldModel, graph()->objectX(),
+                                    graph()->propertyX(), graph()->indexX());
+    _confUi->dataSourceY->setDataSource(_worldModel, graph()->objectY(),
+                                    graph()->propertyY(), graph()->indexY());
+
+    _confUi->lineEditMinX->setText(QString::number(graph()->limitsX()[0]));
+    _confUi->lineEditMaxX->setText(QString::number(graph()->limitsX()[1]));
+    _confUi->lineEditMinY->setText(QString::number(graph()->limitsY()[0]));
+    _confUi->lineEditMaxY->setText(QString::number(graph()->limitsY()[1]));
+
+    _confDialog->enableButtonApply(false);
+
+    connect(_confDialog, SIGNAL(applyClicked()), this, SLOT(confApply()));
+    connect(_confDialog, SIGNAL(okClicked()), this, SLOT(confApply()));
+
+    connect(_confUi->dataSourceX, SIGNAL(dataSourceChanged()), this, SLOT(confChanged()));
+    connect(_confUi->dataSourceY, SIGNAL(dataSourceChanged()), this, SLOT(confChanged()));
+    connect(_confUi->lineEditMinX, SIGNAL(textEdited(const QString&)), this, SLOT(confChanged()));
+    connect(_confUi->lineEditMaxX, SIGNAL(textEdited(const QString&)), this, SLOT(confChanged()));
+    connect(_confUi->lineEditMinY, SIGNAL(textEdited(const QString&)), this, SLOT(confChanged()));
+    connect(_confUi->lineEditMaxY, SIGNAL(textEdited(const QString&)), this, SLOT(confChanged()));
+
+    _confDialog->exec();
+
+    delete _confDialog; _confDialog = 0;
+    delete _confUi; _confUi = 0;
+}
+
+void GraphGraphicsItem::confApply()
+{
+    Q_ASSERT(_confUi && _confDialog);
+
+    // XXX: check for actual change ?
+    _worldModel->beginMacro(i18n("Edit %1", graph()->name()));
+    _worldModel->beginUpdate();
+
+    _worldModel->setProperty(graph(), graph()->metaObject()->property("objectX"),
+                                _confUi->dataSourceX->dataObject());
+    _worldModel->setProperty(graph(), graph()->metaObject()->property("propertyX"),
+                                _confUi->dataSourceX->dataProperty());
+    _worldModel->setProperty(graph(), graph()->metaObject()->property("indexX"),
+                                _confUi->dataSourceX->dataIndex());
+
+    _worldModel->setProperty(graph(), graph()->metaObject()->property("objectY"),
+                                _confUi->dataSourceY->dataObject());
+    _worldModel->setProperty(graph(), graph()->metaObject()->property("propertyY"),
+                                _confUi->dataSourceY->dataProperty());
+    _worldModel->setProperty(graph(), graph()->metaObject()->property("indexY"),
+                                _confUi->dataSourceY->dataIndex());
+
+    StepCore::Vector2d limitsX(_confUi->lineEditMinX->text().toDouble(),
+                               _confUi->lineEditMaxX->text().toDouble());
+    StepCore::Vector2d limitsY(_confUi->lineEditMinY->text().toDouble(),
+                               _confUi->lineEditMaxY->text().toDouble());
+
+    _worldModel->setProperty(graph(), graph()->metaObject()->property("limitsX"),
+                                        QVariant::fromValue(limitsX));
+    _worldModel->setProperty(graph(), graph()->metaObject()->property("limitsY"),
+                                        QVariant::fromValue(limitsY));
+
+    _worldModel->endUpdate();
+    _worldModel->endMacro();
+}
+
+void GraphGraphicsItem::confChanged()
+{
+    Q_ASSERT(_confUi && _confDialog);
+    _confDialog->enableButtonApply(true);
 }
 
 inline StepCore::Graph* GraphGraphicsItem::graph() const
@@ -620,10 +672,12 @@ inline StepCore::Graph* GraphGraphicsItem::graph() const
 
 void GraphGraphicsItem::paint(QPainter* painter, const QStyleOptionGraphicsItem* /*option*/, QWidget* /*widget*/)
 {
-    painter->setPen(QPen(Qt::black, 0));
-    painter->setBrush(QBrush(Qt::white));
-    QRectF rect = boundingRect();
-    painter->drawRect(rect);
+    if(_isSelected) {
+        painter->setRenderHint(QPainter::Antialiasing, true);
+        painter->setPen(QPen(SELECTION_COLOR, 0, Qt::DashLine));
+        painter->setBrush(QBrush(Qt::white));
+        painter->drawRect(_boundingRect);
+    }
 }
 
 void GraphGraphicsItem::viewScaleChanged()
@@ -658,26 +712,42 @@ void GraphGraphicsItem::viewScaleChanged()
         QGraphicsView* activeView = scene()->views().first();
 
         // Reparent the widget if necessary.
-        if(_graphWidget->parentWidget() != activeView->viewport()) {
-           _graphWidget->setParent(activeView->viewport());
-           _graphWidget->show();
+        if(_plotWidget->parentWidget() != activeView->viewport()) {
+           _plotWidget->setParent(activeView->viewport());
+           _plotWidget->show();
         }
 
         QTransform itemTransform = deviceTransform(activeView->viewportTransform());
         QPoint viewportPos = itemTransform.map(QPointF(0, 0)).toPoint() + QPoint(1,1);
-        _graphWidget->move(viewportPos);
+        _plotWidget->move(viewportPos);
 
-        if(_graphWidget->size() != _boundingRect.size()) {
-            _graphWidget->resize(vss.toSize() - QSize(2,2));
-        }
+        if(_plotWidget->size() != _boundingRect.size())
+            _plotWidget->resize(vss.toSize() - QSize(2,2));
     }
+}
+
+void GraphGraphicsItem::stateChanged()
+{
+    update();
 }
 
 void GraphGraphicsItem::worldDataChanged(bool dynamicOnly)
 {
     if(!dynamicOnly) {
+        QString labelX, labelY;
+        if(graph()->isValidX()) {
+            labelX = i18n("%1.%2", graph()->objectX(), graph()->propertyX());
+            if(graph()->indexX() >= 0) labelX.append(i18n("[%1]", graph()->indexX()));
+        }
+        if(graph()->isValidY()) {
+            labelY = i18n("%1.%2", graph()->objectY(), graph()->propertyY());
+            if(graph()->indexY() >= 0) labelY.append(i18n("[%1]", graph()->indexY()));
+        }
+        _plotWidget->axis( KPlotWidget::BottomAxis )->setLabel(labelX);
+        _plotWidget->axis( KPlotWidget::LeftAxis )->setLabel(labelY);
+        _plotWidget->update();
         viewScaleChanged();
     }
-    _graphWidget->worldDataChanged();
+    //_graphWidget->worldDataChanged();
 }
 

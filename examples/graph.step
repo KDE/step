@@ -33,12 +33,12 @@
         <name>graph1</name>
         <position>(-1.74,0.08)</position>
         <size>(400,400)</size>
-        <object1>world1</object1>
-        <property1>time</property1>
-        <index1>0</index1>
-        <object2>particle1</object2>
-        <property2>position</property2>
-        <index2>0</index2>
+        <objectX>world1</objectX>
+        <propertyX>time</propertyX>
+        <indexX>-1</indexX>
+        <objectY>particle1</objectY>
+        <propertyY>position</propertyY>
+        <indexY>0</indexY>
         <limitsX>(0,10)</limitsX>
         <limitsY>(-5,1)</limitsY>
         <points>(0,-2.03)</points>

@@ -5,15 +5,9 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>320</width>
+    <width>318</width>
     <height>231</height>
    </rect>
-  </property>
-  <property name="sizePolicy" >
-   <sizepolicy vsizetype="Minimum" hsizetype="Preferred" >
-    <horstretch>0</horstretch>
-    <verstretch>0</verstretch>
-   </sizepolicy>
   </property>
   <property name="windowTitle" >
    <string>Form</string>
@@ -29,9 +23,6 @@
        <widget class="QLabel" name="label" >
         <property name="text" >
          <string>X :</string>
-        </property>
-        <property name="buddy" >
-         <cstring>dataSourceX</cstring>
         </property>
        </widget>
       </item>
@@ -49,9 +40,6 @@
        <widget class="QLabel" name="label_2" >
         <property name="text" >
          <string>Y :</string>
-        </property>
-        <property name="buddy" >
-         <cstring>dataSourceY</cstring>
         </property>
        </widget>
       </item>
@@ -71,7 +59,7 @@
    <item>
     <widget class="QGroupBox" name="groupBox_2" >
      <property name="title" >
-      <string>Axes</string>
+      <string>Ranges</string>
      </property>
      <layout class="QGridLayout" >
       <item row="0" column="2" >
@@ -110,9 +98,6 @@
        <widget class="QLabel" name="label_3" >
         <property name="text" >
          <string>X :</string>
-        </property>
-        <property name="buddy" >
-         <cstring>checkBoxAutoX</cstring>
         </property>
        </widget>
       </item>
@@ -159,9 +144,6 @@
        <widget class="QLabel" name="label_4" >
         <property name="text" >
          <string>Y :</string>
-        </property>
-        <property name="buddy" >
-         <cstring>checkBoxAutoY</cstring>
         </property>
        </widget>
       </item>

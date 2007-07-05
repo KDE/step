@@ -99,7 +99,7 @@ bool CommandEditProperty::mergeWith(const QUndoCommand* command)
     Q_ASSERT(cmd != NULL);
     if(cmd->_commands.count() != 1) return false;
 
-    EditProperty p1 = cmd->_commands[0];
+    const EditProperty& p1 = cmd->_commands[0];
     for(int i=0; i < _commands.count(); ++i) {
         if(_commands[i].object == p1.object && _commands[i].property == p1.property) {
             _commands[i].newValue = p1.newValue;

@@ -23,6 +23,7 @@
 #include <stepcore/tool.h>
 #include <QGraphicsTextItem>
 #include <QAbstractItemModel>
+#include <QComboBox>
 #include <QWidget>
 
 class NoteGraphicsItem;
@@ -66,42 +67,7 @@ protected:
 class KPlotWidget;
 class KPlotObject;
 class KAction;
-class QComboBox;
-class QModelIndex;
-class GraphGraphicsItem;
 class QLabel;
-
-class GraphFlatWorldModel: public QAbstractItemModel
-{
-    Q_OBJECT
-
-public:
-    GraphFlatWorldModel(WorldModel* worldModel, QObject* parent = 0);
-    QModelIndex index(int row, int column, const QModelIndex &parent = QModelIndex()) const;
-
-    QModelIndex parent(const QModelIndex &) const { return QModelIndex(); }
-    int columnCount(const QModelIndex &parent = QModelIndex()) const { Q_UNUSED(parent); return 1; }
-    int rowCount(const QModelIndex &parent = QModelIndex()) const;
-
-    QVariant data(const QModelIndex &index, int role) const;
-
-protected slots:
-    void sourceDataChanged(const QModelIndex&, const QModelIndex&) {
-        emit dataChanged(index(0, 0), index(rowCount(), 0));
-    }
-    void sourceRowsAboutToBeInserted(const QModelIndex& parent, int start, int end) {
-        beginInsertRows(QModelIndex(), mapRow(parent, start), mapRow(parent, end));
-    }
-    void sourceRowsAboutToBeRemoved(const QModelIndex& parent, int start, int end) {
-        beginRemoveRows(QModelIndex(), mapRow(parent, start), mapRow(parent, end));
-    }
-    void sourceRowsInserted(const QModelIndex&, int, int) { endInsertRows(); }
-    void sourceRowsRemoved(const QModelIndex&, int, int) { endRemoveRows(); }
-
-protected:
-    int mapRow(const QModelIndex& sourceParent, int sourceRow);
-    WorldModel* _worldModel;
-};
 
 class DataSourceWidget: public QWidget
 {
@@ -110,17 +76,19 @@ class DataSourceWidget: public QWidget
 public:
     DataSourceWidget(QWidget* parent = 0);
 
-signals:
-    void dataSourceSelected(const QString& object, const QString& property, int index);
-
-public slots:
     void setDataSource(WorldModel* worldModel, const QString& object = QString(),
                             const QString& property = QString(), int index = 0);
+
+    QString dataObject() const { return _object->currentText(); }
+    QString dataProperty() const { return _property->currentText(); }
+    int dataIndex() const { return _index->currentIndex(); }
+
+signals:
+    void dataSourceChanged();
 
 protected slots:
     void objectSelected(const QString& text);
     void propertySelected(const QString& text);
-    void indexSelected(const QString& text);
 
 protected:
     WorldModel* _worldModel;
@@ -128,10 +96,9 @@ protected:
     QComboBox*  _object;
     QComboBox*  _property;
     QComboBox*  _index;
-
-    int _updating;
 };
 
+/*
 class GraphWidget: public QWidget
 {
     Q_OBJECT
@@ -169,24 +136,42 @@ protected:
     KAction*    _clearAction;
 
     friend class GraphGraphicsItem;
-};
+};*/
 
-class GraphGraphicsItem: public WorldGraphicsItem
+namespace Ui { class WidgetConfigureGraph; }
+class KDialog;
+
+class GraphGraphicsItem: public QObject, public WorldGraphicsItem
 {
+    Q_OBJECT
+
 public:
     GraphGraphicsItem(StepCore::Item* item, WorldModel* worldModel);
     ~GraphGraphicsItem();
 
     void paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget);
 
+    void stateChanged();
     void viewScaleChanged();
     void worldDataChanged(bool);
+
+protected slots:
+    void configure();
+    void confApply();
+    void confChanged();
 
 protected:
     StepCore::Graph* graph() const;
 
     double _lastScale;
-    GraphWidget *_graphWidget;
+    double _lastPointTime;
+
+    KPlotWidget *_plotWidget;
+    KAction* _clearAction;
+    KAction* _configureAction;
+
+    Ui::WidgetConfigureGraph* _confUi;
+    KDialog*                  _confDialog;
     //QVariant itemChange(GraphicsItemChange change, const QVariant& value);
     //void mouseSetPos(const QPointF& pos, const QPointF& diff);
     
@@ -194,7 +179,7 @@ protected:
     //bool            _updating;
     //double          _lastScale;
 
-    friend class GraphWidget;
+    //friend class GraphWidget;
 };
 
 
