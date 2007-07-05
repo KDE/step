@@ -108,13 +108,14 @@ class DataSourceWidget: public QWidget
     Q_OBJECT
 
 public:
-    DataSourceWidget(WorldModel* worldModel, QWidget* parent = 0);
+    DataSourceWidget(QWidget* parent = 0);
 
 signals:
     void dataSourceSelected(const QString& object, const QString& property, int index);
 
 public slots:
-    void setDataSource(const QString& object, const QString& property, int index);
+    void setDataSource(WorldModel* worldModel, const QString& object = QString(),
+                            const QString& property = QString(), int index = 0);
 
 protected slots:
     void objectSelected(const QString& text);

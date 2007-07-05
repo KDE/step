@@ -188,8 +188,8 @@ void NoteGraphicsItem::contentsChanged()
     }
 }
 
-DataSourceWidget::DataSourceWidget(WorldModel* worldModel, QWidget* parent)
-    : QWidget(parent), _worldModel(worldModel)
+DataSourceWidget::DataSourceWidget(QWidget* parent)
+    : QWidget(parent), _worldModel(0)
 {
     _updating = 0;
 
@@ -219,8 +219,12 @@ DataSourceWidget::DataSourceWidget(WorldModel* worldModel, QWidget* parent)
             this, SLOT(indexSelected(const QString&)));
 }
 
-void DataSourceWidget::setDataSource(const QString& object, const QString& property, int index)
+void DataSourceWidget::setDataSource(WorldModel* worldModel, const QString& object,
+                                        const QString& property, int index)
 {
+    _worldModel = worldModel;
+    if(!_worldModel) return;
+
     ++_updating;
 
     _object->clear();
@@ -238,6 +242,7 @@ void DataSourceWidget::setDataSource(const QString& object, const QString& prope
 
 void DataSourceWidget::objectSelected(const QString& text)
 {
+    if(!_worldModel) return;
     kDebug() << "objectSelected" << endl;
     _property->clear();
 
@@ -254,6 +259,7 @@ void DataSourceWidget::objectSelected(const QString& text)
 
 void DataSourceWidget::propertySelected(const QString& text)
 {
+    if(!_worldModel) return;
     kDebug() << "propertySelected" << endl;
     const StepCore::Object* obj = _worldModel->object(_object->currentText());
     const StepCore::MetaProperty* pr = obj ? obj->metaObject()->property(text) : 0;
@@ -272,6 +278,7 @@ void DataSourceWidget::propertySelected(const QString& text)
 
 void DataSourceWidget::indexSelected(const QString& text)
 {
+    if(!_worldModel) return;
     kDebug() << "indexSelected" << endl;
     emit dataSourceSelected(_object->currentText(), _property->currentText(), text.toInt());
 }
@@ -430,8 +437,10 @@ void GraphWidget::configure()
     confDialog->setButtons(KDialog::Ok | KDialog::Cancel | KDialog::Apply);
     //DataSourceWidget* w = new DataSourceWidget(_worldModel, confDialog);
     //w->setDataSource(QString(), QString(), 0);
-    Ui::WidgetConfigureGraph* confUi;
+    Ui::WidgetConfigureGraph confUi;
     confUi.setupUi(confDialog->mainWidget());
+    confUi.dataSourceX->setDataSource(_worldModel);
+    confUi.dataSourceY->setDataSource(_worldModel);
     confDialog->exec();
     kDebug() << "exec finished" << endl;
     delete confDialog;
