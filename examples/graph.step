@@ -39,9 +39,11 @@
         <objectY>particle1</objectY>
         <propertyY>position</propertyY>
         <indexY>0</indexY>
+        <autoLimitsX>true</autoLimitsX>
+        <autoLimitsY>true</autoLimitsY>
         <limitsX>(0,10)</limitsX>
         <limitsY>(-5,1)</limitsY>
-        <points>(0,-2.03)</points>
+        <points></points>
     </item>
 
     <solver class="AdaptiveEulerSolver">

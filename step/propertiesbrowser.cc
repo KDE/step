@@ -30,6 +30,7 @@
 #include <QItemEditorFactory>
 #include <QComboBox>
 #include <QTreeView>
+#include <QMouseEvent>
 #include <KLocale>
 
 class ChoicesModel: public QStandardItemModel
@@ -106,7 +107,7 @@ void PropertiesBrowserModel::setObject(StepCore::Object* object)
 void PropertiesBrowserModel::emitDataChanged(bool dynamicOnly)
 {
     _worldModel->simulationPause();
-    for(int i=0; i<rowCount(); i++) {
+    for(int i=0; i<_object->metaObject()->propertyCount(); i++) {
         const StepCore::MetaProperty* p = _object->metaObject()->property(i);
         if(dynamicOnly && !p->isDynamic()) continue;
         if(p->userTypeId() == qMetaTypeId<std::vector<StepCore::Vector2d> >()) {
@@ -152,6 +153,12 @@ QVariant PropertiesBrowserModel::data(const QModelIndex &index, int role) const
                 } else if(p->userTypeId() == qMetaTypeId<StepCore::Vector2d>()) {
                     StepCore::Vector2d v = p->readVariant(_object).value<StepCore::Vector2d>();
                     return QString("(%1,%2)").arg(v[0], 0, 'g', 4).arg(v[1], 0, 'g', 4);
+                } else if(role == Qt::DisplayRole && 
+                            p->userTypeId() == qMetaTypeId<std::vector<StepCore::Vector2d> >() ) {
+                    std::vector<StepCore::Vector2d> list =
+                            p->readVariant(_object).value<std::vector<StepCore::Vector2d> >();
+                    if(list.size() <= 10) return StepCore::typeToString(list); // XXX: make it configurable
+                    list.resize(10); return StepCore::typeToString(list).append(",...");
                 } else {
                     // default type
                     return p->readString(_object);
@@ -350,19 +357,31 @@ PropertiesBrowser::PropertiesBrowser(WorldModel* worldModel, QWidget* parent, Qt
     _treeView->setSelectionMode(QAbstractItemView::NoSelection);
     _treeView->setSelectionBehavior(QTreeView::SelectRows);
     _treeView->setEditTriggers(QAbstractItemView::AllEditTriggers);
-    //_treeView->setEditTriggers(QAbstractItemView::EditKeyPressed | QAbstractItemView::AnyKeyPressed);
+    //_treeView->setEditTriggers(/*QAbstractItemView::CurrentChanged | */QAbstractItemView::SelectedClicked |
+    //                           QAbstractItemView::EditKeyPressed | QAbstractItemView::AnyKeyPressed);
     _treeView->setItemDelegate(new PropertiesBrowserDelegate(_treeView));
 
     worldCurrentChanged(_worldModel->worldIndex(), QModelIndex());
 
-    QObject::connect(_worldModel, SIGNAL(modelReset()), this, SLOT(worldModelReset()));
-    QObject::connect(_worldModel, SIGNAL(worldDataChanged(bool)), this, SLOT(worldDataChanged(bool)));
+    connect(_worldModel, SIGNAL(modelReset()), this, SLOT(worldModelReset()));
+    connect(_worldModel, SIGNAL(worldDataChanged(bool)), this, SLOT(worldDataChanged(bool)));
 
-    QObject::connect(_worldModel->selectionModel(), SIGNAL(currentChanged(const QModelIndex&, const QModelIndex&)),
+    connect(_worldModel->selectionModel(), SIGNAL(currentChanged(const QModelIndex&, const QModelIndex&)),
                                            this, SLOT(worldCurrentChanged(const QModelIndex&, const QModelIndex&)));
 
-    QObject::connect(_treeView->selectionModel(), SIGNAL(currentChanged(const QModelIndex&, const QModelIndex&)),
-                                              this, SLOT(currentChanged(const QModelIndex&, const QModelIndex&)));
+    connect(_treeView->selectionModel(), SIGNAL(currentChanged(const QModelIndex&, const QModelIndex&)),
+                                           this, SLOT(currentChanged(const QModelIndex&, const QModelIndex&)));
+
+    //connect(_treeView, SIGNAL(doubleClicked(const QModelIndex&)),
+    //                                       this, SLOT(doubleClicked(const QModelIndex&)));
+
+    connect(_propertiesBrowserModel, SIGNAL(rowsInserted(const QModelIndex&, int, int)),
+                                           this, SLOT(rowsInserted(const QModelIndex&, int, int)));
+    connect(_propertiesBrowserModel, SIGNAL(rowsRemoved(const QModelIndex&, int, int)),
+                                           this, SLOT(rowsRemoved(const QModelIndex&, int, int)));
+
+    //_treeView->installEventFilter(this);
+    //_treeView->setMouseTracking(true);
 
     setWidget(_treeView);
 }
@@ -375,7 +394,12 @@ void PropertiesBrowser::worldModelReset()
 void PropertiesBrowser::worldCurrentChanged(const QModelIndex& current, const QModelIndex& /*previous*/)
 {
     _propertiesBrowserModel->setObject(_worldModel->object(current));
-    _treeView->expandAll();
+    //_treeView->expandAll();
+    for(int i=0; i<_propertiesBrowserModel->rowCount(); ++i) {
+        QModelIndex index = _propertiesBrowserModel->index(i, 0);
+        if(_propertiesBrowserModel->rowCount(index) <= 10) // XXX: make it configurable
+            _treeView->setExpanded(index, true);
+    }
 }
 
 void PropertiesBrowser::worldDataChanged(bool dynamicOnly)
@@ -389,3 +413,40 @@ void PropertiesBrowser::currentChanged(const QModelIndex& current, const QModelI
         _treeView->selectionModel()->setCurrentIndex(current.sibling(current.row(), 1), QItemSelectionModel::Current);
 }
 
+void PropertiesBrowser::rowsInserted(const QModelIndex& parent, int start, int end)
+{
+    int rowCount = _propertiesBrowserModel->rowCount(parent);
+    if(rowCount > 10 && rowCount - (start-end+1) <= 10) {
+        kDebug() << "collapse" << endl;
+        _treeView->setExpanded(parent, false);
+    }
+}
+
+void PropertiesBrowser::rowsRemoved(const QModelIndex& parent, int start, int end)
+{
+    int rowCount = _propertiesBrowserModel->rowCount(parent);
+    if(rowCount <= 10 && rowCount + (start-end+1) > 10) {
+        kDebug() << "expand" << endl;
+        _treeView->setExpanded(parent, true);
+    }
+}
+
+/*
+void PropertiesBrowser::doubleClicked(const QModelIndex& index)
+{
+    kDebug() << "doubleClicked" << endl;
+    if(_propertiesBrowserModel->rowCount(index) > 0) {
+        kDebug() << "   doubleClicked!!!" << endl;
+        _treeView->setExpanded(index, !_treeView->isExpanded(index));
+    }
+}
+
+bool PropertiesBrowser::eventFilter(QObject* object, QEvent* event)
+{
+    if(object == _treeView) {
+        kDebug() << "treeView eventFilter type=" << event->type() << endl;
+        if(event->type() == QEvent::MouseButtonDblClick) kDebug() << "DoubleClick" << endl;
+    }
+    return false;
+}
+*/

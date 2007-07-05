@@ -574,7 +574,8 @@ GraphGraphicsItem::GraphGraphicsItem(StepCore::Item* item, WorldModel* worldMode
 
     _clearAction = new KAction(i18n("Clear graph"), this);
     _configureAction = new KAction(i18n("Configure graph..."), this);
-    connect(_configureAction, SIGNAL(triggered()), this, SLOT(configure()));
+    connect(_clearAction, SIGNAL(triggered()), this, SLOT(clearGraph()));
+    connect(_configureAction, SIGNAL(triggered()), this, SLOT(configureGraph()));
     _plotWidget->addAction(_clearAction);
     _plotWidget->addAction(_configureAction);
     _plotWidget->setContextMenuPolicy(Qt::ActionsContextMenu);
@@ -593,8 +594,17 @@ GraphGraphicsItem::~GraphGraphicsItem()
     delete _plotWidget;
 }
 
-void GraphGraphicsItem::configure()
+inline StepCore::Graph* GraphGraphicsItem::graph() const
 {
+    return static_cast<StepCore::Graph*>(_item);
+}
+
+void GraphGraphicsItem::configureGraph()
+{
+    if(_worldModel->isSimulationActive())
+        _worldModel->simulationStop();
+
+    _confChanged = false;
     _confDialog = new KDialog(_plotWidget);
     
     _confDialog->setCaption(i18n("Configure graph"));
@@ -623,6 +633,8 @@ void GraphGraphicsItem::configure()
 
     connect(_confUi->dataSourceX, SIGNAL(dataSourceChanged()), this, SLOT(confChanged()));
     connect(_confUi->dataSourceY, SIGNAL(dataSourceChanged()), this, SLOT(confChanged()));
+    connect(_confUi->checkBoxAutoX, SIGNAL(stateChanged(int)), this, SLOT(confChanged()));
+    connect(_confUi->checkBoxAutoY, SIGNAL(stateChanged(int)), this, SLOT(confChanged()));
     connect(_confUi->lineEditMinX, SIGNAL(textEdited(const QString&)), this, SLOT(confChanged()));
     connect(_confUi->lineEditMaxX, SIGNAL(textEdited(const QString&)), this, SLOT(confChanged()));
     connect(_confUi->lineEditMinY, SIGNAL(textEdited(const QString&)), this, SLOT(confChanged()));
@@ -639,6 +651,7 @@ void GraphGraphicsItem::confApply()
     Q_ASSERT(_confUi && _confDialog);
 
     // XXX: check for actual change ?
+    if(!_confChanged) return;
     _worldModel->beginMacro(i18n("Edit %1", graph()->name()));
     _worldModel->beginUpdate();
 
@@ -678,12 +691,15 @@ void GraphGraphicsItem::confApply()
 void GraphGraphicsItem::confChanged()
 {
     Q_ASSERT(_confUi && _confDialog);
+    _confChanged = true;
     _confDialog->enableButtonApply(true);
 }
 
-inline StepCore::Graph* GraphGraphicsItem::graph() const
+void GraphGraphicsItem::clearGraph()
 {
-    return static_cast<StepCore::Graph*>(_item);
+    _worldModel->simulationPause();
+    _worldModel->setProperty(graph(), graph()->metaObject()->property("points"),
+                               QVariant::fromValue(std::vector<StepCore::Vector2d>()) );
 }
 
 void GraphGraphicsItem::paint(QPainter* painter, const QStyleOptionGraphicsItem* /*option*/, QWidget* /*widget*/)

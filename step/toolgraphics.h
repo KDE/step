@@ -156,7 +156,8 @@ public:
     void worldDataChanged(bool);
 
 protected slots:
-    void configure();
+    void clearGraph();
+    void configureGraph();
     void confApply();
     void confChanged();
 
@@ -174,6 +175,7 @@ protected:
 
     Ui::WidgetConfigureGraph* _confUi;
     KDialog*                  _confDialog;
+    bool                      _confChanged;
     //QVariant itemChange(GraphicsItemChange change, const QVariant& value);
     //void mouseSetPos(const QPointF& pos, const QPointF& diff);
     

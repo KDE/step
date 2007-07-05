@@ -40,7 +40,7 @@ STEPCORE_META_OBJECT(Graph, "Graph", 0,
     STEPCORE_PROPERTY_RW(bool, autoLimitsY, "Auto-limits along Y axis", autoLimitsY, setAutoLimitsY)
     STEPCORE_PROPERTY_RW(StepCore::Vector2d, limitsX, "Limits along X axis", limitsX, setLimitsX)
     STEPCORE_PROPERTY_RW(StepCore::Vector2d, limitsY, "Limits along Y axis", limitsY, setLimitsY)
-    STEPCORE_PROPERTY_RW(std::vector<StepCore::Vector2d>, points, "points", points, setPoints)
+    STEPCORE_PROPERTY_RW_D(std::vector<StepCore::Vector2d>, points, "points", points, setPoints)
     )
 
 Note::Note(Vector2d position, QString text)

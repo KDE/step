@@ -54,9 +54,15 @@ protected slots:
     void worldModelReset();
     void worldDataChanged(bool dynamicOnly);
     void worldCurrentChanged(const QModelIndex& current, const QModelIndex& previous);
+
     void currentChanged(const QModelIndex& current, const QModelIndex& previous);
+    void rowsInserted(const QModelIndex& parent, int start, int end);
+    void rowsRemoved(const QModelIndex& parent, int start, int end);
+    //void doubleClicked(const QModelIndex& index);
 
 protected:
+    //bool eventFilter(QObject* object, QEvent* event);
+
     WorldModel* _worldModel;
     PropertiesBrowserModel* _propertiesBrowserModel;
     QTreeView* _treeView;

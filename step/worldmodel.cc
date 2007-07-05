@@ -506,6 +506,7 @@ StepCore::Solver* WorldModel::swapSolver(StepCore::Solver* solver)
 
 void WorldModel::pushCommand(QUndoCommand* command)
 {
+    Q_ASSERT(!_simulationFrameWaiting || _simulationPaused);
     if(!isSimulationActive()) {
         _undoStack->push(command);
     } else {
@@ -544,8 +545,13 @@ QString WorldModel::createToolTip(const StepCore::Object* object) const
     for(int i=0; i<object->metaObject()->propertyCount(); ++i) {
         const StepCore::MetaProperty* p = object->metaObject()->property(i);
         QString value = p->readString(object);
-        if(p->userTypeId() == qMetaTypeId<std::vector<StepCore::Vector2d> >())
+        if(p->userTypeId() == qMetaTypeId<std::vector<StepCore::Vector2d> >()) {
             value.replace("),(", ")<br />(");
+            if(value.count("<br />") > 10) {
+                value = value.section("<br />", 0, 9);
+                value.append("<br />...");
+            }
+        }
         toolTip += i18n("<tr><td>%1&nbsp;&nbsp;</td><td>%2</td></tr>", p->name(), value);
     }
     toolTip += "</table>";
