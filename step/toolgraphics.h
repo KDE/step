@@ -65,6 +65,7 @@ protected:
 
 class KPlotWidget;
 class KPlotObject;
+class KAction;
 class QComboBox;
 class QModelIndex;
 class GraphGraphicsItem;
@@ -102,6 +103,34 @@ protected:
     WorldModel* _worldModel;
 };
 
+class DataSourceWidget: public QWidget
+{
+    Q_OBJECT
+
+public:
+    DataSourceWidget(WorldModel* worldModel, QWidget* parent = 0);
+
+signals:
+    void dataSourceSelected(const QString& object, const QString& property, int index);
+
+public slots:
+    void setDataSource(const QString& object, const QString& property, int index);
+
+protected slots:
+    void objectSelected(const QString& text);
+    void propertySelected(const QString& text);
+    void indexSelected(const QString& text);
+
+protected:
+    WorldModel* _worldModel;
+
+    QComboBox*  _object;
+    QComboBox*  _property;
+    QComboBox*  _index;
+
+    int _updating;
+};
+
 class GraphWidget: public QWidget
 {
     Q_OBJECT
@@ -117,6 +146,7 @@ protected slots:
     void propertySelected(const QString& text);
     void indexSelected(const QString& text);
     void recordPoint();
+    void configure();
 
 protected:
     GraphGraphicsItem* _graphItem;
@@ -133,6 +163,9 @@ protected:
     int         _doclear;
 
     double      _lastPointTime;
+
+    KAction*    _configureAction;
+    KAction*    _clearAction;
 
     friend class GraphGraphicsItem;
 };

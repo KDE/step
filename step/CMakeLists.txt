@@ -15,7 +15,8 @@ set(step_SRCS
     main.cc
 )
 
-#set(step_UIS)
+set(step_UIS
+    configure_graph.ui)
 
 if(STEPCORE_WITH_QT)
     add_definitions(-DSTEPCORE_WITH_QT)
@@ -29,7 +30,7 @@ find_package(KDE4 REQUIRED)
 include_directories( ${KDE4_INCLUDES} )
 add_definitions( ${KDE4_DEFINITIONS} )
 
-#kde4_add_ui_files( step_SRCS ${step_UIS})
+kde4_add_ui_files( step_SRCS ${step_UIS})
 kde4_automoc(${step_SRCS})
 
 include_directories(${CMAKE_CURRENT_BINARY_DIR})

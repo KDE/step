@@ -94,6 +94,8 @@ public:
     
     // DO NOT change returned object directly: it breaks undo/redo
     StepCore::Object* object(const QModelIndex& index) const;
+    StepCore::Object* object(const QString& name) const { return _world->object(name); }
+
     StepCore::World* world() const { return _world; }
     StepCore::Solver* solver() const { return _world->solver(); }
     StepCore::CollisionSolver* collisionSolver() const { return _world->collisionSolver(); }
