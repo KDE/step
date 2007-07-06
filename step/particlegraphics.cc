@@ -98,7 +98,7 @@ void ParticleGraphicsItem::viewScaleChanged()
         if(_lastArrowRadius < 0) {
             double vnorm = particle()->velocity().norm();
             double anorm = particle()->force().norm() / particle()->mass();
-            _lastArrowRadius = qMax(vnorm, anorm) + ARROW_STROKE;
+            _lastArrowRadius = qMax(vnorm, anorm) + ARROW_STROKE/s;
         }
         _boundingRect |= QRectF(-_lastArrowRadius, -_lastArrowRadius,
                                     2*_lastArrowRadius, 2*_lastArrowRadius);
@@ -110,7 +110,7 @@ void ParticleGraphicsItem::worldDataChanged(bool)
     if(_isMouseOverItem || _isSelected) {
         double vnorm = particle()->velocity().norm();
         double anorm = particle()->force().norm() / particle()->mass();
-        double arrowRadius = qMax(vnorm, anorm) + ARROW_STROKE;
+        double arrowRadius = qMax(vnorm, anorm) + ARROW_STROKE/currentViewScale();
         if(arrowRadius > _lastArrowRadius || arrowRadius < _lastArrowRadius/2) {
             _lastArrowRadius = arrowRadius;
             viewScaleChanged();

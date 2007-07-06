@@ -262,8 +262,8 @@ void PolygonGraphicsItem::viewScaleChanged()
     _boundingRect = _painterPath.boundingRect() 
                     | QRectF(0, 0, v[0], v[1]).normalized()
                     | QRectF(0, 0, a[0], a[1]).normalized();
-    _boundingRect.adjust(-ARROW_STROKE-SELECTION_MARGIN,-ARROW_STROKE-SELECTION_MARGIN,
-                          ARROW_STROKE+SELECTION_MARGIN, ARROW_STROKE+SELECTION_MARGIN);
+    double adjust = (ARROW_STROKE+SELECTION_MARGIN)/s;
+    _boundingRect.adjust(-adjust,-adjust, adjust, adjust);
 }
 
 void PolygonGraphicsItem::worldDataChanged(bool dynamicOnly)

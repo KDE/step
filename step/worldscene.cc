@@ -32,6 +32,7 @@
 #include <QPainter>
 #include <QAction>
 #include <QToolTip>
+#include <KLocale>
 
 class WorldSceneAxes: public QGraphicsItem
 {
@@ -313,7 +314,10 @@ QRectF WorldScene::calcItemsBoundingRect()
     QRectF boundingRect;
     foreach(QGraphicsItem* item, items()) {
         WorldGraphicsItem* wItem = dynamic_cast<WorldGraphicsItem*>(item);
-        if(wItem) boundingRect |= item->sceneBoundingRect();
+        if(wItem) {
+            boundingRect |= wItem->sceneBoundingRect();
+            //kDebug() << itemFromGraphics(wItem)->name() << ": " << wItem->sceneBoundingRect() << endl;
+        }
     }
     return boundingRect;
 }
@@ -346,8 +350,10 @@ void WorldGraphicsView::zoomOut()
 void WorldGraphicsView::fitToPage()
 {
     QRectF br = static_cast<WorldScene*>(scene())->calcItemsBoundingRect();
+    //kDebug() << br << endl;
     QRect  ws = viewport()->rect();
     double s = 0.8 * qMin( ws.width()/br.width(), ws.height()/br.height() );
+    //kDebug() << "scale=" << s << endl;
     //qDebug() << "br" << br << "ws" << ws << "s" << s;
     resetMatrix();
     scale(s, -s);
