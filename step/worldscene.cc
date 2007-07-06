@@ -352,7 +352,10 @@ void WorldGraphicsView::fitToPage()
     QRectF br = static_cast<WorldScene*>(scene())->calcItemsBoundingRect();
     //kDebug() << br << endl;
     QRect  ws = viewport()->rect();
-    double s = 0.8 * qMin( ws.width()/br.width(), ws.height()/br.height() );
+    double currentViewScale = matrix().m11();
+    double s = qMin( ws.width()/br.width(), ws.height()/br.height() );
+    if(s > currentViewScale && s*0.8 < currentViewScale) return;
+    s *= 0.9;
     //kDebug() << "scale=" << s << endl;
     //qDebug() << "br" << br << "ws" << ws << "s" << s;
     resetMatrix();
