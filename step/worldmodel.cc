@@ -636,6 +636,9 @@ void WorldModel::simulationPause()
     // only be started from this thread when control returns to event loop
     _simulationThread->mutex()->unlock();
     _simulationPaused = true;
+
+    // XXX: do we need to reset evolveAbort here (and add threadAbort var) ?
+    // XXX: do we need to call emitChanged here ?
 }
 
 void WorldModel::setSimulationFps(int simulationFps)
@@ -665,8 +668,6 @@ void WorldModel::simulationStart()
     _simulationTimer->start();
 
     emitChanged();
-
-#warning Chech that evolveAbort is not set when calling doCalcFn
 }
 
 void WorldModel::simulationStop()

@@ -112,7 +112,9 @@ void World::clear()
     _bodies.clear();
     _forces.clear();
 
-    delete   _solver; _solver = NULL;
+    delete _solver; _solver = NULL;
+    delete _collisionSolver; _collisionSolver = NULL;
+    //delete _constraintSolver; _constraintSolver = NULL;
     delete[] _variables;
     delete[] _errors;
     _variablesCount = 0;
