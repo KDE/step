@@ -380,7 +380,7 @@ PropertiesBrowser::PropertiesBrowser(WorldModel* worldModel, QWidget* parent, Qt
     connect(_propertiesBrowserModel, SIGNAL(rowsRemoved(const QModelIndex&, int, int)),
                                            this, SLOT(rowsRemoved(const QModelIndex&, int, int)));
 
-    //_treeView->installEventFilter(this);
+    _treeView->viewport()->installEventFilter(this);
     //_treeView->setMouseTracking(true);
 
     setWidget(_treeView);
@@ -416,8 +416,7 @@ void PropertiesBrowser::currentChanged(const QModelIndex& current, const QModelI
 void PropertiesBrowser::rowsInserted(const QModelIndex& parent, int start, int end)
 {
     int rowCount = _propertiesBrowserModel->rowCount(parent);
-    if(rowCount > 10 && rowCount - (start-end+1) <= 10) {
-        kDebug() << "collapse" << endl;
+    if(rowCount > 10 && (rowCount - (start-end+1)) <= 10) {
         _treeView->setExpanded(parent, false);
     }
 }
@@ -426,7 +425,6 @@ void PropertiesBrowser::rowsRemoved(const QModelIndex& parent, int start, int en
 {
     int rowCount = _propertiesBrowserModel->rowCount(parent);
     if(rowCount <= 10 && rowCount + (start-end+1) > 10) {
-        kDebug() << "expand" << endl;
         _treeView->setExpanded(parent, true);
     }
 }
@@ -440,13 +438,15 @@ void PropertiesBrowser::doubleClicked(const QModelIndex& index)
         _treeView->setExpanded(index, !_treeView->isExpanded(index));
     }
 }
+*/
 
 bool PropertiesBrowser::eventFilter(QObject* object, QEvent* event)
 {
-    if(object == _treeView) {
-        kDebug() << "treeView eventFilter type=" << event->type() << endl;
-        if(event->type() == QEvent::MouseButtonDblClick) kDebug() << "DoubleClick" << endl;
+    if(object == _treeView->viewport() && event->type() == QEvent::MouseButtonDblClick) {
+        QMouseEvent* mouseEvent = static_cast<QMouseEvent*>(event);
+        QModelIndex index = _treeView->indexAt(mouseEvent->pos());
+        if(_propertiesBrowserModel->rowCount(index) > 0)
+            _treeView->setExpanded(index, !_treeView->isExpanded(index));
     }
     return false;
 }
-*/
