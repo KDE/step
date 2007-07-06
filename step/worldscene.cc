@@ -362,8 +362,8 @@ void WorldGraphicsView::actualSize()
 {
     resetMatrix();
     scale(100, -100);
-    setSceneRect(-SCENE_LENGTH, -SCENE_LENGTH,
-                  SCENE_LENGTH*2, SCENE_LENGTH*2);
+    setSceneRect(-SCENE_LENGTH/100, -SCENE_LENGTH/100,
+                  SCENE_LENGTH*2/100, SCENE_LENGTH*2/100);
     centerOn(0, 0);
     static_cast<WorldScene*>(scene())->updateViewScale();
 }

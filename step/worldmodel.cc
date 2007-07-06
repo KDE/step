@@ -281,11 +281,14 @@ void WorldModel::resetWorld()
         _world->setCollisionSolver(new StepCore::GJKCollisionSolver());
         _world->collisionSolver()->setName(getUniqueName("collisionSolver"));
     }
-    _world->doCalcFn();
-
-    reset();
     _undoStack->clear();
+
+    _world->doCalcFn();
+    reset();
+
     _selectionModel->setCurrentIndex(worldIndex(), QItemSelectionModel::SelectCurrent);
+
+    emitChanged();
 }
 
 void WorldModel::emitChanged(bool dynamicOnly)
