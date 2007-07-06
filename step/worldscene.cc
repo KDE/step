@@ -268,8 +268,9 @@ void WorldScene::worldRowsAboutToBeRemoved(const QModelIndex& parent, int start,
 
 void WorldScene::worldCurrentChanged(const QModelIndex& current, const QModelIndex& /*previous*/)
 {
+    if(views().isEmpty() || views()[0]->viewport()->hasFocus()) return;
     QGraphicsItem* graphicsItem = graphicsFromItem(_worldModel->item(current));
-    if(graphicsItem) graphicsItem->ensureVisible(0, 0, 1, 1);
+    if(graphicsItem) graphicsItem->ensureVisible(QRectF(), 5, 5);
 }
 
 void WorldScene::worldSelectionChanged(const QItemSelection& selected, const QItemSelection& deselected)
