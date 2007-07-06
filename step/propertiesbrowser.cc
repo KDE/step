@@ -106,6 +106,8 @@ void PropertiesBrowserModel::setObject(StepCore::Object* object)
 
 void PropertiesBrowserModel::emitDataChanged(bool dynamicOnly)
 {
+    if(_object == NULL) return;
+
     _worldModel->simulationPause();
     for(int i=0; i<_object->metaObject()->propertyCount(); i++) {
         const StepCore::MetaProperty* p = _object->metaObject()->property(i);
