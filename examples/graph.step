@@ -7,14 +7,14 @@
 
     <item class="Particle">
         <name>particle1</name>
-        <position>(-2.31,0.42)</position>
+        <position>(-1.67034,-1.26999)</position>
         <velocity>(0,0)</velocity>
         <mass>1</mass>
     </item>
 
     <item class="Particle">
         <name>particle2</name>
-        <position>(1.28,0.43)</position>
+        <position>(1.91966,-1.25999)</position>
         <velocity>(0,0)</velocity>
         <mass>inf</mass>
     </item>
@@ -31,8 +31,8 @@
 
     <item class="Graph">
         <name>graph1</name>
-        <position>(-1.74,0.08)</position>
-        <size>(400,400)</size>
+        <position>(0.1,3)</position>
+        <size>(250,250)</size>
         <objectX>world1</objectX>
         <propertyX>time</propertyX>
         <indexX>-1</indexX>
@@ -44,6 +44,35 @@
         <limitsX>(0,10)</limitsX>
         <limitsY>(-5,1)</limitsY>
         <points></points>
+    </item>
+
+    <item class="Graph">
+        <name>graph2</name>
+        <position>(-2.6,3)</position>
+        <size>(250,250)</size>
+        <objectX>particle1</objectX>
+        <propertyX>position</propertyX>
+        <indexX>0</indexX>
+        <objectY>particle1</objectY>
+        <propertyY>velocity</propertyY>
+        <indexY>0</indexY>
+        <autoLimitsX>true</autoLimitsX>
+        <autoLimitsY>true</autoLimitsY>
+        <limitsX>(0,1)</limitsX>
+        <limitsY>(0,1)</limitsY>
+        <points></points>
+    </item>
+
+    <item class="Note">
+        <name>note1</name>
+        <text>Phase diagram</text>
+        <position>(-1.7,3.22)</position>
+    </item>
+
+    <item class="Note">
+        <name>note2</name>
+        <text>Position - time</text>
+        <position>(1.05,3.22)</position>
     </item>
 
     <solver class="AdaptiveEulerSolver">

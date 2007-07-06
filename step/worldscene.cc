@@ -350,21 +350,26 @@ void WorldGraphicsView::zoomOut()
 void WorldGraphicsView::fitToPage()
 {
     QRectF br = static_cast<WorldScene*>(scene())->calcItemsBoundingRect();
-    //kDebug() << br << endl;
+    //kDebug() << br << " " << (br | QRectF(0,0,0,0)) << endl;
     QRect  ws = viewport()->rect();
+
     double currentViewScale = matrix().m11();
     double s = qMin( ws.width()/br.width(), ws.height()/br.height() );
-    if(s > currentViewScale && s*0.8 < currentViewScale) return;
-    s *= 0.9;
-    //kDebug() << "scale=" << s << endl;
-    //qDebug() << "br" << br << "ws" << ws << "s" << s;
-    resetMatrix();
-    scale(s, -s);
+
+    if(s < currentViewScale || s*0.8 > currentViewScale) {
+        s *= 0.9;
+        resetMatrix();
+        scale(s, -s);
+    } else {
+        s = currentViewScale;
+    }
+
     double length = SCENE_LENGTH / s;
-    //qDebug() << "length" << length;
     setSceneRect(-length, -length, length*2, length*2);
     centerOn(br.center());
-    static_cast<WorldScene*>(scene())->updateViewScale();
+
+    if(s != currentViewScale)
+        static_cast<WorldScene*>(scene())->updateViewScale();
 }
 
 void WorldGraphicsView::actualSize()

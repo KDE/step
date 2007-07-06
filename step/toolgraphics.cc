@@ -625,13 +625,13 @@ void GraphGraphicsItem::configureGraph()
     _confUi->checkBoxAutoY->setChecked(graph()->autoLimitsY());
 
     _confUi->lineEditMinX->setValidator(
-                new QDoubleValidator(DBL_MIN, DBL_MAX, DBL_DIG, _confUi->lineEditMinX));
+                new QDoubleValidator(-HUGE_VAL, HUGE_VAL, DBL_DIG, _confUi->lineEditMinX));
     _confUi->lineEditMaxX->setValidator(
-                new QDoubleValidator(DBL_MIN, DBL_MAX, DBL_DIG, _confUi->lineEditMaxX));
+                new QDoubleValidator(-HUGE_VAL, HUGE_VAL, DBL_DIG, _confUi->lineEditMaxX));
     _confUi->lineEditMinY->setValidator(
-                new QDoubleValidator(DBL_MIN, DBL_MAX, DBL_DIG, _confUi->lineEditMinY));
+                new QDoubleValidator(-HUGE_VAL, HUGE_VAL, DBL_DIG, _confUi->lineEditMinY));
     _confUi->lineEditMaxY->setValidator(
-                new QDoubleValidator(DBL_MIN, DBL_MAX, DBL_DIG, _confUi->lineEditMaxY));
+                new QDoubleValidator(-HUGE_VAL, HUGE_VAL, DBL_DIG, _confUi->lineEditMaxY));
 
     _confUi->lineEditMinX->setText(QString::number(graph()->limitsX()[0]));
     _confUi->lineEditMaxX->setText(QString::number(graph()->limitsX()[1]));
@@ -751,6 +751,7 @@ void GraphGraphicsItem::viewScaleChanged()
     if(vss != _boundingRect.size()) {
         prepareGeometryChange();
         _boundingRect.setSize(vss);
+        update();
     }
 
     if(scene() && !scene()->views().isEmpty()) {
