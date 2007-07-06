@@ -661,7 +661,12 @@ void WorldModel::simulationStart()
     _simulationFrameSkipped = false;
     _simulationStopping = false;
     _simulationPaused = false;
+
     _simulationTimer->start();
+
+    emitChanged();
+
+#warning Chech that evolveAbort is not set when calling doCalcFn
 }
 
 void WorldModel::simulationStop()
@@ -710,12 +715,12 @@ void WorldModel::simulationFrameEnd(int result)
         result = StepCore::Solver::OK;
     }
 
+    // If current frame was aborted we can resume it now
+    _world->setEvolveAbort(false);
+
     // Update GUI
     _simulationFrameWaiting = false;
     emitChanged();
-
-    // If current frame was aborted we can resume it now
-    _world->setEvolveAbort(false);
 
     // Stop if requested or simulation error occured
     if(_simulationStopping || result != StepCore::Solver::OK) {

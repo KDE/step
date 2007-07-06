@@ -39,10 +39,13 @@
 #include <QLabel>
 #include <KPlotWidget>
 #include <KPlotObject>
+#include <KPlotPoint>
 #include <KPlotAxis>
 #include <KDialog>
 #include <KAction>
 #include <KLocale>
+
+#include <float.h>
 
 NoteTextItem::NoteTextItem(NoteGraphicsItem* noteItem, QGraphicsItem* parent)
     : QGraphicsTextItem(parent), _noteItem(noteItem)
@@ -621,6 +624,15 @@ void GraphGraphicsItem::configureGraph()
     _confUi->checkBoxAutoX->setChecked(graph()->autoLimitsX());
     _confUi->checkBoxAutoY->setChecked(graph()->autoLimitsY());
 
+    _confUi->lineEditMinX->setValidator(
+                new QDoubleValidator(DBL_MIN, DBL_MAX, DBL_DIG, _confUi->lineEditMinX));
+    _confUi->lineEditMaxX->setValidator(
+                new QDoubleValidator(DBL_MIN, DBL_MAX, DBL_DIG, _confUi->lineEditMaxX));
+    _confUi->lineEditMinY->setValidator(
+                new QDoubleValidator(DBL_MIN, DBL_MAX, DBL_DIG, _confUi->lineEditMinY));
+    _confUi->lineEditMaxY->setValidator(
+                new QDoubleValidator(DBL_MIN, DBL_MAX, DBL_DIG, _confUi->lineEditMaxY));
+
     _confUi->lineEditMinX->setText(QString::number(graph()->limitsX()[0]));
     _confUi->lineEditMaxX->setText(QString::number(graph()->limitsX()[1]));
     _confUi->lineEditMinY->setText(QString::number(graph()->limitsY()[0]));
@@ -698,6 +710,7 @@ void GraphGraphicsItem::confChanged()
 void GraphGraphicsItem::clearGraph()
 {
     _worldModel->simulationPause();
+    _lastPointTime = -HUGE_VAL;
     _worldModel->setProperty(graph(), graph()->metaObject()->property("points"),
                                QVariant::fromValue(std::vector<StepCore::Vector2d>()) );
 }
@@ -819,6 +832,9 @@ void GraphGraphicsItem::worldDataChanged(bool dynamicOnly)
         _plotWidget->axis( KPlotWidget::BottomAxis )->setLabel(labelX);
         _plotWidget->axis( KPlotWidget::LeftAxis )->setLabel(labelY);
 
+        if(!graph()->autoLimitsX() && !graph()->autoLimitsY()) adjustLimits();
+
+        /*
         // Points
         _plotObject->clearPoints();
         for(int i=0; i<(int) graph()->points().size(); ++i) {
@@ -828,11 +844,40 @@ void GraphGraphicsItem::worldDataChanged(bool dynamicOnly)
 
         adjustLimits();
         _plotWidget->update();
+        */
 
-    } else if(_worldModel->world()->time() > _lastPointTime
-                + 1.0/_worldModel->simulationFps() - 1e-2/_worldModel->simulationFps()) {
-        bool ok;
-        StepCore::Vector2d point = graph()->recordPoint(&ok);
+    }
+    
+    if(_worldModel->isSimulationActive()) {
+        if(_worldModel->world()->time() > _lastPointTime
+                    + 1.0/_worldModel->simulationFps() - 1e-2/_worldModel->simulationFps()) {
+            StepCore::Vector2d point = graph()->recordPoint();
+            _lastPointTime = _worldModel->world()->time();
+        }
+    }
+
+    int po_count, p_count;
+    do {
+        const QList<KPlotPoint*> points = _plotObject->points();
+        po_count = points.count(); p_count = graph()->points().size();
+        int count = qMin(po_count, p_count);
+        for(int p=0; p < count; ++p)
+            points[p]->setPosition(vectorToPoint(graph()->points()[p]));
+    } while(0);
+
+    if(po_count < p_count) {
+        for(; po_count < p_count; ++po_count)
+            _plotObject->addPoint(vectorToPoint(graph()->points()[po_count]));
+    } else {
+        for(--po_count; po_count >= p_count; --po_count)
+            _plotObject->removePoint(po_count);
+    }
+
+    if(graph()->autoLimitsX() || graph()->autoLimitsY()) adjustLimits();
+    _plotWidget->update();
+
+#if 0
+//#error Do setProperty here and remove DynamicOnly from points
         if(ok) {
             _plotObject->addPoint(point[0], point[1]);
             if(graph()->autoLimitsX() || graph()->autoLimitsY()) 
@@ -840,6 +885,9 @@ void GraphGraphicsItem::worldDataChanged(bool dynamicOnly)
             _plotWidget->update();
         }
         _lastPointTime = _worldModel->world()->time();
+        worldDataChanged(false);
+        //_worldModel->setProperty(graph(), graph()->metaObject()->property("name"), QString("test"));
     }
+#endif
 }
 
