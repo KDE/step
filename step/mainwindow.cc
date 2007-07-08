@@ -118,6 +118,7 @@ void MainWindow::setupActions()
     actionSimulationStart = actionCollection()->add<KAction>("simulation_start", this, SLOT(simulationStart()));
     actionSimulationStop = actionCollection()->add<KAction>("simulation_stop", this, SLOT(simulationStop()));
     actionSimulation = actionCollection()->add<KAction>("simulation_start_stop", this, SLOT(simulationStartStop()));
+    actionSimulation->setText(i18n("Simulatio start/stop"));
 
     actionSimulationStart->setText(i18n("&Start"));
     actionSimulationStart->setIcon(KIcon("media-playback-start"));
@@ -256,7 +257,7 @@ void MainWindow::simulationStart()
 {
     actionSimulationStart->setEnabled(false);
     actionSimulationStop->setEnabled(true);
-    actionSimulation->setText(i18n("&Stop"));
+    actionSimulation->setIconText(i18n("&Stop"));
     actionSimulation->setIcon(KIcon("media-playback-stop"));
     worldModel->simulationStart();
 }
@@ -265,7 +266,7 @@ void MainWindow::simulationStopped(int result)
 {
     actionSimulationStart->setEnabled(true);
     actionSimulationStop->setEnabled(false);
-    actionSimulation->setText(i18n("&Simulate"));
+    actionSimulation->setIconText(i18n("&Simulate"));
     actionSimulation->setIcon(KIcon("media-playback-start"));
     if(result == StepCore::Solver::ToleranceError) {
         KMessageBox::sorry(this, i18n("Can't finish this step becouse local error "
