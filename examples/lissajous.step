@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE StepCoreXML>
+<world xmlns="http://quantum.dgap.mipt.ru/StepCoreXML" version="1.0">
+    <name>world1</name>
+    <time>0</time>
+    <timeScale>1</timeScale>
+
+    <item class="Particle">
+        <name>particle1</name>
+        <position>(1.61,-1.91)</position>
+        <velocity>(1,0)</velocity>
+        <mass>1</mass>
+    </item>
+
+    <item class="Particle">
+        <name>particle2</name>
+        <position>(1.61,-2.41)</position>
+        <velocity>(1,0)</velocity>
+        <mass>1</mass>
+    </item>
+
+    <item class="Spring">
+        <name>spring1</name>
+        <restLength>3</restLength>
+        <stiffness>2.25</stiffness>
+        <body1></body1>
+        <body2>particle1</body2>
+        <localPosition1>(-1.39,-1.91)</localPosition1>
+        <localPosition2>(0,0)</localPosition2>
+    </item>
+
+    <item class="Spring">
+        <name>spring2</name>
+        <restLength>3</restLength>
+        <stiffness>1</stiffness>
+        <body1></body1>
+        <body2>particle2</body2>
+        <localPosition1>(-1.39,-2.41)</localPosition1>
+        <localPosition2>(0,0)</localPosition2>
+    </item>
+
+    <item class="Graph">
+        <name>graph1</name>
+        <position>(-2.52,1.63)</position>
+        <size>(300,300)</size>
+        <objectX>particle1</objectX>
+        <propertyX>position</propertyX>
+        <indexX>0</indexX>
+        <objectY>particle2</objectY>
+        <propertyY>position</propertyY>
+        <indexY>0</indexY>
+        <autoLimitsX>true</autoLimitsX>
+        <autoLimitsY>true</autoLimitsY>
+        <limitsX>(0,1)</limitsX>
+        <limitsY>(0,1)</limitsY>
+        <points></points>
+    </item>
+
+    <item class="Controller">
+        <name>controller1</name>
+        <position>(0.66,0.56)</position>
+        <size>(200,60)</size>
+        <object>spring1</object>
+        <property>stiffness</property>
+        <index>-1</index>
+        <limits>(0.1,10)</limits>
+    </item>
+
+    <item class="Note">
+        <name>note1</name>
+        <text>Lissajous curve</text>
+        <position>(-1.36,1.89)</position>
+    </item>
+
+    <item class="Note">
+        <name>note2</name>
+        <text>Please try to change the stiffness
+of spring1 and see how the curve
+will cahge. Try the following values:
+1, 2.25, 1.7778, 1.5625, 0.6944</text>
+        <position>(0.55,1.42)</position>
+    </item>
+
+    <solver class="GslAdaptiveRKF45Solver">
+        <name>solver1</name>
+        <stepSize>1</stepSize>
+        <toleranceAbs>0.001</toleranceAbs>
+        <toleranceRel>0.001</toleranceRel>
+    </solver>
+    <collisionSolver class="GJKCollisionSolver">
+        <name>collisionSolver1</name>
+        <toleranceAbs>0.001</toleranceAbs>
+    </collisionSolver>
+
+</world>
