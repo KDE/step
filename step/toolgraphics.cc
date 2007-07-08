@@ -164,16 +164,20 @@ void NoteGraphicsItem::contentsChanged()
 DataSourceWidget::DataSourceWidget(QWidget* parent)
     : QWidget(parent), _worldModel(0)
 {
+    _skipReadOnly = false;
+    
     QHBoxLayout *layout = new QHBoxLayout(this);
     layout->setContentsMargins(0,0,0,0);
 
     _object = new QComboBox(this);
     _object->setToolTip("Object name");
+    _object->setMinimumContentsLength(10);
     layout->addWidget(_object, 1);
 
     _property = new QComboBox(this);
     _property->setToolTip("Property name");
     _property->setEnabled(false);
+    _property->setMinimumContentsLength(10);
     layout->addWidget(_property, 1);
 
     _index = new QComboBox(this);
@@ -228,6 +232,7 @@ void DataSourceWidget::objectSelected(const QString& text)
         _property->setEnabled(true);
         for(int i=0; i<obj->metaObject()->propertyCount(); ++i) {
             const StepCore::MetaProperty* pr = obj->metaObject()->property(i);
+            if(_skipReadOnly && !pr->isWritable()) continue;
             if(pr->userTypeId() == qMetaTypeId<double>() ||
                         pr->userTypeId() == qMetaTypeId<StepCore::Vector2d>()) {
                 _property->addItem(pr->name());
@@ -702,6 +707,7 @@ void ControllerGraphicsItem::configureController()
     _confUi = new Ui::WidgetConfigureController;
     _confUi->setupUi(_confDialog->mainWidget());
 
+    _confUi->dataSource->setSkipReadOnly(true);
     _confUi->dataSource->setDataSource(_worldModel, controller()->object(),
                                     controller()->property(), controller()->index());
 

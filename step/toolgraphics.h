@@ -84,6 +84,7 @@ class DataSourceWidget: public QWidget
 public:
     DataSourceWidget(QWidget* parent = 0);
 
+    void setSkipReadOnly(bool skipReadOnly) { _skipReadOnly = skipReadOnly; }
     void setDataSource(WorldModel* worldModel, const QString& object = QString(),
                             const QString& property = QString(), int index = 0);
 
@@ -104,6 +105,8 @@ protected:
     QComboBox*  _object;
     QComboBox*  _property;
     QComboBox*  _index;
+
+    bool _skipReadOnly;
 };
 
 class GraphGraphicsItem: public QObject, public WorldGraphicsItem
