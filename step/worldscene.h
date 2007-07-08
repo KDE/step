@@ -40,7 +40,7 @@ class WorldScene: public QGraphicsScene
     Q_OBJECT
 
 public:
-    WorldScene(WorldModel* worldModel, QObject* parent = 0);
+    explicit WorldScene(WorldModel* worldModel, QObject* parent = 0);
     ~WorldScene();
 
     StepCore::Item* itemFromGraphics(const QGraphicsItem* graphicsItem) const;

@@ -703,7 +703,7 @@ void WorldModel::simulationFrameBegin()
     _simulationFrameWaiting = true;
     _simulationPaused = false;
     _simulationThread->doWorldEvolve(1.0/_simulationFps);
-    //qDebug("emited simulationDoFrame()");
+    //qDebug("emitted simulationDoFrame()");
 }
 
 void WorldModel::simulationFrameEnd(int result)
@@ -727,7 +727,7 @@ void WorldModel::simulationFrameEnd(int result)
     _simulationFrameWaiting = false;
     emitChanged();
 
-    // Stop if requested or simulation error occured
+    // Stop if requested or simulation error occurred
     if(_simulationStopping || result != StepCore::Solver::OK) {
         _undoStack->push(_simulationCommand);
         _undoStack->endMacro();

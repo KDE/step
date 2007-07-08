@@ -43,7 +43,7 @@ class NoteGraphicsItem;
 class NoteTextItem: public QGraphicsTextItem
 {
 public:
-    NoteTextItem(NoteGraphicsItem* noteItem, QGraphicsItem* parent = 0);
+    explicit NoteTextItem(NoteGraphicsItem* noteItem, QGraphicsItem* parent = 0);
     void paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget);
     QString emptyNotice() const;
 

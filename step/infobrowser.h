@@ -31,7 +31,7 @@ class InfoBrowser: public QDockWidget
     Q_OBJECT
 
 public:
-    InfoBrowser(WorldModel* worldModel, QWidget* parent = 0, Qt::WindowFlags flags = 0);
+    explicit InfoBrowser(WorldModel* worldModel, QWidget* parent = 0, Qt::WindowFlags flags = 0);
 
 protected slots:
     void worldCurrentChanged(const QModelIndex& current, const QModelIndex& previous);
