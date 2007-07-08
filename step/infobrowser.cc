@@ -34,19 +34,24 @@ InfoBrowser::InfoBrowser(WorldModel* worldModel, QWidget* parent, Qt::WindowFlag
     _htmlPart = new KHTMLPart(this);
     _htmlPart->setJavaEnabled(false);
     _htmlPart->setPluginsEnabled(false);
-    _htmlPart->setJScriptEnabled(false);
-    _htmlPart->setMetaRefreshEnabled(false);
+    _htmlPart->setJScriptEnabled(true);
+    _htmlPart->setMetaRefreshEnabled(true);
     _htmlPart->setDNDEnabled(false);
 
+    //connect(_htmlPart->browserExtension(), SIGNAL(openURLRequest(const KURL&, const KParts::URLArgs&)),
+    //            _htmlPart, SLOT(openURLRequest(const KURL& )));
+
+    /*
     _htmlPart->openStream( "text/html", KUrl() );
     _htmlPart->writeStream( QByteArray( "<html><body><p>KHTML Hello World!</p></body></html>" ) );
     _htmlPart->closeStream();
+    */
 
     setWidget(_htmlPart->widget());
 
     worldCurrentChanged(_worldModel->worldIndex(), QModelIndex());
 
-    QObject::connect(_worldModel->selectionModel(), SIGNAL(currentChanged(const QModelIndex&, const QModelIndex&)),
+    connect(_worldModel->selectionModel(), SIGNAL(currentChanged(const QModelIndex&, const QModelIndex&)),
                                            this, SLOT(worldCurrentChanged(const QModelIndex&, const QModelIndex&)));
 
 
