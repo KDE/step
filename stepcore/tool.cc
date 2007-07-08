@@ -40,6 +40,8 @@ STEPCORE_META_OBJECT(Graph, "Graph", 0,
     STEPCORE_PROPERTY_RW(bool, autoLimitsY, "Auto-limits along Y axis", autoLimitsY, setAutoLimitsY)
     STEPCORE_PROPERTY_RW(StepCore::Vector2d, limitsX, "Limits along X axis", limitsX, setLimitsX)
     STEPCORE_PROPERTY_RW(StepCore::Vector2d, limitsY, "Limits along Y axis", limitsY, setLimitsY)
+    STEPCORE_PROPERTY_RW(bool, showPoints, "Show points on the graph", showPoints, setShowPoints)
+    STEPCORE_PROPERTY_RW(bool, showLines, "Show lines on the graph", showLines, setShowLines)
     STEPCORE_PROPERTY_R_D(StepCore::Vector2d, currentValue, "Current value", currentValue)
     STEPCORE_PROPERTY_RW_D(std::vector<StepCore::Vector2d>, points, "points", points, setPoints)
     )
@@ -104,7 +106,8 @@ Graph::Graph(Vector2d position, Vector2d size)
       _objectXPtr(0), _propertyX(), _indexX(-1),
       _objectYPtr(0), _propertyY(), _indexY(-1),
       _autoLimitsX(true), _autoLimitsY(true),
-      _limitsX(0,1), _limitsY(0,1)
+      _limitsX(0,1), _limitsY(0,1),
+      _showLines(true), _showPoints(false)
 {
 }
 

@@ -96,6 +96,12 @@ public:
     const Vector2d& limitsY() const { return _limitsY; }
     void setLimitsY(const Vector2d& limitsY) { _limitsY = limitsY; }
 
+    bool showLines() const { return _showLines; }
+    void setShowLines(bool showLines) { _showLines = showLines; }
+
+    bool showPoints() const { return _showPoints; }
+    void setShowPoints(bool showPoints) { _showPoints = showPoints; }
+
     Vector2d currentValue() const { return measurePoint(); }
 
     const std::vector<Vector2d>& points() const { return _points; }
@@ -137,6 +143,9 @@ protected:
 
     Vector2d    _limitsX;
     Vector2d    _limitsY;
+
+    bool _showLines;
+    bool _showPoints;
 
     std::vector<Vector2d> _points;
 };

@@ -354,6 +354,9 @@ void GraphGraphicsItem::configureGraph()
     _confUi->lineEditMinY->setText(QString::number(graph()->limitsY()[0]));
     _confUi->lineEditMaxY->setText(QString::number(graph()->limitsY()[1]));
 
+    _confUi->checkBoxShowLines->setChecked(graph()->showLines());
+    _confUi->checkBoxShowPoints->setChecked(graph()->showPoints());
+
     _confDialog->enableButtonApply(false);
 
     connect(_confDialog, SIGNAL(applyClicked()), this, SLOT(confApply()));
@@ -367,6 +370,8 @@ void GraphGraphicsItem::configureGraph()
     connect(_confUi->lineEditMaxX, SIGNAL(textEdited(const QString&)), this, SLOT(confChanged()));
     connect(_confUi->lineEditMinY, SIGNAL(textEdited(const QString&)), this, SLOT(confChanged()));
     connect(_confUi->lineEditMaxY, SIGNAL(textEdited(const QString&)), this, SLOT(confChanged()));
+    connect(_confUi->checkBoxShowLines, SIGNAL(stateChanged(int)), this, SLOT(confChanged()));
+    connect(_confUi->checkBoxShowPoints, SIGNAL(stateChanged(int)), this, SLOT(confChanged()));
 
     _confDialog->exec();
 
@@ -411,6 +416,11 @@ void GraphGraphicsItem::confApply()
                                         QVariant::fromValue(limitsX));
     _worldModel->setProperty(graph(), graph()->metaObject()->property("limitsY"),
                                         QVariant::fromValue(limitsY));
+
+    _worldModel->setProperty(graph(), graph()->metaObject()->property("showLines"),
+                                _confUi->checkBoxShowLines->isChecked());
+    _worldModel->setProperty(graph(), graph()->metaObject()->property("showPoints"),
+                                _confUi->checkBoxShowPoints->isChecked());
 
     _worldModel->endUpdate();
     _worldModel->endMacro();
@@ -551,6 +561,9 @@ void GraphGraphicsItem::worldDataChanged(bool dynamicOnly)
         _plotWidget->axis( KPlotWidget::LeftAxis )->setLabel(labelY);
 
         if(!graph()->autoLimitsX() && !graph()->autoLimitsY()) adjustLimits();
+
+        _plotObject->setShowPoints(graph()->showPoints());
+        _plotObject->setShowLines(graph()->showLines());
 
         /*
         // Points
