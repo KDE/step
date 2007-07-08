@@ -22,9 +22,6 @@
 #include <QAbstractItemModel>
 #include <QUndoCommand>
 #include <QVariant>
-#include <QThread>
-#include <QMutex>
-#include <QWaitCondition>
 
 #include <stepcore/world.h>
 
