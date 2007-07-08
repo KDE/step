@@ -204,7 +204,6 @@ void WorldScene::helpEvent(QGraphicsSceneHelpEvent *helpEvent)
 
     // Show or hide the tooltip
     if(!text.isEmpty()) {
-        point = helpEvent->screenPos();
         QToolTip::showText(helpEvent->screenPos(), text);
     }
 }
