@@ -178,6 +178,15 @@ public:
     const Vector2d& limits() const { return _limits; }
     void setLimits(const Vector2d& limits) { _limits = limits; }
 
+    const QString& decreaseShortcut() const { return _decreaseShortcut; }
+    void setDecreaseShortcut(const QString& decreaseShortcut) { _decreaseShortcut = decreaseShortcut; }
+
+    const QString& increaseShortcut() const { return _increaseShortcut; }
+    void setIncreaseShortcut(const QString& increaseShortcut) { _increaseShortcut = increaseShortcut; }
+
+    double increment() const { return _increment; }
+    void setIncrement(double increment) { _increment = increment; }
+
     bool isValid() const;
 
     const MetaProperty* propertyPtr() const {
@@ -197,11 +206,15 @@ protected:
     Vector2d _position;
     Vector2d _size;
 
-    Object*       _objectPtr;
-    QString       _property;
-    int           _index;
+    Object*  _objectPtr;
+    QString  _property;
+    int      _index;
 
-    Vector2d      _limits;
+    Vector2d _limits;
+    QString  _decreaseShortcut;
+    QString  _increaseShortcut;
+
+    double   _increment;
 };
 
 } // namespace StepCore

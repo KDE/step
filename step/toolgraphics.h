@@ -162,6 +162,8 @@ public:
     void worldDataChanged(bool);
 
 protected slots:
+    void incTriggered();
+    void decTriggered();
     void sliderChanged(int value);
     void sliderReleased();
     void configureController();
@@ -179,6 +181,11 @@ protected:
     QLabel*  _labelMin;
     QLabel*  _labelMax;
     QLabel*  _labelSource;
+
+    KAction* _incAction;
+    KAction* _decAction;
+    QString  _incShortcut;
+    QString  _decShortcut;
 
     bool _changed;
 

@@ -665,8 +665,18 @@ ControllerGraphicsItem::ControllerGraphicsItem(StepCore::Item* item, WorldModel*
     layout->addWidget(_labelMax, 0, 2, 1, 1);
     layout->addWidget(_labelSource, 1, 1, 1, 1);
 
+    _incAction = new KAction(i18n("Increase value"), _widget);
+    _decAction = new KAction(i18n("Decrease value"), _widget);
+
+    connect(_incAction, SIGNAL(triggered(bool)), this, SLOT(incTriggered()));
+    connect(_decAction, SIGNAL(triggered(bool)), this, SLOT(decTriggered()));
+
     _configureAction = new KAction(i18n("Configure controller..."), this);
     connect(_configureAction, SIGNAL(triggered()), this, SLOT(configureController()));
+
+    _widget->addAction(_incAction);
+    _widget->addAction(_decAction);
+
     _widget->addAction(_configureAction);
     _widget->setContextMenuPolicy(Qt::ActionsContextMenu);
 
@@ -691,6 +701,20 @@ ControllerGraphicsItem::~ControllerGraphicsItem()
 inline StepCore::Controller* ControllerGraphicsItem::controller() const
 {
     return static_cast<StepCore::Controller*>(_item);
+}
+
+void ControllerGraphicsItem::decTriggered()
+{
+    _worldModel->simulationPause();
+    _worldModel->setProperty(controller(), controller()->metaObject()->property("value"),
+                                controller()->value() - controller()->increment());
+}
+
+void ControllerGraphicsItem::incTriggered()
+{
+    _worldModel->simulationPause();
+    _worldModel->setProperty(controller(), controller()->metaObject()->property("value"),
+                                controller()->value() + controller()->increment());
 }
 
 void ControllerGraphicsItem::configureController()
@@ -719,6 +743,16 @@ void ControllerGraphicsItem::configureController()
     _confUi->lineEditMin->setText(QString::number(controller()->limits()[0]));
     _confUi->lineEditMax->setText(QString::number(controller()->limits()[1]));
 
+    _confUi->keyIncrease->setModifierlessAllowed(true);
+    _confUi->keyDecrease->setModifierlessAllowed(true);
+
+    _confUi->keyIncrease->setKeySequence(_incAction->shortcut().primary());
+    _confUi->keyDecrease->setKeySequence(_decAction->shortcut().primary());
+
+    _confUi->lineEditIncrement->setValidator(
+                new QDoubleValidator(-HUGE_VAL, HUGE_VAL, DBL_DIG, _confUi->lineEditIncrement));
+    _confUi->lineEditIncrement->setText(QString::number(controller()->increment()));
+
     _confDialog->enableButtonApply(false);
 
     connect(_confDialog, SIGNAL(applyClicked()), this, SLOT(confApply()));
@@ -727,6 +761,9 @@ void ControllerGraphicsItem::configureController()
     connect(_confUi->dataSource, SIGNAL(dataSourceChanged()), this, SLOT(confChanged()));
     connect(_confUi->lineEditMin, SIGNAL(textEdited(const QString&)), this, SLOT(confChanged()));
     connect(_confUi->lineEditMax, SIGNAL(textEdited(const QString&)), this, SLOT(confChanged()));
+    connect(_confUi->keyIncrease, SIGNAL(keySequenceChanged(const QKeySequence&)), this, SLOT(confChanged()));
+    connect(_confUi->keyDecrease, SIGNAL(keySequenceChanged(const QKeySequence&)), this, SLOT(confChanged()));
+    connect(_confUi->lineEditIncrement, SIGNAL(textEdited(const QString&)), this, SLOT(confChanged()));
 
     _confDialog->exec();
 
@@ -755,6 +792,15 @@ void ControllerGraphicsItem::confApply()
 
     _worldModel->setProperty(controller(), controller()->metaObject()->property("limits"),
                                         QVariant::fromValue(limits));
+
+    _worldModel->setProperty(controller(), controller()->metaObject()->property("increaseShortcut"),
+                                 QVariant::fromValue(_confUi->keyIncrease->keySequence().toString()));
+
+    _worldModel->setProperty(controller(), controller()->metaObject()->property("decreaseShortcut"),
+                                 QVariant::fromValue(_confUi->keyDecrease->keySequence().toString()));
+
+    _worldModel->setProperty(controller(), controller()->metaObject()->property("increment"),
+                                 QVariant::fromValue(_confUi->lineEditIncrement->text().toDouble()));
 
     _worldModel->endUpdate();
     _worldModel->endMacro();
@@ -838,6 +884,21 @@ void ControllerGraphicsItem::worldDataChanged(bool dynamicOnly)
             source = i18n("[not configured]");
         }
         _labelSource->setText(source);
+
+        if(_incAction->isEnabled() != controller()->isValid()) {
+            _incAction->setEnabled(controller()->isValid());
+            _decAction->setEnabled(controller()->isValid());
+        }
+
+        if(_incShortcut != controller()->increaseShortcut()) {
+            _incShortcut = controller()->increaseShortcut();
+            _incAction->setShortcut(KShortcut(_incShortcut));
+        }
+
+        if(_decShortcut != controller()->decreaseShortcut()) {
+            _decShortcut = controller()->decreaseShortcut();
+            _decAction->setShortcut(KShortcut(_decShortcut));
+        }
 
         //if(!graph()->autoLimitsX() && !graph()->autoLimitsY()) adjustLimits();
 

@@ -54,6 +54,9 @@ STEPCORE_META_OBJECT(Controller, "Controller", 0,
     STEPCORE_PROPERTY_RW(QString, property, "Controlled property property", property, setProperty)
     STEPCORE_PROPERTY_RW(int, index, "Vector index", index, setIndex)
     STEPCORE_PROPERTY_RW(StepCore::Vector2d, limits, "Limits", limits, setLimits)
+    STEPCORE_PROPERTY_RW(QString, increaseShortcut, "Shortcut to increase the value", increaseShortcut, setIncreaseShortcut)
+    STEPCORE_PROPERTY_RW(QString, decreaseShortcut, "Shortcut to decrease the value", decreaseShortcut, setDecreaseShortcut)
+    STEPCORE_PROPERTY_RW(double, increment, "Increment value", increment, setIncrement)
     STEPCORE_PROPERTY_RWF(double, value, "Value", MetaProperty::DYNAMIC | MetaProperty::SIDEEFFECTS, value, setValue)
     )
 
@@ -186,7 +189,8 @@ void Graph::setWorld(World* world)
 
 Controller::Controller(Vector2d position, Vector2d size)
     : _position(position), _size(size),
-      _objectPtr(0), _property(), _index(-1), _limits(-1,1)
+      _objectPtr(0), _property(), _index(-1),
+      _limits(-1,1), _increment(0.1)
 {
 }
 
