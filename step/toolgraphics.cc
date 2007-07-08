@@ -552,10 +552,14 @@ void GraphGraphicsItem::worldDataChanged(bool dynamicOnly)
         if(graph()->isValidX()) {
             labelX = i18n("%1.%2", graph()->objectX(), graph()->propertyX());
             if(graph()->indexX() >= 0) labelX.append(i18n("[%1]", graph()->indexX()));
+        } else {
+            labelX = i18n("[not configured]");
         }
         if(graph()->isValidY()) {
             labelY = i18n("%1.%2", graph()->objectY(), graph()->propertyY());
             if(graph()->indexY() >= 0) labelY.append(i18n("[%1]", graph()->indexY()));
+        } else {
+            labelY = i18n("[not configured]");
         }
         _plotWidget->axis( KPlotWidget::BottomAxis )->setLabel(labelX);
         _plotWidget->axis( KPlotWidget::LeftAxis )->setLabel(labelY);
@@ -824,6 +828,8 @@ void ControllerGraphicsItem::worldDataChanged(bool dynamicOnly)
         if(controller()->isValid()) {
             source = i18n("%1.%2", controller()->object(), controller()->property());
             if(controller()->index() >= 0) source.append(i18n("[%1]", controller()->index()));
+        } else {
+            source = i18n("[not configured]");
         }
         _labelSource->setText(source);
 
