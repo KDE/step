@@ -16,7 +16,8 @@ set(step_SRCS
 )
 
 set(step_UIS
-    configure_graph.ui)
+    configure_graph.ui
+    configure_controller.ui)
 
 if(STEPCORE_WITH_QT)
     add_definitions(-DSTEPCORE_WITH_QT)

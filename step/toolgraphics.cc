@@ -20,6 +20,7 @@
 #include "toolgraphics.moc"
 
 #include "ui_configure_graph.h"
+#include "ui_configure_controller.h"
 
 #include <stepcore/solver.h>
 #include <stepcore/collisionsolver.h>
@@ -625,7 +626,7 @@ ControllerGraphicsItem::ControllerGraphicsItem(StepCore::Item* item, WorldModel*
     layout->addWidget(_labelSource, 1, 1, 1, 1);
 
     _configureAction = new KAction(i18n("Configure controller..."), this);
-    connect(_configureAction, SIGNAL(triggered()), this, SLOT(configureGraph()));
+    connect(_configureAction, SIGNAL(triggered()), this, SLOT(configureController()));
     _widget->addAction(_configureAction);
     _widget->setContextMenuPolicy(Qt::ActionsContextMenu);
 
@@ -636,11 +637,9 @@ ControllerGraphicsItem::ControllerGraphicsItem(StepCore::Item* item, WorldModel*
     _lastValue = 1;
     _changed = false;
 
-    /*
     _confUi = 0;
     _confDialog = 0;
     _confChanged = false;
-    */
 }
 
 ControllerGraphicsItem::~ControllerGraphicsItem()
@@ -656,113 +655,75 @@ inline StepCore::Controller* ControllerGraphicsItem::controller() const
 
 void ControllerGraphicsItem::configureController()
 {
-#if 0
     if(_worldModel->isSimulationActive())
         _worldModel->simulationStop();
 
     _confChanged = false;
-    _confDialog = new KDialog(_plotWidget);
+    _confDialog = new KDialog(_widget);
     
-    _confDialog->setCaption(i18n("Configure graph"));
+    _confDialog->setCaption(i18n("Configure controller"));
     _confDialog->setButtons(KDialog::Ok | KDialog::Cancel | KDialog::Apply);
 
-    _confUi = new Ui::WidgetConfigureGraph;
+    _confUi = new Ui::WidgetConfigureController;
     _confUi->setupUi(_confDialog->mainWidget());
 
-    _confUi->dataSourceX->setDataSource(_worldModel, graph()->objectX(),
-                                    graph()->propertyX(), graph()->indexX());
-    _confUi->dataSourceY->setDataSource(_worldModel, graph()->objectY(),
-                                    graph()->propertyY(), graph()->indexY());
+    _confUi->dataSource->setDataSource(_worldModel, controller()->object(),
+                                    controller()->property(), controller()->index());
 
-    _confUi->checkBoxAutoX->setChecked(graph()->autoLimitsX());
-    _confUi->checkBoxAutoY->setChecked(graph()->autoLimitsY());
+    _confUi->lineEditMin->setValidator(
+                new QDoubleValidator(-HUGE_VAL, HUGE_VAL, DBL_DIG, _confUi->lineEditMin));
+    _confUi->lineEditMax->setValidator(
+                new QDoubleValidator(-HUGE_VAL, HUGE_VAL, DBL_DIG, _confUi->lineEditMax));
 
-    _confUi->lineEditMinX->setValidator(
-                new QDoubleValidator(-HUGE_VAL, HUGE_VAL, DBL_DIG, _confUi->lineEditMinX));
-    _confUi->lineEditMaxX->setValidator(
-                new QDoubleValidator(-HUGE_VAL, HUGE_VAL, DBL_DIG, _confUi->lineEditMaxX));
-    _confUi->lineEditMinY->setValidator(
-                new QDoubleValidator(-HUGE_VAL, HUGE_VAL, DBL_DIG, _confUi->lineEditMinY));
-    _confUi->lineEditMaxY->setValidator(
-                new QDoubleValidator(-HUGE_VAL, HUGE_VAL, DBL_DIG, _confUi->lineEditMaxY));
-
-    _confUi->lineEditMinX->setText(QString::number(graph()->limitsX()[0]));
-    _confUi->lineEditMaxX->setText(QString::number(graph()->limitsX()[1]));
-    _confUi->lineEditMinY->setText(QString::number(graph()->limitsY()[0]));
-    _confUi->lineEditMaxY->setText(QString::number(graph()->limitsY()[1]));
+    _confUi->lineEditMin->setText(QString::number(controller()->limits()[0]));
+    _confUi->lineEditMax->setText(QString::number(controller()->limits()[1]));
 
     _confDialog->enableButtonApply(false);
 
     connect(_confDialog, SIGNAL(applyClicked()), this, SLOT(confApply()));
     connect(_confDialog, SIGNAL(okClicked()), this, SLOT(confApply()));
 
-    connect(_confUi->dataSourceX, SIGNAL(dataSourceChanged()), this, SLOT(confChanged()));
-    connect(_confUi->dataSourceY, SIGNAL(dataSourceChanged()), this, SLOT(confChanged()));
-    connect(_confUi->checkBoxAutoX, SIGNAL(stateChanged(int)), this, SLOT(confChanged()));
-    connect(_confUi->checkBoxAutoY, SIGNAL(stateChanged(int)), this, SLOT(confChanged()));
-    connect(_confUi->lineEditMinX, SIGNAL(textEdited(const QString&)), this, SLOT(confChanged()));
-    connect(_confUi->lineEditMaxX, SIGNAL(textEdited(const QString&)), this, SLOT(confChanged()));
-    connect(_confUi->lineEditMinY, SIGNAL(textEdited(const QString&)), this, SLOT(confChanged()));
-    connect(_confUi->lineEditMaxY, SIGNAL(textEdited(const QString&)), this, SLOT(confChanged()));
+    connect(_confUi->dataSource, SIGNAL(dataSourceChanged()), this, SLOT(confChanged()));
+    connect(_confUi->lineEditMin, SIGNAL(textEdited(const QString&)), this, SLOT(confChanged()));
+    connect(_confUi->lineEditMax, SIGNAL(textEdited(const QString&)), this, SLOT(confChanged()));
 
     _confDialog->exec();
 
     delete _confDialog; _confDialog = 0;
     delete _confUi; _confUi = 0;
-#endif
 }
 
 void ControllerGraphicsItem::confApply()
 {
-#if 0
     Q_ASSERT(_confUi && _confDialog);
 
     // XXX: check for actual change ?
     if(!_confChanged) return;
-    _worldModel->beginMacro(i18n("Edit %1", graph()->name()));
+    _worldModel->beginMacro(i18n("Edit %1", controller()->name()));
     _worldModel->beginUpdate();
 
-    _worldModel->setProperty(graph(), graph()->metaObject()->property("objectX"),
-                                _confUi->dataSourceX->dataObject());
-    _worldModel->setProperty(graph(), graph()->metaObject()->property("propertyX"),
-                                _confUi->dataSourceX->dataProperty());
-    _worldModel->setProperty(graph(), graph()->metaObject()->property("indexX"),
-                                _confUi->dataSourceX->dataIndex());
+    _worldModel->setProperty(controller(), controller()->metaObject()->property("object"),
+                                _confUi->dataSource->dataObject());
+    _worldModel->setProperty(controller(), controller()->metaObject()->property("property"),
+                                _confUi->dataSource->dataProperty());
+    _worldModel->setProperty(controller(), controller()->metaObject()->property("index"),
+                                _confUi->dataSource->dataIndex());
 
-    _worldModel->setProperty(graph(), graph()->metaObject()->property("objectY"),
-                                _confUi->dataSourceY->dataObject());
-    _worldModel->setProperty(graph(), graph()->metaObject()->property("propertyY"),
-                                _confUi->dataSourceY->dataProperty());
-    _worldModel->setProperty(graph(), graph()->metaObject()->property("indexY"),
-                                _confUi->dataSourceY->dataIndex());
+    StepCore::Vector2d limits(_confUi->lineEditMin->text().toDouble(),
+                              _confUi->lineEditMax->text().toDouble());
 
-    _worldModel->setProperty(graph(), graph()->metaObject()->property("autoLimitsX"),
-                                _confUi->checkBoxAutoX->isChecked());
-    _worldModel->setProperty(graph(), graph()->metaObject()->property("autoLimitsY"),
-                                _confUi->checkBoxAutoY->isChecked());
-
-    StepCore::Vector2d limitsX(_confUi->lineEditMinX->text().toDouble(),
-                               _confUi->lineEditMaxX->text().toDouble());
-    StepCore::Vector2d limitsY(_confUi->lineEditMinY->text().toDouble(),
-                               _confUi->lineEditMaxY->text().toDouble());
-
-    _worldModel->setProperty(graph(), graph()->metaObject()->property("limitsX"),
-                                        QVariant::fromValue(limitsX));
-    _worldModel->setProperty(graph(), graph()->metaObject()->property("limitsY"),
-                                        QVariant::fromValue(limitsY));
+    _worldModel->setProperty(controller(), controller()->metaObject()->property("limits"),
+                                        QVariant::fromValue(limits));
 
     _worldModel->endUpdate();
     _worldModel->endMacro();
-#endif
 }
 
 void ControllerGraphicsItem::confChanged()
 {
-    /*
     Q_ASSERT(_confUi && _confDialog);
     _confChanged = true;
     _confDialog->enableButtonApply(true);
-    */
 }
 
 void ControllerGraphicsItem::paint(QPainter* painter, const QStyleOptionGraphicsItem* /*option*/, QWidget* /*widget*/)

@@ -26,6 +26,19 @@
 #include <QComboBox>
 #include <QWidget>
 
+class KPlotWidget;
+class KPlotObject;
+class KAction;
+class KDialog;
+class QSlider;
+class QLabel;
+
+namespace Ui {
+    class WidgetConfigureGraph;
+    class WidgetConfigureController;
+}
+
+
 class NoteGraphicsItem;
 class NoteTextItem: public QGraphicsTextItem
 {
@@ -64,10 +77,6 @@ protected:
     friend class NoteTextItem;
 };
 
-class KPlotWidget;
-class KPlotObject;
-class KAction;
-
 class DataSourceWidget: public QWidget
 {
     Q_OBJECT
@@ -96,9 +105,6 @@ protected:
     QComboBox*  _property;
     QComboBox*  _index;
 };
-
-namespace Ui { class WidgetConfigureGraph; }
-class KDialog;
 
 class GraphGraphicsItem: public QObject, public WorldGraphicsItem
 {
@@ -137,9 +143,6 @@ protected:
     bool                      _confChanged;
 };
 
-class QSlider;
-class QLabel;
-
 class ControllerGraphicsItem: public QObject, public WorldGraphicsItem
 {
     Q_OBJECT
@@ -176,11 +179,9 @@ protected:
     bool _changed;
 
     KAction* _configureAction;
-    /*
     Ui::WidgetConfigureController* _confUi;
     KDialog* _confDialog;
     bool     _confChanged;
-    */
 
     static const int SLIDER_MIN = 0;
     static const int SLIDER_MAX = INT_MAX-100;

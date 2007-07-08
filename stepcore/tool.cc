@@ -192,14 +192,14 @@ bool Controller::isValid() const
     bool ok;
     const MetaProperty* pr = propertyPtr(); if(!pr) return false;
     variantToDouble(pr->readVariant(_objectPtr), _index, &ok);
-    return ok;
+    return ok && pr->isWritable();
 }
 
 double Controller::value(bool* ok) const
 {
     const MetaProperty* pr = propertyPtr();
 
-    if(pr) {
+    if(pr && pr->isWritable()) {
         bool ok1;
         double v = variantToDouble(pr->readVariant(_objectPtr), _index, &ok1);
         if(ok1) {
@@ -216,7 +216,7 @@ void Controller::setValue(double value, bool* ok = 0)
 {
     const MetaProperty* pr = propertyPtr();
 
-    if(pr) {
+    if(pr && pr->isWritable()) {
         bool ok1;
         QVariant v = doubleToVariant(pr->readVariant(_objectPtr), _index, value, &ok1);
         if(ok1) {
