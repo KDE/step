@@ -190,22 +190,23 @@ void WorldScene::keyPressEvent(QKeyEvent* keyEvent)
 void WorldScene::helpEvent(QGraphicsSceneHelpEvent *helpEvent)
 {
     QString text;
-    QPoint point;
 
     int count = 0;
     foreach(QGraphicsItem* it, items(helpEvent->scenePos())) {
         if(it->parentItem()) continue;
         StepCore::Item* item = itemFromGraphics(it);
-        _worldModel->simulationPause();
         if(item) {
+            _worldModel->simulationPause();
             if(++count > 4) { text += QString("<p>...</p>"); break; }
             text += _worldModel->createToolTip(item);
         }
     }
 
     // Show or hide the tooltip
-    if(!text.isEmpty()) point = helpEvent->screenPos();
-    QToolTip::showText(point, text);
+    if(!text.isEmpty()) {
+        point = helpEvent->screenPos();
+        QToolTip::showText(helpEvent->screenPos(), text);
+    }
 }
 
 void WorldScene::worldModelReset()
