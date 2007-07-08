@@ -272,7 +272,7 @@ GraphGraphicsItem::GraphGraphicsItem(StepCore::Item* item, WorldModel* worldMode
     //_plotWidget->setRightPadding(3);
 
     _plotObject = new KPlotObject(Qt::black);
-    _plotObject->setShowPoints(true);
+    _plotObject->setShowPoints(false);
     _plotObject->setShowLines(true);
     _plotObject->setPointStyle(KPlotObject::Square);
 
