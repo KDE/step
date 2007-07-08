@@ -184,13 +184,12 @@ bool MainWindow::openFile(const QString& name)
 
     QFile file(fileName);
     if(!file.open(QIODevice::ReadOnly | QIODevice::Text)) {
-        KMessageBox::sorry(this, i18n("Can't open file '%1'").arg(fileName));
+        KMessageBox::sorry(this, i18n("Can't open file '%1'", fileName));
         return false;
     }
     
     if(!worldModel->loadXml(&file)) {
-        KMessageBox::sorry(this, i18n("Can't parse file '%1': %2").
-                        arg(fileName).arg(worldModel->errorString()));
+        KMessageBox::sorry(this, i18n("Can't parse file '%1': %2", fileName, worldModel->errorString()));
         return false;
     }
 
@@ -214,13 +213,12 @@ bool MainWindow::saveFileAs(const QString& name)
 
     QFile file(fileName);
     if(!file.open(QIODevice::WriteOnly | QIODevice::Text)) {
-        KMessageBox::sorry(this, i18n("Can't open file '%1'").arg(fileName));
+        KMessageBox::sorry(this, i18n("Can't open file '%1'",fileName));
         return false;
     }
     
     if(!worldModel->saveXml(&file)) {
-        KMessageBox::sorry(this, i18n("Can't save file '%1': %2")
-                        .arg(fileName).arg(worldModel->errorString()));
+        KMessageBox::sorry(this, i18n("Can't save file '%1': %2",fileName,worldModel->errorString()));
         return false;
     }
 
