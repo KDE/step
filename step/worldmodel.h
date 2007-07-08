@@ -42,35 +42,8 @@ class QUndoStack;
 class QTimer;
 class WorldFactory;
 class CommandSimulate;
+class SimulationThread;
 
-/* Simulation thread only changes properties of items,
- * not their count or addresses, so locking is required for
- *  - any writes
- *  - reads of item properties
- */
-class SimulationThread: public QThread
-{
-    Q_OBJECT
-
-public:
-    SimulationThread(StepCore::World** world)
-        : _world(world), _stopThread(0), _delta(0) {}
-    ~SimulationThread();
-
-    void run();
-    void doWorldEvolve(double delta);
-    QMutex* mutex() { return &_mutex; }
-
-signals:
-    void worldEvolveDone(int result);
-
-protected:
-    StepCore::World** _world;
-    bool              _stopThread;
-    double            _delta;
-    QMutex            _mutex;
-    QWaitCondition    _waitCondition;
-};
 
 class WorldModel: public QAbstractItemModel
 {
@@ -142,7 +115,7 @@ public:
 
     // Names
     QString getUniqueName(QString className) const;
-    bool checkUniqueName(QString name) const;
+    bool checkUniqueName(const QString& name) const;
 
     // Simulation
     void setSimulationFps(int simulationFps);

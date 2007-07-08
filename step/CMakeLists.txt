@@ -12,6 +12,7 @@ set(step_SRCS
     polygongraphics.cc
     springgraphics.cc
     toolgraphics.cc
+    simulationthread.cc
     main.cc
 )
 
