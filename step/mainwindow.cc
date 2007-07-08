@@ -32,11 +32,13 @@
 #include <KAction>
 #include <KActionCollection>
 #include <KStandardAction>
+#include <KRecentFilesAction>
 #include <KApplication>
 #include <KMessageBox>
 #include <KFileDialog>
 #include <KStatusBar>
 #include <KLocale>
+#include <KConfig>
 
 #include <QFile>
 #include <QGraphicsView>
@@ -44,6 +46,9 @@
 
 MainWindow::MainWindow()
 {
+    setObjectName("MainWindow");
+    config = new KConfig("steprc");
+
     setCorner(Qt::TopLeftCorner, Qt::LeftDockWidgetArea);
     setCorner(Qt::BottomLeftCorner, Qt::LeftDockWidgetArea);
     setCorner(Qt::TopRightCorner, Qt::RightDockWidgetArea);
@@ -86,6 +91,12 @@ MainWindow::MainWindow()
     newFile();
 }
 
+MainWindow::~MainWindow()
+{
+    actionRecentFiles->saveEntries(config->group("RecentFiles"));
+    delete config;
+}
+
 void MainWindow::setupActions()
 {
     /* File menu */
@@ -94,6 +105,8 @@ void MainWindow::setupActions()
     KStandardAction::save(this, SLOT(saveFile()), actionCollection());
     KStandardAction::saveAs(this, SLOT(saveFileAs()), actionCollection());
     KStandardAction::quit(this, SLOT(close()), actionCollection());
+    actionRecentFiles = KStandardAction::openRecent(this, SLOT(openFile(const KUrl&)), actionCollection());
+    actionRecentFiles->loadEntries(config->group("RecentFiles"));
 
     /* Edit menu */
     actionRedo = KStandardAction::redo(worldModel->undoStack(), SLOT(redo()), actionCollection());
@@ -138,8 +151,8 @@ void MainWindow::setupActions()
 void MainWindow::updateCaption()
 {
     QString shownName;
-    if(currentFileName.isEmpty()) shownName = "untitled.step";
-    else shownName = QFileInfo(currentFileName).fileName();
+    if(currentFileUrl.isEmpty()) shownName = "untitled.step";
+    else shownName = currentFileUrl.pathOrUrl(); //QFileInfo(currentFileName).fileName();
     setCaption(shownName, !worldModel->undoStack()->isClean());
 }
 
@@ -161,68 +174,73 @@ bool MainWindow::newFile()
     worldModel->clearWorld();
     worldGraphicsView->actualSize();
     worldGraphicsView->centerOn(0,0);
-    currentFileName = QString();
+    currentFileUrl = KUrl();
     updateCaption();
     return true;
 }
 
-bool MainWindow::openFile(const QString& name)
+bool MainWindow::openFile(const KUrl& url)
 {
     if(worldModel->isSimulationActive()) simulationStop();
     if(!maybeSave()) return false;
 
-    QString fileName = name;
-    if(fileName.isEmpty()) {
-        fileName = KFileDialog::getOpenFileName(KUrl(), "*.step|Step files (*.step)", this);
-        if(fileName.isEmpty()) return false;
+    KUrl fileUrl = url;
+    kDebug() << url << endl;
+    kDebug() << url.url() << endl;
+    if(fileUrl.isEmpty()) {
+        fileUrl = KFileDialog::getOpenFileName(KUrl(), "*.step|Step files (*.step)", this);
+        if(fileUrl.isEmpty()) return false;
     }
 
     worldModel->clearWorld();
     newFile();
 
     // TODO: KIO
+    Q_ASSERT(fileUrl.isLocalFile());
 
-    QFile file(fileName);
+    QFile file(fileUrl.path());
     if(!file.open(QIODevice::ReadOnly | QIODevice::Text)) {
-        KMessageBox::sorry(this, i18n("Can't open file '%1'", fileName));
+        KMessageBox::sorry(this, i18n("Can't open file '%1'", fileUrl.pathOrUrl()));
         return false;
     }
     
     if(!worldModel->loadXml(&file)) {
-        KMessageBox::sorry(this, i18n("Can't parse file '%1': %2", fileName, worldModel->errorString()));
+        KMessageBox::sorry(this, i18n("Can't parse file '%1': %2", fileUrl.pathOrUrl(), worldModel->errorString()));
         return false;
     }
 
     worldGraphicsView->fitToPage();
-    currentFileName = fileName;
+    currentFileUrl = fileUrl;
     updateCaption();
+    actionRecentFiles->addUrl(fileUrl);
     return true;
 }
 
-bool MainWindow::saveFileAs(const QString& name)
+bool MainWindow::saveFileAs(const KUrl& url)
 {
     if(worldModel->isSimulationActive()) simulationStop();
-    QString fileName = name;
-    if(fileName.isEmpty()) {
-        fileName = KFileDialog::getSaveFileName(KUrl::fromPath(currentFileName),
+    KUrl fileUrl = url;
+    if(fileUrl.isEmpty()) {
+        fileUrl = KFileDialog::getSaveFileName(currentFileUrl,
                                              "*.step|Step files (*.step)", this);
-        if(fileName.isEmpty()) return false;
+        if(fileUrl.isEmpty()) return false;
     }
 
-    // TODO: KIO (and replace currentFileName by currentFileURL)
+    // TODO: KIO
+    Q_ASSERT(fileUrl.isLocalFile());
 
-    QFile file(fileName);
+    QFile file(fileUrl.path());
     if(!file.open(QIODevice::WriteOnly | QIODevice::Text)) {
-        KMessageBox::sorry(this, i18n("Can't open file '%1'",fileName));
+        KMessageBox::sorry(this, i18n("Can't open file '%1'", fileUrl.pathOrUrl()));
         return false;
     }
     
     if(!worldModel->saveXml(&file)) {
-        KMessageBox::sorry(this, i18n("Can't save file '%1': %2",fileName,worldModel->errorString()));
+        KMessageBox::sorry(this, i18n("Can't save file '%1': %2", fileUrl.pathOrUrl(), worldModel->errorString()));
         return false;
     }
 
-    currentFileName = fileName;
+    currentFileUrl = fileUrl;
     updateCaption();
     return true;
 }
@@ -230,7 +248,7 @@ bool MainWindow::saveFileAs(const QString& name)
 bool MainWindow::saveFile()
 {
     if(worldModel->isSimulationActive()) simulationStop();
-    return saveFileAs(currentFileName);
+    return saveFileAs(currentFileUrl);
 }
 
 bool MainWindow::maybeSave()

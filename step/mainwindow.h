@@ -20,6 +20,7 @@
 #define STEP_MAINWINDOW_H
 
 #include <KXmlGuiWindow>
+#include <KUrl>
 
 class WorldModel;
 class WorldBrowser;
@@ -28,7 +29,9 @@ class WorldGraphicsView;
 class PropertiesBrowser;
 class InfoBrowser;
 class ItemPalette;
+class KConfig;
 class KAction;
+class KRecentFilesAction;
 class QItemSelection;
 
 class MainWindow : public KXmlGuiWindow
@@ -37,11 +40,12 @@ class MainWindow : public KXmlGuiWindow
 
 public:
     MainWindow();
+    ~MainWindow();
 
 public slots:
     bool newFile();
-    bool openFile(const QString& name = QString());
-    bool saveFileAs(const QString& name = QString());
+    bool openFile(const KUrl& url = KUrl());
+    bool saveFileAs(const KUrl& url = KUrl());
     bool saveFile();
 
     void simulationStartStop();
@@ -84,6 +88,8 @@ protected:
     WorldScene*         worldScene;
     WorldGraphicsView*  worldGraphicsView;
 
+    KConfig* config;
+
     KAction* actionSimulation;
     KAction* actionSimulationStart;
     KAction* actionSimulationStop;
@@ -92,7 +98,9 @@ protected:
     KAction* actionRedo;
     KAction* actionDelete;
 
-    QString currentFileName;
+    KRecentFilesAction* actionRecentFiles;
+
+    KUrl currentFileUrl;
 };
 
 #endif

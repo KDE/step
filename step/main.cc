@@ -39,7 +39,7 @@ int main(int argc, char* argv[])
     KCmdLineArgs::init(argc, argv, &aboutData);
 
     KCmdLineOptions options;
-    options.add("+[file]", ki18n( "Document to open" ));
+    options.add("+[url]", ki18n( "Document to open" ));
     KCmdLineArgs::addCmdLineOptions(options);
 
     KApplication app;
@@ -48,7 +48,7 @@ int main(int argc, char* argv[])
     mainWindow->show();
 
     KCmdLineArgs* args = KCmdLineArgs::parsedArgs();
-    if(args->count() > 0) mainWindow->openFile(args->arg(0));
+    if(args->count() > 0) mainWindow->openFile(KUrl(args->arg(0)));
 
     return app.exec();
 }
