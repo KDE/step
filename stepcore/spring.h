@@ -55,7 +55,7 @@ class Spring: public Item, public Force
 
 public:
     /** Constructs Spring */
-    Spring(double restLength = 0, double stiffness = 1,
+    explicit Spring(double restLength = 0, double stiffness = 1,
                 Body* bodyPtr1 = 0, Body* bodyPtr2 = 0);
 
     void calcForce();

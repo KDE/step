@@ -38,7 +38,7 @@ class Particle: public Item, public Body
 
 public:
     /** Constructs a particle */
-    Particle(Vector2d position = Vector2d(0), Vector2d velocity = Vector2d(0), double mass = 1);
+    explicit Particle(Vector2d position = Vector2d(0), Vector2d velocity = Vector2d(0), double mass = 1);
 
     /** Get position of the particle */
     const Vector2d& position() const { return _position; }
@@ -87,7 +87,7 @@ class ChargedParticle: public Particle
 
 public:
     /** Constructs a charged particle */
-    ChargedParticle(Vector2d position = Vector2d(0.), Vector2d velocity = Vector2d(0.),
+    explicit ChargedParticle(Vector2d position = Vector2d(0.), Vector2d velocity = Vector2d(0.),
                                                     double mass = 1, double charge = 0)
                 : Particle(position, velocity, mass), _charge(charge) {}
 

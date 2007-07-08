@@ -34,7 +34,7 @@ class Note: public Item, public Tool
     STEPCORE_OBJECT(Note)
 
 public:
-    Note(Vector2d position = Vector2d(0), QString text = QString());
+    explicit Note(Vector2d position = Vector2d(0), QString text = QString());
 
     const QString& text() const { return _text; }
     void setText(const QString& text) { _text = text; }
@@ -52,7 +52,7 @@ class Graph: public Item, public Tool
     STEPCORE_OBJECT(Graph)
 
 public:
-    Graph(Vector2d position = Vector2d(0), Vector2d size = Vector2d(400,300));
+    explicit Graph(Vector2d position = Vector2d(0), Vector2d size = Vector2d(400,300));
 
     const Vector2d& position() const { return _position; }
     void setPosition(const Vector2d& position) { _position = position; }
@@ -155,7 +155,7 @@ class Controller: public Item, public Tool
     STEPCORE_OBJECT(Controller)
 
 public:
-    Controller(Vector2d position = Vector2d(0), Vector2d size = Vector2d(200,60));
+    explicit Controller(Vector2d position = Vector2d(0), Vector2d size = Vector2d(200,60));
 
     const Vector2d& position() const { return _position; }
     void setPosition(const Vector2d& position) { _position = position; }

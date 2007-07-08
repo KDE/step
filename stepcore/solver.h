@@ -76,7 +76,7 @@ public:
     typedef int (*Function)(double t, const double y[], double f[], void* params);
 
     /** Cunstructs a solver */
-    Solver(int dimension = 0, Function function = NULL,
+    explicit Solver(int dimension = 0, Function function = NULL,
                 void* params = NULL, double stepSize = 0.001);
     /** Cunstructs a solver */
     Solver(double stepSize);
