@@ -74,7 +74,7 @@ void CommandEditProperty::redo()
     foreach(const EditProperty& p, _commands) {
         if(p.newValue.type() != QVariant::String) p.property->writeVariant(p.object, p.newValue);
         else p.property->writeString(p.object, p.newValue.value<QString>());
-        if(!p.property->isDynamic()) dynamicOnly = false;
+        if(!p.property->isDynamic() || p.property->hasSideEffects()) dynamicOnly = false;
     }
     //_worldModel->objectChanged(NULL);
     _worldModel->emitChanged(dynamicOnly);

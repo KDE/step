@@ -111,38 +111,6 @@ inline StepCore::Note* NoteGraphicsItem::note() const
 
 void NoteGraphicsItem::paint(QPainter* /*painter*/, const QStyleOptionGraphicsItem* /*option*/, QWidget* /*widget*/)
 {
-    /*painter->setPen(QPen(Qt::black, 0));
-    painter->setBrush(QBrush(Qt::lightGray));
-    QRectF rect = boundingRect();
-    painter->drawRect(rect);*/
-    /*
-    double s = currentViewScale();
-    painter->setPen(QPen(Qt::gray, 0));
-    painter->drawLine(QLineF(0, -4/s, rect.width(), -4/s)); 
-    painter->drawLine(QLineF(0, -8/s, rect.width(), -8/s)); 
-    */
-
-    /*
-    double s = currentViewScale();
-    double radius = 6/s;
-
-    int renderHints = painter->renderHints();
-    painter->setRenderHint(QPainter::Antialiasing, true);
-    painter->setPen(QPen(Qt::black, 0));
-    painter->setBrush(QBrush(Qt::black));
-    
-    painter->drawEllipse(QRectF(-radius,-radius,radius*2,radius*2));
-    painter->setBrush(QBrush());
-    painter->setRenderHint(QPainter::Antialiasing, renderHints & QPainter::Antialiasing);
-
-    if(isSelected()) {
-        painter->setRenderHint(QPainter::Antialiasing, true);
-        painter->setPen(QPen(SELECTION_COLOR, 0, Qt::DashLine));
-        //painter->setBrush(QBrush(QColor(0, 0x99, 0xff)));
-        radius = (6+SELECTION_MARGIN)/s;
-        painter->drawEllipse(QRectF(-radius, -radius, radius*2, radius*2));
-        painter->setRenderHint(QPainter::Antialiasing, renderHints & QPainter::Antialiasing);
-    }*/
 }
 
 void NoteGraphicsItem::viewScaleChanged()
@@ -191,271 +159,6 @@ void NoteGraphicsItem::contentsChanged()
         --_updating;
     }
 }
-
-#if 0
-GraphWidget::GraphWidget(GraphGraphicsItem* graphItem, QWidget *parent)
-    : QWidget(parent), _graphItem(graphItem)
-{
-    _updating = 0;
-    _lastPointTime = -HUGE_VALF;
-
-    _graph = _graphItem->graph();
-    _worldModel = _graphItem->_worldModel;
-
-    QGridLayout *gridLayout = new QGridLayout(this);
-    gridLayout->setColumnStretch(0, 0);
-    gridLayout->setColumnStretch(1, 5);
-    gridLayout->setColumnStretch(2, 5);
-    gridLayout->setColumnStretch(3, 0);
-
-    gridLayout->setRowStretch(0, 0);
-    gridLayout->setRowStretch(1, 1);
-    gridLayout->setRowStretch(2, 0);
-    gridLayout->setRowStretch(3, 0);
-
-    _name = new QLabel(_graph->name(), this);
-    _name->setAlignment(Qt::AlignHCenter);
-    QFont font = _name->font(); font.setBold(true); _name->setFont(font);
-    gridLayout->addWidget(_name, 0, 0, 1, -1);
-
-    _plotWidget = new KPlotWidget(this);
-    _plotWidget->setBackgroundColor(Qt::white);
-    _plotWidget->setForegroundColor(Qt::black);
-    //_plotWidget->setLeftPadding(0);
-    _plotWidget->setTopPadding(2);
-    _plotWidget->setRightPadding(3);
-
-    _plotObject = new KPlotObject(Qt::black/*int(KPlotObject::Points|KPlotObject::Lines)*/);
-    _plotObject->setShowPoints(true);
-    _plotObject->setShowLines(true);
-    _plotObject->setPointStyle(KPlotObject::Square);
-
-    //_plotWidget->setAntialiasing(true);
-    _plotWidget->addPlotObject(_plotObject);
-
-    /*
-    _plotObject->addPoint(0.5, 0.5);
-    _plotObject->addPoint(0.7, 0.7);
-    _plotObject->addPoint(0.9, 0.9);
-    */
-
-    gridLayout->addWidget(_plotWidget, 1, 0, 1, -1);
-
-    /*
-    QAbstractItemModel* model = new GraphFlatWorldModel(_worldModel, this);
-    for(int i=0; i<2; ++i) {
-        QLabel* label = new QLabel(i==0 ? "x:" : "y:", this);
-        gridLayout->addWidget(label, 2+i, 0, 1, 1);
-
-        _object[i] = new QComboBox(this);
-        _object[i]->setToolTip("Object name");
-        gridLayout->addWidget(_object[i], 2+i, 1, 1, 1);
-
-        _property[i] = new QComboBox(this);
-        _property[i]->setToolTip("Property name");
-        _property[i]->setEnabled(false);
-        gridLayout->addWidget(_property[i], 2+i, 2, 1, 1);
-
-        _index[i] = new QComboBox(this);
-        _index[i]->setToolTip("Vector index");
-        _index[i]->setMinimumContentsLength(1);
-        _index[i]->setSizeAdjustPolicy(QComboBox::AdjustToMinimumContentsLength);
-        _index[i]->hide();
-        gridLayout->addWidget(_index[i], 2+i, 3, 1, 1);
-
-        _object[i]->setModel(model);
-        _object[i]->setCurrentIndex(-1);
-        connect(_object[i], SIGNAL(currentIndexChanged(const QString&)),
-                this, SLOT(objectSelected(const QString&)));
-        connect(_property[i], SIGNAL(currentIndexChanged(const QString&)),
-                this, SLOT(propertySelected(const QString&)));
-        connect(_index[i], SIGNAL(currentIndexChanged(const QString&)),
-                this, SLOT(indexSelected(const QString&)));
-    }
-    */
-
-    _clearAction = new KAction(i18n("Clear graph"), this);
-    _configureAction = new KAction(i18n("Configure graph..."), this);
-    connect(_configureAction, SIGNAL(triggered()), this, SLOT(configure()));
-    _plotWidget->addAction(_clearAction);
-    _plotWidget->addAction(_configureAction);
-    _plotWidget->setContextMenuPolicy(Qt::ActionsContextMenu);
-
-    _doclear = 0;
-    worldDataChanged();
-    _doclear = 1;
-}
-
-GraphWidget::~GraphWidget()
-{
-    _plotWidget->hide(); // BUG ?
-    delete _plotWidget;
-}
-
-void GraphWidget::configure()
-{
-    KDialog* confDialog = new KDialog(this);
-    confDialog->setCaption(i18n("Configure graph"));
-    confDialog->setButtons(KDialog::Ok | KDialog::Cancel | KDialog::Apply);
-    //DataSourceWidget* w = new DataSourceWidget(_worldModel, confDialog);
-    //w->setDataSource(QString(), QString(), 0);
-    Ui::WidgetConfigureGraph confUi;
-    confUi.setupUi(confDialog->mainWidget());
-    confUi.dataSourceX->setDataSource(_worldModel);
-    confUi.dataSourceY->setDataSource(_worldModel);
-    kDebug() << confUi.dataSourceX->minimumSizeHint() << endl;
-    confDialog->exec();
-    kDebug() << "exec finished" << endl;
-    delete confDialog;
-}
-
-void GraphWidget::objectSelected(const QString& text)
-{
-    int n = (sender() == _object[0] ? 0 : 1);
-
-    bool macro = false;
-
-    if(!_updating) {
-        ++_updating;
-        macro = true;
-        _worldModel->simulationPause();
-        _worldModel->beginMacro(i18n("Edit %1", _graph->name()));
-        _worldModel->setProperty(_graph,
-                _graph->metaObject()->property(n==0 ? "object1":"object2"), text);
-        //_worldModel->endMacro();
-        --_updating;
-    }
-
-    ++_updating;
-    _property[n]->clear();
-    const StepCore::Object* obj = (n==0 ? _graph->objectXPtr() : _graph->objectYPtr());
-    if(obj) {
-        for(int i=0; i<obj->metaObject()->propertyCount(); ++i) {
-            const StepCore::MetaProperty* p = obj->metaObject()->property(i);
-            if(p->userTypeId() == qMetaTypeId<double>() || p->userTypeId() == qMetaTypeId<StepCore::Vector2d>())
-                _property[n]->addItem(p->name());
-        }
-        _property[n]->setEnabled(true);
-    } else _property[n]->setEnabled(false);
-
-    _property[n]->setCurrentIndex(-1);
-    if(macro) {
-        _worldModel->setProperty(_graph,
-                _graph->metaObject()->property(n==0 ? "property1":"property2"), _property[n]->itemText(0));
-        _property[n]->setCurrentIndex(0);
-        _worldModel->endMacro();
-    }
-    --_updating;
-}
-
-void GraphWidget::propertySelected(const QString& text)
-{
-    int n = (sender() == _property[0] ? 0 : 1);
-
-    if(!_updating) {
-        ++_updating;
-        _worldModel->beginMacro(i18n("Edit %1", _graph->name()));
-        _worldModel->simulationPause();
-        _worldModel->setProperty(_graph,
-                _graph->metaObject()->property(n==0 ? "property1":"property2"), text);
-        _worldModel->endMacro();
-        --_updating;
-    }
-
-    ++_updating;
-    _index[n]->clear();
-    const StepCore::MetaProperty* p = (n==0 ? _graph->propertyXPtr() : _graph->propertyYPtr());
-    if(p) {
-        if(p->userTypeId() == qMetaTypeId<StepCore::Vector2d>()) {
-            _index[n]->addItem("0");
-            _index[n]->addItem("1");
-            _index[n]->setCurrentIndex( n==0 ? _graph->index1() : _graph->index2() );
-            if(_index[n]->isHidden()) _index[n]->show();
-        } else {
-            if(_index[n]->isVisible()) _index[n]->hide();
-            indexSelected(QString());
-        }
-    } else {
-        if(_index[n]->isVisible()) _index[n]->hide();
-        indexSelected(QString());
-    }
-    --_updating;
-}
-
-void GraphWidget::indexSelected(const QString& text)
-{
-    int n = (sender() == _index[0] ? 0 : 1);
-
-    if(!_updating) {
-        ++_updating;
-        _worldModel->beginMacro(i18n("Edit %1", _graph->name()));
-        _worldModel->simulationPause();
-        _worldModel->setProperty(_graph,
-                _graph->metaObject()->property(n==0 ? "index1":"index2"), text);
-        _worldModel->endMacro();
-        --_updating;
-    }
-
-    if(_doclear) {
-        _graph->clearPoints();
-        _lastPointTime = -HUGE_VALF;
-        recordPoint();
-    } else {
-        _lastPointTime = _worldModel->world()->time();
-    }
-    worldDataChanged();
-}
-
-void GraphWidget::worldDataChanged()
-{
-    if(!_updating) {
-        ++_updating;
-        _name->setText(_graph->name());
-
-        if(_graph->object1() != _object[0]->currentText())
-            _object[0]->setCurrentIndex(_object[0]->findData(_graph->object1(), Qt::DisplayRole));
-        if(_graph->object2() != _object[1]->currentText())
-            _object[1]->setCurrentIndex(_object[1]->findData(_graph->object2(), Qt::DisplayRole));
-
-        if(_graph->property1() != _property[0]->currentText())
-            _property[0]->setCurrentIndex(_property[0]->findData(_graph->property1(), Qt::DisplayRole));
-        if(_graph->property1() != _property[1]->currentText())
-            _property[1]->setCurrentIndex(_property[1]->findData(_graph->property2(), Qt::DisplayRole));
-
-        if(_index[0]->isVisible()) _index[0]->setCurrentIndex(_graph->index1());
-        if(_index[1]->isVisible()) _index[1]->setCurrentIndex(_graph->index2());
-
-        --_updating;
-    }
-
-    if(_worldModel->world()->time() > _lastPointTime
-                + 1.0/_worldModel->simulationFps() - 1e-2/_worldModel->simulationFps()) {
-        recordPoint();
-    }
-
-    const StepCore::Vector2d& limX = _graph->limitsX();
-    const StepCore::Vector2d& limY = _graph->limitsY();
-    _plotWidget->setLimits(limX[0], limX[1], limY[0], limY[1]);
-
-    _plotObject->clearPoints();
-    for(int i=0; i<(int)_graph->points().size(); ++i) {
-        StepCore::Vector2d p = _graph->points()[i];
-        _plotObject->addPoint(p[0], p[1]);
-    }
-    _plotWidget->update();
-}
-
-void GraphWidget::recordPoint()
-{
-    bool ok;
-    StepCore::Vector2d point = _graph->recordPoint(&ok);
-    if(ok) {
-        _lastPointTime = _worldModel->world()->time();
-    } else {
-        _lastPointTime = -HUGE_VALF;
-    }
-}
-#endif
 
 DataSourceWidget::DataSourceWidget(QWidget* parent)
     : QWidget(parent), _worldModel(0)
@@ -590,10 +293,13 @@ GraphGraphicsItem::GraphGraphicsItem(StepCore::Item* item, WorldModel* worldMode
     _lastPointTime = -HUGE_VAL;
 
     _confUi = 0;
+    _confDialog = 0;
+    _confChanged = false;
 }
 
 GraphGraphicsItem::~GraphGraphicsItem()
 {
+    _plotWidget->hide();
     delete _plotWidget;
 }
 
@@ -717,6 +423,7 @@ void GraphGraphicsItem::clearGraph()
 
 void GraphGraphicsItem::paint(QPainter* painter, const QStyleOptionGraphicsItem* /*option*/, QWidget* /*widget*/)
 {
+    // Do not need to fill the background since widget covers it all
     if(_isSelected) {
         painter->setRenderHint(QPainter::Antialiasing, true);
         painter->setPen(QPen(SELECTION_COLOR, 0, Qt::DashLine));
@@ -890,5 +597,349 @@ void GraphGraphicsItem::worldDataChanged(bool dynamicOnly)
         //_worldModel->setProperty(graph(), graph()->metaObject()->property("name"), QString("test"));
     }
 #endif
+}
+
+////////////////////////////////////////////////////
+ControllerGraphicsItem::ControllerGraphicsItem(StepCore::Item* item, WorldModel* worldModel)
+    : WorldGraphicsItem(item, worldModel)
+{
+    Q_ASSERT(dynamic_cast<StepCore::Controller*>(_item) != NULL);
+    setFlag(QGraphicsItem::ItemIsSelectable);
+    setFlag(QGraphicsItem::ItemIsMovable);
+    setAcceptsHoverEvents(true);
+
+    _widget = new QWidget();
+    QGridLayout* layout = new QGridLayout(_widget);
+
+    _labelMin = new QLabel(_widget); _labelMin->setAlignment(Qt::AlignRight);
+    _labelMax = new QLabel(_widget); _labelMax->setAlignment(Qt::AlignLeft);
+    _labelSource = new QLabel(_widget); _labelSource->setAlignment(Qt::AlignHCenter | Qt::AlignTop);
+    _slider = new QSlider(Qt::Horizontal, _widget);
+    _slider->setRange(SLIDER_MIN, SLIDER_MAX);
+    connect(_slider, SIGNAL(sliderMoved(int)), this, SLOT(sliderChanged(int)));
+    connect(_slider, SIGNAL(sliderReleased()), this, SLOT(sliderReleased()));
+
+    layout->addWidget(_labelMin, 0, 0, 1, 1);
+    layout->addWidget(_slider, 0, 1, 1, 1);
+    layout->addWidget(_labelMax, 0, 2, 1, 1);
+    layout->addWidget(_labelSource, 1, 1, 1, 1);
+
+    _configureAction = new KAction(i18n("Configure controller..."), this);
+    connect(_configureAction, SIGNAL(triggered()), this, SLOT(configureGraph()));
+    _widget->addAction(_configureAction);
+    _widget->setContextMenuPolicy(Qt::ActionsContextMenu);
+
+    _boundingRect = QRectF(0, 0, 0, 0);
+    _lastScale = 1;
+    scale(1, -1);
+
+    _lastValue = 1;
+    _changed = false;
+
+    /*
+    _confUi = 0;
+    _confDialog = 0;
+    _confChanged = false;
+    */
+}
+
+ControllerGraphicsItem::~ControllerGraphicsItem()
+{
+    _widget->hide();
+    delete _widget;
+}
+
+inline StepCore::Controller* ControllerGraphicsItem::controller() const
+{
+    return static_cast<StepCore::Controller*>(_item);
+}
+
+void ControllerGraphicsItem::configureController()
+{
+#if 0
+    if(_worldModel->isSimulationActive())
+        _worldModel->simulationStop();
+
+    _confChanged = false;
+    _confDialog = new KDialog(_plotWidget);
+    
+    _confDialog->setCaption(i18n("Configure graph"));
+    _confDialog->setButtons(KDialog::Ok | KDialog::Cancel | KDialog::Apply);
+
+    _confUi = new Ui::WidgetConfigureGraph;
+    _confUi->setupUi(_confDialog->mainWidget());
+
+    _confUi->dataSourceX->setDataSource(_worldModel, graph()->objectX(),
+                                    graph()->propertyX(), graph()->indexX());
+    _confUi->dataSourceY->setDataSource(_worldModel, graph()->objectY(),
+                                    graph()->propertyY(), graph()->indexY());
+
+    _confUi->checkBoxAutoX->setChecked(graph()->autoLimitsX());
+    _confUi->checkBoxAutoY->setChecked(graph()->autoLimitsY());
+
+    _confUi->lineEditMinX->setValidator(
+                new QDoubleValidator(-HUGE_VAL, HUGE_VAL, DBL_DIG, _confUi->lineEditMinX));
+    _confUi->lineEditMaxX->setValidator(
+                new QDoubleValidator(-HUGE_VAL, HUGE_VAL, DBL_DIG, _confUi->lineEditMaxX));
+    _confUi->lineEditMinY->setValidator(
+                new QDoubleValidator(-HUGE_VAL, HUGE_VAL, DBL_DIG, _confUi->lineEditMinY));
+    _confUi->lineEditMaxY->setValidator(
+                new QDoubleValidator(-HUGE_VAL, HUGE_VAL, DBL_DIG, _confUi->lineEditMaxY));
+
+    _confUi->lineEditMinX->setText(QString::number(graph()->limitsX()[0]));
+    _confUi->lineEditMaxX->setText(QString::number(graph()->limitsX()[1]));
+    _confUi->lineEditMinY->setText(QString::number(graph()->limitsY()[0]));
+    _confUi->lineEditMaxY->setText(QString::number(graph()->limitsY()[1]));
+
+    _confDialog->enableButtonApply(false);
+
+    connect(_confDialog, SIGNAL(applyClicked()), this, SLOT(confApply()));
+    connect(_confDialog, SIGNAL(okClicked()), this, SLOT(confApply()));
+
+    connect(_confUi->dataSourceX, SIGNAL(dataSourceChanged()), this, SLOT(confChanged()));
+    connect(_confUi->dataSourceY, SIGNAL(dataSourceChanged()), this, SLOT(confChanged()));
+    connect(_confUi->checkBoxAutoX, SIGNAL(stateChanged(int)), this, SLOT(confChanged()));
+    connect(_confUi->checkBoxAutoY, SIGNAL(stateChanged(int)), this, SLOT(confChanged()));
+    connect(_confUi->lineEditMinX, SIGNAL(textEdited(const QString&)), this, SLOT(confChanged()));
+    connect(_confUi->lineEditMaxX, SIGNAL(textEdited(const QString&)), this, SLOT(confChanged()));
+    connect(_confUi->lineEditMinY, SIGNAL(textEdited(const QString&)), this, SLOT(confChanged()));
+    connect(_confUi->lineEditMaxY, SIGNAL(textEdited(const QString&)), this, SLOT(confChanged()));
+
+    _confDialog->exec();
+
+    delete _confDialog; _confDialog = 0;
+    delete _confUi; _confUi = 0;
+#endif
+}
+
+void ControllerGraphicsItem::confApply()
+{
+#if 0
+    Q_ASSERT(_confUi && _confDialog);
+
+    // XXX: check for actual change ?
+    if(!_confChanged) return;
+    _worldModel->beginMacro(i18n("Edit %1", graph()->name()));
+    _worldModel->beginUpdate();
+
+    _worldModel->setProperty(graph(), graph()->metaObject()->property("objectX"),
+                                _confUi->dataSourceX->dataObject());
+    _worldModel->setProperty(graph(), graph()->metaObject()->property("propertyX"),
+                                _confUi->dataSourceX->dataProperty());
+    _worldModel->setProperty(graph(), graph()->metaObject()->property("indexX"),
+                                _confUi->dataSourceX->dataIndex());
+
+    _worldModel->setProperty(graph(), graph()->metaObject()->property("objectY"),
+                                _confUi->dataSourceY->dataObject());
+    _worldModel->setProperty(graph(), graph()->metaObject()->property("propertyY"),
+                                _confUi->dataSourceY->dataProperty());
+    _worldModel->setProperty(graph(), graph()->metaObject()->property("indexY"),
+                                _confUi->dataSourceY->dataIndex());
+
+    _worldModel->setProperty(graph(), graph()->metaObject()->property("autoLimitsX"),
+                                _confUi->checkBoxAutoX->isChecked());
+    _worldModel->setProperty(graph(), graph()->metaObject()->property("autoLimitsY"),
+                                _confUi->checkBoxAutoY->isChecked());
+
+    StepCore::Vector2d limitsX(_confUi->lineEditMinX->text().toDouble(),
+                               _confUi->lineEditMaxX->text().toDouble());
+    StepCore::Vector2d limitsY(_confUi->lineEditMinY->text().toDouble(),
+                               _confUi->lineEditMaxY->text().toDouble());
+
+    _worldModel->setProperty(graph(), graph()->metaObject()->property("limitsX"),
+                                        QVariant::fromValue(limitsX));
+    _worldModel->setProperty(graph(), graph()->metaObject()->property("limitsY"),
+                                        QVariant::fromValue(limitsY));
+
+    _worldModel->endUpdate();
+    _worldModel->endMacro();
+#endif
+}
+
+void ControllerGraphicsItem::confChanged()
+{
+    /*
+    Q_ASSERT(_confUi && _confDialog);
+    _confChanged = true;
+    _confDialog->enableButtonApply(true);
+    */
+}
+
+void ControllerGraphicsItem::paint(QPainter* painter, const QStyleOptionGraphicsItem* /*option*/, QWidget* /*widget*/)
+{
+    painter->setRenderHint(QPainter::Antialiasing, true);
+    if(_isSelected) painter->setPen(QPen(SELECTION_COLOR, 0, Qt::DashLine));
+    else painter->setPen(QPen(Qt::white));
+    painter->setBrush(QBrush(Qt::white));
+    painter->drawRect(_boundingRect);
+}
+
+void ControllerGraphicsItem::viewScaleChanged()
+{
+    double s = currentViewScale();
+    if(s != _lastScale) {
+        resetTransform();
+        scale(1/s, -1/s);
+        _lastScale = s;
+    }
+    
+    setPos(vectorToPoint(controller()->position()));
+
+    StepCore::Vector2d vs = controller()->size();
+    QSizeF vss(vs[0]+2, vs[1]+2);
+
+    if(vss != _boundingRect.size()) {
+        prepareGeometryChange();
+        _boundingRect.setSize(vss);
+        update();
+    }
+
+    if(scene() && !scene()->views().isEmpty()) {
+        QGraphicsView* activeView = scene()->views().first();
+
+        // Reparent the widget if necessary.
+        if(_widget->parentWidget() != activeView->viewport()) {
+           _widget->setParent(activeView->viewport());
+           _widget->show();
+        }
+
+        QTransform itemTransform = deviceTransform(activeView->viewportTransform());
+        QPoint viewportPos = itemTransform.map(QPointF(0, 0)).toPoint() + QPoint(1,1);
+
+        if(_widget->pos() != viewportPos)
+            _widget->move(viewportPos);
+
+        if(_widget->size() != _boundingRect.size())
+            _widget->resize(vss.toSize() - QSize(2,2));
+    }
+}
+
+void ControllerGraphicsItem::stateChanged()
+{
+    update();
+}
+
+void ControllerGraphicsItem::worldDataChanged(bool dynamicOnly)
+{
+    if(!dynamicOnly) {
+        viewScaleChanged();
+
+        // Labels
+        _labelMin->setText(QString::number(controller()->limits()[0]));
+        _labelMax->setText(QString::number(controller()->limits()[1]));
+
+        QString source;
+        if(controller()->isValid()) {
+            source = i18n("%1.%2", controller()->object(), controller()->property());
+            if(controller()->index() >= 0) source.append(i18n("[%1]", controller()->index()));
+        }
+        _labelSource->setText(source);
+
+        //if(!graph()->autoLimitsX() && !graph()->autoLimitsY()) adjustLimits();
+
+        /*
+        // Points
+        _plotObject->clearPoints();
+        for(int i=0; i<(int) graph()->points().size(); ++i) {
+            StepCore::Vector2d p = graph()->points()[i];
+            _plotObject->addPoint(p[0], p[1]);
+        }
+
+        adjustLimits();
+        _plotWidget->update();
+        */
+    }
+
+    double value = round((controller()->value() - controller()->limits()[0]) *
+            (SLIDER_MAX - SLIDER_MIN) / (controller()->limits()[1] - controller()->limits()[0]) + SLIDER_MIN);
+
+    if(value <= SLIDER_MIN && _lastValue > SLIDER_MIN) {
+        QPalette palette; palette.setColor(_labelMin->foregroundRole(), Qt::red);
+        _labelMin->setPalette(palette);
+    } else if(value > SLIDER_MIN && _lastValue <= SLIDER_MIN) {
+        QPalette palette; _labelMin->setPalette(palette);
+    }
+
+    if(value >= SLIDER_MAX-1 && _lastValue < SLIDER_MAX-1) {
+        QPalette palette; palette.setColor(_labelMax->foregroundRole(), Qt::red);
+        _labelMax->setPalette(palette);
+    } else if(value < SLIDER_MAX-1 && _lastValue >= SLIDER_MAX-1) {
+        QPalette palette; _labelMax->setPalette(palette);
+    }
+
+    _lastValue = value;
+
+    if(value < SLIDER_MIN) value = SLIDER_MIN;
+    else if(value > SLIDER_MAX-1) value = SLIDER_MAX-1;
+
+    _slider->setValue(int(value));
+
+#if 0
+    
+    if(_worldModel->isSimulationActive()) {
+        if(_worldModel->world()->time() > _lastPointTime
+                    + 1.0/_worldModel->simulationFps() - 1e-2/_worldModel->simulationFps()) {
+            StepCore::Vector2d point = graph()->recordPoint();
+            _lastPointTime = _worldModel->world()->time();
+        }
+    }
+
+    int po_count, p_count;
+    do {
+        const QList<KPlotPoint*> points = _plotObject->points();
+        po_count = points.count(); p_count = graph()->points().size();
+        int count = qMin(po_count, p_count);
+        for(int p=0; p < count; ++p)
+            points[p]->setPosition(vectorToPoint(graph()->points()[p]));
+    } while(0);
+
+    if(po_count < p_count) {
+        for(; po_count < p_count; ++po_count)
+            _plotObject->addPoint(vectorToPoint(graph()->points()[po_count]));
+    } else {
+        for(--po_count; po_count >= p_count; --po_count)
+            _plotObject->removePoint(po_count);
+    }
+
+    if(graph()->autoLimitsX() || graph()->autoLimitsY()) adjustLimits();
+    _plotWidget->update();
+#endif
+#if 0
+//#error Do setProperty here and remove DynamicOnly from points
+        if(ok) {
+            _plotObject->addPoint(point[0], point[1]);
+            if(graph()->autoLimitsX() || graph()->autoLimitsY()) 
+                adjustLimits();
+            _plotWidget->update();
+        }
+        _lastPointTime = _worldModel->world()->time();
+        worldDataChanged(false);
+        //_worldModel->setProperty(graph(), graph()->metaObject()->property("name"), QString("test"));
+    }
+#endif
+}
+
+void ControllerGraphicsItem::sliderChanged(int value)
+{
+    Q_ASSERT(value == _slider->sliderPosition());
+    if(!controller()->isValid()) return;
+    //if(!_worldModel->isSimulationActive()) {
+        _worldModel->simulationPause();
+        if(!_changed) {
+            _worldModel->beginMacro(i18n("Edit %1", controller()->object()));
+            _changed = true;
+        }
+        double v = controller()->limits()[0] + (value - SLIDER_MIN) *
+                (controller()->limits()[1] - controller()->limits()[0]) / (SLIDER_MAX - SLIDER_MIN);
+        _worldModel->setProperty(controller(), controller()->metaObject()->property("value"), v);
+    //}
+}
+
+void ControllerGraphicsItem::sliderReleased()
+{
+    if(_changed) {
+        _worldModel->endMacro();
+        _changed = false;
+    }
 }
 

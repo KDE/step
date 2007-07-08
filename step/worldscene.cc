@@ -357,6 +357,8 @@ void WorldGraphicsView::fitToPage()
     double currentViewScale = matrix().m11();
     double s = qMin( ws.width()/br.width(), ws.height()/br.height() );
 
+    // XXX: use QSize::scale !
+
     if(s < currentViewScale || s*0.8 > currentViewScale) {
         s *= 0.9;
         resetMatrix();

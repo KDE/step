@@ -110,6 +110,7 @@ WorldFactory::WorldFactory()
 
     __REGISTER_EXT(Note, ItemCreator, NoteGraphicsItem);
     __REGISTER_EXT(Graph, ItemCreator, GraphGraphicsItem);
+    __REGISTER_EXT(Controller, ItemCreator, ControllerGraphicsItem);
 }
 
 

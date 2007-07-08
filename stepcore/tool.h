@@ -42,7 +42,7 @@ public:
     const Vector2d& position() const { return _position; }
     void setPosition(const Vector2d& position) { _position = position; }
 
-private:
+protected:
     Vector2d _position;
     QString  _text;
 };
@@ -96,6 +96,8 @@ public:
     const Vector2d& limitsY() const { return _limitsY; }
     void setLimitsY(const Vector2d& limitsY) { _limitsY = limitsY; }
 
+    Vector2d currentValue() const { return measurePoint(); }
+
     const std::vector<Vector2d>& points() const { return _points; }
     void setPoints(const std::vector<Vector2d>& points) { _points = points; }
 
@@ -111,17 +113,14 @@ public:
     bool isValidY() const;
     bool isValid() const { return isValidX() && isValidY(); }
 
-    void clearPoints();
+    Vector2d measurePoint(bool* ok = 0) const;
     Vector2d recordPoint(bool* ok = 0);
-    Vector2d measurePoint(bool* ok = 0);
+    void clearPoints();
 
     void worldItemRemoved(Item* item);
     void setWorld(World* world);
 
-private:
-    double getValue(const QVariant& v, int index, bool* ok = 0) const;
-
-private:
+protected:
     Vector2d _position;
     Vector2d _size;
 
@@ -140,6 +139,60 @@ private:
     Vector2d    _limitsY;
 
     std::vector<Vector2d> _points;
+};
+
+class Controller: public Item, public Tool
+{
+    STEPCORE_OBJECT(Controller)
+
+public:
+    Controller(Vector2d position = Vector2d(0), Vector2d size = Vector2d(200,60));
+
+    const Vector2d& position() const { return _position; }
+    void setPosition(const Vector2d& position) { _position = position; }
+
+    const Vector2d& size() const { return _size; }
+    void setSize(const Vector2d& size) { _size = size; }
+
+    const Object* objectPtr() const { return _objectPtr; }
+    void setObjectPtr(Object* objectPtr) { _objectPtr = objectPtr; }
+
+    QString object() const { return _objectPtr ? _objectPtr->name() : QString(); }
+    void setObject(const QString& object) { setObjectPtr(world()->object(object)); }
+    
+    QString property() const { return _property; }
+    void setProperty(const QString& property) { _property = property; }
+
+    int index() const { return _index; }
+    void setIndex(int index) { _index = index; }
+
+    const Vector2d& limits() const { return _limits; }
+    void setLimits(const Vector2d& limits) { _limits = limits; }
+
+    bool isValid() const;
+
+    const MetaProperty* propertyPtr() const {
+        return _objectPtr ? _objectPtr->metaObject()->property(_property) : 0;
+    }
+
+    double value() const { return value(0); }
+    void setValue(double value) { setValue(value, 0); }
+
+    double value(bool* ok) const;
+    void setValue(double value, bool* ok);
+
+    void worldItemRemoved(Item* item);
+    void setWorld(World* world);
+
+protected:
+    Vector2d _position;
+    Vector2d _size;
+
+    Object*       _objectPtr;
+    QString       _property;
+    int           _index;
+
+    Vector2d      _limits;
 };
 
 } // namespace StepCore

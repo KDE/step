@@ -67,7 +67,6 @@ protected:
 class KPlotWidget;
 class KPlotObject;
 class KAction;
-class QLabel;
 
 class DataSourceWidget: public QWidget
 {
@@ -97,46 +96,6 @@ protected:
     QComboBox*  _property;
     QComboBox*  _index;
 };
-
-/*
-class GraphWidget: public QWidget
-{
-    Q_OBJECT
-
-public:
-    GraphWidget(GraphGraphicsItem* graphItem, QWidget *parent = 0);
-    ~GraphWidget();
-
-    void worldDataChanged();
-
-protected slots:
-    void objectSelected(const QString& text);
-    void propertySelected(const QString& text);
-    void indexSelected(const QString& text);
-    void recordPoint();
-    void configure();
-
-protected:
-    GraphGraphicsItem* _graphItem;
-    KPlotWidget*       _plotWidget;
-    KPlotObject*       _plotObject;
-    QLabel*     _name;
-    QComboBox*  _object[2];
-    QComboBox*  _property[2];
-    QComboBox*  _index[2];
-
-    StepCore::Graph* _graph;
-    WorldModel* _worldModel;
-    int         _updating;
-    int         _doclear;
-
-    double      _lastPointTime;
-
-    KAction*    _configureAction;
-    KAction*    _clearAction;
-
-    friend class GraphGraphicsItem;
-};*/
 
 namespace Ui { class WidgetConfigureGraph; }
 class KDialog;
@@ -176,14 +135,55 @@ protected:
     Ui::WidgetConfigureGraph* _confUi;
     KDialog*                  _confDialog;
     bool                      _confChanged;
-    //QVariant itemChange(GraphicsItemChange change, const QVariant& value);
-    //void mouseSetPos(const QPointF& pos, const QPointF& diff);
-    
-    //NoteTextItem*   _textItem;
-    //bool            _updating;
-    //double          _lastScale;
+};
 
-    //friend class GraphWidget;
+class QSlider;
+class QLabel;
+
+class ControllerGraphicsItem: public QObject, public WorldGraphicsItem
+{
+    Q_OBJECT
+
+public:
+    ControllerGraphicsItem(StepCore::Item* item, WorldModel* worldModel);
+    ~ControllerGraphicsItem();
+
+    void paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget);
+
+    void stateChanged();
+    void viewScaleChanged();
+    void worldDataChanged(bool);
+
+protected slots:
+    void sliderChanged(int value);
+    void sliderReleased();
+    void configureController();
+    void confApply();
+    void confChanged();
+
+protected:
+    StepCore::Controller* controller() const;
+
+    double _lastScale;
+    double _lastValue;
+
+    QWidget* _widget;
+    QSlider* _slider;
+    QLabel*  _labelMin;
+    QLabel*  _labelMax;
+    QLabel*  _labelSource;
+
+    bool _changed;
+
+    KAction* _configureAction;
+    /*
+    Ui::WidgetConfigureController* _confUi;
+    KDialog* _confDialog;
+    bool     _confChanged;
+    */
+
+    static const int SLIDER_MIN = 0;
+    static const int SLIDER_MAX = INT_MAX-100;
 };
 
 

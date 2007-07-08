@@ -55,8 +55,10 @@ public:
         READABLE = 1, ///< Property is readable
         WRITABLE = 2, ///< Property is writable
         STORED = 4,   ///< Property should be stored in file
-        //USER = 8      ///< Property should be shown in UI
-        DYNAMIC = 32  ///< Variable changes during simulation
+        DYNAMIC = 32, ///< Variable changes during simulation or changes of other properties
+        SIDEEFFECTS = 64 ///< Changing this property has side-effects
+                         ///  (changes in other dynamic or non-dynamic properties)
+                         ///  @note Do not set this together with STORED
     };
 
 public:
@@ -87,6 +89,9 @@ public:
     bool isStored() const { return _flags & STORED; }
     /** Returns true if this property is dynamic (changes during simulation) */
     bool isDynamic() const { return _flags & DYNAMIC; }
+    /** Returns true if this property has side-effects
+     *  (changes in other dynamic or non-dynamic properties) */
+    bool hasSideEffects() const { return _flags & SIDEEFFECTS; }
 
 public:
     const QString _name;
