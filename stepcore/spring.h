@@ -75,13 +75,11 @@ public:
 
     /** Get pointer to the first body */
     Body* bodyPtr1() { return _bodyPtr1; }
-
     /** Set pointer to the first connected body */
     void setBodyPtr1(Body* bodyPtr1);
 
     /** Get pointer to the second body */
     Body* bodyPtr2() { return _bodyPtr2; }
-
     /** Set pointer to the second connected body */
     void setBodyPtr2(Body* bodyPtr2);
 

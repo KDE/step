@@ -25,8 +25,6 @@
 
 #include <QtGlobal>
 
-#define STEPCORE_PRINT_ERR(...) qCritical(__VA_ARGS__)
-
 #ifdef __GNUC__
 #define STEPCORE_UNUSED __attribute__((unused))
 #else
@@ -48,10 +46,17 @@ template<typename unused>
 void _step_assert_noabort_helper( const char *expr, int line,
                                    const char *file, const char *function )
 {
-    STEPCORE_PRINT_ERR("*** StepCore: failed assertion on line %d of file %s\n"
+#ifdef STEPCORE_WITH_QT
+    qCritical("*** StepCore: failed assertion on line %d of file %s\n"
                       "*** asserted expression: %s\n"
                       "*** in function: %s\n",
                       line, file, expr, function);
+#else
+    fprintf(stderr, "*** StepCore: failed assertion on line %d of file %s\n"
+                      "*** asserted expression: %s\n"
+                      "*** in function: %s\n",
+                      line, file, expr, function);
+#endif
 }
 } // namespace StepCore
 

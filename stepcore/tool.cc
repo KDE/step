@@ -22,8 +22,8 @@ namespace StepCore {
 
 STEPCORE_META_OBJECT(Note, "Note", 0,
     STEPCORE_SUPER_CLASS(Item) STEPCORE_SUPER_CLASS(Tool),
-    STEPCORE_PROPERTY_RW(QString, text, "Text", text, setText)
     STEPCORE_PROPERTY_RW(StepCore::Vector2d, position, "Position", position, setPosition)
+    STEPCORE_PROPERTY_RW(QString, text, "Text", text, setText)
     )
 
 STEPCORE_META_OBJECT(Graph, "Graph", 0,
@@ -135,7 +135,7 @@ void Graph::clearPoints()
     _points.clear();
 }
 
-Vector2d Graph::measurePoint(bool* ok) const
+Vector2d Graph::currentValue(bool* ok) const
 {
     const MetaProperty* prX = propertyXPtr();
     const MetaProperty* prY = propertyYPtr();
@@ -157,7 +157,7 @@ Vector2d Graph::measurePoint(bool* ok) const
 Vector2d Graph::recordPoint(bool* ok)
 {
     bool ok1;
-    Vector2d point(measurePoint(&ok1));
+    Vector2d point(currentValue(&ok1));
     if(ok1) {
         if(ok) *ok = true;
         _points.push_back(point);

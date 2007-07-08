@@ -17,7 +17,7 @@
 */
 
 /** \file world.h
- *  \brief Item, Body and Force interfaces, World class
+ *  \brief Item, Body, Force and Tool interfaces, World class
  */
 
 #ifndef STEPCORE_WORLD_H
@@ -113,8 +113,8 @@ public:
     virtual void calcForce() = 0;
 };
 
-/**
- *  \brief Tools base clase
+/** \ingroup tools
+ *  \brief Interface for tools
  *
  *  Tools are not physical objects in simulation but utilities to control
  *  simulation or obtain some information
@@ -263,6 +263,7 @@ private:
 /** \defgroup constants Physical constants */
 /** \defgroup bodies Physical bodies */
 /** \defgroup forces Physical forces */
+/** \defgroup tools Various tools */
 /** \defgroup solvers ODE Solvers */
 /** \defgroup contacts Collision and constraint solvers */
 /** \defgroup reflections Reflections */
