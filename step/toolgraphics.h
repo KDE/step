@@ -135,6 +135,7 @@ protected:
 
     KPlotWidget* _plotWidget;
     KPlotObject* _plotObject;
+    KPlotObject* _plotObject1;
     KAction* _clearAction;
     KAction* _configureAction;
 

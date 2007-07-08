@@ -276,8 +276,17 @@ GraphGraphicsItem::GraphGraphicsItem(StepCore::Item* item, WorldModel* worldMode
     _plotObject->setShowLines(true);
     _plotObject->setPointStyle(KPlotObject::Square);
 
+    _plotObject1 = new KPlotObject(Qt::red);
+    _plotObject1->setShowPoints(true);
+    _plotObject1->setShowLines(false);
+    _plotObject1->setPointStyle(KPlotObject::Square);
+
+    QList<KPlotObject*> plotObjects;
+    plotObjects << _plotObject;
+    plotObjects << _plotObject1;
+
     //_plotWidget->setAntialiasing(true);
-    _plotWidget->addPlotObject(_plotObject);
+    _plotWidget->addPlotObjects(plotObjects);
 
     _clearAction = new KAction(i18n("Clear graph"), this);
     _configureAction = new KAction(i18n("Configure graph..."), this);
@@ -580,6 +589,15 @@ void GraphGraphicsItem::worldDataChanged(bool dynamicOnly)
     } else {
         for(--po_count; po_count >= p_count; --po_count)
             _plotObject->removePoint(po_count);
+    }
+
+    if(p_count > 0) {
+        if(_plotObject1->points().isEmpty()) {
+            _plotObject1->addPoint(0,0);
+        }
+        _plotObject1->points()[0]->setPosition(vectorToPoint(graph()->points()[p_count-1]));
+    } else {
+        _plotObject1->clearPoints();
     }
 
     if(graph()->autoLimitsX() || graph()->autoLimitsY()) adjustLimits();
