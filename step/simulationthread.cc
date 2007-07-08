@@ -17,9 +17,10 @@
 */
 
 #include "simulationthread.h"
+
 #include <stepcore/world.h>
-#include <stepcore/eulersolver.h>
-#include <stepcore/collisionsolver.h>
+#include <stepcore/solver.h>
+
 
 void SimulationThread::run()
 {

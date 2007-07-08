@@ -19,16 +19,11 @@
 */
 
 #include <QThread>
-#include <QMutex>
 #include <QWaitCondition>
+#include <QMutex>
 
 namespace StepCore {
-    class Object;
     class World;
-    class Item;
-    class Solver;
-    class CollisionSolver;
-    class MetaProperty;
 }
 
 /**
