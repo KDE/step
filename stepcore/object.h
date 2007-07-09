@@ -297,12 +297,12 @@ struct MetaObjectHelper<Class, MetaObject::ABSTRACT> {
 
 #define STEPCORE_META_OBJECT(_className, _description, _flags, __superClasses, __properties) \
     const StepCore::MetaProperty _className::_classProperties[] = { _STEPCORE_PROPERTY_NULL, __properties }; \
-    const StepCore::MetaObject*  _className::_superClasses[] = { __superClasses }; \
+    const StepCore::MetaObject*  _className::_superClasses[] = { 0, __superClasses }; \
     const StepCore::MetaObject   _className::_metaObject = { \
         QString(__STRING(_className)), QString(_description), _flags, \
         StepCore::MetaObjectHelper<_className, _flags & StepCore::MetaObject::ABSTRACT>::newObjectHelper, \
         StepCore::MetaObjectHelper<_className, _flags & StepCore::MetaObject::ABSTRACT>::cloneObjectHelper, \
-        _superClasses, sizeof(_superClasses)/sizeof(*_superClasses), \
+        _superClasses+1, sizeof(_superClasses)/sizeof(*_superClasses)-1, \
         _classProperties+1, sizeof(_classProperties)/sizeof(*_classProperties)-1, false, 0, 0 };
     
 #define STEPCORE_SUPER_CLASS(_className) _className::staticMetaObject(),
