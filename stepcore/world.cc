@@ -43,7 +43,7 @@ World::World()
 }
 
 World::World(const World& world)
-    : _time(0), _timeScale(1), _solver(NULL),
+    : Object(world), _time(0), _timeScale(1), _solver(NULL),
       _collisionSolver(0), _constraintSolver(NULL),
       _variablesCount(0), _variables(NULL), _errors(NULL)
 {
