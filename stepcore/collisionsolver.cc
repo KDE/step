@@ -395,7 +395,7 @@ int GJKCollisionSolver::solveCollisions(World::BodyList& bodies)
 
                 qDebug("vel0=(%f,%f) vel1=(%f,%f)", body0->velocity()[0], body0->velocity()[1],
                                                     body1->velocity()[0], body1->velocity()[1]);
-                qDebug("body0=%#x, body1=%#x", int(body0), int(body1));
+                qDebug("body0=%p, body1=%p", body0, body1);
                 qDebug("vrel=%f", vrel);
                 qDebug("normal=(%f,%f)", contact.normal[0], contact.normal[1]);
                 Vector2d j = contact.normal * ( -(1+b)*vrel / (term0 + term1 + term2) );
