@@ -138,7 +138,7 @@ int GJKCollisionSolver::checkContact(Contact* contact)
         }
 
         // Find v = dist(conv(w+s))
-        double lambda;
+        double lambda = 0;
         int ii = -1;
         for(int i=0; i<wsize; ++i) {
             double lambda0 = - s.innerProduct(w[i]-s) / (w[i]-s).norm2();
@@ -431,7 +431,7 @@ out:
     return ret;
 }
 
-int GJKCollisionSolver::solveConstraints(World::BodyList& bodies)
+int GJKCollisionSolver::solveConstraints(World::BodyList& /*bodies*/)
 {
 
     return 0;

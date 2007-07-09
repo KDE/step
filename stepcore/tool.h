@@ -296,6 +296,7 @@ public:
      *  \param ok Will indicate success of operation (if not null) */
     double value(bool* ok) const;
     /** Set value of the controlled property
+     *  \param value New value for the property
      *  \param ok Will indicate success of operation (if not null) */
     void setValue(double value, bool* ok);
 
