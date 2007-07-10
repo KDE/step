@@ -87,10 +87,10 @@ public:
      *  \param bodies list of bodies to check
      *  \return maximum contact state (i.e. maximum value of Contact::state)
      */
-    virtual int checkContacts(World::BodyList& bodies) = 0;
+    virtual int checkContacts(BodyList& bodies) = 0;
 
     // TODO: add errors
-    virtual int solveCollisions(World::BodyList& bodies) = 0;
+    virtual int solveCollisions(BodyList& bodies) = 0;
 
 protected:
     double _toleranceAbs;
@@ -120,11 +120,11 @@ public:
     };*/
 
     int checkContact(Contact* contact);
-    int checkContacts(World::BodyList& bodies);
+    int checkContacts(BodyList& bodies);
     //int findClosestPoints(const Polygon* polygon1, const Polygon* polygon2);
 
-    int solveCollisions(World::BodyList& bodies);
-    int solveConstraints(World::BodyList& bodies);
+    int solveCollisions(BodyList& bodies);
+    int solveConstraints(BodyList& bodies);
 };
 
 } // namespace StepCore

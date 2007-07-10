@@ -598,7 +598,7 @@ bool WorldModel::checkUniqueName(const QString& name) const
     if(_world->name() == name) return false;
     if(_world->solver() && _world->solver()->name() == name) return false;
     if(_world->collisionSolver() && _world->collisionSolver()->name() == name) return false;
-    StepCore::World::ItemList::const_iterator it = _world->items().begin();
+    StepCore::ItemList::const_iterator it = _world->items().begin();
     for(; it != _world->items().end(); ++it) {
         if((*it)->name() == name) return false;
     }

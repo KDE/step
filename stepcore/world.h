@@ -127,6 +127,24 @@ public:
 };
 
 /** \ingroup world
+ *  \brief Groups several items together
+ */
+class GroupItem: public Item
+{
+    STEPCORE_OBJECT(GroupItem)
+public:
+
+private:
+};
+
+/** List of pointers to Item */
+typedef std::vector<Item*>  ItemList;
+/** List of pointers to Body */
+typedef std::vector<Body*>  BodyList;
+/** List of pointers to Force */
+typedef std::vector<Force*> ForceList;
+
+/** \ingroup world
  *  \brief Contains multiple Item, Solver and general properties such as time
  *  \todo Redesign to avoid variable copying (scatter/gatherVariables)
  */
@@ -134,14 +152,6 @@ class World : public Object
 {
     /*Q_OBJECT*/
     STEPCORE_OBJECT(World)
-
-public:
-    /** List of pointers to Item */
-    typedef std::vector<Item*>  ItemList;
-    /** List of pointers to Body */
-    typedef std::vector<Body*>  BodyList;
-    /** List of pointers to Force */
-    typedef std::vector<Force*> ForceList;
 
 public:
     /** Constructs empty World */

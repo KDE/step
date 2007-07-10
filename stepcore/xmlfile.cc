@@ -64,7 +64,7 @@ bool XmlFile::save(const World* world)
     saveProperties(1, world, stream);
     stream << "\n";
 
-    for(World::ItemList::const_iterator item  = world->items().begin();
+    for(ItemList::const_iterator item  = world->items().begin();
                                            item != world->items().end(); ++item) {
         saveObject(1, "item", *item, stream);
         stream << "\n";

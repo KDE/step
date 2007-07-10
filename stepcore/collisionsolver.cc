@@ -322,7 +322,7 @@ int GJKCollisionSolver::checkContact(Contact* contact)
     return contact->state;
 }
 
-int GJKCollisionSolver::checkContacts(World::BodyList& bodies)
+int GJKCollisionSolver::checkContacts(BodyList& bodies)
 {
     int state = Contact::Unknown;
 
@@ -345,7 +345,7 @@ out:
     return state;
 }
 
-int GJKCollisionSolver::solveCollisions(World::BodyList& bodies)
+int GJKCollisionSolver::solveCollisions(BodyList& bodies)
 {
     int ret = 0;
 
@@ -431,7 +431,7 @@ out:
     return ret;
 }
 
-int GJKCollisionSolver::solveConstraints(World::BodyList& /*bodies*/)
+int GJKCollisionSolver::solveConstraints(BodyList& /*bodies*/)
 {
 
     return 0;
