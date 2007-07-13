@@ -95,6 +95,7 @@ void WorldSceneAxes::viewScaleChanged()
 WorldScene::WorldScene(WorldModel* worldModel, QObject* parent)
     : QGraphicsScene(parent), _worldModel(worldModel), _currentViewScale(1), _itemCreator(NULL)
 {
+    #warning TODO: measure what index method is faster
     setItemIndexMethod(NoIndex);
     //XXX
     //setSceneRect(-200,-200,400,400);
@@ -287,6 +288,7 @@ void WorldScene::worldSelectionChanged(const QItemSelection& selected, const QIt
 
 void WorldScene::worldDataChanged(bool dynamicOnly)
 {
+    //if(dynamicOnly) return;
     _worldModel->simulationPause();
     foreach (QGraphicsItem *item, items()) {
         WorldGraphicsItem* gItem = dynamic_cast<WorldGraphicsItem*>(item);
@@ -329,6 +331,9 @@ WorldGraphicsView::WorldGraphicsView(WorldScene* worldScene, QWidget* parent)
     //worldGraphicsView->setRenderHints(QPainter::Antialiasing);
     setDragMode(QGraphicsView::RubberBandDrag);
     setResizeAnchor(QGraphicsView::AnchorViewCenter);
+    setOptimizationFlags(QGraphicsView::DontClipPainter/* | QGraphicsView::DontSavePainterState*/);
+    #warning Check paint() for all items to preserve painter state
+    setViewportUpdateMode(QGraphicsView::SmartViewportUpdate);
     actualSize();
 }
 
