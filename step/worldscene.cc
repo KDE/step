@@ -95,7 +95,9 @@ void WorldSceneAxes::viewScaleChanged()
 WorldScene::WorldScene(WorldModel* worldModel, QObject* parent)
     : QGraphicsScene(parent), _worldModel(worldModel), _currentViewScale(1), _itemCreator(NULL)
 {
+    #ifdef __GNUC__
     #warning TODO: measure what index method is faster
+    #endif
     setItemIndexMethod(NoIndex);
     //XXX
     //setSceneRect(-200,-200,400,400);
@@ -332,7 +334,9 @@ WorldGraphicsView::WorldGraphicsView(WorldScene* worldScene, QWidget* parent)
     setDragMode(QGraphicsView::RubberBandDrag);
     setResizeAnchor(QGraphicsView::AnchorViewCenter);
     setOptimizationFlags(QGraphicsView::DontClipPainter/* | QGraphicsView::DontSavePainterState*/);
+    #ifdef __GNUC__
     #warning Check paint() for all items to preserve painter state
+    #endif
     setViewportUpdateMode(QGraphicsView::SmartViewportUpdate);
     actualSize();
 }
