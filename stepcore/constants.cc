@@ -18,10 +18,10 @@
 
 #include "constants.h"
 
-const double StepCore::Constants::Pi = 3.1415;
-const double StepCore::Constants::Electric = 8.8541e-12;
+const double StepCore::Constants::Pi = 3.14159265358979323846;
+const double StepCore::Constants::Electric = 8.854187817e-12;
 const double StepCore::Constants::Magnetic = 1.2566e-6;
-const double StepCore::Constants::Gravitational = 6.6742e-11;
-const double StepCore::Constants::Plank = 6.6260e-34;
+const double StepCore::Constants::Gravitational = 6.67428e-11;
+const double StepCore::Constants::Plank = 6.62606896e-34;
 const double StepCore::Constants::SpeedOfLight = 2.9979e8;
 const double StepCore::Constants::WeightAccel = 9.8066;
