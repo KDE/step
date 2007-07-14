@@ -37,10 +37,13 @@ void CoulombForce::calcForce()
 {
     ChargedParticle* p1;
     ChargedParticle* p2;
+        
+    const BodyList::const_iterator bodies_being = world()->bodies().begin(); 
+    const BodyList::const_iterator bodies_it = world()->bodies().end(); 
 
-    for(BodyList::const_iterator b1 = world()->bodies().begin(); b1 != world()->bodies().end(); ++b1) {
+    for(BodyList::const_iterator b1 = bodies_being; b1 != bodies_it; ++b1) {
         if(NULL == (p1 = dynamic_cast<ChargedParticle*>(*b1))) continue;
-        for(BodyList::const_iterator b2 = b1+1; b2 != world()->bodies().end(); ++b2) {
+        for(BodyList::const_iterator b2 = b1+1; b2 != bodies_it; ++b2) {
             if(NULL == (p2 = dynamic_cast<ChargedParticle*>(*b2))) continue;
             Vector2d r = p2->position() - p1->position();
             double rnorm2 = r.norm2();

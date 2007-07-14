@@ -92,8 +92,11 @@ int GJKCollisionSolver::checkContact(Contact* contact)
         // Find support vertex in direction v
         // TODO: coherence optimization
         bool sfound = false;
-        for(unsigned int i0=0; i0<vertexes[0].size(); ++i0) {
-            for(unsigned int i1=0; i1<vertexes[1].size(); ++i1) {
+        unsigned int vertex0_size = vertexes[0].size();
+        unsigned int vertex1_size = vertexes[1].size();
+
+        for(unsigned int i0=0; i0<vertex0_size; ++i0) {
+            for(unsigned int i1=0; i1<vertex1_size; ++i1) {
                 Vector2d sn = vertexes[1][i1] - vertexes[0][i0];
                 double scurr = v.innerProduct(sn);
                 if(smin - scurr > _toleranceAbs*_toleranceAbs*1e-4) { // XXX: separate tolerance ?
@@ -329,8 +332,8 @@ int GJKCollisionSolver::checkContacts(BodyList& bodies)
     // Detect and classify contacts
     unsigned int bs = bodies.size();
     Contact* contacts = new Contact[bs*bs];
-    for(unsigned int i=0; i<bodies.size(); ++i) {
-        for(unsigned int j=i+1; j<bodies.size(); ++j) {
+    for(unsigned int i=0; i<bs; ++i) {
+        for(unsigned int j=i+1; j<bs; ++j) {
             Contact& contact = contacts[i*bs+j];
             contact.body0 = bodies[i];
             contact.body1 = bodies[j];
@@ -352,8 +355,8 @@ int GJKCollisionSolver::solveCollisions(BodyList& bodies)
     // Detect and classify contacts
     unsigned int bs = bodies.size();
     Contact* contacts = new Contact[bs*bs];
-    for(unsigned int i=0; i<bodies.size(); ++i) {
-        for(unsigned int j=i+1; j<bodies.size(); ++j) {
+    for(unsigned int i=0; i<bs; ++i) {
+        for(unsigned int j=i+1; j<bs; ++j) {
             Contact& contact = contacts[i*bs+j];
             contact.body0 = bodies[i];
             contact.body1 = bodies[j];
@@ -366,8 +369,8 @@ int GJKCollisionSolver::solveCollisions(BodyList& bodies)
     }
 
     // Solve collisions
-    for(unsigned int i0=0; i0<bodies.size(); ++i0) {
-        for(unsigned int i1=i0+1; i1<bodies.size(); ++i1) {
+    for(unsigned int i0=0; i0<bs; ++i0) {
+        for(unsigned int i1=i0+1; i1<bs; ++i1) {
             Contact& contact = contacts[i0*bs+i1];
             if(contact.state == Contact::Colliding) {
                 RigidBody* body0 = dynamic_cast<RigidBody*>(contact.body0);
