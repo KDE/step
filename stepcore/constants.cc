@@ -18,7 +18,7 @@
 
 #include "constants.h"
 
-#include "math.h"
+#include <math.h>
 
 const double StepCore::Constants::Pi = M_PI;
 const double StepCore::Constants::Electric = 8.854187817e-12;
