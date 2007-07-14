@@ -65,7 +65,9 @@ World& World::operator=(const World& world)
     clear();
 
     _items.reserve(world._items.size());
-    for(ItemList::const_iterator it = world._items.begin(); it != world._items.end(); ++it) {
+    const ItemList::const_iterator it_end = world._items.end();
+
+    for(ItemList::const_iterator it = world._items.begin(); it != it_end; ++it) {
         StepCore::Item* item = static_cast<Item*>( (*it)->metaObject()->cloneObject(*(*it)) );
         _items.push_back(item);
         Force* force = dynamic_cast<Force*>(item);
@@ -94,7 +96,8 @@ World& World::operator=(const World& world)
                world._collisionSolver->metaObject()->cloneObject(*(world._collisionSolver))));
     else setCollisionSolver(0);
 
-    for(ItemList::iterator it = _items.begin(); it != _items.end(); ++it)
+    const ItemList::const_iterator it_end2 = _items.end();
+    for(ItemList::iterator it = _items.begin(); it != it_end2; ++it)
         (*it)->setWorld(this); // XXX: implement it
 
     checkVariablesCount();
@@ -145,7 +148,8 @@ void World::addItem(Item* item)
 
 void World::removeItem(Item* item)
 {
-    for(ItemList::iterator it = _items.begin(); it != _items.end(); ++it)
+    const ItemList::const_iterator it_end = _items.end();
+    for(ItemList::iterator it = _items.begin(); it != it_end; ++it)
         (*it)->worldItemRemoved(item);
 
     ItemList::iterator i = std::find(_items.begin(), _items.end(), item);
@@ -257,7 +261,9 @@ void World::gatherVariables(double* variables)
 {
     int index = 0;
     if(variables == NULL) variables = _variables;
-    for(BodyList::iterator b = _bodies.begin(); b != _bodies.end(); ++b) {
+
+    const BodyList::const_iterator it_end = _bodies.end();
+    for(BodyList::iterator b = _bodies.begin(); b != it_end; ++b) {
         (*b)->getVariables(variables + index);
         index += (*b)->variablesCount();
     }
@@ -266,7 +272,8 @@ void World::gatherVariables(double* variables)
 void World::gatherDerivatives(double* derivatives)
 {
     int index = 0;
-    for(BodyList::iterator b = _bodies.begin(); b != _bodies.end(); ++b) {
+    const BodyList::const_iterator it_end = _bodies.end();
+    for(BodyList::iterator b = _bodies.begin(); b != it_end; ++b) {
         (*b)->getDerivatives(derivatives + index);
         index += (*b)->variablesCount();
     }
@@ -276,7 +283,8 @@ void World::scatterVariables(const double* variables)
 {
     int index = 0;
     if(variables == NULL) variables = _variables;
-    for(BodyList::iterator b = _bodies.begin(); b != _bodies.end(); ++b) {
+    const BodyList::const_iterator it_end = _bodies.end();
+    for(BodyList::iterator b = _bodies.begin(); b != it_end; ++b) {
         (*b)->setVariables(variables + index);
         index += (*b)->variablesCount();
     }
@@ -390,7 +398,8 @@ inline int World::solverFunction(double t, const double y[], double f[])
         }
     }
 
-    for(ForceList::iterator force = _forces.begin(); force != _forces.end(); ++force) {
+    const ForceList::const_iterator it_end = _forces.end();
+    for(ForceList::iterator force = _forces.begin(); force != it_end; ++force) {
         (*force)->calcForce();
     }
 
