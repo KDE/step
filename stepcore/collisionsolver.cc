@@ -50,13 +50,15 @@ int GJKCollisionSolver::checkContact(Contact* contact)
     //    by Gino van den Bergen
 
     Polygon::VertexList vertexes[2];
+    const Polygon::VertexList::const_iterator p0_it_end = polygon0->vertexes().end();
     for(Polygon::VertexList::const_iterator it0 = polygon0->vertexes().begin();
-                                        it0 != polygon0->vertexes().end(); ++it0) {
+                                        it0 != p0_it_end; ++it0) {
         vertexes[0].push_back(polygon0->pointLocalToWorld(*it0));
     }
 
+    const Polygon::VertexList::const_iterator p1_it_end = polygon1->vertexes().end();
     for(Polygon::VertexList::const_iterator it1 = polygon1->vertexes().begin();
-                                        it1 != polygon1->vertexes().end(); ++it1) {
+                                        it1 != p1_it_end; ++it1) {
         vertexes[1].push_back(polygon1->pointLocalToWorld(*it1));
     }
 
@@ -307,7 +309,8 @@ int GJKCollisionSolver::checkContact(Contact* contact)
         //qDebug("contact is one point: (%f %f) (%f %f)", vv[0][0], vv[0][1], vv[1][0], vv[1][1]);
     }
 
-    for(int i=0; i<contact->pointsCount; ++i) {
+    int pCount = contact->pointsCount;
+    for(int i=0; i<pCount; ++i) {
         contact->vrel[i] = contact->normal.innerProduct(
                         polygon1->velocityWorld(contact->points[i]) -
                         polygon0->velocityWorld(contact->points[i]));
