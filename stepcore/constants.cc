@@ -18,7 +18,9 @@
 
 #include "constants.h"
 
-const double StepCore::Constants::Pi = 3.14159265358979323846;
+#include "math.h"
+
+const double StepCore::Constants::Pi = M_PI;
 const double StepCore::Constants::Electric = 8.854187817e-12;
 const double StepCore::Constants::Magnetic = 1.2566e-6;
 const double StepCore::Constants::Gravitational = 6.67428e-11;
