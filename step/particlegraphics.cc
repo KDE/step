@@ -63,7 +63,7 @@ void ParticleGraphicsItem::paint(QPainter* painter, const QStyleOptionGraphicsIt
 
     int renderHints = painter->renderHints();
     painter->setRenderHint(QPainter::Antialiasing, true);
-    painter->setPen(QPen(Qt::black, 0));
+    painter->setPen(Qt::NoPen/*QPen(Qt::black, 0)*/);
     painter->setBrush(QBrush(Qt::black));
     painter->drawEllipse(QRectF(-radius,-radius,radius*2,radius*2));
     painter->setBrush(QBrush());
