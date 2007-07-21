@@ -200,12 +200,12 @@ bool MainWindow::openFile(const KUrl& url)
 
     QFile file(fileUrl.path());
     if(!file.open(QIODevice::ReadOnly | QIODevice::Text)) {
-        KMessageBox::sorry(this, i18n("Can't open file '%1'", fileUrl.pathOrUrl()));
+        KMessageBox::sorry(this, i18n("Cannot open file '%1'", fileUrl.pathOrUrl()));
         return false;
     }
     
     if(!worldModel->loadXml(&file)) {
-        KMessageBox::sorry(this, i18n("Can't parse file '%1': %2", fileUrl.pathOrUrl(), worldModel->errorString()));
+        KMessageBox::sorry(this, i18n("Cannot parse file '%1': %2", fileUrl.pathOrUrl(), worldModel->errorString()));
         return false;
     }
 
@@ -231,12 +231,12 @@ bool MainWindow::saveFileAs(const KUrl& url)
 
     QFile file(fileUrl.path());
     if(!file.open(QIODevice::WriteOnly | QIODevice::Text)) {
-        KMessageBox::sorry(this, i18n("Can't open file '%1'", fileUrl.pathOrUrl()));
+        KMessageBox::sorry(this, i18n("Cannot open file '%1'", fileUrl.pathOrUrl()));
         return false;
     }
     
     if(!worldModel->saveXml(&file)) {
-        KMessageBox::sorry(this, i18n("Can't save file '%1': %2", fileUrl.pathOrUrl(), worldModel->errorString()));
+        KMessageBox::sorry(this, i18n("Cannot save file '%1': %2", fileUrl.pathOrUrl(), worldModel->errorString()));
         return false;
     }
 
@@ -285,15 +285,15 @@ void MainWindow::simulationStopped(int result)
     actionSimulation->setIconText(i18n("&Simulate"));
     actionSimulation->setIcon(KIcon("media-playback-start"));
     if(result == StepCore::Solver::ToleranceError) {
-        KMessageBox::sorry(this, i18n("Can't finish this step becouse local error "
+        KMessageBox::sorry(this, i18n("Cannot finish this step becouse local error "
                "is bigger then local tolerance.\n"
                "Please check solver settings and try again."));
     } else if(result == StepCore::Solver::CollisionDetected) {
-        KMessageBox::sorry(this, i18n("Can't finish this step becouse the are collisions "
+        KMessageBox::sorry(this, i18n("Cannot finish this step becouse the are collisions "
                "which can not be resolved automatically.\n"
                "Please move colliding objects appart and try again."));
     } else if(result != StepCore::Solver::OK) {\
-        KMessageBox::sorry(this, i18n("Can't finish this step becouse of unknown error."));
+        KMessageBox::sorry(this, i18n("Cannot finish this step becouse of unknown error."));
     }
 }
 
@@ -350,7 +350,7 @@ void MainWindow::on_actionStep_triggered(bool checked)
 {
     if(!worldModel->doWorldEvolve(0.1))
         QMessageBox::warning(this, i18n("Step"), // XXX: retrieve error message from solver !
-            i18n("Can't finish this step becouse local error is bigger then local tolerance.<br />"
+            i18n("Cannot finish this step becouse local error is bigger then local tolerance.<br />"
                "Please check solver settings and try again."));
 }
 
