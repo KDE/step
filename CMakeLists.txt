@@ -1,6 +1,14 @@
 project(step)
 enable_testing()
 
+cmake_minimum_required(VERSION 2.4.5)
+set(QT_MIN_VERSION "4.3.0") # we need at least version 4.3 of Qt
+if (CMAKE_COMPILER_IS_GNUCXX)
+	set ( CMAKE_C_FLAGS     "${CMAKE_C_FLAGS} -Wno-long-long -std=iso9899:1990 -Wundef -Wcast-align -Werror-implicit-function-declaration -Wchar-subscripts -Wall -W -Wpointer-arith -Wwrite-strings -Wformat-security -Wmissing-format-attribute -fno-common")
+	set ( CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -Wnon-virtual-dtor -Wno-long-long -ansi -Wundef -Wcast-align -Wchar-subscripts -Wall -W -Wpointer-arith -Wformat-security -fno-exceptions -fno-check-new -fno-common")
+	add_definitions (-D_BSD_SOURCE)
+endif (CMAKE_COMPILER_IS_GNUCXX)
+
 include(FindGSL.cmake)
 set(STEPCORE_TESTS OFF CACHE BOOL "Build StepCore tests")
 set(STEPCORE_WITH_GSL ${GSL_FOUND} CACHE BOOL "Enable GSL-powered features for StepCore")
