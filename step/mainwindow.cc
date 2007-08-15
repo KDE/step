@@ -133,7 +133,7 @@ void MainWindow::setupActions()
     actionSimulationStart = actionCollection()->add<KAction>("simulation_start", this, SLOT(simulationStart()));
     actionSimulationStop = actionCollection()->add<KAction>("simulation_stop", this, SLOT(simulationStop()));
     actionSimulation = actionCollection()->add<KAction>("simulation_start_stop", this, SLOT(simulationStartStop()));
-    actionSimulation->setText(i18n("Simulatio start/stop"));
+    actionSimulation->setText(i18n("Simulation start/stop"));
 
     actionSimulationStart->setText(i18n("&Start"));
     actionSimulationStart->setIcon(KIcon("media-playback-start"));
