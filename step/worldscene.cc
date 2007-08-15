@@ -229,6 +229,8 @@ void WorldScene::worldModelReset()
 
     /* Check for new items */
     worldGetItemsRecursive(_worldModel->worldIndex());
+
+    update();
 }
 
 void WorldScene::worldGetItemsRecursive(const QModelIndex& parent)
