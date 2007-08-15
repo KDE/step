@@ -67,7 +67,7 @@ class GasLJForce: public Item, public Force
     STEPCORE_OBJECT(GasLJForce)
 
 public:
-    GasLJForce(double depth = 1, double rmin = 1, double cutoff = HUGE_VAL);
+    explicit GasLJForce(double depth = 1, double rmin = 1, double cutoff = HUGE_VAL);
     void calcForce();
 
     double depth() const { return _depth; }

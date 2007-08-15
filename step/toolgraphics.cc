@@ -206,7 +206,7 @@ void DataSourceWidget::addObjects(const QModelIndex& parent, const QString& inde
         QString name = _worldModel->object(index)->name();
         if(name.isEmpty()) continue;
         _object->addItem(indent + name, name);
-        addObjects(index, indent + " ");
+        addObjects(index, indent + ' ');
     }
 }
 
