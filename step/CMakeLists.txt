@@ -10,6 +10,7 @@ set(step_SRCS
     worldfactory.cc
     particlegraphics.cc
     polygongraphics.cc
+    gasgraphics.cc
     springgraphics.cc
     toolgraphics.cc
     simulationthread.cc

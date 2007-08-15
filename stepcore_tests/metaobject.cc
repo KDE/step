@@ -145,7 +145,6 @@ void MainTest::testMetaObject()
     QVERIFY( metaObject->property("property3") == metaObject->property(3) );
     QVERIFY( metaObject->property("property4") == metaObject->property(4) );
     QVERIFY( metaObject->property("notProperty") == NULL );
-    QVERIFY( metaObject->property(5) == NULL );
 
     const StepCore::MetaProperty* property;
 

@@ -18,6 +18,7 @@
 
 #include "worldmodel.h"
 #include "simulationthread.h"
+#include "worldgraphics.h"
 #include "worldmodel.moc"
 
 #include "worldfactory.h"
@@ -30,6 +31,7 @@
 #include <QItemSelectionModel>
 #include <QUndoStack>
 #include <QTimer>
+#include <KMenu>
 #include <KLocale>
 
 class CommandEditProperty: public QUndoCommand
@@ -116,21 +118,22 @@ bool CommandEditProperty::mergeWith(const QUndoCommand* command)
 class CommandNewItem: public QUndoCommand
 {
 public:
-    CommandNewItem(WorldModel* worldModel, StepCore::Item* item, bool create)
-        : _worldModel(worldModel), _item(item), _create(create), _shouldDelete(create) {}
+    CommandNewItem(WorldModel* worldModel, StepCore::Item* item, StepCore::ItemGroup* parent, bool create)
+        : _worldModel(worldModel), _item(item), _parent(parent), _create(create), _shouldDelete(create) {}
     ~CommandNewItem() { if(_shouldDelete) delete _item; }
     void redo();
     void undo();
 protected:
     WorldModel* _worldModel;
     StepCore::Item* _item;
+    StepCore::ItemGroup* _parent;
     bool _create;
     bool _shouldDelete;
 };
 
 void CommandNewItem::redo()
 {
-    if(_create) _worldModel->addItem(_item);
+    if(_create) _worldModel->addItem(_item, _parent);
     else _worldModel->removeItem(_item);
     _shouldDelete = !_create;
 }
@@ -138,7 +141,7 @@ void CommandNewItem::redo()
 void CommandNewItem::undo()
 {
     if(_create) _worldModel->removeItem(_item);
-    else _worldModel->addItem(_item);
+    else _worldModel->addItem(_item, _parent);
     _shouldDelete = _create;
 }
 
@@ -188,7 +191,7 @@ QModelIndex CommandSimulate::pairToIndex(CommandSimulate::PairInt pair)
         else if(pair.second == 1) return _worldModel->solverIndex();
         else if(pair.second == 2) return _worldModel->collisionSolverIndex();
         else return QModelIndex();
-    } else return _worldModel->itemIndex(pair.second);
+    } else return _worldModel->childItemIndex(pair.second);
 }
 
 CommandSimulate::CommandSimulate(WorldModel* worldModel)
@@ -196,17 +199,21 @@ CommandSimulate::CommandSimulate(WorldModel* worldModel)
     _worldModel = worldModel;
     _oldWorld = _worldCopy = _worldModel->_world;
 
+    /*
     QList<PairInt> selection;
     foreach(QModelIndex index, _worldModel->_selectionModel->selection().indexes())
         selection << indexToPair(index);
     PairInt current = indexToPair(_worldModel->_selectionModel->currentIndex());
+    */
 
     _newWorld = _worldModel->_world = new StepCore::World(*_oldWorld);
     _worldModel->reset();
 
+    /*
     foreach(PairInt pair, selection)
         _worldModel->_selectionModel->select(pairToIndex(pair), QItemSelectionModel::Select);
     _worldModel->_selectionModel->setCurrentIndex(pairToIndex(current), QItemSelectionModel::Current);
+    */
 }
 
 void CommandSimulate::redo()
@@ -328,9 +335,10 @@ QModelIndex WorldModel::collisionSolverIndex() const
     return createIndex(2, 0, _world->collisionSolver());
 }
 
-QModelIndex WorldModel::itemIndex(int n) const
+QModelIndex WorldModel::childItemIndex(int n, StepCore::ItemGroup* group) const
 {
-    return createIndex(n, 0, _world->items()[n]);
+    if(!group) group = _world;
+    return createIndex(n, 0, group->childItem(n));
 }
 
 QModelIndex WorldModel::objectIndex(StepCore::Object* obj) const
@@ -338,7 +346,12 @@ QModelIndex WorldModel::objectIndex(StepCore::Object* obj) const
     if(obj == _world) return worldIndex();
     else if(obj == _world->solver()) return solverIndex();
     else if(obj == _world->collisionSolver()) return collisionSolverIndex();
-    else return itemIndex(_world->itemIndex(dynamic_cast<const StepCore::Item*>(obj)));
+    else {
+        StepCore::Item* item = dynamic_cast<StepCore::Item*>(obj);
+        STEPCORE_ASSERT_NOABORT(item && item->group());
+        return createIndex(item->group()->childItemIndex(item), 0, item);
+        //return itemIndex(_world->childItemIndex(dynamic_cast<const StepCore::Item*>(obj)));
+    }
 }
 
 StepCore::Object* WorldModel::object(const QModelIndex& index) const
@@ -372,7 +385,7 @@ QVariant WorldModel::data(const QModelIndex &index, int role) const
                                    .arg(obj->metaObject()->className());
     } else if(role == Qt::ToolTipRole) {
         const_cast<WorldModel*>(this)->simulationPause();
-        return createToolTip(obj); // XXX
+        return createToolTip(index); // XXX
     } else if(role == ObjectNameRole) {
         return obj->name();
     } else if(role == ClassNameRole) {
@@ -388,7 +401,11 @@ QModelIndex WorldModel::index(int row, int /*column*/, const QModelIndex &parent
         if(row == 0) return worldIndex();
         else if(row == 1) return solverIndex();
         else if(row == 2) return collisionSolverIndex();
-    } else if(parent.internalPointer() == _world) return itemIndex(row);
+    } else {
+        StepCore::ItemGroup* group = dynamic_cast<StepCore::ItemGroup*>(object(parent));
+        if(group) return createIndex(row, 0, group->childItem(row));
+        //if(parent.internalPointer() == _world) return itemIndex(row);
+    }
     return QModelIndex();
 }
 
@@ -398,7 +415,11 @@ QModelIndex WorldModel::parent(const QModelIndex &index) const
     else if(index.internalPointer() == _world) return QModelIndex();
     else if(index.internalPointer() == _world->solver()) return QModelIndex();
     else if(index.internalPointer() == _world->collisionSolver()) return QModelIndex();
-    return worldIndex();
+    else {
+        StepCore::Item* item = dynamic_cast<StepCore::Item*>(object(index));
+        if(item && item->group()) return objectIndex(item->group());
+        else return QModelIndex();
+    }
 }
 
 int WorldModel::rowCount(const QModelIndex &parent) const
@@ -414,7 +435,8 @@ int WorldModel::rowCount(const QModelIndex &parent) const
         return count;
         */
     }
-    else if(parent.internalPointer() == _world) return itemCount();
+    else if(dynamic_cast<StepCore::ItemGroup*>(object(parent)))
+        return dynamic_cast<StepCore::ItemGroup*>(object(parent))->childItemCount();
     else return 0;
 }
 
@@ -423,12 +445,12 @@ int WorldModel::columnCount(const QModelIndex& /*parent*/) const
     return 1;
 }
 
-StepCore::Item* WorldModel::newItem(const QString& name)
+StepCore::Item* WorldModel::newItem(const QString& name, StepCore::ItemGroup* parent)
 {
     StepCore::Item* item = _worldFactory->newItem(name);
     if(item == NULL) return NULL;
     item->setName(getUniqueName(name));
-    pushCommand(new CommandNewItem(this, item, true));
+    pushCommand(new CommandNewItem(this, item, parent, true));
     return item;
 }
         
@@ -457,7 +479,7 @@ StepCore::Solver* WorldModel::newSolver(const QString& name)
 
 void WorldModel::deleteItem(StepCore::Item* item)
 {
-    pushCommand(new CommandNewItem(this, item, false));
+    pushCommand(new CommandNewItem(this, item, item->group(), false));
 }
 
 void WorldModel::deleteSelectedItems()
@@ -475,19 +497,21 @@ void WorldModel::deleteSelectedItems()
     }
 }
 
-void WorldModel::addItem(StepCore::Item* item)
+void WorldModel::addItem(StepCore::Item* item, StepCore::ItemGroup* parent)
 {
-    beginInsertRows(worldIndex(), itemCount(), itemCount());
-    _world->addItem(item);
+    if(!parent) parent = _world;
+    beginInsertRows(objectIndex(parent), parent->childItemCount(), parent->childItemCount());
+    parent->addItem(item);
     endInsertRows();
     emitChanged();
 }
 
 void WorldModel::removeItem(StepCore::Item* item)
 {
-    int itemIndex = _world->itemIndex(item);
-    beginRemoveRows(worldIndex(), itemIndex, itemIndex);
-    _world->removeItem(item);
+    STEPCORE_ASSERT_NOABORT(item->group());
+    QModelIndex index = objectIndex(item);
+    beginRemoveRows(index.parent(), index.row(), index.row());
+    item->group()->removeItem(item);
     endRemoveRows();
     emitChanged();
 }
@@ -540,12 +564,13 @@ void WorldModel::setProperty(StepCore::Object* object,
     pushCommand(new CommandEditProperty(this, object, property, value, merge));
 }
 
-QString WorldModel::createToolTip(const StepCore::Object* object) const
+QString WorldModel::createToolTip(const QModelIndex& index) const
 {
-    Q_ASSERT(object != NULL);
-    QString toolTip = i18n("<nobr><h4><u>%1: %2</u></h4></nobr>",
-                    object->name(), object->metaObject()->className());
+    //Q_ASSERT(object != NULL);
+    Q_ASSERT(index.isValid());
+    QString toolTip = i18n("<nobr><h4><u>%1</u></h4></nobr>", index.data(Qt::DisplayRole).toString());
     toolTip += "<table>";
+    StepCore::Object* object = this->object(index);
     for(int i=0; i<object->metaObject()->propertyCount(); ++i) {
         const StepCore::MetaProperty* p = object->metaObject()->property(i);
         QString value = p->readString(object);
@@ -561,6 +586,17 @@ QString WorldModel::createToolTip(const StepCore::Object* object) const
     toolTip += "</table>";
     //qDebug("%s", toolTip.toAscii().constData());
     return toolTip;
+}
+
+QMenu* WorldModel::createContextMenu(const QModelIndex& index)
+{
+    //Q_ASSERT(object != NULL);
+    Q_ASSERT(index.isValid());
+    KMenu* menu = new KMenu();
+    menu->addTitle(index.data(Qt::DisplayRole).toString());
+    ItemMenuHandler* handler = _worldFactory->newItemMenuHandler(object(index), this, menu);
+    handler->populateMenu(menu);
+    return menu;
 }
 
 void WorldModel::clearWorld()

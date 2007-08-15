@@ -89,6 +89,17 @@ ItemPalette::ItemPalette(WorldModel* worldModel, QWidget* parent, Qt::WindowFlag
         addObject(metaObject);
     }
 
+    /* Add groups */
+    _toolBar->addSeparator();
+    foreach(QString name, _worldModel->worldFactory()->orderedMetaObjects()) {
+        const StepCore::MetaObject* metaObject = _worldModel->worldFactory()->metaObject(name);
+        if(metaObject->isAbstract()) continue;
+        if(!metaObject->inherits(StepCore::ItemGroup::staticMetaObject())) continue;
+        if(metaObject == StepCore::World::staticMetaObject() ||
+            metaObject == StepCore::ItemGroup::staticMetaObject()) continue;
+        addObject(metaObject);
+    }
+
     /* Add forces */
     _toolBar->addSeparator();
     foreach(QString name, _worldModel->worldFactory()->orderedMetaObjects()) {

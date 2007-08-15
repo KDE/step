@@ -30,24 +30,156 @@ STEPCORE_META_OBJECT(Body, "Body", MetaObject::ABSTRACT,,)
 STEPCORE_META_OBJECT(Force, "Force", MetaObject::ABSTRACT,,)
 STEPCORE_META_OBJECT(Tool, "Tool", MetaObject::ABSTRACT,,)
 
-STEPCORE_META_OBJECT(World, "World", 0, STEPCORE_SUPER_CLASS(Object),
+STEPCORE_META_OBJECT(ItemGroup, "ItemGroup", 0, STEPCORE_SUPER_CLASS(Item),)
+
+STEPCORE_META_OBJECT(World, "World", 0, STEPCORE_SUPER_CLASS(ItemGroup),
         STEPCORE_PROPERTY_RW_D(double, time, "Current time", time, setTime)
         STEPCORE_PROPERTY_RW  (double, timeScale, "Simulation speed scale", timeScale, setTimeScale))
+
+ItemGroup::ItemGroup(const ItemGroup& group)
+{
+    *this = group;
+}
+
+void ItemGroup::setWorld(World* world)
+{
+    ItemList::const_iterator end = _items.end();
+    for(ItemList::const_iterator it = _items.begin(); it != end; ++it)
+        (*it)->setWorld(world);
+    Item::setWorld(world);
+}
+
+void ItemGroup::worldItemRemoved(Item* item)
+{
+    ItemList::const_iterator end = _items.end();
+    for(ItemList::const_iterator it = _items.begin(); it != end; ++it)
+        (*it)->worldItemRemoved(item);
+}
+
+void ItemGroup::addItem(Item* item)
+{
+    _items.push_back(item);
+
+    if(world()) world()->worldItemAdded(item);
+
+    item->setGroup(this);
+    item->setWorld(this->world());
+}
+
+void ItemGroup::removeItem(Item* item)
+{
+    item->setWorld(NULL);
+    item->setGroup(NULL);
+
+    if(world()) world()->worldItemRemoved(item);
+
+    ItemList::iterator i = std::find(_items.begin(), _items.end(), item);
+    STEPCORE_ASSERT_NOABORT(i != _items.end());
+    _items.erase(i);
+}
+
+void ItemGroup::clear()
+{
+    ItemList::const_iterator end = _items.end();
+    for(ItemList::const_iterator it = _items.begin(); it != end; ++it) {
+        (*it)->setWorld(NULL);
+        (*it)->setGroup(NULL);
+        if(world()) world()->worldItemRemoved(*it);
+    }
+
+    for(ItemList::const_iterator it = _items.begin(); it != end; ++it) {
+        delete *it;
+    }
+
+    _items.clear();
+}
+
+ItemGroup::~ItemGroup()
+{
+    clear();
+}
+
+ItemGroup& ItemGroup::operator=(const ItemGroup& group)
+{
+
+    /*
+    item->setGroup(this);
+    item->setWorld(this->world());
+    _items.push_back(item);
+
+    if(world()) {
+        //world()->worldItemAdded(item);
+        ItemGroup* gr = dynamic_cast<ItemGroup*>(item);
+        if(gr) gr->groupItemsAdded();
+    }
+    */
+
+    if(this == &group) return *this;
+
+    clear();
+
+    _items.reserve(group._items.size());
+
+    const ItemList::const_iterator gr_end = group._items.end();
+    for(ItemList::const_iterator it = group._items.begin(); it != gr_end; ++it) {
+        StepCore::Item* item = static_cast<Item*>( (*it)->metaObject()->cloneObject(*(*it)) );
+        _items.push_back(item);
+    }
+
+    const ItemList::const_iterator end = _items.end();
+    for(ItemList::const_iterator it = _items.begin(); it != end; ++it) {
+        (*it)->setGroup(this);
+    }
+
+    Item::operator=(group);
+
+    // NOTE: We don't change world() here
+
+    return *this;
+}
+
+int ItemGroup::childItemIndex(const Item* item) const
+{
+    ItemList::const_iterator o = std::find(_items.begin(), _items.end(), item);
+    STEPCORE_ASSERT_NOABORT(o != _items.end());
+    return std::distance(_items.begin(), o);
+}
+
+Item* ItemGroup::childItem(const QString& name) const
+{
+    ItemList::const_iterator end = _items.end();
+    for(ItemList::const_iterator it = _items.begin(); it != end; ++it)
+        if((*it)->name() == name) return *it;
+    return NULL;
+}
+
+Item* ItemGroup::item(const QString& name) const
+{
+    ItemList::const_iterator end = _items.end();
+    for(ItemList::const_iterator it = _items.begin(); it != end; ++it) {
+        if((*it)->name() == name) return *it;
+        ItemGroup* gr = dynamic_cast<ItemGroup*>(*it);
+        if(gr) {
+            Item* ret = gr->item(name); if(ret) return ret;
+        }
+    }
+    return NULL;
+}
 
 World::World()
     : _time(0), _timeScale(1), _solver(NULL),
       _collisionSolver(0), _constraintSolver(NULL),
       _variablesCount(0), _variables(NULL), _errors(NULL)
 {
+    setWorld(this);
     clear();
 }
 
 World::World(const World& world)
-    : Object(world), _time(0), _timeScale(1), _solver(NULL),
+    : ItemGroup(), _time(0), _timeScale(1), _solver(NULL),
       _collisionSolver(0), _constraintSolver(NULL),
       _variablesCount(0), _variables(NULL), _errors(NULL)
 {
-    clear();
     *this = world;
 }
 
@@ -63,7 +195,9 @@ World& World::operator=(const World& world)
     if(this == &world) return *this;
 
     clear();
+    ItemGroup::operator=(world);
 
+    /*
     _items.reserve(world._items.size());
     const ItemList::const_iterator it_end = world._items.end();
 
@@ -75,10 +209,12 @@ World& World::operator=(const World& world)
         Body* body = dynamic_cast<Body*>(item);
         if(body) _bodies.push_back(body);
     }
+    */
 
-    /*if(world._constraintSolver) setConstraintSolver(static_cast<ConstraintSolver*>(
-               world._constraintSolver->metaObject()->cloneObject(*(world._constraintSolver))));
-    else setConstraintSolver(0);*/
+    const ItemList::const_iterator end = items().end();
+    for(ItemList::const_iterator it = items().begin(); it != end; ++it) {
+        worldItemAdded(*it);
+    }
 
     setTime(world.time());
     setTimeScale(world.timeScale());
@@ -96,9 +232,11 @@ World& World::operator=(const World& world)
                world._collisionSolver->metaObject()->cloneObject(*(world._collisionSolver))));
     else setCollisionSolver(0);
 
-    const ItemList::const_iterator it_end2 = _items.end();
-    for(ItemList::iterator it = _items.begin(); it != it_end2; ++it)
-        (*it)->setWorld(this); // XXX: implement it
+    /*if(world._constraintSolver) setConstraintSolver(static_cast<ConstraintSolver*>(
+               world._constraintSolver->metaObject()->cloneObject(*(world._constraintSolver))));
+    else setConstraintSolver(0);*/
+
+    setWorld(this);
 
     checkVariablesCount();
 
@@ -107,13 +245,13 @@ World& World::operator=(const World& world)
 
 void World::clear()
 {
-    for(ItemList::iterator o = _items.begin(); o != _items.end(); ++o) {
-        delete *o;
-    }
+    // clear _items
+    ItemGroup::clear();
 
-    _items.clear();
-    _bodies.clear();
-    _forces.clear();
+    STEPCORE_ASSERT_NOABORT(_bodies.empty());
+    STEPCORE_ASSERT_NOABORT(_forces.empty());
+    //_bodies.clear();
+    //_forces.clear();
 
     delete _solver; _solver = NULL;
     delete _collisionSolver; _collisionSolver = NULL;
@@ -136,21 +274,71 @@ void World::clear()
 #endif
 }
 
+void World::worldItemAdded(Item* item)
+{
+    Force* force = dynamic_cast<Force*>(item);
+    if(force) _forces.push_back(force);
+    Body* body = dynamic_cast<Body*>(item);
+    if(body) _bodies.push_back(body);
+
+    ItemGroup* group = dynamic_cast<ItemGroup*>(item);
+    if(group) {
+        ItemList::const_iterator end = group->items().end();
+        for(ItemList::const_iterator it = group->items().begin(); it != end; ++it) {
+            worldItemAdded(*it);
+        }
+    }
+}
+
+void World::worldItemRemoved(Item* item)
+{
+    ItemGroup* group = dynamic_cast<ItemGroup*>(item);
+    if(group) {
+        ItemList::const_iterator end = group->items().end();
+        for(ItemList::const_iterator it = group->items().begin(); it != end; ++it) {
+            worldItemRemoved(*it);
+        }
+    }
+
+    const ItemList::const_iterator end = items().end();
+    for(ItemList::const_iterator it = items().begin(); it != end; ++it) {
+        (*it)->worldItemRemoved(item);
+    }
+
+    Force* force = dynamic_cast<Force*>(item);
+    if(force) {
+        ForceList::iterator f = std::find(_forces.begin(), _forces.end(), force);
+        STEPCORE_ASSERT_NOABORT(f != _forces.end());
+        _forces.erase(f);
+    }
+
+    Body* body = dynamic_cast<Body*>(item);
+    if(body) {
+        BodyList::iterator b = std::find(_bodies.begin(), _bodies.end(), body);
+        STEPCORE_ASSERT_NOABORT(b != _bodies.end());
+        _bodies.erase(b);
+    }
+}
+
+/*
 void World::addItem(Item* item)
 {
-    item->setWorld(this);
     _items.push_back(item);
+    item->setWorld(this);
     Force* force = dynamic_cast<Force*>(item);
     if(force) _forces.push_back(force);
     Body* body = dynamic_cast<Body*>(item);
     if(body) _bodies.push_back(body);
 }
+*/
 
-void World::removeItem(Item* item)
+/*void World::removeItem(Item* item)
 {
     const ItemList::const_iterator it_end = _items.end();
     for(ItemList::iterator it = _items.begin(); it != it_end; ++it)
         (*it)->worldItemRemoved(item);
+
+    item->setWorld(NULL);
 
     ItemList::iterator i = std::find(_items.begin(), _items.end(), item);
     STEPCORE_ASSERT_NOABORT(i != _items.end());
@@ -170,14 +358,18 @@ void World::removeItem(Item* item)
         _bodies.erase(b);
     }
 }
+*/
 
+/*
 int World::itemIndex(const Item* item) const
 {
     ItemList::const_iterator o = std::find(_items.begin(), _items.end(), item);
     STEPCORE_ASSERT_NOABORT(o != _items.end());
     return std::distance(_items.begin(), o);
 }
+*/
 
+/*
 Item* World::item(const QString& name) const
 {
     for(ItemList::const_iterator o = _items.begin(); o != _items.end(); ++o) {
@@ -185,6 +377,7 @@ Item* World::item(const QString& name) const
     }
     return NULL;
 }
+*/
 
 Object* World::object(const QString& name)
 {

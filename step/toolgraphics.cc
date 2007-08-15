@@ -136,12 +136,12 @@ void NoteGraphicsItem::worldDataChanged(bool dynamicOnly)
 {
     if(!dynamicOnly) {
         setPos(vectorToPoint(note()->position()));
-        if(!_updating && _textItem->toPlainText() != note()->text()) {
+        if(!_updating && _textItem->toHtml() != note()->text()) {
             ++_updating;
             if(!_textItem->hasFocus() && note()->text().isEmpty()) {
                 _textItem->setPlainText(_textItem->emptyNotice());
             } else {
-                _textItem->setPlainText(note()->text());
+                _textItem->setHtml(note()->text());
             }
             --_updating;
         }
@@ -156,7 +156,7 @@ void NoteGraphicsItem::contentsChanged()
         ++_updating;
         _worldModel->simulationPause();
         _worldModel->setProperty(_item, _item->metaObject()->property("text"),
-                                QVariant::fromValue( _textItem->toPlainText() ));
+                                QVariant::fromValue( _textItem->toHtml() ));
         --_updating;
     }
 }
@@ -186,17 +186,28 @@ DataSourceWidget::DataSourceWidget(QWidget* parent)
     _index->setSizeAdjustPolicy(QComboBox::AdjustToMinimumContentsLength);
     layout->addWidget(_index, 0);
 
-    connect(_object, SIGNAL(activated(const QString&)),
-            this, SLOT(objectSelected(const QString&)));
-    connect(_property, SIGNAL(activated(const QString&)),
-            this, SLOT(propertySelected(const QString&)));
+    connect(_object, SIGNAL(activated(int)),
+            this, SLOT(objectSelected(int)));
+    connect(_property, SIGNAL(activated(int)),
+            this, SLOT(propertySelected(int)));
 
-    connect(_object, SIGNAL(activated(const QString&)),
+    connect(_object, SIGNAL(activated(int)),
             this, SIGNAL(dataSourceChanged()));
-    connect(_property, SIGNAL(activated(const QString&)),
+    connect(_property, SIGNAL(activated(int)),
             this, SIGNAL(dataSourceChanged()));
-    connect(_index, SIGNAL(activated(const QString&)),
+    connect(_index, SIGNAL(activated(int)),
             this, SIGNAL(dataSourceChanged()));
+}
+
+void DataSourceWidget::addObjects(const QModelIndex& parent, const QString& indent)
+{
+    for(int i=0; i<_worldModel->rowCount(parent); ++i) {
+        QModelIndex index = _worldModel->index(i, 0, parent);
+        QString name = _worldModel->object(index)->name();
+        if(name.isEmpty()) continue;
+        _object->addItem(indent + name, name);
+        addObjects(index, indent + " ");
+    }
 }
 
 void DataSourceWidget::setDataSource(WorldModel* worldModel, const QString& object,
@@ -206,27 +217,27 @@ void DataSourceWidget::setDataSource(WorldModel* worldModel, const QString& obje
     if(!_worldModel) return;
 
     _object->clear();
-    _object->addItem(_worldModel->world()->name());
-    for(int i=0; i<_worldModel->itemCount(); ++i)
-        _object->addItem(_worldModel->item(i)->name());
-    for(int i=1; i<_worldModel->rowCount(); ++i)
-        _object->addItem(_worldModel->index(i, 0).data(WorldModel::ObjectNameRole).toString());
 
-    _object->setCurrentIndex( _object->findData(object, Qt::DisplayRole) );
-    objectSelected(object);
+    addObjects(QModelIndex(), "");
 
-    _property->setCurrentIndex( _property->findData(property, Qt::DisplayRole) );
-    propertySelected(property);
+    int objIndex = _object->findData(object);
+    _object->setCurrentIndex( objIndex );
+    objectSelected(objIndex);
+
+    int propIndex = _property->findData(property);
+    _property->setCurrentIndex( propIndex );
+    propertySelected(propIndex);
 
     _index->setCurrentIndex( index );
 }
 
-void DataSourceWidget::objectSelected(const QString& text)
+void DataSourceWidget::objectSelected(int index)
 {
     Q_ASSERT(_worldModel);
 
     _property->clear();
 
+    QString text = _object->itemData(index).toString();
     const StepCore::Object* obj = _worldModel->object(text);
     if(obj != 0) {
         _property->setEnabled(true);
@@ -235,20 +246,22 @@ void DataSourceWidget::objectSelected(const QString& text)
             if(_skipReadOnly && !pr->isWritable()) continue;
             if(pr->userTypeId() == qMetaTypeId<double>() ||
                         pr->userTypeId() == qMetaTypeId<StepCore::Vector2d>()) {
-                _property->addItem(pr->name());
+                _property->addItem(pr->name(), pr->name());
             }
         }
-        propertySelected(_property->currentText());
+        propertySelected(_property->currentIndex());
     } else {
         _property->setEnabled(false);
     }
 }
 
-void DataSourceWidget::propertySelected(const QString& text)
+void DataSourceWidget::propertySelected(int index)
 {
     Q_ASSERT(_worldModel);
 
-    const StepCore::Object* obj = _worldModel->object(_object->currentText());
+    QString text = _property->itemData(index).toString();
+    const StepCore::Object* obj = _worldModel->object(
+                            _object->itemData(_object->currentIndex()).toString());
     const StepCore::MetaProperty* pr = obj ? obj->metaObject()->property(text) : 0;
 
     _index->clear();
@@ -293,23 +306,12 @@ GraphGraphicsItem::GraphGraphicsItem(StepCore::Item* item, WorldModel* worldMode
     //_plotWidget->setAntialiasing(true);
     _plotWidget->addPlotObjects(plotObjects);
 
-    _clearAction = new KAction(i18n("Clear graph"), this);
-    _configureAction = new KAction(i18n("Configure graph..."), this);
-    connect(_clearAction, SIGNAL(triggered()), this, SLOT(clearGraph()));
-    connect(_configureAction, SIGNAL(triggered()), this, SLOT(configureGraph()));
-    _plotWidget->addAction(_clearAction);
-    _plotWidget->addAction(_configureAction);
-    _plotWidget->setContextMenuPolicy(Qt::ActionsContextMenu);
 
     _boundingRect = QRectF(0, 0, 0, 0);
     _lastScale = 1;
     scale(1, -1);
 
     _lastPointTime = -HUGE_VAL;
-
-    _confUi = 0;
-    _confDialog = 0;
-    _confChanged = false;
 }
 
 GraphGraphicsItem::~GraphGraphicsItem()
@@ -321,129 +323,6 @@ GraphGraphicsItem::~GraphGraphicsItem()
 inline StepCore::Graph* GraphGraphicsItem::graph() const
 {
     return static_cast<StepCore::Graph*>(_item);
-}
-
-void GraphGraphicsItem::configureGraph()
-{
-    if(_worldModel->isSimulationActive())
-        _worldModel->simulationStop();
-
-    _confChanged = false;
-    _confDialog = new KDialog(_plotWidget);
-    
-    _confDialog->setCaption(i18n("Configure graph"));
-    _confDialog->setButtons(KDialog::Ok | KDialog::Cancel | KDialog::Apply);
-
-    _confUi = new Ui::WidgetConfigureGraph;
-    _confUi->setupUi(_confDialog->mainWidget());
-
-    _confUi->dataSourceX->setDataSource(_worldModel, graph()->objectX(),
-                                    graph()->propertyX(), graph()->indexX());
-    _confUi->dataSourceY->setDataSource(_worldModel, graph()->objectY(),
-                                    graph()->propertyY(), graph()->indexY());
-
-    _confUi->checkBoxAutoX->setChecked(graph()->autoLimitsX());
-    _confUi->checkBoxAutoY->setChecked(graph()->autoLimitsY());
-
-    _confUi->lineEditMinX->setValidator(
-                new QDoubleValidator(-HUGE_VAL, HUGE_VAL, DBL_DIG, _confUi->lineEditMinX));
-    _confUi->lineEditMaxX->setValidator(
-                new QDoubleValidator(-HUGE_VAL, HUGE_VAL, DBL_DIG, _confUi->lineEditMaxX));
-    _confUi->lineEditMinY->setValidator(
-                new QDoubleValidator(-HUGE_VAL, HUGE_VAL, DBL_DIG, _confUi->lineEditMinY));
-    _confUi->lineEditMaxY->setValidator(
-                new QDoubleValidator(-HUGE_VAL, HUGE_VAL, DBL_DIG, _confUi->lineEditMaxY));
-
-    _confUi->lineEditMinX->setText(QString::number(graph()->limitsX()[0]));
-    _confUi->lineEditMaxX->setText(QString::number(graph()->limitsX()[1]));
-    _confUi->lineEditMinY->setText(QString::number(graph()->limitsY()[0]));
-    _confUi->lineEditMaxY->setText(QString::number(graph()->limitsY()[1]));
-
-    _confUi->checkBoxShowLines->setChecked(graph()->showLines());
-    _confUi->checkBoxShowPoints->setChecked(graph()->showPoints());
-
-    _confDialog->enableButtonApply(false);
-
-    connect(_confDialog, SIGNAL(applyClicked()), this, SLOT(confApply()));
-    connect(_confDialog, SIGNAL(okClicked()), this, SLOT(confApply()));
-
-    connect(_confUi->dataSourceX, SIGNAL(dataSourceChanged()), this, SLOT(confChanged()));
-    connect(_confUi->dataSourceY, SIGNAL(dataSourceChanged()), this, SLOT(confChanged()));
-    connect(_confUi->checkBoxAutoX, SIGNAL(stateChanged(int)), this, SLOT(confChanged()));
-    connect(_confUi->checkBoxAutoY, SIGNAL(stateChanged(int)), this, SLOT(confChanged()));
-    connect(_confUi->lineEditMinX, SIGNAL(textEdited(const QString&)), this, SLOT(confChanged()));
-    connect(_confUi->lineEditMaxX, SIGNAL(textEdited(const QString&)), this, SLOT(confChanged()));
-    connect(_confUi->lineEditMinY, SIGNAL(textEdited(const QString&)), this, SLOT(confChanged()));
-    connect(_confUi->lineEditMaxY, SIGNAL(textEdited(const QString&)), this, SLOT(confChanged()));
-    connect(_confUi->checkBoxShowLines, SIGNAL(stateChanged(int)), this, SLOT(confChanged()));
-    connect(_confUi->checkBoxShowPoints, SIGNAL(stateChanged(int)), this, SLOT(confChanged()));
-
-    _confDialog->exec();
-
-    delete _confDialog; _confDialog = 0;
-    delete _confUi; _confUi = 0;
-}
-
-void GraphGraphicsItem::confApply()
-{
-    Q_ASSERT(_confUi && _confDialog);
-
-    // XXX: check for actual change ?
-    if(!_confChanged) return;
-    _worldModel->beginMacro(i18n("Edit %1", graph()->name()));
-    _worldModel->beginUpdate();
-
-    _worldModel->setProperty(graph(), graph()->metaObject()->property("objectX"),
-                                _confUi->dataSourceX->dataObject());
-    _worldModel->setProperty(graph(), graph()->metaObject()->property("propertyX"),
-                                _confUi->dataSourceX->dataProperty());
-    _worldModel->setProperty(graph(), graph()->metaObject()->property("indexX"),
-                                _confUi->dataSourceX->dataIndex());
-
-    _worldModel->setProperty(graph(), graph()->metaObject()->property("objectY"),
-                                _confUi->dataSourceY->dataObject());
-    _worldModel->setProperty(graph(), graph()->metaObject()->property("propertyY"),
-                                _confUi->dataSourceY->dataProperty());
-    _worldModel->setProperty(graph(), graph()->metaObject()->property("indexY"),
-                                _confUi->dataSourceY->dataIndex());
-
-    _worldModel->setProperty(graph(), graph()->metaObject()->property("autoLimitsX"),
-                                _confUi->checkBoxAutoX->isChecked());
-    _worldModel->setProperty(graph(), graph()->metaObject()->property("autoLimitsY"),
-                                _confUi->checkBoxAutoY->isChecked());
-
-    StepCore::Vector2d limitsX(_confUi->lineEditMinX->text().toDouble(),
-                               _confUi->lineEditMaxX->text().toDouble());
-    StepCore::Vector2d limitsY(_confUi->lineEditMinY->text().toDouble(),
-                               _confUi->lineEditMaxY->text().toDouble());
-
-    _worldModel->setProperty(graph(), graph()->metaObject()->property("limitsX"),
-                                        QVariant::fromValue(limitsX));
-    _worldModel->setProperty(graph(), graph()->metaObject()->property("limitsY"),
-                                        QVariant::fromValue(limitsY));
-
-    _worldModel->setProperty(graph(), graph()->metaObject()->property("showLines"),
-                                _confUi->checkBoxShowLines->isChecked());
-    _worldModel->setProperty(graph(), graph()->metaObject()->property("showPoints"),
-                                _confUi->checkBoxShowPoints->isChecked());
-
-    _worldModel->endUpdate();
-    _worldModel->endMacro();
-}
-
-void GraphGraphicsItem::confChanged()
-{
-    Q_ASSERT(_confUi && _confDialog);
-    _confChanged = true;
-    _confDialog->enableButtonApply(true);
-}
-
-void GraphGraphicsItem::clearGraph()
-{
-    _worldModel->simulationPause();
-    _lastPointTime = -HUGE_VAL;
-    _worldModel->setProperty(graph(), graph()->metaObject()->property("points"),
-                               QVariant::fromValue(std::vector<StepCore::Vector2d>()) );
 }
 
 void GraphGraphicsItem::paint(QPainter* painter, const QStyleOptionGraphicsItem* /*option*/, QWidget* /*widget*/)
@@ -640,6 +519,146 @@ void GraphGraphicsItem::worldDataChanged(bool dynamicOnly)
 #endif
 }
 
+void GraphMenuHandler::populateMenu(QMenu* menu)
+{
+    _confUi = 0;
+    _confDialog = 0;
+    _confChanged = false;
+
+    menu->addAction(KIcon("edit-clear"), i18n("Clear graph"), this, SLOT(clearGraph()));
+    menu->addAction(KIcon("configure"), i18n("Configure graph..."), this, SLOT(configureGraph()));
+    menu->addSeparator();
+    ItemMenuHandler::populateMenu(menu);
+}
+
+inline StepCore::Graph* GraphMenuHandler::graph() const
+{
+    return static_cast<StepCore::Graph*>(_object);
+}
+
+void GraphMenuHandler::configureGraph()
+{
+    if(_worldModel->isSimulationActive())
+        _worldModel->simulationStop();
+
+    _confChanged = false;
+    _confDialog = new KDialog(); // XXX: parent?
+    
+    _confDialog->setCaption(i18n("Configure graph"));
+    _confDialog->setButtons(KDialog::Ok | KDialog::Cancel | KDialog::Apply);
+
+    _confUi = new Ui::WidgetConfigureGraph;
+    _confUi->setupUi(_confDialog->mainWidget());
+
+    _confUi->dataSourceX->setDataSource(_worldModel, graph()->objectX(),
+                                    graph()->propertyX(), graph()->indexX());
+    _confUi->dataSourceY->setDataSource(_worldModel, graph()->objectY(),
+                                    graph()->propertyY(), graph()->indexY());
+
+    _confUi->checkBoxAutoX->setChecked(graph()->autoLimitsX());
+    _confUi->checkBoxAutoY->setChecked(graph()->autoLimitsY());
+
+    _confUi->lineEditMinX->setValidator(
+                new QDoubleValidator(-HUGE_VAL, HUGE_VAL, DBL_DIG, _confUi->lineEditMinX));
+    _confUi->lineEditMaxX->setValidator(
+                new QDoubleValidator(-HUGE_VAL, HUGE_VAL, DBL_DIG, _confUi->lineEditMaxX));
+    _confUi->lineEditMinY->setValidator(
+                new QDoubleValidator(-HUGE_VAL, HUGE_VAL, DBL_DIG, _confUi->lineEditMinY));
+    _confUi->lineEditMaxY->setValidator(
+                new QDoubleValidator(-HUGE_VAL, HUGE_VAL, DBL_DIG, _confUi->lineEditMaxY));
+
+    _confUi->lineEditMinX->setText(QString::number(graph()->limitsX()[0]));
+    _confUi->lineEditMaxX->setText(QString::number(graph()->limitsX()[1]));
+    _confUi->lineEditMinY->setText(QString::number(graph()->limitsY()[0]));
+    _confUi->lineEditMaxY->setText(QString::number(graph()->limitsY()[1]));
+
+    _confUi->checkBoxShowLines->setChecked(graph()->showLines());
+    _confUi->checkBoxShowPoints->setChecked(graph()->showPoints());
+
+    _confDialog->enableButtonApply(false);
+
+    connect(_confDialog, SIGNAL(applyClicked()), this, SLOT(confApply()));
+    connect(_confDialog, SIGNAL(okClicked()), this, SLOT(confApply()));
+
+    connect(_confUi->dataSourceX, SIGNAL(dataSourceChanged()), this, SLOT(confChanged()));
+    connect(_confUi->dataSourceY, SIGNAL(dataSourceChanged()), this, SLOT(confChanged()));
+    connect(_confUi->checkBoxAutoX, SIGNAL(stateChanged(int)), this, SLOT(confChanged()));
+    connect(_confUi->checkBoxAutoY, SIGNAL(stateChanged(int)), this, SLOT(confChanged()));
+    connect(_confUi->lineEditMinX, SIGNAL(textEdited(const QString&)), this, SLOT(confChanged()));
+    connect(_confUi->lineEditMaxX, SIGNAL(textEdited(const QString&)), this, SLOT(confChanged()));
+    connect(_confUi->lineEditMinY, SIGNAL(textEdited(const QString&)), this, SLOT(confChanged()));
+    connect(_confUi->lineEditMaxY, SIGNAL(textEdited(const QString&)), this, SLOT(confChanged()));
+    connect(_confUi->checkBoxShowLines, SIGNAL(stateChanged(int)), this, SLOT(confChanged()));
+    connect(_confUi->checkBoxShowPoints, SIGNAL(stateChanged(int)), this, SLOT(confChanged()));
+
+    _confDialog->exec();
+
+    delete _confDialog; _confDialog = 0;
+    delete _confUi; _confUi = 0;
+}
+
+void GraphMenuHandler::confApply()
+{
+    Q_ASSERT(_confUi && _confDialog);
+
+    // XXX: check for actual change ?
+    if(!_confChanged) return;
+    _worldModel->beginMacro(i18n("Edit %1", graph()->name()));
+    _worldModel->beginUpdate();
+
+    _worldModel->setProperty(graph(), graph()->metaObject()->property("objectX"),
+                                _confUi->dataSourceX->dataObject());
+    _worldModel->setProperty(graph(), graph()->metaObject()->property("propertyX"),
+                                _confUi->dataSourceX->dataProperty());
+    _worldModel->setProperty(graph(), graph()->metaObject()->property("indexX"),
+                                _confUi->dataSourceX->dataIndex());
+
+    _worldModel->setProperty(graph(), graph()->metaObject()->property("objectY"),
+                                _confUi->dataSourceY->dataObject());
+    _worldModel->setProperty(graph(), graph()->metaObject()->property("propertyY"),
+                                _confUi->dataSourceY->dataProperty());
+    _worldModel->setProperty(graph(), graph()->metaObject()->property("indexY"),
+                                _confUi->dataSourceY->dataIndex());
+
+    _worldModel->setProperty(graph(), graph()->metaObject()->property("autoLimitsX"),
+                                _confUi->checkBoxAutoX->isChecked());
+    _worldModel->setProperty(graph(), graph()->metaObject()->property("autoLimitsY"),
+                                _confUi->checkBoxAutoY->isChecked());
+
+    StepCore::Vector2d limitsX(_confUi->lineEditMinX->text().toDouble(),
+                               _confUi->lineEditMaxX->text().toDouble());
+    StepCore::Vector2d limitsY(_confUi->lineEditMinY->text().toDouble(),
+                               _confUi->lineEditMaxY->text().toDouble());
+
+    _worldModel->setProperty(graph(), graph()->metaObject()->property("limitsX"),
+                                        QVariant::fromValue(limitsX));
+    _worldModel->setProperty(graph(), graph()->metaObject()->property("limitsY"),
+                                        QVariant::fromValue(limitsY));
+
+    _worldModel->setProperty(graph(), graph()->metaObject()->property("showLines"),
+                                _confUi->checkBoxShowLines->isChecked());
+    _worldModel->setProperty(graph(), graph()->metaObject()->property("showPoints"),
+                                _confUi->checkBoxShowPoints->isChecked());
+
+    _worldModel->endUpdate();
+    _worldModel->endMacro();
+}
+
+void GraphMenuHandler::confChanged()
+{
+    Q_ASSERT(_confUi && _confDialog);
+    _confChanged = true;
+    _confDialog->enableButtonApply(true);
+}
+
+void GraphMenuHandler::clearGraph()
+{
+    _worldModel->simulationPause();
+    //_lastPointTime = -HUGE_VAL; // XXX
+    _worldModel->setProperty(graph(), graph()->metaObject()->property("points"),
+                               QVariant::fromValue(std::vector<StepCore::Vector2d>()) );
+}
+
 ////////////////////////////////////////////////////
 ControllerGraphicsItem::ControllerGraphicsItem(StepCore::Item* item, WorldModel* worldModel)
     : WorldGraphicsItem(item, worldModel)
@@ -663,7 +682,7 @@ ControllerGraphicsItem::ControllerGraphicsItem(StepCore::Item* item, WorldModel*
     layout->addWidget(_labelMin, 0, 0, 1, 1);
     layout->addWidget(_slider, 0, 1, 1, 1);
     layout->addWidget(_labelMax, 0, 2, 1, 1);
-    layout->addWidget(_labelSource, 1, 1, 1, 1);
+    layout->addWidget(_labelSource, 1, 0, 1, 3);
 
     _incAction = new KAction(i18n("Increase value"), _widget);
     _decAction = new KAction(i18n("Decrease value"), _widget);
@@ -671,14 +690,10 @@ ControllerGraphicsItem::ControllerGraphicsItem(StepCore::Item* item, WorldModel*
     connect(_incAction, SIGNAL(triggered(bool)), this, SLOT(incTriggered()));
     connect(_decAction, SIGNAL(triggered(bool)), this, SLOT(decTriggered()));
 
-    _configureAction = new KAction(i18n("Configure controller..."), this);
-    connect(_configureAction, SIGNAL(triggered()), this, SLOT(configureController()));
-
     _widget->addAction(_incAction);
     _widget->addAction(_decAction);
-
-    _widget->addAction(_configureAction);
-    _widget->setContextMenuPolicy(Qt::ActionsContextMenu);
+    //_widget->addAction(_configureAction);
+    //_widget->setContextMenuPolicy(Qt::ActionsContextMenu);
 
     _boundingRect = QRectF(0, 0, 0, 0);
     _lastScale = 1;
@@ -686,10 +701,6 @@ ControllerGraphicsItem::ControllerGraphicsItem(StepCore::Item* item, WorldModel*
 
     _lastValue = 1;
     _changed = false;
-
-    _confUi = 0;
-    _confDialog = 0;
-    _confChanged = false;
 }
 
 ControllerGraphicsItem::~ControllerGraphicsItem()
@@ -715,102 +726,6 @@ void ControllerGraphicsItem::incTriggered()
     _worldModel->simulationPause();
     _worldModel->setProperty(controller(), controller()->metaObject()->property("value"),
                                 controller()->value() + controller()->increment());
-}
-
-void ControllerGraphicsItem::configureController()
-{
-    if(_worldModel->isSimulationActive())
-        _worldModel->simulationStop();
-
-    _confChanged = false;
-    _confDialog = new KDialog(_widget);
-    
-    _confDialog->setCaption(i18n("Configure controller"));
-    _confDialog->setButtons(KDialog::Ok | KDialog::Cancel | KDialog::Apply);
-
-    _confUi = new Ui::WidgetConfigureController;
-    _confUi->setupUi(_confDialog->mainWidget());
-
-    _confUi->dataSource->setSkipReadOnly(true);
-    _confUi->dataSource->setDataSource(_worldModel, controller()->object(),
-                                    controller()->property(), controller()->index());
-
-    _confUi->lineEditMin->setValidator(
-                new QDoubleValidator(-HUGE_VAL, HUGE_VAL, DBL_DIG, _confUi->lineEditMin));
-    _confUi->lineEditMax->setValidator(
-                new QDoubleValidator(-HUGE_VAL, HUGE_VAL, DBL_DIG, _confUi->lineEditMax));
-
-    _confUi->lineEditMin->setText(QString::number(controller()->limits()[0]));
-    _confUi->lineEditMax->setText(QString::number(controller()->limits()[1]));
-
-    _confUi->keyIncrease->setModifierlessAllowed(true);
-    _confUi->keyDecrease->setModifierlessAllowed(true);
-
-    _confUi->keyIncrease->setKeySequence(_incAction->shortcut().primary());
-    _confUi->keyDecrease->setKeySequence(_decAction->shortcut().primary());
-
-    _confUi->lineEditIncrement->setValidator(
-                new QDoubleValidator(-HUGE_VAL, HUGE_VAL, DBL_DIG, _confUi->lineEditIncrement));
-    _confUi->lineEditIncrement->setText(QString::number(controller()->increment()));
-
-    _confDialog->enableButtonApply(false);
-
-    connect(_confDialog, SIGNAL(applyClicked()), this, SLOT(confApply()));
-    connect(_confDialog, SIGNAL(okClicked()), this, SLOT(confApply()));
-
-    connect(_confUi->dataSource, SIGNAL(dataSourceChanged()), this, SLOT(confChanged()));
-    connect(_confUi->lineEditMin, SIGNAL(textEdited(const QString&)), this, SLOT(confChanged()));
-    connect(_confUi->lineEditMax, SIGNAL(textEdited(const QString&)), this, SLOT(confChanged()));
-    connect(_confUi->keyIncrease, SIGNAL(keySequenceChanged(const QKeySequence&)), this, SLOT(confChanged()));
-    connect(_confUi->keyDecrease, SIGNAL(keySequenceChanged(const QKeySequence&)), this, SLOT(confChanged()));
-    connect(_confUi->lineEditIncrement, SIGNAL(textEdited(const QString&)), this, SLOT(confChanged()));
-
-    _confDialog->exec();
-
-    delete _confDialog; _confDialog = 0;
-    delete _confUi; _confUi = 0;
-}
-
-void ControllerGraphicsItem::confApply()
-{
-    Q_ASSERT(_confUi && _confDialog);
-
-    // XXX: check for actual change ?
-    if(!_confChanged) return;
-    _worldModel->beginMacro(i18n("Edit %1", controller()->name()));
-    _worldModel->beginUpdate();
-
-    _worldModel->setProperty(controller(), controller()->metaObject()->property("object"),
-                                _confUi->dataSource->dataObject());
-    _worldModel->setProperty(controller(), controller()->metaObject()->property("property"),
-                                _confUi->dataSource->dataProperty());
-    _worldModel->setProperty(controller(), controller()->metaObject()->property("index"),
-                                _confUi->dataSource->dataIndex());
-
-    StepCore::Vector2d limits(_confUi->lineEditMin->text().toDouble(),
-                              _confUi->lineEditMax->text().toDouble());
-
-    _worldModel->setProperty(controller(), controller()->metaObject()->property("limits"),
-                                        QVariant::fromValue(limits));
-
-    _worldModel->setProperty(controller(), controller()->metaObject()->property("increaseShortcut"),
-                                 QVariant::fromValue(_confUi->keyIncrease->keySequence().toString()));
-
-    _worldModel->setProperty(controller(), controller()->metaObject()->property("decreaseShortcut"),
-                                 QVariant::fromValue(_confUi->keyDecrease->keySequence().toString()));
-
-    _worldModel->setProperty(controller(), controller()->metaObject()->property("increment"),
-                                 QVariant::fromValue(_confUi->lineEditIncrement->text().toDouble()));
-
-    _worldModel->endUpdate();
-    _worldModel->endMacro();
-}
-
-void ControllerGraphicsItem::confChanged()
-{
-    Q_ASSERT(_confUi && _confDialog);
-    _confChanged = true;
-    _confDialog->enableButtonApply(true);
 }
 
 void ControllerGraphicsItem::paint(QPainter* painter, const QStyleOptionGraphicsItem* /*option*/, QWidget* /*widget*/)
@@ -1006,5 +921,136 @@ void ControllerGraphicsItem::sliderReleased()
         _worldModel->endMacro();
         _changed = false;
     }
+}
+
+void ControllerMenuHandler::populateMenu(QMenu* menu)
+{
+    _confUi = 0;
+    _confDialog = 0;
+    _confChanged = false;
+
+    menu->addAction(KIcon("arrow-up"), i18n("Increase value"), this, SLOT(incTriggered()));
+    menu->addAction(KIcon("arrow-down"), i18n("Decrease value"), this, SLOT(decTriggered()));
+    menu->addSeparator();
+    menu->addAction(KIcon("configure"), i18n("Configure controller..."), this, SLOT(configureController()));
+    menu->addSeparator();
+    ItemMenuHandler::populateMenu(menu);
+}
+
+inline StepCore::Controller* ControllerMenuHandler::controller() const
+{
+    return static_cast<StepCore::Controller*>(_object);
+}
+
+void ControllerMenuHandler::configureController()
+{
+    if(_worldModel->isSimulationActive())
+        _worldModel->simulationStop();
+
+    _confChanged = false;
+    _confDialog = new KDialog(); // XXX
+    
+    _confDialog->setCaption(i18n("Configure controller"));
+    _confDialog->setButtons(KDialog::Ok | KDialog::Cancel | KDialog::Apply);
+
+    _confUi = new Ui::WidgetConfigureController;
+    _confUi->setupUi(_confDialog->mainWidget());
+
+    _confUi->dataSource->setSkipReadOnly(true);
+    _confUi->dataSource->setDataSource(_worldModel, controller()->object(),
+                                    controller()->property(), controller()->index());
+
+    _confUi->lineEditMin->setValidator(
+                new QDoubleValidator(-HUGE_VAL, HUGE_VAL, DBL_DIG, _confUi->lineEditMin));
+    _confUi->lineEditMax->setValidator(
+                new QDoubleValidator(-HUGE_VAL, HUGE_VAL, DBL_DIG, _confUi->lineEditMax));
+
+    _confUi->lineEditMin->setText(QString::number(controller()->limits()[0]));
+    _confUi->lineEditMax->setText(QString::number(controller()->limits()[1]));
+
+    _confUi->keyIncrease->setModifierlessAllowed(true);
+    _confUi->keyDecrease->setModifierlessAllowed(true);
+
+    //_confUi->keyIncrease->setKeySequence(_incAction->shortcut().primary());
+    //_confUi->keyDecrease->setKeySequence(_decAction->shortcut().primary());
+    _confUi->keyIncrease->setKeySequence(KShortcut(controller()->increaseShortcut()).primary());
+    _confUi->keyDecrease->setKeySequence(KShortcut(controller()->decreaseShortcut()).primary());
+
+    _confUi->lineEditIncrement->setValidator(
+                new QDoubleValidator(-HUGE_VAL, HUGE_VAL, DBL_DIG, _confUi->lineEditIncrement));
+    _confUi->lineEditIncrement->setText(QString::number(controller()->increment()));
+
+    _confDialog->enableButtonApply(false);
+
+    connect(_confDialog, SIGNAL(applyClicked()), this, SLOT(confApply()));
+    connect(_confDialog, SIGNAL(okClicked()), this, SLOT(confApply()));
+
+    connect(_confUi->dataSource, SIGNAL(dataSourceChanged()), this, SLOT(confChanged()));
+    connect(_confUi->lineEditMin, SIGNAL(textEdited(const QString&)), this, SLOT(confChanged()));
+    connect(_confUi->lineEditMax, SIGNAL(textEdited(const QString&)), this, SLOT(confChanged()));
+    connect(_confUi->keyIncrease, SIGNAL(keySequenceChanged(const QKeySequence&)), this, SLOT(confChanged()));
+    connect(_confUi->keyDecrease, SIGNAL(keySequenceChanged(const QKeySequence&)), this, SLOT(confChanged()));
+    connect(_confUi->lineEditIncrement, SIGNAL(textEdited(const QString&)), this, SLOT(confChanged()));
+
+    _confDialog->exec();
+
+    delete _confDialog; _confDialog = 0;
+    delete _confUi; _confUi = 0;
+}
+
+void ControllerMenuHandler::confApply()
+{
+    Q_ASSERT(_confUi && _confDialog);
+
+    // XXX: check for actual change ?
+    if(!_confChanged) return;
+    _worldModel->beginMacro(i18n("Edit %1", controller()->name()));
+    _worldModel->beginUpdate();
+
+    _worldModel->setProperty(controller(), controller()->metaObject()->property("object"),
+                                _confUi->dataSource->dataObject());
+    _worldModel->setProperty(controller(), controller()->metaObject()->property("property"),
+                                _confUi->dataSource->dataProperty());
+    _worldModel->setProperty(controller(), controller()->metaObject()->property("index"),
+                                _confUi->dataSource->dataIndex());
+
+    StepCore::Vector2d limits(_confUi->lineEditMin->text().toDouble(),
+                              _confUi->lineEditMax->text().toDouble());
+
+    _worldModel->setProperty(controller(), controller()->metaObject()->property("limits"),
+                                        QVariant::fromValue(limits));
+
+    _worldModel->setProperty(controller(), controller()->metaObject()->property("increaseShortcut"),
+                                 QVariant::fromValue(_confUi->keyIncrease->keySequence().toString()));
+
+    _worldModel->setProperty(controller(), controller()->metaObject()->property("decreaseShortcut"),
+                                 QVariant::fromValue(_confUi->keyDecrease->keySequence().toString()));
+
+    _worldModel->setProperty(controller(), controller()->metaObject()->property("increment"),
+                                 QVariant::fromValue(_confUi->lineEditIncrement->text().toDouble()));
+
+    _worldModel->endUpdate();
+    _worldModel->endMacro();
+}
+
+void ControllerMenuHandler::confChanged()
+{
+    Q_ASSERT(_confUi && _confDialog);
+    _confChanged = true;
+    _confDialog->enableButtonApply(true);
+}
+
+void ControllerMenuHandler::decTriggered()
+{
+    _worldModel->simulationPause();
+    _worldModel->setProperty(controller(), controller()->metaObject()->property("value"),
+                                controller()->value() - controller()->increment());
+}
+
+void ControllerMenuHandler::incTriggered()
+{
+    _worldModel->simulationPause();
+    _worldModel->setProperty(controller(), controller()->metaObject()->property("value"),
+                                controller()->value() + controller()->increment());
 }
 

@@ -23,6 +23,7 @@
 #include <stepcore/world.h>
 #include <stepcore/particle.h>
 #include <stepcore/rigidbody.h>
+#include <stepcore/gas.h>
 #include <stepcore/gravitation.h>
 #include <stepcore/coulombforce.h>
 #include <stepcore/spring.h>
@@ -34,6 +35,7 @@
 
 #include "particlegraphics.h"
 #include "polygongraphics.h"
+#include "gasgraphics.h"
 #include "springgraphics.h"
 #include "toolgraphics.h"
 
@@ -53,33 +55,50 @@ WorldGraphicsItem* newGraphicsItemHelper(StepCore::Item* item, WorldModel* world
     return new T(item, worldModel);
 }
 
+template<typename T>
+ItemMenuHandler* newItemMenuHandlerHelper(StepCore::Object* object, WorldModel* worldModel, QObject* parent)
+{
+    return new T(object, worldModel, parent);
+}
+
+
 WorldFactory::WorldFactory()
 {
     #define __REGISTER(Class) \
         registerMetaObject(StepCore::Class::staticMetaObject()); \
         _orderedMetaObjects.push_back(QString(StepCore::Class::staticMetaObject()->className()))
-    #define __REGISTER_EXT(Class, GraphicsCreator, GraphicsItem) \
+
+    #define ___REGISTER_EXT(Class, newGraphicsCreator, newGraphicsItem, newItemMenuHandler) \
         static const ExtMetaObject extMetaObject ## Class = \
-                { newItemCreatorHelper<GraphicsCreator>, newGraphicsItemHelper<GraphicsItem> }; \
+                { newGraphicsCreator, newGraphicsItem, newItemMenuHandler }; \
         registerMetaObject(StepCore::Class::staticMetaObject()); \
         _extMetaObjects.insert(StepCore::Class::staticMetaObject(), &extMetaObject ## Class); \
         _orderedMetaObjects.push_back(QString(StepCore::Class::staticMetaObject()->className()))
 
+    #define __REGISTER_EXT(Class, GraphicsCreator, GraphicsItem, ItemMenuHandler) \
+        ___REGISTER_EXT(Class, newItemCreatorHelper<GraphicsCreator>, \
+                   newGraphicsItemHelper<GraphicsItem>, newItemMenuHandlerHelper<ItemMenuHandler>)
+
     __REGISTER(Object);
 
-    __REGISTER(World);
     __REGISTER(Item);
+    __REGISTER(World);
+    __REGISTER(ItemGroup);
     __REGISTER(Body);
     __REGISTER(Force);
     __REGISTER(Solver);
     __REGISTER(CollisionSolver);
 
-    __REGISTER_EXT(Particle, ItemCreator, ParticleGraphicsItem);
-    __REGISTER_EXT(ChargedParticle, ItemCreator, ParticleGraphicsItem);
+    __REGISTER_EXT(Particle, ItemCreator, ParticleGraphicsItem, ItemMenuHandler);
+    __REGISTER_EXT(ChargedParticle, ItemCreator, ParticleGraphicsItem, ItemMenuHandler);
 
-    __REGISTER_EXT(Polygon, PolygonCreator, PolygonGraphicsItem);
+    __REGISTER_EXT(Polygon, PolygonCreator, PolygonGraphicsItem, ItemMenuHandler);
 
-    __REGISTER_EXT(Spring, SpringCreator, SpringGraphicsItem);
+    __REGISTER_EXT(GasParticle, ItemCreator, ParticleGraphicsItem, ItemMenuHandler);
+    __REGISTER(GasLJForce);
+    ___REGISTER_EXT(Gas, newItemCreatorHelper<GasCreator>, 0, 0);
+
+    __REGISTER_EXT(Spring, SpringCreator, SpringGraphicsItem, ItemMenuHandler);
 
     __REGISTER(WeightForce);
     __REGISTER(GravitationForce);
@@ -108,17 +127,16 @@ WorldFactory::WorldFactory()
     __REGISTER(GslAdaptiveRK4IMPSolver);
 #endif
 
-    __REGISTER_EXT(Note, ItemCreator, NoteGraphicsItem);
-    __REGISTER_EXT(Graph, ItemCreator, GraphGraphicsItem);
-    __REGISTER_EXT(Controller, ItemCreator, ControllerGraphicsItem);
+    __REGISTER_EXT(Note, ItemCreator, NoteGraphicsItem, ItemMenuHandler);
+    __REGISTER_EXT(Graph, ItemCreator, GraphGraphicsItem, GraphMenuHandler);
+    __REGISTER_EXT(Controller, ItemCreator, ControllerGraphicsItem, ControllerMenuHandler);
 }
-
 
 ItemCreator* WorldFactory::newItemCreator(const QString& className,
                     WorldModel* worldModel, WorldScene* worldScene) const
 {
     const StepCore::MetaObject* mObject = metaObject(className);
-    if(!mObject) return false;
+    if(!mObject) return NULL;
     const ExtMetaObject *extMetaObject = _extMetaObjects.value(mObject, NULL);
     if(extMetaObject && extMetaObject->newItemCreator)
         return extMetaObject->newItemCreator(className, worldModel, worldScene);
@@ -131,5 +149,13 @@ WorldGraphicsItem* WorldFactory::newGraphicsItem(StepCore::Item* item, WorldMode
     if(extMetaObject && extMetaObject->newGraphicsItem)
         return extMetaObject->newGraphicsItem(item, worldModel);
     return NULL;
+}
+
+ItemMenuHandler* WorldFactory::newItemMenuHandler(StepCore::Object* object, WorldModel* worldModel, QObject* parent) const
+{
+    const ExtMetaObject *extMetaObject = _extMetaObjects.value(object->metaObject(), NULL);
+    if(extMetaObject && extMetaObject->newItemMenuHandler)
+        return extMetaObject->newItemMenuHandler(object, worldModel, parent);
+    else return new ItemMenuHandler(object, worldModel, parent);
 }
 

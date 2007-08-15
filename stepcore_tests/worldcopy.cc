@@ -71,7 +71,7 @@ void WorldCopyTestItem::setWorld(StepCore::World* world)
     if(world == NULL) _link = NULL;
     else if(this->world() != NULL && _link != NULL) {
         _link = dynamic_cast<WorldCopyTestItem*>(
-            world->items()[ this->world()->itemIndex(dynamic_cast<const Item*>(_link)) ]);
+            world->items()[ this->world()->childItemIndex(dynamic_cast<const Item*>(_link)) ]);
     }
     StepCore::Item::setWorld(world);
 }

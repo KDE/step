@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE StepCoreXML>
+<world xmlns="http://edu.kde.org/step/StepCoreXML" version="1.0">
+    <name>World</name>
+    <time>0.01</time>
+    <timeScale>1</timeScale>
+
+    <item class="Particle">
+        <name>p1</name>
+        <position>(-214.992,-11.9976)</position>
+        <velocity>(1.50154,0.470181)</velocity>
+        <mass>1</mass>
+    </item>
+
+    <item class="Particle">
+        <name>p2</name>
+        <position>(-116,18.9946)</position>
+        <velocity>(-0.0868556,-1.07437)</velocity>
+        <mass>1</mass>
+    </item>
+
+    <item class="Particle">
+        <name>p3</name>
+        <position>(-19.9961,-22)</position>
+        <velocity>(0.789543,0.00678148)</velocity>
+        <mass>1</mass>
+    </item>
+
+    <item class="Particle">
+        <name>p4</name>
+        <position>(86.9948,-50.9915)</position>
+        <velocity>(-1.04924,1.70909)</velocity>
+        <mass>1</mass>
+    </item>
+
+    <item class="Particle">
+        <name>p5</name>
+        <position>(166.994,25.9944)</position>
+        <velocity>(-1.155,-1.11168)</velocity>
+        <mass>1</mass>
+    </item>
+
+    <item class="Spring">
+        <name>s1</name>
+        <restLength>88.0056816347672</restLength>
+        <stiffness>10</stiffness>
+        <body1>p1</body1>
+        <body2>p2</body2>
+        <localPosition1>(0,0)</localPosition1>
+        <localPosition2>(0,0)</localPosition2>
+    </item>
+
+    <item class="Spring">
+        <name>s2</name>
+        <restLength>89.0056178002265</restLength>
+        <stiffness>10</stiffness>
+        <body1>p2</body1>
+        <body2>p3</body2>
+        <localPosition1>(0,0)</localPosition1>
+        <localPosition2>(0,0)</localPosition2>
+    </item>
+
+    <item class="Spring">
+        <name>s3</name>
+        <restLength>88.0227243386615</restLength>
+        <stiffness>10</stiffness>
+        <body1>p3</body1>
+        <body2>p4</body2>
+        <localPosition1>(0,0)</localPosition1>
+        <localPosition2>(0,0)</localPosition2>
+    </item>
+
+    <item class="Spring">
+        <name>s4</name>
+        <restLength>95.005263012109</restLength>
+        <stiffness>10</stiffness>
+        <body1>p4</body1>
+        <body2>p5</body2>
+        <localPosition1>(0,0)</localPosition1>
+        <localPosition2>(0,0)</localPosition2>
+    </item>
+
+    <solver class="AdaptiveEulerSolver">
+        <name>Solver</name>
+        <toleranceAbs>0</toleranceAbs>
+        <toleranceRel>0.01</toleranceRel>
+    </solver>
+
+</world>

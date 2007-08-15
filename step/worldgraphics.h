@@ -23,8 +23,10 @@
 #include <QGraphicsItem>
 #include <QRectF>
 #include <QColor>
+#include <QMenu>
 
 namespace StepCore {
+    class Object;
     class Item;
     class Particle;
     class Spring;
@@ -81,6 +83,8 @@ protected:
     void hoverEnterEvent(QGraphicsSceneHoverEvent* event);
     void hoverLeaveEvent(QGraphicsSceneHoverEvent* event);
 
+    void contextMenuEvent(QGraphicsSceneContextMenuEvent* event);
+
 protected:
     StepCore::Item* _item;
     WorldModel* _worldModel;
@@ -117,6 +121,22 @@ public:
 protected:
     void mouseMoveEvent(QGraphicsSceneMouseEvent *event);
     const StepCore::MetaProperty* _property;
+};
+
+class ItemMenuHandler: public QObject
+{
+    Q_OBJECT
+
+public:
+    ItemMenuHandler(StepCore::Object* object, WorldModel* worldModel, QObject* parent = 0);
+    virtual void populateMenu(QMenu* menu);
+
+protected slots:
+    void deleteItem();
+
+protected:
+    StepCore::Object* _object;
+    WorldModel* _worldModel;
 };
 
 #endif

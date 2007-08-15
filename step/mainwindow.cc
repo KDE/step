@@ -46,6 +46,8 @@
 
 MainWindow::MainWindow()
 {
+    qsrand(time(NULL));
+
     setObjectName("MainWindow");
     config = new KConfig("steprc");
 

@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE StepCoreXML>
-<world xmlns="http://quantum.dgap.mipt.ru/StepCoreXML" version="1.0">
+<world xmlns="http://edu.kde.org/step/StepCoreXML" version="1.0">
     <name>Solar System</name>
     <time>0</time>
     <timeScale>10000000</timeScale>

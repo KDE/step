@@ -33,7 +33,7 @@
 namespace StepCore {
 
 const char* XmlFile::DOCKTYPE = "StepCoreXML";
-const char* XmlFile::NAMESPACE_URI = "http://quantum.dgap.mipt.ru/StepCoreXML";
+const char* XmlFile::NAMESPACE_URI = "http://edu.kde.org/step/StepCoreXML";
 const char* XmlFile::VERSION = "1.0";
 const int   XmlFile::INDENT = 4;
 
@@ -64,9 +64,9 @@ bool XmlFile::save(const World* world)
     saveProperties(1, world, stream);
     stream << "\n";
 
-    for(ItemList::const_iterator item  = world->items().begin();
-                                           item != world->items().end(); ++item) {
-        saveObject(1, "item", *item, stream);
+    ItemList::const_iterator end = world->items().end();
+    for(ItemList::const_iterator it = world->items().begin(); it != end; ++it) {
+        saveObject(1, "item", *it, stream);
         stream << "\n";
     }
 
@@ -84,6 +84,7 @@ QString XmlFile::escapeText(const QString& str)
     result.replace("&", "&amp;");
     result.replace("<", "&lt;");
     result.replace(">", "&gt;");
+    result.replace("\"", "&quot;");
     return result;
 }
 
@@ -95,7 +96,7 @@ void XmlFile::saveProperties(int indent, const Object* obj, QTextStream& stream)
         if(p->isStored()) {
             stream << QString(indent*INDENT, ' ')
                    << "<" << p->name() << ">"
-                   << p->readString(obj)
+                   << escapeText(p->readString(obj))
                    << "</" << p->name() << ">\n";
         }
     }
@@ -107,6 +108,17 @@ void XmlFile::saveObject(int indent, const QString& tag, const Object* obj, QTex
     stream << QString(indent*INDENT, ' ') << "<" << tag
            << " class=\"" << QString(obj->metaObject()->className()) << "\">\n";
     saveProperties(indent+1, obj, stream);
+
+    const ItemGroup* group = dynamic_cast<const ItemGroup*>(obj);
+    if(group) {
+        stream << "\n";
+        ItemList::const_iterator end = group->items().end();
+        for(ItemList::const_iterator it = group->items().begin(); it != end; ++it) {
+            saveObject(indent+1, "item", *it, stream);
+            stream << "\n";
+        }
+    }
+
     stream << QString(indent*INDENT, ' ') << "</" << tag << ">\n";
 }
 
@@ -123,14 +135,17 @@ public:
                     const QString &qName);
     bool characters(const QString &str);
     bool fatalError(const QXmlParseException &exception);
+    bool endDocument();
     QString errorString() const;
 
 protected:
-    enum { START, WORLD, WORLD_PROPERTY, ITEM, ITEM_PROPERTY, END } _state;
+    //enum { START, WORLD, WORLD_PROPERTY, ITEM, ITEM_PROPERTY, END } _state;
+    enum { START, ITEM, PROPERTY, END } _state;
     World*         _world;
     const Factory* _factory;
 
-    Object* _object;
+    ItemGroup* _parent;
+    Object*    _object;
     const MetaProperty* _property;
 
     QString _text;
@@ -138,7 +153,8 @@ protected:
 };
 
 XmlFileHandler::XmlFileHandler(World* world, const Factory* factory)
-    : _state(START), _world(world), _factory(factory), _object(NULL)
+    : _state(START), _world(world), _factory(factory),
+      _parent(NULL), _object(NULL), _property(NULL)
 {
 }
 
@@ -150,48 +166,55 @@ bool XmlFileHandler::startElement(const QString &namespaceURI, const QString &,
     switch(_state) {
     case START:
         if(qName == "world") {
+            _parent = NULL;
             _object = _world;
-            _state = WORLD;
+            _state = ITEM;
         } else {
             _errorString = QObject::tr("The file is not a StepCoreXML file.");
             return false;
         }
         break;
 
-    case WORLD:
-        if(qName == "item") {
+    case ITEM:
+        if(qName == "item" && dynamic_cast<ItemGroup*>(_object)) {
+            _parent = dynamic_cast<ItemGroup*>(_object);
+
             Item* item = _factory->newItem(attributes.value("class")); 
             if(item == NULL) {
                 _errorString = QObject::tr("Unknown item type \"%1\"").arg(attributes.value("class"));
                 return false;
             }
-            _world->addItem(item);
+
+            _parent->addItem(item);
             _object = item;
-            _state = ITEM;
             break;
-        } else if(qName == "solver") {
+
+        } else if(_object == _world && qName == "solver") {
             Solver* solver = _factory->newSolver(attributes.value("class")); 
             if(solver == NULL) {
                 _errorString = QObject::tr("Unknown solver type \"%1\"").arg(attributes.value("class"));
                 return false;
             }
+
             _world->setSolver(solver);
             _object = solver;
-            _state = ITEM;
+            _parent = _world;
             break;
-        } else if(qName == "collisionSolver") {
+
+        } else if(_object == _world && qName == "collisionSolver") {
             CollisionSolver* collisionSolver = _factory->newCollisionSolver(attributes.value("class")); 
             if(collisionSolver == NULL) {
                 _errorString = QObject::tr("Unknown collisionSolver type \"%1\"").arg(attributes.value("class"));
                 return false;
             }
+
             _world->setCollisionSolver(collisionSolver);
             _object = collisionSolver;
-            _state = ITEM;
+            _parent = _world;
             break;
+
         }
 
-    case ITEM:
         _property = _object->metaObject()->property(qName.toAscii().constData());
         if(!_property || !_property->isStored()) {
             _errorString = QObject::tr("Item \"%1\" has no stored property named \"%2\"")
@@ -199,12 +222,10 @@ bool XmlFileHandler::startElement(const QString &namespaceURI, const QString &,
             return false;
         }
         _text.clear();
-        if(_state == WORLD) _state = WORLD_PROPERTY;
-        else _state = ITEM_PROPERTY;
+        _state = PROPERTY;
         break;
 
-    case WORLD_PROPERTY:
-    case ITEM_PROPERTY:
+    case PROPERTY:
     default:
         _errorString = QObject::tr("Unexpected tag \"%1\"").arg(qName);
         return false;
@@ -219,21 +240,25 @@ bool XmlFileHandler::endElement(const QString &namespaceURI, const QString &,
     if(namespaceURI != XmlFile::NAMESPACE_URI) return true; // XXX: is it correct behaviour ?
 
     switch(_state) {
-    case WORLD_PROPERTY:
-    case ITEM_PROPERTY:
+    case PROPERTY:
         if(!_property->writeString(_object, _text)) {
             _errorString = QObject::tr("Property \"%1\" has illegal value").arg(qName);
             return false;
         }
-        if(_state == WORLD_PROPERTY) _state = WORLD;
-        else _state = ITEM;
+        _state = ITEM;
         break;
 
     case ITEM:
-        _state = WORLD; break;
-
-    case WORLD:
-        _state = END; break;
+        if(_parent == NULL) {
+            STEPCORE_ASSERT_NOABORT(_object == _world);
+            _state = END;
+        } else {
+            Item* item = dynamic_cast<Item*>(_parent);
+            STEPCORE_ASSERT_NOABORT(item != NULL);
+            _object = _parent;
+            _parent = item->group();
+        }
+        break;
 
     default:
         STEPCORE_ASSERT_NOABORT(false);
@@ -244,7 +269,16 @@ bool XmlFileHandler::endElement(const QString &namespaceURI, const QString &,
 
 bool XmlFileHandler::characters(const QString &str)
 {
-    if(_state == WORLD_PROPERTY || _state == ITEM_PROPERTY) _text += str;
+    if(_state == PROPERTY) _text += str;
+    return true;
+}
+
+bool XmlFileHandler::endDocument()
+{
+    if(_state != END) {
+        _errorString = QObject::tr("\"world\" tag not found");
+        return false;
+    }
     return true;
 }
 

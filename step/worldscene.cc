@@ -201,7 +201,7 @@ void WorldScene::helpEvent(QGraphicsSceneHelpEvent *helpEvent)
         if(item) {
             _worldModel->simulationPause();
             if(++count > 4) { text += QString("<p>...</p>"); break; }
-            text += _worldModel->createToolTip(item);
+            text += _worldModel->createToolTip(_worldModel->objectIndex(item));
         }
     }
 
@@ -228,29 +228,36 @@ void WorldScene::worldModelReset()
     axes->viewScaleChanged();
 
     /* Check for new items */
-    for(int i=0; i<_worldModel->itemCount(); ++i) {
-        worldRowsInserted(_worldModel->worldIndex(), i, i);
+    worldGetItemsRecursive(_worldModel->worldIndex());
+}
+
+void WorldScene::worldGetItemsRecursive(const QModelIndex& parent)
+{
+    for(int i=0; i<_worldModel->rowCount(parent); ++i) {
+        worldRowsInserted(parent, i, i);
+        worldGetItemsRecursive(_worldModel->index(i, 0, parent));
     }
 }
 
 void WorldScene::worldRowsInserted(const QModelIndex& parent, int start, int end)
 {
-    if(parent != _worldModel->worldIndex()) return;
     for(int i=start; i<=end; ++i) {
         QModelIndex index = _worldModel->index(i, 0, parent);
-        StepCore::Item* item = _worldModel->item(i);
+
+        StepCore::Item* item = _worldModel->item(index);
+        if(!item) continue;
         WorldGraphicsItem* graphicsItem =
             _worldModel->worldFactory()->newGraphicsItem(item, _worldModel);
-        if(graphicsItem) {
-            _itemsHash.insert(item, graphicsItem);
-            addItem(graphicsItem);
-            graphicsItem->viewScaleChanged();
-            graphicsItem->worldDataChanged(false);
-            foreach(QGraphicsItem *item, items()) {
-                if(graphicsItem->isAncestorOf(item)) {
-                    WorldGraphicsItem* gItem = dynamic_cast<WorldGraphicsItem*>(item);
-                    if(gItem) gItem->viewScaleChanged();
-                }
+        if(!graphicsItem) continue;
+
+        _itemsHash.insert(item, graphicsItem);
+        addItem(graphicsItem);
+        graphicsItem->viewScaleChanged();
+        graphicsItem->worldDataChanged(false);
+        foreach(QGraphicsItem *item, items()) {
+            if(graphicsItem->isAncestorOf(item)) {
+                WorldGraphicsItem* gItem = dynamic_cast<WorldGraphicsItem*>(item);
+                if(gItem) gItem->viewScaleChanged();
             }
         }
     }
@@ -258,9 +265,12 @@ void WorldScene::worldRowsInserted(const QModelIndex& parent, int start, int end
 
 void WorldScene::worldRowsAboutToBeRemoved(const QModelIndex& parent, int start, int end)
 {
-    if(parent != _worldModel->worldIndex()) return;
     for(int i=start; i<=end; ++i) {
         QModelIndex index = _worldModel->index(i, 0, parent);
+        
+        int childCount = _worldModel->rowCount(index);
+        if(childCount > 0) worldRowsAboutToBeRemoved(index, 0, childCount-1);
+
         QGraphicsItem* graphicsItem = graphicsFromItem(_worldModel->item(index));
         if(graphicsItem) {
             removeItem(graphicsItem);

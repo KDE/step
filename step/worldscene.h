@@ -73,6 +73,8 @@ protected:
     void helpEvent(QGraphicsSceneHelpEvent *helpEvent);
     //void contextMenuEvent(QGraphicsSceneContextMenuEvent* contextMenuEvent);
 
+    void worldGetItemsRecursive(const QModelIndex& parent);
+
 protected:
     WorldModel* _worldModel;
     QHash<const StepCore::Item*, WorldGraphicsItem*> _itemsHash;

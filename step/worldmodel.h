@@ -37,6 +37,7 @@ namespace StepCore {
 class QItemSelectionModel;
 class QUndoStack;
 class QTimer;
+class QMenu;
 class WorldFactory;
 class CommandSimulate;
 class SimulationThread;
@@ -60,7 +61,7 @@ public:
     QModelIndex solverIndex() const;
     QModelIndex collisionSolverIndex() const;
     QModelIndex objectIndex(StepCore::Object* obj) const;
-    QModelIndex itemIndex(int n) const;
+    QModelIndex childItemIndex(int n, StepCore::ItemGroup* group = NULL) const;
     
     // DO NOT change returned object directly: it breaks undo/redo
     StepCore::Object* object(const QModelIndex& index) const;
@@ -71,8 +72,9 @@ public:
     StepCore::CollisionSolver* collisionSolver() const { return _world->collisionSolver(); }
 
     StepCore::Item* item(const QModelIndex& index) const;
-    StepCore::Item* item(int n) const { return _world->items()[n]; }
-    int itemCount() const { return _world->items().size(); }
+
+    StepCore::Item* childItem(int n) const { return _world->items()[n]; }
+    int childItemCount() const { return _world->items().size(); }
 
     // QAbstractItemModel functions
     QVariant data(const QModelIndex &index, int role) const;
@@ -82,7 +84,7 @@ public:
     int columnCount(const QModelIndex &parent = QModelIndex()) const;
 
     // Add/remove/set functions
-    StepCore::Item* newItem(const QString& name);
+    StepCore::Item* newItem(const QString& name, StepCore::ItemGroup* parent = 0);
     void deleteItem(StepCore::Item* item);
 
     //void setSolver(StepCore::Solver* solver);
@@ -102,7 +104,10 @@ public:
                             const QVariant& value, bool merge = true);
 
     // Tooltip
-    QString createToolTip(const StepCore::Object* object) const;
+    QString createToolTip(const QModelIndex& index) const;
+
+    // ContextMenu
+    QMenu* createContextMenu(const QModelIndex& index);
 
     // Save/load
     void clearWorld();
@@ -141,7 +146,7 @@ signals:
 protected:
     void resetWorld();
     void emitChanged(bool dynamicOnly = true);
-    void addItem(StepCore::Item* item);
+    void addItem(StepCore::Item* item, StepCore::ItemGroup* parent = 0);
     void removeItem(StepCore::Item* item);
     StepCore::Solver* swapSolver(StepCore::Solver* solver);
 

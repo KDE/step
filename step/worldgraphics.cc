@@ -27,6 +27,8 @@
 #include <QGraphicsScene>
 #include <QGraphicsSceneMouseEvent>
 #include <QPainter>
+#include <QMenu>
+#include <KIcon>
 #include <KLocale>
 
 #include <cmath>
@@ -219,6 +221,19 @@ void WorldGraphicsItem::stateChanged()
 {
 }
 
+void WorldGraphicsItem::contextMenuEvent(QGraphicsSceneContextMenuEvent* event)
+{
+    event->accept();
+
+    QModelIndex index = _worldModel->objectIndex(_item);
+    if(flags() & QGraphicsItem::ItemIsSelectable)
+        _worldModel->selectionModel()->setCurrentIndex(index, QItemSelectionModel::ClearAndSelect);
+
+    QMenu* menu = _worldModel->createContextMenu(index);
+    menu->exec(event->screenPos());
+    delete menu;
+}
+
 ArrowHandlerGraphicsItem::ArrowHandlerGraphicsItem(StepCore::Item* item, WorldModel* worldModel, 
                          QGraphicsItem* parent, const StepCore::MetaProperty* property)
     : WorldGraphicsItem(item, worldModel, parent), _property(property)
@@ -258,5 +273,22 @@ void ArrowHandlerGraphicsItem::mouseMoveEvent(QGraphicsSceneMouseEvent *event)
         //Q_ASSERT(_property->writeVariant(_item, QVariant::fromValue(v)));
         //_worldModel->setData(_worldModel->objectIndex(_item), QVariant(), WorldModel::ObjectRole);
     } else  event->ignore();
+}
+
+ItemMenuHandler::ItemMenuHandler(StepCore::Object* object, WorldModel* worldModel, QObject* parent)
+    : QObject(parent), _object(object), _worldModel(worldModel)
+{
+}
+
+void ItemMenuHandler::populateMenu(QMenu* menu)
+{
+    StepCore::Item* item = dynamic_cast<StepCore::Item*>(_object);
+    if(item && item->world() != item)
+        menu->addAction(KIcon("edit-delete"), i18n("&Delete"), this, SLOT(deleteItem())); 
+}
+
+void ItemMenuHandler::deleteItem()
+{
+    _worldModel->deleteItem(dynamic_cast<StepCore::Item*>(_object));
 }
 

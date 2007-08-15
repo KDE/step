@@ -32,6 +32,7 @@ namespace StepCore
 
 class World;
 class Solver;
+class ItemGroup;
 class CollisionSolver;
 class ConstraintSolver;
 
@@ -44,27 +45,31 @@ class Item : public Object
     STEPCORE_OBJECT(Item)
 
 public:
-    Item(): _world(NULL) {}
+    Item(): _world(NULL), _group(NULL) {}
     virtual ~Item() {}
 
-    /** Called by the World when any item is removed from
-     *         the world
-     *  \param item Pointer to removed item
+    /** Set/change pointer to World in which this object lives */
+    virtual void setWorld(World* world) { _world = world; }
+
+    /** Get pointer to World in which this object lives */
+    World* world() const { return _world; }
+
+    /** Set/change pointer to ItemGroup in which this object lives */
+    virtual void setGroup(ItemGroup* group) { _group = group; }
+
+    /** Get pointer to ItemGroup in which this object lives */
+    ItemGroup* group() const { return _group; }
+
+    /** Called by the World when any item is about to be removed
+     *  from the world
+     *  \param item Pointer to item about to be removed
      *  \todo XXX rename
      */
     virtual void worldItemRemoved(Item* item STEPCORE_UNUSED) {}
 
-    /** Set/change pointer to World in which this object lives
-     */
-    virtual void setWorld(World* world) { _world = world; }
-
-    /** Get pointer to World in which this object lives
-     *  \return Pointer to the World or NULL
-     */
-    World* world() const { return _world; }
-
 private:
     World* _world;
+    ItemGroup* _group;
 };
 
 /** \ingroup bodies
@@ -126,17 +131,6 @@ public:
     virtual ~Tool() {}
 };
 
-/** \ingroup world
- *  \brief Groups several items together
- */
-class GroupItem: public Item
-{
-    STEPCORE_OBJECT(GroupItem)
-public:
-
-private:
-};
-
 /** List of pointers to Item */
 typedef std::vector<Item*>  ItemList;
 /** List of pointers to Body */
@@ -145,10 +139,60 @@ typedef std::vector<Body*>  BodyList;
 typedef std::vector<Force*> ForceList;
 
 /** \ingroup world
+ *  \brief Groups several items together
+ */
+class ItemGroup : public Item
+{
+    STEPCORE_OBJECT(ItemGroup)
+
+public:
+    /** Constructs empty group */
+    ItemGroup() {}
+    /** Constructs a copy of the group (deep copy) */
+    ItemGroup(const ItemGroup& group);
+    /** Destroys the group and all its subitems */
+    ~ItemGroup();
+
+    /** Assignment operator (deep copy)
+     *  \warning Do not call this on groups already attached to the world */
+    ItemGroup& operator=(const ItemGroup& group);
+
+    /** Get list of all items in the ItemGroup */
+    const ItemList&  items() const  { return _items; }
+
+    /** Add new item to the world */
+    void addItem(Item* item);
+    /** Remove item from the world (you should delete item youself) */
+    void removeItem(Item* item);
+    /** Delete item from the world (it actually deletes item) */
+    void deleteItem(Item* item) { removeItem(item); delete item; }
+
+    /** Deletes all items */
+    void clear();
+
+    /** Finds direct child item in items() */
+    int  childItemIndex(const Item* item) const;
+    /** Get direct child count */
+    int  childItemCount() const { return _items.size(); }
+    /** Get direct child item by its index */
+    Item* childItem(int index) const { return _items[index]; }
+    /** Get direct child item by its name */
+    Item* childItem(const QString& name) const;
+    /** Get any descendant item by its name */
+    Item* item(const QString& name) const;
+
+    void setWorld(World* world);
+    void worldItemRemoved(Item* item);
+    
+private:
+    ItemList  _items;
+};
+
+/** \ingroup world
  *  \brief Contains multiple Item, Solver and general properties such as time
  *  \todo Redesign to avoid variable copying (scatter/gatherVariables)
  */
-class World : public Object
+class World : public ItemGroup
 {
     /*Q_OBJECT*/
     STEPCORE_OBJECT(World)
@@ -179,26 +223,26 @@ public:
     void setTimeScale(double timeScale) { _timeScale = timeScale; }
 
     /** Add new item to the world */
-    void addItem(Item* item);
+    //void addItem(Item* item);
     /** Remove item from the world (you should delete item youself) */
-    void removeItem(Item* item);
+    //void removeItem(Item* item);
     /** Delete item from the world (it actually deletes item) */
-    void deleteItem(Item* item) { removeItem(item); delete item; }
+    //void deleteItem(Item* item) { removeItem(item); delete item; }
     /** Finds item in items() */
-    int  itemIndex(const Item* item) const;
+    //int  itemIndex(const Item* item) const;
 
     /** Get item by its index */
-    Item* item(int index) const { return _items[index]; }
+    //Item* item(int index) const { return _items[index]; }
     /** Get item by its name */
-    Item* item(const QString& name) const;
+    //Item* item(const QString& name) const;
     /** Get object (item, solver, *Solver or worls itself) by its name */
     Object* object(const QString& name);
 
-    /** Get list of all items in the World */
-    const ItemList&  items() const  { return _items; }
-    /** Get list of all bodies in the World */
+    /** Get list of all items (not including sub-items) in the World */
+    //const ItemList&  items() const  { return _items; }
+    /** Get list of all bodies (including sub-items) in the World */
     const BodyList&  bodies() const { return _bodies; }
-    /** Get list of all forces in the World */
+    /** Get list of all forces (including sub-items) in the World */
     const ForceList& forces() const { return _forces; }
 
     /** Get current Solver */
@@ -238,6 +282,10 @@ public:
     void setEvolveAbort(bool evolveAbort = true) { _evolveAbort = evolveAbort; }
 
 private:
+    friend class ItemGroup;
+    void worldItemAdded(Item* item);
+    void worldItemRemoved(Item* item);
+
     void checkVariablesCount();
     void gatherVariables(double* variables = NULL); // XXX: redesign to avoid this
     void gatherDerivatives(double* derivatives);
@@ -249,7 +297,7 @@ private:
 private:
     double    _time;
     double    _timeScale;
-    ItemList  _items;
+    //ItemList  _items;
     BodyList  _bodies;
     ForceList _forces;
 

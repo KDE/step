@@ -27,6 +27,7 @@ class WorldModel;
 class WorldScene;
 class WorldGraphicsItem;
 class ItemCreator;
+class ItemMenuHandler;
 
 namespace StepCore {
     class Item;
@@ -37,6 +38,7 @@ struct ExtMetaObject
     ItemCreator* (*newItemCreator)(const QString& className,
                         WorldModel* worldModel, WorldScene* worldScene);
     WorldGraphicsItem* (*newGraphicsItem)(StepCore::Item*, WorldModel*);
+    ItemMenuHandler* (*newItemMenuHandler)(StepCore::Object*, WorldModel*, QObject*);
 };
 
 class WorldFactory: public StepCore::Factory
@@ -44,10 +46,18 @@ class WorldFactory: public StepCore::Factory
 public:
     WorldFactory();
 
+    const ExtMetaObject* extMetaObject(const StepCore::MetaObject* mObject) const
+        { return _extMetaObjects.value(mObject, NULL); }
+    const ExtMetaObject* extMetaObject(const QString& name) const
+        { return extMetaObject(metaObject(name)); }
+
     ItemCreator* newItemCreator(const QString& className,
                         WorldModel* worldModel, WorldScene* worldScene) const;
                                 
     WorldGraphicsItem* newGraphicsItem(StepCore::Item* item, WorldModel* worldModel) const;
+
+    ItemMenuHandler* newItemMenuHandler(StepCore::Object* object,
+                        WorldModel* worldModel, QObject* parent) const;
 
     QList<QString> orderedMetaObjects() const { return _orderedMetaObjects; }
 

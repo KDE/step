@@ -9,6 +9,7 @@ set(stepcore_SRCS
     xmlfile.cc
     particle.cc
     rigidbody.cc
+    gas.cc
     gravitation.cc
     coulombforce.cc
     spring.cc

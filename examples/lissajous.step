@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE StepCoreXML>
-<world xmlns="http://quantum.dgap.mipt.ru/StepCoreXML" version="1.0">
+<world xmlns="http://edu.kde.org/step/StepCoreXML" version="1.0">
     <name>world1</name>
     <time>0</time>
     <timeScale>1</timeScale>
@@ -74,9 +74,9 @@
 
     <item class="Note">
         <name>note2</name>
-        <text>Please try to change the stiffness
-of spring1 and see how the curve
-will cahge. Try the following values:
+        <text>Please try to change the stiffness&lt;br /&gt;
+of spring1 and see how the curve&lt;br /&gt;
+will cahge. Try the following values:&lt;br /&gt;
 1, 2.25, 1.7778, 1.5625, 0.6944</text>
         <position>(0.55,1.42)</position>
     </item>

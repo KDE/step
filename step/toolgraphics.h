@@ -88,18 +88,20 @@ public:
     void setDataSource(WorldModel* worldModel, const QString& object = QString(),
                             const QString& property = QString(), int index = 0);
 
-    QString dataObject() const { return _object->currentText(); }
-    QString dataProperty() const { return _property->currentText(); }
+    QString dataObject() const { return _object->itemData(_object->currentIndex()).toString(); }
+    QString dataProperty() const { return _property->itemData(_property->currentIndex()).toString(); }
     int dataIndex() const { return _index->currentIndex(); }
 
 signals:
     void dataSourceChanged();
 
 protected slots:
-    void objectSelected(const QString& text);
-    void propertySelected(const QString& text);
+    void objectSelected(int index);
+    void propertySelected(int index);
 
 protected:
+    void addObjects(const QModelIndex& parent, const QString& indent);
+
     WorldModel* _worldModel;
 
     QComboBox*  _object;
@@ -123,12 +125,6 @@ public:
     void viewScaleChanged();
     void worldDataChanged(bool);
 
-protected slots:
-    void clearGraph();
-    void configureGraph();
-    void confApply();
-    void confChanged();
-
 protected:
     StepCore::Graph* graph() const;
     void adjustLimits();
@@ -139,9 +135,26 @@ protected:
     KPlotWidget* _plotWidget;
     KPlotObject* _plotObject;
     KPlotObject* _plotObject1;
-    KAction* _clearAction;
-    KAction* _configureAction;
+};
 
+class GraphMenuHandler: public ItemMenuHandler
+{
+    Q_OBJECT
+
+public:
+    GraphMenuHandler(StepCore::Object* object, WorldModel* worldModel, QObject* parent)
+        : ItemMenuHandler(object, worldModel, parent) {}
+
+    void populateMenu(QMenu* menu);
+
+protected slots:
+    void clearGraph();
+    void configureGraph();
+    void confApply();
+    void confChanged();
+
+protected:
+    StepCore::Graph* graph() const;
     Ui::WidgetConfigureGraph* _confUi;
     KDialog*                  _confDialog;
     bool                      _confChanged;
@@ -166,9 +179,6 @@ protected slots:
     void decTriggered();
     void sliderChanged(int value);
     void sliderReleased();
-    void configureController();
-    void confApply();
-    void confChanged();
 
 protected:
     StepCore::Controller* controller() const;
@@ -189,13 +199,33 @@ protected:
 
     bool _changed;
 
+    static const int SLIDER_MIN = 0;
+    static const int SLIDER_MAX = INT_MAX-100;
+};
+
+class ControllerMenuHandler: public ItemMenuHandler
+{
+    Q_OBJECT
+
+public:
+    ControllerMenuHandler(StepCore::Object* object, WorldModel* worldModel, QObject* parent)
+        : ItemMenuHandler(object, worldModel, parent) {}
+
+    void populateMenu(QMenu* menu);
+
+protected slots:
+    void incTriggered();
+    void decTriggered();
+    void configureController();
+    void confApply();
+    void confChanged();
+
+protected:
+    StepCore::Controller* controller() const;
     KAction* _configureAction;
     Ui::WidgetConfigureController* _confUi;
     KDialog* _confDialog;
     bool     _confChanged;
-
-    static const int SLIDER_MIN = 0;
-    static const int SLIDER_MAX = INT_MAX-100;
 };
 
 

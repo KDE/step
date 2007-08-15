@@ -24,6 +24,8 @@
 #include <QTreeView>
 #include <QHeaderView>
 #include <QKeyEvent>
+#include <QContextMenuEvent>
+#include <QMenu>
 #include <KLocale>
 
 class WorldBrowserView: public QTreeView
@@ -34,6 +36,7 @@ public:
 
 protected:
     void keyPressEvent(QKeyEvent* e);
+    void contextMenuEvent(QContextMenuEvent* event);
     WorldModel* worldModel() { return static_cast<WorldModel*>(model()); }
 };
 
@@ -44,7 +47,7 @@ WorldBrowser::WorldBrowser(WorldModel* worldModel, QWidget* parent, Qt::WindowFl
     _worldBrowserView->header()->hide();
     _worldBrowserView->setAllColumnsShowFocus(true);
     _worldBrowserView->setRootIsDecorated(false);
-    _worldBrowserView->setItemsExpandable(false);
+    //_worldBrowserView->setItemsExpandable(false);
     _worldBrowserView->setModel(worldModel);
     _worldBrowserView->setSelectionModel(worldModel->selectionModel());
     _worldBrowserView->setSelectionMode(QAbstractItemView::ExtendedSelection); // XXX
@@ -63,5 +66,16 @@ void WorldBrowserView::keyPressEvent(QKeyEvent* e)
         worldModel()->deleteSelectedItems();
         e->accept();
     } else QTreeView::keyPressEvent(e);
+}
+
+void WorldBrowserView::contextMenuEvent(QContextMenuEvent* event)
+{
+    QModelIndex index = indexAt(event->pos());
+    if(!index.isValid()) return;
+
+    event->accept();
+    QMenu* menu = worldModel()->createContextMenu(index);
+    menu->exec(event->globalPos());
+    delete menu;
 }
 

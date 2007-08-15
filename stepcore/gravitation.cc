@@ -43,10 +43,10 @@ void GravitationForce::calcForce()
     Particle* p1;
     Particle* p2;
 
-    for(BodyList::const_iterator b1 = world()->bodies().begin();
-                                           b1 != world()->bodies().end(); ++b1) {
+    const BodyList::const_iterator end = world()->bodies().end();
+    for(BodyList::const_iterator b1 = world()->bodies().begin(); b1 != end; ++b1) {
         if(NULL == (p1 = dynamic_cast<Particle*>(*b1))) continue;
-        for(BodyList::const_iterator b2 = b1+1; b2 != world()->bodies().end(); ++b2) {
+        for(BodyList::const_iterator b2 = b1+1; b2 != end; ++b2) {
             if(NULL == (p2 = dynamic_cast<Particle*>(*b2))) continue;
             Vector2d r = p2->position() - p1->position();
             double rnorm2 = r.norm2();
@@ -67,7 +67,8 @@ void WeightForce::calcForce()
 {
     Vector2d g(0, -_weightConst);
 
-    for(BodyList::const_iterator b1 = world()->bodies().begin(); b1 != world()->bodies().end(); ++b1) {
+    const BodyList::const_iterator end = world()->bodies().end();
+    for(BodyList::const_iterator b1 = world()->bodies().begin(); b1 != end; ++b1) {
         Particle* p1 = dynamic_cast<Particle*>(*b1);
         if(p1) p1->addForce(g*p1->mass());
     }
