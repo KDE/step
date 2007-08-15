@@ -1,1 +1,4 @@
-install(FILES World.html DESTINATION  ${DATA_INSTALL_DIR}/step/objinfo)
+FILE(GLOB INFO_HTML_FILES "*.html")
+install(FILES 
+   ${INFO_HTML_FILES}
+   DESTINATION  ${DATA_INSTALL_DIR}/step/objinfo)
