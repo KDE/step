@@ -36,14 +36,15 @@ STEPCORE_META_OBJECT(Gas, "Particle gas", 0, STEPCORE_SUPER_CLASS(ItemGroup),)
 GasLJForce::GasLJForce(double depth, double rmin, double cutoff)
     : _depth(depth), _rmin(rmin), _cutoff(cutoff)
 {
-    calcAB();
+    calcABC();
 }
 
-void GasLJForce::calcAB()
+void GasLJForce::calcABC()
 {
     double m = 12*_depth;
     double t = pow(_rmin, 6);
     _a = m*t*t; _b = m*t;
+    _c = _cutoff*_cutoff;
 }
 
 void GasLJForce::calcForce()
@@ -61,12 +62,14 @@ void GasLJForce::calcForce()
             if(NULL == (p2 = dynamic_cast<GasParticle*>(*i2))) continue;
             Vector2d r = p2->position() - p1->position();
             double rnorm2 = r.norm2();
-            double rnorm6 = rnorm2*rnorm2*rnorm2;
-            double rnorm8 = rnorm6*rnorm2;
-            Vector2d force = r * ((_a/rnorm6 - _b)/rnorm8);
-            p2->addForce(force);
-            force.invert();
-            p1->addForce(force);
+            if(rnorm2 < _c) {
+                double rnorm6 = rnorm2*rnorm2*rnorm2;
+                double rnorm8 = rnorm6*rnorm2;
+                Vector2d force = r * ((_a/rnorm6 - _b)/rnorm8);
+                p2->addForce(force);
+                force.invert();
+                p1->addForce(force);
+            }
         }
     }
 }

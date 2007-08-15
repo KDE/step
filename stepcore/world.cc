@@ -37,6 +37,7 @@ STEPCORE_META_OBJECT(World, "World", 0, STEPCORE_SUPER_CLASS(ItemGroup),
         STEPCORE_PROPERTY_RW  (double, timeScale, "Simulation speed scale", timeScale, setTimeScale))
 
 ItemGroup::ItemGroup(const ItemGroup& group)
+    : Item()
 {
     *this = group;
 }

@@ -71,22 +71,22 @@ public:
     void calcForce();
 
     double depth() const { return _depth; }
-    void setDepth(double depth) { _depth = depth; calcAB(); }
+    void setDepth(double depth) { _depth = depth; calcABC(); }
 
     double rmin() const { return _rmin; }
-    void setRmin(double rmin) { _rmin = rmin; calcAB(); }
+    void setRmin(double rmin) { _rmin = rmin; calcABC(); }
 
     double cutoff() const { return _cutoff; }
-    void setCutoff(double cutoff) { _cutoff = cutoff; }
+    void setCutoff(double cutoff) { _cutoff = cutoff; calcABC(); }
 
 protected:
-    void calcAB();
+    void calcABC();
 
 protected:
     double _depth;
     double _rmin;
     double _cutoff;
-    double _a, _b;
+    double _a, _b, _c;
 };
 
 /** \ingroup bodies
