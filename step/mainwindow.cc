@@ -287,16 +287,16 @@ void MainWindow::simulationStopped(int result)
     actionSimulation->setIconText(i18n("&Simulate"));
     actionSimulation->setIcon(KIcon("media-playback-start"));
     if(result == StepCore::Solver::ToleranceError) {
-        KMessageBox::sorry(this, i18n("Cannot finish this step becouse local error "
+        KMessageBox::sorry(this, i18n("Cannot finish this step because local error "
                "is bigger then local tolerance.\n"
                "Please check solver settings and try again."));
     } else if(result == StepCore::Solver::IntersectionDetected || 
               result == StepCore::Solver::CollisionDetected) {
-        KMessageBox::sorry(this, i18n("Cannot finish this step becouse the are collisions "
+        KMessageBox::sorry(this, i18n("Cannot finish this step because the are collisions "
                "which can not be resolved automatically.\n"
                "Please move colliding objects appart and try again."));
     } else if(result != StepCore::Solver::OK) {\
-        KMessageBox::sorry(this, i18n("Cannot finish this step becouse of unknown error."));
+        KMessageBox::sorry(this, i18n("Cannot finish this step because of unknown error."));
     }
 }
 
