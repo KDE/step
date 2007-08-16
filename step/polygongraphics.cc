@@ -204,7 +204,8 @@ void PolygonGraphicsItem::paint(QPainter* painter, const QStyleOptionGraphicsIte
     //painter->save();
     int renderHints = painter->renderHints();
     painter->setRenderHint(QPainter::Antialiasing, true);
-    painter->setPen(QPen(Qt::black, 0));
+    //painter->setPen(QPen(Qt::black, 0));
+    painter->setPen(Qt::NoPen);
     painter->setBrush(QBrush(Qt::black));
     painter->drawPath(_painterPath);
     //painter->rotate(polygon()->angle() * 180 / StepCore::Constants::Pi);
