@@ -270,7 +270,7 @@ public:
     int doCalcFn();
     /** Integrate.
      *  \param delta Integration interval
-     *  \return true on success, false on failure (too big local error)
+     *  \return the same as Solver::doEvolve
      *  \todo Provide error message
      */
     int doEvolve(double delta);
@@ -310,7 +310,7 @@ private:
     double* _errors;
 
     bool    _stopOnCollision;
-    bool    _stopOnPenetration;
+    bool    _stopOnIntersection;
     bool    _evolveAbort;
 };
 

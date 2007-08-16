@@ -222,7 +222,7 @@ World& World::operator=(const World& world)
     setName(world.name());
 
     _stopOnCollision = world._stopOnCollision;
-    _stopOnPenetration = world._stopOnPenetration;
+    _stopOnIntersection = world._stopOnIntersection;
     _evolveAbort = world._evolveAbort;
 
     if(world._solver) setSolver(static_cast<Solver*>(
@@ -267,7 +267,7 @@ void World::clear()
     _timeScale = 1;
 
     _stopOnCollision = false;
-    _stopOnPenetration = false;
+    _stopOnIntersection = false;
     _evolveAbort = false;
 
 #ifdef STEPCORE_WITH_QT
@@ -491,7 +491,7 @@ int World::doCalcFn()
     if(_collisionSolver) _collisionSolver->resetCaches();
 
     _stopOnCollision = false;
-    _stopOnPenetration = false;
+    _stopOnIntersection = false;
     checkVariablesCount();
     gatherVariables();
     return _solver->doCalcFn(&_time, _variables);
@@ -507,7 +507,11 @@ int World::doEvolve(double delta)
     int ret = Solver::OK;
     double targetTime = _time + delta*_timeScale;
     
-    if(_collisionSolver) _collisionSolver->resetCaches();
+    if(_collisionSolver) {
+         _collisionSolver->resetCaches();
+        if(Contact::Intersected == _collisionSolver->checkContacts(_bodies))
+            return Solver::IntersectionDetected;
+    }
 
     while(_time < targetTime) {
         STEPCORE_ASSERT_NOABORT( targetTime - _time > _solver->stepSize() / 1000 );
@@ -517,12 +521,12 @@ int World::doEvolve(double delta)
         double time = _time;
         //_collisionExpectedTime = HUGE_VAL;
         _stopOnCollision = true;
-        _stopOnPenetration = true;
+        _stopOnIntersection = true;
         ret = _solver->doEvolve(&time, targetTime, _variables, _errors);
         _time = time;
 
         if(ret == Solver::CollisionDetected ||
-           ret == Solver::PenetrationDetected) {
+           ret == Solver::IntersectionDetected) {
             // If we have stopped on collision
             // 1. Decrease timestep to stop before collision
             // 2. Proceed with decresed timestep until
@@ -544,7 +548,7 @@ int World::doEvolve(double delta)
                 ret = _solver->doEvolve(&time, endTime, _variables, _errors);
                 _time = time;
 
-                if(ret == Solver::PenetrationDetected || ret == Solver::CollisionDetected) {
+                if(ret == Solver::IntersectionDetected || ret == Solver::CollisionDetected) {
                     //STEPCORE_ASSERT_NOABORT(_collisionTime > _time);
                     //STEPCORE_ASSERT_NOABORT(_collisionTime < _collisionExpectedTime);
                     stepSize = fmin(stepSize/2, targetTime - _time);
@@ -580,9 +584,9 @@ inline int World::solverFunction(double t, const double y[], double f[])
     if(_collisionSolver) { // XXX: do it before force calculation
                          // if we are called from the Solver::doEvolve
         int state = _collisionSolver->checkContacts(_bodies);
-        if(state == Contact::Intersected && _stopOnPenetration) {
+        if(state == Contact::Intersected && _stopOnIntersection) {
             //_collisionTime = t;
-            return Solver::PenetrationDetected;
+            return Solver::IntersectionDetected;
         } else if(state == Contact::Colliding && _stopOnCollision) {
             return Solver::CollisionDetected;
             // XXX: We are not stopping on colliding contact

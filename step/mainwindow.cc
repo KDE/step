@@ -290,7 +290,8 @@ void MainWindow::simulationStopped(int result)
         KMessageBox::sorry(this, i18n("Cannot finish this step becouse local error "
                "is bigger then local tolerance.\n"
                "Please check solver settings and try again."));
-    } else if(result == StepCore::Solver::CollisionDetected) {
+    } else if(result == StepCore::Solver::IntersectionDetected || 
+              result == StepCore::Solver::CollisionDetected) {
         KMessageBox::sorry(this, i18n("Cannot finish this step becouse the are collisions "
                "which can not be resolved automatically.\n"
                "Please move colliding objects appart and try again."));

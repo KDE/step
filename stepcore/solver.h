@@ -139,7 +139,7 @@ public:
     enum { OK = 0,
            ToleranceError = 2048,
            CollisionDetected = 4096,
-           PenetrationDetected = 4097,
+           IntersectionDetected = 4097,
            Aborted = 8192
     };
 
