@@ -1,0 +1,215 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE StepCoreXML>
+<world xmlns="http://edu.kde.org/step/StepCoreXML" version="1.0">
+    <name>world1</name>
+    <time>0</time>
+    <timeScale>1</timeScale>
+
+    <item class="Polygon">
+        <name>polygon1</name>
+        <position>(-1.0601,0)</position>
+        <angle>0</angle>
+        <velocity>(0,0)</velocity>
+        <angularVelocity>0</angularVelocity>
+        <mass>inf</mass>
+        <inertia>inf</inertia>
+        <vertexes>(-0.05,1),(0.05,1),(0.05,-1),(-0.05,-1)</vertexes>
+    </item>
+
+    <item class="Polygon">
+        <name>polygon2</name>
+        <position>(1.0601,0)</position>
+        <angle>0</angle>
+        <velocity>(0,0)</velocity>
+        <angularVelocity>0</angularVelocity>
+        <mass>inf</mass>
+        <inertia>inf</inertia>
+        <vertexes>(-0.05,1),(0.05,1),(0.05,-1),(-0.05,-1)</vertexes>
+    </item>
+
+    <item class="Polygon">
+        <name>polygon3</name>
+        <position>(0,1.0601)</position>
+        <angle>0</angle>
+        <velocity>(0,0)</velocity>
+        <angularVelocity>0</angularVelocity>
+        <mass>inf</mass>
+        <inertia>inf</inertia>
+        <vertexes>(1,-0.05),(1,0.05),(-1,0.05),(-1,-0.05)</vertexes>
+    </item>
+
+    <item class="Polygon">
+        <name>polygon4</name>
+        <position>(0,-1.0601)</position>
+        <angle>0</angle>
+        <velocity>(0,0)</velocity>
+        <angularVelocity>0</angularVelocity>
+        <mass>inf</mass>
+        <inertia>inf</inertia>
+        <vertexes>(1,-0.05),(1,0.05),(-1,0.05),(-1,-0.05)</vertexes>
+    </item>
+
+    <item class="Gas">
+        <name>gas1</name>
+
+        <item class="GasLJForce">
+            <name>gasLJForce1</name>
+            <depth>0.1</depth>
+            <rmin>0.05</rmin>
+            <cutoff>inf</cutoff>
+        </item>
+
+        <item class="GasParticle">
+            <name>gasParticle1</name>
+            <position>(0.549279,0.10949)</position>
+            <velocity>(-0.00761364,0.212132)</velocity>
+            <mass>1</mass>
+        </item>
+
+        <item class="GasParticle">
+            <name>gasParticle2</name>
+            <position>(0.85778,-0.5887)</position>
+            <velocity>(0.119741,0.116187)</velocity>
+            <mass>1</mass>
+        </item>
+
+        <item class="GasParticle">
+            <name>gasParticle3</name>
+            <position>(0.840081,0.220382)</position>
+            <velocity>(-0.00100983,-0.202227)</velocity>
+            <mass>1</mass>
+        </item>
+
+        <item class="GasParticle">
+            <name>gasParticle4</name>
+            <position>(0.732326,-0.296315)</position>
+            <velocity>(-0.13475,0.0137635)</velocity>
+            <mass>1</mass>
+        </item>
+
+        <item class="GasParticle">
+            <name>gasParticle5</name>
+            <position>(-0.196067,0.168426)</position>
+            <velocity>(-0.174276,0.20496)</velocity>
+            <mass>1</mass>
+        </item>
+
+        <item class="GasParticle">
+            <name>gasParticle6</name>
+            <position>(-0.672405,-0.835473)</position>
+            <velocity>(-0.11914,0.0788978)</velocity>
+            <mass>1</mass>
+        </item>
+
+        <item class="GasParticle">
+            <name>gasParticle7</name>
+            <position>(0.185599,-0.66535)</position>
+            <velocity>(0.122488,0.178057)</velocity>
+            <mass>1</mass>
+        </item>
+
+        <item class="GasParticle">
+            <name>gasParticle8</name>
+            <position>(-0.782364,0.690668)</position>
+            <velocity>(-0.148135,0.180779)</velocity>
+            <mass>1</mass>
+        </item>
+
+        <item class="GasParticle">
+            <name>gasParticle9</name>
+            <position>(-0.365978,-0.491048)</position>
+            <velocity>(-0.130659,0.187588)</velocity>
+            <mass>1</mass>
+        </item>
+
+        <item class="GasParticle">
+            <name>gasParticle10</name>
+            <position>(-0.295352,0.861085)</position>
+            <velocity>(0.185882,0.242167)</velocity>
+            <mass>1</mass>
+        </item>
+
+        <item class="GasParticle">
+            <name>gasParticle11</name>
+            <position>(-0.34663,0.158285)</position>
+            <velocity>(-0.0916013,-0.164458)</velocity>
+            <mass>1</mass>
+        </item>
+
+        <item class="GasParticle">
+            <name>gasParticle12</name>
+            <position>(-0.0524903,0.563978)</position>
+            <velocity>(0.0432849,0.146399)</velocity>
+            <mass>1</mass>
+        </item>
+
+        <item class="GasParticle">
+            <name>gasParticle13</name>
+            <position>(0.237116,0.557563)</position>
+            <velocity>(-0.0240415,-0.237124)</velocity>
+            <mass>1</mass>
+        </item>
+
+        <item class="GasParticle">
+            <name>gasParticle14</name>
+            <position>(0.0844702,-0.377145)</position>
+            <velocity>(-0.13091,0.142214)</velocity>
+            <mass>1</mass>
+        </item>
+
+        <item class="GasParticle">
+            <name>gasParticle15</name>
+            <position>(-0.216594,-0.576952)</position>
+            <velocity>(0.233178,0.05335)</velocity>
+            <mass>1</mass>
+        </item>
+
+        <item class="GasParticle">
+            <name>gasParticle16</name>
+            <position>(0.360707,-0.58322)</position>
+            <velocity>(-0.0775935,-0.248263)</velocity>
+            <mass>1</mass>
+        </item>
+
+        <item class="GasParticle">
+            <name>gasParticle17</name>
+            <position>(-0.23555,-0.0993581)</position>
+            <velocity>(-0.203015,0.142739)</velocity>
+            <mass>1</mass>
+        </item>
+
+        <item class="GasParticle">
+            <name>gasParticle18</name>
+            <position>(0.249058,-0.490601)</position>
+            <velocity>(-0.18874,0.174805)</velocity>
+            <mass>1</mass>
+        </item>
+
+        <item class="GasParticle">
+            <name>gasParticle19</name>
+            <position>(-0.060496,0.130943)</position>
+            <velocity>(-0.228273,0.222676)</velocity>
+            <mass>1</mass>
+        </item>
+
+        <item class="GasParticle">
+            <name>gasParticle20</name>
+            <position>(-0.417541,0.275038)</position>
+            <velocity>(0.0191072,0.19745)</velocity>
+            <mass>1</mass>
+        </item>
+
+    </item>
+
+    <solver class="AdaptiveEulerSolver">
+        <name>solver1</name>
+        <stepSize>1</stepSize>
+        <toleranceAbs>0.001</toleranceAbs>
+        <toleranceRel>0.001</toleranceRel>
+    </solver>
+    <collisionSolver class="GJKCollisionSolver">
+        <name>collisionSolver1</name>
+        <toleranceAbs>0.001</toleranceAbs>
+    </collisionSolver>
+
+</world>
