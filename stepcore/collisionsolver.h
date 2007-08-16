@@ -125,6 +125,13 @@ public:
 
     int solveCollisions(BodyList& bodies);
     int solveConstraints(BodyList& bodies);
+
+protected:
+    int checkPolygonPolygon(Contact* contact);
+    int solvePolygonPolygon(Contact* contact);
+
+    int checkPolygonParticle(Contact* contact);
+    int solvePolygonParticle(Contact* contact);
 };
 
 } // namespace StepCore
