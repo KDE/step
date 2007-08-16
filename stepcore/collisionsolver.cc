@@ -47,6 +47,9 @@ int GJKCollisionSolver::checkPolygonPolygon(Contact* contact)
     //    by Gino van den Bergen
 
     Polygon::VertexList vertexes[2];
+    vertexes[0].reserve(polygon0->vertexes().size());
+    vertexes[1].reserve(polygon1->vertexes().size());
+
     const Polygon::VertexList::const_iterator p0_it_end = polygon0->vertexes().end();
     for(Polygon::VertexList::const_iterator it0 = polygon0->vertexes().begin();
                                         it0 != p0_it_end; ++it0) {
@@ -59,7 +62,7 @@ int GJKCollisionSolver::checkPolygonPolygon(Contact* contact)
         vertexes[1].push_back(polygon1->pointLocalToWorld(*it1));
     }
 
-    int wsize = 0;
+    int wsize;
     Vector2d w[3];  // Vertexes of current simplex
     Vector2d v;     // Closest point of current simplex
     Vector2d s;     // New support vertex in direction v
@@ -68,10 +71,18 @@ int GJKCollisionSolver::checkPolygonPolygon(Contact* contact)
     int wi[2][3];   // Indexes of vertexes corresponding to w
     int si[2];      // Indexes of vertexes corresponding to s
 
-    // Start with arbitrary vertex (TODO: coherence)
-    vv[0] = vertexes[0][0];
-    vv[1] = vertexes[1][0];
-    v = vv[1] - vv[0];
+    wsize = 1;
+    // Start with arbitrary vertex (TODO: cache the whole w simplex)
+    if(contact->state >= Contact::Separating && contact->state < Contact::Intersected) {
+        wi[0][0] = contact->_w1[0];
+        wi[1][0] = contact->_w1[1];
+    } else {
+        wi[0][0] = 0;
+        wi[1][0] = 0;
+    }
+    vv[0] = vertexes[0][wi[0][0]];
+    vv[1] = vertexes[1][wi[1][0]];
+    w[0] = v = vv[1] - vv[0];
 
     bool intersects = false;
     unsigned int iteration = 0;
@@ -214,6 +225,9 @@ int GJKCollisionSolver::checkPolygonPolygon(Contact* contact)
     contact->pointsCount = 0;
     contact->state = Contact::Separated;
 
+    contact->_w1[0] = wi[0][0];
+    contact->_w1[1] = wi[1][0];
+
     if(vnorm > _toleranceAbs) return contact->state;
 
     // If the objects are close enough we need to find contact manifold
@@ -337,13 +351,15 @@ int GJKCollisionSolver::checkPolygonParticle(Contact* contact)
     // Simplier version of checkPolygonPolygon algorithm
 
     Polygon::VertexList vertexes;
+    vertexes.reserve(polygon0->vertexes().size());
+
     const Polygon::VertexList::const_iterator p0_it_end = polygon0->vertexes().end();
     for(Polygon::VertexList::const_iterator it0 = polygon0->vertexes().begin();
                                         it0 != p0_it_end; ++it0) {
         vertexes.push_back(polygon0->pointLocalToWorld(*it0));
     }
 
-    int wsize = 0;
+    int wsize;
     Vector2d w[3];  // Vertexes of current simplex
     Vector2d v;     // Closest point of current simplex
     Vector2d s;     // New support vertex in direction v
@@ -352,9 +368,15 @@ int GJKCollisionSolver::checkPolygonParticle(Contact* contact)
     int wi[3];   // Indexes of vertexes corresponding to w
     int si;      // Indexes of vertexes corresponding to s
 
-    // Start with arbitrary vertex (TODO: coherence)
-    vv = vertexes[0];
-    v = particle1->position() - vv;
+    // Start with arbitrary vertex (TODO: cache the whole w simplex)
+    wsize = 1;
+    if(contact->state >= Contact::Separating && contact->state < Contact::Intersected) {
+        wi[0] = contact->_w1[0];
+    } else {
+        wi[0] = 0;
+    }
+    vv = vertexes[wi[0]];
+    w[0] = v = particle1->position() - vv;
 
     bool intersects = false;
     unsigned int iteration = 0;
@@ -484,6 +506,8 @@ int GJKCollisionSolver::checkPolygonParticle(Contact* contact)
     contact->distance = vnorm;
     contact->normal = v/vnorm;
 
+    contact->_w1[0] = wi[0];
+
     if(vnorm > _toleranceAbs) {
         contact->pointsCount = 0;
         contact->state = Contact::Separated;
@@ -508,16 +532,22 @@ int GJKCollisionSolver::checkPolygonParticle(Contact* contact)
 
 int GJKCollisionSolver::checkContact(Contact* contact)
 {
-    if(dynamic_cast<StepCore::Polygon*>(contact->body0)) {
-        if(dynamic_cast<StepCore::Polygon*>(contact->body1)) return checkPolygonPolygon(contact);
-        else if(dynamic_cast<StepCore::Particle*>(contact->body1)) return checkPolygonParticle(contact);
-    }
-    else if(dynamic_cast<StepCore::Particle*>(contact->body0)) {
-        if(dynamic_cast<StepCore::Polygon*>(contact->body1)) {
-            std::swap(contact->body0, contact->body1);
-            return checkPolygonParticle(contact);
+
+    if(contact->type == Contact::UnknownType) {
+        if(dynamic_cast<Polygon*>(contact->body0)) {
+            if(dynamic_cast<Polygon*>(contact->body1)) contact->type = Contact::PolygonPolygonType;
+            else if(dynamic_cast<Particle*>(contact->body1)) contact->type = Contact::PolygonParticleType;
+        } else if(dynamic_cast<Particle*>(contact->body0)) {
+            if(dynamic_cast<Polygon*>(contact->body1)) {
+                std::swap(contact->body0, contact->body1);
+                contact->type = Contact::PolygonParticleType;
+            }
         }
+        contact->state = Contact::Unknown;
     }
+
+    if(contact->type == Contact::PolygonPolygonType) return checkPolygonPolygon(contact);
+    else if(contact->type == Contact::PolygonParticleType) return checkPolygonParticle(contact);
     return contact->state = Contact::Unknown;
 }
 
@@ -525,22 +555,21 @@ int GJKCollisionSolver::checkContacts(BodyList& bodies)
 {
     int state = Contact::Unknown;
 
+    checkCache(bodies);
+
     // Detect and classify contacts
-    unsigned int bs = bodies.size();
-    Contact* contacts = new Contact[bs*bs];
-    for(unsigned int i=0; i<bs; ++i) {
-        for(unsigned int j=i+1; j<bs; ++j) {
-            Contact& contact = contacts[i*bs+j];
-            contact.body0 = bodies[i];
-            contact.body1 = bodies[j];
-            checkContact(&contact);
-            if(contact.state > state) state = contact.state;
-            if(contact.state == Contact::Intersected) goto out;
-        }
+    const std::vector<Contact*>::const_iterator end = _contacts.end();
+    for(std::vector<Contact*>::const_iterator it = _contacts.begin(); it != end; ++it) {
+        Contact* contact = *it;
+
+        if(contact->type == Contact::PolygonPolygonType) checkPolygonPolygon(contact);
+        else if(contact->type == Contact::PolygonParticleType) checkPolygonParticle(contact);
+        else contact->state = Contact::Unknown;
+
+        if(contact->state > state) state = contact->state;
+        if(contact->state == Contact::Intersected) return state;
     }
 
-out:
-    delete[] contacts;
     return state;
 }
 
@@ -552,7 +581,7 @@ int GJKCollisionSolver::solvePolygonPolygon(Contact* contact)
     if(contact->pointsCount == 2 &&
         contact->pointsState[0] == Contact::Colliding &&
         contact->pointsState[1] == Contact::Colliding) {
-        qDebug("*********** To-point collisions are still buggy!");
+        qDebug("*********** Two-point collisions are still buggy!");
     }
 
     // calculate impulse
@@ -658,53 +687,85 @@ int GJKCollisionSolver::solveCollisions(BodyList& bodies)
     int ret = 0;
 
     // Detect and classify contacts
-    unsigned int bs = bodies.size();
-    Contact* contacts = new Contact[bs*bs];
-    for(unsigned int i=0; i<bs; ++i) {
-        for(unsigned int j=i+1; j<bs; ++j) {
-            Contact* contact = &(contacts[i*bs+j]);
-            contact->body0 = bodies[i];
-            contact->body1 = bodies[j];
-            checkContact(contact);
-            if(contact->state == Contact::Intersected) {
-                ret = 1;// PenetrationDetected;
-                goto out;
-            }
-        }
-    }
+    ret = checkContacts(bodies);
+    STEPCORE_ASSERT_NOABORT(ret != Contact::Intersected);
 
     // Solve collisions
-    for(unsigned int i0=0; i0<bs; ++i0) {
-        for(unsigned int i1=i0+1; i1<bs; ++i1) {
-            Contact* contact = &(contacts[i0*bs+i1]);
-            if(contact->state == Contact::Colliding) {
-                if(dynamic_cast<StepCore::Polygon*>(contact->body0)) {
-                    if(dynamic_cast<StepCore::Polygon*>(contact->body1))
-                        ret = solvePolygonPolygon(contact);
-                    else if(dynamic_cast<StepCore::Particle*>(contact->body1))
-                        ret = solvePolygonParticle(contact);
-                    else STEPCORE_ASSERT_NOABORT(0);
-                }
-                else STEPCORE_ASSERT_NOABORT(0);
-            }
-        }
+
+    const std::vector<Contact*>::const_iterator end = _contacts.end();
+    for(std::vector<Contact*>::const_iterator it = _contacts.begin(); it != end; ++it) {
+        Contact* contact = *it;
+
+        if(contact->state != Contact::Colliding) continue;
+
+        if(contact->type == Contact::PolygonPolygonType) ret = solvePolygonPolygon(contact);
+        else if(contact->type == Contact::PolygonParticleType) ret = solvePolygonParticle(contact);
+        else STEPCORE_ASSERT_NOABORT(0);
+
     }
 
-    //findClosestPoints(dynamic_cast<Polygon*>(bodies.at(0)), dynamic_cast<Polygon*>(bodies.at(1)));
-
-    // If there are penetrations abort the solver and try again with lower timestep
-
-    // Solve colliding contact
-
-out:
-    delete[] contacts;
-    return ret;
+    return 0;
 }
 
+#if 0
 int GJKCollisionSolver::solveConstraints(BodyList& /*bodies*/)
 {
 
     return 0;
+}
+#endif
+
+void GJKCollisionSolver::checkCache(BodyList& bodies)
+{
+    if(!_contactsIsValid) {
+        unsigned int bs = bodies.size();
+        unsigned int ccount = 0;
+        
+        for(unsigned int i=0; i<bs; ++i) {
+            for(unsigned int j=i+1; j<bs; ++j) {
+                Body* body0 = bodies[i];
+                Body* body1 = bodies[j];
+                int type = Contact::UnknownType;
+
+                if(dynamic_cast<Polygon*>(body0)) {
+                    if(dynamic_cast<Polygon*>(body1)) type = Contact::PolygonPolygonType;
+                    else if(dynamic_cast<Particle*>(body1)) type = Contact::PolygonParticleType;
+                } else if(dynamic_cast<Particle*>(body0)) {
+                    if(dynamic_cast<Polygon*>(body1)) {
+                        std::swap(body0, body1);
+                        type = Contact::PolygonParticleType;
+                    }
+                }
+
+                if(type == Contact::UnknownType) continue;
+
+                Contact* contact;
+                if(ccount < _contacts.size()) {
+                    contact = _contacts[ccount];
+                } else {
+                    contact = new Contact;
+                    _contacts.push_back(contact);
+                }
+
+                contact->type = type;
+                contact->body0 = body0;
+                contact->body1 = body1;
+                contact->state = Contact::Unknown;
+                ++ccount;
+            }
+        }
+
+        if(ccount < _contacts.size()) {
+            for(unsigned int i = ccount; i<_contacts.size(); ++i) delete _contacts[i];
+            _contacts.resize(ccount);
+        }
+        _contactsIsValid = true;
+    }
+}
+
+void GJKCollisionSolver::resetCaches()
+{
+    _contactsIsValid = false;
 }
 
 } // namespace StepCore

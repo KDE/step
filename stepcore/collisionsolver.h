@@ -46,6 +46,12 @@ struct Contact {
         Colliding,      /**< Bodies are collising */
         Intersected     /**< Bodies are interpenetrating */
     };
+    enum {
+        UnknownType,
+        PolygonPolygonType,
+        PolygonParticleType
+    };
+    int      type;          /**< Contact type (used internally) */
     Body*    body0;         /**< Body0 */
     Body*    body1;         /**< Body1 */
     int      state;         /**< Contact state (maximum of pointsState if pointsCount > 0) */
@@ -55,6 +61,10 @@ struct Contact {
     int      pointsState[2];/**< Contact point states */
     Vector2d points[2];     /**< Contact point coordinated */
     double   vrel[2];       /**< Relative velocities at contact points */
+
+    // Cached values from previous run
+    // TODO: move it to GJK-specific derived struct
+    int _w1[2];
 };
 
 /** \ingroup contacts
@@ -90,7 +100,14 @@ public:
     virtual int checkContacts(BodyList& bodies) = 0;
 
     // TODO: add errors
+    /** Solve the collisions between bodies
+     */
     virtual int solveCollisions(BodyList& bodies) = 0;
+
+    /** Reset internal caches of collision information
+     *  @todo do it automatically by checking the cache
+     */
+    virtual void resetCaches() = 0;
 
 protected:
     double _toleranceAbs;
@@ -112,6 +129,8 @@ class GJKCollisionSolver : public CollisionSolver
     STEPCORE_OBJECT(GJKCollisionSolver)
 
 public:
+    GJKCollisionSolver() : _contactsIsValid(false) {}
+
     /*
     enum {
         OK = 0,
@@ -124,7 +143,9 @@ public:
     //int findClosestPoints(const Polygon* polygon1, const Polygon* polygon2);
 
     int solveCollisions(BodyList& bodies);
-    int solveConstraints(BodyList& bodies);
+    //int solveConstraints(BodyList& bodies);
+
+    void resetCaches();
 
 protected:
     int checkPolygonPolygon(Contact* contact);
@@ -132,6 +153,12 @@ protected:
 
     int checkPolygonParticle(Contact* contact);
     int solvePolygonParticle(Contact* contact);
+
+    void checkCache(BodyList& bodies);
+
+protected:
+    std::vector<Contact*> _contacts;
+    bool                  _contactsIsValid;
 };
 
 } // namespace StepCore

@@ -168,6 +168,7 @@ void MainTest::testCollisionDetection()
     collisionSolver->setToleranceAbs(0.01);
 
     StepCore::Contact contact;
+    std::memset(&contact, 0, sizeof(contact));
     contact.body0 = polygon0;
     contact.body1 = polygon1;
 

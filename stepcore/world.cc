@@ -488,6 +488,8 @@ int World::doCalcFn()
 {
     STEPCORE_ASSERT_NOABORT(_solver != NULL);
 
+    if(_collisionSolver) _collisionSolver->resetCaches();
+
     _stopOnCollision = false;
     _stopOnPenetration = false;
     checkVariablesCount();
@@ -505,6 +507,8 @@ int World::doEvolve(double delta)
     int ret = Solver::OK;
     double targetTime = _time + delta*_timeScale;
     
+    if(_collisionSolver) _collisionSolver->resetCaches();
+
     while(_time < targetTime) {
         STEPCORE_ASSERT_NOABORT( targetTime - _time > _solver->stepSize() / 1000 );
         if( !(   targetTime - _time > _solver->stepSize() / 1000 ) ) {
