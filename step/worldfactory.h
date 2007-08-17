@@ -59,10 +59,12 @@ public:
     ItemMenuHandler* newItemMenuHandler(StepCore::Object* object,
                         WorldModel* worldModel, QObject* parent) const;
 
+    QList<QString> paletteMetaObjects() const { return _paletteMetaObjects; }
     QList<QString> orderedMetaObjects() const { return _orderedMetaObjects; }
 
 private:
     QHash<const void*, const ExtMetaObject*> _extMetaObjects;
+    QList<QString> _paletteMetaObjects;
     QList<QString> _orderedMetaObjects;
 };
 

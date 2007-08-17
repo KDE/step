@@ -79,6 +79,12 @@ WorldFactory::WorldFactory()
         ___REGISTER_EXT(Class, newItemCreatorHelper<GraphicsCreator>, \
                    newGraphicsItemHelper<GraphicsItem>, newItemMenuHandlerHelper<ItemMenuHandler>)
 
+    #define __ADD_TO_PALETTE(Class) \
+        _paletteMetaObjects.push_back(QString(StepCore::Class::staticMetaObject()->className()))
+
+    #define __ADD_SEPARATOR \
+        _paletteMetaObjects.push_back(QString())
+
     __REGISTER(Object);
 
     __REGISTER(Item);
@@ -131,6 +137,26 @@ WorldFactory::WorldFactory()
     __REGISTER_EXT(Meter, ItemCreator, MeterGraphicsItem, MeterMenuHandler);
     __REGISTER_EXT(Graph, ItemCreator, GraphGraphicsItem, GraphMenuHandler);
     __REGISTER_EXT(Controller, ItemCreator, ControllerGraphicsItem, ControllerMenuHandler);
+
+    // Palette
+    __ADD_TO_PALETTE(Particle);
+    __ADD_TO_PALETTE(ChargedParticle);
+    __ADD_TO_PALETTE(Polygon);
+    __ADD_TO_PALETTE(Spring);
+    __ADD_SEPARATOR;
+
+    __ADD_TO_PALETTE(Gas);
+    __ADD_SEPARATOR;
+
+    __ADD_TO_PALETTE(WeightForce);
+    __ADD_TO_PALETTE(GravitationForce);
+    __ADD_TO_PALETTE(CoulombForce);
+    __ADD_SEPARATOR;
+
+    __ADD_TO_PALETTE(Note);
+    __ADD_TO_PALETTE(Meter);
+    __ADD_TO_PALETTE(Graph);
+    __ADD_TO_PALETTE(Controller);
 }
 
 ItemCreator* WorldFactory::newItemCreator(const QString& className,

@@ -81,6 +81,12 @@ ItemPalette::ItemPalette(WorldModel* worldModel, QWidget* parent, Qt::WindowFlag
     _toolBar->widgetForAction(_pointerAction)->setSizePolicy(QSizePolicy::Expanding, QSizePolicy::Fixed);
     _toolBar->addSeparator();
 
+    foreach(QString name, _worldModel->worldFactory()->paletteMetaObjects()) {
+        if(name.isEmpty()) _toolBar->addSeparator();
+        else addObject(_worldModel->worldFactory()->metaObject(name));
+    }
+
+#if 0
     /* Add bodies */
     foreach(QString name, _worldModel->worldFactory()->orderedMetaObjects()) {
         const StepCore::MetaObject* metaObject = _worldModel->worldFactory()->metaObject(name);
@@ -117,12 +123,15 @@ ItemPalette::ItemPalette(WorldModel* worldModel, QWidget* parent, Qt::WindowFlag
         if(!metaObject->inherits(StepCore::Tool::staticMetaObject())) continue;
         addObject(metaObject);
     }
+#endif
 
     QObject::connect(_actionGroup, SIGNAL(triggered(QAction*)), this, SLOT(actionTriggered(QAction*)));
 }
 
 void ItemPalette::addObject(const StepCore::MetaObject* metaObject)
 {
+    Q_ASSERT(metaObject && !metaObject->isAbstract());
+
     QAction* action = new QAction(metaObject->className(), this);
     action->setToolTip(metaObject->description());
     action->setIcon(KIcon(QString("step_object_") + metaObject->className()));
