@@ -85,6 +85,7 @@ public:
 
     // Add/remove/set functions
     StepCore::Item* newItem(const QString& name, StepCore::ItemGroup* parent = 0);
+    void addItem(StepCore::Item* item, StepCore::ItemGroup* parent = 0);
     void deleteItem(StepCore::Item* item);
 
     //void setSolver(StepCore::Solver* solver);
@@ -146,8 +147,8 @@ signals:
 protected:
     void resetWorld();
     void emitChanged(bool dynamicOnly = true);
-    void addItem(StepCore::Item* item, StepCore::ItemGroup* parent = 0);
-    void removeItem(StepCore::Item* item);
+    void addCreatedItem(StepCore::Item* item, StepCore::ItemGroup* parent = 0);
+    void removeCreatedItem(StepCore::Item* item);
     StepCore::Solver* swapSolver(StepCore::Solver* solver);
 
     // Only for UndoCommand* classes

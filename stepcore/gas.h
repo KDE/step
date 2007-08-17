@@ -89,6 +89,8 @@ protected:
     double _a, _b, _c;
 };
 
+typedef std::vector<GasParticle*> GasParticleList;
+
 /** \ingroup bodies
  *  \brief Gas - a group of several GasParticle and a force
  */
@@ -98,6 +100,13 @@ class Gas: public ItemGroup
 
 public:
     Gas() : _measureRectCenter(0), _measureRectSize(1,1) {}
+
+    /** Creates particles with given temperature
+     *  \todo XXX Normalize temperature after particle creation */
+    GasParticleList rectCreateParticles(int count,
+                                double mass, double temperature);
+
+    void addParticles(const GasParticleList& particles);
 
     double rectVolume() const;
     double rectParticleCount() const;
@@ -112,6 +121,10 @@ public:
 
     const Vector2d& measureRectSize() const { return _measureRectSize; }
     void setMeasureRectSize(const Vector2d& measureRectSize) { _measureRectSize = measureRectSize; }
+
+protected:
+    double randomUniform(double min=0, double max=1);
+    double randomGauss(double mean=0, double deviation=1);
 
 protected:
     Vector2d _measureRectCenter;

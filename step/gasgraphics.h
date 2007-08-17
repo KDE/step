@@ -52,5 +52,32 @@ protected:
     GasArrowHandlerGraphicsItem *_sizeHandler;
 };
 
+namespace Ui {
+    class WidgetCreateGasParticles;
+}
+
+class KDialog;
+class GasMenuHandler: public ItemMenuHandler
+{
+    Q_OBJECT
+
+public:
+    GasMenuHandler(StepCore::Object* object, WorldModel* worldModel, QObject* parent)
+        : ItemMenuHandler(object, worldModel, parent) {}
+
+    void populateMenu(QMenu* menu);
+
+protected slots:
+    void createGasParticles();
+    void createGasParticlesApply();
+    void clearGas();
+
+protected:
+    StepCore::Gas* gas() const;
+    Ui::WidgetCreateGasParticles* _createGasParticlesUi;
+    KDialog*                      _createGasParticlesDialog;
+//    bool                      _confChanged;
+};
+
 #endif
 

@@ -102,7 +102,7 @@ WorldFactory::WorldFactory()
 
     __REGISTER_EXT(GasParticle, ItemCreator, ParticleGraphicsItem, ItemMenuHandler);
     __REGISTER(GasLJForce);
-    __REGISTER_EXT(Gas, GasCreator, GasGraphicsItem, ItemMenuHandler);
+    __REGISTER_EXT(Gas, GasCreator, GasGraphicsItem, GasMenuHandler);
 
     __REGISTER_EXT(Spring, SpringCreator, SpringGraphicsItem, ItemMenuHandler);
 

@@ -17,6 +17,9 @@
 */
 
 #include "gasgraphics.h"
+#include "gasgraphics.moc"
+
+#include "ui_create_gas_particles.h"
 
 #include "worldmodel.h"
 #include "worldfactory.h"
@@ -25,7 +28,11 @@
 #include <QGraphicsScene>
 #include <QEvent>
 #include <QPainter>
+#include <QValidator>
+#include <KDialog>
 #include <KLocale>
+
+#include <float.h>
 
 double GasCreator::random11()
 {
@@ -47,17 +54,6 @@ bool GasCreator::sceneEvent(QEvent* event)
         StepCore::Object* ljforce = gas->items()[0];
         _worldModel->setProperty(ljforce, ljforce->metaObject()->property("depth"), 0.1);
         _worldModel->setProperty(ljforce, ljforce->metaObject()->property("rmin"), 0.1);
-
-        for(int i=0; i<20; ++i) {
-            _worldModel->newItem("GasParticle", gas);
-        }
-        for(int i=0; i<20; ++i) {
-            StepCore::Object* obj = gas->items()[1+i];
-            StepCore::Vector2d pos(random11(), random11());
-            StepCore::Vector2d vel(random11()/4, random11()/4);
-            _worldModel->setProperty( obj, obj->metaObject()->property("position"), QVariant::fromValue(pos) );
-            _worldModel->setProperty( obj, obj->metaObject()->property("velocity"), QVariant::fromValue(vel) );
-        }
 
         _worldModel->endMacro();
         event->accept();
@@ -148,4 +144,89 @@ void GasGraphicsItem::stateChanged()
     }
     update();
 }
+
+void GasMenuHandler::populateMenu(QMenu* menu)
+{
+    _createGasParticlesUi = 0;
+    _createGasParticlesDialog = 0;
+    //_confChanged = false;
+
+    menu->addAction(KIcon("configure"), i18n("Create particles..."), this, SLOT(createGasParticles()));
+    //menu->addAction(KIcon("edit-clear"), i18n("Clear gas"), this, SLOT(clearGas()));
+    menu->addSeparator();
+    ItemMenuHandler::populateMenu(menu);
+}
+
+inline StepCore::Gas* GasMenuHandler::gas() const
+{
+    return static_cast<StepCore::Gas*>(_object);
+}
+
+void GasMenuHandler::clearGas()
+{
+//    _worldModel->simulationPause();
+
+}
+
+void GasMenuHandler::createGasParticles()
+{
+    if(_worldModel->isSimulationActive())
+        _worldModel->simulationStop();
+
+    _createGasParticlesDialog = new KDialog(); // XXX: parent?
+    
+    _createGasParticlesDialog->setCaption(i18n("Create gas particles"));
+    _createGasParticlesDialog->setButtons(KDialog::Ok | KDialog::Cancel);
+
+    _createGasParticlesUi = new Ui::WidgetCreateGasParticles;
+    _createGasParticlesUi->setupUi(_createGasParticlesDialog->mainWidget());
+
+    _createGasParticlesUi->lineEditMass->setValidator(
+                new QDoubleValidator(0, HUGE_VAL, DBL_DIG, _createGasParticlesUi->lineEditMass));
+    _createGasParticlesUi->lineEditCount->setValidator(
+                new QIntValidator(0, 1000, _createGasParticlesUi->lineEditCount));
+    _createGasParticlesUi->lineEditTemperature->setValidator(
+                new QDoubleValidator(0, HUGE_VAL, DBL_DIG, _createGasParticlesUi->lineEditTemperature));
+
+    connect(_createGasParticlesDialog, SIGNAL(okClicked()), this, SLOT(createGasParticlesApply()));
+
+    _createGasParticlesDialog->exec();
+
+    delete _createGasParticlesDialog; _createGasParticlesDialog = 0;
+    delete _createGasParticlesUi; _createGasParticlesUi = 0;
+}
+
+void GasMenuHandler::createGasParticlesApply()
+{
+    Q_ASSERT(_createGasParticlesUi && _createGasParticlesDialog);
+
+    _worldModel->beginMacro(i18n("Edit %1", gas()->name()));
+    _worldModel->beginUpdate();
+
+    int count = _createGasParticlesUi->lineEditCount->text().toInt();
+    double mass = _createGasParticlesUi->lineEditMass->text().toDouble();
+    double temperature = _createGasParticlesUi->lineEditTemperature->text().toDouble();
+    std::vector<StepCore::GasParticle*> particles =
+            gas()->rectCreateParticles(count, mass, temperature);
+
+
+    const StepCore::GasParticleList::const_iterator end = particles.end();
+    for(StepCore::GasParticleList::const_iterator it = particles.begin(); it != end; ++it) {
+        _worldModel->addItem(*it, gas());
+    }
+
+    _worldModel->endUpdate();
+    _worldModel->endMacro();
+}
+
+/*
+void GasMenuHandler::clearGas()
+{
+    _worldModel->simulationPause();
+    //_lastPointTime = -HUGE_VAL; // XXX
+    _worldModel->setProperty(gas(), gas()->metaObject()->property("points"),
+                               QVariant::fromValue(std::vector<StepCore::Vector2d>()) );
+}
+*/
+
 

@@ -19,6 +19,7 @@
 #include "gas.h"
 #include "types.h"
 #include "constants.h"
+#include <cstdlib>
 
 namespace StepCore
 {
@@ -91,6 +92,53 @@ void GasLJForce::calcForce()
 double Gas::rectVolume() const
 {
     return _measureRectSize[0]*_measureRectSize[1];
+}
+
+double Gas::randomUniform(double min, double max)
+{
+    return double(std::rand())/RAND_MAX*(max-min) + min;
+}
+
+double Gas::randomGauss(double mean, double deviation)
+{
+    // Polar Box-Muller algorithm
+    double x1, x2, w;
+ 
+    do {
+        x1 = 2.0 * double(std::rand())/RAND_MAX - 1.0;
+        x2 = 2.0 * double(std::rand())/RAND_MAX - 1.0;
+        w = x1 * x1 + x2 * x2;
+    } while( w >= 1.0 || w == 0 );
+
+    w = sqrt( (-2.0 * log( w ) ) / w );
+    return x1 * w * deviation + mean;
+}
+
+GasParticleList Gas::rectCreateParticles(int count,
+                                double mass, double temperature)
+{
+    GasParticleList particles;
+
+    Vector2d r0 = _measureRectCenter-_measureRectSize/2.0;
+    Vector2d r1 = _measureRectCenter+_measureRectSize/2.0;
+    double deviation = std::sqrt( Constants::Boltzmann * temperature / mass );
+
+    for(int i=0; i<count; ++i) {
+        Vector2d pos(randomUniform(r0[0], r1[0]), randomUniform(r0[1], r1[1]));
+        Vector2d vel(randomGauss(0, deviation), randomGauss(0, deviation));
+        GasParticle* particle = new GasParticle(pos, vel, mass);
+        particles.push_back(particle);
+    }
+
+    return particles;
+}
+
+void Gas::addParticles(const GasParticleList& particles)
+{
+    const GasParticleList::const_iterator end = particles.end();
+    for(GasParticleList::const_iterator it = particles.begin(); it != end; ++it) {
+        addItem(*it);
+    }
 }
 
 double Gas::rectParticleCount() const

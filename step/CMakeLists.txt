@@ -18,6 +18,7 @@ set(step_SRCS
 )
 
 set(step_UIS
+    create_gas_particles.ui
     configure_graph.ui
     configure_meter.ui
     configure_controller.ui)

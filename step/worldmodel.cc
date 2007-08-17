@@ -133,15 +133,15 @@ protected:
 
 void CommandNewItem::redo()
 {
-    if(_create) _worldModel->addItem(_item, _parent);
-    else _worldModel->removeItem(_item);
+    if(_create) _worldModel->addCreatedItem(_item, _parent);
+    else _worldModel->removeCreatedItem(_item);
     _shouldDelete = !_create;
 }
 
 void CommandNewItem::undo()
 {
-    if(_create) _worldModel->removeItem(_item);
-    else _worldModel->addItem(_item, _parent);
+    if(_create) _worldModel->removeCreatedItem(_item);
+    else _worldModel->addCreatedItem(_item, _parent);
     _shouldDelete = _create;
 }
 
@@ -453,6 +453,12 @@ StepCore::Item* WorldModel::newItem(const QString& name, StepCore::ItemGroup* pa
     pushCommand(new CommandNewItem(this, item, parent, true));
     return item;
 }
+
+void WorldModel::addItem(StepCore::Item* item, StepCore::ItemGroup* parent)
+{
+    if(item->name().isEmpty()) item->setName(getUniqueName(item->metaObject()->className()));
+    pushCommand(new CommandNewItem(this, item, parent, true));
+}
         
 StepCore::Solver* WorldModel::newSolver(const QString& name)
 {
@@ -497,7 +503,7 @@ void WorldModel::deleteSelectedItems()
     }
 }
 
-void WorldModel::addItem(StepCore::Item* item, StepCore::ItemGroup* parent)
+void WorldModel::addCreatedItem(StepCore::Item* item, StepCore::ItemGroup* parent)
 {
     if(!parent) parent = _world;
     beginInsertRows(objectIndex(parent), parent->childItemCount(), parent->childItemCount());
@@ -506,7 +512,7 @@ void WorldModel::addItem(StepCore::Item* item, StepCore::ItemGroup* parent)
     emitChanged();
 }
 
-void WorldModel::removeItem(StepCore::Item* item)
+void WorldModel::removeCreatedItem(StepCore::Item* item)
 {
     STEPCORE_ASSERT_NOABORT(item->group());
     QModelIndex index = objectIndex(item);
