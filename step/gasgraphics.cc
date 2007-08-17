@@ -146,7 +146,7 @@ void GasMenuHandler::populateMenu(QMenu* menu)
     _createGasParticlesDialog = 0;
     //_confChanged = false;
 
-    menu->addAction(KIcon("configure"), i18n("Create particles..."), this, SLOT(createGasParticles()));
+    menu->addAction(KIcon("step_object_GasParticle"), i18n("Create particles..."), this, SLOT(createGasParticles()));
     //menu->addAction(KIcon("edit-clear"), i18n("Clear gas"), this, SLOT(clearGas()));
     menu->addSeparator();
     ItemMenuHandler::populateMenu(menu);
@@ -179,12 +179,22 @@ void GasMenuHandler::createGasParticles()
     _createGasParticlesUi->lineEditMass->setValidator(
                 new QDoubleValidator(0, HUGE_VAL, DBL_DIG, _createGasParticlesUi->lineEditMass));
     _createGasParticlesUi->lineEditCount->setValidator(
-                new QIntValidator(0, 1000, _createGasParticlesUi->lineEditCount));
+                new QIntValidator(0, INT_MAX, _createGasParticlesUi->lineEditCount));
+    _createGasParticlesUi->lineEditConcentration->setValidator(
+                new QDoubleValidator(0, HUGE_VAL, DBL_DIG, _createGasParticlesUi->lineEditConcentration));
     _createGasParticlesUi->lineEditTemperature->setValidator(
                 new QDoubleValidator(0, HUGE_VAL, DBL_DIG, _createGasParticlesUi->lineEditTemperature));
     _createGasParticlesUi->lineEditMeanVelocity->setValidator(
                 new QRegExpValidator(QRegExp("^\\([+-]?\\d+(\\.\\d*)?([eE]\\d*)?,[+-]?\\d+(\\.\\d*)?([eE]\\d*)?\\)$"),
                         _createGasParticlesUi->lineEditMeanVelocity));
+
+    _createGasParticlesUi->lineEditVolume->setText(QString::number(gas()->rectVolume()));
+    createGasParticlesCountChanged();
+
+    connect(_createGasParticlesUi->lineEditCount, SIGNAL(textEdited(const QString&)),
+                this, SLOT(createGasParticlesCountChanged()));
+    connect(_createGasParticlesUi->lineEditConcentration, SIGNAL(textEdited(const QString&)),
+                this, SLOT(createGasParticlesConcentrationChanged()));
 
     connect(_createGasParticlesDialog, SIGNAL(okClicked()), this, SLOT(createGasParticlesApply()));
 
@@ -192,6 +202,20 @@ void GasMenuHandler::createGasParticles()
 
     delete _createGasParticlesDialog; _createGasParticlesDialog = 0;
     delete _createGasParticlesUi; _createGasParticlesUi = 0;
+}
+
+void GasMenuHandler::createGasParticlesCountChanged()
+{
+    _createGasParticlesUi->lineEditConcentration->setText(QString::number(
+                    _createGasParticlesUi->lineEditCount->text().toDouble() / gas()->rectVolume()
+                ));
+}
+
+void GasMenuHandler::createGasParticlesConcentrationChanged()
+{
+    _createGasParticlesUi->lineEditCount->setText(QString::number(
+                    round(_createGasParticlesUi->lineEditConcentration->text().toDouble() * gas()->rectVolume())
+                ));
 }
 
 void GasMenuHandler::createGasParticlesApply()

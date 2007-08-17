@@ -68,6 +68,8 @@ public:
 protected slots:
     void createGasParticles();
     void createGasParticlesApply();
+    void createGasParticlesCountChanged();
+    void createGasParticlesConcentrationChanged();
     void clearGas();
 
 protected:

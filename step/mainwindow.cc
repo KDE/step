@@ -44,9 +44,12 @@
 #include <QGraphicsView>
 #include <QItemSelectionModel>
 
+#include <cstdlib>
+
 MainWindow::MainWindow()
 {
     qsrand(time(NULL));
+    std::srand(time(NULL));
 
     setObjectName("MainWindow");
     config = new KConfig("steprc");
