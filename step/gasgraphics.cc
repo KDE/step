@@ -30,6 +30,7 @@
 #include <QPainter>
 #include <QValidator>
 #include <KDialog>
+#include <KMessageBox>
 #include <KLocale>
 
 #include <float.h>
@@ -140,6 +141,22 @@ void GasGraphicsItem::stateChanged()
     update();
 }
 
+class GasKDialog: public KDialog
+{
+public:
+    GasKDialog(GasMenuHandler* handler, QWidget *parent=0, Qt::WFlags flags=0)
+        : KDialog(parent, flags), _handler(handler) {}
+protected slots:
+    void slotButtonClicked(int button) {
+        if(button == KDialog::Ok) {
+            if(_handler->createGasParticlesApply()) accept();
+        } else {
+            KDialog::slotButtonClicked(button);
+        }
+    }
+    GasMenuHandler* _handler;
+};
+
 void GasMenuHandler::populateMenu(QMenu* menu)
 {
     _createGasParticlesUi = 0;
@@ -168,7 +185,7 @@ void GasMenuHandler::createGasParticles()
     if(_worldModel->isSimulationActive())
         _worldModel->simulationStop();
 
-    _createGasParticlesDialog = new KDialog(); // XXX: parent?
+    _createGasParticlesDialog = new GasKDialog(this); // XXX: parent?
     
     _createGasParticlesDialog->setCaption(i18n("Create gas particles"));
     _createGasParticlesDialog->setButtons(KDialog::Ok | KDialog::Cancel);
@@ -218,20 +235,29 @@ void GasMenuHandler::createGasParticlesConcentrationChanged()
                 ));
 }
 
-void GasMenuHandler::createGasParticlesApply()
+bool GasMenuHandler::createGasParticlesApply()
 {
     Q_ASSERT(_createGasParticlesUi && _createGasParticlesDialog);
 
-    _worldModel->beginMacro(i18n("Edit %1", gas()->name()));
-    _worldModel->beginUpdate();
-
     int count = _createGasParticlesUi->lineEditCount->text().toInt();
+
+    if(count > MAX_PARTICLES) {
+        int ret = KMessageBox::warningContinueCancel(NULL, 
+              i18n("You are trying to create a very large number of particles. "
+                   "It will make simulation very slow. Do you want to continue ?"),
+              i18n("Warning - Step"));
+        if(ret != KMessageBox::Continue) return false;
+    }
+
     double mass = _createGasParticlesUi->lineEditMass->text().toDouble();
     double temperature = _createGasParticlesUi->lineEditTemperature->text().toDouble();
 
     bool ok;
     StepCore::Vector2d meanVelocity = StepCore::stringToType<StepCore::Vector2d>(
                     _createGasParticlesUi->lineEditMeanVelocity->text(), &ok);
+
+    _worldModel->beginMacro(i18n("Edit %1", gas()->name()));
+    _worldModel->beginUpdate();
 
     std::vector<StepCore::GasParticle*> particles =
             gas()->rectCreateParticles(count, mass, temperature, meanVelocity);
@@ -244,6 +270,8 @@ void GasMenuHandler::createGasParticlesApply()
 
     _worldModel->endUpdate();
     _worldModel->endMacro();
+
+    return true;
 }
 
 /*

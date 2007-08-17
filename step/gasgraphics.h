@@ -54,7 +54,7 @@ namespace Ui {
     class WidgetCreateGasParticles;
 }
 
-class KDialog;
+class GasKDialog;
 class GasMenuHandler: public ItemMenuHandler
 {
     Q_OBJECT
@@ -67,7 +67,7 @@ public:
 
 protected slots:
     void createGasParticles();
-    void createGasParticlesApply();
+    bool createGasParticlesApply();
     void createGasParticlesCountChanged();
     void createGasParticlesConcentrationChanged();
     void clearGas();
@@ -75,7 +75,9 @@ protected slots:
 protected:
     StepCore::Gas* gas() const;
     Ui::WidgetCreateGasParticles* _createGasParticlesUi;
-    KDialog*                      _createGasParticlesDialog;
+    GasKDialog*                   _createGasParticlesDialog;
+    friend class GasKDialog;
+    static const int MAX_PARTICLES = 200;
 //    bool                      _confChanged;
 };
 
