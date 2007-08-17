@@ -19,6 +19,7 @@ set(step_SRCS
 
 set(step_UIS
     configure_graph.ui
+    configure_meter.ui
     configure_controller.ui)
 
 if(STEPCORE_WITH_QT)

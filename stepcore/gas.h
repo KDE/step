@@ -97,7 +97,25 @@ class Gas: public ItemGroup
     STEPCORE_OBJECT(Gas)
 
 public:
+    Gas() : _measureRectCenter(0), _measureRectSize(1,1) {}
 
+    double rectVolume() const;
+    double rectParticleCount() const;
+    double rectConcentration() const;
+    double rectTemperature() const;
+    double rectPressure() const;
+    Vector2d rectMeanVelocity() const;
+    double rectMeanKineticEnergy() const;
+
+    const Vector2d& measureRectCenter() const { return _measureRectCenter; }
+    void setMeasureRectCenter(const Vector2d& measureRectCenter) { _measureRectCenter = measureRectCenter; }
+
+    const Vector2d& measureRectSize() const { return _measureRectSize; }
+    void setMeasureRectSize(const Vector2d& measureRectSize) { _measureRectSize = measureRectSize; }
+
+protected:
+    Vector2d _measureRectCenter;
+    Vector2d _measureRectSize;
 };
 
 } // namespace StepCore

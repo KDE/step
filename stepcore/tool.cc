@@ -46,6 +46,16 @@ STEPCORE_META_OBJECT(Graph, "Graph", 0,
     STEPCORE_PROPERTY_RW_D(std::vector<StepCore::Vector2d>, points, "points", points, setPoints)
     )
 
+STEPCORE_META_OBJECT(Meter, "Meter", 0,
+    STEPCORE_SUPER_CLASS(Item) STEPCORE_SUPER_CLASS(Tool),
+    STEPCORE_PROPERTY_RW(StepCore::Vector2d, position, "Meter position on the scene", position, setPosition)
+    STEPCORE_PROPERTY_RW(StepCore::Vector2d, size, "Meter size on the scene", size, setSize)
+    STEPCORE_PROPERTY_RW(QString, object, "Observed object", object, setObject)
+    STEPCORE_PROPERTY_RW(QString, property, "Observed property", property, setProperty)
+    STEPCORE_PROPERTY_RW(int, index, "Vector index", index, setIndex)
+    STEPCORE_PROPERTY_R (double, value, "Value", value)
+    )
+
 STEPCORE_META_OBJECT(Controller, "Controller", 0,
     STEPCORE_SUPER_CLASS(Item) STEPCORE_SUPER_CLASS(Tool),
     STEPCORE_PROPERTY_RW(StepCore::Vector2d, position, "Controller position on the scene", position, setPosition)
@@ -183,6 +193,53 @@ void Graph::setWorld(World* world)
     } else if(this->world() != NULL) { 
         if(_objectXPtr != NULL) _objectXPtr = world->object(_objectXPtr->name());
         if(_objectYPtr != NULL) _objectYPtr = world->object(_objectYPtr->name());
+    }
+    Item::setWorld(world);
+}
+
+Meter::Meter(Vector2d position, Vector2d size)
+    : _position(position), _size(size),
+      _objectPtr(0), _property(), _index(-1)
+{
+}
+
+bool Meter::isValid() const
+{
+    bool ok;
+    const MetaProperty* pr = propertyPtr(); if(!pr) return false;
+    variantToDouble(pr->readVariant(_objectPtr), _index, &ok);
+    return ok;
+}
+
+double Meter::value(bool* ok) const
+{
+    const MetaProperty* pr = propertyPtr();
+
+    if(pr) {
+        bool ok1;
+        double v = variantToDouble(pr->readVariant(_objectPtr), _index, &ok1);
+        if(ok1) {
+            if(ok) *ok = true;
+            return v;
+        }
+    }
+
+    if(ok) *ok = false;
+    return 0;
+}
+
+void Meter::worldItemRemoved(Item* item)
+{
+    if(item == 0) return;
+    if(item == _objectPtr) setObjectPtr(0);
+}
+
+void Meter::setWorld(World* world)
+{
+    if(world == NULL) {
+        setObjectPtr(0);
+    } else if(this->world() != NULL) { 
+        if(_objectPtr != NULL) _objectPtr = world->object(_objectPtr->name());
     }
     Item::setWorld(world);
 }

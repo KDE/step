@@ -260,7 +260,7 @@ void ArrowHandlerGraphicsItem::viewScaleChanged()
 void ArrowHandlerGraphicsItem::worldDataChanged(bool)
 {
     //kDebug() << "ArrowHandlerGraphicsItem::worldDataChanged()" << endl;
-    setPos(vectorToPoint(_property->readVariant(_item).value<StepCore::Vector2d>()));
+    setPos(vectorToPoint(value()));
 }
 
 void ArrowHandlerGraphicsItem::mouseMoveEvent(QGraphicsSceneMouseEvent *event)
@@ -268,11 +268,29 @@ void ArrowHandlerGraphicsItem::mouseMoveEvent(QGraphicsSceneMouseEvent *event)
     if ((event->buttons() & Qt::LeftButton) && (flags() & ItemIsMovable)) {
         if(!_isMoving) { _worldModel->beginMacro(i18n("Edit %1", _item->name())); _isMoving = true; }
         QPointF newPos(mapToParent(event->pos()) - matrix().map(event->buttonDownPos(Qt::LeftButton)));
-        _worldModel->simulationPause();
-        _worldModel->setProperty(_item, _property, QVariant::fromValue(pointToVector(newPos)));
+        setValue(pointToVector(newPos));
+        //_worldModel->simulationPause();
+        //_worldModel->setProperty(_item, _property, QVariant::fromValue(pointToVector(newPos)));
         //Q_ASSERT(_property->writeVariant(_item, QVariant::fromValue(v)));
         //_worldModel->setData(_worldModel->objectIndex(_item), QVariant(), WorldModel::ObjectRole);
     } else  event->ignore();
+}
+
+StepCore::Vector2d ArrowHandlerGraphicsItem::value()
+{
+    if(_property) {
+        return _property->readVariant(_item).value<StepCore::Vector2d>();
+    } else {
+        return StepCore::Vector2d(0);
+    }
+}
+
+void ArrowHandlerGraphicsItem::setValue(const StepCore::Vector2d& value)
+{
+    if(_property) {
+        _worldModel->simulationPause();
+        _worldModel->setProperty(_item, _property, QVariant::fromValue(value));
+    }
 }
 
 ItemMenuHandler::ItemMenuHandler(StepCore::Object* object, WorldModel* worldModel, QObject* parent)

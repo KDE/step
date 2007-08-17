@@ -33,10 +33,10 @@ protected:
     double random11();
 };
 
-/*
-class GasParticleGraphicsItem: public WorldGraphicsItem {
+class GasArrowHandlerGraphicsItem;
+class GasGraphicsItem: public WorldGraphicsItem {
 public:
-    GasParticleGraphicsItem(StepCore::Item* item, WorldModel* worldModel);
+    GasGraphicsItem(StepCore::Item* item, WorldModel* worldModel);
 
     QPainterPath shape() const;
     void paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget);
@@ -46,14 +46,11 @@ public:
     void worldDataChanged(bool);
 
 protected:
-    StepCore::Particle* particle() const;
+    StepCore::Gas* gas() const;
 
-    ArrowHandlerGraphicsItem *_velocityHandler;
-    double _lastArrowRadius;
-
-    static const int RADIUS = 7;
+    ArrowHandlerGraphicsItem *_centerHandler;
+    GasArrowHandlerGraphicsItem *_sizeHandler;
 };
-*/
 
 #endif
 

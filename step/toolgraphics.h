@@ -35,6 +35,7 @@ class QLabel;
 
 namespace Ui {
     class WidgetConfigureGraph;
+    class WidgetConfigureMeter;
     class WidgetConfigureController;
 }
 
@@ -158,6 +159,60 @@ protected:
     Ui::WidgetConfigureGraph* _confUi;
     KDialog*                  _confDialog;
     bool                      _confChanged;
+};
+
+class QLCDNumber;
+class MeterGraphicsItem: public QObject, public WorldGraphicsItem
+{
+    Q_OBJECT
+
+public:
+    MeterGraphicsItem(StepCore::Item* item, WorldModel* worldModel);
+    ~MeterGraphicsItem();
+
+    void paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget);
+
+    void stateChanged();
+    void viewScaleChanged();
+    void worldDataChanged(bool);
+
+protected:
+    StepCore::Meter* meter() const;
+
+    double _lastScale;
+    double _lastValue;
+
+    //QWidget* _widget;
+    QLCDNumber* _widget;
+
+    /*
+    QLabel*  _labelMin;
+    QLabel*  _labelMax;
+    QLabel*  _labelSource;
+    */
+};
+
+class MeterMenuHandler: public ItemMenuHandler
+{
+    Q_OBJECT
+
+public:
+    MeterMenuHandler(StepCore::Object* object, WorldModel* worldModel, QObject* parent)
+        : ItemMenuHandler(object, worldModel, parent) {}
+
+    void populateMenu(QMenu* menu);
+
+protected slots:
+    void configureMeter();
+    void confApply();
+    void confChanged();
+
+protected:
+    StepCore::Meter* meter() const;
+    KAction* _configureAction;
+    Ui::WidgetConfigureMeter* _confUi;
+    KDialog* _confDialog;
+    bool     _confChanged;
 };
 
 class ControllerGraphicsItem: public QObject, public WorldGraphicsItem

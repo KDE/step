@@ -26,4 +26,5 @@ const double StepCore::Constants::Magnetic = 1.2566e-6;
 const double StepCore::Constants::Gravitational = 6.67428e-11;
 const double StepCore::Constants::Plank = 6.62606896e-34;
 const double StepCore::Constants::SpeedOfLight = 2.9979e8;
+const double StepCore::Constants::Boltzmann = 1.3806504e-23;
 const double StepCore::Constants::WeightAccel = 9.8066;

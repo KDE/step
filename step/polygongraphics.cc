@@ -242,6 +242,7 @@ void PolygonGraphicsItem::paint(QPainter* painter, const QStyleOptionGraphicsIte
 
 void PolygonGraphicsItem::viewScaleChanged()
 {
+    /// XXX: optimize it !
     prepareGeometryChange();
 
     const StepCore::Vector2d& v = polygon()->velocity();

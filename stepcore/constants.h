@@ -46,6 +46,9 @@ public:
     /** Speed of light in vacuum */
     static const double SpeedOfLight; // m*s^-1
 
+    /** Boltzmann's constant */
+    static const double Boltzmann; // J/K
+
     /** Standard acceleration of gravity (free fall on Earth) */
     static const double WeightAccel;     // m*s^-2
 };

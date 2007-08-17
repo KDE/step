@@ -216,6 +216,80 @@ protected:
 };
 
 /** \ingroup tools
+ *  \brief Meter to observe properties of other objects
+ *
+ *  Actual displaying of the Meter and its user interaction
+ *  should be implemented by application
+ */
+class Meter: public Item, public Tool
+{
+    STEPCORE_OBJECT(Meter)
+
+public:
+    /** Constructs Meter */
+    explicit Meter(Vector2d position = Vector2d(0), Vector2d size = Vector2d(50,25));
+
+    /** Get position of the meter */
+    const Vector2d& position() const { return _position; }
+    /** Set position of the meter */
+    void setPosition(const Vector2d& position) { _position = position; }
+
+    /** Get size of the meter */
+    const Vector2d& size() const { return _size; }
+    /** Set size of the meter */
+    void setSize(const Vector2d& size) { _size = size; }
+
+    /** Get pointer to the observed object */
+    const Object* objectPtr() const { return _objectPtr; }
+    /** Set pointer to the observed object */
+    void setObjectPtr(Object* objectPtr) { _objectPtr = objectPtr; }
+
+    /** Get name of the observed object */
+    QString object() const { return _objectPtr ? _objectPtr->name() : QString(); }
+    /** Set name of the observed object */
+    void setObject(const QString& object) { setObjectPtr(world()->object(object)); }
+    
+    /** Get name of the observed property */
+    QString property() const { return _property; }
+    /** Set name of the observed property */
+    void setProperty(const QString& property) { _property = property; }
+
+    /** Get vector index of the observed property */
+    int index() const { return _index; }
+    /** Set vector index of the observed property */
+    void setIndex(int index) { _index = index; }
+
+    /** Returns true if observed property is valid */
+    bool isValid() const;
+
+    /** Get pointer to the observed property */
+    const MetaProperty* propertyPtr() const {
+        return _objectPtr ? _objectPtr->metaObject()->property(_property) : 0;
+    }
+
+    /** Get value of the observed property */
+    double value() const { return value(0); }
+
+    /** Set value of the controlled property */
+    virtual void setValue(double) {}
+
+    /** Get value of the observed property
+     *  \param ok Will indicate success of operation (if not null) */
+    double value(bool* ok) const;
+
+    void worldItemRemoved(Item* item);
+    void setWorld(World* world);
+
+protected:
+    Vector2d _position;
+    Vector2d _size;
+
+    Object*  _objectPtr;
+    QString  _property;
+    int      _index;
+};
+
+/** \ingroup tools
  *  \brief Controller item to control properties of other objects
  *
  *  Actual displaying of the Controller and its user interaction

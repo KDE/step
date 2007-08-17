@@ -119,6 +119,9 @@ public:
     void worldDataChanged(bool);
 
 protected:
+    virtual StepCore::Vector2d value();
+    virtual void setValue(const StepCore::Vector2d& value);
+
     void mouseMoveEvent(QGraphicsSceneMouseEvent *event);
     const StepCore::MetaProperty* _property;
 };

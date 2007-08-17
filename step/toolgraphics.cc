@@ -20,6 +20,7 @@
 #include "toolgraphics.moc"
 
 #include "ui_configure_graph.h"
+#include "ui_configure_meter.h"
 #include "ui_configure_controller.h"
 
 #include <stepcore/solver.h>
@@ -38,6 +39,7 @@
 #include <QGridLayout>
 #include <QComboBox>
 #include <QLabel>
+#include <QLCDNumber>
 #include <KPlotWidget>
 #include <KPlotObject>
 #include <KPlotPoint>
@@ -657,6 +659,175 @@ void GraphMenuHandler::clearGraph()
     //_lastPointTime = -HUGE_VAL; // XXX
     _worldModel->setProperty(graph(), graph()->metaObject()->property("points"),
                                QVariant::fromValue(std::vector<StepCore::Vector2d>()) );
+}
+
+////////////////////////////////////////////////////
+MeterGraphicsItem::MeterGraphicsItem(StepCore::Item* item, WorldModel* worldModel)
+    : WorldGraphicsItem(item, worldModel)
+{
+    Q_ASSERT(dynamic_cast<StepCore::Meter*>(_item) != NULL);
+    setFlag(QGraphicsItem::ItemIsSelectable);
+    setFlag(QGraphicsItem::ItemIsMovable);
+    setAcceptsHoverEvents(true);
+
+    _widget = new QLCDNumber();
+    _widget->setFrameShape(QFrame::Box);
+    _widget->setSegmentStyle(QLCDNumber::Flat);
+    _widget->display(0);
+
+    _boundingRect = QRectF(0, 0, 0, 0);
+    _lastScale = 1;
+    _lastValue = 0;
+    scale(1, -1);
+
+}
+
+MeterGraphicsItem::~MeterGraphicsItem()
+{
+    _widget->hide();
+    delete _widget;
+}
+
+inline StepCore::Meter* MeterGraphicsItem::meter() const
+{
+    return static_cast<StepCore::Meter*>(_item);
+}
+
+void MeterGraphicsItem::paint(QPainter* painter, const QStyleOptionGraphicsItem* /*option*/, QWidget* /*widget*/)
+{
+    painter->setRenderHint(QPainter::Antialiasing, true);
+    if(_isSelected) painter->setPen(QPen(SELECTION_COLOR, 0, Qt::DashLine));
+    else painter->setPen(QPen(Qt::white));
+    painter->setBrush(QBrush(Qt::white));
+    painter->drawRect(_boundingRect);
+}
+
+void MeterGraphicsItem::viewScaleChanged()
+{
+    double s = currentViewScale();
+    if(s != _lastScale) {
+        resetTransform();
+        scale(1/s, -1/s);
+        _lastScale = s;
+    }
+    
+    setPos(vectorToPoint(meter()->position()));
+
+    StepCore::Vector2d vs = meter()->size();
+    QSizeF vss(vs[0]+2, vs[1]+2);
+
+    if(vss != _boundingRect.size()) {
+        prepareGeometryChange();
+        _boundingRect.setSize(vss);
+        update();
+    }
+
+    if(scene() && !scene()->views().isEmpty()) {
+        QGraphicsView* activeView = scene()->views().first();
+
+        // Reparent the widget if necessary.
+        if(_widget->parentWidget() != activeView->viewport()) {
+           _widget->setParent(activeView->viewport());
+           _widget->show();
+        }
+
+        QTransform itemTransform = deviceTransform(activeView->viewportTransform());
+        QPoint viewportPos = itemTransform.map(QPointF(0, 0)).toPoint() + QPoint(1,1);
+
+        if(_widget->pos() != viewportPos)
+            _widget->move(viewportPos);
+
+        if(_widget->size() != _boundingRect.size())
+            _widget->resize(vss.toSize() - QSize(2,2));
+    }
+}
+
+void MeterGraphicsItem::stateChanged()
+{
+    update();
+}
+
+void MeterGraphicsItem::worldDataChanged(bool dynamicOnly)
+{
+    if(!dynamicOnly) {
+        viewScaleChanged();
+    }
+
+    double value = meter()->value();
+    _widget->display(value);
+
+    //_lastValue = value;
+}
+
+void MeterMenuHandler::populateMenu(QMenu* menu)
+{
+    _confUi = 0;
+    _confDialog = 0;
+    _confChanged = false;
+
+    menu->addAction(KIcon("configure"), i18n("Configure meter..."), this, SLOT(configureMeter()));
+    menu->addSeparator();
+    ItemMenuHandler::populateMenu(menu);
+}
+
+inline StepCore::Meter* MeterMenuHandler::meter() const
+{
+    return static_cast<StepCore::Meter*>(_object);
+}
+
+void MeterMenuHandler::configureMeter()
+{
+    if(_worldModel->isSimulationActive())
+        _worldModel->simulationStop();
+
+    _confChanged = false;
+    _confDialog = new KDialog(); // XXX
+    
+    _confDialog->setCaption(i18n("Configure meter"));
+    _confDialog->setButtons(KDialog::Ok | KDialog::Cancel | KDialog::Apply);
+
+    _confUi = new Ui::WidgetConfigureMeter;
+    _confUi->setupUi(_confDialog->mainWidget());
+
+    _confUi->dataSource->setDataSource(_worldModel, meter()->object(),
+                                    meter()->property(), meter()->index());
+
+    connect(_confDialog, SIGNAL(applyClicked()), this, SLOT(confApply()));
+    connect(_confDialog, SIGNAL(okClicked()), this, SLOT(confApply()));
+
+    connect(_confUi->dataSource, SIGNAL(dataSourceChanged()), this, SLOT(confChanged()));
+
+    _confDialog->exec();
+
+    delete _confDialog; _confDialog = 0;
+    delete _confUi; _confUi = 0;
+}
+
+void MeterMenuHandler::confApply()
+{
+    Q_ASSERT(_confUi && _confDialog);
+
+    // XXX: check for actual change ?
+    if(!_confChanged) return;
+    _worldModel->beginMacro(i18n("Edit %1", meter()->name()));
+    _worldModel->beginUpdate();
+
+    _worldModel->setProperty(meter(), meter()->metaObject()->property("object"),
+                                _confUi->dataSource->dataObject());
+    _worldModel->setProperty(meter(), meter()->metaObject()->property("property"),
+                                _confUi->dataSource->dataProperty());
+    _worldModel->setProperty(meter(), meter()->metaObject()->property("index"),
+                                _confUi->dataSource->dataIndex());
+
+    _worldModel->endUpdate();
+    _worldModel->endMacro();
+}
+
+void MeterMenuHandler::confChanged()
+{
+    Q_ASSERT(_confUi && _confDialog);
+    _confChanged = true;
+    _confDialog->enableButtonApply(true);
 }
 
 ////////////////////////////////////////////////////
