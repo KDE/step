@@ -115,7 +115,8 @@ double Gas::randomGauss(double mean, double deviation)
 }
 
 GasParticleList Gas::rectCreateParticles(int count,
-                                double mass, double temperature)
+                                double mass, double temperature,
+                                const Vector2d& meanVelocity)
 {
     GasParticleList particles;
 
@@ -125,7 +126,7 @@ GasParticleList Gas::rectCreateParticles(int count,
 
     for(int i=0; i<count; ++i) {
         Vector2d pos(randomUniform(r0[0], r1[0]), randomUniform(r0[1], r1[1]));
-        Vector2d vel(randomGauss(0, deviation), randomGauss(0, deviation));
+        Vector2d vel(randomGauss(meanVelocity[0], deviation), randomGauss(meanVelocity[1], deviation));
         GasParticle* particle = new GasParticle(pos, vel, mass);
         particles.push_back(particle);
     }

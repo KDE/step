@@ -5,8 +5,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>237</width>
-    <height>106</height>
+    <width>247</width>
+    <height>129</height>
    </rect>
   </property>
   <property name="windowTitle" >
@@ -79,6 +79,23 @@
        <widget class="QLineEdit" name="lineEditTemperature" >
         <property name="text" >
          <string>1e21</string>
+        </property>
+        <property name="alignment" >
+         <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+        </property>
+       </widget>
+      </item>
+      <item row="3" column="0" >
+       <widget class="QLabel" name="label_4" >
+        <property name="text" >
+         <string>Mean velocity:</string>
+        </property>
+       </widget>
+      </item>
+      <item row="3" column="1" >
+       <widget class="QLineEdit" name="lineEditMeanVelocity" >
+        <property name="text" >
+         <string>(0,0)</string>
         </property>
         <property name="alignment" >
          <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>

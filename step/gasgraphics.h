@@ -29,8 +29,6 @@ public:
            : ItemCreator(className, worldModel, worldScene) {}
 
     bool sceneEvent(QEvent* event);
-protected:
-    double random11();
 };
 
 class GasArrowHandlerGraphicsItem;

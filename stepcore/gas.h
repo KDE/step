@@ -104,7 +104,8 @@ public:
     /** Creates particles with given temperature
      *  \todo XXX Normalize temperature after particle creation */
     GasParticleList rectCreateParticles(int count,
-                                double mass, double temperature);
+                                double mass, double temperature,
+                                const Vector2d& meanVelocity);
 
     void addParticles(const GasParticleList& particles);
 

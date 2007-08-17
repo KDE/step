@@ -34,11 +34,6 @@
 
 #include <float.h>
 
-double GasCreator::random11()
-{
-    return double(qrand()) / (RAND_MAX/2) - 1;
-}
-
 bool GasCreator::sceneEvent(QEvent* event)
 {
     if(event->type() == QEvent::GraphicsSceneMousePress) {
@@ -187,6 +182,9 @@ void GasMenuHandler::createGasParticles()
                 new QIntValidator(0, 1000, _createGasParticlesUi->lineEditCount));
     _createGasParticlesUi->lineEditTemperature->setValidator(
                 new QDoubleValidator(0, HUGE_VAL, DBL_DIG, _createGasParticlesUi->lineEditTemperature));
+    _createGasParticlesUi->lineEditMeanVelocity->setValidator(
+                new QRegExpValidator(QRegExp("^\\([+-]?\\d+(\\.\\d*)?([eE]\\d*)?,[+-]?\\d+(\\.\\d*)?([eE]\\d*)?\\)$"),
+                        _createGasParticlesUi->lineEditMeanVelocity));
 
     connect(_createGasParticlesDialog, SIGNAL(okClicked()), this, SLOT(createGasParticlesApply()));
 
@@ -206,8 +204,13 @@ void GasMenuHandler::createGasParticlesApply()
     int count = _createGasParticlesUi->lineEditCount->text().toInt();
     double mass = _createGasParticlesUi->lineEditMass->text().toDouble();
     double temperature = _createGasParticlesUi->lineEditTemperature->text().toDouble();
+
+    bool ok;
+    StepCore::Vector2d meanVelocity = StepCore::stringToType<StepCore::Vector2d>(
+                    _createGasParticlesUi->lineEditMeanVelocity->text(), &ok);
+
     std::vector<StepCore::GasParticle*> particles =
-            gas()->rectCreateParticles(count, mass, temperature);
+            gas()->rectCreateParticles(count, mass, temperature, meanVelocity);
 
 
     const StepCore::GasParticleList::const_iterator end = particles.end();

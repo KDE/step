@@ -54,6 +54,7 @@ STEPCORE_META_OBJECT(Meter, "Meter", 0,
     STEPCORE_PROPERTY_RW(QString, property, "Observed property", property, setProperty)
     STEPCORE_PROPERTY_RW(int, index, "Vector index", index, setIndex)
     STEPCORE_PROPERTY_R (double, value, "Value", value)
+    STEPCORE_PROPERTY_RW(int, digits, "Display digits", digits, setDigits)
     )
 
 STEPCORE_META_OBJECT(Controller, "Controller", 0,
@@ -199,7 +200,8 @@ void Graph::setWorld(World* world)
 
 Meter::Meter(Vector2d position, Vector2d size)
     : _position(position), _size(size),
-      _objectPtr(0), _property(), _index(-1)
+      _objectPtr(0), _property(), _index(-1),
+      _digits(7)
 {
 }
 

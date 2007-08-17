@@ -7,24 +7,24 @@
 
     <item class="Polygon">
         <name>polygon1</name>
-        <position>(-1.0601,0)</position>
+        <position>(-1.055,0)</position>
         <angle>0</angle>
         <velocity>(0,0)</velocity>
         <angularVelocity>0</angularVelocity>
         <mass>inf</mass>
         <inertia>inf</inertia>
-        <vertexes>(-0.05,1.3),(0.05,1.3),(0.05,-1),(-0.05,-1)</vertexes>
+        <vertexes>(-0.05,1.3),(0.05,1.3),(0.05,-1.11),(-0.05,-1.11)</vertexes>
     </item>
 
     <item class="Polygon">
         <name>polygon2</name>
-        <position>(1.0601,0)</position>
+        <position>(1.055,0)</position>
         <angle>0</angle>
         <velocity>(0,0)</velocity>
         <angularVelocity>0</angularVelocity>
         <mass>inf</mass>
         <inertia>inf</inertia>
-        <vertexes>(-0.05,1.3),(0.05,1.3),(0.05,-1),(-0.05,-1)</vertexes>
+        <vertexes>(-0.05,1.3),(0.05,1.3),(0.05,-1.11),(-0.05,-1.11)</vertexes>
     </item>
 
     <item class="Polygon">
@@ -205,7 +205,7 @@
 
     <item class="Spring">
         <name>spring1</name>
-        <restLength>1.76</restLength>
+        <restLength>1.7601</restLength>
         <stiffness>1</stiffness>
         <body1>polygon3</body1>
         <body2>polygon4</body2>
@@ -215,7 +215,7 @@
 
     <item class="Note">
         <name>note1</name>
-        <position>(-1.78902,0.90091)</position>
+        <position>(-1.83083,0.90091)</position>
         <text>&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
 p, li { white-space: pre-wrap; }
 &lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:'Sans Serif'; font-size:10pt; font-weight:400; font-style:normal;&quot;&gt;
@@ -224,25 +224,27 @@ p, li { white-space: pre-wrap; }
 
     <item class="Meter">
         <name>meter1</name>
-        <position>(-1.55807,0.908071)</position>
-        <size>(50,25)</size>
+        <position>(-1.59988,0.908071)</position>
+        <size>(70,25)</size>
         <object>gas1</object>
         <property>rectConcentration</property>
         <index>-1</index>
+        <digits>7</digits>
     </item>
 
     <item class="Meter">
         <name>meter2</name>
-        <position>(-1.55807,0.608071)</position>
-        <size>(50,25)</size>
+        <position>(-1.59988,0.608071)</position>
+        <size>(70,25)</size>
         <object>gas1</object>
         <property>rectPressure</property>
         <index>-1</index>
+        <digits>7</digits>
     </item>
 
     <item class="Note">
         <name>note3</name>
-        <position>(-1.78781,0.294439)</position>
+        <position>(-1.82962,0.294439)</position>
         <text>&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
 p, li { white-space: pre-wrap; }
 &lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:'Sans Serif'; font-size:10pt; font-weight:400; font-style:normal;&quot;&gt;
@@ -251,16 +253,17 @@ p, li { white-space: pre-wrap; }
 
     <item class="Meter">
         <name>meter3</name>
-        <position>(-1.55779,0.308077)</position>
-        <size>(50,25)</size>
+        <position>(-1.5996,0.308077)</position>
+        <size>(70,25)</size>
         <object>gas1</object>
         <property>rectTemperature</property>
         <index>-1</index>
+        <digits>7</digits>
     </item>
 
     <item class="Note">
         <name>note2</name>
-        <position>(-1.78976,0.598109)</position>
+        <position>(-1.83157,0.598109)</position>
         <text>&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
 p, li { white-space: pre-wrap; }
 &lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:'Sans Serif'; font-size:10pt; font-weight:400; font-style:normal;&quot;&gt;
@@ -269,7 +272,7 @@ p, li { white-space: pre-wrap; }
 
     <item class="Note">
         <name>note5</name>
-        <position>(-1.80779,-0.224523)</position>
+        <position>(-1.8496,-0.224523)</position>
         <text>&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
 p, li { white-space: pre-wrap; }
 &lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:'Sans Serif'; font-size:10pt; font-weight:400; font-style:normal;&quot;&gt;
@@ -278,16 +281,17 @@ p, li { white-space: pre-wrap; }
 
     <item class="Meter">
         <name>meter4</name>
-        <position>(-1.55919,-0.219823)</position>
-        <size>(50,25)</size>
+        <position>(-1.601,-0.219823)</position>
+        <size>(70,25)</size>
         <object>spring1</object>
         <property>tension</property>
         <index>-1</index>
+        <digits>7</digits>
     </item>
 
     <item class="Note">
         <name>note4</name>
-        <position>(-1.77109,1.22114)</position>
+        <position>(-1.76586,1.22114)</position>
         <text>&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
 p, li { white-space: pre-wrap; }
 &lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:'Sans Serif'; font-size:10pt; font-weight:400; font-style:normal;&quot;&gt;&lt;h4&gt;
@@ -297,7 +301,7 @@ p, li { white-space: pre-wrap; }
 
     <item class="Note">
         <name>note6</name>
-        <position>(-1.82349,0.00549995)</position>
+        <position>(-1.82872,0.00549995)</position>
         <text>&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
 p, li { white-space: pre-wrap; }
 &lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:'Sans Serif'; font-size:10pt; font-weight:400; font-style:normal;&quot;&gt;&lt;h4&gt;&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Spring tension:&lt;/p&gt;&lt;/h4&gt;&lt;/body&gt;&lt;/html&gt;</text>
@@ -305,7 +309,7 @@ p, li { white-space: pre-wrap; }
 
     <item class="Note">
         <name>note7</name>
-        <position>(-1.8039,-0.435243)</position>
+        <position>(-1.8248,-0.440469)</position>
         <text>&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
 p, li { white-space: pre-wrap; }
 &lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:'Sans Serif'; font-size:10pt; font-weight:400; font-style:normal;&quot;&gt;

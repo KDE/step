@@ -227,7 +227,7 @@ class Meter: public Item, public Tool
 
 public:
     /** Constructs Meter */
-    explicit Meter(Vector2d position = Vector2d(0), Vector2d size = Vector2d(50,25));
+    explicit Meter(Vector2d position = Vector2d(0), Vector2d size = Vector2d(70,25));
 
     /** Get position of the meter */
     const Vector2d& position() const { return _position; }
@@ -259,6 +259,11 @@ public:
     /** Set vector index of the observed property */
     void setIndex(int index) { _index = index; }
 
+    /** Get display digits */
+    int digits() const { return _digits; }
+    /** Set display digits */
+    void setDigits(int digits) { _digits = digits; }
+
     /** Returns true if observed property is valid */
     bool isValid() const;
 
@@ -287,6 +292,8 @@ protected:
     Object*  _objectPtr;
     QString  _property;
     int      _index;
+
+    int      _digits;
 };
 
 /** \ingroup tools

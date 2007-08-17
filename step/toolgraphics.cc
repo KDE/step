@@ -751,6 +751,9 @@ void MeterGraphicsItem::worldDataChanged(bool dynamicOnly)
 {
     if(!dynamicOnly) {
         viewScaleChanged();
+
+        if(meter()->digits() != _widget->numDigits())
+            _widget->setNumDigits(meter()->digits());
     }
 
     double value = meter()->value();
@@ -792,10 +795,15 @@ void MeterMenuHandler::configureMeter()
     _confUi->dataSource->setDataSource(_worldModel, meter()->object(),
                                     meter()->property(), meter()->index());
 
+    _confUi->lineEditDigits->setValidator(
+                new QIntValidator(0, 100, _confUi->lineEditDigits));
+    _confUi->lineEditDigits->setText(QString::number(meter()->digits()));
+
     connect(_confDialog, SIGNAL(applyClicked()), this, SLOT(confApply()));
     connect(_confDialog, SIGNAL(okClicked()), this, SLOT(confApply()));
 
     connect(_confUi->dataSource, SIGNAL(dataSourceChanged()), this, SLOT(confChanged()));
+    connect(_confUi->lineEditDigits, SIGNAL(textEdited(const QString&)), this, SLOT(confChanged()));
 
     _confDialog->exec();
 
@@ -818,6 +826,9 @@ void MeterMenuHandler::confApply()
                                 _confUi->dataSource->dataProperty());
     _worldModel->setProperty(meter(), meter()->metaObject()->property("index"),
                                 _confUi->dataSource->dataIndex());
+
+    _worldModel->setProperty(meter(), meter()->metaObject()->property("digits"),
+                                _confUi->lineEditDigits->text().toInt());
 
     _worldModel->endUpdate();
     _worldModel->endMacro();
