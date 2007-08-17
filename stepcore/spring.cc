@@ -35,6 +35,7 @@ STEPCORE_META_OBJECT(Spring, "Massless spring", 0,
     STEPCORE_PROPERTY_RW(StepCore::Vector2d, localPosition2, "Local position 2", localPosition2, setLocalPosition2)
     STEPCORE_PROPERTY_R_D(StepCore::Vector2d, position1, "Position1", position1)
     STEPCORE_PROPERTY_R_D(StepCore::Vector2d, position2, "Position2", position2)
+    STEPCORE_PROPERTY_R_D(double, tension, "Spring tension force", tension)
     )
 
 Spring::Spring(double restLength, double stiffness, Body* bodyPtr1, Body* bodyPtr2)
@@ -120,6 +121,11 @@ Vector2d Spring::position2() const
     if(r2) return r2->pointLocalToWorld(_localPosition2);
 
     return _localPosition2;
+}
+
+double Spring::tension() const
+{
+    return _stiffness * (length() - _restLength);
 }
 
 void Spring::worldItemRemoved(Item* item)

@@ -117,6 +117,9 @@ public:
     /** Set position of the second end of the spring (will be ignored the end is connected) */
     //void setPosition2(const Vector2d& position2) { if(!_bodyPtr2) _position2 = position2; }
 
+    /** Tension force */
+    double tension() const;
+
     void worldItemRemoved(Item* item);
     void setWorld(World* world);
 
