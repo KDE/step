@@ -51,6 +51,8 @@
 
     <item class="Gas">
         <name>gas1</name>
+        <measureRectCenter>(-0.0125075,-0.266827)</measureRectCenter>
+        <measureRectSize>(1.95951,1.44253)</measureRectSize>
 
         <item class="GasLJForce">
             <name>gasLJForce1</name>
@@ -209,6 +211,109 @@
         <body2>polygon4</body2>
         <localPosition1>(0,0)</localPosition1>
         <localPosition2>(0,0)</localPosition2>
+    </item>
+
+    <item class="Note">
+        <name>note1</name>
+        <position>(-1.78902,0.90091)</position>
+        <text>&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
+p, li { white-space: pre-wrap; }
+&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:'Sans Serif'; font-size:10pt; font-weight:400; font-style:normal;&quot;&gt;
+&lt;p style=&quot; margin-top:14px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-size:large; font-weight:600;&quot;&gt;&lt;span style=&quot; font-size:large;&quot;&gt;n =&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</text>
+    </item>
+
+    <item class="Meter">
+        <name>meter1</name>
+        <position>(-1.55807,0.908071)</position>
+        <size>(50,25)</size>
+        <object>gas1</object>
+        <property>rectConcentration</property>
+        <index>-1</index>
+    </item>
+
+    <item class="Meter">
+        <name>meter2</name>
+        <position>(-1.55807,0.608071)</position>
+        <size>(50,25)</size>
+        <object>gas1</object>
+        <property>rectPressure</property>
+        <index>-1</index>
+    </item>
+
+    <item class="Note">
+        <name>note3</name>
+        <position>(-1.78781,0.294439)</position>
+        <text>&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
+p, li { white-space: pre-wrap; }
+&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:'Sans Serif'; font-size:10pt; font-weight:400; font-style:normal;&quot;&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;h3&gt;T =&lt;/h3&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</text>
+    </item>
+
+    <item class="Meter">
+        <name>meter3</name>
+        <position>(-1.55779,0.308077)</position>
+        <size>(50,25)</size>
+        <object>gas1</object>
+        <property>rectTemperature</property>
+        <index>-1</index>
+    </item>
+
+    <item class="Note">
+        <name>note2</name>
+        <position>(-1.78976,0.598109)</position>
+        <text>&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
+p, li { white-space: pre-wrap; }
+&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:'Sans Serif'; font-size:10pt; font-weight:400; font-style:normal;&quot;&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;h3&gt;p =&lt;/h3&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</text>
+    </item>
+
+    <item class="Note">
+        <name>note5</name>
+        <position>(-1.80779,-0.224523)</position>
+        <text>&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
+p, li { white-space: pre-wrap; }
+&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:'Sans Serif'; font-size:10pt; font-weight:400; font-style:normal;&quot;&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;h3&gt;F&lt;sub&gt;s&lt;/sub&gt; =&lt;/h3&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</text>
+    </item>
+
+    <item class="Meter">
+        <name>meter4</name>
+        <position>(-1.55919,-0.219823)</position>
+        <size>(50,25)</size>
+        <object>spring1</object>
+        <property>tension</property>
+        <index>-1</index>
+    </item>
+
+    <item class="Note">
+        <name>note4</name>
+        <position>(-1.77109,1.22114)</position>
+        <text>&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
+p, li { white-space: pre-wrap; }
+&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:'Sans Serif'; font-size:10pt; font-weight:400; font-style:normal;&quot;&gt;&lt;h4&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Macroscopic&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;quantities:&lt;/p&gt;&lt;/h4&gt;&lt;/body&gt;&lt;/html&gt;</text>
+    </item>
+
+    <item class="Note">
+        <name>note6</name>
+        <position>(-1.82349,0.00549995)</position>
+        <text>&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
+p, li { white-space: pre-wrap; }
+&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:'Sans Serif'; font-size:10pt; font-weight:400; font-style:normal;&quot;&gt;&lt;h4&gt;&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Spring tension:&lt;/p&gt;&lt;/h4&gt;&lt;/body&gt;&lt;/html&gt;</text>
+    </item>
+
+    <item class="Note">
+        <name>note7</name>
+        <position>(-1.8039,-0.435243)</position>
+        <text>&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
+p, li { white-space: pre-wrap; }
+&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:'Sans Serif'; font-size:10pt; font-weight:400; font-style:normal;&quot;&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;(run simulation&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;for ~20 seconds&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;and compare&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;spring tension&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;with pressure)&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</text>
     </item>
 
     <solver class="AdaptiveEulerSolver">
