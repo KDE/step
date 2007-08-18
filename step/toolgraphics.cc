@@ -438,12 +438,16 @@ void GraphGraphicsItem::worldDataChanged(bool dynamicOnly)
         if(graph()->isValidX()) {
             labelX = i18n("%1.%2", graph()->objectX(), graph()->propertyX());
             if(graph()->indexX() >= 0) labelX.append(i18n("[%1]", graph()->indexX()));
+            QString units = graph()->unitsX();
+            if(!units.isEmpty()) labelX.append(" [").append(units).append("]");
         } else {
             labelX = i18n("[not configured]");
         }
         if(graph()->isValidY()) {
             labelY = i18n("%1.%2", graph()->objectY(), graph()->propertyY());
             if(graph()->indexY() >= 0) labelY.append(i18n("[%1]", graph()->indexY()));
+            QString units = graph()->unitsY();
+            if(!units.isEmpty()) labelY.append(" [").append(units).append("]");
         } else {
             labelY = i18n("[not configured]");
         }
@@ -670,16 +674,28 @@ MeterGraphicsItem::MeterGraphicsItem(StepCore::Item* item, WorldModel* worldMode
     setFlag(QGraphicsItem::ItemIsMovable);
     setAcceptsHoverEvents(true);
 
-    _widget = new QLCDNumber();
+    _widget = new QFrame();
     _widget->setFrameShape(QFrame::Box);
-    _widget->setSegmentStyle(QLCDNumber::Flat);
-    _widget->display(0);
+
+    QGridLayout* layout = new QGridLayout(_widget);
+    layout->setContentsMargins(0,0,2,0);
+    layout->setSpacing(0);
+
+    _lcdNumber = new QLCDNumber(_widget);
+    _lcdNumber->setFrameShape(QFrame::NoFrame);
+    _lcdNumber->setSegmentStyle(QLCDNumber::Flat);
+    _lcdNumber->display(0);
+
+    _labelUnits = new QLabel(_widget);
+    _labelUnits->setAlignment(Qt::AlignRight | Qt::AlignVCenter);
+
+    layout->addWidget(_lcdNumber, 0, 0, 1, 1);
+    layout->addWidget(_labelUnits, 0, 1, 1, 1);
 
     _boundingRect = QRectF(0, 0, 0, 0);
     _lastScale = 1;
     _lastValue = 0;
     scale(1, -1);
-
 }
 
 MeterGraphicsItem::~MeterGraphicsItem()
@@ -752,12 +768,18 @@ void MeterGraphicsItem::worldDataChanged(bool dynamicOnly)
     if(!dynamicOnly) {
         viewScaleChanged();
 
-        if(meter()->digits() != _widget->numDigits())
-            _widget->setNumDigits(meter()->digits());
+        if(meter()->digits() != _lcdNumber->numDigits())
+            _lcdNumber->setNumDigits(meter()->digits());
+
+        QString units = meter()->units();
+        if(!units.isEmpty()) {
+             if(units != _labelUnits->text())
+                 _labelUnits->setText(units);
+        }
     }
 
     double value = meter()->value();
-    _widget->display(value);
+    _lcdNumber->display(value);
 
     //_lastValue = value;
 }
@@ -977,6 +999,8 @@ void ControllerGraphicsItem::worldDataChanged(bool dynamicOnly)
         if(controller()->isValid()) {
             source = i18n("%1.%2", controller()->object(), controller()->property());
             if(controller()->index() >= 0) source.append(i18n("[%1]", controller()->index()));
+            QString units = controller()->units();
+            if(!units.isEmpty()) source.append(" [").append(units).append("]");
         } else {
             source = i18n("[not configured]");
         }

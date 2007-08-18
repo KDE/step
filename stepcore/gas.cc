@@ -32,16 +32,17 @@ STEPCORE_META_OBJECT(GasLJForce, "Lennard-Jones force", 0,
     STEPCORE_PROPERTY_RW(double, rmin, "m", "Distance at which the force is zero", rmin, setRmin)
     STEPCORE_PROPERTY_RW(double, cutoff, "m", "Cut-off distance", cutoff, setCutoff))
 
+// XXX: Check units for 2d
 STEPCORE_META_OBJECT(Gas, "Particle gas", 0, STEPCORE_SUPER_CLASS(ItemGroup),
     STEPCORE_PROPERTY_RW(StepCore::Vector2d, measureRectCenter, "m",
                 "Center of the rect for measurements", measureRectCenter, setMeasureRectCenter)
     STEPCORE_PROPERTY_RW(StepCore::Vector2d, measureRectSize, "m",
                 "Size of the rect for measurements", measureRectSize, setMeasureRectSize)
-    STEPCORE_PROPERTY_R_D(double, rectVolume, "m^3",
+    STEPCORE_PROPERTY_R_D(double, rectVolume, "m^2",
                 "Volume of the measureRect", rectVolume)
     STEPCORE_PROPERTY_R_D(double, rectParticleCount, STEPCORE_UNITS_1,
                 "Count of particles in the measureRect", rectParticleCount)
-    STEPCORE_PROPERTY_R_D(double, rectConcentration, "1/m^3",
+    STEPCORE_PROPERTY_R_D(double, rectConcentration, "1/m^2",
                 "Concentration of particles in the measureRect", rectConcentration)
     STEPCORE_PROPERTY_R_D(double, rectPressure, "Pa",
                 "Pressure of particles in the measureRect", rectPressure)
@@ -49,6 +50,8 @@ STEPCORE_META_OBJECT(Gas, "Particle gas", 0, STEPCORE_SUPER_CLASS(ItemGroup),
                 "Temperature of particles in the measureRect", rectTemperature)
     STEPCORE_PROPERTY_R_D(double, rectMeanKineticEnergy, "J",
                 "Mean kinetic energy of particles in the measureRect", rectMeanKineticEnergy)
+    STEPCORE_PROPERTY_R_D(double, rectMeanParticleMass, "kg",
+                "Mean mass of particles in the measureRect", rectMeanParticleMass)
     STEPCORE_PROPERTY_R_D(StepCore::Vector2d, rectMeanVelocity, "m/s",
                 "Mean velocity of particles in the measureRect", rectMeanVelocity)
     )
@@ -164,6 +167,28 @@ double Gas::rectParticleCount() const
     }
 
     return count;
+}
+
+double Gas::rectMeanParticleMass() const
+{
+    Vector2d r0 = _measureRectCenter-_measureRectSize/2.0;
+    Vector2d r1 = _measureRectCenter+_measureRectSize/2.0;
+
+    GasParticle* p1;
+    double count = 0;
+    double mass = 0;
+
+    const ItemList::const_iterator end = items().end();
+    for(ItemList::const_iterator i1 = items().begin(); i1 != end; ++i1) {
+        if(NULL == (p1 = dynamic_cast<GasParticle*>(*i1))) continue;
+        if(p1->position()[0] < r0[0] || p1->position()[0] > r1[0] ||
+            p1->position()[1] < r0[1] || p1->position()[1] > r1[1]) continue;
+        mass += p1->mass();
+        ++count;
+    }
+
+    mass /= count;
+    return mass;
 }
 
 double Gas::rectConcentration() const

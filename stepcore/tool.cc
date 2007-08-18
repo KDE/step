@@ -43,8 +43,10 @@ STEPCORE_META_OBJECT(Graph, "Graph", 0,
     STEPCORE_PROPERTY_RW(StepCore::Vector2d, limitsY, STEPCORE_UNITS_NULL, "Limits along Y axis", limitsY, setLimitsY)
     STEPCORE_PROPERTY_RW(bool, showPoints, STEPCORE_UNITS_NULL, "Show points on the graph", showPoints, setShowPoints)
     STEPCORE_PROPERTY_RW(bool, showLines, STEPCORE_UNITS_NULL, "Show lines on the graph", showLines, setShowLines)
-    STEPCORE_PROPERTY_R_D(StepCore::Vector2d, currentValue, STEPCORE_UNITS_NULL, "Current value", currentValue)
+    STEPCORE_PROPERTY_R (StepCore::Vector2d, currentValue, STEPCORE_UNITS_NULL, "Current value", currentValue)
     STEPCORE_PROPERTY_RW_D(std::vector<StepCore::Vector2d>, points, STEPCORE_UNITS_NULL, "points", points, setPoints)
+    STEPCORE_PROPERTY_R (QString, unitsX, STEPCORE_UNITS_NULL, "Units along X axis", unitsX)
+    STEPCORE_PROPERTY_R (QString, unitsY, STEPCORE_UNITS_NULL, "Units along Y axis", unitsY)
     )
 
 STEPCORE_META_OBJECT(Meter, "Meter", 0,
@@ -54,8 +56,9 @@ STEPCORE_META_OBJECT(Meter, "Meter", 0,
     STEPCORE_PROPERTY_RW(QString, object, STEPCORE_UNITS_NULL, "Observed object", object, setObject)
     STEPCORE_PROPERTY_RW(QString, property, STEPCORE_UNITS_NULL, "Observed property", property, setProperty)
     STEPCORE_PROPERTY_RW(int, index, STEPCORE_UNITS_NULL, "Vector index", index, setIndex)
-    STEPCORE_PROPERTY_R (double, value, STEPCORE_UNITS_NULL, "Value", value)
     STEPCORE_PROPERTY_RW(int, digits, STEPCORE_UNITS_NULL, "Display digits", digits, setDigits)
+    STEPCORE_PROPERTY_R (double, value, STEPCORE_UNITS_NULL, "Value", value)
+    STEPCORE_PROPERTY_R (QString, units, STEPCORE_UNITS_NULL, "Units of measured property", units)
     )
 
 STEPCORE_META_OBJECT(Controller, "Controller", 0,
@@ -73,6 +76,7 @@ STEPCORE_META_OBJECT(Controller, "Controller", 0,
     STEPCORE_PROPERTY_RW(double, increment, STEPCORE_UNITS_NULL, "Increment value", increment, setIncrement)
     STEPCORE_PROPERTY_RWF(double, value, STEPCORE_UNITS_NULL, "Value",
                             MetaProperty::DYNAMIC | MetaProperty::SIDEEFFECTS, value, setValue)
+    STEPCORE_PROPERTY_R (QString, units, STEPCORE_UNITS_NULL, "Units of controlled property", units)
     )
 
 namespace {
@@ -202,6 +206,22 @@ void Graph::setWorld(World* world)
     Item::setWorld(world);
 }
 
+QString Graph::unitsX() const
+{
+    const MetaProperty* pr = propertyXPtr();
+    if(!pr && !isValidX()) return QString();
+
+    return pr->units();
+}
+
+QString Graph::unitsY() const
+{
+    const MetaProperty* pr = propertyYPtr();
+    if(!pr && !isValidY()) return QString();
+
+    return pr->units();
+}
+
 Meter::Meter(Vector2d position, Vector2d size)
     : _position(position), _size(size),
       _objectPtr(0), _property(), _index(-1),
@@ -232,6 +252,14 @@ double Meter::value(bool* ok) const
 
     if(ok) *ok = false;
     return 0;
+}
+
+QString Meter::units() const
+{
+    const MetaProperty* pr = propertyPtr();
+    if(!pr && !isValid()) return QString();
+
+    return pr->units();
 }
 
 void Meter::worldItemRemoved(Item* item)
@@ -296,6 +324,14 @@ void Controller::setValue(double value, bool* ok = 0)
     }
 
     if(ok) *ok = false;
+}
+
+QString Controller::units() const
+{
+    const MetaProperty* pr = propertyPtr();
+    if(!pr && !isValid()) return QString();
+
+    return pr->units();
 }
 
 void Controller::worldItemRemoved(Item* item)

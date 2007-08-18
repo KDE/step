@@ -162,6 +162,7 @@ protected:
 };
 
 class QLCDNumber;
+class QFrame;
 class MeterGraphicsItem: public QObject, public WorldGraphicsItem
 {
     Q_OBJECT
@@ -182,8 +183,9 @@ protected:
     double _lastScale;
     double _lastValue;
 
-    //QWidget* _widget;
-    QLCDNumber* _widget;
+    QFrame*     _widget;
+    QLCDNumber* _lcdNumber;
+    QLabel*     _labelUnits;
 
     /*
     QLabel*  _labelMin;

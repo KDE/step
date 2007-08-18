@@ -5,8 +5,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>585</width>
-    <height>342</height>
+    <width>277</width>
+    <height>229</height>
    </rect>
   </property>
   <property name="windowTitle" >
@@ -55,9 +55,9 @@ p, li { white-space: pre-wrap; }
        </widget>
       </item>
       <item row="0" column="2" >
-       <widget class="QLabel" name="label_7" >
+       <widget class="QLabel" name="labelVolume" >
         <property name="text" >
-         <string>m²</string>
+         <string/>
         </property>
        </widget>
       </item>
@@ -84,6 +84,13 @@ p, li { white-space: pre-wrap; }
         </property>
        </widget>
       </item>
+      <item row="1" column="2" >
+       <widget class="QLabel" name="labelCount" >
+        <property name="text" >
+         <string/>
+        </property>
+       </widget>
+      </item>
       <item row="2" column="0" >
        <widget class="QLabel" name="label_6" >
         <property name="text" >
@@ -99,9 +106,9 @@ p, li { white-space: pre-wrap; }
        </widget>
       </item>
       <item row="2" column="2" >
-       <widget class="QLabel" name="label_10" >
+       <widget class="QLabel" name="labelConcentration" >
         <property name="text" >
-         <string>/m²</string>
+         <string/>
         </property>
        </widget>
       </item>
@@ -129,9 +136,9 @@ p, li { white-space: pre-wrap; }
        </widget>
       </item>
       <item row="3" column="2" >
-       <widget class="QLabel" name="label_9" >
+       <widget class="QLabel" name="labelMass" >
         <property name="text" >
-         <string>kg</string>
+         <string/>
         </property>
        </widget>
       </item>
@@ -153,9 +160,9 @@ p, li { white-space: pre-wrap; }
        </widget>
       </item>
       <item row="4" column="2" >
-       <widget class="QLabel" name="label_11" >
+       <widget class="QLabel" name="labelTemperature" >
         <property name="text" >
-         <string>K</string>
+         <string/>
         </property>
        </widget>
       </item>
@@ -177,9 +184,9 @@ p, li { white-space: pre-wrap; }
        </widget>
       </item>
       <item row="5" column="2" >
-       <widget class="QLabel" name="label_8" >
+       <widget class="QLabel" name="labelMeanVelocity" >
         <property name="text" >
-         <string>m/s</string>
+         <string/>
         </property>
        </widget>
       </item>

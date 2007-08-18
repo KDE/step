@@ -188,6 +188,12 @@ public:
     /** Clear points list */
     void clearPoints();
 
+    /** Return units of propertyX */
+    QString unitsX() const;
+
+    /** Return units of propertyY */
+    QString unitsY() const;
+
     void worldItemRemoved(Item* item);
     void setWorld(World* world);
 
@@ -281,6 +287,9 @@ public:
     /** Get value of the observed property
      *  \param ok Will indicate success of operation (if not null) */
     double value(bool* ok) const;
+
+    /** Return units of measured property */
+    QString units() const;
 
     void worldItemRemoved(Item* item);
     void setWorld(World* world);
@@ -380,6 +389,9 @@ public:
      *  \param value New value for the property
      *  \param ok Will indicate success of operation (if not null) */
     void setValue(double value, bool* ok);
+
+    /** Return units of measured property */
+    QString units() const;
 
     void worldItemRemoved(Item* item);
     void setWorld(World* world);

@@ -116,6 +116,7 @@ public:
     double rectPressure() const;
     Vector2d rectMeanVelocity() const;
     double rectMeanKineticEnergy() const;
+    double rectMeanParticleMass() const;
 
     const Vector2d& measureRectCenter() const { return _measureRectCenter; }
     void setMeasureRectCenter(const Vector2d& measureRectCenter) { _measureRectCenter = measureRectCenter; }
