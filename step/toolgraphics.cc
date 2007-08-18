@@ -772,9 +772,16 @@ void MeterGraphicsItem::worldDataChanged(bool dynamicOnly)
             _lcdNumber->setNumDigits(meter()->digits());
 
         QString units = meter()->units();
-        if(!units.isEmpty()) {
-             if(units != _labelUnits->text())
-                 _labelUnits->setText(units);
+        if(units != _labelUnits->text()) {
+            QFont font(_labelUnits->font());
+            int pixelSize = int(meter()->size()[1]/2);
+            for(; pixelSize > 0; --pixelSize) {
+                font.setPixelSize(pixelSize);
+                QFontMetrics fm(font);
+                if(fm.width(units) < int(meter()->size()[0]/3)) break;
+            }
+            _labelUnits->setFont(font);
+            _labelUnits->setText(units);
         }
     }
 
