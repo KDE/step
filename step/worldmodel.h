@@ -117,7 +117,7 @@ public:
     QString errorString() const { return _errorString; }
 
     // Names
-    QString getUniqueName(QString className) const;
+    QString getUniqueName(const QString& className) const;
     bool checkUniqueName(const QString& name) const;
 
     // Simulation

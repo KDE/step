@@ -648,11 +648,12 @@ bool WorldModel::checkUniqueName(const QString& name) const
     return true;
 }
 
-QString WorldModel::getUniqueName(QString className) const
+QString WorldModel::getUniqueName(const QString& className) const
 {
-    className[0] = className[0].toLower();
+    QString classNameCopy = className;
+    classNameCopy[0] = classNameCopy[0].toLower();
     for(int n=1; ; ++n) {
-        QString name = className + QString::number(n);
+        QString name = classNameCopy + QString::number(n);
         if(checkUniqueName(name)) return name;
     }
     return QString();
