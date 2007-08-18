@@ -90,8 +90,6 @@ protected:
     WorldScene*         worldScene;
     WorldGraphicsView*  worldGraphicsView;
 
-    KConfig* config;
-
     KAction* actionSimulation;
     KAction* actionSimulationStart;
     KAction* actionSimulationStop;

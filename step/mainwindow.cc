@@ -56,7 +56,6 @@ MainWindow::MainWindow()
     std::srand(time(NULL));
 
     setObjectName("MainWindow");
-    config = new KConfig("steprc");
 
     setCorner(Qt::TopLeftCorner, Qt::LeftDockWidgetArea);
     setCorner(Qt::BottomLeftCorner, Qt::LeftDockWidgetArea);
@@ -102,6 +101,7 @@ MainWindow::MainWindow()
 
 MainWindow::~MainWindow()
 {
+    KConfig* config = new KConfig("steprc");
     actionRecentFiles->saveEntries(config->group("RecentFiles"));
     delete config;
 }
@@ -115,7 +115,10 @@ void MainWindow::setupActions()
     KStandardAction::saveAs(this, SLOT(saveFileAs()), actionCollection());
     KStandardAction::quit(this, SLOT(close()), actionCollection());
     actionRecentFiles = KStandardAction::openRecent(this, SLOT(openFile(const KUrl&)), actionCollection());
+
+    KConfig* config = new KConfig("steprc");
     actionRecentFiles->loadEntries(config->group("RecentFiles"));
+    delete config;
 
     /* Edit menu */
     actionRedo = KStandardAction::redo(worldModel->undoStack(), SLOT(redo()), actionCollection());
