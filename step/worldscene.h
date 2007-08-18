@@ -53,6 +53,7 @@ public:
 
 public slots:
     void beginAddItem(const QString& name);
+    void settingsChanged();
 
 signals:
     void endAddItem(const QString& name, bool success);
@@ -94,6 +95,8 @@ public slots:
     void zoomOut();
     void fitToPage();
     void actualSize();
+
+    void settingsChanged();
 
 protected:
     static const int SCENE_LENGTH = 2000;

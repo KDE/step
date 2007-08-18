@@ -19,12 +19,15 @@
 #include "mainwindow.h"
 #include "mainwindow.moc"
 
+#include "ui_configure_step_general.h"
+
 #include "worldmodel.h"
 #include "worldscene.h"
 #include "worldbrowser.h"
 #include "propertiesbrowser.h"
 #include "infobrowser.h"
 #include "itempalette.h"
+#include "settings.h"
 
 #include <stepcore/solver.h>
 #include <stepcore/collisionsolver.h>
@@ -36,6 +39,7 @@
 #include <KApplication>
 #include <KMessageBox>
 #include <KFileDialog>
+#include <KConfigDialog>
 #include <KStatusBar>
 #include <KLocale>
 #include <KConfig>
@@ -151,6 +155,9 @@ void MainWindow::setupActions()
     KStandardAction::fitToPage(worldGraphicsView, SLOT(fitToPage()), actionCollection());
     KStandardAction::zoomIn(worldGraphicsView, SLOT(zoomIn()), actionCollection());
     KStandardAction::zoomOut(worldGraphicsView, SLOT(zoomOut()), actionCollection());
+
+    /* Settings menu */
+    KStandardAction::preferences(this, SLOT(configureStep()), actionCollection());
 }
 
 void MainWindow::updateCaption()
@@ -329,6 +336,24 @@ void MainWindow::worldSelectionChanged(const QItemSelection&, const QItemSelecti
         }
     }
     actionDelete->setEnabled(false);
+}
+
+void MainWindow::configureStep()
+{
+    if(KConfigDialog::showDialog( "settings" )) return; 
+
+    KConfigDialog* dialog = new KConfigDialog(this, "settings", Settings::self());
+
+    Ui::ConfigureStepGeneralWidget generalUi;
+    QWidget* generalWidget = new QWidget(0);
+    generalWidget->setObjectName("general");
+    generalUi.setupUi(generalWidget);
+    dialog->addPage(generalWidget, i18n("General"), "general");
+
+    connect(dialog, SIGNAL(settingsChanged(const QString&)),
+                worldGraphicsView, SLOT(settingsChanged())); 
+
+    dialog->show();
 }
 
 /*

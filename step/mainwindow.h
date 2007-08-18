@@ -48,6 +48,8 @@ public slots:
     bool saveFileAs(const KUrl& url = KUrl());
     bool saveFile();
 
+    void configureStep();
+
     void simulationStartStop();
     void simulationStart();
     void simulationStop();

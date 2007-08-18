@@ -19,6 +19,8 @@
 #include "worldscene.h"
 #include "worldscene.moc"
 
+#include "settings.h"
+
 #include "worldmodel.h"
 #include "worldfactory.h"
 #include "worldgraphics.h"
@@ -222,10 +224,12 @@ void WorldScene::worldModelReset()
     _itemsHash.clear();
 
     /* Axes */
-    //new WorldSceneAxes(0, this);
-    WorldSceneAxes* axes = new WorldSceneAxes();
-    addItem(axes);
-    axes->viewScaleChanged();
+    if(Settings::showAxes()) {
+        //new WorldSceneAxes(0, this);
+        WorldSceneAxes* axes = new WorldSceneAxes();
+        addItem(axes);
+        axes->viewScaleChanged();
+    }
 
     /* Check for new items */
     worldGetItemsRecursive(_worldModel->worldIndex());
@@ -339,6 +343,11 @@ QRectF WorldScene::calcItemsBoundingRect()
     return boundingRect;
 }
 
+void WorldScene::settingsChanged()
+{
+    worldModelReset();
+}
+
 WorldGraphicsView::WorldGraphicsView(WorldScene* worldScene, QWidget* parent)
     : QGraphicsView(worldScene, parent)
 {
@@ -404,5 +413,10 @@ void WorldGraphicsView::actualSize()
                   SCENE_LENGTH*2/100, SCENE_LENGTH*2/100);
     centerOn(0, 0);
     static_cast<WorldScene*>(scene())->updateViewScale();
+}
+
+void WorldGraphicsView::settingsChanged()
+{
+    static_cast<WorldScene*>(scene())->settingsChanged();
 }
 

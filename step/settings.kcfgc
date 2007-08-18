@@ -1,0 +1,4 @@
+File=step.kcfg
+ClassName=Settings
+Singleton=yes
+Mutators=true
