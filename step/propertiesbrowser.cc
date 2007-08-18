@@ -19,6 +19,8 @@
 #include "propertiesbrowser.h"
 #include "propertiesbrowser.moc"
 
+#include "settings.h"
+
 #include "worldfactory.h"
 
 #include "worldmodel.h"
@@ -149,18 +151,25 @@ QVariant PropertiesBrowserModel::data(const QModelIndex &index, int role) const
                     else return QVariant::fromValue(_solverChoices);
                 }
 
+                int pr = Settings::floatDisplayPrecision();
+
                 // Common property types
                 if(p->userTypeId() == QMetaType::Double) {
-                    return QString::number(p->readVariant(_object).toDouble(), 'g', 4); // XXX: make precision configurable
+                    return QString::number(p->readVariant(_object).toDouble(), 'g', pr);
                 } else if(p->userTypeId() == qMetaTypeId<StepCore::Vector2d>()) {
                     StepCore::Vector2d v = p->readVariant(_object).value<StepCore::Vector2d>();
-                    return QString("(%1,%2)").arg(v[0], 0, 'g', 4).arg(v[1], 0, 'g', 4);
-                } else if(role == Qt::DisplayRole && 
-                            p->userTypeId() == qMetaTypeId<std::vector<StepCore::Vector2d> >() ) {
+                    return QString("(%1,%2)").arg(v[0], 0, 'g', pr).arg(v[1], 0, 'g', pr);
+                } else if(p->userTypeId() == qMetaTypeId<std::vector<StepCore::Vector2d> >() ) {
                     std::vector<StepCore::Vector2d> list =
                             p->readVariant(_object).value<std::vector<StepCore::Vector2d> >();
-                    if(list.size() <= 10) return StepCore::typeToString(list); // XXX: make it configurable
-                    list.resize(10); return StepCore::typeToString(list).append(",...");
+                    QString string;
+                    unsigned int end = qMax(10u, list.size()); // XXX: make it 
+                    for(unsigned int i=0; i<end; ++i) {
+                        if(!string.isEmpty()) string += ",";
+                        string += QString("(%1,%2)").arg(list[i][0], 0, 'g', pr).arg(list[i][1], 0, 'g', pr);
+                    }
+                    if(role == Qt::DisplayRole && end != 0 && end < list.size()) string += ",...";
+                    return string;
                 } else {
                     // default type
                     return p->readString(_object);
@@ -184,10 +193,11 @@ QVariant PropertiesBrowserModel::data(const QModelIndex &index, int role) const
         if(role == Qt::DisplayRole || role == Qt::EditRole) {
             if(index.column() == 0) return QString("%1[%2]").arg(p->name()).arg(index.row());
             else if(index.column() == 1) {
+                int pr = Settings::floatDisplayPrecision();
                 _worldModel->simulationPause();
                 StepCore::Vector2d v =
                         p->readVariant(_object).value<std::vector<StepCore::Vector2d> >()[index.row()];
-                return QString("(%1,%2)").arg(v[0], 0, 'g', 4).arg(v[1], 0, 'g', 4); // XXX: precision
+                return QString("(%1,%2)").arg(v[0], 0, 'g', pr).arg(v[1], 0, 'g', pr); // XXX: precision
             }
         } else if(role == Qt::ForegroundRole && index.column() == 1) {
             if(!p->isWritable()) {
@@ -452,3 +462,10 @@ bool PropertiesBrowser::eventFilter(QObject* object, QEvent* event)
     }
     return false;
 }
+
+void PropertiesBrowser::settingsChanged()
+{
+    _propertiesBrowserModel->emitDataChanged(false);
+}
+
+

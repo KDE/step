@@ -5,22 +5,32 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>153</width>
-    <height>81</height>
+    <width>178</width>
+    <height>154</height>
    </rect>
   </property>
   <property name="windowTitle" >
    <string>Form</string>
   </property>
-  <layout class="QVBoxLayout" >
-   <item>
+  <layout class="QGridLayout" >
+   <item row="0" column="0" >
+    <widget class="QLabel" name="label" >
+     <property name="text" >
+      <string>Display precision:</string>
+     </property>
+    </widget>
+   </item>
+   <item row="0" column="1" >
+    <widget class="QSpinBox" name="kcfg_floatDisplayPrecision" />
+   </item>
+   <item row="1" column="0" colspan="2" >
     <widget class="QCheckBox" name="kcfg_showAxes" >
      <property name="text" >
       <string>Show axes</string>
      </property>
     </widget>
    </item>
-   <item>
+   <item row="2" column="0" colspan="2" >
     <spacer>
      <property name="orientation" >
       <enum>Qt::Vertical</enum>

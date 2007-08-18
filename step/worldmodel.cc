@@ -581,6 +581,7 @@ QString WorldModel::createToolTip(const QModelIndex& index) const
         const StepCore::MetaProperty* p = object->metaObject()->property(i);
         QString value = p->readString(object);
         if(p->userTypeId() == qMetaTypeId<std::vector<StepCore::Vector2d> >()) {
+            // XXX: don't use readString in this case !
             value.replace("),(", ")<br />(");
             if(value.count("<br />") > 10) {
                 value = value.section("<br />", 0, 9);

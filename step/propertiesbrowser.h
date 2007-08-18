@@ -50,6 +50,9 @@ class PropertiesBrowser: public QDockWidget
 public:
     explicit PropertiesBrowser(WorldModel* worldModel, QWidget* parent = 0, Qt::WindowFlags flags = 0);
 
+public slots:
+    void settingsChanged();
+
 protected slots:
     void worldModelReset();
     void worldDataChanged(bool dynamicOnly);

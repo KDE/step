@@ -7,12 +7,13 @@
     <group name="General">
         <entry name="showAxes" type="Bool">
             <label>Show axes on the scene</label>
+            <whatsthis>Show axes on the scene</whatsthis>
             <default>true</default>
         </entry>
-        <!--entry name="doubleDisplayPrecision" type="Int">
+        <entry name="floatDisplayPrecision" type="Int">
             <label>Display precision of double numbers</label>
             <whatsthis>Display precision of double numbers</whatsthis>
             <default>4</default>
-        </entry-->
+        </entry>
     </group>
 </kcfg>
