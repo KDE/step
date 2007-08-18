@@ -31,10 +31,11 @@ STEPCORE_META_OBJECT(RigidBody, "Generic rigid body", 0, STEPCORE_SUPER_CLASS(It
         STEPCORE_PROPERTY_RW_D(double, angularVelocity, "rad/s", "Angular velocity", angularVelocity, setAngularVelocity)
 
         STEPCORE_PROPERTY_R_D(StepCore::Vector2d, force, "N", "Force at the center of mass", force)
-        STEPCORE_PROPERTY_R_D(double, torque, "N*m", "Torque at the center of mass", torque)
+        STEPCORE_PROPERTY_R_D(double, torque, "N m", "Torque at the center of mass", torque)
 
         STEPCORE_PROPERTY_RW(double, mass, "kg", "Total mass of the body", mass, setMass)
-        STEPCORE_PROPERTY_RW(double, inertia, "kg*m^2", "Inertia \"tensor\" of the body", inertia, setInertia))
+        STEPCORE_PROPERTY_RW(double, inertia, STEPCORE_FROM_UTF8("kg m²"),
+                                    "Inertia \"tensor\" of the body", inertia, setInertia))
 
 STEPCORE_META_OBJECT(Polygon, "Rigid polygon body", 0, STEPCORE_SUPER_CLASS(RigidBody),
         STEPCORE_PROPERTY_RW(std::vector<StepCore::Vector2d>, vertexes, "m", "Vertex list", vertexes, setVertexes))

@@ -25,12 +25,12 @@ namespace StepCore
 
 STEPCORE_META_OBJECT(GravitationForce, "Gravitation force", 0,
     STEPCORE_SUPER_CLASS(Item) STEPCORE_SUPER_CLASS(Force),
-    STEPCORE_PROPERTY_RW(double, gravitationConst, "N*m^2/kg^2", "Gravitation constant",
-                            gravitationConst, setGravitationConst))
+    STEPCORE_PROPERTY_RW(double, gravitationConst, STEPCORE_FROM_UTF8("N*m²/kg²"),
+            "Gravitation constant", gravitationConst, setGravitationConst))
 
 STEPCORE_META_OBJECT(WeightForce, "Weight force", 0,
     STEPCORE_SUPER_CLASS(Item) STEPCORE_SUPER_CLASS(Force),
-    STEPCORE_PROPERTY_RW(double, weightConst, "m/s^2", "Weight constant",
+    STEPCORE_PROPERTY_RW(double, weightConst, STEPCORE_FROM_UTF8("m/s²"), "Weight constant",
                             weightConst, setWeightConst))
 
 GravitationForce::GravitationForce(double gravitationConst)

@@ -38,11 +38,11 @@ STEPCORE_META_OBJECT(Gas, "Particle gas", 0, STEPCORE_SUPER_CLASS(ItemGroup),
                 "Center of the rect for measurements", measureRectCenter, setMeasureRectCenter)
     STEPCORE_PROPERTY_RW(StepCore::Vector2d, measureRectSize, "m",
                 "Size of the rect for measurements", measureRectSize, setMeasureRectSize)
-    STEPCORE_PROPERTY_R_D(double, rectVolume, "m^2",
+    STEPCORE_PROPERTY_R_D(double, rectVolume, STEPCORE_FROM_UTF8("m²"),
                 "Volume of the measureRect", rectVolume)
     STEPCORE_PROPERTY_R_D(double, rectParticleCount, STEPCORE_UNITS_1,
                 "Count of particles in the measureRect", rectParticleCount)
-    STEPCORE_PROPERTY_R_D(double, rectConcentration, "1/m^2",
+    STEPCORE_PROPERTY_R_D(double, rectConcentration, STEPCORE_FROM_UTF8("1/m²"),
                 "Concentration of particles in the measureRect", rectConcentration)
     STEPCORE_PROPERTY_R_D(double, rectPressure, "Pa",
                 "Pressure of particles in the measureRect", rectPressure)

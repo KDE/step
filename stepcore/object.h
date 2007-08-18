@@ -296,6 +296,8 @@ struct MetaObjectHelper<Class, MetaObject::ABSTRACT> {
     static Object* cloneObjectHelper(const Object& obj) { Q_UNUSED(obj) return NULL; }
 };
 
+#define STEPCORE_FROM_UTF8(str) QString::fromUtf8(str)
+
 #define STEPCORE_UNITS_NULL QString()
 #define STEPCORE_UNITS_1 QString("")
 
