@@ -29,7 +29,6 @@
 #include <stepcore/types.h>
 #include <QApplication>
 #include <QItemSelectionModel>
-#include <QUndoStack>
 #include <QTimer>
 #include <KMenu>
 #include <KLocale>
@@ -242,7 +241,7 @@ WorldModel::WorldModel(QObject* parent)
     : QAbstractItemModel(parent)
 {
     _selectionModel = new QItemSelectionModel(this, this);
-    _undoStack = new QUndoStack(this);
+    _undoStack = new KUndoStack(this);
     _worldFactory = new WorldFactory();
     _world = new StepCore::World();
     _simulationCommand = NULL;

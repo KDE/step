@@ -24,6 +24,7 @@
 #include <QVariant>
 
 #include <stepcore/world.h>
+#include <kundostack.h>
 
 namespace StepCore {
     class Object;
@@ -35,7 +36,6 @@ namespace StepCore {
 }
 
 class QItemSelectionModel;
-class QUndoStack;
 class QTimer;
 class QMenu;
 class WorldFactory;
@@ -92,7 +92,7 @@ public:
     StepCore::Solver* newSolver(const QString& name);
 
     // Undo/redo helpers
-    QUndoStack* undoStack() { return _undoStack; }
+    KUndoStack* undoStack() { return _undoStack; }
     void pushCommand(QUndoCommand* command);
     void beginMacro(const QString& text);
     void endMacro();
@@ -157,7 +157,7 @@ protected:
 protected:
     StepCore::World* _world;
     QItemSelectionModel* _selectionModel;
-    QUndoStack* _undoStack;
+    KUndoStack* _undoStack;
     const WorldFactory* _worldFactory;
     QString _errorString;
 
