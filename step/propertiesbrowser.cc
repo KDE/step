@@ -30,10 +30,10 @@
 #include <QAbstractItemModel>
 #include <QStandardItemModel>
 #include <QItemEditorFactory>
-#include <QComboBox>
 #include <QTreeView>
 #include <QMouseEvent>
 #include <KLocale>
+#include <KComboBox>
 
 class ChoicesModel: public QStandardItemModel
 {
@@ -316,10 +316,11 @@ QWidget* PropertiesBrowserDelegate::createEditor(QWidget* parent,
     QVariant data = index.data(Qt::EditRole);
     int userType = data.userType();
     if(userType == qMetaTypeId<ChoicesModel*>()) {
-        QComboBox* editor = new QComboBox(parent);
+        KComboBox* editor = new KComboBox(parent);
         editor->setModel(data.value<ChoicesModel*>());
         editor->installEventFilter(const_cast<PropertiesBrowserDelegate*>(this));
-        connect(editor, SIGNAL(activated(int)), this, SLOT(comboBoxActivated(int)));
+        connect(editor, SIGNAL(activated(int)), 
+                this, SLOT(comboBoxActivated(int)));
         const_cast<PropertiesBrowserDelegate*>(this)->_editor = editor;
         return editor;
     } else {
@@ -331,7 +332,7 @@ QWidget* PropertiesBrowserDelegate::createEditor(QWidget* parent,
 
 void PropertiesBrowserDelegate::setEditorData(QWidget* editor, const QModelIndex& index) const
 {
-    QComboBox* cb = qobject_cast<QComboBox*>(editor);
+    KComboBox* cb = qobject_cast<KComboBox*>(editor);
     if(cb) {
         QVariant data = index.data(Qt::DisplayRole);
         ChoicesModel* cm = static_cast<ChoicesModel*>(cb->model());
@@ -344,7 +345,7 @@ void PropertiesBrowserDelegate::setEditorData(QWidget* editor, const QModelIndex
 void PropertiesBrowserDelegate::setModelData(QWidget* editor, QAbstractItemModel* model,
                    const QModelIndex& index) const
 {
-    QComboBox* cb = qobject_cast<QComboBox*>(editor);
+    KComboBox* cb = qobject_cast<KComboBox*>(editor);
     if(cb) {
         model->setData(index, cb->currentText());
     } else QItemDelegate::setModelData(editor, model, index);
