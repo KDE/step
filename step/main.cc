@@ -23,7 +23,7 @@
 
 #include "mainwindow.h"
 
-#define STEP_VERSION "0.0.3"
+#define STEP_VERSION "0.0.4"
 
 static const char description[] =
 	I18N_NOOP("Interactive physical simulator");
