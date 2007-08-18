@@ -28,23 +28,28 @@ STEPCORE_META_OBJECT(GasParticle, "Gas particle", 0, STEPCORE_SUPER_CLASS(Partic
 
 STEPCORE_META_OBJECT(GasLJForce, "Lennard-Jones force", 0,
     STEPCORE_SUPER_CLASS(Item) STEPCORE_SUPER_CLASS(Force),
-    STEPCORE_PROPERTY_RW(double, depth, "Potential depth", depth, setDepth)
-    STEPCORE_PROPERTY_RW(double, rmin, "Distance at which the force is zero", rmin, setRmin)
-    STEPCORE_PROPERTY_RW(double, cutoff, "Cut-off distance", cutoff, setCutoff))
+    STEPCORE_PROPERTY_RW(double, depth, "J", "Potential depth", depth, setDepth)
+    STEPCORE_PROPERTY_RW(double, rmin, "m", "Distance at which the force is zero", rmin, setRmin)
+    STEPCORE_PROPERTY_RW(double, cutoff, "m", "Cut-off distance", cutoff, setCutoff))
 
 STEPCORE_META_OBJECT(Gas, "Particle gas", 0, STEPCORE_SUPER_CLASS(ItemGroup),
-    STEPCORE_PROPERTY_RW(StepCore::Vector2d, measureRectCenter,
+    STEPCORE_PROPERTY_RW(StepCore::Vector2d, measureRectCenter, "m",
                 "Center of the rect for measurements", measureRectCenter, setMeasureRectCenter)
-    STEPCORE_PROPERTY_RW(StepCore::Vector2d, measureRectSize,
+    STEPCORE_PROPERTY_RW(StepCore::Vector2d, measureRectSize, "m",
                 "Size of the rect for measurements", measureRectSize, setMeasureRectSize)
-    STEPCORE_PROPERTY_R_D(double, rectVolume, "Volume of the measureRect", rectVolume)
-    STEPCORE_PROPERTY_R_D(double, rectParticleCount, "Count of particles in the measureRect", rectParticleCount)
-    STEPCORE_PROPERTY_R_D(double, rectConcentration, "Concentration of particles in the measureRect", rectConcentration)
-    STEPCORE_PROPERTY_R_D(double, rectPressure, "Pressure of particles in the measureRect", rectPressure)
-    STEPCORE_PROPERTY_R_D(double, rectTemperature, "Temperature of particles in the measureRect", rectTemperature)
-    STEPCORE_PROPERTY_R_D(double, rectMeanKineticEnergy,
+    STEPCORE_PROPERTY_R_D(double, rectVolume, "m^3",
+                "Volume of the measureRect", rectVolume)
+    STEPCORE_PROPERTY_R_D(double, rectParticleCount, STEPCORE_UNITS_1,
+                "Count of particles in the measureRect", rectParticleCount)
+    STEPCORE_PROPERTY_R_D(double, rectConcentration, "1/m^3",
+                "Concentration of particles in the measureRect", rectConcentration)
+    STEPCORE_PROPERTY_R_D(double, rectPressure, "Pa",
+                "Pressure of particles in the measureRect", rectPressure)
+    STEPCORE_PROPERTY_R_D(double, rectTemperature, "K",
+                "Temperature of particles in the measureRect", rectTemperature)
+    STEPCORE_PROPERTY_R_D(double, rectMeanKineticEnergy, "J",
                 "Mean kinetic energy of particles in the measureRect", rectMeanKineticEnergy)
-    STEPCORE_PROPERTY_R_D(StepCore::Vector2d, rectMeanVelocity,
+    STEPCORE_PROPERTY_R_D(StepCore::Vector2d, rectMeanVelocity, "m/s",
                 "Mean velocity of particles in the measureRect", rectMeanVelocity)
     )
 

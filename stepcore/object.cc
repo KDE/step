@@ -21,7 +21,7 @@
 namespace StepCore {
 
 STEPCORE_META_OBJECT(Object, "Object", MetaObject::ABSTRACT,,
-        STEPCORE_PROPERTY_RW(QString, name, "Object name", name, setName))
+        STEPCORE_PROPERTY_RW(QString, name, STEPCORE_UNITS_NULL, "Object name", name, setName))
 
 void MetaObject::copyProperties(const MetaProperty** dest) const
 {

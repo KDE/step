@@ -81,6 +81,8 @@ public:
 public:
     /** Returns property name */
     const QString& name() const { return _name; }
+    /** Returns property units (if appropriate) */
+    const QString& units() const { return _units; }
     /** Returns property description */
     const QString& description() const { return _description; }
     /** Returns property flags */
@@ -112,6 +114,7 @@ public:
 
 public:
     const QString _name;
+    const QString _units;
     const QString _description;
     const int _flags;
     const int _userTypeId;
@@ -293,7 +296,10 @@ struct MetaObjectHelper<Class, MetaObject::ABSTRACT> {
     static Object* cloneObjectHelper(const Object& obj) { Q_UNUSED(obj) return NULL; }
 };
 
-#define _STEPCORE_PROPERTY_NULL { QString(""), QString(""), 0,0,0,0,0,0 }
+#define STEPCORE_UNITS_NULL QString()
+#define STEPCORE_UNITS_1 QString("")
+
+#define _STEPCORE_PROPERTY_NULL { QString(""), STEPCORE_UNITS_NULL, QString(""), 0,0,0,0,0,0 }
 
 #define STEPCORE_META_OBJECT(_className, _description, _flags, __superClasses, __properties) \
     const StepCore::MetaProperty _className::_classProperties[] = { _STEPCORE_PROPERTY_NULL, __properties }; \
@@ -307,15 +313,16 @@ struct MetaObjectHelper<Class, MetaObject::ABSTRACT> {
     
 #define STEPCORE_SUPER_CLASS(_className) _className::staticMetaObject(),
 
-#define STEPCORE_PROPERTY_RF(_type, _name, _description, _flags, _read) \
-    { __STRING(_name), _description, StepCore::MetaProperty::READABLE | _flags, qMetaTypeId<_type>(), \
+#define STEPCORE_PROPERTY_RF(_type, _name, _units, _description, _flags, _read) \
+    { __STRING(_name), _units, _description, \
+      StepCore::MetaProperty::READABLE | _flags, qMetaTypeId<_type>(), \
       StepCore::MetaPropertyHelper<_thisType, _type>::read<&_thisType::_read>, \
       StepCore::MetaPropertyHelper<_thisType, _type>::writeNull, \
       StepCore::MetaPropertyHelper<_thisType, _type>::readString<&_thisType::_read>, \
       StepCore::MetaPropertyHelper<_thisType, _type>::writeStringNull },
 
-#define STEPCORE_PROPERTY_RWF(_type, _name, _description, _flags, _read, _write) \
-    { __STRING(_name), _description, \
+#define STEPCORE_PROPERTY_RWF(_type, _name, _units, _description, _flags, _read, _write) \
+    { __STRING(_name), _units, _description, \
       StepCore::MetaProperty::READABLE | StepCore::MetaProperty::WRITABLE | _flags, \
       qMetaTypeId<_type>(), \
       StepCore::MetaPropertyHelper<_thisType, _type>::read<&_thisType::_read>, \
@@ -323,18 +330,18 @@ struct MetaObjectHelper<Class, MetaObject::ABSTRACT> {
       StepCore::MetaPropertyHelper<_thisType, _type>::readString<&_thisType::_read>, \
       StepCore::MetaPropertyHelper<_thisType, _type>::writeString<&_thisType::_write> },
 
-#define STEPCORE_PROPERTY_R(_type, _name, _description, _read) \
-    STEPCORE_PROPERTY_RF(_type, _name, _description, 0, _read)
+#define STEPCORE_PROPERTY_R(_type, _name, _units, _description, _read) \
+    STEPCORE_PROPERTY_RF(_type, _name, _units, _description, 0, _read)
 
-#define STEPCORE_PROPERTY_RW(_type, _name, _description, _read, _write) \
-    STEPCORE_PROPERTY_RWF(_type, _name, _description, \
+#define STEPCORE_PROPERTY_RW(_type, _name, _units, _description, _read, _write) \
+    STEPCORE_PROPERTY_RWF(_type, _name, _units, _description, \
         StepCore::MetaProperty::STORED, _read, _write)
 
-#define STEPCORE_PROPERTY_R_D(_type, _name, _description, _read) \
-    STEPCORE_PROPERTY_RF(_type, _name, _description, StepCore::MetaProperty::DYNAMIC, _read)
+#define STEPCORE_PROPERTY_R_D(_type, _name, _units, _description, _read) \
+    STEPCORE_PROPERTY_RF(_type, _name, _units, _description, StepCore::MetaProperty::DYNAMIC, _read)
 
-#define STEPCORE_PROPERTY_RW_D(_type, _name, _description, _read, _write) \
-    STEPCORE_PROPERTY_RWF(_type, _name, _description, \
+#define STEPCORE_PROPERTY_RW_D(_type, _name, _units, _description, _read, _write) \
+    STEPCORE_PROPERTY_RWF(_type, _name, _units, _description, \
         StepCore::MetaProperty::STORED | StepCore::MetaProperty::DYNAMIC, _read, _write)
 
 } // namespace StepCore

@@ -153,12 +153,16 @@ QVariant PropertiesBrowserModel::data(const QModelIndex &index, int role) const
 
                 int pr = Settings::floatDisplayPrecision();
 
+                QString units;
+                if(role == Qt::DisplayRole && !p->units().isEmpty()) 
+                    units.append(" [").append(p->units()).append("]");
+
                 // Common property types
                 if(p->userTypeId() == QMetaType::Double) {
-                    return QString::number(p->readVariant(_object).toDouble(), 'g', pr);
+                    return QString::number(p->readVariant(_object).toDouble(), 'g', pr).append(units);
                 } else if(p->userTypeId() == qMetaTypeId<StepCore::Vector2d>()) {
                     StepCore::Vector2d v = p->readVariant(_object).value<StepCore::Vector2d>();
-                    return QString("(%1,%2)").arg(v[0], 0, 'g', pr).arg(v[1], 0, 'g', pr);
+                    return QString("(%1,%2)%3").arg(v[0], 0, 'g', pr).arg(v[1], 0, 'g', pr).arg(units);
                 } else if(p->userTypeId() == qMetaTypeId<std::vector<StepCore::Vector2d> >() ) {
                     std::vector<StepCore::Vector2d> list =
                             p->readVariant(_object).value<std::vector<StepCore::Vector2d> >();
@@ -166,9 +170,11 @@ QVariant PropertiesBrowserModel::data(const QModelIndex &index, int role) const
                     unsigned int end = qMax(10u, list.size()); // XXX: make it 
                     for(unsigned int i=0; i<end; ++i) {
                         if(!string.isEmpty()) string += ",";
-                        string += QString("(%1,%2)").arg(list[i][0], 0, 'g', pr).arg(list[i][1], 0, 'g', pr);
+                        string += QString("(%1,%2)%3").arg(list[i][0], 0, 'g', pr)
+                                                        .arg(list[i][1], 0, 'g', pr);
                     }
                     if(role == Qt::DisplayRole && end != 0 && end < list.size()) string += ",...";
+                    string.append(units);
                     return string;
                 } else {
                     // default type
@@ -193,11 +199,14 @@ QVariant PropertiesBrowserModel::data(const QModelIndex &index, int role) const
         if(role == Qt::DisplayRole || role == Qt::EditRole) {
             if(index.column() == 0) return QString("%1[%2]").arg(p->name()).arg(index.row());
             else if(index.column() == 1) {
+                QString units;
+                if(role == Qt::DisplayRole && !p->units().isEmpty())
+                    units.append(" [").append(p->units()).append("]");
                 int pr = Settings::floatDisplayPrecision();
                 _worldModel->simulationPause();
                 StepCore::Vector2d v =
                         p->readVariant(_object).value<std::vector<StepCore::Vector2d> >()[index.row()];
-                return QString("(%1,%2)").arg(v[0], 0, 'g', pr).arg(v[1], 0, 'g', pr); // XXX: precision
+                return QString("(%1,%2)%3").arg(v[0], 0, 'g', pr).arg(v[1], 0, 'g', pr).arg(units);
             }
         } else if(role == Qt::ForegroundRole && index.column() == 1) {
             if(!p->isWritable()) {

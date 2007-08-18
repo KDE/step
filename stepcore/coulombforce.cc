@@ -25,7 +25,7 @@ namespace StepCore {
 
 STEPCORE_META_OBJECT(CoulombForce, "Coulomb force", 0,
     STEPCORE_SUPER_CLASS(Item) STEPCORE_SUPER_CLASS(Force),
-    STEPCORE_PROPERTY_RW(double, electricConst, "Electric constant",
+    STEPCORE_PROPERTY_RW(double, electricConst, "C^2/m^2/N", "Electric constant",
                             electricConst, setElectricConst))
 
 CoulombForce::CoulombForce(double electricConst)

@@ -20,13 +20,14 @@
 
 namespace StepCore {
 
+// XXX: units for toleranceAbs, localError
 STEPCORE_META_OBJECT(Solver, "Solver", MetaObject::ABSTRACT, STEPCORE_SUPER_CLASS(Object),
-    STEPCORE_PROPERTY_R(QString, solverType, "Solver type", solverType)
-    STEPCORE_PROPERTY_RW_D(double, stepSize, "Step size", stepSize, setStepSize)
-    STEPCORE_PROPERTY_RW(double, toleranceAbs, "Allowed absolute tolerance", toleranceAbs, setToleranceAbs)
-    STEPCORE_PROPERTY_RW(double, toleranceRel, "Allowed relative tolerance", toleranceRel, setToleranceRel)
-    STEPCORE_PROPERTY_R(int, dimension, "Count of dynamic variables", dimension)
-    STEPCORE_PROPERTY_R_D(double, localError, "Maximal local error during last step", localError)
-    STEPCORE_PROPERTY_R_D(double, localErrorRatio, "Maximal local error ratio during last step", localErrorRatio))
+    STEPCORE_PROPERTY_R(QString, solverType, STEPCORE_UNITS_NULL, "Solver type", solverType)
+    STEPCORE_PROPERTY_RW_D(double, stepSize, "s", "Step size", stepSize, setStepSize)
+    STEPCORE_PROPERTY_RW(double, toleranceAbs, STEPCORE_UNITS_1, "Allowed absolute tolerance", toleranceAbs, setToleranceAbs)
+    STEPCORE_PROPERTY_RW(double, toleranceRel, STEPCORE_UNITS_1, "Allowed relative tolerance", toleranceRel, setToleranceRel)
+    STEPCORE_PROPERTY_R(int, dimension, STEPCORE_UNITS_1, "Count of dynamic variables", dimension)
+    STEPCORE_PROPERTY_R_D(double, localError, STEPCORE_UNITS_1, "Maximal local error during last step", localError)
+    STEPCORE_PROPERTY_R_D(double, localErrorRatio, STEPCORE_UNITS_1, "Maximal local error ratio during last step", localErrorRatio))
 
 } // namespace StepCore

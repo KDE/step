@@ -24,13 +24,13 @@ namespace StepCore
 {
 
 STEPCORE_META_OBJECT(Particle, "Simple zero-size particle", 0, STEPCORE_SUPER_CLASS(Item) STEPCORE_SUPER_CLASS(Body),
-        STEPCORE_PROPERTY_RW_D(StepCore::Vector2d, position, "position", position, setPosition)
-        STEPCORE_PROPERTY_RW_D(StepCore::Vector2d, velocity, "velocity", velocity, setVelocity)
-        STEPCORE_PROPERTY_R_D(StepCore::Vector2d, force, "force", force)
-        STEPCORE_PROPERTY_RW(double, mass, "mass", mass, setMass ))
+        STEPCORE_PROPERTY_RW_D(StepCore::Vector2d, position, "m", "position", position, setPosition)
+        STEPCORE_PROPERTY_RW_D(StepCore::Vector2d, velocity, "m/s", "velocity", velocity, setVelocity)
+        STEPCORE_PROPERTY_R_D(StepCore::Vector2d, force, "N", "force", force)
+        STEPCORE_PROPERTY_RW(double, mass, "kg", "mass", mass, setMass ))
 
 STEPCORE_META_OBJECT(ChargedParticle, "Charged zero-size particle", 0, STEPCORE_SUPER_CLASS(Particle),
-        STEPCORE_PROPERTY_RW(double, charge, "charge", charge, setCharge))
+        STEPCORE_PROPERTY_RW(double, charge, "C", "charge", charge, setCharge))
 
 Particle::Particle(Vector2d position, Vector2d velocity, double mass)
     : _position(position), _velocity(velocity), _force(0), _mass(mass)

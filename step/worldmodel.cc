@@ -579,14 +579,20 @@ QString WorldModel::createToolTip(const QModelIndex& index) const
     StepCore::Object* object = this->object(index);
     for(int i=0; i<object->metaObject()->propertyCount(); ++i) {
         const StepCore::MetaProperty* p = object->metaObject()->property(i);
+        QString units;
+        if(!p->units().isEmpty())
+            units.append(" [").append(p->units()).append("]");
         QString value = p->readString(object);
         if(p->userTypeId() == qMetaTypeId<std::vector<StepCore::Vector2d> >()) {
             // XXX: don't use readString in this case !
-            value.replace("),(", ")<br />(");
+            value.replace("),(", QString(")%1<br />(").arg(units));
+            value.append(units);
             if(value.count("<br />") > 10) {
                 value = value.section("<br />", 0, 9);
                 value.append("<br />...");
             }
+        } else {
+            value.append(units);
         }
         toolTip += i18n("<tr><td>%1&nbsp;&nbsp;</td><td>%2</td></tr>", p->name(), value);
     }

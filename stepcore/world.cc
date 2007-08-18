@@ -33,8 +33,8 @@ STEPCORE_META_OBJECT(Tool, "Tool", MetaObject::ABSTRACT,,)
 STEPCORE_META_OBJECT(ItemGroup, "ItemGroup", 0, STEPCORE_SUPER_CLASS(Item),)
 
 STEPCORE_META_OBJECT(World, "World", 0, STEPCORE_SUPER_CLASS(ItemGroup),
-        STEPCORE_PROPERTY_RW_D(double, time, "Current time", time, setTime)
-        STEPCORE_PROPERTY_RW  (double, timeScale, "Simulation speed scale", timeScale, setTimeScale))
+        STEPCORE_PROPERTY_RW_D(double, time, "s", "Current time", time, setTime)
+        STEPCORE_PROPERTY_RW  (double, timeScale, STEPCORE_UNITS_1, "Simulation speed scale", timeScale, setTimeScale))
 
 ItemGroup::ItemGroup(const ItemGroup& group)
     : Item()
