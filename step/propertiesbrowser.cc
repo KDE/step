@@ -254,9 +254,12 @@ bool PropertiesBrowserModel::setData(const QModelIndex &index, const QVariant &v
 
 #ifdef STEP_WITH_UNITSCALC
                 if(p->userTypeId() == QMetaType::Double) {
-                    double number;
-                    UnitsCalc::self()->parseNumber(value.toString(), p->units(), number);
-                    v = number;
+                    double number = 0;
+                    if(UnitsCalc::self()->parseNumber(value.toString(), p->units(), number)) {
+                        v = number;
+                    } else {
+                        return false;
+                    }
                 }
 #endif
 

@@ -96,7 +96,6 @@ bool UnitsCalc::parseNumber(const QString& expression, const QString& units, dou
     CALCULATOR->parse(&expr, ulexpression, d->eo.parse_options);
     expr.eval(d->eo);
 
-
     if(!units.isEmpty()) {
         CompositeUnit *cu = NULL;
         Unit *u = NULL;
