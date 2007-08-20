@@ -14,6 +14,7 @@ set(step_SRCS
     springgraphics.cc
     toolgraphics.cc
     simulationthread.cc
+    unitscalc.cc
     main.cc
 )
 
@@ -35,6 +36,13 @@ if(STEPCORE_WITH_GSL)
     add_definitions(-DSTEPCORE_WITH_GSL)
 endif(STEPCORE_WITH_GSL)
 
+if(STEP_WITH_QALCULATE)
+    add_definitions(-DSTEP_WITH_QALCULATE)
+    add_definitions(-DSTEP_WITH_UNITSCALC)
+    add_definitions(${QALCULATE_CFLAGS})
+    set(qalculate_LIBS ${QALCULATE_LIBRARIES})
+endif(STEP_WITH_QALCULATE)
+
 find_package(KDE4 REQUIRED)
 include_directories( ${KDE4_INCLUDES} )
 add_definitions( ${KDE4_DEFINITIONS} )
@@ -46,7 +54,7 @@ include_directories(${CMAKE_CURRENT_BINARY_DIR})
 include_directories(${CMAKE_CURRENT_SOURCE_DIR})
 
 kde4_add_executable(step ${step_SRCS})
-target_link_libraries(step stepcore ${KDE4_KHTML_LIBS})
+target_link_libraries(step stepcore ${KDE4_KHTML_LIBS} ${qalculate_LIBS})
 
 install(TARGETS step DESTINATION ${BIN_INSTALL_DIR})
 install(FILES step.kcfg DESTINATION  ${KCFG_INSTALL_DIR})

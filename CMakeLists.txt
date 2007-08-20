@@ -14,6 +14,9 @@ set(STEPCORE_TESTS OFF CACHE BOOL "Build StepCore tests")
 set(STEPCORE_WITH_GSL ${GSL_FOUND} CACHE BOOL "Enable GSL-powered features for StepCore")
 set(STEPCORE_WITH_QT ON) # CACHE BOOL "Enable QT-powered features for StepCore")
 
+set(QALCULATE_MIN_VERSION "0.9.5")
+include(FindQalculate.cmake)
+
 include_directories(.)
 add_subdirectory(stepcore)
 add_subdirectory(step)

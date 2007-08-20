@@ -28,6 +28,7 @@
 #include "infobrowser.h"
 #include "itempalette.h"
 #include "settings.h"
+#include "unitscalc.h"
 
 #include <stepcore/solver.h>
 #include <stepcore/collisionsolver.h>
@@ -54,6 +55,9 @@ MainWindow::MainWindow()
 {
     qsrand(time(NULL));
     std::srand(time(NULL));
+
+    // Load UnitCalc at startup
+    UnitsCalc::self();
 
     setObjectName("MainWindow");
 

@@ -22,6 +22,7 @@
 #include "settings.h"
 
 #include "worldfactory.h"
+#include "unitscalc.h"
 
 #include "worldmodel.h"
 #include <stepcore/object.h>
@@ -156,6 +157,11 @@ QVariant PropertiesBrowserModel::data(const QModelIndex &index, int role) const
                 QString units;
                 if(role == Qt::DisplayRole && !p->units().isEmpty()) 
                     units.append(" [").append(p->units()).append("]");
+#ifdef STEP_WITH_UNITSCALC
+                else if(role == Qt::EditRole && !p->units().isEmpty()
+                            && p->userTypeId() == QMetaType::Double) 
+                    units.append(" ").append(p->units());
+#endif
 
                 // Common property types
                 if(p->userTypeId() == QMetaType::Double) {
@@ -202,6 +208,10 @@ QVariant PropertiesBrowserModel::data(const QModelIndex &index, int role) const
                 QString units;
                 if(role == Qt::DisplayRole && !p->units().isEmpty())
                     units.append(" [").append(p->units()).append("]");
+#ifdef STEP_WITH_UNITSCALC
+//                else if(role == Qt::EditRole && !p->units().isEmpty()) 
+//                    units.append(" ").append(p->units());
+#endif
                 int pr = Settings::floatDisplayPrecision();
                 _worldModel->simulationPause();
                 StepCore::Vector2d v =
@@ -239,8 +249,19 @@ bool PropertiesBrowserModel::setData(const QModelIndex &index, const QVariant &v
                     reset();
                 }
             } else {
+                const StepCore::MetaProperty* p = _object->metaObject()->property(index.row());
+                QVariant v = value;
+
+#ifdef STEP_WITH_UNITSCALC
+                if(p->userTypeId() == QMetaType::Double) {
+                    double number;
+                    UnitsCalc::self()->parseNumber(value.toString(), p->units(), number);
+                    v = number;
+                }
+#endif
+
                 _worldModel->beginMacro(i18n("Edit %1", _object->name()));
-                _worldModel->setProperty(_object, _object->metaObject()->property(index.row()), value);
+                _worldModel->setProperty(_object, _object->metaObject()->property(index.row()), v);
                 _worldModel->endMacro();
             }
         } else {
