@@ -36,6 +36,8 @@ code (marked as TODO or XXX).
 * configurable plots and summaries (DONE)
 * KHotNewStuff for sharing experiments
 * Tutorials (series of experiments with explanations)
+* define multiple coordinate system and provide an ability
+  to translate vector coordinates between them
 
 More TODO items for Step can be found in the source code
 (marked as TODO or XXX).
