@@ -11,10 +11,10 @@
   (for independent tolerance settings, symplectic solvers)
 * global error estimation (requires jacobian ?)
 * symplectic and other nice solvers
-* molecular dynamics (potentials etc.)
+* molecular dynamics (potentials etc.) (DONE)
 * massive springs
 * soft bodies
-* fluid and gas simulation
+* fluid and gas simulation (DONE)
 * think about 3d
 
 More TODO items for StepCore can be found in
@@ -22,17 +22,18 @@ Doxygen-generated documentation and in the source
 code (marked as TODO or XXX).
 
 2. Step.
-* do calculations in separate thread
+* do calculations in separate thread (DONE)
 * use statusbar or small graphicsitem to notify
   user when creating items
 * saving animation (navigation through time)
-* units for all quantitis, units conversion
-* user-editable notes
+* units for all quantitis, units conversion (DONE)
+* user-editable notes (DONE)
+* formulas in notes
 * custom scene background
 * nice-looking descriptions for all bodies and parameters
   (with references to wikipedia or wikibooks ?)
-* configurable simulation-time controllers
-* configurable plots and summaries
+* configurable simulation-time controllers (DONE)
+* configurable plots and summaries (DONE)
 * KHotNewStuff for sharing experiments
 * Tutorials (series of experiments with explanations)
 
