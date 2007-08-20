@@ -80,12 +80,15 @@ UnitsCalc::UnitsCalc()
 UnitsCalc::~UnitsCalc()
 {
     delete d;
+
+#ifdef STEP_WITH_QALCULATE
     delete CALCULATOR;
+#endif
 }
 
+#ifdef STEP_WITH_QALCULATE
 bool UnitsCalc::parseNumber(const QString& expression, const QString& units, double& result)
 {
-#if STEP_WITH_QALCULATE
     std::string ulexpression = CALCULATOR->unlocalizeExpression(
                     expression.toUtf8().constData(), d->eo.parse_options);
 
@@ -116,8 +119,11 @@ bool UnitsCalc::parseNumber(const QString& expression, const QString& units, dou
     result = expr.number().floatValue();
     return true;
 
-#else
-    return false;
-#endif
 }
+#else
+bool UnitsCalc::parseNumber(const QString&, const QString&, double&)
+{
+    return false;
+}
+#endif
 
