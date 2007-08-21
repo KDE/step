@@ -20,6 +20,10 @@
 #include "infobrowser.moc"
 
 #include <QItemSelectionModel>
+#include <QVBoxLayout>
+#include <QAction>
+#include <QFile>
+#include <KToolBar>
 #include <KHTMLPart>
 #include <KStandardDirs>
 #include <KLocale>
@@ -30,9 +34,30 @@
 
 InfoBrowser::InfoBrowser(WorldModel* worldModel, QWidget* parent, Qt::WindowFlags flags)
     : QDockWidget(i18n("Context info"), parent, flags),
-      _worldModel(worldModel), _htmlPart(NULL), _wikiJob(NULL), _selectionChanged(false)
+      _worldModel(worldModel), _wikiJob(NULL), _wikiFromHistory(false), _selectionChanged(false)
 {
-    _htmlPart = new KHTMLPart(this);
+    QWidget* widget = new QWidget(this);
+    setWidget(widget);
+
+    QVBoxLayout* layout = new QVBoxLayout(widget);
+    layout->setContentsMargins(0,0,0,0);
+
+    KToolBar* toolBar = new KToolBar(widget);
+    layout->addWidget(toolBar);
+    toolBar->setMovable(false);
+    toolBar->setFloatable(false);
+    toolBar->setIconDimensions(16);
+    toolBar->setContextMenuPolicy(Qt::NoContextMenu);
+    toolBar->setToolButtonStyle(Qt::ToolButtonIconOnly);
+
+    _backAction = toolBar->addAction(KIcon("go-previous"), i18n("Back"), this, SLOT(back()));
+    _backAction->setEnabled(false);
+    _forwardAction = toolBar->addAction(KIcon("go-next"), i18n("Forward"), this, SLOT(forward()));
+    _forwardAction->setEnabled(false);
+
+    _htmlPart = new KHTMLPart(widget);
+    layout->addWidget(_htmlPart->widget());
+
     _htmlPart->setJavaEnabled(false);
     _htmlPart->setPluginsEnabled(false);
     _htmlPart->setJScriptEnabled(true);
@@ -42,9 +67,6 @@ InfoBrowser::InfoBrowser(WorldModel* worldModel, QWidget* parent, Qt::WindowFlag
     connect(_htmlPart->browserExtension(),
                 SIGNAL(openUrlRequest(const KUrl&, const KParts::OpenUrlArguments&, const KParts::BrowserArguments&)),
                 this, SLOT(openUrl(const KUrl&)));
-
-
-    setWidget(_htmlPart->widget());
 
     worldCurrentChanged(_worldModel->worldIndex(), QModelIndex());
 
@@ -67,46 +89,70 @@ void InfoBrowser::showEvent(QShowEvent* event)
 
 void InfoBrowser::worldCurrentChanged(const QModelIndex& current, const QModelIndex& /*previous*/)
 {
-    if(isVisible()) openUrl(QString("objinfo:").append(current.data(WorldModel::ClassNameRole).toString()));
+    if(isVisible()) openUrl(QString("objinfo:").append(current.data(WorldModel::ClassNameRole).toString()), true);
     else _selectionChanged = true;
 }
 
-void InfoBrowser::openUrl(const KUrl& url)
+void InfoBrowser::openUrl(const KUrl& url, bool clearHistory, bool fromHistory)
 {
-    kDebug() << endl;
-    kDebug() << "openUrl: " << url.prettyUrl() << endl;
-    kDebug() << endl;
+    // Cancel the old job
+    if(_wikiJob) _wikiJob->kill();
+    _wikiJob = NULL;
+
+    if(clearHistory) {
+        _forwardHistory.clear();
+        _forwardAction->setEnabled(false);
+        _backHistory.clear();
+        _backAction->setEnabled(false);
+        fromHistory = true;
+    }
+
     if(url.protocol() == "objinfo") {
         QString className = url.path();
         if(className.isEmpty()) {
-            _htmlPart->openStream( "text/html", KUrl() );
-            _htmlPart->closeStream();
-            return;
-        }
-        QString fileName = KStandardDirs::locate("data", QString("step/objinfo/%1.html").arg(className));
-        if(!fileName.isEmpty()) {
-            _htmlPart->openUrl(fileName);
-            kDebug() << "URL: " << _htmlPart->url().prettyUrl() << endl;
-        } else {
             setHtml("<html><head><meta http-equiv=\"Content-Type\" content=\"text/html; charset=utf-8\" />"
                     "</head><body>\n"
                     "<div id='doc_box' class='box'>\n"
                         "<div id='doc_box-header' class='box-header'>\n"
                             "<span id='doc_box-header-title' class='box-header-title'>\n"
-                            + i18n( "Documentation error" ) +
+                            + i18n( "Documentation" ) +
                             "</span>\n"
                         "</div>\n"
                         "<div id='doc_box-body' class='box-body'>\n"
-                            "<div class='error'><p>\n"
-                            + i18n("Documentation for %1 not available.", className)
-                            + i18n("You can help <a href=\"http://edu.kde.org/step\">Step</a> by writting it!") +
+                            "<div class='info'><p>\n"
+                            + i18n("No current object.") +
                             "</p></div>\n"
                         "</div>\n"
                     "</div>\n"
-                    "</body></html>" );
+                    "</body></html>", fromHistory );
+            return;
         }
+        QString fileName = KStandardDirs::locate("data", QString("step/objinfo/%1.html").arg(className));
+        if(!fileName.isEmpty()) {
+            QFile file(fileName);
+            if(file.open(QIODevice::ReadOnly | QIODevice::Text)) {
+                setHtml(QString::fromUtf8(file.readAll()), fromHistory, url /*KUrl(fileName)*/);
+                return;
+            }
+        }
+        setHtml("<html><head><meta http-equiv=\"Content-Type\" content=\"text/html; charset=utf-8\" />"
+                "</head><body>\n"
+                "<div id='doc_box' class='box'>\n"
+                    "<div id='doc_box-header' class='box-header'>\n"
+                        "<span id='doc_box-header-title' class='box-header-title'>\n"
+                        + i18n( "Documentation error" ) +
+                        "</span>\n"
+                    "</div>\n"
+                    "<div id='doc_box-body' class='box-body'>\n"
+                        "<div class='error'><p>\n"
+                        + i18n("Documentation for %1 not available.", className)
+                        + i18n("You can help <a href=\"http://edu.kde.org/step\">Step</a> by writting it!") +
+                        "</p></div>\n"
+                    "</div>\n"
+                "</div>\n"
+                "</body></html>", fromHistory );
+        return;
     } else if(url.protocol() == "wphttp") {
-        kDebug() << "wphttp request" << endl;
         KUrl inturl(url); inturl.setProtocol("http");
 
         setHtml(
@@ -122,9 +168,10 @@ void InfoBrowser::openUrl(const KUrl& url)
                     "<div class='info'><p>\n" + i18n( "Fetching Wikipedia Information ..." ) + "</p></div>\n"
                 "</div>\n"
             "</div>\n"
-            "</body></html>\n");
+            "</body></html>\n", fromHistory);
 
         _wikiUrl = url;
+        _wikiFromHistory = fromHistory;
         _wikiJob = KIO::storedGet(inturl, false, false);
         connect(_wikiJob, SIGNAL(result(KJob*)), this, SLOT( wikiResult(KJob*)));
     } else if(url.protocol() == "http") {
@@ -132,11 +179,56 @@ void InfoBrowser::openUrl(const KUrl& url)
     }
 }
 
-void InfoBrowser::setHtml(const QString& data, const KUrl& url)
+void InfoBrowser::setHtml(const QString& data, bool fromHistory, const KUrl& url)
 {
+    if(!fromHistory) {
+        _forwardAction->setEnabled(false);
+        _forwardHistory.clear();
+
+        QString oldUrl = _htmlPart->url().url();
+        if(!oldUrl.isEmpty()) {
+            _backHistory << oldUrl;
+            _backAction->setEnabled(true);
+        }
+    }
+
     _htmlPart->begin(url);
     _htmlPart->write( data );
     _htmlPart->end();
+}
+
+void InfoBrowser::back()
+{
+    Q_ASSERT(!_backHistory.isEmpty());
+
+    QString url(_backHistory.takeLast());
+    if(_backHistory.isEmpty())
+        _backAction->setEnabled(false);
+
+    QString curUrl = _htmlPart->url().url();
+    if(!curUrl.isEmpty()) {
+        _forwardHistory << curUrl;
+        _forwardAction->setEnabled(true);
+    }
+
+    openUrl(url, false, true);
+}
+
+void InfoBrowser::forward()
+{
+    Q_ASSERT(!_forwardHistory.isEmpty());
+
+    QString url(_forwardHistory.takeLast());
+    if(_forwardHistory.isEmpty())
+        _forwardAction->setEnabled(false);
+
+    QString curUrl = _htmlPart->url().url();
+    if(!curUrl.isEmpty()) {
+        _backHistory << curUrl;
+        _backAction->setEnabled(true);
+    }
+
+    openUrl(url, false, true);
 }
 
 void InfoBrowser::wikiResult(KJob* job)
@@ -159,7 +251,7 @@ void InfoBrowser::wikiResult(KJob* job)
                         + i18n( "Information could not be retrieved because the server was not reachable." ) +
                     "</div></p>\n</div>\n"
                 "</div>\n"
-                "</body></html>\n");
+                "</body></html>\n", _wikiFromHistory);
 
         return;
     }
@@ -267,7 +359,7 @@ void InfoBrowser::wikiResult(KJob* job)
     }
     data.append( "</body></html>\n" );
 
-    setHtml( data, _wikiUrl );
+    setHtml( data, _wikiFromHistory, _wikiUrl );
 
     _wikiJob = NULL;
 }
