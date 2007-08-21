@@ -20,11 +20,15 @@
 #define STEP_INFOBROWSER_H
 
 #include <QDockWidget>
+#include <QStringList>
+#include <KUrl>
 
 class WorldModel;
 class QModelIndex;
 class QShowEvent;
 class KHTMLPart;
+class KJob;
+class KUrl;
 
 class InfoBrowser: public QDockWidget
 {
@@ -35,12 +39,23 @@ public:
 
 protected slots:
     void worldCurrentChanged(const QModelIndex& current, const QModelIndex& previous);
+    void openUrl(const KUrl& url);
+    void setHtml(const QString& data, const KUrl& url = KUrl());
+    void wikiResult(KJob* job);
 
 protected:
     void showEvent(QShowEvent* event);
 
     WorldModel* _worldModel;
     KHTMLPart*  _htmlPart;
+
+    KJob*       _wikiJob;
+    KUrl        _wikiUrl;
+
+    QStringList _backHistory;
+    QStringList _forwardHistory;
+
+    bool        _selectionChanged;
 };
 
 
