@@ -118,9 +118,6 @@ void InfoBrowser::updateSyncSelection()
 {
     if(_htmlPart->url().protocol() == "objinfo") {
         QModelIndex current = _worldModel->selectionModel()->currentIndex();
-        kDebug() << _htmlPart->url().path() << endl;
-        kDebug() << current.data(WorldModel::ClassNameRole).toString() << endl;
-        kDebug() << endl;
         if(_htmlPart->url().path() == current.data(WorldModel::ClassNameRole).toString()) {
             _syncAction->setEnabled(false);
             return;
