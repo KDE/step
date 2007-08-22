@@ -361,8 +361,6 @@ void MainWindow::configureStep()
                 worldGraphicsView, SLOT(settingsChanged())); 
     connect(dialog, SIGNAL(settingsChanged(const QString&)),
                 propertiesBrowser, SLOT(settingsChanged())); 
-    connect(dialog, SIGNAL(settingsChanged(const QString&)),
-                infoBrowser, SLOT(settingsChanged())); 
 
     dialog->show();
 }

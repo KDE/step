@@ -48,11 +48,11 @@ protected slots:
     void back();
     void forward();
     void openInBrowser();
-    void syncSelection();
-    void settingsChanged();
+    void syncSelection(bool checked = true);
 
 protected:
     void showEvent(QShowEvent* event);
+    void updateSyncSelection();
 
     WorldModel* _worldModel;
 

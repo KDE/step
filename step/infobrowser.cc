@@ -58,15 +58,14 @@ InfoBrowser::InfoBrowser(WorldModel* worldModel, QWidget* parent, Qt::WindowFlag
 
     _toolBar->addSeparator();
     _syncAction = _toolBar->addAction(KIcon("goto-page"), i18n("Sync selection"), this, SLOT(syncSelection())); // XXX: icon
-    _followAction = _toolBar->addAction(KIcon("note2"), i18n("Follow selection")); // XXX: icon
+    _syncAction->setEnabled(false);
+    _followAction = _toolBar->addAction(KIcon("note2"), i18n("Follow selection")/*, this, SLOT(syncSelection(bool))*/); // XXX: icon
     _followAction->setCheckable(true);
     _followAction->setChecked(true);
 
     _toolBar->addSeparator();
     _execAction = _toolBar->addAction(KIcon("exec"), i18n("Open in browser"), this, SLOT(openInBrowser()));
     _execAction->setEnabled(false);
-
-    if(Settings::wikiExternal()) _toolBar->hide();
 
     _htmlPart = new KHTMLPart(widget);
     layout->addWidget(_htmlPart->widget());
@@ -81,24 +80,10 @@ InfoBrowser::InfoBrowser(WorldModel* worldModel, QWidget* parent, Qt::WindowFlag
                 SIGNAL(openUrlRequest(const KUrl&, const KParts::OpenUrlArguments&, const KParts::BrowserArguments&)),
                 this, SLOT(openUrl(const KUrl&)));
 
-    worldCurrentChanged(_worldModel->worldIndex(), QModelIndex());
-
     connect(_worldModel->selectionModel(), SIGNAL(currentChanged(const QModelIndex&, const QModelIndex&)),
                                            this, SLOT(worldCurrentChanged(const QModelIndex&, const QModelIndex&)));
 
-
-    //setWidget(_treeView);
-}
-
-void InfoBrowser::settingsChanged()
-{
-    if(Settings::wikiExternal()) {
-        _toolBar->hide();
-        QModelIndex current = _worldModel->selectionModel()->currentIndex();
-        worldCurrentChanged(current, QModelIndex());
-    } else {
-        _toolBar->show();
-    }
+    syncSelection();
 }
 
 void InfoBrowser::showEvent(QShowEvent* event)
@@ -113,16 +98,35 @@ void InfoBrowser::showEvent(QShowEvent* event)
 
 void InfoBrowser::worldCurrentChanged(const QModelIndex& /*current*/, const QModelIndex& /*previous*/)
 {
-    if(_followAction->isChecked()) {
-        if(isVisible()) syncSelection(); //openUrl(QString("objinfo:").append(current.data(WorldModel::ClassNameRole).toString()), true);
-        else _selectionChanged = true;
+    if(isVisible()) {
+        if(_followAction->isChecked()) syncSelection();
+        else updateSyncSelection();
+    } else {
+        _selectionChanged = true;
     }
 }
 
-void InfoBrowser::syncSelection()
+void InfoBrowser::syncSelection(bool checked)
 {
-    QModelIndex current = _worldModel->selectionModel()->currentIndex();
-    openUrl(QString("objinfo:").append(current.data(WorldModel::ClassNameRole).toString()), true);
+    if(checked) {
+        QModelIndex current = _worldModel->selectionModel()->currentIndex();
+        openUrl(QString("objinfo:").append(current.data(WorldModel::ClassNameRole).toString()), true);
+    }
+}
+
+void InfoBrowser::updateSyncSelection()
+{
+    if(_htmlPart->url().protocol() == "objinfo") {
+        QModelIndex current = _worldModel->selectionModel()->currentIndex();
+        kDebug() << _htmlPart->url().path() << endl;
+        kDebug() << current.data(WorldModel::ClassNameRole).toString() << endl;
+        kDebug() << endl;
+        if(_htmlPart->url().path() == current.data(WorldModel::ClassNameRole).toString()) {
+            _syncAction->setEnabled(false);
+            return;
+        }
+    }
+    _syncAction->setEnabled(true);
 }
 
 void InfoBrowser::openUrl(const KUrl& url, bool clearHistory, bool fromHistory)
@@ -156,7 +160,7 @@ void InfoBrowser::openUrl(const KUrl& url, bool clearHistory, bool fromHistory)
                             "</p></div>\n"
                         "</div>\n"
                     "</div>\n"
-                    "</body></html>", fromHistory );
+                    "</body></html>", fromHistory, url );
             return;
         }
         QString fileName = KStandardDirs::locate("data", QString("step/objinfo/%1.html").arg(className));
@@ -182,7 +186,7 @@ void InfoBrowser::openUrl(const KUrl& url, bool clearHistory, bool fromHistory)
                         "</p></div>\n"
                     "</div>\n"
                 "</div>\n"
-                "</body></html>", fromHistory );
+                "</body></html>", fromHistory, url );
         return;
     } else if(url.protocol() == "http") {
         if(!Settings::wikiExternal() &&
@@ -231,6 +235,8 @@ void InfoBrowser::setHtml(const QString& data, bool fromHistory, const KUrl& url
     _htmlPart->begin(url);
     _htmlPart->write( data );
     _htmlPart->end();
+    
+    updateSyncSelection();
 }
 
 void InfoBrowser::back()
