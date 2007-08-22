@@ -29,8 +29,19 @@ STEPCORE_META_OBJECT(Particle, "Simple zero-size particle", 0, STEPCORE_SUPER_CL
         STEPCORE_PROPERTY_R_D(StepCore::Vector2d, force, "N", "force", force)
         STEPCORE_PROPERTY_RW(double, mass, "kg", "mass", mass, setMass ))
 
+STEPCORE_META_OBJECT(ParticleErrors, "Errors class for Particle", 0, STEPCORE_SUPER_CLASS(ErrorsObject),
+        STEPCORE_PROPERTY_RW_D(StepCore::Vector2d, positionError, "m", "position error", positionError, setPositionError)
+        STEPCORE_PROPERTY_RW_D(StepCore::Vector2d, velocityError, "m/s", "velocity error", velocityError, setVelocityError)
+        STEPCORE_PROPERTY_R_D(StepCore::Vector2d, forceError, "N", "force error", forceError)
+        STEPCORE_PROPERTY_RW(double, massError, "kg", "mass error", massError, setMassError ))
+
 STEPCORE_META_OBJECT(ChargedParticle, "Charged zero-size particle", 0, STEPCORE_SUPER_CLASS(Particle),
         STEPCORE_PROPERTY_RW(double, charge, "C", "charge", charge, setCharge))
+
+Particle* ParticleErrors::particle() const
+{
+    return static_cast<Particle*>(owner());
+}
 
 Particle::Particle(Vector2d position, Vector2d velocity, double mass)
     : _position(position), _velocity(velocity), _force(0), _mass(mass)

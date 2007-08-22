@@ -30,11 +30,37 @@ STEPCORE_META_OBJECT(Body, "Body", MetaObject::ABSTRACT,,)
 STEPCORE_META_OBJECT(Force, "Force", MetaObject::ABSTRACT,,)
 STEPCORE_META_OBJECT(Tool, "Tool", MetaObject::ABSTRACT,,)
 
+STEPCORE_META_OBJECT(ErrorsObject, "ErrorsObject", MetaObject::ABSTRACT, STEPCORE_SUPER_CLASS(Object),)
+
 STEPCORE_META_OBJECT(ItemGroup, "ItemGroup", 0, STEPCORE_SUPER_CLASS(Item),)
 
 STEPCORE_META_OBJECT(World, "World", 0, STEPCORE_SUPER_CLASS(ItemGroup),
         STEPCORE_PROPERTY_RW_D(double, time, "s", "Current time", time, setTime)
-        STEPCORE_PROPERTY_RW  (double, timeScale, STEPCORE_UNITS_1, "Simulation speed scale", timeScale, setTimeScale))
+        STEPCORE_PROPERTY_RW  (double, timeScale, STEPCORE_UNITS_1, "Simulation speed scale", timeScale, setTimeScale)
+        STEPCORE_PROPERTY_RW  (bool, errorsCalculation, STEPCORE_UNITS_NULL,
+                        "Enable global errors calculation", errorsCalculation, setErrorsCalculation))
+
+Item& Item::operator=(const Item& item)
+{
+    Object::operator=(item);
+
+    _world = item._world;
+    _group = item._group;
+
+    if(item._errorsObject) {
+        _errorsObject = static_cast<ErrorsObject*>(
+            item._errorsObject->metaObject()->cloneObject(*item._errorsObject) );
+        _errorsObject->setOwner(this);
+    }
+
+    return *this;
+}
+
+ErrorsObject* Item::errorsObject()
+{
+    if(!_errorsObject) _errorsObject = createErrorsObject();
+    return _errorsObject;
+}
 
 ItemGroup::ItemGroup(const ItemGroup& group)
     : Item()
@@ -168,8 +194,8 @@ Item* ItemGroup::item(const QString& name) const
 }
 
 World::World()
-    : _time(0), _timeScale(1), _solver(NULL),
-      _collisionSolver(0), _constraintSolver(NULL),
+    : _time(0), _timeScale(1), _errorsCalculation(false),
+      _solver(NULL), _collisionSolver(0), _constraintSolver(NULL),
       _variablesCount(0), _variables(NULL), _errors(NULL)
 {
     setWorld(this);
@@ -177,8 +203,8 @@ World::World()
 }
 
 World::World(const World& world)
-    : ItemGroup(), _time(0), _timeScale(1), _solver(NULL),
-      _collisionSolver(0), _constraintSolver(NULL),
+    : ItemGroup(), _time(0), _timeScale(1), _errorsCalculation(false),
+      _solver(NULL), _collisionSolver(0), _constraintSolver(NULL),
       _variablesCount(0), _variables(NULL), _errors(NULL)
 {
     *this = world;
@@ -217,9 +243,9 @@ World& World::operator=(const World& world)
         worldItemAdded(*it);
     }
 
-    setTime(world.time());
-    setTimeScale(world.timeScale());
-    setName(world.name());
+    _time = world._time;
+    _timeScale = world._timeScale;
+    _errorsCalculation = world._errorsCalculation;
 
     _stopOnCollision = world._stopOnCollision;
     _stopOnIntersection = world._stopOnIntersection;
@@ -265,6 +291,7 @@ void World::clear()
 
     _time = 0;
     _timeScale = 1;
+    _errorsCalculation = false;
 
     _stopOnCollision = false;
     _stopOnIntersection = false;

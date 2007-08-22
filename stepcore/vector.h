@@ -79,7 +79,7 @@ public:
     T norm2() const { return innerProduct(*this); }
 
     /** Calculate the norm of *this */
-    T norm() const { return sqrt(norm2()); }
+    T norm() const { return T(sqrt(norm2())); }
 
     /** Calculate unit vector with the same direction as *this */
     Vector unit() const { double n = norm(); return n!=0 ? (*this) / n : Vector<T,N>(0); }
@@ -115,6 +115,11 @@ public:
     bool operator==(const Vector<T,N>& b);
     /** Compare *this and b */
     bool operator!=(const Vector<T,N>& b);
+
+    /** Calculate fabs() for all vector components */
+    Vector cabs() const;
+    /** Calculate variance addition: res[i] = sqrt((*this)[i]^2+b[i]^2) */
+    Vector cadd(const Vector<T,N>& b) const;
 
 protected:
     T _array[N];
@@ -269,6 +274,25 @@ bool Vector<T,N>::operator!=(const Vector<T,N>& b)
 {
     return std::memcmp(_array, b._array, N*sizeof(*_array)) != 0;
 }
+
+template<typename T, int N>
+Vector<T,N> Vector<T,N>::cabs() const
+{
+    Vector<T,N> ret;
+    for(int i=0; i<N; ++i)
+        ret._array[i] = _array[i] < 0 ? -_array[i] : _array[i];
+    return ret;
+}
+
+template<typename T, int N>
+Vector<T,N> Vector<T,N>::cadd(const Vector<T,N>& b) const
+{
+    Vector<T,N> ret;
+    for(int i=0; i<N; ++i)
+        ret._array[i] = T(sqrt(_array[i]*_array[i]+b._array[i]*b._array[i]));
+    return ret;
+}
+
 
 } // namespace StepCore
 

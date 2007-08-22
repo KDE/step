@@ -32,9 +32,30 @@ namespace StepCore
 
 class World;
 class Solver;
+class Item;
 class ItemGroup;
 class CollisionSolver;
 class ConstraintSolver;
+
+/** \ingroup errors
+ *  \brief Base class for all errors objects
+ */
+class ErrorsObject: public Object
+{
+    STEPCORE_OBJECT(ErrorsObject)
+
+public:
+    /** Constructs ErrorsObject */
+    ErrorsObject(Item* owner = NULL): _owner(owner) {}
+
+    /** Get the owner of ErrorsObject */
+    Item* owner() const { return _owner; }
+    /** Set the owner of ErrorsObject */
+    void setOwner(Item* owner) { _owner = owner; }
+
+private:
+    Item* _owner;
+};
 
 /** \ingroup world
  *  \brief The root class for any world items (bodies and forces)
@@ -45,8 +66,15 @@ class Item : public Object
     STEPCORE_OBJECT(Item)
 
 public:
-    Item(): _world(NULL), _group(NULL) {}
-    virtual ~Item() {}
+    /** Constructs Item */
+    Item(): _world(NULL), _group(NULL), _errorsObject(NULL) {}
+    /** Constructs a copy of item */
+    Item(const Item& item) : Object() { *this = item; }
+    /** Destroys Item */
+    virtual ~Item() { delete _errorsObject; }
+
+    /** Assignment operator (copies errorsObject if necessary) */
+    Item& operator=(const Item& item);
 
     /** Set/change pointer to World in which this object lives */
     virtual void setWorld(World* world) { _world = world; }
@@ -60,6 +88,15 @@ public:
     /** Get pointer to ItemGroup in which this object lives */
     ItemGroup* group() const { return _group; }
 
+    /** Get errorsObject only if it already exists */
+    ErrorsObject* tryGetErrorsObject() const { return _errorsObject; }
+
+    /** Get existing errorsObject or try to create it */
+    ErrorsObject* errorsObject();
+
+    /** Delete errorsObject */
+    void deleteErrorsObject() { delete _errorsObject; _errorsObject = NULL; }
+
     /** Called by the World when any item is about to be removed
      *  from the world
      *  \param item Pointer to item about to be removed
@@ -67,9 +104,13 @@ public:
      */
     virtual void worldItemRemoved(Item* item STEPCORE_UNUSED) {}
 
+protected:
+    virtual ErrorsObject* createErrorsObject() { return NULL; }
+
 private:
     World* _world;
     ItemGroup* _group;
+    ErrorsObject* _errorsObject;
 };
 
 /** \ingroup bodies
@@ -222,6 +263,12 @@ public:
     /** Set simulation speed scale */
     void setTimeScale(double timeScale) { _timeScale = timeScale; }
 
+    /** Is errors calculation enabled */
+    bool errorsCalculation() const { return _errorsCalculation; }
+    /** Enable or disable errors calculation */
+    void setErrorsCalculation(bool errorsCalculation) {
+        _errorsCalculation = errorsCalculation; }
+
     /** Add new item to the world */
     //void addItem(Item* item);
     /** Remove item from the world (you should delete item youself) */
@@ -297,6 +344,8 @@ private:
 private:
     double    _time;
     double    _timeScale;
+    bool      _errorsCalculation;
+
     //ItemList  _items;
     BodyList  _bodies;
     ForceList _forces;
@@ -326,6 +375,7 @@ private:
 /** \defgroup contacts Collision and constraint solvers */
 /** \defgroup reflections Reflections */
 /** \defgroup xmlfile XML file IO */
+/** \defgroup errors Error classes */
 
 #endif
 

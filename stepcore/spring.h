@@ -30,9 +30,71 @@
 #include "vector.h"
 
 #include <QString>
+#include <cmath>
 
 namespace StepCore
 {
+
+class Spring;
+
+/** \ingroup errors
+ *  \brief Errors object for Spring
+ */
+class SpringErrors: public ErrorsObject
+{
+    STEPCORE_OBJECT(SpringErrors)
+
+public:
+    /** Constructs SpringErrors */
+    SpringErrors(Item* owner = NULL)
+        : ErrorsObject(owner), _restLengthError(0), _stiffnessError(0),
+          _localPosition1Error(0), _localPosition2Error(0) {}
+
+    /** Get owner as String */
+    Spring* spring() const;
+
+    /** Get restLength error */
+    double restLengthError() const { return _restLengthError; }
+    /** Set restLength error */
+    void   setRestLengthError(double restLengthError) { _restLengthError = fabs(restLengthError); }
+
+    /** Get current length of the spring */
+    double lengthError() const;
+
+    /** Get stiffness error */
+    double stiffnessError() const { return _stiffnessError; }
+    /** Set stiffness error */
+    void   setStiffnessError(double stiffnessError) { _stiffnessError = fabs(stiffnessError); }
+
+    /** Get localPosition1 error */
+    Vector2d localPosition1Error() const { return _localPosition1Error; }
+    /** Set localPosition1 error */
+    void setLocalPosition1Error(const Vector2d& localPosition1Error) {
+        _localPosition1Error = localPosition1Error.cabs(); }
+
+    /** Get localPosition2 error */
+    Vector2d localPosition2Error() const { return _localPosition2Error; }
+    /** Set localPosition2 error */
+    void setLocalPosition2Error(const Vector2d& localPosition2Error) {
+        _localPosition2Error = localPosition2Error.cabs(); }
+
+    /** Get position1 error */
+    Vector2d position1Error() const;
+
+    /** Get position2 error */
+    Vector2d position2Error() const;
+
+    /** Get tension error */
+    double tensionError() const;
+
+protected:
+    double _restLengthError;
+    double _stiffnessError;
+
+    StepCore::Vector2d _localPosition1Error;
+    StepCore::Vector2d _localPosition2Error;
+};
+
 
 /** \ingroup forces
  *  \brief Massless spring
@@ -123,7 +185,12 @@ public:
     void worldItemRemoved(Item* item);
     void setWorld(World* world);
 
+    /** Get (and possibly create) SpringErrors object */
+    SpringErrors* springErrors() { return static_cast<SpringErrors*>(errorsObject()); }
+
 protected:
+    ErrorsObject* createErrorsObject() { return new SpringErrors(this); }
+
     Body* _bodyPtr1;
     Body* _bodyPtr2;
     double _restLength;

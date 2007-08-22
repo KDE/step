@@ -67,7 +67,8 @@ public:
 
 protected:
     WorldModel* _worldModel;
-    StepCore::Object* _object;
+    StepCore::Object*       _object;
+    StepCore::ErrorsObject* _errorsObject;
     ChoicesModel* _solverChoices;
     QList<int> _subRows;
 };
@@ -96,6 +97,11 @@ void PropertiesBrowserModel::setObject(StepCore::Object* object)
     _subRows.clear();
     if(_object != NULL) {
         _worldModel->simulationPause();
+
+        StepCore::Item* item = dynamic_cast<StepCore::Item*>(_object);
+        if(item && item->world()->errorsCalculation()) _errorsObject = item->errorsObject();
+        else _errorsObject = NULL;
+
         for(int i=0; i<_object->metaObject()->propertyCount(); ++i) {
             const StepCore::MetaProperty* p = _object->metaObject()->property(i);
             if(p->userTypeId() == qMetaTypeId<std::vector<StepCore::Vector2d> >())
@@ -112,6 +118,11 @@ void PropertiesBrowserModel::emitDataChanged(bool dynamicOnly)
     if(_object == NULL) return;
 
     _worldModel->simulationPause();
+
+    StepCore::Item* item = dynamic_cast<StepCore::Item*>(_object);
+    if(item && item->world()->errorsCalculation()) _errorsObject = item->errorsObject();
+    else _errorsObject = NULL;
+
     for(int i=0; i<_object->metaObject()->propertyCount(); i++) {
         const StepCore::MetaProperty* p = _object->metaObject()->property(i);
         if(dynamicOnly && !p->isDynamic()) continue;
@@ -163,13 +174,27 @@ QVariant PropertiesBrowserModel::data(const QModelIndex &index, int role) const
                     units.append(" ").append(p->units());
 #endif
 
+                const StepCore::MetaProperty* pe = _errorsObject ?
+                        _errorsObject->metaObject()->property(p->name() + "Error") : NULL;
+
                 // Common property types
                 if(p->userTypeId() == QMetaType::Double) {
-                    return QString::number(p->readVariant(_object).toDouble(), 'g', pr).append(units);
+                    QString error;
+                    if(pe) error = QString::fromUtf8(" ± %1")
+                                    .arg(pe->readVariant(_errorsObject).toDouble(), 0, 'g', pr)
+                                    .append(units);
+                    return QString::number(p->readVariant(_object).toDouble(), 'g', pr).append(units).append(error);
                 } else if(p->userTypeId() == qMetaTypeId<StepCore::Vector2d>()) {
+                    QString error;
+                    if(pe) {
+                        StepCore::Vector2d ve = pe->readVariant(_errorsObject).value<StepCore::Vector2d>();
+                        error = QString::fromUtf8(" ± (%1,%2)")
+                                    .arg(ve[0], 0, 'g', pr).arg(ve[1], 0, 'g', pr).append(units);
+                    }
                     StepCore::Vector2d v = p->readVariant(_object).value<StepCore::Vector2d>();
-                    return QString("(%1,%2)%3").arg(v[0], 0, 'g', pr).arg(v[1], 0, 'g', pr).arg(units);
+                    return QString("(%1,%2)").arg(v[0], 0, 'g', pr).arg(v[1], 0, 'g', pr).append(units).append(error);
                 } else if(p->userTypeId() == qMetaTypeId<std::vector<StepCore::Vector2d> >() ) {
+                    // XXX: add error information
                     std::vector<StepCore::Vector2d> list =
                             p->readVariant(_object).value<std::vector<StepCore::Vector2d> >();
                     QString string;
@@ -184,7 +209,9 @@ QVariant PropertiesBrowserModel::data(const QModelIndex &index, int role) const
                     return string;
                 } else {
                     // default type
-                    return p->readString(_object);
+                    QString error;
+                    if(pe) error = QString::fromUtf8(" ± ").append(pe->readString(_errorsObject)).append(units);
+                    return p->readString(_object).append(units).append(error);
                 }
                 ///*if(p->userTypeId() < (int) QVariant::UserType) return p->readVariant(_object);
                 //else*/ return p->readString(_object); // XXX: default delegate for double looks ugly!
@@ -205,6 +232,9 @@ QVariant PropertiesBrowserModel::data(const QModelIndex &index, int role) const
         if(role == Qt::DisplayRole || role == Qt::EditRole) {
             if(index.column() == 0) return QString("%1[%2]").arg(p->name()).arg(index.row());
             else if(index.column() == 1) {
+#ifdef __GNUC__
+#warning XXX: add error information for lists
+#endif
                 QString units;
                 if(role == Qt::DisplayRole && !p->units().isEmpty())
                     units.append(" [").append(p->units()).append("]");
@@ -250,21 +280,53 @@ bool PropertiesBrowserModel::setData(const QModelIndex &index, const QVariant &v
                 }
             } else {
                 const StepCore::MetaProperty* p = _object->metaObject()->property(index.row());
+                const StepCore::MetaProperty* pe = _errorsObject ?
+                        _errorsObject->metaObject()->property(p->name() + "Error") : NULL;
+
                 QVariant v = value;
+                QVariant ve;
+
+                // Try to find ± sign
+                if(pe && v.canConvert(QVariant::String)) {
+                    QString str  = v.toString();
+                    int idx = str.indexOf(QString::fromUtf8("±"));
+                    if(idx >= 0) {
+                        v = str.left(idx);
+                        ve = str.mid(idx+1);
+                    }
+                }
 
 #ifdef STEP_WITH_UNITSCALC
+                // Convert units
                 if(p->userTypeId() == QMetaType::Double) {
                     double number = 0;
-                    if(UnitsCalc::self()->parseNumber(value.toString(), p->units(), number)) {
+                    if(UnitsCalc::self()->parseNumber(v.toString(), p->units(), number)) {
                         v = number;
                     } else {
                         return false;
                     }
+                    if(ve.isValid()) {
+                        if(UnitsCalc::self()->parseNumber(ve.toString(), p->units(), number)) {
+                            ve = number;
+                        } else {
+                            return false;
+                        }
+                    }
                 }
 #endif
+                // If there is no error value assume that it is zero
+                if(pe && !ve.isValid()) {
+                    if(p->userTypeId() == QMetaType::Double) ve = 0;
+                    else if(p->userTypeId() == qMetaTypeId<StepCore::Vector2d>())
+                        ve = QVariant::fromValue(StepCore::Vector2d(0));
+                    else if(p->userTypeId() == qMetaTypeId<std::vector<StepCore::Vector2d> >())
+                        ve = QVariant::fromValue(std::vector<StepCore::Vector2d>());
+                    else ve = QString(""); // XXX
+                }
 
                 _worldModel->beginMacro(i18n("Edit %1", _object->name()));
-                _worldModel->setProperty(_object, _object->metaObject()->property(index.row()), v);
+                _worldModel->setProperty(_object, p, v);
+                if(pe) _worldModel->setProperty(_errorsObject, pe, ve);
                 _worldModel->endMacro();
             }
         } else {

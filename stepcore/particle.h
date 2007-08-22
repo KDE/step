@@ -29,6 +29,56 @@
 
 namespace StepCore {
 
+class Particle;
+class ChargedParticle;
+
+/** \ingroup errors
+ *  \brief Errors object for Particle
+ */
+class ParticleErrors: public ErrorsObject
+{
+    STEPCORE_OBJECT(ParticleErrors)
+
+public:
+    /** Constructs ParticleErrors */
+    ParticleErrors(Item* owner = 0)
+        : ErrorsObject(owner), _positionError(0), _velocityError(0),
+          _forceError(0), _massError(0) {}
+
+    /** Get owner as Particle */
+    Particle* particle() const;
+
+    /** Get position error */
+    const Vector2d& positionError() const { return _positionError; }
+    /** Set position error */
+    void setPositionError(const Vector2d& positionError) { _positionError = positionError.cabs(); }
+
+    /** Get velocity error */
+    const Vector2d& velocityError() const { return _velocityError; }
+    /** Set velocity error */
+    void setVelocityError(const Vector2d& velocityError) { _velocityError = velocityError.cabs(); }
+
+    /** Get force error */
+    const Vector2d& forceError() const { return _forceError; }
+    /** Set force error */
+    void setForceError(const Vector2d& forceError) { _forceError = forceError.cabs(); }
+    /** Increment force error */
+    void addForceError(const Vector2d& forceError) { _forceError += forceError.cabs(); }
+    /** Reset force error to zero */
+    void zeroForceError() { _forceError.setZero(); }
+
+    /** Get mass error */
+    double massError() const { return _massError; }
+    /** Set mass error */
+    void   setMassError(double massError) { _massError = fabs(massError); }
+
+protected:
+    Vector2d _positionError;
+    Vector2d _velocityError;
+    Vector2d _forceError;
+    double _massError;
+};
+
 /** \ingroup bodies
  *  \brief Particle with mass
  */
@@ -70,6 +120,12 @@ public:
     void getVariables(double* array);
     void setVariables(const double* array);
     void addErrors(const double* array);
+
+    /** Get (and possibly create) ParticleErrors object */
+    ParticleErrors* particleErrors() { return static_cast<ParticleErrors*>(errorsObject()); }
+
+protected:
+    ErrorsObject* createErrorsObject() { return new ParticleErrors(this); }
 
 protected:
     Vector2d _position;

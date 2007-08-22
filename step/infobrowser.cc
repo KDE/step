@@ -42,6 +42,7 @@ InfoBrowser::InfoBrowser(WorldModel* worldModel, QWidget* parent, Qt::WindowFlag
 
     QVBoxLayout* layout = new QVBoxLayout(widget);
     layout->setContentsMargins(0,0,0,0);
+    layout->setSpacing(0);
 
     _toolBar = new KToolBar(widget);
     layout->addWidget(_toolBar);
