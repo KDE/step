@@ -48,6 +48,7 @@ protected slots:
     void back();
     void forward();
     void openInBrowser();
+    void syncSelection();
     void settingsChanged();
 
 protected:
@@ -62,6 +63,8 @@ protected:
     KUrl        _wikiUrl;
     bool        _wikiFromHistory;
 
+    QAction*    _followAction;
+    QAction*    _syncAction;
     QAction*    _execAction;
     QAction*    _backAction;
     QAction*    _forwardAction;

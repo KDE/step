@@ -55,6 +55,13 @@ InfoBrowser::InfoBrowser(WorldModel* worldModel, QWidget* parent, Qt::WindowFlag
     _backAction->setEnabled(false);
     _forwardAction = _toolBar->addAction(KIcon("go-next"), i18n("Forward"), this, SLOT(forward()));
     _forwardAction->setEnabled(false);
+
+    _toolBar->addSeparator();
+    _syncAction = _toolBar->addAction(KIcon("goto-page"), i18n("Sync selection"), this, SLOT(syncSelection())); // XXX: icon
+    _followAction = _toolBar->addAction(KIcon("note2"), i18n("Follow selection")); // XXX: icon
+    _followAction->setCheckable(true);
+    _followAction->setChecked(true);
+
     _toolBar->addSeparator();
     _execAction = _toolBar->addAction(KIcon("exec"), i18n("Open in browser"), this, SLOT(openInBrowser()));
     _execAction->setEnabled(false);
@@ -104,10 +111,18 @@ void InfoBrowser::showEvent(QShowEvent* event)
     }
 }
 
-void InfoBrowser::worldCurrentChanged(const QModelIndex& current, const QModelIndex& /*previous*/)
+void InfoBrowser::worldCurrentChanged(const QModelIndex& /*current*/, const QModelIndex& /*previous*/)
 {
-    if(isVisible()) openUrl(QString("objinfo:").append(current.data(WorldModel::ClassNameRole).toString()), true);
-    else _selectionChanged = true;
+    if(_followAction->isChecked()) {
+        if(isVisible()) syncSelection(); //openUrl(QString("objinfo:").append(current.data(WorldModel::ClassNameRole).toString()), true);
+        else _selectionChanged = true;
+    }
+}
+
+void InfoBrowser::syncSelection()
+{
+    QModelIndex current = _worldModel->selectionModel()->currentIndex();
+    openUrl(QString("objinfo:").append(current.data(WorldModel::ClassNameRole).toString()), true);
 }
 
 void InfoBrowser::openUrl(const KUrl& url, bool clearHistory, bool fromHistory)
