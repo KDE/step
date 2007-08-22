@@ -319,7 +319,7 @@ void InfoBrowser::wikiResult(KJob* job)
     data.replace( "\n", " " );
     data.replace( "\t", " " );
 
-    QString wikiLanguages = QString::null;
+    QString wikiLanguages;
     // Get the available language list
     if ( data.indexOf("<div id=\"p-lang\" class=\"portlet\">") != -1 )
     {
@@ -334,7 +334,7 @@ void InfoBrowser::wikiResult(KJob* job)
     {
         copyright = data.mid( data.indexOf(copyrightMark) + copyrightMark.length() );
         copyright = copyright.mid( 0, copyright.indexOf( "</li>" ) );
-        copyright.replace( "<br />", QString::null );
+        copyright.remove( "<br />" );
         //only one br at the beginning
         copyright.prepend( "<br />" );
     }
@@ -348,37 +348,37 @@ void InfoBrowser::wikiResult(KJob* job)
     data.append( "</div>" );
 
     // Remove unnessesary sections (do it with style?)
-    data.replace( QRegExp("<h3 *id=\"siteSub\">[^<]*</h3>"), QString::null );
+    data.remove( QRegExp("<h3 *id=\"siteSub\">[^<]*</h3>") );
 
-    data.replace( QRegExp( "<span class=\"editsection\"[^>]*>[^<]*<[^>]*>[^<]*<[^>]*>[^<]*</span>" ), QString::null );
+    data.remove( QRegExp( "<span class=\"editsection\"[^>]*>[^<]*<[^>]*>[^<]*<[^>]*>[^<]*</span>" ) );
 
     data.replace( QRegExp( "<a href=\"[^\"]*\" class=\"new\"[^>]*>([^<]*)</a>" ), "\\1" );
 
     // Remove anything inside of a class called urlexpansion, as it's pointless for us
-    data.replace( QRegExp( "<span class= *'urlexpansion'>[^(]*[(][^)]*[)]</span>ttp inthttp" ), QString::null );
+    data.remove( QRegExp( "<span class= *'urlexpansion'>[^(]*[(][^)]*[)]</span>ttp inthttp" ) );
 
     // Remove hidden table rows as well
     QRegExp hidden( "<tr *class= *[\"\']hiddenStructure[\"\']>.*</tr>", Qt::CaseInsensitive );
     hidden.setMinimal( true ); //greedy behaviour wouldn't be any good!
-    data.replace( hidden, QString::null );
+    data.remove( hidden );
 
     // Remove jump-to-nav
     QRegExp jumpToNav( "<div *id= *[\"\']jump-to-nav[\"\']>.*</div>", Qt::CaseInsensitive );
     jumpToNav.setMinimal( true );
-    data.replace( jumpToNav, QString::null );
+    data.remove( jumpToNav );
 
     // we want to keep our own style (we need to modify the stylesheet a bit to handle things nicely)
-    //data.replace( QRegExp( "style= *\"[^\"]*\"" ), QString::null );
-    //data.replace( QRegExp( "class= *\"[^\"]*\"" ), QString::null );
+    //data.remove( QRegExp( "style= *\"[^\"]*\"" ) );
+    //data.remove( QRegExp( "class= *\"[^\"]*\"" ) );
 
     // let's remove the form elements, we don't want them.
-    data.replace( QRegExp( "<input[^>]*>" ), QString::null );
-    data.replace( QRegExp( "<select[^>]*>" ), QString::null );
-    data.replace( "</select>\n" , QString::null );
-    data.replace( QRegExp( "<option[^>]*>" ), QString::null );
-    data.replace( "</option>\n" , QString::null );
-    data.replace( QRegExp( "<textarea[^>]*>" ), QString::null );
-    data.replace( "</textarea>" , QString::null );
+    data.remove( QRegExp( "<input[^>]*>" ) );
+    data.remove( QRegExp( "<select[^>]*>" ) );
+    data.remove( "</select>\n" );
+    data.remove( QRegExp( "<option[^>]*>" ) );
+    data.remove( "</option>\n" );
+    data.remove( QRegExp( "<textarea[^>]*>" ) );
+    data.remove( "</textarea>" );
 
     //first we convert all the links with protocol to external, as they should all be External Links.
     //data.replace( QRegExp( "href= *\"http:" ), "href=\"externalurl:" );
