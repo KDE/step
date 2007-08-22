@@ -41,7 +41,7 @@ protected:
 };
 
 WorldBrowser::WorldBrowser(WorldModel* worldModel, QWidget* parent, Qt::WindowFlags flags)
-    : QDockWidget(i18n("World"), parent, flags)
+    : QDockWidget(i18nc("The main canvas of Step.", "World"), parent, flags)
 {
     _worldBrowserView = new WorldBrowserView(this);
     _worldBrowserView->header()->hide();
