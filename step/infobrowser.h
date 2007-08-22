@@ -27,6 +27,7 @@ class WorldModel;
 class QModelIndex;
 class QShowEvent;
 class QAction;
+class KToolBar;
 class KHTMLPart;
 class KJob;
 class KUrl;
@@ -46,17 +47,22 @@ protected slots:
 
     void back();
     void forward();
+    void openInBrowser();
+    void settingsChanged();
 
 protected:
     void showEvent(QShowEvent* event);
 
     WorldModel* _worldModel;
+
+    KToolBar*   _toolBar;
     KHTMLPart*  _htmlPart;
 
     KJob*       _wikiJob;
     KUrl        _wikiUrl;
     bool        _wikiFromHistory;
 
+    QAction*    _execAction;
     QAction*    _backAction;
     QAction*    _forwardAction;
     QStringList _backHistory;

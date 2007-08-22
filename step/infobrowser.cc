@@ -19,6 +19,9 @@
 #include "infobrowser.h"
 #include "infobrowser.moc"
 
+#include "worldmodel.h"
+#include "settings.h"
+
 #include <QItemSelectionModel>
 #include <QVBoxLayout>
 #include <QAction>
@@ -30,8 +33,6 @@
 #include <KToolInvocation>
 #include <KIO/Job>
 
-#include "worldmodel.h"
-
 InfoBrowser::InfoBrowser(WorldModel* worldModel, QWidget* parent, Qt::WindowFlags flags)
     : QDockWidget(i18n("Context info"), parent, flags),
       _worldModel(worldModel), _wikiJob(NULL), _wikiFromHistory(false), _selectionChanged(false)
@@ -42,18 +43,23 @@ InfoBrowser::InfoBrowser(WorldModel* worldModel, QWidget* parent, Qt::WindowFlag
     QVBoxLayout* layout = new QVBoxLayout(widget);
     layout->setContentsMargins(0,0,0,0);
 
-    KToolBar* toolBar = new KToolBar(widget);
-    layout->addWidget(toolBar);
-    toolBar->setMovable(false);
-    toolBar->setFloatable(false);
-    toolBar->setIconDimensions(16);
-    toolBar->setContextMenuPolicy(Qt::NoContextMenu);
-    toolBar->setToolButtonStyle(Qt::ToolButtonIconOnly);
+    _toolBar = new KToolBar(widget);
+    layout->addWidget(_toolBar);
+    _toolBar->setMovable(false);
+    _toolBar->setFloatable(false);
+    _toolBar->setIconDimensions(16);
+    _toolBar->setContextMenuPolicy(Qt::NoContextMenu);
+    _toolBar->setToolButtonStyle(Qt::ToolButtonIconOnly);
 
-    _backAction = toolBar->addAction(KIcon("go-previous"), i18n("Back"), this, SLOT(back()));
+    _backAction = _toolBar->addAction(KIcon("go-previous"), i18n("Back"), this, SLOT(back()));
     _backAction->setEnabled(false);
-    _forwardAction = toolBar->addAction(KIcon("go-next"), i18n("Forward"), this, SLOT(forward()));
+    _forwardAction = _toolBar->addAction(KIcon("go-next"), i18n("Forward"), this, SLOT(forward()));
     _forwardAction->setEnabled(false);
+    _toolBar->addSeparator();
+    _execAction = _toolBar->addAction(KIcon("exec"), i18n("Open in browser"), this, SLOT(openInBrowser()));
+    _execAction->setEnabled(false);
+
+    if(Settings::wikiExternal()) _toolBar->hide();
 
     _htmlPart = new KHTMLPart(widget);
     layout->addWidget(_htmlPart->widget());
@@ -75,6 +81,17 @@ InfoBrowser::InfoBrowser(WorldModel* worldModel, QWidget* parent, Qt::WindowFlag
 
 
     //setWidget(_treeView);
+}
+
+void InfoBrowser::settingsChanged()
+{
+    if(Settings::wikiExternal()) {
+        _toolBar->hide();
+        QModelIndex current = _worldModel->selectionModel()->currentIndex();
+        worldCurrentChanged(current, QModelIndex());
+    } else {
+        _toolBar->show();
+    }
 }
 
 void InfoBrowser::showEvent(QShowEvent* event)
@@ -152,30 +169,31 @@ void InfoBrowser::openUrl(const KUrl& url, bool clearHistory, bool fromHistory)
                 "</div>\n"
                 "</body></html>", fromHistory );
         return;
-    } else if(url.protocol() == "wphttp") {
-        KUrl inturl(url); inturl.setProtocol("http");
-
-        setHtml(
-            "<html><head><meta http-equiv=\"Content-Type\" content=\"text/html; charset=utf-8\" />"
-            "</head><body>\n"
-            "<div id='wiki_box' class='box'>\n"
-                "<div id='wiki_box-header' class='box-header'>\n"
-                    "<span id='wiki_box-header-title' class='box-header-title'>\n"
-                    + i18n( "Wikipedia" ) +
-                    "</span>\n"
-                "</div>\n"
-                "<div id='wiki_box-body' class='box-body'>\n"
-                    "<div class='info'><p>\n" + i18n( "Fetching Wikipedia Information ..." ) + "</p></div>\n"
-                "</div>\n"
-            "</div>\n"
-            "</body></html>\n", fromHistory);
-
-        _wikiUrl = url;
-        _wikiFromHistory = fromHistory;
-        _wikiJob = KIO::storedGet(inturl, false, false);
-        connect(_wikiJob, SIGNAL(result(KJob*)), this, SLOT( wikiResult(KJob*)));
     } else if(url.protocol() == "http") {
-        KToolInvocation::invokeBrowser(url.url());
+        if(!Settings::wikiExternal() &&
+                        QRegExp("[a-zA-Z-]+\\.wikipedia\\.org").exactMatch(url.host())) {
+            setHtml(
+                "<html><head><meta http-equiv=\"Content-Type\" content=\"text/html; charset=utf-8\" />"
+                "</head><body>\n"
+                "<div id='wiki_box' class='box'>\n"
+                    "<div id='wiki_box-header' class='box-header'>\n"
+                        "<span id='wiki_box-header-title' class='box-header-title'>\n"
+                        + i18n( "Wikipedia" ) +
+                        "</span>\n"
+                    "</div>\n"
+                    "<div id='wiki_box-body' class='box-body'>\n"
+                        "<div class='info'><p>\n" + i18n( "Fetching Wikipedia Information ..." ) + "</p></div>\n"
+                    "</div>\n"
+                "</div>\n"
+                "</body></html>\n", fromHistory);
+
+            _wikiUrl = url;
+            _wikiFromHistory = fromHistory;
+            _wikiJob = KIO::storedGet(url, false, false);
+            connect(_wikiJob, SIGNAL(result(KJob*)), this, SLOT( wikiResult(KJob*)));
+        } else {
+            KToolInvocation::invokeBrowser(url.url());
+        }
     }
 }
 
@@ -191,6 +209,9 @@ void InfoBrowser::setHtml(const QString& data, bool fromHistory, const KUrl& url
             _backAction->setEnabled(true);
         }
     }
+
+    if(url.protocol() == "http") _execAction->setEnabled(true);
+    else _execAction->setEnabled(false);
 
     _htmlPart->begin(url);
     _htmlPart->write( data );
@@ -229,6 +250,13 @@ void InfoBrowser::forward()
     }
 
     openUrl(url, false, true);
+}
+
+void InfoBrowser::openInBrowser()
+{
+    if(_htmlPart->url().protocol() == "http") {
+        KToolInvocation::invokeBrowser(_htmlPart->url().url());
+    }
 }
 
 void InfoBrowser::wikiResult(KJob* job)
@@ -277,8 +305,6 @@ void InfoBrowser::wikiResult(KJob* job)
         wikiLanguages = data.mid( data.indexOf("<div id=\"p-lang\" class=\"portlet\">") );
         wikiLanguages = wikiLanguages.mid( wikiLanguages.indexOf("<ul>") );
         wikiLanguages = wikiLanguages.mid( 0, wikiLanguages.indexOf( "</div>" ) );
-        wikiLanguages.replace( QRegExp( "href= *\"http://([a-zA-Z-]*\\.wikipedia.org/)" ),
-                                    "href=\"wphttp://\\1" );
     }
 
     QString copyright;
@@ -295,11 +321,13 @@ void InfoBrowser::wikiResult(KJob* job)
     // Ok lets remove the top and bottom parts of the page
     data = data.mid( data.indexOf( "<h1 class=\"firstHeading\">" ) );
     data = data.mid( 0, data.indexOf( "<div class=\"printfooter\">" ) );
+
     // Adding back license information
     data += copyright;
     data.append( "</div>" );
 
-    data.replace( QRegExp("<h3 id=\"siteSub\">[^<]*</h3>"), QString::null );
+    // Remove unnessesary sections (do it with style?)
+    data.replace( QRegExp("<h3 *id=\"siteSub\">[^<]*</h3>"), QString::null );
 
     data.replace( QRegExp( "<span class=\"editsection\"[^>]*>[^<]*<[^>]*>[^<]*<[^>]*>[^<]*</span>" ), QString::null );
 
@@ -312,6 +340,11 @@ void InfoBrowser::wikiResult(KJob* job)
     QRegExp hidden( "<tr *class= *[\"\']hiddenStructure[\"\']>.*</tr>", Qt::CaseInsensitive );
     hidden.setMinimal( true ); //greedy behaviour wouldn't be any good!
     data.replace( hidden, QString::null );
+
+    // Remove jump-to-nav
+    QRegExp jumpToNav( "<div *id= *[\"\']jump-to-nav[\"\']>.*</div>", Qt::CaseInsensitive );
+    jumpToNav.setMinimal( true );
+    data.replace( jumpToNav, QString::null );
 
     // we want to keep our own style (we need to modify the stylesheet a bit to handle things nicely)
     //data.replace( QRegExp( "style= *\"[^\"]*\"" ), QString::null );
@@ -328,8 +361,10 @@ void InfoBrowser::wikiResult(KJob* job)
 
     //first we convert all the links with protocol to external, as they should all be External Links.
     //data.replace( QRegExp( "href= *\"http:" ), "href=\"externalurl:" );
-    //XXX data.replace( QRegExp( "href= *\"/" ), "href=\"" +m_wikiBaseUrl );
-    //XXX data.replace( QRegExp( "href= *\"#" ), "href=\"" +m_wikiCurrentUrl + '#' );
+    //QString url = _wikiUrl.url();
+    //QString baseUrl = url.mid(0, url.indexOf("wiki/"));
+    //data.replace( QRegExp( "href= *\"/" ), "href=\"" + baseUrl );
+    //data.replace( QRegExp( "href= *\"#" ), "href=\"" + baseUrl + '#' );
 
     data.prepend("<html><body>\n"
                     "<div id='wiki_box' class='box'>\n"

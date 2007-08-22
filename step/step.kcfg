@@ -16,4 +16,11 @@
             <default>4</default>
         </entry>
     </group>
+    <group name="InfoBrowser">
+        <entry name="wikiExternal" type="Bool">
+            <label>Browse wikipedia in external browser</label>
+            <whatsthis>Browse wikipedia in external browser</whatsthis>
+            <default>false</default>
+        </entry>
+    </group>
 </kcfg>

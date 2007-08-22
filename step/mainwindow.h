@@ -77,7 +77,7 @@ protected slots:
     */
 
 protected:
-    void setupActions(KConfig* config);
+    void setupActions();
     bool queryClose();
     bool maybeSave();
 

@@ -61,13 +61,6 @@ MainWindow::MainWindow()
 
     setObjectName("MainWindow");
 
-    KConfig* config = new KConfig("steprc");
-    /* XXX: a hack to hide KHTML warning when using InfoBrowser */
-    KConfigGroup rgroup( config, "KDE URL Restrictions" );
-    rgroup.writeEntry( "rule_count", 1 );
-    rgroup.writeEntry( "rule_1", "redirect,objinfo,,,wphttp,,,true" );
-    rgroup.config()->sync();
-
     setCorner(Qt::TopLeftCorner, Qt::LeftDockWidgetArea);
     setCorner(Qt::BottomLeftCorner, Qt::LeftDockWidgetArea);
     setCorner(Qt::TopRightCorner, Qt::RightDockWidgetArea);
@@ -103,13 +96,11 @@ MainWindow::MainWindow()
     QObject::connect(worldScene, SIGNAL(endAddItem(const QString&, bool)),
                                     itemPalette, SLOT(endAddItem(const QString&, bool)));
 
-    setupActions(config);
+    setupActions();
     setupGUI();
     statusBar()->show();
 
     newFile();
-
-    delete config;
 }
 
 MainWindow::~MainWindow()
@@ -119,7 +110,7 @@ MainWindow::~MainWindow()
     delete config;
 }
 
-void MainWindow::setupActions(KConfig* config)
+void MainWindow::setupActions()
 {
     /* File menu */
     KStandardAction::openNew(this, SLOT(newFile()), actionCollection());
@@ -129,7 +120,9 @@ void MainWindow::setupActions(KConfig* config)
     KStandardAction::quit(this, SLOT(close()), actionCollection());
     actionRecentFiles = KStandardAction::openRecent(this, SLOT(openFile(const KUrl&)), actionCollection());
 
+    KConfig* config = new KConfig("steprc");
     actionRecentFiles->loadEntries(config->group("RecentFiles"));
+    delete config;
 
     /* Edit menu */
     actionRedo = KStandardAction::redo(worldModel->undoStack(), SLOT(redo()), actionCollection());
@@ -368,6 +361,8 @@ void MainWindow::configureStep()
                 worldGraphicsView, SLOT(settingsChanged())); 
     connect(dialog, SIGNAL(settingsChanged(const QString&)),
                 propertiesBrowser, SLOT(settingsChanged())); 
+    connect(dialog, SIGNAL(settingsChanged(const QString&)),
+                infoBrowser, SLOT(settingsChanged())); 
 
     dialog->show();
 }
