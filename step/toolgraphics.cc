@@ -37,7 +37,6 @@
 #include <QEvent>
 #include <QPainter>
 #include <QGridLayout>
-#include <QComboBox>
 #include <QLabel>
 #include <QLCDNumber>
 #include <KPlotWidget>
@@ -171,18 +170,18 @@ DataSourceWidget::DataSourceWidget(QWidget* parent)
     QHBoxLayout *layout = new QHBoxLayout(this);
     layout->setContentsMargins(0,0,0,0);
 
-    _object = new QComboBox(this);
+    _object = new KComboBox(this);
     _object->setToolTip("Object name");
     _object->setMinimumContentsLength(10);
     layout->addWidget(_object, 1);
 
-    _property = new QComboBox(this);
+    _property = new KComboBox(this);
     _property->setToolTip("Property name");
     _property->setEnabled(false);
     _property->setMinimumContentsLength(10);
     layout->addWidget(_property, 1);
 
-    _index = new QComboBox(this);
+    _index = new KComboBox(this);
     _index->setToolTip("Vector index");
     _index->setMinimumContentsLength(1);
     _index->setSizeAdjustPolicy(QComboBox::AdjustToMinimumContentsLength);

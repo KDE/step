@@ -23,8 +23,8 @@
 #include <stepcore/tool.h>
 #include <QGraphicsTextItem>
 #include <QAbstractItemModel>
-#include <QComboBox>
 #include <QWidget>
+#include <KComboBox>
 
 class KPlotWidget;
 class KPlotObject;
@@ -105,9 +105,9 @@ protected:
 
     WorldModel* _worldModel;
 
-    QComboBox*  _object;
-    QComboBox*  _property;
-    QComboBox*  _index;
+    KComboBox*  _object;
+    KComboBox*  _property;
+    KComboBox*  _index;
 
     bool _skipReadOnly;
 };
