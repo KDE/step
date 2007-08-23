@@ -200,7 +200,7 @@ QVariant PropertiesBrowserModel::data(const QModelIndex &index, int role) const
                     std::vector<StepCore::Vector2d> list =
                             p->readVariant(_object).value<std::vector<StepCore::Vector2d> >();
                     QString string;
-                    unsigned int end = qMax(10u, list.size()); // XXX: make it 
+                    unsigned int end = qMax<unsigned int>(10u, list.size()); // XXX: make it 
                     for(unsigned int i=0; i<end; ++i) {
                         if(!string.isEmpty()) string += ",";
                         string += QString("(%1,%2)%3").arg(list[i][0], 0, 'g', pr)
