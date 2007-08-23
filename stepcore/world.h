@@ -26,6 +26,9 @@
 #include <vector> // XXX: replace if QT is enabled
 #include "util.h"
 #include "object.h"
+#include "vector.h"
+
+// TODO: split this file
 
 namespace StepCore
 {
@@ -88,10 +91,10 @@ public:
     /** Get pointer to ItemGroup in which this object lives */
     ItemGroup* group() const { return _group; }
 
-    /** Get errorsObject only if it already exists */
+    /** Get ErrorsObject only if it already exists */
     ErrorsObject* tryGetErrorsObject() const { return _errorsObject; }
 
-    /** Get existing errorsObject or try to create it */
+    /** Get existing ErrorsObject or try to create it */
     ErrorsObject* errorsObject();
 
     /** Delete errorsObject */
@@ -128,17 +131,17 @@ public:
     /** Get count of dynamic variables */
     virtual int  variablesCount() = 0;
 
-    /** Set dynamic variables using values in array */
-    virtual void setVariables(const double* array) = 0;
+    /** Set dynamic variables and errors using values in array */
+    virtual void setVariables(const double* array, const double* errors) = 0;
 
-    /** Copies dynamic variables to array */
-    virtual void getVariables(double* array) = 0;
+    /** Copies dynamic variables and errors to array */
+    virtual void getVariables(double* array, double* errors) = 0;
 
-    /** Copies derivatives of dynamic variables to array */
-    virtual void getDerivatives(double* array) = 0;
+    /** Copies derivatives of dynamic variables and errors to array */
+    virtual void getDerivatives(double* array, double* errors) = 0;
 
     /** Resets derivatives of dynamic variables to zero */
-    virtual void resetDerivatives() = 0;
+    virtual void resetDerivatives(bool resetErrors) = 0;
 };
 
 /** \ingroup forces
@@ -334,12 +337,14 @@ private:
     void worldItemRemoved(Item* item);
 
     void checkVariablesCount();
-    void gatherVariables(double* variables = NULL); // XXX: redesign to avoid this
-    void gatherDerivatives(double* derivatives);
-    void scatterVariables(const double* variables = NULL);
+    void gatherDerivatives(double* derivatives, double* variances);
+    void gatherVariables(double* variables, double* variances);
+    void scatterVariables(const double* variables, const double* variances);
 
-    static int solverFunction(double t, const double y[], double f[], void* params);
-    int solverFunction(double t, const double y[], double f[]);
+    static int solverFunction(double t, const double* y, const double* yvar,
+                                 double* f, double* fvar, void* params);
+    int solverFunction(double t, const double* y, const double* yvar,
+                                 double* f, double* fvar);
 
 private:
     double    _time;
@@ -356,7 +361,7 @@ private:
 
     int     _variablesCount;
     double* _variables;
-    double* _errors;
+    double* _variances;
 
     bool    _stopOnCollision;
     bool    _stopOnIntersection;
@@ -375,7 +380,7 @@ private:
 /** \defgroup contacts Collision and constraint solvers */
 /** \defgroup reflections Reflections */
 /** \defgroup xmlfile XML file IO */
-/** \defgroup errors Error classes */
+/** \defgroup errors ErrorsObject classes */
 
 #endif
 

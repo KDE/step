@@ -10,6 +10,7 @@
 * separate position and coordinate 
   (for independent tolerance settings, symplectic solvers)
 * global error estimation (requires jacobian ?)
+* multistep solvers
 * symplectic and other nice solvers
 * molecular dynamics (potentials etc.) (DONE)
 * massive springs

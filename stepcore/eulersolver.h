@@ -42,25 +42,36 @@ class GenericEulerSolver: public Solver
 
 public:
     /** Constructs GenericEulerSolver */
-    GenericEulerSolver(double stepSize, bool adaptive);
+    GenericEulerSolver(double stepSize, bool adaptive)
+        : Solver(stepSize), _adaptive(adaptive) { init(); }
     /** Constructs GenericEulerSolver */
-    GenericEulerSolver(int dimension, Function function, void* params, double stepSize, bool adaptive);
+    GenericEulerSolver(int dimension, Function function,
+            void* params, double stepSize, bool adaptive)
+        : Solver(dimension, function, params, stepSize),
+            _adaptive(adaptive) { init(); }
     /** Copy constructor */
-    GenericEulerSolver(const GenericEulerSolver& eulerSolver);
+    GenericEulerSolver(const GenericEulerSolver& eulerSolver)
+        : Solver(eulerSolver), _adaptive(eulerSolver._adaptive) { init(); }
 
-    ~GenericEulerSolver();
+    ~GenericEulerSolver() { fini(); }
 
-    void setDimension(int dimension);
+    void setDimension(int dimension) { fini(); _dimension = dimension; init(); }
 
-    int doCalcFn(double* t, double y[], double f[] = 0);
-    int doEvolve(double* t, double t1, double y[], double yerr[]);
+    int doCalcFn(double* t, const double* y, const double* yvar = 0,
+                        double* f = 0, double* fvar = 0);
+    int doEvolve(double* t, double t1, double* y, double* yvar);
 
 protected:
-    int doStep(double t, double stepSize, double y[], double yerr[]);
+    int doStep(double t, double stepSize, double* y, double* yvar);
+    void init();
+    void fini();
 
     bool    _adaptive;
+    double* _yerr;
     double* _ytemp;
     double* _ydiff;
+    double* _ytempvar;
+    double* _ydiffvar;
 };
 
 /** \ingroup solvers
@@ -86,7 +97,8 @@ public:
     AdaptiveEulerSolver(): GenericEulerSolver(1, true) {}
     AdaptiveEulerSolver(int dimension, Function function, void* params)
                     : GenericEulerSolver(dimension, function, params, 1, true) {}
-    AdaptiveEulerSolver(const AdaptiveEulerSolver& eulerSolver): GenericEulerSolver(eulerSolver) {}
+    AdaptiveEulerSolver(const AdaptiveEulerSolver& eulerSolver)
+                    : GenericEulerSolver(eulerSolver) {}
 };
 
 } // namespace StepCore

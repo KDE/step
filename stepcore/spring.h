@@ -47,52 +47,56 @@ class SpringErrors: public ErrorsObject
 public:
     /** Constructs SpringErrors */
     SpringErrors(Item* owner = NULL)
-        : ErrorsObject(owner), _restLengthError(0), _stiffnessError(0),
-          _localPosition1Error(0), _localPosition2Error(0) {}
+        : ErrorsObject(owner), _restLengthVariance(0), _stiffnessVariance(0),
+          _localPosition1Variance(0), _localPosition2Variance(0) {}
 
     /** Get owner as String */
     Spring* spring() const;
 
-    /** Get restLength error */
-    double restLengthError() const { return _restLengthError; }
-    /** Set restLength error */
-    void   setRestLengthError(double restLengthError) { _restLengthError = fabs(restLengthError); }
+    /** Get restLength variance */
+    double restLengthVariance() const { return _restLengthVariance; }
+    /** Set restLength variance */
+    void   setRestLengthVariance(double restLengthVariance) {
+        _restLengthVariance = restLengthVariance; }
 
     /** Get current length of the spring */
-    double lengthError() const;
+    double lengthVariance() const;
 
-    /** Get stiffness error */
-    double stiffnessError() const { return _stiffnessError; }
-    /** Set stiffness error */
-    void   setStiffnessError(double stiffnessError) { _stiffnessError = fabs(stiffnessError); }
+    /** Get stiffness variance */
+    double stiffnessVariance() const { return _stiffnessVariance; }
+    /** Set stiffness variance */
+    void   setStiffnessVariance(double stiffnessVariance) {
+        _stiffnessVariance = stiffnessVariance; }
 
-    /** Get localPosition1 error */
-    Vector2d localPosition1Error() const { return _localPosition1Error; }
-    /** Set localPosition1 error */
-    void setLocalPosition1Error(const Vector2d& localPosition1Error) {
-        _localPosition1Error = localPosition1Error.cabs(); }
+    /** Get localPosition1 variance */
+    Vector2d localPosition1Variance() const { return _localPosition1Variance; }
+    /** Set localPosition1 variance */
+    void setLocalPosition1Variance(const Vector2d& localPosition1Variance) {
+        _localPosition1Variance = localPosition1Variance; }
 
-    /** Get localPosition2 error */
-    Vector2d localPosition2Error() const { return _localPosition2Error; }
-    /** Set localPosition2 error */
-    void setLocalPosition2Error(const Vector2d& localPosition2Error) {
-        _localPosition2Error = localPosition2Error.cabs(); }
+    /** Get localPosition2 variance */
+    Vector2d localPosition2Variance() const { return _localPosition2Variance; }
+    /** Set localPosition2 variance */
+    void setLocalPosition2Variance(const Vector2d& localPosition2Variance) {
+        _localPosition2Variance = localPosition2Variance; }
 
-    /** Get position1 error */
-    Vector2d position1Error() const;
+    /** Get position1 variance */
+    Vector2d position1Variance() const;
 
-    /** Get position2 error */
-    Vector2d position2Error() const;
+    /** Get position2 variance */
+    Vector2d position2Variance() const;
 
-    /** Get tension error */
-    double tensionError() const;
+    /** Get tension variance */
+    double tensionVariance() const;
 
 protected:
-    double _restLengthError;
-    double _stiffnessError;
+    double _restLengthVariance;
+    double _stiffnessVariance;
 
-    StepCore::Vector2d _localPosition1Error;
-    StepCore::Vector2d _localPosition2Error;
+    StepCore::Vector2d _localPosition1Variance;
+    StepCore::Vector2d _localPosition2Variance;
+
+    friend class Spring;
 };
 
 

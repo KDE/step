@@ -23,17 +23,22 @@
 namespace StepCore
 {
 
-STEPCORE_META_OBJECT(Particle, "Simple zero-size particle", 0, STEPCORE_SUPER_CLASS(Item) STEPCORE_SUPER_CLASS(Body),
+STEPCORE_META_OBJECT(Particle, "Simple zero-size particle", 0,
+        STEPCORE_SUPER_CLASS(Item) STEPCORE_SUPER_CLASS(Body),
         STEPCORE_PROPERTY_RW_D(StepCore::Vector2d, position, "m", "position", position, setPosition)
         STEPCORE_PROPERTY_RW_D(StepCore::Vector2d, velocity, "m/s", "velocity", velocity, setVelocity)
         STEPCORE_PROPERTY_R_D(StepCore::Vector2d, force, "N", "force", force)
         STEPCORE_PROPERTY_RW(double, mass, "kg", "mass", mass, setMass ))
 
 STEPCORE_META_OBJECT(ParticleErrors, "Errors class for Particle", 0, STEPCORE_SUPER_CLASS(ErrorsObject),
-        STEPCORE_PROPERTY_RW_D(StepCore::Vector2d, positionError, "m", "position error", positionError, setPositionError)
-        STEPCORE_PROPERTY_RW_D(StepCore::Vector2d, velocityError, "m/s", "velocity error", velocityError, setVelocityError)
-        STEPCORE_PROPERTY_R_D(StepCore::Vector2d, forceError, "N", "force error", forceError)
-        STEPCORE_PROPERTY_RW(double, massError, "kg", "mass error", massError, setMassError ))
+        STEPCORE_PROPERTY_RW_D(StepCore::Vector2d, positionVariance, "m",
+                    "position variance", positionVariance, setPositionVariance)
+        STEPCORE_PROPERTY_RW_D(StepCore::Vector2d, velocityVariance, "m/s",
+                    "velocity variance", velocityVariance, setVelocityVariance)
+        STEPCORE_PROPERTY_R_D(StepCore::Vector2d, forceVariance, "N",
+                    "force variance", forceVariance)
+        STEPCORE_PROPERTY_RW(double, massVariance, "kg",
+                    "mass variance", massVariance, setMassVariance ))
 
 STEPCORE_META_OBJECT(ChargedParticle, "Charged zero-size particle", 0, STEPCORE_SUPER_CLASS(Particle),
         STEPCORE_PROPERTY_RW(double, charge, "C", "charge", charge, setCharge))
@@ -48,29 +53,47 @@ Particle::Particle(Vector2d position, Vector2d velocity, double mass)
 {
 }
 
-void Particle::getVariables(double* array)
+void Particle::getVariables(double* array, double* variances)
 {
     std::memcpy(array,   _position.array(), 2*sizeof(*array));
     std::memcpy(array+2, _velocity.array(), 2*sizeof(*array));
+    if(variances) {
+        ParticleErrors* pe = particleErrors();
+        std::memcpy(variances,   pe->_positionVariance.array(), 2*sizeof(*variances));
+        std::memcpy(variances+2, pe->_velocityVariance.array(), 2*sizeof(*variances));
+    }
 }
 
-void Particle::setVariables(const double* array)
+void Particle::setVariables(const double* array, const double* variances)
 {
     std::memcpy(_position.array(), array,   2*sizeof(*array));
     std::memcpy(_velocity.array(), array+2, 2*sizeof(*array));
     _force.setZero();
+    if(variances) {
+        ParticleErrors* pe = particleErrors();
+        std::memcpy(pe->_positionVariance.array(), variances,   2*sizeof(*variances));
+        std::memcpy(pe->_velocityVariance.array(), variances+2, 2*sizeof(*variances));
+        pe->_forceVariance.setZero();
+    }
 }
 
-void Particle::getDerivatives(double* array)
+void Particle::getDerivatives(double* array, double* variances)
 {
     std::memcpy(array, _velocity.array(), 2*sizeof(*array));
     array[2] = _force[0] / _mass;
     array[3] = _force[1] / _mass;
+    if(variances) {
+        ParticleErrors* pe = particleErrors();
+        std::memcpy(variances, pe->_velocityVariance.array(), 2*sizeof(*variances));
+        variances[2] = pe->_forceVariance[0]/square(_mass) + square(_force[0]/square(_mass))*pe->_massVariance;
+        variances[3] = pe->_forceVariance[1]/square(_mass) + square(_force[1]/square(_mass))*pe->_massVariance;
+    }
 }
 
-void Particle::resetDerivatives()
+void Particle::resetDerivatives(bool resetVariances)
 {
     _force.setZero();
+    if(resetVariances) particleErrors()->_forceVariance.setZero();
 }
 
 } // namespace StepCore

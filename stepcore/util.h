@@ -25,6 +25,12 @@
 
 #include <QtGlobal>
 
+namespace StepCore {
+
+template<typename T> inline T square(T v) { return v*v; }
+
+} // namespace StepCore
+
 #ifdef __GNUC__
 #define STEPCORE_UNUSED __attribute__((unused))
 #else

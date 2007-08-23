@@ -69,29 +69,6 @@ STEPCORE_META_OBJECT(GslRK4IMPSolver, "Runge-Kutta implicit fourth-order solver 
 STEPCORE_META_OBJECT(GslAdaptiveRK4IMPSolver, "Adaptive Runge-Kutta implicit fource-order solver from GSL library",
                         0, STEPCORE_SUPER_CLASS(GslAdaptiveSolver),)
 
-GslGenericSolver::GslGenericSolver(double stepSize, bool adaptive, const gsl_odeiv_step_type* gslStepType)
-    : Solver(stepSize), _adaptive(adaptive), _gslStepType(gslStepType)
-{
-    init();
-}
-
-GslGenericSolver::GslGenericSolver(int dimension, Function function, void* params,
-                            double stepSize, bool adaptive, const gsl_odeiv_step_type* gslStepType)
-    : Solver(dimension, function, params, stepSize),  _adaptive(adaptive), _gslStepType(gslStepType)
-{
-    init();
-}
-
-GslGenericSolver::GslGenericSolver(const GslGenericSolver& gslSolver)
-    : Solver(gslSolver), _adaptive(gslSolver._adaptive), _gslStepType(gslSolver._gslStepType)
-{
-    init();
-}
-
-GslGenericSolver::~GslGenericSolver()
-{
-    fini();
-}
 
 void GslGenericSolver::init()
 {
@@ -103,10 +80,10 @@ void GslGenericSolver::init()
     _gslStep = gsl_odeiv_step_alloc(_gslStepType, _dimension);
     STEPCORE_ASSERT_NOABORT(NULL != _gslStep);
 
-    _gslSystem.function = _function;
+    _gslSystem.function = gslFunction;
     _gslSystem.jacobian = NULL;
     _gslSystem.dimension = _dimension;
-    _gslSystem.params = _params;
+    _gslSystem.params = this;
 
     if(_adaptive) {
         _gslControl = gsl_odeiv_control_y_new(_toleranceAbs, _toleranceRel);
@@ -128,15 +105,23 @@ void GslGenericSolver::fini()
     if(_gslEvolve != NULL) gsl_odeiv_evolve_free(_gslEvolve);
 }
 
-int GslGenericSolver::doCalcFn(double* t, double y[], double f[])
+int GslGenericSolver::gslFunction(double t, const double* y, double* f, void* params)
 {
-    int ret = GSL_ODEIV_FN_EVAL(&_gslSystem, *t, y, _ydiff);
-    if(f != NULL) std::memcpy(f, _ydiff, _dimension*sizeof(*f));
+    GslGenericSolver* s = static_cast<GslGenericSolver*>(params);
+    return s->_function(t, y, 0, f, 0, s->_params);
+}
+
+int GslGenericSolver::doCalcFn(double* t, const double* y,
+            const double* yvar, double* f, double* fvar)
+{
+    //int ret = GSL_ODEIV_FN_EVAL(&_gslSystem, *t, y, _ydiff);
+    int ret = _function(*t, y, yvar, f ? f : _ydiff, fvar, _params);
+    //if(f != NULL) std::memcpy(f, _ydiff, _dimension*sizeof(*f));
     return ret;
     //_hasSavedState = true;
 }
 
-int GslGenericSolver::doEvolve(double* t, double t1, double y[], double yerr[])
+int GslGenericSolver::doEvolve(double* t, double t1, double* y, double* yvar)
 {
     STEPCORE_ASSERT_NOABORT(*t + _stepSize != *t);
     STEPCORE_ASSERT_NOABORT(*t != t1);
@@ -165,11 +150,11 @@ int GslGenericSolver::doEvolve(double* t, double t1, double y[], double yerr[])
             gsl_odeiv_evolve_reset(_gslEvolve); // XXX
             gsl_result = gsl_odeiv_evolve_apply(_gslEvolve, _gslControl, _gslStep, &_gslSystem,
                                             &tt, t1, &_stepSize, _ytemp);
-            std::memcpy(yerr, _gslEvolve->yerr, _dimension*sizeof(*yerr));
+            std::memcpy(yvar, _gslEvolve->yerr, _dimension*sizeof(*yvar));
         } else {
             STEPCORE_ASSERT_NOABORT(t1-tt > _stepSize/100);
             gsl_result = gsl_odeiv_step_apply(_gslStep, tt, (_stepSize < t1-tt ? _stepSize : t1-tt),
-                                                _ytemp, yerr, _dydt_in, _dydt_out, &_gslSystem);
+                                                _ytemp, yvar, _dydt_in, _dydt_out, &_gslSystem);
             tt = _stepSize < t1-tt ? tt + _stepSize : t1;
         }
         if(gsl_result != 0) return gsl_result;
@@ -178,7 +163,7 @@ int GslGenericSolver::doEvolve(double* t, double t1, double y[], double yerr[])
         _localError = 0;
         _localErrorRatio = 0;
         for(int i=0; i<_dimension; ++i) {
-            double error = fabs(yerr[i]);
+            double error = fabs(yvar[i]);
             if(error > _localError) _localError = error;
             double errorRatio = error / (_toleranceAbs + _toleranceRel * fabs(_ytemp[i]));
             if(errorRatio > _localErrorRatio) _localErrorRatio = errorRatio;

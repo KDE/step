@@ -47,26 +47,30 @@ class GslGenericSolver: public Solver
 
 public:
     /** Constructs GslSolver */
-    GslGenericSolver(double stepSize, bool adaptive, const gsl_odeiv_step_type* gslStepType);
+    GslGenericSolver(double stepSize, bool adaptive, const gsl_odeiv_step_type* gslStepType)
+        : Solver(stepSize), _adaptive(adaptive), _gslStepType(gslStepType) { init(); }
     /** Constructs GslSolver */
     GslGenericSolver(int dimension, Function function, void* params, double stepSize,
-                bool adaptive, const gsl_odeiv_step_type* gslStepType);
+                bool adaptive, const gsl_odeiv_step_type* gslStepType)
+        : Solver(dimension, function, params, stepSize),
+            _adaptive(adaptive), _gslStepType(gslStepType) { init(); }
     /** Copy constructor */
-    GslGenericSolver(const GslGenericSolver& gslSolver);
+    GslGenericSolver(const GslGenericSolver& gslSolver)
+        : Solver(gslSolver), _adaptive(gslSolver._adaptive),
+            _gslStepType(gslSolver._gslStepType) { init(); }
 
-    ~GslGenericSolver();
+    ~GslGenericSolver() { fini(); }
 
     void setDimension(int dimension) { fini(); _dimension = dimension; init(); }
     void setToleranceAbs(double toleranceAbs) { fini(); _toleranceAbs = toleranceAbs; init(); }
     void setToleranceRel(double toleranceRel) { fini(); _toleranceRel = toleranceRel; init(); }
 
-    void setFunction(Function function) { _gslSystem.function = _function = function; }
-    void setParams(void* params) { _gslSystem.params = _params = params; }
-
-    int doCalcFn(double* t, double y[], double f[] = 0);
-    int doEvolve(double* t, double t1, double y[], double yerr[]);
+    int doCalcFn(double* t, const double* y, const double* yvar,
+                                double* f = 0, double* fvar = 0);
+    int doEvolve(double* t, double t1, double* y, double* yvar);
 
 protected:
+    static int gslFunction(double t, const double* y, double* f, void* params);
     void init();
     void fini();
 

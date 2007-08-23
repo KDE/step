@@ -31,22 +31,33 @@ STEPCORE_META_OBJECT(Spring, "Massless spring", 0,
     STEPCORE_PROPERTY_RW(double, stiffness, "N/m", "Stiffness", stiffness, setStiffness)
     STEPCORE_PROPERTY_RW(QString, body1, STEPCORE_UNITS_NULL, "Body1", body1, setBody1)
     STEPCORE_PROPERTY_RW(QString, body2, STEPCORE_UNITS_NULL, "Body2", body2, setBody2)
-    STEPCORE_PROPERTY_RW(StepCore::Vector2d, localPosition1, "m", "Local position 1", localPosition1, setLocalPosition1)
-    STEPCORE_PROPERTY_RW(StepCore::Vector2d, localPosition2, "m", "Local position 2", localPosition2, setLocalPosition2)
+    STEPCORE_PROPERTY_RW(StepCore::Vector2d, localPosition1, "m",
+                    "Local position 1", localPosition1, setLocalPosition1)
+    STEPCORE_PROPERTY_RW(StepCore::Vector2d, localPosition2, "m",
+                    "Local position 2", localPosition2, setLocalPosition2)
     STEPCORE_PROPERTY_R_D(StepCore::Vector2d, position1, "m", "Position1", position1)
     STEPCORE_PROPERTY_R_D(StepCore::Vector2d, position2, "m", "Position2", position2)
     STEPCORE_PROPERTY_R_D(double, tension, "N", "Spring tension force", tension)
     )
 
-STEPCORE_META_OBJECT(SpringErrors, "Error class for Spring", 0, STEPCORE_SUPER_CLASS(ErrorsObject),
-    STEPCORE_PROPERTY_RW(double, restLengthError, "m", "Rest length error", restLengthError, setRestLengthError)
-    STEPCORE_PROPERTY_R_D(double, lengthError, "m", "Current length error", lengthError)
-    STEPCORE_PROPERTY_RW(double, stiffnessError, "N/m", "Stiffness error", stiffnessError, setStiffnessError)
-    STEPCORE_PROPERTY_RW(StepCore::Vector2d, localPosition1Error, "m", "Local position 1 error", localPosition1Error, setLocalPosition1Error)
-    STEPCORE_PROPERTY_RW(StepCore::Vector2d, localPosition2Error, "m", "Local position 2 error", localPosition2Error, setLocalPosition2Error)
-    STEPCORE_PROPERTY_R_D(StepCore::Vector2d, position1Error, "m", "Position1 error", position1Error)
-    STEPCORE_PROPERTY_R_D(StepCore::Vector2d, position2Error, "m", "Position2 error", position2Error)
-    STEPCORE_PROPERTY_R_D(double, tensionError, "N", "Spring tension force error", tensionError)
+STEPCORE_META_OBJECT(SpringErrors, "Errors class for Spring", 0,
+    STEPCORE_SUPER_CLASS(ErrorsObject),
+    STEPCORE_PROPERTY_RW(double, restLengthVariance, "m",
+                    "Rest length variance", restLengthVariance, setRestLengthVariance)
+    STEPCORE_PROPERTY_R_D(double, lengthVariance, "m",
+                    "Current length variance", lengthVariance)
+    STEPCORE_PROPERTY_RW(double, stiffnessVariance, "N/m",
+                    "Stiffness variance", stiffnessVariance, setStiffnessVariance)
+    STEPCORE_PROPERTY_RW(StepCore::Vector2d, localPosition1Variance, "m",
+                    "Local position 1 variance", localPosition1Variance, setLocalPosition1Variance)
+    STEPCORE_PROPERTY_RW(StepCore::Vector2d, localPosition2Variance, "m",
+                    "Local position 2 variance", localPosition2Variance, setLocalPosition2Variance)
+    STEPCORE_PROPERTY_R_D(StepCore::Vector2d, position1Variance, "m",
+                    "Position1 variance", position1Variance)
+    STEPCORE_PROPERTY_R_D(StepCore::Vector2d, position2Variance, "m",
+                    "Position2 variance", position2Variance)
+    STEPCORE_PROPERTY_R_D(double, tensionVariance, "N",
+                    "Spring tension force variance", tensionVariance)
     )
 
 Spring* SpringErrors::spring() const
@@ -78,8 +89,9 @@ void Spring::calcForce()
     RigidBody* r2 = dynamic_cast<RigidBody*>(_bodyPtr2);
 
     Vector2d r = position2() - position1();
-    double length = r.norm();
-    Vector2d force = _stiffness * (length - _restLength) * r.unit();
+    double l = r.norm();
+    double dl = l - _restLength;
+    Vector2d force = _stiffness * dl / l * r;
     
     if(p1) p1->addForce(force);
     else if(r1) r1->applyForce(force, position1());
@@ -88,7 +100,26 @@ void Spring::calcForce()
     if(p2) p2->addForce(force);
     else if(r2) r2->applyForce(force, position2());
 
-    if(world() && world()->errorsCalculation()) {
+    if(world()->errorsCalculation()) {
+        SpringErrors* se = springErrors();
+        Vector2d forceV;
+
+        // XXX: CHECKME
+        Vector2d rV = se->position2Variance() + se->position1Variance();
+        forceV[0] = square(_stiffness*( 1 - _restLength/l*(1 - square(r[0]/l)) )) * rV[0] +
+                    square(_stiffness*_restLength*r[0]*r[1]/(l*l*l)) * rV[1] +
+                    square(_stiffness*r[0]/l) * se->_restLengthVariance +
+                    square(dl*r[0]/l) * se->_stiffnessVariance;
+        forceV[1] = square(_stiffness*( 1 - _restLength/l*(1 - square(r[1]/l)) )) * rV[1] +
+                    square(_stiffness*_restLength*r[0]*r[1]/(l*l*l)) * rV[0] +
+                    square(_stiffness*r[1]/l) * se->_restLengthVariance +
+                    square(dl*r[1]/l) * se->_stiffnessVariance;
+
+        if(p1) p1->particleErrors()->addForceVariance(forceV);
+        //else if(r1) r1->applyForce(force, position1());
+
+        if(p2) p2->particleErrors()->addForceVariance(forceV);
+        //else if(r2) r2->applyForce(force, position2());
     }
 }
 
@@ -131,16 +162,16 @@ Vector2d Spring::position1() const
     return _localPosition1;
 }
 
-Vector2d SpringErrors::position1Error() const
+Vector2d SpringErrors::position1Variance() const
 {
     Particle* p1 = dynamic_cast<Particle*>(spring()->bodyPtr1());
-    if(p1) _localPosition1Error.cadd(p1->particleErrors()->positionError());
+    if(p1) return p1->particleErrors()->positionVariance() + _localPosition1Variance;
 
     // XXX: TODO
     //RigidBody* r1 = dynamic_cast<RigidBody*>(_bodyPtr1);
     //if(r1) return r1->pointLocalToWorld(_localPosition1);
 
-    return _localPosition1Error;
+    return _localPosition1Variance;
 }
 
 Vector2d Spring::position2() const
@@ -154,23 +185,23 @@ Vector2d Spring::position2() const
     return _localPosition2;
 }
 
-Vector2d SpringErrors::position2Error() const
+Vector2d SpringErrors::position2Variance() const
 {
     Particle* p2 = dynamic_cast<Particle*>(spring()->bodyPtr2());
-    if(p2) return _localPosition2Error.cadd(p2->particleErrors()->positionError());
+    if(p2) return p2->particleErrors()->positionVariance() + _localPosition2Variance;
 
     // XXX: TODO
     //RigidBody* r2 = dynamic_cast<RigidBody*>(_bodyPtr2);
     //if(r2) return r2->pointLocalToWorld(_localPosition2);
 
-    return _localPosition2Error;
+    return _localPosition2Variance;
 }
 
-double SpringErrors::lengthError() const
+double SpringErrors::lengthVariance() const
 {
-    Vector2d l = spring()->position2() - spring()->position1();
-    Vector2d le = position2Error() + position1Error();
-    return sqrt((l[0]*l[0]*le[0]*le[0]+l[1]*l[1]*le[1]*le[1])/l.norm2());
+    Vector2d r = spring()->position2() - spring()->position1();
+    Vector2d rV = position2Variance() + position1Variance();
+    return (r[0]*r[0]*rV[0] + r[1]*r[1]*rV[1])/r.norm2();
 }
 
 double Spring::tension() const
@@ -178,12 +209,11 @@ double Spring::tension() const
     return _stiffness * (length() - _restLength);
 }
 
-double SpringErrors::tensionError() const
+double SpringErrors::tensionVariance() const
 {
-    double stiffness = spring()->stiffness();
     double dl = spring()->length() - spring()->restLength();
-    double dlError = sqrt(lengthError()*lengthError() + _restLengthError*_restLengthError);
-    return sqrt(stiffness*stiffness*dlError*dlError + _stiffnessError*_stiffnessError*dl*dl);
+    double dlV = lengthVariance() + _restLengthVariance;
+    return square(spring()->stiffness())*dlV + _stiffnessVariance*dl*dl;
 }
 
 void Spring::worldItemRemoved(Item* item)

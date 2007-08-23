@@ -42,41 +42,47 @@ class ParticleErrors: public ErrorsObject
 public:
     /** Constructs ParticleErrors */
     ParticleErrors(Item* owner = 0)
-        : ErrorsObject(owner), _positionError(0), _velocityError(0),
-          _forceError(0), _massError(0) {}
+        : ErrorsObject(owner), _positionVariance(0), _velocityVariance(0),
+          _forceVariance(0), _massVariance(0) {}
 
     /** Get owner as Particle */
     Particle* particle() const;
 
-    /** Get position error */
-    const Vector2d& positionError() const { return _positionError; }
-    /** Set position error */
-    void setPositionError(const Vector2d& positionError) { _positionError = positionError.cabs(); }
+    /** Get position variance */
+    const Vector2d& positionVariance() const { return _positionVariance; }
+    /** Set position variance */
+    void setPositionVariance(const Vector2d& positionVariance) {
+        _positionVariance = positionVariance; }
 
-    /** Get velocity error */
-    const Vector2d& velocityError() const { return _velocityError; }
-    /** Set velocity error */
-    void setVelocityError(const Vector2d& velocityError) { _velocityError = velocityError.cabs(); }
+    /** Get velocity variance */
+    const Vector2d& velocityVariance() const { return _velocityVariance; }
+    /** Set velocity variance */
+    void setVelocityVariance(const Vector2d& velocityVariance) {
+        _velocityVariance = velocityVariance; }
 
-    /** Get force error */
-    const Vector2d& forceError() const { return _forceError; }
-    /** Set force error */
-    void setForceError(const Vector2d& forceError) { _forceError = forceError.cabs(); }
-    /** Increment force error */
-    void addForceError(const Vector2d& forceError) { _forceError += forceError.cabs(); }
-    /** Reset force error to zero */
-    void zeroForceError() { _forceError.setZero(); }
+    /** Get force variance */
+    const Vector2d& forceVariance() const { return _forceVariance; }
+    /** Set force variance */
+    void setForceVariance(const Vector2d& forceVariance) {
+        _forceVariance = forceVariance; }
+    /** Increment force variance */
+    void addForceVariance(const Vector2d& forceVariance) {
+        _forceVariance += forceVariance; }
+    /** Reset force variance to zero */
+    void zeroForceVariance() { _forceVariance.setZero(); }
 
-    /** Get mass error */
-    double massError() const { return _massError; }
-    /** Set mass error */
-    void   setMassError(double massError) { _massError = fabs(massError); }
+    /** Get mass variance */
+    double massVariance() const { return _massVariance; }
+    /** Set mass variance */
+    void   setMassVariance(double massVariance) {
+        _massVariance = massVariance; }
 
 protected:
-    Vector2d _positionError;
-    Vector2d _velocityError;
-    Vector2d _forceError;
-    double _massError;
+    Vector2d _positionVariance;
+    Vector2d _velocityVariance;
+    Vector2d _forceVariance;
+    double _massVariance;
+    friend class Particle;
 };
 
 /** \ingroup bodies
@@ -88,7 +94,8 @@ class Particle: public Item, public Body
 
 public:
     /** Constructs a particle */
-    explicit Particle(Vector2d position = Vector2d(0), Vector2d velocity = Vector2d(0), double mass = 1);
+    explicit Particle(Vector2d position = Vector2d(0),
+            Vector2d velocity = Vector2d(0), double mass = 1);
 
     /** Get position of the particle */
     const Vector2d& position() const { return _position; }
@@ -115,14 +122,14 @@ public:
     void   setMass(double mass) { _mass = mass; }
 
     int  variablesCount() { return 4; }
-    void resetDerivatives();
-    void getDerivatives(double* array);
-    void getVariables(double* array);
-    void setVariables(const double* array);
-    void addErrors(const double* array);
+    void resetDerivatives(bool resetVariances);
+    void getDerivatives(double* array, double* variances);
+    void getVariables(double* array, double* variances);
+    void setVariables(const double* array, const double* variances);
 
     /** Get (and possibly create) ParticleErrors object */
-    ParticleErrors* particleErrors() { return static_cast<ParticleErrors*>(errorsObject()); }
+    ParticleErrors* particleErrors() {
+        return static_cast<ParticleErrors*>(errorsObject()); }
 
 protected:
     ErrorsObject* createErrorsObject() { return new ParticleErrors(this); }
@@ -143,8 +150,8 @@ class ChargedParticle: public Particle
 
 public:
     /** Constructs a charged particle */
-    explicit ChargedParticle(Vector2d position = Vector2d(0.), Vector2d velocity = Vector2d(0.),
-                                                    double mass = 1, double charge = 0)
+    explicit ChargedParticle(Vector2d position = Vector2d(0),
+            Vector2d velocity = Vector2d(0), double mass = 1, double charge = 0)
                 : Particle(position, velocity, mass), _charge(charge) {}
 
     /** Charge of the particle */

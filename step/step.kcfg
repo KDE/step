@@ -13,6 +13,8 @@
         <entry name="floatDisplayPrecision" type="Int">
             <label>Display precision of double numbers</label>
             <whatsthis>Display precision of double numbers</whatsthis>
+            <min>1</min>
+            <max>15</max>
             <default>4</default>
         </entry>
     </group>

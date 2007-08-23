@@ -81,15 +81,18 @@ Vector2d RigidBody::pointWorldToLocal(const Vector2d& p) const
                     -(p[0]-_position[0])*s + (p[1]-_position[1])*c);
 }
 
-void RigidBody::getVariables(double* array)
+void RigidBody::getVariables(double* array, double* errors)
 {
     std::memcpy(array,   _position.array(), 2*sizeof(*array));
-    array[2] = _angle;
     std::memcpy(array+3, _velocity.array(), 2*sizeof(*array));
+    array[2] = _angle;
     array[5] = _angularVelocity;
+    if(errors) {
+        std::memset(errors, 0, 6*sizeof(errors)); //XXX
+    }
 }
 
-void RigidBody::setVariables(const double* array)
+void RigidBody::setVariables(const double* array, const double* errors)
 {
     std::memcpy(_position.array(), array,   2*sizeof(*array));
     _angle = array[2];
@@ -99,16 +102,19 @@ void RigidBody::setVariables(const double* array)
     _torque = 0;
 }
 
-void RigidBody::getDerivatives(double* array)
+void RigidBody::getDerivatives(double* array, double* errors)
 {
     std::memcpy(array, _velocity.array(), 2*sizeof(*array));
     array[2] = _angularVelocity;
     array[3] = _force[0] / _mass;
     array[4] = _force[1] / _mass;
     array[5] = _torque / _inertia;
+    if(errors) {
+        std::memset(errors, 0, 6*sizeof(errors)); //XXX
+    }
 }
 
-void RigidBody::resetDerivatives()
+void RigidBody::resetDerivatives(bool resetErrors)
 {
     _force.setZero();
     _torque = 0;

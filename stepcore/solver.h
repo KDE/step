@@ -73,7 +73,8 @@ class Solver: public Object
 
 public:
     /** Callback function type */
-    typedef int (*Function)(double t, const double y[], double f[], void* params);
+    typedef int (*Function)(double t, const double* y, const double* yvar,
+                             double* f, double* fvar, void* params);
 
     /** Cunstructs a solver */
     explicit Solver(int dimension = 0, Function function = NULL,
@@ -122,25 +123,27 @@ public:
     double localErrorRatio() const { return _localErrorRatio; }
 
     /** Calculate function value */
-    virtual int doCalcFn(double* t, double y[], double f[] = 0) = 0;
+    virtual int doCalcFn(double* t, const double* y, const double* yvar = 0,
+                            double* f = 0, double* fvar = 0) = 0;
 
     /** Integrate.
      *  \param t Current time (will be updated by the new value)
      *  \param t1 Target time
-     *  \param y[] Current function value
-     *  \param yerr[] Array to store local errors
-     *  \return true on success, false on failure (too big local error)
+     *  \param y Function value
+     *  \param yvar Function variance
+     *  \return Solver::OK on success, error status on failure
      *  \todo Provide error message
      */
-    virtual int doEvolve(double* t, double t1, double y[], double yerr[]) = 0;
+    virtual int doEvolve(double* t, double t1, double* y, double* yvar) = 0;
 
 public:
     /** Status codes for doCalcFn and doEvolve */
     enum { OK = 0,
            ToleranceError = 2048,
+           InternalError = 2049,
            CollisionDetected = 4096,
            IntersectionDetected = 4097,
-           Aborted = 8192
+           Aborted = 8192,
     };
 
 protected:

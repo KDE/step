@@ -112,11 +112,10 @@ public:
     //const std::vector<Vector2d>& vertexes() const;
 
     int  variablesCount() { return 6; }
-    void resetDerivatives();
-    void getDerivatives(double* array);
-    void getVariables(double* array);
-    void setVariables(const double* array);
-    void addErrors(const double* array);
+    void resetDerivatives(bool resetErrors);
+    void getDerivatives(double* array, double* errors);
+    void getVariables(double* array, double* errors);
+    void setVariables(const double* array, const double* errors);
 
 protected:
     Vector2d _position;
