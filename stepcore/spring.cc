@@ -41,7 +41,7 @@ STEPCORE_META_OBJECT(Spring, "Massless spring", 0,
     )
 
 STEPCORE_META_OBJECT(SpringErrors, "Errors class for Spring", 0,
-    STEPCORE_SUPER_CLASS(ErrorsObject),
+    STEPCORE_SUPER_CLASS(ObjectErrors),
     STEPCORE_PROPERTY_RW(double, restLengthVariance, "m",
                     "Rest length variance", restLengthVariance, setRestLengthVariance)
     STEPCORE_PROPERTY_R_D(double, lengthVariance, "m",

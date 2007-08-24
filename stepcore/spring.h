@@ -40,14 +40,14 @@ class Spring;
 /** \ingroup errors
  *  \brief Errors object for Spring
  */
-class SpringErrors: public ErrorsObject
+class SpringErrors: public ObjectErrors
 {
     STEPCORE_OBJECT(SpringErrors)
 
 public:
     /** Constructs SpringErrors */
     SpringErrors(Item* owner = NULL)
-        : ErrorsObject(owner), _restLengthVariance(0), _stiffnessVariance(0),
+        : ObjectErrors(owner), _restLengthVariance(0), _stiffnessVariance(0),
           _localPosition1Variance(0), _localPosition2Variance(0) {}
 
     /** Get owner as String */
@@ -190,10 +190,10 @@ public:
     void setWorld(World* world);
 
     /** Get (and possibly create) SpringErrors object */
-    SpringErrors* springErrors() { return static_cast<SpringErrors*>(errorsObject()); }
+    SpringErrors* springErrors() { return static_cast<SpringErrors*>(objectErrors()); }
 
 protected:
-    ErrorsObject* createErrorsObject() { return new SpringErrors(this); }
+    ObjectErrors* createObjectErrors() { return new SpringErrors(this); }
 
     Body* _bodyPtr1;
     Body* _bodyPtr2;

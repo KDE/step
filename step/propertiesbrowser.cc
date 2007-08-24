@@ -68,7 +68,8 @@ public:
 protected:
     WorldModel* _worldModel;
     StepCore::Object*       _object;
-    StepCore::ErrorsObject* _errorsObject;
+    StepCore::Item*         _item;
+    StepCore::ObjectErrors* _objectErrors;
     ChoicesModel* _solverChoices;
     QList<int> _subRows;
 };
@@ -98,9 +99,13 @@ void PropertiesBrowserModel::setObject(StepCore::Object* object)
     if(_object != NULL) {
         _worldModel->simulationPause();
 
-        StepCore::Item* item = dynamic_cast<StepCore::Item*>(_object);
-        if(item && item->world()->errorsCalculation()) _errorsObject = item->errorsObject();
-        else _errorsObject = NULL;
+        _item = dynamic_cast<StepCore::Item*>(_object);
+        if(_item) {
+            if(_item->world()->errorsCalculation()) _objectErrors = _item->objectErrors();
+            else _objectErrors = _item->tryGetObjectErrors();
+        } else {
+            _objectErrors = NULL;
+        }
 
         for(int i=0; i<_object->metaObject()->propertyCount(); ++i) {
             const StepCore::MetaProperty* p = _object->metaObject()->property(i);
@@ -119,9 +124,13 @@ void PropertiesBrowserModel::emitDataChanged(bool dynamicOnly)
 
     _worldModel->simulationPause();
 
-    StepCore::Item* item = dynamic_cast<StepCore::Item*>(_object);
-    if(item && item->world()->errorsCalculation()) _errorsObject = item->errorsObject();
-    else _errorsObject = NULL;
+    _item = dynamic_cast<StepCore::Item*>(_object);
+    if(_item) {
+        if(_item->world()->errorsCalculation()) _objectErrors = _item->objectErrors();
+        else _objectErrors = _item->tryGetObjectErrors();
+    } else {
+        _objectErrors = NULL;
+    }
 
     for(int i=0; i<_object->metaObject()->propertyCount(); i++) {
         const StepCore::MetaProperty* p = _object->metaObject()->property(i);
@@ -175,20 +184,20 @@ QVariant PropertiesBrowserModel::data(const QModelIndex &index, int role) const
                     units.append(" ").append(p->units());
 #endif
 
-                const StepCore::MetaProperty* pv = _errorsObject ?
-                        _errorsObject->metaObject()->property(p->name() + "Variance") : NULL;
+                const StepCore::MetaProperty* pv = _objectErrors ?
+                        _objectErrors->metaObject()->property(p->name() + "Variance") : NULL;
 
                 // Common property types
                 if(p->userTypeId() == QMetaType::Double) {
                     QString error;
                     if(pv) error = QString::fromUtf8(" ± %1")
-                                    .arg(sqrt(pv->readVariant(_errorsObject).toDouble()), 0, 'g', pr)
+                                    .arg(sqrt(pv->readVariant(_objectErrors).toDouble()), 0, 'g', pr)
                                     .append(units);
                     return QString::number(p->readVariant(_object).toDouble(), 'g', pr).append(units).append(error);
                 } else if(p->userTypeId() == qMetaTypeId<StepCore::Vector2d>()) {
                     QString error;
                     if(pv) {
-                        StepCore::Vector2d vv = pv->readVariant(_errorsObject).value<StepCore::Vector2d>();
+                        StepCore::Vector2d vv = pv->readVariant(_objectErrors).value<StepCore::Vector2d>();
                         error = QString::fromUtf8(" ± (%1,%2)")
                                     .arg(sqrt(vv[0]), 0, 'g', pr).arg(sqrt(vv[1]), 0, 'g', pr).append(units);
                     }
@@ -212,7 +221,7 @@ QVariant PropertiesBrowserModel::data(const QModelIndex &index, int role) const
                 } else {
                     // default type
                     // XXX: add error information
-                    //if(pe) error = QString::fromUtf8(" ± ").append(pe->readString(_errorsObject)).append(units);
+                    //if(pe) error = QString::fromUtf8(" ± ").append(pe->readString(_objectErrors)).append(units);
                     if(pv) kDebug() << "Unhandled property variance type" << endl;
                     return p->readString(_object).append(units);
                 }
@@ -284,15 +293,15 @@ bool PropertiesBrowserModel::setData(const QModelIndex &index, const QVariant &v
                 }
             } else {
                 const StepCore::MetaProperty* p = _object->metaObject()->property(index.row());
-                const StepCore::MetaProperty* pv = _errorsObject ?
-                        _errorsObject->metaObject()->property(p->name() + "Variance") : NULL;
+                const StepCore::MetaProperty* pv = _objectErrors ?
+                        _objectErrors->metaObject()->property(p->name() + "Variance") : NULL;
 
                 QVariant v = value;
                 QVariant vv;
 
                 // Try to find ± sign
-                if(pv && v.canConvert(QVariant::String)) {
-                    QString str  = v.toString();
+                if(v.canConvert(QVariant::String)) {
+                    QString str = v.toString();
                     int idx = str.indexOf(QString::fromUtf8("±"));
                     if(idx >= 0) {
                         v = str.left(idx);
@@ -300,34 +309,42 @@ bool PropertiesBrowserModel::setData(const QModelIndex &index, const QVariant &v
                     }
                 }
 
-#ifdef STEP_WITH_UNITSCALC
-                // Convert units
-                if(p->userTypeId() == QMetaType::Double) {
-                    double number = 0;
-                    if(UnitsCalc::self()->parseNumber(v.toString(), p->units(), number)) {
-                        v = number;
-                    } else {
-                        return false;
+                if(vv.isValid()) { // We have got variance value
+                    if(!pv) {
+                        // check if _objectErrors can be created
+                        // and current property variance could be set
+                        const StepCore::MetaObject* me =
+                            _worldModel->worldFactory()->metaObject(
+                                _object->metaObject()->className() + "Errors");
+                        if(!_item || !me || !me->property(p->name() + "Variance"))
+                            return false;
                     }
-                    if(vv.isValid()) {
-                        if(UnitsCalc::self()->parseNumber(vv.toString(), p->units(), number)) {
-                            vv = number;
+
+#ifdef STEP_WITH_UNITSCALC
+                    // Convert units
+                    if(p->userTypeId() == QMetaType::Double) {
+                        double number = 0;
+                        if(UnitsCalc::self()->parseNumber(v.toString(), p->units(), number)) {
+                            v = number;
                         } else {
                             return false;
                         }
+                        if(vv.isValid()) {
+                            if(UnitsCalc::self()->parseNumber(vv.toString(), p->units(), number)) {
+                                vv = number;
+                            } else {
+                                return false;
+                            }
+                        }
                     }
-                }
 #endif
-                // If there is no error value assume that it is zero
-                if(pv) {
                     bool ok = true;
+                    // Calc variance = square(error)
                     if(p->userTypeId() == QMetaType::Double) {
-                        if(vv.isValid()) vv = StepCore::square(vv.toDouble(&ok));
-                        else vv = 0;
+                        vv = StepCore::square(vv.toDouble(&ok));
                     } else if(p->userTypeId() == qMetaTypeId<StepCore::Vector2d>()) {
                         StepCore::Vector2d svv(0);
-                        if(vv.isValid()) svv = StepCore::stringToType<StepCore::Vector2d>(
-                                                                        vv.toString(), &ok);
+                        svv = StepCore::stringToType<StepCore::Vector2d>(vv.toString(), &ok);
                         svv[0] *= svv[0]; svv[1] *= svv[1];
                         vv = QVariant::fromValue(svv);
                     /* XXX
@@ -338,11 +355,32 @@ bool PropertiesBrowserModel::setData(const QModelIndex &index, const QVariant &v
                         return false;
                     }
                     if(!ok) return false;
+
+                } else { // vv.isValid()
+                    if(pv) { // We have to zero variance since we got exact value
+                        if(p->userTypeId() == QMetaType::Double) {
+                            vv = 0;
+                        } else if(p->userTypeId() == qMetaTypeId<StepCore::Vector2d>()) {
+                            StepCore::Vector2d svv(0);
+                            vv = QVariant::fromValue(svv);
+                        /* XXX
+                         * } else if(p->userTypeId() == qMetaTypeId<std::vector<StepCore::Vector2d> >())
+                            ve = QVariant::fromValue(std::vector<StepCore::Vector2d>());*/
+                        } else {
+                            kDebug() << "Unhandled property variance type" << endl;
+                            return false;
+                        }
+                    }
                 }
 
                 _worldModel->beginMacro(i18n("Edit %1", _object->name()));
                 _worldModel->setProperty(_object, p, v);
-                if(pv) _worldModel->setProperty(_errorsObject, pv, vv);
+                if(vv.isValid() && !pv) {
+                    // XXX: Make this undo-able
+                    _objectErrors = _item->objectErrors();
+                    pv = _objectErrors->metaObject()->property(p->name() + "Variance");
+                }
+                if(pv) _worldModel->setProperty(_objectErrors, pv, vv);
                 _worldModel->endMacro();
             }
         } else {

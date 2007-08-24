@@ -30,7 +30,7 @@ STEPCORE_META_OBJECT(Particle, "Simple zero-size particle", 0,
         STEPCORE_PROPERTY_R_D(StepCore::Vector2d, force, "N", "force", force)
         STEPCORE_PROPERTY_RW(double, mass, "kg", "mass", mass, setMass ))
 
-STEPCORE_META_OBJECT(ParticleErrors, "Errors class for Particle", 0, STEPCORE_SUPER_CLASS(ErrorsObject),
+STEPCORE_META_OBJECT(ParticleErrors, "Errors class for Particle", 0, STEPCORE_SUPER_CLASS(ObjectErrors),
         STEPCORE_PROPERTY_RW_D(StepCore::Vector2d, positionVariance, "m",
                     "position variance", positionVariance, setPositionVariance)
         STEPCORE_PROPERTY_RW_D(StepCore::Vector2d, velocityVariance, "m/s",

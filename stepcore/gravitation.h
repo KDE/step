@@ -36,14 +36,14 @@ class WeightForce;
 /** \ingroup errors
  *  \brief Errors object for GravitationForce
  */
-class GravitationForceErrors: public ErrorsObject
+class GravitationForceErrors: public ObjectErrors
 {
     STEPCORE_OBJECT(GravitationForceErrors)
 
 public:
     /** Constructs GravitationForceErrors */
     GravitationForceErrors(Item* owner = NULL)
-        : ErrorsObject(owner), _gravitationConstVariance(0) {}
+        : ObjectErrors(owner), _gravitationConstVariance(0) {}
 
     /** Get owner as GravitationForce */
     GravitationForce* gravitationForce() const;
@@ -94,10 +94,10 @@ public:
 
     /** Get (and possibly create) GravitationForceErrors object */
     GravitationForceErrors* gravitationForceErrors() {
-        return static_cast<GravitationForceErrors*>(errorsObject()); }
+        return static_cast<GravitationForceErrors*>(objectErrors()); }
 
 protected:
-    ErrorsObject* createErrorsObject() { return new GravitationForceErrors(this); }
+    ObjectErrors* createObjectErrors() { return new GravitationForceErrors(this); }
 
     double _gravitationConst;
 };
@@ -105,14 +105,14 @@ protected:
 /** \ingroup errors
  *  \brief Errors object for WeightForce
  */
-class WeightForceErrors: public ErrorsObject
+class WeightForceErrors: public ObjectErrors
 {
     STEPCORE_OBJECT(WeightForceErrors)
 
 public:
     /** Constructs WeightForceErrors */
     WeightForceErrors(Item* owner = NULL)
-        : ErrorsObject(owner), _weightConstVariance(0) {}
+        : ObjectErrors(owner), _weightConstVariance(0) {}
 
     /** Get owner as WeightForce */
     WeightForce* weightForce() const;
@@ -159,10 +159,10 @@ public:
 
     /** Get (and possibly create) WeightForceErrors object */
     WeightForceErrors* weightForceErrors() {
-        return static_cast<WeightForceErrors*>(errorsObject()); }
+        return static_cast<WeightForceErrors*>(objectErrors()); }
 
 protected:
-    ErrorsObject* createErrorsObject() { return new WeightForceErrors(this); }
+    ObjectErrors* createObjectErrors() { return new WeightForceErrors(this); }
 
     double _weightConst;
 };

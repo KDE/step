@@ -68,6 +68,10 @@ WorldFactory::WorldFactory()
         registerMetaObject(StepCore::Class::staticMetaObject()); \
         _orderedMetaObjects.push_back(QString(StepCore::Class::staticMetaObject()->className()))
 
+    #define __REGISTER_E(Class) \
+        __REGISTER(Class); \
+        registerMetaObject(StepCore::Class##Errors::staticMetaObject())
+
     #define ___REGISTER_EXT(Class, newGraphicsCreator, newGraphicsItem, newItemMenuHandler) \
         static const ExtMetaObject extMetaObject ## Class = \
                 { newGraphicsCreator, newGraphicsItem, newItemMenuHandler }; \
@@ -75,9 +79,17 @@ WorldFactory::WorldFactory()
         _extMetaObjects.insert(StepCore::Class::staticMetaObject(), &extMetaObject ## Class); \
         _orderedMetaObjects.push_back(QString(StepCore::Class::staticMetaObject()->className()))
 
+    #define ___REGISTER_EXT_E(Class, newGraphicsCreator, newGraphicsItem, newItemMenuHandler) \
+        ___REGISTER_EXT(Class, newGraphicsCreator, newGraphicsItem, newItemMenuHandler); \
+        registerMetaObject(StepCore::Class##Errors::staticMetaObject())
+
     #define __REGISTER_EXT(Class, GraphicsCreator, GraphicsItem, ItemMenuHandler) \
         ___REGISTER_EXT(Class, newItemCreatorHelper<GraphicsCreator>, \
                    newGraphicsItemHelper<GraphicsItem>, newItemMenuHandlerHelper<ItemMenuHandler>)
+
+    #define __REGISTER_EXT_E(Class, GraphicsCreator, GraphicsItem, ItemMenuHandler) \
+        __REGISTER_EXT(Class, GraphicsCreator, GraphicsItem, ItemMenuHandler); \
+        registerMetaObject(StepCore::Class##Errors::staticMetaObject())
 
     #define __ADD_TO_PALETTE(Class) \
         _paletteMetaObjects.push_back(QString(StepCore::Class::staticMetaObject()->className()))
@@ -85,7 +97,7 @@ WorldFactory::WorldFactory()
     #define __ADD_SEPARATOR \
         _paletteMetaObjects.push_back(QString())
 
-    __REGISTER(Object);
+    __REGISTER_E(Object);
 
     __REGISTER(Item);
     __REGISTER(World);
@@ -95,8 +107,8 @@ WorldFactory::WorldFactory()
     __REGISTER(Solver);
     __REGISTER(CollisionSolver);
 
-    __REGISTER_EXT(Particle, ItemCreator, ParticleGraphicsItem, ItemMenuHandler);
-    __REGISTER_EXT(ChargedParticle, ItemCreator, ParticleGraphicsItem, ItemMenuHandler);
+    __REGISTER_EXT_E(Particle, ItemCreator, ParticleGraphicsItem, ItemMenuHandler);
+    __REGISTER_EXT_E(ChargedParticle, ItemCreator, ParticleGraphicsItem, ItemMenuHandler);
 
     __REGISTER_EXT(Polygon, PolygonCreator, PolygonGraphicsItem, ItemMenuHandler);
 
@@ -104,11 +116,11 @@ WorldFactory::WorldFactory()
     __REGISTER(GasLJForce);
     __REGISTER_EXT(Gas, GasCreator, GasGraphicsItem, GasMenuHandler);
 
-    __REGISTER_EXT(Spring, SpringCreator, SpringGraphicsItem, ItemMenuHandler);
+    __REGISTER_EXT_E(Spring, SpringCreator, SpringGraphicsItem, ItemMenuHandler);
 
-    __REGISTER(WeightForce);
-    __REGISTER(GravitationForce);
-    __REGISTER(CoulombForce);
+    __REGISTER(WeightForce); __REGISTER_E(WeightForce);
+    __REGISTER(GravitationForce); __REGISTER_E(GravitationForce);
+    __REGISTER(CoulombForce); __REGISTER_E(CoulombForce);
 
     __REGISTER(EulerSolver);
     __REGISTER(AdaptiveEulerSolver);

@@ -30,7 +30,7 @@ STEPCORE_META_OBJECT(Body, "Body", MetaObject::ABSTRACT,,)
 STEPCORE_META_OBJECT(Force, "Force", MetaObject::ABSTRACT,,)
 STEPCORE_META_OBJECT(Tool, "Tool", MetaObject::ABSTRACT,,)
 
-STEPCORE_META_OBJECT(ErrorsObject, "ErrorsObject", MetaObject::ABSTRACT, STEPCORE_SUPER_CLASS(Object),)
+STEPCORE_META_OBJECT(ObjectErrors, "ObjectErrors", MetaObject::ABSTRACT, STEPCORE_SUPER_CLASS(Object),)
 
 STEPCORE_META_OBJECT(ItemGroup, "ItemGroup", 0, STEPCORE_SUPER_CLASS(Item),)
 
@@ -47,21 +47,21 @@ Item& Item::operator=(const Item& item)
     _world = item._world;
     _group = item._group;
 
-    if(item._errorsObject) {
-        _errorsObject = static_cast<ErrorsObject*>(
-            item._errorsObject->metaObject()->cloneObject(*item._errorsObject) );
-        _errorsObject->setOwner(this);
+    if(item._objectErrors) {
+        _objectErrors = static_cast<ObjectErrors*>(
+            item._objectErrors->metaObject()->cloneObject(*item._objectErrors) );
+        _objectErrors->setOwner(this);
     } else {
-        _errorsObject = NULL;
+        _objectErrors = NULL;
     }
 
     return *this;
 }
 
-ErrorsObject* Item::errorsObject()
+ObjectErrors* Item::objectErrors()
 {
-    if(!_errorsObject) _errorsObject = createErrorsObject();
-    return _errorsObject;
+    if(!_objectErrors) _objectErrors = createObjectErrors();
+    return _objectErrors;
 }
 
 ItemGroup::ItemGroup(const ItemGroup& group)

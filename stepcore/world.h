@@ -43,17 +43,17 @@ class ConstraintSolver;
 /** \ingroup errors
  *  \brief Base class for all errors objects
  */
-class ErrorsObject: public Object
+class ObjectErrors: public Object
 {
-    STEPCORE_OBJECT(ErrorsObject)
+    STEPCORE_OBJECT(ObjectErrors)
 
 public:
-    /** Constructs ErrorsObject */
-    ErrorsObject(Item* owner = NULL): _owner(owner) {}
+    /** Constructs ObjectErrors */
+    ObjectErrors(Item* owner = NULL): _owner(owner) {}
 
-    /** Get the owner of ErrorsObject */
+    /** Get the owner of ObjectErrors */
     Item* owner() const { return _owner; }
-    /** Set the owner of ErrorsObject */
+    /** Set the owner of ObjectErrors */
     void setOwner(Item* owner) { _owner = owner; }
 
 private:
@@ -70,13 +70,13 @@ class Item : public Object
 
 public:
     /** Constructs Item */
-    Item(): _world(NULL), _group(NULL), _errorsObject(NULL) {}
+    Item(): _world(NULL), _group(NULL), _objectErrors(NULL) {}
     /** Constructs a copy of item */
     Item(const Item& item) : Object() { *this = item; }
     /** Destroys Item */
-    virtual ~Item() { delete _errorsObject; }
+    virtual ~Item() { delete _objectErrors; }
 
-    /** Assignment operator (copies errorsObject if necessary) */
+    /** Assignment operator (copies objectErrors if necessary) */
     Item& operator=(const Item& item);
 
     /** Set/change pointer to World in which this object lives */
@@ -91,14 +91,14 @@ public:
     /** Get pointer to ItemGroup in which this object lives */
     ItemGroup* group() const { return _group; }
 
-    /** Get ErrorsObject only if it already exists */
-    ErrorsObject* tryGetErrorsObject() const { return _errorsObject; }
+    /** Get ObjectErrors only if it already exists */
+    ObjectErrors* tryGetObjectErrors() const { return _objectErrors; }
 
-    /** Get existing ErrorsObject or try to create it */
-    ErrorsObject* errorsObject();
+    /** Get existing ObjectErrors or try to create it */
+    ObjectErrors* objectErrors();
 
-    /** Delete errorsObject */
-    void deleteErrorsObject() { delete _errorsObject; _errorsObject = NULL; }
+    /** Delete objectErrors */
+    void deleteObjectErrors() { delete _objectErrors; _objectErrors = NULL; }
 
     /** Called by the World when any item is about to be removed
      *  from the world
@@ -108,12 +108,12 @@ public:
     virtual void worldItemRemoved(Item* item STEPCORE_UNUSED) {}
 
 protected:
-    virtual ErrorsObject* createErrorsObject() { return NULL; }
+    virtual ObjectErrors* createObjectErrors() { return NULL; }
 
 private:
     World* _world;
     ItemGroup* _group;
-    ErrorsObject* _errorsObject;
+    ObjectErrors* _objectErrors;
 };
 
 /** \ingroup bodies
@@ -380,7 +380,7 @@ private:
 /** \defgroup contacts Collision and constraint solvers */
 /** \defgroup reflections Reflections */
 /** \defgroup xmlfile XML file IO */
-/** \defgroup errors ErrorsObject classes */
+/** \defgroup errors ObjectErrors classes */
 
 #endif
 

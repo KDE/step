@@ -35,14 +35,14 @@ class ChargedParticle;
 /** \ingroup errors
  *  \brief Errors object for Particle
  */
-class ParticleErrors: public ErrorsObject
+class ParticleErrors: public ObjectErrors
 {
     STEPCORE_OBJECT(ParticleErrors)
 
 public:
     /** Constructs ParticleErrors */
     ParticleErrors(Item* owner = 0)
-        : ErrorsObject(owner), _positionVariance(0), _velocityVariance(0),
+        : ObjectErrors(owner), _positionVariance(0), _velocityVariance(0),
           _forceVariance(0), _massVariance(0) {}
 
     /** Get owner as Particle */
@@ -129,10 +129,10 @@ public:
 
     /** Get (and possibly create) ParticleErrors object */
     ParticleErrors* particleErrors() {
-        return static_cast<ParticleErrors*>(errorsObject()); }
+        return static_cast<ParticleErrors*>(objectErrors()); }
 
 protected:
-    ErrorsObject* createErrorsObject() { return new ParticleErrors(this); }
+    ObjectErrors* createObjectErrors() { return new ParticleErrors(this); }
 
 protected:
     Vector2d _position;
@@ -188,10 +188,10 @@ public:
 
     /** Get (and possibly create) ChargedParticleErrors object */
     ChargedParticleErrors* chargedParticleErrors() {
-        return static_cast<ChargedParticleErrors*>(errorsObject()); }
+        return static_cast<ChargedParticleErrors*>(objectErrors()); }
 
 protected:
-    ErrorsObject* createErrorsObject() { return new ChargedParticleErrors(this); }
+    ObjectErrors* createObjectErrors() { return new ChargedParticleErrors(this); }
 
     double _charge;
 };

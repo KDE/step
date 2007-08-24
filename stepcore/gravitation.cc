@@ -25,12 +25,12 @@ namespace StepCore
 
 STEPCORE_META_OBJECT(GravitationForce, "Gravitation force", 0,
     STEPCORE_SUPER_CLASS(Item) STEPCORE_SUPER_CLASS(Force),
-    STEPCORE_PROPERTY_RW(double, gravitationConst, STEPCORE_FROM_UTF8("N*m²/kg²"),
+    STEPCORE_PROPERTY_RW(double, gravitationConst, STEPCORE_FROM_UTF8("N m²/kg²"),
             "Gravitation constant", gravitationConst, setGravitationConst))
 
 STEPCORE_META_OBJECT(GravitationForceErrors, "Errors class for GravitationForce", 0,
-    STEPCORE_SUPER_CLASS(ErrorsObject),
-    STEPCORE_PROPERTY_RW(double, gravitationConstVariance, STEPCORE_FROM_UTF8("N*m²/kg²"),
+    STEPCORE_SUPER_CLASS(ObjectErrors),
+    STEPCORE_PROPERTY_RW(double, gravitationConstVariance, STEPCORE_FROM_UTF8("N m²/kg²"),
             "Gravitation constant variance", gravitationConstVariance, setGravitationConstVariance))
 
 STEPCORE_META_OBJECT(WeightForce, "Weight force", 0,
@@ -39,8 +39,8 @@ STEPCORE_META_OBJECT(WeightForce, "Weight force", 0,
                             weightConst, setWeightConst))
 
 STEPCORE_META_OBJECT(WeightForceErrors, "Errors class for WeightForce", 0,
-    STEPCORE_SUPER_CLASS(ErrorsObject),
-    STEPCORE_PROPERTY_RW(double, weightConstVariance, STEPCORE_FROM_UTF8("N*m²/kg²"),
+    STEPCORE_SUPER_CLASS(ObjectErrors),
+    STEPCORE_PROPERTY_RW(double, weightConstVariance, STEPCORE_FROM_UTF8("m/s²"),
             "Weight constant variance", weightConstVariance, setWeightConstVariance))
 
 GravitationForce* GravitationForceErrors::gravitationForce() const
@@ -56,6 +56,8 @@ WeightForce* WeightForceErrors::weightForce() const
 GravitationForce::GravitationForce(double gravitationConst)
     : _gravitationConst(gravitationConst)
 {
+    gravitationForceErrors()->setGravitationConstVariance(
+        square(Constants::GravitationalError));
 }
 
 void GravitationForce::calcForce(bool calcVariances)
@@ -96,6 +98,8 @@ void GravitationForce::calcForce(bool calcVariances)
 WeightForce::WeightForce(double weightConst)
     : _weightConst(weightConst)
 {
+    weightForceErrors()->setWeightConstVariance(
+        square(Constants::WeightAccelError));
 }
 
 void WeightForce::calcForce(bool calcVariances)

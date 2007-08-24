@@ -25,22 +25,24 @@ namespace StepCore {
 
 STEPCORE_META_OBJECT(CoulombForce, "Coulomb force", 0,
     STEPCORE_SUPER_CLASS(Item) STEPCORE_SUPER_CLASS(Force),
-    STEPCORE_PROPERTY_RW(double, electricConst, STEPCORE_FROM_UTF8("C²/m²/N"),
-                "Electric constant", electricConst, setElectricConst))
+    STEPCORE_PROPERTY_RW(double, coulombConst, STEPCORE_FROM_UTF8("N m²/C²"),
+                "Coulomb constant", coulombConst, setCoulombConst))
 
 STEPCORE_META_OBJECT(CoulombForceErrors, "Errors class for CoulombForce", 0,
-    STEPCORE_SUPER_CLASS(ErrorsObject),
-    STEPCORE_PROPERTY_RW(double, electricConstVariance, STEPCORE_FROM_UTF8("C²/m²/N"),
-                "Electric constant variance", electricConstVariance, setElectricConstVariance))
+    STEPCORE_SUPER_CLASS(ObjectErrors),
+    STEPCORE_PROPERTY_RW(double, coulombConstVariance, STEPCORE_FROM_UTF8("N m²/C²"),
+                "Coulomb constant variance", coulombConstVariance, setCoulombConstVariance))
 
 CoulombForce* CoulombForceErrors::coulombForce() const
 {
     return static_cast<CoulombForce*>(owner());
 }
 
-CoulombForce::CoulombForce(double electricConst)
-    : _electricConst(electricConst)
+CoulombForce::CoulombForce(double coulombConst)
+    : _coulombConst(coulombConst)
 {
+    coulombForceErrors()->setCoulombConstVariance(
+        square(Constants::CoulombError));
 }
 
 void CoulombForce::calcForce(bool calcVariances)
@@ -57,8 +59,7 @@ void CoulombForce::calcForce(bool calcVariances)
             if(NULL == (p2 = dynamic_cast<ChargedParticle*>(*b2))) continue;
             Vector2d r = p2->position() - p1->position();
             double rnorm2 = r.norm2();
-            Vector2d force = -0.25/(Constants::Pi*_electricConst)
-                             * p1->charge() * p2->charge() * r / (rnorm2*sqrt(rnorm2));
+            Vector2d force = _coulombConst* p1->charge() * p2->charge() * r / (rnorm2*sqrt(rnorm2));
             p1->addForce(force);
             force.invert();
             p2->addForce(force);
@@ -69,7 +70,7 @@ void CoulombForce::calcForce(bool calcVariances)
                 ChargedParticleErrors* pe2 = p2->chargedParticleErrors();
                 Vector2d rV = pe2->positionVariance() + pe1->positionVariance();
                 Vector2d forceV = force.cSquare().cMultiply(
-                        Vector2d(coulombForceErrors()->_electricConstVariance / square(_electricConst) +
+                        Vector2d(coulombForceErrors()->_coulombConstVariance / square(_coulombConst) +
                                  pe1->chargeVariance() / square(p1->charge()) +
                                  pe2->chargeVariance() / square(p2->charge())) +
                         Vector2d(rV[0] * square(1/r[0] - 3*r[0]/rnorm2) + rV[1] * square(3*r[1]/rnorm2),

@@ -35,26 +35,26 @@ class CoulombForce;
 /** \ingroup errors
  *  \brief Errors object for CoulombForce
  */
-class CoulombForceErrors: public ErrorsObject
+class CoulombForceErrors: public ObjectErrors
 {
     STEPCORE_OBJECT(CoulombForceErrors)
 
 public:
     /** Constructs CoulombForceErrors */
     CoulombForceErrors(Item* owner = NULL)
-        : ErrorsObject(owner), _electricConstVariance(0) {}
+        : ObjectErrors(owner), _coulombConstVariance(0) {}
 
     /** Get owner as CoulombForce */
     CoulombForce* coulombForce() const;
 
-    /** Get electricConst variance */
-    double electricConstVariance() const { return _electricConstVariance; }
-    /** Set electricConst variance */
-    void   setElectricConstVariance(double electricConstVariance) {
-        _electricConstVariance = electricConstVariance; }
+    /** Get coulombConst variance */
+    double coulombConstVariance() const { return _coulombConstVariance; }
+    /** Set coulombConst variance */
+    void   setCoulombConstVariance(double coulombConstVariance) {
+        _coulombConstVariance = coulombConstVariance; }
 
 protected:
-    double _electricConstVariance;
+    double _coulombConstVariance;
     friend class CoulombForce;
 };
 
@@ -65,12 +65,12 @@ protected:
  *  The force acts between pairs of charged bodies (currently only
  *  ChargedParticle) and equals:
  *  \f[
- *      \overrightarrow{f} = \frac{1}{4\pi\epsilon_0}
+ *      \overrightarrow{f} = k_C
  *                           \frac{q_1 q_2 \overrightarrow{r}}
  *                                  {|\overrightarrow{r}|^3}
  *  \f]
  *  where:\n
- *  \f$\epsilon_0\f$ is CoulombForce::electricConst\n
+ *  \f$k_C\f$ is CoulombForce::coulombConst\n
  *  \f$q_1\f$ and \f$q_2\f$ is ChargedParticle::charge of the first
  *  and second body\n
  *  \f$\overrightarrow{r}\f$ is difference of Particle::position
@@ -85,23 +85,23 @@ class CoulombForce: public Item, public Force
 
 public:
     /** Constructs CoulombForce */
-    CoulombForce(double electricConst = Constants::Electric);
+    CoulombForce(double coulombConst = Constants::Coulomb);
 
     void calcForce(bool calcVariances);
 
-    /** Get electric const */
-    double electricConst() const { return _electricConst; }
-    /** Set electric const */
-    void   setElectricConst(double electricConst) { _electricConst = electricConst; }
+    /** Get coulomb const */
+    double coulombConst() const { return _coulombConst; }
+    /** Set coulomb const */
+    void   setCoulombConst(double coulombConst) { _coulombConst = coulombConst; }
 
     /** Get (and possibly create) CoulombForceErrors object */
     CoulombForceErrors* coulombForceErrors() {
-        return static_cast<CoulombForceErrors*>(errorsObject()); }
+        return static_cast<CoulombForceErrors*>(objectErrors()); }
 
 protected:
-    ErrorsObject* createErrorsObject() { return new CoulombForceErrors(this); }
+    ObjectErrors* createObjectErrors() { return new CoulombForceErrors(this); }
 
-    double _electricConst;
+    double _coulombConst;
 };
 
 } // namespace StepCore
