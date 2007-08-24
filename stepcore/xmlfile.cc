@@ -100,6 +100,21 @@ void XmlFile::saveProperties(int indent, const Object* obj, QTextStream& stream)
                    << "</" << p->name() << ">\n";
         }
     }
+
+    const Item* item = dynamic_cast<const Item*>(obj);
+    const ObjectErrors* objErrors = item ? item->tryGetObjectErrors() : NULL;
+    if(objErrors) {
+        const MetaObject* metaObjectErrors = objErrors->metaObject();
+        for(int i = 1; i < metaObjectErrors->propertyCount(); ++i) {
+            const MetaProperty* p = metaObjectErrors->property(i);
+            if(p->isStored()) {
+                stream << QString(indent*INDENT, ' ')
+                       << "<" << p->name() << ">"
+                       << escapeText(p->readString(objErrors))
+                       << "</" << p->name() << ">\n";
+            }
+        }
+    }
 }
 
 void XmlFile::saveObject(int indent, const QString& tag, const Object* obj, QTextStream& stream)
@@ -146,6 +161,7 @@ protected:
 
     ItemGroup* _parent;
     Object*    _object;
+    ObjectErrors*       _objectErrors;
     const MetaProperty* _property;
 
     QString _text;
@@ -154,7 +170,7 @@ protected:
 
 XmlFileHandler::XmlFileHandler(World* world, const Factory* factory)
     : _state(START), _world(world), _factory(factory),
-      _parent(NULL), _object(NULL), _property(NULL)
+      _parent(NULL), _object(NULL), _objectErrors(NULL), _property(NULL)
 {
 }
 
@@ -215,12 +231,22 @@ bool XmlFileHandler::startElement(const QString &namespaceURI, const QString &,
 
         }
 
-        _property = _object->metaObject()->property(qName.toAscii().constData());
+        _property = _object->metaObject()->property(qName);
+        if(!_property && dynamic_cast<Item*>(_object)) {
+            const MetaObject* objErrors = _factory->metaObject(_object->metaObject()->className()+"Errors");
+            if(objErrors) {
+                _property = objErrors->property(qName);
+                if(_property && _property->isStored())
+                    _objectErrors = dynamic_cast<Item*>(_object)->objectErrors();
+            }
+        }
+
         if(!_property || !_property->isStored()) {
             _errorString = QObject::tr("Item \"%1\" has no stored property named \"%2\"")
                                 .arg(QString(_object->metaObject()->className())).arg(qName);
             return false;
         }
+
         _text.clear();
         _state = PROPERTY;
         break;
@@ -241,10 +267,11 @@ bool XmlFileHandler::endElement(const QString &namespaceURI, const QString &,
 
     switch(_state) {
     case PROPERTY:
-        if(!_property->writeString(_object, _text)) {
+        if(!_property->writeString(_objectErrors ? _objectErrors : _object, _text)) {
             _errorString = QObject::tr("Property \"%1\" has illegal value").arg(qName);
             return false;
         }
+        _objectErrors = NULL;
         _state = ITEM;
         break;
 
