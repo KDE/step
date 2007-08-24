@@ -68,6 +68,12 @@ public:
     void   setStiffnessVariance(double stiffnessVariance) {
         _stiffnessVariance = stiffnessVariance; }
 
+    /** Get damping variance */
+    double dampingVariance() const { return _dampingVariance; }
+    /** Set damping variance */
+    void   setDampingVariance(double dampingVariance) {
+        _dampingVariance = dampingVariance; }
+
     /** Get localPosition1 variance */
     Vector2d localPosition1Variance() const { return _localPosition1Variance; }
     /** Set localPosition1 variance */
@@ -82,16 +88,21 @@ public:
 
     /** Get position1 variance */
     Vector2d position1Variance() const;
-
     /** Get position2 variance */
     Vector2d position2Variance() const;
 
-    /** Get tension variance */
-    double tensionVariance() const;
+    /** Get velocity1 variance */
+    Vector2d velocity1Variance() const;
+    /** Get velocity2 variance */
+    Vector2d velocity2Variance() const;
+
+    /** Get force variance */
+    double forceVariance() const;
 
 protected:
     double _restLengthVariance;
     double _stiffnessVariance;
+    double _dampingVariance;
 
     StepCore::Vector2d _localPosition1Variance;
     StepCore::Vector2d _localPosition2Variance;
@@ -121,7 +132,7 @@ class Spring: public Item, public Force
 
 public:
     /** Constructs Spring */
-    explicit Spring(double restLength = 0, double stiffness = 1,
+    explicit Spring(double restLength = 0, double stiffness = 1, double damping = 0,
                 Body* bodyPtr1 = 0, Body* bodyPtr2 = 0);
 
     void calcForce(bool calcVariances);
@@ -138,6 +149,11 @@ public:
     double stiffness() const { return _stiffness; }
     /** Set stiffness of the spring */
     void   setStiffness(double stiffness) { _stiffness = stiffness; }
+
+    /** Get damping of the spring */
+    double damping() const { return _damping; }
+    /** Set damping of the spring */
+    void setDamping(double damping) { _damping = damping; }
 
     /** Get pointer to the first body */
     Body* bodyPtr1() { return _bodyPtr1; }
@@ -182,9 +198,15 @@ public:
     Vector2d position2() const;
     /** Set position of the second end of the spring (will be ignored the end is connected) */
     //void setPosition2(const Vector2d& position2) { if(!_bodyPtr2) _position2 = position2; }
+    
+    /** Velocity of the first end of the spring */
+    Vector2d velocity1() const;
+
+    /** Velocity of the second end of the spring */
+    Vector2d velocity2() const;
 
     /** Tension force */
-    double tension() const;
+    double force() const;
 
     void worldItemRemoved(Item* item);
     void setWorld(World* world);
@@ -199,6 +221,7 @@ protected:
     Body* _bodyPtr2;
     double _restLength;
     double _stiffness;
+    double _damping;
     StepCore::Vector2d _localPosition1;
     StepCore::Vector2d _localPosition2;
     //StepCore::Vector2d _position1;

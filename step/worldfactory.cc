@@ -24,6 +24,7 @@
 #include <stepcore/particle.h>
 #include <stepcore/rigidbody.h>
 #include <stepcore/gas.h>
+#include <stepcore/softbody.h>
 #include <stepcore/gravitation.h>
 #include <stepcore/coulombforce.h>
 #include <stepcore/spring.h>
@@ -36,6 +37,7 @@
 #include "particlegraphics.h"
 #include "polygongraphics.h"
 #include "gasgraphics.h"
+#include "softbodygraphics.h"
 #include "springgraphics.h"
 #include "toolgraphics.h"
 
@@ -116,6 +118,10 @@ WorldFactory::WorldFactory()
     __REGISTER(GasLJForce);
     __REGISTER_EXT(Gas, GasCreator, GasGraphicsItem, GasMenuHandler);
 
+    __REGISTER_EXT(SoftBodySpring, SpringCreator, SpringGraphicsItem, ItemMenuHandler);
+    __REGISTER_EXT(SoftBodyParticle, ItemCreator, ParticleGraphicsItem, ItemMenuHandler);
+    __REGISTER_EXT(SoftBody, ItemCreator, SoftBodyGraphicsItem, SoftBodyMenuHandler);
+
     __REGISTER_EXT_E(Spring, SpringCreator, SpringGraphicsItem, ItemMenuHandler);
 
     __REGISTER(WeightForce); __REGISTER_E(WeightForce);
@@ -158,6 +164,7 @@ WorldFactory::WorldFactory()
     __ADD_SEPARATOR;
 
     __ADD_TO_PALETTE(Gas);
+    __ADD_TO_PALETTE(SoftBody);
     __ADD_SEPARATOR;
 
     __ADD_TO_PALETTE(WeightForce);

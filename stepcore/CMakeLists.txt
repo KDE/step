@@ -10,6 +10,7 @@ set(stepcore_SRCS
     particle.cc
     rigidbody.cc
     gas.cc
+    softbody.cc
     gravitation.cc
     coulombforce.cc
     spring.cc

@@ -11,6 +11,7 @@ set(step_SRCS
     particlegraphics.cc
     polygongraphics.cc
     gasgraphics.cc
+    softbodygraphics.cc
     springgraphics.cc
     toolgraphics.cc
     simulationthread.cc
@@ -20,6 +21,7 @@ set(step_SRCS
 
 set(step_UIS
     create_gas_particles.ui
+    create_softbody_items.ui
     configure_graph.ui
     configure_meter.ui
     configure_controller.ui
