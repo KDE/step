@@ -97,7 +97,7 @@ void Spring::calcForce(bool calcVariances)
 
     double l = r.norm();
     double dl = l - _restLength;
-    Vector2d force = (_stiffness*dl + _damping*r.innerProduct(v)) / l * r;
+    Vector2d force = (_stiffness*dl + _damping*r.innerProduct(v)/l) / l * r;
     
     if(p1) p1->addForce(force);
     else if(r1) r1->applyForce(force, position1());
@@ -111,12 +111,23 @@ void Spring::calcForce(bool calcVariances)
 
         // XXX: CHECKME
         Vector2d rV = se->position2Variance() + se->position1Variance();
+        Vector2d vV = se->velocity2Variance() + se->velocity1Variance();
+
         Vector2d forceV = force.cSquare()*(se->_restLengthVariance / square(dl) +
                                            se->_stiffnessVariance / square(_stiffness));
         forceV[0] += square(_stiffness)*(square( 1 - _restLength/l*(1 - square(r[0]/l)) ) * rV[0] +
                                          square(_restLength*r[0]*r[1]/(l*l*l)) * rV[1]);
         forceV[1] += square(_stiffness)*(square( 1 - _restLength/l*(1 - square(r[1]/l)) ) * rV[1] +
                                          square(_restLength*r[0]*r[1]/(l*l*l)) * rV[0]);
+
+        /*
+        return square(dl) * _stiffnessVariance +
+           square(s->stiffness()) * _restLengthVariance +
+           square(v.innerProduct(r)/l) * _dampingVariance +
+           (s->damping()/l*r).cSquare().innerProduct(vV) +
+           (( s->stiffness() - s->damping()*v.innerProduct(r) / (l*l) ) / l * r +
+              s->damping() / l * v).cSquare().innerProduct(rV);
+        */
 
         if(p1) p1->particleErrors()->addForceVariance(forceV);
         //else if(r1) r1->applyForce(force, position1());
@@ -267,10 +278,17 @@ double SpringErrors::forceVariance() const
     Spring* s = spring();
     Vector2d r = s->position2() - s->position1();
     Vector2d v = s->velocity2() - s->velocity1();
+    Vector2d rV = position2Variance() + position1Variance();
+    Vector2d vV = velocity2Variance() + velocity1Variance();
     double l = r.norm();
     double dl = l - s->restLength();
-    double dlV = lengthVariance() + _restLengthVariance;
-    return square(s->stiffness())*dlV + _stiffnessVariance*dl*dl;
+    // XXX: CHECKME
+    return square(dl) * _stiffnessVariance +
+           square(s->stiffness()) * _restLengthVariance +
+           square(v.innerProduct(r)/l) * _dampingVariance +
+           (s->damping()/l*r).cSquare().innerProduct(vV) +
+           (( s->stiffness() - s->damping()*v.innerProduct(r) / (l*l) ) / l * r +
+              s->damping() / l * v).cSquare().innerProduct(rV);
 }
 
 void Spring::worldItemRemoved(Item* item)
