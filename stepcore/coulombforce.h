@@ -30,6 +30,35 @@
 namespace StepCore
 {
 
+class CoulombForce;
+
+/** \ingroup errors
+ *  \brief Errors object for CoulombForce
+ */
+class CoulombForceErrors: public ErrorsObject
+{
+    STEPCORE_OBJECT(CoulombForceErrors)
+
+public:
+    /** Constructs CoulombForceErrors */
+    CoulombForceErrors(Item* owner = NULL)
+        : ErrorsObject(owner), _electricConstVariance(0) {}
+
+    /** Get owner as CoulombForce */
+    CoulombForce* coulombForce() const;
+
+    /** Get electricConst variance */
+    double electricConstVariance() const { return _electricConstVariance; }
+    /** Set electricConst variance */
+    void   setElectricConstVariance(double electricConstVariance) {
+        _electricConstVariance = electricConstVariance; }
+
+protected:
+    double _electricConstVariance;
+    friend class CoulombForce;
+};
+
+
 /** \ingroup forces
  *  \brief Coulomb electrostatic force.
  *
@@ -58,14 +87,20 @@ public:
     /** Constructs CoulombForce */
     CoulombForce(double electricConst = Constants::Electric);
 
-    void calcForce();
+    void calcForce(bool calcVariances);
 
     /** Get electric const */
     double electricConst() const { return _electricConst; }
     /** Set electric const */
     void   setElectricConst(double electricConst) { _electricConst = electricConst; }
 
+    /** Get (and possibly create) CoulombForceErrors object */
+    CoulombForceErrors* coulombForceErrors() {
+        return static_cast<CoulombForceErrors*>(errorsObject()); }
+
 protected:
+    ErrorsObject* createErrorsObject() { return new CoulombForceErrors(this); }
+
     double _electricConst;
 };
 

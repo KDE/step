@@ -124,7 +124,7 @@ public:
     explicit Spring(double restLength = 0, double stiffness = 1,
                 Body* bodyPtr1 = 0, Body* bodyPtr2 = 0);
 
-    void calcForce();
+    void calcForce(bool calcVariances);
 
     /** Get rest length of the spring */
     double restLength() const { return _restLength; }

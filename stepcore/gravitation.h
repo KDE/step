@@ -30,6 +30,35 @@
 namespace StepCore
 {
 
+class GravitationForce;
+class WeightForce;
+
+/** \ingroup errors
+ *  \brief Errors object for GravitationForce
+ */
+class GravitationForceErrors: public ErrorsObject
+{
+    STEPCORE_OBJECT(GravitationForceErrors)
+
+public:
+    /** Constructs GravitationForceErrors */
+    GravitationForceErrors(Item* owner = NULL)
+        : ErrorsObject(owner), _gravitationConstVariance(0) {}
+
+    /** Get owner as GravitationForce */
+    GravitationForce* gravitationForce() const;
+
+    /** Get gravitationConst variance */
+    double gravitationConstVariance() const { return _gravitationConstVariance; }
+    /** Set gravitationConst variance */
+    void   setGravitationConstVariance(double gravitationConstVariance) {
+        _gravitationConstVariance = gravitationConstVariance; }
+
+protected:
+    double _gravitationConstVariance;
+    friend class GravitationForce;
+};
+
 /** \ingroup forces
  *  \brief Newton gravitational force.
  *
@@ -56,15 +85,47 @@ public:
     /** Constructs GravitationForce */
     GravitationForce(double gravitationConst = Constants::Gravitational);
 
-    void calcForce();
+    void calcForce(bool calcVariances);
 
     /** Get gravitational constant */
     double gravitationConst() const { return _gravitationConst; }
     /** Set gravitational constant */
     void   setGravitationConst(double gravitationConst) { _gravitationConst = gravitationConst; }
 
+    /** Get (and possibly create) GravitationForceErrors object */
+    GravitationForceErrors* gravitationForceErrors() {
+        return static_cast<GravitationForceErrors*>(errorsObject()); }
+
 protected:
+    ErrorsObject* createErrorsObject() { return new GravitationForceErrors(this); }
+
     double _gravitationConst;
+};
+
+/** \ingroup errors
+ *  \brief Errors object for WeightForce
+ */
+class WeightForceErrors: public ErrorsObject
+{
+    STEPCORE_OBJECT(WeightForceErrors)
+
+public:
+    /** Constructs WeightForceErrors */
+    WeightForceErrors(Item* owner = NULL)
+        : ErrorsObject(owner), _weightConstVariance(0) {}
+
+    /** Get owner as WeightForce */
+    WeightForce* weightForce() const;
+
+    /** Get weightConst variance */
+    double weightConstVariance() const { return _weightConstVariance; }
+    /** Set weightConst variance */
+    void   setWeightConstVariance(double weightConstVariance) {
+        _weightConstVariance = weightConstVariance; }
+
+protected:
+    double _weightConstVariance;
+    friend class WeightForce;
 };
 
 /** \ingroup forces
@@ -89,16 +150,21 @@ public:
     /** Constructs WeightForce */
     WeightForce(double weightConst = Constants::WeightAccel);
 
-    void calcForce();
+    void calcForce(bool calcVariances);
 
     /** Get weight constant */
     double weightConst() const { return _weightConst; }
     /** Set weight constant */
     void   setWeightConst(double weightConst) { _weightConst = weightConst; }
 
-protected:
-    double _weightConst;
+    /** Get (and possibly create) WeightForceErrors object */
+    WeightForceErrors* weightForceErrors() {
+        return static_cast<WeightForceErrors*>(errorsObject()); }
 
+protected:
+    ErrorsObject* createErrorsObject() { return new WeightForceErrors(this); }
+
+    double _weightConst;
 };
 
 } // namespace StepCore

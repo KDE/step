@@ -68,7 +68,7 @@ class GasLJForce: public Item, public Force
 
 public:
     explicit GasLJForce(double depth = 1, double rmin = 1, double cutoff = HUGE_VAL);
-    void calcForce();
+    void calcForce(bool calcVariances);
 
     double depth() const { return _depth; }
     void setDepth(double depth) { _depth = depth; calcABC(); }

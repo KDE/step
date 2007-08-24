@@ -141,6 +141,33 @@ protected:
     double _mass;
 };
 
+/** \ingroup errors
+ *  \brief Errors object for ChargedParticle
+ */
+class ChargedParticleErrors: public ParticleErrors
+{
+    STEPCORE_OBJECT(ChargedParticleErrors)
+
+public:
+    /** Constructs ChargedParticleErrors */
+    ChargedParticleErrors(Item* owner = 0)
+        : ParticleErrors(owner), _chargeVariance(0) {}
+
+    /** Get owner as ChargedParticle */
+    ChargedParticle* chargedParticle() const;
+
+    /** Get charge variance */
+    double chargeVariance() const { return _chargeVariance; }
+    /** Set charge variance */
+    void   setChargeVariance(double chargeVariance) {
+        _chargeVariance = chargeVariance; }
+
+protected:
+    double _chargeVariance;
+    friend class ChargedParticle;
+};
+
+
 /** \ingroup bodies
  *  \brief ChargedParticle with mass and charge
  */
@@ -159,7 +186,13 @@ public:
     /** Charge of the particle */
     void setCharge(double charge) { _charge = charge; }
 
+    /** Get (and possibly create) ChargedParticleErrors object */
+    ChargedParticleErrors* chargedParticleErrors() {
+        return static_cast<ChargedParticleErrors*>(errorsObject()); }
+
 protected:
+    ErrorsObject* createErrorsObject() { return new ChargedParticleErrors(this); }
+
     double _charge;
 };
 

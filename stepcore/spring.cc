@@ -71,7 +71,7 @@ Spring::Spring(double restLength, double stiffness, Body* bodyPtr1, Body* bodyPt
 {
 }
 
-void Spring::calcForce()
+void Spring::calcForce(bool calcVariances)
 {
     /*
     // XXX: SLOW checks !
@@ -100,20 +100,17 @@ void Spring::calcForce()
     if(p2) p2->addForce(force);
     else if(r2) r2->applyForce(force, position2());
 
-    if(world()->errorsCalculation()) {
+    if(calcVariances) {
         SpringErrors* se = springErrors();
-        Vector2d forceV;
 
         // XXX: CHECKME
         Vector2d rV = se->position2Variance() + se->position1Variance();
-        forceV[0] = square(_stiffness*( 1 - _restLength/l*(1 - square(r[0]/l)) )) * rV[0] +
-                    square(_stiffness*_restLength*r[0]*r[1]/(l*l*l)) * rV[1] +
-                    square(_stiffness*r[0]/l) * se->_restLengthVariance +
-                    square(dl*r[0]/l) * se->_stiffnessVariance;
-        forceV[1] = square(_stiffness*( 1 - _restLength/l*(1 - square(r[1]/l)) )) * rV[1] +
-                    square(_stiffness*_restLength*r[0]*r[1]/(l*l*l)) * rV[0] +
-                    square(_stiffness*r[1]/l) * se->_restLengthVariance +
-                    square(dl*r[1]/l) * se->_stiffnessVariance;
+        Vector2d forceV = force.cSquare()*(se->_restLengthVariance / square(dl) +
+                                           se->_stiffnessVariance / square(_stiffness));
+        forceV[0] += square(_stiffness)*(square( 1 - _restLength/l*(1 - square(r[0]/l)) ) * rV[0] +
+                                         square(_restLength*r[0]*r[1]/(l*l*l)) * rV[1]);
+        forceV[1] += square(_stiffness)*(square( 1 - _restLength/l*(1 - square(r[1]/l)) ) * rV[1] +
+                                         square(_restLength*r[0]*r[1]/(l*l*l)) * rV[0]);
 
         if(p1) p1->particleErrors()->addForceVariance(forceV);
         //else if(r1) r1->applyForce(force, position1());

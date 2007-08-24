@@ -43,9 +43,19 @@ STEPCORE_META_OBJECT(ParticleErrors, "Errors class for Particle", 0, STEPCORE_SU
 STEPCORE_META_OBJECT(ChargedParticle, "Charged zero-size particle", 0, STEPCORE_SUPER_CLASS(Particle),
         STEPCORE_PROPERTY_RW(double, charge, "C", "charge", charge, setCharge))
 
+STEPCORE_META_OBJECT(ChargedParticleErrors, "Errors class for ChargedParticle", 0,
+        STEPCORE_SUPER_CLASS(ParticleErrors),
+        STEPCORE_PROPERTY_RW(double, chargeVariance, "kg",
+                    "charge variance", chargeVariance, setChargeVariance ))
+
 Particle* ParticleErrors::particle() const
 {
     return static_cast<Particle*>(owner());
+}
+
+ChargedParticle* ChargedParticleErrors::chargedParticle() const
+{
+    return static_cast<ChargedParticle*>(owner());
 }
 
 Particle::Particle(Vector2d position, Vector2d velocity, double mass)

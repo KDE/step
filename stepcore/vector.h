@@ -116,6 +116,11 @@ public:
     /** Compare *this and b */
     bool operator!=(const Vector<T,N>& b);
 
+    /** Multiply all vector components individualy */
+    Vector cMultiply(const Vector<T,N>& b);
+    /** Calculate square of all vector components individualy */
+    Vector cSquare() { return cMultiply(*this); }
+
 protected:
     T _array[N];
 };
@@ -268,6 +273,14 @@ template<typename T, int N>
 bool Vector<T,N>::operator!=(const Vector<T,N>& b)
 {
     return std::memcmp(_array, b._array, N*sizeof(*_array)) != 0;
+}
+
+template<typename T, int N>
+Vector<T,N> Vector<T,N>::cMultiply(const Vector<T,N>& b)
+{
+    Vector<T,N> ret;
+    for(int i=0; i<N; i++) ret._array[i] = _array[i] * b._array[i];
+    return ret;
 }
 
 } // namespace StepCore

@@ -159,7 +159,7 @@ public:
     /** Calculate force. Bodies can be accessed through
      * this->world()->bodies()
      */
-    virtual void calcForce() = 0;
+    virtual void calcForce(bool calcVariances) = 0;
 };
 
 /** \ingroup tools

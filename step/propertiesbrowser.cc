@@ -203,7 +203,7 @@ QVariant PropertiesBrowserModel::data(const QModelIndex &index, int role) const
                     unsigned int end = qMax<unsigned int>(10u, list.size()); // XXX: make it 
                     for(unsigned int i=0; i<end; ++i) {
                         if(!string.isEmpty()) string += ",";
-                        string += QString("(%1,%2)%3").arg(list[i][0], 0, 'g', pr)
+                        string += QString("(%1,%2)").arg(list[i][0], 0, 'g', pr)
                                                         .arg(list[i][1], 0, 'g', pr);
                     }
                     if(role == Qt::DisplayRole && end != 0 && end < list.size()) string += ",...";

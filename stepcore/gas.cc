@@ -70,7 +70,7 @@ void GasLJForce::calcABC()
     _c = _cutoff*_cutoff;
 }
 
-void GasLJForce::calcForce()
+void GasLJForce::calcForce(bool calcVariances)
 {
     if(!group()) return;
 

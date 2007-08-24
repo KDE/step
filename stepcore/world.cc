@@ -521,8 +521,9 @@ int World::doCalcFn()
     _stopOnCollision = false;
     _stopOnIntersection = false;
     checkVariablesCount();
-    gatherVariables(_variables, _errorsCalculation ? _variances : NULL);
-    return _solver->doCalcFn(&_time, _variables, _errorsCalculation ? _variances : NULL);
+    double* variances = _errorsCalculation ? _variances : NULL;
+    gatherVariables(_variables, variances);
+    return _solver->doCalcFn(&_time, _variables, variances, NULL, variances);
 }
 
 int World::doEvolve(double delta)
@@ -631,9 +632,10 @@ inline int World::solverFunction(double t, const double* y,
         }
     }
 
+    bool calcVariances = (fvar != NULL);
     const ForceList::const_iterator it_end = _forces.end();
     for(ForceList::iterator force = _forces.begin(); force != it_end; ++force) {
-        (*force)->calcForce();
+        (*force)->calcForce(calcVariances);
     }
 
     gatherDerivatives(f, fvar);
