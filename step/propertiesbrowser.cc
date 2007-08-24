@@ -309,17 +309,6 @@ bool PropertiesBrowserModel::setData(const QModelIndex &index, const QVariant &v
                     }
                 }
 
-                if(vv.isValid()) { // We have got variance value
-                    if(!pv) {
-                        // check if _objectErrors can be created
-                        // and current property variance could be set
-                        const StepCore::MetaObject* me =
-                            _worldModel->worldFactory()->metaObject(
-                                _object->metaObject()->className() + "Errors");
-                        if(!_item || !me || !me->property(p->name() + "Variance"))
-                            return false;
-                    }
-
 #ifdef STEP_WITH_UNITSCALC
                     // Convert units
                     if(p->userTypeId() == QMetaType::Double) {
@@ -338,6 +327,18 @@ bool PropertiesBrowserModel::setData(const QModelIndex &index, const QVariant &v
                         }
                     }
 #endif
+
+                if(vv.isValid()) { // We have got variance value
+                    if(!pv) {
+                        // check if _objectErrors can be created
+                        // and current property variance could be set
+                        const StepCore::MetaObject* me =
+                            _worldModel->worldFactory()->metaObject(
+                                _object->metaObject()->className() + "Errors");
+                        if(!_item || !me || !me->property(p->name() + "Variance"))
+                            return false;
+                    }
+
                     bool ok = true;
                     // Calc variance = square(error)
                     if(p->userTypeId() == QMetaType::Double) {
