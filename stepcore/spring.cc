@@ -255,17 +255,22 @@ Vector2d SpringErrors::velocity2Variance() const
 
 double Spring::force() const
 {
-    Vector2d u = (position2() - position1()).unit();
-    return _stiffness * (length() - _restLength) -
-            _damping * (velocity1().innerProduct(u) -
-                        velocity2().innerProduct(u)) ;
+    Vector2d r = position2() - position1();
+    Vector2d v = velocity2() - velocity1();
+    double l = r.norm();
+    return _stiffness * (l - _restLength) +
+                _damping * v.innerProduct(r)/l;
 }
 
 double SpringErrors::forceVariance() const
 {
-    double dl = spring()->length() - spring()->restLength();
+    Spring* s = spring();
+    Vector2d r = s->position2() - s->position1();
+    Vector2d v = s->velocity2() - s->velocity1();
+    double l = r.norm();
+    double dl = l - s->restLength();
     double dlV = lengthVariance() + _restLengthVariance;
-    return square(spring()->stiffness())*dlV + _stiffnessVariance*dl*dl;
+    return square(s->stiffness())*dlV + _stiffnessVariance*dl*dl;
 }
 
 void Spring::worldItemRemoved(Item* item)
