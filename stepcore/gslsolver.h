@@ -78,6 +78,7 @@ protected:
 
     //gsl_odeiv_control*  _gslControl;
     //gsl_odeiv_evolve*   _gslEvolve;
+    double* _yerr;
     double* _ytemp;
     double* _ydiff;
     double* _dydt_in;

@@ -72,6 +72,7 @@ STEPCORE_META_OBJECT(GslAdaptiveRK4IMPSolver, "Adaptive Runge-Kutta implicit fou
 
 void GslGenericSolver::init()
 {
+    _yerr = new double[_dimension];
     _ytemp = new double[_dimension];
     _ydiff = new double[_dimension];
     _dydt_in  = new double[_dimension];
@@ -98,11 +99,14 @@ void GslGenericSolver::init()
 
 void GslGenericSolver::fini()
 {
-    delete[] _ytemp; delete[] _ydiff;
-    delete[] _dydt_in; delete[] _dydt_out;
     if(_gslStep != NULL) gsl_odeiv_step_free(_gslStep);
     if(_gslControl != NULL) gsl_odeiv_control_free(_gslControl);
     if(_gslEvolve != NULL) gsl_odeiv_evolve_free(_gslEvolve);
+    delete[] _dydt_out;
+    delete[] _dydt_in;
+    delete[] _ydiff;
+    delete[] _ytemp;
+    delete[] _yerr;
 }
 
 int GslGenericSolver::gslFunction(double t, const double* y, double* f, void* params)
@@ -150,11 +154,11 @@ int GslGenericSolver::doEvolve(double* t, double t1, double* y, double* yvar)
             gsl_odeiv_evolve_reset(_gslEvolve); // XXX
             gsl_result = gsl_odeiv_evolve_apply(_gslEvolve, _gslControl, _gslStep, &_gslSystem,
                                             &tt, t1, &_stepSize, _ytemp);
-            std::memcpy(yvar, _gslEvolve->yerr, _dimension*sizeof(*yvar));
+            std::memcpy(_yerr, _gslEvolve->yerr, _dimension*sizeof(*_yerr));
         } else {
             STEPCORE_ASSERT_NOABORT(t1-tt > _stepSize/100);
             gsl_result = gsl_odeiv_step_apply(_gslStep, tt, (_stepSize < t1-tt ? _stepSize : t1-tt),
-                                                _ytemp, yvar, _dydt_in, _dydt_out, &_gslSystem);
+                                                _ytemp, _yerr, _dydt_in, _dydt_out, &_gslSystem);
             tt = _stepSize < t1-tt ? tt + _stepSize : t1;
         }
         if(gsl_result != 0) return gsl_result;
@@ -163,7 +167,7 @@ int GslGenericSolver::doEvolve(double* t, double t1, double* y, double* yvar)
         _localError = 0;
         _localErrorRatio = 0;
         for(int i=0; i<_dimension; ++i) {
-            double error = fabs(yvar[i]);
+            double error = fabs(_yerr[i]);
             if(error > _localError) _localError = error;
             double errorRatio = error / (_toleranceAbs + _toleranceRel * fabs(_ytemp[i]));
             if(errorRatio > _localErrorRatio) _localErrorRatio = errorRatio;
