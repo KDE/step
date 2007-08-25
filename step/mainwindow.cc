@@ -307,18 +307,24 @@ bool MainWindow::maybeSave()
 
 void MainWindow::openExample()
 {
+    // XXX: need to be redone
     QStringList dirs = KGlobal::dirs()->findDirs("appdata", "examples");
+    QString localDir = KStandardDirs::locateLocal("appdata", "");
     foreach(QString dir, dirs) {
-        kDebug() << "DATADIR: " << dir << endl;
+        if(!dir.startsWith(localDir)) {
+            openFile(KUrl(), dir);
+            return;
+        }
     }
-    kDebug() << "AA: " << KStandardDirs::locateLocal("data", "step/examples") << endl;
-    kDebug() << "BB: " << KStandardDirs::locate("data", "step/examples") << endl;
-    //openFile(KUrl(), KStandardDirs::locate("data", "step"));
 }
 
 void MainWindow::openLocalExample()
 {
-
+    // XXX: need to be redone
+    QString dir = KStandardDirs::locateLocal("appdata", "examples");
+    if(dir.isEmpty()) return;
+    KStandardDirs::makeDir(dir);
+    openFile(KUrl(), dir);
 }
 
 void MainWindow::uploadExample()
