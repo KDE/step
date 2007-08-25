@@ -1,0 +1,4 @@
+FILE(GLOB STEP_EXAMPLE_FILES "*.step")
+install(FILES 
+   ${STEP_EXAMPLE_FILES}
+   DESTINATION  ${DATA_INSTALL_DIR}/step/examples)
