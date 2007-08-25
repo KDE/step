@@ -18,8 +18,8 @@
         <text>&amp;Examples</text>
         <Action name="file_example_open" />
         <Action name="file_example_openlocal" />
-        <Action name="file_example_upload" />
         <Action name="file_example_download" />
+        <Action name="file_example_upload" />
       </Menu>
     </Menu>
     <Menu name="edit" >
