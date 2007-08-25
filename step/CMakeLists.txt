@@ -65,5 +65,6 @@ install(FILES step.knsrc DESTINATION  ${CONFIG_INSTALL_DIR})
 
 add_subdirectory(icons)
 add_subdirectory(objinfo)
+add_subdirectory(examples)
 
 
