@@ -32,6 +32,13 @@ STEPCORE_META_OBJECT(GasLJForce, "Lennard-Jones force", 0,
     STEPCORE_PROPERTY_RW(double, rmin, "m", "Distance at which the force is zero", rmin, setRmin)
     STEPCORE_PROPERTY_RW(double, cutoff, "m", "Cut-off distance", cutoff, setCutoff))
 
+STEPCORE_META_OBJECT(GasLJForceErrors, "Errors class for GasLJForce", 0,
+    STEPCORE_SUPER_CLASS(ObjectErrors),
+    STEPCORE_PROPERTY_RW(double, depthVariance, "J",
+            "Potential depth variance", depthVariance, setDepthVariance)
+    STEPCORE_PROPERTY_RW(double, rminVariance, "m",
+            "Variance of the distance at which the force is zero", rminVariance, setRminVariance))
+
 // XXX: Check units for 2d
 STEPCORE_META_OBJECT(Gas, "Particle gas", 0, STEPCORE_SUPER_CLASS(ItemGroup),
     STEPCORE_PROPERTY_RW(StepCore::Vector2d, measureRectCenter, "m",
@@ -56,6 +63,11 @@ STEPCORE_META_OBJECT(Gas, "Particle gas", 0, STEPCORE_SUPER_CLASS(ItemGroup),
                 "Mean velocity of particles in the measureRect", rectMeanVelocity)
     )
 
+GasLJForce* GasLJForceErrors::gasLJForce() const
+{
+    return static_cast<GasLJForce*>(owner());
+}
+
 GasLJForce::GasLJForce(double depth, double rmin, double cutoff)
     : _depth(depth), _rmin(rmin), _cutoff(cutoff)
 {
@@ -65,8 +77,9 @@ GasLJForce::GasLJForce(double depth, double rmin, double cutoff)
 void GasLJForce::calcABC()
 {
     double m = 12*_depth;
-    double t = pow(_rmin, 6);
-    _a = m*t*t; _b = m*t;
+    _rmin6 = pow(_rmin, 6);
+    _rmin12 = _rmin6*_rmin6;
+    _a = m*_rmin12; _b = m*_rmin6;
     _c = _cutoff*_cutoff;
 }
 
@@ -92,6 +105,27 @@ void GasLJForce::calcForce(bool calcVariances)
                 p2->addForce(force);
                 force.invert();
                 p1->addForce(force);
+
+                if(calcVariances) {
+                    ParticleErrors* pe1 = p1->particleErrors();
+                    ParticleErrors* pe2 = p2->particleErrors();
+                    Vector2d rV = pe2->positionVariance() + pe1->positionVariance();
+
+                    GasLJForceErrors* ge = gasLJForceErrors();
+                    Vector2d forceV = r.cSquare() * (
+                        ge->_rminVariance * square( (12*_a/_rmin/rnorm6 - 6*_b/_rmin)/rnorm8 ) +
+                        ge->_depthVariance * square( 12*(_rmin12/rnorm6 - _rmin6)/rnorm8 ) );
+
+                    forceV[0] += rV[0] * square( (_a/rnorm6*( 1 - 14*r[0]*r[0]/rnorm2 ) -
+                                                  _b*( 1 - 8*r[0]*r[0]/rnorm2 ))/rnorm8 ) +
+                                 rV[1] * square( (_a/rnorm6*14 - _b*8)*r[0]*r[1]/(rnorm8*rnorm2) );
+                    forceV[1] += rV[1] * square( (_a/rnorm6*( 1 - 14*r[1]*r[1]/rnorm2 ) -
+                                                  _b*( 1 - 8*r[1]*r[1]/rnorm2 ))/rnorm8 ) +
+                                 rV[0] * square( (_a/rnorm6*14 - _b*8)*r[0]*r[1]/(rnorm8*rnorm2) );
+
+                    pe1->addForceVariance(forceV);
+                    pe2->addForceVariance(forceV);
+                }
             }
         }
     }

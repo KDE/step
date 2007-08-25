@@ -29,6 +29,10 @@
 
 namespace StepCore {
 
+class GasParticle;
+class GasLJForce;
+class Gas;
+
 /** \ingroup bodies
  *  \brief Gas particle
  */
@@ -40,6 +44,37 @@ public:
     /** Constructs a GasParticle */
     explicit GasParticle(Vector2d position = Vector2d(0), Vector2d velocity = Vector2d(0), double mass = 1)
         : Particle(position, velocity, mass) {}
+};
+
+/** \ingroup errors
+ *  \brief Errors object for GasLJForce
+ */
+class GasLJForceErrors: public ObjectErrors
+{
+    STEPCORE_OBJECT(GasLJForceErrors)
+
+public:
+    /** Constructs GasLJForceErrors */
+    GasLJForceErrors(Item* owner = 0)
+        : ObjectErrors(owner), _depthVariance(0), _rminVariance(0) {}
+
+    /** Get owner as GasLJForce */
+    GasLJForce* gasLJForce() const;
+
+    /** Get depth variance */
+    double depthVariance() const { return _depthVariance; }
+    /** Set depth variance */
+    void setDepthVariance(double depthVariance) { _depthVariance = depthVariance; }
+
+    /** Get rmin variance */
+    double rminVariance() const { return _rminVariance; }
+    /** Set rmin variance */
+    void setRminVariance(double rminVariance) { _rminVariance = rminVariance; }
+
+protected:
+    double _depthVariance;
+    double _rminVariance;
+    friend class GasLJForce;
 };
 
 /** \ingroup forces
@@ -61,32 +96,44 @@ public:
  *  \f$\mbox{cutoff}\f$ is a cut-off distance (can be set to infinity)
  *
  */
-
 class GasLJForce: public Item, public Force
 {
     STEPCORE_OBJECT(GasLJForce)
 
 public:
+    /** Constructs GasLJForce */
     explicit GasLJForce(double depth = 1, double rmin = 1, double cutoff = HUGE_VAL);
+
     void calcForce(bool calcVariances);
 
+    /** Get depth of the potential */
     double depth() const { return _depth; }
+    /** Set depth of the potential */
     void setDepth(double depth) { _depth = depth; calcABC(); }
 
+    /** Get distance at which the interparticle force is zero */
     double rmin() const { return _rmin; }
+    /** Set distance at which the interparticle force is zero */
     void setRmin(double rmin) { _rmin = rmin; calcABC(); }
 
+    /** Get cut-off distance */
     double cutoff() const { return _cutoff; }
+    /** Set cut-off distance */
     void setCutoff(double cutoff) { _cutoff = cutoff; calcABC(); }
 
-protected:
-    void calcABC();
+    /** Get (and possibly create) GasLJForceErrors object */
+    GasLJForceErrors* gasLJForceErrors() {
+        return static_cast<GasLJForceErrors*>(objectErrors()); }
 
 protected:
+    ObjectErrors* createObjectErrors() { return new GasLJForceErrors(this); }
+    void calcABC();
+
     double _depth;
     double _rmin;
     double _cutoff;
     double _a, _b, _c;
+    double _rmin6, _rmin12;
 };
 
 typedef std::vector<GasParticle*> GasParticleList;
