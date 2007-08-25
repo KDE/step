@@ -155,6 +155,7 @@ WorldFactory::WorldFactory()
     __REGISTER_EXT(Meter, ItemCreator, MeterGraphicsItem, MeterMenuHandler);
     __REGISTER_EXT(Graph, ItemCreator, GraphGraphicsItem, GraphMenuHandler);
     __REGISTER_EXT(Controller, ItemCreator, ControllerGraphicsItem, ControllerMenuHandler);
+    __REGISTER_EXT(Tracer, TracerCreator, TracerGraphicsItem, TracerMenuHandler);
 
     // Palette
     __ADD_TO_PALETTE(Particle);
@@ -174,6 +175,7 @@ WorldFactory::WorldFactory()
 
     __ADD_TO_PALETTE(Note);
     __ADD_TO_PALETTE(Meter);
+    __ADD_TO_PALETTE(Tracer);
     __ADD_TO_PALETTE(Graph);
     __ADD_TO_PALETTE(Controller);
 }

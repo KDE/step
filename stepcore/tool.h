@@ -20,6 +20,8 @@
  *  \brief Note class
  */
 
+// TODO: split this file
+
 #ifndef STEPCORE_TOOL_H
 #define STEPCORE_TOOL_H
 
@@ -186,7 +188,7 @@ public:
     Vector2d recordPoint(bool* ok = 0);
 
     /** Clear points list */
-    void clearPoints();
+    void clearPoints() { _points.clear(); }
 
     /** Return units of propertyX */
     QString unitsX() const;
@@ -409,6 +411,60 @@ protected:
     QString  _increaseShortcut;
 
     double   _increment;
+};
+
+/** \ingroup tools
+ *  \brief Traces position of the body
+ *
+ *  Actual displaying of the Traces and its user interaction
+ *  should be implemented by application
+ */
+class Tracer: public Item, public Tool
+{
+    STEPCORE_OBJECT(Tracer)
+
+public:
+    /** Constructs Spring */
+    explicit Tracer(Body* bodyPtr = 0, const Vector2d& localPosition = Vector2d(0));
+
+    /** Get pointer to the first body */
+    Body* bodyPtr() { return _bodyPtr; }
+    /** Set pointer to the first connected body */
+    void setBodyPtr(Body* bodyPtr);
+
+    /** Set connected body by name */
+    void setBody(const QString& body) { setBodyPtr(dynamic_cast<Body*>(world()->item(body))); }
+    /** Get name of the connected body */
+    QString body() const { return _bodyPtr ? dynamic_cast<Item*>(_bodyPtr)->name() : QString(); }
+
+    /** Local position of the tracer on the body
+     *  or in the world (if the tracer is not connected) */
+    Vector2d localPosition() const { return _localPosition; }
+    /** Set local position of the tracer on the body
+     *  or in the world (if the tracer is not connected) */
+    void setLocalPosition(const Vector2d& localPosition) { _localPosition = localPosition; }
+
+    /** Position of the tracer */
+    Vector2d position() const;
+
+    /** Get points list */
+    const std::vector<Vector2d>& points() const { return _points; }
+    /** Set points list */
+    void setPoints(const std::vector<Vector2d>& points) { _points = points; }
+
+    /** Get current position value and add it to points list */
+    Vector2d recordPoint() { Vector2d p = position(); _points.push_back(p); return p; }
+
+    /** Clear points list */
+    void clearPoints() { _points.clear(); }
+
+    void worldItemRemoved(Item* item);
+    void setWorld(World* world);
+
+protected:
+    Body* _bodyPtr;
+    Vector2d _localPosition;
+    std::vector<Vector2d> _points;
 };
 
 } // namespace StepCore

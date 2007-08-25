@@ -26,6 +26,10 @@ namespace Ui {
     class WidgetCreateSoftBodyItems;
 }
 
+namespace StepCore {
+    class SoftBody;
+}
+
 class KDialog;
 class SoftBodyMenuHandler: public ItemMenuHandler
 {

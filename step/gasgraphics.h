@@ -20,7 +20,10 @@
 #define STEP_GASGRAPHICS_H
 
 #include "worldgraphics.h"
-#include <stepcore/gas.h>
+
+namespace StepCore {
+    class Gas;
+}
 
 class GasCreator: public ItemCreator
 {

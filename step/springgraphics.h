@@ -20,7 +20,10 @@
 #define STEP_SPRINGGRAPHICS_H
 
 #include "worldgraphics.h"
-#include <stepcore/spring.h>
+
+namespace StepCore {
+    class Spring;
+}
 
 class SpringCreator: public ItemCreator
 {

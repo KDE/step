@@ -20,11 +20,11 @@
 #define STEP_TOOLGRAPHICS_H
 
 #include "worldgraphics.h"
-#include <stepcore/tool.h>
 #include <QGraphicsTextItem>
 #include <QAbstractItemModel>
 #include <QWidget>
 #include <KComboBox>
+#include <limits.h>
 
 class KPlotWidget;
 class KPlotObject;
@@ -39,10 +39,19 @@ namespace Ui {
     class WidgetConfigureController;
 }
 
+namespace StepCore {
+    class Note;
+    class Meter;
+    class Graph;
+    class Controller;
+    class Tracer;
+}
 
 class NoteGraphicsItem;
 class NoteTextItem: public QGraphicsTextItem
 {
+    Q_OBJECT
+
 public:
     explicit NoteTextItem(NoteGraphicsItem* noteItem, QGraphicsItem* parent = 0);
     void paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget);
@@ -283,6 +292,53 @@ protected:
     Ui::WidgetConfigureController* _confUi;
     KDialog* _confDialog;
     bool     _confChanged;
+};
+
+class TracerCreator: public ItemCreator
+{
+public:
+    TracerCreator(const QString& className, WorldModel* worldModel, WorldScene* worldScene)
+                        : ItemCreator(className, worldModel, worldScene) {}
+    bool sceneEvent(QEvent* event);
+
+protected:
+    void tryAttach(const QPointF& pos);
+};
+
+class TracerGraphicsItem: public WorldGraphicsItem
+{
+public:
+    TracerGraphicsItem(StepCore::Item* item, WorldModel* worldModel);
+
+    void paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget);
+    QPainterPath shape() const;
+
+    void viewScaleChanged();
+    void worldDataChanged(bool dynamicOnly);
+
+protected:
+    StepCore::Tracer* tracer() const;
+    void mouseMoveEvent(QGraphicsSceneMouseEvent *event);
+    void mouseReleaseEvent(QGraphicsSceneMouseEvent *event);
+    QPolygonF _points;
+    QPointF   _lastPos;
+    double    _lastPointTime;
+    bool      _moving;
+    QPointF   _movingDelta;
+};
+
+class TracerMenuHandler: public ItemMenuHandler
+{
+    Q_OBJECT
+
+public:
+    TracerMenuHandler(StepCore::Object* object, WorldModel* worldModel, QObject* parent)
+        : ItemMenuHandler(object, worldModel, parent) {}
+
+    void populateMenu(QMenu* menu);
+
+protected slots:
+    void clearTracer();
 };
 
 

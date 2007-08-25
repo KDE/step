@@ -18,6 +18,8 @@
 
 #include "particlegraphics.h"
 
+#include <stepcore/particle.h>
+
 #include "worldmodel.h"
 #include "worldfactory.h"
 #include <QItemSelectionModel>

@@ -19,6 +19,8 @@
 #include "gasgraphics.h"
 #include "gasgraphics.moc"
 
+#include <stepcore/gas.h>
+
 #include "ui_create_gas_particles.h"
 
 #include "worldmodel.h"

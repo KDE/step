@@ -18,6 +18,8 @@
 
 #include "springgraphics.h"
 
+#include <stepcore/spring.h>
+
 #include "worldmodel.h"
 #include "worldscene.h"
 #include "worldfactory.h"

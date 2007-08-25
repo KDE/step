@@ -23,10 +23,14 @@
 #include "ui_configure_meter.h"
 #include "ui_configure_controller.h"
 
+#include <stepcore/tool.h>
+#include <stepcore/particle.h>
+#include <stepcore/rigidbody.h>
 #include <stepcore/solver.h>
 #include <stepcore/collisionsolver.h>
 
 #include "worldmodel.h"
+#include "worldscene.h"
 #include "worldfactory.h"
 #include <QItemSelectionModel>
 #include <QGraphicsSceneMouseEvent>
@@ -1264,5 +1268,234 @@ void ControllerMenuHandler::incTriggered()
     _worldModel->simulationPause();
     _worldModel->setProperty(controller(), controller()->metaObject()->property("value"),
                                 controller()->value() + controller()->increment());
+}
+
+////////////////////////////////////////////////////
+bool TracerCreator::sceneEvent(QEvent* event)
+{
+    QGraphicsSceneMouseEvent* mouseEvent = static_cast<QGraphicsSceneMouseEvent*>(event);
+    if(event->type() == QEvent::GraphicsSceneMousePress && mouseEvent->button() == Qt::LeftButton) {
+        QPointF pos = mouseEvent->scenePos();
+        QVariant vpos = QVariant::fromValue(WorldGraphicsItem::pointToVector(pos));
+
+        _worldModel->simulationPause();
+        _worldModel->beginMacro(i18n("Create %1", _className));
+        _item = _worldModel->newItem(className()); Q_ASSERT(_item != NULL);
+
+        _worldModel->setProperty(_item, _item->metaObject()->property("localPosition"), vpos);
+        tryAttach(pos);
+
+        _worldModel->selectionModel()->setCurrentIndex(_worldModel->objectIndex(_item),
+                                                QItemSelectionModel::ClearAndSelect);
+        _worldModel->endMacro();
+        event->accept();
+        return true;
+    }
+    return false;
+}
+
+void TracerCreator::tryAttach(const QPointF& pos)
+{
+    foreach(QGraphicsItem* it, _worldScene->items(pos)) {
+        StepCore::Item* item = _worldScene->itemFromGraphics(it);
+        if(dynamic_cast<StepCore::Particle*>(item) || dynamic_cast<StepCore::RigidBody*>(item)) {
+            _worldModel->setProperty(_item, _item->metaObject()->property("body"), item->name(), false);
+
+            StepCore::Vector2d lPos(0, 0);
+            if(dynamic_cast<StepCore::RigidBody*>(item))
+                lPos = dynamic_cast<StepCore::RigidBody*>(item)->pointWorldToLocal(WorldGraphicsItem::pointToVector(pos));
+
+            _worldModel->setProperty(_item, _item->metaObject()->property("localPosition"), QVariant::fromValue(lPos));
+            break;
+        }
+    }
+}
+
+TracerGraphicsItem::TracerGraphicsItem(StepCore::Item* item, WorldModel* worldModel)
+    : WorldGraphicsItem(item, worldModel), _moving(false), _movingDelta(0,0)
+{
+    Q_ASSERT(dynamic_cast<StepCore::Tracer*>(_item) != NULL);
+    setFlag(QGraphicsItem::ItemIsSelectable);
+    setFlag(QGraphicsItem::ItemIsMovable);
+    setZValue(HANDLER_ZVALUE);
+
+    /*
+    _lastArrowRadius = -1;
+    _velocityHandler = new ArrowHandlerGraphicsItem(item, worldModel, this,
+                   _item->metaObject()->property("velocity"));
+    _velocityHandler->setVisible(false);*/
+    //scene()->addItem(_velocityHandler);
+
+    _lastPos = QPointF(0,0);
+    _lastPointTime = -HUGE_VAL;
+}
+
+inline StepCore::Tracer* TracerGraphicsItem::tracer() const
+{
+    return static_cast<StepCore::Tracer*>(_item);
+}
+
+void TracerGraphicsItem::mouseMoveEvent(QGraphicsSceneMouseEvent *event)
+{
+    if ((event->buttons() & Qt::LeftButton) && (flags() & ItemIsMovable)) {
+        //QPointF newPos(mapToParent(event->pos()) - matrix().map(event->buttonDownPos(Qt::LeftButton)));
+        if(!_moving) _movingDelta = _lastPos - event->buttonDownScenePos(Qt::LeftButton);
+        QPointF newPos(event->scenePos() + _movingDelta);
+        QVariant vpos = QVariant::fromValue(pointToVector(newPos));
+
+        _worldModel->simulationPause();
+        if(!_moving) {
+            _moving = true;
+            _worldModel->beginMacro(i18n("Edit %1", _item->name()));
+            _worldModel->setProperty(_item, _item->metaObject()->property("body"), QString(), false);
+        }
+
+        _worldModel->setProperty(_item, _item->metaObject()->property("localPosition"), vpos);
+    } else {
+        event->ignore();
+    }
+}
+
+void TracerGraphicsItem::mouseReleaseEvent(QGraphicsSceneMouseEvent *event)
+{
+    if(_moving) {
+        QPointF pos = event->scenePos();
+        foreach(QGraphicsItem* it, scene()->items(pos)) {
+            StepCore::Item* item = static_cast<WorldScene*>(scene())->itemFromGraphics(it);
+            if(dynamic_cast<StepCore::Particle*>(item) || dynamic_cast<StepCore::RigidBody*>(item)) {
+                _worldModel->simulationPause();
+                _worldModel->setProperty(_item, _item->metaObject()->property("body"), item->name(), false);
+
+                StepCore::Vector2d lPos(0, 0);
+                if(dynamic_cast<StepCore::RigidBody*>(item))
+                    lPos = dynamic_cast<StepCore::RigidBody*>(item)->pointWorldToLocal(WorldGraphicsItem::pointToVector(pos));
+
+                _worldModel->setProperty(_item, _item->metaObject()->property("localPosition"), QVariant::fromValue(lPos));
+
+                break;
+            }
+        }
+
+        _moving = false;
+        _worldModel->endMacro();
+    } else WorldGraphicsItem::mouseReleaseEvent(event);
+}
+
+QPainterPath TracerGraphicsItem::shape() const
+{
+    QPainterPath path;
+    double w = (HANDLER_SIZE+1)/currentViewScale();
+    // XXX: add _points here!
+    path.addEllipse(QRectF(_lastPos.x()-w,  _lastPos.y()-w,w*2,w*2));
+    return path;
+}
+
+void TracerGraphicsItem::paint(QPainter* painter, const QStyleOptionGraphicsItem* /*option*/, QWidget* /*widget*/)
+{
+    double s = currentViewScale();
+    double w = HANDLER_SIZE/s;
+
+    int renderHints = painter->renderHints();
+    painter->setRenderHint(QPainter::Antialiasing, true);
+    painter->setPen(QPen(Qt::red, 0));
+    //painter->setBrush(QBrush(Qt::black));
+    painter->drawPolyline(_points);
+    painter->drawEllipse(QRectF(_lastPos.x()-w,  _lastPos.y()-w, w*2,w*2));
+    painter->drawPoint(_lastPos);
+
+    if(_isSelected) {
+        painter->setPen(QPen(SELECTION_COLOR, 0, Qt::DashLine));
+        //painter->setBrush(QBrush());
+        //painter->setBrush(QBrush(QColor(0, 0x99, 0xff)));
+        w = (HANDLER_SIZE + SELECTION_MARGIN)/s;
+        painter->drawEllipse(QRectF(_lastPos.x()-w, _lastPos.y()-w, w*2, w*2));
+    }
+
+    painter->setRenderHint(QPainter::Antialiasing, renderHints & QPainter::Antialiasing);
+}
+
+void TracerGraphicsItem::viewScaleChanged()
+{
+    prepareGeometryChange();
+
+    double s = currentViewScale();
+    double w = (HANDLER_SIZE+SELECTION_MARGIN)/s;
+    QPointF p = vectorToPoint(tracer()->position());
+
+    _boundingRect = _points.boundingRect() | QRectF(p.x()-w, p.y()-w,2*w,2*w);
+}
+
+void TracerGraphicsItem::worldDataChanged(bool)
+{
+    /*
+    if(_isMouseOverItem || _isSelected) {
+        double vnorm = particle()->velocity().norm();
+        double anorm = particle()->force().norm() / particle()->mass();
+        double arrowRadius = qMax(vnorm, anorm) + ARROW_STROKE/currentViewScale();
+        if(arrowRadius > _lastArrowRadius || arrowRadius < _lastArrowRadius/2) {
+            _lastArrowRadius = arrowRadius;
+            viewScaleChanged();
+        }
+        update();
+    }
+    */
+
+    //setPos(vectorToPoint(tracer()->position()));
+
+    if(_worldModel->isSimulationActive()) {
+        if(_worldModel->world()->time() > _lastPointTime
+                    + 1.0/_worldModel->simulationFps() - 1e-2/_worldModel->simulationFps()) {
+            tracer()->recordPoint();
+            _lastPointTime = _worldModel->world()->time();
+        }
+    }
+
+    bool geometryChange = false;
+    int po_count, p_count;
+    do {
+        po_count = _points.size(); p_count = tracer()->points().size();
+        int count = qMin(po_count, p_count);
+        for(int p=0; p < count; ++p) {
+            QPointF point = vectorToPoint(tracer()->points()[p]);
+            if(point != _points[p]) {
+                geometryChange = true;
+                _points[p] = point;
+            }
+        }
+    } while(0);
+
+    if(po_count < p_count) {
+        geometryChange = true;
+        for(; po_count < p_count; ++po_count)
+            _points << vectorToPoint(tracer()->points()[po_count]);
+    } else {
+        geometryChange = true;
+        _points.resize(p_count);
+    }
+
+    QPointF point = vectorToPoint(tracer()->position());
+    if(point != _lastPos) {
+        geometryChange = true;
+        _lastPos = point;
+    }
+
+    if(geometryChange) {
+        viewScaleChanged();
+    }
+}
+
+void TracerMenuHandler::populateMenu(QMenu* menu)
+{
+    menu->addAction(KIcon("edit-clear"), i18n("Clear trace"), this, SLOT(clearTracer()));
+    menu->addSeparator();
+    ItemMenuHandler::populateMenu(menu);
+}
+
+void TracerMenuHandler::clearTracer()
+{
+    _worldModel->simulationPause();
+    //_lastPointTime = -HUGE_VAL; // XXX
+    _worldModel->setProperty(_object, _object->metaObject()->property("points"),
+                               QVariant::fromValue(std::vector<StepCore::Vector2d>()) );
 }
 

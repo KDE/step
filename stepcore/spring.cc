@@ -69,10 +69,12 @@ Spring* SpringErrors::spring() const
 }
 
 Spring::Spring(double restLength, double stiffness, double damping, Body* bodyPtr1, Body* bodyPtr2)
-    : _bodyPtr1(bodyPtr1), _bodyPtr2(bodyPtr2), _restLength(restLength),
+    : _restLength(restLength),
       _stiffness(stiffness), _damping(damping),
       _localPosition1(0), _localPosition2(0) //, _position1(0), _position2(0)
 {
+    setBodyPtr1(bodyPtr1);
+    setBodyPtr2(bodyPtr2);
 }
 
 void Spring::calcForce(bool calcVariances)

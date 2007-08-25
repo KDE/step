@@ -4,6 +4,7 @@
     <name>world1</name>
     <time>0</time>
     <timeScale>1</timeScale>
+    <errorsCalculation>false</errorsCalculation>
 
     <item class="Polygon">
         <name>polygon1</name>
@@ -230,6 +231,13 @@
         <limitsY>(-1,1)</limitsY>
         <showPoints>false</showPoints>
         <showLines>true</showLines>
+        <points></points>
+    </item>
+
+    <item class="Tracer">
+        <name>tracer1</name>
+        <body>polygon5</body>
+        <localPosition>(0,0)</localPosition>
         <points></points>
     </item>
 

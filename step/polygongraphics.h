@@ -25,7 +25,10 @@
 
 #include "worldgraphics.h"
 #include <QPainterPath>
-#include <stepcore/rigidbody.h>
+
+namespace StepCore {
+    class Polygon;
+}
 
 class PolygonCreator: public ItemCreator
 {

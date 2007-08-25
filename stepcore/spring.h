@@ -222,8 +222,8 @@ protected:
     double _restLength;
     double _stiffness;
     double _damping;
-    StepCore::Vector2d _localPosition1;
-    StepCore::Vector2d _localPosition2;
+    Vector2d _localPosition1;
+    Vector2d _localPosition2;
     //StepCore::Vector2d _position1;
     //StepCore::Vector2d _position2;
 };

@@ -18,6 +18,8 @@
 
 #include "polygongraphics.h"
 
+#include <stepcore/rigidbody.h>
+
 #include <stepcore/constants.h>
 #include <stepcore/types.h>
 #include "worldmodel.h"

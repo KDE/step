@@ -17,6 +17,8 @@
 */
 
 #include "tool.h"
+#include "particle.h"
+#include "rigidbody.h"
 
 namespace StepCore {
 
@@ -26,7 +28,6 @@ STEPCORE_META_OBJECT(Note, "Note", 0,
     STEPCORE_PROPERTY_RW(QString, text, STEPCORE_UNITS_NULL, "Text", text, setText)
     )
 
-// XXX: add unitsX and unitsY property
 STEPCORE_META_OBJECT(Graph, "Graph", 0,
     STEPCORE_SUPER_CLASS(Item) STEPCORE_SUPER_CLASS(Tool),
     STEPCORE_PROPERTY_RW(StepCore::Vector2d, position, "m", "Graph position on the scene", position, setPosition)
@@ -77,6 +78,15 @@ STEPCORE_META_OBJECT(Controller, "Controller", 0,
     STEPCORE_PROPERTY_RWF(double, value, STEPCORE_UNITS_NULL, "Value",
                             MetaProperty::DYNAMIC | MetaProperty::SIDEEFFECTS, value, setValue)
     STEPCORE_PROPERTY_R (QString, units, STEPCORE_UNITS_NULL, "Units of controlled property", units)
+    )
+
+STEPCORE_META_OBJECT(Tracer, "Tracer", 0,
+    STEPCORE_SUPER_CLASS(Item) STEPCORE_SUPER_CLASS(Tool),
+    STEPCORE_PROPERTY_RW(QString, body, STEPCORE_UNITS_NULL, "Traced body", body, setBody)
+    STEPCORE_PROPERTY_RW(StepCore::Vector2d, localPosition, "m",
+                    "Local position", localPosition, setLocalPosition)
+    STEPCORE_PROPERTY_R_D(StepCore::Vector2d, position, "m", "Position", position)
+    STEPCORE_PROPERTY_RW_D(std::vector<StepCore::Vector2d>, points, "m", "points", points, setPoints)
     )
 
 namespace {
@@ -147,11 +157,6 @@ bool Graph::isValidY() const
     const MetaProperty* prY = propertyYPtr(); if(!prY) return false;
     variantToDouble(prY->readVariant(_objectYPtr), _indexY, &ok);
     return ok;
-}
-
-void Graph::clearPoints()
-{
-    _points.clear();
 }
 
 Vector2d Graph::currentValue(bool* ok) const
@@ -346,6 +351,56 @@ void Controller::setWorld(World* world)
         setObjectPtr(0);
     } else if(this->world() != NULL) { 
         if(_objectPtr != NULL) _objectPtr = world->object(_objectPtr->name());
+    }
+    Item::setWorld(world);
+}
+
+Tracer::Tracer(Body* bodyPtr, const Vector2d& localPosition)
+    : _localPosition(localPosition)
+{
+    setBodyPtr(bodyPtr);
+}
+
+void Tracer::setBodyPtr(Body* bodyPtr)
+{
+    if(dynamic_cast<Particle*>(bodyPtr) || dynamic_cast<RigidBody*>(bodyPtr)) {
+        //_localPosition1.setZero();
+        _bodyPtr = bodyPtr;
+    } else {
+        //Particle* p1 = dynamic_cast<Particle*>(_bodyPtr1);
+        //RigidBody* r1 = dynamic_cast<RigidBody*>(_bodyPtr1);
+        //if(p1) _localPosition1 = p1->position();
+        //else if(r1) _localPosition1 = r1->position();
+        _bodyPtr = NULL;
+    }
+}
+
+Vector2d Tracer::position() const
+{
+    Particle* p1 = dynamic_cast<Particle*>(_bodyPtr);
+    if(p1) return p1->position() + _localPosition;
+
+    RigidBody* r1 = dynamic_cast<RigidBody*>(_bodyPtr);
+    if(r1) return r1->pointLocalToWorld(_localPosition);
+
+    return _localPosition;
+}
+
+void Tracer::worldItemRemoved(Item* item)
+{
+    if(item == NULL) return;
+    if(item == dynamic_cast<Item*>(_bodyPtr)) {
+        _bodyPtr = NULL;
+    }
+}
+
+void Tracer::setWorld(World* world)
+{
+    if(world == NULL) {
+        _bodyPtr = NULL;
+    } else if(this->world() != NULL) { 
+        if(_bodyPtr != NULL)
+            _bodyPtr = dynamic_cast<Body*>(world->item(body()));
     }
     Item::setWorld(world);
 }

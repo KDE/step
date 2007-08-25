@@ -138,6 +138,32 @@ protected:
 
 typedef std::vector<GasParticle*> GasParticleList;
 
+/** \ingroup errors
+ *  \brief Errors object for Gas
+ */
+class GasErrors: public ObjectErrors
+{
+    STEPCORE_OBJECT(GasErrors)
+
+public:
+    /** Constructs GasErrors */
+    GasErrors(Item* owner = 0)
+        : ObjectErrors(owner) {}
+
+    /** Get owner as Gas */
+    Gas* gas() const;
+
+    double rectTemperatureVariance() const;
+    double rectPressureVariance() const;
+    Vector2d rectMeanVelocityVariance() const;
+    double rectMeanKineticEnergyVariance() const;
+    double rectMeanParticleMassVariance() const;
+    double rectMassVariance() const;
+
+protected:
+    friend class Gas;
+};
+
 /** \ingroup bodies
  *  \brief Gas - a group of several GasParticle and a force
  */
@@ -146,7 +172,7 @@ class Gas: public ItemGroup
     STEPCORE_OBJECT(Gas)
 
 public:
-    Gas() : _measureRectCenter(0), _measureRectSize(1,1) {}
+    Gas() : _measureRectCenter(0), _measureRectSize(1,1) { objectErrors(); }
 
     /** Creates particles with given temperature
      *  \todo XXX Normalize temperature after particle creation */
@@ -164,6 +190,7 @@ public:
     Vector2d rectMeanVelocity() const;
     double rectMeanKineticEnergy() const;
     double rectMeanParticleMass() const;
+    double rectMass() const;
 
     const Vector2d& measureRectCenter() const { return _measureRectCenter; }
     void setMeasureRectCenter(const Vector2d& measureRectCenter) { _measureRectCenter = measureRectCenter; }
@@ -171,13 +198,20 @@ public:
     const Vector2d& measureRectSize() const { return _measureRectSize; }
     void setMeasureRectSize(const Vector2d& measureRectSize) { _measureRectSize = measureRectSize; }
 
+    /** Get (and possibly create) GasErrors object */
+    GasErrors* gasErrors() {
+        return static_cast<GasErrors*>(objectErrors()); }
+
 protected:
+    ObjectErrors* createObjectErrors() { return new GasErrors(this); }
+
     double randomUniform(double min=0, double max=1);
     double randomGauss(double mean=0, double deviation=1);
 
-protected:
     Vector2d _measureRectCenter;
     Vector2d _measureRectSize;
+
+    friend class GasErrors;
 };
 
 } // namespace StepCore
