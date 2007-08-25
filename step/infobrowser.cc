@@ -161,7 +161,7 @@ void InfoBrowser::openUrl(const KUrl& url, bool clearHistory, bool fromHistory)
                     "</body></html>", fromHistory, url );
             return;
         }
-        QString fileName = KStandardDirs::locate("data", QString("step/objinfo/%1.html").arg(className));
+        QString fileName = KStandardDirs::locate("appdata", QString("objinfo/%1.html").arg(className));
         if(!fileName.isEmpty()) {
             QFile file(fileName);
             if(file.open(QIODevice::ReadOnly | QIODevice::Text)) {

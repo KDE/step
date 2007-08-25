@@ -41,9 +41,12 @@
 #include <KMessageBox>
 #include <KFileDialog>
 #include <KConfigDialog>
+#include <KStandardDirs>
 #include <KStatusBar>
 #include <KLocale>
 #include <KConfig>
+
+#include <KNS/Engine>
 
 #include <QFile>
 #include <QGraphicsView>
@@ -124,6 +127,26 @@ void MainWindow::setupActions()
     actionRecentFiles->loadEntries(config->group("RecentFiles"));
     delete config;
 
+    KAction* actionOpenExample = actionCollection()->add<KAction>(
+                "file_example_open", this, SLOT(openExample()));
+    actionOpenExample->setText(i18n("&Open example..."));
+    actionOpenExample->setIcon(KIcon("document-open"));
+
+    KAction* actionOpenLocalExample = actionCollection()->add<KAction>(
+                "file_example_openlocal", this, SLOT(openLocalExample()));
+    actionOpenLocalExample->setText(i18n("Open down&loaded example..."));
+    actionOpenLocalExample->setIcon(KIcon("document-open"));
+
+    KAction* actionUploadExample = actionCollection()->add<KAction>(
+                "file_example_upload", this, SLOT(uploadExample()));
+    actionUploadExample->setText(i18n("Share c&urrent experiment..."));
+    actionUploadExample->setIcon(KIcon("get-hot-new-stuff"));
+
+    KAction* actionDownloadExamples = actionCollection()->add<KAction>(
+                "file_example_download", this, SLOT(downloadExamples()));
+    actionDownloadExamples->setText(i18n("&Download new experiments..."));
+    actionDownloadExamples->setIcon(KIcon("get-hot-new-stuff"));
+
     /* Edit menu */
     actionRedo = KStandardAction::redo(worldModel->undoStack(), SLOT(redo()), actionCollection());
     actionUndo = KStandardAction::undo(worldModel->undoStack(), SLOT(undo()), actionCollection());
@@ -198,7 +221,7 @@ bool MainWindow::newFile()
     return true;
 }
 
-bool MainWindow::openFile(const KUrl& url)
+bool MainWindow::openFile(const KUrl& url, const KUrl& startUrl)
 {
     if(worldModel->isSimulationActive()) simulationStop();
     if(!maybeSave()) return false;
@@ -207,7 +230,7 @@ bool MainWindow::openFile(const KUrl& url)
     kDebug() << url << endl;
     kDebug() << url.url() << endl;
     if(fileUrl.isEmpty()) {
-        fileUrl = KFileDialog::getOpenFileName(KUrl(), "*.step|Step files (*.step)", this);
+        fileUrl = KFileDialog::getOpenFileName(startUrl, "*.step|Step files (*.step)", this);
         if(fileUrl.isEmpty()) return false;
     }
 
@@ -235,12 +258,12 @@ bool MainWindow::openFile(const KUrl& url)
     return true;
 }
 
-bool MainWindow::saveFileAs(const KUrl& url)
+bool MainWindow::saveFileAs(const KUrl& url, const KUrl& startUrl)
 {
     if(worldModel->isSimulationActive()) simulationStop();
     KUrl fileUrl = url;
     if(fileUrl.isEmpty()) {
-        fileUrl = KFileDialog::getSaveFileName(currentFileUrl,
+        fileUrl = KFileDialog::getSaveFileName(startUrl.isEmpty() ? currentFileUrl : startUrl,
                                              "*.step|Step files (*.step)", this);
         if(fileUrl.isEmpty()) return false;
     }
@@ -274,12 +297,55 @@ bool MainWindow::maybeSave()
 {
     if(!worldModel->undoStack()->isClean()) {
          int ret = KMessageBox::warningYesNoCancel(this, 
-              i18n("The document has been modified.\nDo you want to save your changes?"),
+              i18n("The experiment has been modified.\nDo you want to save your changes?"),
               i18n("Warning - Step"), KStandardGuiItem::save(), KStandardGuiItem::discard());
          if (ret == KMessageBox::Yes) return saveFile();
          else if(ret == KMessageBox::Cancel) return false;
     }
     return true;
+}
+
+void MainWindow::openExample()
+{
+    QStringList dirs = KGlobal::dirs()->findDirs("appdata", "examples");
+    foreach(QString dir, dirs) {
+        kDebug() << "DATADIR: " << dir << endl;
+    }
+    kDebug() << "AA: " << KStandardDirs::locateLocal("data", "step/examples") << endl;
+    kDebug() << "BB: " << KStandardDirs::locate("data", "step/examples") << endl;
+    //openFile(KUrl(), KStandardDirs::locate("data", "step"));
+}
+
+void MainWindow::openLocalExample()
+{
+
+}
+
+void MainWindow::uploadExample()
+{
+    KMessageBox::sorry(this, i18n("Uploading is still not implemented in kdelibs."),
+                        i18n("Sorry - Step"));
+    /*
+    int ret = KMessageBox::questionYesNo(this,
+                i18n("Do you want to upload current experiment to public web server ?"),
+                i18n("Question - Step"));
+    if(ret != KMessageBox::Yes) return;
+
+    if(currentFileUrl.isEmpty() || !worldModel->undoStack()->isClean()) {
+        ret = KMessageBox::warningContinueCancel(this,
+                i18n("The experiment is not saved. You should it before uploading."),
+                i18n("Warning - Step"), KStandardGuiItem::save(), KStandardGuiItem::cancel());
+        if(ret != KMessageBox::Continue) return;
+        if(!saveFile()) return;
+    }
+
+    KNS::Engine::upload( currentFileUrl.url() );
+    */
+}
+
+void MainWindow::downloadExamples()
+{
+    KNS::Entry::List entries = KNS::Engine::download();
 }
 
 void MainWindow::simulationStartStop()

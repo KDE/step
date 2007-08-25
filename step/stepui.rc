@@ -13,6 +13,15 @@
     <Action name="simulation_start_stop" />
   </ToolBar>
   <MenuBar>
+    <Menu name="file" >
+      <Menu name="examples">
+        <text>&amp;Examples</text>
+        <Action name="file_example_open" />
+        <Action name="file_example_openlocal" />
+        <Action name="file_example_upload" />
+        <Action name="file_example_download" />
+      </Menu>
+    </Menu>
     <Menu name="edit" >
       <Action name="edit_delete" />
     </Menu>

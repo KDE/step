@@ -56,11 +56,12 @@ include_directories(${CMAKE_CURRENT_BINARY_DIR})
 include_directories(${CMAKE_CURRENT_SOURCE_DIR})
 
 kde4_add_executable(step ${step_SRCS})
-target_link_libraries(step stepcore ${KDE4_KHTML_LIBS} ${qalculate_LIBS})
+target_link_libraries(step stepcore ${KDE4_KHTML_LIBS} ${KDE4_KNEWSTUFF2_LIBS} ${qalculate_LIBS})
 
 install(TARGETS step DESTINATION ${BIN_INSTALL_DIR})
 install(FILES step.kcfg DESTINATION  ${KCFG_INSTALL_DIR})
 install(FILES stepui.rc DESTINATION  ${DATA_INSTALL_DIR}/step)
+install(FILES step.knsrc DESTINATION  ${CONFIG_INSTALL_DIR})
 
 add_subdirectory(icons)
 add_subdirectory(objinfo)

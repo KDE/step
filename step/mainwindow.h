@@ -44,9 +44,14 @@ public:
 
 public slots:
     bool newFile();
-    bool openFile(const KUrl& url = KUrl());
-    bool saveFileAs(const KUrl& url = KUrl());
+    bool openFile(const KUrl& url = KUrl(), const KUrl& startUrl = KUrl());
+    bool saveFileAs(const KUrl& url = KUrl(), const KUrl& startUrl = KUrl());
     bool saveFile();
+
+    void openExample();
+    void openLocalExample();
+    void uploadExample();
+    void downloadExamples();
 
     void configureStep();
 
