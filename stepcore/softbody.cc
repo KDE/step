@@ -18,6 +18,7 @@
 
 #include "softbody.h"
 #include "types.h"
+#include <algorithm>
 #include <cstdlib>
 
 namespace StepCore
