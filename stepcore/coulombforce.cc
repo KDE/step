@@ -60,9 +60,9 @@ void CoulombForce::calcForce(bool calcVariances)
             Vector2d r = p2->position() - p1->position();
             double rnorm2 = r.norm2();
             Vector2d force = _coulombConst* p1->charge() * p2->charge() * r / (rnorm2*sqrt(rnorm2));
-            p1->addForce(force);
+            p1->applyForce(force);
             force.invert();
-            p2->addForce(force);
+            p2->applyForce(force);
 
             if(calcVariances) {
                 // XXX: CHECKME
@@ -75,8 +75,8 @@ void CoulombForce::calcForce(bool calcVariances)
                                  pe2->chargeVariance() / square(p2->charge())) +
                         Vector2d(rV[0] * square(1/r[0] - 3*r[0]/rnorm2) + rV[1] * square(3*r[1]/rnorm2),
                                  rV[1] * square(1/r[1] - 3*r[1]/rnorm2) + rV[0] * square(3*r[0]/rnorm2)));
-                pe1->addForceVariance(forceV);
-                pe2->addForceVariance(forceV);
+                pe1->applyForceVariance(forceV);
+                pe2->applyForceVariance(forceV);
             }
         }
     }

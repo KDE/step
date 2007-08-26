@@ -73,9 +73,9 @@ void GravitationForce::calcForce(bool calcVariances)
             Vector2d r = p2->position() - p1->position();
             double rnorm2 = r.norm2();
             Vector2d force = _gravitationConst * p1->mass() * p2->mass() * r / (rnorm2*sqrt(rnorm2));
-            p1->addForce(force);
+            p1->applyForce(force);
             force.invert();
-            p2->addForce(force);
+            p2->applyForce(force);
 
             if(calcVariances) {
                 // XXX: CHECKME
@@ -88,8 +88,8 @@ void GravitationForce::calcForce(bool calcVariances)
                                  pe2->massVariance() / square(p2->mass())) +
                         Vector2d(rV[0] * square(1/r[0] - 3*r[0]/rnorm2) + rV[1] * square(3*r[1]/rnorm2),
                                  rV[1] * square(1/r[1] - 3*r[1]/rnorm2) + rV[0] * square(3*r[0]/rnorm2)));
-                pe1->addForceVariance(forceV);
-                pe2->addForceVariance(forceV);
+                pe1->applyForceVariance(forceV);
+                pe2->applyForceVariance(forceV);
             }
         }
     }
@@ -110,12 +110,12 @@ void WeightForce::calcForce(bool calcVariances)
     const BodyList::const_iterator end = world()->bodies().end();
     for(BodyList::const_iterator b1 = world()->bodies().begin(); b1 != end; ++b1) {
         if(NULL != (p1 = dynamic_cast<Particle*>(*b1))) {
-            p1->addForce(g*p1->mass());
+            p1->applyForce(g*p1->mass());
             if(calcVariances) {
                 ParticleErrors* pe1 = p1->particleErrors();
                 Vector2d forceV(0, square(_weightConst)*pe1->massVariance()+
                                    square(p1->mass())*weightForceErrors()->weightConstVariance());
-                pe1->addForceVariance(forceV);
+                pe1->applyForceVariance(forceV);
             }
         }
     }

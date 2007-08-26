@@ -120,9 +120,9 @@ void GasLJForce::calcForce(bool calcVariances)
                 double rnorm6 = rnorm2*rnorm2*rnorm2;
                 double rnorm8 = rnorm6*rnorm2;
                 Vector2d force = r * ((_a/rnorm6 - _b)/rnorm8);
-                p2->addForce(force);
+                p2->applyForce(force);
                 force.invert();
-                p1->addForce(force);
+                p1->applyForce(force);
 
                 if(calcVariances) {
                     ParticleErrors* pe1 = p1->particleErrors();
@@ -141,8 +141,8 @@ void GasLJForce::calcForce(bool calcVariances)
                                                   _b*( 1 - 8*r[1]*r[1]/rnorm2 ))/rnorm8 ) +
                                  rV[0] * square( (_a/rnorm6*14 - _b*8)*r[0]*r[1]/(rnorm8*rnorm2) );
 
-                    pe1->addForceVariance(forceV);
-                    pe2->addForceVariance(forceV);
+                    pe1->applyForceVariance(forceV);
+                    pe2->applyForceVariance(forceV);
                 }
             }
         }

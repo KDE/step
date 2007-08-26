@@ -104,11 +104,11 @@ void Spring::calcForce(bool calcVariances)
     double vr = v.innerProduct(r);
     Vector2d force = (_stiffness*dl + _damping*vr/l) / l * r;
     
-    if(p1) p1->addForce(force);
+    if(p1) p1->applyForce(force);
     else if(r1) r1->applyForce(force, position1);
 
     force.invert();
-    if(p2) p2->addForce(force);
+    if(p2) p2->applyForce(force);
     else if(r2) r2->applyForce(force, position2);
 
     if(calcVariances) {
@@ -133,11 +133,11 @@ void Spring::calcForce(bool calcVariances)
                                     _damping/(l*l)*( v[0]*r[1] - 2*vr*r[0]*r[1]/(l*l) ));
 
         // TODO: position1() and force is corelated, we should take it into account
-        if(p1) p1->particleErrors()->addForceVariance(forceV);
+        if(p1) p1->particleErrors()->applyForceVariance(forceV);
         else if(r1) r1->rigidBodyErrors()->applyForceVariance(force, position1,
                                                 forceV, se->position1Variance() );
 
-        if(p2) p2->particleErrors()->addForceVariance(forceV);
+        if(p2) p2->particleErrors()->applyForceVariance(forceV);
         else if(r2) r2->rigidBodyErrors()->applyForceVariance(force, position2,
                                                 forceV, se->position2Variance() );
     }

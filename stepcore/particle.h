@@ -68,11 +68,10 @@ public:
     /** Set force variance */
     void setForceVariance(const Vector2d& forceVariance) {
         _forceVariance = forceVariance; }
+
     /** Increment force variance */
-    void addForceVariance(const Vector2d& forceVariance) {
+    void applyForceVariance(const Vector2d& forceVariance) {
         _forceVariance += forceVariance; }
-    /** Reset force variance to zero */
-    void zeroForceVariance() { _forceVariance.setZero(); }
 
     /** Get mass variance */
     double massVariance() const { return _massVariance; }
@@ -117,10 +116,9 @@ public:
     const Vector2d& force() const { return _force; }
     /** Set force that acts upon particle */
     void setForce(const Vector2d& force) { _force = force; }
-    /** Increment force */
-    void addForce(const Vector2d& force) { _force += force; }
-    /** Reset force to zero */
-    void zeroForce() { _force.setZero(); }
+
+    /** Apply force to the body */
+    void applyForce(const Vector2d& force) { _force += force; }
 
     /** Get mass of the particle */
     double mass() const { return _mass; }

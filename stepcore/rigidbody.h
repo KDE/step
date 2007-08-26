@@ -81,11 +81,6 @@ public:
     /** Set force variance */
     void setForceVariance(const Vector2d& forceVariance) {
         _forceVariance = forceVariance; }
-    /** Increment force variance */
-    void addForceVariance(const Vector2d& forceVariance) {
-        _forceVariance += forceVariance; }
-    /** Reset force variance to zero */
-    void zeroForceVariance() { _forceVariance.setZero(); }
 
     /** Get torque variance */
     double torqueVariance() const { return _torqueVariance; }
