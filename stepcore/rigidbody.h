@@ -29,6 +29,104 @@
 
 namespace StepCore {
 
+class RigidBody;
+
+/** \ingroup errors
+ *  \brief Errors object for RigidBody
+ */
+class RigidBodyErrors: public ObjectErrors
+{
+    STEPCORE_OBJECT(RigidBodyErrors)
+
+public:
+    /** Constructs RigidBodyErrors */
+    RigidBodyErrors(Item* owner = 0)
+        : ObjectErrors(owner), _positionVariance(0), _velocityVariance(0),
+          _forceVariance(0), _massVariance(0) {}
+
+    /** Get owner as RigidBody */
+    RigidBody* rigidBody() const;
+
+    /** Get position variance */
+    const Vector2d& positionVariance() const { return _positionVariance; }
+    /** Set position variance */
+    void setPositionVariance(const Vector2d& positionVariance) {
+        _positionVariance = positionVariance; }
+
+    /** Get angle variance */
+    double angleVariance() const { return _angleVariance; }
+    /** Set angle variance */
+    void setAngleVariance(double angleVariance) { _angleVariance = angleVariance; }
+
+    /** Get velocity variance */
+    const Vector2d& velocityVariance() const { return _velocityVariance; }
+    /** Set velocity variance */
+    void setVelocityVariance(const Vector2d& velocityVariance) {
+        _velocityVariance = velocityVariance; }
+
+    /** Get angularVelocity variance */
+    double angularVelocityVariance() const { return _angularVelocityVariance; }
+    /** Set angularVelocity variance */
+    void setAngularVelocityVariance(double angularVelocityVariance) {
+        _angularVelocityVariance = angularVelocityVariance; }
+
+    /** Get acceleration variance */
+    Vector2d accelerationVariance() const;
+
+    /** Get angularAcceleration variance */
+    double angularAccelerationVariance() const;
+
+    /** Get force variance */
+    const Vector2d& forceVariance() const { return _forceVariance; }
+    /** Set force variance */
+    void setForceVariance(const Vector2d& forceVariance) {
+        _forceVariance = forceVariance; }
+    /** Increment force variance */
+    void addForceVariance(const Vector2d& forceVariance) {
+        _forceVariance += forceVariance; }
+    /** Reset force variance to zero */
+    void zeroForceVariance() { _forceVariance.setZero(); }
+
+    /** Get torque variance */
+    double torqueVariance() const { return _torqueVariance; }
+
+    /** Apply force (and torque) variance to the body at given position (in World coordinates) */
+    void applyForceVariance(const Vector2d& force,
+                            const Vector2d& position,
+                            const Vector2d& forceVariance,
+                            const Vector2d& positionVariance);
+
+    /** Apply torque (but no force) variancee to the body */
+    void applyTorqueVariance(double torqueVariance) { _torqueVariance += torqueVariance; }
+
+    /** Get mass variance */
+    double massVariance() const { return _massVariance; }
+    /** Set mass variance */
+    void   setMassVariance(double massVariance) {
+        _massVariance = massVariance; }
+
+    /** Get inertia variance */
+    double inertiaVariance() const { return _inertiaVariance; }
+    /** Set inertia variance */
+    void   setInertiaVariance(double inertiaVariance) {
+        _inertiaVariance = inertiaVariance; }
+
+protected:
+    Vector2d _positionVariance;
+    double   _angleVariance;
+
+    Vector2d _velocityVariance;
+    double   _angularVelocityVariance;
+
+    Vector2d _forceVariance;
+    double   _torqueVariance;
+
+    double _massVariance;
+    double _inertiaVariance;
+
+    friend class RigidBody;
+};
+
 /** \ingroup bodies
  *  \brief Rigid body
  */
@@ -83,10 +181,10 @@ public:
     //void applyForceLocal(const Vector2d& localPosition = Vector2d(0,0));
 
     /** Apply force (and torque) to the body at given position (in World coordinates) */
-    void applyForce(Vector2d force, Vector2d position);
+    void applyForce(const Vector2d& force, const Vector2d& position);
 
     /** Apply torque (but no force) to the body */
-    void applyTorque(double torque);
+    void applyTorque(double torque) { _torque += torque; }
 
     /** Get mass of the body */
     double mass() const { return _mass; }
@@ -118,12 +216,18 @@ public:
     //const std::vector<Vector2d>& vertexes() const;
 
     int  variablesCount() { return 6; }
-    void resetDerivatives(bool resetErrors);
-    void getDerivatives(double* array, double* errors);
-    void getVariables(double* array, double* errors);
-    void setVariables(const double* array, const double* errors);
+    void resetDerivatives(bool resetVariances);
+    void getDerivatives(double* array, double* variances);
+    void getVariables(double* array, double* variances);
+    void setVariables(const double* array, const double* variances);
+
+    /** Get (and possibly create) RigidBodyErrors object */
+    RigidBodyErrors* rigidBodyErrors() {
+        return static_cast<RigidBodyErrors*>(objectErrors()); }
 
 protected:
+    ObjectErrors* createObjectErrors() { return new RigidBodyErrors(this); }
+
     Vector2d _position;
     double   _angle;
 
@@ -135,6 +239,8 @@ protected:
 
     double   _mass;
     double   _inertia;
+
+    friend class RigidBodyErrors;
 };
 
 /** \ingroup bodies

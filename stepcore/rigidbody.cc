@@ -32,7 +32,7 @@ STEPCORE_META_OBJECT(RigidBody, "Generic rigid body", 0, STEPCORE_SUPER_CLASS(It
 
         STEPCORE_PROPERTY_R_D(StepCore::Vector2d, acceleration, STEPCORE_FROM_UTF8("m/s²"),
                                             "Acceleration of the center of mass", acceleration)
-        STEPCORE_PROPERTY_R_D(double, angularAcceleration, STEPCORE_FROM_UTF8("1/s²"),
+        STEPCORE_PROPERTY_R_D(double, angularAcceleration, STEPCORE_FROM_UTF8("rad/s²"),
                                             "Angular acceleration of the body", angularAcceleration)
 
         STEPCORE_PROPERTY_R_D(StepCore::Vector2d, force, "N", "Force that acts upon the body", force)
@@ -42,8 +42,49 @@ STEPCORE_META_OBJECT(RigidBody, "Generic rigid body", 0, STEPCORE_SUPER_CLASS(It
         STEPCORE_PROPERTY_RW(double, inertia, STEPCORE_FROM_UTF8("kg m²"),
                                     "Inertia \"tensor\" of the body", inertia, setInertia))
 
+STEPCORE_META_OBJECT(RigidBodyErrors, "Errors class for RigidBody", 0, STEPCORE_SUPER_CLASS(ObjectErrors),
+        STEPCORE_PROPERTY_RW_D(StepCore::Vector2d, positionVariance, "m",
+                    "position variance", positionVariance, setPositionVariance)
+        STEPCORE_PROPERTY_RW_D(double, angleVariance, "rad",
+                    "angle variance", angleVariance, setAngleVariance)
+
+        STEPCORE_PROPERTY_RW_D(StepCore::Vector2d, velocityVariance, "m/s",
+                    "velocity variance", velocityVariance, setVelocityVariance)
+        STEPCORE_PROPERTY_RW_D(double, angularVelocityVariance, "rad/s",
+                    "angularVelocity variance", angularVelocityVariance, setAngularVelocityVariance)
+
+        STEPCORE_PROPERTY_R_D(StepCore::Vector2d, accelerationVariance, STEPCORE_FROM_UTF8("m/s²"),
+                    "acceleration variance", accelerationVariance)
+        STEPCORE_PROPERTY_R_D(double, angularAccelerationVariance, STEPCORE_FROM_UTF8("rad/s²"),
+                    "angularAcceleration variance", angularAccelerationVariance)
+
+        STEPCORE_PROPERTY_R_D(StepCore::Vector2d, forceVariance, "N", "force variance", forceVariance)
+        STEPCORE_PROPERTY_R_D(double, torqueVariance, "N m", "torque variance", torqueVariance)
+
+        STEPCORE_PROPERTY_RW(double, massVariance, "kg",
+                    "mass variance", massVariance, setMassVariance )
+        STEPCORE_PROPERTY_RW(double, inertiaVariance, STEPCORE_FROM_UTF8("kg m²"),
+                    "inertia variance", inertiaVariance, setInertiaVariance ))
+
 STEPCORE_META_OBJECT(Polygon, "Rigid polygon body", 0, STEPCORE_SUPER_CLASS(RigidBody),
         STEPCORE_PROPERTY_RW(std::vector<StepCore::Vector2d>, vertexes, "m", "Vertex list", vertexes, setVertexes))
+
+RigidBody* RigidBodyErrors::rigidBody() const
+{
+    return static_cast<RigidBody*>(owner());
+}
+
+Vector2d RigidBodyErrors::accelerationVariance() const
+{
+    return _forceVariance/square(rigidBody()->mass()) +
+        _massVariance*(rigidBody()->force()/square(rigidBody()->mass())).cSquare();
+}
+
+double RigidBodyErrors::angularAccelerationVariance() const
+{
+    return _torqueVariance/square(rigidBody()->inertia()) +
+        _inertiaVariance*square(rigidBody()->torque()/square(rigidBody()->inertia()));
+}
 
 RigidBody::RigidBody(Vector2d position, double angle,
         Vector2d velocity, double angularVelocity, double mass, double inertia)
@@ -52,16 +93,23 @@ RigidBody::RigidBody(Vector2d position, double angle,
 {
 }
 
-void RigidBody::applyForce(Vector2d force, Vector2d position)
+void RigidBody::applyForce(const Vector2d& force, const Vector2d& position)
 {
     _force += force;
     _torque += (position[0] - _position[0])*force[1] -
                (position[1] - _position[1])*force[0]; // XXX: sign ?
 }
 
-void RigidBody::applyTorque(double torque)
+void RigidBodyErrors::applyForceVariance(const Vector2d& force,
+                                         const Vector2d& position,
+                                         const Vector2d& forceVariance,
+                                         const Vector2d& positionVariance)
 {
-    _torque += torque;
+    _forceVariance += forceVariance;
+    _torqueVariance += forceVariance[1] * square(position[0] - rigidBody()->_position[0]) +
+                       forceVariance[0] * square(position[1] - rigidBody()->_position[1]) +
+                       (positionVariance[0] + _positionVariance[0]) * square(force[1]) +
+                       (positionVariance[1] + _positionVariance[1]) * square(force[0]);
 }
 
 Vector2d RigidBody::velocityWorld(const Vector2d& worldPoint) const
@@ -86,43 +134,66 @@ Vector2d RigidBody::pointWorldToLocal(const Vector2d& p) const
                     -(p[0]-_position[0])*s + (p[1]-_position[1])*c);
 }
 
-void RigidBody::getVariables(double* array, double* errors)
+void RigidBody::getVariables(double* array, double* variances)
 {
     std::memcpy(array,   _position.array(), 2*sizeof(*array));
     std::memcpy(array+3, _velocity.array(), 2*sizeof(*array));
     array[2] = _angle;
     array[5] = _angularVelocity;
-    if(errors) {
-        std::memset(errors, 0, 6*sizeof(errors)); //XXX
+    if(variances) {
+        RigidBodyErrors* re = rigidBodyErrors();
+        std::memcpy(variances,   re->_positionVariance.array(), 2*sizeof(*variances));
+        std::memcpy(variances+3, re->_velocityVariance.array(), 2*sizeof(*variances));
+        array[2] = re->_angleVariance;
+        array[5] = re->_angularVelocityVariance;
     }
 }
 
-void RigidBody::setVariables(const double* array, const double* errors)
+void RigidBody::setVariables(const double* array, const double* variances)
 {
     std::memcpy(_position.array(), array,   2*sizeof(*array));
-    _angle = array[2];
     std::memcpy(_velocity.array(), array+3, 2*sizeof(*array));
+    _angle = array[2];
     _angularVelocity = array[5];
     _force.setZero();
     _torque = 0;
+    if(variances) {
+        RigidBodyErrors* re = rigidBodyErrors();
+        std::memcpy(re->_positionVariance.array(), variances,   2*sizeof(*variances));
+        std::memcpy(re->_velocityVariance.array(), variances+3, 2*sizeof(*variances));
+        re->_angleVariance = variances[2];
+        re->_angularVelocityVariance = variances[5];
+        re->_forceVariance.setZero();
+        re->_torqueVariance = 0;
+    }
 }
 
-void RigidBody::getDerivatives(double* array, double* errors)
+void RigidBody::getDerivatives(double* array, double* variances)
 {
     std::memcpy(array, _velocity.array(), 2*sizeof(*array));
     array[2] = _angularVelocity;
     array[3] = _force[0] / _mass;
     array[4] = _force[1] / _mass;
     array[5] = _torque / _inertia;
-    if(errors) {
-        std::memset(errors, 0, 6*sizeof(errors)); //XXX
+    if(variances) {
+        RigidBodyErrors* re = rigidBodyErrors();
+        std::memcpy(variances, re->_velocityVariance.array(), 2*sizeof(*variances));
+        variances[2] = re->_angularVelocityVariance;
+        variances[3] = re->_forceVariance[0]/square(_mass) + square(_force[0]/square(_mass))*re->_massVariance;
+        variances[4] = re->_forceVariance[1]/square(_mass) + square(_force[1]/square(_mass))*re->_massVariance;
+        variances[5] = re->_torqueVariance/square(_inertia) + square(_torque/square(_inertia))*re->_inertiaVariance;
     }
 }
 
-void RigidBody::resetDerivatives(bool resetErrors)
+void RigidBody::resetDerivatives(bool resetVariances)
 {
     _force.setZero();
     _torque = 0;
+    if(resetVariances) {
+        RigidBodyErrors* re = rigidBodyErrors();
+        re->_forceVariance.setZero();
+        re->_torqueVariance = 0;
+    }
 }
 
 } // namespace StepCore

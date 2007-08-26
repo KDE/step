@@ -140,7 +140,6 @@ public:
 protected:
     ObjectErrors* createObjectErrors() { return new ParticleErrors(this); }
 
-protected:
     Vector2d _position;
     Vector2d _velocity;
     Vector2d _force;

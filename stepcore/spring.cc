@@ -94,7 +94,9 @@ void Spring::calcForce(bool calcVariances)
     RigidBody* r1 = dynamic_cast<RigidBody*>(_bodyPtr1);
     RigidBody* r2 = dynamic_cast<RigidBody*>(_bodyPtr2);
 
-    Vector2d r = position2() - position1();
+    Vector2d position1 = this->position1();
+    Vector2d position2 = this->position2();
+    Vector2d r = position2   - position1;
     Vector2d v = velocity2() - velocity1();
 
     double l = r.norm();
@@ -103,11 +105,11 @@ void Spring::calcForce(bool calcVariances)
     Vector2d force = (_stiffness*dl + _damping*vr/l) / l * r;
     
     if(p1) p1->addForce(force);
-    else if(r1) r1->applyForce(force, position1());
+    else if(r1) r1->applyForce(force, position1);
 
     force.invert();
     if(p2) p2->addForce(force);
-    else if(r2) r2->applyForce(force, position2());
+    else if(r2) r2->applyForce(force, position2);
 
     if(calcVariances) {
         SpringErrors* se = springErrors();
@@ -130,11 +132,14 @@ void Spring::calcForce(bool calcVariances)
                      rV[0] * square(_stiffness*_restLength*r[0]*r[1]/(l*l*l) +
                                     _damping/(l*l)*( v[0]*r[1] - 2*vr*r[0]*r[1]/(l*l) ));
 
+        // TODO: position1() and force is corelated, we should take it into account
         if(p1) p1->particleErrors()->addForceVariance(forceV);
-        //else if(r1) r1->applyForce(force, position1());
+        else if(r1) r1->rigidBodyErrors()->applyForceVariance(force, position1,
+                                                forceV, se->position1Variance() );
 
         if(p2) p2->particleErrors()->addForceVariance(forceV);
-        //else if(r2) r2->applyForce(force, position2());
+        else if(r2) r2->rigidBodyErrors()->applyForceVariance(force, position2,
+                                                forceV, se->position2Variance() );
     }
 }
 

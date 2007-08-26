@@ -35,7 +35,7 @@ STEPCORE_META_OBJECT(SoftBody, "SoftBody", 0, STEPCORE_SUPER_CLASS(ItemGroup),
 
         STEPCORE_PROPERTY_R_D(StepCore::Vector2d, acceleration, STEPCORE_FROM_UTF8("m/s²"),
                                             "Acceleration of the center of mass", acceleration)
-        STEPCORE_PROPERTY_R_D(double, angularAcceleration, STEPCORE_FROM_UTF8("1/s²"),
+        STEPCORE_PROPERTY_R_D(double, angularAcceleration, STEPCORE_FROM_UTF8("rad/s²"),
                                             "Angular acceleration of the body", angularAcceleration)
 
         STEPCORE_PROPERTY_R_D(StepCore::Vector2d, force, "N", "Force that acts upon the body", force)
