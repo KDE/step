@@ -33,8 +33,11 @@
 #include <QItemEditorFactory>
 #include <QTreeView>
 #include <QMouseEvent>
+#include <QLineEdit>
+#include <QHBoxLayout>
 #include <KLocale>
 #include <KComboBox>
+#include <KColorButton>
 
 class ChoicesModel: public QStandardItemModel
 {
@@ -218,6 +221,13 @@ QVariant PropertiesBrowserModel::data(const QModelIndex &index, int role) const
                     if(role == Qt::DisplayRole && end != 0 && end < list.size()) string += ",...";
                     string.append(units);
                     return string;
+                } else if(p->userTypeId() == qMetaTypeId<StepCore::Color>()) {
+                    Q_ASSERT(!pv);
+                    //kDebug() << "modeldata: " << QColor::fromRgba(p->readVariant(_object).value<StepCore::Color>()) << endl;
+                    if(role == Qt::EditRole)
+                        return QColor::fromRgba(p->readVariant(_object).value<StepCore::Color>());
+                    else
+                        return p->readString(_object);
                 } else {
                     // default type
                     // XXX: add error information
@@ -229,7 +239,7 @@ QVariant PropertiesBrowserModel::data(const QModelIndex &index, int role) const
                 ///*if(p->userTypeId() < (int) QVariant::UserType) return p->readVariant(_object);
                 //else*/ return p->readString(_object); // XXX: default delegate for double looks ugly!
             }
-        } else if(role == Qt::ForegroundRole && index.column() == 1) {
+        } else if(index.column() == 1 && role == Qt::ForegroundRole) {
             if(!p->isWritable()) {
                 if(index.row() != 1 || !dynamic_cast<StepCore::Solver*>(_object))
                     return QBrush(Qt::darkGray); // XXX: how to get scheme color ?
@@ -239,6 +249,11 @@ QVariant PropertiesBrowserModel::data(const QModelIndex &index, int role) const
                 return _object->metaObject()->description();
             }
             return p->description(); // XXX: translation
+        } else if(index.column() == 1 &&
+                p->userTypeId() == qMetaTypeId<StepCore::Color>() && role == Qt::DecorationRole) {
+            QPixmap pix(8, 8);
+            pix.fill(QColor::fromRgba(p->readVariant(_object).value<StepCore::Color>()));
+            return pix;
         }
     } else { // index.internalId() != 0
         const StepCore::MetaProperty* p = _object->metaObject()->property(index.internalId()-1);
@@ -296,6 +311,15 @@ bool PropertiesBrowserModel::setData(const QModelIndex &index, const QVariant &v
                 const StepCore::MetaProperty* p = _object->metaObject()->property(index.row());
                 const StepCore::MetaProperty* pv = _objectErrors ?
                         _objectErrors->metaObject()->property(p->name() + "Variance") : NULL;
+
+                if(p->userTypeId() == qMetaTypeId<StepCore::Color>()) {
+                    Q_ASSERT(!pv);
+                    _worldModel->beginMacro(i18n("Edit %1", _object->name()));
+                    _worldModel->setProperty(_object, p, value.type() == QVariant::String ? value :
+                                    QVariant::fromValue(StepCore::Color(value.value<QColor>().rgba())));
+                    _worldModel->endMacro();
+                    return true;
+                }
 
                 QVariant v = value;
                 QVariant vv;
@@ -469,11 +493,42 @@ QWidget* PropertiesBrowserDelegate::createEditor(QWidget* parent,
     if(userType == qMetaTypeId<ChoicesModel*>()) {
         KComboBox* editor = new KComboBox(parent);
         editor->setModel(data.value<ChoicesModel*>());
-        editor->installEventFilter(const_cast<PropertiesBrowserDelegate*>(this));
         connect(editor, SIGNAL(activated(int)), this, SLOT(editorActivated()));
+        editor->installEventFilter(const_cast<PropertiesBrowserDelegate*>(this));
         const_cast<PropertiesBrowserDelegate*>(this)->_editor = editor;
+        const_cast<PropertiesBrowserDelegate*>(this)->_comboBox = editor;
+        const_cast<PropertiesBrowserDelegate*>(this)->_editorType = SolverChoiser;
         return editor;
+
+    } else if(userType == QMetaType::QColor) {
+        QWidget* editor = new QWidget(parent);
+
+        QLineEdit* lineEdit = new QLineEdit(editor);
+        lineEdit->setFrame(false);
+
+        KColorButton* colorButton = new KColorButton(editor);
+        // XXX: do not use hard-coded pixel sizes
+        colorButton->setMinimumWidth(15);
+        colorButton->setMaximumWidth(15);
+        connect(colorButton, SIGNAL(changed(const QColor&)), this, SLOT(editorActivated()));
+
+        QHBoxLayout* layout = new QHBoxLayout(editor);
+        layout->setContentsMargins(0,0,0,0);
+        layout->setSpacing(0);
+        layout->addWidget(lineEdit);
+        layout->addWidget(colorButton);
+
+        editor->setFocusProxy(lineEdit);
+        editor->installEventFilter(const_cast<PropertiesBrowserDelegate*>(this));
+
+        const_cast<PropertiesBrowserDelegate*>(this)->_editor = editor;
+        const_cast<PropertiesBrowserDelegate*>(this)->_colorButton = colorButton;
+        const_cast<PropertiesBrowserDelegate*>(this)->_lineEdit = lineEdit;
+        const_cast<PropertiesBrowserDelegate*>(this)->_editorType = ColorChoiser;
+        return editor;
+
     } else {
+        const_cast<PropertiesBrowserDelegate*>(this)->_editorType = Standard;
         const QItemEditorFactory *factory = itemEditorFactory();
         if(!factory) factory = QItemEditorFactory::defaultFactory();
         return factory->createEditor(static_cast<QVariant::Type>(userType), parent);
@@ -482,28 +537,43 @@ QWidget* PropertiesBrowserDelegate::createEditor(QWidget* parent,
 
 void PropertiesBrowserDelegate::setEditorData(QWidget* editor, const QModelIndex& index) const
 {
-    KComboBox* cb;
-    if(NULL != (cb = qobject_cast<KComboBox*>(editor))) {
+    if(_editorType == SolverChoiser) {
         QVariant data = index.data(Qt::DisplayRole);
-        ChoicesModel* cm = static_cast<ChoicesModel*>(cb->model());
+        ChoicesModel* cm = static_cast<ChoicesModel*>(_comboBox->model());
         QList<QStandardItem*> items = cm->findItems(data.toString());
         Q_ASSERT(items.count() == 1);
-        cb->setCurrentIndex( cm->indexFromItem(items[0]).row() );
+        _comboBox->setCurrentIndex( cm->indexFromItem(items[0]).row() );
+    } else if(_editorType == ColorChoiser) {
+        QVariant data = index.data(Qt::EditRole);
+        QVariant data1 = index.data(Qt::DisplayRole);
+        _updating = true;
+        _colorButton->setColor(data.value<QColor>());
+        _lineEdit->setText(data1.toString());
+        _updating = false;
     } else QItemDelegate::setEditorData(editor, index);
 }
 
 void PropertiesBrowserDelegate::setModelData(QWidget* editor, QAbstractItemModel* model,
                    const QModelIndex& index) const
 {
-    KComboBox* cb;
-    if(NULL != (cb = qobject_cast<KComboBox*>(editor))) {
-        model->setData(index, cb->currentText());
+    if(_editorType == SolverChoiser) {
+        model->setData(index, _comboBox->currentText());
+    } else if(_editorType == ColorChoiser) {
+        //kDebug() << "COLOR: " << clb->color() << endl;
+        model->setData(index, _lineEdit->text());
     } else QItemDelegate::setModelData(editor, model, index);
 }
 
 void PropertiesBrowserDelegate::editorActivated()
 {
-    emit commitData(_editor);
+    if(!_updating) {
+        if(_editorType == ColorChoiser) {
+            QRgb v = _colorButton->color().rgba();
+            _lineEdit->setText(StepCore::typeToString<StepCore::Color>(v));
+        }
+        emit commitData(_editor);
+        emit closeEditor(_editor);
+    }
 }
 
 PropertiesBrowser::PropertiesBrowser(WorldModel* worldModel, QWidget* parent, Qt::WindowFlags flags)

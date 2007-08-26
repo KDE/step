@@ -26,12 +26,16 @@ class WorldModel;
 class QTreeView;
 class QModelIndex;
 class QAbstractItemModel;
+class KComboBox;
+class KColorButton;
+class QLineEdit;
 
 class PropertiesBrowserDelegate: public QItemDelegate
 {
     Q_OBJECT
 public:
-    PropertiesBrowserDelegate(QObject* parent = 0): QItemDelegate(parent), _editor(NULL) {}
+    PropertiesBrowserDelegate(QObject* parent = 0):
+            QItemDelegate(parent), _editor(NULL), _updating(false) {}
     QWidget* createEditor(QWidget* parent, const QStyleOptionViewItem& option,
                            const QModelIndex& index) const;
     void setEditorData(QWidget* editor, const QModelIndex& index) const;
@@ -41,7 +45,12 @@ protected slots:
     void editorActivated();
 
 protected:
+    enum { SolverChoiser, ColorChoiser, Standard } _editorType; 
     QWidget* _editor;
+    KComboBox*    _comboBox;
+    KColorButton* _colorButton;
+    QLineEdit*    _lineEdit;
+    mutable bool _updating;
 };
 
 class PropertiesBrowser: public QDockWidget
