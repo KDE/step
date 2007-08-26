@@ -38,7 +38,8 @@ public:
     void setModelData(QWidget* editor, QAbstractItemModel* model,
                        const QModelIndex& index) const;
 protected slots:
-    void comboBoxActivated(int index);
+    void editorActivated();
+
 protected:
     QWidget* _editor;
 };

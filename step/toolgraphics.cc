@@ -160,8 +160,10 @@ void NoteGraphicsItem::contentsChanged()
     if(!_updating) {
         ++_updating;
         _worldModel->simulationPause();
+        _worldModel->beginMacro(i18n("Edit %1", _item->name()));
         _worldModel->setProperty(_item, _item->metaObject()->property("text"),
                                 QVariant::fromValue( _textItem->toHtml() ));
+        _worldModel->endMacro();
         --_updating;
     }
 }
@@ -664,8 +666,10 @@ void GraphMenuHandler::clearGraph()
 {
     _worldModel->simulationPause();
     //_lastPointTime = -HUGE_VAL; // XXX
+    _worldModel->beginMacro(i18n("Clear graph %1", _object->name()));
     _worldModel->setProperty(graph(), graph()->metaObject()->property("points"),
                                QVariant::fromValue(std::vector<StepCore::Vector2d>()) );
+    _worldModel->endMacro();
 }
 
 ////////////////////////////////////////////////////
@@ -931,15 +935,19 @@ inline StepCore::Controller* ControllerGraphicsItem::controller() const
 void ControllerGraphicsItem::decTriggered()
 {
     _worldModel->simulationPause();
+    _worldModel->beginMacro(i18n("Decrease controller %1", _item->name()));
     _worldModel->setProperty(controller(), controller()->metaObject()->property("value"),
                                 controller()->value() - controller()->increment());
+    _worldModel->endMacro();
 }
 
 void ControllerGraphicsItem::incTriggered()
 {
     _worldModel->simulationPause();
+    _worldModel->beginMacro(i18n("Increase controller %1", _item->name()));
     _worldModel->setProperty(controller(), controller()->metaObject()->property("value"),
                                 controller()->value() + controller()->increment());
+    _worldModel->endMacro();
 }
 
 void ControllerGraphicsItem::paint(QPainter* painter, const QStyleOptionGraphicsItem* /*option*/, QWidget* /*widget*/)
@@ -1122,7 +1130,7 @@ void ControllerGraphicsItem::sliderChanged(int value)
     //if(!_worldModel->isSimulationActive()) {
         _worldModel->simulationPause();
         if(!_changed) {
-            _worldModel->beginMacro(i18n("Edit %1", controller()->object()));
+            _worldModel->beginMacro(i18n("Change controller %1", controller()->name()));
             _changed = true;
         }
         double v = controller()->limits()[0] + (value - SLIDER_MIN) *
@@ -1259,15 +1267,19 @@ void ControllerMenuHandler::confChanged()
 void ControllerMenuHandler::decTriggered()
 {
     _worldModel->simulationPause();
+    _worldModel->beginMacro(i18n("Decrease controller %1", _object->name()));
     _worldModel->setProperty(controller(), controller()->metaObject()->property("value"),
                                 controller()->value() - controller()->increment());
+    _worldModel->endMacro();
 }
 
 void ControllerMenuHandler::incTriggered()
 {
     _worldModel->simulationPause();
+    _worldModel->beginMacro(i18n("Increase controller %1", _object->name()));
     _worldModel->setProperty(controller(), controller()->metaObject()->property("value"),
                                 controller()->value() + controller()->increment());
+    _worldModel->endMacro();
 }
 
 ////////////////////////////////////////////////////
@@ -1395,9 +1407,8 @@ void TracerGraphicsItem::paint(QPainter* painter, const QStyleOptionGraphicsItem
     double s = currentViewScale();
     double w = HANDLER_SIZE/s;
 
-    int renderHints = painter->renderHints();
     painter->setRenderHint(QPainter::Antialiasing, true);
-    painter->setPen(QPen(Qt::red, 0));
+    painter->setPen(QPen(QColor::fromRgba(tracer()->color()), 0));
     //painter->setBrush(QBrush(Qt::black));
     painter->drawPolyline(_points);
     painter->drawEllipse(QRectF(_lastPos.x()-w,  _lastPos.y()-w, w*2,w*2));
@@ -1411,7 +1422,6 @@ void TracerGraphicsItem::paint(QPainter* painter, const QStyleOptionGraphicsItem
         painter->drawEllipse(QRectF(_lastPos.x()-w, _lastPos.y()-w, w*2, w*2));
     }
 
-    painter->setRenderHint(QPainter::Antialiasing, renderHints & QPainter::Antialiasing);
 }
 
 void TracerGraphicsItem::viewScaleChanged()
@@ -1495,7 +1505,9 @@ void TracerMenuHandler::clearTracer()
 {
     _worldModel->simulationPause();
     //_lastPointTime = -HUGE_VAL; // XXX
+    _worldModel->beginMacro(i18n("Clear tracer %1", _object->name()));
     _worldModel->setProperty(_object, _object->metaObject()->property("points"),
                                QVariant::fromValue(std::vector<StepCore::Vector2d>()) );
+    _worldModel->endMacro();
 }
 

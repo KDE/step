@@ -25,7 +25,8 @@
 namespace StepCore
 {
 
-STEPCORE_META_OBJECT(Item, "Item", MetaObject::ABSTRACT, STEPCORE_SUPER_CLASS(Object),)
+STEPCORE_META_OBJECT(Item, "Item", MetaObject::ABSTRACT, STEPCORE_SUPER_CLASS(Object),
+        STEPCORE_PROPERTY_RW(StepCore::Color, color, STEPCORE_UNITS_NULL, "Item color", color, setColor))
 STEPCORE_META_OBJECT(Body, "Body", MetaObject::ABSTRACT,,)
 STEPCORE_META_OBJECT(Force, "Force", MetaObject::ABSTRACT,,)
 STEPCORE_META_OBJECT(Tool, "Tool", MetaObject::ABSTRACT,,)
@@ -54,6 +55,8 @@ Item& Item::operator=(const Item& item)
     } else {
         _objectErrors = NULL;
     }
+
+    _color = item._color;
 
     return *this;
 }

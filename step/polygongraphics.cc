@@ -208,12 +208,11 @@ void PolygonGraphicsItem::paint(QPainter* painter, const QStyleOptionGraphicsIte
     painter->setRenderHint(QPainter::Antialiasing, true);
     //painter->setPen(QPen(Qt::black, 0));
     painter->setPen(Qt::NoPen);
-    painter->setBrush(QBrush(Qt::black));
+    painter->setBrush(QBrush(QColor::fromRgba(polygon()->color())));
     painter->drawPath(_painterPath);
     //painter->rotate(polygon()->angle() * 180 / StepCore::Constants::Pi);
     //painter->drawRect(QRectF(-radius,-radius,radius*2,radius*2));
     //painter->setBrush(QBrush());
-    painter->setRenderHint(QPainter::Antialiasing, renderHints & QPainter::Antialiasing);
     //painter->restore();
 
     if(_isSelected) {
@@ -224,17 +223,16 @@ void PolygonGraphicsItem::paint(QPainter* painter, const QStyleOptionGraphicsIte
         //double bs = qMin((b.width() + 2*SELECTION_MARGIN/s)/b.width(), (b.height() + 2*SELECTION_MARGIN/s)/b.height());
         //QPainterPath selPainterPath = QMatrix().scale(bs, bs).map(_painterPath);
         //
-        painter->setRenderHint(QPainter::Antialiasing, true);
         painter->setPen(QPen(SELECTION_COLOR, 0, Qt::DashLine));
         painter->setBrush(QBrush());
         painter->drawRect(rect);
         //radius = (RADIUS+SELECTION_MARGIN)/s;
         //painter->drawEllipse(QRectF(-radius, -radius, radius*2, radius*2));
         //painter->drawPath(_painterPath);
-        painter->setRenderHint(QPainter::Antialiasing, renderHints & QPainter::Antialiasing);
     }
 
     if(_isSelected || _isMouseOverItem) {
+        painter->setRenderHint(QPainter::Antialiasing, renderHints & QPainter::Antialiasing);
         painter->setPen(QPen(Qt::blue, 0));
         drawArrow(painter, polygon()->velocity());
         painter->setPen(QPen(Qt::red, 0));

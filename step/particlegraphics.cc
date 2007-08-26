@@ -66,21 +66,19 @@ void ParticleGraphicsItem::paint(QPainter* painter, const QStyleOptionGraphicsIt
     int renderHints = painter->renderHints();
     painter->setRenderHint(QPainter::Antialiasing, true);
     painter->setPen(Qt::NoPen/*QPen(Qt::black, 0)*/);
-    painter->setBrush(QBrush(Qt::black));
+    painter->setBrush(QBrush(QColor::fromRgba(particle()->color())));
     painter->drawEllipse(QRectF(-radius,-radius,radius*2,radius*2));
-    painter->setRenderHint(QPainter::Antialiasing, renderHints & QPainter::Antialiasing);
 
     if(_isSelected) {
-        painter->setRenderHint(QPainter::Antialiasing, true);
         painter->setPen(QPen(SELECTION_COLOR, 0, Qt::DashLine));
         painter->setBrush(QBrush());
         //painter->setBrush(QBrush(QColor(0, 0x99, 0xff)));
         radius = (RADIUS+SELECTION_MARGIN)/s;
         painter->drawEllipse(QRectF(-radius, -radius, radius*2, radius*2));
-        painter->setRenderHint(QPainter::Antialiasing, renderHints & QPainter::Antialiasing);
     }
 
     if(_isMouseOverItem || _isSelected) {
+        painter->setRenderHint(QPainter::Antialiasing, renderHints & QPainter::Antialiasing);
         painter->setPen(QPen(Qt::blue, 0));
         drawArrow(painter, particle()->velocity());
         painter->setPen(QPen(Qt::red, 0));

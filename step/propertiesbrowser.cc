@@ -222,7 +222,8 @@ QVariant PropertiesBrowserModel::data(const QModelIndex &index, int role) const
                     // default type
                     // XXX: add error information
                     //if(pe) error = QString::fromUtf8(" ± ").append(pe->readString(_objectErrors)).append(units);
-                    if(pv) kDebug() << "Unhandled property variance type" << endl;
+                    //if(pv) kDebug() << "Unhandled property variance type" << endl;
+                    Q_ASSERT(!pv);
                     return p->readString(_object).append(units);
                 }
                 ///*if(p->userTypeId() < (int) QVariant::UserType) return p->readVariant(_object);
@@ -469,8 +470,7 @@ QWidget* PropertiesBrowserDelegate::createEditor(QWidget* parent,
         KComboBox* editor = new KComboBox(parent);
         editor->setModel(data.value<ChoicesModel*>());
         editor->installEventFilter(const_cast<PropertiesBrowserDelegate*>(this));
-        connect(editor, SIGNAL(activated(int)), 
-                this, SLOT(comboBoxActivated(int)));
+        connect(editor, SIGNAL(activated(int)), this, SLOT(editorActivated()));
         const_cast<PropertiesBrowserDelegate*>(this)->_editor = editor;
         return editor;
     } else {
@@ -482,8 +482,8 @@ QWidget* PropertiesBrowserDelegate::createEditor(QWidget* parent,
 
 void PropertiesBrowserDelegate::setEditorData(QWidget* editor, const QModelIndex& index) const
 {
-    KComboBox* cb = qobject_cast<KComboBox*>(editor);
-    if(cb) {
+    KComboBox* cb;
+    if(NULL != (cb = qobject_cast<KComboBox*>(editor))) {
         QVariant data = index.data(Qt::DisplayRole);
         ChoicesModel* cm = static_cast<ChoicesModel*>(cb->model());
         QList<QStandardItem*> items = cm->findItems(data.toString());
@@ -495,13 +495,13 @@ void PropertiesBrowserDelegate::setEditorData(QWidget* editor, const QModelIndex
 void PropertiesBrowserDelegate::setModelData(QWidget* editor, QAbstractItemModel* model,
                    const QModelIndex& index) const
 {
-    KComboBox* cb = qobject_cast<KComboBox*>(editor);
-    if(cb) {
+    KComboBox* cb;
+    if(NULL != (cb = qobject_cast<KComboBox*>(editor))) {
         model->setData(index, cb->currentText());
     } else QItemDelegate::setModelData(editor, model, index);
 }
 
-void PropertiesBrowserDelegate::comboBoxActivated(int /*index*/)
+void PropertiesBrowserDelegate::editorActivated()
 {
     emit commitData(_editor);
 }

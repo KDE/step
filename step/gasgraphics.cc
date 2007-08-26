@@ -111,7 +111,7 @@ QPainterPath GasGraphicsItem::shape() const
 void GasGraphicsItem::paint(QPainter* painter, const QStyleOptionGraphicsItem* /*option*/, QWidget* /*widget*/)
 {
     if(_isSelected) {
-        painter->setPen(QPen(Qt::red, 0));
+        painter->setPen(QPen(QColor::fromRgba(gas()->color()), 0));
         painter->drawRect(_boundingRect);
     }
 }

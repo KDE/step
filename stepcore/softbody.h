@@ -68,7 +68,7 @@ class SoftBody: public ItemGroup
 
 public:
     /** Constructs a SoftBody */
-    SoftBody() {}
+    SoftBody() { setColor(0xffa9a9a9); }
 
     /** Creates paricles and springs inside soft body
      *  \param position Position of the center of the body

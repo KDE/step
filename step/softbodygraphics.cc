@@ -154,21 +154,19 @@ void SoftBodyGraphicsItem::paint(QPainter* painter, const QStyleOptionGraphicsIt
     int renderHints = painter->renderHints();
     painter->setRenderHint(QPainter::Antialiasing, true);
     painter->setPen(Qt::NoPen);
-    painter->setBrush(QBrush(Qt::darkGray));
+    painter->setBrush(QBrush(QColor::fromRgba(softBody()->color())));
     painter->drawPath(_painterPath);
-    painter->setRenderHint(QPainter::Antialiasing, renderHints & QPainter::Antialiasing);
 
     if(_isSelected) {
         double s = currentViewScale();
         QRectF rect = _painterPath.boundingRect();
         rect.adjust(-SELECTION_MARGIN/s, -SELECTION_MARGIN/s, SELECTION_MARGIN/s, SELECTION_MARGIN/s);
-        painter->setRenderHint(QPainter::Antialiasing, true);
         painter->setPen(QPen(SELECTION_COLOR, 0, Qt::DashLine));
         painter->setBrush(QBrush());
         painter->drawRect(rect);
-        painter->setRenderHint(QPainter::Antialiasing, renderHints & QPainter::Antialiasing);
     }
 
+    painter->setRenderHint(QPainter::Antialiasing, renderHints & QPainter::Antialiasing);
     if(_isSelected || _isMouseOverItem) {
         painter->setPen(QPen(Qt::blue, 0));
         drawArrow(painter, softBody()->position(), softBody()->velocity());

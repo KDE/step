@@ -24,6 +24,7 @@
 #define STEPCORE_WORLD_H
 
 #include <vector> // XXX: replace if QT is enabled
+#include "types.h"
 #include "util.h"
 #include "object.h"
 #include "vector.h"
@@ -70,7 +71,7 @@ class Item : public Object
 
 public:
     /** Constructs Item */
-    Item(): _world(NULL), _group(NULL), _objectErrors(NULL) {}
+    Item(): _world(NULL), _group(NULL), _objectErrors(NULL), _color(0xff000000) {}
     /** Constructs a copy of item */
     Item(const Item& item) : Object() { *this = item; }
     /** Destroys Item */
@@ -100,6 +101,12 @@ public:
     /** Delete objectErrors */
     void deleteObjectErrors() { delete _objectErrors; _objectErrors = NULL; }
 
+    /** Get item color (for use in GUI) */
+    Color color() const { return _color; }
+
+    /** Set item color (for use in GUI) */
+    void setColor(Color color) { _color = color; }
+
     /** Called by the World when any item is about to be removed
      *  from the world
      *  \param item Pointer to item about to be removed
@@ -111,9 +118,10 @@ protected:
     virtual ObjectErrors* createObjectErrors() { return NULL; }
 
 private:
-    World* _world;
-    ItemGroup* _group;
+    World*        _world;
+    ItemGroup*    _group;
     ObjectErrors* _objectErrors;
+    Color         _color;
 };
 
 /** \ingroup bodies

@@ -211,22 +211,20 @@ void SpringGraphicsItem::paint(QPainter* painter, const QStyleOptionGraphicsItem
     _worldModel->simulationPause();
     StepCore::Vector2d r = spring()->position2() - spring()->position1();
 
-    painter->setPen(QPen(Qt::green, 0));
-    StepCore::RigidBody* r1 = dynamic_cast<StepCore::RigidBody*>(spring()->bodyPtr1());
-    StepCore::RigidBody* r2 = dynamic_cast<StepCore::RigidBody*>(spring()->bodyPtr2());
-    if(r1) painter->drawLine(QPointF(0, 0), vectorToPoint(r1->position() - spring()->position1()));
-    if(r2) painter->drawLine(vectorToPoint(r), vectorToPoint(r2->position() - spring()->position1()));
+    painter->setPen(QPen(QColor::fromRgba(spring()->color()), 0));
+
+    StepCore::RigidBody* rb;
+    StepCore::Particle* pb;
+    if(NULL != (rb = dynamic_cast<StepCore::RigidBody*>(spring()->bodyPtr1())))
+        painter->drawLine(QPointF(0, 0), vectorToPoint(rb->position() - spring()->position1()));
+    if(NULL != (pb = dynamic_cast<StepCore::Particle*>(spring()->bodyPtr1())))
+        painter->drawLine(QPointF(0, 0), vectorToPoint(pb->position() - spring()->position1()));
+    if(NULL != (rb = dynamic_cast<StepCore::RigidBody*>(spring()->bodyPtr2())))
+        painter->drawLine(vectorToPoint(r), vectorToPoint(rb->position() - spring()->position1()));
+    if(NULL != (pb = dynamic_cast<StepCore::Particle*>(spring()->bodyPtr2())))
+        painter->drawLine(vectorToPoint(r), vectorToPoint(pb->position() - spring()->position1()));
 
     painter->rotate(atan2(r[1], r[0])*180/3.14);
-
-    painter->setRenderHint(QPainter::Antialiasing, true);
-    if(isSelected()) {
-        painter->setPen(QPen(SELECTION_COLOR, 0, Qt::DashLine));
-        double m = SELECTION_MARGIN / currentViewScale();
-        painter->drawRect(QRectF(-m, -_radius-m, _rnorm+m*2,  (_radius+m)*2));
-    }
-
-    painter->setPen(QPen(Qt::green, 0));
 
     if(_rscale != 0) {
         painter->scale( _rscale, _radius );
@@ -237,6 +235,14 @@ void SpringGraphicsItem::paint(QPainter* painter, const QStyleOptionGraphicsItem
         painter->drawLine(QLineF(n, seq[n&3], _rnorm/_rscale, 0));
     } else {
         painter->drawLine(QLineF( 0, 0, _rnorm, 0 ));
+    }
+
+    if(isSelected()) {
+        painter->setRenderHint(QPainter::Antialiasing, true);
+        painter->setPen(QPen(SELECTION_COLOR, 0, Qt::DashLine));
+        double m = SELECTION_MARGIN / currentViewScale();
+        painter->scale( 1/_rscale, 1/_radius );
+        painter->drawRect(QRectF(-m, -_radius-m, _rnorm+m*2,  (_radius+m)*2));
     }
 }
 
@@ -262,14 +268,22 @@ void SpringGraphicsItem::viewScaleChanged()
     _boundingRect = QRectF(0, 0, r[0], r[1]).normalized();
     _boundingRect.adjust(-_radius-m, -_radius-m, _radius+m, _radius+m);
 
-    StepCore::RigidBody* r1 = dynamic_cast<StepCore::RigidBody*>(spring()->bodyPtr1());
-    StepCore::RigidBody* r2 = dynamic_cast<StepCore::RigidBody*>(spring()->bodyPtr2());
-    if(r1) {
-        StepCore::Vector2d rd1 = r1->position() - spring()->position1();
+    StepCore::RigidBody* rb;
+    StepCore::Particle* pb;
+    if(NULL != (rb = dynamic_cast<StepCore::RigidBody*>(spring()->bodyPtr1()))) {
+        StepCore::Vector2d rd1 = rb->position() - spring()->position1();
+        _boundingRect |= QRectF(0, 0, rd1[0], rd1[1]).normalized();
+    } else if(NULL != (pb = dynamic_cast<StepCore::Particle*>(spring()->bodyPtr1()))) {
+        StepCore::Vector2d rd1 = pb->position() - spring()->position1();
         _boundingRect |= QRectF(0, 0, rd1[0], rd1[1]).normalized();
     }
-    if(r2) {
-        StepCore::Vector2d rd2 = r2->position() - spring()->position2();
+
+    if(NULL != (rb = dynamic_cast<StepCore::RigidBody*>(spring()->bodyPtr2()))) {
+        StepCore::Vector2d rd2 = rb->position() - spring()->position2();
+        _boundingRect |= QRectF(r[0], r[1], rd2[0], rd2[1]).normalized();
+    }
+    if(NULL != (pb = dynamic_cast<StepCore::Particle*>(spring()->bodyPtr2()))) {
+        StepCore::Vector2d rd2 = pb->position() - spring()->position2();
         _boundingRect |= QRectF(r[0], r[1], rd2[0], rd2[1]).normalized();
     }
 

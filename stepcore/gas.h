@@ -172,7 +172,9 @@ class Gas: public ItemGroup
     STEPCORE_OBJECT(Gas)
 
 public:
-    Gas() : _measureRectCenter(0), _measureRectSize(1,1) { objectErrors(); }
+    Gas() : _measureRectCenter(0), _measureRectSize(1,1) {
+        setColor(0xffff0000); objectErrors();
+    }
 
     /** Creates particles with given temperature
      *  \todo XXX Normalize temperature after particle creation */

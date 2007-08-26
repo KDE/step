@@ -315,12 +315,13 @@ ItemMenuHandler::ItemMenuHandler(StepCore::Object* object, WorldModel* worldMode
 void ItemMenuHandler::populateMenu(QMenu* menu)
 {
     StepCore::Item* item = dynamic_cast<StepCore::Item*>(_object);
-    if(item && item->world() != item)
-        menu->addAction(KIcon("edit-delete"), i18n("&Delete"), this, SLOT(deleteItem())); 
+    if(item && item->world() != item) {
+        menu->addAction(KIcon("edit-delete"), i18n("&Delete"), this, SLOT(deleteItem()));
+    }
 }
 
 void ItemMenuHandler::deleteItem()
 {
-    _worldModel->deleteItem(dynamic_cast<StepCore::Item*>(_object));
+    _worldModel->deleteItem(static_cast<StepCore::Item*>(_object));
 }
 

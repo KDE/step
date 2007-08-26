@@ -73,6 +73,7 @@ Spring::Spring(double restLength, double stiffness, double damping, Body* bodyPt
       _stiffness(stiffness), _damping(damping),
       _localPosition1(0), _localPosition2(0) //, _position1(0), _position2(0)
 {
+    setColor(0xff00ff00);
     setBodyPtr1(bodyPtr1);
     setBodyPtr2(bodyPtr2);
 }

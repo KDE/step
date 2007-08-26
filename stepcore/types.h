@@ -29,6 +29,28 @@
 
 namespace StepCore {
 
+struct Color
+{
+    Color() {}
+    Color(unsigned int v): value(v) {}
+    operator unsigned int() const { return value; }
+    unsigned int value;
+};
+
+template<> inline QString typeToString(const Color& v)
+{
+    return QString("#%1").arg(v, 8, 16, QLatin1Char('0'));
+}
+
+template<> inline Color stringToType(const QString& s, bool *ok)
+{
+    if(ok) *ok = false;
+    QString s1 = s.trimmed();
+    if(!s1.startsWith('#')) return Color(0);
+    s1 = s1.mid(1);
+    return Color(s1.toUInt(ok, 16));
+}
+
 template<> inline QString typeToString(const Vector2d& v)
 {
     return QString("(%1,%2)").arg(v[0]).arg(v[1]);
@@ -89,6 +111,7 @@ template<> inline std::vector<Vector2d> stringToType(const QString& s, bool *ok)
 
 #ifdef STEPCORE_WITH_QT
 Q_DECLARE_METATYPE(std::vector<StepCore::Vector2d>)
+Q_DECLARE_METATYPE(StepCore::Color)
 #endif
 
 

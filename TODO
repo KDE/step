@@ -1,5 +1,10 @@
 1. StepCore.
 
+* implement compile flags:
+  - STEPCORE_WITH_QT
+  - STEPCORE_WITH_ERRORS
+  - STEPCORE_WITH_NAMEPROP
+  - STEPCORE_WITH_GUIPROPS
 * unit tests
 * movement restrictions
 * rigid bodies (DONE)
