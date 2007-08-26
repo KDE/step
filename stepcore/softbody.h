@@ -88,8 +88,6 @@ public:
     /** Get ordered list of particles on the border of the body */
     const SoftBodyParticleList& borderParticles() { return _borderParticles; }
 
-    /** Get total body mass */
-    double mass() const;
     /** Get the position of the center of mass */
     Vector2d position() const;
     /** Set the position of the center of mass */
@@ -105,18 +103,28 @@ public:
     /** Set the angular velicity of the body */
     void setAngularVelocity(double angularVelocity);
 
-    /** Get the inrtia of the body */
-    double inertia() const;
-
     /** Get the angular momentum of the body */
     double angularMomentum() const;
+
     /** Set the angular momentum of the body */
     void setAngularMomentum(double angularMomentum);
+
+    /** Get acceleration of the center of mass */
+    Vector2d acceleration() const { return force()/mass(); }
+
+    /** Get angular acceleration of the body */
+    double angularAcceleration() const { return torque()/inertia(); }
 
     /** Get the force acting on the body */
     Vector2d force() const; 
     /** Get the torque acting on the body */
     double torque() const;
+
+    /** Get total body mass */
+    double mass() const;
+
+    /** Get the inrtia of the body */
+    double inertia() const;
 
     void worldItemRemoved(Item* item);
     void setWorld(World* world);

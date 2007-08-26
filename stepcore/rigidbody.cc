@@ -28,10 +28,15 @@ STEPCORE_META_OBJECT(RigidBody, "Generic rigid body", 0, STEPCORE_SUPER_CLASS(It
         STEPCORE_PROPERTY_RW_D(double, angle, "rad", "Rotation angle", angle, setAngle)
 
         STEPCORE_PROPERTY_RW_D(StepCore::Vector2d, velocity, "m/s", "Velocity of the center of mass", velocity, setVelocity)
-        STEPCORE_PROPERTY_RW_D(double, angularVelocity, "rad/s", "Angular velocity", angularVelocity, setAngularVelocity)
+        STEPCORE_PROPERTY_RW_D(double, angularVelocity, "rad/s", "Angular velocity of the body", angularVelocity, setAngularVelocity)
 
-        STEPCORE_PROPERTY_R_D(StepCore::Vector2d, force, "N", "Force at the center of mass", force)
-        STEPCORE_PROPERTY_R_D(double, torque, "N m", "Torque at the center of mass", torque)
+        STEPCORE_PROPERTY_R_D(StepCore::Vector2d, acceleration, STEPCORE_FROM_UTF8("m/s²"),
+                                            "Acceleration of the center of mass", acceleration)
+        STEPCORE_PROPERTY_R_D(double, angularAcceleration, STEPCORE_FROM_UTF8("1/s²"),
+                                            "Angular acceleration of the body", angularAcceleration)
+
+        STEPCORE_PROPERTY_R_D(StepCore::Vector2d, force, "N", "Force that acts upon the body", force)
+        STEPCORE_PROPERTY_R_D(double, torque, "N m", "Torque that acts upon the body", torque)
 
         STEPCORE_PROPERTY_RW(double, mass, "kg", "Total mass of the body", mass, setMass)
         STEPCORE_PROPERTY_RW(double, inertia, STEPCORE_FROM_UTF8("kg m²"),

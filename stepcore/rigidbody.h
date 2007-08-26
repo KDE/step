@@ -64,6 +64,12 @@ public:
     /** Set angular velocity of the body */
     void setAngularVelocity(double angularVelocity) { _angularVelocity = angularVelocity; }
 
+    /** Get acceleration of the center of mass of the body */
+    Vector2d acceleration() const { return _force/_mass; }
+
+    /** Get angular acceleration of the body */
+    double angularAcceleration() const { return _torque/_inertia; }
+
     /** Get force that acts upon the body */
     const Vector2d& force() const { return _force; }
     /** Set force that acts upon the body */

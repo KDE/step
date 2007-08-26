@@ -27,6 +27,8 @@ STEPCORE_META_OBJECT(Particle, "Simple zero-size particle", 0,
         STEPCORE_SUPER_CLASS(Item) STEPCORE_SUPER_CLASS(Body),
         STEPCORE_PROPERTY_RW_D(StepCore::Vector2d, position, "m", "position", position, setPosition)
         STEPCORE_PROPERTY_RW_D(StepCore::Vector2d, velocity, "m/s", "velocity", velocity, setVelocity)
+        STEPCORE_PROPERTY_R_D(StepCore::Vector2d, acceleration, STEPCORE_FROM_UTF8("m/s²"),
+                                                            "acceleration", acceleration)
         STEPCORE_PROPERTY_R_D(StepCore::Vector2d, force, "N", "force", force)
         STEPCORE_PROPERTY_RW(double, mass, "kg", "mass", mass, setMass ))
 
@@ -35,6 +37,8 @@ STEPCORE_META_OBJECT(ParticleErrors, "Errors class for Particle", 0, STEPCORE_SU
                     "position variance", positionVariance, setPositionVariance)
         STEPCORE_PROPERTY_RW_D(StepCore::Vector2d, velocityVariance, "m/s",
                     "velocity variance", velocityVariance, setVelocityVariance)
+        STEPCORE_PROPERTY_R_D(StepCore::Vector2d, accelerationVariance, STEPCORE_FROM_UTF8("m/s²"),
+                    "acceleration variance", accelerationVariance)
         STEPCORE_PROPERTY_R_D(StepCore::Vector2d, forceVariance, "N",
                     "force variance", forceVariance)
         STEPCORE_PROPERTY_RW(double, massVariance, "kg",
@@ -51,6 +55,12 @@ STEPCORE_META_OBJECT(ChargedParticleErrors, "Errors class for ChargedParticle", 
 Particle* ParticleErrors::particle() const
 {
     return static_cast<Particle*>(owner());
+}
+
+Vector2d ParticleErrors::accelerationVariance() const
+{
+    return _forceVariance/square(particle()->mass()) +
+        _massVariance*(particle()->force()/square(particle()->mass())).cSquare();
 }
 
 ChargedParticle* ChargedParticleErrors::chargedParticle() const

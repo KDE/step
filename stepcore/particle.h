@@ -60,6 +60,9 @@ public:
     void setVelocityVariance(const Vector2d& velocityVariance) {
         _velocityVariance = velocityVariance; }
 
+    /** Get acceleration variance */
+    Vector2d accelerationVariance() const;
+
     /** Get force variance */
     const Vector2d& forceVariance() const { return _forceVariance; }
     /** Set force variance */
@@ -106,6 +109,9 @@ public:
     const Vector2d& velocity() const { return _velocity; }
     /** Set velocity of the particle */
     void setVelocity(const Vector2d& velocity) { _velocity = velocity; }
+
+    /** Get acceleration of the particle */
+    Vector2d acceleration() const { return _force/_mass; }
 
     /** Get force that acts upon particle */
     const Vector2d& force() const { return _force; }
