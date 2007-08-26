@@ -65,6 +65,7 @@ public:
     void worldDataChanged(bool dynamicOnly);
 
 protected:
+    void mouseSetPos(const QPointF& pos, const QPointF& diff);
     StepCore::SoftBody* softBody() const;
     QPainterPath _painterPath;
 

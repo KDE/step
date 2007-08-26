@@ -225,3 +225,11 @@ void SoftBodyGraphicsItem::stateChanged()
     viewScaleChanged();
     update();
 }
+
+void SoftBodyGraphicsItem::mouseSetPos(const QPointF& /*pos*/, const QPointF& diff)
+{
+    _worldModel->simulationPause();
+    _worldModel->setProperty(_item, _item->metaObject()->property("position"),
+                QVariant::fromValue( softBody()->position() + pointToVector(diff) ));
+}
+
