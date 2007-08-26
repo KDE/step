@@ -173,7 +173,7 @@ void SoftBodyGraphicsItem::paint(QPainter* painter, const QStyleOptionGraphicsIt
         painter->setPen(QPen(Qt::blue, 0));
         drawArrow(painter, softBody()->position(), softBody()->velocity());
         painter->setPen(QPen(Qt::red, 0));
-        drawArrow(painter, softBody()->position(), softBody()->force()/softBody()->mass());
+        drawArrow(painter, softBody()->position(), softBody()->acceleration());
     }
 }
 
@@ -201,7 +201,7 @@ void SoftBodyGraphicsItem::viewScaleChanged()
     if(_isSelected || _isMouseOverItem) {
         const StepCore::Vector2d r = softBody()->position();
         const StepCore::Vector2d v = softBody()->velocity();
-        const StepCore::Vector2d a = softBody()->force() / softBody()->mass();
+        const StepCore::Vector2d a = softBody()->acceleration();
         _boundingRect |= QRectF(r[0], r[1], v[0], v[1]).normalized()
                          | QRectF(r[0], r[1], a[0], a[1]).normalized();
     }

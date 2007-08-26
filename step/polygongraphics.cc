@@ -238,7 +238,7 @@ void PolygonGraphicsItem::paint(QPainter* painter, const QStyleOptionGraphicsIte
         painter->setPen(QPen(Qt::blue, 0));
         drawArrow(painter, polygon()->velocity());
         painter->setPen(QPen(Qt::red, 0));
-        drawArrow(painter, polygon()->force()/polygon()->mass());
+        drawArrow(painter, polygon()->acceleration());
     }
 }
 
@@ -248,7 +248,7 @@ void PolygonGraphicsItem::viewScaleChanged()
     prepareGeometryChange();
 
     const StepCore::Vector2d& v = polygon()->velocity();
-    const StepCore::Vector2d  a = polygon()->force() / polygon()->mass();
+    const StepCore::Vector2d  a = polygon()->acceleration();
     double s = currentViewScale();
 
     _painterPath = QPainterPath();

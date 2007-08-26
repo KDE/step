@@ -84,7 +84,7 @@ void ParticleGraphicsItem::paint(QPainter* painter, const QStyleOptionGraphicsIt
         painter->setPen(QPen(Qt::blue, 0));
         drawArrow(painter, particle()->velocity());
         painter->setPen(QPen(Qt::red, 0));
-        drawArrow(painter, particle()->force()/particle()->mass());
+        drawArrow(painter, particle()->acceleration());
     }
 }
 
@@ -99,7 +99,7 @@ void ParticleGraphicsItem::viewScaleChanged()
     if(_isMouseOverItem || _isSelected) {
         if(_lastArrowRadius < 0) {
             double vnorm = particle()->velocity().norm();
-            double anorm = particle()->force().norm() / particle()->mass();
+            double anorm = particle()->acceleration().norm();
             _lastArrowRadius = qMax(vnorm, anorm) + ARROW_STROKE/s;
         }
         _boundingRect |= QRectF(-_lastArrowRadius, -_lastArrowRadius,
@@ -111,7 +111,7 @@ void ParticleGraphicsItem::worldDataChanged(bool)
 {
     if(_isMouseOverItem || _isSelected) {
         double vnorm = particle()->velocity().norm();
-        double anorm = particle()->force().norm() / particle()->mass();
+        double anorm = particle()->acceleration().norm();
         double arrowRadius = qMax(vnorm, anorm) + ARROW_STROKE/currentViewScale();
         if(arrowRadius > _lastArrowRadius || arrowRadius < _lastArrowRadius/2) {
             _lastArrowRadius = arrowRadius;
