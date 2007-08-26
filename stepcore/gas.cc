@@ -302,8 +302,6 @@ double GasErrors::rectMassVariance() const
     Vector2d r1 = gas()->_measureRectCenter+gas()->_measureRectSize/2.0;
 
     GasParticle* p1;
-
-    double mass = gas()->rectMeanParticleMass();
     double massVariance = 0;
 
     const ItemList::const_iterator end = gas()->items().end();
@@ -311,9 +309,6 @@ double GasErrors::rectMassVariance() const
         if(NULL == (p1 = dynamic_cast<GasParticle*>(*i1))) continue;
         if(p1->position()[0] < r0[0] || p1->position()[0] > r1[0] ||
             p1->position()[1] < r0[1] || p1->position()[1] > r1[1]) continue;
-
-        massVariance += square(p1->mass() - mass);
-        qDebug("massVariance: %f, p1->mass(): %f, mass: %f", massVariance, p1->mass(), mass);
 
         ParticleErrors* pe1 = static_cast<ParticleErrors*>(p1->tryGetObjectErrors());
         if(pe1) massVariance += pe1->massVariance();
