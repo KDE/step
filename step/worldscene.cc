@@ -95,7 +95,8 @@ void WorldSceneAxes::viewScaleChanged()
 }
 
 WorldScene::WorldScene(WorldModel* worldModel, QObject* parent)
-    : QGraphicsScene(parent), _worldModel(worldModel), _currentViewScale(1), _itemCreator(NULL)
+    : QGraphicsScene(parent), _worldModel(worldModel), _currentViewScale(1),
+            _itemCreator(NULL), _bgColor(0xffffffff)
 {
     #ifdef __GNUC__
     #warning TODO: measure what index method is faster
@@ -223,6 +224,13 @@ void WorldScene::worldModelReset()
     }
     _itemsHash.clear();
 
+    /* Background */
+    if(_bgColor != _worldModel->world()->color()) {
+        _bgColor = _worldModel->world()->color();
+        if(_bgColor == 0xffffffff) setBackgroundBrush(Qt::NoBrush);
+        else setBackgroundBrush(QBrush(QColor::fromRgba(_bgColor)));
+    }
+
     /* Axes */
     if(Settings::showAxes()) {
         //new WorldSceneAxes(0, this);
@@ -308,6 +316,16 @@ void WorldScene::worldDataChanged(bool dynamicOnly)
 {
     //if(dynamicOnly) return;
     _worldModel->simulationPause();
+
+    if(!dynamicOnly) {
+        /* Background */
+        if(_bgColor != _worldModel->world()->color()) {
+            _bgColor = _worldModel->world()->color();
+            if(_bgColor == 0xffffffff) setBackgroundBrush(Qt::NoBrush);
+            else setBackgroundBrush(QBrush(QColor::fromRgba(_bgColor)));
+        }
+    }
+
     foreach (QGraphicsItem *item, items()) {
         WorldGraphicsItem* gItem = dynamic_cast<WorldGraphicsItem*>(item);
         if(gItem) gItem->worldDataChanged(dynamicOnly);

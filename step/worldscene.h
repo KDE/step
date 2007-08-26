@@ -81,6 +81,7 @@ protected:
     QHash<const StepCore::Item*, WorldGraphicsItem*> _itemsHash;
     double _currentViewScale;
     ItemCreator* _itemCreator;
+    QRgb         _bgColor;
 };
 
 class WorldGraphicsView: public QGraphicsView

@@ -294,6 +294,9 @@ void World::clear()
     _variables = new double[_variablesCount];
     _variances = new double[_variablesCount];
 
+    setColor(0xffffffff);
+    deleteObjectErrors();
+
     _time = 0;
     _timeScale = 1;
     _errorsCalculation = false;
