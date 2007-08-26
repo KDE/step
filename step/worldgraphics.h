@@ -97,6 +97,8 @@ protected:
     QVariant itemChange(GraphicsItemChange change, const QVariant& value);
     void drawHandler(QPainter* painter, const StepCore::Vector2d& v);
     void drawArrow(QPainter* painter, const StepCore::Vector2d& v);
+    void drawArrow(QPainter* painter, const StepCore::Vector2d& r,
+                                        const StepCore::Vector2d& v);
 
     static const QColor SELECTION_COLOR;
     static const int SELECTION_MARGIN = 4;
@@ -111,7 +113,8 @@ protected:
 class ArrowHandlerGraphicsItem: public WorldGraphicsItem {
 public:
     ArrowHandlerGraphicsItem(StepCore::Item* item, WorldModel* worldModel,
-                        QGraphicsItem* parent, const StepCore::MetaProperty* property);
+                        QGraphicsItem* parent, const StepCore::MetaProperty* property,
+                        const StepCore::MetaProperty* positionProperty = NULL);
 
     void paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget);
 
@@ -124,6 +127,7 @@ protected:
 
     void mouseMoveEvent(QGraphicsSceneMouseEvent *event);
     const StepCore::MetaProperty* _property;
+    const StepCore::MetaProperty* _positionProperty;
 };
 
 class ItemMenuHandler: public QObject

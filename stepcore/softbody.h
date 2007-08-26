@@ -90,6 +90,33 @@ public:
 
     /** Get total body mass */
     double mass() const;
+    /** Get the position of the center of mass */
+    Vector2d position() const;
+    /** Set the position of the center of mass */
+    void setPosition(const Vector2d position); 
+
+    /** Get the velocity of the center of mass */
+    Vector2d velocity() const;
+    /** Set the velocity of the center of mass */
+    void setVelocity(const Vector2d velocity);
+
+    /** Get the angular velicity of the body */
+    double angularVelocity() const;
+    /** Set the angular velicity of the body */
+    void setAngularVelocity(double angularVelocity);
+
+    /** Get the inrtia of the body */
+    double inertia() const;
+
+    /** Get the angular momentum of the body */
+    double angularMomentum() const;
+    /** Set the angular momentum of the body */
+    void setAngularMomentum(double angularMomentum);
+
+    /** Get the force acting on the body */
+    Vector2d force() const; 
+    /** Get the torque acting on the body */
+    double torque() const;
 
     void worldItemRemoved(Item* item);
     void setWorld(World* world);

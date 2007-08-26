@@ -87,15 +87,22 @@ double WorldGraphicsItem::currentViewScale() const
 
 void WorldGraphicsItem::drawArrow(QPainter* painter, const StepCore::Vector2d& v)
 {
+    drawArrow(painter, StepCore::Vector2d(0), v);
+}
+
+void WorldGraphicsItem::drawArrow(QPainter* painter, const StepCore::Vector2d& r,
+                                                    const StepCore::Vector2d& v)
+{
     double s = currentViewScale();
     if(v.norm2()*s*s > ARROW_STROKE*ARROW_STROKE) { // do not draw too small vectors
-        painter->drawLine(QLineF(0, 0, v[0], v[1]));
+        StepCore::Vector2d vv = r+v;
+        painter->drawLine(QLineF(r[0], r[1], vv[0], vv[1]));
 
         const StepCore::Vector2d vn = v * (ARROW_STROKE / s / v.norm());
-        painter->drawLine(QLineF(v[0], v[1], v[0] - 0.866*vn[0] - 0.5  *vn[1],
-                                             v[1] + 0.5  *vn[0] - 0.866*vn[1]));
-        painter->drawLine(QLineF(v[0], v[1], v[0] - 0.866*vn[0] + 0.5  *vn[1],
-                                             v[1] - 0.5  *vn[0] - 0.866*vn[1]));
+        painter->drawLine(QLineF(vv[0], vv[1], vv[0] - 0.866*vn[0] - 0.5  *vn[1],
+                                               vv[1] + 0.5  *vn[0] - 0.866*vn[1]));
+        painter->drawLine(QLineF(vv[0], vv[1], vv[0] - 0.866*vn[0] + 0.5  *vn[1],
+                                               vv[1] - 0.5  *vn[0] - 0.866*vn[1]));
     }
 }
 
@@ -235,8 +242,9 @@ void WorldGraphicsItem::contextMenuEvent(QGraphicsSceneContextMenuEvent* event)
 }
 
 ArrowHandlerGraphicsItem::ArrowHandlerGraphicsItem(StepCore::Item* item, WorldModel* worldModel, 
-                         QGraphicsItem* parent, const StepCore::MetaProperty* property)
-    : WorldGraphicsItem(item, worldModel, parent), _property(property)
+                         QGraphicsItem* parent, const StepCore::MetaProperty* property,
+                         const StepCore::MetaProperty* positionProperty)
+    : WorldGraphicsItem(item, worldModel, parent), _property(property), _positionProperty(positionProperty)
 {
     Q_ASSERT(_property->userTypeId() == qMetaTypeId<StepCore::Vector2d>());
     setFlag(QGraphicsItem::ItemIsMovable);
@@ -279,7 +287,10 @@ void ArrowHandlerGraphicsItem::mouseMoveEvent(QGraphicsSceneMouseEvent *event)
 StepCore::Vector2d ArrowHandlerGraphicsItem::value()
 {
     if(_property) {
-        return _property->readVariant(_item).value<StepCore::Vector2d>();
+        StepCore::Vector2d ret = _property->readVariant(_item).value<StepCore::Vector2d>();
+        if(_positionProperty)
+            ret += _positionProperty->readVariant(_item).value<StepCore::Vector2d>();
+        return ret;
     } else {
         return StepCore::Vector2d(0);
     }
@@ -289,7 +300,10 @@ void ArrowHandlerGraphicsItem::setValue(const StepCore::Vector2d& value)
 {
     if(_property) {
         _worldModel->simulationPause();
-        _worldModel->setProperty(_item, _property, QVariant::fromValue(value));
+        StepCore::Vector2d v = value;
+        if(_positionProperty)
+            v -= _positionProperty->readVariant(_item).value<StepCore::Vector2d>();
+        _worldModel->setProperty(_item, _property, QVariant::fromValue(v));
     }
 }
 

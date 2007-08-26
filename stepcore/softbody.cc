@@ -18,7 +18,6 @@
 
 #include "softbody.h"
 #include "types.h"
-#include <algorithm>
 #include <cstdlib>
 
 namespace StepCore
@@ -27,11 +26,22 @@ namespace StepCore
 STEPCORE_META_OBJECT(SoftBodyParticle, "SoftBody particle", 0, STEPCORE_SUPER_CLASS(Particle),)
 STEPCORE_META_OBJECT(SoftBodySpring, "SoftBody spring", 0, STEPCORE_SUPER_CLASS(Spring),)
 STEPCORE_META_OBJECT(SoftBody, "SoftBody", 0, STEPCORE_SUPER_CLASS(ItemGroup),
-            STEPCORE_PROPERTY_R_D(double, mass, "kg", "Total body mass", mass))
+            STEPCORE_PROPERTY_RW_D(StepCore::Vector2d, position, "m", "Center fo mass position", position, setPosition)
+            STEPCORE_PROPERTY_RW_D(StepCore::Vector2d, velocity, "m/s", "Center fo mass velocity", velocity, setVelocity)
+            STEPCORE_PROPERTY_RW_D(double, angularVelocity, "rad/s",
+                                    "Angular velocity of the body", angularVelocity, setAngularVelocity)
+            STEPCORE_PROPERTY_RW_D(double, angularMomentum, STEPCORE_FROM_UTF8("kg m²/s"),
+                                    "Angular momentum of the body", angularMomentum, setAngularMomentum)
+            STEPCORE_PROPERTY_R_D(double, mass, "kg", "Total body mass", mass)
+            STEPCORE_PROPERTY_R_D(double, inertia, STEPCORE_FROM_UTF8("kg m²"),
+                                    "Inertia \"tensor\" of the body", inertia)
+            STEPCORE_PROPERTY_R_D(StepCore::Vector2d, force, "N", "Force that acts on the body", force)
+            STEPCORE_PROPERTY_R_D(double, torque, "N m",
+                                    "Torque that acts on the body", torque))
+
 
 ItemList SoftBody::createSoftBodyItems(const Vector2d& position, double size, int split,
                     double bodyMass, double youngModulus, double bodyDamping)
-//int count, double size, double stiffnes, double damping, double mass, const Vector2d& position)//XXX
 {
     ItemList items;
 
@@ -134,6 +144,146 @@ double SoftBody::mass() const
     }
 
     return totMass;        
+}
+
+Vector2d SoftBody::position() const
+{
+    Vector2d cmPosition = Vector2d(0);
+    SoftBodyParticle* p1;
+
+    const ItemList::const_iterator end = items().end();
+    for(ItemList::const_iterator i1 = items().begin(); i1 != end; ++i1) {
+        if(NULL == (p1 = dynamic_cast<SoftBodyParticle*>(*i1))) continue;
+        cmPosition += p1->mass() * p1->position();
+    }
+    cmPosition = cmPosition/mass();
+    return cmPosition;
+}
+
+void SoftBody::setPosition(const Vector2d position)
+{
+    SoftBodyParticle* p1;
+    Vector2d delta = position - this->position();
+
+    const ItemList::const_iterator end = items().end();
+    for(ItemList::const_iterator i1 = items().begin(); i1 != end; ++i1) {
+        if(NULL == (p1 = dynamic_cast<SoftBodyParticle*>(*i1))) continue;
+        p1->setPosition(p1->position() + delta);
+    }
+}
+
+Vector2d SoftBody::velocity() const
+{
+    Vector2d cmVelocity = Vector2d(0);
+    SoftBodyParticle* p1;
+
+    const ItemList::const_iterator end = items().end();
+    for(ItemList::const_iterator i1 = items().begin(); i1 != end; ++i1) {
+        if(NULL == (p1 = dynamic_cast<SoftBodyParticle*>(*i1))) continue;
+        cmVelocity += p1->mass() * p1->velocity();
+    }
+
+    cmVelocity = cmVelocity/mass();
+    return cmVelocity;
+}
+
+void SoftBody::setVelocity(const Vector2d velocity)
+{
+    SoftBodyParticle* p1;
+    Vector2d delta = velocity - this->velocity();
+
+    const ItemList::const_iterator end = items().end();
+    for(ItemList::const_iterator i1 = items().begin(); i1 != end; ++i1) {
+        if(NULL == (p1 = dynamic_cast<SoftBodyParticle*>(*i1))) continue;
+        p1->setVelocity(p1->velocity() + delta);
+    }
+}
+
+double SoftBody::inertia() const
+{
+    double inertia = 0;
+    SoftBodyParticle* p1;
+    Vector2d position = this->position();
+
+    const ItemList::const_iterator end = items().end();
+    for(ItemList::const_iterator i1 = items().begin(); i1 != end; ++i1) {
+        if(NULL == (p1 = dynamic_cast<SoftBodyParticle*>(*i1))) continue;
+        inertia += p1->mass() * (p1->position() - position).norm2();
+    }
+
+    return inertia;
+}
+
+double SoftBody::angularMomentum() const
+{
+    double angMomentum = 0;
+    SoftBodyParticle* p1;
+    Vector2d pos = position();
+    Vector2d vel = velocity();
+
+    const ItemList::const_iterator end = items().end();
+    for(ItemList::const_iterator i1 = items().begin(); i1 != end; ++i1) {
+        if(NULL == (p1 = dynamic_cast<SoftBodyParticle*>(*i1))) continue;
+        angMomentum += p1->mass() * ((p1->position() - pos)[0] * (p1->velocity() - vel)[1] 
+                                   - (p1->position() - pos)[1] * (p1->velocity() - vel)[0]) ;
+    }
+
+    return angMomentum;
+}
+
+double SoftBody::angularVelocity() const
+{
+    return angularMomentum()/inertia();
+}
+
+void SoftBody::setAngularVelocity(double angularVelocity)
+{
+    SoftBodyParticle* p1;
+    Vector2d pos = position();
+    Vector2d vel = velocity();
+
+    const ItemList::const_iterator end = items().end();
+    for(ItemList::const_iterator i1 = items().begin(); i1 != end; ++i1) {
+        if(NULL == (p1 = dynamic_cast<SoftBodyParticle*>(*i1))) continue;
+        Vector2d r = p1->position() - pos;
+        Vector2d n(-r[1], r[0]);
+        double vn = (p1->velocity() - vel).innerProduct(n);
+        p1->setVelocity(p1->velocity() + (angularVelocity - vn/r.norm2())*n);
+    }
+}
+
+void SoftBody::setAngularMomentum(double angularMomentum)
+{
+    setAngularVelocity(angularMomentum/inertia());
+}
+
+Vector2d SoftBody::force() const
+{
+    Vector2d force = Vector2d(0);
+    SoftBodyParticle* p1;
+
+    const ItemList::const_iterator end = items().end();
+    for(ItemList::const_iterator i1 = items().begin(); i1 != end; ++i1) {
+        if(NULL == (p1 = dynamic_cast<SoftBodyParticle*>(*i1))) continue;
+        force += p1->force();
+    }
+    
+    return force;
+}
+
+double SoftBody::torque() const
+{
+    double torque = 0;
+    SoftBodyParticle* p1;
+    Vector2d pos = position();
+    const ItemList::const_iterator end = items().end();
+    for(ItemList::const_iterator i1 = items().begin(); i1 != end; ++i1) {
+        if(NULL == (p1 = dynamic_cast<SoftBodyParticle*>(*i1))) continue;
+        Vector2d r = p1->position() - pos;
+        torque += r[0] * p1->force()[1] - r[1] * p1->force()[0];
+    }
+
+    return torque;        
 }
 
 void SoftBody::worldItemRemoved(Item* item)

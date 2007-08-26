@@ -20,13 +20,12 @@
 #define STEP_SOFTBODYGRAPHICS_H
 
 #include "worldgraphics.h"
-#include <stepcore/softbody.h>
 
 namespace Ui {
     class WidgetCreateSoftBodyItems;
 }
 
-namespace StepCore {
+namespace StepCore{
     class SoftBody;
 }
 

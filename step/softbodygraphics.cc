@@ -19,6 +19,8 @@
 #include "softbodygraphics.h"
 #include "softbodygraphics.moc"
 
+#include <stepcore/softbody.h>
+
 #include "ui_create_softbody_items.h"
 
 #include "worldmodel.h"
@@ -131,6 +133,10 @@ SoftBodyGraphicsItem::SoftBodyGraphicsItem(StepCore::Item* item, WorldModel* wor
     setFlag(QGraphicsItem::ItemIsMovable);
     setAcceptsHoverEvents(true);
     setZValue(BODY_ZVALUE-1);
+    _velocityHandler = new ArrowHandlerGraphicsItem(item, worldModel, this,
+                   _item->metaObject()->property("velocity"),
+                   _item->metaObject()->property("position"));
+    _velocityHandler->setVisible(false);
 }
 
 inline StepCore::SoftBody* SoftBodyGraphicsItem::softBody() const
@@ -163,14 +169,12 @@ void SoftBodyGraphicsItem::paint(QPainter* painter, const QStyleOptionGraphicsIt
         painter->setRenderHint(QPainter::Antialiasing, renderHints & QPainter::Antialiasing);
     }
 
-    /*
     if(_isSelected || _isMouseOverItem) {
         painter->setPen(QPen(Qt::blue, 0));
-        drawArrow(painter, polygon()->velocity());
+        drawArrow(painter, softBody()->position(), softBody()->velocity());
         painter->setPen(QPen(Qt::red, 0));
-        drawArrow(painter, polygon()->force()/polygon()->mass());
+        drawArrow(painter, softBody()->position(), softBody()->force()/softBody()->mass());
     }
-    */    
 }
 
 void SoftBodyGraphicsItem::viewScaleChanged()
@@ -191,9 +195,17 @@ void SoftBodyGraphicsItem::viewScaleChanged()
     }
 
     double s = currentViewScale();
+
     _boundingRect = _painterPath.boundingRect();
-    //                | QRectF(0, 0, v[0], v[1]).normalized()
-    //                | QRectF(0, 0, a[0], a[1]).normalized();
+
+    if(_isSelected || _isMouseOverItem) {
+        const StepCore::Vector2d r = softBody()->position();
+        const StepCore::Vector2d v = softBody()->velocity();
+        const StepCore::Vector2d a = softBody()->force() / softBody()->mass();
+        _boundingRect |= QRectF(r[0], r[1], v[0], v[1]).normalized()
+                         | QRectF(r[0], r[1], a[0], a[1]).normalized();
+    }
+
     double adjust = (ARROW_STROKE+SELECTION_MARGIN)/s;
     _boundingRect.adjust(-adjust,-adjust, adjust, adjust);
 }
@@ -208,8 +220,8 @@ void SoftBodyGraphicsItem::worldDataChanged(bool dynamicOnly)
 
 void SoftBodyGraphicsItem::stateChanged()
 {
-    //if(_isSelected) _velocityHandler->setVisible(true);
-    //else _velocityHandler->setVisible(false);
+    if(_isSelected) _velocityHandler->setVisible(true);
+    else _velocityHandler->setVisible(false);
     viewScaleChanged();
     update();
 }
