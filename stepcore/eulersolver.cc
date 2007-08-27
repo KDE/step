@@ -38,11 +38,11 @@ void GenericEulerSolver::init()
 
 void GenericEulerSolver::fini()
 {
-    delete _ydiffvar;
-    delete _ytempvar;
-    delete _ydiff;
-    delete _ytemp;
-    delete _yerr;
+    delete[] _ydiffvar;
+    delete[] _ytempvar;
+    delete[] _ydiff;
+    delete[] _ytemp;
+    delete[] _yerr;
 }
 
 int GenericEulerSolver::doCalcFn(double* t, const double* y,
