@@ -228,6 +228,8 @@ QVariant PropertiesBrowserModel::data(const QModelIndex &index, int role) const
                         return QColor::fromRgba(p->readVariant(_object).value<StepCore::Color>());
                     else
                         return p->readString(_object);
+                } else if(p->userTypeId() == qMetaTypeId<bool>()) {
+                    return p->readVariant(_object);
                 } else {
                     // default type
                     // XXX: add error information
@@ -317,6 +319,12 @@ bool PropertiesBrowserModel::setData(const QModelIndex &index, const QVariant &v
                     _worldModel->beginMacro(i18n("Edit %1", _object->name()));
                     _worldModel->setProperty(_object, p, value.type() == QVariant::String ? value :
                                     QVariant::fromValue(StepCore::Color(value.value<QColor>().rgba())));
+                    _worldModel->endMacro();
+                    return true;
+                } else if(p->userTypeId() == qMetaTypeId<bool>()) {
+                    Q_ASSERT(!pv);
+                    _worldModel->beginMacro(i18n("Edit %1", _object->name()));
+                    _worldModel->setProperty(_object, p, value);
                     _worldModel->endMacro();
                     return true;
                 }

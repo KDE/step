@@ -358,6 +358,7 @@ void Controller::setWorld(World* world)
 Tracer::Tracer(Body* bodyPtr, const Vector2d& localPosition)
     : _localPosition(localPosition)
 {
+    setColor(0xff0000ff);
     setBodyPtr(bodyPtr);
 }
 
