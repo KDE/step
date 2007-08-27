@@ -21,12 +21,17 @@
 #include <algorithm>
 #include <cstdlib>
 
+// XXX
+#include <QStringList>
+
 namespace StepCore
 {
 
 STEPCORE_META_OBJECT(SoftBodyParticle, "SoftBody particle", 0, STEPCORE_SUPER_CLASS(Particle),)
 STEPCORE_META_OBJECT(SoftBodySpring, "SoftBody spring", 0, STEPCORE_SUPER_CLASS(Spring),)
 STEPCORE_META_OBJECT(SoftBody, "SoftBody", 0, STEPCORE_SUPER_CLASS(ItemGroup),
+        STEPCORE_PROPERTY_RW(bool, showInternalItems, STEPCORE_UNITS_NULL, "Show internal items",
+                                            showInternalItems, setShowInternalItems)
         STEPCORE_PROPERTY_RW_D(StepCore::Vector2d, position, "m", "Position of the center of mass", position, setPosition)
 
         STEPCORE_PROPERTY_RW_D(StepCore::Vector2d, velocity, "m/s", "Velocity of the center of mass", velocity, setVelocity)
@@ -43,7 +48,10 @@ STEPCORE_META_OBJECT(SoftBody, "SoftBody", 0, STEPCORE_SUPER_CLASS(ItemGroup),
         STEPCORE_PROPERTY_R_D(double, torque, "N m", "Torque that acts upon the body", torque)
         STEPCORE_PROPERTY_R_D(double, mass, "kg", "Total mass of the body", mass)
         STEPCORE_PROPERTY_R_D(double, inertia, STEPCORE_FROM_UTF8("kg m²"),
-                                "Inertia \"tensor\" of the body", inertia))
+                                "Inertia \"tensor\" of the body", inertia)
+        STEPCORE_PROPERTY_RW(QString, borderParticleNames, STEPCORE_UNITS_NULL,
+                                "Border particle names (temporal property)", borderParticleNames, setBorderParticleNames)
+        )
 
 
 ItemList SoftBody::createSoftBodyItems(const Vector2d& position, double size, int split,
@@ -292,6 +300,37 @@ double SoftBody::torque() const
     return torque;        
 }
 
+const SoftBodyParticleList& SoftBody::borderParticles()
+{
+    if(_borderParticles.size() == 0 && _borderParticleNames.size() != 0 && world()) {
+        QStringList list = _borderParticleNames.split(",");
+        QStringList::const_iterator end = list.end();
+        for(QStringList::const_iterator it = list.begin(); it != end; ++it) {
+            SoftBodyParticle* p = dynamic_cast<SoftBodyParticle*>(world()->object(*it));
+            if(p) _borderParticles.push_back(p);
+        }
+        _borderParticleNames.clear();
+    }
+    return _borderParticles;
+}
+
+QString SoftBody::borderParticleNames() const
+{
+    QString list;
+    SoftBodyParticleList::const_iterator end = _borderParticles.end();
+    for(SoftBodyParticleList::const_iterator it = _borderParticles.begin(); it != end; ++it) {
+        if(!list.isEmpty()) list.append(",");
+        list.append((*it)->name());
+    }
+    return list;
+}
+
+void SoftBody::setBorderParticleNames(const QString& borderParticleNames)
+{
+    if(_borderParticles.size() == 0 && _borderParticleNames.isEmpty())
+        _borderParticleNames = borderParticleNames;
+}
+
 void SoftBody::worldItemRemoved(Item* item)
 {
     if(!item) return;
@@ -315,7 +354,6 @@ void SoftBody::setWorld(World* world)
     }
     ItemGroup::setWorld(world);
 }
-
 
 }
 

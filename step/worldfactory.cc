@@ -118,8 +118,8 @@ WorldFactory::WorldFactory()
     __REGISTER(GasLJForce);
     __REGISTER_EXT(Gas, GasCreator, GasGraphicsItem, GasMenuHandler);
 
-    __REGISTER_EXT(SoftBodySpring, SpringCreator, SpringGraphicsItem, ItemMenuHandler);
-    __REGISTER_EXT(SoftBodyParticle, ItemCreator, ParticleGraphicsItem, ItemMenuHandler);
+    __REGISTER_EXT(SoftBodySpring, SpringCreator, SoftBodySpringGraphicsItem, ItemMenuHandler);
+    __REGISTER_EXT(SoftBodyParticle, ItemCreator, SoftBodyParticleGraphicsItem, ItemMenuHandler);
     __REGISTER_EXT(SoftBody, ItemCreator, SoftBodyGraphicsItem, SoftBodyMenuHandler);
 
     __REGISTER_EXT_E(Spring, SpringCreator, SpringGraphicsItem, ItemMenuHandler);

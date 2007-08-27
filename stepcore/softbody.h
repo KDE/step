@@ -68,7 +68,7 @@ class SoftBody: public ItemGroup
 
 public:
     /** Constructs a SoftBody */
-    SoftBody() { setColor(0xffa9a9a9); }
+    SoftBody(): _showInternalItems(true) { setColor(0xffa9a9a9); }
 
     /** Creates paricles and springs inside soft body
      *  \param position Position of the center of the body
@@ -84,9 +84,6 @@ public:
 
     /** Adds all items to ItemGroup */
     void addItems(const ItemList& items);
-
-    /** Get ordered list of particles on the border of the body */
-    const SoftBodyParticleList& borderParticles() { return _borderParticles; }
 
     /** Get the position of the center of mass */
     Vector2d position() const;
@@ -126,11 +123,25 @@ public:
     /** Get the inrtia of the body */
     double inertia() const;
 
+    /** Get status of drawing of internal items */
+    bool showInternalItems() const { return _showInternalItems; }
+    /** Set status of drawing of internal items */
+    void setShowInternalItems(bool showInternalItems) {
+        _showInternalItems = showInternalItems; }
+
+    /** Get ordered list of particles on the border of the body */
+    const SoftBodyParticleList& borderParticles();
+
+    QString borderParticleNames() const;
+    void setBorderParticleNames(const QString& borderParticleNames);
+
     void worldItemRemoved(Item* item);
     void setWorld(World* world);
 
 protected:
     SoftBodyParticleList _borderParticles;
+    QString _borderParticleNames;
+    bool _showInternalItems;
 };
 
 } // namespace StepCore

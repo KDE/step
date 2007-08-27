@@ -231,3 +231,27 @@ void SoftBodyGraphicsItem::mouseSetPos(const QPointF& /*pos*/, const QPointF& di
                 QVariant::fromValue( softBody()->position() + pointToVector(diff) ));
 }
 
+void SoftBodyParticleGraphicsItem::worldDataChanged(bool dynamicOnly)
+{
+    if(!dynamicOnly) {
+        StepCore::SoftBody* sb = dynamic_cast<StepCore::SoftBody*>(particle()->group());
+        if(sb) {
+            if(sb->showInternalItems() && !isVisible()) show();
+            else if(!sb->showInternalItems() && isVisible()) hide();
+        }
+    }
+    ParticleGraphicsItem::worldDataChanged(dynamicOnly);
+}
+
+void SoftBodySpringGraphicsItem::worldDataChanged(bool dynamicOnly)
+{
+    if(!dynamicOnly) {
+        StepCore::SoftBody* sb = dynamic_cast<StepCore::SoftBody*>(spring()->group());
+        if(sb) {
+            if(sb->showInternalItems() && !isVisible()) show();
+            else if(!sb->showInternalItems() && isVisible()) hide();
+        }
+    }
+    SpringGraphicsItem::worldDataChanged(dynamicOnly);
+}
+

@@ -20,6 +20,8 @@
 #define STEP_SOFTBODYGRAPHICS_H
 
 #include "worldgraphics.h"
+#include "particlegraphics.h"
+#include "springgraphics.h"
 
 namespace Ui {
     class WidgetCreateSoftBodyItems;
@@ -72,6 +74,24 @@ protected:
     ArrowHandlerGraphicsItem *_velocityHandler;
 
     static const int RADIUS = 7;
+};
+
+class SoftBodyParticleGraphicsItem: public ParticleGraphicsItem
+{
+public:
+    SoftBodyParticleGraphicsItem(StepCore::Item* item, WorldModel* worldModel)
+        : ParticleGraphicsItem(item, worldModel) {}
+
+    void worldDataChanged(bool dynamicOnly);
+};
+
+class SoftBodySpringGraphicsItem: public SpringGraphicsItem
+{
+public:
+    SoftBodySpringGraphicsItem(StepCore::Item* item, WorldModel* worldModel)
+        : SpringGraphicsItem(item, worldModel) {}
+
+    void worldDataChanged(bool dynamicOnly);
 };
 
 #endif
