@@ -20,6 +20,7 @@
 #include "softbodygraphics.moc"
 
 #include <stepcore/softbody.h>
+#include <stepcore/types.h>
 
 #include "ui_create_softbody_items.h"
 
@@ -76,9 +77,11 @@ void SoftBodyMenuHandler::createSoftBodyItems()
                 new QRegExpValidator(QRegExp("^\\([+-]?\\d+(\\.\\d*)?([eE]\\d*)?,[+-]?\\d+(\\.\\d*)?([eE]\\d*)?\\)$"),
                         _createSoftBodyItemsUi->lineEditPosition));
     _createSoftBodyItemsUi->lineEditSize->setValidator(
-                new QDoubleValidator(0, HUGE_VAL, DBL_DIG, _createSoftBodyItemsUi->lineEditSize));
+                new QRegExpValidator(QRegExp("^\\([+-]?\\d+(\\.\\d*)?([eE]\\d*)?,[+-]?\\d+(\\.\\d*)?([eE]\\d*)?\\)$"),
+                        _createSoftBodyItemsUi->lineEditSize));
     _createSoftBodyItemsUi->lineEditSplit->setValidator(
-                new QIntValidator(0, INT_MAX, _createSoftBodyItemsUi->lineEditSplit));
+                new QRegExpValidator(QRegExp("^\\(\\d+,\\d+\\)$"),
+                        _createSoftBodyItemsUi->lineEditSplit));
     _createSoftBodyItemsUi->lineEditBodyMass->setValidator(
                 new QDoubleValidator(0, HUGE_VAL, DBL_DIG, _createSoftBodyItemsUi->lineEditBodyMass));
     _createSoftBodyItemsUi->lineEditBodyDamping->setValidator(
@@ -101,8 +104,15 @@ void SoftBodyMenuHandler::createSoftBodyItemsApply()
     bool ok;
     StepCore::Vector2d position = StepCore::stringToType<StepCore::Vector2d>(
                     _createSoftBodyItemsUi->lineEditPosition->text(), &ok);
-    double size = _createSoftBodyItemsUi->lineEditSize->text().toDouble();
-    int split = _createSoftBodyItemsUi->lineEditSplit->text().toInt();
+    StepCore::Vector2d size = StepCore::stringToType<StepCore::Vector2d>(
+                    _createSoftBodyItemsUi->lineEditSize->text(), &ok);
+    StepCore::Vector2i split = StepCore::stringToType<StepCore::Vector2i>(
+                    _createSoftBodyItemsUi->lineEditSplit->text(), &ok);
+
+    kDebug()<< _createSoftBodyItemsUi->lineEditSplit->text()<<endl;
+    kDebug()<< split[0]<<endl;
+    kDebug()<< split[1]<<endl;
+
     double bodyMass = _createSoftBodyItemsUi->lineEditBodyMass->text().toDouble();
     double youngModulus = _createSoftBodyItemsUi->lineEditYoungModulus->text().toDouble();
     double bodyDamping = _createSoftBodyItemsUi->lineEditBodyDamping->text().toDouble();
@@ -123,7 +133,7 @@ void SoftBodyMenuHandler::createSoftBodyItemsApply()
     _worldModel->endMacro();
 }
 
-//////////////////////////////////////////////////
+/////////////////////////////////////////////////
 
 SoftBodyGraphicsItem::SoftBodyGraphicsItem(StepCore::Item* item, WorldModel* worldModel)
     : WorldGraphicsItem(item, worldModel)

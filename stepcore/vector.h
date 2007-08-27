@@ -125,10 +125,16 @@ protected:
     T _array[N];
 };
 
-/** Two-dimensional vector */
+/** Two-dimensional vector with double components */
 typedef Vector<double,2> Vector2d;
-/** Three-dimensional vector */
+/** Three-dimensional vector with double components*/
 typedef Vector<double,3> Vector3d;
+
+/** Two-dimensional vector with integer components */
+typedef Vector<int,2> Vector2i;
+/** Three-dimensional vector with integer components */
+typedef Vector<int,3> Vector3i;
+
 
 ///////////// Implementation
 template<typename T, int N>
@@ -288,6 +294,8 @@ Vector<T,N> Vector<T,N>::cMultiply(const Vector<T,N>& b)
 // XXX: move it to types.h
 Q_DECLARE_METATYPE(StepCore::Vector2d)
 Q_DECLARE_METATYPE(StepCore::Vector3d)
+Q_DECLARE_METATYPE(StepCore::Vector2i)
+Q_DECLARE_METATYPE(StepCore::Vector3i)
 
 #endif
 

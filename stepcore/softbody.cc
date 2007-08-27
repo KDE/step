@@ -54,84 +54,91 @@ STEPCORE_META_OBJECT(SoftBody, "SoftBody", 0, STEPCORE_SUPER_CLASS(ItemGroup),
         )
 
 
-ItemList SoftBody::createSoftBodyItems(const Vector2d& position, double size, int split,
+ItemList SoftBody::createSoftBodyItems(const Vector2d& position, const Vector2d& size, const Vector2i& split,
                     double bodyMass, double youngModulus, double bodyDamping)
 {
     ItemList items;
+    _borderParticles.clear();
+
+    if((split[0] < 1 || split[1] < 1) || (split[0] == 1 && split[1] == 1)) {
+        return items;
+    }
 
     Vector2d vel = Vector2d(0); //to be changed
-    Item* bodyPtr1 = 0;
-    Item* bodyPtr2 = 0;
-    
-    Vector2d pos(0, position[1] - 0.5*size);
-    double stiffnes = youngModulus*(split-1)/(2*split-1);
-    double damping  = bodyDamping *(split-1)/(2*split-1);
-    double mass = bodyMass/(split*split);
-    double h = size/(split-1);
+    Vector2d pos;
 
-    _borderParticles.clear();
-    _borderParticles.resize(4*split - 4); 
+    double mass = bodyMass/(split[0]*split[1]);
+    double stiffnes;
+    double damping;
+    double h0;
+    double h1;
+    double h;
+
+    if(split[0] == 1) {
+        _borderParticles.resize(split[1]);
+        stiffnes = youngModulus/(split[1]-1);
+        damping = bodyDamping/(split[1]-1);
+        h1 = size[1]/(split[1]-1); h0 = 0;
+    } else if(split[1] == 1) {
+        _borderParticles.resize(split[0]);
+        stiffnes = youngModulus/(split[0]-1);
+        damping = bodyDamping/(split[0]-1);
+        h0 = size[0]/(split[0]-1); h1 = 0;
+    } else {
+        _borderParticles.resize(2*split[0] + 2*split[1] - 4); 
+        stiffnes = youngModulus*(size[0]/size[1])*(split[0]-1)/(2*split[1]-1);
+        damping  = bodyDamping* (size[0]/size[1])*(split[0]-1)/(2*split[1]-1);
+        h0 = size[0]/(split[0]-1);
+        h1 = size[1]/(split[1]-1);
+    }
 
     // particles
-    for(int j=0; j < split; ++j) {
-        pos[0] = position[0] - 0.5*size;
-        for(int i=0; i < split; ++i) {
+    pos[1] = position[1] - (split[1]>1 ? 0.5*size[1] : 0);
+    for(int j=0; j < split[1]; ++j) {
+        pos[0] = position[0] - (split[0]>1 ? 0.5*size[0] : 0);
+        for(int i=0; i < split[0]; ++i) {
             SoftBodyParticle* item = new SoftBodyParticle(pos, vel, mass);
             items.push_back(item);
 
             if(j == 0) _borderParticles[i] = item;
-            else if(j == split-1) _borderParticles[3*split-3-i] = item;
-            else if(i == split-1) _borderParticles[split-1+j] = item;
-            else if(i == 0) _borderParticles[4*split-4-j] = item;
-            pos[0] += h;
+            else if(i == split[0]-1) _borderParticles[split[0]-1+j] = item;
+            else if(j == split[1]-1) _borderParticles[split[1]+2*split[0]-3-i] = item;
+            else if(i == 0) _borderParticles[2*split[0]+2*split[1]-4-j] = item;
+            pos[0] += h0;
         }
-        pos[1] += h;
+        pos[1] += h1;
     }
 
     // horisontal springs
-    for(int i=0; i<split; i++) {
-        for(int j=0; j<split-1; j++) {
-            bodyPtr1 = items[split*i+j];
-            bodyPtr2 = items[split*i+j+1];
-            SoftBodySpring* item = new SoftBodySpring(h, stiffnes, damping,
-                        dynamic_cast<Body*>(bodyPtr1), dynamic_cast<Body*>(bodyPtr2));
+    for(int i=0; i<split[1]; i++) {
+        for(int j=0; j<split[0]-1; j++) {
+            SoftBodySpring* item = new SoftBodySpring(h0, stiffnes, damping,
+                    dynamic_cast<Body*>(items[split[0]*i+j]), dynamic_cast<Body*>(items[split[0]*i+j+1]));
             items.push_back(item);
         }
     }
 
     // vertical springs
-    for(int i=0; i<split-1; i++) {
-        for(int j=0; j<split; j++) {
-            bodyPtr1 = items[split*i+j];
-            bodyPtr2 = items[split*(i+1)+j];
-            SoftBodySpring* item = new SoftBodySpring(h, stiffnes, damping,
-                        dynamic_cast<Body*>(bodyPtr1), dynamic_cast<Body*>(bodyPtr2));
+    for(int i=0; i<split[1]-1; i++) {
+        for(int j=0; j<split[0]; j++) {
+            SoftBodySpring* item = new SoftBodySpring(h1, stiffnes, damping,
+                    dynamic_cast<Body*>(items[split[0]*i+j]), dynamic_cast<Body*>(items[split[0]*(i+1)+j]));
             items.push_back(item);
         }
     }
 
-    // first dioganal springs
-    h *= M_SQRT2;
-    stiffnes /= M_SQRT2;
+    // dioganal springs
+    h = std::sqrt(h0*h0 + h1*h1);
+    stiffnes /= M_SQRT2;//XXX
     damping /= M_SQRT2;
-    for(int i=0; i<split-1; i++){
-        for(int j=0; j<split-1; j++){
-            bodyPtr1 = items[split*i+j];
-            bodyPtr2 = items[split*(i+1)+j+1];
-            SoftBodySpring* item = new SoftBodySpring(h, stiffnes, damping,
-                        dynamic_cast<Body*>(bodyPtr1), dynamic_cast<Body*>(bodyPtr2));
-            items.push_back(item);
-        }
-    }
-
-    // second diagonal springs
-    for(int i=0; i<split-1; i++){
-        for(int j=0; j<split-1; j++){
-            bodyPtr1 = items[split*i+j+1];
-            bodyPtr2 = items[split*(i+1)+j];
-            SoftBodySpring* item = new SoftBodySpring(h, stiffnes, damping,
-                        dynamic_cast<Body*>(bodyPtr1), dynamic_cast<Body*>(bodyPtr2));
-            items.push_back(item);
+    for(int i=0; i<split[1]-1; i++){
+        for(int j=0; j<split[0]-1; j++){
+            SoftBodySpring* item1 = new SoftBodySpring(h, stiffnes, damping,
+                    dynamic_cast<Body*>(items[split[0]*i+j]), dynamic_cast<Body*>(items[split[0]*(i+1)+j+1]));
+            SoftBodySpring* item2 = new SoftBodySpring(h, stiffnes, damping,
+                    dynamic_cast<Body*>(items[split[0]*i+j+1]), dynamic_cast<Body*>(items[split[0]*(i+1)+j]));
+            items.push_back(item1);
+            items.push_back(item2);
         }
     }
 

@@ -79,7 +79,7 @@ public:
      *  \param bodyDamping Damping of the body
      *  \return List of particles and springs
      */
-    ItemList createSoftBodyItems(const Vector2d& position, double size, int split,
+    ItemList createSoftBodyItems(const Vector2d& position, const Vector2d& size, const Vector2i& split,
                     double bodyMass, double youngModulus, double bodyDamping);
 
     /** Adds all items to ItemGroup */

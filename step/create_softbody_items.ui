@@ -51,14 +51,14 @@
       <item row="1" column="0" >
        <widget class="QLabel" name="label_3" >
         <property name="text" >
-         <string>Edge size:</string>
+         <string>Body size:</string>
         </property>
        </widget>
       </item>
       <item row="1" column="1" >
        <widget class="QLineEdit" name="lineEditSize" >
         <property name="text" >
-         <string>1</string>
+         <string>(1,1)</string>
         </property>
         <property name="alignment" >
          <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
@@ -119,14 +119,14 @@
       <item row="5" column="0" >
        <widget class="QLabel" name="label" >
         <property name="text" >
-         <string>Edge split count:</string>
+         <string>Body split counts:</string>
         </property>
        </widget>
       </item>
       <item row="5" column="1" >
        <widget class="QLineEdit" name="lineEditSplit" >
         <property name="text" >
-         <string>4</string>
+         <string>(4,4)</string>
         </property>
         <property name="alignment" >
          <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>

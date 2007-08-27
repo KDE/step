@@ -70,6 +70,25 @@ template<> inline Vector2d stringToType(const QString& s, bool *ok)
     return v;
 }
 
+template<> inline QString typeToString(const Vector2i& v)
+{
+    return QString("(%1,%2)").arg(v[0]).arg(v[1]);
+}
+
+template<> inline Vector2i stringToType(const QString& s, bool *ok)
+{
+    // XXX: Write something better
+    if(ok) *ok = false;
+    QString s1 = s.trimmed();
+    if(!s1.startsWith('(') || !s1.endsWith(')')) return Vector2i();
+    s1 = s1.mid(1, s1.size()-2);    
+    bool ok1, ok2;
+    StepCore::Vector2i v(s1.section(',',0,0).toInt(&ok1), s1.section(',',1,1).toInt(&ok2));
+    if(!ok1 || !ok2) return v;
+    if(ok) *ok = true;
+    return v;
+}
+
 template<> inline QString typeToString(const std::vector<Vector2d>& v)
 {
     QString ret;
