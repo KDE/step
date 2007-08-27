@@ -111,7 +111,7 @@ bool UnitsCalc::parseNumber(const QString& expression, const QString& units, dou
         expr.divide(u, true);
         expr.eval(d->eo);
 
-        if(cu) delete cu;
+        delete cu;
     }
 
     if(!expr.isNumber() && expr.countChildren()) return false;

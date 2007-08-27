@@ -217,10 +217,12 @@ void WorldScene::helpEvent(QGraphicsSceneHelpEvent *helpEvent)
             text += _worldModel->objectIndex(activeItems[i]).data(Qt::ToolTipRole).toString();
     }
 
-    // Show or hide the tooltip
-    if(!text.isEmpty()) {
-        QToolTip::showText(helpEvent->screenPos(), text);
-    }
+    Q_ASSERT(helpEvent->widget());
+    QPoint screenPos = helpEvent->screenPos();
+    QToolTip::showText(screenPos, text, helpEvent->widget(), QRect());
+    // QRect( helpEvent->widget()->mapFromGlobal(screenPos)-QPoint(5,5), QSize(10,10) ));
+
+    helpEvent->accept();
 }
 
 void WorldScene::worldModelReset()
