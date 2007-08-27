@@ -21,6 +21,8 @@
 #include "worldgraphics.h"
 #include "worldmodel.moc"
 
+#include "settings.h"
+
 #include "worldfactory.h"
 #include <stepcore/world.h>
 #include <stepcore/xmlfile.h>
@@ -569,16 +571,83 @@ void WorldModel::setProperty(StepCore::Object* object,
     pushCommand(new CommandEditProperty(this, object, property, value, merge));
 }
 
+QString WorldModel::formatProperty(const StepCore::Object* object,
+                                   const StepCore::Object* objectErrors,
+                                   const StepCore::MetaProperty* property, bool editable) const
+{
+    int pr = Settings::floatDisplayPrecision();
+
+    QString units;
+    if(!editable && !property->units().isEmpty()) 
+        units.append(" [").append(property->units()).append("]");
+#ifdef STEP_WITH_UNITSCALC
+    else if(editable && !property->units().isEmpty()
+                && property->userTypeId() == QMetaType::Double) 
+        units.append(" ").append(property->units());
+#endif
+
+    const StepCore::MetaProperty* pv = objectErrors ?
+            objectErrors->metaObject()->property(property->name() + "Variance") : NULL;
+
+    // Common property types
+    if(property->userTypeId() == QMetaType::Double) {
+        QString error;
+        if(pv) error = QString::fromUtf8(" ± %1")
+                        .arg(sqrt(pv->readVariant(objectErrors).toDouble()), 0, 'g', pr)
+                        .append(units);
+        return QString::number(property->readVariant(object).toDouble(), 'g', pr).append(units).append(error);
+    } else if(property->userTypeId() == qMetaTypeId<StepCore::Vector2d>()) {
+        QString error;
+        if(pv) {
+            StepCore::Vector2d vv = pv->readVariant(objectErrors).value<StepCore::Vector2d>();
+            error = QString::fromUtf8(" ± (%1,%2)")
+                        .arg(sqrt(vv[0]), 0, 'g', pr).arg(sqrt(vv[1]), 0, 'g', pr).append(units);
+        }
+        StepCore::Vector2d v = property->readVariant(object).value<StepCore::Vector2d>();
+        return QString("(%1,%2)").arg(v[0], 0, 'g', pr).arg(v[1], 0, 'g', pr).append(units).append(error);
+    } else if(property->userTypeId() == qMetaTypeId<std::vector<StepCore::Vector2d> >() ) {
+        // XXX: add error information
+        if(pv) kDebug() << "Unhandled property variance type" << endl;
+        std::vector<StepCore::Vector2d> list =
+                property->readVariant(object).value<std::vector<StepCore::Vector2d> >();
+        QString string;
+        unsigned int end = editable ? list.size() : qMin<unsigned int>(10, list.size());
+        for(unsigned int i=0; i<end; ++i) {
+            if(!string.isEmpty()) string += ",";
+            string += QString("(%1,%2)").arg(list[i][0], 0, 'g', pr)
+                                            .arg(list[i][1], 0, 'g', pr);
+        }
+        if(!editable && end != 0 && end < list.size()) string += ",...";
+        string.append(units);
+        return string;
+    } else {
+        // default type
+        // XXX: add error information
+        //if(pe) error = QString::fromUtf8(" ± ").append(pe->readString(_objectErrors)).append(units);
+        //if(pv) kDebug() << "Unhandled property variance type" << endl;
+        Q_ASSERT(!pv);
+        return property->readString(object).append(units);
+    }
+}
+
 QString WorldModel::createToolTip(const QModelIndex& index) const
 {
     //Q_ASSERT(object != NULL);
     Q_ASSERT(index.isValid());
     QString toolTip = i18n("<nobr><h4><u>%1</u></h4></nobr>", index.data(Qt::DisplayRole).toString());
     toolTip += "<table>";
+
     StepCore::Object* object = this->object(index);
+    StepCore::Item* item = dynamic_cast<StepCore::Item*>(object);
+    const StepCore::Object* objectErrors = NULL;
+    if(item) {
+        if(world()->errorsCalculation()) objectErrors = item->objectErrors();
+        else objectErrors = item->tryGetObjectErrors();
+    }
+
     for(int i=0; i<object->metaObject()->propertyCount(); ++i) {
         const StepCore::MetaProperty* p = object->metaObject()->property(i);
-        QString units;
+        /*QString units;
         if(!p->units().isEmpty())
             units.append(" [").append(p->units()).append("]");
         QString value = p->readString(object);
@@ -592,8 +661,9 @@ QString WorldModel::createToolTip(const QModelIndex& index) const
             }
         } else {
             value.append(units);
-        }
-        toolTip += i18n("<tr><td>%1&nbsp;&nbsp;</td><td>%2</td></tr>", p->name(), value);
+        }*/
+        toolTip += i18n("<tr><td>%1&nbsp;&nbsp;</td><td>%2</td></tr>", p->name(),
+                            formatProperty(object, objectErrors, p, false));
     }
     toolTip += "</table>";
     //qDebug("%s", toolTip.toAscii().constData());

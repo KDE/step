@@ -104,6 +104,11 @@ public:
     void setProperty(StepCore::Object* object, const StepCore::MetaProperty* property,
                             const QVariant& value, bool merge = true);
 
+    // Format property value for display or edit
+    QString formatProperty(const StepCore::Object* object,
+                           const StepCore::Object* objectErrors,
+                           const StepCore::MetaProperty* property, bool editable) const;
+
     // Tooltip
     QString createToolTip(const QModelIndex& index) const;
 

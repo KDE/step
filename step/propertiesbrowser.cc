@@ -175,68 +175,29 @@ QVariant PropertiesBrowserModel::data(const QModelIndex &index, int role) const
                     else return QVariant::fromValue(_solverChoices);
                 }
 
-                int pr = Settings::floatDisplayPrecision();
-                //int pr = role == Qt::DisplayRole ? Settings::floatDisplayPrecision() : 16;
-
-                QString units;
-                if(role == Qt::DisplayRole && !p->units().isEmpty()) 
-                    units.append(" [").append(p->units()).append("]");
-#ifdef STEP_WITH_UNITSCALC
-                else if(role == Qt::EditRole && !p->units().isEmpty()
-                            && p->userTypeId() == QMetaType::Double) 
-                    units.append(" ").append(p->units());
-#endif
-
-                const StepCore::MetaProperty* pv = _objectErrors ?
-                        _objectErrors->metaObject()->property(p->name() + "Variance") : NULL;
-
-                // Common property types
-                if(p->userTypeId() == QMetaType::Double) {
-                    QString error;
-                    if(pv) error = QString::fromUtf8(" ± %1")
-                                    .arg(sqrt(pv->readVariant(_objectErrors).toDouble()), 0, 'g', pr)
-                                    .append(units);
-                    return QString::number(p->readVariant(_object).toDouble(), 'g', pr).append(units).append(error);
-                } else if(p->userTypeId() == qMetaTypeId<StepCore::Vector2d>()) {
-                    QString error;
-                    if(pv) {
-                        StepCore::Vector2d vv = pv->readVariant(_objectErrors).value<StepCore::Vector2d>();
-                        error = QString::fromUtf8(" ± (%1,%2)")
-                                    .arg(sqrt(vv[0]), 0, 'g', pr).arg(sqrt(vv[1]), 0, 'g', pr).append(units);
-                    }
-                    StepCore::Vector2d v = p->readVariant(_object).value<StepCore::Vector2d>();
-                    return QString("(%1,%2)").arg(v[0], 0, 'g', pr).arg(v[1], 0, 'g', pr).append(units).append(error);
-                } else if(p->userTypeId() == qMetaTypeId<std::vector<StepCore::Vector2d> >() ) {
-                    // XXX: add error information
-                    if(pv) kDebug() << "Unhandled property variance type" << endl;
-                    std::vector<StepCore::Vector2d> list =
-                            p->readVariant(_object).value<std::vector<StepCore::Vector2d> >();
-                    QString string;
-                    unsigned int end = qMin<unsigned int>(10, list.size()); // XXX: make it 
-                    for(unsigned int i=0; i<end; ++i) {
-                        if(!string.isEmpty()) string += ",";
-                        string += QString("(%1,%2)").arg(list[i][0], 0, 'g', pr)
-                                                        .arg(list[i][1], 0, 'g', pr);
-                    }
-                    if(role == Qt::DisplayRole && end != 0 && end < list.size()) string += ",...";
-                    string.append(units);
-                    return string;
+                if(p->userTypeId() == QMetaType::Double ||
+                    p->userTypeId() == qMetaTypeId<StepCore::Vector2d>() ||
+                    p->userTypeId() == qMetaTypeId<std::vector<StepCore::Vector2d> >()) {
+                    return _worldModel->formatProperty(_object, _objectErrors, p, role == Qt::EditRole);
                 } else if(p->userTypeId() == qMetaTypeId<StepCore::Color>()) {
-                    Q_ASSERT(!pv);
-                    //kDebug() << "modeldata: " << QColor::fromRgba(p->readVariant(_object).value<StepCore::Color>()) << endl;
+                    Q_ASSERT( !_objectErrors || !_objectErrors->metaObject()->property(p->name() + "Variance") );
+                    Q_ASSERT( p->units().isEmpty() );
                     if(role == Qt::EditRole)
                         return QColor::fromRgba(p->readVariant(_object).value<StepCore::Color>());
                     else
                         return p->readString(_object);
-                } else if(p->userTypeId() == qMetaTypeId<bool>()) {
+                } else if(p->userTypeId() == QMetaType::Bool) {
+                    Q_ASSERT( !_objectErrors || !_objectErrors->metaObject()->property(p->name() + "Variance") );
+                    Q_ASSERT( p->units().isEmpty() );
                     return p->readVariant(_object);
                 } else {
                     // default type
                     // XXX: add error information
                     //if(pe) error = QString::fromUtf8(" ± ").append(pe->readString(_objectErrors)).append(units);
                     //if(pv) kDebug() << "Unhandled property variance type" << endl;
-                    Q_ASSERT(!pv);
-                    return p->readString(_object).append(units);
+                    Q_ASSERT( !_objectErrors || !_objectErrors->metaObject()->property(p->name() + "Variance") );
+                    Q_ASSERT( p->units().isEmpty() );
+                    return p->readString(_object);
                 }
                 ///*if(p->userTypeId() < (int) QVariant::UserType) return p->readVariant(_object);
                 //else*/ return p->readString(_object); // XXX: default delegate for double looks ugly!
