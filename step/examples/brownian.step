@@ -2,12 +2,14 @@
 <!DOCTYPE StepCoreXML>
 <world xmlns="http://edu.kde.org/step/StepCoreXML" version="1.0">
     <name>world1</name>
+    <color>#ffffffff</color>
     <time>0</time>
     <timeScale>1</timeScale>
     <errorsCalculation>false</errorsCalculation>
 
     <item class="Polygon">
         <name>polygon1</name>
+        <color>#ff000000</color>
         <position>(-1.555,0)</position>
         <angle>0</angle>
         <velocity>(0,0)</velocity>
@@ -19,6 +21,7 @@
 
     <item class="Polygon">
         <name>polygon2</name>
+        <color>#ff000000</color>
         <position>(1.555,0)</position>
         <angle>0</angle>
         <velocity>(0,0)</velocity>
@@ -30,6 +33,7 @@
 
     <item class="Polygon">
         <name>polygon3</name>
+        <color>#ff000000</color>
         <position>(0,1.0601)</position>
         <angle>0</angle>
         <velocity>(0,0)</velocity>
@@ -41,6 +45,7 @@
 
     <item class="Polygon">
         <name>polygon4</name>
+        <color>#ff000000</color>
         <position>(0,-1.0601)</position>
         <angle>0</angle>
         <velocity>(0,0)</velocity>
@@ -52,11 +57,13 @@
 
     <item class="Gas">
         <name>gas1</name>
+        <color>#ffff0000</color>
         <measureRectCenter>(-0.0070771,-0.0061678)</measureRectCenter>
         <measureRectSize>(2.96137,1.98557)</measureRectSize>
 
         <item class="GasLJForce">
             <name>gasLJForce1</name>
+            <color>#ff000000</color>
             <depth>0.1</depth>
             <rmin>0.05</rmin>
             <cutoff>inf</cutoff>
@@ -64,6 +71,7 @@
 
         <item class="GasParticle">
             <name>gasParticle1</name>
+            <color>#ff000000</color>
             <position>(1.09101,-0.0300219)</position>
             <velocity>(0.878124,0.167928)</velocity>
             <mass>1</mass>
@@ -71,6 +79,7 @@
 
         <item class="GasParticle">
             <name>gasParticle2</name>
+            <color>#ff000000</color>
             <position>(-0.357065,-0.951147)</position>
             <velocity>(0.492843,0.172325)</velocity>
             <mass>1</mass>
@@ -78,6 +87,7 @@
 
         <item class="GasParticle">
             <name>gasParticle3</name>
+            <color>#ff000000</color>
             <position>(-0.931962,0.63398)</position>
             <velocity>(0.24877,-0.250012)</velocity>
             <mass>1</mass>
@@ -85,6 +95,7 @@
 
         <item class="GasParticle">
             <name>gasParticle4</name>
+            <color>#ff000000</color>
             <position>(0.790479,-0.191011)</position>
             <velocity>(-0.234392,-0.327866)</velocity>
             <mass>1</mass>
@@ -92,6 +103,7 @@
 
         <item class="GasParticle">
             <name>gasParticle5</name>
+            <color>#ff000000</color>
             <position>(0.102337,0.143846)</position>
             <velocity>(-0.396114,-0.784473)</velocity>
             <mass>1</mass>
@@ -99,6 +111,7 @@
 
         <item class="GasParticle">
             <name>gasParticle6</name>
+            <color>#ff000000</color>
             <position>(1.32418,0.406601)</position>
             <velocity>(0.581301,-0.263664)</velocity>
             <mass>1</mass>
@@ -106,6 +119,7 @@
 
         <item class="GasParticle">
             <name>gasParticle7</name>
+            <color>#ff000000</color>
             <position>(-0.91149,0.478798)</position>
             <velocity>(-0.101693,-0.307981)</velocity>
             <mass>1</mass>
@@ -113,6 +127,7 @@
 
         <item class="GasParticle">
             <name>gasParticle8</name>
+            <color>#ff000000</color>
             <position>(0.465093,-0.608896)</position>
             <velocity>(-0.400883,0.553308)</velocity>
             <mass>1</mass>
@@ -120,6 +135,7 @@
 
         <item class="GasParticle">
             <name>gasParticle9</name>
+            <color>#ff000000</color>
             <position>(-1.0578,-0.0267364)</position>
             <velocity>(0.15112,-0.0353111)</velocity>
             <mass>1</mass>
@@ -127,6 +143,7 @@
 
         <item class="GasParticle">
             <name>gasParticle10</name>
+            <color>#ff000000</color>
             <position>(1.17149,0.546327)</position>
             <velocity>(0.158772,0.0884495)</velocity>
             <mass>1</mass>
@@ -134,6 +151,7 @@
 
         <item class="GasParticle">
             <name>gasParticle11</name>
+            <color>#ff000000</color>
             <position>(0.0480401,-0.870136)</position>
             <velocity>(0.106584,0.224411)</velocity>
             <mass>1</mass>
@@ -141,6 +159,7 @@
 
         <item class="GasParticle">
             <name>gasParticle12</name>
+            <color>#ff000000</color>
             <position>(0.872742,0.0741111)</position>
             <velocity>(-0.0279788,-0.250575)</velocity>
             <mass>1</mass>
@@ -148,6 +167,7 @@
 
         <item class="GasParticle">
             <name>gasParticle13</name>
+            <color>#ff000000</color>
             <position>(0.333732,-0.464313)</position>
             <velocity>(0.573326,0.111378)</velocity>
             <mass>1</mass>
@@ -155,6 +175,7 @@
 
         <item class="GasParticle">
             <name>gasParticle14</name>
+            <color>#ff000000</color>
             <position>(-0.404284,-0.58451)</position>
             <velocity>(-0.673658,-0.0030305)</velocity>
             <mass>1</mass>
@@ -162,6 +183,7 @@
 
         <item class="GasParticle">
             <name>gasParticle15</name>
+            <color>#ff000000</color>
             <position>(-0.66638,0.191884)</position>
             <velocity>(-0.303089,0.460749)</velocity>
             <mass>1</mass>
@@ -169,6 +191,7 @@
 
         <item class="GasParticle">
             <name>gasParticle16</name>
+            <color>#ff000000</color>
             <position>(-1.10525,0.74948)</position>
             <velocity>(-0.150014,-0.218446)</velocity>
             <mass>1</mass>
@@ -176,6 +199,7 @@
 
         <item class="GasParticle">
             <name>gasParticle17</name>
+            <color>#ff000000</color>
             <position>(1.02176,0.500629)</position>
             <velocity>(0.255919,-0.17699)</velocity>
             <mass>1</mass>
@@ -183,6 +207,7 @@
 
         <item class="GasParticle">
             <name>gasParticle18</name>
+            <color>#ff000000</color>
             <position>(-0.389028,0.363806)</position>
             <velocity>(0.446827,0.420189)</velocity>
             <mass>1</mass>
@@ -190,6 +215,7 @@
 
         <item class="GasParticle">
             <name>gasParticle19</name>
+            <color>#ff000000</color>
             <position>(-0.201622,-0.411999)</position>
             <velocity>(-0.271972,0.340909)</velocity>
             <mass>1</mass>
@@ -197,6 +223,7 @@
 
         <item class="GasParticle">
             <name>gasParticle20</name>
+            <color>#ff000000</color>
             <position>(0.232935,0.68702)</position>
             <velocity>(0.430746,-0.126516)</velocity>
             <mass>1</mass>
@@ -206,6 +233,7 @@
 
     <item class="Polygon">
         <name>polygon5</name>
+        <color>#ff000000</color>
         <position>(-0.451723,-0.124167)</position>
         <angle>0</angle>
         <velocity>(0,0)</velocity>
@@ -217,6 +245,7 @@
 
     <item class="Graph">
         <name>graph1</name>
+        <color>#ff000000</color>
         <position>(-1.5632,3.55366)</position>
         <size>(400,300)</size>
         <objectX>polygon5</objectX>
@@ -236,6 +265,7 @@
 
     <item class="Tracer">
         <name>tracer1</name>
+        <color>#ffff0000</color>
         <body>polygon5</body>
         <localPosition>(0,0)</localPosition>
         <points></points>

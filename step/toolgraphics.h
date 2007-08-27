@@ -141,6 +141,7 @@ protected:
 
     double _lastScale;
     double _lastPointTime;
+    QRgb   _lastColor;
 
     KPlotWidget* _plotWidget;
     KPlotObject* _plotObject;

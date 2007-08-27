@@ -1,0 +1,689 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE StepCoreXML>
+<world xmlns="http://edu.kde.org/step/StepCoreXML" version="1.0">
+    <name>world1</name>
+    <color>#ffffffff</color>
+    <time>0</time>
+    <timeScale>1</timeScale>
+    <errorsCalculation>false</errorsCalculation>
+
+    <item class="SoftBody">
+        <name>softBody1</name>
+        <color>#ffa9a9a9</color>
+        <showInternalItems>false</showInternalItems>
+        <position>(0,0)</position>
+        <velocity>(0,0)</velocity>
+        <angularVelocity>0</angularVelocity>
+        <angularMomentum>0</angularMomentum>
+        <borderParticleNames>softBodyParticle1,softBodyParticle2,softBodyParticle3,softBodyParticle4,softBodyParticle8,softBodyParticle12,softBodyParticle16,softBodyParticle15,softBodyParticle14,softBodyParticle13,softBodyParticle9,softBodyParticle5</borderParticleNames>
+
+        <item class="SoftBodyParticle">
+            <name>softBodyParticle1</name>
+            <color>#ff000000</color>
+            <position>(-0.5,-0.5)</position>
+            <velocity>(0,0)</velocity>
+            <mass>0.0625</mass>
+        </item>
+
+        <item class="SoftBodyParticle">
+            <name>softBodyParticle2</name>
+            <color>#ff000000</color>
+            <position>(-0.166667,-0.5)</position>
+            <velocity>(0,0)</velocity>
+            <mass>0.0625</mass>
+        </item>
+
+        <item class="SoftBodyParticle">
+            <name>softBodyParticle3</name>
+            <color>#ff000000</color>
+            <position>(0.166667,-0.5)</position>
+            <velocity>(0,0)</velocity>
+            <mass>0.0625</mass>
+        </item>
+
+        <item class="SoftBodyParticle">
+            <name>softBodyParticle4</name>
+            <color>#ff000000</color>
+            <position>(0.5,-0.5)</position>
+            <velocity>(0,0)</velocity>
+            <mass>0.0625</mass>
+        </item>
+
+        <item class="SoftBodyParticle">
+            <name>softBodyParticle5</name>
+            <color>#ff000000</color>
+            <position>(-0.5,-0.166667)</position>
+            <velocity>(0,0)</velocity>
+            <mass>0.0625</mass>
+        </item>
+
+        <item class="SoftBodyParticle">
+            <name>softBodyParticle6</name>
+            <color>#ff000000</color>
+            <position>(-0.166667,-0.166667)</position>
+            <velocity>(0,0)</velocity>
+            <mass>0.0625</mass>
+        </item>
+
+        <item class="SoftBodyParticle">
+            <name>softBodyParticle7</name>
+            <color>#ff000000</color>
+            <position>(0.166667,-0.166667)</position>
+            <velocity>(0,0)</velocity>
+            <mass>0.0625</mass>
+        </item>
+
+        <item class="SoftBodyParticle">
+            <name>softBodyParticle8</name>
+            <color>#ff000000</color>
+            <position>(0.5,-0.166667)</position>
+            <velocity>(0,0)</velocity>
+            <mass>0.0625</mass>
+        </item>
+
+        <item class="SoftBodyParticle">
+            <name>softBodyParticle9</name>
+            <color>#ff000000</color>
+            <position>(-0.5,0.166667)</position>
+            <velocity>(0,0)</velocity>
+            <mass>0.0625</mass>
+        </item>
+
+        <item class="SoftBodyParticle">
+            <name>softBodyParticle10</name>
+            <color>#ff000000</color>
+            <position>(-0.166667,0.166667)</position>
+            <velocity>(0,0)</velocity>
+            <mass>0.0625</mass>
+        </item>
+
+        <item class="SoftBodyParticle">
+            <name>softBodyParticle11</name>
+            <color>#ff000000</color>
+            <position>(0.166667,0.166667)</position>
+            <velocity>(0,0)</velocity>
+            <mass>0.0625</mass>
+        </item>
+
+        <item class="SoftBodyParticle">
+            <name>softBodyParticle12</name>
+            <color>#ff000000</color>
+            <position>(0.5,0.166667)</position>
+            <velocity>(0,0)</velocity>
+            <mass>0.0625</mass>
+        </item>
+
+        <item class="SoftBodyParticle">
+            <name>softBodyParticle13</name>
+            <color>#ff000000</color>
+            <position>(-0.5,0.5)</position>
+            <velocity>(0,0)</velocity>
+            <mass>0.0625</mass>
+        </item>
+
+        <item class="SoftBodyParticle">
+            <name>softBodyParticle14</name>
+            <color>#ff000000</color>
+            <position>(-0.166667,0.5)</position>
+            <velocity>(0,0)</velocity>
+            <mass>0.0625</mass>
+        </item>
+
+        <item class="SoftBodyParticle">
+            <name>softBodyParticle15</name>
+            <color>#ff000000</color>
+            <position>(0.166667,0.5)</position>
+            <velocity>(0,0)</velocity>
+            <mass>0.0625</mass>
+        </item>
+
+        <item class="SoftBodyParticle">
+            <name>softBodyParticle16</name>
+            <color>#ff000000</color>
+            <position>(0.5,0.5)</position>
+            <velocity>(0,0)</velocity>
+            <mass>0.0625</mass>
+        </item>
+
+        <item class="SoftBodySpring">
+            <name>softBodySpring1</name>
+            <color>#ff00ff00</color>
+            <restLength>0.333333333333333</restLength>
+            <stiffness>6.42857142857143</stiffness>
+            <damping>0.128571428571429</damping>
+            <body1>softBodyParticle1</body1>
+            <body2>softBodyParticle2</body2>
+            <localPosition1>(0,0)</localPosition1>
+            <localPosition2>(0,0)</localPosition2>
+        </item>
+
+        <item class="SoftBodySpring">
+            <name>softBodySpring2</name>
+            <color>#ff00ff00</color>
+            <restLength>0.333333333333333</restLength>
+            <stiffness>6.42857142857143</stiffness>
+            <damping>0.128571428571429</damping>
+            <body1>softBodyParticle2</body1>
+            <body2>softBodyParticle3</body2>
+            <localPosition1>(0,0)</localPosition1>
+            <localPosition2>(0,0)</localPosition2>
+        </item>
+
+        <item class="SoftBodySpring">
+            <name>softBodySpring3</name>
+            <color>#ff00ff00</color>
+            <restLength>0.333333333333333</restLength>
+            <stiffness>6.42857142857143</stiffness>
+            <damping>0.128571428571429</damping>
+            <body1>softBodyParticle3</body1>
+            <body2>softBodyParticle4</body2>
+            <localPosition1>(0,0)</localPosition1>
+            <localPosition2>(0,0)</localPosition2>
+        </item>
+
+        <item class="SoftBodySpring">
+            <name>softBodySpring4</name>
+            <color>#ff00ff00</color>
+            <restLength>0.333333333333333</restLength>
+            <stiffness>6.42857142857143</stiffness>
+            <damping>0.128571428571429</damping>
+            <body1>softBodyParticle5</body1>
+            <body2>softBodyParticle6</body2>
+            <localPosition1>(0,0)</localPosition1>
+            <localPosition2>(0,0)</localPosition2>
+        </item>
+
+        <item class="SoftBodySpring">
+            <name>softBodySpring5</name>
+            <color>#ff00ff00</color>
+            <restLength>0.333333333333333</restLength>
+            <stiffness>6.42857142857143</stiffness>
+            <damping>0.128571428571429</damping>
+            <body1>softBodyParticle6</body1>
+            <body2>softBodyParticle7</body2>
+            <localPosition1>(0,0)</localPosition1>
+            <localPosition2>(0,0)</localPosition2>
+        </item>
+
+        <item class="SoftBodySpring">
+            <name>softBodySpring6</name>
+            <color>#ff00ff00</color>
+            <restLength>0.333333333333333</restLength>
+            <stiffness>6.42857142857143</stiffness>
+            <damping>0.128571428571429</damping>
+            <body1>softBodyParticle7</body1>
+            <body2>softBodyParticle8</body2>
+            <localPosition1>(0,0)</localPosition1>
+            <localPosition2>(0,0)</localPosition2>
+        </item>
+
+        <item class="SoftBodySpring">
+            <name>softBodySpring7</name>
+            <color>#ff00ff00</color>
+            <restLength>0.333333333333333</restLength>
+            <stiffness>6.42857142857143</stiffness>
+            <damping>0.128571428571429</damping>
+            <body1>softBodyParticle9</body1>
+            <body2>softBodyParticle10</body2>
+            <localPosition1>(0,0)</localPosition1>
+            <localPosition2>(0,0)</localPosition2>
+        </item>
+
+        <item class="SoftBodySpring">
+            <name>softBodySpring8</name>
+            <color>#ff00ff00</color>
+            <restLength>0.333333333333333</restLength>
+            <stiffness>6.42857142857143</stiffness>
+            <damping>0.128571428571429</damping>
+            <body1>softBodyParticle10</body1>
+            <body2>softBodyParticle11</body2>
+            <localPosition1>(0,0)</localPosition1>
+            <localPosition2>(0,0)</localPosition2>
+        </item>
+
+        <item class="SoftBodySpring">
+            <name>softBodySpring9</name>
+            <color>#ff00ff00</color>
+            <restLength>0.333333333333333</restLength>
+            <stiffness>6.42857142857143</stiffness>
+            <damping>0.128571428571429</damping>
+            <body1>softBodyParticle11</body1>
+            <body2>softBodyParticle12</body2>
+            <localPosition1>(0,0)</localPosition1>
+            <localPosition2>(0,0)</localPosition2>
+        </item>
+
+        <item class="SoftBodySpring">
+            <name>softBodySpring10</name>
+            <color>#ff00ff00</color>
+            <restLength>0.333333333333333</restLength>
+            <stiffness>6.42857142857143</stiffness>
+            <damping>0.128571428571429</damping>
+            <body1>softBodyParticle13</body1>
+            <body2>softBodyParticle14</body2>
+            <localPosition1>(0,0)</localPosition1>
+            <localPosition2>(0,0)</localPosition2>
+        </item>
+
+        <item class="SoftBodySpring">
+            <name>softBodySpring11</name>
+            <color>#ff00ff00</color>
+            <restLength>0.333333333333333</restLength>
+            <stiffness>6.42857142857143</stiffness>
+            <damping>0.128571428571429</damping>
+            <body1>softBodyParticle14</body1>
+            <body2>softBodyParticle15</body2>
+            <localPosition1>(0,0)</localPosition1>
+            <localPosition2>(0,0)</localPosition2>
+        </item>
+
+        <item class="SoftBodySpring">
+            <name>softBodySpring12</name>
+            <color>#ff00ff00</color>
+            <restLength>0.333333333333333</restLength>
+            <stiffness>6.42857142857143</stiffness>
+            <damping>0.128571428571429</damping>
+            <body1>softBodyParticle15</body1>
+            <body2>softBodyParticle16</body2>
+            <localPosition1>(0,0)</localPosition1>
+            <localPosition2>(0,0)</localPosition2>
+        </item>
+
+        <item class="SoftBodySpring">
+            <name>softBodySpring13</name>
+            <color>#ff00ff00</color>
+            <restLength>0.333333333333333</restLength>
+            <stiffness>6.42857142857143</stiffness>
+            <damping>0.128571428571429</damping>
+            <body1>softBodyParticle1</body1>
+            <body2>softBodyParticle5</body2>
+            <localPosition1>(0,0)</localPosition1>
+            <localPosition2>(0,0)</localPosition2>
+        </item>
+
+        <item class="SoftBodySpring">
+            <name>softBodySpring14</name>
+            <color>#ff00ff00</color>
+            <restLength>0.333333333333333</restLength>
+            <stiffness>6.42857142857143</stiffness>
+            <damping>0.128571428571429</damping>
+            <body1>softBodyParticle2</body1>
+            <body2>softBodyParticle6</body2>
+            <localPosition1>(0,0)</localPosition1>
+            <localPosition2>(0,0)</localPosition2>
+        </item>
+
+        <item class="SoftBodySpring">
+            <name>softBodySpring15</name>
+            <color>#ff00ff00</color>
+            <restLength>0.333333333333333</restLength>
+            <stiffness>6.42857142857143</stiffness>
+            <damping>0.128571428571429</damping>
+            <body1>softBodyParticle3</body1>
+            <body2>softBodyParticle7</body2>
+            <localPosition1>(0,0)</localPosition1>
+            <localPosition2>(0,0)</localPosition2>
+        </item>
+
+        <item class="SoftBodySpring">
+            <name>softBodySpring16</name>
+            <color>#ff00ff00</color>
+            <restLength>0.333333333333333</restLength>
+            <stiffness>6.42857142857143</stiffness>
+            <damping>0.128571428571429</damping>
+            <body1>softBodyParticle4</body1>
+            <body2>softBodyParticle8</body2>
+            <localPosition1>(0,0)</localPosition1>
+            <localPosition2>(0,0)</localPosition2>
+        </item>
+
+        <item class="SoftBodySpring">
+            <name>softBodySpring17</name>
+            <color>#ff00ff00</color>
+            <restLength>0.333333333333333</restLength>
+            <stiffness>6.42857142857143</stiffness>
+            <damping>0.128571428571429</damping>
+            <body1>softBodyParticle5</body1>
+            <body2>softBodyParticle9</body2>
+            <localPosition1>(0,0)</localPosition1>
+            <localPosition2>(0,0)</localPosition2>
+        </item>
+
+        <item class="SoftBodySpring">
+            <name>softBodySpring18</name>
+            <color>#ff00ff00</color>
+            <restLength>0.333333333333333</restLength>
+            <stiffness>6.42857142857143</stiffness>
+            <damping>0.128571428571429</damping>
+            <body1>softBodyParticle6</body1>
+            <body2>softBodyParticle10</body2>
+            <localPosition1>(0,0)</localPosition1>
+            <localPosition2>(0,0)</localPosition2>
+        </item>
+
+        <item class="SoftBodySpring">
+            <name>softBodySpring19</name>
+            <color>#ff00ff00</color>
+            <restLength>0.333333333333333</restLength>
+            <stiffness>6.42857142857143</stiffness>
+            <damping>0.128571428571429</damping>
+            <body1>softBodyParticle7</body1>
+            <body2>softBodyParticle11</body2>
+            <localPosition1>(0,0)</localPosition1>
+            <localPosition2>(0,0)</localPosition2>
+        </item>
+
+        <item class="SoftBodySpring">
+            <name>softBodySpring20</name>
+            <color>#ff00ff00</color>
+            <restLength>0.333333333333333</restLength>
+            <stiffness>6.42857142857143</stiffness>
+            <damping>0.128571428571429</damping>
+            <body1>softBodyParticle8</body1>
+            <body2>softBodyParticle12</body2>
+            <localPosition1>(0,0)</localPosition1>
+            <localPosition2>(0,0)</localPosition2>
+        </item>
+
+        <item class="SoftBodySpring">
+            <name>softBodySpring21</name>
+            <color>#ff00ff00</color>
+            <restLength>0.333333333333333</restLength>
+            <stiffness>6.42857142857143</stiffness>
+            <damping>0.128571428571429</damping>
+            <body1>softBodyParticle9</body1>
+            <body2>softBodyParticle13</body2>
+            <localPosition1>(0,0)</localPosition1>
+            <localPosition2>(0,0)</localPosition2>
+        </item>
+
+        <item class="SoftBodySpring">
+            <name>softBodySpring22</name>
+            <color>#ff00ff00</color>
+            <restLength>0.333333333333333</restLength>
+            <stiffness>6.42857142857143</stiffness>
+            <damping>0.128571428571429</damping>
+            <body1>softBodyParticle10</body1>
+            <body2>softBodyParticle14</body2>
+            <localPosition1>(0,0)</localPosition1>
+            <localPosition2>(0,0)</localPosition2>
+        </item>
+
+        <item class="SoftBodySpring">
+            <name>softBodySpring23</name>
+            <color>#ff00ff00</color>
+            <restLength>0.333333333333333</restLength>
+            <stiffness>6.42857142857143</stiffness>
+            <damping>0.128571428571429</damping>
+            <body1>softBodyParticle11</body1>
+            <body2>softBodyParticle15</body2>
+            <localPosition1>(0,0)</localPosition1>
+            <localPosition2>(0,0)</localPosition2>
+        </item>
+
+        <item class="SoftBodySpring">
+            <name>softBodySpring24</name>
+            <color>#ff00ff00</color>
+            <restLength>0.333333333333333</restLength>
+            <stiffness>6.42857142857143</stiffness>
+            <damping>0.128571428571429</damping>
+            <body1>softBodyParticle12</body1>
+            <body2>softBodyParticle16</body2>
+            <localPosition1>(0,0)</localPosition1>
+            <localPosition2>(0,0)</localPosition2>
+        </item>
+
+        <item class="SoftBodySpring">
+            <name>softBodySpring25</name>
+            <color>#ff00ff00</color>
+            <restLength>0.471404520791032</restLength>
+            <stiffness>4.54568645048495</stiffness>
+            <damping>0.0909137290096989</damping>
+            <body1>softBodyParticle1</body1>
+            <body2>softBodyParticle6</body2>
+            <localPosition1>(0,0)</localPosition1>
+            <localPosition2>(0,0)</localPosition2>
+        </item>
+
+        <item class="SoftBodySpring">
+            <name>softBodySpring26</name>
+            <color>#ff00ff00</color>
+            <restLength>0.471404520791032</restLength>
+            <stiffness>4.54568645048495</stiffness>
+            <damping>0.0909137290096989</damping>
+            <body1>softBodyParticle2</body1>
+            <body2>softBodyParticle5</body2>
+            <localPosition1>(0,0)</localPosition1>
+            <localPosition2>(0,0)</localPosition2>
+        </item>
+
+        <item class="SoftBodySpring">
+            <name>softBodySpring27</name>
+            <color>#ff00ff00</color>
+            <restLength>0.471404520791032</restLength>
+            <stiffness>4.54568645048495</stiffness>
+            <damping>0.0909137290096989</damping>
+            <body1>softBodyParticle2</body1>
+            <body2>softBodyParticle7</body2>
+            <localPosition1>(0,0)</localPosition1>
+            <localPosition2>(0,0)</localPosition2>
+        </item>
+
+        <item class="SoftBodySpring">
+            <name>softBodySpring28</name>
+            <color>#ff00ff00</color>
+            <restLength>0.471404520791032</restLength>
+            <stiffness>4.54568645048495</stiffness>
+            <damping>0.0909137290096989</damping>
+            <body1>softBodyParticle3</body1>
+            <body2>softBodyParticle6</body2>
+            <localPosition1>(0,0)</localPosition1>
+            <localPosition2>(0,0)</localPosition2>
+        </item>
+
+        <item class="SoftBodySpring">
+            <name>softBodySpring29</name>
+            <color>#ff00ff00</color>
+            <restLength>0.471404520791032</restLength>
+            <stiffness>4.54568645048495</stiffness>
+            <damping>0.0909137290096989</damping>
+            <body1>softBodyParticle3</body1>
+            <body2>softBodyParticle8</body2>
+            <localPosition1>(0,0)</localPosition1>
+            <localPosition2>(0,0)</localPosition2>
+        </item>
+
+        <item class="SoftBodySpring">
+            <name>softBodySpring30</name>
+            <color>#ff00ff00</color>
+            <restLength>0.471404520791032</restLength>
+            <stiffness>4.54568645048495</stiffness>
+            <damping>0.0909137290096989</damping>
+            <body1>softBodyParticle4</body1>
+            <body2>softBodyParticle7</body2>
+            <localPosition1>(0,0)</localPosition1>
+            <localPosition2>(0,0)</localPosition2>
+        </item>
+
+        <item class="SoftBodySpring">
+            <name>softBodySpring31</name>
+            <color>#ff00ff00</color>
+            <restLength>0.471404520791032</restLength>
+            <stiffness>4.54568645048495</stiffness>
+            <damping>0.0909137290096989</damping>
+            <body1>softBodyParticle5</body1>
+            <body2>softBodyParticle10</body2>
+            <localPosition1>(0,0)</localPosition1>
+            <localPosition2>(0,0)</localPosition2>
+        </item>
+
+        <item class="SoftBodySpring">
+            <name>softBodySpring32</name>
+            <color>#ff00ff00</color>
+            <restLength>0.471404520791032</restLength>
+            <stiffness>4.54568645048495</stiffness>
+            <damping>0.0909137290096989</damping>
+            <body1>softBodyParticle6</body1>
+            <body2>softBodyParticle9</body2>
+            <localPosition1>(0,0)</localPosition1>
+            <localPosition2>(0,0)</localPosition2>
+        </item>
+
+        <item class="SoftBodySpring">
+            <name>softBodySpring33</name>
+            <color>#ff00ff00</color>
+            <restLength>0.471404520791032</restLength>
+            <stiffness>4.54568645048495</stiffness>
+            <damping>0.0909137290096989</damping>
+            <body1>softBodyParticle6</body1>
+            <body2>softBodyParticle11</body2>
+            <localPosition1>(0,0)</localPosition1>
+            <localPosition2>(0,0)</localPosition2>
+        </item>
+
+        <item class="SoftBodySpring">
+            <name>softBodySpring34</name>
+            <color>#ff00ff00</color>
+            <restLength>0.471404520791032</restLength>
+            <stiffness>4.54568645048495</stiffness>
+            <damping>0.0909137290096989</damping>
+            <body1>softBodyParticle7</body1>
+            <body2>softBodyParticle10</body2>
+            <localPosition1>(0,0)</localPosition1>
+            <localPosition2>(0,0)</localPosition2>
+        </item>
+
+        <item class="SoftBodySpring">
+            <name>softBodySpring35</name>
+            <color>#ff00ff00</color>
+            <restLength>0.471404520791032</restLength>
+            <stiffness>4.54568645048495</stiffness>
+            <damping>0.0909137290096989</damping>
+            <body1>softBodyParticle7</body1>
+            <body2>softBodyParticle12</body2>
+            <localPosition1>(0,0)</localPosition1>
+            <localPosition2>(0,0)</localPosition2>
+        </item>
+
+        <item class="SoftBodySpring">
+            <name>softBodySpring36</name>
+            <color>#ff00ff00</color>
+            <restLength>0.471404520791032</restLength>
+            <stiffness>4.54568645048495</stiffness>
+            <damping>0.0909137290096989</damping>
+            <body1>softBodyParticle8</body1>
+            <body2>softBodyParticle11</body2>
+            <localPosition1>(0,0)</localPosition1>
+            <localPosition2>(0,0)</localPosition2>
+        </item>
+
+        <item class="SoftBodySpring">
+            <name>softBodySpring37</name>
+            <color>#ff00ff00</color>
+            <restLength>0.471404520791032</restLength>
+            <stiffness>4.54568645048495</stiffness>
+            <damping>0.0909137290096989</damping>
+            <body1>softBodyParticle9</body1>
+            <body2>softBodyParticle14</body2>
+            <localPosition1>(0,0)</localPosition1>
+            <localPosition2>(0,0)</localPosition2>
+        </item>
+
+        <item class="SoftBodySpring">
+            <name>softBodySpring38</name>
+            <color>#ff00ff00</color>
+            <restLength>0.471404520791032</restLength>
+            <stiffness>4.54568645048495</stiffness>
+            <damping>0.0909137290096989</damping>
+            <body1>softBodyParticle10</body1>
+            <body2>softBodyParticle13</body2>
+            <localPosition1>(0,0)</localPosition1>
+            <localPosition2>(0,0)</localPosition2>
+        </item>
+
+        <item class="SoftBodySpring">
+            <name>softBodySpring39</name>
+            <color>#ff00ff00</color>
+            <restLength>0.471404520791032</restLength>
+            <stiffness>4.54568645048495</stiffness>
+            <damping>0.0909137290096989</damping>
+            <body1>softBodyParticle10</body1>
+            <body2>softBodyParticle15</body2>
+            <localPosition1>(0,0)</localPosition1>
+            <localPosition2>(0,0)</localPosition2>
+        </item>
+
+        <item class="SoftBodySpring">
+            <name>softBodySpring40</name>
+            <color>#ff00ff00</color>
+            <restLength>0.471404520791032</restLength>
+            <stiffness>4.54568645048495</stiffness>
+            <damping>0.0909137290096989</damping>
+            <body1>softBodyParticle11</body1>
+            <body2>softBodyParticle14</body2>
+            <localPosition1>(0,0)</localPosition1>
+            <localPosition2>(0,0)</localPosition2>
+        </item>
+
+        <item class="SoftBodySpring">
+            <name>softBodySpring41</name>
+            <color>#ff00ff00</color>
+            <restLength>0.471404520791032</restLength>
+            <stiffness>4.54568645048495</stiffness>
+            <damping>0.0909137290096989</damping>
+            <body1>softBodyParticle11</body1>
+            <body2>softBodyParticle16</body2>
+            <localPosition1>(0,0)</localPosition1>
+            <localPosition2>(0,0)</localPosition2>
+        </item>
+
+        <item class="SoftBodySpring">
+            <name>softBodySpring42</name>
+            <color>#ff00ff00</color>
+            <restLength>0.471404520791032</restLength>
+            <stiffness>4.54568645048495</stiffness>
+            <damping>0.0909137290096989</damping>
+            <body1>softBodyParticle12</body1>
+            <body2>softBodyParticle15</body2>
+            <localPosition1>(0,0)</localPosition1>
+            <localPosition2>(0,0)</localPosition2>
+        </item>
+
+    </item>
+
+    <item class="Polygon">
+        <name>polygon1</name>
+        <color>#ff000000</color>
+        <position>(-1.58333,-0.416667)</position>
+        <angle>0</angle>
+        <velocity>(1.3,0.44)</velocity>
+        <angularVelocity>0</angularVelocity>
+        <mass>5</mass>
+        <inertia>5.83476491888889</inertia>
+        <vertexes>(0.463333,2.64667),(0.683333,-2.56333),(-1.14667,-0.0833333)</vertexes>
+    </item>
+
+    <item class="Polygon">
+        <name>polygon2</name>
+        <color>#ff000000</color>
+        <position>(2.23518,-0.089408)</position>
+        <angle>0</angle>
+        <velocity>(0,0)</velocity>
+        <angularVelocity>0</angularVelocity>
+        <mass>5</mass>
+        <inertia>8.12987838742089</inertia>
+        <vertexes>(-0.817438,2.36929),(-0.587534,-2.89935),(1.40497,0.530053)</vertexes>
+    </item>
+
+    <solver class="AdaptiveEulerSolver">
+        <name>solver1</name>
+        <stepSize>1</stepSize>
+        <toleranceAbs>0.001</toleranceAbs>
+        <toleranceRel>0.001</toleranceRel>
+    </solver>
+    <collisionSolver class="GJKCollisionSolver">
+        <name>collisionSolver1</name>
+        <toleranceAbs>0.001</toleranceAbs>
+    </collisionSolver>
+
+</world>

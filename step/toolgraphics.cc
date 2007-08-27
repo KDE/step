@@ -313,6 +313,7 @@ GraphGraphicsItem::GraphGraphicsItem(StepCore::Item* item, WorldModel* worldMode
     //_plotWidget->setAntialiasing(true);
     _plotWidget->addPlotObjects(plotObjects);
 
+    _lastColor = 0xff000000;
 
     _boundingRect = QRectF(0, 0, 0, 0);
     _lastScale = 1;
@@ -463,6 +464,11 @@ void GraphGraphicsItem::worldDataChanged(bool dynamicOnly)
 
         _plotObject->setShowPoints(graph()->showPoints());
         _plotObject->setShowLines(graph()->showLines());
+
+        if(_lastColor != graph()->color()) {
+            _lastColor = graph()->color();
+            _plotObject->setLinePen(QPen(QColor::fromRgba(_lastColor),0));
+        }
 
         /*
         // Points
