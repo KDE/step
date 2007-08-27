@@ -40,12 +40,14 @@
 #include <KApplication>
 #include <KMessageBox>
 #include <KFileDialog>
+#include <KTemporaryFile>
 #include <KConfigDialog>
 #include <KStandardDirs>
 #include <KStatusBar>
 #include <KLocale>
 #include <KConfig>
 
+#include <KIO/NetAccess>
 #include <KNS/Engine>
 
 #include <QFile>
@@ -227,8 +229,6 @@ bool MainWindow::openFile(const KUrl& url, const KUrl& startUrl)
     if(!maybeSave()) return false;
 
     KUrl fileUrl = url;
-    kDebug() << url << endl;
-    kDebug() << url.url() << endl;
     if(fileUrl.isEmpty()) {
         fileUrl = KFileDialog::getOpenFileName(startUrl, "*.step|Step files (*.step)", this);
         if(fileUrl.isEmpty()) return false;
@@ -237,24 +237,33 @@ bool MainWindow::openFile(const KUrl& url, const KUrl& startUrl)
     worldModel->clearWorld();
     newFile();
 
-    // TODO: KIO
-    Q_ASSERT(fileUrl.isLocalFile());
+    QString tmpFileName;
+    if(! KIO::NetAccess::download(fileUrl, tmpFileName, this) ) {
+        KMessageBox::error(this, KIO::NetAccess::lastErrorString());
+        return false;
+    }
 
-    QFile file(fileUrl.path());
+    QFile file(tmpFileName);
     if(!file.open(QIODevice::ReadOnly | QIODevice::Text)) {
-        KMessageBox::sorry(this, i18n("Cannot open file '%1'", fileUrl.pathOrUrl()));
+        KMessageBox::sorry(this, i18n("Cannot open file '%1'", tmpFileName));
+        KIO::NetAccess::removeTempFile(tmpFileName);
         return false;
     }
     
     if(!worldModel->loadXml(&file)) {
-        KMessageBox::sorry(this, i18n("Cannot parse file '%1': %2", fileUrl.pathOrUrl(), worldModel->errorString()));
+        KMessageBox::sorry(this, i18n("Cannot parse file '%1': %2", fileUrl.pathOrUrl(),
+                                                    worldModel->errorString()));
+        KIO::NetAccess::removeTempFile(tmpFileName);
         return false;
     }
+
+    KIO::NetAccess::removeTempFile(tmpFileName);
 
     worldGraphicsView->fitToPage();
     currentFileUrl = fileUrl;
     updateCaption();
     actionRecentFiles->addUrl(fileUrl);
+
     return true;
 }
 
@@ -266,21 +275,46 @@ bool MainWindow::saveFileAs(const KUrl& url, const KUrl& startUrl)
         fileUrl = KFileDialog::getSaveFileName(startUrl.isEmpty() ? currentFileUrl : startUrl,
                                              "*.step|Step files (*.step)", this);
         if(fileUrl.isEmpty()) return false;
+        else if(KIO::NetAccess::exists(fileUrl, KIO::NetAccess::DestinationSide, this)) {
+            int ret = KMessageBox::warningContinueCancel(this,
+                        i18n( "The file \"%1\" already exists. Do you wish to overwrite it?", fileUrl.pathOrUrl()),
+                        i18n("Warning - Step"), KStandardGuiItem::overwrite());
+            if(ret != KMessageBox::Continue) return false;
+        }
     }
 
-    // TODO: KIO
-    Q_ASSERT(fileUrl.isLocalFile());
+    bool local = fileUrl.isLocalFile();
+    QFile* file;
 
-    QFile file(fileUrl.path());
-    if(!file.open(QIODevice::WriteOnly | QIODevice::Text)) {
-        KMessageBox::sorry(this, i18n("Cannot open file '%1'", fileUrl.pathOrUrl()));
+    if(!local) {
+        file = new KTemporaryFile();
+        static_cast<KTemporaryFile*>(file)->setAutoRemove(true);
+    } else {
+        file = new QFile(fileUrl.path());
+    }
+
+    if(!file->open(QIODevice::WriteOnly | QIODevice::Text)) {
+        KMessageBox::sorry(this, i18n("Cannot open file '%1'", file->fileName()));
+        delete file;
         return false;
     }
     
-    if(!worldModel->saveXml(&file)) {
-        KMessageBox::sorry(this, i18n("Cannot save file '%1': %2", fileUrl.pathOrUrl(), worldModel->errorString()));
+    if(!worldModel->saveXml(file)) {
+        KMessageBox::sorry(this, i18n("Cannot save file '%1': %2", fileUrl.pathOrUrl(),
+                                        worldModel->errorString()));
+        delete file;
         return false;
     }
+
+    if(!local) {
+        if(!KIO::NetAccess::upload(file->fileName(), fileUrl, this)) {
+            KMessageBox::error(this, KIO::NetAccess::lastErrorString());
+            delete file;
+            return false;
+        }
+    }
+
+    delete file;
 
     currentFileUrl = fileUrl;
     updateCaption();

@@ -71,8 +71,11 @@ bool XmlFile::save(const World* world)
     }
 
     saveObject(1, "solver", world->solver(), stream);
+    stream << "\n";
+
     saveObject(1, "collisionSolver", world->collisionSolver(), stream);
     stream << "\n";
+
     stream << "</world>\n";
 
     return true;

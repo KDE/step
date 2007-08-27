@@ -49,7 +49,10 @@ int main(int argc, char* argv[])
     mainWindow->show();
 
     KCmdLineArgs* args = KCmdLineArgs::parsedArgs();
-    if(args->count() > 0) mainWindow->openFile(KUrl(args->arg(0)));
+    if(args->count() > 0) {
+        kDebug() << args->url(0) << endl;
+        mainWindow->openFile(args->url(0));
+    }
 
     return app.exec();
 }
