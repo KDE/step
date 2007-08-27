@@ -24,7 +24,7 @@
 
 namespace StepCore {
 
-STEPCORE_META_OBJECT(Spring, "Massless spring", 0,
+STEPCORE_META_OBJECT(Spring, "Massless spring which can be connected to bodies", 0,
     STEPCORE_SUPER_CLASS(Item) STEPCORE_SUPER_CLASS(Force),
     STEPCORE_PROPERTY_RW(double, restLength, "m", "Rest length", restLength, setRestLength)
     STEPCORE_PROPERTY_R_D(double, length, "m", "Current length", length)

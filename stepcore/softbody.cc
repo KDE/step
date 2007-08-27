@@ -29,7 +29,7 @@ namespace StepCore
 
 STEPCORE_META_OBJECT(SoftBodyParticle, "SoftBody particle", 0, STEPCORE_SUPER_CLASS(Particle),)
 STEPCORE_META_OBJECT(SoftBodySpring, "SoftBody spring", 0, STEPCORE_SUPER_CLASS(Spring),)
-STEPCORE_META_OBJECT(SoftBody, "SoftBody", 0, STEPCORE_SUPER_CLASS(ItemGroup),
+STEPCORE_META_OBJECT(SoftBody, "Deformable SoftBody", 0, STEPCORE_SUPER_CLASS(ItemGroup),
         STEPCORE_PROPERTY_RW(bool, showInternalItems, STEPCORE_UNITS_NULL, "Show internal items",
                                             showInternalItems, setShowInternalItems)
         STEPCORE_PROPERTY_RW_D(StepCore::Vector2d, position, "m", "Position of the center of mass", position, setPosition)

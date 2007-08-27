@@ -22,13 +22,13 @@
 
 namespace StepCore {
 
-STEPCORE_META_OBJECT(Note, "Note", 0,
+STEPCORE_META_OBJECT(Note, "Note: displays a textual note on the scene", 0,
     STEPCORE_SUPER_CLASS(Item) STEPCORE_SUPER_CLASS(Tool),
     STEPCORE_PROPERTY_RW(StepCore::Vector2d, position, "m", "Position", position, setPosition)
     STEPCORE_PROPERTY_RW(QString, text, STEPCORE_UNITS_NULL, "Text", text, setText)
     )
 
-STEPCORE_META_OBJECT(Graph, "Graph", 0,
+STEPCORE_META_OBJECT(Graph, "Graph: plots a graph of any properties", 0,
     STEPCORE_SUPER_CLASS(Item) STEPCORE_SUPER_CLASS(Tool),
     STEPCORE_PROPERTY_RW(StepCore::Vector2d, position, "m", "Graph position on the scene", position, setPosition)
     STEPCORE_PROPERTY_RW(StepCore::Vector2d, size, "m", "Graph size on the scene", size, setSize)
@@ -50,7 +50,7 @@ STEPCORE_META_OBJECT(Graph, "Graph", 0,
     STEPCORE_PROPERTY_R (QString, unitsY, STEPCORE_UNITS_NULL, "Units along Y axis", unitsY)
     )
 
-STEPCORE_META_OBJECT(Meter, "Meter", 0,
+STEPCORE_META_OBJECT(Meter, "Meter: displays any property on the scene", 0,
     STEPCORE_SUPER_CLASS(Item) STEPCORE_SUPER_CLASS(Tool),
     STEPCORE_PROPERTY_RW(StepCore::Vector2d, position, "m", "Meter position on the scene", position, setPosition)
     STEPCORE_PROPERTY_RW(StepCore::Vector2d, size, "m", "Meter size on the scene", size, setSize)
@@ -62,7 +62,7 @@ STEPCORE_META_OBJECT(Meter, "Meter", 0,
     STEPCORE_PROPERTY_R (QString, units, STEPCORE_UNITS_NULL, "Units of measured property", units)
     )
 
-STEPCORE_META_OBJECT(Controller, "Controller", 0,
+STEPCORE_META_OBJECT(Controller, "Controller: allows to easily control any property", 0,
     STEPCORE_SUPER_CLASS(Item) STEPCORE_SUPER_CLASS(Tool),
     STEPCORE_PROPERTY_RW(StepCore::Vector2d, position, "m", "Controller position on the scene", position, setPosition)
     STEPCORE_PROPERTY_RW(StepCore::Vector2d, size, "m", "Controller size on the scene", size, setSize)
@@ -80,7 +80,7 @@ STEPCORE_META_OBJECT(Controller, "Controller", 0,
     STEPCORE_PROPERTY_R (QString, units, STEPCORE_UNITS_NULL, "Units of controlled property", units)
     )
 
-STEPCORE_META_OBJECT(Tracer, "Tracer", 0,
+STEPCORE_META_OBJECT(Tracer, "Tracer: traces trajectory of a point on a body", 0,
     STEPCORE_SUPER_CLASS(Item) STEPCORE_SUPER_CLASS(Tool),
     STEPCORE_PROPERTY_RW(QString, body, STEPCORE_UNITS_NULL, "Traced body", body, setBody)
     STEPCORE_PROPERTY_RW(StepCore::Vector2d, localPosition, "m",
