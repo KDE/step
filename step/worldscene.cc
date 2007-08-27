@@ -197,15 +197,24 @@ void WorldScene::helpEvent(QGraphicsSceneHelpEvent *helpEvent)
 {
     QString text;
 
-    int count = 0;
+    QList<StepCore::Item*> activeItems;
     foreach(QGraphicsItem* it, items(helpEvent->scenePos())) {
         if(it->parentItem()) continue;
         StepCore::Item* item = itemFromGraphics(it);
-        if(item) {
-            _worldModel->simulationPause();
-            if(++count > 4) { text += QString("<p>...</p>"); break; }
-            text += _worldModel->createToolTip(_worldModel->objectIndex(item));
-        }
+        if(item) activeItems << item;
+    }
+
+    int count = activeItems.count();
+    if(count > 1) { //XXX
+        text = QString("<nobr><h4><u>%1</u></h4></nobr>").arg(i18n("Objects under mouse:"));
+        for(int i=0; i<qMin<int>(count,10); ++i)
+            text += QString("<br /><nobr>%1</nobr>")
+                        .arg(_worldModel->objectIndex(activeItems[i]).data(Qt::DisplayRole).toString());
+        if(count > 10)
+            text += QString("<br /><nobr>%1</nobr>").arg(i18n("... (%1 more items)", count - 10));
+    } else {
+        for(int i=0; i<count; ++i)
+            text += _worldModel->objectIndex(activeItems[i]).data(Qt::ToolTipRole).toString();
     }
 
     // Show or hide the tooltip
