@@ -6,20 +6,20 @@
   - STEPCORE_WITH_NAMEPROP
   - STEPCORE_WITH_GUIPROPS
 * unit tests
-* movement restrictions
+* movement restrictions (IN PROGRESS)
 * rigid bodies (DONE)
-* collision detection with friction
+* collision detection with friction (IN PROGRESS)
 * custom properties for bodies, make charge custom property (?)
 * adaptive timestep solvers (DONE)
 * correctly handle stiff ODE
 * separate position and coordinate 
   (for independent tolerance settings, symplectic solvers)
-* global error estimation (requires jacobian ?)
+* global error estimation (requires jacobian ?) (DONE)
 * multistep solvers
 * symplectic and other nice solvers
 * molecular dynamics (potentials etc.) (DONE)
-* massive springs
-* soft bodies
+* massive springs (DONE)
+* soft bodies (DONE)
 * fluid and gas simulation (DONE)
 * think about 3d
 
@@ -37,10 +37,10 @@ code (marked as TODO or XXX).
 * formulas in notes
 * custom scene background
 * nice-looking descriptions for all bodies and parameters
-  (with references to wikipedia or wikibooks ?)
+  (with references to wikipedia or wikibooks ?) (DONE)
 * configurable simulation-time controllers (DONE)
 * configurable plots and summaries (DONE)
-* KHotNewStuff for sharing experiments
+* KHotNewStuff for sharing experiments (Downloading: DONE)
 * Tutorials (series of experiments with explanations)
 * define multiple coordinate system and provide an ability
   to translate vector coordinates between them
