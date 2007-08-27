@@ -42,11 +42,6 @@ ParticleGraphicsItem::ParticleGraphicsItem(StepCore::Item* item, WorldModel* wor
     //scene()->addItem(_velocityHandler);
 }
 
-inline StepCore::Particle* ParticleGraphicsItem::particle() const
-{
-    return static_cast<StepCore::Particle*>(_item);
-}
-
 QPainterPath ParticleGraphicsItem::shape() const
 {
     QPainterPath path;

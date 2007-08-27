@@ -20,10 +20,7 @@
 #define STEP_SPRINGGRAPHICS_H
 
 #include "worldgraphics.h"
-
-namespace StepCore {
-    class Spring;
-}
+#include <stepcore/spring.h>
 
 class SpringCreator: public ItemCreator
 {
@@ -66,7 +63,9 @@ public:
 
 protected:
     void mouseSetPos(const QPointF& pos, const QPointF& diff);
-    StepCore::Spring* spring() const;
+    StepCore::Spring* spring() const {
+        return static_cast<StepCore::Spring*>(_item); }
+
     QPainterPath _painterPath;
     double _rnorm;
     double _rscale;

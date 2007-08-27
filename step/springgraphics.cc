@@ -184,11 +184,6 @@ SpringGraphicsItem::SpringGraphicsItem(StepCore::Item* item, WorldModel* worldMo
     _handler2->setVisible(false);
 }
 
-inline StepCore::Spring* SpringGraphicsItem::spring() const
-{
-    return static_cast<StepCore::Spring*>(_item);
-}
-
 QPainterPath SpringGraphicsItem::shape() const
 {
     return _painterPath;

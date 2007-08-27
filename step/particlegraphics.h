@@ -20,10 +20,7 @@
 #define STEP_PARTICLEGRAPHICS_H
 
 #include "worldgraphics.h"
-
-namespace StepCore {
-    class Particle;
-}
+#include <stepcore/particle.h>
 
 class ParticleGraphicsItem: public WorldGraphicsItem {
 public:
@@ -37,7 +34,8 @@ public:
     void worldDataChanged(bool);
 
 protected:
-    StepCore::Particle* particle() const;
+    StepCore::Particle* particle() const {
+        return static_cast<StepCore::Particle*>(_item); }
 
     ArrowHandlerGraphicsItem *_velocityHandler;
     double _lastArrowRadius;
