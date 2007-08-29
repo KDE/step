@@ -55,6 +55,7 @@
 #include <QItemSelectionModel>
 
 #include <cstdlib>
+#include <ctime>
 
 MainWindow::MainWindow()
 {
