@@ -23,12 +23,16 @@
 #include <QGraphicsView>
 #include <QHash>
 
+class KUrl;
 class WorldModel;
 //class ItemCreator;
 class QModelIndex;
 class QGraphicsItem;
 class QItemSelection;
+class QVBoxLayout;
+class QSignalMapper;
 class WorldGraphicsItem;
+class WorldGraphicsView;
 class ItemCreator;
 
 namespace StepCore {
@@ -53,10 +57,16 @@ public:
 
 public slots:
     void beginAddItem(const QString& name);
+
+    void* showMessage(const QString& text, bool closeButton = true,
+                                            bool closeTimer = false);
+    void closeMessage(void* id);
+
     void settingsChanged();
 
 signals:
     void endAddItem(const QString& name, bool success);
+    void linkActivated(const KUrl& url);
 
 protected slots:
     void worldModelReset();
@@ -66,6 +76,9 @@ protected slots:
     
     void worldRowsInserted(const QModelIndex& parent, int start, int end);
     void worldRowsAboutToBeRemoved(const QModelIndex& parent, int start, int end);
+
+    void messageLinkActivated(const QString& link);
+    void messageCloseClicked(QWidget* widget);
 
 protected:
     bool event(QEvent* event);
@@ -78,10 +91,17 @@ protected:
 
 protected:
     WorldModel* _worldModel;
+    WorldGraphicsView* _worldView;
     QHash<const StepCore::Item*, WorldGraphicsItem*> _itemsHash;
     double _currentViewScale;
     ItemCreator* _itemCreator;
     QRgb         _bgColor;
+
+    QFrame*        _messagesFrame;
+    QVBoxLayout*   _messagesLayout;
+    QSignalMapper* _messagesSignalMapper;
+
+    friend class WorldGraphicsView;
 };
 
 class WorldGraphicsView: public QGraphicsView

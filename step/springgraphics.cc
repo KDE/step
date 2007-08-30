@@ -31,6 +31,11 @@
 
 #include <cmath>
 
+void SpringCreator::start()
+{
+    showMessage(i18n("Click on the scene to position first end of the %1", className()), false);
+}
+
 bool SpringCreator::sceneEvent(QEvent* event)
 {
     QGraphicsSceneMouseEvent* mouseEvent = static_cast<QGraphicsSceneMouseEvent*>(event);

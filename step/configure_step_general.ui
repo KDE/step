@@ -5,8 +5,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>253</width>
-    <height>202</height>
+    <width>260</width>
+    <height>272</height>
    </rect>
   </property>
   <layout class="QGridLayout" >
@@ -33,29 +33,49 @@
      </property>
     </widget>
    </item>
+   <item rowspan="5" row="0" column="2" >
+    <spacer>
+     <property name="orientation" >
+      <enum>Qt::Horizontal</enum>
+     </property>
+     <property name="sizeHint" >
+      <size>
+       <width>91</width>
+       <height>251</height>
+      </size>
+     </property>
+    </spacer>
+   </item>
    <item row="1" column="0" colspan="2" >
     <widget class="QCheckBox" name="kcfg_showAxes" >
      <property name="text" >
-      <string>Show axes</string>
+      <string>Show scene axes</string>
      </property>
     </widget>
    </item>
    <item row="2" column="0" colspan="2" >
+    <widget class="QCheckBox" name="kcfg_showCreationTips" >
+     <property name="text" >
+      <string>Show tips when creating objects</string>
+     </property>
+    </widget>
+   </item>
+   <item row="3" column="0" colspan="2" >
     <widget class="QCheckBox" name="kcfg_wikiExternal" >
      <property name="text" >
       <string>Open wikipedia in external browser</string>
      </property>
     </widget>
    </item>
-   <item row="3" column="0" colspan="2" >
+   <item row="4" column="0" colspan="2" >
     <spacer>
      <property name="orientation" >
       <enum>Qt::Vertical</enum>
      </property>
      <property name="sizeHint" >
       <size>
-       <width>20</width>
-       <height>40</height>
+       <width>231</width>
+       <height>140</height>
       </size>
      </property>
     </spacer>

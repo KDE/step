@@ -36,6 +36,7 @@ public:
     PolygonCreator(const QString& className, WorldModel* worldModel, WorldScene* worldScene)
                         : ItemCreator(className, worldModel, worldScene) {}
     bool sceneEvent(QEvent* event);
+    void start();
 
 protected:
     void fixCenterOfMass();

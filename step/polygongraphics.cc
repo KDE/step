@@ -23,6 +23,7 @@
 #include <stepcore/constants.h>
 #include <stepcore/types.h>
 #include "worldmodel.h"
+#include "worldscene.h"
 #include "worldfactory.h"
 #include <QItemSelectionModel>
 #include <QEvent>
@@ -109,6 +110,11 @@ void PolygonCreator::fixInertia()
     _worldModel->setProperty(_item, _item->metaObject()->property("inertia"), QVariant::fromValue(inertia));
 }
 
+void PolygonCreator::start()
+{
+    showMessage(i18n("Click on the scene to create a first vertex of %1", className()), false, false);
+}
+
 bool PolygonCreator::sceneEvent(QEvent* event)
 {
     QGraphicsSceneMouseEvent* mouseEvent = static_cast<QGraphicsSceneMouseEvent*>(event);
@@ -153,6 +159,7 @@ bool PolygonCreator::sceneEvent(QEvent* event)
         if(event->type() == QEvent::GraphicsSceneMouseRelease) {
             vertexes += QString(",(%1,%2)").arg(v[0]).arg(v[1]);
             _worldModel->setProperty(_item, _item->metaObject()->property("vertexes"), vertexes);
+            showMessage(i18n("Click on the scene to add new vertex or press Enter to finish"), false, false);
         }
         
         //fixCenterOfMass();
@@ -165,6 +172,9 @@ bool PolygonCreator::sceneEvent(QEvent* event)
         fixCenterOfMass();
         fixInertia();
         _worldModel->endMacro();
+
+        showMessage(i18n("%1 named '%2' created", className(), _item->name()), true, true);
+
         event->accept();
         return true;
     }

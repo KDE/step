@@ -40,20 +40,26 @@ class ItemCreator
 {
 public:
     ItemCreator(const QString& className, WorldModel* worldModel, WorldScene* worldScene)
-           : _className(className), _worldModel(worldModel), _worldScene(worldScene), _item(NULL) {}
-    virtual ~ItemCreator() {}
+           : _className(className), _worldModel(worldModel),
+             _worldScene(worldScene), _item(NULL), _messageId(NULL) {}
+    virtual ~ItemCreator() { closeMessage(); }
 
     QString className() const { return _className; }
     StepCore::Item* item() const { return _item; }
 
     virtual bool sceneEvent(QEvent* event);
-    virtual void abort() {};
+    virtual void abort() {}
+    virtual void start();
 
 protected:
+    void showMessage(const QString& text, bool closeButton = true, bool closeTimer = false);
+    void closeMessage();
+
     QString     _className;
     WorldModel* _worldModel;
     WorldScene* _worldScene;
     StepCore::Item* _item;
+    void* _messageId;
 };
 
 class WorldGraphicsItem: public QGraphicsItem {

@@ -34,6 +34,14 @@
 #include <QPainter>
 #include <QAction>
 #include <QToolTip>
+#include <QLabel>
+#include <QTimer>
+#include <QSignalMapper>
+#include <QToolButton>
+#include <QHBoxLayout>
+#include <QVBoxLayout>
+#include <KIcon>
+#include <KUrl>
 #include <KLocale>
 
 class WorldSceneAxes: public QGraphicsItem
@@ -95,8 +103,9 @@ void WorldSceneAxes::viewScaleChanged()
 }
 
 WorldScene::WorldScene(WorldModel* worldModel, QObject* parent)
-    : QGraphicsScene(parent), _worldModel(worldModel), _currentViewScale(1),
-            _itemCreator(NULL), _bgColor(0xffffffff)
+    : QGraphicsScene(parent), _worldModel(worldModel), _worldView(NULL),
+        _currentViewScale(1), _itemCreator(NULL), _bgColor(0xffffffff),
+        _messagesFrame(NULL), _messagesLayout(NULL)
 {
     #ifdef __GNUC__
     #warning TODO: measure what index method is faster
@@ -149,6 +158,7 @@ void WorldScene::beginAddItem(const QString& name)
     } else {
         _itemCreator = _worldModel->worldFactory()->newItemCreator(name, _worldModel, this);
         Q_ASSERT(_itemCreator != NULL);
+        _itemCreator->start();
     }
 }
 
@@ -306,7 +316,7 @@ void WorldScene::worldRowsAboutToBeRemoved(const QModelIndex& parent, int start,
 
 void WorldScene::worldCurrentChanged(const QModelIndex& current, const QModelIndex& /*previous*/)
 {
-    if(views().isEmpty() || views()[0]->viewport()->hasFocus()) return;
+    if(!_worldView || _worldView->viewport()->hasFocus()) return;
     QGraphicsItem* graphicsItem = graphicsFromItem(_worldModel->item(current));
     if(graphicsItem) graphicsItem->ensureVisible(QRectF(), 5, 5);
 }
@@ -345,8 +355,8 @@ void WorldScene::worldDataChanged(bool dynamicOnly)
 
 void WorldScene::updateViewScale()
 {
-    if(!views().isEmpty()) {
-        _currentViewScale = views()[0]->matrix().m11();
+    if(_worldView) {
+        _currentViewScale = _worldView->matrix().m11();
         _worldModel->simulationPause();
         foreach (QGraphicsItem *item, items()) {
             WorldGraphicsItem* gItem = dynamic_cast<WorldGraphicsItem*>(item);
@@ -372,6 +382,102 @@ QRectF WorldScene::calcItemsBoundingRect()
     return boundingRect;
 }
 
+void* WorldScene::showMessage(const QString& text, bool closeButton, bool closeTimer)
+{
+    if(!_messagesFrame && _worldView) {
+        int br, bg, bb;
+        _messagesFrame = new QFrame(_worldView);
+        _messagesFrame->setFrameShape(QFrame::StyledPanel);
+        _messagesFrame->palette().color(QPalette::Window).getRgb(&br, &bg, &bb);
+        _messagesFrame->setStyleSheet(QString(".QFrame {border: 2px solid rgba(133,133,133,85%);"
+                      "border-radius: 6px; background-color: rgba(%1,%2,%3,85%);}").arg(br).arg(bg).arg(bb));
+        _messagesFrame->move(15,15);
+        _messagesLayout = new QVBoxLayout(_messagesFrame);
+        _messagesLayout->setContentsMargins(9,0,9,0);
+        //_messagesLayout->setContentsMargins(0,0,0,0);
+        _messagesLayout->setSpacing(0);
+        _messagesLayout->setSizeConstraint(QLayout::SetFixedSize);
+
+        _messagesSignalMapper = new QSignalMapper(_messagesFrame);
+        connect(_messagesSignalMapper, SIGNAL(mapped(QWidget*)),
+                        this, SLOT(messageCloseClicked(QWidget*)));
+    }
+
+    if(_messagesLayout->count() != 0) {
+        QFrame* line = new QFrame(_messagesFrame);
+        line->setFrameShape(QFrame::HLine);
+        line->setFrameShadow(QFrame::Sunken);
+        _messagesLayout->addWidget(line);
+    }
+
+    QWidget* widget = new QWidget(_messagesFrame);
+    widget->setMinimumHeight(32);
+
+    QHBoxLayout* layout = new QHBoxLayout(widget);
+    layout->setContentsMargins(0,2,0,2);
+
+    QLabel* pixLabel = new QLabel(widget);
+    pixLabel->setPixmap(KIcon("dialog-information").pixmap(16,16));
+    layout->addWidget(pixLabel);
+
+    QLabel* textLabel = new QLabel(widget);
+    textLabel->setText(text);
+    layout->addWidget(textLabel, 1);
+
+    connect(textLabel, SIGNAL(linkActivated(const QString&)),
+                this, SLOT(messageLinkActivated(const QString&)));
+
+    if(closeButton) {
+        QToolButton* button = new QToolButton(widget);
+        button->setIcon(KIcon("window-close"));
+        button->setIconSize(QSize(16,16));
+        button->setAutoRaise(true);
+        layout->addWidget(button);
+
+        _messagesSignalMapper->setMapping(button, widget);
+        connect(button, SIGNAL(clicked()),
+                    _messagesSignalMapper, SLOT(map()));
+    }
+
+    if(closeTimer) {
+        QTimer* timer = new QTimer(widget);
+        timer->setSingleShot(true);
+        _messagesSignalMapper->setMapping(timer, widget);
+        connect(timer, SIGNAL(timeout()),
+                    _messagesSignalMapper, SLOT(map()));
+        timer->start(2000);
+    }
+
+    _messagesLayout->addWidget(widget);
+    _messagesFrame->show();
+
+    return widget;
+}
+
+void WorldScene::closeMessage(void* id)
+{
+    if(id) messageCloseClicked(static_cast<QWidget*>(id));
+}
+
+void WorldScene::messageCloseClicked(QWidget* widget)
+{
+    int index = _messagesLayout->indexOf(widget);
+    if(index < 0) return;
+    if(index > 0) {
+        delete _messagesLayout->itemAt(index-1)->widget();
+    } else if(_messagesLayout->count() > 1) {
+        delete _messagesLayout->itemAt(1)->widget();
+    }
+    delete widget;
+    if(_messagesLayout->count() == 0)
+        _messagesFrame->hide();
+}
+
+void WorldScene::messageLinkActivated(const QString& link)
+{
+    emit linkActivated(link);
+}
+
 void WorldScene::settingsChanged()
 {
     worldModelReset();
@@ -380,6 +486,7 @@ void WorldScene::settingsChanged()
 WorldGraphicsView::WorldGraphicsView(WorldScene* worldScene, QWidget* parent)
     : QGraphicsView(worldScene, parent)
 {
+    worldScene->_worldView = this;
     //worldGraphicsView->setRenderHints(QPainter::Antialiasing);
     setDragMode(QGraphicsView::RubberBandDrag);
     setResizeAnchor(QGraphicsView::AnchorViewCenter);

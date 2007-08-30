@@ -212,6 +212,8 @@ void InfoBrowser::openUrl(const KUrl& url, bool clearHistory, bool fromHistory)
             KToolInvocation::invokeBrowser(url.url());
         }
     }
+
+    show();
 }
 
 void InfoBrowser::setHtml(const QString& data, bool fromHistory, const KUrl& url)

@@ -5,6 +5,11 @@
             http://www.kde.org/standards/kcfg/1.0/kcfg.xsd" >
     <kcfgfile name="steprc"/>
     <group name="General">
+        <entry name="showCreationTips" type="Bool">
+            <label>Show tips when creating items</label>
+            <whatsthis>Show tips when creating items</whatsthis>
+            <default>true</default>
+        </entry>
         <entry name="showAxes" type="Bool">
             <label>Show axes on the scene</label>
             <whatsthis>Show axes on the scene</whatsthis>
