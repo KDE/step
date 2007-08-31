@@ -33,7 +33,8 @@
 
 void SpringCreator::start()
 {
-    showMessage(i18n("Click on the scene to position first end of the %1", className()), false);
+    showMessage(i18n("Press left mouse button to position first end of the %1\n"
+                     "then drag and release it to position second end", className()), false);
 }
 
 bool SpringCreator::sceneEvent(QEvent* event)
@@ -44,14 +45,16 @@ bool SpringCreator::sceneEvent(QEvent* event)
         QVariant vpos = QVariant::fromValue(WorldGraphicsItem::pointToVector(pos));
         _worldModel->simulationPause();
         _worldModel->beginMacro(i18n("Create %1", _className));
-        _item = _worldModel->newItem(className()); Q_ASSERT(_item != NULL);
 
+        _item = _worldModel->newItem(className()); Q_ASSERT(_item != NULL);
         _worldModel->setProperty(_item, _item->metaObject()->property("localPosition1"), vpos);
         _worldModel->setProperty(_item, _item->metaObject()->property("localPosition2"), vpos);
         tryAttach(pos, 1);
 
         _worldModel->selectionModel()->setCurrentIndex(_worldModel->objectIndex(_item),
                                                 QItemSelectionModel::ClearAndSelect);
+
+        showMessage(i18n("Release left mouse button to position second end of the %1", className()), false);
         event->accept(); return false;
 
     } else if(event->type() == QEvent::GraphicsSceneMouseMove &&
@@ -64,11 +67,15 @@ bool SpringCreator::sceneEvent(QEvent* event)
                                                     static_cast<StepCore::Spring*>(_item)->length());
         event->accept(); return false;
 
-    } else if(event->type() == QEvent::GraphicsSceneMouseRelease) {
+    } else if(event->type() == QEvent::GraphicsSceneMouseRelease &&
+                    mouseEvent->button() == Qt::LeftButton) {
         QPointF pos = mouseEvent->scenePos();
+
         tryAttach(pos, 2);
 
         _worldModel->endMacro();
+
+        showMessage(i18n("%1 named '%2' created", className(), _item->name()), true, true);
         event->accept(); return true;
     }
     return false;

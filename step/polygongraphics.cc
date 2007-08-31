@@ -139,7 +139,8 @@ bool PolygonCreator::sceneEvent(QEvent* event)
         return false;
 
     } else if(_item && (event->type() == QEvent::GraphicsSceneMouseMove ||
-                        event->type() == QEvent::GraphicsSceneMouseRelease)) {
+                        (event->type() == QEvent::GraphicsSceneMouseRelease &&
+                         mouseEvent->button() == Qt::LeftButton))) {
 
         QPointF pos = mouseEvent->scenePos();
         StepCore::Vector2d v = WorldGraphicsItem::pointToVector(pos);

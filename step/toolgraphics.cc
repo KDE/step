@@ -621,7 +621,6 @@ void GraphMenuHandler::confApply()
     // XXX: check for actual change ?
     if(!_confChanged) return;
     _worldModel->beginMacro(i18n("Edit %1", graph()->name()));
-    _worldModel->beginUpdate();
 
     _worldModel->setProperty(graph(), graph()->metaObject()->property("objectX"),
                                 _confUi->dataSourceX->dataObject());
@@ -657,7 +656,6 @@ void GraphMenuHandler::confApply()
     _worldModel->setProperty(graph(), graph()->metaObject()->property("showPoints"),
                                 _confUi->checkBoxShowPoints->isChecked());
 
-    _worldModel->endUpdate();
     _worldModel->endMacro();
 }
 
@@ -860,7 +858,6 @@ void MeterMenuHandler::confApply()
     // XXX: check for actual change ?
     if(!_confChanged) return;
     _worldModel->beginMacro(i18n("Edit %1", meter()->name()));
-    _worldModel->beginUpdate();
 
     _worldModel->setProperty(meter(), meter()->metaObject()->property("object"),
                                 _confUi->dataSource->dataObject());
@@ -872,7 +869,6 @@ void MeterMenuHandler::confApply()
     _worldModel->setProperty(meter(), meter()->metaObject()->property("digits"),
                                 _confUi->lineEditDigits->text().toInt());
 
-    _worldModel->endUpdate();
     _worldModel->endMacro();
 }
 
@@ -1235,7 +1231,6 @@ void ControllerMenuHandler::confApply()
     // XXX: check for actual change ?
     if(!_confChanged) return;
     _worldModel->beginMacro(i18n("Edit %1", controller()->name()));
-    _worldModel->beginUpdate();
 
     _worldModel->setProperty(controller(), controller()->metaObject()->property("object"),
                                 _confUi->dataSource->dataObject());
@@ -1259,7 +1254,6 @@ void ControllerMenuHandler::confApply()
     _worldModel->setProperty(controller(), controller()->metaObject()->property("increment"),
                                  QVariant::fromValue(_confUi->lineEditIncrement->text().toDouble()));
 
-    _worldModel->endUpdate();
     _worldModel->endMacro();
 }
 

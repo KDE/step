@@ -266,7 +266,6 @@ bool GasMenuHandler::createGasParticlesApply()
                     _createGasParticlesUi->lineEditMeanVelocity->text(), &ok);
 
     _worldModel->beginMacro(i18n("Edit %1", gas()->name()));
-    _worldModel->beginUpdate();
 
     std::vector<StepCore::GasParticle*> particles =
             gas()->rectCreateParticles(count, mass, temperature, meanVelocity);
@@ -277,7 +276,6 @@ bool GasMenuHandler::createGasParticlesApply()
         _worldModel->addItem(*it, gas());
     }
 
-    _worldModel->endUpdate();
     _worldModel->endMacro();
 
     return true;

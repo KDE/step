@@ -246,6 +246,7 @@ WorldModel::WorldModel(QObject* parent)
     _undoStack = new KUndoStack(this);
     _worldFactory = new WorldFactory();
     _world = new StepCore::World();
+
     _simulationCommand = NULL;
     _simulationTimer = new QTimer(this);
     setSimulationFps(25); // XXX KConfig ?
@@ -253,8 +254,19 @@ WorldModel::WorldModel(QObject* parent)
     _simulationThread = new SimulationThread(&_world);
     _simulationThread->start();
 
-    _updating = 0;
+    connect(_simulationTimer, SIGNAL(timeout()),
+                this, SLOT(simulationFrameBegin()));
+    connect(_simulationThread, SIGNAL(worldEvolveDone(int)),
+                this, SLOT(simulationFrameEnd(int)), Qt::QueuedConnection);
+
+    _updatingTimer = new QTimer(this);
+    _updatingTimer->setSingleShot(true);
+    _updatingTimer->setInterval(0);
     _updatingDynamicOnly = true;
+
+    connect(_updatingTimer, SIGNAL(timeout()),
+                this, SLOT(doEmitChanged()));
+
     resetWorld();
 
     _simulationFrameWaiting = false;
@@ -262,10 +274,6 @@ WorldModel::WorldModel(QObject* parent)
     _simulationStopping = false;
     _simulationPaused = false;
 
-    QObject::connect(_simulationTimer, SIGNAL(timeout()),
-                        this, SLOT(simulationFrameBegin()));
-    QObject::connect(_simulationThread, SIGNAL(worldEvolveDone(int)),
-                        this, SLOT(simulationFrameEnd(int)), Qt::QueuedConnection);
 }
 
 WorldModel::~WorldModel()
@@ -302,22 +310,18 @@ void WorldModel::resetWorld()
 
 void WorldModel::emitChanged(bool dynamicOnly)
 {
-    if(!_updating) {
-        _world->doCalcFn();
-        emit worldDataChanged(dynamicOnly);
-        if(!dynamicOnly) {
-            emit dataChanged(worldIndex(), collisionSolverIndex());
-        }
-    } else if(!dynamicOnly) {
-        _updatingDynamicOnly = false;
-    }
+    //kDebug() << "emitChanged(): " << world()->time() << endl;
+    if(!dynamicOnly) _updatingDynamicOnly = false;
+    if(!_updatingTimer->isActive()) _updatingTimer->start(0);
 }
 
-void WorldModel::endUpdate()
+void WorldModel::doEmitChanged()
 {
-    if(!--_updating) {
-        emitChanged(_updatingDynamicOnly);
-        _updatingDynamicOnly = true;
+    _world->doCalcFn();
+    //kDebug() << "emit worldDataChanged(): " << world()->time() << endl << endl;
+    emit worldDataChanged(_updatingDynamicOnly);
+    if(!_updatingDynamicOnly) {
+        emit dataChanged(worldIndex(), collisionSolverIndex());
     }
 }
 
@@ -804,6 +808,8 @@ void WorldModel::simulationFrameBegin()
     Q_ASSERT(isSimulationActive());
     Q_ASSERT(_simulationCommand);
     Q_ASSERT(!_simulationStopping);
+
+    //kDebug() << "simulationFrameBegin(): " << world()->time() << endl;
 
     if(_simulationFrameWaiting) { // TODO: warn user
         //qDebug("frame skipped!");

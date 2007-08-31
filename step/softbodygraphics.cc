@@ -119,7 +119,6 @@ void SoftBodyMenuHandler::createSoftBodyItemsApply()
 
 
     _worldModel->beginMacro(i18n("Edit %1", softBody()->name()));
-    _worldModel->beginUpdate();
 
     StepCore::ItemList items =
             softBody()->createSoftBodyItems(position, size, split, bodyMass, youngModulus, bodyDamping);
@@ -129,7 +128,6 @@ void SoftBodyMenuHandler::createSoftBodyItemsApply()
         _worldModel->addItem(*it, softBody());
     }
 
-    _worldModel->endUpdate();
     _worldModel->endMacro();
 }
 

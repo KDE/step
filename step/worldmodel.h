@@ -97,9 +97,6 @@ public:
     void beginMacro(const QString& text);
     void endMacro();
 
-    void beginUpdate() { ++_updating; }
-    void endUpdate();
-
     // Property edit
     void setProperty(StepCore::Object* object, const StepCore::MetaProperty* property,
                             const QVariant& value, bool merge = true);
@@ -144,6 +141,7 @@ public slots:
 protected slots:
     void simulationFrameBegin();
     void simulationFrameEnd(int result);
+    void doEmitChanged();
 
 signals:
     void worldDataChanged(bool dynamicOnly);
@@ -166,8 +164,8 @@ protected:
     const WorldFactory* _worldFactory;
     QString _errorString;
 
-    int  _updating;
-    bool _updatingDynamicOnly;
+    QTimer* _updatingTimer;
+    bool    _updatingDynamicOnly;
 
     QTimer*           _simulationTimer;
     int               _simulationFps;
