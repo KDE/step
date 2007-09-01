@@ -20,6 +20,7 @@
 
 #ifdef STEPCORE_WITH_GSL
 
+#include "util.h"
 #include <cstring>
 #include <cmath>
 

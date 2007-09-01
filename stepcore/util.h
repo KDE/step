@@ -29,6 +29,17 @@ namespace StepCore {
 
 template<typename T> inline T square(T v) { return v*v; }
 
+/*
+template<class _Class, class _BaseIterator>
+class ClassFilterIterator
+{
+public:
+    ClassFilterIterator(const _BaseIterator& it): _it(it);
+protected:
+    _BaseIterator _it;
+};
+*/
+
 } // namespace StepCore
 
 #ifdef __GNUC__

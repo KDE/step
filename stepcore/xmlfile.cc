@@ -104,18 +104,18 @@ void XmlFile::saveProperties(int indent, const Object* obj, QTextStream& stream)
         }
     }
 
-    const Item* item = dynamic_cast<const Item*>(obj);
-    const ObjectErrors* objErrors = item ? item->tryGetObjectErrors() : NULL;
-    if(objErrors) {
-        const MetaObject* metaObjectErrors = objErrors->metaObject();
-        for(int i = 1; i < metaObjectErrors->propertyCount(); ++i) {
-            const MetaProperty* p = metaObjectErrors->property(i);
-            if(p->isStored()) {
-                stream << QString(indent*INDENT, ' ')
-                       << "<" << p->name() << ">"
-                       << escapeText(p->readString(objErrors))
-                       << "</" << p->name() << ">\n";
-            }
+    if(!obj->metaObject()->inherits<Item>()) return;
+    const ObjectErrors* objErrors = static_cast<const Item*>(obj)->tryGetObjectErrors();
+    if(!objErrors) return;
+
+    const MetaObject* metaObjectErrors = objErrors->metaObject();
+    for(int i = 1; i < metaObjectErrors->propertyCount(); ++i) {
+        const MetaProperty* p = metaObjectErrors->property(i);
+        if(p->isStored()) {
+            stream << QString(indent*INDENT, ' ')
+                   << "<" << p->name() << ">"
+                   << escapeText(p->readString(objErrors))
+                   << "</" << p->name() << ">\n";
         }
     }
 }
@@ -127,8 +127,8 @@ void XmlFile::saveObject(int indent, const QString& tag, const Object* obj, QTex
            << " class=\"" << QString(obj->metaObject()->className()) << "\">\n";
     saveProperties(indent+1, obj, stream);
 
-    const ItemGroup* group = dynamic_cast<const ItemGroup*>(obj);
-    if(group) {
+    if(obj->metaObject()->inherits<ItemGroup>()) {
+        const ItemGroup* group = static_cast<const ItemGroup*>(obj);
         stream << "\n";
         ItemList::const_iterator end = group->items().end();
         for(ItemList::const_iterator it = group->items().begin(); it != end; ++it) {
@@ -195,8 +195,8 @@ bool XmlFileHandler::startElement(const QString &namespaceURI, const QString &,
         break;
 
     case ITEM:
-        if(qName == "item" && dynamic_cast<ItemGroup*>(_object)) {
-            _parent = dynamic_cast<ItemGroup*>(_object);
+        if(qName == "item" && _object->metaObject()->inherits<ItemGroup>()) {
+            _parent = static_cast<ItemGroup*>(_object);
 
             Item* item = _factory->newItem(attributes.value("class")); 
             if(item == NULL) {
@@ -235,12 +235,12 @@ bool XmlFileHandler::startElement(const QString &namespaceURI, const QString &,
         }
 
         _property = _object->metaObject()->property(qName);
-        if(!_property && dynamic_cast<Item*>(_object)) {
+        if(!_property && _object->metaObject()->inherits<Item>()) {
             const MetaObject* objErrors = _factory->metaObject(_object->metaObject()->className()+"Errors");
             if(objErrors) {
                 _property = objErrors->property(qName);
                 if(_property && _property->isStored())
-                    _objectErrors = dynamic_cast<Item*>(_object)->objectErrors();
+                    _objectErrors = static_cast<Item*>(_object)->objectErrors();
             }
         }
 
@@ -283,8 +283,8 @@ bool XmlFileHandler::endElement(const QString &namespaceURI, const QString &,
             STEPCORE_ASSERT_NOABORT(_object == _world);
             _state = END;
         } else {
-            Item* item = dynamic_cast<Item*>(_parent);
-            STEPCORE_ASSERT_NOABORT(item != NULL);
+            STEPCORE_ASSERT_NOABORT(_parent->metaObject()->inherits<Item>());
+            Item* item = static_cast<Item*>(_parent);
             _object = _parent;
             _parent = item->group();
         }

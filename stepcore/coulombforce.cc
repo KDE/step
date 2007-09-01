@@ -47,22 +47,20 @@ CoulombForce::CoulombForce(double coulombConst)
 
 void CoulombForce::calcForce(bool calcVariances)
 {
-    ChargedParticle* p1;
-    ChargedParticle* p2;
-        
-    const BodyList::const_iterator bodies_being = world()->bodies().begin(); 
-    const BodyList::const_iterator bodies_it = world()->bodies().end(); 
+    const BodyList::const_iterator end = world()->bodies().end(); 
+    for(BodyList::const_iterator b1 = world()->bodies().begin(); b1 != end; ++b1) {
+        if(!(*b1)->metaObject()->inherits<ChargedParticle>()) continue;
+        for(BodyList::const_iterator b2 = b1+1; b2 != end; ++b2) {
+            if(!(*b2)->metaObject()->inherits<ChargedParticle>()) continue;
+            ChargedParticle* p1 = static_cast<ChargedParticle*>(*b1);
+            ChargedParticle* p2 = static_cast<ChargedParticle*>(*b2);
 
-    for(BodyList::const_iterator b1 = bodies_being; b1 != bodies_it; ++b1) {
-        if(NULL == (p1 = dynamic_cast<ChargedParticle*>(*b1))) continue;
-        for(BodyList::const_iterator b2 = b1+1; b2 != bodies_it; ++b2) {
-            if(NULL == (p2 = dynamic_cast<ChargedParticle*>(*b2))) continue;
             Vector2d r = p2->position() - p1->position();
             double rnorm2 = r.norm2();
             Vector2d force = _coulombConst* p1->charge() * p2->charge() * r / (rnorm2*sqrt(rnorm2));
-            p1->applyForce(force);
-            force.invert();
             p2->applyForce(force);
+            force.invert();
+            p1->applyForce(force);
 
             if(calcVariances) {
                 // XXX: CHECKME

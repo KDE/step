@@ -860,7 +860,7 @@ void WorldModel::simulationFrameEnd(int result)
     if(_simulationFrameSkipped) {
         _simulationFrameSkipped = false;
         QApplication::processEvents(); // XXX
-        if(!_simulationFrameWaiting)
+        if(isSimulationActive() && !_simulationFrameWaiting)
             simulationFrameBegin();
     }
 }

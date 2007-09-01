@@ -1,5 +1,3 @@
-#ifndef STEPCORE_OBJECT_H
-#define STEPCORE_OBJECT_H
 /* This file is part of StepCore library.
    Copyright (C) 2007 Vladimir Kuznetsov <ks.vladimir@gmail.com>
 
@@ -22,10 +20,12 @@
  *  \brief Object, MetaObject and MetaProperty classes
  */
 
-#include "util.h"
+#ifndef STEPCORE_OBJECT_H
+#define STEPCORE_OBJECT_H
 
 #include <QString>
 #include <QVariant>
+#include <QBitArray>
 
 namespace StepCore {
 
@@ -139,6 +139,8 @@ public:
     const QString& className() const { return _className; }
     /** Returns class description */
     const QString& description() const { return _description; }
+    /** Returns class id */
+    int classId() const { if(!_initialized) init(); return _classId; }
 
     /** Returns true if class is abstract */
     bool isAbstract() const { return _flags & ABSTRACT; }
@@ -153,7 +155,13 @@ public:
     const MetaObject* superClass(int n) const { return _superClasses[n]; }
     /** Returns true if this class inherits class described by obj */
     bool inherits(const MetaObject* obj) const;
-    /** Returns true if this class inherits class named name */
+    /** Returns true if this class inherits class T */
+    template<class T> bool inherits() const { return inherits(T::staticMetaObject()); }
+    /** Returns true if this class inherits class T */
+    template<class T> bool inherits(T*) const { return inherits(T::staticMetaObject()); }
+    /** Returns true if this class inherits class named name
+     *  \note Due to technical reason this is much slower then
+     *        inherits(const MetaObject*) function */
     bool inherits(const char* name) const;
 
     /** Returns number of non-inherited properties */
@@ -186,7 +194,19 @@ public:
     mutable bool                 _initialized;
     mutable const MetaProperty** _allProperties;
     mutable int                  _allPropertyCount;
+
+    mutable int _classId;
+    mutable QBitArray _allSuperClassIds;
+
+    static int  s_classIdCount;
 };
+
+/** Casts between pointers to Object */
+template<class _Dst, class _Src> // XXX: implement it better
+_Dst stepcore_cast(_Src src) {
+    if(!src || !src->metaObject()->template inherits(_Dst())) return NULL;
+    return static_cast<_Dst>(src);
+}
 
 /* Helper functions TODO: namespace of class ? */
 
@@ -214,66 +234,54 @@ struct MetaPropertyHelper {
 
     /* read */
     template<T (C::*_read)() const> static QVariant read(const Object* obj) {
-        STEPCORE_ASSERT_NOABORT(dynamic_cast<const C*>(obj));
-        return typeToVariant<T>((dynamic_cast<const C*>(obj)->*_read)());
+        return typeToVariant<T>((static_cast<const C*>(obj)->*_read)());
     }
     template<const T& (C::*_read)() const> static QVariant read(const Object* obj) {
-        STEPCORE_ASSERT_NOABORT(dynamic_cast<const C*>(obj));
-        return typeToVariant<T>((dynamic_cast<const C*>(obj)->*_read)());
+        return typeToVariant<T>((static_cast<const C*>(obj)->*_read)());
     }
 
     /* write */
     template<void (C::*_write)(T)> static bool write(Object* obj, const QVariant& v) {
-        STEPCORE_ASSERT_NOABORT(dynamic_cast<const C*>(obj));
         bool ok; T tv = variantToType<T>(v, &ok); if(!ok) return false;
-        (dynamic_cast<C*>(obj)->*_write)(tv); return true;
+        (static_cast<C*>(obj)->*_write)(tv); return true;
     }
     template<void (C::*_write)(const T&)> static bool write(Object* obj, const QVariant& v) {
-        STEPCORE_ASSERT_NOABORT(dynamic_cast<const C*>(obj));
         bool ok; T tv = variantToType<T>(v, &ok); if(!ok) return false;
-        (dynamic_cast<C*>(obj)->*_write)(tv); return true;
+        (static_cast<C*>(obj)->*_write)(tv); return true;
     }
     template<bool (C::*_write)(T)> static bool write(Object* obj, const QVariant& v) {
-        STEPCORE_ASSERT_NOABORT(dynamic_cast<const C*>(obj));
         bool ok; T tv = variantToType<T>(v, &ok); if(!ok) return false;
-        return (dynamic_cast<C*>(obj)->*_write)(tv);
+        return (static_cast<C*>(obj)->*_write)(tv);
     }
     template<bool (C::*_write)(const T&)> static bool write(Object* obj, const QVariant& v) {
-        STEPCORE_ASSERT_NOABORT(dynamic_cast<const C*>(obj));
         bool ok; T tv = variantToType<T>(v, &ok); if(!ok) return false;
-        return (dynamic_cast<C*>(obj)->*_write)(tv);
+        return (static_cast<C*>(obj)->*_write)(tv);
     }
 
     /* readString */
     template<T (C::*_read)() const> static QString readString(const Object* obj) {
-        STEPCORE_ASSERT_NOABORT(dynamic_cast<const C*>(obj));
-        return typeToString<T>((dynamic_cast<const C*>(obj)->*_read)());
+        return typeToString<T>((static_cast<const C*>(obj)->*_read)());
     }
     template<const T& (C::*_read)() const> static QString readString(const Object* obj) {
-        STEPCORE_ASSERT_NOABORT(dynamic_cast<const C*>(obj));
-        return typeToString<T>((dynamic_cast<const C*>(obj)->*_read)());
+        return typeToString<T>((static_cast<const C*>(obj)->*_read)());
     }
 
     /* writeString */
     template<void (C::*_write)(T)> static bool writeString(Object* obj, const QString& s) {
-        STEPCORE_ASSERT_NOABORT(dynamic_cast<const C*>(obj));
         bool ok; T tv = stringToType<T>(s, &ok); if(!ok) return false;
-        (dynamic_cast<C*>(obj)->*_write)(tv); return true;
+        (static_cast<C*>(obj)->*_write)(tv); return true;
     }
     template<void (C::*_write)(const T&)> static bool writeString(Object* obj, const QString& s) {
-        STEPCORE_ASSERT_NOABORT(dynamic_cast<const C*>(obj));
         bool ok; T tv = stringToType<T>(s, &ok); if(!ok) return false;
-        (dynamic_cast<C*>(obj)->*_write)(tv); return true;
+        (static_cast<C*>(obj)->*_write)(tv); return true;
     }
     template<bool (C::*_write)(T)> static bool writeString(Object* obj, const QString& s) {
-        STEPCORE_ASSERT_NOABORT(dynamic_cast<const C*>(obj));
         bool ok; T tv = stringToType<T>(s, &ok); if(!ok) return false;
-        return (dynamic_cast<C*>(obj)->*_write)(tv);
+        return (static_cast<C*>(obj)->*_write)(tv);
     }
     template<bool (C::*_write)(const T&)> static bool writeString(Object* obj, const QString& s) {
-        STEPCORE_ASSERT_NOABORT(dynamic_cast<const C*>(obj));
         bool ok; T tv = stringToType<T>(s, &ok); if(!ok) return false;
-        return (dynamic_cast<C*>(obj)->*_write)(tv);
+        return (static_cast<C*>(obj)->*_write)(tv);
     }
 
     static QVariant readNull(const Object* obj) { return QVariant(); }
@@ -311,7 +319,7 @@ struct MetaObjectHelper<Class, MetaObject::ABSTRACT> {
         StepCore::MetaObjectHelper<_className, _flags & StepCore::MetaObject::ABSTRACT>::newObjectHelper, \
         StepCore::MetaObjectHelper<_className, _flags & StepCore::MetaObject::ABSTRACT>::cloneObjectHelper, \
         _superClasses+1, sizeof(_superClasses)/sizeof(*_superClasses)-1, \
-        _classProperties+1, sizeof(_classProperties)/sizeof(*_classProperties)-1, false, 0, 0 };
+        _classProperties+1, sizeof(_classProperties)/sizeof(*_classProperties)-1, false, 0, 0, 0, QBitArray() };
     
 #define STEPCORE_SUPER_CLASS(_className) _className::staticMetaObject(),
 

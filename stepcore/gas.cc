@@ -105,15 +105,15 @@ void GasLJForce::calcForce(bool calcVariances)
 {
     if(!group()) return;
 
-    GasParticle* p1;
-    GasParticle* p2;
-
     // NOTE: Currently we are handling only children of the same group
     const ItemList::const_iterator end = group()->items().end();
     for(ItemList::const_iterator i1 = group()->items().begin(); i1 != end; ++i1) {
-        if(NULL == (p1 = dynamic_cast<GasParticle*>(*i1))) continue;
+        if(!(*i1)->metaObject()->inherits<GasParticle>()) continue;
         for(ItemList::const_iterator i2 = i1+1; i2 != end; ++i2) {
-            if(NULL == (p2 = dynamic_cast<GasParticle*>(*i2))) continue;
+            if(!(*i2)->metaObject()->inherits<GasParticle>()) continue;
+
+            GasParticle* p1 = static_cast<GasParticle*>(*i1);
+            GasParticle* p2 = static_cast<GasParticle*>(*i2);
             Vector2d r = p2->position() - p1->position();
             double rnorm2 = r.norm2();
             if(rnorm2 < _c) {
@@ -212,12 +212,11 @@ double Gas::rectParticleCount() const
     Vector2d r0 = _measureRectCenter-_measureRectSize/2.0;
     Vector2d r1 = _measureRectCenter+_measureRectSize/2.0;
 
-    GasParticle* p1;
     double count = 0;
-
     const ItemList::const_iterator end = items().end();
     for(ItemList::const_iterator i1 = items().begin(); i1 != end; ++i1) {
-        if(NULL == (p1 = dynamic_cast<GasParticle*>(*i1))) continue;
+        if(!(*i1)->metaObject()->inherits<GasParticle>()) continue;
+        GasParticle* p1 = static_cast<GasParticle*>(*i1);
         if(p1->position()[0] < r0[0] || p1->position()[0] > r1[0] ||
             p1->position()[1] < r0[1] || p1->position()[1] > r1[1]) continue;
         ++count;
@@ -231,13 +230,13 @@ double Gas::rectMeanParticleMass() const
     Vector2d r0 = _measureRectCenter-_measureRectSize/2.0;
     Vector2d r1 = _measureRectCenter+_measureRectSize/2.0;
 
-    GasParticle* p1;
     double count = 0;
     double mass = 0;
 
     const ItemList::const_iterator end = items().end();
     for(ItemList::const_iterator i1 = items().begin(); i1 != end; ++i1) {
-        if(NULL == (p1 = dynamic_cast<GasParticle*>(*i1))) continue;
+        if(!(*i1)->metaObject()->inherits<GasParticle>()) continue;
+        GasParticle* p1 = static_cast<GasParticle*>(*i1);
         if(p1->position()[0] < r0[0] || p1->position()[0] > r1[0] ||
             p1->position()[1] < r0[1] || p1->position()[1] > r1[1]) continue;
         mass += p1->mass();
@@ -253,7 +252,6 @@ double GasErrors::rectMeanParticleMassVariance() const
     Vector2d r0 = gas()->_measureRectCenter-gas()->_measureRectSize/2.0;
     Vector2d r1 = gas()->_measureRectCenter+gas()->_measureRectSize/2.0;
 
-    GasParticle* p1;
     double count = 0;
 
     double mass = gas()->rectMeanParticleMass();
@@ -261,7 +259,8 @@ double GasErrors::rectMeanParticleMassVariance() const
 
     const ItemList::const_iterator end = gas()->items().end();
     for(ItemList::const_iterator i1 = gas()->items().begin(); i1 != end; ++i1) {
-        if(NULL == (p1 = dynamic_cast<GasParticle*>(*i1))) continue;
+        if(!(*i1)->metaObject()->inherits<GasParticle>()) continue;
+        GasParticle* p1 = static_cast<GasParticle*>(*i1);
         if(p1->position()[0] < r0[0] || p1->position()[0] > r1[0] ||
             p1->position()[1] < r0[1] || p1->position()[1] > r1[1]) continue;
 
@@ -282,12 +281,12 @@ double Gas::rectMass() const
     Vector2d r0 = _measureRectCenter-_measureRectSize/2.0;
     Vector2d r1 = _measureRectCenter+_measureRectSize/2.0;
 
-    GasParticle* p1;
     double mass = 0;
 
     const ItemList::const_iterator end = items().end();
     for(ItemList::const_iterator i1 = items().begin(); i1 != end; ++i1) {
-        if(NULL == (p1 = dynamic_cast<GasParticle*>(*i1))) continue;
+        if(!(*i1)->metaObject()->inherits<GasParticle>()) continue;
+        GasParticle* p1 = static_cast<GasParticle*>(*i1);
         if(p1->position()[0] < r0[0] || p1->position()[0] > r1[0] ||
             p1->position()[1] < r0[1] || p1->position()[1] > r1[1]) continue;
         mass += p1->mass();
@@ -301,12 +300,12 @@ double GasErrors::rectMassVariance() const
     Vector2d r0 = gas()->_measureRectCenter-gas()->_measureRectSize/2.0;
     Vector2d r1 = gas()->_measureRectCenter+gas()->_measureRectSize/2.0;
 
-    GasParticle* p1;
     double massVariance = 0;
 
     const ItemList::const_iterator end = gas()->items().end();
     for(ItemList::const_iterator i1 = gas()->items().begin(); i1 != end; ++i1) {
-        if(NULL == (p1 = dynamic_cast<GasParticle*>(*i1))) continue;
+        if(!(*i1)->metaObject()->inherits<GasParticle>()) continue;
+        GasParticle* p1 = static_cast<GasParticle*>(*i1);
         if(p1->position()[0] < r0[0] || p1->position()[0] > r1[0] ||
             p1->position()[1] < r0[1] || p1->position()[1] > r1[1]) continue;
 
@@ -327,13 +326,13 @@ Vector2d Gas::rectMeanVelocity() const
     Vector2d r0 = _measureRectCenter-_measureRectSize/2.0;
     Vector2d r1 = _measureRectCenter+_measureRectSize/2.0;
 
-    GasParticle* p1;
     double count = 0;
     Vector2d velocity(0);
 
     const ItemList::const_iterator end = items().end();
     for(ItemList::const_iterator i1 = items().begin(); i1 != end; ++i1) {
-        if(NULL == (p1 = dynamic_cast<GasParticle*>(*i1))) continue;
+        if(!(*i1)->metaObject()->inherits<GasParticle>()) continue;
+        GasParticle* p1 = static_cast<GasParticle*>(*i1);
         if(p1->position()[0] < r0[0] || p1->position()[0] > r1[0] ||
             p1->position()[1] < r0[1] || p1->position()[1] > r1[1]) continue;
         velocity += p1->velocity();
@@ -349,7 +348,6 @@ Vector2d GasErrors::rectMeanVelocityVariance() const
     Vector2d r0 = gas()->_measureRectCenter-gas()->_measureRectSize/2.0;
     Vector2d r1 = gas()->_measureRectCenter+gas()->_measureRectSize/2.0;
 
-    GasParticle* p1;
     double count = 0;
 
     Vector2d velocity = gas()->rectMeanVelocity();
@@ -357,7 +355,8 @@ Vector2d GasErrors::rectMeanVelocityVariance() const
 
     const ItemList::const_iterator end = gas()->items().end();
     for(ItemList::const_iterator i1 = gas()->items().begin(); i1 != end; ++i1) {
-        if(NULL == (p1 = dynamic_cast<GasParticle*>(*i1))) continue;
+        if(!(*i1)->metaObject()->inherits<GasParticle>()) continue;
+        GasParticle* p1 = static_cast<GasParticle*>(*i1);
         if(p1->position()[0] < r0[0] || p1->position()[0] > r1[0] ||
             p1->position()[1] < r0[1] || p1->position()[1] > r1[1]) continue;
 
@@ -378,13 +377,13 @@ double Gas::rectMeanKineticEnergy() const
     Vector2d r0 = _measureRectCenter-_measureRectSize/2.0;
     Vector2d r1 = _measureRectCenter+_measureRectSize/2.0;
 
-    GasParticle* p1;
     double count = 0;
     double energy = 0;
 
     const ItemList::const_iterator end = items().end();
     for(ItemList::const_iterator i1 = items().begin(); i1 != end; ++i1) {
-        if(NULL == (p1 = dynamic_cast<GasParticle*>(*i1))) continue;
+        if(!(*i1)->metaObject()->inherits<GasParticle>()) continue;
+        GasParticle* p1 = static_cast<GasParticle*>(*i1);
         if(p1->position()[0] < r0[0] || p1->position()[0] > r1[0] ||
             p1->position()[1] < r0[1] || p1->position()[1] > r1[1]) continue;
         energy += p1->mass() * p1->velocity().norm2();
@@ -400,7 +399,6 @@ double GasErrors::rectMeanKineticEnergyVariance() const
     Vector2d r0 = gas()->_measureRectCenter-gas()->_measureRectSize/2.0;
     Vector2d r1 = gas()->_measureRectCenter+gas()->_measureRectSize/2.0;
 
-    GasParticle* p1;
     double count = 0;
 
     double energy = 2*gas()->rectMeanKineticEnergy();
@@ -408,7 +406,8 @@ double GasErrors::rectMeanKineticEnergyVariance() const
 
     const ItemList::const_iterator end = gas()->items().end();
     for(ItemList::const_iterator i1 = gas()->items().begin(); i1 != end; ++i1) {
-        if(NULL == (p1 = dynamic_cast<GasParticle*>(*i1))) continue;
+        if(!(*i1)->metaObject()->inherits<GasParticle>()) continue;
+        GasParticle* p1 = static_cast<GasParticle*>(*i1);
         if(p1->position()[0] < r0[0] || p1->position()[0] > r1[0] ||
             p1->position()[1] < r0[1] || p1->position()[1] > r1[1]) continue;
 
@@ -435,14 +434,14 @@ double Gas::rectTemperature() const
     Vector2d r0 = _measureRectCenter-_measureRectSize/2.0;
     Vector2d r1 = _measureRectCenter+_measureRectSize/2.0;
 
-    GasParticle* p1;
     double count = 0;
     double temperature = 0;
 
     StepCore::Vector2d meanVelocity = rectMeanVelocity();
     const ItemList::const_iterator end = items().end();
     for(ItemList::const_iterator i1 = items().begin(); i1 != end; ++i1) {
-        if(NULL == (p1 = dynamic_cast<GasParticle*>(*i1))) continue;
+        if(!(*i1)->metaObject()->inherits<GasParticle>()) continue;
+        GasParticle* p1 = static_cast<GasParticle*>(*i1);
         if(p1->position()[0] < r0[0] || p1->position()[0] > r1[0] ||
             p1->position()[1] < r0[1] || p1->position()[1] > r1[1]) continue;
         temperature += p1->mass() * (p1->velocity() - meanVelocity).norm2();
@@ -459,7 +458,6 @@ double GasErrors::rectTemperatureVariance() const
     Vector2d r0 = gas()->_measureRectCenter-gas()->_measureRectSize/2.0;
     Vector2d r1 = gas()->_measureRectCenter+gas()->_measureRectSize/2.0;
 
-    GasParticle* p1;
     double count = 0;
 
     StepCore::Vector2d meanVelocity = gas()->rectMeanVelocity();
@@ -468,7 +466,8 @@ double GasErrors::rectTemperatureVariance() const
 
     const ItemList::const_iterator end = gas()->items().end();
     for(ItemList::const_iterator i1 = gas()->items().begin(); i1 != end; ++i1) {
-        if(NULL == (p1 = dynamic_cast<GasParticle*>(*i1))) continue;
+        if(!(*i1)->metaObject()->inherits<GasParticle>()) continue;
+        GasParticle* p1 = static_cast<GasParticle*>(*i1);
         if(p1->position()[0] < r0[0] || p1->position()[0] > r1[0] ||
             p1->position()[1] < r0[1] || p1->position()[1] > r1[1]) continue;
 
@@ -500,13 +499,13 @@ double Gas::rectPressure() const
     Vector2d r0 = _measureRectCenter-_measureRectSize/2.0;
     Vector2d r1 = _measureRectCenter+_measureRectSize/2.0;
 
-    GasParticle* p1;
     double pressure = 0;
 
     StepCore::Vector2d meanVelocity = rectMeanVelocity();
     const ItemList::const_iterator end = items().end();
     for(ItemList::const_iterator i1 = items().begin(); i1 != end; ++i1) {
-        if(NULL == (p1 = dynamic_cast<GasParticle*>(*i1))) continue;
+        if(!(*i1)->metaObject()->inherits<GasParticle>()) continue;
+        GasParticle* p1 = static_cast<GasParticle*>(*i1);
         if(p1->position()[0] < r0[0] || p1->position()[0] > r1[0] ||
             p1->position()[1] < r0[1] || p1->position()[1] > r1[1]) continue;
         pressure += p1->mass() * (p1->velocity() - meanVelocity).norm2();
@@ -521,15 +520,14 @@ double GasErrors::rectPressureVariance() const
     Vector2d r0 = gas()->_measureRectCenter-gas()->_measureRectSize/2.0;
     Vector2d r1 = gas()->_measureRectCenter+gas()->_measureRectSize/2.0;
 
-    GasParticle* p1;
-
     StepCore::Vector2d meanVelocity = gas()->rectMeanVelocity();
     double pressure = gas()->rectPressure();
     double pressureVariance = 0;
 
     const ItemList::const_iterator end = gas()->items().end();
     for(ItemList::const_iterator i1 = gas()->items().begin(); i1 != end; ++i1) {
-        if(NULL == (p1 = dynamic_cast<GasParticle*>(*i1))) continue;
+        if(!(*i1)->metaObject()->inherits<GasParticle>()) continue;
+        GasParticle* p1 = static_cast<GasParticle*>(*i1);
         if(p1->position()[0] < r0[0] || p1->position()[0] > r1[0] ||
             p1->position()[1] < r0[1] || p1->position()[1] > r1[1]) continue;
 

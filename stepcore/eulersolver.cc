@@ -17,6 +17,7 @@
 */
 
 #include "eulersolver.h"
+#include "util.h"
 
 #include <cmath>
 #include <cstring>

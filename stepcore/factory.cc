@@ -37,32 +37,29 @@ const MetaObject* Factory::metaObject(const QString& name) const
 Object* Factory::newObject(const QString& name) const
 {
     const MetaObject* metaObject = this->metaObject(name);
-    if(metaObject == NULL) return NULL;
+    if(!metaObject) return NULL;
     return metaObject->newObject();
 }
 
 Item* Factory::newItem(const QString& name) const
 {
-    Object* obj = newObject(name);
-    Item* item = dynamic_cast<Item*>(obj);
-    if(item == NULL) delete obj;
-    return item;
+    const MetaObject* metaObject = this->metaObject(name);
+    if(!metaObject && !metaObject->inherits<Item>()) return NULL;
+    return static_cast<Item*>(metaObject->newObject());
 }
 
 Solver* Factory::newSolver(const QString& name) const
 {
-    Object* obj = newObject(name);
-    Solver* solver = dynamic_cast<Solver*>(obj);
-    if(solver == NULL) delete obj;
-    return solver;
+    const MetaObject* metaObject = this->metaObject(name);
+    if(!metaObject && !metaObject->inherits<Solver>()) return NULL;
+    return static_cast<Solver*>(metaObject->newObject());
 }
 
 CollisionSolver* Factory::newCollisionSolver(const QString& name) const
 {
-    Object* obj = newObject(name);
-    CollisionSolver* solver = dynamic_cast<CollisionSolver*>(obj);
-    if(solver == NULL) delete obj;
-    return solver;
+    const MetaObject* metaObject = this->metaObject(name);
+    if(!metaObject && !metaObject->inherits<CollisionSolver>()) return NULL;
+    return static_cast<CollisionSolver*>(metaObject->newObject());
 }
 
 } // namespace StepCore

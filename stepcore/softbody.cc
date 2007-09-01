@@ -113,7 +113,7 @@ ItemList SoftBody::createSoftBodyItems(const Vector2d& position, const Vector2d&
     for(int i=0; i<split[1]; i++) {
         for(int j=0; j<split[0]-1; j++) {
             SoftBodySpring* item = new SoftBodySpring(h0, stiffnes, damping,
-                    dynamic_cast<Body*>(items[split[0]*i+j]), dynamic_cast<Body*>(items[split[0]*i+j+1]));
+                                    items[split[0]*i+j], items[split[0]*i+j+1]);
             items.push_back(item);
         }
     }
@@ -122,7 +122,7 @@ ItemList SoftBody::createSoftBodyItems(const Vector2d& position, const Vector2d&
     for(int i=0; i<split[1]-1; i++) {
         for(int j=0; j<split[0]; j++) {
             SoftBodySpring* item = new SoftBodySpring(h1, stiffnes, damping,
-                    dynamic_cast<Body*>(items[split[0]*i+j]), dynamic_cast<Body*>(items[split[0]*(i+1)+j]));
+                                    items[split[0]*i+j], items[split[0]*(i+1)+j]);
             items.push_back(item);
         }
     }
@@ -134,9 +134,9 @@ ItemList SoftBody::createSoftBodyItems(const Vector2d& position, const Vector2d&
     for(int i=0; i<split[1]-1; i++){
         for(int j=0; j<split[0]-1; j++){
             SoftBodySpring* item1 = new SoftBodySpring(h, stiffnes, damping,
-                    dynamic_cast<Body*>(items[split[0]*i+j]), dynamic_cast<Body*>(items[split[0]*(i+1)+j+1]));
+                                    items[split[0]*i+j], items[split[0]*(i+1)+j+1]);
             SoftBodySpring* item2 = new SoftBodySpring(h, stiffnes, damping,
-                    dynamic_cast<Body*>(items[split[0]*i+j+1]), dynamic_cast<Body*>(items[split[0]*(i+1)+j]));
+                                    items[split[0]*i+j+1], items[split[0]*(i+1)+j]);
             items.push_back(item1);
             items.push_back(item2);
         }
@@ -156,11 +156,11 @@ void SoftBody::addItems(const ItemList& items)
 double SoftBody::mass() const
 {
     double totMass = 0;
-    SoftBodyParticle* p1;
 
     const ItemList::const_iterator end = items().end();
     for(ItemList::const_iterator i1 = items().begin(); i1 != end; ++i1) {
-        if(NULL == (p1 = dynamic_cast<SoftBodyParticle*>(*i1))) continue;
+        if(!(*i1)->metaObject()->inherits<SoftBodyParticle>()) continue;
+        SoftBodyParticle* p1 = static_cast<SoftBodyParticle*>(*i1);
         totMass += p1->mass();
     }
 
@@ -170,11 +170,11 @@ double SoftBody::mass() const
 Vector2d SoftBody::position() const
 {
     Vector2d cmPosition = Vector2d(0);
-    SoftBodyParticle* p1;
 
     const ItemList::const_iterator end = items().end();
     for(ItemList::const_iterator i1 = items().begin(); i1 != end; ++i1) {
-        if(NULL == (p1 = dynamic_cast<SoftBodyParticle*>(*i1))) continue;
+        if(!(*i1)->metaObject()->inherits<SoftBodyParticle>()) continue;
+        SoftBodyParticle* p1 = static_cast<SoftBodyParticle*>(*i1);
         cmPosition += p1->mass() * p1->position();
     }
     cmPosition = cmPosition/mass();
@@ -183,12 +183,12 @@ Vector2d SoftBody::position() const
 
 void SoftBody::setPosition(const Vector2d position)
 {
-    SoftBodyParticle* p1;
     Vector2d delta = position - this->position();
 
     const ItemList::const_iterator end = items().end();
     for(ItemList::const_iterator i1 = items().begin(); i1 != end; ++i1) {
-        if(NULL == (p1 = dynamic_cast<SoftBodyParticle*>(*i1))) continue;
+        if(!(*i1)->metaObject()->inherits<SoftBodyParticle>()) continue;
+        SoftBodyParticle* p1 = static_cast<SoftBodyParticle*>(*i1);
         p1->setPosition(p1->position() + delta);
     }
 }
@@ -196,11 +196,11 @@ void SoftBody::setPosition(const Vector2d position)
 Vector2d SoftBody::velocity() const
 {
     Vector2d cmVelocity = Vector2d(0);
-    SoftBodyParticle* p1;
 
     const ItemList::const_iterator end = items().end();
     for(ItemList::const_iterator i1 = items().begin(); i1 != end; ++i1) {
-        if(NULL == (p1 = dynamic_cast<SoftBodyParticle*>(*i1))) continue;
+        if(!(*i1)->metaObject()->inherits<SoftBodyParticle>()) continue;
+        SoftBodyParticle* p1 = static_cast<SoftBodyParticle*>(*i1);
         cmVelocity += p1->mass() * p1->velocity();
     }
 
@@ -210,12 +210,12 @@ Vector2d SoftBody::velocity() const
 
 void SoftBody::setVelocity(const Vector2d velocity)
 {
-    SoftBodyParticle* p1;
     Vector2d delta = velocity - this->velocity();
 
     const ItemList::const_iterator end = items().end();
     for(ItemList::const_iterator i1 = items().begin(); i1 != end; ++i1) {
-        if(NULL == (p1 = dynamic_cast<SoftBodyParticle*>(*i1))) continue;
+        if(!(*i1)->metaObject()->inherits<SoftBodyParticle>()) continue;
+        SoftBodyParticle* p1 = static_cast<SoftBodyParticle*>(*i1);
         p1->setVelocity(p1->velocity() + delta);
     }
 }
@@ -223,12 +223,12 @@ void SoftBody::setVelocity(const Vector2d velocity)
 double SoftBody::inertia() const
 {
     double inertia = 0;
-    SoftBodyParticle* p1;
     Vector2d position = this->position();
 
     const ItemList::const_iterator end = items().end();
     for(ItemList::const_iterator i1 = items().begin(); i1 != end; ++i1) {
-        if(NULL == (p1 = dynamic_cast<SoftBodyParticle*>(*i1))) continue;
+        if(!(*i1)->metaObject()->inherits<SoftBodyParticle>()) continue;
+        SoftBodyParticle* p1 = static_cast<SoftBodyParticle*>(*i1);
         inertia += p1->mass() * (p1->position() - position).norm2();
     }
 
@@ -238,13 +238,13 @@ double SoftBody::inertia() const
 double SoftBody::angularMomentum() const
 {
     double angMomentum = 0;
-    SoftBodyParticle* p1;
     Vector2d pos = position();
     Vector2d vel = velocity();
 
     const ItemList::const_iterator end = items().end();
     for(ItemList::const_iterator i1 = items().begin(); i1 != end; ++i1) {
-        if(NULL == (p1 = dynamic_cast<SoftBodyParticle*>(*i1))) continue;
+        if(!(*i1)->metaObject()->inherits<SoftBodyParticle>()) continue;
+        SoftBodyParticle* p1 = static_cast<SoftBodyParticle*>(*i1);
         angMomentum += p1->mass() * ((p1->position() - pos)[0] * (p1->velocity() - vel)[1] 
                                    - (p1->position() - pos)[1] * (p1->velocity() - vel)[0]) ;
     }
@@ -259,13 +259,13 @@ double SoftBody::angularVelocity() const
 
 void SoftBody::setAngularVelocity(double angularVelocity)
 {
-    SoftBodyParticle* p1;
     Vector2d pos = position();
     Vector2d vel = velocity();
 
     const ItemList::const_iterator end = items().end();
     for(ItemList::const_iterator i1 = items().begin(); i1 != end; ++i1) {
-        if(NULL == (p1 = dynamic_cast<SoftBodyParticle*>(*i1))) continue;
+        if(!(*i1)->metaObject()->inherits<SoftBodyParticle>()) continue;
+        SoftBodyParticle* p1 = static_cast<SoftBodyParticle*>(*i1);
         Vector2d r = p1->position() - pos;
         Vector2d n(-r[1], r[0]);
         double vn = (p1->velocity() - vel).innerProduct(n);
@@ -281,11 +281,11 @@ void SoftBody::setAngularMomentum(double angularMomentum)
 Vector2d SoftBody::force() const
 {
     Vector2d force = Vector2d(0);
-    SoftBodyParticle* p1;
 
     const ItemList::const_iterator end = items().end();
     for(ItemList::const_iterator i1 = items().begin(); i1 != end; ++i1) {
-        if(NULL == (p1 = dynamic_cast<SoftBodyParticle*>(*i1))) continue;
+        if(!(*i1)->metaObject()->inherits<SoftBodyParticle>()) continue;
+        SoftBodyParticle* p1 = static_cast<SoftBodyParticle*>(*i1);
         force += p1->force();
     }
     
@@ -295,11 +295,11 @@ Vector2d SoftBody::force() const
 double SoftBody::torque() const
 {
     double torque = 0;
-    SoftBodyParticle* p1;
     Vector2d pos = position();
     const ItemList::const_iterator end = items().end();
     for(ItemList::const_iterator i1 = items().begin(); i1 != end; ++i1) {
-        if(NULL == (p1 = dynamic_cast<SoftBodyParticle*>(*i1))) continue;
+        if(!(*i1)->metaObject()->inherits<SoftBodyParticle>()) continue;
+        SoftBodyParticle* p1 = static_cast<SoftBodyParticle*>(*i1);
         Vector2d r = p1->position() - pos;
         torque += r[0] * p1->force()[1] - r[1] * p1->force()[0];
     }
@@ -309,12 +309,14 @@ double SoftBody::torque() const
 
 const SoftBodyParticleList& SoftBody::borderParticles()
 {
-    if(_borderParticles.size() == 0 && _borderParticleNames.size() != 0 && world()) {
+    if(_borderParticles.empty() && !_borderParticleNames.isEmpty() && world()) {
         QStringList list = _borderParticleNames.split(",");
         QStringList::const_iterator end = list.end();
         for(QStringList::const_iterator it = list.begin(); it != end; ++it) {
-            SoftBodyParticle* p = dynamic_cast<SoftBodyParticle*>(world()->object(*it));
-            if(p) _borderParticles.push_back(p);
+            Object* obj = world()->object(*it);
+            if(!obj->metaObject()->inherits<SoftBodyParticle>()) continue;
+            SoftBodyParticle* p1 = static_cast<SoftBodyParticle*>(obj);
+            _borderParticles.push_back(p1);
         }
         _borderParticleNames.clear();
     }
@@ -334,15 +336,16 @@ QString SoftBody::borderParticleNames() const
 
 void SoftBody::setBorderParticleNames(const QString& borderParticleNames)
 {
-    if(_borderParticles.size() == 0 && _borderParticleNames.isEmpty())
+    if(_borderParticles.empty() && _borderParticleNames.isEmpty())
         _borderParticleNames = borderParticleNames;
 }
 
 void SoftBody::worldItemRemoved(Item* item)
 {
     if(!item) return;
-    SoftBodyParticle* p = dynamic_cast<SoftBodyParticle*>(item);
-    if(!p) return;
+
+    if(!item->metaObject()->inherits<SoftBodyParticle>()) return;
+    SoftBodyParticle* p = static_cast<SoftBodyParticle*>(item);
 
     SoftBodyParticleList::iterator i =
             std::find(_borderParticles.begin(), _borderParticles.end(), p);
@@ -356,7 +359,7 @@ void SoftBody::setWorld(World* world)
     } else if(this->world() != NULL) { 
         const SoftBodyParticleList::iterator end = _borderParticles.end();
         for(SoftBodyParticleList::iterator i = _borderParticles.begin(); i != end; ++i) {
-            *i = dynamic_cast<SoftBodyParticle*>(world->object((*i)->name()));
+            *i = static_cast<SoftBodyParticle*>(world->object((*i)->name()));
         }
     }
     ItemGroup::setWorld(world);

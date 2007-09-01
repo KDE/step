@@ -85,8 +85,8 @@ ODE integration) and Force is an interface for forces (anything that acts
 upon bodies changing derivatives of dynamic variables). One Item can be
 a Body and a Force at the same time: for example massive spring or fluid.
 
-World distinguishes between Body and Force using dynamic_cast. This is also
-used by Force to distinguish between Body types.
+World distinguishes between Body and Force using MetaObject::inherits().
+This is also used by Force to distinguish between Body types.
 
 Solver is an interface for generic ODE solvers. It is quite general so it
 can be used not only by World but also by Body or Force that may require

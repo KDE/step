@@ -1,5 +1,3 @@
-#include "object.h"
-#include <cstring>
 /* This file is part of StepCore library.
    Copyright (C) 2007 Vladimir Kuznetsov <ks.vladimir@gmail.com>
 
@@ -18,10 +16,15 @@
    Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
 */
 
+#include "object.h"
+#include <cstring>
+
 namespace StepCore {
 
 STEPCORE_META_OBJECT(Object, "Object", MetaObject::ABSTRACT,,
         STEPCORE_PROPERTY_RW(QString, name, STEPCORE_UNITS_NULL, "Object name", name, setName))
+
+int MetaObject::s_classIdCount = 0;
 
 void MetaObject::copyProperties(const MetaProperty** dest) const
 {
@@ -38,24 +41,34 @@ void MetaObject::copyProperties(const MetaProperty** dest) const
 void MetaObject::init() const
 {
     if(_initialized) return;
+
+    // properties
+    _allPropertyCount = classPropertyCount();
     for(int i=0; i<superClassCount(); ++i) {
         _allPropertyCount += superClass(i)->propertyCount();
     }
-    _allPropertyCount += classPropertyCount();
 
     _allProperties = new const MetaProperty*[_allPropertyCount];
     copyProperties(_allProperties);
+
+    // classId and super classes
+    _classId = s_classIdCount++; // all super classes is already registered
+    _allSuperClassIds.fill(false, s_classIdCount);
+    _allSuperClassIds.setBit(_classId);
+    for(int i=0; i<superClassCount(); ++i) {
+        _allSuperClassIds |= superClass(i)->_allSuperClassIds;
+    }
 
     _initialized = true;
 }
 
 bool MetaObject::inherits(const MetaObject* obj) const
 {
-    if(obj == this) return true;
-    for(int i=superClassCount()-1; i>=0; --i) {
-        if(superClass(i)->inherits(obj)) return true;
-    }
-    return false;
+    if(!_initialized) init();
+    int objClassId = obj->classId();
+    if(objClassId == _classId) return true;
+    else if(objClassId > _classId) return false;
+    return _allSuperClassIds.testBit(objClassId);
 }
 
 bool MetaObject::inherits(const char* name) const

@@ -190,9 +190,9 @@ Item* ItemGroup::item(const QString& name) const
     ItemList::const_iterator end = _items.end();
     for(ItemList::const_iterator it = _items.begin(); it != end; ++it) {
         if((*it)->name() == name) return *it;
-        ItemGroup* gr = dynamic_cast<ItemGroup*>(*it);
-        if(gr) {
-            Item* ret = gr->item(name); if(ret) return ret;
+        if((*it)->metaObject()->inherits<ItemGroup>()) {
+            Item* ret = static_cast<ItemGroup*>(*it)->item(name);
+            if(ret) return ret;
         }
     }
     return NULL;
@@ -312,13 +312,13 @@ void World::clear()
 
 void World::worldItemAdded(Item* item)
 {
-    Force* force = dynamic_cast<Force*>(item);
-    if(force) _forces.push_back(force);
-    Body* body = dynamic_cast<Body*>(item);
-    if(body) _bodies.push_back(body);
+    if(item->metaObject()->inherits<Force>())
+        _forces.push_back(dynamic_cast<Force*>(item));
+    if(item->metaObject()->inherits<Body>())
+        _bodies.push_back(dynamic_cast<Body*>(item));
 
-    ItemGroup* group = dynamic_cast<ItemGroup*>(item);
-    if(group) {
+    if(item->metaObject()->inherits<ItemGroup>()) {
+        ItemGroup* group = static_cast<ItemGroup*>(item);
         ItemList::const_iterator end = group->items().end();
         for(ItemList::const_iterator it = group->items().begin(); it != end; ++it) {
             worldItemAdded(*it);
@@ -328,8 +328,8 @@ void World::worldItemAdded(Item* item)
 
 void World::worldItemRemoved(Item* item)
 {
-    ItemGroup* group = dynamic_cast<ItemGroup*>(item);
-    if(group) {
+    if(item->metaObject()->inherits<ItemGroup>()) {
+        ItemGroup* group = static_cast<ItemGroup*>(item);
         ItemList::const_iterator end = group->items().end();
         for(ItemList::const_iterator it = group->items().begin(); it != end; ++it) {
             worldItemRemoved(*it);
@@ -341,16 +341,16 @@ void World::worldItemRemoved(Item* item)
         (*it)->worldItemRemoved(item);
     }
 
-    Force* force = dynamic_cast<Force*>(item);
-    if(force) {
-        ForceList::iterator f = std::find(_forces.begin(), _forces.end(), force);
+    if(item->metaObject()->inherits<Force>()) {
+        ForceList::iterator f = std::find(_forces.begin(), _forces.end(),
+                                            dynamic_cast<Force*>(item));
         STEPCORE_ASSERT_NOABORT(f != _forces.end());
         _forces.erase(f);
     }
 
-    Body* body = dynamic_cast<Body*>(item);
-    if(body) {
-        BodyList::iterator b = std::find(_bodies.begin(), _bodies.end(), body);
+    if(item->metaObject()->inherits<Body>()) {
+        BodyList::iterator b = std::find(_bodies.begin(), _bodies.end(),
+                                            dynamic_cast<Body*>(item));
         STEPCORE_ASSERT_NOABORT(b != _bodies.end());
         _bodies.erase(b);
     }

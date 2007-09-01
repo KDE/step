@@ -355,44 +355,37 @@ void Controller::setWorld(World* world)
     Item::setWorld(world);
 }
 
-Tracer::Tracer(Body* bodyPtr, const Vector2d& localPosition)
+Tracer::Tracer(Item* bodyPtr, const Vector2d& localPosition)
     : _localPosition(localPosition)
 {
     setColor(0xff0000ff);
     setBodyPtr(bodyPtr);
 }
 
-void Tracer::setBodyPtr(Body* bodyPtr)
+void Tracer::setBodyPtr(Item* bodyPtr)
 {
-    if(dynamic_cast<Particle*>(bodyPtr) || dynamic_cast<RigidBody*>(bodyPtr)) {
-        //_localPosition1.setZero();
+    if(bodyPtr && (bodyPtr->metaObject()->inherits<Particle>() ||
+                    bodyPtr->metaObject()->inherits<RigidBody>())) {
         _bodyPtr = bodyPtr;
     } else {
-        //Particle* p1 = dynamic_cast<Particle*>(_bodyPtr1);
-        //RigidBody* r1 = dynamic_cast<RigidBody*>(_bodyPtr1);
-        //if(p1) _localPosition1 = p1->position();
-        //else if(r1) _localPosition1 = r1->position();
         _bodyPtr = NULL;
     }
 }
 
 Vector2d Tracer::position() const
 {
-    Particle* p1 = dynamic_cast<Particle*>(_bodyPtr);
-    if(p1) return p1->position() + _localPosition;
-
-    RigidBody* r1 = dynamic_cast<RigidBody*>(_bodyPtr);
-    if(r1) return r1->pointLocalToWorld(_localPosition);
-
+    if(_bodyPtr) {
+        if(_bodyPtr->metaObject()->inherits<Particle>())
+            return static_cast<Particle*>(_bodyPtr)->position() + _localPosition;
+        else if(_bodyPtr->metaObject()->inherits<RigidBody>())
+            return static_cast<RigidBody*>(_bodyPtr)->pointLocalToWorld(_localPosition);
+    }
     return _localPosition;
 }
 
 void Tracer::worldItemRemoved(Item* item)
 {
-    if(item == NULL) return;
-    if(item == dynamic_cast<Item*>(_bodyPtr)) {
-        _bodyPtr = NULL;
-    }
+    if(item == _bodyPtr) _bodyPtr = NULL;
 }
 
 void Tracer::setWorld(World* world)
@@ -400,8 +393,7 @@ void Tracer::setWorld(World* world)
     if(world == NULL) {
         _bodyPtr = NULL;
     } else if(this->world() != NULL) { 
-        if(_bodyPtr != NULL)
-            _bodyPtr = dynamic_cast<Body*>(world->item(body()));
+        if(_bodyPtr != NULL) _bodyPtr = world->item(body());
     }
     Item::setWorld(world);
 }

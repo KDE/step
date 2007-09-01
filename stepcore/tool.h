@@ -425,17 +425,17 @@ class Tracer: public Item, public Tool
 
 public:
     /** Constructs Spring */
-    explicit Tracer(Body* bodyPtr = 0, const Vector2d& localPosition = Vector2d(0));
+    explicit Tracer(Item* bodyPtr = 0, const Vector2d& localPosition = Vector2d(0));
 
     /** Get pointer to the first body */
-    Body* bodyPtr() { return _bodyPtr; }
+    Item* bodyPtr() { return _bodyPtr; }
     /** Set pointer to the first connected body */
-    void setBodyPtr(Body* bodyPtr);
+    void setBodyPtr(Item* bodyPtr);
 
     /** Set connected body by name */
-    void setBody(const QString& body) { setBodyPtr(dynamic_cast<Body*>(world()->item(body))); }
+    void setBody(const QString& body) { setBodyPtr(world()->item(body)); }
     /** Get name of the connected body */
-    QString body() const { return _bodyPtr ? dynamic_cast<Item*>(_bodyPtr)->name() : QString(); }
+    QString body() const { return _bodyPtr ? _bodyPtr->name() : QString(); }
 
     /** Local position of the tracer on the body
      *  or in the world (if the tracer is not connected) */
@@ -462,7 +462,7 @@ public:
     void setWorld(World* world);
 
 protected:
-    Body* _bodyPtr;
+    Item* _bodyPtr;
     Vector2d _localPosition;
     std::vector<Vector2d> _points;
 };

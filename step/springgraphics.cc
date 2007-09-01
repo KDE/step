@@ -220,16 +220,17 @@ void SpringGraphicsItem::paint(QPainter* painter, const QStyleOptionGraphicsItem
 
     painter->setPen(QPen(QColor::fromRgba(spring()->color()), 0));
 
-    StepCore::RigidBody* rb;
-    StepCore::Particle* pb;
-    if(NULL != (rb = dynamic_cast<StepCore::RigidBody*>(spring()->bodyPtr1())))
-        painter->drawLine(QPointF(0, 0), vectorToPoint(rb->position() - spring()->position1()));
-    if(NULL != (pb = dynamic_cast<StepCore::Particle*>(spring()->bodyPtr1())))
-        painter->drawLine(QPointF(0, 0), vectorToPoint(pb->position() - spring()->position1()));
-    if(NULL != (rb = dynamic_cast<StepCore::RigidBody*>(spring()->bodyPtr2())))
-        painter->drawLine(vectorToPoint(r), vectorToPoint(rb->position() - spring()->position1()));
-    if(NULL != (pb = dynamic_cast<StepCore::Particle*>(spring()->bodyPtr2())))
-        painter->drawLine(vectorToPoint(r), vectorToPoint(pb->position() - spring()->position1()));
+    StepCore::Vector2d p1c, p2c;
+    if(spring()->rigidBody1Ptr()) p1c = spring()->rigidBody1Ptr()->position();
+    else if(spring()->particle1Ptr()) p1c = spring()->particle1Ptr()->position();
+    else p1c = spring()->position1();
+
+    if(spring()->rigidBody2Ptr()) p2c = spring()->rigidBody2Ptr()->position();
+    else if(spring()->particle2Ptr()) p2c = spring()->particle2Ptr()->position();
+    else p2c = spring()->position2();
+
+    painter->drawLine(QPointF(0, 0), vectorToPoint(p1c - spring()->position1()));
+    painter->drawLine(vectorToPoint(r), vectorToPoint(p2c - spring()->position1()));
 
     painter->rotate(atan2(r[1], r[0])*180/3.14);
 
@@ -275,24 +276,17 @@ void SpringGraphicsItem::viewScaleChanged()
     _boundingRect = QRectF(0, 0, r[0], r[1]).normalized();
     _boundingRect.adjust(-_radius-m, -_radius-m, _radius+m, _radius+m);
 
-    StepCore::RigidBody* rb;
-    StepCore::Particle* pb;
-    if(NULL != (rb = dynamic_cast<StepCore::RigidBody*>(spring()->bodyPtr1()))) {
-        StepCore::Vector2d rd1 = rb->position() - spring()->position1();
-        _boundingRect |= QRectF(0, 0, rd1[0], rd1[1]).normalized();
-    } else if(NULL != (pb = dynamic_cast<StepCore::Particle*>(spring()->bodyPtr1()))) {
-        StepCore::Vector2d rd1 = pb->position() - spring()->position1();
-        _boundingRect |= QRectF(0, 0, rd1[0], rd1[1]).normalized();
-    }
+    StepCore::Vector2d p1c, p2c;
+    if(spring()->rigidBody1Ptr()) p1c = spring()->rigidBody1Ptr()->position();
+    else if(spring()->particle1Ptr()) p1c = spring()->particle1Ptr()->position();
+    else p1c = spring()->position1();
 
-    if(NULL != (rb = dynamic_cast<StepCore::RigidBody*>(spring()->bodyPtr2()))) {
-        StepCore::Vector2d rd2 = rb->position() - spring()->position2();
-        _boundingRect |= QRectF(r[0], r[1], rd2[0], rd2[1]).normalized();
-    }
-    if(NULL != (pb = dynamic_cast<StepCore::Particle*>(spring()->bodyPtr2()))) {
-        StepCore::Vector2d rd2 = pb->position() - spring()->position2();
-        _boundingRect |= QRectF(r[0], r[1], rd2[0], rd2[1]).normalized();
-    }
+    if(spring()->rigidBody2Ptr()) p2c = spring()->rigidBody2Ptr()->position();
+    else if(spring()->particle2Ptr()) p2c = spring()->particle2Ptr()->position();
+    else p2c = spring()->position2();
+
+    _boundingRect |= QRectF(QPoint(0, 0), vectorToPoint(p1c - spring()->position1())).normalized();
+    _boundingRect |= QRectF(vectorToPoint(r), vectorToPoint(p2c - spring()->position2())).normalized();
 
     double u = 1/s;
     _painterPath.addRect(QRectF(-u, -_radius-u, _rnorm+u, _radius*2+u));
@@ -327,32 +321,30 @@ void SpringGraphicsItem::stateChanged()
 void SpringGraphicsItem::mouseSetPos(const QPointF& /*pos*/, const QPointF& diff)
 {
     _worldModel->simulationPause();
-    StepCore::Item* item1 = dynamic_cast<StepCore::Item*>(spring()->bodyPtr1());
-    StepCore::Item* item2 = dynamic_cast<StepCore::Item*>(spring()->bodyPtr2());
 
-    if(item1) {
-        WorldGraphicsItem* gItem = dynamic_cast<WorldScene*>(scene())->graphicsFromItem(item1);
+    if(spring()->body1Ptr()) {
+        WorldGraphicsItem* gItem = static_cast<WorldScene*>(scene())->graphicsFromItem(spring()->body1Ptr());
         Q_ASSERT(gItem != NULL);
         if(!gItem->isSelected()) {
             _worldModel->setProperty(_item, _item->metaObject()->property("localPosition1"),
                                         _item->metaObject()->property("position1")->readVariant(_item));
             _worldModel->setProperty(_item, _item->metaObject()->property("body1"), QString(), false);
         }
+    } else {
+        _worldModel->setProperty(_item, _item->metaObject()->property("localPosition1"), 
+            QVariant::fromValue( spring()->position1() + pointToVector(diff) ));
     }
-    if(item2) {
-        WorldGraphicsItem* gItem = dynamic_cast<WorldScene*>(scene())->graphicsFromItem(item2);
+
+    if(spring()->body2Ptr()) {
+        WorldGraphicsItem* gItem = static_cast<WorldScene*>(scene())->graphicsFromItem(spring()->body2Ptr());
         Q_ASSERT(gItem != NULL);
         if(!gItem->isSelected()) {
             _worldModel->setProperty(_item, _item->metaObject()->property("localPosition2"),
                                         _item->metaObject()->property("position2")->readVariant(_item));
             _worldModel->setProperty(_item, _item->metaObject()->property("body2"), QString(), false);
         }
-    }
-
-    if(!spring()->bodyPtr1())
-        _worldModel->setProperty(_item, _item->metaObject()->property("localPosition1"), 
-            QVariant::fromValue( spring()->position1() + pointToVector(diff) ));
-    if(!spring()->bodyPtr2())
+    } else {
         _worldModel->setProperty(_item, _item->metaObject()->property("localPosition2"),
             QVariant::fromValue( spring()->position2() + pointToVector(diff) ));
+    }
 }

@@ -37,8 +37,7 @@ int GJKCollisionSolver::checkPolygonPolygon(Contact* contact)
     Polygon* polygon0 = static_cast<Polygon*>(contact->body0);
     Polygon* polygon1 = static_cast<Polygon*>(contact->body1);
 
-    if(polygon0->vertexes().size() == 0 ||
-            polygon1->vertexes().size() == 0) {
+    if(polygon0->vertexes().empty() || polygon1->vertexes().empty()) {
         return contact->state = Contact::Unknown;
     }
 
@@ -345,7 +344,7 @@ int GJKCollisionSolver::checkPolygonParticle(Contact* contact)
     Polygon* polygon0 = static_cast<Polygon*>(contact->body0);
     Particle* particle1 = static_cast<Particle*>(contact->body1);
 
-    if(polygon0->vertexes().size() == 0) {
+    if(polygon0->vertexes().empty()) {
         return contact->state = Contact::Unknown;
     }
 
@@ -535,11 +534,11 @@ int GJKCollisionSolver::checkContact(Contact* contact)
 {
 
     if(contact->type == Contact::UnknownType) {
-        if(dynamic_cast<Polygon*>(contact->body0)) {
-            if(dynamic_cast<Polygon*>(contact->body1)) contact->type = Contact::PolygonPolygonType;
-            else if(dynamic_cast<Particle*>(contact->body1)) contact->type = Contact::PolygonParticleType;
-        } else if(dynamic_cast<Particle*>(contact->body0)) {
-            if(dynamic_cast<Polygon*>(contact->body1)) {
+        if(contact->body0->metaObject()->inherits<Polygon>()) {
+            if(contact->body1->metaObject()->inherits<Polygon>()) contact->type = Contact::PolygonPolygonType;
+            else if(contact->body1->metaObject()->inherits<Particle>()) contact->type = Contact::PolygonParticleType;
+        } else if(contact->body0->metaObject()->inherits<Particle>()) {
+            if(contact->body1->metaObject()->inherits<Polygon>()) {
                 std::swap(contact->body0, contact->body1);
                 contact->type = Contact::PolygonParticleType;
             }
@@ -728,11 +727,11 @@ void GJKCollisionSolver::checkCache(BodyList& bodies)
                 Body* body1 = bodies[j];
                 int type = Contact::UnknownType;
 
-                if(dynamic_cast<Polygon*>(body0)) {
-                    if(dynamic_cast<Polygon*>(body1)) type = Contact::PolygonPolygonType;
-                    else if(dynamic_cast<Particle*>(body1)) type = Contact::PolygonParticleType;
-                } else if(dynamic_cast<Particle*>(body0)) {
-                    if(dynamic_cast<Polygon*>(body1)) {
+                if(body0->metaObject()->inherits<Polygon>()) {
+                    if(body1->metaObject()->inherits<Polygon>()) type = Contact::PolygonPolygonType;
+                    else if(body1->metaObject()->inherits<Particle>()) type = Contact::PolygonParticleType;
+                } else if(body0->metaObject()->inherits<Particle>()) {
+                    if(body1->metaObject()->inherits<Polygon>()) {
                         std::swap(body0, body1);
                         type = Contact::PolygonParticleType;
                     }

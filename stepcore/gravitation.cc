@@ -62,14 +62,14 @@ GravitationForce::GravitationForce(double gravitationConst)
 
 void GravitationForce::calcForce(bool calcVariances)
 {
-    Particle* p1;
-    Particle* p2;
-
     const BodyList::const_iterator end = world()->bodies().end();
     for(BodyList::const_iterator b1 = world()->bodies().begin(); b1 != end; ++b1) {
-        if(NULL == (p1 = dynamic_cast<Particle*>(*b1))) continue;
+        if(!(*b1)->metaObject()->inherits<Particle>()) continue;
         for(BodyList::const_iterator b2 = b1+1; b2 != end; ++b2) {
-            if(NULL == (p2 = dynamic_cast<Particle*>(*b2))) continue;
+            if(!(*b2)->metaObject()->inherits<Particle>()) continue;
+            Particle* p1 = static_cast<Particle*>(*b1);
+            Particle* p2 = static_cast<Particle*>(*b2);
+
             Vector2d r = p2->position() - p1->position();
             double rnorm2 = r.norm2();
             Vector2d force = _gravitationConst * p1->mass() * p2->mass() * r / (rnorm2*sqrt(rnorm2));
@@ -109,14 +109,14 @@ void WeightForce::calcForce(bool calcVariances)
 
     const BodyList::const_iterator end = world()->bodies().end();
     for(BodyList::const_iterator b1 = world()->bodies().begin(); b1 != end; ++b1) {
-        if(NULL != (p1 = dynamic_cast<Particle*>(*b1))) {
-            p1->applyForce(g*p1->mass());
-            if(calcVariances) {
-                ParticleErrors* pe1 = p1->particleErrors();
-                Vector2d forceV(0, square(_weightConst)*pe1->massVariance()+
-                                   square(p1->mass())*weightForceErrors()->weightConstVariance());
-                pe1->applyForceVariance(forceV);
-            }
+        if(!(*b1)->metaObject()->inherits<Particle>()) continue;
+        Particle* p1 = static_cast<Particle*>(*b1);
+        p1->applyForce(g*p1->mass());
+        if(calcVariances) {
+            ParticleErrors* pe1 = p1->particleErrors();
+            Vector2d forceV(0, square(_weightConst)*pe1->massVariance()+
+                               square(p1->mass())*weightForceErrors()->weightConstVariance());
+            pe1->applyForceVariance(forceV);
         }
     }
 }
