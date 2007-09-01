@@ -558,26 +558,39 @@ void PropertiesBrowserDelegate::editorActivated()
 class PropertiesBrowserView: public QTreeView
 {
 public:
-    PropertiesBrowserView(QWidget* parent = 0) : QTreeView(parent) {}
+    PropertiesBrowserView(QWidget* parent = 0);
 protected:
+    void changeEvent(QEvent* event);
     void mousePressEvent(QMouseEvent* event);
     void drawBranches(QPainter *painter, const QRect &rect, const QModelIndex &index) const;
     QStyleOptionViewItem viewOptions() const;
+    const int _windowsDecoSize;
+    bool _macStyle;
 };
+
+PropertiesBrowserView::PropertiesBrowserView(QWidget* parent)
+        : QTreeView(parent), _windowsDecoSize(9)
+{
+    _macStyle = QApplication::style()->inherits("QMacStyle");
+}
+
+void PropertiesBrowserView::changeEvent(QEvent* event)
+{
+    if(event->type() == QEvent::StyleChange)
+        _macStyle = QApplication::style()->inherits("QMacStyle");
+}
 
 void PropertiesBrowserView::mousePressEvent(QMouseEvent* event)
 {
     if(columnAt(event->x()) == 0) {
         QModelIndex idx = indexAt(event->pos());
         if(idx.isValid() && !idx.parent().isValid() && idx.model()->rowCount(idx) > 0) {
-            static const bool mac_style = QApplication::style()->inherits("QMacStyle");
-            static const int windows_deco_size = 9;
             QRect primitive = visualRect(idx); primitive.setWidth(indentation());
-            if (!mac_style) {
-                primitive.moveLeft(primitive.left() + (primitive.width() - windows_deco_size)/2);
-                primitive.moveTop(primitive.top() + (primitive.height() - windows_deco_size)/2);
-                primitive.setWidth(windows_deco_size);
-                primitive.setHeight(windows_deco_size);
+            if (!_macStyle) {
+                primitive.moveLeft(primitive.left() + (primitive.width() - _windowsDecoSize)/2);
+                primitive.moveTop(primitive.top() + (primitive.height() - _windowsDecoSize)/2);
+                primitive.setWidth(_windowsDecoSize);
+                primitive.setHeight(_windowsDecoSize);
             }
             if(primitive.contains(event->pos())) {
                 setExpanded(idx, !isExpanded(idx));
@@ -592,9 +605,6 @@ void PropertiesBrowserView::mousePressEvent(QMouseEvent* event)
 void PropertiesBrowserView::drawBranches(QPainter *painter, const QRect &rect, const QModelIndex &index) const
 {
     // Inspired by qt-designer code in src/components/propertyeditor/qpropertyeditor.cpp
-    static const bool mac_style = QApplication::style()->inherits("QMacStyle");
-    static const int windows_deco_size = 9;
-
     QStyleOptionViewItem opt = viewOptions();
 
     if(model()->hasChildren(index)) {
@@ -606,11 +616,11 @@ void PropertiesBrowserView::drawBranches(QPainter *painter, const QRect &rect, c
             primitive.moveLeft(0);
         }
 
-        if (!mac_style) {
-            primitive.moveLeft(primitive.left() + (primitive.width() - windows_deco_size)/2);
-            primitive.moveTop(primitive.top() + (primitive.height() - windows_deco_size)/2);
-            primitive.setWidth(windows_deco_size);
-            primitive.setHeight(windows_deco_size);
+        if (!_macStyle) {
+            primitive.moveLeft(primitive.left() + (primitive.width() - _windowsDecoSize)/2);
+            primitive.moveTop(primitive.top() + (primitive.height() - _windowsDecoSize)/2);
+            primitive.setWidth(_windowsDecoSize);
+            primitive.setHeight(_windowsDecoSize);
         }
 
         opt.rect = primitive;

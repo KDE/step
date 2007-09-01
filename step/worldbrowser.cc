@@ -32,15 +32,30 @@
 class WorldBrowserView: public QTreeView
 {
 public:
-    WorldBrowserView(QWidget* parent = 0) : QTreeView(parent) {}
+    WorldBrowserView(QWidget* parent = 0);
     virtual void reset();
 
 protected:
+    void changeEvent(QEvent* event);
     void drawBranches(QPainter *painter, const QRect &rect, const QModelIndex &index) const;
     void keyPressEvent(QKeyEvent* e);
     void contextMenuEvent(QContextMenuEvent* event);
     WorldModel* worldModel() { return static_cast<WorldModel*>(model()); }
+    const int _windowsDecoSize;
+    bool _macStyle;
 };
+
+WorldBrowserView::WorldBrowserView(QWidget* parent)
+        : QTreeView(parent), _windowsDecoSize(9)
+{
+    _macStyle = QApplication::style()->inherits("QMacStyle");
+}
+
+void WorldBrowserView::changeEvent(QEvent* event)
+{
+    if(event->type() == QEvent::StyleChange)
+        _macStyle = QApplication::style()->inherits("QMacStyle");
+}
 
 WorldBrowser::WorldBrowser(WorldModel* worldModel, QWidget* parent, Qt::WindowFlags flags)
     : QDockWidget(i18nc("Object list", "World"), parent, flags)
@@ -83,9 +98,6 @@ void WorldBrowserView::contextMenuEvent(QContextMenuEvent* event)
 void WorldBrowserView::drawBranches(QPainter *painter, const QRect &rect, const QModelIndex &index) const
 {
     // Inspired by qt-designer code in src/components/propertyeditor/qpropertyeditor.cpp
-    static const bool mac_style = QApplication::style()->inherits("QMacStyle");
-    static const int windows_deco_size = 9;
-
     if(!index.parent().isValid()) return;
     QStyleOptionViewItem opt = viewOptions();
 
@@ -95,11 +107,11 @@ void WorldBrowserView::drawBranches(QPainter *painter, const QRect &rect, const 
         QRect primitive(rect.left() + rect.width() - indentation(), rect.top(),
                                                     indentation(), rect.height());
 
-        if (!mac_style) {
-            primitive.moveLeft(primitive.left() + (primitive.width() - windows_deco_size)/2);
-            primitive.moveTop(primitive.top() + (primitive.height() - windows_deco_size)/2);
-            primitive.setWidth(windows_deco_size);
-            primitive.setHeight(windows_deco_size);
+        if (!_macStyle) {
+            primitive.moveLeft(primitive.left() + (primitive.width() - _windowsDecoSize)/2);
+            primitive.moveTop(primitive.top() + (primitive.height() - _windowsDecoSize)/2);
+            primitive.setWidth(_windowsDecoSize);
+            primitive.setHeight(_windowsDecoSize);
         }
 
         opt.rect = primitive;
