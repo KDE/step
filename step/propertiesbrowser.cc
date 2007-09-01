@@ -35,6 +35,7 @@
 #include <QMouseEvent>
 #include <QLineEdit>
 #include <QHBoxLayout>
+#include <QApplication>
 #include <KLocale>
 #include <KComboBox>
 #include <KColorButton>
@@ -212,11 +213,20 @@ QVariant PropertiesBrowserModel::data(const QModelIndex &index, int role) const
                 return _object->metaObject()->description();
             }
             return p->description(); // XXX: translation
-        } else if(index.column() == 1 &&
-                p->userTypeId() == qMetaTypeId<StepCore::Color>() && role == Qt::DecorationRole) {
+        } else if(index.column() == 1 && role == Qt::DecorationRole &&
+                    p->userTypeId() == qMetaTypeId<StepCore::Color>()) {
             QPixmap pix(8, 8);
             pix.fill(QColor::fromRgba(p->readVariant(_object).value<StepCore::Color>()));
             return pix;
+        } else if(index.column() == 0 && role == Qt::DecorationRole &&
+                    p->userTypeId() == qMetaTypeId<std::vector<StepCore::Vector2d> >()) {
+            // XXX: A hack to have nested properties shifted
+            static QPixmap empySmallPix;
+            if(empySmallPix.isNull()) {
+                empySmallPix = QPixmap(8,8); //XXX
+                empySmallPix.fill(QColor(0,0,0,0));
+            }
+            return empySmallPix;
         }
     } else { // index.internalId() != 0
         const StepCore::MetaProperty* p = _object->metaObject()->property(index.internalId()-1);
@@ -545,13 +555,84 @@ void PropertiesBrowserDelegate::editorActivated()
     }
 }
 
+class PropertiesBrowserView: public QTreeView
+{
+public:
+    PropertiesBrowserView(QWidget* parent = 0) : QTreeView(parent) {}
+protected:
+    void mousePressEvent(QMouseEvent* event);
+    void drawBranches(QPainter *painter, const QRect &rect, const QModelIndex &index) const;
+    QStyleOptionViewItem viewOptions() const;
+};
+
+void PropertiesBrowserView::mousePressEvent(QMouseEvent* event)
+{
+    if(columnAt(event->x()) == 0) {
+        QModelIndex idx = indexAt(event->pos());
+        if(!idx.parent().isValid() && idx.model()->rowCount(idx) > 0) {
+            static const bool mac_style = QApplication::style()->inherits("QMacStyle");
+            static const int windows_deco_size = 9;
+            QRect primitive = visualRect(idx); primitive.setWidth(indentation());
+            if (!mac_style) {
+                primitive.moveLeft(primitive.left() + (primitive.width() - windows_deco_size)/2);
+                primitive.moveTop(primitive.top() + (primitive.height() - windows_deco_size)/2);
+                primitive.setWidth(windows_deco_size);
+                primitive.setHeight(windows_deco_size);
+            }
+            if(primitive.contains(event->pos())) {
+                setExpanded(idx, !isExpanded(idx));
+                
+                return;
+            }
+        }
+    }
+    QTreeView::mousePressEvent(event);
+}
+
+void PropertiesBrowserView::drawBranches(QPainter *painter, const QRect &rect, const QModelIndex &index) const
+{
+    // Inspired by qt-designer code in src/components/propertyeditor/qpropertyeditor.cpp
+    static const bool mac_style = QApplication::style()->inherits("QMacStyle");
+    static const int windows_deco_size = 9;
+
+    QStyleOptionViewItem opt = viewOptions();
+
+    if(model()->hasChildren(index)) {
+        opt.state |= QStyle::State_Children;
+
+        QRect primitive(rect.left() + rect.width() - indentation(), rect.top(),
+                                                    indentation(), rect.height());
+        if(!index.parent().isValid()) {
+            primitive.moveLeft(0);
+        }
+
+        if (!mac_style) {
+            primitive.moveLeft(primitive.left() + (primitive.width() - windows_deco_size)/2);
+            primitive.moveTop(primitive.top() + (primitive.height() - windows_deco_size)/2);
+            primitive.setWidth(windows_deco_size);
+            primitive.setHeight(windows_deco_size);
+        }
+
+        opt.rect = primitive;
+
+        if(isExpanded(index)) opt.state |= QStyle::State_Open;
+        style()->drawPrimitive(QStyle::PE_IndicatorBranch, &opt, painter, this);
+    }
+}
+
+QStyleOptionViewItem PropertiesBrowserView::viewOptions() const
+{
+    QStyleOptionViewItem option = QTreeView::viewOptions();
+    option.showDecorationSelected = true;
+    return option;
+}
+
 PropertiesBrowser::PropertiesBrowser(WorldModel* worldModel, QWidget* parent, Qt::WindowFlags flags)
     : QDockWidget(i18n("Properties"), parent, flags)
 {
     _worldModel = worldModel;
     _propertiesBrowserModel = new PropertiesBrowserModel(worldModel, this);
-    _treeView = new QTreeView(this);
-    _treeView->setModel(_propertiesBrowserModel);
+    _treeView = new PropertiesBrowserView(this);
 
     _treeView->setAllColumnsShowFocus(true);
     _treeView->setRootIsDecorated(false);
@@ -563,6 +644,7 @@ PropertiesBrowser::PropertiesBrowser(WorldModel* worldModel, QWidget* parent, Qt
     //                           QAbstractItemView::EditKeyPressed | QAbstractItemView::AnyKeyPressed);
     _treeView->setItemDelegate(new PropertiesBrowserDelegate(_treeView));
 
+    _treeView->setModel(_propertiesBrowserModel);
     worldCurrentChanged(_worldModel->worldIndex(), QModelIndex());
 
     connect(_worldModel, SIGNAL(modelReset()), this, SLOT(worldModelReset()));

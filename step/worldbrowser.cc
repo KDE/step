@@ -25,6 +25,7 @@
 #include <QHeaderView>
 #include <QKeyEvent>
 #include <QContextMenuEvent>
+#include <QApplication>
 #include <QMenu>
 #include <KLocale>
 
@@ -35,6 +36,7 @@ public:
     virtual void reset();
 
 protected:
+    void drawBranches(QPainter *painter, const QRect &rect, const QModelIndex &index) const;
     void keyPressEvent(QKeyEvent* e);
     void contextMenuEvent(QContextMenuEvent* event);
     WorldModel* worldModel() { return static_cast<WorldModel*>(model()); }
@@ -47,7 +49,6 @@ WorldBrowser::WorldBrowser(WorldModel* worldModel, QWidget* parent, Qt::WindowFl
     _worldBrowserView->header()->hide();
     _worldBrowserView->setAllColumnsShowFocus(true);
     _worldBrowserView->setRootIsDecorated(false);
-    //_worldBrowserView->setItemsExpandable(false);
     _worldBrowserView->setModel(worldModel);
     _worldBrowserView->setSelectionModel(worldModel->selectionModel());
     _worldBrowserView->setSelectionMode(QAbstractItemView::ExtendedSelection); // XXX
@@ -57,7 +58,7 @@ WorldBrowser::WorldBrowser(WorldModel* worldModel, QWidget* parent, Qt::WindowFl
 void WorldBrowserView::reset()
 {
     QTreeView::reset();
-    expandAll();
+    expand(worldModel()->worldIndex());
 }
 
 void WorldBrowserView::keyPressEvent(QKeyEvent* e)
@@ -77,5 +78,34 @@ void WorldBrowserView::contextMenuEvent(QContextMenuEvent* event)
     QMenu* menu = worldModel()->createContextMenu(index);
     menu->exec(event->globalPos());
     delete menu;
+}
+
+void WorldBrowserView::drawBranches(QPainter *painter, const QRect &rect, const QModelIndex &index) const
+{
+    // Inspired by qt-designer code in src/components/propertyeditor/qpropertyeditor.cpp
+    static const bool mac_style = QApplication::style()->inherits("QMacStyle");
+    static const int windows_deco_size = 9;
+
+    if(!index.parent().isValid()) return;
+    QStyleOptionViewItem opt = viewOptions();
+
+    if(model()->hasChildren(index)) {
+        opt.state |= QStyle::State_Children;
+
+        QRect primitive(rect.left() + rect.width() - indentation(), rect.top(),
+                                                    indentation(), rect.height());
+
+        if (!mac_style) {
+            primitive.moveLeft(primitive.left() + (primitive.width() - windows_deco_size)/2);
+            primitive.moveTop(primitive.top() + (primitive.height() - windows_deco_size)/2);
+            primitive.setWidth(windows_deco_size);
+            primitive.setHeight(windows_deco_size);
+        }
+
+        opt.rect = primitive;
+
+        if(isExpanded(index)) opt.state |= QStyle::State_Open;
+        style()->drawPrimitive(QStyle::PE_IndicatorBranch, &opt, painter, this);
+    }
 }
 

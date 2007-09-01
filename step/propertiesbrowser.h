@@ -53,6 +53,7 @@ protected:
     mutable bool _updating;
 };
 
+class PropertiesBrowserView;
 class PropertiesBrowser: public QDockWidget
 {
     Q_OBJECT
@@ -77,7 +78,7 @@ protected:
 
     WorldModel* _worldModel;
     PropertiesBrowserModel* _propertiesBrowserModel;
-    QTreeView* _treeView;
+    PropertiesBrowserView* _treeView;
 };
 
 #endif
