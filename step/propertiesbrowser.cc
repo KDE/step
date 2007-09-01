@@ -569,7 +569,7 @@ void PropertiesBrowserView::mousePressEvent(QMouseEvent* event)
 {
     if(columnAt(event->x()) == 0) {
         QModelIndex idx = indexAt(event->pos());
-        if(!idx.parent().isValid() && idx.model()->rowCount(idx) > 0) {
+        if(idx.isValid() && !idx.parent().isValid() && idx.model()->rowCount(idx) > 0) {
             static const bool mac_style = QApplication::style()->inherits("QMacStyle");
             static const int windows_deco_size = 9;
             QRect primitive = visualRect(idx); primitive.setWidth(indentation());
