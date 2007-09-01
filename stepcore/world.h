@@ -341,6 +341,7 @@ public:
 
 private:
     friend class ItemGroup;
+    void worldItemCopied(Item* item);
     void worldItemAdded(Item* item);
     void worldItemRemoved(Item* item);
 

@@ -107,13 +107,18 @@ public:
     /** Reset internal caches of collision information
      *  @todo do it automatically by checking the cache
      */
-    virtual void resetCaches() = 0;
+    virtual void resetCaches() {}
+
+    virtual void bodyAdded(BodyList&, Body*) {}
+    virtual void bodyRemoved(BodyList&, Body*) {}
 
 protected:
     double _toleranceAbs;
     //double _toleranceRel;
     double _localError;
 };
+
+typedef std::vector<Contact*> ContactList;
 
 /** \ingroup contacts
  *  \brief Discrete collision solver using Gilbert-Johnson-Keerthi distance algorithm
@@ -146,6 +151,8 @@ public:
     //int solveConstraints(BodyList& bodies);
 
     void resetCaches();
+    void bodyAdded(BodyList& bodies, Body* body);
+    void bodyRemoved(BodyList& bodies, Body* body);
 
 protected:
     int checkPolygonPolygon(Contact* contact);
@@ -157,8 +164,8 @@ protected:
     void checkCache(BodyList& bodies);
 
 protected:
-    std::vector<Contact*> _contacts;
-    bool                  _contactsIsValid;
+    ContactList _contacts;
+    bool        _contactsIsValid;
 };
 
 } // namespace StepCore

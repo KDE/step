@@ -245,7 +245,7 @@ World& World::operator=(const World& world)
 
     const ItemList::const_iterator end = items().end();
     for(ItemList::const_iterator it = items().begin(); it != end; ++it) {
-        worldItemAdded(*it);
+        worldItemCopied(*it);
     }
 
     _time = world._time;
@@ -260,9 +260,13 @@ World& World::operator=(const World& world)
                 world._solver->metaObject()->cloneObject(*(world._solver))));
     else setSolver(0);
 
-    if(world._collisionSolver) setCollisionSolver(static_cast<CollisionSolver*>(
+    if(world._collisionSolver) {
+        setCollisionSolver(static_cast<CollisionSolver*>(
                world._collisionSolver->metaObject()->cloneObject(*(world._collisionSolver))));
-    else setCollisionSolver(0);
+        _collisionSolver->resetCaches(); // XXX: implement proper copy
+    } else {
+        setCollisionSolver(0);
+    }
 
     /*if(world._constraintSolver) setConstraintSolver(static_cast<ConstraintSolver*>(
                world._constraintSolver->metaObject()->cloneObject(*(world._constraintSolver))));
@@ -277,6 +281,8 @@ World& World::operator=(const World& world)
 
 void World::clear()
 {
+    if(_collisionSolver) _collisionSolver->resetCaches();
+
     // clear _items
     ItemGroup::clear();
 
@@ -310,12 +316,32 @@ void World::clear()
 #endif
 }
 
-void World::worldItemAdded(Item* item)
+void World::worldItemCopied(Item* item)
 {
     if(item->metaObject()->inherits<Force>())
         _forces.push_back(dynamic_cast<Force*>(item));
     if(item->metaObject()->inherits<Body>())
         _bodies.push_back(dynamic_cast<Body*>(item));
+
+    if(item->metaObject()->inherits<ItemGroup>()) {
+        ItemGroup* group = static_cast<ItemGroup*>(item);
+        ItemList::const_iterator end = group->items().end();
+        for(ItemList::const_iterator it = group->items().begin(); it != end; ++it) {
+            worldItemCopied(*it);
+        }
+    }
+}
+
+void World::worldItemAdded(Item* item)
+{
+    if(item->metaObject()->inherits<Force>())
+        _forces.push_back(dynamic_cast<Force*>(item));
+
+    if(item->metaObject()->inherits<Body>()) {
+        Body* body = dynamic_cast<Body*>(item);
+        _bodies.push_back(body);
+        if(_collisionSolver) _collisionSolver->bodyAdded(_bodies, body);
+    }
 
     if(item->metaObject()->inherits<ItemGroup>()) {
         ItemGroup* group = static_cast<ItemGroup*>(item);
@@ -341,18 +367,19 @@ void World::worldItemRemoved(Item* item)
         (*it)->worldItemRemoved(item);
     }
 
+    if(item->metaObject()->inherits<Body>()) {
+        Body* body = dynamic_cast<Body*>(item);
+        if(_collisionSolver) _collisionSolver->bodyRemoved(_bodies, body);
+        BodyList::iterator b = std::find(_bodies.begin(), _bodies.end(), body);
+        STEPCORE_ASSERT_NOABORT(b != _bodies.end());
+        _bodies.erase(b);
+    }
+
     if(item->metaObject()->inherits<Force>()) {
         ForceList::iterator f = std::find(_forces.begin(), _forces.end(),
                                             dynamic_cast<Force*>(item));
         STEPCORE_ASSERT_NOABORT(f != _forces.end());
         _forces.erase(f);
-    }
-
-    if(item->metaObject()->inherits<Body>()) {
-        BodyList::iterator b = std::find(_bodies.begin(), _bodies.end(),
-                                            dynamic_cast<Body*>(item));
-        STEPCORE_ASSERT_NOABORT(b != _bodies.end());
-        _bodies.erase(b);
     }
 }
 
@@ -522,7 +549,7 @@ int World::doCalcFn()
 {
     STEPCORE_ASSERT_NOABORT(_solver != NULL);
 
-    if(_collisionSolver) _collisionSolver->resetCaches();
+    //if(_collisionSolver) _collisionSolver->resetCaches();
 
     _stopOnCollision = false;
     _stopOnIntersection = false;
@@ -543,7 +570,7 @@ int World::doEvolve(double delta)
     double targetTime = _time + delta*_timeScale;
     
     if(_collisionSolver) {
-         _collisionSolver->resetCaches();
+        //_collisionSolver->resetCaches();
         if(Contact::Intersected == _collisionSolver->checkContacts(_bodies))
             return Solver::IntersectionDetected;
     }

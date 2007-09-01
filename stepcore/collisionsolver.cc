@@ -558,8 +558,8 @@ int GJKCollisionSolver::checkContacts(BodyList& bodies)
     checkCache(bodies);
 
     // Detect and classify contacts
-    const std::vector<Contact*>::const_iterator end = _contacts.end();
-    for(std::vector<Contact*>::const_iterator it = _contacts.begin(); it != end; ++it) {
+    const ContactList::const_iterator end = _contacts.end();
+    for(ContactList::const_iterator it = _contacts.begin(); it != end; ++it) {
         Contact* contact = *it;
 
         if(contact->type == Contact::PolygonPolygonType) checkPolygonPolygon(contact);
@@ -692,8 +692,8 @@ int GJKCollisionSolver::solveCollisions(BodyList& bodies)
 
     // Solve collisions
 
-    const std::vector<Contact*>::const_iterator end = _contacts.end();
-    for(std::vector<Contact*>::const_iterator it = _contacts.begin(); it != end; ++it) {
+    const ContactList::const_iterator end = _contacts.end();
+    for(ContactList::const_iterator it = _contacts.begin(); it != end; ++it) {
         Contact* contact = *it;
 
         if(contact->state != Contact::Colliding) continue;
@@ -718,13 +718,13 @@ int GJKCollisionSolver::solveConstraints(BodyList& /*bodies*/)
 void GJKCollisionSolver::checkCache(BodyList& bodies)
 {
     if(!_contactsIsValid) {
-        unsigned int bs = bodies.size();
         unsigned int ccount = 0;
         
-        for(unsigned int i=0; i<bs; ++i) {
-            for(unsigned int j=i+1; j<bs; ++j) {
-                Body* body0 = bodies[i];
-                Body* body1 = bodies[j];
+        BodyList::const_iterator end = bodies.end();
+        for(BodyList::const_iterator i0 = bodies.begin(); i0 != end; ++i0) {
+            for(BodyList::const_iterator i1 = i0+1; i1 != end; ++i1) {
+                Body* body0 = *i0;
+                Body* body1 = *i1;
                 int type = Contact::UnknownType;
 
                 if(body0->metaObject()->inherits<Polygon>()) {
@@ -761,6 +761,48 @@ void GJKCollisionSolver::checkCache(BodyList& bodies)
         }
         _contactsIsValid = true;
     }
+}
+
+void GJKCollisionSolver::bodyAdded(BodyList& bodies, Body* body)
+{
+    if(!_contactsIsValid) return;
+
+    BodyList::const_iterator end = bodies.end();
+    for(BodyList::const_iterator i1 = bodies.begin(); i1 != end; ++i1) {
+        Body* body0 = body;
+        Body* body1 = *i1;
+        int type = Contact::UnknownType;
+
+        if(body0->metaObject()->inherits<Polygon>()) {
+            if(body1->metaObject()->inherits<Polygon>()) type = Contact::PolygonPolygonType;
+            else if(body1->metaObject()->inherits<Particle>()) type = Contact::PolygonParticleType;
+        } else if(body0->metaObject()->inherits<Particle>()) {
+            if(body1->metaObject()->inherits<Polygon>()) {
+                std::swap(body0, body1);
+                type = Contact::PolygonParticleType;
+            }
+        }
+
+        if(type != Contact::UnknownType) {
+            Contact* contact = new Contact;
+            contact->type = type;
+            contact->body0 = body0;
+            contact->body1 = body1;
+            contact->state = Contact::Unknown;
+            _contacts.push_back(contact);
+        }
+    }
+}
+
+void GJKCollisionSolver::bodyRemoved(BodyList&, Body* body)
+{
+    if(!_contactsIsValid) return;
+
+    const ContactList::iterator end = _contacts.end();
+    ContactList::iterator it = _contacts.begin();
+    for(; it != end; ++it)
+        if((*it)->body0 == body || (*it)->body1 == body) break;
+    if(it != end) _contacts.erase(it);
 }
 
 void GJKCollisionSolver::resetCaches()
