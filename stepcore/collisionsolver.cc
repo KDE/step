@@ -558,16 +558,16 @@ int GJKCollisionSolver::checkContacts(BodyList& bodies)
     checkCache(bodies);
 
     // Detect and classify contacts
-    const ContactList::const_iterator end = _contacts.end();
-    for(ContactList::const_iterator it = _contacts.begin(); it != end; ++it) {
-        Contact* contact = *it;
+    const ContactValueList::iterator end = _contacts.end();
+    for(ContactValueList::iterator it = _contacts.begin(); it != end; ++it) {
+        Contact& contact = *it;
 
-        if(contact->type == Contact::PolygonPolygonType) checkPolygonPolygon(contact);
-        else if(contact->type == Contact::PolygonParticleType) checkPolygonParticle(contact);
-        else contact->state = Contact::Unknown;
+        if(contact.type == Contact::PolygonPolygonType) checkPolygonPolygon(&contact);
+        else if(contact.type == Contact::PolygonParticleType) checkPolygonParticle(&contact);
+        else contact.state = Contact::Unknown;
 
-        if(contact->state > state) state = contact->state;
-        if(contact->state == Contact::Intersected) return state;
+        if(contact.state > state) state = contact.state;
+        if(contact.state == Contact::Intersected) return state;
     }
 
     return state;
@@ -692,14 +692,14 @@ int GJKCollisionSolver::solveCollisions(BodyList& bodies)
 
     // Solve collisions
 
-    const ContactList::const_iterator end = _contacts.end();
-    for(ContactList::const_iterator it = _contacts.begin(); it != end; ++it) {
-        Contact* contact = *it;
+    const ContactValueList::iterator end = _contacts.end();
+    for(ContactValueList::iterator it = _contacts.begin(); it != end; ++it) {
+        Contact& contact = *it;
 
-        if(contact->state != Contact::Colliding) continue;
+        if(contact.state != Contact::Colliding) continue;
 
-        if(contact->type == Contact::PolygonPolygonType) ret = solvePolygonPolygon(contact);
-        else if(contact->type == Contact::PolygonParticleType) ret = solvePolygonParticle(contact);
+        if(contact.type == Contact::PolygonPolygonType) ret = solvePolygonPolygon(&contact);
+        else if(contact.type == Contact::PolygonParticleType) ret = solvePolygonParticle(&contact);
         else STEPCORE_ASSERT_NOABORT(0);
 
     }
@@ -738,27 +738,18 @@ void GJKCollisionSolver::checkCache(BodyList& bodies)
                 }
 
                 if(type == Contact::UnknownType) continue;
+                if(ccount >= _contacts.size()) _contacts.push_back(Contact());
 
-                Contact* contact;
-                if(ccount < _contacts.size()) {
-                    contact = _contacts[ccount];
-                } else {
-                    contact = new Contact;
-                    _contacts.push_back(contact);
-                }
-
-                contact->type = type;
-                contact->body0 = body0;
-                contact->body1 = body1;
-                contact->state = Contact::Unknown;
+                Contact& contact = _contacts[ccount];
+                contact.type = type;
+                contact.body0 = body0;
+                contact.body1 = body1;
+                contact.state = Contact::Unknown;
                 ++ccount;
             }
         }
 
-        if(ccount < _contacts.size()) {
-            for(unsigned int i = ccount; i<_contacts.size(); ++i) delete _contacts[i];
-            _contacts.resize(ccount);
-        }
+        if(ccount < _contacts.size()) _contacts.resize(ccount);
         _contactsIsValid = true;
     }
 }
@@ -784,11 +775,11 @@ void GJKCollisionSolver::bodyAdded(BodyList& bodies, Body* body)
         }
 
         if(type != Contact::UnknownType) {
-            Contact* contact = new Contact;
-            contact->type = type;
-            contact->body0 = body0;
-            contact->body1 = body1;
-            contact->state = Contact::Unknown;
+            Contact contact;
+            contact.type = type;
+            contact.body0 = body0;
+            contact.body1 = body1;
+            contact.state = Contact::Unknown;
             _contacts.push_back(contact);
         }
     }
@@ -798,10 +789,10 @@ void GJKCollisionSolver::bodyRemoved(BodyList&, Body* body)
 {
     if(!_contactsIsValid) return;
 
-    const ContactList::iterator end = _contacts.end();
-    ContactList::iterator it = _contacts.begin();
+    const ContactValueList::iterator end = _contacts.end();
+    ContactValueList::iterator it = _contacts.begin();
     for(; it != end; ++it)
-        if((*it)->body0 == body || (*it)->body1 == body) break;
+        if((*it).body0 == body || (*it).body1 == body) break;
     if(it != end) _contacts.erase(it);
 }
 

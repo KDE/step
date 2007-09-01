@@ -118,7 +118,7 @@ protected:
     double _localError;
 };
 
-typedef std::vector<Contact*> ContactList;
+typedef std::vector<Contact> ContactValueList;
 
 /** \ingroup contacts
  *  \brief Discrete collision solver using Gilbert-Johnson-Keerthi distance algorithm
@@ -135,6 +135,12 @@ class GJKCollisionSolver : public CollisionSolver
 
 public:
     GJKCollisionSolver() : _contactsIsValid(false) {}
+
+    // TODO: proper copying of the cache !
+    GJKCollisionSolver(const GJKCollisionSolver& solver)
+        : CollisionSolver(solver), _contactsIsValid(false) {}
+    GJKCollisionSolver& operator=(const GJKCollisionSolver&) {
+        _contactsIsValid = false; return *this; }
 
     /*
     enum {
@@ -164,8 +170,8 @@ protected:
     void checkCache(BodyList& bodies);
 
 protected:
-    ContactList _contacts;
-    bool        _contactsIsValid;
+    ContactValueList _contacts;
+    bool             _contactsIsValid;
 };
 
 } // namespace StepCore

@@ -248,7 +248,9 @@ void SoftBodyParticleGraphicsItem::worldDataChanged(bool dynamicOnly)
             else if(!sb->showInternalItems() && isVisible()) hide();
         }
     }
-    ParticleGraphicsItem::worldDataChanged(dynamicOnly);
+    if(isVisible()) {
+        ParticleGraphicsItem::worldDataChanged(dynamicOnly);
+    }
 }
 
 void SoftBodySpringGraphicsItem::worldDataChanged(bool dynamicOnly)
@@ -260,6 +262,8 @@ void SoftBodySpringGraphicsItem::worldDataChanged(bool dynamicOnly)
             else if(!sb->showInternalItems() && isVisible()) hide();
         }
     }
-    SpringGraphicsItem::worldDataChanged(dynamicOnly);
+    if(isVisible()) {
+        SpringGraphicsItem::worldDataChanged(dynamicOnly);
+    }
 }
 

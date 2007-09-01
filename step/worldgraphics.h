@@ -128,12 +128,14 @@ public:
     void worldDataChanged(bool);
 
 protected:
+    QVariant itemChange(GraphicsItemChange change, const QVariant& value);
     virtual StepCore::Vector2d value();
     virtual void setValue(const StepCore::Vector2d& value);
 
     void mouseMoveEvent(QGraphicsSceneMouseEvent *event);
     const StepCore::MetaProperty* _property;
     const StepCore::MetaProperty* _positionProperty;
+    bool  _isVisible;
 };
 
 class ItemMenuHandler: public QObject

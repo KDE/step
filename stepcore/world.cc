@@ -263,7 +263,6 @@ World& World::operator=(const World& world)
     if(world._collisionSolver) {
         setCollisionSolver(static_cast<CollisionSolver*>(
                world._collisionSolver->metaObject()->cloneObject(*(world._collisionSolver))));
-        _collisionSolver->resetCaches(); // XXX: implement proper copy
     } else {
         setCollisionSolver(0);
     }
@@ -281,6 +280,7 @@ World& World::operator=(const World& world)
 
 void World::clear()
 {
+    // Avoid erasing each element individually in the cache
     if(_collisionSolver) _collisionSolver->resetCaches();
 
     // clear _items

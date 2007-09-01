@@ -272,6 +272,7 @@ ArrowHandlerGraphicsItem::ArrowHandlerGraphicsItem(StepCore::Item* item, WorldMo
     Q_ASSERT(_property->userTypeId() == qMetaTypeId<StepCore::Vector2d>());
     setFlag(QGraphicsItem::ItemIsMovable);
     setZValue(HANDLER_ZVALUE);
+    _isVisible = true;
 }
 
 void ArrowHandlerGraphicsItem::paint(QPainter* painter, const QStyleOptionGraphicsItem* /*option*/, QWidget* /*widget*/)
@@ -282,16 +283,31 @@ void ArrowHandlerGraphicsItem::paint(QPainter* painter, const QStyleOptionGraphi
 
 void ArrowHandlerGraphicsItem::viewScaleChanged()
 {
-    //kDebug() << "ArrowHandlerGraphicsItem::viewScaleChanged()" << endl;
-    prepareGeometryChange();
-    double w = HANDLER_SIZE/currentViewScale()/2;
-    _boundingRect = QRectF(-w, -w, w*2, w*2);
+    if(_isVisible) {
+        prepareGeometryChange();
+        double w = HANDLER_SIZE/currentViewScale()/2;
+        _boundingRect = QRectF(-w, -w, w*2, w*2);
+    }
 }
 
 void ArrowHandlerGraphicsItem::worldDataChanged(bool)
 {
-    //kDebug() << "ArrowHandlerGraphicsItem::worldDataChanged()" << endl;
-    setPos(vectorToPoint(value()));
+    if(_isVisible) {
+        //kDebug() << "ArrowHandlerGraphicsItem::worldDataChanged()" << endl;
+        setPos(vectorToPoint(value()));
+    }
+}
+
+QVariant ArrowHandlerGraphicsItem::itemChange(GraphicsItemChange change, const QVariant& value)
+{
+    if(change == QGraphicsItem::ItemVisibleChange) {
+        _isVisible = value.toBool();
+        if(_isVisible) {
+            viewScaleChanged();
+            worldDataChanged(false);
+        }
+    }
+    return WorldGraphicsItem::itemChange(change, value);
 }
 
 void ArrowHandlerGraphicsItem::mouseMoveEvent(QGraphicsSceneMouseEvent *event)
