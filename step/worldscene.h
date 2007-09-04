@@ -44,6 +44,8 @@ class WorldScene: public QGraphicsScene
     Q_OBJECT
 
 public:
+    enum MessageType { Information, Warning, Error };
+
     explicit WorldScene(WorldModel* worldModel, QObject* parent = 0);
     ~WorldScene();
 
@@ -58,9 +60,11 @@ public:
 public slots:
     void beginAddItem(const QString& name);
 
-    void* showMessage(const QString& text, bool closeButton = true,
-                                            bool closeTimer = false);
-    void closeMessage(void* id);
+    int showMessage(MessageType type, const QString& text,
+                    bool closeButton = true, bool closeTimer = false);
+    int changeMessage(int id, MessageType type, const QString& text,
+                    bool closeButton = true, bool closeTimer = false);
+    void closeMessage(int id);
 
     void settingsChanged();
 
@@ -100,6 +104,7 @@ protected:
     QFrame*        _messagesFrame;
     QVBoxLayout*   _messagesLayout;
     QSignalMapper* _messagesSignalMapper;
+    int            _messageLastId;
 
     friend class WorldGraphicsView;
 };

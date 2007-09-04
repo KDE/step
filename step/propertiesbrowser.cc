@@ -219,7 +219,8 @@ QVariant PropertiesBrowserModel::data(const QModelIndex &index, int role) const
             pix.fill(QColor::fromRgba(p->readVariant(_object).value<StepCore::Color>()));
             return pix;
         } else if(index.column() == 0 && role == Qt::DecorationRole &&
-                    p->userTypeId() == qMetaTypeId<std::vector<StepCore::Vector2d> >()) {
+                    p->userTypeId() == qMetaTypeId<std::vector<StepCore::Vector2d> >() &&
+                    rowCount(index) > 0) {
             // XXX: A hack to have nested properties shifted
             static QPixmap empySmallPix;
             if(empySmallPix.isNull()) {
@@ -506,6 +507,17 @@ QWidget* PropertiesBrowserDelegate::createEditor(QWidget* parent,
         const_cast<PropertiesBrowserDelegate*>(this)->_editorType = ColorChoiser;
         return editor;
 
+    } else if(userType == QMetaType::Bool) {
+        KComboBox* editor = new KComboBox(parent);
+        editor->addItem(i18n("false"));
+        editor->addItem(i18n("true"));
+        connect(editor, SIGNAL(activated(int)), this, SLOT(editorActivated()));
+        editor->installEventFilter(const_cast<PropertiesBrowserDelegate*>(this));
+        const_cast<PropertiesBrowserDelegate*>(this)->_editor = editor;
+        const_cast<PropertiesBrowserDelegate*>(this)->_comboBox = editor;
+        const_cast<PropertiesBrowserDelegate*>(this)->_editorType = BoolChoiser;
+        return editor;
+
     } else {
         const_cast<PropertiesBrowserDelegate*>(this)->_editorType = Standard;
         const QItemEditorFactory *factory = itemEditorFactory();
@@ -529,6 +541,9 @@ void PropertiesBrowserDelegate::setEditorData(QWidget* editor, const QModelIndex
         _colorButton->setColor(data.value<QColor>());
         _lineEdit->setText(data1.toString());
         _updating = false;
+    } else if(_editorType == BoolChoiser) {
+        bool value = index.data(Qt::EditRole).toBool();
+        _comboBox->setCurrentIndex(value ? 1 : 0);
     } else QItemDelegate::setEditorData(editor, index);
 }
 
@@ -538,8 +553,9 @@ void PropertiesBrowserDelegate::setModelData(QWidget* editor, QAbstractItemModel
     if(_editorType == SolverChoiser) {
         model->setData(index, _comboBox->currentText());
     } else if(_editorType == ColorChoiser) {
-        //kDebug() << "COLOR: " << clb->color() << endl;
         model->setData(index, _lineEdit->text());
+    } else if(_editorType == BoolChoiser) {
+        model->setData(index, _comboBox->currentIndex());
     } else QItemDelegate::setModelData(editor, model, index);
 }
 

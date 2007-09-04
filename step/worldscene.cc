@@ -105,7 +105,7 @@ void WorldSceneAxes::viewScaleChanged()
 WorldScene::WorldScene(WorldModel* worldModel, QObject* parent)
     : QGraphicsScene(parent), _worldModel(worldModel), _worldView(NULL),
         _currentViewScale(1), _itemCreator(NULL), _bgColor(0xffffffff),
-        _messagesFrame(NULL), _messagesLayout(NULL)
+        _messagesFrame(NULL), _messagesLayout(NULL), _messageLastId(0)
 {
     #ifdef __GNUC__
     #warning TODO: measure what index method is faster
@@ -382,7 +382,8 @@ QRectF WorldScene::calcItemsBoundingRect()
     return boundingRect;
 }
 
-void* WorldScene::showMessage(const QString& text, bool closeButton, bool closeTimer)
+int WorldScene::showMessage(MessageType type, const QString& text,
+                            bool closeButton, bool closeTimer)
 {
     if(!_messagesFrame && _worldView) {
         int br, bg, bb;
@@ -410,53 +411,82 @@ void* WorldScene::showMessage(const QString& text, bool closeButton, bool closeT
         _messagesLayout->addWidget(line);
     }
 
+    QString widgetName("message");
+    widgetName.append(QString::number(_messageLastId));
+
     QWidget* widget = new QWidget(_messagesFrame);
+    widget->setObjectName(widgetName);
     widget->setMinimumHeight(32);
 
     QHBoxLayout* layout = new QHBoxLayout(widget);
     layout->setContentsMargins(0,2,0,2);
 
-    QLabel* pixLabel = new QLabel(widget);
-    pixLabel->setPixmap(KIcon("dialog-information").pixmap(16,16));
-    layout->addWidget(pixLabel);
+    QLabel* iconLabel = new QLabel(widget);
+    iconLabel->setObjectName("iconLabel");
+    if(type == Error) iconLabel->setPixmap(KIcon("dialog-error").pixmap(16,16));
+    else if(type == Warning) iconLabel->setPixmap(KIcon("dialog-warning").pixmap(16,16));
+    else iconLabel->setPixmap(KIcon("dialog-information").pixmap(16,16));
+    layout->addWidget(iconLabel);
 
     QLabel* textLabel = new QLabel(widget);
+    textLabel->setObjectName("textLabel");
     textLabel->setText(text);
     layout->addWidget(textLabel, 1);
 
     connect(textLabel, SIGNAL(linkActivated(const QString&)),
                 this, SLOT(messageLinkActivated(const QString&)));
 
-    if(closeButton) {
-        QToolButton* button = new QToolButton(widget);
-        button->setIcon(KIcon("window-close"));
-        button->setIconSize(QSize(16,16));
-        button->setAutoRaise(true);
-        layout->addWidget(button);
+    QToolButton* button = new QToolButton(widget);
+    button->setObjectName("closeButton");
+    button->setIcon(KIcon("window-close"));
+    button->setIconSize(QSize(16,16));
+    button->setAutoRaise(true);
+    layout->addWidget(button);
 
+    if(closeButton) {
         _messagesSignalMapper->setMapping(button, widget);
         connect(button, SIGNAL(clicked()),
                     _messagesSignalMapper, SLOT(map()));
+    } else {
+        button->hide();
     }
 
+    QTimer* timer = new QTimer(widget);
+    timer->setObjectName("closeTimer");
+    timer->setSingleShot(true);
+    timer->setInterval(2000);
+
     if(closeTimer) {
-        QTimer* timer = new QTimer(widget);
-        timer->setSingleShot(true);
         _messagesSignalMapper->setMapping(timer, widget);
         connect(timer, SIGNAL(timeout()),
                     _messagesSignalMapper, SLOT(map()));
-        timer->start(2000);
+        timer->start();
     }
 
     _messagesLayout->addWidget(widget);
     _messagesFrame->show();
 
-    return widget;
+    return _messageLastId++;
+    //return widget;
 }
 
-void WorldScene::closeMessage(void* id)
+//XXX: check for ID and update message if necessary !
+int WorldScene::changeMessage(int id, MessageType type, const QString& text,
+                        bool closeButton, bool closeTimer)
 {
-    if(id) messageCloseClicked(static_cast<QWidget*>(id));
+    QString widgetName("message");
+    widgetName.append(QString::number(id));
+    QWidget* widget = _messagesFrame->findChild<QWidget*>(widgetName);
+    if(widget) messageCloseClicked(widget);
+    return showMessage(type, text, closeButton, closeTimer);
+}
+
+void WorldScene::closeMessage(int id)
+{
+    QString widgetName("message");
+    widgetName.append(QString::number(id));
+    QWidget* widget = _messagesFrame->findChild<QWidget*>(widgetName);
+    if(widget) messageCloseClicked(widget);
 }
 
 void WorldScene::messageCloseClicked(QWidget* widget)

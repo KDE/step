@@ -74,26 +74,26 @@ CommandEditProperty::CommandEditProperty(WorldModel* worldModel, StepCore::Objec
 
 void CommandEditProperty::redo()
 {
-    bool dynamicOnly = true;
+    bool fullUpdate = false;
     foreach(const EditProperty& p, _commands) {
         if(p.newValue.type() != QVariant::String) p.property->writeVariant(p.object, p.newValue);
         else p.property->writeString(p.object, p.newValue.value<QString>());
-        if(!p.property->isDynamic() || p.property->hasSideEffects()) dynamicOnly = false;
+        if(!p.property->isDynamic() || p.property->hasSideEffects()) fullUpdate = true;
     }
     //_worldModel->objectChanged(NULL);
-    _worldModel->emitChanged(dynamicOnly);
+    _worldModel->emitChanged(fullUpdate, true);
     //foreach(StepCore::Object* object, _objects) _worldModel->objectChanged(object);
 }
 
 void CommandEditProperty::undo()
 {
-    bool dynamicOnly = true;
+    bool fullUpdate = false;
     foreach(const EditProperty& p, _commands) {
         p.property->writeVariant(p.object, p.oldValue);
-        if(!p.property->isDynamic()) dynamicOnly = false;
+        if(!p.property->isDynamic() || p.property->hasSideEffects()) fullUpdate = true;
     }
     //_worldModel->objectChanged(NULL);
-    _worldModel->emitChanged(dynamicOnly);
+    _worldModel->emitChanged(fullUpdate, true);
     //foreach(StepCore::Object* object, _objects) _worldModel->objectChanged(object);
 }
 
@@ -262,7 +262,8 @@ WorldModel::WorldModel(QObject* parent)
     _updatingTimer = new QTimer(this);
     _updatingTimer->setSingleShot(true);
     _updatingTimer->setInterval(0);
-    _updatingDynamicOnly = true;
+    _updatingFullUpdate = false;
+    _updatingRecalcFn = false;
 
     connect(_updatingTimer, SIGNAL(timeout()),
                 this, SLOT(doEmitChanged()));
@@ -305,22 +306,22 @@ void WorldModel::resetWorld()
 
     _selectionModel->setCurrentIndex(worldIndex(), QItemSelectionModel::SelectCurrent);
 
-    emitChanged();
+    emitChanged(true, false);
 }
 
-void WorldModel::emitChanged(bool dynamicOnly)
+void WorldModel::emitChanged(bool fullUpdate, bool recalcFn)
 {
     //kDebug() << "emitChanged(): " << world()->time() << endl;
-    if(!dynamicOnly) _updatingDynamicOnly = false;
+    if(fullUpdate) _updatingFullUpdate = true;
+    if(recalcFn) _updatingRecalcFn = true;
     if(!_updatingTimer->isActive()) _updatingTimer->start(0);
 }
 
 void WorldModel::doEmitChanged()
 {
-    _world->doCalcFn();
-    //kDebug() << "emit worldDataChanged(): " << world()->time() << endl << endl;
-    emit worldDataChanged(_updatingDynamicOnly);
-    if(!_updatingDynamicOnly) {
+    if(_updatingRecalcFn) _world->doCalcFn();
+    emit worldDataChanged(!_updatingFullUpdate);
+    if(_updatingFullUpdate) {
         emit dataChanged(worldIndex(), collisionSolverIndex());
     }
 }
@@ -514,7 +515,7 @@ void WorldModel::addCreatedItem(StepCore::Item* item, StepCore::ItemGroup* paren
     beginInsertRows(objectIndex(parent), parent->childItemCount(), parent->childItemCount());
     parent->addItem(item);
     endInsertRows();
-    emitChanged();
+    emitChanged(true, true);
 }
 
 void WorldModel::removeCreatedItem(StepCore::Item* item)
@@ -524,7 +525,7 @@ void WorldModel::removeCreatedItem(StepCore::Item* item)
     beginRemoveRows(index.parent(), index.row(), index.row());
     item->group()->removeItem(item);
     endRemoveRows();
-    emitChanged();
+    emitChanged(true, true);
 }
 
 StepCore::Solver* WorldModel::swapSolver(StepCore::Solver* solver)
@@ -539,7 +540,7 @@ StepCore::Solver* WorldModel::swapSolver(StepCore::Solver* solver)
     endInsertRows();
     if(selected) selectionModel()->select(solverIndex(), QItemSelectionModel::Select);
     if(current) selectionModel()->setCurrentIndex(solverIndex(), QItemSelectionModel::Current);
-    emitChanged();
+    emitChanged(true, true);
     return oldSolver;
 }
 
@@ -788,7 +789,7 @@ void WorldModel::simulationStart()
 
     _simulationTimer->start();
 
-    emitChanged();
+    //emitChanged();
 }
 
 void WorldModel::simulationStop()
@@ -844,7 +845,7 @@ void WorldModel::simulationFrameEnd(int result)
 
     // Update GUI
     _simulationFrameWaiting = false;
-    emitChanged();
+    emitChanged(false, false);
 
     // Stop if requested or simulation error occurred
     if(_simulationStopping || result != StepCore::Solver::OK) {

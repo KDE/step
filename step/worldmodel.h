@@ -149,7 +149,7 @@ signals:
 
 protected:
     void resetWorld();
-    void emitChanged(bool dynamicOnly = true);
+    void emitChanged(bool fullUpdate, bool recalcFn);
     void addCreatedItem(StepCore::Item* item, StepCore::ItemGroup* parent = 0);
     void removeCreatedItem(StepCore::Item* item);
     StepCore::Solver* swapSolver(StepCore::Solver* solver);
@@ -165,7 +165,8 @@ protected:
     QString _errorString;
 
     QTimer* _updatingTimer;
-    bool    _updatingDynamicOnly;
+    bool    _updatingFullUpdate;
+    bool    _updatingRecalcFn;
 
     QTimer*           _simulationTimer;
     int               _simulationFps;

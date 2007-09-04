@@ -33,8 +33,9 @@
 
 void SpringCreator::start()
 {
-    showMessage(i18n("Press left mouse button to position first end of the %1\n"
-                     "then drag and release it to position second end", className()), false);
+    showMessage(WorldScene::Information,
+        i18n("Press left mouse button to position first end of the %1\n"
+             "then drag and release it to position second end", className()), false);
 }
 
 bool SpringCreator::sceneEvent(QEvent* event)
@@ -54,7 +55,8 @@ bool SpringCreator::sceneEvent(QEvent* event)
         _worldModel->selectionModel()->setCurrentIndex(_worldModel->objectIndex(_item),
                                                 QItemSelectionModel::ClearAndSelect);
 
-        showMessage(i18n("Release left mouse button to position second end of the %1", className()), false);
+        showMessage(WorldScene::Information,
+            i18n("Release left mouse button to position second end of the %1", className()), false);
         event->accept(); return false;
 
     } else if(event->type() == QEvent::GraphicsSceneMouseMove &&
@@ -75,7 +77,8 @@ bool SpringCreator::sceneEvent(QEvent* event)
 
         _worldModel->endMacro();
 
-        showMessage(i18n("%1 named '%2' created", className(), _item->name()), true, true);
+        showMessage(WorldScene::Information,
+            i18n("%1 named '%2' created", className(), _item->name()), true, true);
         event->accept(); return true;
     }
     return false;

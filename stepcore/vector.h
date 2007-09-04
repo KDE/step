@@ -24,7 +24,6 @@
 #define STEPCORE_VECTOR_H
 
 #include <cmath>
-#include <cstring> // XXX ?
 #include <QMetaType>
 #include "util.h"
 
@@ -145,7 +144,7 @@ inline Vector<T,N>::Vector()
 template<typename T, int N>
 inline Vector<T,N>::Vector(T v)
 {
-    for(int i=0; i<N; i++) _array[i] = v;
+    for(int i=0; i<N; ++i) _array[i] = v;
 }
 
 template<typename T, int N>
@@ -166,39 +165,39 @@ inline Vector<T,N>::Vector(T x, T y, T z)
 template<typename T, int N>
 inline Vector<T,N>::Vector(const Vector<T,N>& a)
 {
-    std::memcpy(_array, a._array, N*sizeof(*_array));
+    for(int i=0; i<N; ++i) _array[i] = a._array[i];
 }
 
 template<typename T, int N>
 inline Vector<T,N>& Vector<T,N>::operator=(const Vector<T,N>& a)
 {
     if(&a != this)
-        std::memcpy(_array, a._array, N*sizeof(*_array));
+        for(int i=0; i<N; ++i) _array[i] = a._array[i];
     return *this;
 }
 
 template<typename T, int N>
 inline void Vector<T,N>::setZero()
 {
-    std::memset(_array, 0, N*sizeof(*_array));
+    for(int i=0; i<N; ++i) _array[i] = 0;
 }
 
 template<typename T, int N>
-T Vector<T,N>::innerProduct(const Vector<T,N>& a) const
+inline T Vector<T,N>::innerProduct(const Vector<T,N>& a) const
 {
     T ret = 0;
-    for(int i=0; i<N; i++) ret += _array[i]*a._array[i];
+    for(int i=0; i<N; ++i) ret += _array[i]*a._array[i];
     return ret;
 }
 
 template<typename T, int N>
-void Vector<T,N>::invert()
+inline void Vector<T,N>::invert()
 {
-    for(int i=0; i<N; i++) _array[i] = -_array[i];
+    for(int i=0; i<N; ++i) _array[i] = -_array[i];
 }
 
 template<typename T, int N>
-Vector<T,N> Vector<T,N>::operator-() const
+inline Vector<T,N> Vector<T,N>::operator-() const
 {
     Vector<T,N> ret(this);
     ret.invert();
@@ -206,21 +205,21 @@ Vector<T,N> Vector<T,N>::operator-() const
 }
 
 template<typename T, int N>
-Vector<T,N>& Vector<T,N>::operator+=(const Vector<T,N>& b)
+inline Vector<T,N>& Vector<T,N>::operator+=(const Vector<T,N>& b)
 {
-    for(int i=0; i<N; i++) _array[i] += b._array[i];
+    for(int i=0; i<N; ++i) _array[i] += b._array[i];
     return *this;
 }
 
 template<typename T, int N>
-Vector<T,N>& Vector<T,N>::operator-=(const Vector<T,N>& b)
+inline Vector<T,N>& Vector<T,N>::operator-=(const Vector<T,N>& b)
 {
-    for(int i=0; i<N; i++) _array[i] -= b._array[i];
+    for(int i=0; i<N; ++i) _array[i] -= b._array[i];
     return *this;
 }
 
 template<typename T, int N>
-Vector<T,N> operator+(const Vector<T,N>& a, const Vector<T,N>& b)
+inline Vector<T,N> operator+(const Vector<T,N>& a, const Vector<T,N>& b)
 {
     Vector<T,N> ret(a);
     ret+=b;
@@ -228,7 +227,7 @@ Vector<T,N> operator+(const Vector<T,N>& a, const Vector<T,N>& b)
 }
 
 template<typename T, int N>
-Vector<T,N> operator-(const Vector<T,N>& a, const Vector<T,N>& b)
+inline Vector<T,N> operator-(const Vector<T,N>& a, const Vector<T,N>& b)
 {
     Vector<T,N> ret(a);
     ret-=b;
@@ -236,21 +235,21 @@ Vector<T,N> operator-(const Vector<T,N>& a, const Vector<T,N>& b)
 }
 
 template<typename T, int N>
-Vector<T,N>& Vector<T,N>::operator*=(T d)
+inline Vector<T,N>& Vector<T,N>::operator*=(T d)
 {
     for(int i=0; i<N; i++) _array[i] *= d;
     return *this;
 }
 
 template<typename T, int N>
-Vector<T,N>& Vector<T,N>::operator/=(T d)
+inline Vector<T,N>& Vector<T,N>::operator/=(T d)
 {
     for(int i=0; i<N; i++) _array[i] /= d;
     return *this;
 }
 
 template<typename T, int N>
-Vector<T,N> operator*(T d, const Vector<T,N>& a)
+inline Vector<T,N> operator*(T d, const Vector<T,N>& a)
 {
     Vector<T,N> ret(a);
     ret*=d;
@@ -258,31 +257,35 @@ Vector<T,N> operator*(T d, const Vector<T,N>& a)
 }
 
 template<typename T, int N>
-Vector<T,N> operator*(const Vector<T,N>& a, T d)
+inline Vector<T,N> operator*(const Vector<T,N>& a, T d)
 {
     return d*a;
 }
 
 template<typename T, int N>
-Vector<T,N> operator/(const Vector<T,N>& a, T d)
+inline Vector<T,N> operator/(const Vector<T,N>& a, T d)
 {
     return (1/d)*a;
 }
 
 template<typename T, int N>
-bool Vector<T,N>::operator==(const Vector<T,N>& b)
+inline bool Vector<T,N>::operator==(const Vector<T,N>& b)
 {
-    return std::memcmp(_array, b._array, N*sizeof(*_array)) == 0;
+    for(int i=0; i<N; ++i)
+        if(_array[i] != b._array[i]) return false;
+    return true;
 }
 
 template<typename T, int N>
-bool Vector<T,N>::operator!=(const Vector<T,N>& b)
+inline bool Vector<T,N>::operator!=(const Vector<T,N>& b)
 {
-    return std::memcmp(_array, b._array, N*sizeof(*_array)) != 0;
+    for(int i=0; i<N; ++i)
+        if(_array[i] == b._array[i]) return false;
+    return true;
 }
 
 template<typename T, int N>
-Vector<T,N> Vector<T,N>::cMultiply(const Vector<T,N>& b)
+inline Vector<T,N> Vector<T,N>::cMultiply(const Vector<T,N>& b)
 {
     Vector<T,N> ret;
     for(int i=0; i<N; i++) ret._array[i] = _array[i] * b._array[i];
