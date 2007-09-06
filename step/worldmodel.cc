@@ -249,12 +249,17 @@ WorldModel::WorldModel(QObject* parent)
 
     _simulationCommand = NULL;
     _simulationTimer = new QTimer(this);
+    _simulationTimer0 = new QTimer(this);
+    _simulationTimer0->setSingleShot(true);
+    _simulationTimer0->setInterval(0);
     setSimulationFps(25); // XXX KConfig ?
 
     _simulationThread = new SimulationThread(&_world);
     _simulationThread->start();
 
     connect(_simulationTimer, SIGNAL(timeout()),
+                this, SLOT(simulationFrameBegin()));
+    connect(_simulationTimer0, SIGNAL(timeout()),
                 this, SLOT(simulationFrameBegin()));
     connect(_simulationThread, SIGNAL(worldEvolveDone(int)),
                 this, SLOT(simulationFrameEnd(int)), Qt::QueuedConnection);
@@ -759,6 +764,7 @@ void WorldModel::simulationPause()
     _simulationThread->mutex()->unlock();
     _simulationPaused = true;
 
+    //kDebug() << "simulationPause!" << endl;
     // XXX: do we need to reset evolveAbort here (and add threadAbort var) ?
     // XXX: do we need to call emitChanged here ?
 }
@@ -787,6 +793,8 @@ void WorldModel::simulationStart()
     _simulationStopping = false;
     _simulationPaused = false;
 
+    _simulationFrames = 0;
+    _simulationStartTime = QTime::currentTime();
     _simulationTimer->start();
 
     //emitChanged();
@@ -813,8 +821,13 @@ void WorldModel::simulationFrameBegin()
     //kDebug() << "simulationFrameBegin(): " << world()->time() << endl;
 
     if(_simulationFrameWaiting) { // TODO: warn user
-        //qDebug("frame skipped!");
         _simulationFrameSkipped = true;
+        return;
+    }
+
+    if(_updatingTimer->isActive()) {
+        // Wait for updating
+        _simulationTimer0->start();
         return;
     }
 
@@ -831,6 +844,14 @@ void WorldModel::simulationFrameEnd(int result)
     Q_ASSERT(isSimulationActive());
     Q_ASSERT(_simulationCommand);
     Q_ASSERT(_simulationFrameWaiting || _simulationStopping);
+
+    ++_simulationFrames;
+    if(_simulationFrames == 50) {
+        qDebug("FPS: %f", double(_simulationFrames) /
+                    _simulationStartTime.msecsTo(QTime::currentTime()) * 1000);
+        _simulationStartTime = QTime::currentTime();
+        _simulationFrames = 0;
+    }
 
     //kDebug() << "simulationFrameEnd" << endl;
 
@@ -854,15 +875,17 @@ void WorldModel::simulationFrameEnd(int result)
         _simulationCommand = NULL;
 
         _simulationTimer->stop();
+        _simulationTimer0->stop();
         emit simulationStopped(result);
         return;
     }
 
     if(_simulationFrameSkipped) {
         _simulationFrameSkipped = false;
-        QApplication::processEvents(); // XXX
-        if(isSimulationActive() && !_simulationFrameWaiting)
-            simulationFrameBegin();
+        _simulationTimer0->start();
+        //QApplication::processEvents(); // XXX
+        //if(isSimulationActive() && !_simulationFrameWaiting)
+        //    simulationFrameBegin();
     }
 }
 

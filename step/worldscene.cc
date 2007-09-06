@@ -40,6 +40,7 @@
 #include <QToolButton>
 #include <QHBoxLayout>
 #include <QVBoxLayout>
+#include <QGLWidget>
 #include <KIcon>
 #include <KUrl>
 #include <KLocale>
@@ -526,6 +527,7 @@ WorldGraphicsView::WorldGraphicsView(WorldScene* worldScene, QWidget* parent)
     #endif
     setViewportUpdateMode(QGraphicsView::SmartViewportUpdate);
     actualSize();
+    settingsChanged();
 }
 
 void WorldGraphicsView::zoomIn()
@@ -583,6 +585,13 @@ void WorldGraphicsView::actualSize()
 
 void WorldGraphicsView::settingsChanged()
 {
-    static_cast<WorldScene*>(scene())->settingsChanged();
+    if(qobject_cast<QGLWidget*>(viewport())) {
+        if(!Settings::enableOpenGL()) setViewport(new QWidget(this));
+    } else {
+        if(Settings::enableOpenGL() && QGLFormat::hasOpenGL()) {
+            setViewport(new QGLWidget(QGLFormat(QGL::SampleBuffers), this));
+        }
+    }
+    if(scene()) static_cast<WorldScene*>(scene())->settingsChanged();
 }
 

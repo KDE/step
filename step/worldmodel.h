@@ -22,6 +22,7 @@
 #include <QAbstractItemModel>
 #include <QUndoCommand>
 #include <QVariant>
+#include <QTime>
 
 #include <stepcore/world.h>
 #include <kundostack.h>
@@ -169,9 +170,13 @@ protected:
     bool    _updatingRecalcFn;
 
     QTimer*           _simulationTimer;
+    QTimer*           _simulationTimer0;
     int               _simulationFps;
     CommandSimulate*  _simulationCommand;
     SimulationThread* _simulationThread;
+
+    int   _simulationFrames;
+    QTime _simulationStartTime;
 
     bool _simulationFrameWaiting;
     bool _simulationFrameSkipped;

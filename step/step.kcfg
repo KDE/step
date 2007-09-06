@@ -22,6 +22,11 @@
             <max>15</max>
             <default>4</default>
         </entry>
+        <entry name="enableOpenGL" type="Bool">
+            <label>Use OpenGL to accelerate drawing whenever possible</label>
+            <whatsthis>Use OpenGL to accelerate drawing whenever possible</whatsthis>
+            <default>false</default>
+        </entry>
     </group>
     <group name="InfoBrowser">
         <entry name="wikiExternal" type="Bool">
