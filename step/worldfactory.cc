@@ -28,6 +28,7 @@
 #include <stepcore/gravitation.h>
 #include <stepcore/coulombforce.h>
 #include <stepcore/spring.h>
+#include <stepcore/motor.h>
 #include <stepcore/gslsolver.h>
 #include <stepcore/eulersolver.h>
 #include <stepcore/collisionsolver.h>
@@ -39,6 +40,7 @@
 #include "gasgraphics.h"
 #include "softbodygraphics.h"
 #include "springgraphics.h"
+#include "motorgraphics.h"
 #include "toolgraphics.h"
 
 #include <QItemSelectionModel>
@@ -123,6 +125,8 @@ WorldFactory::WorldFactory()
     __REGISTER_EXT(SoftBody, ItemCreator, SoftBodyGraphicsItem, SoftBodyMenuHandler);
 
     __REGISTER_EXT_E(Spring, SpringCreator, SpringGraphicsItem, ItemMenuHandler);
+    __REGISTER_EXT(LinearMotor, LinearMotorCreator, LinearMotorGraphicsItem, ItemMenuHandler);
+    __REGISTER_EXT(CircularMotor, CircularMotorCreator, CircularMotorGraphicsItem, ItemMenuHandler);
 
     __REGISTER(WeightForce); __REGISTER_E(WeightForce);
     __REGISTER(GravitationForce); __REGISTER_E(GravitationForce);
@@ -162,6 +166,8 @@ WorldFactory::WorldFactory()
     __ADD_TO_PALETTE(ChargedParticle);
     __ADD_TO_PALETTE(Polygon);
     __ADD_TO_PALETTE(Spring);
+    __ADD_TO_PALETTE(LinearMotor);
+    __ADD_TO_PALETTE(CircularMotor);
     __ADD_SEPARATOR;
 
     __ADD_TO_PALETTE(Gas);

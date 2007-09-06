@@ -105,7 +105,6 @@ WeightForce::WeightForce(double weightConst)
 void WeightForce::calcForce(bool calcVariances)
 {
     Vector2d g(0, -_weightConst);
-    Particle* p1;
 
     const BodyList::const_iterator end = world()->bodies().end();
     for(BodyList::const_iterator b1 = world()->bodies().begin(); b1 != end; ++b1) {

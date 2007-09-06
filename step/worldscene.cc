@@ -389,6 +389,7 @@ int WorldScene::showMessage(MessageType type, const QString& text,
     if(!_messagesFrame && _worldView) {
         int br, bg, bb;
         _messagesFrame = new QFrame(_worldView);
+        _messagesFrame->raise();
         _messagesFrame->setFrameShape(QFrame::StyledPanel);
         _messagesFrame->palette().color(QPalette::Window).getRgb(&br, &bg, &bb);
         _messagesFrame->setStyleSheet(QString(".QFrame {border: 2px solid rgba(133,133,133,85%);"
@@ -512,6 +513,7 @@ void WorldScene::messageLinkActivated(const QString& link)
 void WorldScene::settingsChanged()
 {
     worldModelReset();
+    if(_messagesFrame) _messagesFrame->raise();
 }
 
 WorldGraphicsView::WorldGraphicsView(WorldScene* worldScene, QWidget* parent)
@@ -589,7 +591,11 @@ void WorldGraphicsView::settingsChanged()
         if(!Settings::enableOpenGL()) setViewport(new QWidget(this));
     } else {
         if(Settings::enableOpenGL() && QGLFormat::hasOpenGL()) {
+            kDebug() << "enable OpenGL" << endl;
             setViewport(new QGLWidget(QGLFormat(QGL::SampleBuffers), this));
+            if(!qobject_cast<QGLWidget*>(viewport())) {
+                kDebug() << "can't create QGLWidget!" << endl;
+            }
         }
     }
     if(scene()) static_cast<WorldScene*>(scene())->settingsChanged();

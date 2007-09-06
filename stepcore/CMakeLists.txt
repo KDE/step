@@ -14,6 +14,7 @@ set(stepcore_SRCS
     gravitation.cc
     coulombforce.cc
     spring.cc
+    motor.cc
     eulersolver.cc
     tool.cc
 )

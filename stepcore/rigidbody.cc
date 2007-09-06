@@ -134,6 +134,22 @@ Vector2d RigidBody::pointWorldToLocal(const Vector2d& p) const
                     -(p[0]-_position[0])*s + (p[1]-_position[1])*c);
 }
 
+Vector2d RigidBody::vectorLocalToWorld(const Vector2d& v) const
+{
+    double c = cos(_angle);
+    double s = sin(_angle);
+    return Vector2d( v[0]*c - v[1]*s,
+                     v[0]*s + v[1]*c);
+}
+
+Vector2d RigidBody::vectorWorldToLocal(const Vector2d& v) const
+{
+    double c = cos(_angle);
+    double s = sin(_angle);
+    return Vector2d( v[0]*c + v[1]*s,
+                    -v[0]*s + v[1]*c);
+}
+
 void RigidBody::getVariables(double* array, double* variances)
 {
     std::memcpy(array,   _position.array(), 2*sizeof(*array));

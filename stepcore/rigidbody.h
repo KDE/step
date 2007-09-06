@@ -191,13 +191,10 @@ public:
     /** Set inertia "tensor" of the body */
     void   setInertia(double inertia) { _inertia = inertia; }
 
-
-#if 0
     /** Translate local vector on body to world vector */
-    Vector2d vectorLocalToWorld(const Vector2d& v);
+    Vector2d vectorLocalToWorld(const Vector2d& v) const;
     /** Translate world vector to local vector on body */
-    Vector2d vectorWorldToLocal(const Vector2d& v);
-#endif
+    Vector2d vectorWorldToLocal(const Vector2d& v) const;
 
     /** Translate local coordinates on body to world coordinates */
     Vector2d pointLocalToWorld(const Vector2d& p) const;
