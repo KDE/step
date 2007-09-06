@@ -1,0 +1,153 @@
+/* This file is part of StepCore library.
+   Copyright (C) 2007 Vladimir Kuznetsov <ks.vladimir@gmail.com>
+
+   StepCore library is free software; you can redistribute it and/or modify
+   it under the terms of the GNU General Public License as published by
+   the Free Software Foundation; either version 2 of the License, or
+   (at your option) any later version.
+
+   StepCore library is distributed in the hope that it will be useful,
+   but WITHOUT ANY WARRANTY; without even the implied warranty of
+   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+   GNU General Public License for more details.
+
+   You should have received a copy of the GNU General Public License
+   along with StepCore; if not, write to the Free Software
+   Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
+*/
+
+#include "motor.h"
+#include "rigidbody.h"
+#include "particle.h"
+#include <cmath>
+
+namespace StepCore
+{
+
+STEPCORE_META_OBJECT(LinearMotor, "Applies a constant force to a given position of the body", 0,
+    STEPCORE_SUPER_CLASS(Item) STEPCORE_SUPER_CLASS(Force),
+    STEPCORE_PROPERTY_RW(QString, body, STEPCORE_UNITS_NULL, "Body", body, setBody)
+    STEPCORE_PROPERTY_RW(StepCore::Vector2d, localPosition, "m", "Position of the motor on a body", localPosition, setLocalPosition)
+    STEPCORE_PROPERTY_RW(StepCore::Vector2d, forceValue, "N", "Value of the force, acting on the body", forceValue, setForceValue))
+
+STEPCORE_META_OBJECT(CircularMotor, "Applies a constant torque to the body", 0,
+    STEPCORE_SUPER_CLASS(Item) STEPCORE_SUPER_CLASS(Force),
+    STEPCORE_PROPERTY_RW(QString, body, STEPCORE_UNITS_NULL, "Body", body, setBody)
+    STEPCORE_PROPERTY_RW(StepCore::Vector2d, localPosition, "m", "Position of the motor on a body", localPosition, setLocalPosition)
+    STEPCORE_PROPERTY_RW(double, torqueValue, "N m", "Value of the torque, acting on the body", torqueValue, setTorqueValue))
+
+
+LinearMotor::LinearMotor(Item* bodyPtr, const Vector2d& localPosition, Vector2d forceValue)
+    : _localPosition(localPosition), _forceValue(forceValue)
+{
+    setBodyPtr(bodyPtr);
+    setColor(0xff0000ff);
+}
+
+void LinearMotor::calcForce(bool calcVariances)
+{
+     if(_pPtr) _pPtr->applyForce(_forceValue);
+     else if(_rPtr) _rPtr->applyForce(_forceValue,
+                        _rPtr->pointLocalToWorld(_localPosition));
+        
+}
+
+void LinearMotor::setBodyPtr(Item* bodyPtr)
+{
+    if(bodyPtr) {
+        if(bodyPtr->metaObject()->inherits<Particle>()) {
+            _bodyPtr = bodyPtr;
+            _pPtr = static_cast<Particle*>(bodyPtr);
+            _rPtr = NULL;
+            return;
+        } else if(bodyPtr->metaObject()->inherits<RigidBody>()) {
+            _bodyPtr = bodyPtr;
+            _pPtr = NULL;
+            _rPtr = static_cast<RigidBody*>(bodyPtr);
+            return;
+        }
+    }
+    _bodyPtr = NULL;
+    _pPtr = NULL;
+    _rPtr = NULL;
+}    
+
+Vector2d LinearMotor::position() const
+{
+    if(_pPtr) return _pPtr->position() + _localPosition;
+    else if(_rPtr) return _rPtr->pointLocalToWorld(_localPosition);
+    return _localPosition;
+}
+
+void LinearMotor::worldItemRemoved(Item* item)
+{
+    if(item == NULL) return;
+    if(item == _bodyPtr) setBodyPtr(NULL);
+}
+
+void LinearMotor::setWorld(World* world)
+{
+    if(world == NULL) {
+        setBodyPtr(NULL);        
+    } else if(this->world() != NULL) { 
+        if(_bodyPtr != NULL) setBodyPtr(world->item(body()));
+    }
+    Item::setWorld(world);
+}
+
+//////////////////////////////////////////////////////////////////////////
+CircularMotor::CircularMotor(Item* bodyPtr, const Vector2d& localPosition, double torqueValue)
+    : _localPosition(localPosition), _torqueValue(torqueValue)
+{
+    setBodyPtr(bodyPtr);
+    setColor(0xff0000ff);
+}
+
+void CircularMotor::calcForce(bool calcVariances)
+{
+     if(_rPtr) _rPtr->applyTorque(_torqueValue);        
+}
+
+void CircularMotor::setBodyPtr(Item* bodyPtr)
+{
+    if(bodyPtr) {
+        if(bodyPtr->metaObject()->inherits<RigidBody>()) {
+            _bodyPtr = bodyPtr;
+            _rPtr = static_cast<RigidBody*>(bodyPtr);
+            return;
+        }
+    }
+    _bodyPtr = NULL;
+    _rPtr = NULL;
+}    
+
+Vector2d CircularMotor::localPosition() const
+{
+    if(_rPtr) return Vector2d(0);
+    else return _localPosition;
+}
+
+Vector2d CircularMotor::position() const
+{
+    if(_rPtr) return _rPtr->position();
+    return _localPosition;
+}
+
+void  CircularMotor::worldItemRemoved(Item* item)
+{
+    if(item == NULL) return;
+    if(item == _bodyPtr) setBodyPtr(NULL);
+}
+
+void CircularMotor::setWorld(World* world)
+{
+    if(world == NULL) {
+        setBodyPtr(NULL);        
+    } else if(this->world() != NULL) { 
+        if(_bodyPtr != NULL) setBodyPtr(world->item(body()));
+    }
+    Item::setWorld(world);
+}
+
+} // namespace StepCore
+
