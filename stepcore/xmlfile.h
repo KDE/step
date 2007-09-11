@@ -42,7 +42,7 @@ public:
      *  \param device QIODevice to save or load file
      *  \todo TODO don't pass factory here !
      */
-    XmlFile(QIODevice* device);
+    XmlFile(QIODevice* device): _device(device) {}
 
     /** Save world to XML file
      *  \param world World to save
@@ -60,23 +60,16 @@ public:
     bool load(World* world, const Factory* factory);
 
     /** Get error message from last failed save() or load() */
-    QString errorString() const;
+    QString errorString() const { return _errorString; }
 
 protected:
     QIODevice* _device;
     QString _errorString;
 
-    QString escapeText(const QString& str);
-    void saveProperties(int indent, const Object* obj, QTextStream& stream);
-    void saveObject(int indent, const QString& tag, const Object* obj, QTextStream& stream);
-
 public:
     static const char* DOCKTYPE;
     static const char* NAMESPACE_URI;
     static const char* VERSION;
-
-protected:
-    static const int   INDENT;
 };
 
 }

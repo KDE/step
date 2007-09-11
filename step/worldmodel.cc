@@ -392,13 +392,13 @@ QVariant WorldModel::data(const QModelIndex &index, int role) const
     StepCore::Object* obj = static_cast<StepCore::Object*>(index.internalPointer());
 
     if(role == Qt::DisplayRole) {
-        return QString("%1: %2").arg(obj->name().isEmpty() ? i18n("<unnamed>") : obj->name())
-                                   .arg(obj->metaObject()->className());
+        return QString("%1: %2").arg(formatName(obj))
+                                .arg(obj->metaObject()->className());
     } else if(role == Qt::ToolTipRole) {
         const_cast<WorldModel*>(this)->simulationPause();
         return createToolTip(index); // XXX
-    } else if(role == ObjectNameRole) {
-        return obj->name();
+    } else if(role == FormattedNameRole) {
+        return formatName(obj);
     } else if(role == ClassNameRole) {
         return obj->metaObject()->className();
     }
@@ -467,10 +467,10 @@ StepCore::Item* WorldModel::newItem(const QString& name, StepCore::ItemGroup* pa
 
 void WorldModel::addItem(StepCore::Item* item, StepCore::ItemGroup* parent)
 {
-    if(item->name().isEmpty()) item->setName(getUniqueName(item->metaObject()->className()));
+    //if(item->name().isEmpty()) item->setName(getUniqueName(item->metaObject()->className()));
     pushCommand(new CommandNewItem(this, item, parent, true));
 }
-        
+
 StepCore::Solver* WorldModel::newSolver(const QString& name)
 {
     StepCore::Solver* solver = _worldFactory->newSolver(name);
@@ -579,6 +579,13 @@ void WorldModel::setProperty(StepCore::Object* object,
 {
     Q_ASSERT(object != NULL); Q_ASSERT(property != NULL);
     pushCommand(new CommandEditProperty(this, object, property, value, merge));
+}
+
+QString WorldModel::formatName(const StepCore::Object* object) const
+{
+    if(!object) return QString();
+    else if(!object->name().isEmpty()) return object->name();
+    return i18n("<unnamed>");
 }
 
 QString WorldModel::formatProperty(const StepCore::Object* object,

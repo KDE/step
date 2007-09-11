@@ -95,10 +95,10 @@ public:
     DataSourceWidget(QWidget* parent = 0);
 
     void setSkipReadOnly(bool skipReadOnly) { _skipReadOnly = skipReadOnly; }
-    void setDataSource(WorldModel* worldModel, const QString& object = QString(),
+    void setDataSource(WorldModel* worldModel, StepCore::Object* object = NULL,
                             const QString& property = QString(), int index = 0);
 
-    QString dataObject() const { return _object->itemData(_object->currentIndex()).toString(); }
+    StepCore::Object* dataObject() const;
     QString dataProperty() const { return _property->itemData(_property->currentIndex()).toString(); }
     int dataIndex() const { return _index->currentIndex(); }
 

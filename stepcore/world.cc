@@ -187,6 +187,7 @@ Item* ItemGroup::childItem(const QString& name) const
 
 Item* ItemGroup::item(const QString& name) const
 {
+    if(name.isEmpty()) return NULL;
     ItemList::const_iterator end = _items.end();
     for(ItemList::const_iterator it = _items.begin(); it != end; ++it) {
         if((*it)->name() == name) return *it;
@@ -196,6 +197,17 @@ Item* ItemGroup::item(const QString& name) const
         }
     }
     return NULL;
+}
+
+void ItemGroup::allItems(ItemList* items) const
+{
+    items->reserve(_items.size());
+    ItemList::const_iterator end = _items.end();
+    for(ItemList::const_iterator it = _items.begin(); it != end; ++it) {
+        items->push_back(*it);
+        if((*it)->metaObject()->inherits<ItemGroup>())
+            static_cast<ItemGroup*>(*it)->allItems(items);
+    }
 }
 
 World::World()
@@ -444,6 +456,7 @@ Item* World::item(const QString& name) const
 
 Object* World::object(const QString& name)
 {
+    if(name.isEmpty()) return NULL;
     if(this->name() == name) return this;
     else if(_solver && _solver->name() == name) return _solver;
     else if(_collisionSolver && _collisionSolver->name() == name) return _collisionSolver;

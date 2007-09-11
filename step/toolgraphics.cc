@@ -210,15 +210,20 @@ void DataSourceWidget::addObjects(const QModelIndex& parent, const QString& inde
 {
     for(int i=0; i<_worldModel->rowCount(parent); ++i) {
         QModelIndex index = _worldModel->index(i, 0, parent);
-        QString name = _worldModel->object(index)->name();
-        if(name.isEmpty()) continue;
-        _object->addItem(indent + name, name);
+        QString name = index.data(WorldModel::FormattedNameRole).toString();
+        _object->addItem(indent + name, QVariant::fromValue(_worldModel->object(index)));
         addObjects(index, indent + ' ');
     }
 }
 
-void DataSourceWidget::setDataSource(WorldModel* worldModel, const QString& object,
-                                        const QString& property, int index)
+StepCore::Object* DataSourceWidget::dataObject() const
+{
+    if(_object->currentIndex() < 0) return NULL;
+    return _object->itemData(_object->currentIndex()).value<StepCore::Object*>();
+}
+
+void DataSourceWidget::setDataSource(WorldModel* worldModel,
+            StepCore::Object* object, const QString& property, int index)
 {
     _worldModel = worldModel;
     if(!_worldModel) return;
@@ -227,7 +232,7 @@ void DataSourceWidget::setDataSource(WorldModel* worldModel, const QString& obje
 
     addObjects(QModelIndex(), "");
 
-    int objIndex = _object->findData(object);
+    int objIndex = _object->findData(QVariant::fromValue(object));
     _object->setCurrentIndex( objIndex );
     objectSelected(objIndex);
 
@@ -244,8 +249,7 @@ void DataSourceWidget::objectSelected(int index)
 
     _property->clear();
 
-    QString text = _object->itemData(index).toString();
-    const StepCore::Object* obj = _worldModel->object(text);
+    const StepCore::Object* obj = _object->itemData(index).value<StepCore::Object*>();
     if(obj != 0) {
         _property->setEnabled(true);
         for(int i=0; i<obj->metaObject()->propertyCount(); ++i) {
@@ -267,8 +271,8 @@ void DataSourceWidget::propertySelected(int index)
     Q_ASSERT(_worldModel);
 
     QString text = _property->itemData(index).toString();
-    const StepCore::Object* obj = _worldModel->object(
-                            _object->itemData(_object->currentIndex()).toString());
+    const StepCore::Object* obj = _object->itemData(_object->currentIndex())
+                                                        .value<StepCore::Object*>();
     const StepCore::MetaProperty* pr = obj ? obj->metaObject()->property(text) : 0;
 
     _index->clear();
@@ -442,7 +446,7 @@ void GraphGraphicsItem::worldDataChanged(bool dynamicOnly)
         // Labels
         QString labelX, labelY;
         if(graph()->isValidX()) {
-            labelX = i18n("%1.%2", graph()->objectX(), graph()->propertyX());
+            labelX = i18n("%1.%2", _worldModel->formatName(graph()->objectX()), graph()->propertyX());
             if(graph()->indexX() >= 0) labelX.append(i18n("[%1]", graph()->indexX()));
             QString units = graph()->unitsX();
             if(!units.isEmpty()) labelX.append(" [").append(units).append("]");
@@ -450,7 +454,7 @@ void GraphGraphicsItem::worldDataChanged(bool dynamicOnly)
             labelX = i18n("[not configured]");
         }
         if(graph()->isValidY()) {
-            labelY = i18n("%1.%2", graph()->objectY(), graph()->propertyY());
+            labelY = i18n("%1.%2", _worldModel->formatName(graph()->objectY()), graph()->propertyY());
             if(graph()->indexY() >= 0) labelY.append(i18n("[%1]", graph()->indexY()));
             QString units = graph()->unitsY();
             if(!units.isEmpty()) labelY.append(" [").append(units).append("]");
@@ -567,10 +571,10 @@ void GraphMenuHandler::configureGraph()
     _confUi = new Ui::WidgetConfigureGraph;
     _confUi->setupUi(_confDialog->mainWidget());
 
-    _confUi->dataSourceX->setDataSource(_worldModel, graph()->objectX(),
-                                    graph()->propertyX(), graph()->indexX());
-    _confUi->dataSourceY->setDataSource(_worldModel, graph()->objectY(),
-                                    graph()->propertyY(), graph()->indexY());
+    _confUi->dataSourceX->setDataSource(_worldModel,
+                    graph()->objectX(), graph()->propertyX(), graph()->indexX());
+    _confUi->dataSourceY->setDataSource(_worldModel,
+                    graph()->objectY(), graph()->propertyY(), graph()->indexY());
 
     _confUi->checkBoxAutoX->setChecked(graph()->autoLimitsX());
     _confUi->checkBoxAutoY->setChecked(graph()->autoLimitsY());
@@ -622,15 +626,17 @@ void GraphMenuHandler::confApply()
     if(!_confChanged) return;
     _worldModel->beginMacro(i18n("Edit %1", graph()->name()));
 
-    _worldModel->setProperty(graph(), graph()->metaObject()->property("objectX"),
-                                _confUi->dataSourceX->dataObject());
+    QVariant objX = QVariant::fromValue(_confUi->dataSourceX->dataObject());
+
+    QVariant objY = QVariant::fromValue(_confUi->dataSourceY->dataObject());
+
+    _worldModel->setProperty(graph(), graph()->metaObject()->property("objectX"), objX);
     _worldModel->setProperty(graph(), graph()->metaObject()->property("propertyX"),
                                 _confUi->dataSourceX->dataProperty());
     _worldModel->setProperty(graph(), graph()->metaObject()->property("indexX"),
                                 _confUi->dataSourceX->dataIndex());
 
-    _worldModel->setProperty(graph(), graph()->metaObject()->property("objectY"),
-                                _confUi->dataSourceY->dataObject());
+    _worldModel->setProperty(graph(), graph()->metaObject()->property("objectY"), objY);
     _worldModel->setProperty(graph(), graph()->metaObject()->property("propertyY"),
                                 _confUi->dataSourceY->dataProperty());
     _worldModel->setProperty(graph(), graph()->metaObject()->property("indexY"),
@@ -832,8 +838,8 @@ void MeterMenuHandler::configureMeter()
     _confUi = new Ui::WidgetConfigureMeter;
     _confUi->setupUi(_confDialog->mainWidget());
 
-    _confUi->dataSource->setDataSource(_worldModel, meter()->object(),
-                                    meter()->property(), meter()->index());
+    _confUi->dataSource->setDataSource(_worldModel,
+                meter()->object(), meter()->property(), meter()->index());
 
     _confUi->lineEditDigits->setValidator(
                 new QIntValidator(0, 100, _confUi->lineEditDigits));
@@ -860,7 +866,7 @@ void MeterMenuHandler::confApply()
     _worldModel->beginMacro(i18n("Edit %1", meter()->name()));
 
     _worldModel->setProperty(meter(), meter()->metaObject()->property("object"),
-                                _confUi->dataSource->dataObject());
+                            QVariant::fromValue(_confUi->dataSource->dataObject()));
     _worldModel->setProperty(meter(), meter()->metaObject()->property("property"),
                                 _confUi->dataSource->dataProperty());
     _worldModel->setProperty(meter(), meter()->metaObject()->property("index"),
@@ -1017,7 +1023,7 @@ void ControllerGraphicsItem::worldDataChanged(bool dynamicOnly)
 
         QString source;
         if(controller()->isValid()) {
-            source = i18n("%1.%2", controller()->object(), controller()->property());
+            source = i18n("%1.%2", _worldModel->formatName(controller()->object()), controller()->property());
             if(controller()->index() >= 0) source.append(i18n("[%1]", controller()->index()));
             QString units = controller()->units();
             if(!units.isEmpty()) source.append(" [").append(units).append("]");
@@ -1233,7 +1239,7 @@ void ControllerMenuHandler::confApply()
     _worldModel->beginMacro(i18n("Edit %1", controller()->name()));
 
     _worldModel->setProperty(controller(), controller()->metaObject()->property("object"),
-                                _confUi->dataSource->dataObject());
+                                QVariant::fromValue(_confUi->dataSource->dataObject()));
     _worldModel->setProperty(controller(), controller()->metaObject()->property("property"),
                                 _confUi->dataSource->dataProperty());
     _worldModel->setProperty(controller(), controller()->metaObject()->property("index"),
@@ -1309,15 +1315,18 @@ bool TracerCreator::sceneEvent(QEvent* event)
 void TracerCreator::tryAttach(const QPointF& pos)
 {
     foreach(QGraphicsItem* it, _worldScene->items(pos)) {
-        StepCore::Item* item = _worldScene->itemFromGraphics(it);
+        StepCore::Object* item = _worldScene->itemFromGraphics(it);
         if(dynamic_cast<StepCore::Particle*>(item) || dynamic_cast<StepCore::RigidBody*>(item)) {
-            _worldModel->setProperty(_item, _item->metaObject()->property("body"), item->name(), false);
+            _worldModel->setProperty(_item, _item->metaObject()->property("body"),
+                                                    QVariant::fromValue(item), false);
 
             StepCore::Vector2d lPos(0, 0);
             if(dynamic_cast<StepCore::RigidBody*>(item))
-                lPos = dynamic_cast<StepCore::RigidBody*>(item)->pointWorldToLocal(WorldGraphicsItem::pointToVector(pos));
+                lPos = dynamic_cast<StepCore::RigidBody*>(item)->pointWorldToLocal(
+                                                        WorldGraphicsItem::pointToVector(pos));
 
-            _worldModel->setProperty(_item, _item->metaObject()->property("localPosition"), QVariant::fromValue(lPos));
+            _worldModel->setProperty(_item, _item->metaObject()->property("localPosition"),
+                                                        QVariant::fromValue(lPos));
             break;
         }
     }
@@ -1359,7 +1368,8 @@ void TracerGraphicsItem::mouseMoveEvent(QGraphicsSceneMouseEvent *event)
         if(!_moving) {
             _moving = true;
             _worldModel->beginMacro(i18n("Edit %1", _item->name()));
-            _worldModel->setProperty(_item, _item->metaObject()->property("body"), QString(), false);
+            _worldModel->setProperty(_item, _item->metaObject()->property("body"), 
+                                            QVariant::fromValue<StepCore::Object*>(NULL), false);
         }
 
         _worldModel->setProperty(_item, _item->metaObject()->property("localPosition"), vpos);
@@ -1373,16 +1383,19 @@ void TracerGraphicsItem::mouseReleaseEvent(QGraphicsSceneMouseEvent *event)
     if(_moving) {
         QPointF pos = event->scenePos();
         foreach(QGraphicsItem* it, scene()->items(pos)) {
-            StepCore::Item* item = static_cast<WorldScene*>(scene())->itemFromGraphics(it);
+            StepCore::Object* item = static_cast<WorldScene*>(scene())->itemFromGraphics(it);
             if(dynamic_cast<StepCore::Particle*>(item) || dynamic_cast<StepCore::RigidBody*>(item)) {
                 _worldModel->simulationPause();
-                _worldModel->setProperty(_item, _item->metaObject()->property("body"), item->name(), false);
+                _worldModel->setProperty(_item, _item->metaObject()->property("body"),
+                                                        QVariant::fromValue(item), false);
 
                 StepCore::Vector2d lPos(0, 0);
                 if(dynamic_cast<StepCore::RigidBody*>(item))
-                    lPos = dynamic_cast<StepCore::RigidBody*>(item)->pointWorldToLocal(WorldGraphicsItem::pointToVector(pos));
+                    lPos = dynamic_cast<StepCore::RigidBody*>(item)->pointWorldToLocal(
+                                                        WorldGraphicsItem::pointToVector(pos));
 
-                _worldModel->setProperty(_item, _item->metaObject()->property("localPosition"), QVariant::fromValue(lPos));
+                _worldModel->setProperty(_item, _item->metaObject()->property("localPosition"),
+                                                        QVariant::fromValue(lPos));
 
                 break;
             }

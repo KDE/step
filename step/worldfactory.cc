@@ -165,6 +165,8 @@ WorldFactory::WorldFactory()
     __ADD_TO_PALETTE(Particle);
     __ADD_TO_PALETTE(ChargedParticle);
     __ADD_TO_PALETTE(Polygon);
+    __ADD_SEPARATOR;
+
     __ADD_TO_PALETTE(Spring);
     __ADD_TO_PALETTE(LinearMotor);
     __ADD_TO_PALETTE(CircularMotor);

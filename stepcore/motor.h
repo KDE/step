@@ -44,20 +44,15 @@ class LinearMotor: public Item, public Force
 
 public:
     /** Constructs LinearMotor */
-    explicit LinearMotor(Item* bodyPtr = 0, const Vector2d& localPosition = Vector2d(0),
+    explicit LinearMotor(Object* body = 0, const Vector2d& localPosition = Vector2d(0),
                         Vector2d forceValue = Vector2d(0));
 
     void calcForce(bool calcVariances);
 
     /** Get pointer to the body */
-    Item* bodyPtr() { return _bodyPtr; }
+    Object* body() const { return _body; }
     /** Set pointer to the connected body */
-    void setBodyPtr(Item* bodyPtr);
-
-    /** Set connected body by name */
-    void setBody(const QString& body){ setBodyPtr(world()->item(body)); }
-    /** Get name of the connected body */
-    QString body() const { return _bodyPtr ? _bodyPtr->name() : QString();}
+    void setBody(Object* body);
 
     /** Local position of the motor on the body
      *  or in the world (if the motor is not connected) */
@@ -78,12 +73,12 @@ public:
     void setWorld(World* world);
         
 protected:
-    Item*    _bodyPtr;
+    Object*  _body;
     Vector2d _localPosition;
     Vector2d _forceValue;
 
-    Particle*  _pPtr;
-    RigidBody* _rPtr;
+    Particle*  _p;
+    RigidBody* _r;
 };
 
 /** \ingroup forces
@@ -95,20 +90,15 @@ class CircularMotor: public Item, public Force
 
 public:
     /** Constructs CircularMotor */
-    CircularMotor(Item* bodyPtr = 0, const Vector2d& localPosition = Vector2d(0),
+    CircularMotor(Object* body = 0, const Vector2d& localPosition = Vector2d(0),
                                             double torqueValue = 0);
 
     void calcForce(bool calcVariances);
 
     /** Get pointer to the body */
-    Item* bodyPtr() { return _bodyPtr; }
+    Object* body() const { return _body; }
     /** Set pointer to the connected body */
-    void setBodyPtr(Item* bodyPtr);
-
-    /** Set connected body by name */
-    void setBody(const QString& body){ setBodyPtr(world()->item(body)); }
-    /** Get name of the connected body */
-    QString body() const { return _bodyPtr ? _bodyPtr->name() : QString();}
+    void setBody(Object* body);
 
     /** Local position of the motor on the body
      *  or in the world (if the motor is not connected) */
@@ -131,11 +121,11 @@ public:
     void setWorld(World* world);
         
 protected:
-    Item*    _bodyPtr;
+    Object*  _body;
     Vector2d _localPosition;
     double   _torqueValue;
 
-    RigidBody* _rPtr;
+    RigidBody* _r;
 };
 
 

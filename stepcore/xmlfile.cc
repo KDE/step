@@ -35,53 +35,27 @@ namespace StepCore {
 const char* XmlFile::DOCKTYPE = "StepCoreXML";
 const char* XmlFile::NAMESPACE_URI = "http://edu.kde.org/step/StepCoreXML";
 const char* XmlFile::VERSION = "1.0";
-const int   XmlFile::INDENT = 4;
 
-XmlFile::XmlFile(QIODevice* device)
-    : _device(device)
+namespace {
+
+class StepStreamWriter
 {
-}
+public:
+    StepStreamWriter(QIODevice* device): _device(device) {}
+    bool writeWorld(const World* world);
 
-QString XmlFile::errorString() const
-{
-    return _errorString;
-}
+protected:
+    QString escapeText(const QString& str);
+    void saveProperties(const Object* obj, int indent);
+    void saveObject(const QString& tag, const Object* obj, int indent);
 
-bool XmlFile::save(const World* world)
-{
-    if(!_device->isOpen() || !_device-> isWritable()) {
-        _errorString = QObject::tr("File is not writeble.");
-        return false;
-    }
+    QIODevice*   _device;
+    QTextStream* _stream;
+    QHash<const Object*, int> _ids;
+    static const int INDENT = 4;
+};
 
-    QTextStream stream(_device);
-
-    stream << "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n"
-           << "<!DOCTYPE " << DOCKTYPE << ">\n"
-           << "<world xmlns=\"" << NAMESPACE_URI << "\""
-           << " version=\"" << VERSION << "\">\n";
-
-    saveProperties(1, world, stream);
-    stream << "\n";
-
-    ItemList::const_iterator end = world->items().end();
-    for(ItemList::const_iterator it = world->items().begin(); it != end; ++it) {
-        saveObject(1, "item", *it, stream);
-        stream << "\n";
-    }
-
-    saveObject(1, "solver", world->solver(), stream);
-    stream << "\n";
-
-    saveObject(1, "collisionSolver", world->collisionSolver(), stream);
-    stream << "\n";
-
-    stream << "</world>\n";
-
-    return true;
-}
-
-QString XmlFile::escapeText(const QString& str)
+QString StepStreamWriter::escapeText(const QString& str)
 {
     QString result = str;
     result.replace("&", "&amp;");
@@ -91,56 +65,98 @@ QString XmlFile::escapeText(const QString& str)
     return result;
 }
 
-void XmlFile::saveProperties(int indent, const Object* obj, QTextStream& stream)
+void StepStreamWriter::saveProperties(const Object* obj, int indent)
 {
     const MetaObject* metaObject = obj->metaObject();
     for(int i = 0; i < metaObject->propertyCount(); ++i) {
         const MetaProperty* p = metaObject->property(i);
         if(p->isStored()) {
-            stream << QString(indent*INDENT, ' ')
-                   << "<" << p->name() << ">"
-                   << escapeText(p->readString(obj))
-                   << "</" << p->name() << ">\n";
-        }
-    }
+            *_stream << QString(indent*INDENT, ' ')
+                     << "<" << p->name() << ">";
 
-    if(!obj->metaObject()->inherits<Item>()) return;
-    const ObjectErrors* objErrors = static_cast<const Item*>(obj)->tryGetObjectErrors();
-    if(!objErrors) return;
+            if(p->userTypeId() == qMetaTypeId<Object*>())
+                *_stream << _ids.value(p->readVariant(obj).value<Object*>(), -1);
+            else *_stream << escapeText(p->readString(obj));
 
-    const MetaObject* metaObjectErrors = objErrors->metaObject();
-    for(int i = 1; i < metaObjectErrors->propertyCount(); ++i) {
-        const MetaProperty* p = metaObjectErrors->property(i);
-        if(p->isStored()) {
-            stream << QString(indent*INDENT, ' ')
-                   << "<" << p->name() << ">"
-                   << escapeText(p->readString(objErrors))
-                   << "</" << p->name() << ">\n";
+            *_stream << "</" << p->name() << ">\n";
         }
     }
 }
 
-void XmlFile::saveObject(int indent, const QString& tag, const Object* obj, QTextStream& stream)
+void StepStreamWriter::saveObject(const QString& tag, const Object* obj, int indent)
 {
-    if(obj == NULL) return;
-    stream << QString(indent*INDENT, ' ') << "<" << tag
-           << " class=\"" << QString(obj->metaObject()->className()) << "\">\n";
-    saveProperties(indent+1, obj, stream);
+    Q_ASSERT(obj != NULL);
+
+    *_stream << QString(indent*INDENT, ' ') << "<" << tag
+             << " class=\"" << QString(obj->metaObject()->className())
+             << "\" id=\"" << _ids.value(obj, -1) << "\">\n";
+
+    saveProperties(obj, indent+1);
+
+    if(obj->metaObject()->inherits<Item>()) {
+        const ObjectErrors* objErrors = static_cast<const Item*>(obj)->tryGetObjectErrors();
+        if(objErrors) saveProperties(objErrors, indent+1);
+    }
 
     if(obj->metaObject()->inherits<ItemGroup>()) {
         const ItemGroup* group = static_cast<const ItemGroup*>(obj);
-        stream << "\n";
+        *_stream << "\n";
         ItemList::const_iterator end = group->items().end();
         for(ItemList::const_iterator it = group->items().begin(); it != end; ++it) {
-            saveObject(indent+1, "item", *it, stream);
-            stream << "\n";
+            saveObject("item", *it, indent+1);
+            *_stream << "\n";
         }
     }
 
-    stream << QString(indent*INDENT, ' ') << "</" << tag << ">\n";
+    *_stream << QString(indent*INDENT, ' ') << "</" << tag << ">\n";
 }
 
-namespace {
+bool StepStreamWriter::writeWorld(const World* world)
+{
+    Q_ASSERT(_device->isOpen() && _device->isWritable());
+    _stream = new QTextStream(_device);
+
+    int maxid = -1;
+    _ids.insert(NULL, ++maxid);
+    _ids.insert(world, ++maxid);
+
+    ItemList items = world->allItems();
+    const ItemList::const_iterator end0 = items.end();
+    for(ItemList::const_iterator it = items.begin(); it != end0; ++it)
+        _ids.insert(*it, ++maxid);
+
+    if(world->solver()) _ids.insert(world->solver(), ++maxid);
+    if(world->collisionSolver()) _ids.insert(world->collisionSolver(), ++maxid);
+
+    *_stream << "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n"
+             << "<!DOCTYPE " << XmlFile::DOCKTYPE << ">\n"
+             << "<world xmlns=\"" << XmlFile::NAMESPACE_URI << "\""
+             << " version=\"" << XmlFile::VERSION << "\" id=\"1\">\n";
+
+    saveProperties(world, 1);
+    *_stream << "\n";
+
+    ItemList::const_iterator end = world->items().end();
+    for(ItemList::const_iterator it = world->items().begin(); it != end; ++it) {
+        saveObject("item", *it, 1);
+        *_stream << "\n";
+    }
+
+    if(world->solver()) {
+        saveObject("solver", world->solver(), 1);
+        *_stream << "\n";
+    }
+
+    if(world->collisionSolver()) {
+        saveObject("collisionSolver", world->collisionSolver(), 1);
+        *_stream << "\n";
+    }
+
+    *_stream << "</world>\n";
+
+    delete _stream;
+    return true;
+}
 
 class XmlFileHandler: public QXmlDefaultHandler
 {
@@ -157,7 +173,8 @@ public:
     QString errorString() const;
 
 protected:
-    //enum { START, WORLD, WORLD_PROPERTY, ITEM, ITEM_PROPERTY, END } _state;
+    bool addId(Object* obj, const QString& id);
+
     enum { START, ITEM, PROPERTY, END } _state;
     World*         _world;
     const Factory* _factory;
@@ -167,6 +184,10 @@ protected:
     ObjectErrors*       _objectErrors;
     const MetaProperty* _property;
 
+    typedef QPair<QPair<Object*, const MetaProperty*>, int> Link;
+    QHash<int, Object*> _ids;
+    QList<Link> _links;
+
     QString _text;
     QString _errorString;
 };
@@ -175,6 +196,30 @@ XmlFileHandler::XmlFileHandler(World* world, const Factory* factory)
     : _state(START), _world(world), _factory(factory),
       _parent(NULL), _object(NULL), _objectErrors(NULL), _property(NULL)
 {
+}
+
+bool XmlFileHandler::addId(Object* obj, const QString& id)
+{
+    /*
+#ifdef __GNUC__
+#warning Temporary code
+#endif
+    if(id.isEmpty()) return true;
+    */
+    int n = id.trimmed().toInt();
+    if(!n) {
+        _errorString = QObject::tr("Wrong ID attribute value for %1")
+                        .arg(obj->metaObject()->className());
+        return false;
+    }
+    if(_ids.contains(n)) {
+        _errorString = QObject::tr("Non-unique ID attribute value for %1")
+                        .arg(obj->metaObject()->className());
+        return false;
+    }
+
+    _ids.insert(n, _object);
+    return true;
 }
 
 bool XmlFileHandler::startElement(const QString &namespaceURI, const QString &,
@@ -188,6 +233,9 @@ bool XmlFileHandler::startElement(const QString &namespaceURI, const QString &,
             _parent = NULL;
             _object = _world;
             _state = ITEM;
+
+            if(!addId(_object, attributes.value("id"))) return false;
+
         } else {
             _errorString = QObject::tr("The file is not a StepCoreXML file.");
             return false;
@@ -198,14 +246,18 @@ bool XmlFileHandler::startElement(const QString &namespaceURI, const QString &,
         if(qName == "item" && _object->metaObject()->inherits<ItemGroup>()) {
             _parent = static_cast<ItemGroup*>(_object);
 
-            Item* item = _factory->newItem(attributes.value("class")); 
+            QString className = attributes.value("class");
+            Item* item = _factory->newItem(className);
             if(item == NULL) {
-                _errorString = QObject::tr("Unknown item type \"%1\"").arg(attributes.value("class"));
+                _errorString = QObject::tr("Unknown item type \"%1\"").arg(className);
                 return false;
             }
 
             _parent->addItem(item);
             _object = item;
+
+            if(!addId(_object, attributes.value("id"))) return false;
+
             break;
 
         } else if(_object == _world && qName == "solver") {
@@ -218,6 +270,9 @@ bool XmlFileHandler::startElement(const QString &namespaceURI, const QString &,
             _world->setSolver(solver);
             _object = solver;
             _parent = _world;
+
+            if(!addId(_object, attributes.value("id"))) return false;
+
             break;
 
         } else if(_object == _world && qName == "collisionSolver") {
@@ -230,6 +285,9 @@ bool XmlFileHandler::startElement(const QString &namespaceURI, const QString &,
             _world->setCollisionSolver(collisionSolver);
             _object = collisionSolver;
             _parent = _world;
+
+            if(!addId(_object, attributes.value("id"))) return false;
+
             break;
 
         }
@@ -270,8 +328,26 @@ bool XmlFileHandler::endElement(const QString &namespaceURI, const QString &,
 
     switch(_state) {
     case PROPERTY:
-        if(!_property->writeString(_objectErrors ? _objectErrors : _object, _text)) {
-            _errorString = QObject::tr("Property \"%1\" has illegal value").arg(qName);
+        if(_property->userTypeId() == qMetaTypeId<Object*>()) {
+            /*
+#ifdef __GNUC__
+#warning Temporary code
+#endif
+            if(!_text.trimmed()[0].isDigit()) {
+                Object* o = _world->object(_text);
+                qDebug("deprecated link to %s (%p)", _text.toLatin1().constData(), o);
+                QVariant obj = QVariant::fromValue(o);
+                _property->writeVariant(_object, obj);
+            } else*/ {
+                int n = _text.trimmed().toInt();
+                _links.push_back(qMakePair(qMakePair(
+                        static_cast<Object*>(_objectErrors ? _objectErrors : _object),
+                        _property), n));
+            }
+        }
+        else if(!_property->writeString(_objectErrors ? _objectErrors : _object, _text)) {
+            _errorString = QObject::tr("Property \"%1\" of \"%2\" has illegal value")
+                                .arg(qName, _object->metaObject()->className());
             return false;
         }
         _objectErrors = NULL;
@@ -309,6 +385,17 @@ bool XmlFileHandler::endDocument()
         _errorString = QObject::tr("\"world\" tag not found");
         return false;
     }
+
+    // Connect links
+    foreach(const Link& link, _links) {
+        QVariant target = QVariant::fromValue(_ids.value(link.second, NULL));
+        if(!link.first.second->writeVariant(link.first.first, target)) {
+            _errorString = QObject::tr("Property \"%1\" of \"%2\" has illegal value")
+                    .arg(link.first.second->name(), link.first.first->metaObject()->className());
+            return false;
+        }
+    }
+
     return true;
 }
 
@@ -325,6 +412,17 @@ QString XmlFileHandler::errorString() const
 }
 
 } // namespace
+
+bool XmlFile::save(const World* world)
+{
+    if(!_device->isOpen() || !_device-> isWritable()) {
+        _errorString = QObject::tr("File is not writeble.");
+        return false;
+    }
+
+    StepStreamWriter writer(_device);
+    return writer.writeWorld(world);
+}
 
 bool XmlFile::load(World* world, const Factory* factory)
 {

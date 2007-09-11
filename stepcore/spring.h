@@ -133,7 +133,7 @@ class Spring: public Item, public Force
 public:
     /** Constructs Spring */
     explicit Spring(double restLength = 0, double stiffness = 1, double damping = 0,
-                Item* body1Ptr = 0, Item* body2Ptr = 0);
+                Item* body1 = 0, Item* body2 = 0);
 
     void calcForce(bool calcVariances);
 
@@ -156,24 +156,14 @@ public:
     void setDamping(double damping) { _damping = damping; }
 
     /** Get pointer to the first body */
-    Item* body1Ptr() { return _body1Ptr; }
+    Object* body1() const { return _body1; }
     /** Set pointer to the first connected body */
-    void setBody1Ptr(Item* body1Ptr);
+    void setBody1(Object* body1);
 
     /** Get pointer to the second body */
-    Item* body2Ptr() { return _body2Ptr; }
+    Object* body2() const { return _body2; }
     /** Set pointer to the second connected body */
-    void setBody2Ptr(Item* body2Ptr);
-
-    /** Set first connected body by name */
-    void setBody1(const QString& body1) { setBody1Ptr(world()->item(body1)); }
-    /** Get name of the first connected body */
-    QString body1() const { return _body1Ptr ? _body1Ptr->name() : QString(); }
-
-    /** Set second connected body by name */
-    void setBody2(const QString& body2) { setBody2Ptr(world()->item(body2)); }
-    /** Get name of the second connected body */
-    QString body2() const { return _body2Ptr ? _body2Ptr->name() : QString(); }
+    void setBody2(Object* body2);
 
     /** Local position of the first end of the spring on the body
      *  or in the world (if the end is not connected) */
@@ -192,12 +182,12 @@ public:
     /** Position of the first end of the spring */
     Vector2d position1() const;
     /** Set position of the first end of the spring (will be ignored the end is connected) */
-    //void setPosition1(const Vector2d& position1) { if(!_body1Ptr) _position1 = position1; }
+    //void setPosition1(const Vector2d& position1) { if(!_body1) _position1 = position1; }
 
     /** Position of the second end of the spring */
     Vector2d position2() const;
     /** Set position of the second end of the spring (will be ignored the end is connected) */
-    //void setPosition2(const Vector2d& position2) { if(!_body2Ptr) _position2 = position2; }
+    //void setPosition2(const Vector2d& position2) { if(!_body2) _position2 = position2; }
     
     /** Velocity of the first end of the spring */
     Vector2d velocity1() const;
@@ -209,13 +199,13 @@ public:
     double force() const;
 
     /** Get first connected Particle */
-    Particle* particle1Ptr() const { return _p1Ptr; }
+    Particle* particle1() const { return _p1; }
     /** Get second connected Particle */
-    Particle* particle2Ptr() const { return _p2Ptr; }
+    Particle* particle2() const { return _p2; }
     /** Get first connected RigidBody */
-    RigidBody* rigidBody1Ptr() const { return _r1Ptr; }
+    RigidBody* rigidBody1() const { return _r1; }
     /** Get second connected RigidBody */
-    RigidBody* rigidBody2Ptr() const { return _r2Ptr; }
+    RigidBody* rigidBody2() const { return _r2; }
 
     void worldItemRemoved(Item* item);
     void setWorld(World* world);
@@ -226,18 +216,18 @@ public:
 protected:
     ObjectErrors* createObjectErrors() { return new SpringErrors(this); }
 
-    Item*  _body1Ptr;
-    Item*  _body2Ptr;
+    Object* _body1;
+    Object* _body2;
     double _restLength;
     double _stiffness;
     double _damping;
     Vector2d _localPosition1;
     Vector2d _localPosition2;
 
-    Particle*  _p1Ptr;
-    Particle*  _p2Ptr;
-    RigidBody* _r1Ptr;
-    RigidBody* _r2Ptr;
+    Particle*  _p1;
+    Particle*  _p2;
+    RigidBody* _r1;
+    RigidBody* _r2;
 
     friend class SpringErrors;
 };

@@ -1,65 +1,74 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE StepCoreXML>
-<world xmlns="http://edu.kde.org/step/StepCoreXML" version="1.0">
+<world xmlns="http://edu.kde.org/step/StepCoreXML" version="1.0" id="1">
     <name>world</name>
+    <color>#ffffffff</color>
     <time>0</time>
     <timeScale>1</timeScale>
     <errorsCalculation>false</errorsCalculation>
 
-    <item class="Particle">
+    <item class="Particle" id="2">
         <name>particle1</name>
+        <color>#ff000000</color>
         <position>(-77,79)</position>
         <velocity>(0,0)</velocity>
         <mass>1</mass>
     </item>
 
-    <item class="Particle">
+    <item class="Particle" id="3">
         <name>particle2</name>
+        <color>#ff000000</color>
         <position>(13,79)</position>
         <velocity>(0,0)</velocity>
         <mass>1</mass>
     </item>
 
-    <item class="Spring">
+    <item class="Spring" id="4">
         <name>spring1</name>
+        <color>#ff00ff00</color>
         <restLength>116.661904664719</restLength>
         <stiffness>1</stiffness>
         <damping>0</damping>
-        <body1>particle1</body1>
-        <body2>particle2</body2>
+        <body1>2</body1>
+        <body2>3</body2>
         <localPosition1>(0,0)</localPosition1>
         <localPosition2>(0,0)</localPosition2>
     </item>
 
-    <item class="ChargedParticle">
+    <item class="ChargedParticle" id="5">
         <name>chargedParticle1</name>
+        <color>#ff000000</color>
         <position>(-101,-58)</position>
         <velocity>(-9,66)</velocity>
         <mass>1</mass>
         <charge>0.01</charge>
     </item>
 
-    <item class="ChargedParticle">
+    <item class="ChargedParticle" id="6">
         <name>chargedParticle2</name>
+        <color>#ff000000</color>
         <position>(20,-39)</position>
         <velocity>(1,-62)</velocity>
         <mass>1</mass>
         <charge>-0.01</charge>
     </item>
 
-    <item class="CoulombForce">
-        <name>coulombForce1</name>
+    <item class="CoulombForce" id="7">
+        <name></name>
+        <color>#ff000000</color>
         <coulombConst>8987551787</coulombConst>
+        <name></name>
         <coulombConstVariance>8077608712.40069</coulombConstVariance>
     </item>
 
-    <solver class="AdaptiveEulerSolver">
+    <solver class="AdaptiveEulerSolver" id="8">
         <name>solver</name>
         <stepSize>1</stepSize>
         <toleranceAbs>0.001</toleranceAbs>
         <toleranceRel>0.001</toleranceRel>
     </solver>
-    <collisionSolver class="GJKCollisionSolver">
+
+    <collisionSolver class="GJKCollisionSolver" id="9">
         <name>collisionSolver1</name>
         <toleranceAbs>0.001</toleranceAbs>
     </collisionSolver>

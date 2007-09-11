@@ -1,87 +1,102 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE StepCoreXML>
-<world xmlns="http://edu.kde.org/step/StepCoreXML" version="1.0">
+<world xmlns="http://edu.kde.org/step/StepCoreXML" version="1.0" id="1">
     <name>world1</name>
+    <color>#ffffffff</color>
     <time>0</time>
     <timeScale>1</timeScale>
+    <errorsCalculation>false</errorsCalculation>
 
-    <item class="Particle">
+    <item class="Particle" id="2">
         <name>particle1</name>
+        <color>#ff000000</color>
         <position>(-1.67034,-1.26999)</position>
         <velocity>(0,0)</velocity>
         <mass>1</mass>
     </item>
 
-    <item class="Particle">
+    <item class="Particle" id="3">
         <name>particle2</name>
+        <color>#ff000000</color>
         <position>(1.91966,-1.25999)</position>
         <velocity>(0,0)</velocity>
         <mass>inf</mass>
     </item>
 
-    <item class="Spring">
+    <item class="Spring" id="4">
         <name>spring1</name>
+        <color>#ff00ff00</color>
         <restLength>2.63017109709616</restLength>
         <stiffness>1</stiffness>
-        <body1>particle1</body1>
-        <body2>particle2</body2>
+        <damping>0</damping>
+        <body1>2</body1>
+        <body2>3</body2>
         <localPosition1>(0,0)</localPosition1>
         <localPosition2>(0,0)</localPosition2>
     </item>
 
-    <item class="Graph">
+    <item class="Graph" id="5">
         <name>graph1</name>
+        <color>#ff000000</color>
         <position>(0.1,3)</position>
         <size>(250,250)</size>
-        <objectX>world1</objectX>
+        <objectX>1</objectX>
         <propertyX>time</propertyX>
         <indexX>-1</indexX>
-        <objectY>particle1</objectY>
+        <objectY>2</objectY>
         <propertyY>position</propertyY>
         <indexY>0</indexY>
         <autoLimitsX>true</autoLimitsX>
         <autoLimitsY>true</autoLimitsY>
         <limitsX>(0,10)</limitsX>
         <limitsY>(-5,1)</limitsY>
+        <showPoints>false</showPoints>
+        <showLines>true</showLines>
         <points></points>
     </item>
 
-    <item class="Graph">
+    <item class="Graph" id="6">
         <name>graph2</name>
+        <color>#ff000000</color>
         <position>(-2.6,3)</position>
         <size>(250,250)</size>
-        <objectX>particle1</objectX>
+        <objectX>2</objectX>
         <propertyX>position</propertyX>
         <indexX>0</indexX>
-        <objectY>particle1</objectY>
+        <objectY>2</objectY>
         <propertyY>velocity</propertyY>
         <indexY>0</indexY>
         <autoLimitsX>true</autoLimitsX>
         <autoLimitsY>true</autoLimitsY>
         <limitsX>(0,1)</limitsX>
         <limitsY>(0,1)</limitsY>
+        <showPoints>false</showPoints>
+        <showLines>true</showLines>
         <points></points>
     </item>
 
-    <item class="Note">
+    <item class="Note" id="7">
         <name>note1</name>
-        <text>Phase diagram</text>
+        <color>#ff000000</color>
         <position>(-1.7,3.22)</position>
+        <text>Phase diagram</text>
     </item>
 
-    <item class="Note">
+    <item class="Note" id="8">
         <name>note2</name>
-        <text>Position - time</text>
+        <color>#ff000000</color>
         <position>(1.05,3.22)</position>
+        <text>Position - time</text>
     </item>
 
-    <solver class="AdaptiveEulerSolver">
+    <solver class="AdaptiveEulerSolver" id="9">
         <name>solver1</name>
         <stepSize>1</stepSize>
         <toleranceAbs>0.001</toleranceAbs>
         <toleranceRel>0.001</toleranceRel>
     </solver>
-    <collisionSolver class="GJKCollisionSolver">
+
+    <collisionSolver class="GJKCollisionSolver" id="10">
         <name>collisionSolver1</name>
         <toleranceAbs>0.001</toleranceAbs>
     </collisionSolver>

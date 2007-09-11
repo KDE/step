@@ -130,6 +130,7 @@ template<> inline std::vector<Vector2d> stringToType(const QString& s, bool *ok)
 
 #ifdef STEPCORE_WITH_QT
 Q_DECLARE_METATYPE(std::vector<StepCore::Vector2d>)
+Q_DECLARE_METATYPE(StepCore::Object*)
 Q_DECLARE_METATYPE(StepCore::Color)
 #endif
 

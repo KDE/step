@@ -32,10 +32,10 @@ STEPCORE_META_OBJECT(Graph, "Graph: plots a graph of any properties", 0,
     STEPCORE_SUPER_CLASS(Item) STEPCORE_SUPER_CLASS(Tool),
     STEPCORE_PROPERTY_RW(StepCore::Vector2d, position, "m", "Graph position on the scene", position, setPosition)
     STEPCORE_PROPERTY_RW(StepCore::Vector2d, size, "m", "Graph size on the scene", size, setSize)
-    STEPCORE_PROPERTY_RW(QString, objectX, STEPCORE_UNITS_NULL, "X axis: object", objectX, setObjectX)
+    STEPCORE_PROPERTY_RW(Object*, objectX, STEPCORE_UNITS_NULL, "X axis: object", objectX, setObjectX)
     STEPCORE_PROPERTY_RW(QString, propertyX, STEPCORE_UNITS_NULL, "X axis: object property", propertyX, setPropertyX)
     STEPCORE_PROPERTY_RW(int, indexX, STEPCORE_UNITS_NULL, "X axis: vector index", indexX, setIndexX)
-    STEPCORE_PROPERTY_RW(QString, objectY, STEPCORE_UNITS_NULL, "Y axis: object", objectY, setObjectY)
+    STEPCORE_PROPERTY_RW(Object*, objectY, STEPCORE_UNITS_NULL, "Y axis: object", objectY, setObjectY)
     STEPCORE_PROPERTY_RW(QString, propertyY, STEPCORE_UNITS_NULL, "Y axis: property", propertyY, setPropertyY)
     STEPCORE_PROPERTY_RW(int, indexY, STEPCORE_UNITS_NULL, "Y axis: vector index", indexY, setIndexY)
     STEPCORE_PROPERTY_RW(bool, autoLimitsX, STEPCORE_UNITS_NULL, "Auto-limits along X axis", autoLimitsX, setAutoLimitsX)
@@ -54,7 +54,7 @@ STEPCORE_META_OBJECT(Meter, "Meter: displays any property on the scene", 0,
     STEPCORE_SUPER_CLASS(Item) STEPCORE_SUPER_CLASS(Tool),
     STEPCORE_PROPERTY_RW(StepCore::Vector2d, position, "m", "Meter position on the scene", position, setPosition)
     STEPCORE_PROPERTY_RW(StepCore::Vector2d, size, "m", "Meter size on the scene", size, setSize)
-    STEPCORE_PROPERTY_RW(QString, object, STEPCORE_UNITS_NULL, "Observed object", object, setObject)
+    STEPCORE_PROPERTY_RW(Object*, object, STEPCORE_UNITS_NULL, "Observed object", object, setObject)
     STEPCORE_PROPERTY_RW(QString, property, STEPCORE_UNITS_NULL, "Observed property", property, setProperty)
     STEPCORE_PROPERTY_RW(int, index, STEPCORE_UNITS_NULL, "Vector index", index, setIndex)
     STEPCORE_PROPERTY_RW(int, digits, STEPCORE_UNITS_NULL, "Display digits", digits, setDigits)
@@ -66,7 +66,7 @@ STEPCORE_META_OBJECT(Controller, "Controller: allows to easily control any prope
     STEPCORE_SUPER_CLASS(Item) STEPCORE_SUPER_CLASS(Tool),
     STEPCORE_PROPERTY_RW(StepCore::Vector2d, position, "m", "Controller position on the scene", position, setPosition)
     STEPCORE_PROPERTY_RW(StepCore::Vector2d, size, "m", "Controller size on the scene", size, setSize)
-    STEPCORE_PROPERTY_RW(QString, object, STEPCORE_UNITS_NULL, "Controlled object", object, setObject)
+    STEPCORE_PROPERTY_RW(Object*, object, STEPCORE_UNITS_NULL, "Controlled object", object, setObject)
     STEPCORE_PROPERTY_RW(QString, property, STEPCORE_UNITS_NULL, "Controlled property property", property, setProperty)
     STEPCORE_PROPERTY_RW(int, index, STEPCORE_UNITS_NULL, "Vector index", index, setIndex)
     STEPCORE_PROPERTY_RW(StepCore::Vector2d, limits, STEPCORE_UNITS_NULL, "Limits", limits, setLimits)
@@ -82,7 +82,7 @@ STEPCORE_META_OBJECT(Controller, "Controller: allows to easily control any prope
 
 STEPCORE_META_OBJECT(Tracer, "Tracer: traces trajectory of a point on a body", 0,
     STEPCORE_SUPER_CLASS(Item) STEPCORE_SUPER_CLASS(Tool),
-    STEPCORE_PROPERTY_RW(QString, body, STEPCORE_UNITS_NULL, "Traced body", body, setBody)
+    STEPCORE_PROPERTY_RW(Object*, body, STEPCORE_UNITS_NULL, "Traced body", body, setBody)
     STEPCORE_PROPERTY_RW(StepCore::Vector2d, localPosition, "m",
                     "Local position", localPosition, setLocalPosition)
     STEPCORE_PROPERTY_R_D(StepCore::Vector2d, position, "m", "Position", position)
@@ -135,8 +135,8 @@ Note::Note(Vector2d position, QString text)
 
 Graph::Graph(Vector2d position, Vector2d size)
     : _position(position), _size(size),
-      _objectXPtr(0), _propertyX(), _indexX(-1),
-      _objectYPtr(0), _propertyY(), _indexY(-1),
+      _objectX(0), _propertyX(), _indexX(-1),
+      _objectY(0), _propertyY(), _indexY(-1),
       _autoLimitsX(true), _autoLimitsY(true),
       _limitsX(0,1), _limitsY(0,1),
       _showLines(true), _showPoints(false)
@@ -147,7 +147,7 @@ bool Graph::isValidX() const
 {
     bool ok;
     const MetaProperty* prX = propertyXPtr(); if(!prX) return false;
-    variantToDouble(prX->readVariant(_objectXPtr), _indexX, &ok);
+    variantToDouble(prX->readVariant(_objectX), _indexX, &ok);
     return ok;
 }
 
@@ -155,7 +155,7 @@ bool Graph::isValidY() const
 {
     bool ok;
     const MetaProperty* prY = propertyYPtr(); if(!prY) return false;
-    variantToDouble(prY->readVariant(_objectYPtr), _indexY, &ok);
+    variantToDouble(prY->readVariant(_objectY), _indexY, &ok);
     return ok;
 }
 
@@ -166,8 +166,8 @@ Vector2d Graph::currentValue(bool* ok) const
 
     if(prX && prY) {
         bool ok1, ok2;
-        Vector2d point(variantToDouble(prX->readVariant(_objectXPtr), _indexX, &ok1),
-                       variantToDouble(prY->readVariant(_objectYPtr), _indexY, &ok2));
+        Vector2d point(variantToDouble(prX->readVariant(_objectX), _indexX, &ok1),
+                       variantToDouble(prY->readVariant(_objectY), _indexY, &ok2));
         if(ok1 && ok2) {
             if(ok) *ok = true;
             return point;
@@ -195,18 +195,18 @@ Vector2d Graph::recordPoint(bool* ok)
 void Graph::worldItemRemoved(Item* item)
 {
     if(item == 0) return;
-    if(item == _objectXPtr) setObjectXPtr(0);
-    if(item == _objectYPtr) setObjectYPtr(0);
+    if(item == _objectX) setObjectX(0);
+    if(item == _objectY) setObjectY(0);
 }
 
 void Graph::setWorld(World* world)
 {
     if(world == NULL) {
-        setObjectXPtr(0);
-        setObjectYPtr(0);
+        setObjectX(0);
+        setObjectY(0);
     } else if(this->world() != NULL) { 
-        if(_objectXPtr != NULL) _objectXPtr = world->object(_objectXPtr->name());
-        if(_objectYPtr != NULL) _objectYPtr = world->object(_objectYPtr->name());
+        if(_objectX != NULL) _objectX = world->object(_objectX->name());
+        if(_objectY != NULL) _objectY = world->object(_objectY->name());
     }
     Item::setWorld(world);
 }
@@ -229,7 +229,7 @@ QString Graph::unitsY() const
 
 Meter::Meter(Vector2d position, Vector2d size)
     : _position(position), _size(size),
-      _objectPtr(0), _property(), _index(-1),
+      _object(0), _property(), _index(-1),
       _digits(7)
 {
 }
@@ -238,7 +238,7 @@ bool Meter::isValid() const
 {
     bool ok;
     const MetaProperty* pr = propertyPtr(); if(!pr) return false;
-    variantToDouble(pr->readVariant(_objectPtr), _index, &ok);
+    variantToDouble(pr->readVariant(_object), _index, &ok);
     return ok;
 }
 
@@ -248,7 +248,7 @@ double Meter::value(bool* ok) const
 
     if(pr) {
         bool ok1;
-        double v = variantToDouble(pr->readVariant(_objectPtr), _index, &ok1);
+        double v = variantToDouble(pr->readVariant(_object), _index, &ok1);
         if(ok1) {
             if(ok) *ok = true;
             return v;
@@ -270,22 +270,22 @@ QString Meter::units() const
 void Meter::worldItemRemoved(Item* item)
 {
     if(item == 0) return;
-    if(item == _objectPtr) setObjectPtr(0);
+    if(item == _object) setObject(0);
 }
 
 void Meter::setWorld(World* world)
 {
     if(world == NULL) {
-        setObjectPtr(0);
+        setObject(0);
     } else if(this->world() != NULL) { 
-        if(_objectPtr != NULL) _objectPtr = world->object(_objectPtr->name());
+        if(_object != NULL) _object = world->object(_object->name());
     }
     Item::setWorld(world);
 }
 
 Controller::Controller(Vector2d position, Vector2d size)
     : _position(position), _size(size),
-      _objectPtr(0), _property(), _index(-1),
+      _object(0), _property(), _index(-1),
       _limits(-1,1), _increment(0.1)
 {
 }
@@ -294,7 +294,7 @@ bool Controller::isValid() const
 {
     bool ok;
     const MetaProperty* pr = propertyPtr(); if(!pr) return false;
-    variantToDouble(pr->readVariant(_objectPtr), _index, &ok);
+    variantToDouble(pr->readVariant(_object), _index, &ok);
     return ok && pr->isWritable();
 }
 
@@ -304,7 +304,7 @@ double Controller::value(bool* ok) const
 
     if(pr && pr->isWritable()) {
         bool ok1;
-        double v = variantToDouble(pr->readVariant(_objectPtr), _index, &ok1);
+        double v = variantToDouble(pr->readVariant(_object), _index, &ok1);
         if(ok1) {
             if(ok) *ok = true;
             return v;
@@ -321,10 +321,10 @@ void Controller::setValue(double value, bool* ok = 0)
 
     if(pr && pr->isWritable()) {
         bool ok1;
-        QVariant v = doubleToVariant(pr->readVariant(_objectPtr), _index, value, &ok1);
+        QVariant v = doubleToVariant(pr->readVariant(_object), _index, value, &ok1);
         if(ok1) {
             if(ok) *ok = true;
-            pr->writeVariant(_objectPtr, v);
+            pr->writeVariant(_object, v);
         }
     }
 
@@ -342,58 +342,64 @@ QString Controller::units() const
 void Controller::worldItemRemoved(Item* item)
 {
     if(item == 0) return;
-    if(item == _objectPtr) setObjectPtr(0);
+    if(item == _object) setObject(0);
 }
 
 void Controller::setWorld(World* world)
 {
     if(world == NULL) {
-        setObjectPtr(0);
+        setObject(0);
     } else if(this->world() != NULL) { 
-        if(_objectPtr != NULL) _objectPtr = world->object(_objectPtr->name());
+        if(_object != NULL) _object = world->object(_object->name());
     }
     Item::setWorld(world);
 }
 
-Tracer::Tracer(Item* bodyPtr, const Vector2d& localPosition)
+Tracer::Tracer(Object* body, const Vector2d& localPosition)
     : _localPosition(localPosition)
 {
     setColor(0xff0000ff);
-    setBodyPtr(bodyPtr);
+    setBody(body);
 }
 
-void Tracer::setBodyPtr(Item* bodyPtr)
+void Tracer::setBody(Object* body)
 {
-    if(bodyPtr && (bodyPtr->metaObject()->inherits<Particle>() ||
-                    bodyPtr->metaObject()->inherits<RigidBody>())) {
-        _bodyPtr = bodyPtr;
-    } else {
-        _bodyPtr = NULL;
+    if(body) {
+        if(body->metaObject()->inherits<Particle>()) {
+            _body = body;
+            _p = static_cast<Particle*>(body);
+            _r = NULL;
+            return;
+        } else if(body->metaObject()->inherits<RigidBody>()) {
+            _body = body;
+            _p = NULL;
+            _r = static_cast<RigidBody*>(body);
+            return;
+        }
     }
+    _body = NULL;
+    _p = NULL;
+    _r = NULL;
 }
 
 Vector2d Tracer::position() const
 {
-    if(_bodyPtr) {
-        if(_bodyPtr->metaObject()->inherits<Particle>())
-            return static_cast<Particle*>(_bodyPtr)->position() + _localPosition;
-        else if(_bodyPtr->metaObject()->inherits<RigidBody>())
-            return static_cast<RigidBody*>(_bodyPtr)->pointLocalToWorld(_localPosition);
-    }
+    if(_p) return _p->position() + _localPosition;
+    else if(_r) return _r->pointLocalToWorld(_localPosition);
     return _localPosition;
 }
 
 void Tracer::worldItemRemoved(Item* item)
 {
-    if(item == _bodyPtr) _bodyPtr = NULL;
+    if(item == _body) setBody(NULL);
 }
 
 void Tracer::setWorld(World* world)
 {
     if(world == NULL) {
-        _bodyPtr = NULL;
+        setBody(NULL);
     } else if(this->world() != NULL) { 
-        if(_bodyPtr != NULL) _bodyPtr = world->item(body());
+        if(_body != NULL) setBody(world->item(body()->name()));
     }
     Item::setWorld(world);
 }

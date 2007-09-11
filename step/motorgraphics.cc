@@ -58,7 +58,8 @@ void LinearMotorCreator::tryAttach(const QPointF& pos)
     foreach(QGraphicsItem* it, _worldScene->items(pos)) {
         StepCore::Item* item = _worldScene->itemFromGraphics(it);
         if(dynamic_cast<StepCore::Particle*>(item) || dynamic_cast<StepCore::RigidBody*>(item)) {
-            _worldModel->setProperty(_item, _item->metaObject()->property("body"), item->name(), false);
+            _worldModel->setProperty(_item, _item->metaObject()->property("body"),
+                                        QVariant::fromValue<StepCore::Object*>(item), false);
 
             StepCore::Vector2d lPos(0, 0);
             if(dynamic_cast<StepCore::RigidBody*>(item))
@@ -78,8 +79,9 @@ LinearMotorGraphicsItem::LinearMotorGraphicsItem(StepCore::Item* item, WorldMode
     setFlag(QGraphicsItem::ItemIsMovable);
     setZValue(HANDLER_ZVALUE);
 
-    _velocityHandler = new ArrowHandlerGraphicsItem(item, worldModel, this,
+    _forceHandler = new ArrowHandlerGraphicsItem(item, worldModel, this,
                    _item->metaObject()->property("forceValue"));
+    _forceHandler->setVisible(false);
 }
 
 inline StepCore::LinearMotor* LinearMotorGraphicsItem::motor() const
@@ -105,7 +107,8 @@ void LinearMotorGraphicsItem::mouseMoveEvent(QGraphicsSceneMouseEvent *event)
         if(!_moving) {
             _moving = true;
             _worldModel->beginMacro(i18n("Edit %1", _item->name()));
-            _worldModel->setProperty(_item, _item->metaObject()->property("body"), QString(), false);
+            _worldModel->setProperty(_item, _item->metaObject()->property("body"),
+                                            QVariant::fromValue<StepCore::Object*>(NULL), false);
         }
 
         _worldModel->setProperty(_item, _item->metaObject()->property("localPosition"), vpos);
@@ -122,7 +125,8 @@ void LinearMotorGraphicsItem::mouseReleaseEvent(QGraphicsSceneMouseEvent *event)
             StepCore::Item* item = static_cast<WorldScene*>(scene())->itemFromGraphics(it);
             if(dynamic_cast<StepCore::Particle*>(item) || dynamic_cast<StepCore::RigidBody*>(item)) {
                 _worldModel->simulationPause();
-                _worldModel->setProperty(_item, _item->metaObject()->property("body"), item->name(), false);
+                _worldModel->setProperty(_item, _item->metaObject()->property("body"),
+                                            QVariant::fromValue<StepCore::Object*>(item), false);
 
                 StepCore::Vector2d lPos(0, 0);
                 if(dynamic_cast<StepCore::RigidBody*>(item))
@@ -149,7 +153,7 @@ void LinearMotorGraphicsItem::paint(QPainter* painter, const QStyleOptionGraphic
     painter->setPen(Qt::NoPen);
     painter->setBrush(QBrush(QColor::fromRgba(motor()->color())));
     painter->drawEllipse(QRectF(-radius,-radius,radius*2,radius*2));
-    painter->setPen(QPen(Qt::blue, radius, Qt::SolidLine, Qt::RoundCap));
+    painter->setPen(QPen(QColor::fromRgba(motor()->color()), radius, Qt::SolidLine, Qt::RoundCap));
     drawArrow(painter, motor()->forceValue());
 
     //painter->setPen(QPen(QColor::fromRgba(particle()->color()), 2*radius, Qt::SolidLine, Qt::RoundCap));
@@ -196,6 +200,13 @@ void LinearMotorGraphicsItem::worldDataChanged(bool dynamicOnly)
     setPos(vectorToPoint(motor()->position()));       
 }
 
+void LinearMotorGraphicsItem::stateChanged()
+{
+    if(_isSelected) _forceHandler->setVisible(true);
+    else _forceHandler->setVisible(false);
+}
+
+
 ////////////////////////////////////////////////////////////////////////////////////////////////
 
 bool CircularMotorCreator::sceneEvent(QEvent* event)
@@ -226,7 +237,8 @@ void CircularMotorCreator::tryAttach(const QPointF& pos)
     foreach(QGraphicsItem* it, _worldScene->items(pos)) {
         StepCore::Item* item = _worldScene->itemFromGraphics(it);
         if(dynamic_cast<StepCore::RigidBody*>(item)) {
-            _worldModel->setProperty(_item, _item->metaObject()->property("body"), item->name(), false);
+            _worldModel->setProperty(_item, _item->metaObject()->property("body"),
+                                            QVariant::fromValue<StepCore::Object*>(item), false);
 
             StepCore::Vector2d lPos(0, 0);
             lPos = dynamic_cast<StepCore::RigidBody*>(item)->pointWorldToLocal(WorldGraphicsItem::pointToVector(pos));
@@ -268,7 +280,8 @@ void CircularMotorGraphicsItem::mouseMoveEvent(QGraphicsSceneMouseEvent *event)
         if(!_moving) {
             _moving = true;
             _worldModel->beginMacro(i18n("Edit %1", _item->name()));
-            _worldModel->setProperty(_item, _item->metaObject()->property("body"), QString(), false);
+            _worldModel->setProperty(_item, _item->metaObject()->property("body"),
+                                            QVariant::fromValue<StepCore::Object*>(NULL), false);
         }
 
         _worldModel->setProperty(_item, _item->metaObject()->property("localPosition"), vpos);
@@ -285,7 +298,8 @@ void CircularMotorGraphicsItem::mouseReleaseEvent(QGraphicsSceneMouseEvent *even
             StepCore::Item* item = static_cast<WorldScene*>(scene())->itemFromGraphics(it);
             if(dynamic_cast<StepCore::RigidBody*>(item)) {
                 _worldModel->simulationPause();
-                _worldModel->setProperty(_item, _item->metaObject()->property("body"), item->name(), false);
+                _worldModel->setProperty(_item, _item->metaObject()->property("body"),
+                                            QVariant::fromValue<StepCore::Object*>(item), false);
 
                 StepCore::Vector2d lPos(0, 0);
                 if(dynamic_cast<StepCore::RigidBody*>(item))

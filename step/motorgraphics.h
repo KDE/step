@@ -58,12 +58,14 @@ public:
 
     void viewScaleChanged();
     void worldDataChanged(bool dynamicOnly);
+    void stateChanged();
+
+protected:
     void mouseMoveEvent(QGraphicsSceneMouseEvent *event);
     void mouseReleaseEvent(QGraphicsSceneMouseEvent *event);
-protected:
     StepCore::LinearMotor* motor() const;
     QPainterPath _path;
-    ArrowHandlerGraphicsItem* _velocityHandler;
+    ArrowHandlerGraphicsItem* _forceHandler;
     bool      _moving;
     static const int RADIUS = 5;
 

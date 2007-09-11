@@ -180,6 +180,8 @@ QVariant PropertiesBrowserModel::data(const QModelIndex &index, int role) const
                     p->userTypeId() == qMetaTypeId<StepCore::Vector2d>() ||
                     p->userTypeId() == qMetaTypeId<std::vector<StepCore::Vector2d> >()) {
                     return _worldModel->formatProperty(_object, _objectErrors, p, role == Qt::EditRole);
+                } else if(p->userTypeId() == qMetaTypeId<StepCore::Object*>()) {
+                    return _worldModel->formatName(p->readVariant(_object).value<StepCore::Object*>());
                 } else if(p->userTypeId() == qMetaTypeId<StepCore::Color>()) {
                     Q_ASSERT( !_objectErrors || !_objectErrors->metaObject()->property(p->name() + "Variance") );
                     Q_ASSERT( p->units().isEmpty() );
@@ -286,7 +288,15 @@ bool PropertiesBrowserModel::setData(const QModelIndex &index, const QVariant &v
                 const StepCore::MetaProperty* pv = _objectErrors ?
                         _objectErrors->metaObject()->property(p->name() + "Variance") : NULL;
 
-                if(p->userTypeId() == qMetaTypeId<StepCore::Color>()) {
+                if(p->userTypeId() == qMetaTypeId<StepCore::Object*>()) {
+                    Q_ASSERT(!pv);
+                    StepCore::Object* obj = _worldModel->world()->object(value.toString());
+                    if(!obj) return false;
+                    _worldModel->beginMacro(i18n("Edit %1", _object->name()));
+                    _worldModel->setProperty(_object, p, QVariant::fromValue(obj));
+                    _worldModel->endMacro();
+                    return true;
+                } else if(p->userTypeId() == qMetaTypeId<StepCore::Color>()) {
                     Q_ASSERT(!pv);
                     _worldModel->beginMacro(i18n("Edit %1", _object->name()));
                     _worldModel->setProperty(_object, p, value.type() == QVariant::String ? value :

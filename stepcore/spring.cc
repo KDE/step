@@ -30,8 +30,8 @@ STEPCORE_META_OBJECT(Spring, "Massless spring which can be connected to bodies",
     STEPCORE_PROPERTY_R_D(double, length, "m", "Current length", length)
     STEPCORE_PROPERTY_RW(double, stiffness, "N/m", "Stiffness", stiffness, setStiffness)
     STEPCORE_PROPERTY_RW(double, damping, "N s/m", "Damping", damping, setDamping)
-    STEPCORE_PROPERTY_RW(QString, body1, STEPCORE_UNITS_NULL, "Body1", body1, setBody1)
-    STEPCORE_PROPERTY_RW(QString, body2, STEPCORE_UNITS_NULL, "Body2", body2, setBody2)
+    STEPCORE_PROPERTY_RW(Object*, body1, STEPCORE_UNITS_NULL, "Body1", body1, setBody1)
+    STEPCORE_PROPERTY_RW(Object*, body2, STEPCORE_UNITS_NULL, "Body2", body2, setBody2)
     STEPCORE_PROPERTY_RW(StepCore::Vector2d, localPosition1, "m",
                     "Local position 1", localPosition1, setLocalPosition1)
     STEPCORE_PROPERTY_RW(StepCore::Vector2d, localPosition2, "m",
@@ -68,19 +68,19 @@ Spring* SpringErrors::spring() const
     return static_cast<Spring*>(owner());
 }
 
-Spring::Spring(double restLength, double stiffness, double damping, Item* body1Ptr, Item* body2Ptr)
+Spring::Spring(double restLength, double stiffness, double damping, Item* body1, Item* body2)
     : _restLength(restLength),
       _stiffness(stiffness), _damping(damping),
       _localPosition1(0), _localPosition2(0)
 {
     setColor(0xff00ff00);
-    setBody1Ptr(body1Ptr);
-    setBody2Ptr(body2Ptr);
+    setBody1(body1);
+    setBody2(body2);
 }
 
 void Spring::calcForce(bool calcVariances)
 {
-    if(!_body1Ptr && !_body2Ptr) return;
+    if(!_body1 && !_body2) return;
 
     Vector2d position1 = this->position1();
     Vector2d position2 = this->position2();
@@ -92,12 +92,12 @@ void Spring::calcForce(bool calcVariances)
     double vr = v.innerProduct(r);
     Vector2d force = (_stiffness*dl + _damping*vr/l) / l * r;
     
-    if(_p1Ptr) _p1Ptr->applyForce(force);
-    else if(_r1Ptr) _r1Ptr->applyForce(force, position1);
+    if(_p1) _p1->applyForce(force);
+    else if(_r1) _r1->applyForce(force, position1);
 
     force.invert();
-    if(_p2Ptr) _p2Ptr->applyForce(force);
-    else if(_r2Ptr) _r2Ptr->applyForce(force, position2);
+    if(_p2) _p2->applyForce(force);
+    else if(_r2) _r2->applyForce(force, position2);
 
     if(calcVariances) {
         SpringErrors* se = springErrors();
@@ -121,70 +121,70 @@ void Spring::calcForce(bool calcVariances)
                                     _damping/(l*l)*( v[0]*r[1] - 2*vr*r[0]*r[1]/(l*l) ));
 
         // TODO: position1() and force is corelated, we should take it into account
-        if(_p1Ptr) _p1Ptr->particleErrors()->applyForceVariance(forceV);
-        else if(_r1Ptr) _r1Ptr->rigidBodyErrors()->applyForceVariance(force, position1,
+        if(_p1) _p1->particleErrors()->applyForceVariance(forceV);
+        else if(_r1) _r1->rigidBodyErrors()->applyForceVariance(force, position1,
                                                 forceV, se->position1Variance() );
 
-        if(_p2Ptr) _p2Ptr->particleErrors()->applyForceVariance(forceV);
-        else if(_r2Ptr) _r2Ptr->rigidBodyErrors()->applyForceVariance(force, position2,
+        if(_p2) _p2->particleErrors()->applyForceVariance(forceV);
+        else if(_r2) _r2->rigidBodyErrors()->applyForceVariance(force, position2,
                                                 forceV, se->position2Variance() );
     }
 }
 
-void Spring::setBody1Ptr(Item* body1Ptr)
+void Spring::setBody1(Object* body1)
 {
-    if(body1Ptr) {
-        if(body1Ptr->metaObject()->inherits<Particle>()) {
-            _body1Ptr = body1Ptr;
-            _p1Ptr = static_cast<Particle*>(body1Ptr);
-            _r1Ptr = NULL;
+    if(body1) {
+        if(body1->metaObject()->inherits<Particle>()) {
+            _body1 = body1;
+            _p1 = static_cast<Particle*>(body1);
+            _r1 = NULL;
             return;
-        } else if(body1Ptr->metaObject()->inherits<RigidBody>()) {
-            _body1Ptr = body1Ptr;
-            _p1Ptr = NULL;
-            _r1Ptr = static_cast<RigidBody*>(body1Ptr);
+        } else if(body1->metaObject()->inherits<RigidBody>()) {
+            _body1 = body1;
+            _p1 = NULL;
+            _r1 = static_cast<RigidBody*>(body1);
             return;
         }
     }
-    _body1Ptr = NULL;
-    _p1Ptr = NULL;
-    _r1Ptr = NULL;
+    _body1 = NULL;
+    _p1 = NULL;
+    _r1 = NULL;
 }
 
-void Spring::setBody2Ptr(Item* body2Ptr)
+void Spring::setBody2(Object* body2)
 {
-    if(body2Ptr) {
-        if(body2Ptr->metaObject()->inherits<Particle>()) {
-            _body2Ptr = body2Ptr;
-            _p2Ptr = static_cast<Particle*>(body2Ptr);
-            _r2Ptr = NULL;
+    if(body2) {
+        if(body2->metaObject()->inherits<Particle>()) {
+            _body2 = body2;
+            _p2 = static_cast<Particle*>(body2);
+            _r2 = NULL;
             return;
-        } else if(body2Ptr->metaObject()->inherits<RigidBody>()) {
-            _body2Ptr = body2Ptr;
-            _p2Ptr = NULL;
-            _r2Ptr = static_cast<RigidBody*>(body2Ptr);
+        } else if(body2->metaObject()->inherits<RigidBody>()) {
+            _body2 = body2;
+            _p2 = NULL;
+            _r2 = static_cast<RigidBody*>(body2);
             return;
         }
     }
-    _body2Ptr = NULL;
-    _p2Ptr = NULL;
-    _r2Ptr = NULL;
+    _body2 = NULL;
+    _p2 = NULL;
+    _r2 = NULL;
 }
 
 Vector2d Spring::position1() const
 {
-    if(_p1Ptr) return _p1Ptr->position() + _localPosition1;
-    else if(_r1Ptr) return _r1Ptr->pointLocalToWorld(_localPosition1);
+    if(_p1) return _p1->position() + _localPosition1;
+    else if(_r1) return _r1->pointLocalToWorld(_localPosition1);
     else return _localPosition1;
 }
 
 Vector2d SpringErrors::position1Variance() const
 {
-    if(spring()->_p1Ptr)
-        return spring()->_p1Ptr->particleErrors()->positionVariance() + _localPosition1Variance;
+    if(spring()->_p1)
+        return spring()->_p1->particleErrors()->positionVariance() + _localPosition1Variance;
     // XXX: TODO
-    //RigidBody* _r1Ptr = dynamic_cast<RigidBody*>(_body1Ptr);
-    //if(_r1Ptr) return _r1Ptr->pointLocalToWorld(_localPosition1);
+    //RigidBody* _r1 = dynamic_cast<RigidBody*>(_body1);
+    //if(_r1) return _r1->pointLocalToWorld(_localPosition1);
 #ifdef __GNUC__
 #warning variance calculation for spring connected to rigidbody is not finished !
 #warning consider unification of some part of Particle and RigidBody
@@ -194,18 +194,18 @@ Vector2d SpringErrors::position1Variance() const
 
 Vector2d Spring::position2() const
 {
-    if(_p2Ptr) return _p2Ptr->position() + _localPosition2;
-    else if(_r2Ptr) return _r2Ptr->pointLocalToWorld(_localPosition2);
+    if(_p2) return _p2->position() + _localPosition2;
+    else if(_r2) return _r2->pointLocalToWorld(_localPosition2);
     else return _localPosition2;
 }
 
 Vector2d SpringErrors::position2Variance() const
 {
-    if(spring()->_p2Ptr)
-        return spring()->_p2Ptr->particleErrors()->positionVariance() + _localPosition2Variance;
+    if(spring()->_p2)
+        return spring()->_p2->particleErrors()->positionVariance() + _localPosition2Variance;
     // XXX: TODO
-    //RigidBody* _r2Ptr = dynamic_cast<RigidBody*>(_body2Ptr);
-    //if(_r2Ptr) return _r2Ptr->pointLocalToWorld(_localPosition2);
+    //RigidBody* _r2 = dynamic_cast<RigidBody*>(_body2);
+    //if(_r2) return _r2->pointLocalToWorld(_localPosition2);
     else return _localPosition2Variance;
 }
 
@@ -218,35 +218,35 @@ double SpringErrors::lengthVariance() const
 
 Vector2d Spring::velocity1() const
 {
-    if(_p1Ptr) return _p1Ptr->velocity();
-    else if(_r1Ptr) return _r1Ptr->velocityWorld(_localPosition1);
+    if(_p1) return _p1->velocity();
+    else if(_r1) return _r1->velocityWorld(_localPosition1);
     else return Vector2d(0);
 }
 
 Vector2d SpringErrors::velocity1Variance() const
 {
-    if(spring()->_p1Ptr)
-        return spring()->_p1Ptr->particleErrors()->velocityVariance();
+    if(spring()->_p1)
+        return spring()->_p1->particleErrors()->velocityVariance();
     // XXX: TODO
-    //RigidBody* _r1Ptr = dynamic_cast<RigidBody*>(_body1Ptr);
-    //if(_r1Ptr) return _r1Ptr->pointLocalToWorld(_localPosition1);
+    //RigidBody* _r1 = dynamic_cast<RigidBody*>(_body1);
+    //if(_r1) return _r1->pointLocalToWorld(_localPosition1);
     else return Vector2d(0);
 }
 
 Vector2d Spring::velocity2() const
 {
-    if(_p2Ptr) return _p2Ptr->velocity();
-    else if(_r2Ptr) return _r2Ptr->velocityWorld(_localPosition2);
+    if(_p2) return _p2->velocity();
+    else if(_r2) return _r2->velocityWorld(_localPosition2);
     else return Vector2d(0);
 }
 
 Vector2d SpringErrors::velocity2Variance() const
 {
-    if(spring()->_p2Ptr)
-        return spring()->_p2Ptr->particleErrors()->velocityVariance();
+    if(spring()->_p2)
+        return spring()->_p2->particleErrors()->velocityVariance();
     // XXX: TODO
-    //RigidBody* _r2Ptr = dynamic_cast<RigidBody*>(_body2Ptr);
-    //if(_r2Ptr) return _r2Ptr->pointLocalToWorld(_localPosition2);
+    //RigidBody* _r2 = dynamic_cast<RigidBody*>(_body2);
+    //if(_r2) return _r2->pointLocalToWorld(_localPosition2);
     else return Vector2d(0);
 }
 
@@ -280,18 +280,21 @@ double SpringErrors::forceVariance() const
 void Spring::worldItemRemoved(Item* item)
 {
     if(item == NULL) return;
-    else if(item == _body1Ptr) setBody1Ptr(NULL);
-    else if(item == _body2Ptr) setBody2Ptr(NULL);
+    else if(item == _body1) setBody1(NULL);
+    else if(item == _body2) setBody2(NULL);
 }
 
 void Spring::setWorld(World* world)
 {
     if(world == NULL) {
-        setBody1Ptr(NULL);
-        setBody2Ptr(NULL);
+        setBody1(NULL);
+        setBody2(NULL);
     } else if(this->world() != NULL) { 
-        if(_body1Ptr != NULL) setBody1Ptr(world->item(body1()));
-        if(_body2Ptr != NULL) setBody2Ptr(world->item(body2()));
+#ifdef __GNUC__
+#warning Use map instead of search-by-name here !
+#endif
+        if(_body1 != NULL) setBody1(world->item(body1()->name())); //XXX
+        if(_body2 != NULL) setBody2(world->item(body2()->name())); //XXX
     }
     Item::setWorld(world);
 }

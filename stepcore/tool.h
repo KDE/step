@@ -85,15 +85,10 @@ public:
     void setSize(const Vector2d& size) { _size = size; }
 
     /** Get pointer to the objects for X axis */
-    const Object* objectXPtr() const { return _objectXPtr; }
+    Object* objectX() const { return _objectX; }
     /** Set pointer to the objects for X axis */
-    void setObjectXPtr(const Object* objectXPtr) { _objectXPtr = objectXPtr; }
+    void setObjectX(Object* objectX) { _objectX = objectX; }
 
-    /** Get name of the objects for X axis */
-    QString objectX() const { return _objectXPtr ? _objectXPtr->name() : QString(); }
-    /** Set name of the objects for X axis */
-    void setObjectX(const QString& objectX) { setObjectXPtr(world()->object(objectX)); }
-    
     /** Get name of the property for X axis */
     QString propertyX() const { return _propertyX; }
     /** Set name of the property for X axis */
@@ -105,14 +100,9 @@ public:
     void setIndexX(int indexX) { _indexX = indexX; }
 
     /** Get pointer to the objects for Y axis */
-    const Object* objectYPtr() const { return _objectYPtr; }
+    Object* objectY() const { return _objectY; }
     /** Set pointer to the objects for Y axis */
-    void setObjectYPtr(const Object* objectYPtr) { _objectYPtr = objectYPtr; }
-
-    /** Get name of the objects for Y axis */
-    QString objectY() const { return _objectYPtr ? _objectYPtr->name() : QString(); }
-    /** Set name of the objects for Y axis */
-    void setObjectY(const QString& objectY) { setObjectYPtr(world()->object(objectY)); }
+    void setObjectY(Object* objectY) { _objectY = objectY; }
 
     /** Get name of the property for Y axis */
     QString propertyY() const { return _propertyY; }
@@ -161,12 +151,12 @@ public:
 
     /** Get pointer to the property for X axis (or zero if not defined) */
     const MetaProperty* propertyXPtr() const {
-        return _objectXPtr ? _objectXPtr->metaObject()->property(_propertyX) : 0;
+        return _objectX ? _objectX->metaObject()->property(_propertyX) : 0;
     }
 
     /** Get pointer to the property for Y axis (or zero if not defined) */
     const MetaProperty* propertyYPtr() const {
-        return _objectYPtr ? _objectYPtr->metaObject()->property(_propertyY) : 0;
+        return _objectY ? _objectY->metaObject()->property(_propertyY) : 0;
     }
 
     /** Returns true if X-axis data source is valid */
@@ -203,11 +193,11 @@ protected:
     Vector2d _position;
     Vector2d _size;
 
-    const Object* _objectXPtr;
+    Object* _objectX;
     QString       _propertyX;
     int           _indexX;
 
-    const Object* _objectYPtr;
+    Object* _objectY;
     QString       _propertyY;
     int           _indexY;
 
@@ -248,15 +238,10 @@ public:
     void setSize(const Vector2d& size) { _size = size; }
 
     /** Get pointer to the observed object */
-    const Object* objectPtr() const { return _objectPtr; }
+    Object* object() const { return _object; }
     /** Set pointer to the observed object */
-    void setObjectPtr(Object* objectPtr) { _objectPtr = objectPtr; }
+    void setObject(Object* object) { _object = object; }
 
-    /** Get name of the observed object */
-    QString object() const { return _objectPtr ? _objectPtr->name() : QString(); }
-    /** Set name of the observed object */
-    void setObject(const QString& object) { setObjectPtr(world()->object(object)); }
-    
     /** Get name of the observed property */
     QString property() const { return _property; }
     /** Set name of the observed property */
@@ -277,7 +262,7 @@ public:
 
     /** Get pointer to the observed property */
     const MetaProperty* propertyPtr() const {
-        return _objectPtr ? _objectPtr->metaObject()->property(_property) : 0;
+        return _object ? _object->metaObject()->property(_property) : 0;
     }
 
     /** Get value of the observed property */
@@ -300,7 +285,7 @@ protected:
     Vector2d _position;
     Vector2d _size;
 
-    Object*  _objectPtr;
+    Object*  _object;
     QString  _property;
     int      _index;
 
@@ -332,15 +317,10 @@ public:
     void setSize(const Vector2d& size) { _size = size; }
 
     /** Get pointer to the controlled object */
-    const Object* objectPtr() const { return _objectPtr; }
+    Object* object() const { return _object; }
     /** Set pointer to the controlled object */
-    void setObjectPtr(Object* objectPtr) { _objectPtr = objectPtr; }
+    void setObject(Object* object) { _object = object; }
 
-    /** Get name of the controlled object */
-    QString object() const { return _objectPtr ? _objectPtr->name() : QString(); }
-    /** Set name of the controlled object */
-    void setObject(const QString& object) { setObjectPtr(world()->object(object)); }
-    
     /** Get name of the controlled property */
     QString property() const { return _property; }
     /** Set name of the controlled property */
@@ -376,7 +356,7 @@ public:
 
     /** Get pointer to the controlled property */
     const MetaProperty* propertyPtr() const {
-        return _objectPtr ? _objectPtr->metaObject()->property(_property) : 0;
+        return _object ? _object->metaObject()->property(_property) : 0;
     }
 
     /** Get value of the controlled property */
@@ -402,7 +382,7 @@ protected:
     Vector2d _position;
     Vector2d _size;
 
-    Object*  _objectPtr;
+    Object*  _object;
     QString  _property;
     int      _index;
 
@@ -412,6 +392,9 @@ protected:
 
     double   _increment;
 };
+
+class Particle;
+class RigidBody;
 
 /** \ingroup tools
  *  \brief Traces position of the body
@@ -425,17 +408,12 @@ class Tracer: public Item, public Tool
 
 public:
     /** Constructs Spring */
-    explicit Tracer(Item* bodyPtr = 0, const Vector2d& localPosition = Vector2d(0));
+    explicit Tracer(Object* body = 0, const Vector2d& localPosition = Vector2d(0));
 
     /** Get pointer to the first body */
-    Item* bodyPtr() { return _bodyPtr; }
+    Object* body() const { return _body; }
     /** Set pointer to the first connected body */
-    void setBodyPtr(Item* bodyPtr);
-
-    /** Set connected body by name */
-    void setBody(const QString& body) { setBodyPtr(world()->item(body)); }
-    /** Get name of the connected body */
-    QString body() const { return _bodyPtr ? _bodyPtr->name() : QString(); }
+    void setBody(Object* body);
 
     /** Local position of the tracer on the body
      *  or in the world (if the tracer is not connected) */
@@ -462,9 +440,12 @@ public:
     void setWorld(World* world);
 
 protected:
-    Item* _bodyPtr;
+    Object* _body;
     Vector2d _localPosition;
     std::vector<Vector2d> _points;
+
+    Particle*  _p;
+    RigidBody* _r;
 };
 
 } // namespace StepCore

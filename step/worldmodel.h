@@ -48,7 +48,7 @@ class WorldModel: public QAbstractItemModel
 {
     Q_OBJECT
 public:
-    enum { ObjectNameRole = Qt::UserRole+1, ClassNameRole };
+    enum { FormattedNameRole = Qt::UserRole+1, ClassNameRole };
 
 public:
     WorldModel(QObject* parent = 0);
@@ -103,6 +103,7 @@ public:
                             const QVariant& value, bool merge = true);
 
     // Format property value for display or edit
+    QString formatName(const StepCore::Object* object) const;
     QString formatProperty(const StepCore::Object* object,
                            const StepCore::Object* objectErrors,
                            const StepCore::MetaProperty* property, bool editable) const;

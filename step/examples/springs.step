@@ -1,89 +1,110 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE StepCoreXML>
-<world xmlns="http://edu.kde.org/step/StepCoreXML" version="1.0">
+<world xmlns="http://edu.kde.org/step/StepCoreXML" version="1.0" id="1">
     <name>World</name>
+    <color>#ffffffff</color>
     <time>0.01</time>
     <timeScale>1</timeScale>
+    <errorsCalculation>false</errorsCalculation>
 
-    <item class="Particle">
+    <item class="Particle" id="2">
         <name>p1</name>
+        <color>#ff000000</color>
         <position>(-214.992,-11.9976)</position>
         <velocity>(1.50154,0.470181)</velocity>
         <mass>1</mass>
     </item>
 
-    <item class="Particle">
+    <item class="Particle" id="3">
         <name>p2</name>
+        <color>#ff000000</color>
         <position>(-116,18.9946)</position>
         <velocity>(-0.0868556,-1.07437)</velocity>
         <mass>1</mass>
     </item>
 
-    <item class="Particle">
+    <item class="Particle" id="4">
         <name>p3</name>
+        <color>#ff000000</color>
         <position>(-19.9961,-22)</position>
         <velocity>(0.789543,0.00678148)</velocity>
         <mass>1</mass>
     </item>
 
-    <item class="Particle">
+    <item class="Particle" id="5">
         <name>p4</name>
+        <color>#ff000000</color>
         <position>(86.9948,-50.9915)</position>
         <velocity>(-1.04924,1.70909)</velocity>
         <mass>1</mass>
     </item>
 
-    <item class="Particle">
+    <item class="Particle" id="6">
         <name>p5</name>
+        <color>#ff000000</color>
         <position>(166.994,25.9944)</position>
         <velocity>(-1.155,-1.11168)</velocity>
         <mass>1</mass>
     </item>
 
-    <item class="Spring">
+    <item class="Spring" id="7">
         <name>s1</name>
+        <color>#ff00ff00</color>
         <restLength>88.0056816347672</restLength>
         <stiffness>10</stiffness>
-        <body1>p1</body1>
-        <body2>p2</body2>
+        <damping>0</damping>
+        <body1>2</body1>
+        <body2>3</body2>
         <localPosition1>(0,0)</localPosition1>
         <localPosition2>(0,0)</localPosition2>
     </item>
 
-    <item class="Spring">
+    <item class="Spring" id="8">
         <name>s2</name>
+        <color>#ff00ff00</color>
         <restLength>89.0056178002265</restLength>
         <stiffness>10</stiffness>
-        <body1>p2</body1>
-        <body2>p3</body2>
+        <damping>0</damping>
+        <body1>3</body1>
+        <body2>4</body2>
         <localPosition1>(0,0)</localPosition1>
         <localPosition2>(0,0)</localPosition2>
     </item>
 
-    <item class="Spring">
+    <item class="Spring" id="9">
         <name>s3</name>
+        <color>#ff00ff00</color>
         <restLength>88.0227243386615</restLength>
         <stiffness>10</stiffness>
-        <body1>p3</body1>
-        <body2>p4</body2>
+        <damping>0</damping>
+        <body1>4</body1>
+        <body2>5</body2>
         <localPosition1>(0,0)</localPosition1>
         <localPosition2>(0,0)</localPosition2>
     </item>
 
-    <item class="Spring">
+    <item class="Spring" id="10">
         <name>s4</name>
+        <color>#ff00ff00</color>
         <restLength>95.005263012109</restLength>
         <stiffness>10</stiffness>
-        <body1>p4</body1>
-        <body2>p5</body2>
+        <damping>0</damping>
+        <body1>5</body1>
+        <body2>6</body2>
         <localPosition1>(0,0)</localPosition1>
         <localPosition2>(0,0)</localPosition2>
     </item>
 
-    <solver class="AdaptiveEulerSolver">
+    <solver class="AdaptiveEulerSolver" id="11">
         <name>Solver</name>
+        <stepSize>1</stepSize>
         <toleranceAbs>0</toleranceAbs>
         <toleranceRel>0.01</toleranceRel>
     </solver>
+
+    <collisionSolver class="GJKCollisionSolver" id="12">
+        <name>collisionSolver1</name>
+        <toleranceAbs>0.001</toleranceAbs>
+    </collisionSolver>
 
 </world>

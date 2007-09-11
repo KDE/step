@@ -209,8 +209,18 @@ public:
      *  \warning Do not call this on groups already attached to the world */
     ItemGroup& operator=(const ItemGroup& group);
 
-    /** Get list of all items in the ItemGroup */
-    const ItemList&  items() const  { return _items; }
+    /** Get list of all direct child items in the ItemGroup */
+    const ItemList& items() const  { return _items; }
+
+    /** Get list of all items in the ItemGroup
+     *  \note This operation takes long time since it
+     *        recursively traverses all child groups */
+    ItemList allItems() const { ItemList l; allItems(&l); return l; }
+    /** Get list of all items in the ItemGroup
+     *  \param items Array to store items
+     *  \note This operation takes long time since it
+     *        recursively traverses all child groups */
+    void allItems(ItemList* items) const;
 
     /** Add new item to the world */
     void addItem(Item* item);

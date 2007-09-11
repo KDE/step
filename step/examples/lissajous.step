@@ -1,93 +1,111 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE StepCoreXML>
-<world xmlns="http://edu.kde.org/step/StepCoreXML" version="1.0">
+<world xmlns="http://edu.kde.org/step/StepCoreXML" version="1.0" id="1">
     <name>world1</name>
+    <color>#ffffffff</color>
     <time>0</time>
     <timeScale>1</timeScale>
+    <errorsCalculation>false</errorsCalculation>
 
-    <item class="Particle">
+    <item class="Particle" id="2">
         <name>particle1</name>
+        <color>#ff000000</color>
         <position>(1.61,-1.91)</position>
         <velocity>(1,0)</velocity>
         <mass>1</mass>
     </item>
 
-    <item class="Particle">
+    <item class="Particle" id="3">
         <name>particle2</name>
+        <color>#ff000000</color>
         <position>(1.61,-2.41)</position>
         <velocity>(1,0)</velocity>
         <mass>1</mass>
     </item>
 
-    <item class="Spring">
+    <item class="Spring" id="4">
         <name>spring1</name>
+        <color>#ff00ff00</color>
         <restLength>3</restLength>
         <stiffness>2.25</stiffness>
-        <body1></body1>
-        <body2>particle1</body2>
+        <damping>0</damping>
+        <body1>0</body1>
+        <body2>2</body2>
         <localPosition1>(-1.39,-1.91)</localPosition1>
         <localPosition2>(0,0)</localPosition2>
     </item>
 
-    <item class="Spring">
+    <item class="Spring" id="5">
         <name>spring2</name>
+        <color>#ff00ff00</color>
         <restLength>3</restLength>
         <stiffness>1</stiffness>
-        <body1></body1>
-        <body2>particle2</body2>
+        <damping>0</damping>
+        <body1>0</body1>
+        <body2>3</body2>
         <localPosition1>(-1.39,-2.41)</localPosition1>
         <localPosition2>(0,0)</localPosition2>
     </item>
 
-    <item class="Graph">
+    <item class="Graph" id="6">
         <name>graph1</name>
+        <color>#ff000000</color>
         <position>(-2.52,1.63)</position>
         <size>(300,300)</size>
-        <objectX>particle1</objectX>
+        <objectX>2</objectX>
         <propertyX>position</propertyX>
         <indexX>0</indexX>
-        <objectY>particle2</objectY>
+        <objectY>3</objectY>
         <propertyY>position</propertyY>
         <indexY>0</indexY>
         <autoLimitsX>true</autoLimitsX>
         <autoLimitsY>true</autoLimitsY>
         <limitsX>(0,1)</limitsX>
         <limitsY>(0,1)</limitsY>
+        <showPoints>false</showPoints>
+        <showLines>true</showLines>
         <points></points>
     </item>
 
-    <item class="Controller">
+    <item class="Controller" id="7">
         <name>controller1</name>
+        <color>#ff000000</color>
         <position>(0.66,0.56)</position>
         <size>(200,60)</size>
-        <object>spring1</object>
+        <object>4</object>
         <property>stiffness</property>
         <index>-1</index>
         <limits>(0.1,10)</limits>
+        <increaseShortcut></increaseShortcut>
+        <decreaseShortcut></decreaseShortcut>
+        <increment>0.1</increment>
     </item>
 
-    <item class="Note">
+    <item class="Note" id="8">
         <name>note1</name>
-        <text>Lissajous curve</text>
+        <color>#ff000000</color>
         <position>(-1.36,1.89)</position>
+        <text>Lissajous curve</text>
     </item>
 
-    <item class="Note">
+    <item class="Note" id="9">
         <name>note2</name>
+        <color>#ff000000</color>
+        <position>(0.55,1.42)</position>
         <text>Please try to change the stiffness&lt;br /&gt;
 of spring1 and see how the curve&lt;br /&gt;
 will cahge. Try the following values:&lt;br /&gt;
 1, 2.25, 1.7778, 1.5625, 0.6944</text>
-        <position>(0.55,1.42)</position>
     </item>
 
-    <solver class="GslAdaptiveRKF45Solver">
+    <solver class="GslAdaptiveRKF45Solver" id="10">
         <name>solver1</name>
         <stepSize>1</stepSize>
         <toleranceAbs>0.001</toleranceAbs>
         <toleranceRel>0.001</toleranceRel>
     </solver>
-    <collisionSolver class="GJKCollisionSolver">
+
+    <collisionSolver class="GJKCollisionSolver" id="11">
         <name>collisionSolver1</name>
         <toleranceAbs>0.001</toleranceAbs>
     </collisionSolver>

@@ -24,127 +24,127 @@
 namespace StepCore
 {
 
-STEPCORE_META_OBJECT(LinearMotor, "Applies a constant force to a given position of the body", 0,
+STEPCORE_META_OBJECT(LinearMotor, "Linear motor: applies a constant force to a given position of the body", 0,
     STEPCORE_SUPER_CLASS(Item) STEPCORE_SUPER_CLASS(Force),
-    STEPCORE_PROPERTY_RW(QString, body, STEPCORE_UNITS_NULL, "Body", body, setBody)
+    STEPCORE_PROPERTY_RW(Object*, body, STEPCORE_UNITS_NULL, "Body", body, setBody)
     STEPCORE_PROPERTY_RW(StepCore::Vector2d, localPosition, "m", "Position of the motor on a body", localPosition, setLocalPosition)
     STEPCORE_PROPERTY_RW(StepCore::Vector2d, forceValue, "N", "Value of the force, acting on the body", forceValue, setForceValue))
 
-STEPCORE_META_OBJECT(CircularMotor, "Applies a constant torque to the body", 0,
+STEPCORE_META_OBJECT(CircularMotor, "Circular motor: applies a constant torque to the body", 0,
     STEPCORE_SUPER_CLASS(Item) STEPCORE_SUPER_CLASS(Force),
-    STEPCORE_PROPERTY_RW(QString, body, STEPCORE_UNITS_NULL, "Body", body, setBody)
+    STEPCORE_PROPERTY_RW(Object*, body, STEPCORE_UNITS_NULL, "Body", body, setBody)
     STEPCORE_PROPERTY_RW(StepCore::Vector2d, localPosition, "m", "Position of the motor on a body", localPosition, setLocalPosition)
     STEPCORE_PROPERTY_RW(double, torqueValue, "N m", "Value of the torque, acting on the body", torqueValue, setTorqueValue))
 
 
-LinearMotor::LinearMotor(Item* bodyPtr, const Vector2d& localPosition, Vector2d forceValue)
+LinearMotor::LinearMotor(Object* body, const Vector2d& localPosition, Vector2d forceValue)
     : _localPosition(localPosition), _forceValue(forceValue)
 {
-    setBodyPtr(bodyPtr);
+    setBody(body);
     setColor(0xff0000ff);
 }
 
 void LinearMotor::calcForce(bool calcVariances)
 {
-     if(_pPtr) _pPtr->applyForce(_forceValue);
-     else if(_rPtr) _rPtr->applyForce(_forceValue,
-                        _rPtr->pointLocalToWorld(_localPosition));
+     if(_p) _p->applyForce(_forceValue);
+     else if(_r) _r->applyForce(_forceValue,
+                        _r->pointLocalToWorld(_localPosition));
         
 }
 
-void LinearMotor::setBodyPtr(Item* bodyPtr)
+void LinearMotor::setBody(Object* body)
 {
-    if(bodyPtr) {
-        if(bodyPtr->metaObject()->inherits<Particle>()) {
-            _bodyPtr = bodyPtr;
-            _pPtr = static_cast<Particle*>(bodyPtr);
-            _rPtr = NULL;
+    if(body) {
+        if(body->metaObject()->inherits<Particle>()) {
+            _body = body;
+            _p = static_cast<Particle*>(body);
+            _r = NULL;
             return;
-        } else if(bodyPtr->metaObject()->inherits<RigidBody>()) {
-            _bodyPtr = bodyPtr;
-            _pPtr = NULL;
-            _rPtr = static_cast<RigidBody*>(bodyPtr);
+        } else if(body->metaObject()->inherits<RigidBody>()) {
+            _body = body;
+            _p = NULL;
+            _r = static_cast<RigidBody*>(body);
             return;
         }
     }
-    _bodyPtr = NULL;
-    _pPtr = NULL;
-    _rPtr = NULL;
+    _body = NULL;
+    _p = NULL;
+    _r = NULL;
 }    
 
 Vector2d LinearMotor::position() const
 {
-    if(_pPtr) return _pPtr->position() + _localPosition;
-    else if(_rPtr) return _rPtr->pointLocalToWorld(_localPosition);
+    if(_p) return _p->position() + _localPosition;
+    else if(_r) return _r->pointLocalToWorld(_localPosition);
     return _localPosition;
 }
 
 void LinearMotor::worldItemRemoved(Item* item)
 {
     if(item == NULL) return;
-    if(item == _bodyPtr) setBodyPtr(NULL);
+    if(item == _body) setBody(NULL);
 }
 
 void LinearMotor::setWorld(World* world)
 {
     if(world == NULL) {
-        setBodyPtr(NULL);        
+        setBody(NULL);        
     } else if(this->world() != NULL) { 
-        if(_bodyPtr != NULL) setBodyPtr(world->item(body()));
+        if(_body != NULL) setBody(world->item(body()->name()));
     }
     Item::setWorld(world);
 }
 
 //////////////////////////////////////////////////////////////////////////
-CircularMotor::CircularMotor(Item* bodyPtr, const Vector2d& localPosition, double torqueValue)
+CircularMotor::CircularMotor(Object* body, const Vector2d& localPosition, double torqueValue)
     : _localPosition(localPosition), _torqueValue(torqueValue)
 {
-    setBodyPtr(bodyPtr);
+    setBody(body);
     setColor(0xff0000ff);
 }
 
 void CircularMotor::calcForce(bool calcVariances)
 {
-     if(_rPtr) _rPtr->applyTorque(_torqueValue);        
+     if(_r) _r->applyTorque(_torqueValue);        
 }
 
-void CircularMotor::setBodyPtr(Item* bodyPtr)
+void CircularMotor::setBody(Object* body)
 {
-    if(bodyPtr) {
-        if(bodyPtr->metaObject()->inherits<RigidBody>()) {
-            _bodyPtr = bodyPtr;
-            _rPtr = static_cast<RigidBody*>(bodyPtr);
+    if(body) {
+        if(body->metaObject()->inherits<RigidBody>()) {
+            _body = body;
+            _r = static_cast<RigidBody*>(body);
             return;
         }
     }
-    _bodyPtr = NULL;
-    _rPtr = NULL;
+    _body = NULL;
+    _r = NULL;
 }    
 
 Vector2d CircularMotor::localPosition() const
 {
-    if(_rPtr) return Vector2d(0);
+    if(_r) return Vector2d(0);
     else return _localPosition;
 }
 
 Vector2d CircularMotor::position() const
 {
-    if(_rPtr) return _rPtr->position();
+    if(_r) return _r->position();
     return _localPosition;
 }
 
 void  CircularMotor::worldItemRemoved(Item* item)
 {
     if(item == NULL) return;
-    if(item == _bodyPtr) setBodyPtr(NULL);
+    if(item == _body) setBody(NULL);
 }
 
 void CircularMotor::setWorld(World* world)
 {
     if(world == NULL) {
-        setBodyPtr(NULL);        
+        setBody(NULL);        
     } else if(this->world() != NULL) { 
-        if(_bodyPtr != NULL) setBodyPtr(world->item(body()));
+        if(_body != NULL) setBody(world->item(body()->name()));
     }
     Item::setWorld(world);
 }
