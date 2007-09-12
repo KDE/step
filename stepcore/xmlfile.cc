@@ -46,7 +46,7 @@ public:
 
 protected:
     QString escapeText(const QString& str);
-    void saveProperties(const Object* obj, int indent);
+    void saveProperties(const Object* obj, int first, int indent);
     void saveObject(const QString& tag, const Object* obj, int indent);
 
     QIODevice*   _device;
@@ -65,10 +65,10 @@ QString StepStreamWriter::escapeText(const QString& str)
     return result;
 }
 
-void StepStreamWriter::saveProperties(const Object* obj, int indent)
+void StepStreamWriter::saveProperties(const Object* obj, int first, int indent)
 {
     const MetaObject* metaObject = obj->metaObject();
-    for(int i = 0; i < metaObject->propertyCount(); ++i) {
+    for(int i = first; i < metaObject->propertyCount(); ++i) {
         const MetaProperty* p = metaObject->property(i);
         if(p->isStored()) {
             *_stream << QString(indent*INDENT, ' ')
@@ -91,11 +91,11 @@ void StepStreamWriter::saveObject(const QString& tag, const Object* obj, int ind
              << " class=\"" << QString(obj->metaObject()->className())
              << "\" id=\"" << _ids.value(obj, -1) << "\">\n";
 
-    saveProperties(obj, indent+1);
+    saveProperties(obj, 0, indent+1);
 
     if(obj->metaObject()->inherits<Item>()) {
         const ObjectErrors* objErrors = static_cast<const Item*>(obj)->tryGetObjectErrors();
-        if(objErrors) saveProperties(objErrors, indent+1);
+        if(objErrors) saveProperties(objErrors, 1, indent+1);
     }
 
     if(obj->metaObject()->inherits<ItemGroup>()) {
@@ -133,7 +133,7 @@ bool StepStreamWriter::writeWorld(const World* world)
              << "<world xmlns=\"" << XmlFile::NAMESPACE_URI << "\""
              << " version=\"" << XmlFile::VERSION << "\" id=\"1\">\n";
 
-    saveProperties(world, 1);
+    saveProperties(world, 0, 1);
     *_stream << "\n";
 
     ItemList::const_iterator end = world->items().end();

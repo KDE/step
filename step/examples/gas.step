@@ -60,7 +60,6 @@
         <color>#ffff0000</color>
         <measureRectCenter>(-0.0125075,-0.266827)</measureRectCenter>
         <measureRectSize>(1.95951,1.44253)</measureRectSize>
-        <name></name>
 
         <item class="GasLJForce" id="7">
             <name>gasLJForce1</name>
