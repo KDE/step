@@ -120,29 +120,71 @@ class CommandNewItem: public QUndoCommand
 {
 public:
     CommandNewItem(WorldModel* worldModel, StepCore::Item* item, StepCore::ItemGroup* parent, bool create)
-        : _worldModel(worldModel), _item(item), _parent(parent), _create(create), _shouldDelete(create) {}
+            : _worldModel(worldModel), _item(item), _parent(parent), _create(create), _shouldDelete(create) {
+        if(!create) findLinks(static_cast<StepCore::ItemGroup*>(_worldModel->world()));
+    }
     ~CommandNewItem() { if(_shouldDelete) delete _item; }
+
     void redo();
     void undo();
+
 protected:
+    void findLinks(StepCore::ItemGroup* group);
+    void removeItem();
+    void readdItem();
+
     WorldModel* _worldModel;
     StepCore::Item* _item;
     StepCore::ItemGroup* _parent;
     bool _create;
     bool _shouldDelete;
+
+    typedef QPair<StepCore::Object*, const StepCore::MetaProperty*> Link;
+    QList<Link> _links;
 };
+
+void CommandNewItem::findLinks(StepCore::ItemGroup* group)
+{
+    StepCore::ItemList::const_iterator end = group->items().end();
+    for(StepCore::ItemList::const_iterator it = group->items().begin(); it != end; ++it) {
+        const StepCore::MetaObject* mobj = (*it)->metaObject();
+        for(int i=0; i<mobj->propertyCount(); ++i) {
+            if(mobj->property(i)->userTypeId() != qMetaTypeId<StepCore::Object*>()) continue;
+            if(_item == mobj->property(i)->readVariant(*it).value<StepCore::Object*>())
+                _links << qMakePair(static_cast<StepCore::Object*>(*it), mobj->property(i));
+        }
+        if(mobj->inherits<StepCore::ItemGroup>())
+            findLinks(static_cast<StepCore::ItemGroup*>(*it));
+    }
+}
+
+void CommandNewItem::removeItem()
+{
+    foreach(const Link& link, _links)
+        link.second->writeVariant(link.first, QVariant::fromValue<StepCore::Object*>(NULL));
+    qDebug("%d links removed", _links.count());
+    _worldModel->removeCreatedItem(_item);
+}
+
+void CommandNewItem::readdItem()
+{
+    _worldModel->addCreatedItem(_item, _parent);
+    foreach(const Link& link, _links)
+        link.second->writeVariant(link.first, QVariant::fromValue<StepCore::Object*>(_item));
+    qDebug("%d links restored", _links.count());
+}
 
 void CommandNewItem::redo()
 {
-    if(_create) _worldModel->addCreatedItem(_item, _parent);
-    else _worldModel->removeCreatedItem(_item);
+    if(_create) readdItem();
+    else removeItem();
     _shouldDelete = !_create;
 }
 
 void CommandNewItem::undo()
 {
-    if(_create) _worldModel->removeCreatedItem(_item);
-    else _worldModel->addCreatedItem(_item, _parent);
+    if(_create) removeItem();
+    else readdItem();
     _shouldDelete = _create;
 }
 
