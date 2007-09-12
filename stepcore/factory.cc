@@ -44,21 +44,21 @@ Object* Factory::newObject(const QString& name) const
 Item* Factory::newItem(const QString& name) const
 {
     const MetaObject* metaObject = this->metaObject(name);
-    if(!metaObject && !metaObject->inherits<Item>()) return NULL;
+    if(!metaObject || !metaObject->inherits<Item>()) return NULL;
     return static_cast<Item*>(metaObject->newObject());
 }
 
 Solver* Factory::newSolver(const QString& name) const
 {
     const MetaObject* metaObject = this->metaObject(name);
-    if(!metaObject && !metaObject->inherits<Solver>()) return NULL;
+    if(!metaObject || !metaObject->inherits<Solver>()) return NULL;
     return static_cast<Solver*>(metaObject->newObject());
 }
 
 CollisionSolver* Factory::newCollisionSolver(const QString& name) const
 {
     const MetaObject* metaObject = this->metaObject(name);
-    if(!metaObject && !metaObject->inherits<CollisionSolver>()) return NULL;
+    if(!metaObject || !metaObject->inherits<CollisionSolver>()) return NULL;
     return static_cast<CollisionSolver*>(metaObject->newObject());
 }
 
