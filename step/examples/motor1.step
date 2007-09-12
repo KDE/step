@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE StepCoreXML>
+<world xmlns="http://edu.kde.org/step/StepCoreXML" version="1.0" id="1">
+    <name>world1</name>
+    <color>#ffffffff</color>
+    <time>80.1600000000013</time>
+    <timeScale>1</timeScale>
+    <errorsCalculation>false</errorsCalculation>
+
+    <item class="Polygon" id="2">
+        <name>polygon1</name>
+        <color>#ff000000</color>
+        <position>(2.81668,-1.82662)</position>
+        <angle>1.01639655483193</angle>
+        <velocity>(0,0)</velocity>
+        <angularVelocity>-0.393446354995723</angularVelocity>
+        <mass>inf</mass>
+        <inertia>391.295702860405</inertia>
+        <vertexes>(-1.84377,4.975),(-4.70479,-3.2266),(6.54856,-1.7484)</vertexes>
+    </item>
+
+    <item class="LinearMotor" id="3">
+        <name>linearMotor1</name>
+        <color>#ff0000ff</color>
+        <body>2</body>
+        <localPosition>(-3.65575,-2.32061)</localPosition>
+        <forceValue>(1.33514,-1.43051)</forceValue>
+    </item>
+
+    <item class="LinearMotor" id="4">
+        <name>linearMotor2</name>
+        <color>#ffff0000</color>
+        <body>2</body>
+        <localPosition>(-1.60535,3.83059)</localPosition>
+        <forceValue>(-2.81334,-1.09673)</forceValue>
+    </item>
+
+    <item class="LinearMotor" id="5">
+        <name>linearMotor3</name>
+        <color>#ff00ff00</color>
+        <body>2</body>
+        <localPosition>(5.11805,-1.36693)</localPosition>
+        <forceValue>(1.4782,2.76566)</forceValue>
+    </item>
+
+    <solver class="AdaptiveEulerSolver" id="6">
+        <name>solver1</name>
+        <stepSize>0.0184214482728179</stepSize>
+        <toleranceAbs>0.001</toleranceAbs>
+        <toleranceRel>0.001</toleranceRel>
+    </solver>
+
+    <collisionSolver class="GJKCollisionSolver" id="7">
+        <name>collisionSolver1</name>
+        <toleranceAbs>0.001</toleranceAbs>
+    </collisionSolver>
+
+</world>

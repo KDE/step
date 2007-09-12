@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE StepCoreXML>
+<world xmlns="http://edu.kde.org/step/StepCoreXML" version="1.0" id="1">
+    <name>world1</name>
+    <color>#ffffffff</color>
+    <time>0</time>
+    <timeScale>1</timeScale>
+    <errorsCalculation>false</errorsCalculation>
+
+    <item class="Polygon" id="2">
+        <name>polygon1</name>
+        <color>#ff000000</color>
+        <position>(0,0)</position>
+        <angle>0</angle>
+        <velocity>(0,0)</velocity>
+        <angularVelocity>0</angularVelocity>
+        <mass>1</mass>
+        <inertia>inf</inertia>
+        <vertexes>(-0.1,0.5),(-0.1,-0.5),(0.1,-0.5),(0.1,0.5)</vertexes>
+    </item>
+
+    <item class="Spring" id="3">
+        <name>spring1</name>
+        <color>#ff00ff00</color>
+        <restLength>2</restLength>
+        <stiffness>1</stiffness>
+        <damping>0</damping>
+        <body1>2</body1>
+        <body2>0</body2>
+        <localPosition1>(0,0)</localPosition1>
+        <localPosition2>(2,0)</localPosition2>
+    </item>
+
+    <item class="Particle" id="4">
+        <name>particle1</name>
+        <color>#ff000000</color>
+        <position>(-1.63,0)</position>
+        <velocity>(0,0)</velocity>
+        <mass>1</mass>
+    </item>
+
+    <item class="LinearMotor" id="5">
+        <name>linearMotor1</name>
+        <color>#ff0000ff</color>
+        <body>4</body>
+        <localPosition>(0,0)</localPosition>
+        <forceValue>(0.5,0)</forceValue>
+    </item>
+
+    <item class="Controller" id="6">
+        <name>controller1</name>
+        <color>#ff000000</color>
+        <position>(-1.48,-1.27)</position>
+        <size>(300,60)</size>
+        <object>5</object>
+        <property>forceValue</property>
+        <index>0</index>
+        <limits>(-1,1)</limits>
+        <increaseShortcut></increaseShortcut>
+        <decreaseShortcut></decreaseShortcut>
+        <increment>0.1</increment>
+    </item>
+
+    <solver class="AdaptiveEulerSolver" id="7">
+        <name>solver1</name>
+        <stepSize>1</stepSize>
+        <toleranceAbs>0.001</toleranceAbs>
+        <toleranceRel>0.001</toleranceRel>
+    </solver>
+
+    <collisionSolver class="GJKCollisionSolver" id="8">
+        <name>collisionSolver1</name>
+        <toleranceAbs>0.001</toleranceAbs>
+    </collisionSolver>
+
+</world>
