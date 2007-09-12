@@ -30,12 +30,12 @@ code (marked as TODO or XXX).
 2. Step.
 * do calculations in separate thread (DONE)
 * use statusbar or small graphicsitem to notify
-  user when creating items
+  user when creating items (DONE)
 * saving animation (navigation through time)
 * units for all quantitis, units conversion (DONE)
 * user-editable notes (DONE)
 * formulas in notes
-* custom scene background
+* custom scene background (PARTLY DONE)
 * nice-looking descriptions for all bodies and parameters
   (with references to wikipedia or wikibooks ?) (DONE)
 * configurable simulation-time controllers (DONE)
