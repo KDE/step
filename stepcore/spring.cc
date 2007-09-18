@@ -277,13 +277,16 @@ double SpringErrors::forceVariance() const
               s->damping() / l * v).cSquare().innerProduct(rV);
 }
 
+/*
 void Spring::worldItemRemoved(Item* item)
 {
     if(item == NULL) return;
     else if(item == _body1) setBody1(NULL);
     else if(item == _body2) setBody2(NULL);
 }
+*/
 
+#if 0
 void Spring::setWorld(World* world)
 {
     if(world == NULL) {
@@ -298,6 +301,7 @@ void Spring::setWorld(World* world)
     }
     Item::setWorld(world);
 }
+#endif
 
 } // namespace StepCore
 

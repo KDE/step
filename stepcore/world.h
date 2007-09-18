@@ -29,6 +29,8 @@
 #include "object.h"
 #include "vector.h"
 
+#include <QHash>
+
 // TODO: split this file
 
 namespace StepCore
@@ -351,7 +353,10 @@ public:
 
 private:
     friend class ItemGroup;
-    void worldItemCopied(Item* item);
+    void fillCopyMap(QHash<const Object*, Object*>* map,
+                        const ItemGroup* g1, ItemGroup* g2);
+    void applyCopyMap(QHash<const Object*, Object*>* map, Object* obj);
+    void worldItemCopied(QHash<const Object*, Object*>* map, Item* item);
     void worldItemAdded(Item* item);
     void worldItemRemoved(Item* item);
 

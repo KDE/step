@@ -186,8 +186,8 @@ public:
     /** Return units of propertyY */
     QString unitsY() const;
 
-    void worldItemRemoved(Item* item);
-    void setWorld(World* world);
+    //void worldItemRemoved(Item* item);
+    //void setWorld(World* world);
 
 protected:
     Vector2d _position;
@@ -278,8 +278,8 @@ public:
     /** Return units of measured property */
     QString units() const;
 
-    void worldItemRemoved(Item* item);
-    void setWorld(World* world);
+    //void worldItemRemoved(Item* item);
+    //void setWorld(World* world);
 
 protected:
     Vector2d _position;
@@ -375,8 +375,8 @@ public:
     /** Return units of measured property */
     QString units() const;
 
-    void worldItemRemoved(Item* item);
-    void setWorld(World* world);
+    //void worldItemRemoved(Item* item);
+    //void setWorld(World* world);
 
 protected:
     Vector2d _position;
@@ -436,8 +436,8 @@ public:
     /** Clear points list */
     void clearPoints() { _points.clear(); }
 
-    void worldItemRemoved(Item* item);
-    void setWorld(World* world);
+    //void worldItemRemoved(Item* item);
+    //void setWorld(World* world);
 
 protected:
     Object* _body;

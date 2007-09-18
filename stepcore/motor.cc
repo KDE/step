@@ -79,6 +79,7 @@ Vector2d LinearMotor::position() const
     return _localPosition;
 }
 
+/*
 void LinearMotor::worldItemRemoved(Item* item)
 {
     if(item == NULL) return;
@@ -94,6 +95,7 @@ void LinearMotor::setWorld(World* world)
     }
     Item::setWorld(world);
 }
+*/
 
 //////////////////////////////////////////////////////////////////////////
 CircularMotor::CircularMotor(Object* body, const Vector2d& localPosition, double torqueValue)
@@ -133,6 +135,7 @@ Vector2d CircularMotor::position() const
     return _localPosition;
 }
 
+/*
 void  CircularMotor::worldItemRemoved(Item* item)
 {
     if(item == NULL) return;
@@ -148,6 +151,7 @@ void CircularMotor::setWorld(World* world)
     }
     Item::setWorld(world);
 }
+*/
 
 } // namespace StepCore
 

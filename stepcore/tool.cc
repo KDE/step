@@ -192,6 +192,7 @@ Vector2d Graph::recordPoint(bool* ok)
     return Vector2d(0);
 }
 
+/*
 void Graph::worldItemRemoved(Item* item)
 {
     if(item == 0) return;
@@ -210,6 +211,7 @@ void Graph::setWorld(World* world)
     }
     Item::setWorld(world);
 }
+*/
 
 QString Graph::unitsX() const
 {
@@ -267,6 +269,7 @@ QString Meter::units() const
     return pr->units();
 }
 
+/*
 void Meter::worldItemRemoved(Item* item)
 {
     if(item == 0) return;
@@ -282,6 +285,7 @@ void Meter::setWorld(World* world)
     }
     Item::setWorld(world);
 }
+*/
 
 Controller::Controller(Vector2d position, Vector2d size)
     : _position(position), _size(size),
@@ -339,6 +343,7 @@ QString Controller::units() const
     return pr->units();
 }
 
+/*
 void Controller::worldItemRemoved(Item* item)
 {
     if(item == 0) return;
@@ -354,6 +359,7 @@ void Controller::setWorld(World* world)
     }
     Item::setWorld(world);
 }
+*/
 
 Tracer::Tracer(Object* body, const Vector2d& localPosition)
     : _localPosition(localPosition)
@@ -389,6 +395,7 @@ Vector2d Tracer::position() const
     return _localPosition;
 }
 
+/*
 void Tracer::worldItemRemoved(Item* item)
 {
     if(item == _body) setBody(NULL);
@@ -403,6 +410,7 @@ void Tracer::setWorld(World* world)
     }
     Item::setWorld(world);
 }
+*/
 
 } // namespace StepCore
 

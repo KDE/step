@@ -207,8 +207,8 @@ public:
     /** Get second connected RigidBody */
     RigidBody* rigidBody2() const { return _r2; }
 
-    void worldItemRemoved(Item* item);
-    void setWorld(World* world);
+    //void worldItemRemoved(Item* item);
+    //void setWorld(World* world);
 
     /** Get (and possibly create) SpringErrors object */
     SpringErrors* springErrors() { return static_cast<SpringErrors*>(objectErrors()); }

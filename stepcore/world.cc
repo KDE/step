@@ -234,62 +234,6 @@ World::~World()
     delete[] _variances;
 }
 
-World& World::operator=(const World& world)
-{
-    if(this == &world) return *this;
-
-    clear();
-    ItemGroup::operator=(world);
-
-    /*
-    _items.reserve(world._items.size());
-    const ItemList::const_iterator it_end = world._items.end();
-
-    for(ItemList::const_iterator it = world._items.begin(); it != it_end; ++it) {
-        StepCore::Item* item = static_cast<Item*>( (*it)->metaObject()->cloneObject(*(*it)) );
-        _items.push_back(item);
-        Force* force = dynamic_cast<Force*>(item);
-        if(force) _forces.push_back(force);
-        Body* body = dynamic_cast<Body*>(item);
-        if(body) _bodies.push_back(body);
-    }
-    */
-
-    const ItemList::const_iterator end = items().end();
-    for(ItemList::const_iterator it = items().begin(); it != end; ++it) {
-        worldItemCopied(*it);
-    }
-
-    _time = world._time;
-    _timeScale = world._timeScale;
-    _errorsCalculation = world._errorsCalculation;
-
-    _stopOnCollision = world._stopOnCollision;
-    _stopOnIntersection = world._stopOnIntersection;
-    _evolveAbort = world._evolveAbort;
-
-    if(world._solver) setSolver(static_cast<Solver*>(
-                world._solver->metaObject()->cloneObject(*(world._solver))));
-    else setSolver(0);
-
-    if(world._collisionSolver) {
-        setCollisionSolver(static_cast<CollisionSolver*>(
-               world._collisionSolver->metaObject()->cloneObject(*(world._collisionSolver))));
-    } else {
-        setCollisionSolver(0);
-    }
-
-    /*if(world._constraintSolver) setConstraintSolver(static_cast<ConstraintSolver*>(
-               world._constraintSolver->metaObject()->cloneObject(*(world._constraintSolver))));
-    else setConstraintSolver(0);*/
-
-    setWorld(this);
-
-    checkVariablesCount();
-
-    return *this;
-}
-
 void World::clear()
 {
     // Avoid erasing each element individually in the cache
@@ -328,8 +272,89 @@ void World::clear()
 #endif
 }
 
-void World::worldItemCopied(Item* item)
+World& World::operator=(const World& world)
 {
+    if(this == &world) return *this;
+
+    clear();
+    ItemGroup::operator=(world);
+
+    if(world._solver) {
+        setSolver(static_cast<Solver*>(
+                world._solver->metaObject()->cloneObject(*(world._solver))));
+    } else setSolver(0);
+
+    if(world._collisionSolver) {
+        setCollisionSolver(static_cast<CollisionSolver*>(
+               world._collisionSolver->metaObject()->cloneObject(*(world._collisionSolver))));
+    } else setCollisionSolver(0);
+
+    /*if(world._constraintSolver) setConstraintSolver(static_cast<ConstraintSolver*>(
+               world._constraintSolver->metaObject()->cloneObject(*(world._constraintSolver))));
+    else setConstraintSolver(0);*/
+
+    _time = world._time;
+    _timeScale = world._timeScale;
+    _errorsCalculation = world._errorsCalculation;
+
+    _stopOnCollision = world._stopOnCollision;
+    _stopOnIntersection = world._stopOnIntersection;
+    _evolveAbort = world._evolveAbort;
+
+    // Fix links
+    QHash<const Object*, Object*> copyMap;
+    copyMap.insert(NULL, NULL);
+    copyMap.insert(&world, this);
+    if(_solver) copyMap.insert(world._solver, _solver);
+    if(_collisionSolver) copyMap.insert(world._collisionSolver, _collisionSolver);
+    fillCopyMap(&copyMap, &world, this);
+
+    applyCopyMap(&copyMap, this);
+    if(_solver) applyCopyMap(&copyMap, _solver);
+    if(_collisionSolver) applyCopyMap(&copyMap, _collisionSolver);
+
+    const ItemList::const_iterator end = items().end();
+    for(ItemList::const_iterator it = items().begin(); it != end; ++it) {
+        worldItemCopied(&copyMap, *it);
+    }
+
+    setWorld(this);
+
+    checkVariablesCount();
+
+    return *this;
+}
+
+void World::fillCopyMap(QHash<const Object*, Object*>* map,
+                        const ItemGroup* g1, ItemGroup* g2)
+{
+    const ItemList::const_iterator end = g1->items().end();
+    for(ItemList::const_iterator it1 = g1->items().begin(),
+                                 it2 = g2->items().begin();
+                                 it1 != end; ++it1, ++it2) {
+        map->insert(*it1, *it2);
+        if((*it1)->metaObject()->inherits<StepCore::ItemGroup>())
+            fillCopyMap(map, static_cast<ItemGroup*>(*it1), static_cast<ItemGroup*>(*it2));
+    }
+}
+
+void World::applyCopyMap(QHash<const Object*, Object*>* map, Object* obj)
+{
+    const StepCore::MetaObject* mobj = obj->metaObject();
+    for(int i=0; i<mobj->propertyCount(); ++i) {
+        const StepCore::MetaProperty* pr = mobj->property(i);
+        if(pr->userTypeId() == qMetaTypeId<Object*>()) {
+            QVariant v = pr->readVariant(obj);
+            v = QVariant::fromValue(map->value(v.value<Object*>(), NULL));
+            pr->writeVariant(obj, v);
+        }
+    }
+}
+
+void World::worldItemCopied(QHash<const Object*, Object*>* map, Item* item)
+{
+    applyCopyMap(map, item);
+
     if(item->metaObject()->inherits<Force>())
         _forces.push_back(dynamic_cast<Force*>(item));
     if(item->metaObject()->inherits<Body>())
@@ -339,7 +364,7 @@ void World::worldItemCopied(Item* item)
         ItemGroup* group = static_cast<ItemGroup*>(item);
         ItemList::const_iterator end = group->items().end();
         for(ItemList::const_iterator it = group->items().begin(); it != end; ++it) {
-            worldItemCopied(*it);
+            worldItemCopied(map, *it);
         }
     }
 }

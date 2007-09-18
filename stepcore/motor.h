@@ -69,8 +69,8 @@ public:
     /** Set force value */
     void setForceValue(const Vector2d& forceValue) { _forceValue = forceValue; }
 
-    void worldItemRemoved(Item* item);
-    void setWorld(World* world);
+    //void worldItemRemoved(Item* item);
+    //void setWorld(World* world);
         
 protected:
     Object*  _body;
@@ -117,8 +117,8 @@ public:
     /** Set torque value */
     void setTorqueValue(const double torqueValue) { _torqueValue = torqueValue; }
 
-    void worldItemRemoved(Item* item);
-    void setWorld(World* world);
+    //void worldItemRemoved(Item* item);
+    //void setWorld(World* world);
         
 protected:
     Object*  _body;
