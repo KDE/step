@@ -43,35 +43,28 @@
 #include <QGridLayout>
 #include <QLabel>
 #include <QLCDNumber>
+#include <QFocusEvent>
+#include <KToolBar>
 #include <KPlotWidget>
 #include <KPlotObject>
 #include <KPlotPoint>
 #include <KPlotAxis>
 #include <KDialog>
 #include <KAction>
+#include <KToggleAction>
+#include <KFontAction>
+#include <KFontSizeAction>
 #include <KLocale>
 
 #include <float.h>
 
-NoteTextItem::NoteTextItem(NoteGraphicsItem* noteItem, QGraphicsItem* parent)
-    : QGraphicsTextItem(parent), _noteItem(noteItem)
-{
-    setPlainText(emptyNotice());
-}
-
-QString NoteTextItem::emptyNotice() const
+QString NoteTextEdit::emptyNotice() const
 {
     return i18n("Click to enter a text");
 }
 
-void NoteTextItem::paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget)
-{
-    QStyleOptionGraphicsItem opt = *option; // XXX: are there any documented way to do this ?
-    if(_noteItem->isSelected()) opt.state |=  QStyle::State_HasFocus;
-    QGraphicsTextItem::paint(painter, &opt, widget);
-}
-
-void NoteTextItem::focusInEvent(QFocusEvent *event)
+/*
+void NoteTextEdit::focusInEvent(QFocusEvent *event)
 {
     if(_noteItem->note()->text().isEmpty()) {
         ++_noteItem->_updating;
@@ -79,19 +72,36 @@ void NoteTextItem::focusInEvent(QFocusEvent *event)
         _noteItem->worldDataChanged(false);
         --_noteItem->_updating;
     }
-    QGraphicsTextItem::focusInEvent(event);
+    _noteItem->_hasFocus = true;
+    _noteItem->_toolBar->show();
+    _noteItem->setSelected(true);
+    _noteItem->viewScaleChanged();
+    KTextEdit::focusInEvent(event);
 }
 
-void NoteTextItem::focusOutEvent(QFocusEvent *event)
+void NoteTextEdit::focusOutEvent(QFocusEvent *event)
 {
-    if(_noteItem->note()->text().isEmpty()) {
-        ++_noteItem->_updating;
-        setPlainText(emptyNotice());
-        _noteItem->worldDataChanged(false);
-        --_noteItem->_updating;
+    kDebug() << event->reason() << endl;
+    kDebug() << QApplication::focusWidget()->metaObject()->className() << endl;
+
+    QObject* f = QApplication::focusWidget();
+    if(f == this) f = NULL;
+    while(f && f != _noteItem->_widget) f = f->parent();
+
+    if(!f && event->reason() != Qt::PopupFocusReason) {
+        if(_noteItem->note()->text().isEmpty()) {
+            ++_noteItem->_updating;
+            setPlainText(emptyNotice());
+            _noteItem->worldDataChanged(false);
+            --_noteItem->_updating;
+        }
+        _noteItem->_hasFocus = false;
+        _noteItem->_toolBar->hide();
+        _noteItem->viewScaleChanged();
     }
-    QGraphicsTextItem::focusOutEvent(event);
+    KTextEdit::focusOutEvent(event);
 }
+*/
 
 NoteGraphicsItem::NoteGraphicsItem(StepCore::Item* item, WorldModel* worldModel)
     : WorldGraphicsItem(item, worldModel)
@@ -101,13 +111,97 @@ NoteGraphicsItem::NoteGraphicsItem(StepCore::Item* item, WorldModel* worldModel)
     setFlag(QGraphicsItem::ItemIsMovable);
     setAcceptsHoverEvents(true);
 
-    _textItem = new NoteTextItem(this, this);
-    _textItem->setTextInteractionFlags(Qt::TextEditorInteraction);
-    _textItem->scale(1, -1);
+    _widget = new QWidget();
+
+    _textEdit = new NoteTextEdit(this, _widget);
+    _textEdit->setFrameShape(QFrame::NoFrame);
+    _textEdit->setStyleSheet(".NoteTextEdit {background-color: rgba(0,0,0,0%);}");
+    connect(_textEdit, SIGNAL(textChanged()), this, SLOT(contentsChanged()));
+
+    _toolBar = new KToolBar(_widget);
+    _toolBar->setIconDimensions(16);
+    _toolBar->setToolButtonStyle(Qt::ToolButtonIconOnly);
+    _toolBar->setStyleSheet(".KToolBar {margin: 0px; border-width: 0px; padding: 0px; }");
+
+    _actionBold = new KToggleAction(KIcon("format-text-bold"), i18n("&Bold"), _toolBar);
+    _actionBold->setShortcut(Qt::CTRL + Qt::Key_B);
+    _actionItalic = new KToggleAction(KIcon("format-text-italic"), i18n("&Italic"), _toolBar);
+    _actionItalic->setShortcut(Qt::CTRL + Qt::Key_I);
+    _actionUnderline = new KToggleAction(KIcon("format-text-underline"), i18n("&Underline"), _toolBar);
+    _actionUnderline->setShortcut(Qt::CTRL + Qt::Key_U);
+
+    _actionAlignLeft = new KToggleAction(KIcon("format-justify-left"), i18n("Align &Left"), _toolBar);
+    _actionAlignLeft->setShortcut(Qt::CTRL + Qt::Key_L);
+    _actionAlignCenter = new KToggleAction(KIcon("format-justify-center"), i18n("Align C&enter"), _toolBar);
+    _actionAlignCenter->setShortcut(Qt::CTRL + Qt::Key_E);
+    _actionAlignRight = new KToggleAction(KIcon("format-justify-right"), i18n("Align &Right"), _toolBar);
+    _actionAlignRight->setShortcut(Qt::CTRL + Qt::Key_R);
+    _actionAlignJustify = new KToggleAction(KIcon("format-justify-fill"), i18n("Align &Justify"), _toolBar);
+    _actionAlignJustify->setShortcut(Qt::CTRL + Qt::Key_J);
+
+    _actionGroupAlign = new QActionGroup(_toolBar);
+    _actionGroupAlign->addAction(_actionAlignLeft);
+    _actionGroupAlign->addAction(_actionAlignCenter);
+    _actionGroupAlign->addAction(_actionAlignRight);
+    _actionGroupAlign->addAction(_actionAlignJustify);
+    _actionAlignLeft->setChecked(true);
+
+    _actionFont = new KFontAction(_toolBar);
+    _actionFontSize = new KFontSizeAction(_toolBar);
+
+    connect(_actionBold, SIGNAL(triggered(bool)), this, SLOT(formatBold(bool)));
+    connect(_actionItalic, SIGNAL(triggered(bool)), _textEdit, SLOT(setFontItalic(bool)));
+    connect(_actionUnderline, SIGNAL(triggered(bool)), _textEdit, SLOT(setFontUnderline(bool)));
+    connect(_actionGroupAlign, SIGNAL(triggered(QAction*)), this, SLOT(formatAlign(QAction*)));
+    connect(_actionFont, SIGNAL(triggered(const QString&)), this, SLOT(formatFontFamily(const QString&)));
+    connect(_actionFontSize, SIGNAL(fontSizeChanged(int)), this, SLOT(formatFontSize(int)));
+    
+    connect(_textEdit, SIGNAL(currentCharFormatChanged(const QTextCharFormat&)),
+                            this, SLOT(currentCharFormatChanged(const QTextCharFormat&)));
+    connect(_textEdit, SIGNAL(cursorPositionChanged()), this, SLOT(cursorPositionChanged()));
+
+
+    connect(_toolBar, SIGNAL(actionTriggered(QAction*)), _textEdit, SLOT(setFocus()));
+
+    _toolBar->addAction(_actionBold);
+    _toolBar->addAction(_actionItalic);
+    _toolBar->addAction(_actionUnderline);
+    _toolBar->addSeparator();
+
+    _toolBar->addActions(_actionGroupAlign->actions());
+    _toolBar->addSeparator();
+
+    _toolBar->addAction(_actionFont);
+    _toolBar->addAction(_actionFontSize);
+
+    QVBoxLayout* layout = new QVBoxLayout(_widget);
+    layout->setContentsMargins(0,0,0,0);
+    layout->setSpacing(0);
+    layout->addWidget(_textEdit);
+    layout->addWidget(_toolBar);
+
+    // without it focus is passed to QGrahicsView
+    _toolBar->setFocusPolicy(Qt::ClickFocus);
+    _toolBar->setFocusProxy(_textEdit);
+    _widget->setFocusProxy(_textEdit);
+
+    _hasFocus = false;
+    _toolBar->hide();
+
+    _textEdit->installEventFilter(this);
+    _toolBar->widgetForAction(_actionFont)->installEventFilter(this);
+    _toolBar->widgetForAction(_actionFontSize)->installEventFilter(this);
+
+    _boundingRect = QRectF(0, 0, 0, 0);
     _lastScale = 1;
     _updating = 0;
-    connect(_textItem->document(), SIGNAL(contentsChanged()), this, SLOT(contentsChanged()));
-    worldDataChanged(false);
+    scale(1, -1);
+}
+
+NoteGraphicsItem::~NoteGraphicsItem()
+{
+    _widget->hide();
+    delete _widget;
 }
 
 inline StepCore::Note* NoteGraphicsItem::note() const
@@ -115,39 +209,165 @@ inline StepCore::Note* NoteGraphicsItem::note() const
     return static_cast<StepCore::Note*>(_item);
 }
 
-void NoteGraphicsItem::paint(QPainter* /*painter*/, const QStyleOptionGraphicsItem* /*option*/, QWidget* /*widget*/)
+bool NoteGraphicsItem::eventFilter(QObject* obj, QEvent* event)
 {
+    if(event->type() == QEvent::FocusIn) {
+        if(!_hasFocus) {
+            if(note()->text().isEmpty()) {
+                ++_updating;
+                _textEdit->setPlainText("");
+                worldDataChanged(false);
+                --_updating;
+            }
+            _hasFocus = true;
+            _toolBar->show();
+            setSelected(true);
+            viewScaleChanged();
+        }
+    } else if(event->type() == QEvent::FocusOut &&
+            static_cast<QFocusEvent*>(event)->reason() != Qt::PopupFocusReason) {
+
+        QObject* f = QApplication::focusWidget();
+        if(f == obj) f = NULL;
+        while(f && f != _widget) f = f->parent();
+
+        if(!f) {
+            if(note()->text().isEmpty()) {
+                ++_updating;
+                _textEdit->setPlainText(_textEdit->emptyNotice());
+                worldDataChanged(false);
+                --_updating;
+            }
+            _hasFocus = false;
+            _toolBar->hide();
+            viewScaleChanged();
+        }
+    }
+    return QObject::eventFilter(obj, event);
+}
+
+void NoteGraphicsItem::formatBold(bool checked)
+{
+    _textEdit->setFontWeight(checked ? QFont::Bold : QFont::Normal);
+}
+
+void NoteGraphicsItem::formatAlign(QAction* action)
+{
+    if(action == _actionAlignLeft)
+        _textEdit->setAlignment(Qt::AlignLeft);
+    else if(action == _actionAlignCenter)
+        _textEdit->setAlignment(Qt::AlignHCenter);
+    else if(action == _actionAlignRight)
+        _textEdit->setAlignment(Qt::AlignRight);
+    else if(action == _actionAlignJustify)
+        _textEdit->setAlignment(Qt::AlignJustify);
+}
+
+void NoteGraphicsItem::formatFontFamily(const QString& family)
+{
+    _textEdit->setFontFamily(family);
+}
+
+void NoteGraphicsItem::formatFontSize(int size)
+{
+    if(size > 0) _textEdit->setFontPointSize(size);
+    else currentCharFormatChanged(_textEdit->currentCharFormat());
+}
+
+void NoteGraphicsItem::currentCharFormatChanged(const QTextCharFormat& f)
+{
+    _actionBold->setChecked(f.fontWeight() >= QFont::Bold);
+    _actionItalic->setChecked(f.fontItalic());
+    _actionUnderline->setChecked(f.fontUnderline());
+    kDebug() << f.fontFamily() << f.fontPointSize() << endl;
+    _actionFont->setFont(f.fontFamily());
+    _actionFontSize->setFontSize(int(f.fontPointSize()));
+}
+
+void NoteGraphicsItem::cursorPositionChanged()
+{
+    if(_textEdit->alignment() & Qt::AlignLeft)
+        _actionAlignLeft->setChecked(true);
+    else if(_textEdit->alignment() & Qt::AlignHCenter)
+        _actionAlignCenter->setChecked(true);
+    else if(_textEdit->alignment() & Qt::AlignRight)
+        _actionAlignRight->setChecked(true);
+    else if(_textEdit->alignment() & Qt::AlignJustify)
+        _actionAlignJustify->setChecked(true);
+}
+
+void NoteGraphicsItem::paint(QPainter* painter, const QStyleOptionGraphicsItem* /*option*/, QWidget* /*widget*/)
+{
+    // Do not need to fill the background since widget covers it all
+    if(_isSelected) {
+        painter->setRenderHint(QPainter::Antialiasing, true);
+        painter->setPen(QPen(SELECTION_COLOR, 0, Qt::DashLine));
+        //painter->setBrush(QBrush(Qt::white));
+        painter->drawRect(_boundingRect);
+    }
 }
 
 void NoteGraphicsItem::viewScaleChanged()
 {
     double s = currentViewScale();
     if(s != _lastScale) {
-        _textItem->resetTransform();
-        _textItem->scale(1/s, -1/s);
+        resetTransform();
+        scale(1/s, -1/s);
         _lastScale = s;
     }
-    
-    QSizeF  size = _textItem->boundingRect().size()/s;
-    size.setHeight(-size.height());
 
-    if(size != _boundingRect.size()) {
+    setPos(vectorToPoint(note()->position()));
+
+    StepCore::Vector2d vs = note()->size();
+    QSizeF vss(vs[0]+2, vs[1]+2);
+
+    if(_hasFocus)
+        vss.setHeight(vss.height() + _toolBar->frameGeometry().height());
+
+    if(vss != _boundingRect.size()) {
         prepareGeometryChange();
-        _boundingRect.setSize(size);
+        _boundingRect.setSize(vss);
+        update();
     }
+
+    if(scene() && !scene()->views().isEmpty()) {
+        QGraphicsView* activeView = scene()->views().first();
+
+        // Reparent the widget if necessary.
+        if(_widget->parentWidget() != activeView->viewport()) {
+           _widget->setParent(activeView->viewport());
+           _widget->show();
+        }
+
+        QTransform itemTransform = deviceTransform(activeView->viewportTransform());
+        QPoint viewportPos = itemTransform.map(QPointF(0, 0)).toPoint() + QPoint(1,1);
+
+        if(_widget->pos() != viewportPos)
+            _widget->move(viewportPos);
+
+        if(_widget->size() != _boundingRect.size())
+            _widget->resize(vss.toSize() - QSize(2,2));
+    }
+}
+
+void NoteGraphicsItem::stateChanged()
+{
+    update();
 }
 
 void NoteGraphicsItem::worldDataChanged(bool dynamicOnly)
 {
     if(!dynamicOnly) {
         setPos(vectorToPoint(note()->position()));
-        if(!_updating && _textItem->toHtml() != note()->text()) {
+        if(!_updating && _textEdit->toHtml() != note()->text()) {
             ++_updating;
-            if(!_textItem->hasFocus() && note()->text().isEmpty()) {
-                _textItem->setPlainText(_textItem->emptyNotice());
+            if(!_textEdit->hasFocus() && note()->text().isEmpty()) {
+                _textEdit->setPlainText(_textEdit->emptyNotice());
             } else {
-                _textItem->setHtml(note()->text());
+                _textEdit->setHtml(note()->text());
             }
+            currentCharFormatChanged(_textEdit->currentCharFormat());
+            cursorPositionChanged();
             --_updating;
         }
         viewScaleChanged();
@@ -162,12 +382,13 @@ void NoteGraphicsItem::contentsChanged()
         _worldModel->simulationPause();
         _worldModel->beginMacro(i18n("Edit %1", _item->name()));
         _worldModel->setProperty(_item, _item->metaObject()->property("text"),
-                                QVariant::fromValue( _textItem->toHtml() ));
+                                QVariant::fromValue( _textEdit->toHtml() ));
         _worldModel->endMacro();
         --_updating;
     }
 }
 
+////////////////////////////////////////////////////
 DataSourceWidget::DataSourceWidget(QWidget* parent)
     : QWidget(parent), _worldModel(0)
 {
@@ -285,6 +506,7 @@ void DataSourceWidget::propertySelected(int index)
     }
 }
 
+////////////////////////////////////////////////////
 GraphGraphicsItem::GraphGraphicsItem(StepCore::Item* item, WorldModel* worldModel)
     : WorldGraphicsItem(item, worldModel)
 {

@@ -23,11 +23,13 @@
 #include <QGraphicsTextItem>
 #include <QAbstractItemModel>
 #include <QWidget>
+#include <KTextEdit>
 #include <KComboBox>
 #include <limits.h>
 
 class KPlotWidget;
 class KPlotObject;
+class KToggleAction;
 class KAction;
 class KDialog;
 class QSlider;
@@ -47,6 +49,7 @@ namespace StepCore {
     class Tracer;
 }
 
+/*
 class NoteGraphicsItem;
 class NoteTextItem: public QGraphicsTextItem
 {
@@ -62,29 +65,77 @@ protected:
     void focusOutEvent(QFocusEvent *event);
     NoteGraphicsItem* _noteItem;
 };
+*/
 
+class NoteGraphicsItem;
+class NoteTextEdit: public KTextEdit
+{
+    Q_OBJECT
+
+public:
+    NoteTextEdit(NoteGraphicsItem* noteItem, QWidget* parent = 0)
+        : KTextEdit(parent), _noteItem(noteItem) {}
+    QString emptyNotice() const;
+
+protected:
+    //void focusInEvent(QFocusEvent *event);
+    //void focusOutEvent(QFocusEvent *event);
+    NoteGraphicsItem* _noteItem;
+};
+
+class KToolBar;
+class QActionGroup;
+class KFontAction;
+class KFontSizeAction;
 class NoteGraphicsItem: public QObject, public WorldGraphicsItem
 {
     Q_OBJECT
 
 public:
     NoteGraphicsItem(StepCore::Item* item, WorldModel* worldModel);
+    ~NoteGraphicsItem();
 
     void paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget);
 
+    void stateChanged();
     void viewScaleChanged();
     void worldDataChanged(bool dynamicOnly);
 
 protected slots:
     void contentsChanged();
+    void formatBold(bool checked);
+    void formatAlign(QAction* action);
+    void formatFontFamily(const QString& family);
+    void formatFontSize(int size);
+    void currentCharFormatChanged(const QTextCharFormat& f);
+    void cursorPositionChanged();
 
 protected:
+    bool eventFilter(QObject* obj, QEvent* event);
+
     StepCore::Note* note() const;
-    NoteTextItem*   _textItem;
     int             _updating;
     double          _lastScale;
+    bool            _hasFocus;
 
-    friend class NoteTextItem;
+    QWidget*        _widget;
+    NoteTextEdit*   _textEdit;
+    KToolBar*       _toolBar;
+
+    KToggleAction* _actionBold;
+    KToggleAction* _actionItalic;
+    KToggleAction* _actionUnderline;
+
+    QActionGroup*  _actionGroupAlign;
+    KToggleAction* _actionAlignLeft;
+    KToggleAction* _actionAlignCenter;
+    KToggleAction* _actionAlignRight;
+    KToggleAction* _actionAlignJustify;
+
+    KFontAction*        _actionFont;
+    KFontSizeAction*    _actionFontSize;
+
+    friend class NoteTextEdit;
 };
 
 class DataSourceWidget: public QWidget

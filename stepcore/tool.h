@@ -43,12 +43,18 @@ class Note: public Item, public Tool
 
 public:
     /** Constructs Note */
-    explicit Note(Vector2d position = Vector2d(0), QString text = QString());
+    explicit Note(Vector2d position = Vector2d(0),
+            Vector2d size = Vector2d(400,100), QString text = QString());
 
     /** Get position of the note */
     const Vector2d& position() const { return _position; }
     /** Set position of the note */
     void setPosition(const Vector2d& position) { _position = position; }
+
+    /** Get size of the note */
+    const Vector2d& size() const { return _size; }
+    /** Set size of the note */
+    void setSize(const Vector2d& size) { _size = size; }
 
     /** Get note text */
     const QString& text() const { return _text; }
@@ -57,6 +63,7 @@ public:
 
 protected:
     Vector2d _position;
+    Vector2d _size;
     QString  _text;
 };
 

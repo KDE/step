@@ -24,7 +24,8 @@ namespace StepCore {
 
 STEPCORE_META_OBJECT(Note, "Note: displays a textual note on the scene", 0,
     STEPCORE_SUPER_CLASS(Item) STEPCORE_SUPER_CLASS(Tool),
-    STEPCORE_PROPERTY_RW(StepCore::Vector2d, position, "m", "Position", position, setPosition)
+    STEPCORE_PROPERTY_RW(StepCore::Vector2d, position, "m", "Note position on the scene", position, setPosition)
+    STEPCORE_PROPERTY_RW(StepCore::Vector2d, size, "m", "Note size on the scene", size, setSize)
     STEPCORE_PROPERTY_RW(QString, text, STEPCORE_UNITS_NULL, "Text", text, setText)
     )
 
@@ -128,8 +129,8 @@ static QVariant doubleToVariant(const QVariant& v, int index, double newV, bool 
 
 }
 
-Note::Note(Vector2d position, QString text)
-    : _position(position), _text(text)
+Note::Note(Vector2d position, Vector2d size, QString text)
+    : _position(position), _size(size), _text(text)
 {
 }
 
