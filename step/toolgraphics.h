@@ -84,7 +84,7 @@ protected:
 };
 
 class KToolBar;
-class QActionGroup;
+class KSelectAction;
 class KFontAction;
 class KFontSizeAction;
 class NoteGraphicsItem: public QObject, public WorldGraphicsItem
@@ -126,7 +126,7 @@ protected:
     KToggleAction* _actionItalic;
     KToggleAction* _actionUnderline;
 
-    QActionGroup*  _actionGroupAlign;
+    KSelectAction* _actionAlign;
     KToggleAction* _actionAlignLeft;
     KToggleAction* _actionAlignCenter;
     KToggleAction* _actionAlignRight;

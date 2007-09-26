@@ -139,20 +139,22 @@ NoteGraphicsItem::NoteGraphicsItem(StepCore::Item* item, WorldModel* worldModel)
     _actionAlignJustify = new KToggleAction(KIcon("format-justify-fill"), i18n("Align &Justify"), _toolBar);
     _actionAlignJustify->setShortcut(Qt::CTRL + Qt::Key_J);
 
-    _actionGroupAlign = new QActionGroup(_toolBar);
-    _actionGroupAlign->addAction(_actionAlignLeft);
-    _actionGroupAlign->addAction(_actionAlignCenter);
-    _actionGroupAlign->addAction(_actionAlignRight);
-    _actionGroupAlign->addAction(_actionAlignJustify);
+    _actionAlign = new KSelectAction(i18n("&Align"), _toolBar);
+    _actionAlign->setToolBarMode(KSelectAction::MenuMode);
+    _actionAlign->setToolButtonPopupMode(QToolButton::InstantPopup);
+    _actionAlign->addAction(_actionAlignLeft);
+    _actionAlign->addAction(_actionAlignCenter);
+    _actionAlign->addAction(_actionAlignRight);
+    _actionAlign->addAction(_actionAlignJustify);
     _actionAlignLeft->setChecked(true);
 
-    _actionFont = new KFontAction(_toolBar);
-    _actionFontSize = new KFontSizeAction(_toolBar);
+    _actionFont = new KFontAction(i18n("&Font"), _toolBar);
+    _actionFontSize = new KFontSizeAction(i18n("Font &Size"), _toolBar);
 
     connect(_actionBold, SIGNAL(triggered(bool)), this, SLOT(formatBold(bool)));
     connect(_actionItalic, SIGNAL(triggered(bool)), _textEdit, SLOT(setFontItalic(bool)));
     connect(_actionUnderline, SIGNAL(triggered(bool)), _textEdit, SLOT(setFontUnderline(bool)));
-    connect(_actionGroupAlign, SIGNAL(triggered(QAction*)), this, SLOT(formatAlign(QAction*)));
+    connect(_actionAlign, SIGNAL(triggered(QAction*)), this, SLOT(formatAlign(QAction*)));
     connect(_actionFont, SIGNAL(triggered(const QString&)), this, SLOT(formatFontFamily(const QString&)));
     connect(_actionFontSize, SIGNAL(fontSizeChanged(int)), this, SLOT(formatFontSize(int)));
     
@@ -166,13 +168,13 @@ NoteGraphicsItem::NoteGraphicsItem(StepCore::Item* item, WorldModel* worldModel)
     _toolBar->addAction(_actionBold);
     _toolBar->addAction(_actionItalic);
     _toolBar->addAction(_actionUnderline);
-    _toolBar->addSeparator();
+    //_toolBar->addSeparator();
 
-    _toolBar->addActions(_actionGroupAlign->actions());
-    _toolBar->addSeparator();
+    _toolBar->addAction(_actionAlign);
+    //_toolBar->addSeparator();
 
-    _toolBar->addAction(_actionFont);
     _toolBar->addAction(_actionFontSize);
+    _toolBar->addAction(_actionFont);
 
     QVBoxLayout* layout = new QVBoxLayout(_widget);
     layout->setContentsMargins(0,0,0,0);
@@ -191,6 +193,12 @@ NoteGraphicsItem::NoteGraphicsItem(StepCore::Item* item, WorldModel* worldModel)
     _textEdit->installEventFilter(this);
     _toolBar->widgetForAction(_actionFont)->installEventFilter(this);
     _toolBar->widgetForAction(_actionFontSize)->installEventFilter(this);
+
+    QComboBox* fonts = qobject_cast<QComboBox*>(_toolBar->widgetForAction(_actionFont));
+    if(fonts) {
+        fonts->setMinimumContentsLength(5);
+        fonts->setSizeAdjustPolicy(QComboBox::AdjustToMinimumContentsLength);
+    }
 
     _boundingRect = QRectF(0, 0, 0, 0);
     _lastScale = 1;
@@ -261,6 +269,8 @@ void NoteGraphicsItem::formatAlign(QAction* action)
         _textEdit->setAlignment(Qt::AlignRight);
     else if(action == _actionAlignJustify)
         _textEdit->setAlignment(Qt::AlignJustify);
+
+    _actionAlign->setIcon(action->icon());
 }
 
 void NoteGraphicsItem::formatFontFamily(const QString& family)
@@ -279,9 +289,10 @@ void NoteGraphicsItem::currentCharFormatChanged(const QTextCharFormat& f)
     _actionBold->setChecked(f.fontWeight() >= QFont::Bold);
     _actionItalic->setChecked(f.fontItalic());
     _actionUnderline->setChecked(f.fontUnderline());
-    kDebug() << f.fontFamily() << f.fontPointSize() << endl;
-    _actionFont->setFont(f.fontFamily());
-    _actionFontSize->setFontSize(int(f.fontPointSize()));
+    QFontInfo ff(f.font());
+    kDebug() << ff.family() << ff.pointSize() << endl;
+    _actionFont->setFont(ff.family());
+    _actionFontSize->setFontSize(ff.pointSize());
 }
 
 void NoteGraphicsItem::cursorPositionChanged()
@@ -294,6 +305,8 @@ void NoteGraphicsItem::cursorPositionChanged()
         _actionAlignRight->setChecked(true);
     else if(_textEdit->alignment() & Qt::AlignJustify)
         _actionAlignJustify->setChecked(true);
+
+    _actionAlign->setIcon(_actionAlign->currentAction()->icon());
 }
 
 void NoteGraphicsItem::paint(QPainter* painter, const QStyleOptionGraphicsItem* /*option*/, QWidget* /*widget*/)
