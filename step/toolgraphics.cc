@@ -54,6 +54,7 @@
 #include <KToggleAction>
 #include <KFontAction>
 #include <KFontSizeAction>
+#include <KColorDialog>
 #include <KLocale>
 
 #include <float.h>
@@ -123,6 +124,8 @@ NoteGraphicsItem::NoteGraphicsItem(StepCore::Item* item, WorldModel* worldModel)
     _toolBar->setToolButtonStyle(Qt::ToolButtonIconOnly);
     _toolBar->setStyleSheet(".KToolBar {margin: 0px; border-width: 0px; padding: 0px; }");
 
+    _actionColor = new KAction(KIcon(), i18n("&Color"), _toolBar);
+
     _actionBold = new KToggleAction(KIcon("format-text-bold"), i18n("&Bold"), _toolBar);
     _actionBold->setShortcut(Qt::CTRL + Qt::Key_B);
     _actionItalic = new KToggleAction(KIcon("format-text-italic"), i18n("&Italic"), _toolBar);
@@ -151,6 +154,7 @@ NoteGraphicsItem::NoteGraphicsItem(StepCore::Item* item, WorldModel* worldModel)
     _actionFont = new KFontAction(i18n("&Font"), _toolBar);
     _actionFontSize = new KFontSizeAction(i18n("Font &Size"), _toolBar);
 
+    connect(_actionColor, SIGNAL(triggered(bool)), this, SLOT(formatColor()));
     connect(_actionBold, SIGNAL(triggered(bool)), this, SLOT(formatBold(bool)));
     connect(_actionItalic, SIGNAL(triggered(bool)), _textEdit, SLOT(setFontItalic(bool)));
     connect(_actionUnderline, SIGNAL(triggered(bool)), _textEdit, SLOT(setFontUnderline(bool)));
@@ -165,12 +169,13 @@ NoteGraphicsItem::NoteGraphicsItem(StepCore::Item* item, WorldModel* worldModel)
 
     connect(_toolBar, SIGNAL(actionTriggered(QAction*)), _textEdit, SLOT(setFocus()));
 
+    _toolBar->addAction(_actionAlign);
     _toolBar->addAction(_actionBold);
     _toolBar->addAction(_actionItalic);
     _toolBar->addAction(_actionUnderline);
+    _toolBar->addAction(_actionColor);
     //_toolBar->addSeparator();
 
-    _toolBar->addAction(_actionAlign);
     //_toolBar->addSeparator();
 
     _toolBar->addAction(_actionFontSize);
@@ -191,13 +196,21 @@ NoteGraphicsItem::NoteGraphicsItem(StepCore::Item* item, WorldModel* worldModel)
     _toolBar->hide();
 
     _textEdit->installEventFilter(this);
-    _toolBar->widgetForAction(_actionFont)->installEventFilter(this);
-    _toolBar->widgetForAction(_actionFontSize)->installEventFilter(this);
 
-    QComboBox* fonts = qobject_cast<QComboBox*>(_toolBar->widgetForAction(_actionFont));
-    if(fonts) {
-        fonts->setMinimumContentsLength(5);
-        fonts->setSizeAdjustPolicy(QComboBox::AdjustToMinimumContentsLength);
+    QComboBox* font = qobject_cast<QComboBox*>(_toolBar->widgetForAction(_actionFont));
+    if(font) {
+        font->setMinimumContentsLength(5);
+        font->setSizeAdjustPolicy(QComboBox::AdjustToMinimumContentsLength);
+        font->installEventFilter(this);
+        font->setToolTip(_actionFont->toolTip());
+    }
+
+    QComboBox* fontSize = qobject_cast<QComboBox*>(_toolBar->widgetForAction(_actionFontSize));
+    if(fontSize) {
+        fontSize->setMinimumContentsLength(2);
+        fontSize->setSizeAdjustPolicy(QComboBox::AdjustToMinimumContentsLength);
+        fontSize->installEventFilter(this);
+        fontSize->setToolTip(_actionFontSize->toolTip());
     }
 
     _boundingRect = QRectF(0, 0, 0, 0);
@@ -254,6 +267,15 @@ bool NoteGraphicsItem::eventFilter(QObject* obj, QEvent* event)
     return QObject::eventFilter(obj, event);
 }
 
+void NoteGraphicsItem::formatColor()
+{
+    QColor color = _textEdit->textColor();
+    int result = KColorDialog::getColor(color, _widget);
+    if(result == KColorDialog::Accepted) {
+        _textEdit->setTextColor(color);
+    }
+}
+
 void NoteGraphicsItem::formatBold(bool checked)
 {
     _textEdit->setFontWeight(checked ? QFont::Bold : QFont::Normal);
@@ -276,12 +298,14 @@ void NoteGraphicsItem::formatAlign(QAction* action)
 void NoteGraphicsItem::formatFontFamily(const QString& family)
 {
     _textEdit->setFontFamily(family);
+    _textEdit->setFocus();
 }
 
 void NoteGraphicsItem::formatFontSize(int size)
 {
     if(size > 0) _textEdit->setFontPointSize(size);
     else currentCharFormatChanged(_textEdit->currentCharFormat());
+    _textEdit->setFocus();
 }
 
 void NoteGraphicsItem::currentCharFormatChanged(const QTextCharFormat& f)
@@ -289,8 +313,13 @@ void NoteGraphicsItem::currentCharFormatChanged(const QTextCharFormat& f)
     _actionBold->setChecked(f.fontWeight() >= QFont::Bold);
     _actionItalic->setChecked(f.fontItalic());
     _actionUnderline->setChecked(f.fontUnderline());
+
+    QPixmap pix(16,16);
+    pix.fill(_textEdit->textColor());
+    _actionColor->setIcon(pix);
+
     QFontInfo ff(f.font());
-    kDebug() << ff.family() << ff.pointSize() << endl;
+#warning Strange, the following line doesn't do anything !
     _actionFont->setFont(ff.family());
     _actionFontSize->setFontSize(ff.pointSize());
 }

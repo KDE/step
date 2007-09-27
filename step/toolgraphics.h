@@ -103,6 +103,7 @@ public:
 
 protected slots:
     void contentsChanged();
+    void formatColor();
     void formatBold(bool checked);
     void formatAlign(QAction* action);
     void formatFontFamily(const QString& family);
@@ -122,6 +123,7 @@ protected:
     NoteTextEdit*   _textEdit;
     KToolBar*       _toolBar;
 
+    KAction*       _actionColor;
     KToggleAction* _actionBold;
     KToggleAction* _actionItalic;
     KToggleAction* _actionUnderline;
