@@ -44,7 +44,7 @@ class Note: public Item, public Tool
 public:
     /** Constructs Note */
     explicit Note(Vector2d position = Vector2d(0),
-            Vector2d size = Vector2d(400,100), QString text = QString());
+            Vector2d size = Vector2d(200,100), QString text = QString());
 
     /** Get position of the note */
     const Vector2d& position() const { return _position; }

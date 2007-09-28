@@ -200,7 +200,7 @@ QVariant PropertiesBrowserModel::data(const QModelIndex &index, int role) const
                     //if(pv) kDebug() << "Unhandled property variance type" << endl;
                     Q_ASSERT( !_objectErrors || !_objectErrors->metaObject()->property(p->name() + "Variance") );
                     Q_ASSERT( p->units().isEmpty() );
-                    return p->readString(_object);
+                    return _worldModel->formatProperty(_object, _objectErrors, p, role == Qt::EditRole, false);
                 }
                 ///*if(p->userTypeId() < (int) QVariant::UserType) return p->readVariant(_object);
                 //else*/ return p->readString(_object); // XXX: default delegate for double looks ugly!

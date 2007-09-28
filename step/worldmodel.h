@@ -106,7 +106,8 @@ public:
     QString formatName(const StepCore::Object* object) const;
     QString formatProperty(const StepCore::Object* object,
                            const StepCore::Object* objectErrors,
-                           const StepCore::MetaProperty* property, bool editable) const;
+                           const StepCore::MetaProperty* property,
+                           bool editable, bool showUnits = true) const;
 
     // Tooltip
     QString createToolTip(const QModelIndex& index) const;

@@ -234,7 +234,7 @@ bool MainWindow::openFile(const KUrl& url, const KUrl& startUrl)
 
     KUrl fileUrl = url;
     if(fileUrl.isEmpty()) {
-        fileUrl = KFileDialog::getOpenFileName(startUrl, "*.step|Step files (*.step)", this);
+        fileUrl = KFileDialog::getOpenUrl(startUrl, "*.step|Step files (*.step)", this);
         if(fileUrl.isEmpty()) return false;
     }
 
@@ -276,7 +276,7 @@ bool MainWindow::saveFileAs(const KUrl& url, const KUrl& startUrl)
     if(worldModel->isSimulationActive()) simulationStop();
     KUrl fileUrl = url;
     if(fileUrl.isEmpty()) {
-        fileUrl = KFileDialog::getSaveFileName(startUrl.isEmpty() ? currentFileUrl : startUrl,
+        fileUrl = KFileDialog::getSaveUrl(startUrl.isEmpty() ? currentFileUrl : startUrl,
                                              "*.step|Step files (*.step)", this);
         if(fileUrl.isEmpty()) return false;
         else if(KIO::NetAccess::exists(fileUrl, KIO::NetAccess::DestinationSide, this)) {

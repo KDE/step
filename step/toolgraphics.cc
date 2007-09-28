@@ -50,12 +50,15 @@
 #include <KPlotPoint>
 #include <KPlotAxis>
 #include <KDialog>
+#include <KFileDialog>
 #include <KAction>
 #include <KToggleAction>
 #include <KFontAction>
 #include <KFontSizeAction>
 #include <KColorDialog>
 #include <KLocale>
+#include <KMessageBox>
+#include <KIO/NetAccess>
 
 #include <float.h>
 
@@ -154,6 +157,8 @@ NoteGraphicsItem::NoteGraphicsItem(StepCore::Item* item, WorldModel* worldModel)
     _actionFont = new KFontAction(i18n("&Font"), _toolBar);
     _actionFontSize = new KFontSizeAction(i18n("Font &Size"), _toolBar);
 
+    _actionInsertImage = new KAction(KIcon("insert-image"), i18n("Insert &Image"), _toolBar);
+
     connect(_actionColor, SIGNAL(triggered(bool)), this, SLOT(formatColor()));
     connect(_actionBold, SIGNAL(triggered(bool)), this, SLOT(formatBold(bool)));
     connect(_actionItalic, SIGNAL(triggered(bool)), _textEdit, SLOT(setFontItalic(bool)));
@@ -161,6 +166,7 @@ NoteGraphicsItem::NoteGraphicsItem(StepCore::Item* item, WorldModel* worldModel)
     connect(_actionAlign, SIGNAL(triggered(QAction*)), this, SLOT(formatAlign(QAction*)));
     connect(_actionFont, SIGNAL(triggered(const QString&)), this, SLOT(formatFontFamily(const QString&)));
     connect(_actionFontSize, SIGNAL(fontSizeChanged(int)), this, SLOT(formatFontSize(int)));
+    connect(_actionInsertImage, SIGNAL(triggered(bool)), this, SLOT(insertImage()));
     
     connect(_textEdit, SIGNAL(currentCharFormatChanged(const QTextCharFormat&)),
                             this, SLOT(currentCharFormatChanged(const QTextCharFormat&)));
@@ -177,6 +183,8 @@ NoteGraphicsItem::NoteGraphicsItem(StepCore::Item* item, WorldModel* worldModel)
     //_toolBar->addSeparator();
 
     //_toolBar->addSeparator();
+
+    _toolBar->addAction(_actionInsertImage);
 
     _toolBar->addAction(_actionFontSize);
     _toolBar->addAction(_actionFont);
@@ -253,15 +261,21 @@ bool NoteGraphicsItem::eventFilter(QObject* obj, QEvent* event)
         while(f && f != _widget) f = f->parent();
 
         if(!f) {
+            /*
             if(note()->text().isEmpty()) {
                 ++_updating;
                 _textEdit->setPlainText(_textEdit->emptyNotice());
-                worldDataChanged(false);
+                //worldDataChanged(false);
                 --_updating;
-            }
+            }*/
             _hasFocus = false;
             _toolBar->hide();
             viewScaleChanged();
+
+            ++_updating;
+            _textEdit->clear();
+            --_updating;
+            worldDataChanged(false);
         }
     }
     return QObject::eventFilter(obj, event);
@@ -336,6 +350,29 @@ void NoteGraphicsItem::cursorPositionChanged()
         _actionAlignJustify->setChecked(true);
 
     _actionAlign->setIcon(_actionAlign->currentAction()->icon());
+}
+
+void NoteGraphicsItem::insertImage()
+{
+    KUrl url = KFileDialog::getOpenUrl(KUrl(), "image/png image/jpeg", _widget);
+    if(url.isEmpty()) return;
+
+    QString tmpFileName;
+    if(! KIO::NetAccess::download(url, tmpFileName, _widget) ) {
+        KMessageBox::error(_widget, KIO::NetAccess::lastErrorString());
+        return;
+    }
+
+    QPixmap pixmap;
+    pixmap.load(tmpFileName);
+    _textEdit->document()->addResource(QTextDocument::ImageResource, url, pixmap);
+
+    QString text = QString("<img src=\"%1\" width=\"%2\" height=\"%3\" style=\"vertical-align: middle\" />")
+                        .arg(url.prettyUrl()).arg(pixmap.width()).arg(pixmap.height());
+    kDebug() << text << endl;
+    _textEdit->insertHtml(text);
+
+    KIO::NetAccess::removeTempFile(tmpFileName);
 }
 
 void NoteGraphicsItem::paint(QPainter* painter, const QStyleOptionGraphicsItem* /*option*/, QWidget* /*widget*/)

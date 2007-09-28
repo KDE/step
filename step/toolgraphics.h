@@ -110,6 +110,7 @@ protected slots:
     void formatFontSize(int size);
     void currentCharFormatChanged(const QTextCharFormat& f);
     void cursorPositionChanged();
+    void insertImage();
 
 protected:
     bool eventFilter(QObject* obj, QEvent* event);
@@ -136,6 +137,8 @@ protected:
 
     KFontAction*        _actionFont;
     KFontSizeAction*    _actionFontSize;
+
+    KAction* _actionInsertImage;
 
     friend class NoteTextEdit;
 };

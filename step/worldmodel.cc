@@ -632,18 +632,21 @@ QString WorldModel::formatName(const StepCore::Object* object) const
 
 QString WorldModel::formatProperty(const StepCore::Object* object,
                                    const StepCore::Object* objectErrors,
-                                   const StepCore::MetaProperty* property, bool editable) const
+                                   const StepCore::MetaProperty* property,
+                                   bool editable, bool showUnits) const
 {
     int pr = Settings::floatDisplayPrecision();
 
     QString units;
-    if(!editable && !property->units().isEmpty()) 
-        units.append(" [").append(property->units()).append("]");
+    if(showUnits) {
+        if(!editable && !property->units().isEmpty()) 
+            units.append(" [").append(property->units()).append("]");
 #ifdef STEP_WITH_UNITSCALC
-    else if(editable && !property->units().isEmpty()
-                && property->userTypeId() == QMetaType::Double) 
-        units.append(" ").append(property->units());
+        else if(editable && !property->units().isEmpty()
+                    && property->userTypeId() == QMetaType::Double) 
+            units.append(" ").append(property->units());
 #endif
+    }
 
     const StepCore::MetaProperty* pv = objectErrors ?
             objectErrors->metaObject()->property(property->name() + "Variance") : NULL;
@@ -685,7 +688,10 @@ QString WorldModel::formatProperty(const StepCore::Object* object,
         //if(pe) error = QString::fromUtf8(" ± ").append(pe->readString(_objectErrors)).append(units);
         //if(pv) kDebug() << "Unhandled property variance type" << endl;
         Q_ASSERT(!pv);
-        return property->readString(object).append(units);
+        QString str = property->readString(object);
+        if(!editable && str.length() > 50)
+            str = str.left(50).append("...");
+        return str.append(units);
     }
 }
 
