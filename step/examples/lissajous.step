@@ -85,6 +85,7 @@
         <name>note1</name>
         <color>#ff000000</color>
         <position>(-1.36,1.89)</position>
+        <size>(200,100)</size>
         <text>Lissajous curve</text>
     </item>
 
@@ -92,6 +93,7 @@
         <name>note2</name>
         <color>#ff000000</color>
         <position>(0.55,1.42)</position>
+        <size>(250,100)</size>
         <text>Please try to change the stiffness&lt;br /&gt;
 of spring1 and see how the curve&lt;br /&gt;
 will cahge. Try the following values:&lt;br /&gt;

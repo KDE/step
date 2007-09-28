@@ -434,7 +434,8 @@
     <item class="Note" id="44">
         <name>note1</name>
         <color>#ff000000</color>
-        <position>(-6.62192,6.17228)</position>
+        <position>(-6.622,6.172)</position>
+        <size>(400,100)</size>
         <text>&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
 p, li { white-space: pre-wrap; }
 &lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:'Sans Serif'; font-size:10pt; font-weight:400; font-style:normal;&quot;&gt;
@@ -469,6 +470,7 @@ p, li { white-space: pre-wrap; }
         <name>note2</name>
         <color>#ff000000</color>
         <position>(-6.37666,-1.51241)</position>
+        <size>(200,100)</size>
         <text>&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
 p, li { white-space: pre-wrap; }
 &lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:'Sans Serif'; font-size:10pt; font-weight:400; font-style:normal;&quot;&gt;

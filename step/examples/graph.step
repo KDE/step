@@ -79,6 +79,7 @@
         <name>note1</name>
         <color>#ff000000</color>
         <position>(-1.7,3.22)</position>
+        <size>(140,30)</size>
         <text>Phase diagram</text>
     </item>
 
@@ -86,6 +87,7 @@
         <name>note2</name>
         <color>#ff000000</color>
         <position>(1.05,3.22)</position>
+        <size>(140,30)</size>
         <text>Position - time</text>
     </item>
 

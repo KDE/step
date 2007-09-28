@@ -247,6 +247,7 @@
         <name>note1</name>
         <color>#ff000000</color>
         <position>(-1.83083,0.90091)</position>
+        <size>(40,30)</size>
         <text>&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
 p, li { white-space: pre-wrap; }
 &lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:'Sans Serif'; font-size:10pt; font-weight:400; font-style:normal;&quot;&gt;
@@ -279,6 +280,7 @@ p, li { white-space: pre-wrap; }
         <name>note3</name>
         <color>#ff000000</color>
         <position>(-1.82962,0.294439)</position>
+        <size>(40,30)</size>
         <text>&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
 p, li { white-space: pre-wrap; }
 &lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:'Sans Serif'; font-size:10pt; font-weight:400; font-style:normal;&quot;&gt;
@@ -300,6 +302,7 @@ p, li { white-space: pre-wrap; }
         <name>note2</name>
         <color>#ff000000</color>
         <position>(-1.83157,0.598109)</position>
+        <size>(40,30)</size>
         <text>&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
 p, li { white-space: pre-wrap; }
 &lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:'Sans Serif'; font-size:10pt; font-weight:400; font-style:normal;&quot;&gt;
@@ -310,6 +313,7 @@ p, li { white-space: pre-wrap; }
         <name>note5</name>
         <color>#ff000000</color>
         <position>(-1.8496,-0.224523)</position>
+        <size>(40,30)</size>
         <text>&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
 p, li { white-space: pre-wrap; }
 &lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:'Sans Serif'; font-size:10pt; font-weight:400; font-style:normal;&quot;&gt;
@@ -331,6 +335,7 @@ p, li { white-space: pre-wrap; }
         <name>note4</name>
         <color>#ff000000</color>
         <position>(-1.76586,1.22114)</position>
+        <size>(120,50)</size>
         <text>&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
 p, li { white-space: pre-wrap; }
 &lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:'Sans Serif'; font-size:10pt; font-weight:400; font-style:normal;&quot;&gt;&lt;h4&gt;
@@ -342,6 +347,7 @@ p, li { white-space: pre-wrap; }
         <name>note6</name>
         <color>#ff000000</color>
         <position>(-1.82872,0.00549995)</position>
+        <size>(120,30)</size>
         <text>&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
 p, li { white-space: pre-wrap; }
 &lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:'Sans Serif'; font-size:10pt; font-weight:400; font-style:normal;&quot;&gt;&lt;h4&gt;&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Spring tension:&lt;/p&gt;&lt;/h4&gt;&lt;/body&gt;&lt;/html&gt;</text>
@@ -351,6 +357,7 @@ p, li { white-space: pre-wrap; }
         <name>note7</name>
         <color>#ff000000</color>
         <position>(-1.8248,-0.440469)</position>
+        <size>(130,100)</size>
         <text>&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
 p, li { white-space: pre-wrap; }
 &lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:'Sans Serif'; font-size:10pt; font-weight:400; font-style:normal;&quot;&gt;
