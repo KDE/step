@@ -481,6 +481,7 @@ void NoteGraphicsItem::worldDataChanged(bool dynamicOnly)
                 QPixmap pix;
                 pix.loadFromData(it.value());
                 _textEdit->document()->addResource(QTextDocument::ImageResource, it.key(), pix);
+                kDebug() << "added pixmap:" << it.key() << pix.isNull() << endl;
             }
 
             if(!_textEdit->hasFocus() && note()->text().isEmpty()) {

@@ -56,7 +56,7 @@ template<> inline NoteDataMap stringToType(const QString& s, bool *ok)
     QStringList parts = s.split(";");
     if(!parts.isEmpty() && parts.last().isEmpty()) parts.removeLast();
     foreach(const QString& part, parts) {
-        QStringList p = part.split(":");
+        QStringList p = part.split(",");
         if(p.count() != 2) return NoteDataMap();
         result.insert(p[0].replace("%2C", ",", Qt::CaseInsensitive)
                           .replace("%3B", ";", Qt::CaseInsensitive),
