@@ -333,7 +333,9 @@ void NoteGraphicsItem::currentCharFormatChanged(const QTextCharFormat& f)
     _actionColor->setIcon(pix);
 
     QFontInfo ff(f.font());
+#ifdef __GNUC__
 #warning Strange, the following line does nothing !
+#endif
     _actionFont->setFont(ff.family());
     _actionFontSize->setFontSize(ff.pointSize());
 }
