@@ -333,7 +333,7 @@ void NoteGraphicsItem::currentCharFormatChanged(const QTextCharFormat& f)
     _actionColor->setIcon(pix);
 
     QFontInfo ff(f.font());
-#warning Strange, the following line doesn't do anything !
+#warning Strange, the following line does nothing !
     _actionFont->setFont(ff.family());
     _actionFontSize->setFontSize(ff.pointSize());
 }
