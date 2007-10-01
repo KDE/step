@@ -27,6 +27,8 @@
 #include <KComboBox>
 #include <limits.h>
 
+#include <stepcore/tool.h>
+
 class KPlotWidget;
 class KPlotObject;
 class KToggleAction;
@@ -102,7 +104,6 @@ public:
     void worldDataChanged(bool dynamicOnly);
 
 protected slots:
-    void contentsChanged();
     void formatColor();
     void formatBold(bool checked);
     void formatAlign(QAction* action);
@@ -119,6 +120,8 @@ protected:
     int             _updating;
     double          _lastScale;
     bool            _hasFocus;
+
+    StepCore::NoteDataMap _newData;
 
     QWidget*        _widget;
     NoteTextEdit*   _textEdit;

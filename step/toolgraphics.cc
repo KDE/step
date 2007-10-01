@@ -120,7 +120,6 @@ NoteGraphicsItem::NoteGraphicsItem(StepCore::Item* item, WorldModel* worldModel)
     _textEdit = new NoteTextEdit(this, _widget);
     _textEdit->setFrameShape(QFrame::NoFrame);
     _textEdit->setStyleSheet(".NoteTextEdit {background-color: rgba(0,0,0,0%);}");
-    connect(_textEdit, SIGNAL(textChanged()), this, SLOT(contentsChanged()));
 
     _toolBar = new KToolBar(_widget);
     _toolBar->setIconDimensions(16);
@@ -261,20 +260,36 @@ bool NoteGraphicsItem::eventFilter(QObject* obj, QEvent* event)
         while(f && f != _widget) f = f->parent();
 
         if(!f) {
-            /*
-            if(note()->text().isEmpty()) {
+            _worldModel->simulationPause();
+
+            QString newText = _textEdit->toHtml();
+            if(newText != note()->text()) {
                 ++_updating;
-                _textEdit->setPlainText(_textEdit->emptyNotice());
-                //worldDataChanged(false);
+                _worldModel->beginMacro(i18n("Edit %1", _item->name()));
+
+                // Clear deleted images
+                StepCore::NoteDataMap dataMap = note()->dataMap();
+                dataMap.unite(_newData);
+                _newData.clear();
+
+                QList<QString> keys = dataMap.keys();
+                foreach(const QString& key, keys) {
+                    if(!newText.contains(key)) dataMap.remove(key);
+                }
+
+                _worldModel->setProperty(_item, _item->metaObject()->property("dataMap"),
+                                                                QVariant::fromValue(dataMap));
+                _worldModel->setProperty(_item, _item->metaObject()->property("text"), newText);
+
+                _worldModel->endMacro();
                 --_updating;
-            }*/
+            }
+
             _hasFocus = false;
             _toolBar->hide();
-            viewScaleChanged();
-
-            ++_updating;
             _textEdit->clear();
-            --_updating;
+
+            viewScaleChanged();
             worldDataChanged(false);
         }
     }
@@ -365,16 +380,33 @@ void NoteGraphicsItem::insertImage()
         return;
     }
 
-    QPixmap pixmap;
-    pixmap.load(tmpFileName);
-    _textEdit->document()->addResource(QTextDocument::ImageResource, url, pixmap);
+    QFile file(tmpFileName);
+    if(!file.open(QIODevice::ReadOnly)) {
+        KMessageBox::error(_widget, i18n("Cannot open file '%1'", tmpFileName));
+        KIO::NetAccess::removeTempFile(tmpFileName);
+        return;
+    }
 
-    QString text = QString("<img src=\"%1\" width=\"%2\" height=\"%3\" style=\"vertical-align: middle\" />")
-                        .arg(url.prettyUrl()).arg(pixmap.width()).arg(pixmap.height());
-    kDebug() << text << endl;
-    _textEdit->insertHtml(text);
-
+    QByteArray data = file.readAll();
+    file.close();
     KIO::NetAccess::removeTempFile(tmpFileName);
+
+    QPixmap pixmap;
+    if(!pixmap.loadFromData(data)) {
+        KMessageBox::error(_widget, i18n("Cannot parse file '%1'", tmpFileName));
+        return;
+    }
+
+    int n=0;
+    QString imgName;
+    do {
+        imgName = QString("img:%1").arg(n++);
+    } while(note()->dataMap().contains(imgName) || _newData.contains(imgName));
+    
+    _newData.insert(imgName, data);
+    
+    _textEdit->document()->addResource(QTextDocument::ImageResource, imgName, pixmap);
+    _textEdit->insertHtml(QString("<img src=\"%1\" />").arg(imgName));
 }
 
 void NoteGraphicsItem::paint(QPainter* painter, const QStyleOptionGraphicsItem* /*option*/, QWidget* /*widget*/)
@@ -442,30 +474,27 @@ void NoteGraphicsItem::worldDataChanged(bool dynamicOnly)
         setPos(vectorToPoint(note()->position()));
         if(!_updating && _textEdit->toHtml() != note()->text()) {
             ++_updating;
+
+            const StepCore::NoteDataMap::const_iterator end = note()->dataMap().constEnd();
+            for(StepCore::NoteDataMap::const_iterator it = note()->dataMap().constBegin();
+                                                                            it != end; ++it) {
+                QPixmap pix;
+                pix.loadFromData(it.value());
+                _textEdit->document()->addResource(QTextDocument::ImageResource, it.key(), pix);
+            }
+
             if(!_textEdit->hasFocus() && note()->text().isEmpty()) {
                 _textEdit->setPlainText(_textEdit->emptyNotice());
             } else {
                 _textEdit->setHtml(note()->text());
             }
+
             currentCharFormatChanged(_textEdit->currentCharFormat());
             cursorPositionChanged();
             --_updating;
         }
         viewScaleChanged();
         update();
-    }
-}
-
-void NoteGraphicsItem::contentsChanged()
-{
-    if(!_updating) {
-        ++_updating;
-        _worldModel->simulationPause();
-        _worldModel->beginMacro(i18n("Edit %1", _item->name()));
-        _worldModel->setProperty(_item, _item->metaObject()->property("text"),
-                                QVariant::fromValue( _textEdit->toHtml() ));
-        _worldModel->endMacro();
-        --_updating;
     }
 }
 

@@ -27,9 +27,45 @@
 
 #include "world.h"
 #include "types.h"
+#include <QHash>
+#include <QByteArray>
+#include <QStringList>
 
 namespace StepCore
 {
+
+class NoteDataMap: public QHash<QString, QByteArray> {};
+
+template<> inline QString typeToString(const NoteDataMap& v)
+{
+    QString result;
+    const NoteDataMap::const_iterator end = v.constEnd();
+    for(NoteDataMap::const_iterator it = v.constBegin(); it != end; ++it) {
+        QString key = it.key();
+        result += key.replace(',', "%2C").replace(';', "%3B") + ","
+                  + QString::fromAscii(it.value().toBase64()) + ";";
+    }
+    return result;
+}
+
+template<> inline NoteDataMap stringToType(const QString& s, bool *ok)
+{
+    if(ok) *ok = false;
+    NoteDataMap result;
+    
+    QStringList parts = s.split(";");
+    if(!parts.isEmpty() && parts.last().isEmpty()) parts.removeLast();
+    foreach(const QString& part, parts) {
+        QStringList p = part.split(":");
+        if(p.count() != 2) return NoteDataMap();
+        result.insert(p[0].replace("%2C", ",", Qt::CaseInsensitive)
+                          .replace("%3B", ";", Qt::CaseInsensitive),
+                      QByteArray::fromBase64(p[1].toAscii()));
+    }
+
+    if(ok) *ok = true;
+    return result;
+}
 
 /** \ingroup tools
  *  \brief Textual note item
@@ -61,10 +97,16 @@ public:
     /** Set note text */
     void setText(const QString& text) { _text = text; }
 
+    /** Get note data map (used to store pictures and formulas) */
+    const NoteDataMap& dataMap() const { return _dataMap; }
+    /** Get note data map (used to store pictures and formulas) */
+    void setDataMap(const NoteDataMap& dataMap) { _dataMap = dataMap; }
+
 protected:
     Vector2d _position;
     Vector2d _size;
     QString  _text;
+    NoteDataMap _dataMap;
 };
 
 /** \ingroup tools
@@ -456,5 +498,7 @@ protected:
 };
 
 } // namespace StepCore
+
+Q_DECLARE_METATYPE(StepCore::NoteDataMap)
 
 #endif

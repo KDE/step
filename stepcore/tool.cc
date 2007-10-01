@@ -27,6 +27,7 @@ STEPCORE_META_OBJECT(Note, "Note: displays a textual note on the scene", 0,
     STEPCORE_PROPERTY_RW(StepCore::Vector2d, position, "m", "Note position on the scene", position, setPosition)
     STEPCORE_PROPERTY_RW(StepCore::Vector2d, size, "m", "Note size on the scene", size, setSize)
     STEPCORE_PROPERTY_RW(QString, text, STEPCORE_UNITS_NULL, "Text", text, setText)
+    STEPCORE_PROPERTY_RW(NoteDataMap, dataMap, STEPCORE_UNITS_NULL, "Data", dataMap, setDataMap)
     )
 
 STEPCORE_META_OBJECT(Graph, "Graph: plots a graph of any properties", 0,
