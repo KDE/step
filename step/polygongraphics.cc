@@ -34,7 +34,7 @@
 
 void PolygonCreator::fixCenterOfMass()
 {
-    StepCore::Polygon::VertexList v = static_cast<StepCore::Polygon*>(_item)->vertexes();
+    StepCore::Vector2dList v = static_cast<StepCore::Polygon*>(_item)->vertexes();
     StepCore::Vector2d position = static_cast<StepCore::Polygon*>(_item)->position();
 
     StepCore::Vector2d center(0, 0);
@@ -75,7 +75,7 @@ void PolygonCreator::fixCenterOfMass()
 void PolygonCreator::fixInertia()
 {
     // XXX: unite it with fixCenterOfMass
-    const StepCore::Polygon::VertexList& v = static_cast<StepCore::Polygon*>(_item)->vertexes();
+    const StepCore::Vector2dList& v = static_cast<StepCore::Polygon*>(_item)->vertexes();
     double mass = static_cast<StepCore::Polygon*>(_item)->mass();
     double area_i, area = 0;
     double inertia = 0;

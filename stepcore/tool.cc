@@ -22,12 +22,21 @@
 
 namespace StepCore {
 
+STEPCORE_META_OBJECT(NoteImage, "NoteImage: an image embeded in Note", 0,
+    STEPCORE_SUPER_CLASS(Item),
+    STEPCORE_PROPERTY_RW(QByteArray, image, STEPCORE_UNITS_NULL, "Image data", image, setImage)
+    )
+
+STEPCORE_META_OBJECT(NoteFormula, "NoteFormula: a formula embeded in Note", 0,
+    STEPCORE_SUPER_CLASS(NoteImage),
+    STEPCORE_PROPERTY_RW(QString, code, STEPCORE_UNITS_NULL, "Formula code", code, setCode)
+    )
+
 STEPCORE_META_OBJECT(Note, "Note: displays a textual note on the scene", 0,
-    STEPCORE_SUPER_CLASS(Item) STEPCORE_SUPER_CLASS(Tool),
+    STEPCORE_SUPER_CLASS(ItemGroup) STEPCORE_SUPER_CLASS(Tool),
     STEPCORE_PROPERTY_RW(StepCore::Vector2d, position, "m", "Note position on the scene", position, setPosition)
     STEPCORE_PROPERTY_RW(StepCore::Vector2d, size, "m", "Note size on the scene", size, setSize)
     STEPCORE_PROPERTY_RW(QString, text, STEPCORE_UNITS_NULL, "Text", text, setText)
-    STEPCORE_PROPERTY_RW(NoteDataMap, dataMap, STEPCORE_UNITS_NULL, "Data", dataMap, setDataMap)
     )
 
 STEPCORE_META_OBJECT(Graph, "Graph: plots a graph of any properties", 0,
@@ -47,7 +56,7 @@ STEPCORE_META_OBJECT(Graph, "Graph: plots a graph of any properties", 0,
     STEPCORE_PROPERTY_RW(bool, showPoints, STEPCORE_UNITS_NULL, "Show points on the graph", showPoints, setShowPoints)
     STEPCORE_PROPERTY_RW(bool, showLines, STEPCORE_UNITS_NULL, "Show lines on the graph", showLines, setShowLines)
     STEPCORE_PROPERTY_R (StepCore::Vector2d, currentValue, STEPCORE_UNITS_NULL, "Current value", currentValue)
-    STEPCORE_PROPERTY_RW_D(std::vector<StepCore::Vector2d>, points, STEPCORE_UNITS_NULL, "points", points, setPoints)
+    STEPCORE_PROPERTY_RW_D(StepCore::Vector2dList, points, STEPCORE_UNITS_NULL, "points", points, setPoints)
     STEPCORE_PROPERTY_R (QString, unitsX, STEPCORE_UNITS_NULL, "Units along X axis", unitsX)
     STEPCORE_PROPERTY_R (QString, unitsY, STEPCORE_UNITS_NULL, "Units along Y axis", unitsY)
     )
@@ -88,7 +97,7 @@ STEPCORE_META_OBJECT(Tracer, "Tracer: traces trajectory of a point on a body", 0
     STEPCORE_PROPERTY_RW(StepCore::Vector2d, localPosition, "m",
                     "Local position", localPosition, setLocalPosition)
     STEPCORE_PROPERTY_R_D(StepCore::Vector2d, position, "m", "Position", position)
-    STEPCORE_PROPERTY_RW_D(std::vector<StepCore::Vector2d>, points, "m", "points", points, setPoints)
+    STEPCORE_PROPERTY_RW_D(StepCore::Vector2dList, points, "m", "points", points, setPoints)
     )
 
 namespace {

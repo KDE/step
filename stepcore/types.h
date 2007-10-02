@@ -26,9 +26,11 @@
 #include "object.h"
 #include "vector.h"
 #include <vector>
+#include <QByteArray>
 
 namespace StepCore {
 
+///////////////// Color
 struct Color
 {
     Color() {}
@@ -51,6 +53,19 @@ template<> inline Color stringToType(const QString& s, bool *ok)
     return Color(s1.toUInt(ok, 16));
 }
 
+///////////////// QByteArray
+template<> inline QString typeToString(const QByteArray& v)
+{
+    return QString::fromAscii(v.toBase64());
+}
+
+template<> inline QByteArray stringToType(const QString& s, bool *ok)
+{
+    if(ok) *ok = true;
+    return QByteArray::fromBase64(s.toAscii());
+}
+
+///////////////// Vector2d
 template<> inline QString typeToString(const Vector2d& v)
 {
     return QString("(%1,%2)").arg(v[0]).arg(v[1]);
@@ -70,6 +85,7 @@ template<> inline Vector2d stringToType(const QString& s, bool *ok)
     return v;
 }
 
+///////////////// Vector2i
 template<> inline QString typeToString(const Vector2i& v)
 {
     return QString("(%1,%2)").arg(v[0]).arg(v[1]);
@@ -89,20 +105,23 @@ template<> inline Vector2i stringToType(const QString& s, bool *ok)
     return v;
 }
 
-template<> inline QString typeToString(const std::vector<Vector2d>& v)
+///////////////// Vector2dList
+typedef std::vector<Vector2d> Vector2dList;
+
+template<> inline QString typeToString(const Vector2dList& v)
 {
     QString ret;
-    for(std::vector<Vector2d>::const_iterator it = v.begin(); it != v.end(); ++it) {
+    for(Vector2dList::const_iterator it = v.begin(); it != v.end(); ++it) {
         if(!ret.isEmpty()) ret += ",";
         ret += QString("(%1,%2)").arg((*it)[0]).arg((*it)[1]);
     }
     return ret;
 }
 
-template<> inline std::vector<Vector2d> stringToType(const QString& s, bool *ok)
+template<> inline Vector2dList stringToType(const QString& s, bool *ok)
 {
     // XXX: Write something better
-    std::vector<Vector2d> ret;
+    Vector2dList ret;
     if(ok) *ok = false;
     QString s1 = s.trimmed();
     //if(!s1.startsWith('(') || !s1.endsWith(')')) return ret;
@@ -111,17 +130,17 @@ template<> inline std::vector<Vector2d> stringToType(const QString& s, bool *ok)
         bool ok; double d1, d2;
         s1 = s1.mid(1);
         d1 = s1.section(',',0,0).toDouble(&ok);
-        if(!ok) return std::vector<Vector2d>();
+        if(!ok) return Vector2dList();
         s1 = s1.section(',',1);
         d2 = s1.section(')',0,0).toDouble(&ok);
-        if(!ok) return std::vector<Vector2d>();
+        if(!ok) return Vector2dList();
         s1 = s1.section(')',1).trimmed();
         ret.push_back(Vector2d(d1, d2));
         if(s1.isEmpty()) break;
-        if(s1[0] != ',') return std::vector<Vector2d>();
+        if(s1[0] != ',') return Vector2dList();
         s1 = s1.mid(1).trimmed();
     }
-    if(!s1.isEmpty()) return std::vector<Vector2d>();
+    if(!s1.isEmpty()) return Vector2dList();
     if(ok) *ok = true;
     return ret;
 }
@@ -129,7 +148,7 @@ template<> inline std::vector<Vector2d> stringToType(const QString& s, bool *ok)
 } // namespace StepCore
 
 #ifdef STEPCORE_WITH_QT
-Q_DECLARE_METATYPE(std::vector<StepCore::Vector2d>)
+Q_DECLARE_METATYPE(StepCore::Vector2dList)
 Q_DECLARE_METATYPE(StepCore::Object*)
 Q_DECLARE_METATYPE(StepCore::Color)
 #endif

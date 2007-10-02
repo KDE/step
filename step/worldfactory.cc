@@ -155,6 +155,8 @@ WorldFactory::WorldFactory()
     __REGISTER(GslAdaptiveRK4IMPSolver);
 #endif
 
+    __REGISTER(NoteImage);
+    __REGISTER(NoteFormula);
     __REGISTER_EXT(Note, ItemCreator, NoteGraphicsItem, ItemMenuHandler);
     __REGISTER_EXT(Meter, ItemCreator, MeterGraphicsItem, MeterMenuHandler);
     __REGISTER_EXT(Graph, ItemCreator, GraphGraphicsItem, GraphMenuHandler);

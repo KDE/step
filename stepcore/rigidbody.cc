@@ -67,7 +67,7 @@ STEPCORE_META_OBJECT(RigidBodyErrors, "Errors class for RigidBody", 0, STEPCORE_
                     "inertia variance", inertiaVariance, setInertiaVariance ))
 
 STEPCORE_META_OBJECT(Polygon, "Rigid polygon body", 0, STEPCORE_SUPER_CLASS(RigidBody),
-        STEPCORE_PROPERTY_RW(std::vector<StepCore::Vector2d>, vertexes, "m", "Vertex list", vertexes, setVertexes))
+        STEPCORE_PROPERTY_RW(Vector2dList, vertexes, "m", "Vertex list", vertexes, setVertexes))
 
 RigidBody* RigidBodyErrors::rigidBody() const
 {

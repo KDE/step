@@ -205,7 +205,7 @@ public:
 
     //---------- Shape
     // XXX
-    //const std::vector<Vector2d>& vertexes() const;
+    //const Vector2dList& vertexes() const;
 
     int  variablesCount() { return 6; }
     void resetDerivatives(bool resetVariances);
@@ -242,17 +242,15 @@ class Polygon: public RigidBody
 {
     STEPCORE_OBJECT(Polygon)
 public:
-    typedef std::vector<Vector2d> VertexList;
-
     /** Get vertex list (constant) */
-    const VertexList& vertexes() const { return _vertexes; }
+    const Vector2dList& vertexes() const { return _vertexes; }
     /** Get vertex list (editable) */
-    VertexList& vertexes() { return _vertexes; }
+    Vector2dList& vertexes() { return _vertexes; }
     /** Set vertex list */
-    void setVertexes(const VertexList& vertexes) { _vertexes = vertexes; }
+    void setVertexes(const Vector2dList& vertexes) { _vertexes = vertexes; }
 
 protected:
-    VertexList _vertexes;
+    Vector2dList _vertexes;
 };
 
 } // namespace StepCore

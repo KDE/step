@@ -287,7 +287,7 @@ void GasMenuHandler::clearGas()
     _worldModel->simulationPause();
     //_lastPointTime = -HUGE_VAL; // XXX
     _worldModel->setProperty(gas(), gas()->metaObject()->property("points"),
-                               QVariant::fromValue(std::vector<StepCore::Vector2d>()) );
+                               QVariant::fromValue(StepCore::Vector2dList()) );
 }
 */
 

@@ -51,6 +51,7 @@ class Object
     STEPCORE_OBJECT(Object)
 
 public:
+    explicit Object(const QString& name = QString()): _name(name) {}
     virtual ~Object() {}
 
     /** Returns name of the object */

@@ -113,8 +113,8 @@ void PropertiesBrowserModel::setObject(StepCore::Object* object)
 
         for(int i=0; i<_object->metaObject()->propertyCount(); ++i) {
             const StepCore::MetaProperty* p = _object->metaObject()->property(i);
-            if(p->userTypeId() == qMetaTypeId<std::vector<StepCore::Vector2d> >())
-                _subRows << p->readVariant(_object).value<std::vector<StepCore::Vector2d> >().size();
+            if(p->userTypeId() == qMetaTypeId<StepCore::Vector2dList >())
+                _subRows << p->readVariant(_object).value<StepCore::Vector2dList >().size();
             else _subRows << 0;
         }
     }
@@ -139,8 +139,8 @@ void PropertiesBrowserModel::emitDataChanged(bool dynamicOnly)
     for(int i=0; i<_object->metaObject()->propertyCount(); i++) {
         const StepCore::MetaProperty* p = _object->metaObject()->property(i);
         if(dynamicOnly && !p->isDynamic()) continue;
-        if(p->userTypeId() == qMetaTypeId<std::vector<StepCore::Vector2d> >()) {
-            int r = p->readVariant(_object).value<std::vector<StepCore::Vector2d> >().size();
+        if(p->userTypeId() == qMetaTypeId<StepCore::Vector2dList >()) {
+            int r = p->readVariant(_object).value<StepCore::Vector2dList >().size();
             if(r > _subRows[i]) {
                 beginInsertRows(index(i, 0), _subRows[i], r-1);
                 _subRows[i] = r;
@@ -178,7 +178,7 @@ QVariant PropertiesBrowserModel::data(const QModelIndex &index, int role) const
 
                 if(p->userTypeId() == QMetaType::Double ||
                     p->userTypeId() == qMetaTypeId<StepCore::Vector2d>() ||
-                    p->userTypeId() == qMetaTypeId<std::vector<StepCore::Vector2d> >()) {
+                    p->userTypeId() == qMetaTypeId<StepCore::Vector2dList >()) {
                     return _worldModel->formatProperty(_object, _objectErrors, p, role == Qt::EditRole);
                 } else if(p->userTypeId() == qMetaTypeId<StepCore::Object*>()) {
                     return _worldModel->formatName(p->readVariant(_object).value<StepCore::Object*>());
@@ -221,7 +221,7 @@ QVariant PropertiesBrowserModel::data(const QModelIndex &index, int role) const
             pix.fill(QColor::fromRgba(p->readVariant(_object).value<StepCore::Color>()));
             return pix;
         } else if(index.column() == 0 && role == Qt::DecorationRole &&
-                    p->userTypeId() == qMetaTypeId<std::vector<StepCore::Vector2d> >() &&
+                    p->userTypeId() == qMetaTypeId<StepCore::Vector2dList >() &&
                     rowCount(index) > 0) {
             // XXX: A hack to have nested properties shifted
             static QPixmap empySmallPix;
@@ -250,7 +250,7 @@ QVariant PropertiesBrowserModel::data(const QModelIndex &index, int role) const
                 //int pr = role == Qt::DisplayRole ? Settings::floatDisplayPrecision() : 16;
                 _worldModel->simulationPause();
                 StepCore::Vector2d v =
-                        p->readVariant(_object).value<std::vector<StepCore::Vector2d> >()[index.row()];
+                        p->readVariant(_object).value<StepCore::Vector2dList >()[index.row()];
                 return QString("(%1,%2)%3").arg(v[0], 0, 'g', pr).arg(v[1], 0, 'g', pr).arg(units);
             }
         } else if(role == Qt::ForegroundRole && index.column() == 1) {
@@ -364,8 +364,8 @@ bool PropertiesBrowserModel::setData(const QModelIndex &index, const QVariant &v
                         svv[0] *= svv[0]; svv[1] *= svv[1];
                         vv = QVariant::fromValue(svv);
                     /* XXX
-                     * } else if(p->userTypeId() == qMetaTypeId<std::vector<StepCore::Vector2d> >())
-                        ve = QVariant::fromValue(std::vector<StepCore::Vector2d>());*/
+                     * } else if(p->userTypeId() == qMetaTypeId<StepCore::Vector2dList >())
+                        ve = QVariant::fromValue(StepCore::Vector2dList());*/
                     } else {
                         kDebug() << "Unhandled property variance type" << endl;
                         return false;
@@ -380,8 +380,8 @@ bool PropertiesBrowserModel::setData(const QModelIndex &index, const QVariant &v
                             StepCore::Vector2d svv(0);
                             vv = QVariant::fromValue(svv);
                         /* XXX
-                         * } else if(p->userTypeId() == qMetaTypeId<std::vector<StepCore::Vector2d> >())
-                            ve = QVariant::fromValue(std::vector<StepCore::Vector2d>());*/
+                         * } else if(p->userTypeId() == qMetaTypeId<StepCore::Vector2dList >())
+                            ve = QVariant::fromValue(StepCore::Vector2dList());*/
                         } else {
                             kDebug() << "Unhandled property variance type" << endl;
                             return false;
@@ -401,8 +401,8 @@ bool PropertiesBrowserModel::setData(const QModelIndex &index, const QVariant &v
             }
         } else {
             const StepCore::MetaProperty* p = _object->metaObject()->property(index.internalId()-1);
-            std::vector<StepCore::Vector2d> v =
-                        p->readVariant(_object).value<std::vector<StepCore::Vector2d> >();
+            StepCore::Vector2dList v =
+                        p->readVariant(_object).value<StepCore::Vector2dList >();
             bool ok;
             v[index.row()] = StepCore::stringToType<StepCore::Vector2d>(value.toString(), &ok);
             if(!ok) return true; // dataChanged should be emitted anyway

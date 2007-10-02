@@ -32,6 +32,7 @@
 #include "worldmodel.h"
 #include "worldscene.h"
 #include "worldfactory.h"
+#include "latexformula.h"
 #include <QItemSelectionModel>
 #include <QGraphicsSceneMouseEvent>
 #include <QStyleOptionGraphicsItem>
@@ -51,6 +52,7 @@
 #include <KPlotAxis>
 #include <KDialog>
 #include <KFileDialog>
+#include <KProgressDialog>
 #include <KAction>
 #include <KToggleAction>
 #include <KFontAction>
@@ -58,6 +60,7 @@
 #include <KColorDialog>
 #include <KLocale>
 #include <KMessageBox>
+#include <KInputDialog>
 #include <KIO/NetAccess>
 
 #include <float.h>
@@ -157,6 +160,11 @@ NoteGraphicsItem::NoteGraphicsItem(StepCore::Item* item, WorldModel* worldModel)
     _actionFontSize = new KFontSizeAction(i18n("Font &Size"), _toolBar);
 
     _actionInsertImage = new KAction(KIcon("insert-image"), i18n("Insert &Image"), _toolBar);
+#ifdef __GNUC__
+#warning Select right icon here
+#endif
+    _actionInsertFormula = new KAction(KIcon("application-vnd.oasis.opendocument.formula"),
+                                    i18n("Insert &Formula"), _toolBar);
 
     connect(_actionColor, SIGNAL(triggered(bool)), this, SLOT(formatColor()));
     connect(_actionBold, SIGNAL(triggered(bool)), this, SLOT(formatBold(bool)));
@@ -166,6 +174,7 @@ NoteGraphicsItem::NoteGraphicsItem(StepCore::Item* item, WorldModel* worldModel)
     connect(_actionFont, SIGNAL(triggered(const QString&)), this, SLOT(formatFontFamily(const QString&)));
     connect(_actionFontSize, SIGNAL(fontSizeChanged(int)), this, SLOT(formatFontSize(int)));
     connect(_actionInsertImage, SIGNAL(triggered(bool)), this, SLOT(insertImage()));
+    connect(_actionInsertFormula, SIGNAL(triggered(bool)), this, SLOT(insertFormula()));
     
     connect(_textEdit, SIGNAL(currentCharFormatChanged(const QTextCharFormat&)),
                             this, SLOT(currentCharFormatChanged(const QTextCharFormat&)));
@@ -184,6 +193,7 @@ NoteGraphicsItem::NoteGraphicsItem(StepCore::Item* item, WorldModel* worldModel)
     //_toolBar->addSeparator();
 
     _toolBar->addAction(_actionInsertImage);
+    _toolBar->addAction(_actionInsertFormula);
 
     _toolBar->addAction(_actionFontSize);
     _toolBar->addAction(_actionFont);
@@ -267,18 +277,17 @@ bool NoteGraphicsItem::eventFilter(QObject* obj, QEvent* event)
                 ++_updating;
                 _worldModel->beginMacro(i18n("Edit %1", _item->name()));
 
-                // Clear deleted images
-                StepCore::NoteDataMap dataMap = note()->dataMap();
-                dataMap.unite(_newData);
-                _newData.clear();
+                foreach(StepCore::Item* item, note()->items())
+                    if(!newText.contains(item->name())) _worldModel->deleteItem(item);
 
-                QList<QString> keys = dataMap.keys();
-                foreach(const QString& key, keys) {
-                    if(!newText.contains(key)) dataMap.remove(key);
-                }
+                foreach(StepCore::Item* item, _newItems)
+                    if(!newText.contains(item->name())) _newItems.removeAll(item);
 
-                _worldModel->setProperty(_item, _item->metaObject()->property("dataMap"),
-                                                                QVariant::fromValue(dataMap));
+                foreach(StepCore::Item* item, _newItems)
+                    _worldModel->addItem(item, note());
+
+                _newItems.clear();
+
                 _worldModel->setProperty(_item, _item->metaObject()->property("text"), newText);
 
                 _worldModel->endMacro();
@@ -397,6 +406,73 @@ void NoteGraphicsItem::insertImage()
         return;
     }
 
+    QString imgName;
+    for(int n=0;; ++n) {
+        imgName = QString("img:%1").arg(n);
+        if(note()->childItem(imgName) != NULL) continue;
+        bool found = false;
+        foreach(StepCore::Item* item, _newItems)
+            if(item->name() == imgName) { found = true; break; }
+        if(!found) break;
+    }
+    
+    _newItems << new StepCore::NoteImage(imgName, data);
+    _textEdit->document()->addResource(QTextDocument::ImageResource, imgName, pixmap);
+    _textEdit->insertHtml(QString("<img src=\"%1\" />").arg(imgName));
+}
+
+void NoteGraphicsItem::insertFormula()
+{
+    if(!LatexFormula::isLatexInstalled()) {
+        KMessageBox::sorry(_widget, i18n("Can't find latex installation. "
+                    "You need 'latex', 'dvips' and 'gs' executables installed and accessible from $PATH"));
+        return;
+    }
+
+    bool ok;
+    QString text = KInputDialog::getMultiLineText(i18n("LaTex Formula - Step"),
+                    i18n("Enter LaTeX formula string"), QString(), &ok, _widget);
+    if(!ok) return;
+
+    QByteArray data;
+    QString error;
+
+    KProgressDialog* progressDialog = new KProgressDialog(_widget,
+                            i18n("Compiling LaTeX Formula - Step"), i18n("Compiling LaTeX Formula. Please wait."));
+    progressDialog->setMinimumDuration(500);
+    progressDialog->setAllowCancel(false);
+    progressDialog->showCancelButton(false);
+    progressDialog->setWindowModality(Qt::ApplicationModal);
+    progressDialog->show();
+    bool result = LatexFormula::compileFormula(text, &data, &error);
+    delete progressDialog;
+
+    if(!result) {
+        KMessageBox::error(_widget, i18n("Cannot compile LaTeX formula: %1", error));
+        return;
+    }
+
+    QPixmap pixmap;
+    if(!pixmap.loadFromData(data)) {
+        KMessageBox::error(_widget, i18n("Cannot parse result file"));
+        return;
+    }
+
+    QString imgName;
+    for(int n=0;; ++n) {
+        imgName = QString("img:%1").arg(n);
+        if(note()->childItem(imgName) != NULL) continue;
+        bool found = false;
+        foreach(StepCore::Item* item, _newItems)
+            if(item->name() == imgName) { found = true; break; }
+        if(!found) break;
+    }
+
+    _newItems << new StepCore::NoteFormula(imgName, data, text);
+    _textEdit->document()->addResource(QTextDocument::ImageResource, imgName, pixmap);
+    _textEdit->insertHtml(QString("<img src=\"%1\" />").arg(imgName));
+
+    /*
     int n=0;
     QString imgName;
     do {
@@ -407,6 +483,7 @@ void NoteGraphicsItem::insertImage()
     
     _textEdit->document()->addResource(QTextDocument::ImageResource, imgName, pixmap);
     _textEdit->insertHtml(QString("<img src=\"%1\" />").arg(imgName));
+    */
 }
 
 void NoteGraphicsItem::paint(QPainter* painter, const QStyleOptionGraphicsItem* /*option*/, QWidget* /*widget*/)
@@ -475,14 +552,24 @@ void NoteGraphicsItem::worldDataChanged(bool dynamicOnly)
         if(!_updating && _textEdit->toHtml() != note()->text()) {
             ++_updating;
 
+            const StepCore::ItemList::const_iterator end = note()->items().end();
+            for(StepCore::ItemList::const_iterator it = note()->items().begin(); it != end; ++it) {
+                if((*it)->metaObject()->inherits<StepCore::NoteImage>()) {
+                    QPixmap pix;
+                    pix.loadFromData(static_cast<StepCore::NoteImage*>(*it)->image());
+                    _textEdit->document()->addResource(QTextDocument::ImageResource, (*it)->name(), pix);
+                }
+            }
+
+            /*
             const StepCore::NoteDataMap::const_iterator end = note()->dataMap().constEnd();
             for(StepCore::NoteDataMap::const_iterator it = note()->dataMap().constBegin();
                                                                             it != end; ++it) {
                 QPixmap pix;
                 pix.loadFromData(it.value());
                 _textEdit->document()->addResource(QTextDocument::ImageResource, it.key(), pix);
-                kDebug() << "added pixmap:" << it.key() << pix.isNull() << endl;
             }
+            */
 
             if(!_textEdit->hasFocus() && note()->text().isEmpty()) {
                 _textEdit->setPlainText(_textEdit->emptyNotice());
@@ -1011,7 +1098,7 @@ void GraphMenuHandler::clearGraph()
     //_lastPointTime = -HUGE_VAL; // XXX
     _worldModel->beginMacro(i18n("Clear graph %1", _object->name()));
     _worldModel->setProperty(graph(), graph()->metaObject()->property("points"),
-                               QVariant::fromValue(std::vector<StepCore::Vector2d>()) );
+                               QVariant::fromValue(StepCore::Vector2dList()) );
     _worldModel->endMacro();
 }
 
@@ -1853,7 +1940,7 @@ void TracerMenuHandler::clearTracer()
     //_lastPointTime = -HUGE_VAL; // XXX
     _worldModel->beginMacro(i18n("Clear tracer %1", _object->name()));
     _worldModel->setProperty(_object, _object->metaObject()->property("points"),
-                               QVariant::fromValue(std::vector<StepCore::Vector2d>()) );
+                               QVariant::fromValue(StepCore::Vector2dList()) );
     _worldModel->endMacro();
 }
 

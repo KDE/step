@@ -73,7 +73,9 @@ class Item : public Object
 
 public:
     /** Constructs Item */
-    Item(): _world(NULL), _group(NULL), _objectErrors(NULL), _color(0xff000000) {}
+    Item(const QString& name = QString())
+        : Object(name), _world(NULL), _group(NULL),
+          _objectErrors(NULL), _color(0xff000000) {}
     /** Constructs a copy of item */
     Item(const Item& item) : Object() { *this = item; }
     /** Destroys Item */
@@ -201,7 +203,7 @@ class ItemGroup : public Item
 
 public:
     /** Constructs empty group */
-    ItemGroup() {}
+    ItemGroup(const QString& name = QString()) : Item(name) {}
     /** Constructs a copy of the group (deep copy) */
     ItemGroup(const ItemGroup& group);
     /** Destroys the group and all its subitems */
@@ -224,12 +226,12 @@ public:
      *        recursively traverses all child groups */
     void allItems(ItemList* items) const;
 
-    /** Add new item to the world */
-    void addItem(Item* item);
-    /** Remove item from the world (you should delete item youself) */
-    void removeItem(Item* item);
-    /** Delete item from the world (it actually deletes item) */
-    void deleteItem(Item* item) { removeItem(item); delete item; }
+    /** Add new item to the group */
+    virtual void addItem(Item* item);
+    /** Remove item from the group (you should delete item youself) */
+    virtual void removeItem(Item* item);
+    /** Delete item from the group (it actually deletes item) */
+    virtual void deleteItem(Item* item) { removeItem(item); delete item; }
 
     /** Deletes all items */
     void clear();

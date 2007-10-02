@@ -112,6 +112,7 @@ protected slots:
     void currentCharFormatChanged(const QTextCharFormat& f);
     void cursorPositionChanged();
     void insertImage();
+    void insertFormula();
 
 protected:
     bool eventFilter(QObject* obj, QEvent* event);
@@ -121,7 +122,7 @@ protected:
     double          _lastScale;
     bool            _hasFocus;
 
-    StepCore::NoteDataMap _newData;
+    QList<StepCore::Item*> _newItems;
 
     QWidget*        _widget;
     NoteTextEdit*   _textEdit;
@@ -142,6 +143,7 @@ protected:
     KFontSizeAction*    _actionFontSize;
 
     KAction* _actionInsertImage;
+    KAction* _actionInsertFormula;
 
     friend class NoteTextEdit;
 };

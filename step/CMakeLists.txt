@@ -17,6 +17,7 @@ set(step_SRCS
     toolgraphics.cc
     simulationthread.cc
     unitscalc.cc
+    latexformula.cc
     main.cc
 )
 

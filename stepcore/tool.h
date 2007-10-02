@@ -34,38 +34,51 @@
 namespace StepCore
 {
 
-class NoteDataMap: public QHash<QString, QByteArray> {};
-
-template<> inline QString typeToString(const NoteDataMap& v)
+/** \ingroup tools
+ *  \brief Image embeded in Note
+ */
+class NoteImage: public Item
 {
-    QString result;
-    const NoteDataMap::const_iterator end = v.constEnd();
-    for(NoteDataMap::const_iterator it = v.constBegin(); it != end; ++it) {
-        QString key = it.key();
-        result += key.replace(',', "%2C").replace(';', "%3B") + ","
-                  + QString::fromAscii(it.value().toBase64()) + ";";
-    }
-    return result;
-}
+    STEPCORE_OBJECT(NoteImage)
 
-template<> inline NoteDataMap stringToType(const QString& s, bool *ok)
+public:
+    /** Constructs NoteImage */
+    explicit NoteImage(const QString& name = QString(),
+                       const QByteArray& image = QByteArray())
+                            : Item(name), _image(image) {}
+
+    /** Get image data */
+    const QByteArray& image() const { return _image; }
+
+    /** Set image data */
+    void setImage(const QByteArray& image) { _image = image; }
+
+protected:
+    QByteArray _image;
+};
+
+/** \ingroup tools
+ *  \brief LaTeX formula embeded in Note
+ */
+class NoteFormula: public NoteImage
 {
-    if(ok) *ok = false;
-    NoteDataMap result;
-    
-    QStringList parts = s.split(";");
-    if(!parts.isEmpty() && parts.last().isEmpty()) parts.removeLast();
-    foreach(const QString& part, parts) {
-        QStringList p = part.split(",");
-        if(p.count() != 2) return NoteDataMap();
-        result.insert(p[0].replace("%2C", ",", Qt::CaseInsensitive)
-                          .replace("%3B", ";", Qt::CaseInsensitive),
-                      QByteArray::fromBase64(p[1].toAscii()));
-    }
+    STEPCORE_OBJECT(NoteFormula)
 
-    if(ok) *ok = true;
-    return result;
-}
+public:
+    /** Constructs NoteFormula */
+    explicit NoteFormula(const QString& name = QString(),
+                         const QByteArray& image = QByteArray(),
+                         const QString& code = QString())
+                            : NoteImage(name, image), _code(code) {}
+
+    /** Get formula code */
+    const QString& code() const { return _code; }
+    /** Set formula code */
+    void setCode(const QString& code) { _code = code; }
+
+protected:
+    QString    _code;
+};
 
 /** \ingroup tools
  *  \brief Textual note item
@@ -73,14 +86,14 @@ template<> inline NoteDataMap stringToType(const QString& s, bool *ok)
  *  Actual displaying of the Note should be
  *  implemented by application
  */
-class Note: public Item, public Tool
+class Note: public ItemGroup, public Tool
 {
     STEPCORE_OBJECT(Note)
 
 public:
     /** Constructs Note */
     explicit Note(Vector2d position = Vector2d(0),
-            Vector2d size = Vector2d(200,100), QString text = QString());
+            Vector2d size = Vector2d(250,100), QString text = QString());
 
     /** Get position of the note */
     const Vector2d& position() const { return _position; }
@@ -97,16 +110,10 @@ public:
     /** Set note text */
     void setText(const QString& text) { _text = text; }
 
-    /** Get note data map (used to store pictures and formulas) */
-    const NoteDataMap& dataMap() const { return _dataMap; }
-    /** Get note data map (used to store pictures and formulas) */
-    void setDataMap(const NoteDataMap& dataMap) { _dataMap = dataMap; }
-
 protected:
     Vector2d _position;
     Vector2d _size;
     QString  _text;
-    NoteDataMap _dataMap;
 };
 
 /** \ingroup tools
@@ -194,9 +201,9 @@ public:
     void setShowPoints(bool showPoints) { _showPoints = showPoints; }
 
     /** Get points list */
-    const std::vector<Vector2d>& points() const { return _points; }
+    const Vector2dList& points() const { return _points; }
     /** Set points list */
-    void setPoints(const std::vector<Vector2d>& points) { _points = points; }
+    void setPoints(const Vector2dList& points) { _points = points; }
 
     /** Get pointer to the property for X axis (or zero if not defined) */
     const MetaProperty* propertyXPtr() const {
@@ -259,7 +266,7 @@ protected:
     bool _showLines;
     bool _showPoints;
 
-    std::vector<Vector2d> _points;
+    Vector2dList _points;
 };
 
 /** \ingroup tools
@@ -475,9 +482,9 @@ public:
     Vector2d position() const;
 
     /** Get points list */
-    const std::vector<Vector2d>& points() const { return _points; }
+    const Vector2dList& points() const { return _points; }
     /** Set points list */
-    void setPoints(const std::vector<Vector2d>& points) { _points = points; }
+    void setPoints(const Vector2dList& points) { _points = points; }
 
     /** Get current position value and add it to points list */
     Vector2d recordPoint() { Vector2d p = position(); _points.push_back(p); return p; }
@@ -491,14 +498,12 @@ public:
 protected:
     Object* _body;
     Vector2d _localPosition;
-    std::vector<Vector2d> _points;
+    Vector2dList _points;
 
     Particle*  _p;
     RigidBody* _r;
 };
 
 } // namespace StepCore
-
-Q_DECLARE_METATYPE(StepCore::NoteDataMap)
 
 #endif

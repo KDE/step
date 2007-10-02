@@ -667,11 +667,11 @@ QString WorldModel::formatProperty(const StepCore::Object* object,
         }
         StepCore::Vector2d v = property->readVariant(object).value<StepCore::Vector2d>();
         return QString("(%1,%2)").arg(v[0], 0, 'g', pr).arg(v[1], 0, 'g', pr).append(units).append(error);
-    } else if(property->userTypeId() == qMetaTypeId<std::vector<StepCore::Vector2d> >() ) {
+    } else if(property->userTypeId() == qMetaTypeId<StepCore::Vector2dList >() ) {
         // XXX: add error information
         if(pv) kDebug() << "Unhandled property variance type" << endl;
-        std::vector<StepCore::Vector2d> list =
-                property->readVariant(object).value<std::vector<StepCore::Vector2d> >();
+        StepCore::Vector2dList list =
+                property->readVariant(object).value<StepCore::Vector2dList >();
         QString string;
         unsigned int end = editable ? list.size() : qMin<unsigned int>(10, list.size());
         for(unsigned int i=0; i<end; ++i) {
@@ -716,7 +716,7 @@ QString WorldModel::createToolTip(const QModelIndex& index) const
         if(!p->units().isEmpty())
             units.append(" [").append(p->units()).append("]");
         QString value = p->readString(object);
-        if(p->userTypeId() == qMetaTypeId<std::vector<StepCore::Vector2d> >()) {
+        if(p->userTypeId() == qMetaTypeId<StepCore::Vector2dList >()) {
             // XXX: don't use readString in this case !
             value.replace("),(", QString(")%1<br />(").arg(units));
             value.append(units);

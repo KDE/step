@@ -46,18 +46,18 @@ int GJKCollisionSolver::checkPolygonPolygon(Contact* contact)
     //    Collision Detection of Convex Objects"
     //    by Gino van den Bergen
 
-    Polygon::VertexList vertexes[2];
+    Vector2dList vertexes[2];
     vertexes[0].reserve(polygon0->vertexes().size());
     vertexes[1].reserve(polygon1->vertexes().size());
 
-    const Polygon::VertexList::const_iterator p0_it_end = polygon0->vertexes().end();
-    for(Polygon::VertexList::const_iterator it0 = polygon0->vertexes().begin();
+    const Vector2dList::const_iterator p0_it_end = polygon0->vertexes().end();
+    for(Vector2dList::const_iterator it0 = polygon0->vertexes().begin();
                                         it0 != p0_it_end; ++it0) {
         vertexes[0].push_back(polygon0->pointLocalToWorld(*it0));
     }
 
-    const Polygon::VertexList::const_iterator p1_it_end = polygon1->vertexes().end();
-    for(Polygon::VertexList::const_iterator it1 = polygon1->vertexes().begin();
+    const Vector2dList::const_iterator p1_it_end = polygon1->vertexes().end();
+    for(Vector2dList::const_iterator it1 = polygon1->vertexes().begin();
                                         it1 != p1_it_end; ++it1) {
         vertexes[1].push_back(polygon1->pointLocalToWorld(*it1));
     }
@@ -350,11 +350,11 @@ int GJKCollisionSolver::checkPolygonParticle(Contact* contact)
 
     // Simplier version of checkPolygonPolygon algorithm
 
-    Polygon::VertexList vertexes;
+    Vector2dList vertexes;
     vertexes.reserve(polygon0->vertexes().size());
 
-    const Polygon::VertexList::const_iterator p0_it_end = polygon0->vertexes().end();
-    for(Polygon::VertexList::const_iterator it0 = polygon0->vertexes().begin();
+    const Vector2dList::const_iterator p0_it_end = polygon0->vertexes().end();
+    for(Vector2dList::const_iterator it0 = polygon0->vertexes().begin();
                                         it0 != p0_it_end; ++it0) {
         vertexes.push_back(polygon0->pointLocalToWorld(*it0));
     }
