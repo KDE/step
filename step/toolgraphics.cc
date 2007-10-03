@@ -39,6 +39,7 @@
 #include <QGraphicsScene>
 #include <QGraphicsView>
 #include <QTextDocument>
+#include <QAbstractTextDocumentLayout>
 #include <QEvent>
 #include <QPainter>
 #include <QGridLayout>
@@ -109,6 +110,63 @@ void NoteTextEdit::focusOutEvent(QFocusEvent *event)
     KTextEdit::focusOutEvent(event);
 }
 */
+
+StepCore::NoteFormula* NoteTextEdit::formulaAt(const QPoint& pos)
+{
+    int p = document()->documentLayout()->hitTest(pos, Qt::ExactHit);
+    if(p < 0) return NULL;
+
+    QTextCursor cursor(document());
+    cursor.setPosition(p);
+    if(cursor.atEnd()) return NULL;
+    cursor.setPosition(p+1);
+
+    QTextFormat format = cursor.charFormat();
+    if(!format.isImageFormat()) return NULL;
+    QString image = format.toImageFormat().name();
+
+    StepCore::Item* item = _noteItem->note()->childItem(image);
+    if(!item) {
+        foreach(StepCore::Item* it, _noteItem->_newItems)
+            if(it->name() == image) { item = it; break; }
+    }
+
+    if(!item || !item->metaObject()->inherits<StepCore::NoteFormula>())
+        return NULL;
+
+    return static_cast<StepCore::NoteFormula*>(item);
+}
+
+void NoteTextEdit::mousePressEvent(QMouseEvent *e)
+{
+    if(e->button() == Qt::LeftButton) _mousePressPoint = e->pos();
+    KTextEdit::mousePressEvent(e);
+}
+
+void NoteTextEdit::mouseMoveEvent(QMouseEvent *e)
+{
+    if(formulaAt(e->pos()) != NULL) {
+        viewport()->setCursor(Qt::PointingHandCursor);
+    } else {
+        viewport()->setCursor(Qt::IBeamCursor);
+    }
+    _mousePressPoint.setX(-1);
+    KTextEdit::mouseMoveEvent(e);
+}
+
+void NoteTextEdit::mouseReleaseEvent(QMouseEvent *e)
+{
+    if(e->button() == Qt::LeftButton && e->pos() == _mousePressPoint) {
+        StepCore::NoteFormula* formula = formulaAt(e->pos());
+        if(formula) {
+            e->accept();
+            _noteItem->editFormula(formula);
+            setDocument(document());
+            return;
+        }
+    }
+    KTextEdit::mouseReleaseEvent(e);
+}
 
 NoteGraphicsItem::NoteGraphicsItem(StepCore::Item* item, WorldModel* worldModel)
     : WorldGraphicsItem(item, worldModel)
@@ -232,7 +290,7 @@ NoteGraphicsItem::NoteGraphicsItem(StepCore::Item* item, WorldModel* worldModel)
 
     _boundingRect = QRectF(0, 0, 0, 0);
     _lastScale = 1;
-    _updating = 0;
+    //_updating = 0;
     scale(1, -1);
 }
 
@@ -251,13 +309,13 @@ bool NoteGraphicsItem::eventFilter(QObject* obj, QEvent* event)
 {
     if(event->type() == QEvent::FocusIn) {
         if(!_hasFocus) {
+            _hasFocus = true;
             if(note()->text().isEmpty()) {
-                ++_updating;
+                //++_updating;
                 _textEdit->setPlainText("");
                 worldDataChanged(false);
-                --_updating;
+                //--_updating;
             }
-            _hasFocus = true;
             _toolBar->show();
             setSelected(true);
             viewScaleChanged();
@@ -274,7 +332,7 @@ bool NoteGraphicsItem::eventFilter(QObject* obj, QEvent* event)
 
             QString newText = _textEdit->toHtml();
             if(newText != note()->text()) {
-                ++_updating;
+                //++_updating;
                 _worldModel->beginMacro(i18n("Edit %1", _item->name()));
 
                 foreach(StepCore::Item* item, note()->items())
@@ -291,7 +349,7 @@ bool NoteGraphicsItem::eventFilter(QObject* obj, QEvent* event)
                 _worldModel->setProperty(_item, _item->metaObject()->property("text"), newText);
 
                 _worldModel->endMacro();
-                --_updating;
+                //--_updating;
             }
 
             _hasFocus = false;
@@ -417,50 +475,15 @@ void NoteGraphicsItem::insertImage()
     }
     
     _newItems << new StepCore::NoteImage(imgName, data);
-    _textEdit->document()->addResource(QTextDocument::ImageResource, imgName, pixmap);
+    //_textEdit->document()->addResource(QTextDocument::ImageResource, imgName, pixmap);
     _textEdit->insertHtml(QString("<img src=\"%1\" />").arg(imgName));
 }
 
 void NoteGraphicsItem::insertFormula()
 {
-    if(!LatexFormula::isLatexInstalled()) {
-        KMessageBox::sorry(_widget, i18n("Can't find latex installation. "
-                    "You need 'latex', 'dvips' and 'gs' executables installed and accessible from $PATH"));
-        return;
-    }
-
-    bool ok;
-    QString text = KInputDialog::getMultiLineText(i18n("LaTex Formula - Step"),
-                    i18n("Enter LaTeX formula string"), QString(), &ok, _widget);
-    if(!ok) return;
-
-    QByteArray data;
-    QString error;
-
-    KProgressDialog* progressDialog = new KProgressDialog(_widget,
-                            i18n("Compiling LaTeX Formula - Step"), i18n("Compiling LaTeX Formula. Please wait."));
-    progressDialog->setMinimumDuration(500);
-    progressDialog->setAllowCancel(false);
-    progressDialog->showCancelButton(false);
-    progressDialog->setWindowModality(Qt::ApplicationModal);
-    progressDialog->show();
-    bool result = LatexFormula::compileFormula(text, &data, &error);
-    delete progressDialog;
-
-    if(!result) {
-        KMessageBox::error(_widget, i18n("Cannot compile LaTeX formula: %1", error));
-        return;
-    }
-
-    QPixmap pixmap;
-    if(!pixmap.loadFromData(data)) {
-        KMessageBox::error(_widget, i18n("Cannot parse result file"));
-        return;
-    }
-
     QString imgName;
     for(int n=0;; ++n) {
-        imgName = QString("img:%1").arg(n);
+        imgName = QString("fml:%1").arg(n);
         if(note()->childItem(imgName) != NULL) continue;
         bool found = false;
         foreach(StepCore::Item* item, _newItems)
@@ -468,22 +491,51 @@ void NoteGraphicsItem::insertFormula()
         if(!found) break;
     }
 
-    _newItems << new StepCore::NoteFormula(imgName, data, text);
-    _textEdit->document()->addResource(QTextDocument::ImageResource, imgName, pixmap);
-    _textEdit->insertHtml(QString("<img src=\"%1\" />").arg(imgName));
+    StepCore::NoteFormula* formula = new StepCore::NoteFormula(imgName);
+    if(!editFormula(formula)) {
+        delete formula;
+        return;
+    }
 
-    /*
-    int n=0;
-    QString imgName;
-    do {
-        imgName = QString("img:%1").arg(n++);
-    } while(note()->dataMap().contains(imgName) || _newData.contains(imgName));
-    
-    _newData.insert(imgName, data);
-    
-    _textEdit->document()->addResource(QTextDocument::ImageResource, imgName, pixmap);
+    _newItems << formula;
     _textEdit->insertHtml(QString("<img src=\"%1\" />").arg(imgName));
-    */
+}
+
+bool NoteGraphicsItem::editFormula(StepCore::NoteFormula* formula)
+{
+    if(!LatexFormula::isLatexInstalled()) {
+        KMessageBox::sorry(_widget, i18n("Can't find latex installation. "
+                    "You need 'latex', 'dvips' and 'gs' executables installed and accessible from $PATH"));
+        return false;
+    }
+
+    bool ok;
+    QString code = KInputDialog::getMultiLineText(i18n("LaTex Formula - Step"),
+                i18n("Enter LaTeX formula string"), QString(formula->code()), &ok, _widget);
+    if(!ok) return false;
+
+    QByteArray image;
+    QString error;
+
+    bool result = LatexFormula::compileFormula(code, &image, &error);
+
+    if(!result) {
+        KMessageBox::error(_widget, i18n("Cannot compile LaTeX formula: %1", error));
+        return false;
+    }
+
+    QPixmap pixmap;
+    if(!pixmap.loadFromData(image)) {
+        KMessageBox::error(_widget, i18n("Cannot parse result image"));
+        return false;
+    }
+
+    formula->setCode(code);
+    formula->setImage(image);
+
+    _textEdit->document()->addResource(QTextDocument::ImageResource,
+                                            formula->name(), pixmap);
+    return true;
 }
 
 void NoteGraphicsItem::paint(QPainter* painter, const QStyleOptionGraphicsItem* /*option*/, QWidget* /*widget*/)
@@ -549,8 +601,8 @@ void NoteGraphicsItem::worldDataChanged(bool dynamicOnly)
 {
     if(!dynamicOnly) {
         setPos(vectorToPoint(note()->position()));
-        if(!_updating && _textEdit->toHtml() != note()->text()) {
-            ++_updating;
+        if(!_hasFocus && _textEdit->toHtml() != note()->text()) {
+            //++_updating;
 
             const StepCore::ItemList::const_iterator end = note()->items().end();
             for(StepCore::ItemList::const_iterator it = note()->items().begin(); it != end; ++it) {
@@ -579,7 +631,7 @@ void NoteGraphicsItem::worldDataChanged(bool dynamicOnly)
 
             currentCharFormatChanged(_textEdit->currentCharFormat());
             cursorPositionChanged();
-            --_updating;
+            //--_updating;
         }
         viewScaleChanged();
         update();

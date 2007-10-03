@@ -51,24 +51,6 @@ namespace StepCore {
     class Tracer;
 }
 
-/*
-class NoteGraphicsItem;
-class NoteTextItem: public QGraphicsTextItem
-{
-    Q_OBJECT
-
-public:
-    explicit NoteTextItem(NoteGraphicsItem* noteItem, QGraphicsItem* parent = 0);
-    void paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget);
-    QString emptyNotice() const;
-
-protected:
-    void focusInEvent(QFocusEvent *event);
-    void focusOutEvent(QFocusEvent *event);
-    NoteGraphicsItem* _noteItem;
-};
-*/
-
 class NoteGraphicsItem;
 class NoteTextEdit: public KTextEdit
 {
@@ -76,13 +58,17 @@ class NoteTextEdit: public KTextEdit
 
 public:
     NoteTextEdit(NoteGraphicsItem* noteItem, QWidget* parent = 0)
-        : KTextEdit(parent), _noteItem(noteItem) {}
+        : KTextEdit(parent), _noteItem(noteItem), _mousePressPoint(-1,-1) {}
     QString emptyNotice() const;
 
 protected:
-    //void focusInEvent(QFocusEvent *event);
-    //void focusOutEvent(QFocusEvent *event);
+    StepCore::NoteFormula* formulaAt(const QPoint& pos);
+    void mouseMoveEvent(QMouseEvent *e);
+    void mousePressEvent(QMouseEvent *e);
+    void mouseReleaseEvent(QMouseEvent *e);
+
     NoteGraphicsItem* _noteItem;
+    QPoint _mousePressPoint;
 };
 
 class KToolBar;
@@ -115,10 +101,11 @@ protected slots:
     void insertFormula();
 
 protected:
+    bool checkLatex();
+    bool editFormula(StepCore::NoteFormula* formula);
     bool eventFilter(QObject* obj, QEvent* event);
 
     StepCore::Note* note() const;
-    int             _updating;
     double          _lastScale;
     bool            _hasFocus;
 
