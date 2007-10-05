@@ -206,7 +206,7 @@ void InfoBrowser::openUrl(const KUrl& url, bool clearHistory, bool fromHistory)
 
             _wikiUrl = url;
             _wikiFromHistory = fromHistory;
-            _wikiJob = KIO::storedGet(url, false, false);
+            _wikiJob = KIO::storedGet(url, KIO::NoReload, KIO::HideProgressInfo);
             connect(_wikiJob, SIGNAL(result(KJob*)), this, SLOT( wikiResult(KJob*)));
         } else {
             KToolInvocation::invokeBrowser(url.url());
