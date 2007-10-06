@@ -32,6 +32,7 @@
 #include <QEvent>
 #include <QPainter>
 #include <QValidator>
+#include <KDebug>
 #include <KDialog>
 #include <KLocale>
 
