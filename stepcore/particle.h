@@ -95,6 +95,10 @@ class Particle: public Item, public Body
     STEPCORE_OBJECT(Particle)
 
 public:
+    enum {
+        PositionOffset = 0 ///< Offset of particle position in variables array
+    };
+
     /** Constructs a particle */
     explicit Particle(Vector2d position = Vector2d(0),
             Vector2d velocity = Vector2d(0), double mass = 1);

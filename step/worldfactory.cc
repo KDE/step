@@ -32,6 +32,7 @@
 #include <stepcore/gslsolver.h>
 #include <stepcore/eulersolver.h>
 #include <stepcore/collisionsolver.h>
+#include <stepcore/joint.h>
 #include <stepcore/tool.h>
 #include <stepcore/types.h>
 
@@ -41,6 +42,7 @@
 #include "softbodygraphics.h"
 #include "springgraphics.h"
 #include "motorgraphics.h"
+#include "jointgraphics.h"
 #include "toolgraphics.h"
 
 #include <QItemSelectionModel>
@@ -132,6 +134,8 @@ WorldFactory::WorldFactory()
     __REGISTER(GravitationForce); __REGISTER_E(GravitationForce);
     __REGISTER(CoulombForce); __REGISTER_E(CoulombForce);
 
+    __REGISTER_EXT(Anchor, AnchorCreator, AnchorGraphicsItem, ItemMenuHandler);
+
     __REGISTER(EulerSolver);
     __REGISTER(AdaptiveEulerSolver);
 
@@ -181,6 +185,9 @@ WorldFactory::WorldFactory()
     __ADD_TO_PALETTE(WeightForce);
     __ADD_TO_PALETTE(GravitationForce);
     __ADD_TO_PALETTE(CoulombForce);
+    __ADD_SEPARATOR;
+
+    __ADD_TO_PALETTE(Anchor);
     __ADD_SEPARATOR;
 
     __ADD_TO_PALETTE(Note);

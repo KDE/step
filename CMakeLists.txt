@@ -17,6 +17,12 @@ set(STEPCORE_WITH_QT ON) # CACHE BOOL "Enable QT-powered features for StepCore")
 set(QALCULATE_MIN_VERSION "0.9.5")
 include(FindQalculate.cmake)
 
+set(GMM_FIND_REQUIRED TRUE)
+find_package(KDE4 REQUIRED) # XXX: how to avoid it ?
+include(FindGMM.cmake) # XXX: how to move it into stepcore ?
+include_directories(${GMM_INCLUDE_DIR})
+add_definitions(-DGETFEM_PARA_LEVEL=0)
+
 include_directories(.)
 add_subdirectory(stepcore)
 add_subdirectory(step)

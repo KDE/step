@@ -19,6 +19,7 @@
 #include "world.h"
 #include "solver.h"
 #include "collisionsolver.h"
+#include "constraintsolver.h"
 
 #include <algorithm>
 
@@ -29,6 +30,7 @@ STEPCORE_META_OBJECT(Item, "Item", MetaObject::ABSTRACT, STEPCORE_SUPER_CLASS(Ob
         STEPCORE_PROPERTY_RW(StepCore::Color, color, STEPCORE_UNITS_NULL, "Item color", color, setColor))
 STEPCORE_META_OBJECT(Body, "Body", MetaObject::ABSTRACT,,)
 STEPCORE_META_OBJECT(Force, "Force", MetaObject::ABSTRACT,,)
+STEPCORE_META_OBJECT(Joint, "Joint", MetaObject::ABSTRACT,,)
 STEPCORE_META_OBJECT(Tool, "Tool", MetaObject::ABSTRACT,,)
 
 STEPCORE_META_OBJECT(ObjectErrors, "ObjectErrors", MetaObject::ABSTRACT, STEPCORE_SUPER_CLASS(Object),)
@@ -213,7 +215,8 @@ void ItemGroup::allItems(ItemList* items) const
 World::World()
     : _time(0), _timeScale(1), _errorsCalculation(false),
       _solver(NULL), _collisionSolver(NULL), _constraintSolver(NULL),
-      _variablesCount(0), _variables(NULL), _variances(NULL)
+      _variablesCount(0), _variables(NULL), _variances(NULL),
+      _constraintsCount(0)
 {
     setWorld(this);
     clear();
@@ -222,7 +225,8 @@ World::World()
 World::World(const World& world)
     : ItemGroup(), _time(0), _timeScale(1), _errorsCalculation(false),
       _solver(NULL), _collisionSolver(NULL), _constraintSolver(NULL),
-      _variablesCount(0), _variables(NULL), _variances(NULL)
+      _variablesCount(0), _variables(NULL), _variances(NULL),
+      _constraintsCount(0)
 {
     *this = world;
 }
@@ -244,6 +248,7 @@ void World::clear()
 
     STEPCORE_ASSERT_NOABORT(_bodies.empty());
     STEPCORE_ASSERT_NOABORT(_forces.empty());
+    STEPCORE_ASSERT_NOABORT(_joints.empty());
     //_bodies.clear();
     //_forces.clear();
 
@@ -255,6 +260,13 @@ void World::clear()
     _variablesCount = 0;
     _variables = new double[_variablesCount];
     _variances = new double[_variablesCount];
+
+    _constraintsCount = 0;
+    _constraints.resize(0);
+    _constraintsDerivative.resize(0);
+    _constraintsJacobian.resize(0,0);
+    _constraintsJacobianDerivative.resize(0,0);
+    _constraintsWjt.resize(0,0);
 
     setColor(0xffffffff);
     deleteObjectErrors();
@@ -289,9 +301,9 @@ World& World::operator=(const World& world)
                world._collisionSolver->metaObject()->cloneObject(*(world._collisionSolver))));
     } else setCollisionSolver(0);
 
-    /*if(world._constraintSolver) setConstraintSolver(static_cast<ConstraintSolver*>(
+    if(world._constraintSolver) setConstraintSolver(static_cast<ConstraintSolver*>(
                world._constraintSolver->metaObject()->cloneObject(*(world._constraintSolver))));
-    else setConstraintSolver(0);*/
+    else setConstraintSolver(0);
 
     _time = world._time;
     _timeScale = world._timeScale;
@@ -357,6 +369,8 @@ void World::worldItemCopied(QHash<const Object*, Object*>* map, Item* item)
 
     if(item->metaObject()->inherits<Force>())
         _forces.push_back(dynamic_cast<Force*>(item));
+    if(item->metaObject()->inherits<Joint>())
+        _joints.push_back(dynamic_cast<Joint*>(item));
     if(item->metaObject()->inherits<Body>())
         _bodies.push_back(dynamic_cast<Body*>(item));
 
@@ -374,6 +388,9 @@ void World::worldItemAdded(Item* item)
     if(item->metaObject()->inherits<Force>())
         _forces.push_back(dynamic_cast<Force*>(item));
 
+    if(item->metaObject()->inherits<Joint>())
+        _joints.push_back(dynamic_cast<Joint*>(item));
+
     if(item->metaObject()->inherits<Body>()) {
         Body* body = dynamic_cast<Body*>(item);
         _bodies.push_back(body);
@@ -387,6 +404,8 @@ void World::worldItemAdded(Item* item)
             worldItemAdded(*it);
         }
     }
+
+    checkVariablesCount();
 }
 
 void World::worldItemRemoved(Item* item)
@@ -412,12 +431,22 @@ void World::worldItemRemoved(Item* item)
         _bodies.erase(b);
     }
 
+    if(item->metaObject()->inherits<Joint>()) {
+        JointList::iterator j = std::find(_joints.begin(), _joints.end(),
+                                            dynamic_cast<Joint*>(item));
+        STEPCORE_ASSERT_NOABORT(j != _joints.end());
+        _joints.erase(j);
+    }
+
     if(item->metaObject()->inherits<Force>()) {
         ForceList::iterator f = std::find(_forces.begin(), _forces.end(),
                                             dynamic_cast<Force*>(item));
         STEPCORE_ASSERT_NOABORT(f != _forces.end());
         _forces.erase(f);
     }
+
+    // XXX: on ItemGroup::clear this will be called on each object !
+    checkVariablesCount();
 }
 
 /*
@@ -520,7 +549,6 @@ CollisionSolver* World::removeCollisionSolver()
     return collisionSolver;
 }
 
-/*
 void World::setConstraintSolver(ConstraintSolver* constraintSolver)
 {
     delete _constraintSolver;
@@ -533,12 +561,12 @@ ConstraintSolver* World::removeConstraintSolver()
     _constraintSolver = NULL;
     return constraintSolver;
 }
-*/
 
 void World::checkVariablesCount()
 {
     int variablesCount = 0;
     for(BodyList::iterator b = _bodies.begin(); b != _bodies.end(); ++b) {
+        (*b)->setVariablesOffset(variablesCount);
         variablesCount += (*b)->variablesCount();
     }
     
@@ -548,6 +576,20 @@ void World::checkVariablesCount()
         _variables = new double[_variablesCount];
         _variances = new double[_variablesCount];
         if(_solver) _solver->setDimension(_variablesCount);
+    }
+
+    int constraintsCount = 0;
+    for(JointList::iterator j = _joints.begin(); j != _joints.end(); ++j) {
+        constraintsCount += (*j)->constraintsCount();
+    }
+
+    if(constraintsCount != _constraintsCount) {
+        _constraintsCount = constraintsCount;
+        _constraints.resize(_constraintsCount);
+        _constraintsDerivative.resize(_constraintsCount);
+        _constraintsJacobian.resize(_constraintsCount, _variablesCount);
+        _constraintsJacobianDerivative.resize(_constraintsCount, _variablesCount);
+        _constraintsWjt.resize(_variablesCount, _constraintsCount);
     }
 }
 
@@ -684,8 +726,8 @@ inline int World::solverFunction(double t, const double* y,
     _time = t;
     scatterVariables(y, yvar); // this will reset force
 
-    if(_collisionSolver) { // XXX: do it before force calculation
-                         // if we are called from the Solver::doEvolve
+    // 1. Collisions (TODO: variances for collisions)
+    if(_collisionSolver) {
         int state = _collisionSolver->checkContacts(_bodies);
         if(state == Contact::Intersected && _stopOnIntersection) {
             //_collisionTime = t;
@@ -703,13 +745,32 @@ inline int World::solverFunction(double t, const double* y,
         }
     }
 
+    // 2. Forces
     bool calcVariances = (fvar != NULL);
-    const ForceList::const_iterator it_end = _forces.end();
-    for(ForceList::iterator force = _forces.begin(); force != it_end; ++force) {
+    const ForceList::const_iterator f_end = _forces.end();
+    for(ForceList::iterator force = _forces.begin(); force != f_end; ++force) {
         (*force)->calcForce(calcVariances);
     }
 
     gatherDerivatives(f, fvar);
+
+    // 3. Constraints
+    if(_constraintSolver) {
+        int index = 0;
+        const JointList::const_iterator j_end = _joints.end();
+        for(JointList::iterator joint = _joints.begin(); joint != j_end; ++joint) {
+            (*joint)->getConstraints(_constraints.data() + index, _constraintsDerivative.data() + index);
+            (*joint)->getJacobian(_constraintsJacobian, _constraintsJacobianDerivative,
+                                  _constraintsWjt, index);
+            index += (*joint)->constraintsCount();
+        }
+
+        _constraintSolver->solve(GmmArrayVector(const_cast<double*>(y), _variablesCount),
+                                 GmmArrayVector(const_cast<double*>(f), _variablesCount),
+                                 _constraints, _constraintsDerivative, _constraintsJacobian,
+                                 _constraintsJacobianDerivative, _constraintsWjt);
+    }
+
     return 0;
 }
 

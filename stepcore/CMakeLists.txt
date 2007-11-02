@@ -5,6 +5,7 @@ set(stepcore_SRCS
     world.cc
     solver.cc
     collisionsolver.cc
+    constraintsolver.cc
     factory.cc
     xmlfile.cc
     particle.cc
@@ -15,6 +16,7 @@ set(stepcore_SRCS
     coulombforce.cc
     spring.cc
     motor.cc
+    joint.cc
     eulersolver.cc
     tool.cc
 )

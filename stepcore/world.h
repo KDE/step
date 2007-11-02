@@ -23,12 +23,12 @@
 #ifndef STEPCORE_WORLD_H
 #define STEPCORE_WORLD_H
 
-#include <vector> // XXX: replace if QT is enabled
 #include "types.h"
 #include "util.h"
 #include "object.h"
 #include "vector.h"
 
+#include <vector> // XXX: replace if QT is enabled
 #include <QHash>
 
 // TODO: split this file
@@ -119,6 +119,8 @@ public:
     virtual void worldItemRemoved(Item* item STEPCORE_UNUSED) {}
 
 protected:
+    /** \internal Creates specific ObjectErrors-derived class
+     *  (to be reimplemented in derived classes) */
     virtual ObjectErrors* createObjectErrors() { return NULL; }
 
 private:
@@ -154,6 +156,20 @@ public:
 
     /** Resets derivatives of dynamic variables to zero */
     virtual void resetDerivatives(bool resetErrors) = 0;
+
+    /** Offset of body's variables in global arrays
+     *  (meaningles if the the body is not a part of the world) */
+    int variablesOffset() const { return _variablesOffset; }
+
+private:
+    friend class World;
+
+    /** \internal Set offset of body's variables in global arrays */
+    void setVariablesOffset(int variablesOffset) {
+        _variablesOffset = variablesOffset;
+    }
+
+    int _variablesOffset;
 };
 
 /** \ingroup forces
@@ -172,6 +188,27 @@ public:
      * this->world()->bodies()
      */
     virtual void calcForce(bool calcVariances) = 0;
+};
+
+/** \ingroup joints
+ *  \brief Interface for joints
+ */
+class Joint
+{
+    STEPCORE_OBJECT(Joint)
+public:
+    virtual ~Joint() {}
+
+    /** Get count of constraints */
+    virtual int constraintsCount() = 0;
+
+    /** Get current constraints value (amaunt of brokenness) and its derivative */
+    virtual void getConstraints(double* value, double* derivative) = 0;
+
+    /** Get constraints jacobian (space-derivatives of constraint value),
+     *  its derivative and product of inverse mass matrix by transposed jacobian (wjt) */
+    virtual void getJacobian(GmmSparceRowMatrix& value, GmmSparceRowMatrix& derivative,
+                             GmmSparceColMatrix& wjt, int offset) = 0;
 };
 
 /** \ingroup tools
@@ -193,6 +230,8 @@ typedef std::vector<Item*>  ItemList;
 typedef std::vector<Body*>  BodyList;
 /** List of pointers to Force */
 typedef std::vector<Force*> ForceList;
+/** List of pointers to Joint */
+typedef std::vector<Joint*> JointList;
 
 /** \ingroup world
  *  \brief Groups several items together
@@ -247,7 +286,9 @@ public:
     /** Get any descendant item by its name */
     Item* item(const QString& name) const;
 
+    /** Recursively call setWorld for all children objects */
     void setWorld(World* world);
+    /** Recursively call worldItemRemoved for all children objects */
     void worldItemRemoved(Item* item);
     
 private:
@@ -316,6 +357,8 @@ public:
     const BodyList&  bodies() const { return _bodies; }
     /** Get list of all forces (including sub-items) in the World */
     const ForceList& forces() const { return _forces; }
+    /** Get list of all joints (including sub-items) in the World */
+    const JointList& joints() const { return _joints; }
 
     /** Get current Solver */
     Solver* solver() const { return _solver; }
@@ -355,20 +398,52 @@ public:
 
 private:
     friend class ItemGroup;
+
+    /** \internal Creates a map between pointers to items in two groups
+     *  (groups should contain indentical items). */
     void fillCopyMap(QHash<const Object*, Object*>* map,
                         const ItemGroup* g1, ItemGroup* g2);
+    /** \internal Maps all links to other objects in obj using the map */
     void applyCopyMap(QHash<const Object*, Object*>* map, Object* obj);
+    /** \internal Recursively add item and all its children into
+     *  bodies, forces and joints arrays. Calls applyCopyMap for them.
+     *  Called by World::operator=() */
     void worldItemCopied(QHash<const Object*, Object*>* map, Item* item);
+    /** \internal Recursively add item and all its children into
+     *  bodies, forces and joints arrays. Called by ItemGroup::addItem() */
     void worldItemAdded(Item* item);
+    /** \internal Recursively remove item and all its children from
+     *  bodies, forces and joints arrays. Called by ItemGroup::removeItem()
+     *  and ItemGroup::clear() */
     void worldItemRemoved(Item* item);
 
+    /** \internal This function iterates over all bodies, assigns indexes
+     *  for them in the global array (_variables), calculates total
+     *  variables count and reallocates (if neccesary) _variables and
+     *  _variances arrays. It does the same for joints. */
     void checkVariablesCount();
+
+    /** \internal Gathers variable derivatives (and possibly their variances)
+     *  from all bodies into one array */
     void gatherDerivatives(double* derivatives, double* variances);
+
+    /** \internal Gathers variable (and possibly their variances)
+     *  from all bodies into one array */
     void gatherVariables(double* variables, double* variances);
+
+    /** \internal Scatters variable (and possibly their variances)
+     *  from one array to all bodies */
     void scatterVariables(const double* variables, const double* variances);
 
+    /** \internal Static wrapper for World::solverFunction */ 
     static int solverFunction(double t, const double* y, const double* yvar,
                                  double* f, double* fvar, void* params);
+    /** \internal Called by solver to calculate variable derivatives.
+     * This function:
+     *      1. Checks collisions between bodies and resolves them if it is possible
+     *      2. Iterates over all forces to calculate total force for each body
+     *      3. Iterates over all joints and calls constraintSolver to solve them
+     */
     int solverFunction(double t, const double* y, const double* yvar,
                                  double* f, double* fvar);
 
@@ -380,14 +455,22 @@ private:
     //ItemList  _items;
     BodyList  _bodies;
     ForceList _forces;
+    JointList _joints;
 
     Solver*        _solver;
     CollisionSolver* _collisionSolver;
     ConstraintSolver* _constraintSolver;
 
     int     _variablesCount;
-    double* _variables;
+    double* _variables; // XXX: replace with std::vector
     double* _variances;
+
+    int                _constraintsCount;
+    GmmStdVector       _constraints;
+    GmmStdVector       _constraintsDerivative;
+    GmmSparceRowMatrix _constraintsJacobian;
+    GmmSparceRowMatrix _constraintsJacobianDerivative;
+    GmmSparceColMatrix _constraintsWjt;
 
     bool    _stopOnCollision;
     bool    _stopOnIntersection;
@@ -401,6 +484,7 @@ private:
 /** \defgroup constants Physical constants */
 /** \defgroup bodies Physical bodies */
 /** \defgroup forces Physical forces */
+/** \defgroup joints Rigid joints */
 /** \defgroup tools Various tools */
 /** \defgroup solvers ODE Solvers */
 /** \defgroup contacts Collision and constraint solvers */

@@ -27,8 +27,17 @@
 #include "vector.h"
 #include <vector>
 #include <QByteArray>
+#include <gmm/gmm_vector.h>
+#include <gmm/gmm_matrix.h>
+#include <gmm/gmm_interface.h>
 
 namespace StepCore {
+
+typedef std::vector<double> GmmStdVector;
+typedef gmm::array1D_reference<double*> GmmArrayVector;
+typedef gmm::rsvector<double> GmmSparceVector;
+typedef gmm::row_matrix<GmmSparceVector> GmmSparceRowMatrix;
+typedef gmm::col_matrix<GmmSparceVector> GmmSparceColMatrix;
 
 ///////////////// Color
 struct Color

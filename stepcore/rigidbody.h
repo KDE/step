@@ -130,6 +130,11 @@ class RigidBody: public Item, public Body
     STEPCORE_OBJECT(RigidBody)
 
 public:
+    enum {
+        PositionOffset = 0, ///< Offset of body position in variables array
+        AngleOffset = 2     ///< Offset of body angle in variables array
+    };
+
     /** Constructs RigidBody */
     explicit RigidBody(Vector2d position = Vector2d(0), double angle = 0,
               Vector2d velocity = Vector2d(0), double angularVelocity = 0,

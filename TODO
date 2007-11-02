@@ -17,6 +17,9 @@
 * global error estimation (requires jacobian ?) (DONE)
 * multistep solvers
 * symplectic and other nice solvers
+* implicit solvers (!)
+* more collision and constraints solvers
+* NullCollisionSolver and NullConstraintsSolver
 * molecular dynamics (potentials etc.) (DONE)
 * massive springs (DONE)
 * soft bodies (DONE)

@@ -14,6 +14,7 @@ set(step_SRCS
     softbodygraphics.cc
     springgraphics.cc
     motorgraphics.cc
+    jointgraphics.cc
     toolgraphics.cc
     simulationthread.cc
     unitscalc.cc
