@@ -41,10 +41,10 @@ class ConstraintSolver: public Object
     STEPCORE_OBJECT(ConstraintSolver)
 
 public:
-    virtual int solve(const GmmArrayVector& y, const GmmArrayVector& f,
+    virtual int solve(const GmmArrayVector& position, const GmmArrayVector& velocity,
+                const GmmArrayVector& acceleration, const GmmSparceRowMatrix& inverseMass,
                 const GmmStdVector& constraints, const GmmStdVector& constraintsDerivatives,
-                const GmmSparceRowMatrix& jacobian, const GmmSparceRowMatrix jacobianDerivative,
-                const GmmSparceColMatrix& wjt) = 0;
+                const GmmSparceRowMatrix& jacobian, const GmmSparceRowMatrix& jacobianDerivative);
 };
 
 class CGConstraintSolver: public ConstraintSolver
@@ -52,10 +52,10 @@ class CGConstraintSolver: public ConstraintSolver
     STEPCORE_OBJECT(CGConstraintSolver)
 
 public:
-    int solve(const GmmArrayVector& y, const GmmArrayVector& f,
+    int solve(const GmmArrayVector& position, const GmmArrayVector& velocity,
+                const GmmArrayVector& acceleration, const GmmSparceRowMatrix& inverseMass,
                 const GmmStdVector& constraints, const GmmStdVector& constraintsDerivatives,
-                const GmmSparceRowMatrix& jacobian, const GmmSparceRowMatrix jacobianDerivative,
-                const GmmSparceColMatrix& wjt);
+                const GmmSparceRowMatrix& jacobian, const GmmSparceRowMatrix& jacobianDerivative);
 
 };
 

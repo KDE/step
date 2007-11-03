@@ -59,8 +59,7 @@ public:
 
     int constraintsCount();
     void getConstraints(double* value, double* derivative);
-    void getJacobian(GmmSparceRowMatrix& value, GmmSparceRowMatrix& derivative,
-                     GmmSparceColMatrix& wjt, int offset);
+    void getJacobian(GmmSparceRowMatrix& value, GmmSparceRowMatrix& derivative, int offset);
 
 protected:
     Object*  _body;

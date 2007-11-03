@@ -25,26 +25,39 @@
 
 namespace StepCore {
 
-int CGConstraintSolver::solve(const GmmArrayVector& y, const GmmArrayVector& f,
+int CGConstraintSolver::solve(const GmmArrayVector& position, const GmmArrayVector& velocity,
+                const GmmArrayVector& acceleration, const GmmSparceRowMatrix& inverseMass,
                 const GmmStdVector& constraints, const GmmStdVector& constraintsDerivatives,
-                const GmmSparceRowMatrix& jacobian, const GmmSparceRowMatrix jacobianDerivative,
-                const GmmSparceColMatrix& wjt)
+                const GmmSparceRowMatrix& jacobian, const GmmSparceRowMatrix& jacobianDerivative);
 {
-    /*
+    GmmSparceRowMatrix a(constraints.size(), constraints.size());
+    GmmStdVector b(constraints.size());
+    GmmStdVector l(constraints.size());
+
+    {
+        GmmSparceRowMatrix wj(position.size(), constraints.size());
+        gmm::mult(inverseMass, gmm::transposed(jacobian), wj);
+        gmm::mult(jacobian, wj, a);
+
+        GmmStdVector wq(position.size());
+        gmm::mult(inverseMass, position, wq);
+        gmm::mult(jacobian, wq, b);
+
+        gmm::mult_add(jacobianDerivative, velocity, b);
+        gmm::add(gmm::scaled(constraints, 0.1), b);
+        gmm::add(gmm::scaled(constraintsDerivatives, 0.1), b);
+
+        gmm::scale(b, -1);
+    }
+
     gmm::iteration iter(2.0E-10); // XXX
     gmm::identity_matrix PS;
     gmm::identity_matrix PR;
 
-    GmmSparceRowMatrix a(constraints.size(), constraints.size());
-    gmm::mult(jacobian, wjt, a);
+    // constrained_cg ?
+    gmm::cg(a, l, b, PS, PR, iter);
 
-    GmmStdVector b(constraints.size(), 0);
-    gmm::mult(jacobianDerivative, f, b); // J' * q'
-    
 
-    gmm::add(gmm::scaled(constraints, -0.1), b);
-    gmm::add(gmm::scaled(constraintsDerivatives, -0.1), b);
-    */
 
     return 0;
 }

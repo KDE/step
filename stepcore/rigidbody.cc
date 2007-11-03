@@ -150,65 +150,86 @@ Vector2d RigidBody::vectorWorldToLocal(const Vector2d& v) const
                     -v[0]*s + v[1]*c);
 }
 
-void RigidBody::getVariables(double* array, double* variances)
+void RigidBody::getVariables(double* position, double* velocity,
+                     double* positionVariance, double* velocityVariance)
 {
-    std::memcpy(array,   _position.array(), 2*sizeof(*array));
-    std::memcpy(array+3, _velocity.array(), 2*sizeof(*array));
-    array[2] = _angle;
-    array[5] = _angularVelocity;
-    if(variances) {
+    std::memcpy(position, _position.array(), 2*sizeof(*position));
+    std::memcpy(velocity, _velocity.array(), 2*sizeof(*velocity));
+    position[2] = _angle;
+    velocity[2] = _angularVelocity;
+
+    if(positionVariance) {
         RigidBodyErrors* re = rigidBodyErrors();
-        std::memcpy(variances,   re->_positionVariance.array(), 2*sizeof(*variances));
-        std::memcpy(variances+3, re->_velocityVariance.array(), 2*sizeof(*variances));
-        array[2] = re->_angleVariance;
-        array[5] = re->_angularVelocityVariance;
+        std::memcpy(positionVariance, re->_positionVariance.array(), 2*sizeof(*positionVariance));
+        std::memcpy(velocityVariance, re->_velocityVariance.array(), 2*sizeof(*velocityVariance));
+        positionVariance[2] = re->_angleVariance;
+        velocityVariance[2] = re->_angularVelocityVariance;
     }
 }
 
-void RigidBody::setVariables(const double* array, const double* variances)
+void RigidBody::setVariables(const double* position, const double* velocity,
+               const double* positionVariance, const double* velocityVariance)
 {
-    std::memcpy(_position.array(), array,   2*sizeof(*array));
-    std::memcpy(_velocity.array(), array+3, 2*sizeof(*array));
-    _angle = array[2];
-    _angularVelocity = array[5];
+    std::memcpy(_position.array(), position, 2*sizeof(*position));
+    std::memcpy(_velocity.array(), velocity, 2*sizeof(*velocity));
+    _angle = position[2];
+    _angularVelocity = velocity[2];
+
     _force.setZero();
     _torque = 0;
-    if(variances) {
+
+    if(positionVariance) {
         RigidBodyErrors* re = rigidBodyErrors();
-        std::memcpy(re->_positionVariance.array(), variances,   2*sizeof(*variances));
-        std::memcpy(re->_velocityVariance.array(), variances+3, 2*sizeof(*variances));
-        re->_angleVariance = variances[2];
-        re->_angularVelocityVariance = variances[5];
+        std::memcpy(re->_positionVariance.array(), positionVariance, 2*sizeof(*positionVariance));
+        std::memcpy(re->_velocityVariance.array(), velocityVariance, 2*sizeof(*velocityVariance));
+        re->_angleVariance = positionVariance[2];
+        re->_angularVelocityVariance = velocityVariance[2];
+
         re->_forceVariance.setZero();
         re->_torqueVariance = 0;
     }
 }
 
-void RigidBody::getDerivatives(double* array, double* variances)
+void RigidBody::getAccelerations(double* acceleration, double* accelerationVariance)
 {
-    std::memcpy(array, _velocity.array(), 2*sizeof(*array));
-    array[2] = _angularVelocity;
-    array[3] = _force[0] / _mass;
-    array[4] = _force[1] / _mass;
-    array[5] = _torque / _inertia;
-    if(variances) {
+    acceleration[0] = _force[0] / _mass;
+    acceleration[1] = _force[1] / _mass;
+    acceleration[2] = _torque / _inertia;
+    if(accelerationVariance) {
         RigidBodyErrors* re = rigidBodyErrors();
-        std::memcpy(variances, re->_velocityVariance.array(), 2*sizeof(*variances));
-        variances[2] = re->_angularVelocityVariance;
-        variances[3] = re->_forceVariance[0]/square(_mass) + square(_force[0]/square(_mass))*re->_massVariance;
-        variances[4] = re->_forceVariance[1]/square(_mass) + square(_force[1]/square(_mass))*re->_massVariance;
-        variances[5] = re->_torqueVariance/square(_inertia) + square(_torque/square(_inertia))*re->_inertiaVariance;
+        accelerationVariance[0] = re->_forceVariance[0]/square(_mass) +
+                                        square(_force[0]/square(_mass))*re->_massVariance;
+        accelerationVariance[1] = re->_forceVariance[1]/square(_mass) +
+                                        square(_force[1]/square(_mass))*re->_massVariance;
+        accelerationVariance[2] = re->_torqueVariance/square(_inertia) +
+                                        square(_torque/square(_inertia))*re->_inertiaVariance;
     }
 }
 
-void RigidBody::resetDerivatives(bool resetVariances)
+void RigidBody::resetAccelerations(bool resetVariance)
 {
     _force.setZero();
     _torque = 0;
-    if(resetVariances) {
+    if(resetVariance) {
         RigidBodyErrors* re = rigidBodyErrors();
         re->_forceVariance.setZero();
         re->_torqueVariance = 0;
+    }
+}
+
+void RigidBody::getInverseMass(GmmSparceRowMatrix* inverseMass,
+                        GmmSparceRowMatrix* variance, int offset)
+{
+    inverseMass->row(offset).w(offset, 1/_mass);
+    inverseMass->row(offset+1).w(offset+1, 1/_mass);
+    inverseMass->row(offset+2).w(offset+2, 1/_inertia);
+    if(variance) {
+        RigidBodyErrors* re = rigidBodyErrors();
+        double vm = re->_massVariance / square(square(_mass));
+        double vi = re->_inertiaVariance /  square(square(_inertia));
+        variance->row(offset).w(offset, vm);
+        variance->row(offset+1).w(offset+1, vm);
+        variance->row(offset+2).w(offset+2, vi);
     }
 }
 

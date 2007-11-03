@@ -215,8 +215,7 @@ void ItemGroup::allItems(ItemList* items) const
 World::World()
     : _time(0), _timeScale(1), _errorsCalculation(false),
       _solver(NULL), _collisionSolver(NULL), _constraintSolver(NULL),
-      _variablesCount(0), _variables(NULL), _variances(NULL),
-      _constraintsCount(0)
+      _variablesCount(0), _constraintsCount(0)
 {
     setWorld(this);
     clear();
@@ -225,8 +224,7 @@ World::World()
 World::World(const World& world)
     : ItemGroup(), _time(0), _timeScale(1), _errorsCalculation(false),
       _solver(NULL), _collisionSolver(NULL), _constraintSolver(NULL),
-      _variablesCount(0), _variables(NULL), _variances(NULL),
-      _constraintsCount(0)
+      _variablesCount(0), _constraintsCount(0)
 {
     *this = world;
 }
@@ -234,8 +232,6 @@ World::World(const World& world)
 World::~World()
 {
     clear();
-    delete[] _variables;
-    delete[] _variances;
 }
 
 void World::clear()
@@ -254,19 +250,17 @@ void World::clear()
 
     delete _solver; _solver = NULL;
     delete _collisionSolver; _collisionSolver = NULL;
-    //delete _constraintSolver; _constraintSolver = NULL;
-    delete[] _variables;
-    delete[] _variances;
+    delete _constraintSolver; _constraintSolver = NULL;
+
     _variablesCount = 0;
-    _variables = new double[_variablesCount];
-    _variances = new double[_variablesCount];
+    _variables.resize(0);
+    _variances.resize(0);
 
     _constraintsCount = 0;
     _constraints.resize(0);
     _constraintsDerivative.resize(0);
     _constraintsJacobian.resize(0,0);
     _constraintsJacobianDerivative.resize(0,0);
-    _constraintsWjt.resize(0,0);
 
     setColor(0xffffffff);
     deleteObjectErrors();
@@ -523,7 +517,7 @@ void World::setSolver(Solver* solver)
     delete _solver;
     _solver = solver;
     if(_solver != 0) {
-        _solver->setDimension(_variablesCount);
+        _solver->setDimension(_variablesCount*2);
         _solver->setFunction(solverFunction);
         _solver->setParams(this);
     }
@@ -571,11 +565,10 @@ void World::checkVariablesCount()
     }
     
     if(variablesCount != _variablesCount) {
-        delete[] _variables; delete[] _variances;
         _variablesCount = variablesCount;
-        _variables = new double[_variablesCount];
-        _variances = new double[_variablesCount];
-        if(_solver) _solver->setDimension(_variablesCount);
+        _variables.resize(_variablesCount*2);
+        _variances.resize(_variablesCount*2);
+        if(_solver) _solver->setDimension(_variablesCount*2);
     }
 
     int constraintsCount = 0;
@@ -589,28 +582,32 @@ void World::checkVariablesCount()
         _constraintsDerivative.resize(_constraintsCount);
         _constraintsJacobian.resize(_constraintsCount, _variablesCount);
         _constraintsJacobianDerivative.resize(_constraintsCount, _variablesCount);
-        _constraintsWjt.resize(_variablesCount, _constraintsCount);
     }
 }
 
-void World::gatherDerivatives(double* derivatives, double* variances)
+void World::gatherAccelerations(double* acceleration, double* accelerationVariance)
 {
+    if(accelerationVariance)
+        memset(accelerationVariance, 0, _variablesCount*sizeof(*accelerationVariance));
+
     int index = 0;
-    if(variances) memset(variances, 0, _variablesCount*sizeof(*variances));
     const BodyList::const_iterator it_end = _bodies.end();
     for(BodyList::iterator b = _bodies.begin(); b != it_end; ++b) {
-        (*b)->getDerivatives(derivatives + index, variances ? variances + index : NULL);
+        (*b)->getAccelerations(acceleration + index, accelerationVariance ? accelerationVariance + index : NULL);
         index += (*b)->variablesCount();
     }
 }
 
 void World::gatherVariables(double* variables, double* variances)
 {
+    if(variances) memset(variances, 0, _variablesCount*2*sizeof(*variances));
+
     int index = 0;
-    if(variances) memset(variances, 0, _variablesCount*sizeof(*variances));
     const BodyList::const_iterator it_end = _bodies.end();
     for(BodyList::iterator b = _bodies.begin(); b != it_end; ++b) {
-        (*b)->getVariables(variables + index, variances ? variances + index : NULL);
+        (*b)->getVariables(variables + index, variables + _variablesCount + index,
+                           variances ? variances + index : NULL,
+                           variances ? variances + _variablesCount + index : NULL);
         index += (*b)->variablesCount();
     }
 }
@@ -620,7 +617,9 @@ void World::scatterVariables(const double* variables, const double* variances)
     int index = 0;
     const BodyList::const_iterator it_end = _bodies.end();
     for(BodyList::iterator b = _bodies.begin(); b != it_end; ++b) {
-        (*b)->setVariables(variables + index, variances ? variances + index : NULL);
+        (*b)->setVariables(variables + index,  variables + _variablesCount + index,
+                           variances ? variances + index : NULL,
+                           variances ? variances + _variablesCount + index : NULL);
         index += (*b)->variablesCount();
     }
 }
@@ -634,9 +633,9 @@ int World::doCalcFn()
     _stopOnCollision = false;
     _stopOnIntersection = false;
     checkVariablesCount();
-    double* variances = _errorsCalculation ? _variances : NULL;
-    gatherVariables(_variables, variances);
-    return _solver->doCalcFn(&_time, _variables, variances, NULL, variances);
+    double* variances = _errorsCalculation ? &_variances[0] : NULL;
+    gatherVariables(&_variables[0], variances);
+    return _solver->doCalcFn(&_time, &_variables[0], variances, NULL, variances);
 }
 
 int World::doEvolve(double delta)
@@ -644,7 +643,7 @@ int World::doEvolve(double delta)
     STEPCORE_ASSERT_NOABORT(_solver != NULL);
 
     checkVariablesCount();
-    gatherVariables(_variables, _errorsCalculation ? _variances : NULL);
+    gatherVariables(&_variables[0], _errorsCalculation ? &_variances[0] : NULL);
 
     int ret = Solver::OK;
     double targetTime = _time + delta*_timeScale;
@@ -664,8 +663,8 @@ int World::doEvolve(double delta)
         //_collisionExpectedTime = HUGE_VAL;
         _stopOnCollision = true;
         _stopOnIntersection = true;
-        ret = _solver->doEvolve(&time, targetTime, _variables,
-                            _errorsCalculation ? _variances : NULL);
+        ret = _solver->doEvolve(&time, targetTime, &_variables[0],
+                            _errorsCalculation ? &_variances[0] : NULL);
         _time = time;
 
         if(ret == Solver::CollisionDetected ||
@@ -688,8 +687,8 @@ int World::doEvolve(double delta)
                 double endTime = stepSize < collisionEndTime - time ? time+stepSize : collisionEndTime;
                 //_collisionExpectedTime = endTime-fmin(stepSize, _solver->stepSize())*1e-5;
                 //_collisionTime = -HUGE_VAL;
-                ret = _solver->doEvolve(&time, endTime, _variables,
-                            _errorsCalculation ? _variances : NULL);
+                ret = _solver->doEvolve(&time, endTime, &_variables[0],
+                            _errorsCalculation ? &_variances[0] : NULL);
                 _time = time;
 
                 if(ret == Solver::IntersectionDetected || ret == Solver::CollisionDetected) {
@@ -702,10 +701,10 @@ int World::doEvolve(double delta)
                 } else if(ret == Solver::OK) {
                     //if(_collisionTime > _collisionExpectedTime) {
                         // We are at collision point
-                        scatterVariables(_variables, _errorsCalculation ? _variances : NULL);
+                        scatterVariables(&_variables[0], _errorsCalculation ? &_variances[0] : NULL);
                         _collisionSolver->solveCollisions(_bodies);
                         //STEPCORE_ASSERT_NOABORT(ret1 == CollisionSolver::CollisionDetected);
-                        gatherVariables(_variables, _errorsCalculation ? _variances : NULL);
+                        gatherVariables(&_variables[0], _errorsCalculation ? &_variances[0] : NULL);
                     //}
                 } else goto out;
 
@@ -714,7 +713,7 @@ int World::doEvolve(double delta)
     }
 
 out:
-    scatterVariables(_variables, _errorsCalculation ? _variances : NULL);
+    scatterVariables(&_variables[0], _errorsCalculation ? &_variances[0] : NULL);
     return ret;
 }
 
@@ -752,21 +751,23 @@ inline int World::solverFunction(double t, const double* y,
         (*force)->calcForce(calcVariances);
     }
 
-    gatherDerivatives(f, fvar);
+    std::memcpy(f, &_variables[_variablesCount], _variablesCount*sizeof(*f));
+    if(fvar) std::memcpy(fvar, &_variances[_variablesCount], _variablesCount*sizeof(*fvar));
+    gatherAccelerations(f+_variablesCount, fvar ? fvar+_variablesCount : NULL);
 
     // 3. Constraints
     if(_constraintSolver) {
         int index = 0;
         const JointList::const_iterator j_end = _joints.end();
         for(JointList::iterator joint = _joints.begin(); joint != j_end; ++joint) {
-            (*joint)->getConstraints(_constraints.data() + index, _constraintsDerivative.data() + index);
-            (*joint)->getJacobian(_constraintsJacobian, _constraintsJacobianDerivative,
-                                  _constraintsWjt, index);
+            (*joint)->getConstraints(&_constraints[index], &_constraintsDerivative[index]);
+            (*joint)->getJacobian(_constraintsJacobian, _constraintsJacobianDerivative, index);
             index += (*joint)->constraintsCount();
         }
 
         _constraintSolver->solve(GmmArrayVector(const_cast<double*>(y), _variablesCount),
-                                 GmmArrayVector(const_cast<double*>(f), _variablesCount),
+                                 GmmArrayVector(const_cast<double*>(y+_variablesCount), _variablesCount),
+                                 GmmArrayVector(const_cast<double*>(f+_variablesCount), _variablesCount),
                                  _constraints, _constraintsDerivative, _constraintsJacobian,
                                  _constraintsJacobianDerivative, _constraintsWjt);
     }

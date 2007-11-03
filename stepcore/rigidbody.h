@@ -212,11 +212,15 @@ public:
     // XXX
     //const Vector2dList& vertexes() const;
 
-    int  variablesCount() { return 6; }
-    void resetDerivatives(bool resetVariances);
-    void getDerivatives(double* array, double* variances);
-    void getVariables(double* array, double* variances);
-    void setVariables(const double* array, const double* variances);
+    int  variablesCount() { return 3; }
+    void resetAccelerations(bool resetVariance);
+    void getAccelerations(double* acceleration, double* accelerationVariance);
+    void getVariables(double* position, double* velocity,
+                          double* positionVariance, double* velocityVariance);
+    void setVariables(const double* position, const double* velocity,
+              const double* positionVariance, const double* velocityVariance);
+    void getInverseMass(GmmSparceRowMatrix* inverseMass,
+                            GmmSparceRowMatrix* variance, int offset);
 
     /** Get (and possibly create) RigidBodyErrors object */
     RigidBodyErrors* rigidBodyErrors() {

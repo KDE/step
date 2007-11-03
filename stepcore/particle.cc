@@ -73,47 +73,61 @@ Particle::Particle(Vector2d position, Vector2d velocity, double mass)
 {
 }
 
-void Particle::getVariables(double* array, double* variances)
+void Particle::getVariables(double* position, double* velocity,
+                     double* positionVariance, double* velocityVariance)
 {
-    std::memcpy(array,   _position.array(), 2*sizeof(*array));
-    std::memcpy(array+2, _velocity.array(), 2*sizeof(*array));
-    if(variances) {
+    std::memcpy(position, _position.array(), 2*sizeof(*position));
+    std::memcpy(velocity, _velocity.array(), 2*sizeof(*velocity));
+    if(positionVariance) {
         ParticleErrors* pe = particleErrors();
-        std::memcpy(variances,   pe->_positionVariance.array(), 2*sizeof(*variances));
-        std::memcpy(variances+2, pe->_velocityVariance.array(), 2*sizeof(*variances));
+        std::memcpy(positionVariance, pe->_positionVariance.array(), 2*sizeof(*positionVariance));
+        std::memcpy(velocityVariance, pe->_velocityVariance.array(), 2*sizeof(*velocityVariance));
     }
 }
 
-void Particle::setVariables(const double* array, const double* variances)
+void Particle::setVariables(const double* position, const double* velocity,
+               const double* positionVariance, const double* velocityVariance)
 {
-    std::memcpy(_position.array(), array,   2*sizeof(*array));
-    std::memcpy(_velocity.array(), array+2, 2*sizeof(*array));
+    std::memcpy(_position.array(), position, 2*sizeof(*position));
+    std::memcpy(_velocity.array(), velocity, 2*sizeof(*velocity));
     _force.setZero();
-    if(variances) {
+    if(positionVariance) {
         ParticleErrors* pe = particleErrors();
-        std::memcpy(pe->_positionVariance.array(), variances,   2*sizeof(*variances));
-        std::memcpy(pe->_velocityVariance.array(), variances+2, 2*sizeof(*variances));
+        std::memcpy(pe->_positionVariance.array(), positionVariance, 2*sizeof(*positionVariance));
+        std::memcpy(pe->_velocityVariance.array(), velocityVariance, 2*sizeof(*positionVariance));
         pe->_forceVariance.setZero();
     }
 }
 
-void Particle::getDerivatives(double* array, double* variances)
+void Particle::getAccelerations(double* acceleration, double* accelerationVariance)
 {
-    std::memcpy(array, _velocity.array(), 2*sizeof(*array));
-    array[2] = _force[0] / _mass;
-    array[3] = _force[1] / _mass;
-    if(variances) {
+    acceleration[0] = _force[0] / _mass;
+    acceleration[1] = _force[1] / _mass;
+    if(accelerationVariance) {
         ParticleErrors* pe = particleErrors();
-        std::memcpy(variances, pe->_velocityVariance.array(), 2*sizeof(*variances));
-        variances[2] = pe->_forceVariance[0]/square(_mass) + square(_force[0]/square(_mass))*pe->_massVariance;
-        variances[3] = pe->_forceVariance[1]/square(_mass) + square(_force[1]/square(_mass))*pe->_massVariance;
+        accelerationVariance[0] = pe->_forceVariance[0]/square(_mass) +
+                                        square(_force[0]/square(_mass))*pe->_massVariance;
+        accelerationVariance[1] = pe->_forceVariance[1]/square(_mass) +
+                                        square(_force[1]/square(_mass))*pe->_massVariance;
     }
 }
 
-void Particle::resetDerivatives(bool resetVariances)
+void Particle::resetAccelerations(bool resetVariance)
 {
     _force.setZero();
-    if(resetVariances) particleErrors()->_forceVariance.setZero();
+    if(resetVariance) particleErrors()->_forceVariance.setZero();
+}
+
+void Particle::getInverseMass(GmmSparceRowMatrix* inverseMass,
+                        GmmSparceRowMatrix* variance, int offset)
+{
+    inverseMass->row(offset).w(offset, 1/_mass);
+    inverseMass->row(offset+1).w(offset+1, 1/_mass);
+    if(variance) {
+        double v = particleErrors()->_massVariance / square(square(_mass));
+        variance->row(offset).w(offset, v);
+        variance->row(offset+1).w(offset+1, v);
+    }
 }
 
 } // namespace StepCore

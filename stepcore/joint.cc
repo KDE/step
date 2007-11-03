@@ -80,8 +80,7 @@ void Anchor::getConstraints(double* value, double* derivative)
     }
 }
 
-void Anchor::getJacobian(GmmSparceRowMatrix& value, GmmSparceRowMatrix& /*derivative*/,
-                         GmmSparceColMatrix& wjt, int offset)
+void Anchor::getJacobian(GmmSparceRowMatrix& value, GmmSparceRowMatrix& /*derivative*/, int offset)
 {
     if(_p) {
         value.row(offset).w(_p->variablesOffset()+Particle::PositionOffset, 1);

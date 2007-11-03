@@ -121,7 +121,7 @@ public:
 protected:
     /** \internal Creates specific ObjectErrors-derived class
      *  (to be reimplemented in derived classes) */
-    virtual ObjectErrors* createObjectErrors() { return NULL; }
+    virtual ObjectErrors* createObjectErrors() { return NULL; } // XXX: rename to createObjectVariances
 
 private:
     World*        _world;
@@ -140,22 +140,35 @@ class Body
     STEPCORE_OBJECT(Body)
 
 public:
+    Body(): _variablesOffset(0) {}
     virtual ~Body() {}
 
-    /** Get count of dynamic variables */
+    /** Get count of dynamic variables (not including velocities) */
     virtual int  variablesCount() = 0;
 
-    /** Set dynamic variables and errors using values in array */
-    virtual void setVariables(const double* array, const double* errors) = 0;
+    /** Set positions, velocities and its variances using values in arrays and
+     *  also reset accelerations and its variances. Variances should only be copied
+     *  and reseted if positionVariance != NULL. */
+    virtual void setVariables(const double* position, const double* velocity,
+               const double* positionVariance, const double* velocityVariance) = 0;
 
-    /** Copies dynamic variables and errors to array */
-    virtual void getVariables(double* array, double* errors) = 0;
+    /** Copy positions, velocities and its variances to arrays.
+     *  Variances should only be copied if positionVariance != NULL. */
+    virtual void getVariables(double* position, double* velocity,
+                     double* positionVariance, double* velocityVariance) = 0;
 
-    /** Copies derivatives of dynamic variables and errors to array */
-    virtual void getDerivatives(double* array, double* errors) = 0;
+    /** Copy acceleration (forces left-multiplied by inverse mass) and its variances to arrays.
+     *  Variances should only be copied if accelerationVariance != NULL. */
+    virtual void getAccelerations(double* acceleration, double* accelerationVariance) = 0;
 
-    /** Resets derivatives of dynamic variables to zero */
-    virtual void resetDerivatives(bool resetErrors) = 0;
+    /** Reset acceleration (actually forces) and its variances to zero.
+     *  Variances should only be reseted if resetVariance == true. */
+    virtual void resetAccelerations(bool resetVariance) = 0;
+
+    /** Get inverse mass and its variance matrixes.
+     *  Variance should only be copied of variance != NULL. */
+    virtual void getInverseMass(GmmSparceRowMatrix* inverseMass,
+                            GmmSparceRowMatrix* variance, int offset) = 0;
 
     /** Offset of body's variables in global arrays
      *  (meaningles if the the body is not a part of the world) */
@@ -196,6 +209,7 @@ public:
 class Joint
 {
     STEPCORE_OBJECT(Joint)
+
 public:
     virtual ~Joint() {}
 
@@ -207,8 +221,7 @@ public:
 
     /** Get constraints jacobian (space-derivatives of constraint value),
      *  its derivative and product of inverse mass matrix by transposed jacobian (wjt) */
-    virtual void getJacobian(GmmSparceRowMatrix& value, GmmSparceRowMatrix& derivative,
-                             GmmSparceColMatrix& wjt, int offset) = 0;
+    virtual void getJacobian(GmmSparceRowMatrix& value, GmmSparceRowMatrix& derivative, int offset) = 0;
 };
 
 /** \ingroup tools
@@ -423,11 +436,11 @@ private:
      *  _variances arrays. It does the same for joints. */
     void checkVariablesCount();
 
-    /** \internal Gathers variable derivatives (and possibly their variances)
+    /** \internal Gathers acceleration (and possibly their variances)
      *  from all bodies into one array */
-    void gatherDerivatives(double* derivatives, double* variances);
+    void gatherAccelerations(double* acceleration, double* variance);
 
-    /** \internal Gathers variable (and possibly their variances)
+    /** \internal Gathers variables (and possibly their variances)
      *  from all bodies into one array */
     void gatherVariables(double* variables, double* variances);
 
@@ -461,16 +474,15 @@ private:
     CollisionSolver* _collisionSolver;
     ConstraintSolver* _constraintSolver;
 
-    int     _variablesCount;
-    double* _variables; // XXX: replace with std::vector
-    double* _variances;
+    int          _variablesCount; ///< \internal Count of positions (not including velocities)
+    GmmStdVector _variables;      ///< \internal Positions and velocities (size == _variablesCount*2)
+    GmmStdVector _variances;      ///< \internal Variances of positions and velocities
 
     int                _constraintsCount;
     GmmStdVector       _constraints;
     GmmStdVector       _constraintsDerivative;
     GmmSparceRowMatrix _constraintsJacobian;
     GmmSparceRowMatrix _constraintsJacobianDerivative;
-    GmmSparceColMatrix _constraintsWjt;
 
     bool    _stopOnCollision;
     bool    _stopOnIntersection;
