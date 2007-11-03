@@ -28,12 +28,13 @@ namespace StepCore {
 int CGConstraintSolver::solve(const GmmArrayVector& position, const GmmArrayVector& velocity,
                 const GmmArrayVector& acceleration, const GmmSparceRowMatrix& inverseMass,
                 const GmmStdVector& constraints, const GmmStdVector& constraintsDerivatives,
-                const GmmSparceRowMatrix& jacobian, const GmmSparceRowMatrix& jacobianDerivative);
+                const GmmSparceRowMatrix& jacobian, const GmmSparceRowMatrix& jacobianDerivative)
 {
     GmmSparceRowMatrix a(constraints.size(), constraints.size());
     GmmStdVector b(constraints.size());
     GmmStdVector l(constraints.size());
 
+    /*
     {
         GmmSparceRowMatrix wj(position.size(), constraints.size());
         gmm::mult(inverseMass, gmm::transposed(jacobian), wj);
@@ -56,9 +57,7 @@ int CGConstraintSolver::solve(const GmmArrayVector& position, const GmmArrayVect
 
     // constrained_cg ?
     gmm::cg(a, l, b, PS, PR, iter);
-
-
-
+    */
     return 0;
 }
 

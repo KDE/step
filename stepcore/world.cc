@@ -768,8 +768,9 @@ inline int World::solverFunction(double t, const double* y,
         _constraintSolver->solve(GmmArrayVector(const_cast<double*>(y), _variablesCount),
                                  GmmArrayVector(const_cast<double*>(y+_variablesCount), _variablesCount),
                                  GmmArrayVector(const_cast<double*>(f+_variablesCount), _variablesCount),
+                                 _constraintsJacobian,
                                  _constraints, _constraintsDerivative, _constraintsJacobian,
-                                 _constraintsJacobianDerivative, _constraintsWjt);
+                                 _constraintsJacobianDerivative);
     }
 
     return 0;
