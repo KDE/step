@@ -24,6 +24,7 @@
 #include "world.h"
 #include "solver.h"
 #include "collisionsolver.h"
+#include "constraintsolver.h"
 #include "factory.h"
 
 #include <QTextStream>
@@ -127,6 +128,7 @@ bool StepStreamWriter::writeWorld(const World* world)
 
     if(world->solver()) _ids.insert(world->solver(), ++maxid);
     if(world->collisionSolver()) _ids.insert(world->collisionSolver(), ++maxid);
+    if(world->constraintSolver()) _ids.insert(world->constraintSolver(), ++maxid);
 
     *_stream << "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n"
              << "<!DOCTYPE " << XmlFile::DOCKTYPE << ">\n"
@@ -149,6 +151,11 @@ bool StepStreamWriter::writeWorld(const World* world)
 
     if(world->collisionSolver()) {
         saveObject("collisionSolver", world->collisionSolver(), 1);
+        *_stream << "\n";
+    }
+
+    if(world->constraintSolver()) {
+        saveObject("constraintSolver", world->constraintSolver(), 1);
         *_stream << "\n";
     }
 
@@ -290,7 +297,23 @@ bool XmlFileHandler::startElement(const QString &namespaceURI, const QString &,
 
             break;
 
+        } else if(_object == _world && qName == "constraintSolver") {
+            ConstraintSolver* constraintSolver = _factory->newConstraintSolver(attributes.value("class")); 
+            if(constraintSolver == NULL) {
+                _errorString = QObject::tr("Unknown constraintSolver type \"%1\"").arg(attributes.value("class"));
+                return false;
+            }
+
+            _world->setConstraintSolver(constraintSolver);
+            _object = constraintSolver;
+            _parent = _world;
+
+            if(!addId(_object, attributes.value("id"))) return false;
+
+            break;
+
         }
+
 
         _property = _object->metaObject()->property(qName);
         if(!_property && _object->metaObject()->inherits<Item>()) {

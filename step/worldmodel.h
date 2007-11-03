@@ -33,6 +33,7 @@ namespace StepCore {
     class Item;
     class Solver;
     class CollisionSolver;
+    class ConstraintSolver;
     class MetaProperty;
 }
 
@@ -61,6 +62,7 @@ public:
     QModelIndex worldIndex() const;
     QModelIndex solverIndex() const;
     QModelIndex collisionSolverIndex() const;
+    QModelIndex constraintSolverIndex() const;
     QModelIndex objectIndex(StepCore::Object* obj) const;
     QModelIndex childItemIndex(int n, StepCore::ItemGroup* group = NULL) const;
     
@@ -71,6 +73,7 @@ public:
     StepCore::World* world() const { return _world; }
     StepCore::Solver* solver() const { return _world->solver(); }
     StepCore::CollisionSolver* collisionSolver() const { return _world->collisionSolver(); }
+    StepCore::ConstraintSolver* constraintSolver() const { return _world->constraintSolver(); }
 
     StepCore::Item* item(const QModelIndex& index) const;
 

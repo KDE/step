@@ -221,7 +221,7 @@ public:
 
     /** Get constraints jacobian (space-derivatives of constraint value),
      *  its derivative and product of inverse mass matrix by transposed jacobian (wjt) */
-    virtual void getJacobian(GmmSparceRowMatrix& value, GmmSparceRowMatrix& derivative, int offset) = 0;
+    virtual void getJacobian(GmmSparceRowMatrix* value, GmmSparceRowMatrix* derivative, int offset) = 0;
 };
 
 /** \ingroup tools
@@ -470,13 +470,14 @@ private:
     ForceList _forces;
     JointList _joints;
 
-    Solver*        _solver;
-    CollisionSolver* _collisionSolver;
+    Solver*           _solver;
+    CollisionSolver*  _collisionSolver;
     ConstraintSolver* _constraintSolver;
 
     int          _variablesCount; ///< \internal Count of positions (not including velocities)
     GmmStdVector _variables;      ///< \internal Positions and velocities (size == _variablesCount*2)
     GmmStdVector _variances;      ///< \internal Variances of positions and velocities
+    GmmSparceRowMatrix _inverseMass;
 
     int                _constraintsCount;
     GmmStdVector       _constraints;

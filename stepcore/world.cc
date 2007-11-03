@@ -255,6 +255,7 @@ void World::clear()
     _variablesCount = 0;
     _variables.resize(0);
     _variances.resize(0);
+    _inverseMass.resize(0,0);
 
     _constraintsCount = 0;
     _constraints.resize(0);
@@ -313,11 +314,13 @@ World& World::operator=(const World& world)
     copyMap.insert(&world, this);
     if(_solver) copyMap.insert(world._solver, _solver);
     if(_collisionSolver) copyMap.insert(world._collisionSolver, _collisionSolver);
+    if(_constraintSolver) copyMap.insert(world._constraintSolver, _constraintSolver);
     fillCopyMap(&copyMap, &world, this);
 
     applyCopyMap(&copyMap, this);
     if(_solver) applyCopyMap(&copyMap, _solver);
     if(_collisionSolver) applyCopyMap(&copyMap, _collisionSolver);
+    if(_constraintSolver) applyCopyMap(&copyMap, _constraintSolver);
 
     const ItemList::const_iterator end = items().end();
     for(ItemList::const_iterator it = items().begin(); it != end; ++it) {
@@ -508,7 +511,7 @@ Object* World::object(const QString& name)
     if(this->name() == name) return this;
     else if(_solver && _solver->name() == name) return _solver;
     else if(_collisionSolver && _collisionSolver->name() == name) return _collisionSolver;
-    //else if(_constraintSolver && _constraintSolver->name() == name) return _constraintSolver;
+    else if(_constraintSolver && _constraintSolver->name() == name) return _constraintSolver;
     else return item(name);
 }
 
@@ -568,6 +571,9 @@ void World::checkVariablesCount()
         _variablesCount = variablesCount;
         _variables.resize(_variablesCount*2);
         _variances.resize(_variablesCount*2);
+        _inverseMass.resize(_variablesCount, _variablesCount);
+        _constraintsJacobian.resize(_constraintsCount, _variablesCount);
+        _constraintsJacobianDerivative.resize(_constraintsCount, _variablesCount);
         if(_solver) _solver->setDimension(_variablesCount*2);
     }
 
@@ -757,20 +763,32 @@ inline int World::solverFunction(double t, const double* y,
 
     // 3. Constraints
     if(_constraintSolver) {
+        gmm::clear(_constraintsJacobian);
+        gmm::clear(_constraintsJacobianDerivative);
+        gmm::clear(_inverseMass);
+
         int index = 0;
         const JointList::const_iterator j_end = _joints.end();
         for(JointList::iterator joint = _joints.begin(); joint != j_end; ++joint) {
             (*joint)->getConstraints(&_constraints[index], &_constraintsDerivative[index]);
-            (*joint)->getJacobian(_constraintsJacobian, _constraintsJacobianDerivative, index);
+            (*joint)->getJacobian(&_constraintsJacobian, &_constraintsJacobianDerivative, index);
             index += (*joint)->constraintsCount();
         }
 
-        _constraintSolver->solve(GmmArrayVector(const_cast<double*>(y), _variablesCount),
-                                 GmmArrayVector(const_cast<double*>(y+_variablesCount), _variablesCount),
-                                 GmmArrayVector(const_cast<double*>(f+_variablesCount), _variablesCount),
-                                 _constraintsJacobian,
-                                 _constraints, _constraintsDerivative, _constraintsJacobian,
-                                 _constraintsJacobianDerivative);
+        index = 0;
+        const BodyList::const_iterator b_end = _bodies.end();
+        for(BodyList::iterator body = _bodies.begin(); body != b_end; ++body) {
+            (*body)->getInverseMass(&_inverseMass, NULL, index);
+            index += (*body)->variablesCount();
+        }
+
+        GmmArrayVector position(const_cast<double*>(y), _variablesCount);
+        GmmArrayVector velocity(const_cast<double*>(y+_variablesCount), _variablesCount);
+        GmmArrayVector acceleration(const_cast<double*>(f+_variablesCount), _variablesCount);
+        _constraintSolver->solve(position, velocity, _inverseMass, _constraints,
+                                 _constraintsDerivative, _constraintsJacobian,
+                                 _constraintsJacobianDerivative,
+                                 &acceleration);
     }
 
     return 0;

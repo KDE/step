@@ -20,6 +20,7 @@
 #include "world.h"
 #include "solver.h"
 #include "collisionsolver.h"
+#include "constraintsolver.h"
 
 namespace StepCore {
 
@@ -60,6 +61,13 @@ CollisionSolver* Factory::newCollisionSolver(const QString& name) const
     const MetaObject* metaObject = this->metaObject(name);
     if(!metaObject || !metaObject->inherits<CollisionSolver>()) return NULL;
     return static_cast<CollisionSolver*>(metaObject->newObject());
+}
+
+ConstraintSolver* Factory::newConstraintSolver(const QString& name) const
+{
+    const MetaObject* metaObject = this->metaObject(name);
+    if(!metaObject || !metaObject->inherits<ConstraintSolver>()) return NULL;
+    return static_cast<ConstraintSolver*>(metaObject->newObject());
 }
 
 } // namespace StepCore

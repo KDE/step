@@ -28,6 +28,7 @@
 #include <stepcore/xmlfile.h>
 #include <stepcore/eulersolver.h>
 #include <stepcore/collisionsolver.h>
+#include <stepcore/constraintsolver.h>
 #include <stepcore/types.h>
 #include <QApplication>
 #include <QItemSelectionModel>
@@ -233,6 +234,7 @@ QModelIndex CommandSimulate::pairToIndex(CommandSimulate::PairInt pair)
         if(pair.second == 0) return _worldModel->worldIndex();
         else if(pair.second == 1) return _worldModel->solverIndex();
         else if(pair.second == 2) return _worldModel->collisionSolverIndex();
+        else if(pair.second == 3) return _worldModel->constraintSolverIndex();
         else return QModelIndex();
     } else return _worldModel->childItemIndex(pair.second);
 }
@@ -346,6 +348,10 @@ void WorldModel::resetWorld()
         _world->setCollisionSolver(new StepCore::GJKCollisionSolver());
         _world->collisionSolver()->setName(getUniqueName("collisionSolver"));
     }
+    if(NULL == _world->constraintSolver()) {
+        _world->setConstraintSolver(new StepCore::CGConstraintSolver());
+        _world->constraintSolver()->setName(getUniqueName("constraintSolver"));
+    }
     _undoStack->clear();
 
     _world->doCalcFn();
@@ -369,7 +375,7 @@ void WorldModel::doEmitChanged()
     if(_updatingRecalcFn) _world->doCalcFn();
     emit worldDataChanged(!_updatingFullUpdate);
     if(_updatingFullUpdate) {
-        emit dataChanged(worldIndex(), collisionSolverIndex());
+        emit dataChanged(worldIndex(), constraintSolverIndex());
     }
 }
 
@@ -388,6 +394,11 @@ QModelIndex WorldModel::collisionSolverIndex() const
     return createIndex(2, 0, _world->collisionSolver());
 }
 
+QModelIndex WorldModel::constraintSolverIndex() const
+{
+    return createIndex(3, 0, _world->constraintSolver());
+}
+
 QModelIndex WorldModel::childItemIndex(int n, StepCore::ItemGroup* group) const
 {
     if(!group) group = _world;
@@ -399,6 +410,7 @@ QModelIndex WorldModel::objectIndex(StepCore::Object* obj) const
     if(obj == _world) return worldIndex();
     else if(obj == _world->solver()) return solverIndex();
     else if(obj == _world->collisionSolver()) return collisionSolverIndex();
+    else if(obj == _world->constraintSolver()) return constraintSolverIndex();
     else {
         StepCore::Item* item = dynamic_cast<StepCore::Item*>(obj);
         STEPCORE_ASSERT_NOABORT(item && item->group());
@@ -454,6 +466,7 @@ QModelIndex WorldModel::index(int row, int /*column*/, const QModelIndex &parent
         if(row == 0) return worldIndex();
         else if(row == 1) return solverIndex();
         else if(row == 2) return collisionSolverIndex();
+        else if(row == 3) return constraintSolverIndex();
     } else {
         StepCore::ItemGroup* group = dynamic_cast<StepCore::ItemGroup*>(object(parent));
         if(group) return createIndex(row, 0, group->childItem(row));
@@ -468,6 +481,7 @@ QModelIndex WorldModel::parent(const QModelIndex &index) const
     else if(index.internalPointer() == _world) return QModelIndex();
     else if(index.internalPointer() == _world->solver()) return QModelIndex();
     else if(index.internalPointer() == _world->collisionSolver()) return QModelIndex();
+    else if(index.internalPointer() == _world->constraintSolver()) return QModelIndex();
     else {
         StepCore::Item* item = dynamic_cast<StepCore::Item*>(object(index));
         if(item && item->group()) return objectIndex(item->group());
@@ -480,7 +494,8 @@ int WorldModel::rowCount(const QModelIndex &parent) const
     if(!parent.isValid()) {
         Q_ASSERT(_world->solver());
         Q_ASSERT(_world->collisionSolver());
-        return 3;
+        Q_ASSERT(_world->constraintSolver());
+        return 4;
         /*
         int count = 1;
         if(_world->solver()) ++count;

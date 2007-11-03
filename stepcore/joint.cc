@@ -80,16 +80,16 @@ void Anchor::getConstraints(double* value, double* derivative)
     }
 }
 
-void Anchor::getJacobian(GmmSparceRowMatrix& value, GmmSparceRowMatrix& /*derivative*/, int offset)
+void Anchor::getJacobian(GmmSparceRowMatrix* value, GmmSparceRowMatrix* /*derivative*/, int offset)
 {
     if(_p) {
-        value.row(offset).w(_p->variablesOffset()+Particle::PositionOffset, 1);
-        value.row(offset+1).w(_p->variablesOffset()+Particle::PositionOffset+1, 1);
+        value->row(offset).w(_p->variablesOffset()+Particle::PositionOffset, 1);
+        value->row(offset+1).w(_p->variablesOffset()+Particle::PositionOffset+1, 1);
         /* derivative is zero */
     } else if(_r) {
-        value.row(offset).w(_r->variablesOffset()+RigidBody::PositionOffset, 1);
-        value.row(offset+1).w(_r->variablesOffset()+RigidBody::PositionOffset+1, 1);
-        value.row(offset+2).w(_r->variablesOffset()+RigidBody::AngleOffset, 1);
+        value->row(offset).w(_r->variablesOffset()+RigidBody::PositionOffset, 1);
+        value->row(offset+1).w(_r->variablesOffset()+RigidBody::PositionOffset+1, 1);
+        value->row(offset+2).w(_r->variablesOffset()+RigidBody::AngleOffset, 1);
         /* derivative is zero */
     }
 }

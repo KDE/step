@@ -32,6 +32,7 @@
 #include <stepcore/gslsolver.h>
 #include <stepcore/eulersolver.h>
 #include <stepcore/collisionsolver.h>
+#include <stepcore/constraintsolver.h>
 #include <stepcore/joint.h>
 #include <stepcore/tool.h>
 #include <stepcore/types.h>
@@ -112,6 +113,7 @@ WorldFactory::WorldFactory()
     __REGISTER(Force);
     __REGISTER(Solver);
     __REGISTER(CollisionSolver);
+    __REGISTER(ConstraintSolver);
 
     __REGISTER_EXT_E(Particle, ItemCreator, ParticleGraphicsItem, ItemMenuHandler);
     __REGISTER_EXT_E(ChargedParticle, ItemCreator, ParticleGraphicsItem, ItemMenuHandler);
@@ -140,6 +142,7 @@ WorldFactory::WorldFactory()
     __REGISTER(AdaptiveEulerSolver);
 
     __REGISTER(GJKCollisionSolver);
+    __REGISTER(CGConstraintSolver);
 
 #ifdef STEPCORE_WITH_GSL
     __REGISTER(GslRK2Solver);

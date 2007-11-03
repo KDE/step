@@ -42,9 +42,10 @@ class ConstraintSolver: public Object
 
 public:
     virtual int solve(const GmmArrayVector& position, const GmmArrayVector& velocity,
-                const GmmArrayVector& acceleration, const GmmSparceRowMatrix& inverseMass,
+                const GmmSparceRowMatrix& inverseMass,
                 const GmmStdVector& constraints, const GmmStdVector& constraintsDerivatives,
-                const GmmSparceRowMatrix& jacobian, const GmmSparceRowMatrix& jacobianDerivative);
+                const GmmSparceRowMatrix& jacobian, const GmmSparceRowMatrix& jacobianDerivative,
+                GmmArrayVector* acceleration) = 0;
 };
 
 class CGConstraintSolver: public ConstraintSolver
@@ -53,9 +54,10 @@ class CGConstraintSolver: public ConstraintSolver
 
 public:
     int solve(const GmmArrayVector& position, const GmmArrayVector& velocity,
-                const GmmArrayVector& acceleration, const GmmSparceRowMatrix& inverseMass,
+                const GmmSparceRowMatrix& inverseMass,
                 const GmmStdVector& constraints, const GmmStdVector& constraintsDerivatives,
-                const GmmSparceRowMatrix& jacobian, const GmmSparceRowMatrix& jacobianDerivative);
+                const GmmSparceRowMatrix& jacobian, const GmmSparceRowMatrix& jacobianDerivative,
+                GmmArrayVector* acceleration);
 
 };
 
