@@ -41,23 +41,20 @@ int CGConstraintSolver::solve(const GmmArrayVector& position, const GmmArrayVect
     int np = gmm::linalg_traits<GmmArrayVector>::size(position);
     int nc = gmm::linalg_traits<GmmStdVector>::size(constraints);
 
-    qDebug("np=%d, nc=%d", np, nc);
-    qDebug("jacobian: (%d,%d)", jacobian.nrows(), jacobian.ncols());
-    qDebug("inverseMass: (%d,%d)", inverseMass.nrows(), inverseMass.ncols());
-
     GmmSparceRowMatrix a(nc, nc);
     GmmStdVector b(nc);
     GmmStdVector l(nc);
 
     {
         GmmSparceRowMatrix wj(np, nc);
-        gmm::mult(inverseMass, gmm::transposed(jacobian), wj);
+
+        GmmSparceRowMatrix jacobianT(np, nc);
+        gmm::copy(gmm::transposed(jacobian), jacobianT);
+
+        gmm::mult(inverseMass, jacobianT, wj);
         gmm::mult(jacobian, wj, a);
 
-        //GmmStdVector wq(np);
-        //gmm::mult(inverseMass, *acceleration, wq);
         gmm::mult(jacobian, *acceleration, b);
-
         gmm::mult_add(jacobianDerivative, velocity, b);
         gmm::add(gmm::scaled(constraints, 0.1), b);
         gmm::add(gmm::scaled(constraintsDerivatives, 0.1), b);
