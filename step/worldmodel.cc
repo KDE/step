@@ -163,7 +163,7 @@ void CommandNewItem::removeItem()
 {
     foreach(const Link& link, _links)
         link.second->writeVariant(link.first, QVariant::fromValue<StepCore::Object*>(NULL));
-    qDebug("%d links removed", _links.count());
+    //qDebug("%d links removed", _links.count());
     _worldModel->removeCreatedItem(_item);
 }
 
@@ -172,7 +172,7 @@ void CommandNewItem::readdItem()
     _worldModel->addCreatedItem(_item, _parent);
     foreach(const Link& link, _links)
         link.second->writeVariant(link.first, QVariant::fromValue<StepCore::Object*>(_item));
-    qDebug("%d links restored", _links.count());
+    //qDebug("%d links restored", _links.count());
 }
 
 void CommandNewItem::redo()
