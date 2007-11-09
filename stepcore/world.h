@@ -146,26 +146,32 @@ public:
     /** Get count of dynamic variables (not including velocities) */
     virtual int  variablesCount() = 0;
 
-    /** Set positions, velocities and its variances using values in arrays and
+    /** Set positions, velocities and (possibly) its variances using values in arrays and
      *  also reset accelerations and its variances. Variances should only be copied
      *  and reseted if positionVariance != NULL. */
     virtual void setVariables(const double* position, const double* velocity,
                const double* positionVariance, const double* velocityVariance) = 0;
 
-    /** Copy positions, velocities and its variances to arrays.
+    /** Copy positions, velocities and (possibly) its variances to arrays.
      *  Variances should only be copied if positionVariance != NULL. */
     virtual void getVariables(double* position, double* velocity,
                      double* positionVariance, double* velocityVariance) = 0;
 
-    /** Copy acceleration (forces left-multiplied by inverse mass) and its variances to arrays.
+    /** Add force and (possibly) its variance to force accomulator.
+     *  \note This function is used only by generic constraints handling code,
+     *        force objects should use body-specific functions. */
+    virtual void addForce(const double* force, const double* forceVariance) = 0;
+
+    /** Reset force accomulator and (possibly) its variance to zero.
+     *  Variance should only be reseted if resetVariance == true. */
+    virtual void resetForce(bool resetVariance) = 0;
+
+    /** Copy acceleration (forces left-multiplied by inverse mass)
+     *  and (possibly) its variances to arrays.
      *  Variances should only be copied if accelerationVariance != NULL. */
     virtual void getAccelerations(double* acceleration, double* accelerationVariance) = 0;
 
-    /** Reset acceleration (actually forces) and its variances to zero.
-     *  Variances should only be reseted if resetVariance == true. */
-    virtual void resetAccelerations(bool resetVariance) = 0;
-
-    /** Get inverse mass and its variance matrixes.
+    /** Get inverse mass and (possibly) its variance matrixes.
      *  Variance should only be copied of variance != NULL. */
     virtual void getInverseMass(GmmSparceRowMatrix* inverseMass,
                             GmmSparceRowMatrix* variance, int offset) = 0;
@@ -218,6 +224,9 @@ public:
 
     /** Get current constraints value (amaunt of brokenness) and its derivative */
     virtual void getConstraints(double* value, double* derivative) = 0;
+
+    /** Get force limits, default is no limits at all */
+    virtual void getForceLimits(double* low STEPCORE_UNUSED, double* high STEPCORE_UNUSED) {}
 
     /** Get constraints jacobian (space-derivatives of constraint value),
      *  its derivative and product of inverse mass matrix by transposed jacobian (wjt) */
@@ -482,6 +491,8 @@ private:
     int                _constraintsCount;
     GmmStdVector       _constraints;
     GmmStdVector       _constraintsDerivative;
+    GmmStdVector       _constraintsForceLow;
+    GmmStdVector       _constraintsForceHigh;
     GmmSparceRowMatrix _constraintsJacobian;
     GmmSparceRowMatrix _constraintsJacobianDerivative;
 

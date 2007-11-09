@@ -112,7 +112,18 @@ void Particle::getAccelerations(double* acceleration, double* accelerationVarian
     }
 }
 
-void Particle::resetAccelerations(bool resetVariance)
+void Particle::addForce(const double* force, const double* forceVariance)
+{
+    _force[0] += force[0];
+    _force[1] += force[1];
+    if(forceVariance) {
+        ParticleErrors* pe = particleErrors();
+        pe->_forceVariance[0] += forceVariance[0];
+        pe->_forceVariance[1] += forceVariance[1];
+    }
+}
+
+void Particle::resetForce(bool resetVariance)
 {
     _force.setZero();
     if(resetVariance) particleErrors()->_forceVariance.setZero();

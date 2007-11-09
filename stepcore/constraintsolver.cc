@@ -33,10 +33,10 @@ STEPCORE_META_OBJECT(CGConstraintSolver, "CGConstraintSolver", 0,
                         STEPCORE_SUPER_CLASS(ConstraintSolver),)
 
 int CGConstraintSolver::solve(const GmmArrayVector& position, const GmmArrayVector& velocity,
-                const GmmSparceRowMatrix& inverseMass,
-                const GmmStdVector& constraints, const GmmStdVector& constraintsDerivatives,
+                const GmmArrayVector& acceleration, const GmmSparceRowMatrix& inverseMass,
+                const GmmStdVector& constraints, const GmmStdVector& constraintsDerivative,
                 const GmmSparceRowMatrix& jacobian, const GmmSparceRowMatrix& jacobianDerivative,
-                GmmArrayVector* acceleration)
+                GmmArrayVector* constraintsForce)
 {
     int np = gmm::linalg_traits<GmmArrayVector>::size(position);
     int nc = gmm::linalg_traits<GmmStdVector>::size(constraints);
@@ -54,10 +54,10 @@ int CGConstraintSolver::solve(const GmmArrayVector& position, const GmmArrayVect
         gmm::mult(inverseMass, jacobianT, wj);
         gmm::mult(jacobian, wj, a);
 
-        gmm::mult(jacobian, *acceleration, b);
+        gmm::mult(jacobian, acceleration, b);
         gmm::mult_add(jacobianDerivative, velocity, b);
         gmm::add(gmm::scaled(constraints, 0.1), b);
-        gmm::add(gmm::scaled(constraintsDerivatives, 0.1), b);
+        gmm::add(gmm::scaled(constraintsDerivative, 0.1), b);
 
         gmm::scale(b, -1);
     }
@@ -68,13 +68,7 @@ int CGConstraintSolver::solve(const GmmArrayVector& position, const GmmArrayVect
 
     // constrained_cg ?
     gmm::cg(a, l, b, PS, PR, iter);
-
-    GmmStdVector fc(np);
-    GmmStdVector ac(np);
-    gmm::mult(transposed(jacobian), l, fc);
-    gmm::mult(inverseMass, fc, ac);
-
-    gmm::add(ac, *acceleration);
+    gmm::mult(transposed(jacobian), l, *constraintsForce);
 
     return 0;
 }

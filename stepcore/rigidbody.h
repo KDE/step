@@ -213,12 +213,13 @@ public:
     //const Vector2dList& vertexes() const;
 
     int  variablesCount() { return 3; }
-    void resetAccelerations(bool resetVariance);
-    void getAccelerations(double* acceleration, double* accelerationVariance);
     void getVariables(double* position, double* velocity,
                           double* positionVariance, double* velocityVariance);
     void setVariables(const double* position, const double* velocity,
               const double* positionVariance, const double* velocityVariance);
+    void addForce(const double* force, const double* forceVariance);
+    void resetForce(bool resetVariance);
+    void getAccelerations(double* acceleration, double* accelerationVariance);
     void getInverseMass(GmmSparceRowMatrix* inverseMass,
                             GmmSparceRowMatrix* variance, int offset);
 

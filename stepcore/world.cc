@@ -22,6 +22,7 @@
 #include "constraintsolver.h"
 
 #include <algorithm>
+#include <cmath>
 
 namespace StepCore
 {
@@ -260,6 +261,8 @@ void World::clear()
     _constraintsCount = 0;
     _constraints.resize(0);
     _constraintsDerivative.resize(0);
+    _constraintsForceLow.resize(0);
+    _constraintsForceHigh.resize(0);
     _constraintsJacobian.resize(0,0);
     _constraintsJacobianDerivative.resize(0,0);
 
@@ -586,6 +589,8 @@ void World::checkVariablesCount()
         _constraintsCount = constraintsCount;
         _constraints.resize(_constraintsCount);
         _constraintsDerivative.resize(_constraintsCount);
+        _constraintsForceLow.resize(_constraintsCount);
+        _constraintsForceHigh.resize(_constraintsCount);
         _constraintsJacobian.resize(_constraintsCount, _variablesCount);
         _constraintsJacobianDerivative.resize(_constraintsCount, _variablesCount);
     }
@@ -762,15 +767,19 @@ inline int World::solverFunction(double t, const double* y,
     gatherAccelerations(f+_variablesCount, fvar ? fvar+_variablesCount : NULL);
 
     // 3. Constraints
-    if(_constraintSolver) {
+    if(_constraintSolver && _constraintsCount > 0) {
         gmm::clear(_constraintsJacobian);
         gmm::clear(_constraintsJacobianDerivative);
         gmm::clear(_inverseMass);
+
+        std::fill(_constraintsForceLow.begin(), _constraintsForceLow.end(), -HUGE_VAL);
+        std::fill(_constraintsForceHigh.begin(), _constraintsForceHigh.end(), HUGE_VAL);
 
         int index = 0;
         const JointList::const_iterator j_end = _joints.end();
         for(JointList::iterator joint = _joints.begin(); joint != j_end; ++joint) {
             (*joint)->getConstraints(&_constraints[index], &_constraintsDerivative[index]);
+            (*joint)->getForceLimits(&_constraintsForceLow[index], &_constraintsForceHigh[index]);
             (*joint)->getJacobian(&_constraintsJacobian, &_constraintsJacobianDerivative, index);
             index += (*joint)->constraintsCount();
         }
@@ -785,10 +794,16 @@ inline int World::solverFunction(double t, const double* y,
         GmmArrayVector position(const_cast<double*>(y), _variablesCount);
         GmmArrayVector velocity(const_cast<double*>(y+_variablesCount), _variablesCount);
         GmmArrayVector acceleration(const_cast<double*>(f+_variablesCount), _variablesCount);
-        _constraintSolver->solve(position, velocity, _inverseMass, _constraints,
-                                 _constraintsDerivative, _constraintsJacobian,
-                                 _constraintsJacobianDerivative,
-                                 &acceleration);
+        _constraintSolver->solve(position, velocity, acceleration, _inverseMass, 
+                                 _constraints, _constraintsDerivative,
+                                 _constraintsJacobian, _constraintsJacobianDerivative, &acceleration);
+
+        index = 0;
+        for(BodyList::iterator body = _bodies.begin(); body != b_end; ++body) {
+            (*body)->addForce(f+_variablesCount+index, NULL);
+            (*body)->getAccelerations(f+_variablesCount+index, NULL);
+            index += (*body)->variablesCount();
+        }
     }
 
     return 0;

@@ -206,7 +206,20 @@ void RigidBody::getAccelerations(double* acceleration, double* accelerationVaria
     }
 }
 
-void RigidBody::resetAccelerations(bool resetVariance)
+void RigidBody::addForce(const double* force, const double* forceVariance)
+{
+    _force[0] += force[0];
+    _force[1] += force[1];
+    _torque += force[2];
+    if(forceVariance) {
+        RigidBodyErrors* re = rigidBodyErrors();
+        re->_forceVariance[0] += forceVariance[0];
+        re->_forceVariance[1] += forceVariance[1];
+        re->_torqueVariance += forceVariance[2];
+    }
+}
+
+void RigidBody::resetForce(bool resetVariance)
 {
     _force.setZero();
     _torque = 0;
