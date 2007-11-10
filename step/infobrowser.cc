@@ -65,7 +65,7 @@ InfoBrowser::InfoBrowser(WorldModel* worldModel, QWidget* parent, Qt::WindowFlag
     _followAction->setChecked(true);
 
     _toolBar->addSeparator();
-    _execAction = _toolBar->addAction(KIcon("exec"), i18n("Open in browser"), this, SLOT(openInBrowser()));
+    _execAction = _toolBar->addAction(KIcon("system-run"), i18n("Open in browser"), this, SLOT(openInBrowser()));
     _execAction->setEnabled(false);
 
     _htmlPart = new KHTMLPart(widget);
