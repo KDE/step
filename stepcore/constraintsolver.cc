@@ -36,6 +36,7 @@ int CGConstraintSolver::solve(const GmmArrayVector& position, const GmmArrayVect
                 const GmmArrayVector& acceleration, const GmmSparceRowMatrix& inverseMass,
                 const GmmStdVector& constraints, const GmmStdVector& constraintsDerivative,
                 const GmmSparceRowMatrix& jacobian, const GmmSparceRowMatrix& jacobianDerivative,
+                const GmmStdVector& forceMin, const GmmStdVector& forceMax,
                 GmmArrayVector* constraintsForce)
 {
     int np = gmm::linalg_traits<GmmArrayVector>::size(position);
@@ -56,19 +57,51 @@ int CGConstraintSolver::solve(const GmmArrayVector& position, const GmmArrayVect
 
         gmm::mult(jacobian, acceleration, b);
         gmm::mult_add(jacobianDerivative, velocity, b);
-        gmm::add(gmm::scaled(constraints, 0.1), b);
-        gmm::add(gmm::scaled(constraintsDerivative, 0.1), b);
+        gmm::add(gmm::scaled(constraints, 0.01), b);
+        gmm::add(gmm::scaled(constraintsDerivative, 0.01), b);
 
         gmm::scale(b, -1);
     }
 
-    gmm::iteration iter(2.0E-10); // XXX
+    gmm::iteration iter(2.0E-5); // XXX
     gmm::identity_matrix PS;
     gmm::identity_matrix PR;
 
+    /*
+    std::cout << "ConstraintSolver:" << endl
+              << "J=" << jacobian << endl
+              << "J'=" << jacobianDerivative << endl
+              << "C=" << constraints << endl
+              << "C'=" << constraintsDerivative << endl
+              << "invM=" << inverseMass << endl
+              << "pos=" << position << endl
+              << "vel=" << velocity << endl
+              << "acc=" << acceleration << endl
+              << "a=" << a << endl
+              << "b=" << b << endl;
+    */
+
     // constrained_cg ?
+    // XXX: limit iterations count
     gmm::cg(a, l, b, PS, PR, iter);
     gmm::mult(transposed(jacobian), l, *constraintsForce);
+
+    // print debug info
+    /*
+    std::cout << "ConstraintSolver:" << endl
+              << "J=" << jacobian << endl
+              << "J'=" << jacobianDerivative << endl
+              << "C=" << constraints << endl
+              << "C'=" << constraintsDerivative << endl
+              << "invM=" << inverseMass << endl
+              << "pos=" << position << endl
+              << "vel=" << velocity << endl
+              << "acc=" << acceleration << endl
+              << "a=" << a << endl
+              << "b=" << b << endl
+              << "l=" << l << endl
+              << "*constraintsForce=" << *constraintsForce << endl << endl << endl;
+              */
 
     return 0;
 }

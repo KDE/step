@@ -70,7 +70,6 @@ protected:
     RigidBody* _r;
 };
 
-#if 0
 /** \ingroup joints
  *  \brief Fixes position of a given point on the body
  */
@@ -99,10 +98,8 @@ public:
     void setPosition(const Vector2d& position) { _position = position; }
 
     int constraintsCount();
-    void getValue(double* array);
-    void getDerivative(double* array);
-    void getJacobian(double* array);
-    void getJacobianDerivative(double* array);
+    void getConstraints(double* value, double* derivative);
+    void getJacobian(GmmSparceRowMatrix* value, GmmSparceRowMatrix* derivative, int offset);
 
 protected:
     Object*  _body;
@@ -112,8 +109,6 @@ protected:
     Particle*  _p;
     RigidBody* _r;
 };
-#endif
-
 
 } // namespace StepCore
 

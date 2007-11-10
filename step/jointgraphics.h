@@ -52,8 +52,40 @@ protected:
 
     QPainterPath _path;
     bool         _moving;
+};
 
-    static const int RADIUS = 5;
+/////////////////////////////////////////////////////////////////////////////////////////
+
+class PinCreator: public ItemCreator
+{
+public:
+    PinCreator(const QString& className, WorldModel* worldModel, WorldScene* worldScene)
+                        : ItemCreator(className, worldModel, worldScene) {}
+    bool sceneEvent(QEvent* event);
+
+    static void tryAttach(WorldModel* worldModel, WorldScene* worldScene,
+                          StepCore::Item* item, const QPointF& pos);
+};
+
+class PinGraphicsItem: public WorldGraphicsItem
+{
+public:
+    PinGraphicsItem(StepCore::Item* item, WorldModel* worldModel);
+
+    void paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget);
+    QPainterPath shape() const;
+
+    void viewScaleChanged();
+    void worldDataChanged(bool dynamicOnly);
+
+    void mouseMoveEvent(QGraphicsSceneMouseEvent *event);
+    void mouseReleaseEvent(QGraphicsSceneMouseEvent *event);
+
+protected:
+    StepCore::Pin* pin() const;
+
+    QPainterPath _path;
+    bool         _moving;
 };
 
 #endif

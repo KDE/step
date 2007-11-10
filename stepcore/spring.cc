@@ -88,6 +88,8 @@ void Spring::calcForce(bool calcVariances)
     Vector2d v = velocity2() - velocity1();
 
     double l = r.norm();
+    if(l == 0) return; // XXX: take orientation from previous step
+
     double dl = l - _restLength;
     double vr = v.innerProduct(r);
     Vector2d force = (_stiffness*dl + _damping*vr/l) / l * r;

@@ -91,7 +91,7 @@ inline StepCore::Anchor* AnchorGraphicsItem::anchor() const
 QPainterPath AnchorGraphicsItem::shape() const
 {
     QPainterPath path;
-    double radius = (RADIUS+1)/currentViewScale();
+    double radius = (HANDLER_SIZE+1)/currentViewScale();
     path.addEllipse(QRectF(-radius,-radius,radius*2,radius*2));
     return path;
 }
@@ -129,7 +129,7 @@ void AnchorGraphicsItem::mouseReleaseEvent(QGraphicsSceneMouseEvent *event)
 void AnchorGraphicsItem::paint(QPainter* painter, const QStyleOptionGraphicsItem* /*option*/, QWidget* /*widget*/)
 {
     double s = currentViewScale();
-    double radius = RADIUS/s;
+    double radius = HANDLER_SIZE/s;
 
     painter->setRenderHint(QPainter::Antialiasing, true);
     painter->setPen(QPen(QColor::fromRgba(anchor()->color())));
@@ -141,7 +141,7 @@ void AnchorGraphicsItem::paint(QPainter* painter, const QStyleOptionGraphicsItem
         painter->setPen(QPen(SELECTION_COLOR, 0, Qt::DashLine));
         painter->setBrush(Qt::NoBrush);
         //painter->setBrush(QBrush(QColor(0, 0x99, 0xff)));
-        radius = (RADIUS+SELECTION_MARGIN)/s;
+        radius = (HANDLER_SIZE+SELECTION_MARGIN)/s;
         painter->drawEllipse(QRectF(-radius, -radius, radius*2, radius*2));
     }
 }
@@ -151,8 +151,8 @@ void AnchorGraphicsItem::viewScaleChanged()
     prepareGeometryChange();
 
     double s = currentViewScale();
-    _boundingRect |= QRectF((-RADIUS-SELECTION_MARGIN)/s,  (-RADIUS-SELECTION_MARGIN)/s,
-                            (RADIUS+SELECTION_MARGIN)*2/s,( RADIUS+SELECTION_MARGIN)*2/s);
+    _boundingRect |= QRectF((-HANDLER_SIZE-SELECTION_MARGIN)/s,  (-HANDLER_SIZE-SELECTION_MARGIN)/s,
+                            (HANDLER_SIZE+SELECTION_MARGIN)*2/s,( HANDLER_SIZE+SELECTION_MARGIN)*2/s);
 //    worldDataChanged(false);
 }
 
@@ -163,5 +163,148 @@ void AnchorGraphicsItem::worldDataChanged(bool /*dynamicOnly*/)
         update();
     }*/
     setPos(vectorToPoint(anchor()->position()));       
+}
+
+//////////////////////////////////////////////////////////////////////////
+
+bool PinCreator::sceneEvent(QEvent* event)
+{
+    QGraphicsSceneMouseEvent* mouseEvent = static_cast<QGraphicsSceneMouseEvent*>(event);
+    if(event->type() == QEvent::GraphicsSceneMousePress && mouseEvent->button() == Qt::LeftButton) {
+        _worldModel->simulationPause();
+        _worldModel->beginMacro(i18n("Create %1", _className));
+        _item = _worldModel->newItem(className()); Q_ASSERT(_item != NULL);
+
+        QPointF pos = mouseEvent->scenePos();
+        QVariant vpos = QVariant::fromValue(WorldGraphicsItem::pointToVector(pos));
+        _worldModel->setProperty(_item, _item->metaObject()->property("position"), vpos);
+        tryAttach(_worldModel, _worldScene, _item, pos);
+
+        _worldModel->selectionModel()->setCurrentIndex(_worldModel->objectIndex(_item),
+                                                QItemSelectionModel::ClearAndSelect);
+        _worldModel->endMacro();
+        event->accept();
+        return true;
+    }
+    return false;
+}
+
+void PinCreator::tryAttach(WorldModel* worldModel, WorldScene* worldScene,
+                              StepCore::Item *item, const QPointF& pos)
+{
+    StepCore::Vector2d vpos = WorldGraphicsItem::pointToVector(pos);
+    foreach(QGraphicsItem* it, worldScene->items(pos)) {
+        StepCore::Item* itItem = worldScene->itemFromGraphics(it);
+        if(itItem->metaObject()->inherits<StepCore::RigidBody>()) {
+            worldModel->setProperty(item, item->metaObject()->property("body"),
+                                            QVariant::fromValue<StepCore::Object*>(itItem), false);
+
+            //worldModel->setProperty(item, item->metaObject()->property("localPosition"),
+            //            QVariant::fromValue(static_cast<StepCore::RigidBody*>(itItem)->pointWorldToLocal(vpos)));
+            worldModel->setProperty(item, item->metaObject()->property("localPosition"),
+                        QVariant::fromValue(vpos - static_cast<StepCore::RigidBody*>(itItem)->position()));
+            break;
+
+        } else if(itItem->metaObject()->inherits<StepCore::Particle>()) {
+            worldModel->setProperty(item, item->metaObject()->property("body"),
+                                            QVariant::fromValue<StepCore::Object*>(itItem), false);
+
+            worldModel->setProperty(item, item->metaObject()->property("localPosition"),
+                        QVariant::fromValue(vpos - static_cast<StepCore::Particle*>(itItem)->position()));
+            break;
+        }
+    }
+}
+
+PinGraphicsItem::PinGraphicsItem(StepCore::Item* item, WorldModel* worldModel)
+    : WorldGraphicsItem(item, worldModel), _moving(false)
+{
+    Q_ASSERT(dynamic_cast<StepCore::Pin*>(_item) != NULL);
+    setFlag(QGraphicsItem::ItemIsSelectable);
+    setFlag(QGraphicsItem::ItemIsMovable);
+    setZValue(HANDLER_ZVALUE);
+}
+
+inline StepCore::Pin* PinGraphicsItem::pin() const
+{
+    return static_cast<StepCore::Pin*>(_item);
+}
+
+QPainterPath PinGraphicsItem::shape() const
+{
+    QPainterPath path;
+    double radius = (HANDLER_SIZE+1)/currentViewScale();
+    path.addEllipse(QRectF(-radius,-radius,radius*2,radius*2));
+    return path;
+}
+
+void PinGraphicsItem::mouseMoveEvent(QGraphicsSceneMouseEvent *event)
+{
+    if ((event->buttons() & Qt::LeftButton) && (flags() & ItemIsMovable)) {
+        _worldModel->simulationPause();
+        if(!_moving) {
+            _moving = true;
+            _worldModel->beginMacro(i18n("Edit %1", _item->name()));
+            _worldModel->setProperty(_item, _item->metaObject()->property("body"),
+                                            QVariant::fromValue<StepCore::Object*>(NULL), false);
+            _worldModel->setProperty(_item, _item->metaObject()->property("localPosition"),
+                                        QVariant::fromValue(StepCore::Vector2d(0)));
+        }
+
+        QPointF newPos(mapToParent(event->pos()) - matrix().map(event->buttonDownPos(Qt::LeftButton)));
+        _worldModel->setProperty(_item, _item->metaObject()->property("position"), 
+                                        QVariant::fromValue(pointToVector(newPos)));
+    } else {
+        event->ignore();
+    }
+}
+
+void PinGraphicsItem::mouseReleaseEvent(QGraphicsSceneMouseEvent *event)
+{
+    if(_moving) {
+        PinCreator::tryAttach(_worldModel, static_cast<WorldScene*>(scene()),
+                                                        _item, event->scenePos());
+        _moving = false;
+        _worldModel->endMacro();
+    } else WorldGraphicsItem::mouseReleaseEvent(event);
+}
+
+
+void PinGraphicsItem::paint(QPainter* painter, const QStyleOptionGraphicsItem* /*option*/, QWidget* /*widget*/)
+{
+    double s = currentViewScale();
+    double radius = HANDLER_SIZE/s;
+
+    painter->setRenderHint(QPainter::Antialiasing, true);
+    painter->setPen(QPen(QColor::fromRgba(pin()->color())));
+    painter->drawEllipse(QRectF(-radius,-radius,radius*2,radius*2));
+    painter->drawPoint(0,0);//Rect(QRectF(-0.5/s,-0.5/s, 1/s, 1/s));
+
+    if(_isSelected) {
+        painter->setPen(QPen(SELECTION_COLOR, 0, Qt::DashLine));
+        painter->setBrush(Qt::NoBrush);
+        //painter->setBrush(QBrush(QColor(0, 0x99, 0xff)));
+        radius = (HANDLER_SIZE+SELECTION_MARGIN)/s;
+        painter->drawEllipse(QRectF(-radius, -radius, radius*2, radius*2));
+    }
+}
+
+void PinGraphicsItem::viewScaleChanged()
+{
+    prepareGeometryChange();
+
+    double s = currentViewScale();
+    _boundingRect |= QRectF((-HANDLER_SIZE-SELECTION_MARGIN)/s,  (-HANDLER_SIZE-SELECTION_MARGIN)/s,
+                            (HANDLER_SIZE+SELECTION_MARGIN)*2/s,( HANDLER_SIZE+SELECTION_MARGIN)*2/s);
+//    worldDataChanged(false);
+}
+
+void PinGraphicsItem::worldDataChanged(bool /*dynamicOnly*/)
+{
+    /*if(!dynamicOnly) {
+        viewScaleChanged();
+        update();
+    }*/
+    setPos(vectorToPoint(pin()->position()));       
 }
 

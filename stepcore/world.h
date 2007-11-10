@@ -226,7 +226,7 @@ public:
     virtual void getConstraints(double* value, double* derivative) = 0;
 
     /** Get force limits, default is no limits at all */
-    virtual void getForceLimits(double* low STEPCORE_UNUSED, double* high STEPCORE_UNUSED) {}
+    virtual void getForceLimits(double* forceMin STEPCORE_UNUSED, double* forceMax STEPCORE_UNUSED) {}
 
     /** Get constraints jacobian (space-derivatives of constraint value),
      *  its derivative and product of inverse mass matrix by transposed jacobian (wjt) */
@@ -491,8 +491,9 @@ private:
     int                _constraintsCount;
     GmmStdVector       _constraints;
     GmmStdVector       _constraintsDerivative;
-    GmmStdVector       _constraintsForceLow;
-    GmmStdVector       _constraintsForceHigh;
+    GmmStdVector       _constraintsForceMin;
+    GmmStdVector       _constraintsForceMax;
+    GmmStdVector       _constraintsTotalForce;
     GmmSparceRowMatrix _constraintsJacobian;
     GmmSparceRowMatrix _constraintsJacobianDerivative;
 
