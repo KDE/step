@@ -284,9 +284,12 @@ void Stick::getConstraintsInfo(ConstraintsInfo* info, int offset)
     Vector2d p = position2() - position1();
     Vector2d v = velocity2() - velocity1();
 
+    qDebug("_length=%f", _length);
     if(_length != 0) {
         info->value[offset] = (p.norm2() - _length*_length)*0.5;
         info->derivative[offset] = p.innerProduct(v); 
+
+        if(p[0] == 0 && p[1] == 0) p[0] = 0.1; //XXX: add epsilon
 
         if(_p1) {
             info->jacobian.row(offset).w(_p1->variablesOffset() + Particle::PositionOffset,   -p[0]);
@@ -329,7 +332,6 @@ void Stick::getConstraintsInfo(ConstraintsInfo* info, int offset)
         }
 
     } else {
-        /*
         info->value[offset  ] = p[0];
         info->value[offset+1] = p[1];
 
@@ -337,11 +339,38 @@ void Stick::getConstraintsInfo(ConstraintsInfo* info, int offset)
         info->derivative[offset+1] = v[1];
 
         if(_p1) {
-            info->jacobian.row(offset).w(_p1->variablesOffset() + Particle::PositionOffset, 1);
-        }
-        */
+            info->jacobian.row(offset  ).w(_p1->variablesOffset() + Particle::PositionOffset,   -1);
+            info->jacobian.row(offset+1).w(_p1->variablesOffset() + Particle::PositionOffset+1, -1);
 
-        STEPCORE_ASSERT_NOABORT( 0 ); // XXX
+        } else if(_r1) {
+            Vector2d r1 = _r1->vectorLocalToWorld(_localPosition1);
+            double   av = _r1->angularVelocity();
+
+            info->jacobian.row(offset  ).w(_r1->variablesOffset() + Particle::PositionOffset,   -1);
+            info->jacobian.row(offset+1).w(_r1->variablesOffset() + Particle::PositionOffset+1, -1);
+
+            info->jacobian.row(offset  ).w(_r1->variablesOffset()+RigidBody::AngleOffset, +r1[1]);
+            info->jacobian.row(offset+1).w(_r1->variablesOffset()+RigidBody::AngleOffset, -r1[0]);
+            info->jacobianDerivative.row(offset  ).w(_r1->variablesOffset()+RigidBody::AngleOffset, +av*r1[0]);
+            info->jacobianDerivative.row(offset+1).w(_r1->variablesOffset()+RigidBody::AngleOffset, +av*r1[1]);
+        }
+
+        if(_p2) {
+            info->jacobian.row(offset  ).w(_p2->variablesOffset() + Particle::PositionOffset,   1);
+            info->jacobian.row(offset+1).w(_p2->variablesOffset() + Particle::PositionOffset+1, 1);
+
+        } else if(_r2) {
+            Vector2d r2 = _r2->vectorLocalToWorld(_localPosition2);
+            double   av = _r2->angularVelocity();
+
+            info->jacobian.row(offset  ).w(_r2->variablesOffset() + Particle::PositionOffset,   1);
+            info->jacobian.row(offset+1).w(_r2->variablesOffset() + Particle::PositionOffset+1, 1);
+
+            info->jacobian.row(offset  ).w(_r2->variablesOffset()+RigidBody::AngleOffset, -r2[1]);
+            info->jacobian.row(offset+1).w(_r2->variablesOffset()+RigidBody::AngleOffset, +r2[0]);
+            info->jacobianDerivative.row(offset  ).w(_r2->variablesOffset()+RigidBody::AngleOffset, -av*r2[0]);
+            info->jacobianDerivative.row(offset+1).w(_r2->variablesOffset()+RigidBody::AngleOffset, -av*r2[1]);
+        }
     }
 
 #if 0

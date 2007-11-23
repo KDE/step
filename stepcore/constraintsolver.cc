@@ -53,8 +53,8 @@ int CGConstraintSolver::solve(ConstraintsInfo* info)
 
         gmm::mult(info->jacobian, info->acceleration, b);
         gmm::mult_add(info->jacobianDerivative, info->velocity, b);
-        gmm::add(gmm::scaled(info->value, 0.01), b);
-        gmm::add(gmm::scaled(info->derivative, 0.01), b);
+        gmm::add(gmm::scaled(info->value, 1.0), b);
+        gmm::add(gmm::scaled(info->derivative, 1.0), b);
 
         gmm::scale(b, -1);
     }
@@ -63,19 +63,20 @@ int CGConstraintSolver::solve(ConstraintsInfo* info)
     gmm::identity_matrix PS;
     gmm::identity_matrix PR;
 
-    /*
+    // print debug info
     std::cout << "ConstraintSolver:" << endl
-              << "J=" << jacobian << endl
-              << "J'=" << jacobianDerivative << endl
-              << "C=" << constraints << endl
-              << "C'=" << constraintsDerivative << endl
-              << "invM=" << inverseMass << endl
-              << "pos=" << position << endl
-              << "vel=" << velocity << endl
-              << "acc=" << acceleration << endl
+              << "J=" << info->jacobian << endl
+              << "J'=" << info->jacobianDerivative << endl
+              << "C=" << info->value << endl
+              << "C'=" << info->derivative << endl
+              << "invM=" << info->inverseMass << endl
+              << "pos=" << info->position << endl
+              << "vel=" << info->velocity << endl
+              << "acc=" << info->acceleration << endl
               << "a=" << a << endl
-              << "b=" << b << endl;
-    */
+              << "b=" << b << endl
+              << "l=" << l << endl
+              << "force=" << info->force << endl;
 
     // constrained_cg ?
     // XXX: limit iterations count
@@ -83,21 +84,19 @@ int CGConstraintSolver::solve(ConstraintsInfo* info)
     gmm::mult(transposed(info->jacobian), l, info->force);
 
     // print debug info
-    /*
-    std::cout << "ConstraintSolver:" << endl
-              << "J=" << jacobian << endl
-              << "J'=" << jacobianDerivative << endl
-              << "C=" << constraints << endl
-              << "C'=" << constraintsDerivative << endl
-              << "invM=" << inverseMass << endl
-              << "pos=" << position << endl
-              << "vel=" << velocity << endl
-              << "acc=" << acceleration << endl
+    std::cout << "Solved:" << endl
+              << "J=" << info->jacobian << endl
+              << "J'=" << info->jacobianDerivative << endl
+              << "C=" << info->value << endl
+              << "C'=" << info->derivative << endl
+              << "invM=" << info->inverseMass << endl
+              << "pos=" << info->position << endl
+              << "vel=" << info->velocity << endl
+              << "acc=" << info->acceleration << endl
               << "a=" << a << endl
               << "b=" << b << endl
               << "l=" << l << endl
-              << "*constraintsForce=" << *constraintsForce << endl << endl << endl;
-              */
+              << "force=" << info->force << endl << endl << endl;
 
     return 0;
 }
