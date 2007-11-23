@@ -284,7 +284,7 @@ void Stick::getConstraintsInfo(ConstraintsInfo* info, int offset)
     Vector2d p = position2() - position1();
     Vector2d v = velocity2() - velocity1();
 
-    qDebug("_length=%f", _length);
+    //qDebug("_length=%f", _length);
     if(_length != 0) {
         info->value[offset] = (p.norm2() - _length*_length)*0.5;
         info->derivative[offset] = p.innerProduct(v); 
