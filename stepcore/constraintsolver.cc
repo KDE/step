@@ -64,7 +64,7 @@ int CGConstraintSolver::solve(ConstraintsInfo* info)
     gmm::identity_matrix PR;
 
     // print debug info
-    std::cout << "ConstraintSolver:" << endl
+    /*std::cout << "ConstraintSolver:" << endl
               << "J=" << info->jacobian << endl
               << "J'=" << info->jacobianDerivative << endl
               << "C=" << info->value << endl
@@ -76,7 +76,7 @@ int CGConstraintSolver::solve(ConstraintsInfo* info)
               << "a=" << a << endl
               << "b=" << b << endl
               << "l=" << l << endl
-              << "force=" << info->force << endl;
+              << "force=" << info->force << endl;*/
 
     // constrained_cg ?
     // XXX: limit iterations count
@@ -84,7 +84,7 @@ int CGConstraintSolver::solve(ConstraintsInfo* info)
     gmm::mult(transposed(info->jacobian), l, info->force);
 
     // print debug info
-    std::cout << "Solved:" << endl
+    /*std::cout << "Solved:" << endl
               << "J=" << info->jacobian << endl
               << "J'=" << info->jacobianDerivative << endl
               << "C=" << info->value << endl
@@ -96,7 +96,7 @@ int CGConstraintSolver::solve(ConstraintsInfo* info)
               << "a=" << a << endl
               << "b=" << b << endl
               << "l=" << l << endl
-              << "force=" << info->force << endl << endl << endl;
+              << "force=" << info->force << endl << endl << endl;*/
 
     return 0;
 }
