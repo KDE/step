@@ -118,6 +118,12 @@ Vector2d RigidBody::velocityWorld(const Vector2d& worldPoint) const
     return _velocity + Vector2d(-p[1], p[0]);
 }
 
+Vector2d RigidBody::velocityLocal(const Vector2d& localPoint) const
+{
+    Vector2d p = vectorLocalToWorld(localPoint)*_angularVelocity;
+    return _velocity + Vector2d(-p[1], p[0]);
+}
+
 Vector2d RigidBody::pointLocalToWorld(const Vector2d& p) const
 {
     double c = cos(_angle);

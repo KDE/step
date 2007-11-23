@@ -24,6 +24,7 @@
 * massive springs (DONE)
 * soft bodies (DONE)
 * fluid and gas simulation (DONE)
+* create common class for connectiong something to rigid body
 * think about 3d
 
 More TODO items for StepCore can be found in

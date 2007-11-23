@@ -221,7 +221,7 @@ double SpringErrors::lengthVariance() const
 Vector2d Spring::velocity1() const
 {
     if(_p1) return _p1->velocity();
-    else if(_r1) return _r1->velocityWorld(_localPosition1);
+    else if(_r1) return _r1->velocityLocal(_localPosition1);
     else return Vector2d(0);
 }
 
@@ -238,7 +238,7 @@ Vector2d SpringErrors::velocity1Variance() const
 Vector2d Spring::velocity2() const
 {
     if(_p2) return _p2->velocity();
-    else if(_r2) return _r2->velocityWorld(_localPosition2);
+    else if(_r2) return _r2->velocityLocal(_localPosition2);
     else return Vector2d(0);
 }
 

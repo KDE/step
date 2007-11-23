@@ -88,5 +88,64 @@ protected:
     bool         _moving;
 };
 
+/////////////////////////////////////////////////////////////////////////////////////////
+
+class StickCreator: public ItemCreator
+{
+public:
+    StickCreator(const QString& className, WorldModel* worldModel, WorldScene* worldScene)
+                        : ItemCreator(className, worldModel, worldScene) {}
+    bool sceneEvent(QEvent* event);
+    void start();
+
+    static void tryAttach(WorldModel* worldModel, WorldScene* worldScene,
+                          StepCore::Item* item, const QPointF& pos, int num);
+};
+
+class StickHandlerGraphicsItem: public WorldGraphicsItem
+{
+public:
+    StickHandlerGraphicsItem(StepCore::Item* item, WorldModel* worldModel,
+                                QGraphicsItem* parent, int num);
+
+    void paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget);
+
+    void viewScaleChanged();
+    void worldDataChanged(bool);
+
+protected:
+    void mouseMoveEvent(QGraphicsSceneMouseEvent *event);
+    void mouseReleaseEvent(QGraphicsSceneMouseEvent *event);
+    int  _num;
+    bool _moving;
+};
+
+class StickGraphicsItem: public WorldGraphicsItem
+{
+public:
+    StickGraphicsItem(StepCore::Item* item, WorldModel* worldModel);
+
+    void paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget);
+    QPainterPath shape() const;
+
+    void viewScaleChanged();
+    void stateChanged();
+    void worldDataChanged(bool dynamicOnly);
+
+protected:
+    void mouseSetPos(const QPointF& pos, const QPointF& diff);
+
+    StepCore::Stick* stick() const { return static_cast<StepCore::Stick*>(_item); }
+
+    QPainterPath _painterPath;
+    double       _rnorm;
+    double       _radius;
+
+    StickHandlerGraphicsItem* _handler1;
+    StickHandlerGraphicsItem* _handler2;
+
+    static const int RADIUS = 1;
+};
+
 #endif
 

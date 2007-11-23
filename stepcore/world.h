@@ -210,6 +210,37 @@ public:
 };
 
 /** \ingroup joints
+ *  Constraints information structure
+ */
+struct ConstraintsInfo
+{
+    int                variablesCount;      ///< Number of dynamic variables
+    int                constraintsCount;    ///< Number of constraints equations
+
+    GmmStdVector       value;               ///< Current constarints values (amount of brokenness)
+    GmmStdVector       derivative;          ///< Time-derivative of constraints values
+    GmmSparceRowMatrix jacobian;            ///< Position-derivative of constraints values
+    GmmSparceRowMatrix jacobianDerivative;  ///< Time-derivative of constraintsJacobian
+    GmmSparceRowMatrix inverseMass;         ///< Inverse mass matrix of the system
+
+    GmmArrayVector     position;            ///< Positions of the bodies
+    GmmArrayVector     velocity;            ///< Velocities of the bodies
+    GmmArrayVector     acceleration;        ///< Accelerations of the bodies before applying constraints
+
+    GmmStdVector       forceMin;            ///< Constraints force lower limit
+    GmmStdVector       forceMax;            ///< Constraints force upper limit
+    GmmStdVector       force;               ///< Resulting constraints force
+
+    ConstraintsInfo(): variablesCount(0), constraintsCount(0),
+                       position(0,0), velocity(0,0), acceleration(0,0) {}
+    void setDimension(int newVariablesCount, int newConstraintsCount);
+
+private:
+    ConstraintsInfo(const ConstraintsInfo&);
+    ConstraintsInfo& operator=(const ConstraintsInfo&);
+};
+
+/** \ingroup joints
  *  \brief Interface for joints
  */
 class Joint
@@ -222,6 +253,10 @@ public:
     /** Get count of constraints */
     virtual int constraintsCount() = 0;
 
+    /** Fill the part of constraints information structure starting at offset */
+    virtual void getConstraintsInfo(ConstraintsInfo* info, int offset) = 0;
+
+#if 0
     /** Get current constraints value (amaunt of brokenness) and its derivative */
     virtual void getConstraints(double* value, double* derivative) = 0;
 
@@ -231,6 +266,7 @@ public:
     /** Get constraints jacobian (space-derivatives of constraint value),
      *  its derivative and product of inverse mass matrix by transposed jacobian (wjt) */
     virtual void getJacobian(GmmSparceRowMatrix* value, GmmSparceRowMatrix* derivative, int offset) = 0;
+#endif
 };
 
 /** \ingroup tools
@@ -483,19 +519,10 @@ private:
     CollisionSolver*  _collisionSolver;
     ConstraintSolver* _constraintSolver;
 
-    int          _variablesCount; ///< \internal Count of positions (not including velocities)
-    GmmStdVector _variables;      ///< \internal Positions and velocities (size == _variablesCount*2)
-    GmmStdVector _variances;      ///< \internal Variances of positions and velocities
-    GmmSparceRowMatrix _inverseMass;
-
-    int                _constraintsCount;
-    GmmStdVector       _constraints;
-    GmmStdVector       _constraintsDerivative;
-    GmmStdVector       _constraintsForceMin;
-    GmmStdVector       _constraintsForceMax;
-    GmmStdVector       _constraintsTotalForce;
-    GmmSparceRowMatrix _constraintsJacobian;
-    GmmSparceRowMatrix _constraintsJacobianDerivative;
+    int             _variablesCount;  ///< \internal Count of positions (not including velocities)
+    GmmStdVector    _variables;       ///< \internal Positions and velocities (size == _variablesCount*2)
+    GmmStdVector    _variances;       ///< \internal Variances of positions and velocities
+    ConstraintsInfo _constraintsInfo; ///< \internal Constraints information
 
     bool    _stopOnCollision;
     bool    _stopOnIntersection;

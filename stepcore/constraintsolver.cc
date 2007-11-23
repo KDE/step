@@ -32,16 +32,12 @@ STEPCORE_META_OBJECT(ConstraintSolver, "ConstraintSolver", MetaObject::ABSTRACT,
 STEPCORE_META_OBJECT(CGConstraintSolver, "CGConstraintSolver", 0,
                         STEPCORE_SUPER_CLASS(ConstraintSolver),)
 
-int CGConstraintSolver::solve(const GmmArrayVector& position, const GmmArrayVector& velocity,
-                const GmmArrayVector& acceleration, const GmmSparceRowMatrix& inverseMass,
-                const GmmStdVector& constraints, const GmmStdVector& constraintsDerivative,
-                const GmmSparceRowMatrix& jacobian, const GmmSparceRowMatrix& jacobianDerivative,
-                const GmmStdVector& forceMin, const GmmStdVector& forceMax,
-                GmmArrayVector* constraintsForce)
+int CGConstraintSolver::solve(ConstraintsInfo* info)
 {
-    int np = gmm::linalg_traits<GmmArrayVector>::size(position);
-    int nc = gmm::linalg_traits<GmmStdVector>::size(constraints);
+    int np = info->variablesCount;
+    int nc = info->constraintsCount;
 
+    // XXX: make this matrixes permanent to avoid memory allocations
     GmmSparceRowMatrix a(nc, nc);
     GmmStdVector b(nc);
     GmmStdVector l(nc);
@@ -50,15 +46,15 @@ int CGConstraintSolver::solve(const GmmArrayVector& position, const GmmArrayVect
         GmmSparceRowMatrix wj(np, nc);
 
         GmmSparceRowMatrix jacobianT(np, nc);
-        gmm::copy(gmm::transposed(jacobian), jacobianT);
+        gmm::copy(gmm::transposed(info->jacobian), jacobianT);
 
-        gmm::mult(inverseMass, jacobianT, wj);
-        gmm::mult(jacobian, wj, a);
+        gmm::mult(info->inverseMass, jacobianT, wj);
+        gmm::mult(info->jacobian, wj, a);
 
-        gmm::mult(jacobian, acceleration, b);
-        gmm::mult_add(jacobianDerivative, velocity, b);
-        gmm::add(gmm::scaled(constraints, 0.01), b);
-        gmm::add(gmm::scaled(constraintsDerivative, 0.01), b);
+        gmm::mult(info->jacobian, info->acceleration, b);
+        gmm::mult_add(info->jacobianDerivative, info->velocity, b);
+        gmm::add(gmm::scaled(info->value, 0.01), b);
+        gmm::add(gmm::scaled(info->derivative, 0.01), b);
 
         gmm::scale(b, -1);
     }
@@ -84,7 +80,7 @@ int CGConstraintSolver::solve(const GmmArrayVector& position, const GmmArrayVect
     // constrained_cg ?
     // XXX: limit iterations count
     gmm::cg(a, l, b, PS, PR, iter);
-    gmm::mult(transposed(jacobian), l, *constraintsForce);
+    gmm::mult(transposed(info->jacobian), l, info->force);
 
     // print debug info
     /*

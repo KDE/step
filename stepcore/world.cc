@@ -213,10 +213,32 @@ void ItemGroup::allItems(ItemList* items) const
     }
 }
 
+void ConstraintsInfo::setDimension(int newVariablesCount, int newConstraintsCount)
+{
+    if(variablesCount != newConstraintsCount || constraintsCount != newConstraintsCount) {
+        jacobian.resize(newConstraintsCount, newVariablesCount);
+        jacobianDerivative.resize(newConstraintsCount, newVariablesCount);
+    }
+
+    if(variablesCount != newVariablesCount) {
+        variablesCount = newVariablesCount;
+        inverseMass.resize(variablesCount, variablesCount);
+        force.resize(variablesCount);
+    }
+
+    if(constraintsCount != newConstraintsCount) {
+        constraintsCount = newConstraintsCount;
+        value.resize(constraintsCount);
+        derivative.resize(constraintsCount);
+        forceMin.resize(constraintsCount);
+        forceMax.resize(constraintsCount);
+    }
+}
+
 World::World()
     : _time(0), _timeScale(1), _errorsCalculation(false),
       _solver(NULL), _collisionSolver(NULL), _constraintSolver(NULL),
-      _variablesCount(0), _constraintsCount(0)
+      _variablesCount(0)
 {
     setWorld(this);
     clear();
@@ -225,7 +247,7 @@ World::World()
 World::World(const World& world)
     : ItemGroup(), _time(0), _timeScale(1), _errorsCalculation(false),
       _solver(NULL), _collisionSolver(NULL), _constraintSolver(NULL),
-      _variablesCount(0), _constraintsCount(0)
+      _variablesCount(0)
 {
     *this = world;
 }
@@ -256,16 +278,8 @@ void World::clear()
     _variablesCount = 0;
     _variables.resize(0);
     _variances.resize(0);
-    _inverseMass.resize(0,0);
 
-    _constraintsCount = 0;
-    _constraints.resize(0);
-    _constraintsDerivative.resize(0);
-    _constraintsForceMin.resize(0);
-    _constraintsForceMax.resize(0);
-    _constraintsTotalForce.resize(0);
-    _constraintsJacobian.resize(0,0);
-    _constraintsJacobianDerivative.resize(0,0);
+    _constraintsInfo.setDimension(0, 0);
 
     setColor(0xffffffff);
     deleteObjectErrors();
@@ -570,31 +584,22 @@ void World::checkVariablesCount()
         (*b)->setVariablesOffset(variablesCount);
         variablesCount += (*b)->variablesCount();
     }
-    
-    if(variablesCount != _variablesCount) {
-        _variablesCount = variablesCount;
-        _variables.resize(_variablesCount*2);
-        _variances.resize(_variablesCount*2);
-        _inverseMass.resize(_variablesCount, _variablesCount);
-        _constraintsJacobian.resize(_constraintsCount, _variablesCount);
-        _constraintsJacobianDerivative.resize(_constraintsCount, _variablesCount);
-        if(_solver) _solver->setDimension(_variablesCount*2);
-    }
 
     int constraintsCount = 0;
     for(JointList::iterator j = _joints.begin(); j != _joints.end(); ++j) {
         constraintsCount += (*j)->constraintsCount();
     }
 
-    if(constraintsCount != _constraintsCount) {
-        _constraintsCount = constraintsCount;
-        _constraints.resize(_constraintsCount);
-        _constraintsDerivative.resize(_constraintsCount);
-        _constraintsForceMin.resize(_constraintsCount);
-        _constraintsForceMax.resize(_constraintsCount);
-        _constraintsTotalForce.resize(_variablesCount);
-        _constraintsJacobian.resize(_constraintsCount, _variablesCount);
-        _constraintsJacobianDerivative.resize(_constraintsCount, _variablesCount);
+    if(variablesCount != _constraintsInfo.variablesCount ||
+                constraintsCount != _constraintsInfo.constraintsCount) {
+        _constraintsInfo.setDimension(variablesCount, constraintsCount);
+    }
+
+    if(variablesCount != _variablesCount) {
+        _variablesCount = variablesCount;
+        _variables.resize(_variablesCount*2);
+        _variances.resize(_variablesCount*2);
+        if(_solver) _solver->setDimension(_variablesCount*2);
     }
 }
 
@@ -769,44 +774,45 @@ inline int World::solverFunction(double t, const double* y,
     gatherAccelerations(f+_variablesCount, fvar ? fvar+_variablesCount : NULL);
 
     // 3. Constraints
-    if(_constraintSolver && _constraintsCount > 0) {
-        gmm::clear(_constraintsJacobian);
-        gmm::clear(_constraintsJacobianDerivative);
-        gmm::clear(_inverseMass);
+    if(_constraintSolver && _constraintsInfo.constraintsCount > 0) {
+        gmm::clear(_constraintsInfo.jacobian);
+        gmm::clear(_constraintsInfo.jacobianDerivative);
+        gmm::clear(_constraintsInfo.inverseMass);
 
-        std::fill(_constraintsForceMin.begin(), _constraintsForceMin.end(), -HUGE_VAL);
-        std::fill(_constraintsForceMax.begin(), _constraintsForceMax.end(), HUGE_VAL);
+        std::fill(_constraintsInfo.forceMin.begin(), _constraintsInfo.forceMin.end(), -HUGE_VAL);
+        std::fill(_constraintsInfo.forceMax.begin(), _constraintsInfo.forceMax.end(),  HUGE_VAL);
 
-        int index = 0;
-        const JointList::const_iterator j_end = _joints.end();
-        for(JointList::iterator joint = _joints.begin(); joint != j_end; ++joint) {
-            (*joint)->getConstraints(&_constraints[index], &_constraintsDerivative[index]);
-            (*joint)->getForceLimits(&_constraintsForceMin[index], &_constraintsForceMax[index]);
-            (*joint)->getJacobian(&_constraintsJacobian, &_constraintsJacobianDerivative, index);
-            index += (*joint)->constraintsCount();
-        }
+        _constraintsInfo.position = GmmArrayVector(const_cast<double*>(y), _variablesCount);
+        _constraintsInfo.velocity = GmmArrayVector(const_cast<double*>(y+_variablesCount), _variablesCount);
+        _constraintsInfo.acceleration = GmmArrayVector(const_cast<double*>(f+_variablesCount), _variablesCount);
 
-        index = 0;
+        int offset = 0;
         const BodyList::const_iterator b_end = _bodies.end();
         for(BodyList::iterator body = _bodies.begin(); body != b_end; ++body) {
-            (*body)->getInverseMass(&_inverseMass, NULL, index);
-            index += (*body)->variablesCount();
+            (*body)->getInverseMass(&_constraintsInfo.inverseMass, NULL, offset);
+            offset += (*body)->variablesCount();
         }
 
-        GmmArrayVector position(const_cast<double*>(y), _variablesCount);
-        GmmArrayVector velocity(const_cast<double*>(y+_variablesCount), _variablesCount);
-        GmmArrayVector acceleration(const_cast<double*>(f+_variablesCount), _variablesCount);
-        GmmArrayVector cforce(const_cast<double*>(&_constraintsTotalForce[0]), _variablesCount);
-        _constraintSolver->solve(position, velocity, acceleration, _inverseMass, 
+
+        offset = 0;
+        const JointList::const_iterator j_end = _joints.end();
+        for(JointList::iterator joint = _joints.begin(); joint != j_end; ++joint) {
+            (*joint)->getConstraintsInfo(&_constraintsInfo, offset);
+            offset += (*joint)->constraintsCount();
+        }
+
+        //GmmArrayVector cforce(const_cast<double*>(&_constraintsTotalForce[0]), _variablesCount);
+        _constraintSolver->solve(&_constraintsInfo);
+        /*position, velocity, acceleration, _inverseMass, 
                                  _constraints, _constraintsDerivative,
                                  _constraintsJacobian, _constraintsJacobianDerivative,
-                                 _constraintsForceMin, _constraintsForceMax, &cforce);
+                                 _constraintsForceMin, _constraintsForceMax, &cforce);*/
 
-        index = 0;
+        offset = 0;
         for(BodyList::iterator body = _bodies.begin(); body != b_end; ++body) {
-            (*body)->addForce(&cforce[index], NULL);
-            (*body)->getAccelerations(f+_variablesCount+index, NULL);
-            index += (*body)->variablesCount();
+            (*body)->addForce(&_constraintsInfo.force[offset], NULL);
+            (*body)->getAccelerations(f+_variablesCount+offset, NULL);
+            offset += (*body)->variablesCount();
         }
     }
 

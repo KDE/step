@@ -138,6 +138,7 @@ WorldFactory::WorldFactory()
 
     __REGISTER_EXT(Anchor, AnchorCreator, AnchorGraphicsItem, ItemMenuHandler);
     __REGISTER_EXT(Pin, PinCreator, PinGraphicsItem, ItemMenuHandler);
+    __REGISTER_EXT(Stick, StickCreator, StickGraphicsItem, ItemMenuHandler);
 
     __REGISTER(EulerSolver);
     __REGISTER(AdaptiveEulerSolver);
@@ -193,6 +194,7 @@ WorldFactory::WorldFactory()
 
     __ADD_TO_PALETTE(Anchor);
     __ADD_TO_PALETTE(Pin);
+    __ADD_TO_PALETTE(Stick);
     __ADD_SEPARATOR;
 
     __ADD_TO_PALETTE(Note);

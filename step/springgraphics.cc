@@ -224,7 +224,6 @@ void SpringGraphicsItem::paint(QPainter* painter, const QStyleOptionGraphicsItem
 {
     static const int seq[4] = { 0,1,0,-1 };
 
-    _worldModel->simulationPause();
     StepCore::Vector2d r = spring()->position2() - spring()->position1();
 
     painter->setPen(QPen(QColor::fromRgba(spring()->color()), 0));

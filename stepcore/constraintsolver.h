@@ -41,22 +41,7 @@ class ConstraintSolver: public Object
     STEPCORE_OBJECT(ConstraintSolver)
 
 public:
-    virtual int solve(const GmmArrayVector& position, const GmmArrayVector& velocity,
-                const GmmArrayVector& acceleration, const GmmSparceRowMatrix& inverseMass,
-                const GmmStdVector& constraints, const GmmStdVector& constraintsDerivative,
-                const GmmSparceRowMatrix& jacobian, const GmmSparceRowMatrix& jacobianDerivative,
-                const GmmStdVector& forceMin, const GmmStdVector& forceMax,
-                GmmArrayVector* constraintsForce) = 0;
-
-
-
-protected:
-    GmmStdVector       _constraints;
-    GmmStdVector       _constraintsDerivative;
-    GmmStdVector       _constraintsForceLow;
-    GmmStdVector       _constraintsForceHigh;
-    GmmSparceRowMatrix _constraintsJacobian;
-    GmmSparceRowMatrix _constraintsJacobianDerivative;
+    virtual int solve(ConstraintsInfo* info) = 0;
 };
 
 class CGConstraintSolver: public ConstraintSolver
@@ -64,13 +49,7 @@ class CGConstraintSolver: public ConstraintSolver
     STEPCORE_OBJECT(CGConstraintSolver)
 
 public:
-    int solve(const GmmArrayVector& position, const GmmArrayVector& velocity,
-                const GmmArrayVector& acceleration, const GmmSparceRowMatrix& inverseMass,
-                const GmmStdVector& constraints, const GmmStdVector& constraintsDerivative,
-                const GmmSparceRowMatrix& jacobian, const GmmSparceRowMatrix& jacobianDerivative,
-                const GmmStdVector& forceMin, const GmmStdVector& forceMax,
-                GmmArrayVector* constraintsForce);
-
+    int solve(ConstraintsInfo* info);
 };
 
 } // namespace StepCore

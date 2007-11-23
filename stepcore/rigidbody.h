@@ -156,6 +156,8 @@ public:
     void setVelocity(const Vector2d& velocity) { _velocity = velocity; }
     /** Get velocity of given (world) point on the body */
     Vector2d velocityWorld(const Vector2d& worldPoint) const;
+    /** Get velocity of given (local) point on the body */
+    Vector2d velocityLocal(const Vector2d& localPoint) const;
 
     /** Get angular velocity of the body */
     double angularVelocity() const { return _angularVelocity; }

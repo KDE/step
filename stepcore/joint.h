@@ -58,8 +58,10 @@ public:
     void setAngle(double angle) { _angle = angle; }
 
     int constraintsCount();
-    void getConstraints(double* value, double* derivative);
-    void getJacobian(GmmSparceRowMatrix* value, GmmSparceRowMatrix* derivative, int offset);
+    void getConstraintsInfo(ConstraintsInfo* info, int offset);
+
+    //void getConstraints(double* value, double* derivative);
+    //void getJacobian(GmmSparceRowMatrix* value, GmmSparceRowMatrix* derivative, int offset);
 
 protected:
     Object*  _body;
@@ -98,8 +100,10 @@ public:
     void setPosition(const Vector2d& position) { _position = position; }
 
     int constraintsCount();
-    void getConstraints(double* value, double* derivative);
-    void getJacobian(GmmSparceRowMatrix* value, GmmSparceRowMatrix* derivative, int offset);
+    void getConstraintsInfo(ConstraintsInfo* info, int offset);
+
+    //void getConstraints(double* value, double* derivative);
+    //void getJacobian(GmmSparceRowMatrix* value, GmmSparceRowMatrix* derivative, int offset);
 
 protected:
     Object*  _body;
@@ -109,6 +113,85 @@ protected:
     Particle*  _p;
     RigidBody* _r;
 };
+
+/** \ingroup joints
+ *  \brief Massless stick: fixed distance between two points on particles or rigid bodies
+ */
+class Stick: public Item, public Joint
+{
+    STEPCORE_OBJECT(Stick)
+
+public:
+    /** Constructs Stick */
+    explicit Stick(double length = 1, 
+               Object* body1 = 0, Object* body2 = 0,
+               const Vector2d& localPosition1 = Vector2d(0),
+               const Vector2d& localPosition2 = Vector2d(0));
+
+    /** Get the length of the stick */
+    double length() const { return _length; }
+    /** Set the length of the stick */
+    void   setLength(double length) { _length = length; }
+
+    /** Get pointer to the first connected body */
+    Object* body1() const { return _body1; }
+    /** Set pointer to the first connected body */
+    void setBody1(Object* body1);
+
+    /** Get pointer to the second connected body */
+    Object* body2() const { return _body2; }
+    /** Set pointer to the second connected body */
+    void setBody2(Object* body2);
+
+    /** Local position of the first end of the stick on the body
+     *  or in the world (if the end is not connected) */
+    Vector2d localPosition1() const { return _localPosition1; }
+    /** Set local position of the first end of the stick on the body
+     *  or in the world (if the end is not connected) */
+    void setLocalPosition1(const Vector2d& localPosition1) { _localPosition1 = localPosition1; }
+
+    /** Local position of the second end of the stick on the body
+     *  or in the world (if the end is not connected) */
+    Vector2d localPosition2() const { return _localPosition2; }
+    /** Set local position of the second end of the stick on the body
+     *  or in the world (if the end is not connected) */
+    void setLocalPosition2(const Vector2d& localPosition2) { _localPosition2 = localPosition2; }
+
+    /** Position of the first end of the stick */
+    Vector2d position1() const;
+    /** Position of the second end of the stick */
+    Vector2d position2() const;
+
+    /** Velocity of the first end of the stick */
+    Vector2d velocity1() const;
+    /** Velocity of the second end of the stick */
+    Vector2d velocity2() const;
+
+    /** Get first connected Particle */
+    Particle* particle1() const { return _p1; }
+    /** Get second connected Particle */
+    Particle* particle2() const { return _p2; }
+    /** Get first connected RigidBody */
+    RigidBody* rigidBody1() const { return _r1; }
+    /** Get second connected RigidBody */
+    RigidBody* rigidBody2() const { return _r2; }
+
+    int constraintsCount();
+    void getConstraintsInfo(ConstraintsInfo* info, int offset);
+
+protected:
+    double   _length;
+    Object*  _body1;
+    Object*  _body2;
+    Vector2d _localPosition1;
+    Vector2d _localPosition2;
+
+    Particle*  _p1;
+    Particle*  _p2;
+    RigidBody* _r1;
+    RigidBody* _r2;
+};
+
 
 } // namespace StepCore
 
