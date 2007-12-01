@@ -58,7 +58,7 @@ protected:
 #define STEPCORE_ASSERT_NOABORT(expr) \
     if( ! (expr) ) \
         StepCore::_step_assert_noabort_helper<int> \
-            ( __STRING(expr), __LINE__, \
+            ( STEPCORE_STRINGIFY(expr), __LINE__, \
               __FILE__, __PRETTY_FUNCTION__ )
 
 namespace StepCore {

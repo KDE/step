@@ -236,8 +236,8 @@ void RigidBody::resetForce(bool resetVariance)
     }
 }
 
-void RigidBody::getInverseMass(GmmSparceRowMatrix* inverseMass,
-                        GmmSparceRowMatrix* variance, int offset)
+void RigidBody::getInverseMass(GmmSparseRowMatrix* inverseMass,
+                        GmmSparseRowMatrix* variance, int offset)
 {
     inverseMass->row(offset).w(offset, 1/_mass);
     inverseMass->row(offset+1).w(offset+1, 1/_mass);

@@ -35,9 +35,9 @@ namespace StepCore {
 
 typedef std::vector<double> GmmStdVector;
 typedef gmm::array1D_reference<double*> GmmArrayVector;
-typedef gmm::rsvector<double> GmmSparceVector;
-typedef gmm::row_matrix<GmmSparceVector> GmmSparceRowMatrix;
-typedef gmm::col_matrix<GmmSparceVector> GmmSparceColMatrix;
+typedef gmm::rsvector<double> GmmSparseVector;
+typedef gmm::row_matrix<GmmSparseVector> GmmSparseRowMatrix;
+typedef gmm::col_matrix<GmmSparseVector> GmmSparseColMatrix;
 
 ///////////////// Color
 struct Color

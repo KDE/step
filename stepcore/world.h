@@ -173,8 +173,8 @@ public:
 
     /** Get inverse mass and (possibly) its variance matrixes.
      *  Variance should only be copied of variance != NULL. */
-    virtual void getInverseMass(GmmSparceRowMatrix* inverseMass,
-                            GmmSparceRowMatrix* variance, int offset) = 0;
+    virtual void getInverseMass(GmmSparseRowMatrix* inverseMass,
+                            GmmSparseRowMatrix* variance, int offset) = 0;
 
     /** Offset of body's variables in global arrays
      *  (meaningles if the the body is not a part of the world) */
@@ -219,9 +219,9 @@ struct ConstraintsInfo
 
     GmmStdVector       value;               ///< Current constarints values (amount of brokenness)
     GmmStdVector       derivative;          ///< Time-derivative of constraints values
-    GmmSparceRowMatrix jacobian;            ///< Position-derivative of constraints values
-    GmmSparceRowMatrix jacobianDerivative;  ///< Time-derivative of constraintsJacobian
-    GmmSparceRowMatrix inverseMass;         ///< Inverse mass matrix of the system
+    GmmSparseRowMatrix jacobian;            ///< Position-derivative of constraints values
+    GmmSparseRowMatrix jacobianDerivative;  ///< Time-derivative of constraintsJacobian
+    GmmSparseRowMatrix inverseMass;         ///< Inverse mass matrix of the system
 
     GmmArrayVector     position;            ///< Positions of the bodies
     GmmArrayVector     velocity;            ///< Velocities of the bodies
@@ -265,7 +265,7 @@ public:
 
     /** Get constraints jacobian (space-derivatives of constraint value),
      *  its derivative and product of inverse mass matrix by transposed jacobian (wjt) */
-    virtual void getJacobian(GmmSparceRowMatrix* value, GmmSparceRowMatrix* derivative, int offset) = 0;
+    virtual void getJacobian(GmmSparseRowMatrix* value, GmmSparseRowMatrix* derivative, int offset) = 0;
 #endif
 };
 

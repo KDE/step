@@ -129,8 +129,8 @@ void Particle::resetForce(bool resetVariance)
     if(resetVariance) particleErrors()->_forceVariance.setZero();
 }
 
-void Particle::getInverseMass(GmmSparceRowMatrix* inverseMass,
-                        GmmSparceRowMatrix* variance, int offset)
+void Particle::getInverseMass(GmmSparseRowMatrix* inverseMass,
+                        GmmSparseRowMatrix* variance, int offset)
 {
     inverseMass->row(offset).w(offset, 1/_mass);
     inverseMass->row(offset+1).w(offset+1, 1/_mass);

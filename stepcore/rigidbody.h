@@ -222,8 +222,8 @@ public:
     void addForce(const double* force, const double* forceVariance);
     void resetForce(bool resetVariance);
     void getAccelerations(double* acceleration, double* accelerationVariance);
-    void getInverseMass(GmmSparceRowMatrix* inverseMass,
-                            GmmSparceRowMatrix* variance, int offset);
+    void getInverseMass(GmmSparseRowMatrix* inverseMass,
+                            GmmSparseRowMatrix* variance, int offset);
 
     /** Get (and possibly create) RigidBodyErrors object */
     RigidBodyErrors* rigidBodyErrors() {

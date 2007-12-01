@@ -38,14 +38,14 @@ int CGConstraintSolver::solve(ConstraintsInfo* info)
     int nc = info->constraintsCount;
 
     // XXX: make this matrixes permanent to avoid memory allocations
-    GmmSparceRowMatrix a(nc, nc);
+    GmmSparseRowMatrix a(nc, nc);
     GmmStdVector b(nc);
     GmmStdVector l(nc);
 
     {
-        GmmSparceRowMatrix wj(np, nc);
+        GmmSparseRowMatrix wj(np, nc);
 
-        GmmSparceRowMatrix jacobianT(np, nc);
+        GmmSparseRowMatrix jacobianT(np, nc);
         gmm::copy(gmm::transposed(info->jacobian), jacobianT);
 
         gmm::mult(info->inverseMass, jacobianT, wj);

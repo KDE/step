@@ -61,7 +61,7 @@ public:
     void getConstraintsInfo(ConstraintsInfo* info, int offset);
 
     //void getConstraints(double* value, double* derivative);
-    //void getJacobian(GmmSparceRowMatrix* value, GmmSparceRowMatrix* derivative, int offset);
+    //void getJacobian(GmmSparseRowMatrix* value, GmmSparseRowMatrix* derivative, int offset);
 
 protected:
     Object*  _body;
@@ -103,7 +103,7 @@ public:
     void getConstraintsInfo(ConstraintsInfo* info, int offset);
 
     //void getConstraints(double* value, double* derivative);
-    //void getJacobian(GmmSparceRowMatrix* value, GmmSparceRowMatrix* derivative, int offset);
+    //void getJacobian(GmmSparseRowMatrix* value, GmmSparseRowMatrix* derivative, int offset);
 
 protected:
     Object*  _body;
