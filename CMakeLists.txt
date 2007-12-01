@@ -9,14 +9,16 @@ if (CMAKE_COMPILER_IS_GNUCXX)
 	add_definitions (-D_BSD_SOURCE)
 endif (CMAKE_COMPILER_IS_GNUCXX)
 
-set(STEPCORE_TESTS OFF CACHE BOOL "Build StepCore tests")
-set(STEPCORE_WITH_GSL ${GSL_FOUND} CACHE BOOL "Enable GSL-powered features for StepCore")
-set(STEPCORE_WITH_QT ON) # CACHE BOOL "Enable QT-powered features for StepCore")
-
 set(QALCULATE_MIN_VERSION "0.9.5")
 include(FindQalculate.cmake)
 
 set(GMM_FIND_REQUIRED TRUE)
+
+set(STEPCORE_TESTS OFF CACHE BOOL "Build StepCore tests")
+set(STEPCORE_WITH_GSL ${GSL_FOUND} CACHE BOOL "Enable GSL-powered features for StepCore")
+set(STEPCORE_WITH_QT ON) # CACHE BOOL "Enable QT-powered features for StepCore")
+set(STEP_WITH_QALCULATE ${QALCULATE_FOUND} CACHE BOOL "Enable unit conversion support using libqalculate")
+
 
 include_directories(${GMM_INCLUDE_DIR})
 add_definitions(-DGETFEM_PARA_LEVEL=0)
