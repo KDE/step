@@ -254,6 +254,9 @@ CircularMotorGraphicsItem::CircularMotorGraphicsItem(StepCore::Item* item, World
     Q_ASSERT(dynamic_cast<StepCore::CircularMotor*>(_item) != NULL);
     setFlag(QGraphicsItem::ItemIsSelectable);
     setFlag(QGraphicsItem::ItemIsMovable);
+    _torqueHandler = new CircularArrowHandlerGraphicsItem(item, worldModel,  this, ARROW_RADIUS,
+                   _item->metaObject()->property("torqueValue"));
+    _torqueHandler->setVisible(false);
     setZValue(HANDLER_ZVALUE);
 }
 
@@ -326,6 +329,8 @@ void CircularMotorGraphicsItem::paint(QPainter* painter, const QStyleOptionGraph
     painter->setPen(Qt::NoPen);
     painter->setBrush(QBrush(QColor::fromRgba(motor()->color())));
     painter->drawEllipse(QRectF(-radius,-radius,radius*2,radius*2));
+    painter->setPen(QPen(QColor::fromRgba(motor()->color()), radius, Qt::SolidLine, Qt::RoundCap));
+    drawCircularArrow(painter, motor()->torqueValue(), ARROW_RADIUS);
 
     //painter->setPen(QPen(QColor::fromRgba(particle()->color()), 2*radius, Qt::SolidLine, Qt::RoundCap));
     //painter->drawPoint(0,0);
@@ -353,9 +358,8 @@ void CircularMotorGraphicsItem::viewScaleChanged()
     prepareGeometryChange();
 
     double s = currentViewScale();
-    _boundingRect |= QRectF((-RADIUS-SELECTION_MARGIN)/s,  (-RADIUS-SELECTION_MARGIN)/s,
-                            (RADIUS+SELECTION_MARGIN)*2/s,( RADIUS+SELECTION_MARGIN)*2/s);
-//    worldDataChanged(false);
+    double r = (ARROW_RADIUS + CIRCULAR_ARROW_STROKE + SELECTION_MARGIN)/s;
+    _boundingRect = QRectF(-r, -r, 2*r, 2*r);
 }
 
 void CircularMotorGraphicsItem::worldDataChanged(bool dynamicOnly)
@@ -365,5 +369,11 @@ void CircularMotorGraphicsItem::worldDataChanged(bool dynamicOnly)
         update();
     }
     setPos(vectorToPoint(motor()->position()));       
+}
+
+void CircularMotorGraphicsItem::stateChanged()
+{
+    if(_isSelected) _torqueHandler->setVisible(true);
+    else _torqueHandler->setVisible(false);
 }
 

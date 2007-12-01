@@ -93,14 +93,17 @@ public:
 
     void viewScaleChanged();
     void worldDataChanged(bool dynamicOnly);
+    void stateChanged();
+
+protected:
     void mouseMoveEvent(QGraphicsSceneMouseEvent *event);
     void mouseReleaseEvent(QGraphicsSceneMouseEvent *event);
-protected:
     StepCore::CircularMotor* motor() const;
     QPainterPath _path;
+    CircularArrowHandlerGraphicsItem* _torqueHandler;
     bool      _moving;//
     static const int RADIUS = 5;
-
+    static const int ARROW_RADIUS = 15;
 };
 
 #endif

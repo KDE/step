@@ -195,6 +195,13 @@ PolygonGraphicsItem::PolygonGraphicsItem(StepCore::Item* item, WorldModel* world
     _velocityHandler = new ArrowHandlerGraphicsItem(item, worldModel, this,
                    _item->metaObject()->property("velocity"));
     _velocityHandler->setVisible(false);
+
+    _angularVelocityHandler = new CircularArrowHandlerGraphicsItem(item, worldModel, this,
+                   ANGULAR_VELOCITY_RADIUS, _item->metaObject()->property("angularVelocity"));
+    _angleHandler = new CircularArrowHandlerGraphicsItem(item, worldModel, this,
+                   ANGLE_HANDLER_RADIUS, _item->metaObject()->property("angle"));
+    _angularVelocityHandler->setVisible(false);
+    _angleHandler->setVisible(false);
     //scene()->addItem(_velocityHandler);
 }
 
@@ -249,8 +256,10 @@ void PolygonGraphicsItem::paint(QPainter* painter, const QStyleOptionGraphicsIte
         painter->setRenderHint(QPainter::Antialiasing, renderHints & QPainter::Antialiasing);
         painter->setPen(QPen(Qt::blue, 0));
         drawArrow(painter, polygon()->velocity());
+        drawCircularArrow(painter, polygon()->angularVelocity(), ANGULAR_VELOCITY_RADIUS);
         painter->setPen(QPen(Qt::red, 0));
         drawArrow(painter, polygon()->acceleration());
+        drawCircularArrow(painter, polygon()->angularAcceleration(), ANGULAR_ACCELERATION_RADIUS);
     }
 }
 
@@ -275,9 +284,13 @@ void PolygonGraphicsItem::viewScaleChanged()
         _painterPath = QMatrix().rotate(polygon()->angle() * 180 / StepCore::Constants::Pi).map(_painterPath);
     } else _painterPath.addEllipse(-1/s, -1/s, 2/s, 2/s);
 
+    double avr = (ANGULAR_VELOCITY_RADIUS+CIRCULAR_ARROW_STROKE)/s;
+    double aar = (ANGULAR_ACCELERATION_RADIUS+CIRCULAR_ARROW_STROKE)/s;
     _boundingRect = _painterPath.boundingRect() 
                     | QRectF(0, 0, v[0], v[1]).normalized()
-                    | QRectF(0, 0, a[0], a[1]).normalized();
+                    | QRectF(0, 0, a[0], a[1]).normalized()
+                    | QRectF(-avr, -avr, 2*avr, 2*avr)
+                    | QRectF(-aar, -aar, 2*aar, 2*aar);
     double adjust = (ARROW_STROKE+SELECTION_MARGIN)/s;
     _boundingRect.adjust(-adjust,-adjust, adjust, adjust);
 }
@@ -293,8 +306,16 @@ void PolygonGraphicsItem::worldDataChanged(bool dynamicOnly)
 
 void PolygonGraphicsItem::stateChanged()
 {
-    if(_isSelected) _velocityHandler->setVisible(true);
-    else _velocityHandler->setVisible(false);
+    if(_isSelected) {
+        _velocityHandler->setVisible(true);
+        _angularVelocityHandler->setVisible(true);
+        _angleHandler->setVisible(true);
+    } else {
+        _velocityHandler->setVisible(false);
+        _angularVelocityHandler->setVisible(false);
+        _angleHandler->setVisible(false);
+    }
+
     viewScaleChanged();
     update();
 }

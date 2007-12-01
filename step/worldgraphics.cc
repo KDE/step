@@ -112,11 +112,6 @@ double WorldGraphicsItem::currentViewScale() const
     return static_cast<WorldScene*>(scene())->currentViewScale();
 }
 
-void WorldGraphicsItem::drawArrow(QPainter* painter, const StepCore::Vector2d& v)
-{
-    drawArrow(painter, StepCore::Vector2d(0), v);
-}
-
 void WorldGraphicsItem::drawArrow(QPainter* painter, const StepCore::Vector2d& r,
                                                     const StepCore::Vector2d& v)
 {
@@ -131,6 +126,44 @@ void WorldGraphicsItem::drawArrow(QPainter* painter, const StepCore::Vector2d& r
         painter->drawLine(QLineF(vv[0], vv[1], vv[0] - 0.866*vn[0] + 0.5  *vn[1],
                                                vv[1] - 0.5  *vn[0] - 0.866*vn[1]));
     }
+}
+
+void WorldGraphicsItem::drawCircularArrow(QPainter* painter, const StepCore::Vector2d& r,
+                                                    double angle, double radius)
+{
+    double s = currentViewScale();
+    double rs = radius/s;
+    double x0 = radius*cos(angle)+r[0];
+    double y0 = radius*sin(angle)+r[1];
+    double xAr1 = CIRCULAR_ARROW_STROKE*cos(2*M_PI/3 + angle);
+    double yAr1 = CIRCULAR_ARROW_STROKE*sin(2*M_PI/3 + angle);
+    double xAr2 = CIRCULAR_ARROW_STROKE*cos(M_PI/3 + angle);
+    double yAr2 = CIRCULAR_ARROW_STROKE*sin(M_PI/3 + angle);
+
+    if(angle > 0) {
+        painter->drawArc(QRectF(-rs, -rs, 2*rs, 2*rs),
+                     -int(angle*180*16/M_PI), int(angle*180*16/M_PI));
+        if(angle*radius > CIRCULAR_ARROW_STROKE) { // do not draw too small vectors
+            painter->drawLine(QLineF(x0/s, y0/s, (x0-xAr1)/s, (y0-yAr1)/s));
+            painter->drawLine(QLineF(x0/s, y0/s, (x0-xAr2)/s, (y0-yAr2)/s));
+        }
+    } else {
+        painter->drawArc(QRectF(-rs, -rs, 2*rs, 2*rs), 0, int(-angle*180*16/M_PI));
+        if(-angle*radius > CIRCULAR_ARROW_STROKE) { // do not draw too small vectors
+            painter->drawLine(QLineF(x0/s, y0/s, (x0+xAr1)/s, (y0+yAr1)/s));
+            painter->drawLine(QLineF(x0/s, y0/s, (x0+xAr2)/s, (y0+yAr2)/s));
+        }
+    }
+}
+
+void WorldGraphicsItem::drawArrow(QPainter* painter, const StepCore::Vector2d& v)
+{
+    drawArrow(painter, StepCore::Vector2d(0), v);
+}
+
+void WorldGraphicsItem::drawCircularArrow(QPainter* painter, double angle, double radius)
+{
+    drawCircularArrow(painter, StepCore::Vector2d(0), angle, radius);
 }
 
 void WorldGraphicsItem::mouseSetPos(const QPointF& pos, const QPointF& /*diff*/)
@@ -352,6 +385,84 @@ ItemMenuHandler::ItemMenuHandler(StepCore::Object* object, WorldModel* worldMode
     : QObject(parent), _object(object), _worldModel(worldModel)
 {
 }
+
+////
+CircularArrowHandlerGraphicsItem::CircularArrowHandlerGraphicsItem(StepCore::Item* item, WorldModel* worldModel, 
+                         QGraphicsItem* parent, double radius, const StepCore::MetaProperty* property,
+                         const StepCore::MetaProperty* positionProperty)
+    : WorldGraphicsItem(item, worldModel, parent), _property(property), _positionProperty(positionProperty), _radius(radius)
+{
+    Q_ASSERT(_property->userTypeId() == qMetaTypeId<double>());
+    setFlag(QGraphicsItem::ItemIsMovable);
+    setZValue(HANDLER_ZVALUE);
+    _isVisible = true;
+}
+
+void CircularArrowHandlerGraphicsItem::paint(QPainter* painter, const QStyleOptionGraphicsItem* /*option*/, QWidget* /*widget*/)
+{
+    painter->setPen(QPen(Qt::gray, 0));
+    painter->drawRect(_boundingRect);
+}
+
+void CircularArrowHandlerGraphicsItem::viewScaleChanged()
+{
+    if(_isVisible) {
+        prepareGeometryChange();
+        double w = HANDLER_SIZE/currentViewScale()/2;
+        _boundingRect = QRectF(-w, -w, w*2, w*2);
+        worldDataChanged(true);
+    }
+}
+
+void CircularArrowHandlerGraphicsItem::worldDataChanged(bool)
+{
+    if(_isVisible) {
+        double s = currentViewScale();
+        double angle = value();
+        setPos(_radius*cos(angle)/s, _radius*sin(angle)/s);
+    }
+}
+
+QVariant CircularArrowHandlerGraphicsItem::itemChange(GraphicsItemChange change, const QVariant& value)
+{
+    if(change == QGraphicsItem::ItemVisibleChange) {
+        _isVisible = value.toBool();
+        if(_isVisible) {
+            viewScaleChanged();
+            worldDataChanged(false);
+        }
+    }
+    return WorldGraphicsItem::itemChange(change, value);
+}
+
+void CircularArrowHandlerGraphicsItem::mouseMoveEvent(QGraphicsSceneMouseEvent *event)
+{
+    if ((event->buttons() & Qt::LeftButton) && (flags() & ItemIsMovable)) {
+        if(!_isMoving) { _worldModel->beginMacro(i18n("Edit %1", _item->name())); _isMoving = true; }
+
+        QPointF newPos(mapToParent(event->pos()) - matrix().map(event->buttonDownPos(Qt::LeftButton)));
+        setValue(atan2(newPos.y(),newPos.x()));
+    } else event->ignore();
+}
+
+double CircularArrowHandlerGraphicsItem::value()
+{
+    if(_property) return _property->readVariant(_item).value<double>();
+    else return 0;
+}
+
+void CircularArrowHandlerGraphicsItem::setValue(double value)
+{
+    if(_property) {
+        _worldModel->simulationPause();
+        _worldModel->setProperty(_item, _property, QVariant::fromValue(value));
+    }
+}
+
+//ItemMenuHandler::ItemMenuHandler(StepCore::Object* object, WorldModel* worldModel, QObject* parent)
+//    : QObject(parent), _object(object), _worldModel(worldModel)
+//{
+//}
 
 void ItemMenuHandler::populateMenu(QMenu* menu)
 {

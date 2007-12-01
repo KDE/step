@@ -59,9 +59,9 @@ protected:
     StepCore::Polygon* polygon() const;
     QPainterPath _painterPath;
 
-    ArrowHandlerGraphicsItem *_velocityHandler;
-
-    static const int RADIUS = 7;
+    ArrowHandlerGraphicsItem*         _velocityHandler;
+    CircularArrowHandlerGraphicsItem* _angularVelocityHandler;
+    CircularArrowHandlerGraphicsItem* _angleHandler;
 };
 
 #endif

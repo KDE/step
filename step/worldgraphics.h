@@ -108,11 +108,20 @@ protected:
     void drawArrow(QPainter* painter, const StepCore::Vector2d& v);
     void drawArrow(QPainter* painter, const StepCore::Vector2d& r,
                                         const StepCore::Vector2d& v);
+    void drawCircularArrow(QPainter* painter, double angle, double radius);
+    void drawCircularArrow(QPainter* painter, const StepCore::Vector2d& r,
+                                        double angle, double radius);
 
     static const QColor SELECTION_COLOR;
     static const int SELECTION_MARGIN = 4;
     static const int ARROW_STROKE = 6;
+    static const int CIRCULAR_ARROW_STROKE = 6;
+
     static const int HANDLER_SIZE = 6;
+
+    static const int ANGLE_HANDLER_RADIUS = 30;
+    static const int ANGULAR_VELOCITY_RADIUS = 45;
+    static const int ANGULAR_ACCELERATION_RADIUS = 49;
 
     static const int BODY_ZVALUE = 100;
     static const int FORCE_ZVALUE = 200;
@@ -139,6 +148,29 @@ protected:
     const StepCore::MetaProperty* _property;
     const StepCore::MetaProperty* _positionProperty;
     bool  _isVisible;
+};
+
+class CircularArrowHandlerGraphicsItem: public WorldGraphicsItem {
+public:
+    CircularArrowHandlerGraphicsItem(StepCore::Item* item, WorldModel* worldModel,
+                        QGraphicsItem* parent, double radius, const StepCore::MetaProperty* property,
+                        const StepCore::MetaProperty* positionProperty = NULL);
+
+    void paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget);
+
+    void viewScaleChanged();
+    void worldDataChanged(bool);
+
+protected:
+    QVariant itemChange(GraphicsItemChange change, const QVariant& value);
+    virtual double value();
+    virtual void setValue(double value);
+
+    void mouseMoveEvent(QGraphicsSceneMouseEvent *event);
+    const StepCore::MetaProperty* _property;
+    const StepCore::MetaProperty* _positionProperty;
+    bool  _isVisible;
+    double _radius;
 };
 
 class ItemMenuHandler: public QObject

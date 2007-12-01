@@ -110,10 +110,6 @@ void SoftBodyMenuHandler::createSoftBodyItemsApply()
     StepCore::Vector2i split = StepCore::stringToType<StepCore::Vector2i>(
                     _createSoftBodyItemsUi->lineEditSplit->text(), &ok);
 
-    kDebug()<< _createSoftBodyItemsUi->lineEditSplit->text()<<endl;
-    kDebug()<< split[0]<<endl;
-    kDebug()<< split[1]<<endl;
-
     double bodyMass = _createSoftBodyItemsUi->lineEditBodyMass->text().toDouble();
     double youngModulus = _createSoftBodyItemsUi->lineEditYoungModulus->text().toDouble();
     double bodyDamping = _createSoftBodyItemsUi->lineEditBodyDamping->text().toDouble();

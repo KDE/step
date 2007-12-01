@@ -51,7 +51,7 @@ int main(int argc, char* argv[])
 
     KCmdLineArgs* args = KCmdLineArgs::parsedArgs();
     if(args->count() > 0) {
-        kDebug() << args->url(0) << endl;
+        //kDebug() << args->url(0) << endl;
         mainWindow->openFile(args->url(0));
     }
 
