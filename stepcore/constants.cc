@@ -23,7 +23,11 @@
 
 namespace StepCore {
 
+#ifndef M_PI
+const double Constants::Pi = 3.1415926535897932385;
+#else
 const double Constants::Pi = M_PI;
+#endif
 
 const double Constants::SpeedOfLight = 2.99792458e8;
 const double Constants::Magnetic = 1.2566e-6;
