@@ -27,6 +27,8 @@
 #include <QVariant>
 #include <QBitArray>
 
+#include "util.h"
+
 namespace StepCore {
 
 class MetaObject;
@@ -316,7 +318,7 @@ struct MetaObjectHelper<Class, MetaObject::ABSTRACT> {
     const StepCore::MetaProperty _className::_classProperties[] = { _STEPCORE_PROPERTY_NULL, __properties }; \
     const StepCore::MetaObject*  _className::_superClasses[] = { 0, __superClasses }; \
     const StepCore::MetaObject   _className::_metaObject = { \
-        QString(__STRING(_className)), QString(_description), _flags, \
+        QString(STEPCORE_STRINGIFY(_className)), QString(_description), _flags, \
         StepCore::MetaObjectHelper<_className, _flags & StepCore::MetaObject::ABSTRACT>::newObjectHelper, \
         StepCore::MetaObjectHelper<_className, _flags & StepCore::MetaObject::ABSTRACT>::cloneObjectHelper, \
         _superClasses+1, sizeof(_superClasses)/sizeof(*_superClasses)-1, \
@@ -325,7 +327,7 @@ struct MetaObjectHelper<Class, MetaObject::ABSTRACT> {
 #define STEPCORE_SUPER_CLASS(_className) _className::staticMetaObject(),
 
 #define STEPCORE_PROPERTY_RF(_type, _name, _units, _description, _flags, _read) \
-    { __STRING(_name), _units, _description, \
+    { STEPCORE_STRINGIFY(_name), _units, _description, \
       StepCore::MetaProperty::READABLE | _flags, qMetaTypeId<_type>(), \
       StepCore::MetaPropertyHelper<_thisType, _type>::read<&_thisType::_read>, \
       StepCore::MetaPropertyHelper<_thisType, _type>::writeNull, \
@@ -333,7 +335,7 @@ struct MetaObjectHelper<Class, MetaObject::ABSTRACT> {
       StepCore::MetaPropertyHelper<_thisType, _type>::writeStringNull },
 
 #define STEPCORE_PROPERTY_RWF(_type, _name, _units, _description, _flags, _read, _write) \
-    { __STRING(_name), _units, _description, \
+    { STEPCORE_STRINGIFY(_name), _units, _description, \
       StepCore::MetaProperty::READABLE | StepCore::MetaProperty::WRITABLE | _flags, \
       qMetaTypeId<_type>(), \
       StepCore::MetaPropertyHelper<_thisType, _type>::read<&_thisType::_read>, \

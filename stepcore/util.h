@@ -48,6 +48,9 @@ protected:
 #define STEPCORE_UNUSED
 #endif
 
+#define STEPCORE_STRINGIFY(x) _STEPCORE_STRINGIFY(x)
+#define _STEPCORE_STRINGIFY(x) #x
+
 #ifdef NDEBUG
 #define STEPCORE_ASSERT_NOABORT(expr)
 #else // NDEBUG
