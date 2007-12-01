@@ -90,7 +90,7 @@ int CGConstraintSolver::solve(ConstraintsInfo* info)
         if(std::isinf(info->forceMax[i]) != +1) ++fmaxCount;
     }
 
-    GmmSparceRowMatrix c(fminCount + fmaxCount, nc);
+    GmmSparseRowMatrix c(fminCount + fmaxCount, nc);
     GmmStdVector f(fmaxCount + fmaxCount);
 
     int fminIndex = 0;
