@@ -192,6 +192,16 @@ protected:
     RigidBody* _r2;
 };
 
+/** \ingroup joints
+ *  \brief Massless rope: maximal distance between two points on particles or rigid bodies
+ */
+class Rope: public Stick
+{
+    STEPCORE_OBJECT(Rope)
+
+public:
+    void getConstraintsInfo(ConstraintsInfo* info, int offset);
+};
 
 } // namespace StepCore
 

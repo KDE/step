@@ -229,6 +229,7 @@ struct ConstraintsInfo
 
     GmmStdVector       forceMin;            ///< Constraints force lower limit
     GmmStdVector       forceMax;            ///< Constraints force upper limit
+
     GmmStdVector       force;               ///< Resulting constraints force
 
     ConstraintsInfo(): variablesCount(0), constraintsCount(0),

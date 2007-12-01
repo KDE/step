@@ -22,6 +22,7 @@
 
 #include <gmm/gmm_iter.h>
 #include <gmm/gmm_iter_solvers.h>
+#include <cmath>
 
 namespace StepCore {
 
@@ -60,8 +61,8 @@ int CGConstraintSolver::solve(ConstraintsInfo* info)
     }
 
     gmm::iteration iter(2.0E-5); // XXX
-    gmm::identity_matrix PS;
-    gmm::identity_matrix PR;
+    gmm::identity_matrix ps;
+    gmm::identity_matrix pr;
 
     // print debug info
     /*std::cout << "ConstraintSolver:" << endl
@@ -80,7 +81,36 @@ int CGConstraintSolver::solve(ConstraintsInfo* info)
 
     // constrained_cg ?
     // XXX: limit iterations count
-    gmm::cg(a, l, b, PS, PR, iter);
+
+    // XXX: Use sparce vectors for fmin and fmax
+    int fminCount = 0;
+    int fmaxCount = 0;
+    for(int i=0; i<nc; ++i) {
+        if(std::isinf(info->forceMin[i]) != -1) ++fminCount;
+        if(std::isinf(info->forceMax[i]) != +1) ++fmaxCount;
+    }
+
+    GmmSparceRowMatrix c(fminCount + fmaxCount, nc);
+    GmmStdVector f(fmaxCount + fmaxCount);
+
+    int fminIndex = 0;
+    int fmaxIndex = fminCount;
+    for(int i=0; i<nc; ++i) {
+        if(std::isinf(info->forceMin[i]) != -1) {
+            c.row(fminIndex).w(i, -1);
+            f[fminIndex] = -info->forceMin[i];
+            ++fminIndex;
+        }
+        if(std::isinf(info->forceMax[i]) != +1) {
+            c.row(fmaxIndex).w(i, 1);
+            f[fmaxIndex] = info->forceMax[i];
+            ++fmaxIndex;
+        }
+    }
+
+    gmm::constrained_cg(a, c, l, b, f, ps, pr, iter);
+
+    //gmm::cg(a, l, b, ps, pr, iter);
     gmm::mult(transposed(info->jacobian), l, info->force);
 
     // print debug info

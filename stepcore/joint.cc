@@ -48,6 +48,9 @@ STEPCORE_META_OBJECT(Stick, "Massless stick which can be connected to bodies", 0
     STEPCORE_PROPERTY_R_D(StepCore::Vector2d, position2, "m", "Position2", position2)
     )
 
+STEPCORE_META_OBJECT(Rope, "Massless rope which can be connected to bodies", 0,
+    STEPCORE_SUPER_CLASS(Stick),)
+
 Anchor::Anchor(Object* body, const Vector2d& position, double angle)
     : _position(position), _angle(angle)
 {
@@ -372,53 +375,27 @@ void Stick::getConstraintsInfo(ConstraintsInfo* info, int offset)
             info->jacobianDerivative.row(offset+1).w(_r2->variablesOffset()+RigidBody::AngleOffset, -av*r2[1]);
         }
     }
-
-#if 0
-    if(_p) {
-        Vector2d r = _p->position() - _position;
-        double lnorm2 = _localPosition.norm2();
-
-        if(lnorm2 != 0) { // XXX: add some epsilon here
-            info->value[offset] = (r.norm2() - lnorm2)*0.5;
-            info->derivative[offset] = _p->velocity().innerProduct(r); 
-
-            info->jacobian->row(offset).w(_p->variablesOffset()+Particle::PositionOffset, r[0]);
-            info->jacobian->row(offset).w(_p->variablesOffset()+Particle::PositionOffset+1, r[1]);
-
-            info->jacobianDerivative->row(offset).w(
-                                _p->variablesOffset()+Particle::PositionOffset, _p->velocity()[0]);
-            info->jacobianDerivative->row(offset).w(
-                                _p->variablesOffset()+Particle::PositionOffset+1, _p->velocity()[1]);
-        } else {
-            info->value[offset  ]  = r[0];
-            info->value[offset+1]  = r[1];
-            info->derivative[offset  ] = _p->velocity()[0];
-            info->derivative[offset+1] = _p->velocity()[1];
-
-            info->jacobian->row(offset).w(_p->variablesOffset()+Particle::PositionOffset, 1);
-            info->jacobian->row(offset+1).w(_p->variablesOffset()+Particle::PositionOffset+1, 1);
-        }
-    } else if(_r) {
-        Vector2d r1 = _r->vectorLocalToWorld(_localPosition);
-        Vector2d p1 = _r->position() + r1;
-        Vector2d v1 = _r->velocityWorld(p1);
-        double   av = _r->angularVelocity();
-
-        info->value[offset  ] = p1[0] - _position[0];
-        info->value[offset+1] = p1[1] - _position[1];
-        info->derivative[offset  ] = v1[0];
-        info->derivative[offset+1] = v1[1];
-
-        info->jacobian->row(offset  ).w(_r->variablesOffset()+RigidBody::PositionOffset, 1);
-        info->jacobian->row(offset+1).w(_r->variablesOffset()+RigidBody::PositionOffset+1, 1);
-        info->jacobian->row(offset  ).w(_r->variablesOffset()+RigidBody::AngleOffset, -r1[1]);
-        info->jacobian->row(offset+1).w(_r->variablesOffset()+RigidBody::AngleOffset,  r1[0]);
-        info->jacobianDerivative->row(offset  ).w(_r->variablesOffset()+RigidBody::AngleOffset, -av*r1[0]);
-        info->jacobianDerivative->row(offset+1).w(_r->variablesOffset()+RigidBody::AngleOffset, -av*r1[1]);
-    }
-#endif
 }
 
+void Rope::getConstraintsInfo(ConstraintsInfo* info, int offset)
+{
+    if(!_body1 && !_body2) return;
+
+    Vector2d p = position2() - position1();
+    Vector2d v = velocity2() - velocity1();
+
+    if(_length != 0) {
+        if(p.norm() >= _length) { // rope is in tension
+            Stick::getConstraintsInfo(info, offset);
+            info->forceMax[offset] = 0;
+        } else { // rope is free
+            info->value[offset] = 0;
+            info->derivative[offset] = 0;
+        }
+    } else {
+        Stick::getConstraintsInfo(info, offset);
+    }
+}
 
 } // namespace StepCore
 
