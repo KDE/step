@@ -136,6 +136,7 @@ void ItemPalette::addObject(const StepCore::MetaObject* metaObject)
     action->setToolTip(metaObject->description());
     action->setIcon(KIcon(QString("step_object_") + metaObject->className()));
     action->setCheckable(true);
+    action->setProperty("step_object", metaObject->className());
 
     _actionGroup->addAction(action);
     _toolBar->addAction(action);
@@ -144,7 +145,7 @@ void ItemPalette::addObject(const StepCore::MetaObject* metaObject)
 
 void ItemPalette::actionTriggered(QAction* action)
 {
-    emit beginAddItem(action->text());
+    emit beginAddItem(action->property("step_object").toString());
 }
 
 void ItemPalette::endAddItem(const QString& name, bool /*success*/)
