@@ -9,10 +9,15 @@ if (CMAKE_COMPILER_IS_GNUCXX)
 	add_definitions (-D_BSD_SOURCE)
 endif (CMAKE_COMPILER_IS_GNUCXX)
 
+set(CMAKE_MODULE_PATH ${CMAKE_CURRENT_SOURCE_DIR}/cmake/modules )
+
+find_package(GSL)
+find_package(GMM)
+
+if (GMM_INCLUDE_DIR)
+
 set(QALCULATE_MIN_VERSION "0.9.5")
 include(FindQalculate.cmake)
-
-set(GMM_FIND_REQUIRED TRUE)
 
 set(STEPCORE_TESTS OFF CACHE BOOL "Build StepCore tests")
 set(STEPCORE_WITH_GSL ${GSL_FOUND} CACHE BOOL "Enable GSL-powered features for StepCore")
@@ -31,3 +36,6 @@ if(STEPCORE_TESTS)
 add_subdirectory(stepcore_tests)
 endif(STEPCORE_TESTS)
 
+else (GMM_INCLUDE_DIR)
+MESSAGE(STATUS "Step will not be built because you are missing GMM")
+endif (GMM_INCLUDE_DIR)
