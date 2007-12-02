@@ -150,7 +150,7 @@ void ItemPalette::actionTriggered(QAction* action)
 
 void ItemPalette::endAddItem(const QString& name, bool /*success*/)
 {
-    if(name == _actionGroup->checkedAction()->text())
+    if(name == _actionGroup->checkedAction()->property("step_object").toString())
         _pointerAction->setChecked(true);
 }
 
