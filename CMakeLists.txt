@@ -9,6 +9,13 @@ if (CMAKE_COMPILER_IS_GNUCXX)
 	add_definitions (-D_BSD_SOURCE)
 endif (CMAKE_COMPILER_IS_GNUCXX)
 
+if (NOT KDE4_FOUND)
+  find_package(KDE4 REQUIRED)
+  include(KDE4Defaults)
+  add_definitions (${QT_DEFINITIONS} ${KDE4_DEFINITIONS})
+  include_directories(${KDE4_INCLUDES})
+endif (NOT KDE4_FOUND)
+
 set(CMAKE_MODULE_PATH ${CMAKE_CURRENT_SOURCE_DIR}/cmake/modules )
 
 find_package(GSL)
@@ -17,7 +24,7 @@ find_package(GMM)
 if (GMM_INCLUDE_DIR)
 
 set(QALCULATE_MIN_VERSION "0.9.5")
-include(FindQalculate.cmake)
+include(cmake/modules/FindQalculate.cmake)
 
 set(STEPCORE_TESTS OFF CACHE BOOL "Build StepCore tests")
 set(STEPCORE_WITH_GSL ${GSL_FOUND} CACHE BOOL "Enable GSL-powered features for StepCore")
