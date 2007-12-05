@@ -253,7 +253,7 @@ void PolygonGraphicsItem::paint(QPainter* painter, const QStyleOptionGraphicsIte
     }
 
     if(_isSelected || _isMouseOverItem) {
-        painter->setRenderHint(QPainter::Antialiasing, renderHints & QPainter::Antialiasing);
+        //painter->setRenderHint(QPainter::Antialiasing, renderHints & QPainter::Antialiasing);
         painter->setPen(QPen(Qt::blue, 0));
         drawArrow(painter, polygon()->velocity());
         drawCircularArrow(painter, polygon()->angularVelocity(), ANGULAR_VELOCITY_RADIUS);

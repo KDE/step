@@ -133,26 +133,32 @@ void WorldGraphicsItem::drawCircularArrow(QPainter* painter, const StepCore::Vec
 {
     double s = currentViewScale();
     double rs = radius/s;
-    double x0 = radius*cos(angle)+r[0];
-    double y0 = radius*sin(angle)+r[1];
-    double xAr1 = CIRCULAR_ARROW_STROKE*cos(2*M_PI/3 + angle);
-    double yAr1 = CIRCULAR_ARROW_STROKE*sin(2*M_PI/3 + angle);
-    double xAr2 = CIRCULAR_ARROW_STROKE*cos(M_PI/3 + angle);
-    double yAr2 = CIRCULAR_ARROW_STROKE*sin(M_PI/3 + angle);
+    double x0 = rs*cos(angle)+r[0]/s;
+    double y0 = rs*sin(angle)+r[1]/s;
+    double xAr1 = CIRCULAR_ARROW_STROKE*cos(2*M_PI/3 + angle)/s;
+    double yAr1 = CIRCULAR_ARROW_STROKE*sin(2*M_PI/3 + angle)/s;
+    double xAr2 = CIRCULAR_ARROW_STROKE*cos(M_PI/3 + angle)/s;
+    double yAr2 = CIRCULAR_ARROW_STROKE*sin(M_PI/3 + angle)/s;
 
-    if(angle > 0) {
-        painter->drawArc(QRectF(-rs, -rs, 2*rs, 2*rs),
-                     -int(angle*180*16/M_PI), int(angle*180*16/M_PI));
-        if(angle*radius > CIRCULAR_ARROW_STROKE) { // do not draw too small vectors
-            painter->drawLine(QLineF(x0/s, y0/s, (x0-xAr1)/s, (y0-yAr1)/s));
-            painter->drawLine(QLineF(x0/s, y0/s, (x0-xAr2)/s, (y0-yAr2)/s));
-        }
+    QRectF rr(-rs, -rs, 2*rs, 2*rs);
+
+    if(angle > 2*M_PI || angle < -2*M_PI) {
+        painter->drawArc(rr, int(-angle*180*16/M_PI-150*16), 300*16);
+        for(int i=1; i<5; ++i)
+            painter->drawArc(rr, int(-angle*180*16/M_PI-150*16-i*12*16), 1*16);
+    } else if(angle > 0) {
+        painter->drawArc(rr, -int(angle*180*16/M_PI), int(angle*180*16/M_PI));
     } else {
-        painter->drawArc(QRectF(-rs, -rs, 2*rs, 2*rs), 0, int(-angle*180*16/M_PI));
-        if(-angle*radius > CIRCULAR_ARROW_STROKE) { // do not draw too small vectors
-            painter->drawLine(QLineF(x0/s, y0/s, (x0+xAr1)/s, (y0+yAr1)/s));
-            painter->drawLine(QLineF(x0/s, y0/s, (x0+xAr2)/s, (y0+yAr2)/s));
-        }
+        painter->drawArc(rr, 0, int(-angle*180*16/M_PI));
+    }
+
+    // do not draw too small vectors
+    if(angle > 0 && angle*radius > CIRCULAR_ARROW_STROKE) {
+        painter->drawLine(QLineF(x0, y0, x0-xAr1, y0-yAr1));
+        painter->drawLine(QLineF(x0, y0, x0-xAr2, y0-yAr2));
+    } if(angle < 0 && -angle*radius > CIRCULAR_ARROW_STROKE) {
+        painter->drawLine(QLineF(x0, y0, x0+xAr1, y0+yAr1));
+        painter->drawLine(QLineF(x0, y0, x0+xAr2, y0+yAr2));
     }
 }
 
@@ -441,7 +447,17 @@ void CircularArrowHandlerGraphicsItem::mouseMoveEvent(QGraphicsSceneMouseEvent *
         if(!_isMoving) { _worldModel->beginMacro(i18n("Edit %1", _item->name())); _isMoving = true; }
 
         QPointF newPos(mapToParent(event->pos()) - matrix().map(event->buttonDownPos(Qt::LeftButton)));
-        setValue(atan2(newPos.y(),newPos.x()));
+        double newValue = atan2(newPos.y(),newPos.x());
+        if(newValue < 0) newValue += 2*M_PI;
+
+        double v = value();
+        double b = 2*M_PI * int(v / (2*M_PI) - (v<0 ? 1 : 0));
+        double f = v - b;
+
+        if(f < M_PI_2 && newValue > 3*M_PI_2) newValue -= 2*M_PI;
+        else if(f > 3*M_PI_2 && newValue < M_PI_2) newValue += 2*M_PI;
+
+        setValue(b + newValue);
     } else event->ignore();
 }
 

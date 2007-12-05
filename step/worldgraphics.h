@@ -119,9 +119,9 @@ protected:
 
     static const int HANDLER_SIZE = 6;
 
-    static const int ANGLE_HANDLER_RADIUS = 30;
-    static const int ANGULAR_VELOCITY_RADIUS = 45;
-    static const int ANGULAR_ACCELERATION_RADIUS = 49;
+    static const int ANGLE_HANDLER_RADIUS = 15;
+    static const int ANGULAR_VELOCITY_RADIUS = 30;
+    static const int ANGULAR_ACCELERATION_RADIUS = 34;
 
     static const int BODY_ZVALUE = 100;
     static const int FORCE_ZVALUE = 200;
@@ -169,7 +169,7 @@ protected:
     void mouseMoveEvent(QGraphicsSceneMouseEvent *event);
     const StepCore::MetaProperty* _property;
     const StepCore::MetaProperty* _positionProperty;
-    bool  _isVisible;
+    bool   _isVisible;
     double _radius;
 };
 
