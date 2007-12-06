@@ -1,0 +1,333 @@
+<?xml version="1.0" ?>
+<!DOCTYPE book PUBLIC "-//KDE//DTD DocBook XML V4.2-Based Variant V1.1//EN" "dtd/kdex.dtd" [
+  <!ENTITY step "<application>Step</application>">
+  <!ENTITY kappname "&step;">
+  <!ENTITY package "playground/edu">
+  <!ENTITY % addindex "IGNORE">
+  <!ENTITY % English "INCLUDE"><!-- change language only here -->
+]>
+
+<book lang="&language;">
+
+<bookinfo>
+<title>The &step; Handbook</title>
+
+<authorgroup>
+<author>
+<firstname>Anne-Marie</firstname>
+<surname>Mahfouf</surname>
+<affiliation>
+<address><email>annma@kde.org</email></address>
+</affiliation>
+</author>
+</authorgroup>
+
+<!-- TRANS:ROLES_OF_TRANSLATORS -->
+
+<copyright>
+<year>2007</year>
+<holder>Anne-Marie Mahfouf</holder>
+</copyright>
+
+<legalnotice>&FDLNotice;</legalnotice>
+
+<date>2007-12-06</date>
+<releaseinfo>0.0.3</releaseinfo>
+
+<abstract>
+<para>
+&step; is an interactive physical simulator. It works like this: you place some bodies on the scene, add some forces such as gravity or springs, then click <guibutton>Simulate</guibutton> and &step; shows you how your scene will evolve according to the laws of physics. You can change every property of the bodies/forces in your experiment (even during simulation) and see how this will change evolution of the experiment. With &step; you can not only learn but feel how physics works!
+</para>
+</abstract>
+
+<keywordset>
+<keyword>KDE</keyword>
+<keyword>kdeedu</keyword>
+<keyword>physics</keyword>
+<keyword>simulator</keyword>
+<keyword>forces</keyword>
+</keywordset>
+
+</bookinfo>
+
+<chapter id="introduction">
+<title>Introduction</title>
+<para>&step; is an interactive physical simulator.</para>
+     
+<para>
+&step; features:
+<itemizedlist>
+<listitem><para>
+Classical mechanical simulation in two dimensions
+</para></listitem>
+<listitem><para>
+Particles, springs with dumping, gravitational and coulomb forces
+</para></listitem>
+<listitem><para>
+Rigid bodies
+</para></listitem>
+<listitem><para>
+Collision detection (currently only discrete) and handling
+</para></listitem>
+<listitem><para>
+Soft (deformable) bodies simulated as user-editable particles-springs system, sound waves
+</para></listitem>
+<listitem><para>
+Molecular dynamics (currently using Lennard-Jones potential): gas and liquid, condensation and evaporation, calculation of macroscopic quantities and their variances
+</para></listitem>
+<listitem><para>
+Units conversion and expression calculation: you can enter something like "(2 days + 3 hours) * 80 km/h" and it will be accepted as distance value (requires libqalculate)
+</para></listitem>
+<listitem><para>
+Errors calculation and propagation: you can enter values like "1.3 ± 0.2" for any property and errors for all dependent properties will be calculated using statistical formulas
+</para></listitem>
+<listitem><para>
+Solver error estimation: errors introduced by the solver is calculated and added to user-entered errors
+</para></listitem>
+<listitem><para>
+Several different solvers: up to 8th order, explicit and implicit, with or without adaptive timestep (most of the solvers require GSL library)
+</para></listitem>
+<listitem><para>
+Controller tool to easily control properties during simulation (even with custom keyboard shortcuts)
+</para></listitem>
+<listitem><para>
+Tools to visualize results: graph, meter, tracer
+</para></listitem>
+<listitem><para>
+Context information for all objects, integrated wikipedia browser
+</para></listitem>
+<listitem><para>
+Collection of example experiments, more can be downloaded with KNewStuff2
+</para></listitem>
+</itemizedlist>
+</para>
+</chapter>
+
+<chapter id="using-step">
+<title>Using &step;</title>
+<para>-</para>
+<screenshot>
+     <screeninfo>Here's a screenshot of &step; when you start it for the first time</screeninfo>
+	<mediaobject>
+	  <imageobject>
+	    <imagedata fileref="mainwindow.png" format="PNG"/>
+	  </imageobject>
+	    <textobject>
+	    <phrase>Step Main Window</phrase>
+	  </textobject>
+	</mediaobject>
+</screenshot>
+
+<sect1 id="board">
+<title>The board</title>
+<para>
+-
+</para>
+</sect1>
+
+<sect1 id="menubar">
+<title>The menubar</title>
+<para>
+-
+</para>
+</sect1>
+		
+		
+</chapter>
+     
+<chapter id="commands">
+<title>Command Reference</title>
+
+<sect1  id="step-file-menu">
+<title>The <guimenu>File</guimenu> Menu</title>
+<para>
+<variablelist>
+<varlistentry>
+<term><menuchoice>
+<shortcut>
+<keycombo>&Ctrl;<keycap>Q</keycap></keycombo>
+</shortcut>
+<guimenu>File</guimenu>
+<guimenuitem>Quit</guimenuitem>
+</menuchoice></term>
+<listitem><para><action>Quit</action> &step;.</para></listitem>
+</varlistentry>
+
+</variablelist>
+</para>
+</sect1>
+
+<sect1  id="step-settings-menu">
+<title>The <guimenu>Settings</guimenu> Menu</title>
+<para>
+<variablelist>
+<varlistentry>
+<term><menuchoice>
+<guimenu>Settings</guimenu>
+<guimenuitem>Show Toolbar</guimenuitem>
+</menuchoice></term>
+<listitem><para><action>Toggle</action> (hide or show) the toolbar.</para></listitem>
+</varlistentry>
+<varlistentry>
+<term><menuchoice>
+<guimenu>Settings</guimenu>
+<guimenuitem>Show Statusbar</guimenuitem>
+</menuchoice></term>
+<listitem><para><action>Toggle</action>(hide or show) the statusbar.</para></listitem>
+</varlistentry>
+<varlistentry>
+<term><menuchoice>
+<guimenu>Settings</guimenu>
+<guimenuitem>Configure Shortcuts...</guimenuitem>
+</menuchoice></term>
+<listitem><para><action>Configure</action> the shortcuts, i.e the keyboard keys.</para></listitem>
+</varlistentry>
+<varlistentry>
+<term><menuchoice>
+<guimenu>Settings</guimenu>
+<guimenuitem>Configure &step;..</guimenuitem>
+</menuchoice></term>
+<listitem><para><action>Open</action> a dialog which allows you to configure the theme of the cards and the timer duration.</para></listitem>
+</varlistentry>
+</variablelist>
+</para>
+</sect1>
+
+<sect1  id="step-help-menu">
+<title>The <guimenu>Help</guimenu> Menu</title>
+<para>
+<variablelist>
+<varlistentry>
+<term><menuchoice>
+<guimenu>Help</guimenu>
+<guimenuitem>&step; Handbook</guimenuitem>
+</menuchoice></term>
+<listitem><para><action>Open</action> this handbook in the KHelpCenter.</para></listitem>
+</varlistentry>
+<varlistentry>
+<term><menuchoice>
+<shortcut>
+<keycombo>&Ctrl;<keycap>F1</keycap></keycombo>
+</shortcut>
+<guimenu>Help</guimenu>
+<guimenuitem>What's This?</guimenuitem>
+</menuchoice></term>
+<listitem><para><action>Open</action> this handbook in the KHelpCenter.</para></listitem>
+</varlistentry>
+<varlistentry>
+<term><menuchoice>
+<guimenu>Help</guimenu>
+<guimenuitem>Report Bug...</guimenuitem>
+</menuchoice></term>
+<listitem><para><action>Open</action> a dialog that allows you to easily report a bug in &step;. Fill up the fields and send it!</para></listitem>
+</varlistentry>
+<varlistentry>
+<term><menuchoice>
+<guimenu>Help</guimenu>
+<guimenuitem>About KDE</guimenuitem>
+</menuchoice></term>
+<listitem><para><action>Open</action> a dialog that indicates the KDE version and gives you some indications about the KDE project.</para></listitem>
+</varlistentry>
+<varlistentry>
+<term><menuchoice>
+<guimenu>Help</guimenu>
+<guimenuitem>About &step;</guimenuitem>
+</menuchoice></term>
+<listitem><para><action>Open</action> a dialog that gives you the &step; version, the author name and email, the contributors names and the licence.</para></listitem>
+</varlistentry>
+</variablelist>
+</para>
+</sect1>
+
+</chapter>
+
+<chapter id="developers">
+<title>Developer's Guide to &step;</title>
+
+<para>
+
+Not yet written
+</para>
+<para>
+
+Not yet written
+</para>
+</chapter>
+
+<chapter id="credits">
+
+<title>Credits and License</title>
+
+<para>
+&step;
+</para>
+<para>
+Program copyright 2007 Vladimir Kuznetsov <email>ks.vladimir AT gmail DOT com</email>
+</para>
+<para>
+Contributors:
+<itemizedlist>
+<listitem><para>Author: Vladimir Kuznetsov <email>ks.vladimir AT gmail DOT com</email></para>
+</listitem>
+<listitem><para>Contributor: Carsten Niehaus <email>cniehaus AT kde DOT org</email></para>
+</listitem>
+</itemizedlist>
+</para>
+
+<para>
+Documentation copyright 2007 Anne-Marie Mahfouf <email>annma@kde.org</email>
+</para>
+
+<!-- TRANS:CREDIT_FOR_TRANSLATORS -->
+
+&underFDL;
+
+&underGPL;                 <!-- GPL License -->
+
+</chapter>
+
+
+
+<appendix id="installation">
+<title>Installation</title>
+
+<sect1 id="getting-step">
+<title>How to obtain &step;</title>
+
+&install.intro.documentation;
+
+</sect1>
+
+<sect1 id="compilation">
+<title>Compilation and Installation</title>
+
+&install.compile.documentation;
+
+</sect1>
+
+</appendix>
+
+&documentation.index;
+</book>
+<!--
+Local Variables:
+mode: sgml
+sgml-minimize-attributes:nil
+sgml-general-insert-case:lower
+sgml-indent-step:0
+sgml-indent-data:nil
+End:
+-->
+
+
+
+
+
+
+
+
+
+
+
+
+
