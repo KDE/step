@@ -122,6 +122,7 @@ void SoftBodyMenuHandler::createSoftBodyItemsApply()
 
     const StepCore::ItemList::const_iterator end = items.end();
     for(StepCore::ItemList::const_iterator it = items.begin(); it != end; ++it) {
+        (*it)->setName(_worldModel->getUniqueName((*it)->metaObject()->className()));
         _worldModel->addItem(*it, softBody());
     }
 
