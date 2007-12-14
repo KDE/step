@@ -177,10 +177,14 @@ NoteGraphicsItem::NoteGraphicsItem(StepCore::Item* item, WorldModel* worldModel)
     setAcceptsHoverEvents(true);
 
     _widget = new QWidget();
+    _widget->setPalette(QPalette(Qt::lightGray));
 
     _textEdit = new NoteTextEdit(this, _widget);
     _textEdit->setFrameShape(QFrame::NoFrame);
-    _textEdit->setStyleSheet(".NoteTextEdit {background-color: rgba(0,0,0,0%);}");
+    QPalette p = _textEdit->palette();
+    p.setColor(QPalette::Base, Qt::transparent);
+    _textEdit->setPalette(p);
+    //_textEdit->setStyleSheet(".NoteTextEdit {background-color: rgba(0,0,0,0%);}");
 
     _toolBar = new KToolBar(_widget);
     _toolBar->setIconDimensions(16);
@@ -766,6 +770,7 @@ GraphGraphicsItem::GraphGraphicsItem(StepCore::Item* item, WorldModel* worldMode
     setAcceptsHoverEvents(true);
 
     _plotWidget = new KPlotWidget();
+    _plotWidget->setPalette(QPalette(Qt::lightGray));
     _plotWidget->setBackgroundColor(Qt::white);
     _plotWidget->setForegroundColor(Qt::black);
     //_plotWidget->setLeftPadding(0);
@@ -1165,6 +1170,7 @@ MeterGraphicsItem::MeterGraphicsItem(StepCore::Item* item, WorldModel* worldMode
 
     _widget = new QFrame();
     _widget->setFrameShape(QFrame::Box);
+    _widget->setPalette(QPalette(Qt::lightGray));
 
     QGridLayout* layout = new QGridLayout(_widget);
     layout->setContentsMargins(0,0,2,0);
@@ -1367,6 +1373,7 @@ ControllerGraphicsItem::ControllerGraphicsItem(StepCore::Item* item, WorldModel*
     setAcceptsHoverEvents(true);
 
     _widget = new QWidget();
+    _widget->setPalette(QPalette(Qt::lightGray));
     QGridLayout* layout = new QGridLayout(_widget);
 
     _labelMin = new QLabel(_widget); _labelMin->setAlignment(Qt::AlignRight);

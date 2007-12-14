@@ -240,6 +240,7 @@ World::World()
       _solver(NULL), _collisionSolver(NULL), _constraintSolver(NULL),
       _variablesCount(0)
 {
+    setColor(0xffffffff);
     setWorld(this);
     clear();
 }

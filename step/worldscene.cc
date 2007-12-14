@@ -105,7 +105,7 @@ void WorldSceneAxes::viewScaleChanged()
 
 WorldScene::WorldScene(WorldModel* worldModel, QObject* parent)
     : QGraphicsScene(parent), _worldModel(worldModel), _worldView(NULL),
-        _currentViewScale(1), _itemCreator(NULL), _bgColor(0xffffffff),
+        _currentViewScale(1), _itemCreator(NULL), _bgColor(0),
         _messagesFrame(NULL), _messagesLayout(NULL), _messageLastId(0)
 {
     #ifdef __GNUC__
@@ -249,7 +249,7 @@ void WorldScene::worldModelReset()
     /* Background */
     if(_bgColor != _worldModel->world()->color()) {
         _bgColor = _worldModel->world()->color();
-        if(_bgColor == 0xffffffff) setBackgroundBrush(Qt::NoBrush);
+        if(_bgColor == 0) setBackgroundBrush(Qt::NoBrush);
         else setBackgroundBrush(QBrush(QColor::fromRgba(_bgColor)));
     }
 
@@ -343,7 +343,7 @@ void WorldScene::worldDataChanged(bool dynamicOnly)
         /* Background */
         if(_bgColor != _worldModel->world()->color()) {
             _bgColor = _worldModel->world()->color();
-            if(_bgColor == 0xffffffff) setBackgroundBrush(Qt::NoBrush);
+            if(_bgColor == 0) setBackgroundBrush(Qt::NoBrush);
             else setBackgroundBrush(QBrush(QColor::fromRgba(_bgColor)));
         }
     }
