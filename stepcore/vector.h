@@ -116,9 +116,11 @@ public:
     bool operator!=(const Vector<T,N>& b);
 
     /** Multiply all vector components individualy */
-    Vector cMultiply(const Vector<T,N>& b);
+    Vector cMultiply(const Vector<T,N>& b) const;
+    /** Divide all vector components individualy */
+    Vector cDivide(const Vector<T,N>& b) const;
     /** Calculate square of all vector components individualy */
-    Vector cSquare() { return cMultiply(*this); }
+    Vector cSquare() const { return cMultiply(*this); }
 
 protected:
     T _array[N];
@@ -285,10 +287,18 @@ inline bool Vector<T,N>::operator!=(const Vector<T,N>& b)
 }
 
 template<typename T, int N>
-inline Vector<T,N> Vector<T,N>::cMultiply(const Vector<T,N>& b)
+inline Vector<T,N> Vector<T,N>::cMultiply(const Vector<T,N>& b) const
 {
     Vector<T,N> ret;
     for(int i=0; i<N; i++) ret._array[i] = _array[i] * b._array[i];
+    return ret;
+}
+
+template<typename T, int N>
+inline Vector<T,N> Vector<T,N>::cDivide(const Vector<T,N>& b) const
+{
+    Vector<T,N> ret;
+    for(int i=0; i<N; i++) ret._array[i] = _array[i] / b._array[i];
     return ret;
 }
 

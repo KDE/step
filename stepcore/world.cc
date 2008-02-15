@@ -215,6 +215,9 @@ void ItemGroup::allItems(ItemList* items) const
 
 void ConstraintsInfo::setDimension(int newVariablesCount, int newConstraintsCount)
 {
+    constraintsCount += contactsCount;
+    contactsCount = 0;
+
     if(variablesCount != newConstraintsCount || constraintsCount != newConstraintsCount) {
         jacobian.resize(newConstraintsCount, newVariablesCount);
         jacobianDerivative.resize(newConstraintsCount, newVariablesCount);
@@ -233,6 +236,31 @@ void ConstraintsInfo::setDimension(int newVariablesCount, int newConstraintsCoun
         forceMin.resize(constraintsCount);
         forceMax.resize(constraintsCount);
     }
+}
+
+int ConstraintsInfo::addContact()
+{
+    ++contactsCount;
+
+    jacobian.resize(constraintsCount + contactsCount, variablesCount);
+    jacobianDerivative.resize(constraintsCount + contactsCount, variablesCount);
+    value.resize(constraintsCount + contactsCount);
+    derivative.resize(constraintsCount + contactsCount);
+    forceMin.resize(constraintsCount + contactsCount);
+    forceMax.resize(constraintsCount + contactsCount);
+
+    return constraintsCount + contactsCount - 1;
+}
+
+void ConstraintsInfo::clearContacts()
+{
+    contactsCount = 0;
+    jacobian.resize(constraintsCount, variablesCount);
+    jacobianDerivative.resize(constraintsCount, variablesCount);
+    value.resize(constraintsCount);
+    derivative.resize(constraintsCount);
+    forceMin.resize(constraintsCount);
+    forceMax.resize(constraintsCount);
 }
 
 World::World()
@@ -591,10 +619,7 @@ void World::checkVariablesCount()
         constraintsCount += (*j)->constraintsCount();
     }
 
-    if(variablesCount != _constraintsInfo.variablesCount ||
-                constraintsCount != _constraintsInfo.constraintsCount) {
-        _constraintsInfo.setDimension(variablesCount, constraintsCount);
-    }
+    _constraintsInfo.setDimension(variablesCount, constraintsCount);
 
     if(variablesCount != _variablesCount) {
         _variablesCount = variablesCount;
@@ -669,7 +694,7 @@ int World::doEvolve(double delta)
     
     if(_collisionSolver) {
         //_collisionSolver->resetCaches();
-        if(Contact::Intersected == _collisionSolver->checkContacts(_bodies))
+        if(Contact::Intersected == _collisionSolver->checkContacts(_bodies, NULL))
             return Solver::IntersectionDetected;
     }
 
@@ -746,7 +771,7 @@ inline int World::solverFunction(double t, const double* y,
 
     // 1. Collisions (TODO: variances for collisions)
     if(_collisionSolver) {
-        int state = _collisionSolver->checkContacts(_bodies);
+        int state = _collisionSolver->checkContacts(_bodies, NULL);
         if(state == Contact::Intersected && _stopOnIntersection) {
             //_collisionTime = t;
             return Solver::IntersectionDetected;

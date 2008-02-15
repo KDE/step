@@ -216,6 +216,8 @@ struct ConstraintsInfo
 {
     int                variablesCount;      ///< Number of dynamic variables
     int                constraintsCount;    ///< Number of constraints equations
+    int                contactsCount;       ///< Number of additional constrains 
+                                            ///< equations due to contacts
 
     GmmStdVector       value;               ///< Current constarints values (amount of brokenness)
     GmmStdVector       derivative;          ///< Time-derivative of constraints values
@@ -232,9 +234,19 @@ struct ConstraintsInfo
 
     GmmStdVector       force;               ///< Resulting constraints force
 
-    ConstraintsInfo(): variablesCount(0), constraintsCount(0),
+    ConstraintsInfo(): variablesCount(0), constraintsCount(0), contactsCount(0),
                        position(0,0), velocity(0,0), acceleration(0,0) {}
+
+    /** Set variablesCount, constraintsCount and reset contactsCount,
+     *  resize all arrays appropriately */
     void setDimension(int newVariablesCount, int newConstraintsCount);
+
+    /** Increment contactsCount by one, resize all arrays appropriately and
+     *  return an offset of newly created constraint */
+    int addContact();
+
+    /** Reset contactsCount to zero and resize all arrays appropriately */
+    void clearContacts();
 
 private:
     ConstraintsInfo(const ConstraintsInfo&);

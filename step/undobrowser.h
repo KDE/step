@@ -16,44 +16,29 @@
    Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
 */
 
-#ifndef STEP_ITEMPALETTE_H
-#define STEP_ITEMPALETTE_H
+#ifndef STEP_UNDOBROWSER_H
+#define STEP_UNDOBROWSER_H
 
 #include <QDockWidget>
-#include <QList>
+
 class WorldModel;
-class QToolBox;
-class QToolBar;
-class QAction;
-class QActionGroup;
+class QUndoView;
+class KUrl;
 
-namespace StepCore { class MetaObject; }
-
-class ItemPalette: public QDockWidget
+class UndoBrowser: public QDockWidget
 {
     Q_OBJECT
 
 public:
-    explicit ItemPalette(WorldModel* worldModel, QWidget* parent = 0, Qt::WindowFlags flags = 0);
-
-signals:
-    void beginAddItem(const QString& name);
+    explicit UndoBrowser(WorldModel* worldModel, QWidget* parent = 0, Qt::WindowFlags flags = 0);
 
 public slots:
-    void endAddItem(const QString& name, bool success);
-
-protected slots:
-    void actionTriggered(QAction* action);
+    void setEmptyLabel(const QString& label);
+    void setCurrentFileUrl(const KUrl& url);
 
 protected:
-    void addObject(const StepCore::MetaObject* metaObject);
-    bool event(QEvent* event);
-
     WorldModel* _worldModel;
-    QToolBar*   _toolBar;
-
-    QAction*        _pointerAction;
-    QActionGroup*   _actionGroup;
+    QUndoView*  _undoView;
 };
 
 #endif

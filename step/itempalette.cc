@@ -25,6 +25,7 @@
 #include <QToolBox>
 #include <QToolBar>
 #include <QAction>
+#include <QEvent>
 #include <QActionGroup>
 #include <QtAlgorithms>
 
@@ -61,6 +62,8 @@ ItemPalette::ItemPalette(WorldModel* worldModel, QWidget* parent, Qt::WindowFlag
     _bodiesToolBar->addSeparator();
     _forcesToolBar->addSeparator();
     */
+
+    setAllowedAreas(Qt::LeftDockWidgetArea | Qt::RightDockWidgetArea);
 
     _toolBar = new QToolBar(i18n("Palette"), this);
     _toolBar->setOrientation(Qt::Vertical);
@@ -134,7 +137,7 @@ void ItemPalette::addObject(const StepCore::MetaObject* metaObject)
 
     QAction* action = new QAction(metaObject->className(), this);
     action->setToolTip(metaObject->description());
-    action->setIcon(KIcon(QString("step_object_") + metaObject->className()));
+    action->setIcon(_worldModel->worldFactory()->objectIcon(metaObject));
     action->setCheckable(true);
     action->setProperty("step_object", metaObject->className());
 
@@ -152,5 +155,10 @@ void ItemPalette::endAddItem(const QString& name, bool /*success*/)
 {
     if(name == _actionGroup->checkedAction()->property("step_object").toString())
         _pointerAction->setChecked(true);
+}
+
+bool ItemPalette::event(QEvent* event)
+{
+    return QDockWidget::event(event);
 }
 

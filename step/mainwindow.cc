@@ -26,6 +26,7 @@
 #include "worldbrowser.h"
 #include "propertiesbrowser.h"
 #include "infobrowser.h"
+#include "undobrowser.h"
 #include "itempalette.h"
 #include "settings.h"
 #include "unitscalc.h"
@@ -89,6 +90,10 @@ MainWindow::MainWindow()
     infoBrowser = new InfoBrowser(worldModel, this);
     infoBrowser->setObjectName("infoBrowser");
     addDockWidget(Qt::RightDockWidgetArea, infoBrowser);
+
+    undoBrowser = new UndoBrowser(worldModel, this);
+    undoBrowser->setObjectName("undoBrowser");
+    addDockWidget(Qt::RightDockWidgetArea, undoBrowser);
 
     worldScene = new WorldScene(worldModel);
     worldGraphicsView = new WorldGraphicsView(worldScene, this);
@@ -224,6 +229,8 @@ bool MainWindow::newFile()
     worldGraphicsView->centerOn(0,0);
     currentFileUrl = KUrl();
     updateCaption();
+    undoBrowser->setEmptyLabel(i18n("<new file>"));
+    undoBrowser->setCurrentFileUrl(currentFileUrl);
     return true;
 }
 
@@ -267,6 +274,8 @@ bool MainWindow::openFile(const KUrl& url, const KUrl& startUrl)
     currentFileUrl = fileUrl;
     updateCaption();
     actionRecentFiles->addUrl(fileUrl);
+    undoBrowser->setEmptyLabel(i18n("<open file: %1>", fileUrl.fileName()));
+    undoBrowser->setCurrentFileUrl(currentFileUrl);
 
     return true;
 }
@@ -320,8 +329,10 @@ bool MainWindow::saveFileAs(const KUrl& url, const KUrl& startUrl)
 
     delete file;
 
+    worldModel->undoStack()->setClean();
     currentFileUrl = fileUrl;
     updateCaption();
+    undoBrowser->setCurrentFileUrl(currentFileUrl);
     return true;
 }
 

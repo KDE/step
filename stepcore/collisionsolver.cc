@@ -530,6 +530,7 @@ int GJKCollisionSolver::checkPolygonParticle(Contact* contact)
     return contact->state;
 }
 
+/*
 int GJKCollisionSolver::checkContact(Contact* contact)
 {
 
@@ -549,9 +550,9 @@ int GJKCollisionSolver::checkContact(Contact* contact)
     if(contact->type == Contact::PolygonPolygonType) return checkPolygonPolygon(contact);
     else if(contact->type == Contact::PolygonParticleType) return checkPolygonParticle(contact);
     return contact->state = Contact::Unknown;
-}
+}*/
 
-int GJKCollisionSolver::checkContacts(BodyList& bodies)
+int GJKCollisionSolver::checkContacts(BodyList& bodies, ConstraintsInfo* info)
 {
     int state = Contact::Unknown;
 
@@ -687,7 +688,7 @@ int GJKCollisionSolver::solveCollisions(BodyList& bodies)
     int ret = 0;
 
     // Detect and classify contacts
-    ret = checkContacts(bodies);
+    ret = checkContacts(bodies, NULL);
     STEPCORE_ASSERT_NOABORT(ret != Contact::Intersected);
 
     // Solve collisions

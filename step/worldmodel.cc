@@ -34,6 +34,7 @@
 #include <QItemSelectionModel>
 #include <QTimer>
 #include <KMenu>
+#include <KIcon>
 #include <KLocale>
 
 class CommandEditProperty: public QUndoCommand
@@ -451,6 +452,10 @@ QVariant WorldModel::data(const QModelIndex &index, int role) const
     } else if(role == Qt::ToolTipRole) {
         const_cast<WorldModel*>(this)->simulationPause();
         return createToolTip(index); // XXX
+    } else if(role == Qt::DecorationRole) {
+        if(_worldFactory->hasObjectIcon(obj->metaObject())) 
+            return _worldFactory->objectIcon(obj->metaObject());
+        return QVariant();
     } else if(role == FormattedNameRole) {
         return formatName(obj);
     } else if(role == ClassNameRole) {
@@ -772,7 +777,6 @@ bool WorldModel::saveXml(QIODevice* device)
     StepCore::XmlFile file(device);
 
     if(file.save(_world)) {
-        _undoStack->setClean();
         return true;
     } else {
         _errorString = file.errorString();

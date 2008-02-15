@@ -28,6 +28,7 @@ class WorldScene;
 class WorldGraphicsItem;
 class ItemCreator;
 class ItemMenuHandler;
+class KIcon;
 
 namespace StepCore {
     class Item;
@@ -39,6 +40,9 @@ struct ExtMetaObject
                         WorldModel* worldModel, WorldScene* worldScene);
     WorldGraphicsItem* (*newGraphicsItem)(StepCore::Item*, WorldModel*);
     ItemMenuHandler* (*newItemMenuHandler)(StepCore::Object*, WorldModel*, QObject*);
+
+    bool hasIcon;
+    KIcon* icon;
 };
 
 class WorldFactory: public StepCore::Factory
@@ -59,13 +63,20 @@ public:
     ItemMenuHandler* newItemMenuHandler(StepCore::Object* object,
                         WorldModel* worldModel, QObject* parent) const;
 
+    bool hasObjectIcon(const StepCore::MetaObject* mObject) const;
+    const KIcon& objectIcon(const StepCore::MetaObject* mObject) const;
+
     QList<QString> paletteMetaObjects() const { return _paletteMetaObjects; }
     QList<QString> orderedMetaObjects() const { return _orderedMetaObjects; }
 
 private:
+    void loadIcon(const StepCore::MetaObject* metaObject, ExtMetaObject* extMetaObject);
+
     QHash<const void*, const ExtMetaObject*> _extMetaObjects;
     QList<QString> _paletteMetaObjects;
     QList<QString> _orderedMetaObjects;
+
+    KIcon* _nullIcon;
 };
 
 #endif

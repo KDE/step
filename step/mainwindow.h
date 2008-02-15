@@ -28,6 +28,7 @@ class WorldScene;
 class WorldGraphicsView;
 class PropertiesBrowser;
 class InfoBrowser;
+class UndoBrowser;
 class ItemPalette;
 class KConfig;
 class KAction;
@@ -91,6 +92,7 @@ protected:
     WorldBrowser*       worldBrowser;
     PropertiesBrowser*  propertiesBrowser;
     InfoBrowser*        infoBrowser;
+    UndoBrowser*        undoBrowser;
     ItemPalette*        itemPalette;
     WorldScene*         worldScene;
     WorldGraphicsView*  worldGraphicsView;

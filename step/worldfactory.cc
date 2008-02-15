@@ -46,8 +46,8 @@
 #include "jointgraphics.h"
 #include "toolgraphics.h"
 
-#include <QItemSelectionModel>
-#include <QEvent>
+#include <KIcon>
+#include <KIconLoader>
 
 template<typename T>
 ItemCreator* newItemCreatorHelper(const QString& className,
@@ -71,24 +71,22 @@ ItemMenuHandler* newItemMenuHandlerHelper(StepCore::Object* object, WorldModel* 
 
 WorldFactory::WorldFactory()
 {
-    #define __REGISTER(Class) \
-        registerMetaObject(StepCore::Class::staticMetaObject()); \
-        _orderedMetaObjects.push_back(QString(StepCore::Class::staticMetaObject()->className()))
-
-    #define __REGISTER_E(Class) \
-        __REGISTER(Class); \
-        registerMetaObject(StepCore::Class##Errors::staticMetaObject())
+    _nullIcon = new KIcon();
 
     #define ___REGISTER_EXT(Class, newGraphicsCreator, newGraphicsItem, newItemMenuHandler) \
-        static const ExtMetaObject extMetaObject ## Class = \
-                { newGraphicsCreator, newGraphicsItem, newItemMenuHandler }; \
+        static ExtMetaObject extMetaObject ## Class = \
+                { newGraphicsCreator, newGraphicsItem, newItemMenuHandler, false, NULL }; \
         registerMetaObject(StepCore::Class::staticMetaObject()); \
         _extMetaObjects.insert(StepCore::Class::staticMetaObject(), &extMetaObject ## Class); \
-        _orderedMetaObjects.push_back(QString(StepCore::Class::staticMetaObject()->className()))
+        _orderedMetaObjects.push_back(QString(StepCore::Class::staticMetaObject()->className())); \
+        loadIcon(StepCore::Class::staticMetaObject(), const_cast<ExtMetaObject*>(&extMetaObject ## Class))
 
     #define ___REGISTER_EXT_E(Class, newGraphicsCreator, newGraphicsItem, newItemMenuHandler) \
         ___REGISTER_EXT(Class, newGraphicsCreator, newGraphicsItem, newItemMenuHandler); \
         registerMetaObject(StepCore::Class##Errors::staticMetaObject())
+
+    #define __REGISTER(Class) ___REGISTER_EXT(Class, NULL, NULL, NULL)
+    #define __REGISTER_E(Class) ___REGISTER_EXT_E(Class, NULL, NULL, NULL)
 
     #define __REGISTER_EXT(Class, GraphicsCreator, GraphicsItem, ItemMenuHandler) \
         ___REGISTER_EXT(Class, newItemCreatorHelper<GraphicsCreator>, \
@@ -132,9 +130,9 @@ WorldFactory::WorldFactory()
     __REGISTER_EXT(LinearMotor, LinearMotorCreator, LinearMotorGraphicsItem, ItemMenuHandler);
     __REGISTER_EXT(CircularMotor, CircularMotorCreator, CircularMotorGraphicsItem, ItemMenuHandler);
 
-    __REGISTER(WeightForce); __REGISTER_E(WeightForce);
-    __REGISTER(GravitationForce); __REGISTER_E(GravitationForce);
-    __REGISTER(CoulombForce); __REGISTER_E(CoulombForce);
+    __REGISTER_E(WeightForce);
+    __REGISTER_E(GravitationForce);
+    __REGISTER_E(CoulombForce);
 
     __REGISTER_EXT(Anchor, AnchorCreator, AnchorGraphicsItem, ItemMenuHandler);
     __REGISTER_EXT(Pin, PinCreator, PinGraphicsItem, ItemMenuHandler);
@@ -231,5 +229,30 @@ ItemMenuHandler* WorldFactory::newItemMenuHandler(StepCore::Object* object, Worl
     if(extMetaObject && extMetaObject->newItemMenuHandler)
         return extMetaObject->newItemMenuHandler(object, worldModel, parent);
     else return new ItemMenuHandler(object, worldModel, parent);
+}
+
+bool WorldFactory::hasObjectIcon(const StepCore::MetaObject* mObject) const
+{
+    const ExtMetaObject *extMetaObject = _extMetaObjects.value(mObject, NULL);
+    if(extMetaObject && extMetaObject->hasIcon) return true;
+    else return false;
+}
+
+const KIcon& WorldFactory::objectIcon(const StepCore::MetaObject* mObject) const
+{
+    const ExtMetaObject *extMetaObject = _extMetaObjects.value(mObject, NULL);
+    if(extMetaObject && extMetaObject->icon) return *(extMetaObject->icon);
+    else {
+        qWarning("Trying to load icon for unregistered metaObject\n");
+        return *_nullIcon;
+    }
+}
+
+void WorldFactory::loadIcon(const StepCore::MetaObject* metaObject, ExtMetaObject* extMetaObject)
+{
+    QString iconName = QString("step_object_") + metaObject->className();
+    extMetaObject->icon = new KIcon(iconName);
+    QString iconPath = KIconLoader::global()->iconPath(iconName, KIconLoader::Small, true);
+    extMetaObject->hasIcon = !iconPath.isEmpty();
 }
 

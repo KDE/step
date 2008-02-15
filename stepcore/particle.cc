@@ -19,6 +19,7 @@
 #include "particle.h"
 #include "types.h"
 #include <cstring>
+#include <cmath>
 
 namespace StepCore
 {
@@ -30,7 +31,11 @@ STEPCORE_META_OBJECT(Particle, "Simple zero-size particle", 0,
         STEPCORE_PROPERTY_R_D(StepCore::Vector2d, acceleration, STEPCORE_FROM_UTF8("m/s²"),
                                                             "acceleration", acceleration)
         STEPCORE_PROPERTY_R_D(StepCore::Vector2d, force, "N", "force", force)
-        STEPCORE_PROPERTY_RW(double, mass, "kg", "mass", mass, setMass ))
+        STEPCORE_PROPERTY_RW(double, mass, "kg", "mass", mass, setMass)
+        STEPCORE_PROPERTY_RWF(StepCore::Vector2d, momentum, "kg m/s", "momentum",
+                        StepCore::MetaProperty::DYNAMIC, momentum, setMomentum)
+        STEPCORE_PROPERTY_RWF(double, kineticEnergy, "J", "kinetic energy",
+                        StepCore::MetaProperty::DYNAMIC, kineticEnergy, setKineticEnergy))
 
 STEPCORE_META_OBJECT(ParticleErrors, "Errors class for Particle", 0, STEPCORE_SUPER_CLASS(ObjectErrors),
         STEPCORE_PROPERTY_RW_D(StepCore::Vector2d, positionVariance, "m",
@@ -42,7 +47,11 @@ STEPCORE_META_OBJECT(ParticleErrors, "Errors class for Particle", 0, STEPCORE_SU
         STEPCORE_PROPERTY_R_D(StepCore::Vector2d, forceVariance, "N",
                     "force variance", forceVariance)
         STEPCORE_PROPERTY_RW(double, massVariance, "kg",
-                    "mass variance", massVariance, setMassVariance ))
+                    "mass variance", massVariance, setMassVariance )
+        STEPCORE_PROPERTY_RWF(StepCore::Vector2d, momentumVariance, "kg m/s",
+                    "momentum variance", StepCore::MetaProperty::DYNAMIC, momentumVariance, setMomentumVariance)
+        STEPCORE_PROPERTY_RWF(double, kineticEnergyVariance, "J",
+                    "kinetic energy variance", StepCore::MetaProperty::DYNAMIC, kineticEnergyVariance, setKineticEnergyVariance))
 
 STEPCORE_META_OBJECT(ChargedParticle, "Charged zero-size particle", 0, STEPCORE_SUPER_CLASS(Particle),
         STEPCORE_PROPERTY_RW(double, charge, "C", "charge", charge, setCharge))
@@ -61,6 +70,35 @@ Vector2d ParticleErrors::accelerationVariance() const
 {
     return _forceVariance/square(particle()->mass()) +
         _massVariance*(particle()->force()/square(particle()->mass())).cSquare();
+}
+
+Vector2d ParticleErrors::momentumVariance() const
+{
+    return _velocityVariance * square(particle()->mass()) +
+           particle()->velocity().cSquare() * _massVariance;
+}
+
+void ParticleErrors::setMomentumVariance(const Vector2d& momentumVariance)
+{
+    _velocityVariance = (momentumVariance - particle()->velocity().cSquare() * _massVariance) /
+                        square(particle()->mass());
+}
+
+double ParticleErrors::kineticEnergyVariance() const
+{
+    return _velocityVariance.innerProduct(particle()->velocity().cSquare()) * square(particle()->mass()) +
+           square(particle()->velocity().norm2()/2) * _massVariance;
+}
+
+void ParticleErrors::setKineticEnergyVariance(double kineticEnergyVariance)
+{
+    _velocityVariance = (kineticEnergyVariance - square(particle()->velocity().norm2()/2) * _massVariance) /
+                        square(particle()->mass()) / 2 *
+                        Vector2d(1,1).cDivide(particle()->velocity().cSquare());
+    if(!std::isfinite(_velocityVariance[0]) || _velocityVariance[0] < 0 ||
+       !std::isfinite(_velocityVariance[1]) || _velocityVariance[1]) {
+        _velocityVariance.setZero();
+    }
 }
 
 ChargedParticle* ChargedParticleErrors::chargedParticle() const
@@ -139,6 +177,12 @@ void Particle::getInverseMass(GmmSparseRowMatrix* inverseMass,
         variance->row(offset).w(offset, v);
         variance->row(offset+1).w(offset+1, v);
     }
+}
+
+void Particle::setKineticEnergy(double kineticEnergy)
+{
+    double v = _velocity.norm();
+    _velocity = sqrt(kineticEnergy*2/_mass) * (v>0 ? _velocity/v : Vector2d(1,0));
 }
 
 } // namespace StepCore

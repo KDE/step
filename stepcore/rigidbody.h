@@ -42,7 +42,8 @@ public:
     /** Constructs RigidBodyErrors */
     RigidBodyErrors(Item* owner = 0)
         : ObjectErrors(owner), _positionVariance(0), _velocityVariance(0),
-          _forceVariance(0), _massVariance(0) {}
+          _angularVelocityVariance(0), _forceVariance(0), _torqueVariance(0),
+          _massVariance(0), _inertiaVariance(0) {}
 
     /** Get owner as RigidBody */
     RigidBody* rigidBody() const;
@@ -105,6 +106,21 @@ public:
     /** Set inertia variance */
     void   setInertiaVariance(double inertiaVariance) {
         _inertiaVariance = inertiaVariance; }
+
+    /** Get momentum variance */
+    Vector2d momentumVariance() const;
+    /** Set momentum variance (will modify velocity variance) */
+    void setMomentumVariance(const Vector2d& momentumVariance);
+
+    /** Get angular momentum variance */
+    double angularMomentumVariance() const;
+    /** Set angular momentum variance (will modify angularVelocity variance) */
+    void setAngularMomentumVariance(double angularMomentumVariance);
+
+    /** Get kinetic energy variance */
+    double kineticEnergyVariance() const;
+    /** Set kinetic energy variance (will modify velocity variance) */
+    void setKineticEnergyVariance(double kineticEnergyVariance);
 
 protected:
     Vector2d _positionVariance;
@@ -197,6 +213,23 @@ public:
     double inertia() const { return _inertia; }
     /** Set inertia "tensor" of the body */
     void   setInertia(double inertia) { _inertia = inertia; }
+
+    /** Get momentum of the body */
+    Vector2d momentum() const { return _velocity * _mass; }
+    /** Set momentum of the body (will modify only velocity) */
+    void setMomentum(const Vector2d& momentum) { _velocity = momentum / _mass; }
+
+    /** Get angular momentum of the body */
+    double angularMomentum() const { return _angularVelocity * _inertia; }
+    /** Set angular momentum of the body (will modify only angularVelocity) */
+    void setAngularMomentum(double angularMomentum) {
+        _angularVelocity = angularMomentum / _inertia; }
+
+    /** Get kinetic energy of the body */
+    double kineticEnergy() const {
+        return _mass * _velocity.norm2()/2 + _inertia * square(_angularVelocity)/2; }
+    /** Set kinetic energy of the body (will modify only velocity and (possibly) angularVelocity) */
+    void setKineticEnergy(double kineticEnergy);
 
     /** Translate local vector on body to world vector */
     Vector2d vectorLocalToWorld(const Vector2d& v) const;

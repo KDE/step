@@ -79,6 +79,16 @@ public:
     void   setMassVariance(double massVariance) {
         _massVariance = massVariance; }
 
+    /** Get momentum variance */
+    Vector2d momentumVariance() const;
+    /** Set momentum variance (will modify velocity variance) */
+    void setMomentumVariance(const Vector2d& momentumVariance);
+
+    /** Get kinetic energy variance */
+    double kineticEnergyVariance() const;
+    /** Set kinetic energy variance (will modify velocity variance) */
+    void setKineticEnergyVariance(double kineticEnergyVariance);
+
 protected:
     Vector2d _positionVariance;
     Vector2d _velocityVariance;
@@ -128,6 +138,16 @@ public:
     double mass() const { return _mass; }
     /** Set mass of the particle */
     void   setMass(double mass) { _mass = mass; }
+
+    /** Get momentum of the particle */
+    Vector2d momentum() const { return _velocity * _mass; }
+    /** Set momentum of the particle (will modify only velocity) */
+    void setMomentum(const Vector2d& momentum) { _velocity = momentum / _mass; }
+
+    /** Get kinetic energy of the particle */
+    double kineticEnergy() const { return _mass * _velocity.norm2()/2; }
+    /** Set kinetic energy of the particle (will modify only velocity) */
+    void setKineticEnergy(double kineticEnergy);
 
     int  variablesCount() { return 2; }
     void getVariables(double* position, double* velocity,

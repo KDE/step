@@ -91,13 +91,13 @@ public:
      *  \param contact contact to check (only body0 and body1 fields must be set)
      *  \return state of the contact (equals to contact->state)
      */
-    virtual int checkContact(Contact* contact) = 0;
+    //virtual int checkContact(Contact* contact) = 0;
 
     /** Check contacts between several bodies
      *  \param bodies list of bodies to check
      *  \return maximum contact state (i.e. maximum value of Contact::state)
      */
-    virtual int checkContacts(BodyList& bodies) = 0;
+    virtual int checkContacts(BodyList& bodies, ConstraintsInfo* info) = 0;
 
     // TODO: add errors
     /** Solve the collisions between bodies
@@ -149,8 +149,8 @@ public:
         PenetrationDetected = 4097
     };*/
 
-    int checkContact(Contact* contact);
-    int checkContacts(BodyList& bodies);
+    //int checkContact(Contact* contact);
+    int checkContacts(BodyList& bodies, ConstraintsInfo* info);
     //int findClosestPoints(const Polygon* polygon1, const Polygon* polygon2);
 
     int solveCollisions(BodyList& bodies);

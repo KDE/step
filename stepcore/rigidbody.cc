@@ -19,6 +19,7 @@
 #include "rigidbody.h"
 #include "types.h"
 #include <cstring>
+#include <cmath>
 
 namespace StepCore
 {
@@ -40,7 +41,13 @@ STEPCORE_META_OBJECT(RigidBody, "Generic rigid body", 0, STEPCORE_SUPER_CLASS(It
 
         STEPCORE_PROPERTY_RW(double, mass, "kg", "Total mass of the body", mass, setMass)
         STEPCORE_PROPERTY_RW(double, inertia, STEPCORE_FROM_UTF8("kg m²"),
-                                    "Inertia \"tensor\" of the body", inertia, setInertia))
+                                    "Inertia \"tensor\" of the body", inertia, setInertia)
+        STEPCORE_PROPERTY_RWF(StepCore::Vector2d, momentum, "kg m/s", "momentum",
+                        StepCore::MetaProperty::DYNAMIC, momentum, setMomentum)
+        STEPCORE_PROPERTY_RWF(double, angularMomentum, STEPCORE_FROM_UTF8("kg m² rad/s"), "angular momentum",
+                        StepCore::MetaProperty::DYNAMIC, angularMomentum, setAngularMomentum)
+        STEPCORE_PROPERTY_RWF(double, kineticEnergy, "J", "kinetic energy",
+                        StepCore::MetaProperty::DYNAMIC, kineticEnergy, setKineticEnergy))
 
 STEPCORE_META_OBJECT(RigidBodyErrors, "Errors class for RigidBody", 0, STEPCORE_SUPER_CLASS(ObjectErrors),
         STEPCORE_PROPERTY_RW_D(StepCore::Vector2d, positionVariance, "m",
@@ -64,7 +71,14 @@ STEPCORE_META_OBJECT(RigidBodyErrors, "Errors class for RigidBody", 0, STEPCORE_
         STEPCORE_PROPERTY_RW(double, massVariance, "kg",
                     "mass variance", massVariance, setMassVariance )
         STEPCORE_PROPERTY_RW(double, inertiaVariance, STEPCORE_FROM_UTF8("kg m²"),
-                    "inertia variance", inertiaVariance, setInertiaVariance ))
+                    "inertia variance", inertiaVariance, setInertiaVariance )
+        STEPCORE_PROPERTY_RWF(StepCore::Vector2d, momentumVariance, "kg m/s",
+                    "momentum variance", StepCore::MetaProperty::DYNAMIC, momentumVariance, setMomentumVariance)
+        STEPCORE_PROPERTY_RWF(double, angularMomentumVariance, STEPCORE_FROM_UTF8("kg m² rad/s"),
+                    "angular momentum variance", StepCore::MetaProperty::DYNAMIC,
+                    angularMomentumVariance, setAngularMomentumVariance)
+        STEPCORE_PROPERTY_RWF(double, kineticEnergyVariance, "J",
+                    "kinetic energy variance", StepCore::MetaProperty::DYNAMIC, kineticEnergyVariance, setKineticEnergyVariance))
 
 STEPCORE_META_OBJECT(Polygon, "Rigid polygon body", 0, STEPCORE_SUPER_CLASS(RigidBody),
         STEPCORE_PROPERTY_RW(Vector2dList, vertexes, "m", "Vertex list", vertexes, setVertexes))
@@ -84,6 +98,52 @@ double RigidBodyErrors::angularAccelerationVariance() const
 {
     return _torqueVariance/square(rigidBody()->inertia()) +
         _inertiaVariance*square(rigidBody()->torque()/square(rigidBody()->inertia()));
+}
+
+Vector2d RigidBodyErrors::momentumVariance() const
+{
+    return _velocityVariance * square(rigidBody()->mass()) +
+           rigidBody()->velocity().cSquare() * _massVariance;
+}
+
+void RigidBodyErrors::setMomentumVariance(const Vector2d& momentumVariance)
+{
+    _velocityVariance = (momentumVariance - rigidBody()->velocity().cSquare() * _massVariance) /
+                        square(rigidBody()->mass());
+}
+
+double RigidBodyErrors::angularMomentumVariance() const
+{
+    return _angularVelocityVariance * square(rigidBody()->inertia()) +
+           square(rigidBody()->angularVelocity()) * _inertiaVariance;
+}
+
+void RigidBodyErrors::setAngularMomentumVariance(double angularMomentumVariance)
+{
+    _angularVelocityVariance =
+        (angularMomentumVariance - square(rigidBody()->angularVelocity()) * _inertiaVariance) /
+                        square(rigidBody()->inertia());
+}
+
+double RigidBodyErrors::kineticEnergyVariance() const
+{
+    return _velocityVariance.innerProduct(rigidBody()->velocity().cSquare()) * square(rigidBody()->mass()) +
+           square(rigidBody()->velocity().norm2()/2) * _massVariance +
+           _angularVelocityVariance * square(rigidBody()->angularVelocity() * rigidBody()->inertia()) +
+           square(square(rigidBody()->angularVelocity())/2) * _inertiaVariance;
+}
+
+void RigidBodyErrors::setKineticEnergyVariance(double kineticEnergyVariance)
+{
+    double t = kineticEnergyVariance - this->kineticEnergyVariance() +
+              _velocityVariance.innerProduct(rigidBody()->velocity().cSquare()) * square(rigidBody()->mass());
+    _velocityVariance = t / square(rigidBody()->mass()) / 2 *
+                        Vector2d(1,1).cDivide(rigidBody()->velocity().cSquare());
+    if(!std::isfinite(_velocityVariance[0]) || _velocityVariance[0] < 0 ||
+       !std::isfinite(_velocityVariance[1]) || _velocityVariance[1]) {
+        _velocityVariance.setZero();
+    }
+    // XXX: change angularVelocity here as well
 }
 
 RigidBody::RigidBody(Vector2d position, double angle,
@@ -249,6 +309,18 @@ void RigidBody::getInverseMass(GmmSparseRowMatrix* inverseMass,
         variance->row(offset).w(offset, vm);
         variance->row(offset+1).w(offset+1, vm);
         variance->row(offset+2).w(offset+2, vi);
+    }
+}
+
+void RigidBody::setKineticEnergy(double kineticEnergy)
+{
+    double e = kineticEnergy - _inertia * square(_angularVelocity)/2;
+    if(e > 0) {
+        double v = _velocity.norm();
+        _velocity = sqrt(e*2/_mass) * (v>0 ? _velocity/v : Vector2d(1,0));
+    } else {
+        _velocity.setZero();
+        _angularVelocity = sqrt(kineticEnergy*2/_inertia);
     }
 }
 

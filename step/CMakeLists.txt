@@ -6,6 +6,7 @@ set(step_SRCS
     worldbrowser.cc
     propertiesbrowser.cc
     infobrowser.cc
+    undobrowser.cc
     itempalette.cc
     worldfactory.cc
     particlegraphics.cc
