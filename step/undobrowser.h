@@ -35,6 +35,7 @@ public:
 public slots:
     void setEmptyLabel(const QString& label);
     void setCurrentFileUrl(const KUrl& url);
+    void setUndoEnabled(bool enabled);
 
 protected:
     WorldModel* _worldModel;

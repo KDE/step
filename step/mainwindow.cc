@@ -415,6 +415,7 @@ void MainWindow::simulationStart()
     actionSimulationStop->setEnabled(true);
     actionSimulation->setIconText(i18n("&Stop"));
     actionSimulation->setIcon(KIcon("media-playback-stop"));
+    undoBrowser->setUndoEnabled(false);
     worldModel->simulationStart();
 }
 
@@ -424,6 +425,7 @@ void MainWindow::simulationStopped(int result)
     actionSimulationStop->setEnabled(false);
     actionSimulation->setIconText(i18n("&Simulate"));
     actionSimulation->setIcon(KIcon("media-playback-start"));
+    undoBrowser->setUndoEnabled(true);
     if(result == StepCore::Solver::ToleranceError) {
         KMessageBox::sorry(this, i18n("Cannot finish this step because local error "
                "is bigger then local tolerance.\n"

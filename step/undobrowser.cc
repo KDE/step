@@ -43,3 +43,8 @@ void UndoBrowser::setCurrentFileUrl(const KUrl& url)
     else _undoView->setCleanIcon(KIcon("document-save"));
 }
 
+void UndoBrowser::setUndoEnabled(bool enabled)
+{
+    _undoView->setEnabled(enabled);
+}
+
