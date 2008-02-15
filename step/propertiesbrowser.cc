@@ -292,20 +292,29 @@ bool PropertiesBrowserModel::setData(const QModelIndex &index, const QVariant &v
                     Q_ASSERT(!pv);
                     StepCore::Object* obj = _worldModel->world()->object(value.toString());
                     if(!obj) return false;
-                    _worldModel->beginMacro(i18n("Edit %1", _object->name()));
+                    _worldModel->beginMacro(i18n("Change %1.%2", _object->name(), p->name()));
                     _worldModel->setProperty(_object, p, QVariant::fromValue(obj));
                     _worldModel->endMacro();
                     return true;
                 } else if(p->userTypeId() == qMetaTypeId<StepCore::Color>()) {
                     Q_ASSERT(!pv);
-                    _worldModel->beginMacro(i18n("Edit %1", _object->name()));
+                    _worldModel->beginMacro(i18n("Change %1.%2", _object->name(), p->name()));
                     _worldModel->setProperty(_object, p, value.type() == QVariant::String ? value :
                                     QVariant::fromValue(StepCore::Color(value.value<QColor>().rgba())));
                     _worldModel->endMacro();
                     return true;
                 } else if(p->userTypeId() == qMetaTypeId<bool>()) {
                     Q_ASSERT(!pv);
-                    _worldModel->beginMacro(i18n("Edit %1", _object->name()));
+                    _worldModel->beginMacro(i18n("Change %1.%2", _object->name(), p->name()));
+                    _worldModel->setProperty(_object, p, value);
+                    _worldModel->endMacro();
+                    return true;
+                } else if(p->userTypeId() == qMetaTypeId<QString>()) {
+                    Q_ASSERT(!pv);
+                    if(index.row() == 0)
+                        _worldModel->beginMacro(i18n("Rename %1 to %2", _object->name(), value.toString()));
+                    else
+                        _worldModel->beginMacro(i18n("Change %1.%2", _object->name(), p->name()));
                     _worldModel->setProperty(_object, p, value);
                     _worldModel->endMacro();
                     return true;
@@ -364,7 +373,7 @@ bool PropertiesBrowserModel::setData(const QModelIndex &index, const QVariant &v
                         svv[0] *= svv[0]; svv[1] *= svv[1];
                         vv = QVariant::fromValue(svv);
                     /* XXX
-                     * } else if(p->userTypeId() == qMetaTypeId<StepCore::Vector2dList >())
+                     * {} else if(p->userTypeId() == qMetaTypeId<StepCore::Vector2dList >())
                         ve = QVariant::fromValue(StepCore::Vector2dList());*/
                     } else {
                         kDebug() << "Unhandled property variance type" << endl;
@@ -389,7 +398,7 @@ bool PropertiesBrowserModel::setData(const QModelIndex &index, const QVariant &v
                     }
                 }
 
-                _worldModel->beginMacro(i18n("Edit %1", _object->name()));
+                _worldModel->beginMacro(i18n("Change %1.%2", _object->name(), p->name()));
                 _worldModel->setProperty(_object, p, v);
                 if(vv.isValid() && !pv) {
                     // XXX: Make this undo-able
@@ -406,7 +415,7 @@ bool PropertiesBrowserModel::setData(const QModelIndex &index, const QVariant &v
             bool ok;
             v[index.row()] = StepCore::stringToType<StepCore::Vector2d>(value.toString(), &ok);
             if(!ok) return true; // dataChanged should be emitted anyway
-            _worldModel->beginMacro(i18n("Edit %1", _object->name()));
+            _worldModel->beginMacro(i18n("Change %1.%2", _object->name(), p->name()));
             _worldModel->setProperty(_object, p, QVariant::fromValue(v));
             _worldModel->endMacro();
         }

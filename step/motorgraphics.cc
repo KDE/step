@@ -38,7 +38,7 @@ bool LinearMotorCreator::sceneEvent(QEvent* event)
         QVariant vpos = QVariant::fromValue(WorldGraphicsItem::pointToVector(pos));
 
         _worldModel->simulationPause();
-        _worldModel->beginMacro(i18n("Create %1", _className));
+        _worldModel->beginMacro(i18n("Create %1", _worldModel->newItemName(_className)));
         _item = _worldModel->newItem(className()); Q_ASSERT(_item != NULL);
 
         _worldModel->setProperty(_item, _item->metaObject()->property("localPosition"), vpos);
@@ -106,7 +106,7 @@ void LinearMotorGraphicsItem::mouseMoveEvent(QGraphicsSceneMouseEvent *event)
         _worldModel->simulationPause();
         if(!_moving) {
             _moving = true;
-            _worldModel->beginMacro(i18n("Edit %1", _item->name()));
+            _worldModel->beginMacro(i18n("Move %1", _item->name()));
             _worldModel->setProperty(_item, _item->metaObject()->property("body"),
                                             QVariant::fromValue<StepCore::Object*>(NULL), false);
         }
@@ -217,7 +217,7 @@ bool CircularMotorCreator::sceneEvent(QEvent* event)
         QVariant vpos = QVariant::fromValue(WorldGraphicsItem::pointToVector(pos));
 
         _worldModel->simulationPause();
-        _worldModel->beginMacro(i18n("Create %1", _className));
+        _worldModel->beginMacro(i18n("Create %1", _worldModel->newItemName(_className)));
         _item = _worldModel->newItem(className()); Q_ASSERT(_item != NULL);
 
         _worldModel->setProperty(_item, _item->metaObject()->property("localPosition"), vpos);
@@ -282,7 +282,7 @@ void CircularMotorGraphicsItem::mouseMoveEvent(QGraphicsSceneMouseEvent *event)
         _worldModel->simulationPause();
         if(!_moving) {
             _moving = true;
-            _worldModel->beginMacro(i18n("Edit %1", _item->name()));
+            _worldModel->beginMacro(i18n("Move %1", _item->name()));
             _worldModel->setProperty(_item, _item->metaObject()->property("body"),
                                             QVariant::fromValue<StepCore::Object*>(NULL), false);
         }

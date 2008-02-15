@@ -416,6 +416,7 @@ void MainWindow::simulationStart()
     actionSimulation->setIconText(i18n("&Stop"));
     actionSimulation->setIcon(KIcon("media-playback-stop"));
     undoBrowser->setUndoEnabled(false);
+    actionUndo->setEnabled(false);
     worldModel->simulationStart();
 }
 

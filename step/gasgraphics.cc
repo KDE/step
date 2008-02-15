@@ -42,7 +42,7 @@ bool GasCreator::sceneEvent(QEvent* event)
     if(event->type() == QEvent::GraphicsSceneMousePress) {
         _worldModel->simulationPause();
 
-        _worldModel->beginMacro(i18n("Create %1", _className));
+        _worldModel->beginMacro(i18n("Create %1", _worldModel->newItemName(_className)));
         _item = _worldModel->newItem(_className); Q_ASSERT(_item != NULL);
         _worldModel->selectionModel()->setCurrentIndex(_worldModel->objectIndex(_item),
                                                     QItemSelectionModel::ClearAndSelect);
@@ -265,7 +265,7 @@ bool GasMenuHandler::createGasParticlesApply()
     StepCore::Vector2d meanVelocity = StepCore::stringToType<StepCore::Vector2d>(
                     _createGasParticlesUi->lineEditMeanVelocity->text(), &ok);
 
-    _worldModel->beginMacro(i18n("Edit %1", gas()->name()));
+    _worldModel->beginMacro(i18n("Create particles for %1", gas()->name()));
 
     std::vector<StepCore::GasParticle*> particles =
             gas()->rectCreateParticles(count, mass, temperature, meanVelocity);

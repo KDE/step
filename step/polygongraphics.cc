@@ -125,7 +125,7 @@ bool PolygonCreator::sceneEvent(QEvent* event)
         QVariant vpos = QVariant::fromValue(WorldGraphicsItem::pointToVector(pos));
 
         _worldModel->simulationPause();
-        _worldModel->beginMacro(i18n("Create %1", _className));
+        _worldModel->beginMacro(i18n("Create %1", _worldModel->newItemName(_className)));
         _item = _worldModel->newItem(_className); Q_ASSERT(_item != NULL);
         _worldModel->setProperty(_item, _item->metaObject()->property("position"), vpos);
         _worldModel->setProperty(_item, _item->metaObject()->property("vertexes"), QString("(0,0)"));

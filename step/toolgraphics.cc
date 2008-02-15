@@ -1101,7 +1101,7 @@ void GraphMenuHandler::confApply()
 
     // XXX: check for actual change ?
     if(!_confChanged) return;
-    _worldModel->beginMacro(i18n("Edit %1", graph()->name()));
+    _worldModel->beginMacro(i18n("Edit properties of %1", graph()->name()));
 
     QVariant objX = QVariant::fromValue(_confUi->dataSourceX->dataObject());
 
@@ -1341,7 +1341,7 @@ void MeterMenuHandler::confApply()
 
     // XXX: check for actual change ?
     if(!_confChanged) return;
-    _worldModel->beginMacro(i18n("Edit %1", meter()->name()));
+    _worldModel->beginMacro(i18n("Edit properties of %1", meter()->name()));
 
     _worldModel->setProperty(meter(), meter()->metaObject()->property("object"),
                             QVariant::fromValue(_confUi->dataSource->dataObject()));
@@ -1715,7 +1715,7 @@ void ControllerMenuHandler::confApply()
 
     // XXX: check for actual change ?
     if(!_confChanged) return;
-    _worldModel->beginMacro(i18n("Edit %1", controller()->name()));
+    _worldModel->beginMacro(i18n("Edit properties of %1", controller()->name()));
 
     _worldModel->setProperty(controller(), controller()->metaObject()->property("object"),
                                 QVariant::fromValue(_confUi->dataSource->dataObject()));
@@ -1776,7 +1776,7 @@ bool TracerCreator::sceneEvent(QEvent* event)
         QVariant vpos = QVariant::fromValue(WorldGraphicsItem::pointToVector(pos));
 
         _worldModel->simulationPause();
-        _worldModel->beginMacro(i18n("Create %1", _className));
+        _worldModel->beginMacro(i18n("Create %1", _worldModel->newItemName(_className)));
         _item = _worldModel->newItem(className()); Q_ASSERT(_item != NULL);
 
         _worldModel->setProperty(_item, _item->metaObject()->property("localPosition"), vpos);
@@ -1846,7 +1846,7 @@ void TracerGraphicsItem::mouseMoveEvent(QGraphicsSceneMouseEvent *event)
         _worldModel->simulationPause();
         if(!_moving) {
             _moving = true;
-            _worldModel->beginMacro(i18n("Edit %1", _item->name()));
+            _worldModel->beginMacro(i18n("Move %1", _item->name()));
             _worldModel->setProperty(_item, _item->metaObject()->property("body"), 
                                             QVariant::fromValue<StepCore::Object*>(NULL), false);
         }

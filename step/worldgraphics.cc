@@ -71,7 +71,7 @@ bool ItemCreator::sceneEvent(QEvent* event)
     if(event->type() == QEvent::GraphicsSceneMousePress) {
         _worldModel->simulationPause();
 
-        _worldModel->beginMacro(i18n("Create %1", _className));
+        _worldModel->beginMacro(i18n("Create %1", _worldModel->newItemName(_className)));
         _item = _worldModel->newItem(_className); Q_ASSERT(_item != NULL);
         _worldModel->selectionModel()->setCurrentIndex(_worldModel->objectIndex(_item),
                                                     QItemSelectionModel::ClearAndSelect);
@@ -206,8 +206,6 @@ void WorldGraphicsItem::mouseMoveEvent(QGraphicsSceneMouseEvent *event)
         QPointF diff = newPos - pos();
 
         if(diff != QPointF(0,0)) {
-            if(!_isMoving) { _worldModel->beginMacro(i18n("Edit %1", _item->name())); _isMoving = true; }
-
             // Determine the list of selected items
             QList<QGraphicsItem *> selectedItems;
             if (scene()) {
@@ -217,6 +215,15 @@ void WorldGraphicsItem::mouseMoveEvent(QGraphicsSceneMouseEvent *event)
                     selectedItems << parent;
             }
             if(!selectedItems.contains(this)) selectedItems << this;
+
+            if(!_isMoving) {
+                int count = 0;
+                foreach (QGraphicsItem *item, selectedItems) {
+                    if ((item->flags() & ItemIsMovable) && (!item->parentItem() || !item->parentItem()->isSelected()))
+                        if(dynamic_cast<WorldGraphicsItem*>(item)) ++count;
+                }
+                _worldModel->beginMacro(i18n("Move %1", count == 1 ? _item->name() : i18n("several objects"))); _isMoving = true;
+            }
 
             // Move all selected items
             foreach (QGraphicsItem *item, selectedItems) {
@@ -354,7 +361,13 @@ QVariant ArrowHandlerGraphicsItem::itemChange(GraphicsItemChange change, const Q
 void ArrowHandlerGraphicsItem::mouseMoveEvent(QGraphicsSceneMouseEvent *event)
 {
     if ((event->buttons() & Qt::LeftButton) && (flags() & ItemIsMovable)) {
-        if(!_isMoving) { _worldModel->beginMacro(i18n("Edit %1", _item->name())); _isMoving = true; }
+        if(!_isMoving) {
+            if(_property)
+                _worldModel->beginMacro(i18n("Change %1.%2", _item->name(), _property->name()));
+            else
+                _worldModel->beginMacro(i18n("Change %1", _item->name()));
+            _isMoving = true;
+        }
         QPointF newPos(mapToParent(event->pos()) - matrix().map(event->buttonDownPos(Qt::LeftButton)));
         setValue(pointToVector(newPos));
         //_worldModel->simulationPause();
@@ -444,7 +457,13 @@ QVariant CircularArrowHandlerGraphicsItem::itemChange(GraphicsItemChange change,
 void CircularArrowHandlerGraphicsItem::mouseMoveEvent(QGraphicsSceneMouseEvent *event)
 {
     if ((event->buttons() & Qt::LeftButton) && (flags() & ItemIsMovable)) {
-        if(!_isMoving) { _worldModel->beginMacro(i18n("Edit %1", _item->name())); _isMoving = true; }
+        if(!_isMoving) {
+            if(_property)
+                _worldModel->beginMacro(i18n("Change %1", _item->name(), _property->name()));
+            else
+                _worldModel->beginMacro(i18n("Change %1", _item->name()));
+            _isMoving = true;
+        }
 
         QPointF newPos(mapToParent(event->pos()) - matrix().map(event->buttonDownPos(Qt::LeftButton)));
         double newValue = atan2(newPos.y(),newPos.x());

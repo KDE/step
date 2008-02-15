@@ -88,7 +88,8 @@ public:
     int columnCount(const QModelIndex &parent = QModelIndex()) const;
 
     // Add/remove/set functions
-    StepCore::Item* newItem(const QString& name, StepCore::ItemGroup* parent = 0);
+    QString newItemName(const QString& className);
+    StepCore::Item* newItem(const QString& className, StepCore::ItemGroup* parent = 0);
     void addItem(StepCore::Item* item, StepCore::ItemGroup* parent = 0);
     void deleteItem(StepCore::Item* item);
 

@@ -115,7 +115,7 @@ void SoftBodyMenuHandler::createSoftBodyItemsApply()
     double bodyDamping = _createSoftBodyItemsUi->lineEditBodyDamping->text().toDouble();
 
 
-    _worldModel->beginMacro(i18n("Edit %1", softBody()->name()));
+    _worldModel->beginMacro(i18n("Create items for %1", softBody()->name()));
 
     StepCore::ItemList items =
             softBody()->createSoftBodyItems(position, size, split, bodyMass, youngModulus, bodyDamping);

@@ -209,8 +209,14 @@ class CommandSimulate: public QUndoCommand
 public:
     CommandSimulate(WorldModel* worldModel);
     ~CommandSimulate() { delete _worldCopy; }
+
+    void done();
+
     void redo();
     void undo();
+
+    const QString& startTime() const { return _startTime; }
+    const QString& endTime() const { return _endTime; }
 
 protected:
     typedef QPair<int, int> PairInt;
@@ -221,6 +227,9 @@ protected:
     StepCore::World* _worldCopy;
     StepCore::World* _oldWorld;
     StepCore::World* _newWorld;
+
+    QString _startTime;
+    QString _endTime;
 };
 
 CommandSimulate::PairInt CommandSimulate::indexToPair(QModelIndex index)
@@ -255,11 +264,20 @@ CommandSimulate::CommandSimulate(WorldModel* worldModel)
     _newWorld = _worldModel->_world = new StepCore::World(*_oldWorld);
     _worldModel->reset();
 
+    _startTime = _worldModel->formatProperty(_worldModel->_world, NULL,
+                            _worldModel->_world->metaObject()->property("time"), true);
+
     /*
     foreach(PairInt pair, selection)
         _worldModel->_selectionModel->select(pairToIndex(pair), QItemSelectionModel::Select);
     _worldModel->_selectionModel->setCurrentIndex(pairToIndex(current), QItemSelectionModel::Current);
     */
+}
+
+void CommandSimulate::done()
+{
+    _endTime = _worldModel->formatProperty(_worldModel->_world, NULL,
+                            _worldModel->_world->metaObject()->property("time"), true);
 }
 
 void CommandSimulate::redo()
@@ -518,11 +536,16 @@ int WorldModel::columnCount(const QModelIndex& /*parent*/) const
     return 1;
 }
 
-StepCore::Item* WorldModel::newItem(const QString& name, StepCore::ItemGroup* parent)
+QString WorldModel::newItemName(const QString& className)
 {
-    StepCore::Item* item = _worldFactory->newItem(name);
+    return getUniqueName(className);
+}
+
+StepCore::Item* WorldModel::newItem(const QString& className, StepCore::ItemGroup* parent)
+{
+    StepCore::Item* item = _worldFactory->newItem(className);
     if(item == NULL) return NULL;
-    item->setName(getUniqueName(name));
+    item->setName(getUniqueName(className));
     pushCommand(new CommandNewItem(this, item, parent, true));
     return item;
 }
@@ -569,8 +592,8 @@ void WorldModel::deleteSelectedItems()
         StepCore::Item* it = item(index); if(it) items << it;
     }
     if(!items.isEmpty()) {
-        beginMacro(items.count()==1 ? i18n("Delete %1", items[0]->metaObject()->className())
-                                    : i18n("Delete items"));
+        beginMacro(items.count()==1 ? i18n("Delete %1", items[0]->name())
+                                    : i18n("Delete several items"));
         foreach(StepCore::Item* it, items) deleteItem(it);
         endMacro();
     }
@@ -859,7 +882,7 @@ void WorldModel::simulationStart()
     Q_ASSERT(!isSimulationActive());
     Q_ASSERT(!_simulationCommand);
 
-    _undoStack->beginMacro(i18n("Simulate"));
+    //_undoStack->beginMacro(i18n("Simulate"));
     _simulationCommand = new CommandSimulate(this);
     _world->setEvolveAbort(false);
     _simulationFrameWaiting = false;
@@ -944,6 +967,9 @@ void WorldModel::simulationFrameEnd(int result)
 
     // Stop if requested or simulation error occurred
     if(_simulationStopping || result != StepCore::Solver::OK) {
+        _simulationCommand->done();
+        _undoStack->beginMacro(i18n("Simulate %1 → %2",
+                _simulationCommand->startTime(), _simulationCommand->endTime()));
         _undoStack->push(_simulationCommand);
         _undoStack->endMacro();
         _simulationCommand = NULL;

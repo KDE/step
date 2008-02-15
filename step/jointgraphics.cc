@@ -33,7 +33,7 @@ bool AnchorCreator::sceneEvent(QEvent* event)
     QGraphicsSceneMouseEvent* mouseEvent = static_cast<QGraphicsSceneMouseEvent*>(event);
     if(event->type() == QEvent::GraphicsSceneMousePress && mouseEvent->button() == Qt::LeftButton) {
         _worldModel->simulationPause();
-        _worldModel->beginMacro(i18n("Create %1", _className));
+        _worldModel->beginMacro(i18n("Create %1", _worldModel->newItemName(_className)));
         _item = _worldModel->newItem(className()); Q_ASSERT(_item != NULL);
 
         QPointF pos = mouseEvent->scenePos();
@@ -102,7 +102,7 @@ void AnchorGraphicsItem::mouseMoveEvent(QGraphicsSceneMouseEvent *event)
         _worldModel->simulationPause();
         if(!_moving) {
             _moving = true;
-            _worldModel->beginMacro(i18n("Edit %1", _item->name()));
+            _worldModel->beginMacro(i18n("Move %1", _item->name()));
             _worldModel->setProperty(_item, _item->metaObject()->property("body"),
                                             QVariant::fromValue<StepCore::Object*>(NULL), false);
         }
@@ -172,7 +172,7 @@ bool PinCreator::sceneEvent(QEvent* event)
     QGraphicsSceneMouseEvent* mouseEvent = static_cast<QGraphicsSceneMouseEvent*>(event);
     if(event->type() == QEvent::GraphicsSceneMousePress && mouseEvent->button() == Qt::LeftButton) {
         _worldModel->simulationPause();
-        _worldModel->beginMacro(i18n("Create %1", _className));
+        _worldModel->beginMacro(i18n("Create %1", _worldModel->newItemName(_className)));
         _item = _worldModel->newItem(className()); Q_ASSERT(_item != NULL);
 
         QPointF pos = mouseEvent->scenePos();
@@ -244,7 +244,7 @@ void PinGraphicsItem::mouseMoveEvent(QGraphicsSceneMouseEvent *event)
         _worldModel->simulationPause();
         if(!_moving) {
             _moving = true;
-            _worldModel->beginMacro(i18n("Edit %1", _item->name()));
+            _worldModel->beginMacro(i18n("Move %1", _item->name()));
             _worldModel->setProperty(_item, _item->metaObject()->property("body"),
                                             QVariant::fromValue<StepCore::Object*>(NULL), false);
             _worldModel->setProperty(_item, _item->metaObject()->property("localPosition"),
@@ -324,7 +324,7 @@ bool StickCreator::sceneEvent(QEvent* event)
         QPointF pos = mouseEvent->scenePos();
         QVariant vpos = QVariant::fromValue(WorldGraphicsItem::pointToVector(pos));
         _worldModel->simulationPause();
-        _worldModel->beginMacro(i18n("Create %1", _className));
+        _worldModel->beginMacro(i18n("Create %1", _worldModel->newItemName(_className)));
 
         _item = _worldModel->newItem(className()); Q_ASSERT(_item != NULL);
         _worldModel->setProperty(_item, _item->metaObject()->property("localPosition1"), vpos);
@@ -437,7 +437,7 @@ void StickHandlerGraphicsItem::mouseMoveEvent(QGraphicsSceneMouseEvent *event)
         _worldModel->simulationPause();
         if(!_moving) {
             _moving = true;
-            _worldModel->beginMacro(i18n("Edit %1", _item->name()));
+            _worldModel->beginMacro(i18n("Move end of %1", _item->name()));
             if(_num == 1) _worldModel->setProperty(_item, _item->metaObject()->property("body1"),
                                                     QVariant::fromValue<StepCore::Object*>(NULL), false);
             else          _worldModel->setProperty(_item, _item->metaObject()->property("body2"),
