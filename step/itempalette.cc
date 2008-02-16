@@ -22,17 +22,42 @@
 #include "worldfactory.h"
 #include <stepcore/world.h>
 
-#include <QToolBox>
-#include <QToolBar>
 #include <QAction>
 #include <QEvent>
+#include <QToolButton>
+#include <QVBoxLayout>
 #include <QActionGroup>
+#include <QStyleOption>
+#include <QScrollArea>
+#include <QPainter>
 #include <QtAlgorithms>
 
 #include <KLocale>
 #include <KIcon>
 
 #include "itempalette.moc"
+
+class QPaintEvent;
+
+// Inspired by QToolBarSeparator
+class Separator: public QWidget
+{
+public:
+    explicit Separator(QWidget* parent): QWidget(parent) {
+        setSizePolicy(QSizePolicy::Minimum, QSizePolicy::Minimum);
+    }
+
+    QSize sizeHint() const {
+        QStyleOption opt; opt.initFrom(this);
+        const int extent = style()->pixelMetric(QStyle::PM_ToolBarSeparatorExtent, &opt, parentWidget());
+        return QSize(extent, extent);
+    }
+
+    void paintEvent(QPaintEvent *) {
+        QPainter p(this); QStyleOption opt; opt.initFrom(this);
+        style()->drawPrimitive(QStyle::PE_IndicatorToolBarSeparator, &opt, &p, parentWidget());
+    }
+};
 
 ItemPalette::ItemPalette(WorldModel* worldModel, QWidget* parent, Qt::WindowFlags flags)
     : QDockWidget(i18n("Palette"), parent, flags), _worldModel(worldModel)
@@ -65,11 +90,20 @@ ItemPalette::ItemPalette(WorldModel* worldModel, QWidget* parent, Qt::WindowFlag
 
     setAllowedAreas(Qt::LeftDockWidgetArea | Qt::RightDockWidgetArea);
 
-    _toolBar = new QToolBar(i18n("Palette"), this);
-    _toolBar->setOrientation(Qt::Vertical);
-    _toolBar->setToolButtonStyle(Qt::ToolButtonTextBesideIcon);
-    _toolBar->setIconSize(QSize(22,22));
-    setWidget(_toolBar);
+    //_toolBar = new QToolBar(i18n("Palette"), this);
+    //_toolBar->setOrientation(Qt::Vertical);
+    //_toolBar->setToolButtonStyle(Qt::ToolButtonTextBesideIcon);
+    //_toolBar->setIconSize(QSize(22,22));
+    //setWidget(_toolBar);
+
+    _scrollArea = new QScrollArea(this);
+    _scrollArea->setHorizontalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
+    _scrollArea->setFrameShape(QFrame::NoFrame);
+    _scrollArea->setWidgetResizable(true);
+
+    _widget = new QWidget(_scrollArea);
+    _layout = new QVBoxLayout(_widget);
+    _layout->setSpacing(0);
 
     _actionGroup = new QActionGroup(this);
     _actionGroup->setExclusive(true);
@@ -79,15 +113,32 @@ ItemPalette::ItemPalette(WorldModel* worldModel, QWidget* parent, Qt::WindowFlag
     _pointerAction->setIcon(KIcon("pointer"));
     _pointerAction->setCheckable(true);
     _pointerAction->setChecked(true);
+    _pointerAction->setProperty("step_object", "Pointer");
     _actionGroup->addAction(_pointerAction);
-    _toolBar->addAction(_pointerAction);
-    _toolBar->widgetForAction(_pointerAction)->setSizePolicy(QSizePolicy::Expanding, QSizePolicy::Fixed);
-    _toolBar->addSeparator();
+
+    QToolButton* pointer = new QToolButton(_widget);
+    pointer->setToolButtonStyle(Qt::ToolButtonTextBesideIcon);
+    pointer->setSizePolicy(QSizePolicy::Expanding, QSizePolicy::Fixed);
+    pointer->setAutoRaise(true);
+    pointer->setIconSize(QSize(22,22));
+    pointer->setDefaultAction(_pointerAction);
+    _layout->addWidget(pointer);
+    //_widget->addAction(_pointerAction);
+    //_toolBar->addAction(_pointerAction);
+    //_toolBar->widgetForAction(_pointerAction)->setSizePolicy(QSizePolicy::Expanding, QSizePolicy::Fixed);
+    //_toolBar->addSeparator();
 
     foreach(QString name, _worldModel->worldFactory()->paletteMetaObjects()) {
-        if(name.isEmpty()) _toolBar->addSeparator();
+        if(name.isEmpty()) _layout->addWidget(new Separator(_widget)); // _toolBar->addSeparator();
         else addObject(_worldModel->worldFactory()->metaObject(name));
     }
+
+    _layout->addStretch();
+
+    //_widget->setSizePolicy(QSizePolicy::Fixed, QSizePolicy::Minimum);
+    _scrollArea->setSizePolicy(QSizePolicy::Minimum, QSizePolicy::Preferred);
+    _scrollArea->setWidget(_widget);
+    setWidget(_scrollArea);
 
 #if 0
     /* Add bodies */
@@ -142,8 +193,16 @@ void ItemPalette::addObject(const StepCore::MetaObject* metaObject)
     action->setProperty("step_object", metaObject->className());
 
     _actionGroup->addAction(action);
-    _toolBar->addAction(action);
-    _toolBar->widgetForAction(action)->setSizePolicy(QSizePolicy::Expanding, QSizePolicy::Fixed);
+    QToolButton* button = new QToolButton(_widget);
+    button->setToolButtonStyle(Qt::ToolButtonTextBesideIcon);
+    button->setSizePolicy(QSizePolicy::Expanding, QSizePolicy::Fixed);
+    button->setAutoRaise(true);
+    button->setIconSize(QSize(22,22));
+    button->setDefaultAction(action);
+    _layout->addWidget(button);
+    //_widget->addAction(action);
+    //_toolBar->addAction(action);
+    //_toolBar->widgetForAction(action)->setSizePolicy(QSizePolicy::Expanding, QSizePolicy::Fixed);
 }
 
 void ItemPalette::actionTriggered(QAction* action)

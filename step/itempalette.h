@@ -22,8 +22,8 @@
 #include <QDockWidget>
 #include <QList>
 class WorldModel;
-class QToolBox;
-class QToolBar;
+class QVBoxLayout;
+class QScrollArea;
 class QAction;
 class QActionGroup;
 
@@ -49,8 +49,10 @@ protected:
     void addObject(const StepCore::MetaObject* metaObject);
     bool event(QEvent* event);
 
-    WorldModel* _worldModel;
-    QToolBar*   _toolBar;
+    WorldModel*     _worldModel;
+    QScrollArea*    _scrollArea;
+    QWidget*        _widget;
+    QVBoxLayout*    _layout;
 
     QAction*        _pointerAction;
     QActionGroup*   _actionGroup;
