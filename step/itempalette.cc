@@ -22,6 +22,8 @@
 #include "worldfactory.h"
 #include <stepcore/world.h>
 
+#include "settings.h"
+
 #include <QAction>
 #include <QEvent>
 #include <QToolButton>
@@ -29,6 +31,7 @@
 #include <QActionGroup>
 #include <QStyleOption>
 #include <QScrollArea>
+#include <QScrollBar>
 #include <QPainter>
 #include <QtAlgorithms>
 
@@ -45,6 +48,7 @@ class Separator: public QWidget
 public:
     explicit Separator(QWidget* parent): QWidget(parent) {
         setSizePolicy(QSizePolicy::Minimum, QSizePolicy::Minimum);
+        setProperty("isSeparator", true);
     }
 
     QSize sizeHint() const {
@@ -59,51 +63,146 @@ public:
     }
 };
 
-ItemPalette::ItemPalette(WorldModel* worldModel, QWidget* parent, Qt::WindowFlags flags)
-    : QDockWidget(i18n("Palette"), parent, flags), _worldModel(worldModel)
+class PaletteLayout: public QLayout
 {
-    /*
-    _toolBox = new QToolBox(this);
-    setWidget(_toolBox);
+public:
+    PaletteLayout(QWidget *parent, int margin = 0, int spacing = -1)
+        : QLayout(parent) { setMargin(margin); setSpacing(spacing); resetCache(); }
+    PaletteLayout(int spacing = -1) { setSpacing(spacing); resetCache(); }
+    ~PaletteLayout() { QLayoutItem *item; while ((item = takeAt(0))) delete item; }
 
-    _bodiesToolBar = new QToolBar("Bodies", _toolBox);
-    _forcesToolBar = new QToolBar("Forces", _toolBox);
+    void addItem(QLayoutItem *item) { itemList.append(item); resetCache(); }
+    int count() const { return itemList.size(); }
+    QLayoutItem* itemAt(int index) const { return itemList.value(index); }
+    QLayoutItem* takeAt(int index) {
+        resetCache();
+        if (index >= 0 && index < itemList.size()) return itemList.takeAt(index);
+        else return 0;
+    }
 
-    _bodiesToolBar->setOrientation( Qt::Vertical );
-    _forcesToolBar->setOrientation( Qt::Vertical );
+    Qt::Orientations expandingDirections() const { return Qt::Vertical; }
+    bool hasHeightForWidth() const { return true; }
 
-    _toolBox->addItem(_bodiesToolBar, "Bodies");
-    _toolBox->addItem(_forcesToolBar, "Forces");
+    int heightForWidth(int width) const {
+        if(isCachedHeightForWidth && cachedHeightForWidth.width() == width) {
+            return cachedHeightForWidth.height();
+        } else {
+            cachedHeightForWidth.setWidth(width);
+            cachedHeightForWidth.setHeight(doLayout(QRect(0, 0, width, 0), true));
+            isCachedHeightForWidth = true;
+            return cachedHeightForWidth.height();
+        }
+    }
+    
+    void setGeometry(const QRect &rect) {
+        resetCache(); QLayout::setGeometry(rect); doLayout(rect, false);
+    }
 
-    _actionGroup = new QActionGroup(this);
-    _actionGroup->setExclusive(true);
+    QSize sizeHint() const { return minimumSize(); }
 
-    _pointerAction = new QAction("Pointer", this);
-    _pointerAction->setCheckable(true);
-    _pointerAction->setChecked(true);
-    _actionGroup->addAction(_pointerAction);
-    _bodiesToolBar->addAction(_pointerAction);
-    _forcesToolBar->addAction(_pointerAction);
-    _bodiesToolBar->addSeparator();
-    _forcesToolBar->addSeparator();
-    */
+    QSize minimumSize() const {
+        if(isCachedMinimumSize) return cachedMinimumSize;
+        cachedMinimumSize = QSize();
+        QLayoutItem *item;
+        foreach (item, itemList)
+            cachedMinimumSize = cachedMinimumSize.expandedTo(item->minimumSize());
+        isCachedMinimumSize = true;
+        return cachedMinimumSize;
+    }
 
+    void setOneLine(bool b) { oneLine = b; invalidate(); }
+    bool isOneLine() const { return oneLine; }
+
+    void invalidate() { resetCache(); QLayout::invalidate(); }
+
+protected:
+    void resetCache() { isCachedMinimumSize = false; isCachedHeightForWidth = false; }
+
+    int doLayout(const QRect &rect, bool testOnly) const
+    {
+        int x = rect.x();
+        int y = rect.y();
+        int lineHeight = 0;
+
+        if(oneLine) {
+            foreach(QLayoutItem* item, itemList) {
+                y = y + lineHeight + spacing();
+                lineHeight = item->sizeHint().height();
+                if(!testOnly)
+                    item->setGeometry(QRect(rect.x(), y, rect.width(), lineHeight));
+            }
+        } else {
+            foreach(QLayoutItem* item, itemList) {
+                int w = item->sizeHint().width(); int h = item->sizeHint().height();
+                int nextX = x + item->sizeHint().width() + spacing();
+                if(item->widget() && item->widget()->property("isSeparator").toBool()) {
+                    x = rect.x();
+                    y = y + lineHeight + spacing();
+                    nextX = x + rect.width();
+                    w = rect.width();
+                    lineHeight = 0;
+                } else if(nextX - spacing() > rect.right() && lineHeight > 0) {
+                    x = rect.x();
+                    y = y + lineHeight + spacing();
+                    nextX = x + w + spacing();
+                    lineHeight = 0;
+                }
+
+                if(!testOnly) item->setGeometry(QRect(x, y, w, h));
+
+                x = nextX;
+                lineHeight = qMax(lineHeight, h);
+            }
+        }
+        return y + lineHeight - rect.y();
+    }
+
+    QList<QLayoutItem *> itemList;
+    bool oneLine;
+
+    mutable bool isCachedMinimumSize;
+    mutable bool isCachedHeightForWidth;
+    mutable QSize cachedMinimumSize;
+    mutable QSize cachedHeightForWidth;
+};
+
+class PaletteScrollArea: public QScrollArea
+{
+public:
+    PaletteScrollArea(QWidget* parent): QScrollArea(parent) {}
+
+protected:
+    void resizeEvent(QResizeEvent* event) {
+        if(widget() && widget()->layout()) {
+            QSize size(maximumViewportSize().width(),
+                    widget()->layout()->heightForWidth(maximumViewportSize().width()));
+            if(size.height() > maximumViewportSize().height()) {
+                int ext = style()->pixelMetric(QStyle::PM_LayoutHorizontalSpacing);
+                size.setWidth(maximumViewportSize().width() - 
+                                verticalScrollBar()->sizeHint().width() - ext);
+                size.setHeight(widget()->layout()->heightForWidth(size.width()));
+            }
+            widget()->resize(size);
+        }
+        QScrollArea::resizeEvent(event);
+    }
+};
+
+ItemPalette::ItemPalette(WorldModel* worldModel, QWidget* parent, Qt::WindowFlags flags)
+    : QDockWidget(i18n("Palette"), parent, flags), _worldModel(worldModel), _widget(0)
+{
     setAllowedAreas(Qt::LeftDockWidgetArea | Qt::RightDockWidgetArea);
 
-    //_toolBar = new QToolBar(i18n("Palette"), this);
-    //_toolBar->setOrientation(Qt::Vertical);
-    //_toolBar->setToolButtonStyle(Qt::ToolButtonTextBesideIcon);
-    //_toolBar->setIconSize(QSize(22,22));
-    //setWidget(_toolBar);
+    QWidget* topWidget = new QWidget(this);
 
-    _scrollArea = new QScrollArea(this);
+    _scrollArea = new PaletteScrollArea(topWidget);
     _scrollArea->setHorizontalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
     _scrollArea->setFrameShape(QFrame::NoFrame);
-    _scrollArea->setWidgetResizable(true);
 
     _widget = new QWidget(_scrollArea);
-    _layout = new QVBoxLayout(_widget);
+    _layout = new PaletteLayout(_widget);
     _layout->setSpacing(0);
+    _layout->setOneLine(Settings::showButtonText());
 
     _actionGroup = new QActionGroup(this);
     _actionGroup->setExclusive(true);
@@ -115,74 +214,54 @@ ItemPalette::ItemPalette(WorldModel* worldModel, QWidget* parent, Qt::WindowFlag
     _pointerAction->setChecked(true);
     _pointerAction->setProperty("step_object", "Pointer");
     _actionGroup->addAction(_pointerAction);
-
-    QToolButton* pointer = new QToolButton(_widget);
-    pointer->setToolButtonStyle(Qt::ToolButtonTextBesideIcon);
-    pointer->setSizePolicy(QSizePolicy::Expanding, QSizePolicy::Fixed);
-    pointer->setAutoRaise(true);
-    pointer->setIconSize(QSize(22,22));
-    pointer->setDefaultAction(_pointerAction);
-    _layout->addWidget(pointer);
-    //_widget->addAction(_pointerAction);
-    //_toolBar->addAction(_pointerAction);
-    //_toolBar->widgetForAction(_pointerAction)->setSizePolicy(QSizePolicy::Expanding, QSizePolicy::Fixed);
-    //_toolBar->addSeparator();
+    createToolButton(_pointerAction);
+    createSeparator();
 
     foreach(QString name, _worldModel->worldFactory()->paletteMetaObjects()) {
-        if(name.isEmpty()) _layout->addWidget(new Separator(_widget)); // _toolBar->addSeparator();
-        else addObject(_worldModel->worldFactory()->metaObject(name));
+        if(!name.isEmpty()) createObjectAction(_worldModel->worldFactory()->metaObject(name));
+        else createSeparator();
     }
 
-    _layout->addStretch();
-
-    //_widget->setSizePolicy(QSizePolicy::Fixed, QSizePolicy::Minimum);
-    _scrollArea->setSizePolicy(QSizePolicy::Minimum, QSizePolicy::Preferred);
     _scrollArea->setWidget(_widget);
-    setWidget(_scrollArea);
+    _scrollArea->setMinimumWidth(_widget->minimumSizeHint().width());
 
-#if 0
-    /* Add bodies */
-    foreach(QString name, _worldModel->worldFactory()->orderedMetaObjects()) {
-        const StepCore::MetaObject* metaObject = _worldModel->worldFactory()->metaObject(name);
-        if(metaObject->isAbstract()) continue;
-        if(!metaObject->inherits(StepCore::Body::staticMetaObject())) continue;
-        addObject(metaObject);
-    }
-
-    /* Add groups */
-    _toolBar->addSeparator();
-    foreach(QString name, _worldModel->worldFactory()->orderedMetaObjects()) {
-        const StepCore::MetaObject* metaObject = _worldModel->worldFactory()->metaObject(name);
-        if(metaObject->isAbstract()) continue;
-        if(!metaObject->inherits(StepCore::ItemGroup::staticMetaObject())) continue;
-        if(metaObject == StepCore::World::staticMetaObject() ||
-            metaObject == StepCore::ItemGroup::staticMetaObject()) continue;
-        addObject(metaObject);
-    }
-
-    /* Add forces */
-    _toolBar->addSeparator();
-    foreach(QString name, _worldModel->worldFactory()->orderedMetaObjects()) {
-        const StepCore::MetaObject* metaObject = _worldModel->worldFactory()->metaObject(name);
-        if(metaObject->isAbstract()) continue;
-        if(!metaObject->inherits(StepCore::Force::staticMetaObject())) continue;
-        addObject(metaObject);
-    }
-
-    /* Add tools */
-    _toolBar->addSeparator();
-    foreach(QString name, _worldModel->worldFactory()->orderedMetaObjects()) {
-        const StepCore::MetaObject* metaObject = _worldModel->worldFactory()->metaObject(name);
-        if(metaObject->isAbstract()) continue;
-        if(!metaObject->inherits(StepCore::Tool::staticMetaObject())) continue;
-        addObject(metaObject);
-    }
-#endif
+    QVBoxLayout* topLayout = new QVBoxLayout(topWidget);
+    topLayout->addWidget(_scrollArea);
+    setWidget(topWidget);
 
     QObject::connect(_actionGroup, SIGNAL(triggered(QAction*)), this, SLOT(actionTriggered(QAction*)));
+
+    QAction* showText = new QAction(i18n("Show text"), this);
+    showText->setCheckable(true);
+    showText->setChecked(Settings::showButtonText());
+    QObject::connect(showText, SIGNAL(toggled(bool)), this, SLOT(showButtonTextToggled(bool)));
+
+    _widget->addAction(showText);
+    _widget->setContextMenuPolicy(Qt::ActionsContextMenu);
 }
 
-void ItemPalette::addObject(const StepCore::MetaObject* metaObject)
+void ItemPalette::createToolButton(QAction* action)
+{
+    QToolButton* button = new QToolButton(_widget);
+    button->setToolButtonStyle(Settings::showButtonText() ? 
+                    Qt::ToolButtonTextBesideIcon : Qt::ToolButtonIconOnly);
+    button->setSizePolicy(QSizePolicy::Expanding, QSizePolicy::Fixed);
+    button->setAutoRaise(true);
+    button->setIconSize(QSize(22,22));
+    button->setDefaultAction(action);
+    _toolButtons.append(button);
+    _layout->addWidget(button);
+}
+
+void ItemPalette::createSeparator()
+{
+    QAction* action = new QAction(this);
+    action->setSeparator(true);
+    _actionGroup->addAction(action);
+    _layout->addWidget(new Separator(_widget));
+}
+
+void ItemPalette::createObjectAction(const StepCore::MetaObject* metaObject)
 {
     Q_ASSERT(metaObject && !metaObject->isAbstract());
 
@@ -191,18 +270,20 @@ void ItemPalette::addObject(const StepCore::MetaObject* metaObject)
     action->setIcon(_worldModel->worldFactory()->objectIcon(metaObject));
     action->setCheckable(true);
     action->setProperty("step_object", metaObject->className());
-
     _actionGroup->addAction(action);
-    QToolButton* button = new QToolButton(_widget);
-    button->setToolButtonStyle(Qt::ToolButtonTextBesideIcon);
-    button->setSizePolicy(QSizePolicy::Expanding, QSizePolicy::Fixed);
-    button->setAutoRaise(true);
-    button->setIconSize(QSize(22,22));
-    button->setDefaultAction(action);
-    _layout->addWidget(button);
-    //_widget->addAction(action);
-    //_toolBar->addAction(action);
-    //_toolBar->widgetForAction(action)->setSizePolicy(QSizePolicy::Expanding, QSizePolicy::Fixed);
+    createToolButton(action);
+}
+
+void ItemPalette::showButtonTextToggled(bool b)
+{
+    Settings::setShowButtonText(b);
+    Settings::self()->writeConfig();
+    foreach(QToolButton* button, _toolButtons) {
+        button->setToolButtonStyle(b ? Qt::ToolButtonTextBesideIcon :
+                                       Qt::ToolButtonIconOnly);
+    }
+    _layout->setOneLine(b);
+    _scrollArea->setMinimumWidth(_widget->minimumSizeHint().width());
 }
 
 void ItemPalette::actionTriggered(QAction* action)

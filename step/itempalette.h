@@ -21,11 +21,14 @@
 
 #include <QDockWidget>
 #include <QList>
+
 class WorldModel;
 class QVBoxLayout;
+class QToolButton;
 class QScrollArea;
 class QAction;
 class QActionGroup;
+class PaletteLayout;
 
 namespace StepCore { class MetaObject; }
 
@@ -44,18 +47,24 @@ public slots:
 
 protected slots:
     void actionTriggered(QAction* action);
+    void showButtonTextToggled(bool b);
 
 protected:
-    void addObject(const StepCore::MetaObject* metaObject);
+    void createSeparator();
+    void createToolButton(QAction* action);
+    void createObjectAction(const StepCore::MetaObject* metaObject);
+
     bool event(QEvent* event);
 
     WorldModel*     _worldModel;
     QScrollArea*    _scrollArea;
     QWidget*        _widget;
-    QVBoxLayout*    _layout;
+    PaletteLayout*  _layout;
 
     QAction*        _pointerAction;
     QActionGroup*   _actionGroup;
+
+    QList<QToolButton*> _toolButtons;
 };
 
 #endif

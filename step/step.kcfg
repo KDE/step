@@ -35,4 +35,11 @@
             <default>false</default>
         </entry>
     </group>
+    <group name="ItemPalette">
+        <entry name="showButtonText" type="Bool">
+            <label>Show text beside icon</label>
+            <whatsthis>Show text beside icon</whatsthis>
+            <default>true</default>
+        </entry>
+    </group>
 </kcfg>
