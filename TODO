@@ -48,6 +48,10 @@ code (marked as TODO or XXX).
 * Tutorials (series of experiments with explanations)
 * define multiple coordinate system and provide an ability
   to translate vector coordinates between them
+* viewer (locked) mode: allow to change only
+  explicitly selected properties of the experiment
+* grid and snapping
+* "fixing" a tool for creating several similar objects
 
 More TODO items for Step can be found in the source code
 (marked as TODO or XXX).
