@@ -12,7 +12,7 @@
 * custom properties for bodies, make charge custom property (?)
 * adaptive timestep solvers (DONE)
 * correctly handle stiff ODE
-* separate position and coordinate 
+* separate position and coordinate (PARTLY DONE)
   (for independent tolerance settings, symplectic solvers)
 * global error estimation (requires jacobian ?) (DONE)
 * multistep solvers
@@ -38,7 +38,7 @@ code (marked as TODO or XXX).
 * saving animation (navigation through time)
 * units for all quantitis, units conversion (DONE)
 * user-editable notes (DONE)
-* formulas in notes
+* formulas in notes (DONE)
 * custom scene background (PARTLY DONE)
 * nice-looking descriptions for all bodies and parameters
   (with references to wikipedia or wikibooks ?) (DONE)

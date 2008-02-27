@@ -54,8 +54,7 @@ public:
     virtual void start();
 
 protected:
-    void showMessage(WorldScene::MessageType type, const QString& text,
-                            bool closeButton = true, bool closeTimer = false);
+    void showMessage(MessageFrame::MessageType type, const QString& text, int flags = 0);
     void closeMessage();
 
     QString     _className;

@@ -112,8 +112,8 @@ void PolygonCreator::fixInertia()
 
 void PolygonCreator::start()
 {
-    showMessage(WorldScene::Information,
-            i18n("Click on the scene to create a first vertex of %1", className()), false, false);
+    showMessage(MessageFrame::Information,
+            i18n("Click on the scene to create a first vertex of %1", className()));
 }
 
 bool PolygonCreator::sceneEvent(QEvent* event)
@@ -161,8 +161,8 @@ bool PolygonCreator::sceneEvent(QEvent* event)
         if(event->type() == QEvent::GraphicsSceneMouseRelease) {
             vertexes += QString(",(%1,%2)").arg(v[0]).arg(v[1]);
             _worldModel->setProperty(_item, _item->metaObject()->property("vertexes"), vertexes);
-            showMessage(WorldScene::Information,
-                i18n("Click on the scene to add new vertex or press Enter to finish"), false, false);
+            showMessage(MessageFrame::Information,
+                i18n("Click on the scene to add new vertex or press Enter to finish"));
         }
         
         //fixCenterOfMass();
@@ -176,8 +176,9 @@ bool PolygonCreator::sceneEvent(QEvent* event)
         fixInertia();
         _worldModel->endMacro();
 
-        showMessage(WorldScene::Information,
-            i18n("%1 named '%2' created", className(), _item->name()), true, true);
+        showMessage(MessageFrame::Information,
+            i18n("%1 named '%2' created", className(), _item->name()),
+            MessageFrame::CloseButton | MessageFrame::CloseTimer);
 
         event->accept();
         return true;

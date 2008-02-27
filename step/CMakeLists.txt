@@ -20,6 +20,7 @@ set(step_SRCS
     simulationthread.cc
     unitscalc.cc
     latexformula.cc
+    messageframe.cc
     main.cc
 )
 

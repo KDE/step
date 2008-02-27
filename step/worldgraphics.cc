@@ -42,15 +42,13 @@
 //XXX
 const QColor WorldGraphicsItem::SELECTION_COLOR = QColor(0xff, 0x70, 0x70);
 
-void ItemCreator::showMessage(WorldScene::MessageType type, const QString& text,
-                                            bool closeButton, bool closeTimer)
+void ItemCreator::showMessage(MessageFrame::MessageType type, const QString& text, int flags)
 {
     if(Settings::showCreationTips()) {
-        if(!closeTimer && !closeButton) {
-            _messageId = _worldScene->changeMessage(_messageId,
-                            type, text, closeButton, closeTimer);
+        if(!(flags & MessageFrame::CloseButton) && !(flags & MessageFrame::CloseTimer)) {
+            _messageId = _worldScene->changeMessage(_messageId, type, text, flags);
         } else {
-            _worldScene->showMessage(type, text, closeButton, closeTimer);
+            _worldScene->showMessage(type, text, flags);
         }
     }
 }
@@ -62,8 +60,8 @@ void ItemCreator::closeMessage()
 
 void ItemCreator::start()
 {
-    showMessage(WorldScene::Information,
-            i18n("Click on the scene to create a %1", className()), false);
+    showMessage(MessageFrame::Information,
+            i18n("Click on the scene to create a %1", className()));
 }
 
 bool ItemCreator::sceneEvent(QEvent* event)
@@ -85,8 +83,9 @@ bool ItemCreator::sceneEvent(QEvent* event)
         }
 
         _worldModel->endMacro();
-        showMessage(WorldScene::Information,
-                i18n("%1 named '%2' created", className(), _item->name()), true, true);
+        showMessage(MessageFrame::Information,
+                i18n("%1 named '%2' created", className(), _item->name()),
+                MessageFrame::CloseButton | MessageFrame::CloseTimer);
         event->accept();
         return true;
     }

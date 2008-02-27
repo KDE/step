@@ -312,9 +312,9 @@ void PinGraphicsItem::worldDataChanged(bool /*dynamicOnly*/)
 
 void StickCreator::start()
 {
-    showMessage(WorldScene::Information,
+    showMessage(MessageFrame::Information,
         i18n("Press left mouse button to position first end of the %1\n"
-             "then drag and release it to position second end", className()), false);
+             "then drag and release it to position second end", className()));
 }
 
 bool StickCreator::sceneEvent(QEvent* event)
@@ -334,8 +334,8 @@ bool StickCreator::sceneEvent(QEvent* event)
         _worldModel->selectionModel()->setCurrentIndex(_worldModel->objectIndex(_item),
                                                 QItemSelectionModel::ClearAndSelect);
 
-        showMessage(WorldScene::Information,
-            i18n("Release left mouse button to position second end of the %1", className()), false);
+        showMessage(MessageFrame::Information,
+            i18n("Release left mouse button to position second end of the %1", className()));
         event->accept(); return false;
 
     } else if(event->type() == QEvent::GraphicsSceneMouseMove &&
@@ -360,8 +360,9 @@ bool StickCreator::sceneEvent(QEvent* event)
 
         _worldModel->endMacro();
 
-        showMessage(WorldScene::Information,
-            i18n("%1 named '%2' created", className(), _item->name()), true, true);
+        showMessage(MessageFrame::Information,
+            i18n("%1 named '%2' created", className(), _item->name()),
+            MessageFrame::CloseButton | MessageFrame::CloseTimer);
         event->accept(); return true;
     }
     return false;

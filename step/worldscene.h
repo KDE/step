@@ -23,6 +23,10 @@
 #include <QGraphicsView>
 #include <QHash>
 
+#include <QPushButton>
+
+#include "messageframe.h"
+
 class KUrl;
 class WorldModel;
 //class ItemCreator;
@@ -44,8 +48,6 @@ class WorldScene: public QGraphicsScene
     Q_OBJECT
 
 public:
-    enum MessageType { Information, Warning, Error };
-
     explicit WorldScene(WorldModel* worldModel, QObject* parent = 0);
     ~WorldScene();
 
@@ -60,11 +62,13 @@ public:
 public slots:
     void beginAddItem(const QString& name);
 
-    int showMessage(MessageType type, const QString& text,
-                    bool closeButton = true, bool closeTimer = false);
-    int changeMessage(int id, MessageType type, const QString& text,
-                    bool closeButton = true, bool closeTimer = false);
-    void closeMessage(int id);
+    int showMessage(MessageFrame::MessageType type, const QString& text, int flags = 0) {
+        return _messageFrame->showMessage(type, text, flags);
+    }
+    int changeMessage(int id, MessageFrame::MessageType type, const QString& text, int flags = 0) {
+        return _messageFrame->changeMessage(id, type, text, flags);
+    }
+    void closeMessage(int id) { _messageFrame->closeMessage(id); }
 
     void settingsChanged();
 
@@ -82,7 +86,6 @@ protected slots:
     void worldRowsAboutToBeRemoved(const QModelIndex& parent, int start, int end);
 
     void messageLinkActivated(const QString& link);
-    void messageCloseClicked(QWidget* widget);
 
 protected:
     bool event(QEvent* event);
@@ -101,10 +104,8 @@ protected:
     ItemCreator* _itemCreator;
     QRgb         _bgColor;
 
-    QFrame*        _messagesFrame;
-    QVBoxLayout*   _messagesLayout;
-    QSignalMapper* _messagesSignalMapper;
-    int            _messageLastId;
+    MessageFrame*  _messageFrame;
+    QPushButton* _b;
 
     friend class WorldGraphicsView;
 };

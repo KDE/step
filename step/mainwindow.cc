@@ -54,6 +54,7 @@
 #include <QFile>
 #include <QGraphicsView>
 #include <QItemSelectionModel>
+#include <QHBoxLayout>
 
 #include <cstdlib>
 #include <ctime>

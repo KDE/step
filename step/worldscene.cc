@@ -105,8 +105,7 @@ void WorldSceneAxes::viewScaleChanged()
 
 WorldScene::WorldScene(WorldModel* worldModel, QObject* parent)
     : QGraphicsScene(parent), _worldModel(worldModel), _worldView(NULL),
-        _currentViewScale(1), _itemCreator(NULL), _bgColor(0),
-        _messagesFrame(NULL), _messagesLayout(NULL), _messageLastId(0)
+        _currentViewScale(1), _itemCreator(NULL), _bgColor(0)
 {
     #ifdef __GNUC__
     #warning TODO: measure what index method is faster
@@ -115,18 +114,23 @@ WorldScene::WorldScene(WorldModel* worldModel, QObject* parent)
     //XXX
     //setSceneRect(-200,-200,400,400);
 
+    _messageFrame = new MessageFrame();
+
     worldModelReset();
 
-    QObject::connect(_worldModel, SIGNAL(modelReset()), this, SLOT(worldModelReset()));
-    QObject::connect(_worldModel, SIGNAL(worldDataChanged(bool)), this, SLOT(worldDataChanged(bool)));
-    QObject::connect(_worldModel->selectionModel(), SIGNAL(currentChanged(const QModelIndex&, const QModelIndex&)),
-                                           this, SLOT(worldCurrentChanged(const QModelIndex&, const QModelIndex&)));
-    QObject::connect(_worldModel->selectionModel(), SIGNAL(selectionChanged(const QItemSelection&, const QItemSelection&)),
-                                           this, SLOT(worldSelectionChanged(const QItemSelection&, const QItemSelection&)));
-    QObject::connect(_worldModel, SIGNAL(rowsInserted(const QModelIndex&, int, int)),
-                         this, SLOT(worldRowsInserted(const QModelIndex&, int, int)));
-    QObject::connect(_worldModel, SIGNAL(rowsAboutToBeRemoved(const QModelIndex&, int, int)),
+    connect(_worldModel, SIGNAL(modelReset()), this, SLOT(worldModelReset()));
+    connect(_worldModel, SIGNAL(worldDataChanged(bool)), this, SLOT(worldDataChanged(bool)));
+    connect(_worldModel->selectionModel(), SIGNAL(currentChanged(const QModelIndex&, const QModelIndex&)),
+                                  this, SLOT(worldCurrentChanged(const QModelIndex&, const QModelIndex&)));
+    connect(_worldModel->selectionModel(), SIGNAL(selectionChanged(const QItemSelection&, const QItemSelection&)),
+                                  this, SLOT(worldSelectionChanged(const QItemSelection&, const QItemSelection&)));
+    connect(_worldModel, SIGNAL(rowsInserted(const QModelIndex&, int, int)),
+                this, SLOT(worldRowsInserted(const QModelIndex&, int, int)));
+    connect(_worldModel, SIGNAL(rowsAboutToBeRemoved(const QModelIndex&, int, int)),
                          this, SLOT(worldRowsAboutToBeRemoved(const QModelIndex&, int, int)));
+
+    connect(_messageFrame, SIGNAL(linkActivated(const QString&)),
+                this, SLOT(messageLinkActivated(const QString&)));
 }
 
 WorldScene::~WorldScene()
@@ -383,128 +387,6 @@ QRectF WorldScene::calcItemsBoundingRect()
     return boundingRect;
 }
 
-int WorldScene::showMessage(MessageType type, const QString& text,
-                            bool closeButton, bool closeTimer)
-{
-    if(!_messagesFrame && _worldView) {
-        int br, bg, bb;
-        _messagesFrame = new QFrame(_worldView);
-        _messagesFrame->raise();
-        _messagesFrame->setFrameShape(QFrame::StyledPanel);
-        _messagesFrame->palette().color(QPalette::Window).getRgb(&br, &bg, &bb);
-        _messagesFrame->setStyleSheet(QString(".QFrame {border: 2px solid rgba(133,133,133,85%);"
-                      "border-radius: 6px; background-color: rgba(%1,%2,%3,85%);}").arg(br).arg(bg).arg(bb));
-        _messagesFrame->move(15,15);
-        _messagesLayout = new QVBoxLayout(_messagesFrame);
-        _messagesLayout->setContentsMargins(9,0,9,0);
-        //_messagesLayout->setContentsMargins(0,0,0,0);
-        _messagesLayout->setSpacing(0);
-        _messagesLayout->setSizeConstraint(QLayout::SetFixedSize);
-
-        _messagesSignalMapper = new QSignalMapper(_messagesFrame);
-        connect(_messagesSignalMapper, SIGNAL(mapped(QWidget*)),
-                        this, SLOT(messageCloseClicked(QWidget*)));
-    }
-
-    if(_messagesLayout->count() != 0) {
-        QFrame* line = new QFrame(_messagesFrame);
-        line->setFrameShape(QFrame::HLine);
-        line->setFrameShadow(QFrame::Sunken);
-        _messagesLayout->addWidget(line);
-    }
-
-    QString widgetName("message");
-    widgetName.append(QString::number(_messageLastId));
-
-    QWidget* widget = new QWidget(_messagesFrame);
-    widget->setObjectName(widgetName);
-    widget->setMinimumHeight(32);
-
-    QHBoxLayout* layout = new QHBoxLayout(widget);
-    layout->setContentsMargins(0,2,0,2);
-
-    QLabel* iconLabel = new QLabel(widget);
-    iconLabel->setObjectName("iconLabel");
-    if(type == Error) iconLabel->setPixmap(KIcon("dialog-error").pixmap(16,16));
-    else if(type == Warning) iconLabel->setPixmap(KIcon("dialog-warning").pixmap(16,16));
-    else iconLabel->setPixmap(KIcon("dialog-information").pixmap(16,16));
-    layout->addWidget(iconLabel);
-
-    QLabel* textLabel = new QLabel(widget);
-    textLabel->setObjectName("textLabel");
-    textLabel->setText(text);
-    layout->addWidget(textLabel, 1);
-
-    connect(textLabel, SIGNAL(linkActivated(const QString&)),
-                this, SLOT(messageLinkActivated(const QString&)));
-
-    QToolButton* button = new QToolButton(widget);
-    button->setObjectName("closeButton");
-    button->setIcon(KIcon("window-close"));
-    button->setIconSize(QSize(16,16));
-    button->setAutoRaise(true);
-    layout->addWidget(button);
-
-    if(closeButton) {
-        _messagesSignalMapper->setMapping(button, widget);
-        connect(button, SIGNAL(clicked()),
-                    _messagesSignalMapper, SLOT(map()));
-    } else {
-        button->hide();
-    }
-
-    QTimer* timer = new QTimer(widget);
-    timer->setObjectName("closeTimer");
-    timer->setSingleShot(true);
-    timer->setInterval(2000);
-
-    if(closeTimer) {
-        _messagesSignalMapper->setMapping(timer, widget);
-        connect(timer, SIGNAL(timeout()),
-                    _messagesSignalMapper, SLOT(map()));
-        timer->start();
-    }
-
-    _messagesLayout->addWidget(widget);
-    _messagesFrame->show();
-
-    return _messageLastId++;
-    //return widget;
-}
-
-//XXX: check for ID and update message if necessary !
-int WorldScene::changeMessage(int id, MessageType type, const QString& text,
-                        bool closeButton, bool closeTimer)
-{
-    QString widgetName("message");
-    widgetName.append(QString::number(id));
-    QWidget* widget = _messagesFrame->findChild<QWidget*>(widgetName);
-    if(widget) messageCloseClicked(widget);
-    return showMessage(type, text, closeButton, closeTimer);
-}
-
-void WorldScene::closeMessage(int id)
-{
-    QString widgetName("message");
-    widgetName.append(QString::number(id));
-    QWidget* widget = _messagesFrame->findChild<QWidget*>(widgetName);
-    if(widget) messageCloseClicked(widget);
-}
-
-void WorldScene::messageCloseClicked(QWidget* widget)
-{
-    int index = _messagesLayout->indexOf(widget);
-    if(index < 0) return;
-    if(index > 0) {
-        delete _messagesLayout->itemAt(index-1)->widget();
-    } else if(_messagesLayout->count() > 1) {
-        delete _messagesLayout->itemAt(1)->widget();
-    }
-    delete widget;
-    if(_messagesLayout->count() == 0)
-        _messagesFrame->hide();
-}
-
 void WorldScene::messageLinkActivated(const QString& link)
 {
     emit linkActivated(link);
@@ -513,13 +395,15 @@ void WorldScene::messageLinkActivated(const QString& link)
 void WorldScene::settingsChanged()
 {
     worldModelReset();
-    if(_messagesFrame) _messagesFrame->raise();
+    _messageFrame->raise();
 }
 
 WorldGraphicsView::WorldGraphicsView(WorldScene* worldScene, QWidget* parent)
     : QGraphicsView(worldScene, parent)
 {
     worldScene->_worldView = this;
+    worldScene->_messageFrame->setParent(this);
+    worldScene->_messageFrame->move(15,15);
     //worldGraphicsView->setRenderHints(QPainter::Antialiasing);
     setDragMode(QGraphicsView::RubberBandDrag);
     setResizeAnchor(QGraphicsView::AnchorViewCenter);
