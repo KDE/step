@@ -265,7 +265,8 @@ CommandSimulate::CommandSimulate(WorldModel* worldModel)
     _worldModel->reset();
 
     _startTime = _worldModel->formatProperty(_worldModel->_world, NULL,
-                            _worldModel->_world->metaObject()->property("time"), true);
+                            _worldModel->_world->metaObject()->property("time"),
+                            WorldModel::FormatEditable);
 
     /*
     foreach(PairInt pair, selection)
@@ -277,7 +278,8 @@ CommandSimulate::CommandSimulate(WorldModel* worldModel)
 void CommandSimulate::done()
 {
     _endTime = _worldModel->formatProperty(_worldModel->_world, NULL,
-                            _worldModel->_world->metaObject()->property("time"), true);
+                            _worldModel->_world->metaObject()->property("time"),
+                            WorldModel::FormatEditable);
 }
 
 void CommandSimulate::redo()
@@ -660,10 +662,10 @@ void WorldModel::endMacro()
 }
 
 void WorldModel::setProperty(StepCore::Object* object,
-            const StepCore::MetaProperty* property, const QVariant& value, bool merge)
+            const StepCore::MetaProperty* property, const QVariant& value, UndoFlags flags)
 {
     Q_ASSERT(object != NULL); Q_ASSERT(property != NULL);
-    pushCommand(new CommandEditProperty(this, object, property, value, merge));
+    pushCommand(new CommandEditProperty(this, object, property, value, !flags.testFlag(UndoNoMerge)));
 }
 
 QString WorldModel::formatName(const StepCore::Object* object) const
@@ -676,16 +678,16 @@ QString WorldModel::formatName(const StepCore::Object* object) const
 QString WorldModel::formatProperty(const StepCore::Object* object,
                                    const StepCore::Object* objectErrors,
                                    const StepCore::MetaProperty* property,
-                                   bool editable, bool showUnits) const
+                                   FormatFlags flags) const
 {
     int pr = Settings::floatDisplayPrecision();
 
     QString units;
-    if(showUnits) {
-        if(!editable && !property->units().isEmpty()) 
+    if(!flags.testFlag(FormatHideUnits)) {
+        if(!flags.testFlag(FormatEditable) && !property->units().isEmpty()) 
             units.append(" [").append(property->units()).append("]");
 #ifdef STEP_WITH_UNITSCALC
-        else if(editable && !property->units().isEmpty()
+        else if(flags.testFlag(FormatEditable) && !property->units().isEmpty()
                     && property->userTypeId() == QMetaType::Double) 
             units.append(" ").append(property->units());
 #endif
@@ -716,13 +718,13 @@ QString WorldModel::formatProperty(const StepCore::Object* object,
         StepCore::Vector2dList list =
                 property->readVariant(object).value<StepCore::Vector2dList >();
         QString string;
-        unsigned int end = editable ? list.size() : qMin<unsigned int>(10, list.size());
+        unsigned int end = flags.testFlag(FormatEditable) ? list.size() : qMin<unsigned int>(10, list.size());
         for(unsigned int i=0; i<end; ++i) {
             if(!string.isEmpty()) string += ",";
             string += QString("(%1,%2)").arg(list[i][0], 0, 'g', pr)
                                             .arg(list[i][1], 0, 'g', pr);
         }
-        if(!editable && end != 0 && end < list.size()) string += ",...";
+        if(!flags.testFlag(FormatEditable) && end != 0 && end < list.size()) string += ",...";
         string.append(units);
         return string;
     } else {
@@ -732,7 +734,7 @@ QString WorldModel::formatProperty(const StepCore::Object* object,
         //if(pv) kDebug() << "Unhandled property variance type" << endl;
         Q_ASSERT(!pv);
         QString str = property->readString(object);
-        if(!editable && str.length() > 50)
+        if(!flags.testFlag(FormatEditable) && str.length() > 50)
             str = str.left(50).append("...");
         return str.append(units);
     }
@@ -771,7 +773,7 @@ QString WorldModel::createToolTip(const QModelIndex& index) const
             value.append(units);
         }*/
         toolTip += i18n("<tr><td>%1&nbsp;&nbsp;</td><td>%2</td></tr>", p->name(),
-                            formatProperty(object, objectErrors, p, false));
+                            formatProperty(object, objectErrors, p));
     }
     toolTip += "</table>";
     //qDebug("%s", toolTip.toAscii().constData());

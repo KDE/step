@@ -91,9 +91,9 @@ void SpringCreator::tryAttach(const QPointF& pos, int num)
         StepCore::Item* item = _worldScene->itemFromGraphics(it);
         if(dynamic_cast<StepCore::Particle*>(item) || dynamic_cast<StepCore::RigidBody*>(item)) {
             if(num == 1) _worldModel->setProperty(_item, _item->metaObject()->property("body1"),
-                                                QVariant::fromValue<StepCore::Object*>(item), false);
+                                                QVariant::fromValue<StepCore::Object*>(item), WorldModel::UndoNoMerge);
             else         _worldModel->setProperty(_item, _item->metaObject()->property("body2"),
-                                                QVariant::fromValue<StepCore::Object*>(item), false);
+                                                QVariant::fromValue<StepCore::Object*>(item), WorldModel::UndoNoMerge);
 
             StepCore::Vector2d lPos(0, 0);
             if(dynamic_cast<StepCore::RigidBody*>(item))
@@ -151,9 +151,9 @@ void SpringHandlerGraphicsItem::mouseMoveEvent(QGraphicsSceneMouseEvent *event)
             _moving = true;
             _worldModel->beginMacro(i18n("Move end of %1", _item->name()));
             if(_num == 1) _worldModel->setProperty(_item, _item->metaObject()->property("body1"),
-                                                    QVariant::fromValue<StepCore::Object*>(NULL), false);
+                                                    QVariant::fromValue<StepCore::Object*>(NULL), WorldModel::UndoNoMerge);
             else          _worldModel->setProperty(_item, _item->metaObject()->property("body2"),
-                                                    QVariant::fromValue<StepCore::Object*>(NULL), false);
+                                                    QVariant::fromValue<StepCore::Object*>(NULL), WorldModel::UndoNoMerge);
         }
 
         if(_num == 1) _worldModel->setProperty(_item, _item->metaObject()->property("localPosition1"), vpos);
@@ -173,9 +173,9 @@ void SpringHandlerGraphicsItem::mouseReleaseEvent(QGraphicsSceneMouseEvent *even
             if(dynamic_cast<StepCore::Particle*>(item) || dynamic_cast<StepCore::RigidBody*>(item)) {
                 _worldModel->simulationPause();
                 if(_num == 1) _worldModel->setProperty(_item, _item->metaObject()->property("body1"),
-                                                    QVariant::fromValue<StepCore::Object*>(item), false);
+                                                    QVariant::fromValue<StepCore::Object*>(item), WorldModel::UndoNoMerge);
                 else          _worldModel->setProperty(_item, _item->metaObject()->property("body2"),
-                                                    QVariant::fromValue<StepCore::Object*>(item), false);
+                                                    QVariant::fromValue<StepCore::Object*>(item), WorldModel::UndoNoMerge);
 
                 StepCore::Vector2d lPos(0, 0);
                 if(dynamic_cast<StepCore::RigidBody*>(item))
@@ -340,7 +340,7 @@ void SpringGraphicsItem::mouseSetPos(const QPointF& /*pos*/, const QPointF& diff
             _worldModel->setProperty(_item, _item->metaObject()->property("localPosition1"),
                                         _item->metaObject()->property("position1")->readVariant(_item));
             _worldModel->setProperty(_item, _item->metaObject()->property("body1"),
-                                        QVariant::fromValue<StepCore::Object*>(NULL), false);
+                                        QVariant::fromValue<StepCore::Object*>(NULL), WorldModel::UndoNoMerge);
         }
     } else {
         _worldModel->setProperty(_item, _item->metaObject()->property("localPosition1"), 
@@ -355,7 +355,7 @@ void SpringGraphicsItem::mouseSetPos(const QPointF& /*pos*/, const QPointF& diff
         if(!gItem->isSelected()) {
             _worldModel->setProperty(_item, _item->metaObject()->property("localPosition2"),
                                         _item->metaObject()->property("position2")->readVariant(_item));
-            _worldModel->setProperty(_item, _item->metaObject()->property("body2"), QString(), false);
+            _worldModel->setProperty(_item, _item->metaObject()->property("body2"), QString(), WorldModel::UndoNoMerge);
         }
     } else {
         _worldModel->setProperty(_item, _item->metaObject()->property("localPosition2"),

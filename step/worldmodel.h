@@ -50,6 +50,11 @@ class WorldModel: public QAbstractItemModel
     Q_OBJECT
 public:
     enum { FormattedNameRole = Qt::UserRole+1, ClassNameRole };
+    enum FormatFlag { FormatEditable = 1, FormatHideUnits = 2 };
+    enum UndoFlag { UndoNoMerge = 1 };
+
+    Q_DECLARE_FLAGS(FormatFlags, FormatFlag);
+    Q_DECLARE_FLAGS(UndoFlags, UndoFlag);
 
 public:
     WorldModel(QObject* parent = 0);
@@ -104,14 +109,14 @@ public:
 
     // Property edit
     void setProperty(StepCore::Object* object, const StepCore::MetaProperty* property,
-                            const QVariant& value, bool merge = true);
+                            const QVariant& value, UndoFlags flags = 0);
 
     // Format property value for display or edit
     QString formatName(const StepCore::Object* object) const;
     QString formatProperty(const StepCore::Object* object,
                            const StepCore::Object* objectErrors,
                            const StepCore::MetaProperty* property,
-                           bool editable, bool showUnits = true) const;
+                           FormatFlags flags = 0) const;
 
     // Tooltip
     QString createToolTip(const QModelIndex& index) const;
@@ -194,6 +199,9 @@ protected:
     friend class CommandSetSolver;
     friend class CommandSimulate;
 };
+
+Q_DECLARE_OPERATORS_FOR_FLAGS(WorldModel::FormatFlags);
+Q_DECLARE_OPERATORS_FOR_FLAGS(WorldModel::UndoFlags);
 
 #endif
 

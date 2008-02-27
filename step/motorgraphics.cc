@@ -59,7 +59,7 @@ void LinearMotorCreator::tryAttach(const QPointF& pos)
         StepCore::Item* item = _worldScene->itemFromGraphics(it);
         if(dynamic_cast<StepCore::Particle*>(item) || dynamic_cast<StepCore::RigidBody*>(item)) {
             _worldModel->setProperty(_item, _item->metaObject()->property("body"),
-                                        QVariant::fromValue<StepCore::Object*>(item), false);
+                                        QVariant::fromValue<StepCore::Object*>(item), WorldModel::UndoNoMerge);
 
             StepCore::Vector2d lPos(0, 0);
             if(dynamic_cast<StepCore::RigidBody*>(item))
@@ -108,7 +108,7 @@ void LinearMotorGraphicsItem::mouseMoveEvent(QGraphicsSceneMouseEvent *event)
             _moving = true;
             _worldModel->beginMacro(i18n("Move %1", _item->name()));
             _worldModel->setProperty(_item, _item->metaObject()->property("body"),
-                                            QVariant::fromValue<StepCore::Object*>(NULL), false);
+                                            QVariant::fromValue<StepCore::Object*>(NULL), WorldModel::UndoNoMerge);
         }
 
         _worldModel->setProperty(_item, _item->metaObject()->property("localPosition"), vpos);
@@ -126,7 +126,7 @@ void LinearMotorGraphicsItem::mouseReleaseEvent(QGraphicsSceneMouseEvent *event)
             if(dynamic_cast<StepCore::Particle*>(item) || dynamic_cast<StepCore::RigidBody*>(item)) {
                 _worldModel->simulationPause();
                 _worldModel->setProperty(_item, _item->metaObject()->property("body"),
-                                            QVariant::fromValue<StepCore::Object*>(item), false);
+                                            QVariant::fromValue<StepCore::Object*>(item), WorldModel::UndoNoMerge);
 
                 StepCore::Vector2d lPos(0, 0);
                 if(dynamic_cast<StepCore::RigidBody*>(item))
@@ -238,7 +238,7 @@ void CircularMotorCreator::tryAttach(const QPointF& pos)
         StepCore::Item* item = _worldScene->itemFromGraphics(it);
         if(dynamic_cast<StepCore::RigidBody*>(item)) {
             _worldModel->setProperty(_item, _item->metaObject()->property("body"),
-                                            QVariant::fromValue<StepCore::Object*>(item), false);
+                                            QVariant::fromValue<StepCore::Object*>(item), WorldModel::UndoNoMerge);
 
             StepCore::Vector2d lPos(0, 0);
             lPos = dynamic_cast<StepCore::RigidBody*>(item)->pointWorldToLocal(WorldGraphicsItem::pointToVector(pos));
@@ -284,7 +284,7 @@ void CircularMotorGraphicsItem::mouseMoveEvent(QGraphicsSceneMouseEvent *event)
             _moving = true;
             _worldModel->beginMacro(i18n("Move %1", _item->name()));
             _worldModel->setProperty(_item, _item->metaObject()->property("body"),
-                                            QVariant::fromValue<StepCore::Object*>(NULL), false);
+                                            QVariant::fromValue<StepCore::Object*>(NULL), WorldModel::UndoNoMerge);
         }
 
         _worldModel->setProperty(_item, _item->metaObject()->property("localPosition"), vpos);
@@ -302,7 +302,7 @@ void CircularMotorGraphicsItem::mouseReleaseEvent(QGraphicsSceneMouseEvent *even
             if(dynamic_cast<StepCore::RigidBody*>(item)) {
                 _worldModel->simulationPause();
                 _worldModel->setProperty(_item, _item->metaObject()->property("body"),
-                                            QVariant::fromValue<StepCore::Object*>(item), false);
+                                            QVariant::fromValue<StepCore::Object*>(item), WorldModel::UndoNoMerge);
 
                 StepCore::Vector2d lPos(0, 0);
                 if(dynamic_cast<StepCore::RigidBody*>(item))

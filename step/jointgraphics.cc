@@ -57,7 +57,7 @@ void AnchorCreator::tryAttach(WorldModel* worldModel, WorldScene* worldScene,
         StepCore::Item* itItem = worldScene->itemFromGraphics(it);
         if(itItem->metaObject()->inherits<StepCore::RigidBody>()) {
             worldModel->setProperty(item, item->metaObject()->property("body"),
-                                            QVariant::fromValue<StepCore::Object*>(itItem), false);
+                                            QVariant::fromValue<StepCore::Object*>(itItem), WorldModel::UndoNoMerge);
 
             worldModel->setProperty(item, item->metaObject()->property("position"),
                         QVariant::fromValue(static_cast<StepCore::RigidBody*>(itItem)->position()));
@@ -65,7 +65,7 @@ void AnchorCreator::tryAttach(WorldModel* worldModel, WorldScene* worldScene,
 
         } else if(itItem->metaObject()->inherits<StepCore::Particle>()) {
             worldModel->setProperty(item, item->metaObject()->property("body"),
-                                            QVariant::fromValue<StepCore::Object*>(itItem), false);
+                                            QVariant::fromValue<StepCore::Object*>(itItem), WorldModel::UndoNoMerge);
 
             worldModel->setProperty(item, item->metaObject()->property("position"),
                         QVariant::fromValue(static_cast<StepCore::Particle*>(itItem)->position()));
@@ -104,7 +104,7 @@ void AnchorGraphicsItem::mouseMoveEvent(QGraphicsSceneMouseEvent *event)
             _moving = true;
             _worldModel->beginMacro(i18n("Move %1", _item->name()));
             _worldModel->setProperty(_item, _item->metaObject()->property("body"),
-                                            QVariant::fromValue<StepCore::Object*>(NULL), false);
+                                            QVariant::fromValue<StepCore::Object*>(NULL), WorldModel::UndoNoMerge);
         }
 
         QPointF newPos(mapToParent(event->pos()) - matrix().map(event->buttonDownPos(Qt::LeftButton)));
@@ -197,7 +197,7 @@ void PinCreator::tryAttach(WorldModel* worldModel, WorldScene* worldScene,
         StepCore::Item* itItem = worldScene->itemFromGraphics(it);
         if(itItem->metaObject()->inherits<StepCore::RigidBody>()) {
             worldModel->setProperty(item, item->metaObject()->property("body"),
-                                            QVariant::fromValue<StepCore::Object*>(itItem), false);
+                                            QVariant::fromValue<StepCore::Object*>(itItem), WorldModel::UndoNoMerge);
 
             //worldModel->setProperty(item, item->metaObject()->property("localPosition"),
             //            QVariant::fromValue(static_cast<StepCore::RigidBody*>(itItem)->pointWorldToLocal(vpos)));
@@ -207,7 +207,7 @@ void PinCreator::tryAttach(WorldModel* worldModel, WorldScene* worldScene,
 
         } else if(itItem->metaObject()->inherits<StepCore::Particle>()) {
             worldModel->setProperty(item, item->metaObject()->property("body"),
-                                            QVariant::fromValue<StepCore::Object*>(itItem), false);
+                                            QVariant::fromValue<StepCore::Object*>(itItem), WorldModel::UndoNoMerge);
 
             worldModel->setProperty(item, item->metaObject()->property("localPosition"),
                         QVariant::fromValue(vpos - static_cast<StepCore::Particle*>(itItem)->position()));
@@ -246,7 +246,7 @@ void PinGraphicsItem::mouseMoveEvent(QGraphicsSceneMouseEvent *event)
             _moving = true;
             _worldModel->beginMacro(i18n("Move %1", _item->name()));
             _worldModel->setProperty(_item, _item->metaObject()->property("body"),
-                                            QVariant::fromValue<StepCore::Object*>(NULL), false);
+                                            QVariant::fromValue<StepCore::Object*>(NULL), WorldModel::UndoNoMerge);
             _worldModel->setProperty(_item, _item->metaObject()->property("localPosition"),
                                         QVariant::fromValue(StepCore::Vector2d(0)));
         }
@@ -378,7 +378,7 @@ void StickCreator::tryAttach(WorldModel* worldModel, WorldScene* worldScene,
                             itItem->metaObject()->inherits<StepCore::Particle>()) {
 
             worldModel->setProperty(item, item->metaObject()->property(num == 1 ? "body1" : "body2"),
-                                                QVariant::fromValue<StepCore::Object*>(itItem), false);
+                                                QVariant::fromValue<StepCore::Object*>(itItem), WorldModel::UndoNoMerge);
 
             StepCore::Vector2d lPos(0, 0);
             if(itItem->metaObject()->inherits<StepCore::RigidBody>())
@@ -440,9 +440,9 @@ void StickHandlerGraphicsItem::mouseMoveEvent(QGraphicsSceneMouseEvent *event)
             _moving = true;
             _worldModel->beginMacro(i18n("Move end of %1", _item->name()));
             if(_num == 1) _worldModel->setProperty(_item, _item->metaObject()->property("body1"),
-                                                    QVariant::fromValue<StepCore::Object*>(NULL), false);
+                                        QVariant::fromValue<StepCore::Object*>(NULL), WorldModel::UndoNoMerge);
             else          _worldModel->setProperty(_item, _item->metaObject()->property("body2"),
-                                                    QVariant::fromValue<StepCore::Object*>(NULL), false);
+                                        QVariant::fromValue<StepCore::Object*>(NULL), WorldModel::UndoNoMerge);
         }
 
         if(_num == 1) _worldModel->setProperty(_item, _item->metaObject()->property("localPosition1"), vpos);
@@ -601,7 +601,7 @@ void StickGraphicsItem::mouseSetPos(const QPointF& /*pos*/, const QPointF& diff)
             _worldModel->setProperty(_item, _item->metaObject()->property("localPosition1"),
                                         _item->metaObject()->property("position1")->readVariant(_item));
             _worldModel->setProperty(_item, _item->metaObject()->property("body1"),
-                                        QVariant::fromValue<StepCore::Object*>(NULL), false);
+                                        QVariant::fromValue<StepCore::Object*>(NULL), WorldModel::UndoNoMerge);
         }
     } else {
         _worldModel->setProperty(_item, _item->metaObject()->property("localPosition1"), 
@@ -616,7 +616,7 @@ void StickGraphicsItem::mouseSetPos(const QPointF& /*pos*/, const QPointF& diff)
         if(!gItem->isSelected()) {
             _worldModel->setProperty(_item, _item->metaObject()->property("localPosition2"),
                                         _item->metaObject()->property("position2")->readVariant(_item));
-            _worldModel->setProperty(_item, _item->metaObject()->property("body2"), QString(), false);
+            _worldModel->setProperty(_item, _item->metaObject()->property("body2"), QString(), WorldModel::UndoNoMerge);
         }
     } else {
         _worldModel->setProperty(_item, _item->metaObject()->property("localPosition2"),

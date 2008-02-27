@@ -30,13 +30,14 @@ class MessageFrame: public QFrame
     Q_OBJECT
 
 public:
-    enum MessageType { Information, Warning, Error };
-    enum MessageFlag { CloseButton = 1, CloseTimer = 2 };
+    enum Type { Information, Warning, Error };
+    enum Flag { CloseButton = 1, CloseTimer = 2 };
+    Q_DECLARE_FLAGS(Flags, Flag);
 
     MessageFrame(QWidget* parent = 0, Qt::WindowFlags f = 0);
 
-    int showMessage(MessageType type, const QString& text, int flags = 0);
-    int changeMessage(int id, MessageType type, const QString& text, int flags = 0);
+    int showMessage(Type type, const QString& text, Flags flags = 0);
+    int changeMessage(int id, Type type, const QString& text, Flags flags = 0);
     void closeMessage(int id);
 
 signals:
@@ -51,6 +52,8 @@ protected:
     QSignalMapper* _signalMapper;
     int            _lastId;
 };
+
+Q_DECLARE_OPERATORS_FOR_FLAGS(MessageFrame::Flags)
 
 #endif
 

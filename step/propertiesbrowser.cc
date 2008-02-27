@@ -179,7 +179,8 @@ QVariant PropertiesBrowserModel::data(const QModelIndex &index, int role) const
                 if(p->userTypeId() == QMetaType::Double ||
                     p->userTypeId() == qMetaTypeId<StepCore::Vector2d>() ||
                     p->userTypeId() == qMetaTypeId<StepCore::Vector2dList >()) {
-                    return _worldModel->formatProperty(_object, _objectErrors, p, role == Qt::EditRole);
+                    return _worldModel->formatProperty(_object, _objectErrors, p,
+                                role == Qt::EditRole ? WorldModel::FormatEditable : WorldModel::FormatFlags(0));
                 } else if(p->userTypeId() == qMetaTypeId<StepCore::Object*>()) {
                     return _worldModel->formatName(p->readVariant(_object).value<StepCore::Object*>());
                 } else if(p->userTypeId() == qMetaTypeId<StepCore::Color>()) {
@@ -200,7 +201,9 @@ QVariant PropertiesBrowserModel::data(const QModelIndex &index, int role) const
                     //if(pv) kDebug() << "Unhandled property variance type" << endl;
                     Q_ASSERT( !_objectErrors || !_objectErrors->metaObject()->property(p->name() + "Variance") );
                     Q_ASSERT( p->units().isEmpty() );
-                    return _worldModel->formatProperty(_object, _objectErrors, p, role == Qt::EditRole, false);
+                    if(role == Qt::EditRole) return _worldModel->formatProperty(_object, _objectErrors, p,
+                                        WorldModel::FormatHideUnits | WorldModel::FormatEditable);
+                    else return _worldModel->formatProperty(_object, _objectErrors, p, WorldModel::FormatHideUnits);
                 }
                 ///*if(p->userTypeId() < (int) QVariant::UserType) return p->readVariant(_object);
                 //else*/ return p->readString(_object); // XXX: default delegate for double looks ugly!

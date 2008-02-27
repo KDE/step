@@ -42,7 +42,7 @@
 //XXX
 const QColor WorldGraphicsItem::SELECTION_COLOR = QColor(0xff, 0x70, 0x70);
 
-void ItemCreator::showMessage(MessageFrame::MessageType type, const QString& text, int flags)
+void ItemCreator::showMessage(MessageFrame::Type type, const QString& text, MessageFrame::Flags flags)
 {
     if(Settings::showCreationTips()) {
         if(!(flags & MessageFrame::CloseButton) && !(flags & MessageFrame::CloseTimer)) {

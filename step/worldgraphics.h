@@ -54,7 +54,7 @@ public:
     virtual void start();
 
 protected:
-    void showMessage(MessageFrame::MessageType type, const QString& text, int flags = 0);
+    void showMessage(MessageFrame::Type type, const QString& text, MessageFrame::Flags flags = 0);
     void closeMessage();
 
     QString     _className;

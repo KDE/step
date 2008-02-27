@@ -62,10 +62,10 @@ public:
 public slots:
     void beginAddItem(const QString& name);
 
-    int showMessage(MessageFrame::MessageType type, const QString& text, int flags = 0) {
+    int showMessage(MessageFrame::Type type, const QString& text, MessageFrame::Flags flags = 0) {
         return _messageFrame->showMessage(type, text, flags);
     }
-    int changeMessage(int id, MessageFrame::MessageType type, const QString& text, int flags = 0) {
+    int changeMessage(int id, MessageFrame::Type type, const QString& text, MessageFrame::Flags flags = 0) {
         return _messageFrame->changeMessage(id, type, text, flags);
     }
     void closeMessage(int id) { _messageFrame->closeMessage(id); }

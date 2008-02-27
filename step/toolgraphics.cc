@@ -1797,7 +1797,7 @@ void TracerCreator::tryAttach(const QPointF& pos)
         StepCore::Object* item = _worldScene->itemFromGraphics(it);
         if(dynamic_cast<StepCore::Particle*>(item) || dynamic_cast<StepCore::RigidBody*>(item)) {
             _worldModel->setProperty(_item, _item->metaObject()->property("body"),
-                                                    QVariant::fromValue(item), false);
+                                                    QVariant::fromValue(item), WorldModel::UndoNoMerge);
 
             StepCore::Vector2d lPos(0, 0);
             if(dynamic_cast<StepCore::RigidBody*>(item))
@@ -1848,7 +1848,7 @@ void TracerGraphicsItem::mouseMoveEvent(QGraphicsSceneMouseEvent *event)
             _moving = true;
             _worldModel->beginMacro(i18n("Move %1", _item->name()));
             _worldModel->setProperty(_item, _item->metaObject()->property("body"), 
-                                            QVariant::fromValue<StepCore::Object*>(NULL), false);
+                                            QVariant::fromValue<StepCore::Object*>(NULL), WorldModel::UndoNoMerge);
         }
 
         _worldModel->setProperty(_item, _item->metaObject()->property("localPosition"), vpos);
@@ -1866,7 +1866,7 @@ void TracerGraphicsItem::mouseReleaseEvent(QGraphicsSceneMouseEvent *event)
             if(dynamic_cast<StepCore::Particle*>(item) || dynamic_cast<StepCore::RigidBody*>(item)) {
                 _worldModel->simulationPause();
                 _worldModel->setProperty(_item, _item->metaObject()->property("body"),
-                                                        QVariant::fromValue(item), false);
+                                                        QVariant::fromValue(item), WorldModel::UndoNoMerge);
 
                 StepCore::Vector2d lPos(0, 0);
                 if(dynamic_cast<StepCore::RigidBody*>(item))

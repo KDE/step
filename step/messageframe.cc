@@ -48,7 +48,7 @@ MessageFrame::MessageFrame(QWidget* parent, Qt::WindowFlags f)
                 this, SLOT(messageCloseClicked(QWidget*)));
 }
 
-int MessageFrame::showMessage(MessageType type, const QString& text, int flags)
+int MessageFrame::showMessage(Type type, const QString& text, Flags flags)
 {
     if(_layout->count() != 0) {
         QFrame* line = new QFrame(this);
@@ -82,7 +82,7 @@ int MessageFrame::showMessage(MessageType type, const QString& text, int flags)
     connect(textLabel, SIGNAL(linkActivated(const QString&)),
                 this, SLOT(messageLinkActivated(const QString&)));
 
-    if(flags & CloseButton) {
+    if(flags.testFlag(CloseButton)) {
         QToolButton* button = new QToolButton(widget);
         button->setObjectName("closeButton");
         button->setIcon(KIcon("window-close"));
@@ -94,7 +94,7 @@ int MessageFrame::showMessage(MessageType type, const QString& text, int flags)
         connect(button, SIGNAL(clicked()), _signalMapper, SLOT(map()));
     }
 
-    if(flags & CloseTimer) {
+    if(flags.testFlag(CloseTimer)) {
         QTimer* timer = new QTimer(widget);
         timer->setObjectName("closeTimer");
         timer->setSingleShot(true);
@@ -111,7 +111,7 @@ int MessageFrame::showMessage(MessageType type, const QString& text, int flags)
     return _lastId++;
 }
 
-int MessageFrame::changeMessage(int id, MessageType type, const QString& text, int flags)
+int MessageFrame::changeMessage(int id, Type type, const QString& text, Flags flags)
 {
     QString widgetName("message");
     widgetName.append(QString::number(id));
