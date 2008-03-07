@@ -71,9 +71,7 @@ bool ItemCreator::sceneEvent(QEvent* event)
 
         _worldModel->beginMacro(i18n("Create %1", _worldModel->newItemName(_className)));
         _item = _worldModel->newItem(_className); Q_ASSERT(_item != NULL);
-        _worldModel->selectionModel()->setCurrentIndex(_worldModel->objectIndex(_item),
-                                                    QItemSelectionModel::ClearAndSelect);
-
+#warning Don't add item until it is fully created
         const StepCore::MetaProperty* property = _item->metaObject()->property("position");
         if(property != NULL) {
             QGraphicsSceneMouseEvent* mouseEvent = static_cast<QGraphicsSceneMouseEvent*>(event);
@@ -83,10 +81,15 @@ bool ItemCreator::sceneEvent(QEvent* event)
         }
 
         _worldModel->endMacro();
+
+        _worldModel->selectionModel()->setCurrentIndex(_worldModel->objectIndex(_item),
+                                                    QItemSelectionModel::ClearAndSelect);
+
         showMessage(MessageFrame::Information,
                 i18n("%1 named '%2' created", className(), _item->name()),
                 MessageFrame::CloseButton | MessageFrame::CloseTimer);
-        event->accept();
+
+        setFinished();
         return true;
     }
     return false;

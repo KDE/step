@@ -54,7 +54,8 @@ bool GasCreator::sceneEvent(QEvent* event)
         _worldModel->setProperty(ljforce, ljforce->metaObject()->property("rmin"), 0.1);
 
         _worldModel->endMacro();
-        event->accept();
+
+        setFinished();
         return true;
     }
     return false;

@@ -44,7 +44,8 @@ bool AnchorCreator::sceneEvent(QEvent* event)
         _worldModel->selectionModel()->setCurrentIndex(_worldModel->objectIndex(_item),
                                                 QItemSelectionModel::ClearAndSelect);
         _worldModel->endMacro();
-        event->accept();
+
+        setFinished();
         return true;
     }
     return false;
@@ -183,7 +184,8 @@ bool PinCreator::sceneEvent(QEvent* event)
         _worldModel->selectionModel()->setCurrentIndex(_worldModel->objectIndex(_item),
                                                 QItemSelectionModel::ClearAndSelect);
         _worldModel->endMacro();
-        event->accept();
+
+        setFinished();
         return true;
     }
     return false;
@@ -336,7 +338,8 @@ bool StickCreator::sceneEvent(QEvent* event)
 
         showMessage(MessageFrame::Information,
             i18n("Release left mouse button to position second end of the %1", className()));
-        event->accept(); return false;
+        
+        return true;
 
     } else if(event->type() == QEvent::GraphicsSceneMouseMove &&
                     mouseEvent->buttons() & Qt::LeftButton) {
@@ -347,7 +350,7 @@ bool StickCreator::sceneEvent(QEvent* event)
         _worldModel->setProperty(_item, _item->metaObject()->property("length"), 
                               (static_cast<StepCore::Stick*>(_item)->position2() -
                                static_cast<StepCore::Stick*>(_item)->position1()).norm());
-        event->accept(); return false;
+        return true;
 
     } else if(event->type() == QEvent::GraphicsSceneMouseRelease &&
                     mouseEvent->button() == Qt::LeftButton) {
@@ -363,7 +366,9 @@ bool StickCreator::sceneEvent(QEvent* event)
         showMessage(MessageFrame::Information,
             i18n("%1 named '%2' created", className(), _item->name()),
             MessageFrame::CloseButton | MessageFrame::CloseTimer);
-        event->accept(); return true;
+
+        setFinished();
+        return true;
     }
     return false;
 }

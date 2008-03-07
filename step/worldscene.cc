@@ -179,11 +179,15 @@ bool WorldScene::event(QEvent* event)
         if(event->isAccepted()) return true;
     }*/
     if(_itemCreator) {
-        if(_itemCreator->sceneEvent(event)) {
+        bool handled = _itemCreator->sceneEvent(event);
+        if(_itemCreator->finished()) {
             emit endAddItem(_itemCreator->className(), _itemCreator->item() != NULL);
             delete _itemCreator; _itemCreator = NULL;
         }
-        if(event->isAccepted()) return true;
+        if(handled) {
+            event->accept();
+            return true;
+        }
     }
     return QGraphicsScene::event(event);
 }

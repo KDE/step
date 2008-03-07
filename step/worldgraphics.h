@@ -43,7 +43,7 @@ class ItemCreator
 public:
     ItemCreator(const QString& className, WorldModel* worldModel, WorldScene* worldScene)
            : _className(className), _worldModel(worldModel),
-             _worldScene(worldScene), _item(NULL), _messageId(-1) {}
+             _worldScene(worldScene), _item(NULL), _finished(false), _messageId(-1) {}
     virtual ~ItemCreator() { closeMessage(); }
 
     QString className() const { return _className; }
@@ -53,14 +53,18 @@ public:
     virtual void abort() {}
     virtual void start();
 
+    bool finished() { return _finished; }
+
 protected:
     void showMessage(MessageFrame::Type type, const QString& text, MessageFrame::Flags flags = 0);
     void closeMessage();
-
+    void setFinished(bool finished = true) { _finished = finished; }
+    
     QString     _className;
     WorldModel* _worldModel;
     WorldScene* _worldScene;
     StepCore::Item* _item;
+    bool _finished;
     int _messageId;
 };
 

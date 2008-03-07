@@ -1785,7 +1785,8 @@ bool TracerCreator::sceneEvent(QEvent* event)
         _worldModel->selectionModel()->setCurrentIndex(_worldModel->objectIndex(_item),
                                                 QItemSelectionModel::ClearAndSelect);
         _worldModel->endMacro();
-        event->accept();
+
+        setFinished();
         return true;
     }
     return false;

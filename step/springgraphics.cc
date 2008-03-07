@@ -57,7 +57,8 @@ bool SpringCreator::sceneEvent(QEvent* event)
 
         showMessage(MessageFrame::Information,
             i18n("Release left mouse button to position second end of the %1", className()));
-        event->accept(); return false;
+
+        return true;
 
     } else if(event->type() == QEvent::GraphicsSceneMouseMove &&
                     mouseEvent->buttons() & Qt::LeftButton) {
@@ -67,20 +68,21 @@ bool SpringCreator::sceneEvent(QEvent* event)
         _worldModel->setProperty(_item, _item->metaObject()->property("localPosition2"), vpos);
         _worldModel->setProperty(_item, _item->metaObject()->property("restLength"), 
                                                     static_cast<StepCore::Spring*>(_item)->length());
-        event->accept(); return false;
+        return true;
 
     } else if(event->type() == QEvent::GraphicsSceneMouseRelease &&
                     mouseEvent->button() == Qt::LeftButton) {
         QPointF pos = mouseEvent->scenePos();
 
         tryAttach(pos, 2);
-
         _worldModel->endMacro();
 
         showMessage(MessageFrame::Information,
             i18n("%1 named '%2' created", className(), _item->name()),
             MessageFrame::CloseButton | MessageFrame::CloseTimer);
-        event->accept(); return true;
+
+        setFinished();
+        return true;
     }
     return false;
 }

@@ -26,6 +26,7 @@
 #include <QTimer>
 #include <KUrl>
 #include <KIcon>
+#include <KDebug>
 
 MessageFrame::MessageFrame(QWidget* parent, Qt::WindowFlags f)
     : QFrame(parent, f), _lastId(0)
@@ -137,12 +138,14 @@ void MessageFrame::messageCloseClicked(QWidget* widget)
 {
     int index = _layout->indexOf(widget);
     if(index < 0) return;
+
+    _layout->takeAt(index)->widget()->deleteLater();
     if(index > 0) {
-        delete _layout->itemAt(index-1)->widget();
-    } else if(_layout->count() > 1) {
-        delete _layout->itemAt(1)->widget();
+        _layout->takeAt(index-1)->widget()->deleteLater();
+    } else if(_layout->count() > 0) {
+        _layout->takeAt(0)->widget()->deleteLater();
     }
-    delete widget;
+
     if(_layout->count() == 0) hide();
 }
 

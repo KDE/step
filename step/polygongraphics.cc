@@ -132,12 +132,10 @@ bool PolygonCreator::sceneEvent(QEvent* event)
         _worldModel->selectionModel()->setCurrentIndex(_worldModel->objectIndex(_item),
                                                     QItemSelectionModel::ClearAndSelect);
 
-        event->accept();
-        return false;
+        return true;
 
     } else if(_item && event->type() == QEvent::GraphicsSceneMousePress) {
-        event->accept();
-        return false;
+        return true;
 
     } else if(_item && (event->type() == QEvent::GraphicsSceneMouseMove ||
                         (event->type() == QEvent::GraphicsSceneMouseRelease &&
@@ -167,8 +165,7 @@ bool PolygonCreator::sceneEvent(QEvent* event)
         
         //fixCenterOfMass();
         //fixInertia();
-        event->accept();
-        return false;
+        return true;
 
     } else if(_item && event->type() == QEvent::KeyPress &&
                 static_cast<QKeyEvent*>(event)->key() == Qt::Key_Return) {
@@ -180,7 +177,7 @@ bool PolygonCreator::sceneEvent(QEvent* event)
             i18n("%1 named '%2' created", className(), _item->name()),
             MessageFrame::CloseButton | MessageFrame::CloseTimer);
 
-        event->accept();
+        setFinished();
         return true;
     }
     return false;

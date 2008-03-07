@@ -47,7 +47,8 @@ bool LinearMotorCreator::sceneEvent(QEvent* event)
         _worldModel->selectionModel()->setCurrentIndex(_worldModel->objectIndex(_item),
                                                 QItemSelectionModel::ClearAndSelect);
         _worldModel->endMacro();
-        event->accept();
+
+        setFinished();
         return true;
     }
     return false;
@@ -226,7 +227,8 @@ bool CircularMotorCreator::sceneEvent(QEvent* event)
         _worldModel->selectionModel()->setCurrentIndex(_worldModel->objectIndex(_item),
                                                 QItemSelectionModel::ClearAndSelect);
         _worldModel->endMacro();
-        event->accept();
+
+        setFinished();
         return true;
     }
     return false;
