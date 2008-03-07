@@ -36,6 +36,7 @@
 #include <QToolTip>
 #include <QLabel>
 #include <QTimer>
+#include <QScrollBar>
 #include <QSignalMapper>
 #include <QToolButton>
 #include <QHBoxLayout>
@@ -58,11 +59,14 @@ protected:
     QRectF _boundingRect;
     double _viewScale;
     static const int LENGTH = 100;
+    static const int LENGTHT = 100;
+    static const int LENGTH1 = 10;
     static const int ARROW_STROKE = 6;
 };
 
 WorldSceneAxes::WorldSceneAxes(QGraphicsItem* parent, QGraphicsScene* scene)
-    : QGraphicsItem(parent, scene), _boundingRect(-LENGTH, -LENGTH, LENGTH*2, LENGTH*2)
+    : QGraphicsItem(parent, scene),
+    _boundingRect(-LENGTH, -LENGTH, LENGTH+LENGTH, LENGTH+LENGTH)
 {
     _viewScale = 1;
     setZValue(-100);
@@ -81,18 +85,30 @@ QPainterPath WorldSceneAxes::shape() const
 void WorldSceneAxes::paint(QPainter* painter, const QStyleOptionGraphicsItem* /*option*/, QWidget* /*widget*/)
 {
     painter->setPen(QPen(Qt::gray, 0));//, Qt::DotLine, Qt::SquareCap, Qt::RoundJoin));
+    //painter->drawLine(QLineF(0, -LENGTH, 0, LENGTH));
+    //painter->drawLine(QLineF(-LENGTH, 0, LENGTH, 0));
     painter->drawLine(QLineF(0, -LENGTH, 0, LENGTH));
     painter->drawLine(QLineF(-LENGTH, 0, LENGTH, 0));
+    //painter->drawLine(QLineF(-2, -LENGTHT, 2, -LENGTHT));
+    //painter->drawLine(QLineF(LENGTHT, -2, LENGTHT, 2));
 
     painter->drawLine(QLineF(0, -LENGTH, -0.5*ARROW_STROKE, -LENGTH+0.866*ARROW_STROKE ));
     painter->drawLine(QLineF(0, -LENGTH, +0.5*ARROW_STROKE, -LENGTH+0.866*ARROW_STROKE ));
     painter->drawLine(QLineF(LENGTH, 0, LENGTH-0.866*ARROW_STROKE, -0.5*ARROW_STROKE ));
     painter->drawLine(QLineF(LENGTH, 0, LENGTH-0.866*ARROW_STROKE, +0.5*ARROW_STROKE ));
 
-    painter->drawText(QRectF(5, -LENGTH, LENGTH-5, LENGTH), Qt::AlignLeft | Qt::AlignTop,
-                                                QString::number( LENGTH/_viewScale ));
-    painter->drawText(QRectF(5, -LENGTH, LENGTH-5, LENGTH), Qt::AlignRight | Qt::AlignBottom,
-                                                QString::number( LENGTH/_viewScale ));
+    painter->drawText(QRectF(-LENGTH-2, 0, LENGTH, LENGTH),
+                        Qt::AlignRight | Qt::AlignTop,
+                        QString("%1,%2").arg( pos().x(), 0, 'g', 3 ).arg( pos().y(), 0, 'g', 3 ));
+    painter->drawText(QRectF(5, -LENGTH, LENGTH-5, LENGTH),
+            Qt::AlignLeft | Qt::AlignTop, QString::number( LENGTH/_viewScale, 'g', 3 ));
+    painter->drawText(QRectF(5, -LENGTH, LENGTH-5, LENGTH),
+            Qt::AlignRight | Qt::AlignBottom, QString::number( LENGTH/_viewScale, 'g', 3 ));
+
+    //painter->drawText(QRectF(ARROW_STROKE, -LENGTHT-50, LENGTHT, 100), Qt::AlignLeft | Qt::AlignVCenter,
+    //                        QString::number( pos().y() + LENGTHT/_viewScale, 'g', 3 ));
+    //painter->drawText(QRectF(LENGTHT-50, -LENGTHT, 100, LENGTHT), Qt::AlignHCenter | Qt::AlignBottom,
+    //                        QString::number( pos().x() + LENGTHT/_viewScale, 'g', 3 ));
 }
 
 void WorldSceneAxes::viewScaleChanged()
@@ -105,7 +121,8 @@ void WorldSceneAxes::viewScaleChanged()
 
 WorldScene::WorldScene(WorldModel* worldModel, QObject* parent)
     : QGraphicsScene(parent), _worldModel(worldModel), _worldView(NULL),
-        _currentViewScale(1), _itemCreator(NULL), _bgColor(0)
+        _currentViewScale(1), _itemCreator(NULL), _bgColor(0),
+        _sceneAxes(0)
 {
     #ifdef __GNUC__
     #warning TODO: measure what index method is faster
@@ -253,6 +270,7 @@ void WorldScene::worldModelReset()
         delete item;
     }
     _itemsHash.clear();
+    _sceneAxes = 0;
 
     /* Background */
     if(_bgColor != _worldModel->world()->color()) {
@@ -263,10 +281,9 @@ void WorldScene::worldModelReset()
 
     /* Axes */
     if(Settings::showAxes()) {
-        //new WorldSceneAxes(0, this);
-        WorldSceneAxes* axes = new WorldSceneAxes();
-        addItem(axes);
-        axes->viewScaleChanged();
+        _sceneAxes = new WorldSceneAxes();
+        addItem(_sceneAxes);
+        _sceneAxes->viewScaleChanged();
     }
 
     /* Check for new items */
@@ -370,11 +387,8 @@ void WorldScene::updateViewScale()
         foreach (QGraphicsItem *item, items()) {
             WorldGraphicsItem* gItem = dynamic_cast<WorldGraphicsItem*>(item);
             if(gItem) gItem->viewScaleChanged();
-            else {
-                WorldSceneAxes* aItem = dynamic_cast<WorldSceneAxes*>(item);
-                if(aItem) aItem->viewScaleChanged();
-            }
         }
+        if(_sceneAxes) _sceneAxes->viewScaleChanged();
     }
 }
 
@@ -414,6 +428,7 @@ WorldGraphicsView::WorldGraphicsView(WorldScene* worldScene, QWidget* parent)
     setOptimizationFlags(QGraphicsView::DontClipPainter/* | QGraphicsView::DontSavePainterState*/);
     #ifdef __GNUC__
     #warning Check paint() for all items to preserve painter state
+    #warning Use NoViewportUpdate and manual updating here !
     #endif
     setViewportUpdateMode(QGraphicsView::SmartViewportUpdate);
     actualSize();
@@ -467,8 +482,9 @@ void WorldGraphicsView::actualSize()
 {
     resetMatrix();
     scale(100, -100);
-    setSceneRect(-SCENE_LENGTH/100, -SCENE_LENGTH/100,
-                  SCENE_LENGTH*2/100, SCENE_LENGTH*2/100);
+    //setSceneRect(-SCENE_LENGTH/100, -SCENE_LENGTH/100,
+    //              SCENE_LENGTH*2/100, SCENE_LENGTH*2/100);
+    //setSceneRect(-1e100, -1e100, 2e100, 2e100);
     centerOn(0, 0);
     static_cast<WorldScene*>(scene())->updateViewScale();
 }
@@ -487,5 +503,14 @@ void WorldGraphicsView::settingsChanged()
         }
     }
     if(scene()) static_cast<WorldScene*>(scene())->settingsChanged();
+}
+
+void WorldGraphicsView::scrollContentsBy(int dx, int dy)
+{
+    QGraphicsView::scrollContentsBy(dx, dy);
+    WorldSceneAxes* axes = static_cast<WorldScene*>(scene())->_sceneAxes;
+    if(axes)
+        axes->setPos(mapToScene(viewport()->width()/2, viewport()->height()/2));
+        //axes->setPos(mapToScene(20, maximumViewportSize().height()-horizontalScrollBar()->height()-23));
 }
 

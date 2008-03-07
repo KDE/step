@@ -23,8 +23,6 @@
 #include <QGraphicsView>
 #include <QHash>
 
-#include <QPushButton>
-
 #include "messageframe.h"
 
 class KUrl;
@@ -38,6 +36,7 @@ class QSignalMapper;
 class WorldGraphicsItem;
 class WorldGraphicsView;
 class ItemCreator;
+class WorldSceneAxes;
 
 namespace StepCore {
     class Item;
@@ -105,7 +104,7 @@ protected:
     QRgb         _bgColor;
 
     MessageFrame*  _messageFrame;
-    QPushButton* _b;
+    WorldSceneAxes* _sceneAxes;
 
     friend class WorldGraphicsView;
 };
@@ -126,6 +125,8 @@ public slots:
     void settingsChanged();
 
 protected:
+    void scrollContentsBy(int dx, int dy);
+
     static const int SCENE_LENGTH = 2000;
 };
 
