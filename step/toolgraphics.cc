@@ -189,7 +189,9 @@ NoteGraphicsItem::NoteGraphicsItem(StepCore::Item* item, WorldModel* worldModel)
     _toolBar = new KToolBar(_widget);
     _toolBar->setIconDimensions(16);
     _toolBar->setToolButtonStyle(Qt::ToolButtonIconOnly);
-    _toolBar->setStyleSheet(".KToolBar {margin: 0px; border-width: 0px; padding: 0px; }");
+    _toolBar->setContentsMargins(0,0,0,0);
+    if(_toolBar->layout()) _toolBar->layout()->setSpacing(0);
+    //_toolBar->setStyleSheet(".KToolBar {margin: 0px; border-width: 0px; padding: 0px; }");
 
     _actionColor = new KAction(KIcon(), i18n("&Color"), _toolBar);
 
