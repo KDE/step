@@ -101,9 +101,9 @@ void WorldSceneAxes::paint(QPainter* painter, const QStyleOptionGraphicsItem* /*
                         Qt::AlignRight | Qt::AlignTop,
                         QString("%1,%2").arg( pos().x(), 0, 'g', 3 ).arg( pos().y(), 0, 'g', 3 ));
     painter->drawText(QRectF(5, -LENGTH, LENGTH-5, LENGTH),
-            Qt::AlignLeft | Qt::AlignTop, QString::number( LENGTH/_viewScale, 'g', 3 ));
+            Qt::AlignLeft | Qt::AlignTop, QString::number( pos().y() + LENGTH/_viewScale, 'g', 3 ));
     painter->drawText(QRectF(5, -LENGTH, LENGTH-5, LENGTH),
-            Qt::AlignRight | Qt::AlignBottom, QString::number( LENGTH/_viewScale, 'g', 3 ));
+            Qt::AlignRight | Qt::AlignBottom, QString::number( pos().x() + LENGTH/_viewScale, 'g', 3 ));
 
     //painter->drawText(QRectF(ARROW_STROKE, -LENGTHT-50, LENGTHT, 100), Qt::AlignLeft | Qt::AlignVCenter,
     //                        QString::number( pos().y() + LENGTHT/_viewScale, 'g', 3 ));
@@ -424,6 +424,7 @@ WorldGraphicsView::WorldGraphicsView(WorldScene* worldScene, QWidget* parent)
     worldScene->_messageFrame->move(15,15);
     //worldGraphicsView->setRenderHints(QPainter::Antialiasing);
     setDragMode(QGraphicsView::RubberBandDrag);
+    //setDragMode(QGraphicsView::ScrollHandDrag);
     setResizeAnchor(QGraphicsView::AnchorViewCenter);
     setOptimizationFlags(QGraphicsView::DontClipPainter/* | QGraphicsView::DontSavePainterState*/);
     #ifdef __GNUC__
@@ -482,8 +483,8 @@ void WorldGraphicsView::actualSize()
 {
     resetMatrix();
     scale(100, -100);
-    //setSceneRect(-SCENE_LENGTH/100, -SCENE_LENGTH/100,
-    //              SCENE_LENGTH*2/100, SCENE_LENGTH*2/100);
+    setSceneRect(-SCENE_LENGTH/100, -SCENE_LENGTH/100,
+                  SCENE_LENGTH*2/100, SCENE_LENGTH*2/100);
     //setSceneRect(-1e100, -1e100, 2e100, 2e100);
     centerOn(0, 0);
     static_cast<WorldScene*>(scene())->updateViewScale();
@@ -503,6 +504,30 @@ void WorldGraphicsView::settingsChanged()
         }
     }
     if(scene()) static_cast<WorldScene*>(scene())->settingsChanged();
+}
+
+void WorldGraphicsView::mousePressEvent(QMouseEvent* e)
+{
+    #ifdef __GNUC__
+    #warning Uncomment it once dragging will be fixed in Qt
+    #endif
+    /*if(e->button() == Qt::MidButton) {
+        setDragMode(QGraphicsView::ScrollHandDrag);
+    }*/
+    QGraphicsView::mousePressEvent(e);
+}
+
+void WorldGraphicsView::mouseReleaseEvent(QMouseEvent* e)
+{
+    QGraphicsView::mouseReleaseEvent(e);
+    #ifdef __GNUC__
+    #warning Uncomment it once dragging will be fixed in Qt
+    #endif
+    /*
+    if(e->button() == Qt::MidButton) {
+        setDragMode(QGraphicsView::RubberBandDrag);
+    }
+    */
 }
 
 void WorldGraphicsView::scrollContentsBy(int dx, int dy)

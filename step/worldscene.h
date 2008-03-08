@@ -125,6 +125,8 @@ public slots:
     void settingsChanged();
 
 protected:
+    void mousePressEvent(QMouseEvent* e);
+    void mouseReleaseEvent(QMouseEvent* e);
     void scrollContentsBy(int dx, int dy);
 
     static const int SCENE_LENGTH = 2000;
