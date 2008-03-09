@@ -29,6 +29,7 @@
 namespace StepCore {
     class RigidBody;
     class Disk;
+    class BasePolygon;
     class Polygon;
 }
 
@@ -72,6 +73,18 @@ protected:
     StepCore::Disk* disk() const;
 };
 
+class BoxCreator: public ItemCreator
+{
+public:
+    BoxCreator(const QString& className, WorldModel* worldModel, WorldScene* worldScene)
+                        : ItemCreator(className, worldModel, worldScene) {}
+    bool sceneEvent(QEvent* event);
+    void start();
+
+protected:
+    StepCore::Vector2d _topLeft;
+};
+
 class PolygonCreator: public ItemCreator
 {
 public:
@@ -85,14 +98,14 @@ protected:
     void fixInertia();
 };
 
-class PolygonGraphicsItem: public RigidBodyGraphicsItem
+class BasePolygonGraphicsItem: public RigidBodyGraphicsItem
 {
 public:
-    PolygonGraphicsItem(StepCore::Item* item, WorldModel* worldModel);
+    BasePolygonGraphicsItem(StepCore::Item* item, WorldModel* worldModel);
     void viewScaleChanged();
 
 protected:
-    StepCore::Polygon* polygon() const;
+    StepCore::BasePolygon* basePolygon() const;
 };
 
 #endif

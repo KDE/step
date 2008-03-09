@@ -304,11 +304,48 @@ protected:
 };
 
 /** \ingroup bodies
- *  \brief Rigid polygon
+ *  \brief Base class for all polygons
  */
-class Polygon: public RigidBody
+class BasePolygon: public RigidBody
+{
+    STEPCORE_OBJECT(BasePolygon)
+public:
+    /** Constructs BasePolygon */
+    BasePolygon(Vector2d position = Vector2d(0), double angle = 0,
+              Vector2d velocity = Vector2d(0), double angularVelocity = 0,
+              double mass = 1, double inertia = 1)
+        : RigidBody(position, angle, velocity, angularVelocity, mass, inertia) {}
+
+    /** Get vertex list (constant) */
+    const Vector2dList& vertexes() const { return _vertexes; }
+
+protected:
+    Vector2dList _vertexes;
+};
+
+class Box: public BasePolygon
+{
+    STEPCORE_OBJECT(Box)
+public:
+    /** Constructs Box */
+    Box(Vector2d position = Vector2d(0), double angle = 0,
+              Vector2d velocity = Vector2d(0), double angularVelocity = 0,
+              double mass = 1, double inertia = 1, Vector2d size = Vector2d(1,1));
+
+    /** Get box size */
+    Vector2d size() const { return Vector2d(_vertexes[1][0] - _vertexes[0][0],
+                                            _vertexes[3][1] - _vertexes[0][1]); }
+    /** Set box size */
+    void setSize(const Vector2d& size);
+};
+
+/** \ingroup bodies
+ *  \brief Rigid arbitrary-shaped polygon
+ */
+class Polygon: public BasePolygon
 {
     STEPCORE_OBJECT(Polygon)
+
 public:
     /** Get vertex list (constant) */
     const Vector2dList& vertexes() const { return _vertexes; }
@@ -316,9 +353,6 @@ public:
     Vector2dList& vertexes() { return _vertexes; }
     /** Set vertex list */
     void setVertexes(const Vector2dList& vertexes) { _vertexes = vertexes; }
-
-protected:
-    Vector2dList _vertexes;
 };
 
 } // namespace StepCore

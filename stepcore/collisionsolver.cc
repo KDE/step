@@ -34,8 +34,8 @@ STEPCORE_META_OBJECT(GJKCollisionSolver, "GJKCollisionSolver", 0,
 
 int GJKCollisionSolver::checkPolygonPolygon(Contact* contact)
 {
-    Polygon* polygon0 = static_cast<Polygon*>(contact->body0);
-    Polygon* polygon1 = static_cast<Polygon*>(contact->body1);
+    BasePolygon* polygon0 = static_cast<BasePolygon*>(contact->body0);
+    BasePolygon* polygon1 = static_cast<BasePolygon*>(contact->body1);
 
     if(polygon0->vertexes().empty() || polygon1->vertexes().empty()) {
         return contact->state = Contact::Unknown;
@@ -341,7 +341,7 @@ int GJKCollisionSolver::checkPolygonPolygon(Contact* contact)
 
 int GJKCollisionSolver::checkPolygonDisk(Contact* contact)
 {
-    Polygon* polygon0 = static_cast<Polygon*>(contact->body0);
+    BasePolygon* polygon0 = static_cast<BasePolygon*>(contact->body0);
     Disk* disk1 = static_cast<Disk*>(contact->body1);
 
     if(polygon0->vertexes().empty()) {
@@ -533,7 +533,7 @@ int GJKCollisionSolver::checkPolygonDisk(Contact* contact)
 
 int GJKCollisionSolver::checkPolygonParticle(Contact* contact)
 {
-    Polygon* polygon0 = static_cast<Polygon*>(contact->body0);
+    BasePolygon* polygon0 = static_cast<BasePolygon*>(contact->body0);
     Particle* particle1 = static_cast<Particle*>(contact->body1);
 
     if(polygon0->vertexes().empty()) {
@@ -784,11 +784,11 @@ int GJKCollisionSolver::checkContact(Contact* contact)
 {
 
     if(contact->type == Contact::UnknownType) {
-        if(contact->body0->metaObject()->inherits<Polygon>()) {
-            if(contact->body1->metaObject()->inherits<Polygon>()) contact->type = Contact::PolygonPolygonType;
+        if(contact->body0->metaObject()->inherits<BasePolygon>()) {
+            if(contact->body1->metaObject()->inherits<BasePolygon>()) contact->type = Contact::PolygonPolygonType;
             else if(contact->body1->metaObject()->inherits<Particle>()) contact->type = Contact::PolygonParticleType;
         } else if(contact->body0->metaObject()->inherits<Particle>()) {
-            if(contact->body1->metaObject()->inherits<Polygon>()) {
+            if(contact->body1->metaObject()->inherits<BasePolygon>()) {
                 std::swap(contact->body0, contact->body1);
                 contact->type = Contact::PolygonParticleType;
             }
@@ -1101,13 +1101,13 @@ void GJKCollisionSolver::addContact(Body* body0, Body* body1)
 {
     int type = Contact::UnknownType;
 
-    if(body1->metaObject()->inherits<Polygon>() &&
-            !body0->metaObject()->inherits<Polygon>()) {
+    if(body1->metaObject()->inherits<BasePolygon>() &&
+            !body0->metaObject()->inherits<BasePolygon>()) {
         std::swap(body0, body1);
     }
 
-    if(body0->metaObject()->inherits<Polygon>()) {
-        if(body1->metaObject()->inherits<Polygon>()) type = Contact::PolygonPolygonType;
+    if(body0->metaObject()->inherits<BasePolygon>()) {
+        if(body1->metaObject()->inherits<BasePolygon>()) type = Contact::PolygonPolygonType;
         else if(body1->metaObject()->inherits<Disk>()) type = Contact::PolygonDiskType;
         else if(body1->metaObject()->inherits<Particle>()) type = Contact::PolygonParticleType;
     } else {

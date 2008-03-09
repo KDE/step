@@ -166,9 +166,8 @@ bool DiskCreator::sceneEvent(QEvent* event)
                     mouseEvent->buttons() & Qt::LeftButton) {
         
         _worldModel->simulationPause();
-        QPointF pos = mouseEvent->scenePos();
-        QVariant vpos = QVariant::fromValue(WorldGraphicsItem::pointToVector(pos));
-        double radius = (WorldGraphicsItem::pointToVector(pos) - static_cast<StepCore::Disk*>(_item)->position()).norm();
+        StepCore::Vector2d pos = WorldGraphicsItem::pointToVector(mouseEvent->scenePos());
+        double radius = (pos - static_cast<StepCore::Disk*>(_item)->position()).norm();
         _worldModel->setProperty(_item, _item->metaObject()->property("radius"), QVariant::fromValue(radius));
         return true;
 
@@ -176,10 +175,12 @@ bool DiskCreator::sceneEvent(QEvent* event)
                     mouseEvent->button() == Qt::LeftButton) {
 
         _worldModel->simulationPause();
-        QPointF pos = mouseEvent->scenePos();
-        QVariant vpos = QVariant::fromValue(WorldGraphicsItem::pointToVector(pos));
-        double radius = (WorldGraphicsItem::pointToVector(pos) - static_cast<StepCore::Disk*>(_item)->position()).norm();
+        StepCore::Vector2d pos = WorldGraphicsItem::pointToVector(mouseEvent->scenePos());
+        StepCore::Disk* disk = static_cast<StepCore::Disk*>(_item);
+        double radius = (pos - disk->position()).norm();
+        double inertia = disk->mass() * radius*radius/2.0;
         _worldModel->setProperty(_item, _item->metaObject()->property("radius"), QVariant::fromValue(radius));
+        _worldModel->setProperty(_item, _item->metaObject()->property("inertia"), QVariant::fromValue(inertia));
         _worldModel->endMacro();
 
         showMessage(MessageFrame::Information,
@@ -219,6 +220,68 @@ void DiskGraphicsItem::viewScaleChanged()
     }
 
     RigidBodyGraphicsItem::viewScaleChanged();
+}
+
+void BoxCreator::start()
+{
+    showMessage(MessageFrame::Information,
+            i18n("Press left mouse button to position top left corner of a %1", className()));
+}
+
+bool BoxCreator::sceneEvent(QEvent* event)
+{
+    QGraphicsSceneMouseEvent* mouseEvent = static_cast<QGraphicsSceneMouseEvent*>(event);
+
+    if(event->type() == QEvent::GraphicsSceneMousePress && mouseEvent->button() == Qt::LeftButton) {
+        QPointF pos = mouseEvent->scenePos();
+        QVariant vpos = QVariant::fromValue(WorldGraphicsItem::pointToVector(pos));
+
+        _worldModel->simulationPause();
+        _worldModel->beginMacro(i18n("Create %1", _worldModel->newItemName(_className)));
+        _item = _worldModel->newItem(_className); Q_ASSERT(_item != NULL);
+        _worldModel->setProperty(_item, _item->metaObject()->property("position"), vpos);
+        _worldModel->setProperty(_item, _item->metaObject()->property("size"), QVariant::fromValue(StepCore::Vector2d(0)));
+        _worldModel->selectionModel()->setCurrentIndex(_worldModel->objectIndex(_item),
+                                                    QItemSelectionModel::ClearAndSelect);
+        _topLeft = WorldGraphicsItem::pointToVector(pos);
+
+        showMessage(MessageFrame::Information,
+            i18n("Move mouse and release left mouse button to position bottom right corner of the %1", className()));
+
+        return true;
+    } else if(event->type() == QEvent::GraphicsSceneMouseMove &&
+                    mouseEvent->buttons() & Qt::LeftButton) {
+        
+        _worldModel->simulationPause();
+        StepCore::Vector2d pos = WorldGraphicsItem::pointToVector(mouseEvent->scenePos());
+        StepCore::Box* box = static_cast<StepCore::Box*>(_item);
+        StepCore::Vector2d position = (_topLeft + pos) / 2.0;
+        StepCore::Vector2d size = _topLeft - pos;
+        _worldModel->setProperty(_item, _item->metaObject()->property("position"), QVariant::fromValue(position));
+        _worldModel->setProperty(_item, _item->metaObject()->property("size"), QVariant::fromValue(size));
+        return true;
+
+    } else if(event->type() == QEvent::GraphicsSceneMouseRelease &&
+                    mouseEvent->button() == Qt::LeftButton) {
+
+        _worldModel->simulationPause();
+        StepCore::Vector2d pos = WorldGraphicsItem::pointToVector(mouseEvent->scenePos());
+        StepCore::Box* box = static_cast<StepCore::Box*>(_item);
+        StepCore::Vector2d position = (_topLeft + pos) / 2.0;
+        StepCore::Vector2d size = _topLeft - pos;
+        _worldModel->setProperty(_item, _item->metaObject()->property("position"), QVariant::fromValue(position));
+        _worldModel->setProperty(_item, _item->metaObject()->property("size"), QVariant::fromValue(size));
+        _worldModel->endMacro();
+
+        showMessage(MessageFrame::Information,
+            i18n("%1 named '%2' created", className(), _item->name()),
+            MessageFrame::CloseButton | MessageFrame::CloseTimer);
+
+        setFinished();
+        return true;
+    }
+
+    return false;
 }
 
 void PolygonCreator::fixCenterOfMass()
@@ -372,29 +435,29 @@ bool PolygonCreator::sceneEvent(QEvent* event)
     return false;
 }
 
-PolygonGraphicsItem::PolygonGraphicsItem(StepCore::Item* item, WorldModel* worldModel)
+BasePolygonGraphicsItem::BasePolygonGraphicsItem(StepCore::Item* item, WorldModel* worldModel)
     : RigidBodyGraphicsItem(item, worldModel)
 {
-    Q_ASSERT(dynamic_cast<StepCore::Polygon*>(_item) != NULL);
+    Q_ASSERT(dynamic_cast<StepCore::BasePolygon*>(_item) != NULL);
 }
 
-inline StepCore::Polygon* PolygonGraphicsItem::polygon() const
+inline StepCore::BasePolygon* BasePolygonGraphicsItem::basePolygon() const
 {
-    return static_cast<StepCore::Polygon*>(_item);
+    return static_cast<StepCore::BasePolygon*>(_item);
 }
 
-void PolygonGraphicsItem::viewScaleChanged()
+void BasePolygonGraphicsItem::viewScaleChanged()
 {
     _painterPath = QPainterPath();
     _painterPath.setFillRule(Qt::WindingFill);
 
-    if(polygon()->vertexes().size() > 0) {
-        _painterPath.moveTo(vectorToPoint( polygon()->vertexes()[0] ));
-        for(unsigned int i=1; i<polygon()->vertexes().size(); ++i) {
-            _painterPath.lineTo(vectorToPoint( polygon()->vertexes()[i] ));
+    if(basePolygon()->vertexes().size() > 0) {
+        _painterPath.moveTo(vectorToPoint( basePolygon()->vertexes()[0] ));
+        for(unsigned int i=1; i<basePolygon()->vertexes().size(); ++i) {
+            _painterPath.lineTo(vectorToPoint( basePolygon()->vertexes()[i] ));
         }
         _painterPath.closeSubpath();
-        _painterPath = QMatrix().rotate(polygon()->angle() * 180 / StepCore::Constants::Pi).map(_painterPath);
+        _painterPath = QMatrix().rotate(basePolygon()->angle() * 180 / StepCore::Constants::Pi).map(_painterPath);
     } else {
         double s = currentViewScale();
         _painterPath.addEllipse(-1/s, -1/s, 2/s, 2/s);

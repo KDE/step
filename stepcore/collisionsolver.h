@@ -30,7 +30,7 @@
 namespace StepCore
 {
 
-class Polygon;
+class BasePolygon;
 class Body;
 
 /** \ingroup contacts
@@ -154,7 +154,7 @@ public:
 
     //int checkContact(Contact* contact);
     int checkContacts(BodyList& bodies, ConstraintsInfo* info);
-    //int findClosestPoints(const Polygon* polygon1, const Polygon* polygon2);
+    //int findClosestPoints(const BasePolygon* polygon1, const BasePolygon* polygon2);
 
     int solveCollisions(BodyList& bodies);
     //int solveConstraints(BodyList& bodies);

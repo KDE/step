@@ -83,7 +83,12 @@ STEPCORE_META_OBJECT(RigidBodyErrors, "Errors class for RigidBody", 0, STEPCORE_
 STEPCORE_META_OBJECT(Disk, "Rigid disk", 0, STEPCORE_SUPER_CLASS(RigidBody),
         STEPCORE_PROPERTY_RW(double, radius, "m", "Radius of the disk", radius, setRadius))
 
-STEPCORE_META_OBJECT(Polygon, "Rigid polygon body", 0, STEPCORE_SUPER_CLASS(RigidBody),
+STEPCORE_META_OBJECT(BasePolygon, "Base polygon body", 0, STEPCORE_SUPER_CLASS(RigidBody),)
+
+STEPCORE_META_OBJECT(Box, "Rigid box", 0, STEPCORE_SUPER_CLASS(BasePolygon),
+        STEPCORE_PROPERTY_RW(StepCore::Vector2d, size, "m", "Size of the box", size, setSize))
+
+STEPCORE_META_OBJECT(Polygon, "Rigid polygon body", 0, STEPCORE_SUPER_CLASS(BasePolygon),
         STEPCORE_PROPERTY_RW(Vector2dList, vertexes, "m", "Vertex list", vertexes, setVertexes))
 
 RigidBody* RigidBodyErrors::rigidBody() const
@@ -325,6 +330,27 @@ void RigidBody::setKineticEnergy(double kineticEnergy)
         _velocity.setZero();
         _angularVelocity = sqrt(kineticEnergy*2/_inertia);
     }
+}
+
+Box::Box(Vector2d position, double angle,
+              Vector2d velocity, double angularVelocity,
+              double mass, double inertia, Vector2d size)
+    : BasePolygon(position, angle, velocity, angularVelocity, mass, inertia)
+{
+    _vertexes.resize(4);
+    setSize(size);
+}
+
+void Box::setSize(const Vector2d& size)
+{
+    Vector2d s(size/2.0);
+    if(s[0] < 0) s[0] = -s[0];
+    if(s[1] < 0) s[1] = -s[1];
+
+    _vertexes[0] = Vector2d(-s[0], -s[1]);
+    _vertexes[1] = Vector2d( s[0], -s[1]);
+    _vertexes[2] = Vector2d( s[0],  s[1]);
+    _vertexes[3] = Vector2d(-s[0],  s[1]);
 }
 
 } // namespace StepCore
