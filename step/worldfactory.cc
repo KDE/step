@@ -116,6 +116,7 @@ WorldFactory::WorldFactory()
     __REGISTER_EXT_E(Particle, ItemCreator, ParticleGraphicsItem, ItemMenuHandler);
     __REGISTER_EXT_E(ChargedParticle, ItemCreator, ParticleGraphicsItem, ItemMenuHandler);
 
+    __REGISTER_EXT(Disk, ItemCreator, DiskGraphicsItem, ItemMenuHandler);
     __REGISTER_EXT(Polygon, PolygonCreator, PolygonGraphicsItem, ItemMenuHandler);
 
     __REGISTER_EXT(GasParticle, ItemCreator, ParticleGraphicsItem, ItemMenuHandler);
@@ -174,6 +175,7 @@ WorldFactory::WorldFactory()
     // Palette
     __ADD_TO_PALETTE(Particle);
     __ADD_TO_PALETTE(ChargedParticle);
+    __ADD_TO_PALETTE(Disk);
     __ADD_TO_PALETTE(Polygon);
     __ADD_SEPARATOR;
 

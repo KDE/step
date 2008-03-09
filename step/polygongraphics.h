@@ -27,8 +27,41 @@
 #include <QPainterPath>
 
 namespace StepCore {
+    class RigidBody;
+    class Disk;
     class Polygon;
 }
+
+class RigidBodyGraphicsItem: public WorldGraphicsItem
+{
+public:
+    RigidBodyGraphicsItem(StepCore::Item* item, WorldModel* worldModel);
+
+    QPainterPath shape() const;
+    void paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget);
+
+    void viewScaleChanged();
+    void stateChanged();
+    void worldDataChanged(bool dynamicOnly);
+
+protected:
+    StepCore::RigidBody* rigidBody() const;
+    QPainterPath _painterPath;
+
+    ArrowHandlerGraphicsItem*         _velocityHandler;
+    CircularArrowHandlerGraphicsItem* _angularVelocityHandler;
+    CircularArrowHandlerGraphicsItem* _angleHandler;
+};
+
+class DiskGraphicsItem: public RigidBodyGraphicsItem
+{
+public:
+    DiskGraphicsItem(StepCore::Item* item, WorldModel* worldModel);
+    void viewScaleChanged();
+
+protected:
+    StepCore::Disk* disk() const;
+};
 
 class PolygonCreator: public ItemCreator
 {
@@ -43,25 +76,14 @@ protected:
     void fixInertia();
 };
 
-class PolygonGraphicsItem: public WorldGraphicsItem
+class PolygonGraphicsItem: public RigidBodyGraphicsItem
 {
 public:
     PolygonGraphicsItem(StepCore::Item* item, WorldModel* worldModel);
-
-    QPainterPath shape() const;
-    void paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget);
-
     void viewScaleChanged();
-    void stateChanged();
-    void worldDataChanged(bool dynamicOnly);
 
 protected:
     StepCore::Polygon* polygon() const;
-    QPainterPath _painterPath;
-
-    ArrowHandlerGraphicsItem*         _velocityHandler;
-    CircularArrowHandlerGraphicsItem* _angularVelocityHandler;
-    CircularArrowHandlerGraphicsItem* _angleHandler;
 };
 
 #endif

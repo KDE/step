@@ -49,7 +49,10 @@ struct Contact {
     enum {
         UnknownType,
         PolygonPolygonType,
-        PolygonParticleType
+        PolygonDiskType,
+        PolygonParticleType,
+        DiskDiskType,
+        DiskParticleType
     };
     int      type;          /**< Contact type (used internally) */
     Body*    body0;         /**< Body0 */
@@ -167,6 +170,16 @@ protected:
     int checkPolygonParticle(Contact* contact);
     int solvePolygonParticle(Contact* contact);
 
+    int checkPolygonDisk(Contact* contact);
+    int solvePolygonDisk(Contact* contact);
+
+    int checkDiskDisk(Contact* contact);
+    int solveDiskDisk(Contact* contact);
+
+    int checkDiskParticle(Contact* contact);
+    int solveDiskParticle(Contact* contact);
+
+    void addContact(Body* body0, Body* body1);
     void checkCache(BodyList& bodies);
 
 protected:

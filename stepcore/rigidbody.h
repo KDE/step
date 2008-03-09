@@ -281,6 +281,29 @@ protected:
 };
 
 /** \ingroup bodies
+ *  \brief Rigid disk
+ */
+class Disk: public RigidBody
+{
+    STEPCORE_OBJECT(Disk)
+public:
+    /** Constructs Disk */
+    Disk(Vector2d position = Vector2d(0), double angle = 0,
+              Vector2d velocity = Vector2d(0), double angularVelocity = 0,
+              double mass = 1, double inertia = 1, double radius = 1)
+        : RigidBody(position, angle, velocity, angularVelocity, mass, inertia),
+          _radius(radius) {}
+
+    /** Get disk radius */
+    double radius() const { return _radius; }
+    /** Set disk radius */
+    void setRadius(double radius) { _radius = radius; }
+
+protected:
+    double _radius;
+};
+
+/** \ingroup bodies
  *  \brief Rigid polygon
  */
 class Polygon: public RigidBody

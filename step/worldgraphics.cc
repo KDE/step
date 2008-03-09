@@ -461,7 +461,7 @@ void CircularArrowHandlerGraphicsItem::mouseMoveEvent(QGraphicsSceneMouseEvent *
     if ((event->buttons() & Qt::LeftButton) && (flags() & ItemIsMovable)) {
         if(!_isMoving) {
             if(_property)
-                _worldModel->beginMacro(i18n("Change %1", _item->name(), _property->name()));
+                _worldModel->beginMacro(i18n("Change %1.%2", _item->name(), _property->name()));
             else
                 _worldModel->beginMacro(i18n("Change %1", _item->name()));
             _isMoving = true;

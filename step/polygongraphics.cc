@@ -32,6 +32,138 @@
 #include <QPainter>
 #include <KLocale>
 
+
+RigidBodyGraphicsItem::RigidBodyGraphicsItem(StepCore::Item* item, WorldModel* worldModel)
+    : WorldGraphicsItem(item, worldModel)
+{
+    Q_ASSERT(dynamic_cast<StepCore::RigidBody*>(_item) != NULL);
+    setFlag(QGraphicsItem::ItemIsSelectable);
+    setFlag(QGraphicsItem::ItemIsMovable);
+    setAcceptsHoverEvents(true);
+    _velocityHandler = new ArrowHandlerGraphicsItem(item, worldModel, this,
+                   _item->metaObject()->property("velocity"));
+    _velocityHandler->setVisible(false);
+
+    _angularVelocityHandler = new CircularArrowHandlerGraphicsItem(item, worldModel, this,
+                   ANGULAR_VELOCITY_RADIUS, _item->metaObject()->property("angularVelocity"));
+    _angleHandler = new CircularArrowHandlerGraphicsItem(item, worldModel, this,
+                   ANGLE_HANDLER_RADIUS, _item->metaObject()->property("angle"));
+    _angularVelocityHandler->setVisible(false);
+    _angleHandler->setVisible(false);
+    //scene()->addItem(_velocityHandler);
+}
+
+inline StepCore::RigidBody* RigidBodyGraphicsItem::rigidBody() const
+{
+    return static_cast<StepCore::RigidBody*>(_item);
+}
+
+QPainterPath RigidBodyGraphicsItem::shape() const
+{
+    return _painterPath;
+}
+
+void RigidBodyGraphicsItem::paint(QPainter* painter, const QStyleOptionGraphicsItem* /*option*/, QWidget* /*widget*/)
+{
+    int renderHints = painter->renderHints();
+    painter->setRenderHint(QPainter::Antialiasing, true);
+    painter->setPen(Qt::NoPen);
+    painter->setBrush(QBrush(QColor::fromRgba(rigidBody()->color())));
+    painter->drawPath(_painterPath);
+
+    if(_isSelected) {
+        double s = currentViewScale();
+        QRectF rect = _painterPath.boundingRect();
+        rect.adjust(-SELECTION_MARGIN/s, -SELECTION_MARGIN/s, SELECTION_MARGIN/s, SELECTION_MARGIN/s);
+        painter->setPen(QPen(SELECTION_COLOR, 0, Qt::DashLine));
+        painter->setBrush(QBrush());
+        painter->drawRect(rect);
+    }
+
+    if(_isSelected || _isMouseOverItem) {
+        //painter->setRenderHint(QPainter::Antialiasing, renderHints & QPainter::Antialiasing);
+        painter->setPen(QPen(Qt::blue, 0));
+        drawArrow(painter, rigidBody()->velocity());
+        drawCircularArrow(painter, rigidBody()->angularVelocity(), ANGULAR_VELOCITY_RADIUS);
+        painter->setPen(QPen(Qt::red, 0));
+        drawArrow(painter, rigidBody()->acceleration());
+        drawCircularArrow(painter, rigidBody()->angularAcceleration(), ANGULAR_ACCELERATION_RADIUS);
+    }
+}
+
+void RigidBodyGraphicsItem::viewScaleChanged()
+{
+    /// XXX: optimize it !
+    prepareGeometryChange();
+
+    const StepCore::Vector2d& v = rigidBody()->velocity();
+    const StepCore::Vector2d  a = rigidBody()->acceleration();
+    double s = currentViewScale();
+
+    double avr = (ANGULAR_VELOCITY_RADIUS+CIRCULAR_ARROW_STROKE)/s;
+    double aar = (ANGULAR_ACCELERATION_RADIUS+CIRCULAR_ARROW_STROKE)/s;
+    _boundingRect = _painterPath.boundingRect() 
+                    | QRectF(0, 0, v[0], v[1]).normalized()
+                    | QRectF(0, 0, a[0], a[1]).normalized()
+                    | QRectF(-avr, -avr, 2*avr, 2*avr)
+                    | QRectF(-aar, -aar, 2*aar, 2*aar);
+    double adjust = (ARROW_STROKE+SELECTION_MARGIN)/s;
+    _boundingRect.adjust(-adjust,-adjust, adjust, adjust);
+}
+
+void RigidBodyGraphicsItem::worldDataChanged(bool dynamicOnly)
+{
+    Q_UNUSED(dynamicOnly)
+    // XXX: TODO do not redraw everything each time
+    setPos(vectorToPoint(rigidBody()->position()));
+    viewScaleChanged();
+    update();
+}
+
+void RigidBodyGraphicsItem::stateChanged()
+{
+    if(_isSelected) {
+        _velocityHandler->setVisible(true);
+        _angularVelocityHandler->setVisible(true);
+        _angleHandler->setVisible(true);
+    } else {
+        _velocityHandler->setVisible(false);
+        _angularVelocityHandler->setVisible(false);
+        _angleHandler->setVisible(false);
+    }
+
+    viewScaleChanged();
+    update();
+}
+
+DiskGraphicsItem::DiskGraphicsItem(StepCore::Item* item, WorldModel* worldModel)
+    : RigidBodyGraphicsItem(item, worldModel)
+{
+    Q_ASSERT(dynamic_cast<StepCore::Disk*>(_item) != NULL);
+}
+
+inline StepCore::Disk* DiskGraphicsItem::disk() const
+{
+    return static_cast<StepCore::Disk*>(_item);
+}
+
+void DiskGraphicsItem::viewScaleChanged()
+{
+    _painterPath = QPainterPath();
+    _painterPath.setFillRule(Qt::WindingFill);
+
+    double s = currentViewScale();
+    double radius = disk()->radius();
+    if(radius > 1/s) {
+        _painterPath.addEllipse(-radius, -radius, 2*radius, 2*radius);
+        //_painterPath = QMatrix().rotate(disk()->angle() * 180 / StepCore::Constants::Pi).map(_painterPath);
+    } else {
+        _painterPath.addEllipse(-1/s, -1/s, 2/s, 2/s);
+    }
+
+    RigidBodyGraphicsItem::viewScaleChanged();
+}
+
 void PolygonCreator::fixCenterOfMass()
 {
     StepCore::Vector2dList v = static_cast<StepCore::Polygon*>(_item)->vertexes();
@@ -184,23 +316,9 @@ bool PolygonCreator::sceneEvent(QEvent* event)
 }
 
 PolygonGraphicsItem::PolygonGraphicsItem(StepCore::Item* item, WorldModel* worldModel)
-    : WorldGraphicsItem(item, worldModel)
+    : RigidBodyGraphicsItem(item, worldModel)
 {
     Q_ASSERT(dynamic_cast<StepCore::Polygon*>(_item) != NULL);
-    setFlag(QGraphicsItem::ItemIsSelectable);
-    setFlag(QGraphicsItem::ItemIsMovable);
-    setAcceptsHoverEvents(true);
-    _velocityHandler = new ArrowHandlerGraphicsItem(item, worldModel, this,
-                   _item->metaObject()->property("velocity"));
-    _velocityHandler->setVisible(false);
-
-    _angularVelocityHandler = new CircularArrowHandlerGraphicsItem(item, worldModel, this,
-                   ANGULAR_VELOCITY_RADIUS, _item->metaObject()->property("angularVelocity"));
-    _angleHandler = new CircularArrowHandlerGraphicsItem(item, worldModel, this,
-                   ANGLE_HANDLER_RADIUS, _item->metaObject()->property("angle"));
-    _angularVelocityHandler->setVisible(false);
-    _angleHandler->setVisible(false);
-    //scene()->addItem(_velocityHandler);
 }
 
 inline StepCore::Polygon* PolygonGraphicsItem::polygon() const
@@ -208,68 +326,8 @@ inline StepCore::Polygon* PolygonGraphicsItem::polygon() const
     return static_cast<StepCore::Polygon*>(_item);
 }
 
-QPainterPath PolygonGraphicsItem::shape() const
-{
-    return _painterPath;
-    //QPainterPath path;
-    //double radius = (RADIUS+1)/currentViewScale();
-    //path.addEllipse(QRectF(-radius,-radius,radius*2,radius*2));
-    //return path;
-}
-
-void PolygonGraphicsItem::paint(QPainter* painter, const QStyleOptionGraphicsItem* /*option*/, QWidget* /*widget*/)
-{
-    //painter->setPen(QPen(Qt::green, 0));
-    //painter->drawRect(boundingRect());
-
-    //painter->save();
-    int renderHints = painter->renderHints();
-    painter->setRenderHint(QPainter::Antialiasing, true);
-    //painter->setPen(QPen(Qt::black, 0));
-    painter->setPen(Qt::NoPen);
-    painter->setBrush(QBrush(QColor::fromRgba(polygon()->color())));
-    painter->drawPath(_painterPath);
-    //painter->rotate(polygon()->angle() * 180 / StepCore::Constants::Pi);
-    //painter->drawRect(QRectF(-radius,-radius,radius*2,radius*2));
-    //painter->setBrush(QBrush());
-    //painter->restore();
-
-    if(_isSelected) {
-        // XXX: do it better
-        double s = currentViewScale();
-        QRectF rect = _painterPath.boundingRect();
-        rect.adjust(-SELECTION_MARGIN/s, -SELECTION_MARGIN/s, SELECTION_MARGIN/s, SELECTION_MARGIN/s);
-        //double bs = qMin((b.width() + 2*SELECTION_MARGIN/s)/b.width(), (b.height() + 2*SELECTION_MARGIN/s)/b.height());
-        //QPainterPath selPainterPath = QMatrix().scale(bs, bs).map(_painterPath);
-        //
-        painter->setPen(QPen(SELECTION_COLOR, 0, Qt::DashLine));
-        painter->setBrush(QBrush());
-        painter->drawRect(rect);
-        //radius = (RADIUS+SELECTION_MARGIN)/s;
-        //painter->drawEllipse(QRectF(-radius, -radius, radius*2, radius*2));
-        //painter->drawPath(_painterPath);
-    }
-
-    if(_isSelected || _isMouseOverItem) {
-        //painter->setRenderHint(QPainter::Antialiasing, renderHints & QPainter::Antialiasing);
-        painter->setPen(QPen(Qt::blue, 0));
-        drawArrow(painter, polygon()->velocity());
-        drawCircularArrow(painter, polygon()->angularVelocity(), ANGULAR_VELOCITY_RADIUS);
-        painter->setPen(QPen(Qt::red, 0));
-        drawArrow(painter, polygon()->acceleration());
-        drawCircularArrow(painter, polygon()->angularAcceleration(), ANGULAR_ACCELERATION_RADIUS);
-    }
-}
-
 void PolygonGraphicsItem::viewScaleChanged()
 {
-    /// XXX: optimize it !
-    prepareGeometryChange();
-
-    const StepCore::Vector2d& v = polygon()->velocity();
-    const StepCore::Vector2d  a = polygon()->acceleration();
-    double s = currentViewScale();
-
     _painterPath = QPainterPath();
     _painterPath.setFillRule(Qt::WindingFill);
 
@@ -280,41 +338,11 @@ void PolygonGraphicsItem::viewScaleChanged()
         }
         _painterPath.closeSubpath();
         _painterPath = QMatrix().rotate(polygon()->angle() * 180 / StepCore::Constants::Pi).map(_painterPath);
-    } else _painterPath.addEllipse(-1/s, -1/s, 2/s, 2/s);
-
-    double avr = (ANGULAR_VELOCITY_RADIUS+CIRCULAR_ARROW_STROKE)/s;
-    double aar = (ANGULAR_ACCELERATION_RADIUS+CIRCULAR_ARROW_STROKE)/s;
-    _boundingRect = _painterPath.boundingRect() 
-                    | QRectF(0, 0, v[0], v[1]).normalized()
-                    | QRectF(0, 0, a[0], a[1]).normalized()
-                    | QRectF(-avr, -avr, 2*avr, 2*avr)
-                    | QRectF(-aar, -aar, 2*aar, 2*aar);
-    double adjust = (ARROW_STROKE+SELECTION_MARGIN)/s;
-    _boundingRect.adjust(-adjust,-adjust, adjust, adjust);
-}
-
-void PolygonGraphicsItem::worldDataChanged(bool dynamicOnly)
-{
-    Q_UNUSED(dynamicOnly)
-    // XXX: TODO do not redraw everything each time
-    setPos(vectorToPoint(polygon()->position()));
-    viewScaleChanged();
-    update();
-}
-
-void PolygonGraphicsItem::stateChanged()
-{
-    if(_isSelected) {
-        _velocityHandler->setVisible(true);
-        _angularVelocityHandler->setVisible(true);
-        _angleHandler->setVisible(true);
     } else {
-        _velocityHandler->setVisible(false);
-        _angularVelocityHandler->setVisible(false);
-        _angleHandler->setVisible(false);
+        double s = currentViewScale();
+        _painterPath.addEllipse(-1/s, -1/s, 2/s, 2/s);
     }
 
-    viewScaleChanged();
-    update();
+    RigidBodyGraphicsItem::viewScaleChanged();
 }
 

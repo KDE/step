@@ -80,6 +80,9 @@ STEPCORE_META_OBJECT(RigidBodyErrors, "Errors class for RigidBody", 0, STEPCORE_
         STEPCORE_PROPERTY_RWF(double, kineticEnergyVariance, "J",
                     "kinetic energy variance", StepCore::MetaProperty::DYNAMIC, kineticEnergyVariance, setKineticEnergyVariance))
 
+STEPCORE_META_OBJECT(Disk, "Rigid disk", 0, STEPCORE_SUPER_CLASS(RigidBody),
+        STEPCORE_PROPERTY_RW(double, radius, "m", "Radius of the disk", radius, setRadius))
+
 STEPCORE_META_OBJECT(Polygon, "Rigid polygon body", 0, STEPCORE_SUPER_CLASS(RigidBody),
         STEPCORE_PROPERTY_RW(Vector2dList, vertexes, "m", "Vertex list", vertexes, setVertexes))
 
