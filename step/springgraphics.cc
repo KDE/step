@@ -74,6 +74,7 @@ bool SpringCreator::sceneEvent(QEvent* event)
                     mouseEvent->button() == Qt::LeftButton) {
         QPointF pos = mouseEvent->scenePos();
 
+        _worldModel->simulationPause();
         tryAttach(pos, 2);
         _worldModel->endMacro();
 

@@ -136,6 +136,63 @@ void RigidBodyGraphicsItem::stateChanged()
     update();
 }
 
+void DiskCreator::start()
+{
+    showMessage(MessageFrame::Information,
+            i18n("Press left mouse button to position a center of a %1", className()));
+}
+
+bool DiskCreator::sceneEvent(QEvent* event)
+{
+    QGraphicsSceneMouseEvent* mouseEvent = static_cast<QGraphicsSceneMouseEvent*>(event);
+
+    if(event->type() == QEvent::GraphicsSceneMousePress && mouseEvent->button() == Qt::LeftButton) {
+        QPointF pos = mouseEvent->scenePos();
+        QVariant vpos = QVariant::fromValue(WorldGraphicsItem::pointToVector(pos));
+
+        _worldModel->simulationPause();
+        _worldModel->beginMacro(i18n("Create %1", _worldModel->newItemName(_className)));
+        _item = _worldModel->newItem(_className); Q_ASSERT(_item != NULL);
+        _worldModel->setProperty(_item, _item->metaObject()->property("position"), vpos);
+        _worldModel->setProperty(_item, _item->metaObject()->property("radius"), QVariant::fromValue(0.0));
+        _worldModel->selectionModel()->setCurrentIndex(_worldModel->objectIndex(_item),
+                                                    QItemSelectionModel::ClearAndSelect);
+
+        showMessage(MessageFrame::Information,
+            i18n("Move mouse and release left mouse button to define a radius of the %1", className()));
+
+        return true;
+    } else if(event->type() == QEvent::GraphicsSceneMouseMove &&
+                    mouseEvent->buttons() & Qt::LeftButton) {
+        
+        _worldModel->simulationPause();
+        QPointF pos = mouseEvent->scenePos();
+        QVariant vpos = QVariant::fromValue(WorldGraphicsItem::pointToVector(pos));
+        double radius = (WorldGraphicsItem::pointToVector(pos) - static_cast<StepCore::Disk*>(_item)->position()).norm();
+        _worldModel->setProperty(_item, _item->metaObject()->property("radius"), QVariant::fromValue(radius));
+        return true;
+
+    } else if(event->type() == QEvent::GraphicsSceneMouseRelease &&
+                    mouseEvent->button() == Qt::LeftButton) {
+
+        _worldModel->simulationPause();
+        QPointF pos = mouseEvent->scenePos();
+        QVariant vpos = QVariant::fromValue(WorldGraphicsItem::pointToVector(pos));
+        double radius = (WorldGraphicsItem::pointToVector(pos) - static_cast<StepCore::Disk*>(_item)->position()).norm();
+        _worldModel->setProperty(_item, _item->metaObject()->property("radius"), QVariant::fromValue(radius));
+        _worldModel->endMacro();
+
+        showMessage(MessageFrame::Information,
+            i18n("%1 named '%2' created", className(), _item->name()),
+            MessageFrame::CloseButton | MessageFrame::CloseTimer);
+
+        setFinished();
+        return true;
+    }
+
+    return false;
+}
+
 DiskGraphicsItem::DiskGraphicsItem(StepCore::Item* item, WorldModel* worldModel)
     : RigidBodyGraphicsItem(item, worldModel)
 {

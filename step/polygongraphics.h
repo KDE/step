@@ -53,6 +53,15 @@ protected:
     CircularArrowHandlerGraphicsItem* _angleHandler;
 };
 
+class DiskCreator: public ItemCreator
+{
+public:
+    DiskCreator(const QString& className, WorldModel* worldModel, WorldScene* worldScene)
+                        : ItemCreator(className, worldModel, worldScene) {}
+    bool sceneEvent(QEvent* event);
+    void start();
+};
+
 class DiskGraphicsItem: public RigidBodyGraphicsItem
 {
 public:
