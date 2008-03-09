@@ -178,6 +178,7 @@ bool DiskCreator::sceneEvent(QEvent* event)
         StepCore::Vector2d pos = WorldGraphicsItem::pointToVector(mouseEvent->scenePos());
         StepCore::Disk* disk = static_cast<StepCore::Disk*>(_item);
         double radius = (pos - disk->position()).norm();
+        if(radius == 0) radius = 1;
         double inertia = disk->mass() * radius*radius/2.0;
         _worldModel->setProperty(_item, _item->metaObject()->property("radius"), QVariant::fromValue(radius));
         _worldModel->setProperty(_item, _item->metaObject()->property("inertia"), QVariant::fromValue(inertia));
@@ -257,10 +258,8 @@ bool BoxCreator::sceneEvent(QEvent* event)
         StepCore::Box* box = static_cast<StepCore::Box*>(_item);
         StepCore::Vector2d position = (_topLeft + pos) / 2.0;
         StepCore::Vector2d size = _topLeft - pos;
-        double inertia = box->mass() * (size[0]*size[0] + size[1]*size[1]) / 12.0;
         _worldModel->setProperty(_item, _item->metaObject()->property("position"), QVariant::fromValue(position));
         _worldModel->setProperty(_item, _item->metaObject()->property("size"), QVariant::fromValue(size));
-        _worldModel->setProperty(_item, _item->metaObject()->property("inertia"), QVariant::fromValue(inertia));
         return true;
 
     } else if(event->type() == QEvent::GraphicsSceneMouseRelease &&
@@ -271,8 +270,11 @@ bool BoxCreator::sceneEvent(QEvent* event)
         StepCore::Box* box = static_cast<StepCore::Box*>(_item);
         StepCore::Vector2d position = (_topLeft + pos) / 2.0;
         StepCore::Vector2d size = _topLeft - pos;
+        if(size[0] == 0 && size[1] == 0) { size[0] = size[1] = 1; }
+        double inertia = box->mass() * (size[0]*size[0] + size[1]*size[1]) / 12.0;
         _worldModel->setProperty(_item, _item->metaObject()->property("position"), QVariant::fromValue(position));
         _worldModel->setProperty(_item, _item->metaObject()->property("size"), QVariant::fromValue(size));
+        _worldModel->setProperty(_item, _item->metaObject()->property("inertia"), QVariant::fromValue(inertia));
         _worldModel->endMacro();
 
         showMessage(MessageFrame::Information,
