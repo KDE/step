@@ -381,14 +381,14 @@ int GJKCollisionSolver::checkPolygonDisk(Contact* contact)
     bool intersects = false;
     unsigned int iteration = 0;
     for(;; ++iteration) {
-        //STEPCORE_ASSERT_NOABORT( iteration < vertexes[0].size()*vertexes[1].size() );
+        //STEPCORE_ASSERT_NOABORT( iteration < vertexes.size()*vertexes.size() );
 
         double smin = v.norm2();
 
         // Check for penetration (part 1)
         // If we are closer to the origin then given tolerance
         // we should stop just now to avoid computational errors later
-        if(smin - disk1->radius() < _toleranceAbs*_toleranceAbs*1e-4) { // XXX: separate tolerance for penetration ?
+        if(std::sqrt(smin) - disk1->radius() < _toleranceAbs*1e-2) { // XXX: separate tolerance for penetration ?
             intersects = true;
             break;
         }
@@ -474,15 +474,13 @@ int GJKCollisionSolver::checkPolygonDisk(Contact* contact)
     }
 
     if(intersects) {
-        /*
-        qDebug("penetration detected");
+        /*qDebug("penetration detected");
         qDebug("iteration = %d", iteration);
         qDebug("simplexes:");
         qDebug("    1:   2:");
         for(int i=0; i<wsize; ++i) {
-            qDebug("    %d    %d", wi[0][i], wi[1][i]);
-        }
-        */
+            qDebug("    %d    %d", wi[i], wi[i]);
+        }*/
         contact->distance = 0;
         contact->normal.setZero();
         contact->pointsCount = 0;
@@ -497,10 +495,10 @@ int GJKCollisionSolver::checkPolygonDisk(Contact* contact)
     qDebug("simplexes:");
     qDebug("    1:   2:");
     for(int i=0; i<wsize; ++i) {
-        qDebug("    %d    %d", wi[0][i], wi[1][i]);
+        qDebug("    %d    %d", wi[i], wi[i]);
     }
     qDebug("contact points:");
-    qDebug("    (%f,%f)    (%f,%f)", vv[0][0], vv[0][1], vv[1][0], vv[1][1]);
+    qDebug("    (%f,%f)    (%f,%f)", vv[0], vv[1], vv[0], vv[1]);
     */
 
     double vnorm = v.norm();
@@ -513,7 +511,10 @@ int GJKCollisionSolver::checkPolygonDisk(Contact* contact)
         contact->pointsCount = 0;
         contact->state = Contact::Separated;
         return contact->state;
-    }
+    }/* else if(contact->distance < _toleranceAbs*1e-2) {
+        contact->state = Contact::Intersected;
+        return contact->state;
+    }*/
 
     contact->pointsCount = 1;
     contact->points[0] = disk1->position() - contact->normal * disk1->radius();
@@ -734,6 +735,9 @@ int GJKCollisionSolver::checkDiskDisk(Contact* contact)
     if(contact->distance > _toleranceAbs) {
         contact->state = Contact::Separated;
         return contact->state;
+    } else if(contact->distance < _toleranceAbs*1e-2) {
+        contact->state = Contact::Intersected;
+        return contact->state;
     }
 
     contact->pointsCount = 1;
@@ -761,6 +765,9 @@ int GJKCollisionSolver::checkDiskParticle(Contact* contact)
     contact->distance = d - r;
     if(contact->distance > _toleranceAbs) {
         contact->state = Contact::Separated;
+        return contact->state;
+    } else if(contact->distance < _toleranceAbs*1e-2) {
+        contact->state = Contact::Intersected;
         return contact->state;
     }
 
