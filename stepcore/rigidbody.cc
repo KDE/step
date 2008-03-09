@@ -91,6 +91,12 @@ STEPCORE_META_OBJECT(Box, "Rigid box", 0, STEPCORE_SUPER_CLASS(BasePolygon),
 STEPCORE_META_OBJECT(Polygon, "Rigid polygon body", 0, STEPCORE_SUPER_CLASS(BasePolygon),
         STEPCORE_PROPERTY_RW(Vector2dList, vertexes, "m", "Vertex list", vertexes, setVertexes))
 
+#if 0
+STEPCORE_META_OBJECT(Plane, "Unmoveable rigid plane", 0, STEPCORE_SUPER_CLASS(Item) STEPCORE_SUPER_CLASS(Body),
+        STEPCORE_PROPERTY_RW_D(StepCore::Vector2d, point1, "m", "First point which defines the plane", point1, setPoint1),
+        STEPCORE_PROPERTY_RW_D(StepCore::Vector2d, point2, "m", "Second point which defines the plane", point2, setPoint2))
+#endif
+
 RigidBody* RigidBodyErrors::rigidBody() const
 {
     return static_cast<RigidBody*>(owner());
