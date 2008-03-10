@@ -277,13 +277,23 @@ void WorldGraphicsItem::hoverLeaveEvent(QGraphicsSceneHoverEvent* /*event*/)
 
 QVariant WorldGraphicsItem::itemChange(GraphicsItemChange change, const QVariant& value)
 {
-    if(change == ItemSelectedChange && scene()) {
-        QModelIndex index = _worldModel->objectIndex(_item);
-        if(value.toBool() && !_worldModel->selectionModel()->isSelected(index))
-            _worldModel->selectionModel()->setCurrentIndex(index, QItemSelectionModel::Select);
-        else if(!value.toBool() && _worldModel->selectionModel()->isSelected(index))
-            _worldModel->selectionModel()->select(index, QItemSelectionModel::Deselect);
+    if(change == ItemSelectedChange && value.toBool() != _isSelected && scene()) {
         _isSelected = value.toBool();
+        if(_isSelected) {
+            setZValue(zValue() + 1);
+            kDebug() << _item->name() << "+" << zValue();
+        } else {
+            setZValue(zValue() - 1);
+            kDebug() << _item->name() << "-" << zValue();
+        }
+
+        QModelIndex index = _worldModel->objectIndex(_item);
+        if(_isSelected && !_worldModel->selectionModel()->isSelected(index)) {
+            _worldModel->selectionModel()->setCurrentIndex(index, QItemSelectionModel::Select);
+        } else if(!_isSelected && _worldModel->selectionModel()->isSelected(index)) {
+            _worldModel->selectionModel()->select(index, QItemSelectionModel::Deselect);
+        }
+
         stateChanged();
     }
     return QGraphicsItem::itemChange(change, value);
