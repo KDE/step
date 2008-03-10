@@ -21,6 +21,7 @@
 
 #include <QGraphicsScene>
 #include <QGraphicsView>
+#include <QList>
 #include <QHash>
 
 #include "messageframe.h"
@@ -40,6 +41,7 @@ class WorldSceneAxes;
 
 namespace StepCore {
     class Item;
+    class MetaObject;
 }
 
 class WorldScene: public QGraphicsScene
@@ -47,6 +49,10 @@ class WorldScene: public QGraphicsScene
     Q_OBJECT
 
 public:
+    typedef QList<const StepCore::MetaObject*> SnapList;
+    enum SnapFlag { SnapOnCenter = 1, SnapParticle = 2, SnapRigidBody = 4 };
+    Q_DECLARE_FLAGS(SnapFlags, SnapFlag)
+
     explicit WorldScene(WorldModel* worldModel, QObject* parent = 0);
     ~WorldScene();
 
@@ -57,6 +63,13 @@ public:
     double currentViewScale() { return _currentViewScale; }
 
     QRectF calcItemsBoundingRect();
+
+    StepCore::Item* snapHighlight(QPointF pos, SnapFlags flags, const SnapList* moreTypes = 0);
+    StepCore::Item* snapAttach(QPointF pos, SnapFlags flags, const SnapList* moreTypes,
+                                                        StepCore::Item* item, int num = -1);
+    void snapClear();
+
+    WorldModel* worldModel() const { return _worldModel; }
 
 public slots:
     void beginAddItem(const QString& name);
@@ -86,6 +99,8 @@ protected slots:
 
     void messageLinkActivated(const QString& link);
 
+    void snapUpdateToolTip();
+
 protected:
     bool event(QEvent* event);
     void mousePressEvent(QGraphicsSceneMouseEvent* mouseEvent);
@@ -105,6 +120,10 @@ protected:
 
     MessageFrame*  _messageFrame;
     WorldSceneAxes* _sceneAxes;
+    WorldGraphicsItem* _snapItem;
+    QPointF            _snapPos;
+    QString            _snapToolTip;
+    QTimer*            _snapTimer;
 
     friend class WorldGraphicsView;
 };
@@ -131,6 +150,8 @@ protected:
 
     static const int SCENE_LENGTH = 2000;
 };
+
+Q_DECLARE_OPERATORS_FOR_FLAGS(WorldScene::SnapFlags)
 
 #endif
 

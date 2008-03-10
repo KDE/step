@@ -60,8 +60,12 @@ void ParticleGraphicsItem::paint(QPainter* painter, const QStyleOptionGraphicsIt
 
     int renderHints = painter->renderHints();
     painter->setRenderHint(QPainter::Antialiasing, true);
+    
+    QColor color = QColor::fromRgba(particle()->color());
+    if(isItemHighlighted()) color = highlightColor(color);
     painter->setPen(Qt::NoPen);
-    painter->setBrush(QBrush(QColor::fromRgba(particle()->color())));
+    painter->setBrush(QBrush(color));
+
     painter->drawEllipse(QRectF(-radius,-radius,radius*2,radius*2));
     //painter->setPen(QPen(QColor::fromRgba(particle()->color()), 2*radius, Qt::SolidLine, Qt::RoundCap));
     //painter->drawPoint(0,0);

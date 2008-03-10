@@ -31,7 +31,7 @@
 #include <QKeyEvent>
 #include <QPainter>
 #include <KLocale>
-
+#include <KDebug>
 
 RigidBodyGraphicsItem::RigidBodyGraphicsItem(StepCore::Item* item, WorldModel* worldModel)
     : WorldGraphicsItem(item, worldModel)
@@ -67,8 +67,12 @@ void RigidBodyGraphicsItem::paint(QPainter* painter, const QStyleOptionGraphicsI
 {
     int renderHints = painter->renderHints();
     painter->setRenderHint(QPainter::Antialiasing, true);
+
+    QColor color = QColor::fromRgba(rigidBody()->color());
+    if(isItemHighlighted()) color = highlightColor(color);
     painter->setPen(Qt::NoPen);
-    painter->setBrush(QBrush(QColor::fromRgba(rigidBody()->color())));
+    painter->setBrush(QBrush(color));
+
     painter->drawPath(_painterPath);
 
     if(_isSelected) {

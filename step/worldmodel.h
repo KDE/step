@@ -113,6 +113,7 @@ public:
 
     // Format property value for display or edit
     QString formatName(const StepCore::Object* object) const;
+    QString formatNameFull(const StepCore::Object* object) const;
     QString formatProperty(const StepCore::Object* object,
                            const StepCore::Object* objectErrors,
                            const StepCore::MetaProperty* property,

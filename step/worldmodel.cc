@@ -467,8 +467,7 @@ QVariant WorldModel::data(const QModelIndex &index, int role) const
     StepCore::Object* obj = static_cast<StepCore::Object*>(index.internalPointer());
 
     if(role == Qt::DisplayRole) {
-        return QString("%1: %2").arg(formatName(obj))
-                                .arg(obj->metaObject()->className());
+        return formatNameFull(obj);
     } else if(role == Qt::ToolTipRole) {
         const_cast<WorldModel*>(this)->simulationPause();
         return createToolTip(index); // XXX
@@ -670,9 +669,15 @@ void WorldModel::setProperty(StepCore::Object* object,
 
 QString WorldModel::formatName(const StepCore::Object* object) const
 {
-    if(!object) return QString();
+    if(!object) return i18n("<no object>");
     else if(!object->name().isEmpty()) return object->name();
     return i18n("<unnamed>");
+}
+
+QString WorldModel::formatNameFull(const StepCore::Object* object) const
+{
+    if(!object) return i18n("<no object>");
+    return i18n("%1: %2", formatName(object), object->metaObject()->className());
 }
 
 QString WorldModel::formatProperty(const StepCore::Object* object,

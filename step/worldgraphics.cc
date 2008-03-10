@@ -96,7 +96,7 @@ bool ItemCreator::sceneEvent(QEvent* event)
 }
 
 WorldGraphicsItem::WorldGraphicsItem(StepCore::Item* item, WorldModel* worldModel, QGraphicsItem* parent)
-    : QGraphicsItem(parent), _item(item), _worldModel(worldModel),
+    : QGraphicsItem(parent), _item(item), _worldModel(worldModel), _isHighlighted(false),
       _isMouseOverItem(false), _isSelected(false), _isMoving(false)
 {
     // XXX: use persistant indexes here and in propertiesbrowser
@@ -112,6 +112,26 @@ double WorldGraphicsItem::currentViewScale() const
 {
     if(!scene()) return 1;
     return static_cast<WorldScene*>(scene())->currentViewScale();
+}
+
+QColor WorldGraphicsItem::highlightColor(const QColor& color)
+{
+    qreal h, s, v, a;
+    QColor hsv = color.toHsv();
+    hsv.getHsvF(&h, &s, &v, &a);
+
+    v += float(COLOR_HIGHLIGHT_AMOUNT)/100;
+    if (v > 1.0) {
+        // overflow... adjust saturation
+        s -= v - 1.0;
+        if (s < 0) s = 0.0;
+        v = 1.0;
+    }
+
+    hsv.setHsvF(h, s, v, a);
+
+    // convert back to same color spec as original color
+    return hsv.convertTo(color.spec());
 }
 
 void WorldGraphicsItem::drawArrow(QPainter* painter, const StepCore::Vector2d& r,
@@ -279,13 +299,8 @@ QVariant WorldGraphicsItem::itemChange(GraphicsItemChange change, const QVariant
 {
     if(change == ItemSelectedChange && value.toBool() != _isSelected && scene()) {
         _isSelected = value.toBool();
-        if(_isSelected) {
-            setZValue(zValue() + 1);
-            kDebug() << _item->name() << "+" << zValue();
-        } else {
-            setZValue(zValue() - 1);
-            kDebug() << _item->name() << "-" << zValue();
-        }
+        if(_isSelected) setZValue(zValue() + 1);
+        else setZValue(zValue() - 1);
 
         QModelIndex index = _worldModel->objectIndex(_item);
         if(_isSelected && !_worldModel->selectionModel()->isSelected(index)) {

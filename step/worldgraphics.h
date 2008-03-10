@@ -85,6 +85,14 @@ public:
     virtual void stateChanged();
     virtual void worldDataChanged(bool dynamicOnly);
 
+    bool isItemHighlighted() { return _isHighlighted; }
+    void setItemHighlighted(bool highlighted) {
+        _isHighlighted = highlighted; update();
+    }
+
+    bool isItemSelected() { return _isSelected; }
+    bool isMouseOverItem() { return _isMouseOverItem; }
+
 protected:
     virtual void mouseSetPos(const QPointF& pos, const QPointF& diff);
 
@@ -101,12 +109,16 @@ protected:
     StepCore::Item* _item;
     WorldModel* _worldModel;
     QRectF  _boundingRect;
+    bool    _isHighlighted;
     bool    _isMouseOverItem;
     bool    _isSelected;
     bool    _isMoving;
 
     double currentViewScale() const;
     QVariant itemChange(GraphicsItemChange change, const QVariant& value);
+
+    QColor highlightColor(const QColor& color);
+
     void drawHandler(QPainter* painter, const StepCore::Vector2d& v);
     void drawArrow(QPainter* painter, const StepCore::Vector2d& v);
     void drawArrow(QPainter* painter, const StepCore::Vector2d& r,
@@ -129,6 +141,8 @@ protected:
     static const int BODY_ZVALUE = 100;
     static const int FORCE_ZVALUE = 200;
     static const int HANDLER_ZVALUE = 500;
+
+    static const int COLOR_HIGHLIGHT_AMOUNT = 30;
 };
 
 class ArrowHandlerGraphicsItem: public WorldGraphicsItem {

@@ -41,7 +41,7 @@ public:
     void closeMessage(int id);
 
 signals:
-    void linkActivated(const KUrl& url);
+    void linkActivated(const QString& url);
 
 protected slots:
     void messageLinkActivated(const QString& link);

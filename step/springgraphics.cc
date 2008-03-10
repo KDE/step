@@ -41,7 +41,11 @@ void SpringCreator::start()
 bool SpringCreator::sceneEvent(QEvent* event)
 {
     QGraphicsSceneMouseEvent* mouseEvent = static_cast<QGraphicsSceneMouseEvent*>(event);
-    if(event->type() == QEvent::GraphicsSceneMousePress && mouseEvent->button() == Qt::LeftButton) {
+    if(event->type() == QEvent::GraphicsSceneMouseMove && _item == NULL) {
+        _worldScene->snapHighlight(mouseEvent->scenePos(), WorldScene::SnapParticle | WorldScene::SnapRigidBody);
+        return false;
+
+    } else if(event->type() == QEvent::GraphicsSceneMousePress && mouseEvent->button() == Qt::LeftButton) {
         QPointF pos = mouseEvent->scenePos();
         QVariant vpos = QVariant::fromValue(WorldGraphicsItem::pointToVector(pos));
         _worldModel->simulationPause();
@@ -50,7 +54,8 @@ bool SpringCreator::sceneEvent(QEvent* event)
         _item = _worldModel->newItem(className()); Q_ASSERT(_item != NULL);
         _worldModel->setProperty(_item, _item->metaObject()->property("localPosition1"), vpos);
         _worldModel->setProperty(_item, _item->metaObject()->property("localPosition2"), vpos);
-        tryAttach(pos, 1);
+        _worldModel->setProperty(_item, _item->metaObject()->property("restLength"), 0);
+        _worldScene->snapAttach(pos, WorldScene::SnapParticle | WorldScene::SnapRigidBody, 0, _item, 1);
 
         _worldModel->selectionModel()->setCurrentIndex(_worldModel->objectIndex(_item),
                                                 QItemSelectionModel::ClearAndSelect);
@@ -68,6 +73,7 @@ bool SpringCreator::sceneEvent(QEvent* event)
         _worldModel->setProperty(_item, _item->metaObject()->property("localPosition2"), vpos);
         _worldModel->setProperty(_item, _item->metaObject()->property("restLength"), 
                                                     static_cast<StepCore::Spring*>(_item)->length());
+        _worldScene->snapHighlight(pos, WorldScene::SnapParticle | WorldScene::SnapRigidBody);
         return true;
 
     } else if(event->type() == QEvent::GraphicsSceneMouseRelease &&
@@ -75,7 +81,10 @@ bool SpringCreator::sceneEvent(QEvent* event)
         QPointF pos = mouseEvent->scenePos();
 
         _worldModel->simulationPause();
-        tryAttach(pos, 2);
+        _worldScene->snapAttach(pos, WorldScene::SnapParticle | WorldScene::SnapRigidBody, 0, _item, 2);
+        _worldModel->setProperty(_item, _item->metaObject()->property("restLength"), 
+                                        static_cast<StepCore::Spring*>(_item)->length());
+        _worldScene->snapClear();
         _worldModel->endMacro();
 
         showMessage(MessageFrame::Information,
@@ -86,31 +95,6 @@ bool SpringCreator::sceneEvent(QEvent* event)
         return true;
     }
     return false;
-}
-
-void SpringCreator::tryAttach(const QPointF& pos, int num)
-{
-    foreach(QGraphicsItem* it, _worldScene->items(pos)) {
-        StepCore::Item* item = _worldScene->itemFromGraphics(it);
-        if(dynamic_cast<StepCore::Particle*>(item) || dynamic_cast<StepCore::RigidBody*>(item)) {
-            if(num == 1) _worldModel->setProperty(_item, _item->metaObject()->property("body1"),
-                                                QVariant::fromValue<StepCore::Object*>(item), WorldModel::UndoNoMerge);
-            else         _worldModel->setProperty(_item, _item->metaObject()->property("body2"),
-                                                QVariant::fromValue<StepCore::Object*>(item), WorldModel::UndoNoMerge);
-
-            StepCore::Vector2d lPos(0, 0);
-            if(dynamic_cast<StepCore::RigidBody*>(item))
-                lPos = dynamic_cast<StepCore::RigidBody*>(item)->pointWorldToLocal(WorldGraphicsItem::pointToVector(pos));
-
-            if(num == 1) _worldModel->setProperty(_item, _item->metaObject()->property("localPosition1"), QVariant::fromValue(lPos));
-            else         _worldModel->setProperty(_item, _item->metaObject()->property("localPosition2"), QVariant::fromValue(lPos));
-
-            _worldModel->setProperty(_item, _item->metaObject()->property("restLength"), 
-                                                static_cast<StepCore::Spring*>(_item)->length());
-            break;
-        }
-    }
-
 }
 
 SpringHandlerGraphicsItem::SpringHandlerGraphicsItem(StepCore::Item* item, WorldModel* worldModel, 
@@ -146,21 +130,19 @@ void SpringHandlerGraphicsItem::worldDataChanged(bool)
 void SpringHandlerGraphicsItem::mouseMoveEvent(QGraphicsSceneMouseEvent *event)
 {
     if ((event->buttons() & Qt::LeftButton) && (flags() & ItemIsMovable)) {
-        QPointF newPos(mapToParent(event->pos()) - matrix().map(event->buttonDownPos(Qt::LeftButton)));
-        QVariant vpos = QVariant::fromValue(pointToVector(parentItem()->mapToParent(newPos)));
-
         _worldModel->simulationPause();
+        QString n = QString::number(_num);
         if(!_moving) {
             _moving = true;
             _worldModel->beginMacro(i18n("Move end of %1", _item->name()));
-            if(_num == 1) _worldModel->setProperty(_item, _item->metaObject()->property("body1"),
-                                                    QVariant::fromValue<StepCore::Object*>(NULL), WorldModel::UndoNoMerge);
-            else          _worldModel->setProperty(_item, _item->metaObject()->property("body2"),
-                                                    QVariant::fromValue<StepCore::Object*>(NULL), WorldModel::UndoNoMerge);
+            _worldModel->setProperty(_item, _item->metaObject()->property("body"+n),
+                                    QVariant::fromValue<StepCore::Object*>(NULL), WorldModel::UndoNoMerge);
         }
 
-        if(_num == 1) _worldModel->setProperty(_item, _item->metaObject()->property("localPosition1"), vpos);
-        else          _worldModel->setProperty(_item, _item->metaObject()->property("localPosition2"), vpos);
+        _worldModel->setProperty(_item, _item->metaObject()->property("localPosition"+n),
+                                            QVariant::fromValue(pointToVector(event->scenePos())));
+        static_cast<WorldScene*>(scene())->snapHighlight(event->scenePos(),
+                            WorldScene::SnapParticle | WorldScene::SnapRigidBody);
 
     } else {
         event->ignore();
@@ -170,30 +152,14 @@ void SpringHandlerGraphicsItem::mouseMoveEvent(QGraphicsSceneMouseEvent *event)
 void SpringHandlerGraphicsItem::mouseReleaseEvent(QGraphicsSceneMouseEvent *event)
 {
     if(_moving) {
-        QPointF pos = event->scenePos();
-        foreach(QGraphicsItem* it, scene()->items(pos)) {
-            StepCore::Item* item = static_cast<WorldScene*>(scene())->itemFromGraphics(it);
-            if(dynamic_cast<StepCore::Particle*>(item) || dynamic_cast<StepCore::RigidBody*>(item)) {
-                _worldModel->simulationPause();
-                if(_num == 1) _worldModel->setProperty(_item, _item->metaObject()->property("body1"),
-                                                    QVariant::fromValue<StepCore::Object*>(item), WorldModel::UndoNoMerge);
-                else          _worldModel->setProperty(_item, _item->metaObject()->property("body2"),
-                                                    QVariant::fromValue<StepCore::Object*>(item), WorldModel::UndoNoMerge);
-
-                StepCore::Vector2d lPos(0, 0);
-                if(dynamic_cast<StepCore::RigidBody*>(item))
-                    lPos = dynamic_cast<StepCore::RigidBody*>(item)->pointWorldToLocal(WorldGraphicsItem::pointToVector(pos));
-
-                if(_num == 1) _worldModel->setProperty(_item, _item->metaObject()->property("localPosition1"), QVariant::fromValue(lPos));
-                else          _worldModel->setProperty(_item, _item->metaObject()->property("localPosition2"), QVariant::fromValue(lPos));
-
-                break;
-            }
-        }
-
+        static_cast<WorldScene*>(scene())->snapAttach(event->scenePos(),
+                    WorldScene::SnapParticle | WorldScene::SnapRigidBody, 0, _item, _num);
         _moving = false;
         _worldModel->endMacro();
-    } else WorldGraphicsItem::mouseReleaseEvent(event);
+
+    } else {
+        WorldGraphicsItem::mouseReleaseEvent(event);
+    }
 }
 
 SpringGraphicsItem::SpringGraphicsItem(StepCore::Item* item, WorldModel* worldModel)

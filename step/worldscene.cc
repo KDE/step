@@ -26,6 +26,8 @@
 #include "worldgraphics.h"
 
 #include <stepcore/world.h>
+#include <stepcore/particle.h>
+#include <stepcore/rigidbody.h>
 
 #include <QGraphicsItem>
 #include <QGraphicsSceneMouseEvent>
@@ -42,9 +44,12 @@
 #include <QHBoxLayout>
 #include <QVBoxLayout>
 #include <QGLWidget>
+#include <QWheelEvent>
+#include <QCoreApplication>
 #include <KIcon>
 #include <KUrl>
 #include <KLocale>
+#include <KDebug>
 
 class WorldSceneAxes: public QGraphicsItem
 {
@@ -120,9 +125,9 @@ void WorldSceneAxes::viewScaleChanged()
 }
 
 WorldScene::WorldScene(WorldModel* worldModel, QObject* parent)
-    : QGraphicsScene(parent), _worldModel(worldModel), _worldView(NULL),
-        _currentViewScale(1), _itemCreator(NULL), _bgColor(0),
-        _sceneAxes(0)
+    : QGraphicsScene(parent), _worldModel(worldModel), _worldView(0),
+        _currentViewScale(1), _itemCreator(0), _bgColor(0),
+        _sceneAxes(0), _snapItem(0)
 {
     #ifdef __GNUC__
     #warning TODO: measure what index method is faster
@@ -132,6 +137,9 @@ WorldScene::WorldScene(WorldModel* worldModel, QObject* parent)
     //setSceneRect(-200,-200,400,400);
 
     _messageFrame = new MessageFrame();
+    _snapTimer = new QTimer(this);
+    _snapTimer->setInterval(0);
+    _snapTimer->setSingleShot(true);
 
     worldModelReset();
 
@@ -148,6 +156,7 @@ WorldScene::WorldScene(WorldModel* worldModel, QObject* parent)
 
     connect(_messageFrame, SIGNAL(linkActivated(const QString&)),
                 this, SLOT(messageLinkActivated(const QString&)));
+    connect(_snapTimer, SIGNAL(timeout()), this, SLOT(snapUpdateToolTip()));
 }
 
 WorldScene::~WorldScene()
@@ -231,6 +240,10 @@ void WorldScene::keyPressEvent(QKeyEvent* keyEvent)
 
 void WorldScene::helpEvent(QGraphicsSceneHelpEvent *helpEvent)
 {
+    helpEvent->accept();
+    
+    if(_snapItem || _snapTimer->isActive()) return;
+
     QString text;
 
     QList<StepCore::Item*> activeItems;
@@ -254,11 +267,7 @@ void WorldScene::helpEvent(QGraphicsSceneHelpEvent *helpEvent)
     }
 
     Q_ASSERT(helpEvent->widget());
-    QPoint screenPos = helpEvent->screenPos();
-    QToolTip::showText(screenPos, text, helpEvent->widget(), QRect());
-    // QRect( helpEvent->widget()->mapFromGlobal(screenPos)-QPoint(5,5), QSize(10,10) ));
-
-    helpEvent->accept();
+    QToolTip::showText(helpEvent->screenPos(), text, helpEvent->widget(), QRect());
 }
 
 void WorldScene::worldModelReset()
@@ -416,6 +425,88 @@ void WorldScene::settingsChanged()
     _messageFrame->raise();
 }
 
+void WorldScene::snapClear()
+{
+    if(_snapItem) {
+        _snapItem->setItemHighlighted(false);
+        _snapItem = 0;
+        _snapToolTip.clear();
+        _snapTimer->start();
+    }
+}
+
+StepCore::Item* WorldScene::snapHighlight(QPointF pos, SnapFlags flags, const SnapList* moreTypes)
+{
+    SnapList types;
+    if(flags.testFlag(SnapParticle)) types << StepCore::Particle::staticMetaObject();
+    if(flags.testFlag(SnapRigidBody)) types << StepCore::RigidBody::staticMetaObject();
+    if(moreTypes) types << *moreTypes;
+
+    foreach(QGraphicsItem* gItem, items(pos)) {
+        StepCore::Item* item = itemFromGraphics(gItem);
+        if(!item) continue;
+        foreach(const StepCore::MetaObject* type, types)
+            if(item->metaObject()->inherits(type)) {
+                if(_snapItem != gItem) {
+                    snapClear();
+                    _snapItem = static_cast<WorldGraphicsItem*>(gItem);
+                    _snapItem->setItemHighlighted(true);
+                }
+                _snapPos = pos;
+                _snapToolTip = _worldModel->formatNameFull(item);
+                _snapTimer->start();
+                return item;
+            }
+    }
+
+    snapClear();
+    return 0;
+}
+
+StepCore::Item* WorldScene::snapAttach(QPointF pos, SnapFlags flags, const SnapList* moreTypes,
+                                                        StepCore::Item* item, int num)
+{
+    QString n;
+    if(num >= 0) n = QString::number(num);
+
+    StepCore::Item* sItem = snapHighlight(pos, flags, moreTypes);
+    if(sItem) {
+        _worldModel->setProperty(item, item->metaObject()->property("body"+n),
+                    QVariant::fromValue<StepCore::Object*>(sItem), WorldModel::UndoNoMerge);
+
+        StepCore::Vector2d lPos(0, 0);
+
+        if(!flags.testFlag(SnapOnCenter) && sItem->metaObject()->inherits<StepCore::RigidBody>())
+            lPos = static_cast<StepCore::RigidBody*>(sItem)->pointWorldToLocal(WorldGraphicsItem::pointToVector(pos));
+
+        _worldModel->setProperty(item, item->metaObject()->property("localPosition"+n), QVariant::fromValue(lPos));
+
+    } else {
+        _worldModel->setProperty(item, item->metaObject()->property("body"+n),
+                                QVariant::fromValue<StepCore::Object*>(0), WorldModel::UndoNoMerge);
+        _worldModel->setProperty(item, item->metaObject()->property("localPosition"+n),
+                                        QVariant::fromValue(WorldGraphicsItem::pointToVector(pos)));
+    }
+
+    snapClear();
+    return sItem;
+}
+
+void WorldScene::snapUpdateToolTip()
+{
+    if(!_snapToolTip.isEmpty()) {
+        QGraphicsView* view = views()[0];
+        QPoint pos = view->viewport()->mapToGlobal(view->mapFromScene(_snapPos));
+        QPoint size(1,1);
+        QToolTip::showText(pos, _snapToolTip, view->viewport(), QRect(pos-size,pos+size));
+    } else {
+        QToolTip::hideText();
+        // Hack to hide tooltip immediately
+        QWheelEvent fakeEvent(QPoint(0,0), 0, Qt::NoButton, Qt::NoModifier);
+        QCoreApplication::sendEvent(_messageFrame, &fakeEvent);
+    }
+}
+
 WorldGraphicsView::WorldGraphicsView(WorldScene* worldScene, QWidget* parent)
     : QGraphicsView(worldScene, parent)
 {
@@ -496,7 +587,7 @@ void WorldGraphicsView::settingsChanged()
         if(!Settings::enableOpenGL()) setViewport(new QWidget(this));
     } else {
         if(Settings::enableOpenGL() && QGLFormat::hasOpenGL()) {
-            kDebug() << "enable OpenGL" << endl;
+            //kDebug() << "enable OpenGL" << endl;
             setViewport(new QGLWidget(QGLFormat(QGL::SampleBuffers), this));
             if(!qobject_cast<QGLWidget*>(viewport())) {
                 kDebug() << "can't create QGLWidget!" << endl;

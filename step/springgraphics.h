@@ -29,9 +29,6 @@ public:
                         : ItemCreator(className, worldModel, worldScene) {}
     bool sceneEvent(QEvent* event);
     void start();
-
-protected:
-    void tryAttach(const QPointF& pos, int num);
 };
 
 class SpringHandlerGraphicsItem: public WorldGraphicsItem {
@@ -63,6 +60,8 @@ public:
     void worldDataChanged(bool);
 
 protected:
+    static void tryAttach(StepCore::Item* item, WorldScene* worldScene, const QPointF& pos, int num);
+
     void mouseSetPos(const QPointF& pos, const QPointF& diff);
     StepCore::Spring* spring() const {
         return static_cast<StepCore::Spring*>(_item); }
