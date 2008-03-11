@@ -593,7 +593,7 @@ void StickGraphicsItem::stateChanged()
     update();
 }
 
-void StickGraphicsItem::mouseSetPos(const QPointF& /*pos*/, const QPointF& diff)
+void StickGraphicsItem::mouseSetPos(const QPointF& /*pos*/, const QPointF& diff, MovingState)
 {
     _worldModel->simulationPause();
 

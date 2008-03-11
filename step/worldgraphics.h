@@ -94,7 +94,8 @@ public:
     bool isMouseOverItem() { return _isMouseOverItem; }
 
 protected:
-    virtual void mouseSetPos(const QPointF& pos, const QPointF& diff);
+    enum MovingState { Started, Moving, Finished };
+    virtual void mouseSetPos(const QPointF& pos, const QPointF& diff, MovingState movingState);
 
     void mousePressEvent(QGraphicsSceneMouseEvent* event);
     void mouseMoveEvent(QGraphicsSceneMouseEvent* event);

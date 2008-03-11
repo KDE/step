@@ -62,7 +62,7 @@ public:
 protected:
     static void tryAttach(StepCore::Item* item, WorldScene* worldScene, const QPointF& pos, int num);
 
-    void mouseSetPos(const QPointF& pos, const QPointF& diff);
+    void mouseSetPos(const QPointF& pos, const QPointF& diff, MovingState);
     StepCore::Spring* spring() const {
         return static_cast<StepCore::Spring*>(_item); }
 

@@ -296,7 +296,7 @@ void SpringGraphicsItem::stateChanged()
     update();
 }
 
-void SpringGraphicsItem::mouseSetPos(const QPointF& /*pos*/, const QPointF& diff)
+void SpringGraphicsItem::mouseSetPos(const QPointF& /*pos*/, const QPointF& diff, MovingState)
 {
     _worldModel->simulationPause();
 

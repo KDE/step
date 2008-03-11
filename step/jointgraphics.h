@@ -133,7 +133,7 @@ public:
     void worldDataChanged(bool dynamicOnly);
 
 protected:
-    void mouseSetPos(const QPointF& pos, const QPointF& diff);
+    void mouseSetPos(const QPointF& pos, const QPointF& diff, MovingState);
 
     StepCore::Stick* stick() const { return static_cast<StepCore::Stick*>(_item); }
 

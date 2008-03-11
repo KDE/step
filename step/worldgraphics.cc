@@ -194,7 +194,7 @@ void WorldGraphicsItem::drawCircularArrow(QPainter* painter, double angle, doubl
     drawCircularArrow(painter, StepCore::Vector2d(0), angle, radius);
 }
 
-void WorldGraphicsItem::mouseSetPos(const QPointF& pos, const QPointF& /*diff*/)
+void WorldGraphicsItem::mouseSetPos(const QPointF& pos, const QPointF& /*diff*/, MovingState)
 {
     const StepCore::MetaProperty* property = _item->metaObject()->property("position");
     if(property != NULL) {
@@ -225,39 +225,36 @@ void WorldGraphicsItem::mouseMoveEvent(QGraphicsSceneMouseEvent *event)
     if((event->buttons() & Qt::LeftButton) && (flags() & ItemIsMovable)) {
         QPointF pdiff(mapToParent(event->pos()) - mapToParent(event->lastPos()));
         QPointF newPos(mapToParent(event->pos()) - matrix().map(event->buttonDownPos(Qt::LeftButton)));
+
         QPointF diff = newPos - pos();
+        if(diff == QPointF(0, 0)) return;
 
-        if(diff != QPointF(0,0)) {
-            // Determine the list of selected items
-            QList<QGraphicsItem *> selectedItems;
-            if (scene()) {
-                selectedItems = scene()->selectedItems();
-            } else if (QGraphicsItem *parent = parentItem()) {
-                while (parent && parent->isSelected())
-                    selectedItems << parent;
-            }
-            if(!selectedItems.contains(this)) selectedItems << this;
-
-            if(!_isMoving) {
-                int count = 0;
-                foreach (QGraphicsItem *item, selectedItems) {
-                    if ((item->flags() & ItemIsMovable) && (!item->parentItem() || !item->parentItem()->isSelected()))
-                        if(dynamic_cast<WorldGraphicsItem*>(item)) ++count;
+        MovingState movingState = Moving;
+        if(!_isMoving) {
+            int count = 0;
+            foreach(QGraphicsItem *item, scene()->selectedItems())
+                if(item != this && (item->flags() & ItemIsMovable) &&
+                            (!item->parentItem() || !item->parentItem()->isSelected()) &&
+                            dynamic_cast<WorldGraphicsItem*>(item)) {
+                    ++count;
                 }
-                _worldModel->beginMacro(i18n("Move %1", count == 1 ? _item->name() : i18n("several objects"))); _isMoving = true;
-            }
+            if(!this->parentItem() || !this->parentItem()->isSelected()) ++count;
 
-            // Move all selected items
-            foreach (QGraphicsItem *item, selectedItems) {
-                if ((item->flags() & ItemIsMovable) && (!item->parentItem() || !item->parentItem()->isSelected())) {
-                    WorldGraphicsItem* worldItem = dynamic_cast<WorldGraphicsItem*>(item);
-                    if(worldItem) worldItem->mouseSetPos(item == this ? newPos : item->pos() + diff, pdiff);
-                    else { Q_ASSERT(false); item->setPos(item == this ? newPos : item->pos() + diff); }
-                    //if (item->flags() & ItemIsSelectable) //XXX ?
-                    //    item->setSelected(true);
-                }
+            _worldModel->beginMacro(i18n("Move %1", count == 1 ? _item->name() : i18n("several objects")));
+            movingState = Started;
+            _isMoving = true;
+        }
+
+        // Move all selected items
+        foreach(QGraphicsItem *item, scene()->selectedItems()) {
+            if(item != this && (item->flags() & ItemIsMovable) &&
+                        (!item->parentItem() || !item->parentItem()->isSelected())) {
+                WorldGraphicsItem* worldItem = dynamic_cast<WorldGraphicsItem*>(item);
+                if(worldItem) worldItem->mouseSetPos(item->pos() + diff, pdiff, movingState);
             }
         }
+        if(!this->parentItem() || !this->parentItem()->isSelected())
+            mouseSetPos(newPos, pdiff, movingState);
     } else {
         event->ignore();
     }
@@ -265,7 +262,24 @@ void WorldGraphicsItem::mouseMoveEvent(QGraphicsSceneMouseEvent *event)
 
 void WorldGraphicsItem::mouseReleaseEvent(QGraphicsSceneMouseEvent *event)
 {
-    if(_isMoving) { _worldModel->endMacro(); _isMoving = false; }
+    if(_isMoving && event->button() == Qt::LeftButton) {
+        QPointF pdiff(mapToParent(event->pos()) - mapToParent(event->lastPos()));
+        QPointF newPos(mapToParent(event->pos()) - matrix().map(event->buttonDownPos(Qt::LeftButton)));
+
+        QPointF diff = newPos - pos();
+        foreach(QGraphicsItem *item, scene()->selectedItems()) {
+            if(item != this && (item->flags() & ItemIsMovable) &&
+                        (!item->parentItem() || !item->parentItem()->isSelected())) {
+                WorldGraphicsItem* worldItem = dynamic_cast<WorldGraphicsItem*>(item);
+                if(worldItem) worldItem->mouseSetPos(item->pos() + diff, pdiff, Finished);
+            }
+        }
+        if(!this->parentItem() || !this->parentItem()->isSelected())
+            mouseSetPos(newPos, pdiff, Finished);
+
+        _worldModel->endMacro();
+        _isMoving = false;
+    }
     if(flags() & ItemIsSelectable) {
         bool multiSelect = (event->modifiers() & Qt::ControlModifier) != 0;
         if(event->scenePos() == event->buttonDownScenePos(Qt::LeftButton)) {
