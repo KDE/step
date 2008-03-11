@@ -460,11 +460,6 @@ void ArrowHandlerGraphicsItem::setValue(const StepCore::Vector2d& value)
     }
 }
 
-ItemMenuHandler::ItemMenuHandler(StepCore::Object* object, WorldModel* worldModel, QObject* parent)
-    : QObject(parent), _object(object), _worldModel(worldModel)
-{
-}
-
 ////
 CircularArrowHandlerGraphicsItem::CircularArrowHandlerGraphicsItem(StepCore::Item* item, WorldModel* worldModel, 
                          QGraphicsItem* parent, double radius, const StepCore::MetaProperty* property,
@@ -562,10 +557,10 @@ void CircularArrowHandlerGraphicsItem::setValue(double value)
     }
 }
 
-//ItemMenuHandler::ItemMenuHandler(StepCore::Object* object, WorldModel* worldModel, QObject* parent)
-//    : QObject(parent), _object(object), _worldModel(worldModel)
-//{
-//}
+ItemMenuHandler::ItemMenuHandler(StepCore::Object* object, WorldModel* worldModel, QObject* parent)
+    : QObject(parent), _object(object), _worldModel(worldModel)
+{
+}
 
 void ItemMenuHandler::populateMenu(QMenu* menu)
 {

@@ -38,6 +38,11 @@ class WorldModel;
 class WorldScene;
 class QEvent;
 
+/** \brief Base class for item creators.
+ *
+ * Item creator handles the process of creating new item by the user. As long as it exists it
+ * acts as a filer for all scene events. When creation is finished subclass should call
+ * setFinished(true) to nofify the scene. */
 class ItemCreator
 {
 public:
@@ -46,20 +51,49 @@ public:
              _worldScene(worldScene), _item(NULL), _finished(false), _messageId(-1) {}
     virtual ~ItemCreator() { closeMessage(); }
 
+    /** Returns class name of the item which this creator creates */
     QString className() const { return _className; }
+    
+    /** Returns created item or NULL if item is not yet created */
     StepCore::Item* item() const { return _item; }
 
+    /** Virtual function which is called on any scene event. Should return true if
+     *  event is accepted or false to allow the scene to continue event processing. */
     virtual bool sceneEvent(QEvent* event);
-    virtual void abort() {}
+
+    /** Virtual function which is called when
+     *  creation process is started */
     virtual void start();
 
+    /** Virtual function which is called when
+     *  creation process is aborted by the user */
+    virtual void abort() {}
+
+    /** Return true if creation process is already
+     *  finished and creator should be deleted */
     bool finished() { return _finished; }
 
 protected:
+    /** Show creation status message. If flags do not contains CloseButton and CloseTimer than it is
+     *  treated as persistant status message (and will replace previous status message, if any).
+     *  In flags contains CloseButton or CloseTimer than it is treated as additional message */
     void showMessage(MessageFrame::Type type, const QString& text, MessageFrame::Flags flags = 0);
+    /** Close last persistant status message */
     void closeMessage();
+
+    /** Set creation finished state */
     void setFinished(bool finished = true) { _finished = finished; }
-    
+
+    /** Set created item */
+    void setItem(StepCore::Item* item) { _item = item; }
+
+    /** Get assosiated WorldModel */
+    WorldModel* worldModel() { return _worldModel; }
+
+    /** Get assosiated WorldScene */
+    WorldScene* worldScene() { return _worldScene; }
+
+protected:
     QString     _className;
     WorldModel* _worldModel;
     WorldScene* _worldScene;
@@ -68,7 +102,7 @@ protected:
     int _messageId;
 };
 
-/** \brief Parent class for all graphics items on the scene.
+/** \brief Base class for all graphics items on the scene.
  *
  * This class provides interface for WorldScene and
  * some common functionality to simplify subclassing. */
@@ -98,7 +132,7 @@ public:
     virtual void stateChanged();
 
     /** Virtual function which is called when something in StepCore::World was changed
-     *  \arg dynamicOnly Indicated whether only dynamic variables was changed
+     *  \param dynamicOnly Indicated whether only dynamic variables was changed
      *  \note Dynamic variables are variables that can change during simulation,
      *        non-dynamic variables can change only by user action
      */
@@ -166,8 +200,8 @@ protected:
     WorldModel* _worldModel;
 
     QRectF  _boundingRect;
-    QString _exclusiveMovingMessage; ///< Custom Undo message for moving item
-    bool    _exclusiveMoving; ///< Set to true for items that should be moved alone
+    QString _exclusiveMovingMessage;
+    bool    _exclusiveMoving;
 
     bool    _isHighlighted; 
     bool    _isMouseOverItem;
@@ -185,6 +219,7 @@ protected:
 
     QVariant itemChange(GraphicsItemChange change, const QVariant& value);
 
+protected:
     static const QColor SELECTION_COLOR;     ///< Default color for selection rectangle
     static const int SELECTION_MARGIN = 4;   ///< Default distance from object to selection rectangle
     static const int ARROW_STROKE = 6;       ///< Default size of an arrow stroke
@@ -203,9 +238,18 @@ protected:
     static const int COLOR_HIGHLIGHT_AMOUNT = 30; ///< Highligh amount (in percent for value component)
 };
 
+
+/** \brief Handler item that controls vector property */
 class ArrowHandlerGraphicsItem: public WorldGraphicsItem
 {
 public:
+    /** Construct ArrowHandlerGraphicsItem.
+     *  \param item StepCore::Item to control
+     *  \param worldModel assosiated worldModel
+     *  \param parent parent WorldGraphicsItem
+     *  \param property Property to control
+     *  \param positionProperty Origin of the vector described by property or NULL
+     */
     ArrowHandlerGraphicsItem(StepCore::Item* item, WorldModel* worldModel,
                         QGraphicsItem* parent, const StepCore::MetaProperty* property,
                         const StepCore::MetaProperty* positionProperty = NULL);
@@ -216,19 +260,32 @@ public:
     void worldDataChanged(bool);
 
 protected:
-    QVariant itemChange(GraphicsItemChange change, const QVariant& value);
+    /** Virtual function which is called to get current vector value.
+     *  Default implementation returns property + positionProperty */
     virtual StepCore::Vector2d value();
+    /** Virtual function which is called to set current new vector value.
+     *  Default implementation sets property = value - positionProperty */
     virtual void setValue(const StepCore::Vector2d& value);
 
     void mouseSetPos(const QPointF& pos, const QPointF& diff, MovingState movingState);
+    QVariant itemChange(GraphicsItemChange change, const QVariant& value);
     const StepCore::MetaProperty* _property;
     const StepCore::MetaProperty* _positionProperty;
     bool  _isVisible;
 };
 
+/** \brief Handler item that controls angle property */
 class CircularArrowHandlerGraphicsItem: public WorldGraphicsItem
 {
 public:
+    /** Construct CircularArrowHandlerGraphicsItem.
+     *  \param item StepCore::Item to control
+     *  \param worldModel assosiated worldModel
+     *  \param parent parent WorldGraphicsItem
+     *  \param radius radius of the arrow on the screen
+     *  \param property Property to control
+     *  \param positionProperty Position of the center of the circle
+     */
     CircularArrowHandlerGraphicsItem(StepCore::Item* item, WorldModel* worldModel,
                         QGraphicsItem* parent, double radius, const StepCore::MetaProperty* property,
                         const StepCore::MetaProperty* positionProperty = NULL);
@@ -239,10 +296,14 @@ public:
     void worldDataChanged(bool);
 
 protected:
-    QVariant itemChange(GraphicsItemChange change, const QVariant& value);
+    /** Virtual function which is called to get current vector value.
+     *  Default implementation reads the value pointed by property */
     virtual double value();
+    /** Virtual function which is called to set current new vector value.
+     *  Default implementation sets the value pointed by property */
     virtual void setValue(double value);
 
+    QVariant itemChange(GraphicsItemChange change, const QVariant& value);
     void mouseMoveEvent(QGraphicsSceneMouseEvent *event);
     void mouseReleaseEvent(QGraphicsSceneMouseEvent *event);
     const StepCore::MetaProperty* _property;
@@ -251,12 +312,18 @@ protected:
     double _radius;
 };
 
+/** \brief Base class for item context menu handlers.
+ * The menu handler is created before showing context menu
+ * for the item and destroyed when menu is hidden. */
 class ItemMenuHandler: public QObject
 {
     Q_OBJECT
 
 public:
     ItemMenuHandler(StepCore::Object* object, WorldModel* worldModel, QObject* parent = 0);
+
+    /** Populate context menu by item-specific entries.
+     *  Default implementation adds delete action. */
     virtual void populateMenu(QMenu* menu);
 
 protected slots:
