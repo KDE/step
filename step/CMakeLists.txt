@@ -72,6 +72,7 @@ install(TARGETS step DESTINATION ${BIN_INSTALL_DIR})
 install(FILES step.kcfg DESTINATION  ${KCFG_INSTALL_DIR})
 install(FILES stepui.rc DESTINATION  ${DATA_INSTALL_DIR}/step)
 install(FILES step.knsrc DESTINATION  ${CONFIG_INSTALL_DIR})
+install( FILES step.desktop DESTINATION ${XDG_APPS_INSTALL_DIR} )
 
 add_subdirectory(icons)
 add_subdirectory(objinfo)
