@@ -44,7 +44,7 @@ class WorldFactory;
 class CommandSimulate;
 class SimulationThread;
 
-
+/** \brief Central class that represents StepCore::World in Step */
 class WorldModel: public QAbstractItemModel
 {
     Q_OBJECT
@@ -60,96 +60,140 @@ public:
     WorldModel(QObject* parent = 0);
     ~WorldModel();
 
+    /** Get QItemSelectionModel assosiated with this WorldModel */
     QItemSelectionModel* selectionModel() const { return _selectionModel; }
+    /** Get WorldFactory assosiated with this WorldModel */
     const WorldFactory* worldFactory() const { return _worldFactory; }
 
     // QModelIndex quick-access functions
-    QModelIndex worldIndex() const;
-    QModelIndex solverIndex() const;
-    QModelIndex collisionSolverIndex() const;
-    QModelIndex constraintSolverIndex() const;
-    QModelIndex objectIndex(StepCore::Object* obj) const;
-    QModelIndex childItemIndex(int n, StepCore::ItemGroup* group = NULL) const;
+    QModelIndex worldIndex() const; ///< Get index of StepCore::World
+    QModelIndex solverIndex() const; ///< Get index of StepCore::Solver
+    QModelIndex collisionSolverIndex() const; ///< Get index of StepCore::CollisionSolver
+    QModelIndex constraintSolverIndex() const; ///< Get index of StepCore::ConstraintSolver
+    QModelIndex objectIndex(StepCore::Object* obj) const; ///< Get index of given object by pointer
+    QModelIndex childItemIndex(int n, StepCore::ItemGroup* group = NULL) const; ///< Get index of n-th child of the group
     
-    // DO NOT change returned object directly: it breaks undo/redo
+    /** Get StepCore::Object by index. \note Never change returned object directly ! */
     StepCore::Object* object(const QModelIndex& index) const;
+    /** Find StepCore::Object by name. \note Never change returned object directly ! */
     StepCore::Object* object(const QString& name) const { return _world->object(name); }
 
+    /** Get StepCore::World. \note Never change returned object directly ! */
     StepCore::World* world() const { return _world; }
+    /** Get StepCore::Solver. \note Never change returned object directly ! */
     StepCore::Solver* solver() const { return _world->solver(); }
+    /** Get StepCore::CollisionSolver. \note Never change returned object directly ! */
     StepCore::CollisionSolver* collisionSolver() const { return _world->collisionSolver(); }
+    /** Get StepCore::ConstraintSolver. \note Never change returned object directly ! */
     StepCore::ConstraintSolver* constraintSolver() const { return _world->constraintSolver(); }
 
+    /** Get StepCore::Item by index. \note Never change returned object directly ! */
     StepCore::Item* item(const QModelIndex& index) const;
 
+    /** Get n-th child of the world. \note Never change returned object directly ! */
     StepCore::Item* childItem(int n) const { return _world->items()[n]; }
+    /** Get count of the children of the world */
     int childItemCount() const { return _world->items().size(); }
 
-    // QAbstractItemModel functions
+    /** QAbstractItemModel::data() function */
     QVariant data(const QModelIndex &index, int role) const;
+    /** QAbstractItemModel::index() function */
     QModelIndex index(int row, int column, const QModelIndex &parent = QModelIndex()) const;
+    /** QAbstractItemModel::parent() function */
     QModelIndex parent(const QModelIndex &index) const;
+    /** QAbstractItemModel::rowCount() function */
     int rowCount(const QModelIndex &parent = QModelIndex()) const;
+    /** QAbstractItemModel::columnCount() function */
     int columnCount(const QModelIndex &parent = QModelIndex()) const;
 
     // Add/remove/set functions
+    /** Generates new unique item name */
     QString newItemName(const QString& className);
+    /** Creates new item of className with unique name */
     StepCore::Item* newItem(const QString& className, StepCore::ItemGroup* parent = 0);
+    /** Add already created item to the world */
     void addItem(StepCore::Item* item, StepCore::ItemGroup* parent = 0);
+    /** Delete item from the world */
     void deleteItem(StepCore::Item* item);
 
-    //void setSolver(StepCore::Solver* solver);
+    /** Create new solver of class named className and copy
+     *  similar properties of the old solver into the new solver. */
     StepCore::Solver* newSolver(const QString& name);
 
     // Undo/redo helpers
-    KUndoStack* undoStack() { return _undoStack; }
-    void pushCommand(QUndoCommand* command);
-    void beginMacro(const QString& text);
-    void endMacro();
+    KUndoStack* undoStack() { return _undoStack; } ///< Get assosiated KUndoStack
+    void pushCommand(QUndoCommand* command); ///< Push new undo command
+    void beginMacro(const QString& text); ///< Begin undo macro
+    void endMacro(); ///< End undo macro
 
     // Property edit
+    /** Modify object property.
+     *  \param object object to modify
+     *  \param property property to modify
+     *  \param value new value for the property
+     *  \param flags UndoFlags
+     *
+     *  \note Set flags to UndoNoMerge in order to disable merging this
+     *        command with previous on undo history and avoid changing of command order */
     void setProperty(StepCore::Object* object, const StepCore::MetaProperty* property,
                             const QVariant& value, UndoFlags flags = 0);
 
     // Format property value for display or edit
+    /** Format object name using standard formatting */
     QString formatName(const StepCore::Object* object) const;
+    /** Format object and class name using standard formatting */
     QString formatNameFull(const StepCore::Object* object) const;
+    /** Format property using standard formatting
+     *  \param object object
+     *  \param objectErrors assosiated StepCore::ObjecErrors (if required)
+     *  \param property property
+     *  \param flags Format flags */
     QString formatProperty(const StepCore::Object* object,
                            const StepCore::Object* objectErrors,
                            const StepCore::MetaProperty* property,
                            FormatFlags flags = 0) const;
 
     // Tooltip
+    /** Generate standard tooltip for object given by index */
     QString createToolTip(const QModelIndex& index) const;
 
     // ContextMenu
+    /** Generate standard context many for object given by index */
     QMenu* createContextMenu(const QModelIndex& index);
 
     // Save/load
+    /** Clear the world (delete everything in it and reset all settings */
     void clearWorld();
+    /** Save the world into device */
     bool saveXml(QIODevice* device);
+    /** Load the world from device */
     bool loadXml(QIODevice* device);
+    /** Get last error string */
     QString errorString() const { return _errorString; }
 
     // Names
+    /** Generate unique object name */
     QString getUniqueName(const QString& className) const;
+    /** Check is the name is unique */
     bool checkUniqueName(const QString& name) const;
 
     // Simulation
+    /** Set FPS of simulation */
     void setSimulationFps(int simulationFps);
+    /** Get FPS of simulation */
     int simulationFps() { return _simulationFps; }
 
+    /** Return true if simulation is active */
     bool isSimulationActive();
 
-    // Pause simulation until control
-    // returns to event loop
+    /** Pauses the simulation until control returns to event loop */
     void simulationPause();
 
 public slots:
-    void simulationStart();
-    void simulationStop();
+    void simulationStart(); ///< Start simulation
+    void simulationStop();  ///< Stop simulation
 
-    void deleteSelectedItems();
+    void deleteSelectedItems(); ///< Delete all selected items
 
 protected slots:
     void simulationFrameBegin();
@@ -157,7 +201,14 @@ protected slots:
     void doEmitChanged();
 
 signals:
+    /** This signal is called when the world is changed
+     *  \param dynamicOnly Indicated whether only dynamic variables was changed
+     *  \note Dynamic variables are variables that can change during simulation,
+     *        non-dynamic variables can change only by user action */
     void worldDataChanged(bool dynamicOnly);
+
+    /** This signal is called when simulation is stopped.
+     *  \param result simulation result (from StepCore::Solver) */
     void simulationStopped(int result);
 
 protected:

@@ -557,9 +557,9 @@ void WorldModel::addItem(StepCore::Item* item, StepCore::ItemGroup* parent)
     pushCommand(new CommandNewItem(this, item, parent, true));
 }
 
-StepCore::Solver* WorldModel::newSolver(const QString& name)
+StepCore::Solver* WorldModel::newSolver(const QString& className)
 {
-    StepCore::Solver* solver = _worldFactory->newSolver(name);
+    StepCore::Solver* solver = _worldFactory->newSolver(className);
     if(solver == NULL) return NULL;
 
     // Copy similary named properties
