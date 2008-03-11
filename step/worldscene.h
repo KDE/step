@@ -44,48 +44,93 @@ namespace StepCore {
     class MetaObject;
 }
 
+/** \brief World scene class */
 class WorldScene: public QGraphicsScene
 {
     Q_OBJECT
 
 public:
     typedef QList<const StepCore::MetaObject*> SnapList;
-    enum SnapFlag { SnapOnCenter = 1, SnapParticle = 2, SnapRigidBody = 4 };
+    enum SnapFlag {
+        SnapOnCenter = 1,  ///< Snap to the center of item
+        SnapParticle = 2,  ///< Allow snapping to Particle
+        SnapRigidBody = 4  ///< Allow snapping to RigidBody
+    };
     Q_DECLARE_FLAGS(SnapFlags, SnapFlag)
 
+    /** Construct WorldScene */
     explicit WorldScene(WorldModel* worldModel, QObject* parent = 0);
     ~WorldScene();
 
+    /** Get StepCore::Item by QGraphicsItem */
     StepCore::Item* itemFromGraphics(const QGraphicsItem* graphicsItem) const;
+    /** Get WorldGraphicsItem for given StepCore::Item */
     WorldGraphicsItem* graphicsFromItem(const StepCore::Item* item) const;
 
+    /** Called by WorldView when view scale is updated */
     void updateViewScale(); // Qt4.3 can help here
+    /** Get current view scale of the scene */
     double currentViewScale() { return _currentViewScale; }
 
+    /** Calculate united bounding rect of all items
+     *  (not taking into account WorldSceneAxes */
     QRectF calcItemsBoundingRect();
 
+    /** Highlight item at given position
+     *  \param pos position
+     *  \param flags snap flags
+     *  \param moreTypes additional item types to snap */
     StepCore::Item* snapHighlight(QPointF pos, SnapFlags flags, const SnapList* moreTypes = 0);
+
+    /** Attach item to another item at given position
+     *  \param pos position
+     *  \param flags snap flags
+     *  \param moreTypes additional item types to snap
+     *  \param item StepCore::Item to attach
+     *  \param num Num of the end to attach (or -1)
+     *  This function sets "body" property of the item to snapped item
+     *  and "localPosition" property to the position on snapped item.
+     *  If num >=0 then QString::number(num) is added to property names */
     StepCore::Item* snapAttach(QPointF pos, SnapFlags flags, const SnapList* moreTypes,
                                                         StepCore::Item* item, int num = -1);
+    /** Remove highlighting */
     void snapClear();
 
+    /** Get assosiated WorldModel */
     WorldModel* worldModel() const { return _worldModel; }
 
 public slots:
+    /** Begin adding new item. Creates appropriate ItemCreator */
     void beginAddItem(const QString& name);
 
+    /** Shows a message to the user
+     *  \param type message type
+     *  \param text message text
+     *  \param flags message flags
+     *  \return message id of the created message */
     int showMessage(MessageFrame::Type type, const QString& text, MessageFrame::Flags flags = 0) {
         return _messageFrame->showMessage(type, text, flags);
     }
+    /** Changed existing message
+     *  \param id message id
+     *  \param type message type
+     *  \param text message text
+     *  \param flags message flags
+     *  \return new message id */
     int changeMessage(int id, MessageFrame::Type type, const QString& text, MessageFrame::Flags flags = 0) {
         return _messageFrame->changeMessage(id, type, text, flags);
     }
+    /** Close message
+     *  \param id message id */
     void closeMessage(int id) { _messageFrame->closeMessage(id); }
 
+    /** Reload application settings */
     void settingsChanged();
 
 signals:
+    /** This signal is emitted when item creation is finished or canceled */
     void endAddItem(const QString& name, bool success);
+    /** This signal is emitted when a link in the message is activated */
     void linkActivated(const KUrl& url);
 
 protected slots:
@@ -128,6 +173,7 @@ protected:
     friend class WorldGraphicsView;
 };
 
+/** \brief World view */
 class WorldGraphicsView: public QGraphicsView
 {
     Q_OBJECT
@@ -136,11 +182,12 @@ public:
     WorldGraphicsView(WorldScene* worldScene, QWidget* parent);
 
 public slots:
-    void zoomIn();
-    void zoomOut();
-    void fitToPage();
-    void actualSize();
+    void zoomIn();      ///< Zoom scene in
+    void zoomOut();     ///< Zoom scene out
+    void fitToPage();   ///< Ensure that all objects are visible
+    void actualSize();  ///< Set zoom to 100%
 
+    /** Reload application settings */
     void settingsChanged();
 
 protected:
