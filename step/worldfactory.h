@@ -45,28 +45,40 @@ struct ExtMetaObject
     KIcon* icon;
 };
 
+
+/** \brief Factory for creation StepCore::Items and
+ *  querying various static properties. */
 class WorldFactory: public StepCore::Factory
 {
 public:
     WorldFactory();
 
+    /** Get ExtMetaObject for given StepCore::MetaObject */
     const ExtMetaObject* extMetaObject(const StepCore::MetaObject* mObject) const
         { return _extMetaObjects.value(mObject, NULL); }
+    /** Get ExtMetaObject by class name */
     const ExtMetaObject* extMetaObject(const QString& name) const
         { return extMetaObject(metaObject(name)); }
 
+    /** Create ItemCreator for given class */
     ItemCreator* newItemCreator(const QString& className,
                         WorldModel* worldModel, WorldScene* worldScene) const;
                                 
+    /** Create WorldGraphicsItem for given item */
     WorldGraphicsItem* newGraphicsItem(StepCore::Item* item, WorldModel* worldModel) const;
 
+    /** Create ItemMenuHandler for given object */
     ItemMenuHandler* newItemMenuHandler(StepCore::Object* object,
                         WorldModel* worldModel, QObject* parent) const;
 
+    /** Returns true if the object has assosiated icon */
     bool hasObjectIcon(const StepCore::MetaObject* mObject) const;
+    /** Get assosiated icon for given object */
     const KIcon& objectIcon(const StepCore::MetaObject* mObject) const;
 
+    /** Get class names of the objects on ItemPalette */
     QList<QString> paletteMetaObjects() const { return _paletteMetaObjects; }
+    /** Get class names of the objects in the order of creation */
     QList<QString> orderedMetaObjects() const { return _orderedMetaObjects; }
 
 private:
