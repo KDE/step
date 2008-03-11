@@ -189,7 +189,7 @@ void WorldGraphicsItem::drawCircularArrow(QPainter* painter, double angle, doubl
     drawCircularArrow(painter, StepCore::Vector2d(0), angle, radius);
 }
 
-void WorldGraphicsItem::mouseSetPos(const QPointF& pos, const QPointF& /*diff*/, MovingState)
+void WorldGraphicsItem::mouseSetPos(const QPointF&, const QPointF& pos, const QPointF&, MovingState)
 {
     const StepCore::MetaProperty* property = _item->metaObject()->property("position");
     if(property != NULL) {
@@ -248,18 +248,18 @@ void WorldGraphicsItem::mouseMoveEvent(QGraphicsSceneMouseEvent *event)
         }
 
         if(_exclusiveMoving) {
-            mouseSetPos(newPos, pdiff, movingState);
+            mouseSetPos(event->scenePos(), newPos, pdiff, movingState);
         } else {
             // Move all selected items
             foreach(QGraphicsItem *item, scene()->selectedItems()) {
                 if(item != this && (item->flags() & ItemIsMovable) &&
                             (!item->parentItem() || !item->parentItem()->isSelected())) {
                     WorldGraphicsItem* worldItem = dynamic_cast<WorldGraphicsItem*>(item);
-                    if(worldItem) worldItem->mouseSetPos(item->pos() + diff, pdiff, movingState);
+                    if(worldItem) worldItem->mouseSetPos(event->scenePos(), item->pos() + diff, pdiff, movingState);
                 }
             }
             if(!this->parentItem() || !this->parentItem()->isSelected())
-                mouseSetPos(newPos, pdiff, movingState);
+                mouseSetPos(event->scenePos(), newPos, pdiff, movingState);
         }
     } else {
         event->ignore();
@@ -274,17 +274,17 @@ void WorldGraphicsItem::mouseReleaseEvent(QGraphicsSceneMouseEvent *event)
         QPointF diff = newPos - pos();
 
         if(_exclusiveMoving) {
-            mouseSetPos(newPos, pdiff, Finished);
+            mouseSetPos(event->scenePos(), newPos, pdiff, Finished);
         } else {
             foreach(QGraphicsItem *item, scene()->selectedItems()) {
                 if(item != this && (item->flags() & ItemIsMovable) &&
                             (!item->parentItem() || !item->parentItem()->isSelected())) {
                     WorldGraphicsItem* worldItem = dynamic_cast<WorldGraphicsItem*>(item);
-                    if(worldItem) worldItem->mouseSetPos(item->pos() + diff, pdiff, Finished);
+                    if(worldItem) worldItem->mouseSetPos(event->scenePos(), item->pos() + diff, pdiff, Finished);
                 }
             }
             if(!this->parentItem() || !this->parentItem()->isSelected())
-                mouseSetPos(newPos, pdiff, Finished);
+                mouseSetPos(event->scenePos(), newPos, pdiff, Finished);
         }
 
         _worldModel->endMacro();
@@ -321,7 +321,7 @@ void WorldGraphicsItem::hoverLeaveEvent(QGraphicsSceneHoverEvent* /*event*/)
 
 QVariant WorldGraphicsItem::itemChange(GraphicsItemChange change, const QVariant& value)
 {
-    if(change == ItemSelectedChange && value.toBool() != _isSelected && scene()) {
+    if(change == ItemSelectedHasChanged && value.toBool() != _isSelected && scene()) {
         _isSelected = value.toBool();
         if(_isSelected) setZValue(zValue() + 1);
         else setZValue(zValue() - 1);
@@ -350,6 +350,10 @@ void WorldGraphicsItem::stateChanged()
 {
 }
 
+void WorldGraphicsItem::paint(QPainter*, const QStyleOptionGraphicsItem*, QWidget*)
+{
+}
+
 void WorldGraphicsItem::contextMenuEvent(QGraphicsSceneContextMenuEvent* event)
 {
     event->accept();
@@ -371,7 +375,6 @@ ArrowHandlerGraphicsItem::ArrowHandlerGraphicsItem(StepCore::Item* item, WorldMo
     Q_ASSERT(_property->userTypeId() == qMetaTypeId<StepCore::Vector2d>());
     setFlag(QGraphicsItem::ItemIsMovable);
     setZValue(HANDLER_ZVALUE);
-    _isVisible = true;
     _exclusiveMoving = true;
     if(_property) _exclusiveMovingMessage = i18n("Change %1.%2", _item->name(), _property->name());
     else _exclusiveMovingMessage = i18n("Change %1", _item->name());
@@ -385,7 +388,7 @@ void ArrowHandlerGraphicsItem::paint(QPainter* painter, const QStyleOptionGraphi
 
 void ArrowHandlerGraphicsItem::viewScaleChanged()
 {
-    if(_isVisible) {
+    if(isVisible()) {
         prepareGeometryChange();
         double w = HANDLER_SIZE/currentViewScale()/2;
         _boundingRect = QRectF(-w, -w, w*2, w*2);
@@ -394,7 +397,7 @@ void ArrowHandlerGraphicsItem::viewScaleChanged()
 
 void ArrowHandlerGraphicsItem::worldDataChanged(bool)
 {
-    if(_isVisible) {
+    if(isVisible()) {
         //kDebug() << "ArrowHandlerGraphicsItem::worldDataChanged()" << endl;
         setPos(vectorToPoint(value()));
     }
@@ -402,9 +405,8 @@ void ArrowHandlerGraphicsItem::worldDataChanged(bool)
 
 QVariant ArrowHandlerGraphicsItem::itemChange(GraphicsItemChange change, const QVariant& value)
 {
-    if(change == QGraphicsItem::ItemVisibleChange) {
-        _isVisible = value.toBool();
-        if(_isVisible) {
+    if(change == QGraphicsItem::ItemVisibleHasChanged) {
+        if(isVisible()) {
             viewScaleChanged();
             worldDataChanged(false);
         }
@@ -412,7 +414,8 @@ QVariant ArrowHandlerGraphicsItem::itemChange(GraphicsItemChange change, const Q
     return WorldGraphicsItem::itemChange(change, value);
 }
 
-void ArrowHandlerGraphicsItem::mouseSetPos(const QPointF& pos, const QPointF& diff, MovingState movingState)
+void ArrowHandlerGraphicsItem::mouseSetPos(const QPointF&, const QPointF& pos,
+                                            const QPointF&, MovingState)
 {
     setValue(pointToVector(pos));
 }
@@ -469,7 +472,6 @@ CircularArrowHandlerGraphicsItem::CircularArrowHandlerGraphicsItem(StepCore::Ite
     Q_ASSERT(_property->userTypeId() == qMetaTypeId<double>());
     setFlag(QGraphicsItem::ItemIsMovable);
     setZValue(HANDLER_ZVALUE);
-    _isVisible = true;
 }
 
 void CircularArrowHandlerGraphicsItem::paint(QPainter* painter, const QStyleOptionGraphicsItem* /*option*/, QWidget* /*widget*/)
@@ -480,7 +482,7 @@ void CircularArrowHandlerGraphicsItem::paint(QPainter* painter, const QStyleOpti
 
 void CircularArrowHandlerGraphicsItem::viewScaleChanged()
 {
-    if(_isVisible) {
+    if(isVisible()) {
         prepareGeometryChange();
         double w = HANDLER_SIZE/currentViewScale()/2;
         _boundingRect = QRectF(-w, -w, w*2, w*2);
@@ -490,7 +492,7 @@ void CircularArrowHandlerGraphicsItem::viewScaleChanged()
 
 void CircularArrowHandlerGraphicsItem::worldDataChanged(bool)
 {
-    if(_isVisible) {
+    if(isVisible()) {
         double s = currentViewScale();
         double angle = value();
         setPos(_radius*cos(angle)/s, _radius*sin(angle)/s);
@@ -499,9 +501,8 @@ void CircularArrowHandlerGraphicsItem::worldDataChanged(bool)
 
 QVariant CircularArrowHandlerGraphicsItem::itemChange(GraphicsItemChange change, const QVariant& value)
 {
-    if(change == QGraphicsItem::ItemVisibleChange) {
-        _isVisible = value.toBool();
-        if(_isVisible) {
+    if(change == QGraphicsItem::ItemVisibleHasChanged) {
+        if(isVisible()) {
             viewScaleChanged();
             worldDataChanged(false);
         }

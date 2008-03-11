@@ -442,53 +442,76 @@ StepCore::Item* WorldScene::snapHighlight(QPointF pos, SnapFlags flags, const Sn
     if(flags.testFlag(SnapRigidBody)) types << StepCore::RigidBody::staticMetaObject();
     if(moreTypes) types << *moreTypes;
 
-    foreach(QGraphicsItem* gItem, items(pos)) {
-        StepCore::Item* item = itemFromGraphics(gItem);
-        if(!item) continue;
-        foreach(const StepCore::MetaObject* type, types)
-            if(item->metaObject()->inherits(type)) {
-                if(_snapItem != gItem) {
-                    snapClear();
-                    _snapItem = static_cast<WorldGraphicsItem*>(gItem);
-                    _snapItem->setItemHighlighted(true);
-                }
-                _snapPos = pos;
-                _snapToolTip = _worldModel->formatNameFull(item);
-                _snapTimer->start();
-                return item;
-            }
+    StepCore::Item* item = 0;
+    QGraphicsItem* gItem = 0;
+    foreach(gItem, items(pos)) {
+        item = itemFromGraphics(gItem); if(!item) continue;
+        if(flags.testFlag(SnapParticle) && item->metaObject()->inherits<StepCore::Particle>()) break;
+        if(flags.testFlag(SnapRigidBody) && item->metaObject()->inherits<StepCore::RigidBody>()) break;
+
+        if(moreTypes) {
+            bool found = false;
+            foreach(const StepCore::MetaObject* type, *moreTypes)
+                if(item->metaObject()->inherits(type)) { found = true; break; }
+            if(found) break;
+        }
+        item = NULL;
     }
 
-    snapClear();
-    return 0;
+    if(item) {
+        if(_snapItem != gItem) {
+            snapClear();
+            _snapItem = static_cast<WorldGraphicsItem*>(gItem);
+            _snapItem->setItemHighlighted(true);
+        }
+        _snapPos = pos;
+        _snapToolTip = _worldModel->formatNameFull(item);
+        _snapTimer->start();
+        return item;
+
+    } else {
+        snapClear();
+        return 0;
+    }
 }
 
-StepCore::Item* WorldScene::snapAttach(QPointF pos, SnapFlags flags, const SnapList* moreTypes,
-                                                        StepCore::Item* item, int num)
+StepCore::Item* WorldScene::snapItem(QPointF pos, SnapFlags flags, const SnapList* moreTypes,
+                                            int movingState, StepCore::Item* item, int num)
 {
     QString n;
     if(num >= 0) n = QString::number(num);
 
     StepCore::Item* sItem = snapHighlight(pos, flags, moreTypes);
-    if(sItem) {
-        _worldModel->setProperty(item, item->metaObject()->property("body"+n),
-                    QVariant::fromValue<StepCore::Object*>(sItem), WorldModel::UndoNoMerge);
 
-        StepCore::Vector2d lPos(0, 0);
+    if(movingState == WorldGraphicsItem::Started || movingState == WorldGraphicsItem::Moving) {
+        if(movingState == WorldGraphicsItem::Started)
+            _worldModel->setProperty(item, item->metaObject()->property("body"+n),
+                    QVariant::fromValue<StepCore::Object*>(NULL), WorldModel::UndoNoMerge);
 
-        if(!flags.testFlag(SnapOnCenter) && sItem->metaObject()->inherits<StepCore::RigidBody>())
-            lPos = static_cast<StepCore::RigidBody*>(sItem)->pointWorldToLocal(WorldGraphicsItem::pointToVector(pos));
-
-        _worldModel->setProperty(item, item->metaObject()->property("localPosition"+n), QVariant::fromValue(lPos));
-
-    } else {
-        _worldModel->setProperty(item, item->metaObject()->property("body"+n),
-                                QVariant::fromValue<StepCore::Object*>(0), WorldModel::UndoNoMerge);
         _worldModel->setProperty(item, item->metaObject()->property("localPosition"+n),
-                                        QVariant::fromValue(WorldGraphicsItem::pointToVector(pos)));
+                                QVariant::fromValue(WorldGraphicsItem::pointToVector(pos)));
+
+    } else if(movingState == WorldGraphicsItem::Finished) {
+        if(sItem) {
+            _worldModel->setProperty(item, item->metaObject()->property("body"+n),
+                        QVariant::fromValue<StepCore::Object*>(sItem), WorldModel::UndoNoMerge);
+
+            StepCore::Vector2d lPos(0, 0);
+
+            if(!flags.testFlag(SnapOnCenter) && sItem->metaObject()->inherits<StepCore::RigidBody>())
+                lPos = static_cast<StepCore::RigidBody*>(sItem)->pointWorldToLocal(WorldGraphicsItem::pointToVector(pos));
+
+            _worldModel->setProperty(item, item->metaObject()->property("localPosition"+n), QVariant::fromValue(lPos));
+            snapClear();
+
+        } else {
+            _worldModel->setProperty(item, item->metaObject()->property("body"+n),
+                                    QVariant::fromValue<StepCore::Object*>(0), WorldModel::UndoNoMerge);
+            _worldModel->setProperty(item, item->metaObject()->property("localPosition"+n),
+                                            QVariant::fromValue(WorldGraphicsItem::pointToVector(pos)));
+        }
     }
 
-    snapClear();
     return sItem;
 }
 

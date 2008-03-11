@@ -259,7 +259,6 @@ bool BoxCreator::sceneEvent(QEvent* event)
         
         _worldModel->simulationPause();
         StepCore::Vector2d pos = WorldGraphicsItem::pointToVector(mouseEvent->scenePos());
-        StepCore::Box* box = static_cast<StepCore::Box*>(_item);
         StepCore::Vector2d position = (_topLeft + pos) / 2.0;
         StepCore::Vector2d size = _topLeft - pos;
         _worldModel->setProperty(_item, _item->metaObject()->property("position"), QVariant::fromValue(position));

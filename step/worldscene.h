@@ -51,6 +51,8 @@ class WorldScene: public QGraphicsScene
 
 public:
     typedef QList<const StepCore::MetaObject*> SnapList;
+
+    /** Flags for controling item snapping behaviour */
     enum SnapFlag {
         SnapOnCenter = 1,  ///< Snap to the center of item
         SnapParticle = 2,  ///< Allow snapping to Particle
@@ -82,19 +84,27 @@ public:
      *  \param moreTypes additional item types to snap */
     StepCore::Item* snapHighlight(QPointF pos, SnapFlags flags, const SnapList* moreTypes = 0);
 
+    /** Remove highlighting */
+    void snapClear();
+
     /** Attach item to another item at given position
      *  \param pos position
      *  \param flags snap flags
      *  \param moreTypes additional item types to snap
+     *  \param movingState moving state of the item
      *  \param item StepCore::Item to attach
      *  \param num Num of the end to attach (or -1)
+     *
+     *  If movingState equals Started or Moving this function
+     *  will only highlight potential body to attach and leave current
+     *  body detaches. It movingState equals Finished the function
+     *  will actually attach the body.
+     *
      *  This function sets "body" property of the item to snapped item
      *  and "localPosition" property to the position on snapped item.
      *  If num >=0 then QString::number(num) is added to property names */
-    StepCore::Item* snapAttach(QPointF pos, SnapFlags flags, const SnapList* moreTypes,
-                                                        StepCore::Item* item, int num = -1);
-    /** Remove highlighting */
-    void snapClear();
+    StepCore::Item* snapItem(QPointF pos, SnapFlags flags, const SnapList* moreTypes,
+                                  int movingState, StepCore::Item* item, int num = -1);
 
     /** Get assosiated WorldModel */
     WorldModel* worldModel() const { return _worldModel; }

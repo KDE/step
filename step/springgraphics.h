@@ -42,8 +42,8 @@ public:
     void worldDataChanged(bool);
 
 protected:
-    void mouseMoveEvent(QGraphicsSceneMouseEvent *event);
-    void mouseReleaseEvent(QGraphicsSceneMouseEvent *event);
+    void mouseSetPos(const QPointF&, const QPointF& pos, const QPointF& diff, MovingState movingState);
+
     int _num;
     bool _moving;
 };
@@ -62,7 +62,7 @@ public:
 protected:
     static void tryAttach(StepCore::Item* item, WorldScene* worldScene, const QPointF& pos, int num);
 
-    void mouseSetPos(const QPointF& pos, const QPointF& diff, MovingState);
+    void mouseSetPos(const QPointF&, const QPointF& pos, const QPointF& diff, MovingState);
     StepCore::Spring* spring() const {
         return static_cast<StepCore::Spring*>(_item); }
 

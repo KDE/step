@@ -109,6 +109,10 @@ protected:
 class WorldGraphicsItem: public QGraphicsItem
 {
 public:
+    /** Flags describing movingState when
+     *  moving item with the mouse */
+    enum MovingState { Started, Moving, Finished };
+
     /** Constructs WorldGraphicsItem */
     WorldGraphicsItem(StepCore::Item* item, WorldModel* worldModel, QGraphicsItem* parent = 0);
 
@@ -138,6 +142,9 @@ public:
      */
     virtual void worldDataChanged(bool dynamicOnly);
 
+    /** Virtual function to paint the item */
+    void paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget);
+
     /** Get item highlight state */
     bool isItemHighlighted() { return _isHighlighted; }
     /** Set item highlight state */
@@ -162,11 +169,10 @@ public:
     }
 
 protected:
-    enum MovingState { Started, Moving, Finished };
-
     /** Virtual function which is called when item is moved by the mouse. Default implementation
      *  tries to set "position" property of _item */
-    virtual void mouseSetPos(const QPointF& pos, const QPointF& diff, MovingState movingState);
+    virtual void mouseSetPos(const QPointF& scenePos, const QPointF& pos,
+                                const QPointF& diff, MovingState movingState);
 
     /** Returns current view scale of the scene */
     double currentViewScale() const;
@@ -195,6 +201,9 @@ protected:
     /** Set custum test for undo command for moving item. Works only if exclusiveMoving is true */
     void setExclusiveMovingMessage(const QString& message) { _exclusiveMovingMessage = message; }
 
+    /** Called when graphicsitem is changed */
+    QVariant itemChange(GraphicsItemChange change, const QVariant& value);
+
 protected:
     StepCore::Item* _item;
     WorldModel* _worldModel;
@@ -217,8 +226,6 @@ protected:
 
     void contextMenuEvent(QGraphicsSceneContextMenuEvent* event);
 
-    QVariant itemChange(GraphicsItemChange change, const QVariant& value);
-
 protected:
     static const QColor SELECTION_COLOR;     ///< Default color for selection rectangle
     static const int SELECTION_MARGIN = 4;   ///< Default distance from object to selection rectangle
@@ -237,7 +244,6 @@ protected:
 
     static const int COLOR_HIGHLIGHT_AMOUNT = 30; ///< Highligh amount (in percent for value component)
 };
-
 
 /** \brief Handler item that controls vector property */
 class ArrowHandlerGraphicsItem: public WorldGraphicsItem
@@ -267,11 +273,11 @@ protected:
      *  Default implementation sets property = value - positionProperty */
     virtual void setValue(const StepCore::Vector2d& value);
 
-    void mouseSetPos(const QPointF& pos, const QPointF& diff, MovingState movingState);
+    void mouseSetPos(const QPointF& scenePos, const QPointF& pos,
+                        const QPointF& diff, MovingState movingState);
     QVariant itemChange(GraphicsItemChange change, const QVariant& value);
     const StepCore::MetaProperty* _property;
     const StepCore::MetaProperty* _positionProperty;
-    bool  _isVisible;
 };
 
 /** \brief Handler item that controls angle property */
@@ -308,7 +314,6 @@ protected:
     void mouseReleaseEvent(QGraphicsSceneMouseEvent *event);
     const StepCore::MetaProperty* _property;
     const StepCore::MetaProperty* _positionProperty;
-    bool   _isVisible;
     double _radius;
 };
 

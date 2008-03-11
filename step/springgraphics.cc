@@ -52,10 +52,10 @@ bool SpringCreator::sceneEvent(QEvent* event)
         _worldModel->beginMacro(i18n("Create %1", _worldModel->newItemName(_className)));
 
         _item = _worldModel->newItem(className()); Q_ASSERT(_item != NULL);
-        _worldModel->setProperty(_item, _item->metaObject()->property("localPosition1"), vpos);
+        _worldScene->snapItem(pos, WorldScene::SnapParticle | WorldScene::SnapRigidBody, 0,
+                                            WorldGraphicsItem::Finished, _item, 1);
         _worldModel->setProperty(_item, _item->metaObject()->property("localPosition2"), vpos);
         _worldModel->setProperty(_item, _item->metaObject()->property("restLength"), 0);
-        _worldScene->snapAttach(pos, WorldScene::SnapParticle | WorldScene::SnapRigidBody, 0, _item, 1);
 
         _worldModel->selectionModel()->setCurrentIndex(_worldModel->objectIndex(_item),
                                                 QItemSelectionModel::ClearAndSelect);
@@ -70,10 +70,10 @@ bool SpringCreator::sceneEvent(QEvent* event)
         QPointF pos = mouseEvent->scenePos();
         QVariant vpos = QVariant::fromValue(WorldGraphicsItem::pointToVector(pos));
         _worldModel->simulationPause();
-        _worldModel->setProperty(_item, _item->metaObject()->property("localPosition2"), vpos);
+        _worldScene->snapItem(pos, WorldScene::SnapParticle | WorldScene::SnapRigidBody, 0,
+                                            WorldGraphicsItem::Moving, _item, 2);
         _worldModel->setProperty(_item, _item->metaObject()->property("restLength"), 
-                                                    static_cast<StepCore::Spring*>(_item)->length());
-        _worldScene->snapHighlight(pos, WorldScene::SnapParticle | WorldScene::SnapRigidBody);
+                                        static_cast<StepCore::Spring*>(_item)->length());
         return true;
 
     } else if(event->type() == QEvent::GraphicsSceneMouseRelease &&
@@ -81,7 +81,8 @@ bool SpringCreator::sceneEvent(QEvent* event)
         QPointF pos = mouseEvent->scenePos();
 
         _worldModel->simulationPause();
-        _worldScene->snapAttach(pos, WorldScene::SnapParticle | WorldScene::SnapRigidBody, 0, _item, 2);
+        _worldScene->snapItem(pos, WorldScene::SnapParticle | WorldScene::SnapRigidBody, 0,
+                                            WorldGraphicsItem::Finished, _item, 2);
         _worldModel->setProperty(_item, _item->metaObject()->property("restLength"), 
                                         static_cast<StepCore::Spring*>(_item)->length());
         _worldScene->snapClear();
@@ -105,6 +106,8 @@ SpringHandlerGraphicsItem::SpringHandlerGraphicsItem(StepCore::Item* item, World
     setFlag(QGraphicsItem::ItemIsMovable);
     setZValue(HANDLER_ZVALUE);
     setPos(0, 0);
+    setExclusiveMoving(true);
+    setExclusiveMovingMessage(i18n("Move end of %1", _item->name()));
 }
 
 void SpringHandlerGraphicsItem::paint(QPainter* painter, const QStyleOptionGraphicsItem* /*option*/, QWidget* /*widget*/)
@@ -127,39 +130,12 @@ void SpringHandlerGraphicsItem::worldDataChanged(bool)
                              static_cast<StepCore::Spring*>(_item)->position1()));
 }
 
-void SpringHandlerGraphicsItem::mouseMoveEvent(QGraphicsSceneMouseEvent *event)
+void SpringHandlerGraphicsItem::mouseSetPos(const QPointF& scenePos,
+                        const QPointF&, const QPointF&, MovingState movingState)
 {
-    if ((event->buttons() & Qt::LeftButton) && (flags() & ItemIsMovable)) {
-        _worldModel->simulationPause();
-        QString n = QString::number(_num);
-        if(!_moving) {
-            _moving = true;
-            _worldModel->beginMacro(i18n("Move end of %1", _item->name()));
-            _worldModel->setProperty(_item, _item->metaObject()->property("body"+n),
-                                    QVariant::fromValue<StepCore::Object*>(NULL), WorldModel::UndoNoMerge);
-        }
+    static_cast<WorldScene*>(scene())->snapItem(scenePos,
+        WorldScene::SnapParticle | WorldScene::SnapRigidBody, 0, movingState, _item, _num);
 
-        _worldModel->setProperty(_item, _item->metaObject()->property("localPosition"+n),
-                                            QVariant::fromValue(pointToVector(event->scenePos())));
-        static_cast<WorldScene*>(scene())->snapHighlight(event->scenePos(),
-                            WorldScene::SnapParticle | WorldScene::SnapRigidBody);
-
-    } else {
-        event->ignore();
-    }
-}
-
-void SpringHandlerGraphicsItem::mouseReleaseEvent(QGraphicsSceneMouseEvent *event)
-{
-    if(_moving) {
-        static_cast<WorldScene*>(scene())->snapAttach(event->scenePos(),
-                    WorldScene::SnapParticle | WorldScene::SnapRigidBody, 0, _item, _num);
-        _moving = false;
-        _worldModel->endMacro();
-
-    } else {
-        WorldGraphicsItem::mouseReleaseEvent(event);
-    }
 }
 
 SpringGraphicsItem::SpringGraphicsItem(StepCore::Item* item, WorldModel* worldModel)
@@ -296,7 +272,7 @@ void SpringGraphicsItem::stateChanged()
     update();
 }
 
-void SpringGraphicsItem::mouseSetPos(const QPointF& /*pos*/, const QPointF& diff, MovingState)
+void SpringGraphicsItem::mouseSetPos(const QPointF&, const QPointF& /*pos*/, const QPointF& diff, MovingState)
 {
     _worldModel->simulationPause();
 
