@@ -37,7 +37,7 @@ STEPCORE_META_OBJECT(Pin, "Pin: fixes position of a given point on the body", 0,
 
 STEPCORE_META_OBJECT(Stick, "Massless stick which can be connected to bodies", 0,
     STEPCORE_SUPER_CLASS(Item) STEPCORE_SUPER_CLASS(Joint),
-    STEPCORE_PROPERTY_RW(double, length, "m", "Length", length, setLength)
+    STEPCORE_PROPERTY_RW(double, restLength, "m", "Rest length of the stick", restLength, setRestLength)
     STEPCORE_PROPERTY_RW(Object*, body1, STEPCORE_UNITS_NULL, "Body1", body1, setBody1)
     STEPCORE_PROPERTY_RW(Object*, body2, STEPCORE_UNITS_NULL, "Body2", body2, setBody2)
     STEPCORE_PROPERTY_RW(StepCore::Vector2d, localPosition1, "m",
@@ -195,9 +195,9 @@ void Pin::getConstraintsInfo(ConstraintsInfo* info, int offset)
 
 }
 
-Stick::Stick(double length, Object* body1, Object* body2,
+Stick::Stick(double restLength, Object* body1, Object* body2,
            const Vector2d& localPosition1, const Vector2d& localPosition2)
-    : _length(length), _localPosition1(localPosition1), _localPosition2(localPosition2)
+    : _restLength(restLength), _localPosition1(localPosition1), _localPosition2(localPosition2)
 {
     setColor(0xffff0000);
     setBody1(body1);
@@ -276,7 +276,7 @@ int Stick::constraintsCount()
 {
     if(!_body1 && !_body2) return 0;
 
-    if(_length != 0) return 1; // XXX: add some epsilon here
+    if(_restLength != 0) return 1; // XXX: add some epsilon here
     else return 2;
 }
 
@@ -287,9 +287,9 @@ void Stick::getConstraintsInfo(ConstraintsInfo* info, int offset)
     Vector2d p = position2() - position1();
     Vector2d v = velocity2() - velocity1();
 
-    //qDebug("_length=%f", _length);
-    if(_length != 0) {
-        info->value[offset] = (p.norm2() - _length*_length)*0.5;
+    //qDebug("_restLength=%f", _restLength);
+    if(_restLength != 0) {
+        info->value[offset] = (p.norm2() - _restLength*_restLength)*0.5;
         info->derivative[offset] = p.innerProduct(v); 
 
         if(p[0] == 0 && p[1] == 0) p[0] = 0.1; //XXX: add epsilon
@@ -384,8 +384,8 @@ void Rope::getConstraintsInfo(ConstraintsInfo* info, int offset)
     Vector2d p = position2() - position1();
     Vector2d v = velocity2() - velocity1();
 
-    if(_length != 0) {
-        if(p.norm() >= _length) { // rope is in tension
+    if(_restLength != 0) {
+        if(p.norm() >= _restLength) { // rope is in tension
             Stick::getConstraintsInfo(info, offset);
             info->forceMax[offset] = 0;
         } else { // rope is free

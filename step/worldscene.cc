@@ -481,6 +481,7 @@ StepCore::Item* WorldScene::snapItem(QPointF pos, SnapFlags flags, const SnapLis
     QString n;
     if(num >= 0) n = QString::number(num);
 
+    _worldModel->simulationPause();
     StepCore::Item* sItem = snapHighlight(pos, flags, moreTypes);
 
     if(movingState == WorldGraphicsItem::Started || movingState == WorldGraphicsItem::Moving) {
@@ -488,28 +489,51 @@ StepCore::Item* WorldScene::snapItem(QPointF pos, SnapFlags flags, const SnapLis
             _worldModel->setProperty(item, item->metaObject()->property("body"+n),
                     QVariant::fromValue<StepCore::Object*>(NULL), WorldModel::UndoNoMerge);
 
-        _worldModel->setProperty(item, item->metaObject()->property("localPosition"+n),
+        if(flags.testFlag(SnapSetPosition))
+            _worldModel->setProperty(item, item->metaObject()->property("position"+n),
                                 QVariant::fromValue(WorldGraphicsItem::pointToVector(pos)));
 
+        if(flags.testFlag(SnapSetLocalPosition))
+            _worldModel->setProperty(item, item->metaObject()->property("localPosition"+n),
+                                QVariant::fromValue(WorldGraphicsItem::pointToVector(pos)));
+
+        if(flags.testFlag(SnapSetAngle) && movingState == WorldGraphicsItem::Started)
+            _worldModel->setProperty(item, item->metaObject()->property("angle"+n),
+                                                            QVariant::fromValue(0.0));
+
     } else if(movingState == WorldGraphicsItem::Finished) {
+        StepCore::Vector2d wPos(WorldGraphicsItem::pointToVector(pos));
+        StepCore::Vector2d lPos(0,0);
+        double angle = 0.0;
+
         if(sItem) {
-            _worldModel->setProperty(item, item->metaObject()->property("body"+n),
-                        QVariant::fromValue<StepCore::Object*>(sItem), WorldModel::UndoNoMerge);
-
-            StepCore::Vector2d lPos(0, 0);
-
-            if(!flags.testFlag(SnapOnCenter) && sItem->metaObject()->inherits<StepCore::RigidBody>())
-                lPos = static_cast<StepCore::RigidBody*>(sItem)->pointWorldToLocal(WorldGraphicsItem::pointToVector(pos));
-
-            _worldModel->setProperty(item, item->metaObject()->property("localPosition"+n), QVariant::fromValue(lPos));
-            snapClear();
+            if(sItem->metaObject()->inherits<StepCore::Particle>()) {
+                wPos = static_cast<StepCore::Particle*>(sItem)->position();
+            } else if(sItem->metaObject()->inherits<StepCore::RigidBody>()) {
+                if(flags.testFlag(SnapOnCenter))
+                    wPos = static_cast<StepCore::RigidBody*>(sItem)->position();
+                else
+                    lPos = static_cast<StepCore::RigidBody*>(sItem)->pointWorldToLocal(wPos);
+                angle = static_cast<StepCore::RigidBody*>(sItem)->angle();
+            }
 
         } else {
-            _worldModel->setProperty(item, item->metaObject()->property("body"+n),
-                                    QVariant::fromValue<StepCore::Object*>(0), WorldModel::UndoNoMerge);
-            _worldModel->setProperty(item, item->metaObject()->property("localPosition"+n),
-                                            QVariant::fromValue(WorldGraphicsItem::pointToVector(pos)));
+            lPos = wPos;
         }
+
+        _worldModel->setProperty(item, item->metaObject()->property("body"+n),
+                    QVariant::fromValue<StepCore::Object*>(sItem), WorldModel::UndoNoMerge);
+
+        if(flags.testFlag(SnapSetPosition))
+            _worldModel->setProperty(item, item->metaObject()->property("position"+n),
+                                                                QVariant::fromValue(wPos));
+        if(flags.testFlag(SnapSetLocalPosition))
+            _worldModel->setProperty(item, item->metaObject()->property("localPosition"+n),
+                                                                QVariant::fromValue(lPos));
+        if(flags.testFlag(SnapSetAngle))
+            _worldModel->setProperty(item, item->metaObject()->property("angle"+n), angle);
+
+        snapClear();
     }
 
     return sItem;

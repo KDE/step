@@ -26,7 +26,7 @@
     <item class="Stick" id="4">
         <name>stick1</name>
         <color>#ffff0000</color>
-        <length>1</length>
+        <restLength>1</restLength>
         <body1>2</body1>
         <body2>3</body2>
         <localPosition1>(0,0)</localPosition1>
@@ -36,7 +36,7 @@
     <item class="Stick" id="5">
         <name>stick2</name>
         <color>#ffff0000</color>
-        <length>1</length>
+        <restLength>1</restLength>
         <body1>0</body1>
         <body2>2</body2>
         <localPosition1>(0,2)</localPosition1>

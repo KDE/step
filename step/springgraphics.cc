@@ -31,83 +31,16 @@
 
 #include <cmath>
 
-void SpringCreator::start()
-{
-    showMessage(MessageFrame::Information,
-        i18n("Press left mouse button to position first end of the %1\n"
-             "then drag and release it to position second end", className()));
-}
-
-bool SpringCreator::sceneEvent(QEvent* event)
-{
-    QGraphicsSceneMouseEvent* mouseEvent = static_cast<QGraphicsSceneMouseEvent*>(event);
-    if(event->type() == QEvent::GraphicsSceneMouseMove && _item == NULL) {
-        _worldScene->snapHighlight(mouseEvent->scenePos(), WorldScene::SnapParticle | WorldScene::SnapRigidBody);
-        return false;
-
-    } else if(event->type() == QEvent::GraphicsSceneMousePress && mouseEvent->button() == Qt::LeftButton) {
-        QPointF pos = mouseEvent->scenePos();
-        QVariant vpos = QVariant::fromValue(WorldGraphicsItem::pointToVector(pos));
-        _worldModel->simulationPause();
-        _worldModel->beginMacro(i18n("Create %1", _worldModel->newItemName(_className)));
-
-        _item = _worldModel->newItem(className()); Q_ASSERT(_item != NULL);
-        _worldScene->snapItem(pos, WorldScene::SnapParticle | WorldScene::SnapRigidBody, 0,
-                                            WorldGraphicsItem::Finished, _item, 1);
-        _worldModel->setProperty(_item, _item->metaObject()->property("localPosition2"), vpos);
-        _worldModel->setProperty(_item, _item->metaObject()->property("restLength"), 0);
-
-        _worldModel->selectionModel()->setCurrentIndex(_worldModel->objectIndex(_item),
-                                                QItemSelectionModel::ClearAndSelect);
-
-        showMessage(MessageFrame::Information,
-            i18n("Release left mouse button to position second end of the %1", className()));
-
-        return true;
-
-    } else if(event->type() == QEvent::GraphicsSceneMouseMove &&
-                    mouseEvent->buttons() & Qt::LeftButton) {
-        QPointF pos = mouseEvent->scenePos();
-        QVariant vpos = QVariant::fromValue(WorldGraphicsItem::pointToVector(pos));
-        _worldModel->simulationPause();
-        _worldScene->snapItem(pos, WorldScene::SnapParticle | WorldScene::SnapRigidBody, 0,
-                                            WorldGraphicsItem::Moving, _item, 2);
-        _worldModel->setProperty(_item, _item->metaObject()->property("restLength"), 
-                                        static_cast<StepCore::Spring*>(_item)->length());
-        return true;
-
-    } else if(event->type() == QEvent::GraphicsSceneMouseRelease &&
-                    mouseEvent->button() == Qt::LeftButton) {
-        QPointF pos = mouseEvent->scenePos();
-
-        _worldModel->simulationPause();
-        _worldScene->snapItem(pos, WorldScene::SnapParticle | WorldScene::SnapRigidBody, 0,
-                                            WorldGraphicsItem::Finished, _item, 2);
-        _worldModel->setProperty(_item, _item->metaObject()->property("restLength"), 
-                                        static_cast<StepCore::Spring*>(_item)->length());
-        _worldScene->snapClear();
-        _worldModel->endMacro();
-
-        showMessage(MessageFrame::Information,
-            i18n("%1 named '%2' created", className(), _item->name()),
-            MessageFrame::CloseButton | MessageFrame::CloseTimer);
-
-        setFinished();
-        return true;
-    }
-    return false;
-}
-
 SpringHandlerGraphicsItem::SpringHandlerGraphicsItem(StepCore::Item* item, WorldModel* worldModel, 
                                 QGraphicsItem* parent, int num)
-    : WorldGraphicsItem(item, worldModel, parent), _num(num), _moving(false)
+    : WorldGraphicsItem(item, worldModel, parent), _num(num)
 {
     Q_ASSERT(_num == 1 || _num == 2);
     setFlag(QGraphicsItem::ItemIsMovable);
     setZValue(HANDLER_ZVALUE);
-    setPos(0, 0);
     setExclusiveMoving(true);
     setExclusiveMovingMessage(i18n("Move end of %1", _item->name()));
+    setPos(0, 0);
 }
 
 void SpringHandlerGraphicsItem::paint(QPainter* painter, const QStyleOptionGraphicsItem* /*option*/, QWidget* /*widget*/)
@@ -130,11 +63,11 @@ void SpringHandlerGraphicsItem::worldDataChanged(bool)
                              static_cast<StepCore::Spring*>(_item)->position1()));
 }
 
-void SpringHandlerGraphicsItem::mouseSetPos(const QPointF& scenePos,
-                        const QPointF&, const QPointF&, MovingState movingState)
+void SpringHandlerGraphicsItem::mouseSetPos(const QPointF& pos, const QPointF&, MovingState movingState)
 {
-    static_cast<WorldScene*>(scene())->snapItem(scenePos,
-        WorldScene::SnapParticle | WorldScene::SnapRigidBody, 0, movingState, _item, _num);
+    static_cast<WorldScene*>(scene())->snapItem(parentItem()->mapToParent(pos),
+                    WorldScene::SnapParticle | WorldScene::SnapRigidBody |
+                    WorldScene::SnapSetLocalPosition, 0, movingState, _item, _num);
 
 }
 
@@ -272,7 +205,7 @@ void SpringGraphicsItem::stateChanged()
     update();
 }
 
-void SpringGraphicsItem::mouseSetPos(const QPointF&, const QPointF& /*pos*/, const QPointF& diff, MovingState)
+void SpringGraphicsItem::mouseSetPos(const QPointF& /*pos*/, const QPointF& diff, MovingState)
 {
     _worldModel->simulationPause();
 

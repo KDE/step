@@ -22,15 +22,13 @@
 #include "worldgraphics.h"
 #include <stepcore/joint.h>
 
-class AnchorCreator: public ItemCreator
+class AnchorCreator: public AttachableItemCreator
 {
 public:
     AnchorCreator(const QString& className, WorldModel* worldModel, WorldScene* worldScene)
-                        : ItemCreator(className, worldModel, worldScene) {}
-    bool sceneEvent(QEvent* event);
-
-    static void tryAttach(WorldModel* worldModel, WorldScene* worldScene,
-                          StepCore::Item* item, const QPointF& pos);
+        : AttachableItemCreator(className, worldModel, worldScene, WorldScene::SnapRigidBody |
+                        WorldScene::SnapParticle | WorldScene::SnapOnCenter |
+                        WorldScene::SnapSetPosition | WorldScene::SnapSetAngle, 0) {}
 };
 
 class AnchorGraphicsItem: public WorldGraphicsItem
@@ -44,27 +42,19 @@ public:
     void viewScaleChanged();
     void worldDataChanged(bool dynamicOnly);
 
-    void mouseMoveEvent(QGraphicsSceneMouseEvent *event);
-    void mouseReleaseEvent(QGraphicsSceneMouseEvent *event);
-
 protected:
+    void mouseSetPos(const QPointF& pos, const QPointF&, MovingState movingState);
     StepCore::Anchor* anchor() const;
-
-    QPainterPath _path;
-    bool         _moving;
 };
 
 /////////////////////////////////////////////////////////////////////////////////////////
 
-class PinCreator: public ItemCreator
+class PinCreator: public AttachableItemCreator
 {
 public:
     PinCreator(const QString& className, WorldModel* worldModel, WorldScene* worldScene)
-                        : ItemCreator(className, worldModel, worldScene) {}
-    bool sceneEvent(QEvent* event);
-
-    static void tryAttach(WorldModel* worldModel, WorldScene* worldScene,
-                          StepCore::Item* item, const QPointF& pos);
+        : AttachableItemCreator(className, worldModel, worldScene, WorldScene::SnapRigidBody |
+                            WorldScene::SnapSetPosition | WorldScene::SnapSetLocalPosition, 0) {}
 };
 
 class PinGraphicsItem: public WorldGraphicsItem
@@ -78,28 +68,20 @@ public:
     void viewScaleChanged();
     void worldDataChanged(bool dynamicOnly);
 
-    void mouseMoveEvent(QGraphicsSceneMouseEvent *event);
-    void mouseReleaseEvent(QGraphicsSceneMouseEvent *event);
-
 protected:
+    void mouseSetPos(const QPointF& pos, const QPointF&, MovingState movingState);
     StepCore::Pin* pin() const;
-
-    QPainterPath _path;
-    bool         _moving;
 };
 
 /////////////////////////////////////////////////////////////////////////////////////////
 
-class StickCreator: public ItemCreator
+class StickCreator: public AttachableItemCreator
 {
 public:
     StickCreator(const QString& className, WorldModel* worldModel, WorldScene* worldScene)
-                        : ItemCreator(className, worldModel, worldScene) {}
-    bool sceneEvent(QEvent* event);
-    void start();
-
-    static void tryAttach(WorldModel* worldModel, WorldScene* worldScene,
-                          StepCore::Item* item, const QPointF& pos, int num);
+                : AttachableItemCreator(className, worldModel, worldScene,
+                        WorldScene::SnapRigidBody | WorldScene::SnapParticle |
+                        WorldScene::SnapSetLocalPosition, 0, true) {}
 };
 
 class StickHandlerGraphicsItem: public WorldGraphicsItem
@@ -107,17 +89,12 @@ class StickHandlerGraphicsItem: public WorldGraphicsItem
 public:
     StickHandlerGraphicsItem(StepCore::Item* item, WorldModel* worldModel,
                                 QGraphicsItem* parent, int num);
-
-    void paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget);
-
     void viewScaleChanged();
     void worldDataChanged(bool);
 
 protected:
-    void mouseMoveEvent(QGraphicsSceneMouseEvent *event);
-    void mouseReleaseEvent(QGraphicsSceneMouseEvent *event);
+    void mouseSetPos(const QPointF& pos, const QPointF& diff, MovingState movingState);
     int  _num;
-    bool _moving;
 };
 
 class StickGraphicsItem: public WorldGraphicsItem

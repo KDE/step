@@ -102,6 +102,43 @@ protected:
     int _messageId;
 };
 
+/////////////////////////////////////////////////////////////////////////////////////////
+
+/** \brief ItemCreator for items that can be attached to other items */
+class AttachableItemCreator: public ItemCreator
+{
+public:
+    AttachableItemCreator(const QString& className, WorldModel* worldModel, WorldScene* worldScene)
+                : ItemCreator(className, worldModel, worldScene),
+                    _snapFlags(WorldScene::SnapParticle | WorldScene::SnapRigidBody |
+                    WorldScene::SnapSetPosition | WorldScene::SnapSetLocalPosition), _snapTypes(0), _twoEnds(false) {}
+
+    /** Constructs AttachableItemCreator
+     *
+     *  \param className class name
+     *  \param worldModel WorldModel
+     *  \param worldScene WorldScene
+     *  \param snapFlags WorldScene::SnapFlags for attaching
+     *  \param snapTypes Additional item types to attach
+     *  \param twoEnds true if this item has two ends (like spring or stick)
+     */
+    AttachableItemCreator(const QString& className, WorldModel* worldModel, WorldScene* worldScene,
+                            WorldScene::SnapFlags snapFlags, WorldScene::SnapList* snapTypes, bool twoEnds = false)
+                        : ItemCreator(className, worldModel, worldScene),
+                          _snapFlags(snapFlags), _snapTypes(snapTypes), _twoEnds(twoEnds) {}
+
+    bool sceneEvent(QEvent* event);
+    void start();
+    void abort();
+
+protected:
+    WorldScene::SnapFlags _snapFlags;
+    WorldScene::SnapList* _snapTypes;
+    bool                  _twoEnds;
+};
+
+/////////////////////////////////////////////////////////////////////////////////////////
+
 /** \brief Base class for all graphics items on the scene.
  *
  * This class provides interface for WorldScene and
@@ -142,7 +179,8 @@ public:
      */
     virtual void worldDataChanged(bool dynamicOnly);
 
-    /** Virtual function to paint the item */
+    /** Virtual function to paint the item. Default implementation
+     *  draws boundingRect() in grey color */
     void paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget);
 
     /** Get item highlight state */
@@ -171,8 +209,7 @@ public:
 protected:
     /** Virtual function which is called when item is moved by the mouse. Default implementation
      *  tries to set "position" property of _item */
-    virtual void mouseSetPos(const QPointF& scenePos, const QPointF& pos,
-                                const QPointF& diff, MovingState movingState);
+    virtual void mouseSetPos(const QPointF& pos, const QPointF& diff, MovingState movingState);
 
     /** Returns current view scale of the scene */
     double currentViewScale() const;
@@ -245,6 +282,8 @@ protected:
     static const int COLOR_HIGHLIGHT_AMOUNT = 30; ///< Highligh amount (in percent for value component)
 };
 
+/////////////////////////////////////////////////////////////////////////////////////////
+
 /** \brief Handler item that controls vector property */
 class ArrowHandlerGraphicsItem: public WorldGraphicsItem
 {
@@ -273,12 +312,13 @@ protected:
      *  Default implementation sets property = value - positionProperty */
     virtual void setValue(const StepCore::Vector2d& value);
 
-    void mouseSetPos(const QPointF& scenePos, const QPointF& pos,
-                        const QPointF& diff, MovingState movingState);
+    void mouseSetPos(const QPointF& pos, const QPointF& diff, MovingState movingState);
     QVariant itemChange(GraphicsItemChange change, const QVariant& value);
     const StepCore::MetaProperty* _property;
     const StepCore::MetaProperty* _positionProperty;
 };
+
+/////////////////////////////////////////////////////////////////////////////////////////
 
 /** \brief Handler item that controls angle property */
 class CircularArrowHandlerGraphicsItem: public WorldGraphicsItem
@@ -316,6 +356,8 @@ protected:
     const StepCore::MetaProperty* _positionProperty;
     double _radius;
 };
+
+/////////////////////////////////////////////////////////////////////////////////////////
 
 /** \brief Base class for item context menu handlers.
  * The menu handler is created before showing context menu

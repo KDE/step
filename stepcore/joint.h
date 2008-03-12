@@ -123,15 +123,15 @@ class Stick: public Item, public Joint
 
 public:
     /** Constructs Stick */
-    explicit Stick(double length = 1, 
+    explicit Stick(double restLength = 1, 
                Object* body1 = 0, Object* body2 = 0,
                const Vector2d& localPosition1 = Vector2d(0),
                const Vector2d& localPosition2 = Vector2d(0));
 
-    /** Get the length of the stick */
-    double length() const { return _length; }
-    /** Set the length of the stick */
-    void   setLength(double length) { _length = length; }
+    /** Get the restLength of the stick */
+    double restLength() const { return _restLength; }
+    /** Set the restLength of the stick */
+    void   setRestLength(double restLength) { _restLength = restLength; }
 
     /** Get pointer to the first connected body */
     Object* body1() const { return _body1; }
@@ -180,7 +180,7 @@ public:
     void getConstraintsInfo(ConstraintsInfo* info, int offset);
 
 protected:
-    double   _length;
+    double   _restLength;
     Object*  _body1;
     Object*  _body2;
     Vector2d _localPosition1;

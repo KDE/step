@@ -54,9 +54,12 @@ public:
 
     /** Flags for controling item snapping behaviour */
     enum SnapFlag {
-        SnapOnCenter = 1,  ///< Snap to the center of item
-        SnapParticle = 2,  ///< Allow snapping to Particle
-        SnapRigidBody = 4  ///< Allow snapping to RigidBody
+        SnapOnCenter = 1,         ///< Snap to the center of the body
+        SnapSetPosition = 2,      ///< Set position property
+        SnapSetAngle = 4,         ///< Set angle property
+        SnapSetLocalPosition = 8, ///< Set localPosition property
+        SnapParticle = 256,         ///< Allow snapping to Particle
+        SnapRigidBody = 512        ///< Allow snapping to RigidBody
     };
     Q_DECLARE_FLAGS(SnapFlags, SnapFlag)
 
@@ -101,8 +104,9 @@ public:
      *  will actually attach the body.
      *
      *  This function sets "body" property of the item to snapped item
-     *  and "localPosition" property to the position on snapped item.
-     *  If num >=0 then QString::number(num) is added to property names */
+     *  and "position" and/or "localPosition" property to the position
+     *  on snapped item. If num >=0 then QString::number(num) is added
+     *  to property names */
     StepCore::Item* snapItem(QPointF pos, SnapFlags flags, const SnapList* moreTypes,
                                   int movingState, StepCore::Item* item, int num = -1);
 

@@ -22,13 +22,13 @@
 #include "worldgraphics.h"
 #include <stepcore/spring.h>
 
-class SpringCreator: public ItemCreator
+class SpringCreator: public AttachableItemCreator
 {
 public:
     SpringCreator(const QString& className, WorldModel* worldModel, WorldScene* worldScene)
-                        : ItemCreator(className, worldModel, worldScene) {}
-    bool sceneEvent(QEvent* event);
-    void start();
+                : AttachableItemCreator(className, worldModel, worldScene,
+                        WorldScene::SnapRigidBody | WorldScene::SnapParticle |
+                        WorldScene::SnapSetLocalPosition, 0, true) {}
 };
 
 class SpringHandlerGraphicsItem: public WorldGraphicsItem {
@@ -37,15 +37,12 @@ public:
                                 QGraphicsItem* parent, int num);
 
     void paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget);
-
     void viewScaleChanged();
     void worldDataChanged(bool);
 
 protected:
-    void mouseSetPos(const QPointF&, const QPointF& pos, const QPointF& diff, MovingState movingState);
-
+    void mouseSetPos(const QPointF& pos, const QPointF& diff, MovingState movingState);
     int _num;
-    bool _moving;
 };
 
 class SpringGraphicsItem: public WorldGraphicsItem {
@@ -62,7 +59,7 @@ public:
 protected:
     static void tryAttach(StepCore::Item* item, WorldScene* worldScene, const QPointF& pos, int num);
 
-    void mouseSetPos(const QPointF&, const QPointF& pos, const QPointF& diff, MovingState);
+    void mouseSetPos(const QPointF& pos, const QPointF& diff, MovingState);
     StepCore::Spring* spring() const {
         return static_cast<StepCore::Spring*>(_item); }
 

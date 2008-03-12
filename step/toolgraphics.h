@@ -51,6 +51,8 @@ namespace StepCore {
     class Tracer;
 }
 
+/////////////////////////////////////////////////////////////////////////////////////////
+
 class NoteGraphicsItem;
 class NoteTextEdit: public KTextEdit
 {
@@ -135,6 +137,8 @@ protected:
     friend class NoteTextEdit;
 };
 
+/////////////////////////////////////////////////////////////////////////////////////////
+
 class DataSourceWidget: public QWidget
 {
     Q_OBJECT
@@ -168,6 +172,8 @@ protected:
 
     bool _skipReadOnly;
 };
+
+/////////////////////////////////////////////////////////////////////////////////////////
 
 class GraphGraphicsItem: public QObject, public WorldGraphicsItem
 {
@@ -218,6 +224,8 @@ protected:
     KDialog*                  _confDialog;
     bool                      _confChanged;
 };
+
+/////////////////////////////////////////////////////////////////////////////////////////
 
 class QLCDNumber;
 class QFrame;
@@ -274,6 +282,8 @@ protected:
     KDialog* _confDialog;
     bool     _confChanged;
 };
+
+/////////////////////////////////////////////////////////////////////////////////////////
 
 class ControllerGraphicsItem: public QObject, public WorldGraphicsItem
 {
@@ -343,15 +353,15 @@ protected:
     bool     _confChanged;
 };
 
-class TracerCreator: public ItemCreator
+/////////////////////////////////////////////////////////////////////////////////////////
+
+class TracerCreator: public AttachableItemCreator
 {
 public:
     TracerCreator(const QString& className, WorldModel* worldModel, WorldScene* worldScene)
-                        : ItemCreator(className, worldModel, worldScene) {}
-    bool sceneEvent(QEvent* event);
-
-protected:
-    void tryAttach(const QPointF& pos);
+        : AttachableItemCreator(className, worldModel, worldScene,
+                            WorldScene::SnapRigidBody | WorldScene::SnapParticle |
+                            WorldScene::SnapSetLocalPosition, 0) {}
 };
 
 class TracerGraphicsItem: public WorldGraphicsItem
@@ -366,9 +376,8 @@ public:
     void worldDataChanged(bool dynamicOnly);
 
 protected:
+    void mouseSetPos(const QPointF& pos, const QPointF&, MovingState movingState);
     StepCore::Tracer* tracer() const;
-    void mouseMoveEvent(QGraphicsSceneMouseEvent *event);
-    void mouseReleaseEvent(QGraphicsSceneMouseEvent *event);
     QPolygonF _points;
     QPointF   _lastPos;
     double    _lastPointTime;

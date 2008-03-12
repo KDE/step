@@ -1770,49 +1770,6 @@ void ControllerMenuHandler::incTriggered()
 }
 
 ////////////////////////////////////////////////////
-bool TracerCreator::sceneEvent(QEvent* event)
-{
-    QGraphicsSceneMouseEvent* mouseEvent = static_cast<QGraphicsSceneMouseEvent*>(event);
-    if(event->type() == QEvent::GraphicsSceneMousePress && mouseEvent->button() == Qt::LeftButton) {
-        QPointF pos = mouseEvent->scenePos();
-        QVariant vpos = QVariant::fromValue(WorldGraphicsItem::pointToVector(pos));
-
-        _worldModel->simulationPause();
-        _worldModel->beginMacro(i18n("Create %1", _worldModel->newItemName(_className)));
-        _item = _worldModel->newItem(className()); Q_ASSERT(_item != NULL);
-
-        _worldModel->setProperty(_item, _item->metaObject()->property("localPosition"), vpos);
-        tryAttach(pos);
-
-        _worldModel->selectionModel()->setCurrentIndex(_worldModel->objectIndex(_item),
-                                                QItemSelectionModel::ClearAndSelect);
-        _worldModel->endMacro();
-
-        setFinished();
-        return true;
-    }
-    return false;
-}
-
-void TracerCreator::tryAttach(const QPointF& pos)
-{
-    foreach(QGraphicsItem* it, _worldScene->items(pos)) {
-        StepCore::Object* item = _worldScene->itemFromGraphics(it);
-        if(dynamic_cast<StepCore::Particle*>(item) || dynamic_cast<StepCore::RigidBody*>(item)) {
-            _worldModel->setProperty(_item, _item->metaObject()->property("body"),
-                                                    QVariant::fromValue(item), WorldModel::UndoNoMerge);
-
-            StepCore::Vector2d lPos(0, 0);
-            if(dynamic_cast<StepCore::RigidBody*>(item))
-                lPos = dynamic_cast<StepCore::RigidBody*>(item)->pointWorldToLocal(
-                                                        WorldGraphicsItem::pointToVector(pos));
-
-            _worldModel->setProperty(_item, _item->metaObject()->property("localPosition"),
-                                                        QVariant::fromValue(lPos));
-            break;
-        }
-    }
-}
 
 TracerGraphicsItem::TracerGraphicsItem(StepCore::Item* item, WorldModel* worldModel)
     : WorldGraphicsItem(item, worldModel), _moving(false), _movingDelta(0,0)
@@ -1838,55 +1795,6 @@ inline StepCore::Tracer* TracerGraphicsItem::tracer() const
     return static_cast<StepCore::Tracer*>(_item);
 }
 
-void TracerGraphicsItem::mouseMoveEvent(QGraphicsSceneMouseEvent *event)
-{
-    if ((event->buttons() & Qt::LeftButton) && (flags() & ItemIsMovable)) {
-        //QPointF newPos(mapToParent(event->pos()) - matrix().map(event->buttonDownPos(Qt::LeftButton)));
-        if(!_moving) _movingDelta = _lastPos - event->buttonDownScenePos(Qt::LeftButton);
-        QPointF newPos(event->scenePos() + _movingDelta);
-        QVariant vpos = QVariant::fromValue(pointToVector(newPos));
-
-        _worldModel->simulationPause();
-        if(!_moving) {
-            _moving = true;
-            _worldModel->beginMacro(i18n("Move %1", _item->name()));
-            _worldModel->setProperty(_item, _item->metaObject()->property("body"), 
-                                            QVariant::fromValue<StepCore::Object*>(NULL), WorldModel::UndoNoMerge);
-        }
-
-        _worldModel->setProperty(_item, _item->metaObject()->property("localPosition"), vpos);
-    } else {
-        event->ignore();
-    }
-}
-
-void TracerGraphicsItem::mouseReleaseEvent(QGraphicsSceneMouseEvent *event)
-{
-    if(_moving) {
-        QPointF pos = event->scenePos();
-        foreach(QGraphicsItem* it, scene()->items(pos)) {
-            StepCore::Object* item = static_cast<WorldScene*>(scene())->itemFromGraphics(it);
-            if(dynamic_cast<StepCore::Particle*>(item) || dynamic_cast<StepCore::RigidBody*>(item)) {
-                _worldModel->simulationPause();
-                _worldModel->setProperty(_item, _item->metaObject()->property("body"),
-                                                        QVariant::fromValue(item), WorldModel::UndoNoMerge);
-
-                StepCore::Vector2d lPos(0, 0);
-                if(dynamic_cast<StepCore::RigidBody*>(item))
-                    lPos = dynamic_cast<StepCore::RigidBody*>(item)->pointWorldToLocal(
-                                                        WorldGraphicsItem::pointToVector(pos));
-
-                _worldModel->setProperty(_item, _item->metaObject()->property("localPosition"),
-                                                        QVariant::fromValue(lPos));
-
-                break;
-            }
-        }
-
-        _moving = false;
-        _worldModel->endMacro();
-    } else WorldGraphicsItem::mouseReleaseEvent(event);
-}
 
 QPainterPath TracerGraphicsItem::shape() const
 {
@@ -1928,6 +1836,7 @@ void TracerGraphicsItem::viewScaleChanged()
     QPointF p = vectorToPoint(tracer()->position());
 
     _boundingRect = _points.boundingRect() | QRectF(p.x()-w, p.y()-w,2*w,2*w);
+    update();
 }
 
 void TracerGraphicsItem::worldDataChanged(bool)
@@ -1989,6 +1898,13 @@ void TracerGraphicsItem::worldDataChanged(bool)
     }
 }
 
+void TracerGraphicsItem::mouseSetPos(const QPointF&, const QPointF& diff, MovingState movingState)
+{
+    static_cast<WorldScene*>(scene())->snapItem(vectorToPoint(tracer()->position()) + diff,
+                WorldScene::SnapRigidBody | WorldScene::SnapParticle |
+                WorldScene::SnapSetLocalPosition, 0, movingState, _item);
+}
+
 void TracerMenuHandler::populateMenu(QMenu* menu)
 {
     menu->addAction(KIcon("edit-clear"), i18n("Clear trace"), this, SLOT(clearTracer()));
@@ -1999,7 +1915,7 @@ void TracerMenuHandler::populateMenu(QMenu* menu)
 void TracerMenuHandler::clearTracer()
 {
     _worldModel->simulationPause();
-    //_lastPointTime = -HUGE_VAL; // XXX
+    //_lastPointTime = -HUGE_VAL; // XX
     _worldModel->beginMacro(i18n("Clear tracer %1", _object->name()));
     _worldModel->setProperty(_object, _object->metaObject()->property("points"),
                                QVariant::fromValue(StepCore::Vector2dList()) );

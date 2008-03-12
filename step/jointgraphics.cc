@@ -28,60 +28,14 @@
 #include <QItemSelectionModel>
 #include <KLocale>
 
-bool AnchorCreator::sceneEvent(QEvent* event)
-{
-    QGraphicsSceneMouseEvent* mouseEvent = static_cast<QGraphicsSceneMouseEvent*>(event);
-    if(event->type() == QEvent::GraphicsSceneMousePress && mouseEvent->button() == Qt::LeftButton) {
-        _worldModel->simulationPause();
-        _worldModel->beginMacro(i18n("Create %1", _worldModel->newItemName(_className)));
-        _item = _worldModel->newItem(className()); Q_ASSERT(_item != NULL);
-
-        QPointF pos = mouseEvent->scenePos();
-        QVariant vpos = QVariant::fromValue(WorldGraphicsItem::pointToVector(pos));
-        _worldModel->setProperty(_item, _item->metaObject()->property("position"), vpos);
-        tryAttach(_worldModel, _worldScene, _item, pos);
-
-        _worldModel->selectionModel()->setCurrentIndex(_worldModel->objectIndex(_item),
-                                                QItemSelectionModel::ClearAndSelect);
-        _worldModel->endMacro();
-
-        setFinished();
-        return true;
-    }
-    return false;
-}
-
-void AnchorCreator::tryAttach(WorldModel* worldModel, WorldScene* worldScene,
-                              StepCore::Item *item, const QPointF& pos)
-{
-    foreach(QGraphicsItem* it, worldScene->items(pos)) {
-        StepCore::Item* itItem = worldScene->itemFromGraphics(it);
-        if(itItem->metaObject()->inherits<StepCore::RigidBody>()) {
-            worldModel->setProperty(item, item->metaObject()->property("body"),
-                                            QVariant::fromValue<StepCore::Object*>(itItem), WorldModel::UndoNoMerge);
-
-            worldModel->setProperty(item, item->metaObject()->property("position"),
-                        QVariant::fromValue(static_cast<StepCore::RigidBody*>(itItem)->position()));
-            break;
-
-        } else if(itItem->metaObject()->inherits<StepCore::Particle>()) {
-            worldModel->setProperty(item, item->metaObject()->property("body"),
-                                            QVariant::fromValue<StepCore::Object*>(itItem), WorldModel::UndoNoMerge);
-
-            worldModel->setProperty(item, item->metaObject()->property("position"),
-                        QVariant::fromValue(static_cast<StepCore::Particle*>(itItem)->position()));
-            break;
-        }
-    }
-}
-
 AnchorGraphicsItem::AnchorGraphicsItem(StepCore::Item* item, WorldModel* worldModel)
-    : WorldGraphicsItem(item, worldModel), _moving(false)
+    : WorldGraphicsItem(item, worldModel)
 {
     Q_ASSERT(dynamic_cast<StepCore::Anchor*>(_item) != NULL);
     setFlag(QGraphicsItem::ItemIsSelectable);
     setFlag(QGraphicsItem::ItemIsMovable);
     setZValue(HANDLER_ZVALUE);
+    setExclusiveMoving(true);
 }
 
 inline StepCore::Anchor* AnchorGraphicsItem::anchor() const
@@ -97,35 +51,12 @@ QPainterPath AnchorGraphicsItem::shape() const
     return path;
 }
 
-void AnchorGraphicsItem::mouseMoveEvent(QGraphicsSceneMouseEvent *event)
+void AnchorGraphicsItem::mouseSetPos(const QPointF& pos, const QPointF&, MovingState movingState)
 {
-    if ((event->buttons() & Qt::LeftButton) && (flags() & ItemIsMovable)) {
-        _worldModel->simulationPause();
-        if(!_moving) {
-            _moving = true;
-            _worldModel->beginMacro(i18n("Move %1", _item->name()));
-            _worldModel->setProperty(_item, _item->metaObject()->property("body"),
-                                            QVariant::fromValue<StepCore::Object*>(NULL), WorldModel::UndoNoMerge);
-        }
-
-        QPointF newPos(mapToParent(event->pos()) - matrix().map(event->buttonDownPos(Qt::LeftButton)));
-        _worldModel->setProperty(_item, _item->metaObject()->property("position"), 
-                                        QVariant::fromValue(pointToVector(newPos)));
-    } else {
-        event->ignore();
-    }
+    static_cast<WorldScene*>(scene())->snapItem(pos,
+                WorldScene::SnapRigidBody | WorldScene::SnapParticle | WorldScene::SnapOnCenter |
+                WorldScene::SnapSetPosition | WorldScene::SnapSetAngle, 0, movingState, _item);
 }
-
-void AnchorGraphicsItem::mouseReleaseEvent(QGraphicsSceneMouseEvent *event)
-{
-    if(_moving) {
-        AnchorCreator::tryAttach(_worldModel, static_cast<WorldScene*>(scene()),
-                                                        _item, event->scenePos());
-        _moving = false;
-        _worldModel->endMacro();
-    } else WorldGraphicsItem::mouseReleaseEvent(event);
-}
-
 
 void AnchorGraphicsItem::paint(QPainter* painter, const QStyleOptionGraphicsItem* /*option*/, QWidget* /*widget*/)
 {
@@ -154,77 +85,24 @@ void AnchorGraphicsItem::viewScaleChanged()
     double s = currentViewScale();
     _boundingRect |= QRectF((-HANDLER_SIZE-SELECTION_MARGIN)/s,  (-HANDLER_SIZE-SELECTION_MARGIN)/s,
                             (HANDLER_SIZE+SELECTION_MARGIN)*2/s,( HANDLER_SIZE+SELECTION_MARGIN)*2/s);
-//    worldDataChanged(false);
 }
 
-void AnchorGraphicsItem::worldDataChanged(bool /*dynamicOnly*/)
+void AnchorGraphicsItem::worldDataChanged(bool dynamicOnly)
 {
-    /*if(!dynamicOnly) {
-        viewScaleChanged();
-        update();
-    }*/
+    if(!dynamicOnly) update();
     setPos(vectorToPoint(anchor()->position()));       
 }
 
 //////////////////////////////////////////////////////////////////////////
 
-bool PinCreator::sceneEvent(QEvent* event)
-{
-    QGraphicsSceneMouseEvent* mouseEvent = static_cast<QGraphicsSceneMouseEvent*>(event);
-    if(event->type() == QEvent::GraphicsSceneMousePress && mouseEvent->button() == Qt::LeftButton) {
-        _worldModel->simulationPause();
-        _worldModel->beginMacro(i18n("Create %1", _worldModel->newItemName(_className)));
-        _item = _worldModel->newItem(className()); Q_ASSERT(_item != NULL);
-
-        QPointF pos = mouseEvent->scenePos();
-        QVariant vpos = QVariant::fromValue(WorldGraphicsItem::pointToVector(pos));
-        _worldModel->setProperty(_item, _item->metaObject()->property("position"), vpos);
-        tryAttach(_worldModel, _worldScene, _item, pos);
-
-        _worldModel->selectionModel()->setCurrentIndex(_worldModel->objectIndex(_item),
-                                                QItemSelectionModel::ClearAndSelect);
-        _worldModel->endMacro();
-
-        setFinished();
-        return true;
-    }
-    return false;
-}
-
-void PinCreator::tryAttach(WorldModel* worldModel, WorldScene* worldScene,
-                              StepCore::Item *item, const QPointF& pos)
-{
-    StepCore::Vector2d vpos = WorldGraphicsItem::pointToVector(pos);
-    foreach(QGraphicsItem* it, worldScene->items(pos)) {
-        StepCore::Item* itItem = worldScene->itemFromGraphics(it);
-        if(itItem->metaObject()->inherits<StepCore::RigidBody>()) {
-            worldModel->setProperty(item, item->metaObject()->property("body"),
-                                            QVariant::fromValue<StepCore::Object*>(itItem), WorldModel::UndoNoMerge);
-
-            //worldModel->setProperty(item, item->metaObject()->property("localPosition"),
-            //            QVariant::fromValue(static_cast<StepCore::RigidBody*>(itItem)->pointWorldToLocal(vpos)));
-            worldModel->setProperty(item, item->metaObject()->property("localPosition"),
-                        QVariant::fromValue(vpos - static_cast<StepCore::RigidBody*>(itItem)->position()));
-            break;
-
-        } else if(itItem->metaObject()->inherits<StepCore::Particle>()) {
-            worldModel->setProperty(item, item->metaObject()->property("body"),
-                                            QVariant::fromValue<StepCore::Object*>(itItem), WorldModel::UndoNoMerge);
-
-            worldModel->setProperty(item, item->metaObject()->property("localPosition"),
-                        QVariant::fromValue(vpos - static_cast<StepCore::Particle*>(itItem)->position()));
-            break;
-        }
-    }
-}
-
 PinGraphicsItem::PinGraphicsItem(StepCore::Item* item, WorldModel* worldModel)
-    : WorldGraphicsItem(item, worldModel), _moving(false)
+    : WorldGraphicsItem(item, worldModel)
 {
     Q_ASSERT(dynamic_cast<StepCore::Pin*>(_item) != NULL);
     setFlag(QGraphicsItem::ItemIsSelectable);
     setFlag(QGraphicsItem::ItemIsMovable);
     setZValue(HANDLER_ZVALUE);
+    setExclusiveMoving(true);
 }
 
 inline StepCore::Pin* PinGraphicsItem::pin() const
@@ -240,37 +118,12 @@ QPainterPath PinGraphicsItem::shape() const
     return path;
 }
 
-void PinGraphicsItem::mouseMoveEvent(QGraphicsSceneMouseEvent *event)
+void PinGraphicsItem::mouseSetPos(const QPointF& pos, const QPointF&, MovingState movingState)
 {
-    if ((event->buttons() & Qt::LeftButton) && (flags() & ItemIsMovable)) {
-        _worldModel->simulationPause();
-        if(!_moving) {
-            _moving = true;
-            _worldModel->beginMacro(i18n("Move %1", _item->name()));
-            _worldModel->setProperty(_item, _item->metaObject()->property("body"),
-                                            QVariant::fromValue<StepCore::Object*>(NULL), WorldModel::UndoNoMerge);
-            _worldModel->setProperty(_item, _item->metaObject()->property("localPosition"),
-                                        QVariant::fromValue(StepCore::Vector2d(0)));
-        }
-
-        QPointF newPos(mapToParent(event->pos()) - matrix().map(event->buttonDownPos(Qt::LeftButton)));
-        _worldModel->setProperty(_item, _item->metaObject()->property("position"), 
-                                        QVariant::fromValue(pointToVector(newPos)));
-    } else {
-        event->ignore();
-    }
+    static_cast<WorldScene*>(scene())->snapItem(pos,
+                WorldScene::SnapRigidBody | WorldScene::SnapSetPosition |
+                WorldScene::SnapSetLocalPosition, 0, movingState, _item);
 }
-
-void PinGraphicsItem::mouseReleaseEvent(QGraphicsSceneMouseEvent *event)
-{
-    if(_moving) {
-        PinCreator::tryAttach(_worldModel, static_cast<WorldScene*>(scene()),
-                                                        _item, event->scenePos());
-        _moving = false;
-        _worldModel->endMacro();
-    } else WorldGraphicsItem::mouseReleaseEvent(event);
-}
-
 
 void PinGraphicsItem::paint(QPainter* painter, const QStyleOptionGraphicsItem* /*option*/, QWidget* /*widget*/)
 {
@@ -298,126 +151,26 @@ void PinGraphicsItem::viewScaleChanged()
     double s = currentViewScale();
     _boundingRect |= QRectF((-HANDLER_SIZE-SELECTION_MARGIN)/s,  (-HANDLER_SIZE-SELECTION_MARGIN)/s,
                             (HANDLER_SIZE+SELECTION_MARGIN)*2/s,( HANDLER_SIZE+SELECTION_MARGIN)*2/s);
-//    worldDataChanged(false);
 }
 
-void PinGraphicsItem::worldDataChanged(bool /*dynamicOnly*/)
+void PinGraphicsItem::worldDataChanged(bool dynamicOnly)
 {
-    /*if(!dynamicOnly) {
-        viewScaleChanged();
-        update();
-    }*/
+    if(!dynamicOnly) update();
     setPos(vectorToPoint(pin()->position()));       
 }
 
 //////////////////////////////////////////////////////////////////////////
 
-void StickCreator::start()
-{
-    showMessage(MessageFrame::Information,
-        i18n("Press left mouse button to position first end of the %1\n"
-             "then drag and release it to position second end", className()));
-}
-
-bool StickCreator::sceneEvent(QEvent* event)
-{
-    QGraphicsSceneMouseEvent* mouseEvent = static_cast<QGraphicsSceneMouseEvent*>(event);
-    if(event->type() == QEvent::GraphicsSceneMousePress && mouseEvent->button() == Qt::LeftButton) {
-        QPointF pos = mouseEvent->scenePos();
-        QVariant vpos = QVariant::fromValue(WorldGraphicsItem::pointToVector(pos));
-        _worldModel->simulationPause();
-        _worldModel->beginMacro(i18n("Create %1", _worldModel->newItemName(_className)));
-
-        _item = _worldModel->newItem(className()); Q_ASSERT(_item != NULL);
-        _worldModel->setProperty(_item, _item->metaObject()->property("localPosition1"), vpos);
-        _worldModel->setProperty(_item, _item->metaObject()->property("localPosition2"), vpos);
-        tryAttach(_worldModel, _worldScene, _item, pos, 1);
-
-        _worldModel->selectionModel()->setCurrentIndex(_worldModel->objectIndex(_item),
-                                                QItemSelectionModel::ClearAndSelect);
-
-        showMessage(MessageFrame::Information,
-            i18n("Release left mouse button to position second end of the %1", className()));
-        
-        return true;
-
-    } else if(event->type() == QEvent::GraphicsSceneMouseMove &&
-                    mouseEvent->buttons() & Qt::LeftButton) {
-        QPointF pos = mouseEvent->scenePos();
-        QVariant vpos = QVariant::fromValue(WorldGraphicsItem::pointToVector(pos));
-        _worldModel->simulationPause();
-        _worldModel->setProperty(_item, _item->metaObject()->property("localPosition2"), vpos);
-        _worldModel->setProperty(_item, _item->metaObject()->property("length"), 
-                              (static_cast<StepCore::Stick*>(_item)->position2() -
-                               static_cast<StepCore::Stick*>(_item)->position1()).norm());
-        return true;
-
-    } else if(event->type() == QEvent::GraphicsSceneMouseRelease &&
-                    mouseEvent->button() == Qt::LeftButton) {
-        QPointF pos = mouseEvent->scenePos();
-
-        tryAttach(_worldModel, _worldScene, _item, pos, 2);
-        _worldModel->setProperty(_item, _item->metaObject()->property("length"), 
-                              (static_cast<StepCore::Stick*>(_item)->position2() -
-                               static_cast<StepCore::Stick*>(_item)->position1()).norm());
-
-        _worldModel->endMacro();
-
-        showMessage(MessageFrame::Information,
-            i18n("%1 named '%2' created", className(), _item->name()),
-            MessageFrame::CloseButton | MessageFrame::CloseTimer);
-
-        setFinished();
-        return true;
-    }
-    return false;
-}
-
-void StickCreator::tryAttach(WorldModel* worldModel, WorldScene* worldScene,
-                              StepCore::Item *item, const QPointF& pos, int num)
-{
-    StepCore::Vector2d vpos = WorldGraphicsItem::pointToVector(pos);
-    foreach(QGraphicsItem* it, worldScene->items(pos)) {
-        StepCore::Item* itItem = worldScene->itemFromGraphics(it);
-        if(itItem->metaObject()->inherits<StepCore::RigidBody>() ||
-                            itItem->metaObject()->inherits<StepCore::Particle>()) {
-
-            worldModel->setProperty(item, item->metaObject()->property(num == 1 ? "body1" : "body2"),
-                                                QVariant::fromValue<StepCore::Object*>(itItem), WorldModel::UndoNoMerge);
-
-            StepCore::Vector2d lPos(0, 0);
-            if(itItem->metaObject()->inherits<StepCore::RigidBody>())
-                lPos = static_cast<StepCore::RigidBody*>(itItem)->pointWorldToLocal(
-                                                            WorldGraphicsItem::pointToVector(pos));
-
-            worldModel->setProperty(item, item->metaObject()->property(
-                            num == 1 ? "localPosition1" : "localPosition2"), QVariant::fromValue(lPos));
-
-            /*
-            _worldModel->setProperty(item, item->metaObject()->property("length"), 
-                                                    static_cast<StepCore::Stick*>(item)->position2() -
-                                                    static_cast<StepCore::Stick*>(item)->position1());
-            */
-
-            break;
-        }
-    }
-}
-
 StickHandlerGraphicsItem::StickHandlerGraphicsItem(StepCore::Item* item, WorldModel* worldModel, 
                                 QGraphicsItem* parent, int num)
-    : WorldGraphicsItem(item, worldModel, parent), _num(num), _moving(false)
+    : WorldGraphicsItem(item, worldModel, parent), _num(num)
 {
     Q_ASSERT(_num == 1 || _num == 2);
     setFlag(QGraphicsItem::ItemIsMovable);
     setZValue(HANDLER_ZVALUE);
+    setExclusiveMoving(true);
+    setExclusiveMovingMessage(i18n("Move end of %1", _item->name()));
     setPos(0, 0);
-}
-
-void StickHandlerGraphicsItem::paint(QPainter* painter, const QStyleOptionGraphicsItem* /*option*/, QWidget* /*widget*/)
-{
-    painter->setPen(QPen(Qt::gray, 0));
-    painter->drawRect(_boundingRect);
 }
 
 void StickHandlerGraphicsItem::viewScaleChanged()
@@ -434,37 +187,16 @@ void StickHandlerGraphicsItem::worldDataChanged(bool)
                              static_cast<StepCore::Stick*>(_item)->position1()));
 }
 
-void StickHandlerGraphicsItem::mouseMoveEvent(QGraphicsSceneMouseEvent *event)
+void StickHandlerGraphicsItem::mouseSetPos(const QPointF& pos, const QPointF&, MovingState movingState)
 {
-    if ((event->buttons() & Qt::LeftButton) && (flags() & ItemIsMovable)) {
-        QPointF newPos(mapToParent(event->pos()) - matrix().map(event->buttonDownPos(Qt::LeftButton)));
-        QVariant vpos = QVariant::fromValue(pointToVector(parentItem()->mapToParent(newPos)));
+    static_cast<WorldScene*>(scene())->snapItem(parentItem()->mapToParent(pos),
+                    WorldScene::SnapParticle | WorldScene::SnapRigidBody |
+                    WorldScene::SnapSetLocalPosition, 0, movingState, _item, _num);
 
-        _worldModel->simulationPause();
-        if(!_moving) {
-            _moving = true;
-            _worldModel->beginMacro(i18n("Move end of %1", _item->name()));
-            if(_num == 1) _worldModel->setProperty(_item, _item->metaObject()->property("body1"),
-                                        QVariant::fromValue<StepCore::Object*>(NULL), WorldModel::UndoNoMerge);
-            else          _worldModel->setProperty(_item, _item->metaObject()->property("body2"),
-                                        QVariant::fromValue<StepCore::Object*>(NULL), WorldModel::UndoNoMerge);
-        }
+    StepCore::Stick* stick = static_cast<StepCore::Stick*>(_item);
+    _worldModel->setProperty(_item, _item->metaObject()->property("restLength"), 
+                                (stick->position2() - stick->position1()).norm());
 
-        if(_num == 1) _worldModel->setProperty(_item, _item->metaObject()->property("localPosition1"), vpos);
-        else          _worldModel->setProperty(_item, _item->metaObject()->property("localPosition2"), vpos);
-
-    } else {
-        event->ignore();
-    }
-}
-
-void StickHandlerGraphicsItem::mouseReleaseEvent(QGraphicsSceneMouseEvent *event)
-{
-    if(_moving) {
-        StickCreator::tryAttach(_worldModel, static_cast<WorldScene*>(scene()), _item, event->pos(), _num);
-        _worldModel->endMacro();
-        _moving = false;
-    } else WorldGraphicsItem::mouseReleaseEvent(event);
 }
 
 StickGraphicsItem::StickGraphicsItem(StepCore::Item* item, WorldModel* worldModel)
@@ -517,12 +249,12 @@ void StickGraphicsItem::paint(QPainter* painter, const QStyleOptionGraphicsItem*
     painter->setPen(Qt::NoPen);
     painter->setBrush(QBrush(QColor::fromRgba(stick()->color())));
     painter->setRenderHint(QPainter::Antialiasing, true);
-    painter->drawRect(QRectF(0, -_radius, stick()->length(), _radius*2));
+    painter->drawRect(QRectF(0, -_radius, stick()->restLength(), _radius*2));
 
-    if(stick()->length() < _rnorm + _radius/RADIUS) {
+    if(stick()->restLength() < _rnorm + _radius/RADIUS) {
         painter->setBrush(Qt::NoBrush);
         painter->setPen(QPen(QColor::fromRgba(stick()->color()), 0, Qt::DotLine));
-        painter->drawLine(QLineF(stick()->length(), 0, _rnorm, 0));
+        painter->drawLine(QLineF(stick()->restLength(), 0, _rnorm, 0));
     }
 
     if(isSelected()) {
@@ -547,7 +279,7 @@ void StickGraphicsItem::viewScaleChanged()
     _rnorm = r.norm();
     _radius = RADIUS/s;
 
-    if(_rnorm < stick()->length()) r *= stick()->length() / _rnorm;
+    if(_rnorm < stick()->restLength()) r *= stick()->restLength() / _rnorm;
     
     _boundingRect = QRectF(0, 0, r[0], r[1]).normalized();
     _boundingRect.adjust(-_radius-m, -_radius-m, _radius+m, _radius+m);
