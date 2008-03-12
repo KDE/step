@@ -6,7 +6,6 @@ Icon=step
 X-DocPath=step/index.html
 Terminal=false
 Name=Step
-Name[x-test]=xxStepxx
 GenericName=Interactive physical simulator
 Comment=Simulate physics experiments
 Categories=Qt;KDE;Education;Science;
