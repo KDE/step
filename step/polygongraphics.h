@@ -32,6 +32,7 @@ namespace StepCore {
     class Disk;
     class BasePolygon;
     class Polygon;
+    class Box;
 }
 
 class QTimer;
@@ -136,6 +137,41 @@ public:
 
 protected:
     StepCore::BasePolygon* basePolygon() const;
+};
+
+/////////////////////////////////////////////////////////////////////////////////////////
+
+class BoxVertexHandlerGraphicsItem: public AutoHideHandlerGraphicsItem
+{
+    Q_OBJECT
+
+public:
+    BoxVertexHandlerGraphicsItem(StepCore::Item* item, WorldModel* worldModel,
+                                        QGraphicsItem* parent, int vertexNum)
+        : AutoHideHandlerGraphicsItem(item, worldModel, parent, NULL, NULL), _vertexNum(vertexNum) {}
+
+    int vertexNum() const { return _vertexNum; }
+
+protected:
+    StepCore::Box* box() const;
+    StepCore::Vector2d value();
+    void setValue(const StepCore::Vector2d& value);
+
+    int _vertexNum;
+};
+
+class BoxGraphicsItem: public BasePolygonGraphicsItem
+{
+public:
+    BoxGraphicsItem(StepCore::Item* item, WorldModel* worldModel)
+        : BasePolygonGraphicsItem(item, worldModel), _vertexHandler(0) {}
+
+protected:
+    void hoverEnterEvent(QGraphicsSceneHoverEvent* event);
+    void hoverMoveEvent(QGraphicsSceneHoverEvent* event);
+    void hoverLeaveEvent(QGraphicsSceneHoverEvent* event);
+
+    QPointer<BoxVertexHandlerGraphicsItem> _vertexHandler;
 };
 
 /////////////////////////////////////////////////////////////////////////////////////////

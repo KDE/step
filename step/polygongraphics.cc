@@ -518,6 +518,65 @@ void BasePolygonGraphicsItem::viewScaleChanged()
 
 /////////////////////////////////////////////////////////////////////////////////////////
 
+inline StepCore::Box* BoxVertexHandlerGraphicsItem::box() const
+{
+    return static_cast<StepCore::Box*>(_item);
+}
+
+StepCore::Vector2d BoxVertexHandlerGraphicsItem::value() {
+    return box()->vectorLocalToWorld(box()->vertexes()[_vertexNum]);
+}
+
+void BoxVertexHandlerGraphicsItem::setValue(const StepCore::Vector2d& value)
+{
+    StepCore::Vector2d delta = box()->vectorWorldToLocal(value) - box()->vertexes()[_vertexNum];
+    StepCore::Vector2d newPos = box()->position() + box()->vectorLocalToWorld(delta/2.0);
+
+    switch(_vertexNum) {
+        case 3: delta[0] = -delta[0]; break;
+        case 0: delta[0] = -delta[0]; /* no break */
+        case 1: delta[1] = -delta[1]; break;
+        default: break;
+    }
+
+    _worldModel->setProperty(_item, _item->metaObject()->property("position"), QVariant::fromValue(newPos));
+    _worldModel->setProperty(_item, _item->metaObject()->property("size"),
+                                                                QVariant::fromValue(box()->size() + delta));
+}
+
+void BoxGraphicsItem::hoverMoveEvent(QGraphicsSceneHoverEvent* event)
+{
+    StepCore::Vector2d l = basePolygon()->pointWorldToLocal(pointToVector(event->scenePos()));
+    double s = currentViewScale();
+    int num = -1; double minDist2 = HANDLER_SNAP_SIZE*HANDLER_SNAP_SIZE/s/s;
+    for(unsigned int i=0; i<basePolygon()->vertexes().size(); ++i) {
+        double dist2 = (basePolygon()->vertexes()[i] - l).norm2();
+        if(dist2 < minDist2) { num = i; minDist2 = dist2; }
+    }
+
+    if(_vertexHandler && _vertexHandler->vertexNum() != num)
+        delete _vertexHandler;
+
+    if(num != -1 && !_vertexHandler)
+        _vertexHandler = new BoxVertexHandlerGraphicsItem(_item, _worldModel, this, num);
+
+    BasePolygonGraphicsItem::hoverMoveEvent(event);
+}
+
+void BoxGraphicsItem::hoverEnterEvent(QGraphicsSceneHoverEvent* event)
+{
+    if(_vertexHandler) _vertexHandler->setShouldBeDeleted(false);
+    BasePolygonGraphicsItem::hoverEnterEvent(event);
+}
+
+void BoxGraphicsItem::hoverLeaveEvent(QGraphicsSceneHoverEvent* event)
+{
+    if(_vertexHandler) _vertexHandler->setShouldBeDeleted(true);
+    BasePolygonGraphicsItem::hoverLeaveEvent(event);
+}
+
+/////////////////////////////////////////////////////////////////////////////////////////
+
 inline StepCore::Polygon* PolygonVertexHandlerGraphicsItem::polygon() const
 {
     return static_cast<StepCore::Polygon*>(_item);
