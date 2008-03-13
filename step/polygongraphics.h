@@ -54,6 +54,8 @@ protected:
     CircularArrowHandlerGraphicsItem* _angleHandler;
 };
 
+/////////////////////////////////////////////////////////////////////////////////////////
+
 class DiskCreator: public ItemCreator
 {
 public:
@@ -72,6 +74,8 @@ public:
 protected:
     StepCore::Disk* disk() const;
 };
+
+/////////////////////////////////////////////////////////////////////////////////////////
 
 class BoxCreator: public ItemCreator
 {
@@ -98,6 +102,8 @@ protected:
     void fixInertia();
 };
 
+/////////////////////////////////////////////////////////////////////////////////////////
+
 class BasePolygonGraphicsItem: public RigidBodyGraphicsItem
 {
 public:
@@ -107,6 +113,28 @@ public:
 protected:
     StepCore::BasePolygon* basePolygon() const;
 };
+
+/////////////////////////////////////////////////////////////////////////////////////////
+
+class PolygonVertexHandlerGraphicsItem;
+class PolygonGraphicsItem: public BasePolygonGraphicsItem
+{
+public:
+    PolygonGraphicsItem(StepCore::Item* item, WorldModel* worldModel)
+        : BasePolygonGraphicsItem(item, worldModel), _vertexHandler(0) {}
+
+    static void changePolygonVertex(WorldModel* worldModel, StepCore::Item* item,
+                                int vertexNum, const StepCore::Vector2d& value);
+                                    
+
+protected:
+    void hoverMoveEvent(QGraphicsSceneHoverEvent* event);
+    void hoverLeaveEvent(QGraphicsSceneHoverEvent* event);
+    StepCore::Polygon* polygon() const;
+    PolygonVertexHandlerGraphicsItem* _vertexHandler;
+};
+
+
 
 #endif
 

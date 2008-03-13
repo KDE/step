@@ -36,7 +36,6 @@ public:
     SpringHandlerGraphicsItem(StepCore::Item* item, WorldModel* worldModel,
                                 QGraphicsItem* parent, int num);
 
-    void paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget);
     void viewScaleChanged();
     void worldDataChanged(bool);
 

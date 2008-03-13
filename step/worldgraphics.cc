@@ -124,7 +124,7 @@ bool AttachableItemCreator::sceneEvent(QEvent* event)
                                                 QItemSelectionModel::ClearAndSelect);
 
         if(_twoEnds) {
-            _worldScene->snapItem(pos, _snapFlags, _snapTypes, WorldGraphicsItem::Started, _item, 1);
+            _worldScene->snapItem(pos, _snapFlags, _snapTypes, WorldGraphicsItem::Finished, _item, 1);
             _worldModel->setProperty(_item, _item->metaObject()->property("localPosition2"),
                                         QVariant::fromValue(WorldGraphicsItem::pointToVector(pos)));
             _worldModel->setProperty(_item, _item->metaObject()->property("restLength"), 0);
@@ -464,7 +464,7 @@ ArrowHandlerGraphicsItem::ArrowHandlerGraphicsItem(StepCore::Item* item, WorldMo
                          const StepCore::MetaProperty* positionProperty)
     : WorldGraphicsItem(item, worldModel, parent), _property(property), _positionProperty(positionProperty)
 {
-    Q_ASSERT(_property->userTypeId() == qMetaTypeId<StepCore::Vector2d>());
+    Q_ASSERT(!_property || _property->userTypeId() == qMetaTypeId<StepCore::Vector2d>());
     setFlag(QGraphicsItem::ItemIsMovable);
     setZValue(HANDLER_ZVALUE);
     _exclusiveMoving = true;
@@ -561,7 +561,7 @@ CircularArrowHandlerGraphicsItem::CircularArrowHandlerGraphicsItem(StepCore::Ite
                          const StepCore::MetaProperty* positionProperty)
     : WorldGraphicsItem(item, worldModel, parent), _property(property), _positionProperty(positionProperty), _radius(radius)
 {
-    Q_ASSERT(_property->userTypeId() == qMetaTypeId<double>());
+    Q_ASSERT(!_property || _property->userTypeId() == qMetaTypeId<double>());
     setFlag(QGraphicsItem::ItemIsMovable);
     setZValue(HANDLER_ZVALUE);
 }

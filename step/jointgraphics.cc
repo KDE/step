@@ -34,7 +34,7 @@ AnchorGraphicsItem::AnchorGraphicsItem(StepCore::Item* item, WorldModel* worldMo
     Q_ASSERT(dynamic_cast<StepCore::Anchor*>(_item) != NULL);
     setFlag(QGraphicsItem::ItemIsSelectable);
     setFlag(QGraphicsItem::ItemIsMovable);
-    setZValue(HANDLER_ZVALUE);
+    setZValue(JOINT_ZVALUE);
     setExclusiveMoving(true);
 }
 
@@ -101,7 +101,7 @@ PinGraphicsItem::PinGraphicsItem(StepCore::Item* item, WorldModel* worldModel)
     Q_ASSERT(dynamic_cast<StepCore::Pin*>(_item) != NULL);
     setFlag(QGraphicsItem::ItemIsSelectable);
     setFlag(QGraphicsItem::ItemIsMovable);
-    setZValue(HANDLER_ZVALUE);
+    setZValue(JOINT_ZVALUE);
     setExclusiveMoving(true);
 }
 
@@ -205,7 +205,7 @@ StickGraphicsItem::StickGraphicsItem(StepCore::Item* item, WorldModel* worldMode
     Q_ASSERT(dynamic_cast<StepCore::Stick*>(_item) != NULL);
     setFlag(QGraphicsItem::ItemIsSelectable);
     setFlag(QGraphicsItem::ItemIsMovable);
-    setZValue(FORCE_ZVALUE);
+    setZValue(JOINT_ZVALUE);
     _handler1 = new StickHandlerGraphicsItem(item, worldModel, this, 1);
     _handler2 = new StickHandlerGraphicsItem(item, worldModel, this, 2);
     _handler1->setVisible(false);

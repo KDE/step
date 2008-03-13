@@ -43,12 +43,6 @@ SpringHandlerGraphicsItem::SpringHandlerGraphicsItem(StepCore::Item* item, World
     setPos(0, 0);
 }
 
-void SpringHandlerGraphicsItem::paint(QPainter* painter, const QStyleOptionGraphicsItem* /*option*/, QWidget* /*widget*/)
-{
-    painter->setPen(QPen(Qt::gray, 0));
-    painter->drawRect(_boundingRect);
-}
-
 void SpringHandlerGraphicsItem::viewScaleChanged()
 {
     prepareGeometryChange();

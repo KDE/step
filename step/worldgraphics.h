@@ -269,7 +269,8 @@ protected:
     static const int ARROW_STROKE = 6;       ///< Default size of an arrow stroke
     static const int CIRCULAR_ARROW_STROKE = 6; ///< Default size of circular arrow stroke
 
-    static const int HANDLER_SIZE = 6;      ///< Default size of the handler
+    static const int HANDLER_SIZE = 6;          ///< Default size of the handler
+    static const int HANDLER_SNAP_SIZE = 12;    ///< Handler snapping radius
 
     static const int ANGLE_HANDLER_RADIUS = 15;     ///< Default radius of the angle handler for RigidBody
     static const int ANGULAR_VELOCITY_RADIUS = 30;  ///< Default radius of the angularVelocity handler for RigidBody
@@ -277,6 +278,7 @@ protected:
 
     static const int BODY_ZVALUE = 100;     ///< Default ZValue for bodies
     static const int FORCE_ZVALUE = 200;    ///< Default ZValue for forces
+    static const int JOINT_ZVALUE = 300;    ///< Default ZValue for joints
     static const int HANDLER_ZVALUE = 500;  ///< Default ZValue for handlers
 
     static const int COLOR_HIGHLIGHT_AMOUNT = 30; ///< Highligh amount (in percent for value component)

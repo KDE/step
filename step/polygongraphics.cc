@@ -140,6 +140,8 @@ void RigidBodyGraphicsItem::stateChanged()
     update();
 }
 
+/////////////////////////////////////////////////////////////////////////////////////////
+
 void DiskCreator::start()
 {
     showMessage(MessageFrame::Information,
@@ -227,6 +229,8 @@ void DiskGraphicsItem::viewScaleChanged()
     RigidBodyGraphicsItem::viewScaleChanged();
 }
 
+/////////////////////////////////////////////////////////////////////////////////////////
+
 void BoxCreator::start()
 {
     showMessage(MessageFrame::Information,
@@ -290,6 +294,8 @@ bool BoxCreator::sceneEvent(QEvent* event)
 
     return false;
 }
+
+/////////////////////////////////////////////////////////////////////////////////////////
 
 void PolygonCreator::fixCenterOfMass()
 {
@@ -442,6 +448,8 @@ bool PolygonCreator::sceneEvent(QEvent* event)
     return false;
 }
 
+/////////////////////////////////////////////////////////////////////////////////////////
+
 BasePolygonGraphicsItem::BasePolygonGraphicsItem(StepCore::Item* item, WorldModel* worldModel)
     : RigidBodyGraphicsItem(item, worldModel)
 {
@@ -471,5 +479,70 @@ void BasePolygonGraphicsItem::viewScaleChanged()
     }
 
     RigidBodyGraphicsItem::viewScaleChanged();
+}
+
+/////////////////////////////////////////////////////////////////////////////////////////
+
+class PolygonVertexHandlerGraphicsItem: public ArrowHandlerGraphicsItem
+{
+public:
+    PolygonVertexHandlerGraphicsItem(StepCore::Item* item, WorldModel* worldModel,
+                                QGraphicsItem* parent, int vertexNum)
+        : ArrowHandlerGraphicsItem(item, worldModel, parent, NULL, NULL), _vertexNum(vertexNum) {}
+
+    int vertexNum() const { return _vertexNum; }
+
+protected:
+    StepCore::Polygon* polygon() const { return static_cast<StepCore::Polygon*>(_item); }
+    StepCore::Vector2d value() { return polygon()->vectorLocalToWorld(polygon()->vertexes()[_vertexNum]); }
+    void setValue(const StepCore::Vector2d& value) {
+        PolygonGraphicsItem::changePolygonVertex(_worldModel, _item,
+                    _vertexNum, polygon()->vectorWorldToLocal(value));
+    }
+
+    int _vertexNum;
+};
+
+void PolygonGraphicsItem::hoverMoveEvent(QGraphicsSceneHoverEvent* event)
+{
+    StepCore::Vector2d l = polygon()->pointWorldToLocal(pointToVector(event->scenePos()));
+    double s = currentViewScale();
+    int num = -1; double minDist2 = HANDLER_SNAP_SIZE*HANDLER_SNAP_SIZE/s/s;
+    for(unsigned int i=0; i<polygon()->vertexes().size(); ++i) {
+        double dist2 = (polygon()->vertexes()[i] - l).norm2();
+        if(dist2 < minDist2) { num = i; minDist2 = dist2; }
+    }
+
+    if(_vertexHandler && _vertexHandler->vertexNum() != num) {
+        scene()->removeItem(_vertexHandler);
+        delete _vertexHandler; _vertexHandler = 0;
+    }
+
+    if(num != -1 && !_vertexHandler)
+        _vertexHandler = new PolygonVertexHandlerGraphicsItem(_item, _worldModel, this, num);
+
+    BasePolygonGraphicsItem::hoverMoveEvent(event);
+}
+
+void PolygonGraphicsItem::hoverLeaveEvent(QGraphicsSceneHoverEvent* event)
+{
+    if(_vertexHandler) {
+        scene()->removeItem(_vertexHandler);
+        delete _vertexHandler; _vertexHandler = 0;
+    }
+}
+
+inline StepCore::Polygon* PolygonGraphicsItem::polygon() const
+{
+    return static_cast<StepCore::Polygon*>(_item);
+}
+
+void PolygonGraphicsItem::changePolygonVertex(WorldModel* worldModel,
+            StepCore::Item* item, int vertexNum, const StepCore::Vector2d& value)
+{
+    StepCore::Vector2dList vertexes = static_cast<StepCore::Polygon*>(item)->vertexes();
+    Q_ASSERT(vertexNum < vertexes.size());
+    vertexes[vertexNum] = value;
+    worldModel->setProperty(item, item->metaObject()->property("vertexes"), QVariant::fromValue(vertexes));
 }
 
