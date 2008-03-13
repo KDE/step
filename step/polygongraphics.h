@@ -25,6 +25,7 @@
 
 #include "worldgraphics.h"
 #include <QPainterPath>
+#include <QPointer>
 
 namespace StepCore {
     class RigidBody;
@@ -32,6 +33,29 @@ namespace StepCore {
     class BasePolygon;
     class Polygon;
 }
+
+class QTimer;
+class AutoHideHandlerGraphicsItem: public QObject, public ArrowHandlerGraphicsItem
+{
+    Q_OBJECT
+
+public:
+    AutoHideHandlerGraphicsItem(StepCore::Item* item, WorldModel* worldModel,
+                    QGraphicsItem* parent, const StepCore::MetaProperty* property,
+                    const StepCore::MetaProperty* positionProperty = NULL);
+
+    void setShouldBeDeleted(bool enabled);
+    bool shouldBeDeleted() const { return _shouldBeDeleted; }
+
+protected:
+    void hoverEnterEvent(QGraphicsSceneHoverEvent* event);
+    void hoverLeaveEvent(QGraphicsSceneHoverEvent* event);
+
+    QTimer* _timer;
+    bool _shouldBeDeleted;
+};
+
+/////////////////////////////////////////////////////////////////////////////////////////
 
 class RigidBodyGraphicsItem: public WorldGraphicsItem
 {
@@ -116,7 +140,25 @@ protected:
 
 /////////////////////////////////////////////////////////////////////////////////////////
 
-class PolygonVertexHandlerGraphicsItem;
+class PolygonVertexHandlerGraphicsItem: public AutoHideHandlerGraphicsItem
+{
+    Q_OBJECT
+
+public:
+    PolygonVertexHandlerGraphicsItem(StepCore::Item* item, WorldModel* worldModel,
+                                        QGraphicsItem* parent, int vertexNum)
+        : AutoHideHandlerGraphicsItem(item, worldModel, parent, NULL, NULL), _vertexNum(vertexNum) {}
+
+    int vertexNum() const { return _vertexNum; }
+
+protected:
+    StepCore::Polygon* polygon() const;
+    StepCore::Vector2d value();
+    void setValue(const StepCore::Vector2d& value);
+
+    int _vertexNum;
+};
+
 class PolygonGraphicsItem: public BasePolygonGraphicsItem
 {
 public:
@@ -125,13 +167,14 @@ public:
 
     static void changePolygonVertex(WorldModel* worldModel, StepCore::Item* item,
                                 int vertexNum, const StepCore::Vector2d& value);
-                                    
 
 protected:
+    void hoverEnterEvent(QGraphicsSceneHoverEvent* event);
     void hoverMoveEvent(QGraphicsSceneHoverEvent* event);
     void hoverLeaveEvent(QGraphicsSceneHoverEvent* event);
     StepCore::Polygon* polygon() const;
-    PolygonVertexHandlerGraphicsItem* _vertexHandler;
+
+    QPointer<PolygonVertexHandlerGraphicsItem> _vertexHandler;
 };
 
 

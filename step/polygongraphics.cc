@@ -27,11 +27,46 @@
 #include "worldfactory.h"
 #include <QItemSelectionModel>
 #include <QEvent>
+#include <QTimer>
 #include <QGraphicsSceneMouseEvent>
 #include <QKeyEvent>
 #include <QPainter>
 #include <KLocale>
 #include <KDebug>
+
+AutoHideHandlerGraphicsItem::AutoHideHandlerGraphicsItem(StepCore::Item* item, WorldModel* worldModel,
+                    QGraphicsItem* parent, const StepCore::MetaProperty* property,
+                    const StepCore::MetaProperty* positionProperty)
+    : ArrowHandlerGraphicsItem(item, worldModel, parent, property, positionProperty)
+{
+    _timer = new QTimer(this);
+    _timer->setInterval(500);
+    _timer->setSingleShot(true);
+    _shouldBeDeleted = false;
+    setAcceptsHoverEvents(true);
+    connect(_timer, SIGNAL(timeout()), this, SLOT(deleteLater()));
+}
+
+void AutoHideHandlerGraphicsItem::setShouldBeDeleted(bool enabled)
+{
+    _shouldBeDeleted = enabled;
+    if(enabled && !isMouseOverItem()) _timer->start();
+    else _timer->stop();
+}
+
+void AutoHideHandlerGraphicsItem::hoverEnterEvent(QGraphicsSceneHoverEvent* event)
+{
+    if(_shouldBeDeleted) _timer->stop();
+    ArrowHandlerGraphicsItem::hoverEnterEvent(event);
+}
+
+void AutoHideHandlerGraphicsItem::hoverLeaveEvent(QGraphicsSceneHoverEvent* event)
+{
+    if(_shouldBeDeleted) _timer->start();
+    ArrowHandlerGraphicsItem::hoverLeaveEvent(event);
+}
+
+/////////////////////////////////////////////////////////////////////////////////////////
 
 RigidBodyGraphicsItem::RigidBodyGraphicsItem(StepCore::Item* item, WorldModel* worldModel)
     : WorldGraphicsItem(item, worldModel)
@@ -483,25 +518,20 @@ void BasePolygonGraphicsItem::viewScaleChanged()
 
 /////////////////////////////////////////////////////////////////////////////////////////
 
-class PolygonVertexHandlerGraphicsItem: public ArrowHandlerGraphicsItem
+inline StepCore::Polygon* PolygonVertexHandlerGraphicsItem::polygon() const
 {
-public:
-    PolygonVertexHandlerGraphicsItem(StepCore::Item* item, WorldModel* worldModel,
-                                QGraphicsItem* parent, int vertexNum)
-        : ArrowHandlerGraphicsItem(item, worldModel, parent, NULL, NULL), _vertexNum(vertexNum) {}
+    return static_cast<StepCore::Polygon*>(_item);
+}
 
-    int vertexNum() const { return _vertexNum; }
+StepCore::Vector2d PolygonVertexHandlerGraphicsItem::value() {
+    return polygon()->vectorLocalToWorld(polygon()->vertexes()[_vertexNum]);
+}
 
-protected:
-    StepCore::Polygon* polygon() const { return static_cast<StepCore::Polygon*>(_item); }
-    StepCore::Vector2d value() { return polygon()->vectorLocalToWorld(polygon()->vertexes()[_vertexNum]); }
-    void setValue(const StepCore::Vector2d& value) {
-        PolygonGraphicsItem::changePolygonVertex(_worldModel, _item,
-                    _vertexNum, polygon()->vectorWorldToLocal(value));
-    }
-
-    int _vertexNum;
-};
+void PolygonVertexHandlerGraphicsItem::setValue(const StepCore::Vector2d& value)
+{
+    PolygonGraphicsItem::changePolygonVertex(_worldModel, _item,
+                _vertexNum, polygon()->vectorWorldToLocal(value));
+}
 
 void PolygonGraphicsItem::hoverMoveEvent(QGraphicsSceneHoverEvent* event)
 {
@@ -513,10 +543,8 @@ void PolygonGraphicsItem::hoverMoveEvent(QGraphicsSceneHoverEvent* event)
         if(dist2 < minDist2) { num = i; minDist2 = dist2; }
     }
 
-    if(_vertexHandler && _vertexHandler->vertexNum() != num) {
-        scene()->removeItem(_vertexHandler);
-        delete _vertexHandler; _vertexHandler = 0;
-    }
+    if(_vertexHandler && _vertexHandler->vertexNum() != num)
+        delete _vertexHandler;
 
     if(num != -1 && !_vertexHandler)
         _vertexHandler = new PolygonVertexHandlerGraphicsItem(_item, _worldModel, this, num);
@@ -524,12 +552,16 @@ void PolygonGraphicsItem::hoverMoveEvent(QGraphicsSceneHoverEvent* event)
     BasePolygonGraphicsItem::hoverMoveEvent(event);
 }
 
+void PolygonGraphicsItem::hoverEnterEvent(QGraphicsSceneHoverEvent* event)
+{
+    if(_vertexHandler) _vertexHandler->setShouldBeDeleted(false);
+    BasePolygonGraphicsItem::hoverEnterEvent(event);
+}
+
 void PolygonGraphicsItem::hoverLeaveEvent(QGraphicsSceneHoverEvent* event)
 {
-    if(_vertexHandler) {
-        scene()->removeItem(_vertexHandler);
-        delete _vertexHandler; _vertexHandler = 0;
-    }
+    if(_vertexHandler) _vertexHandler->setShouldBeDeleted(true);
+    BasePolygonGraphicsItem::hoverLeaveEvent(event);
 }
 
 inline StepCore::Polygon* PolygonGraphicsItem::polygon() const
