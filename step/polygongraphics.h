@@ -71,12 +71,21 @@ public:
     void worldDataChanged(bool dynamicOnly);
 
 protected:
+    virtual AutoHideHandlerGraphicsItem* createVertexHandler(const QPointF&) { return 0; }
+
+    void hoverEnterEvent(QGraphicsSceneHoverEvent* event);
+    void hoverMoveEvent(QGraphicsSceneHoverEvent* event);
+    void hoverLeaveEvent(QGraphicsSceneHoverEvent* event);
+
     StepCore::RigidBody* rigidBody() const;
     QPainterPath _painterPath;
 
     ArrowHandlerGraphicsItem*         _velocityHandler;
     CircularArrowHandlerGraphicsItem* _angularVelocityHandler;
     CircularArrowHandlerGraphicsItem* _angleHandler;
+
+    QPointer<AutoHideHandlerGraphicsItem> _vertexHandler;
+    bool _vertexHandlerTimer;
 };
 
 /////////////////////////////////////////////////////////////////////////////////////////
@@ -90,6 +99,28 @@ public:
     void start();
 };
 
+class DiskVertexHandlerGraphicsItem: public AutoHideHandlerGraphicsItem
+{
+    Q_OBJECT
+
+public:
+    DiskVertexHandlerGraphicsItem(StepCore::Item* item, WorldModel* worldModel,
+                                        QGraphicsItem* parent, int vertexNum)
+        : AutoHideHandlerGraphicsItem(item, worldModel, parent, NULL, NULL), _vertexNum(vertexNum) {}
+
+    int vertexNum() const { return _vertexNum; }
+
+public:
+    static const StepCore::Vector2d corners[4];
+
+protected:
+    StepCore::Disk* disk() const;
+    StepCore::Vector2d value();
+    void setValue(const StepCore::Vector2d& value);
+
+    int _vertexNum;
+};
+
 class DiskGraphicsItem: public RigidBodyGraphicsItem
 {
 public:
@@ -97,34 +128,8 @@ public:
     void viewScaleChanged();
 
 protected:
+    AutoHideHandlerGraphicsItem* createVertexHandler(const QPointF& pos);
     StepCore::Disk* disk() const;
-};
-
-/////////////////////////////////////////////////////////////////////////////////////////
-
-class BoxCreator: public ItemCreator
-{
-public:
-    BoxCreator(const QString& className, WorldModel* worldModel, WorldScene* worldScene)
-                        : ItemCreator(className, worldModel, worldScene) {}
-    bool sceneEvent(QEvent* event);
-    void start();
-
-protected:
-    StepCore::Vector2d _topLeft;
-};
-
-class PolygonCreator: public ItemCreator
-{
-public:
-    PolygonCreator(const QString& className, WorldModel* worldModel, WorldScene* worldScene)
-                        : ItemCreator(className, worldModel, worldScene) {}
-    bool sceneEvent(QEvent* event);
-    void start();
-
-protected:
-    void fixCenterOfMass();
-    void fixInertia();
 };
 
 /////////////////////////////////////////////////////////////////////////////////////////
@@ -140,6 +145,18 @@ protected:
 };
 
 /////////////////////////////////////////////////////////////////////////////////////////
+
+class BoxCreator: public ItemCreator
+{
+public:
+    BoxCreator(const QString& className, WorldModel* worldModel, WorldScene* worldScene)
+                        : ItemCreator(className, worldModel, worldScene) {}
+    bool sceneEvent(QEvent* event);
+    void start();
+
+protected:
+    StepCore::Vector2d _topLeft;
+};
 
 class BoxVertexHandlerGraphicsItem: public AutoHideHandlerGraphicsItem
 {
@@ -164,17 +181,26 @@ class BoxGraphicsItem: public BasePolygonGraphicsItem
 {
 public:
     BoxGraphicsItem(StepCore::Item* item, WorldModel* worldModel)
-        : BasePolygonGraphicsItem(item, worldModel), _vertexHandler(0) {}
+        : BasePolygonGraphicsItem(item, worldModel) {}
 
 protected:
-    void hoverEnterEvent(QGraphicsSceneHoverEvent* event);
-    void hoverMoveEvent(QGraphicsSceneHoverEvent* event);
-    void hoverLeaveEvent(QGraphicsSceneHoverEvent* event);
-
-    QPointer<BoxVertexHandlerGraphicsItem> _vertexHandler;
+    AutoHideHandlerGraphicsItem* createVertexHandler(const QPointF& pos);
 };
 
 /////////////////////////////////////////////////////////////////////////////////////////
+
+class PolygonCreator: public ItemCreator
+{
+public:
+    PolygonCreator(const QString& className, WorldModel* worldModel, WorldScene* worldScene)
+                        : ItemCreator(className, worldModel, worldScene) {}
+    bool sceneEvent(QEvent* event);
+    void start();
+
+protected:
+    void fixCenterOfMass();
+    void fixInertia();
+};
 
 class PolygonVertexHandlerGraphicsItem: public AutoHideHandlerGraphicsItem
 {
@@ -199,18 +225,14 @@ class PolygonGraphicsItem: public BasePolygonGraphicsItem
 {
 public:
     PolygonGraphicsItem(StepCore::Item* item, WorldModel* worldModel)
-        : BasePolygonGraphicsItem(item, worldModel), _vertexHandler(0) {}
+        : BasePolygonGraphicsItem(item, worldModel) {}
 
     static void changePolygonVertex(WorldModel* worldModel, StepCore::Item* item,
                                 int vertexNum, const StepCore::Vector2d& value);
 
 protected:
-    void hoverEnterEvent(QGraphicsSceneHoverEvent* event);
-    void hoverMoveEvent(QGraphicsSceneHoverEvent* event);
-    void hoverLeaveEvent(QGraphicsSceneHoverEvent* event);
+    AutoHideHandlerGraphicsItem* createVertexHandler(const QPointF& pos);
     StepCore::Polygon* polygon() const;
-
-    QPointer<PolygonVertexHandlerGraphicsItem> _vertexHandler;
 };
 
 

@@ -69,7 +69,7 @@ void AutoHideHandlerGraphicsItem::hoverLeaveEvent(QGraphicsSceneHoverEvent* even
 /////////////////////////////////////////////////////////////////////////////////////////
 
 RigidBodyGraphicsItem::RigidBodyGraphicsItem(StepCore::Item* item, WorldModel* worldModel)
-    : WorldGraphicsItem(item, worldModel)
+    : WorldGraphicsItem(item, worldModel), _vertexHandler(0), _vertexHandlerTimer(false)
 {
     Q_ASSERT(dynamic_cast<StepCore::RigidBody*>(_item) != NULL);
     setFlag(QGraphicsItem::ItemIsSelectable);
@@ -100,7 +100,7 @@ QPainterPath RigidBodyGraphicsItem::shape() const
 
 void RigidBodyGraphicsItem::paint(QPainter* painter, const QStyleOptionGraphicsItem* /*option*/, QWidget* /*widget*/)
 {
-    int renderHints = painter->renderHints();
+    //int renderHints = painter->renderHints();
     painter->setRenderHint(QPainter::Antialiasing, true);
 
     QColor color = QColor::fromRgba(rigidBody()->color());
@@ -175,6 +175,42 @@ void RigidBodyGraphicsItem::stateChanged()
     update();
 }
 
+void RigidBodyGraphicsItem::hoverMoveEvent(QGraphicsSceneHoverEvent* event)
+{
+    AutoHideHandlerGraphicsItem* newVertexHandler = createVertexHandler(event->scenePos());
+    if(_vertexHandler && !newVertexHandler) {
+         if(!_vertexHandlerTimer) {
+            _vertexHandler->setShouldBeDeleted(true);
+            _vertexHandlerTimer = true;
+         }
+    } else if(_vertexHandler == newVertexHandler) {
+        if(_vertexHandler && _vertexHandlerTimer) {
+            _vertexHandler->setShouldBeDeleted(false);
+            _vertexHandlerTimer = false;
+        }
+    } else {
+        delete _vertexHandler;
+        _vertexHandler = newVertexHandler;
+        _vertexHandlerTimer = false;
+    }
+
+    WorldGraphicsItem::hoverMoveEvent(event);
+}
+
+void RigidBodyGraphicsItem::hoverEnterEvent(QGraphicsSceneHoverEvent* event)
+{
+    if(_vertexHandler && !_vertexHandlerTimer)
+        _vertexHandler->setShouldBeDeleted(false);
+    WorldGraphicsItem::hoverEnterEvent(event);
+}
+
+void RigidBodyGraphicsItem::hoverLeaveEvent(QGraphicsSceneHoverEvent* event)
+{
+    if(_vertexHandler && !_vertexHandlerTimer)
+        _vertexHandler->setShouldBeDeleted(true);
+    WorldGraphicsItem::hoverLeaveEvent(event);
+}
+
 /////////////////////////////////////////////////////////////////////////////////////////
 
 void DiskCreator::start()
@@ -236,6 +272,26 @@ bool DiskCreator::sceneEvent(QEvent* event)
     return false;
 }
 
+inline StepCore::Disk* DiskVertexHandlerGraphicsItem::disk() const
+{
+    return static_cast<StepCore::Disk*>(_item);
+}
+
+const StepCore::Vector2d DiskVertexHandlerGraphicsItem::corners[4] = {
+    StepCore::Vector2d(0,-1), StepCore::Vector2d( 1,0),
+    StepCore::Vector2d(0, 1), StepCore::Vector2d(-1,0)
+};
+
+StepCore::Vector2d DiskVertexHandlerGraphicsItem::value()
+{
+    return corners[_vertexNum]*disk()->radius();
+}
+
+void DiskVertexHandlerGraphicsItem::setValue(const StepCore::Vector2d& value)
+{
+    _worldModel->setProperty(_item, _item->metaObject()->property("radius"), value.norm());
+}
+
 DiskGraphicsItem::DiskGraphicsItem(StepCore::Item* item, WorldModel* worldModel)
     : RigidBodyGraphicsItem(item, worldModel)
 {
@@ -262,6 +318,27 @@ void DiskGraphicsItem::viewScaleChanged()
     }
 
     RigidBodyGraphicsItem::viewScaleChanged();
+}
+
+AutoHideHandlerGraphicsItem* DiskGraphicsItem::createVertexHandler(const QPointF& pos)
+{
+    StepCore::Vector2d l = (pointToVector(pos) - disk()->position())/disk()->radius();
+    double s = currentViewScale();
+    int num = -1; double minDist2 = HANDLER_SNAP_SIZE*HANDLER_SNAP_SIZE
+                                        /s/s/disk()->radius()/disk()->radius();
+    for(unsigned int i=0; i<4; ++i) {
+        double dist2 = (l - DiskVertexHandlerGraphicsItem::corners[i]).norm2();
+        if(dist2 < minDist2) { num = i; minDist2 = dist2; }
+    }
+
+    if(_vertexHandler &&
+            static_cast<DiskVertexHandlerGraphicsItem*>(&*_vertexHandler)->vertexNum() == num)
+        return _vertexHandler;
+
+    if(num >= 0)
+        return new DiskVertexHandlerGraphicsItem(_item, _worldModel, this, num);
+
+    return 0;
 }
 
 /////////////////////////////////////////////////////////////////////////////////////////
@@ -544,9 +621,9 @@ void BoxVertexHandlerGraphicsItem::setValue(const StepCore::Vector2d& value)
                                                                 QVariant::fromValue(box()->size() + delta));
 }
 
-void BoxGraphicsItem::hoverMoveEvent(QGraphicsSceneHoverEvent* event)
+AutoHideHandlerGraphicsItem* BoxGraphicsItem::createVertexHandler(const QPointF& pos)
 {
-    StepCore::Vector2d l = basePolygon()->pointWorldToLocal(pointToVector(event->scenePos()));
+    StepCore::Vector2d l = basePolygon()->pointWorldToLocal(pointToVector(pos));
     double s = currentViewScale();
     int num = -1; double minDist2 = HANDLER_SNAP_SIZE*HANDLER_SNAP_SIZE/s/s;
     for(unsigned int i=0; i<basePolygon()->vertexes().size(); ++i) {
@@ -554,25 +631,14 @@ void BoxGraphicsItem::hoverMoveEvent(QGraphicsSceneHoverEvent* event)
         if(dist2 < minDist2) { num = i; minDist2 = dist2; }
     }
 
-    if(_vertexHandler && _vertexHandler->vertexNum() != num)
-        delete _vertexHandler;
+    if(_vertexHandler &&
+            static_cast<BoxVertexHandlerGraphicsItem*>(&*_vertexHandler)->vertexNum() == num)
+        return _vertexHandler;
 
-    if(num != -1 && !_vertexHandler)
-        _vertexHandler = new BoxVertexHandlerGraphicsItem(_item, _worldModel, this, num);
+    if(num >= 0)
+        return new BoxVertexHandlerGraphicsItem(_item, _worldModel, this, num);
 
-    BasePolygonGraphicsItem::hoverMoveEvent(event);
-}
-
-void BoxGraphicsItem::hoverEnterEvent(QGraphicsSceneHoverEvent* event)
-{
-    if(_vertexHandler) _vertexHandler->setShouldBeDeleted(false);
-    BasePolygonGraphicsItem::hoverEnterEvent(event);
-}
-
-void BoxGraphicsItem::hoverLeaveEvent(QGraphicsSceneHoverEvent* event)
-{
-    if(_vertexHandler) _vertexHandler->setShouldBeDeleted(true);
-    BasePolygonGraphicsItem::hoverLeaveEvent(event);
+    return 0;
 }
 
 /////////////////////////////////////////////////////////////////////////////////////////
@@ -592,9 +658,9 @@ void PolygonVertexHandlerGraphicsItem::setValue(const StepCore::Vector2d& value)
                 _vertexNum, polygon()->vectorWorldToLocal(value));
 }
 
-void PolygonGraphicsItem::hoverMoveEvent(QGraphicsSceneHoverEvent* event)
+AutoHideHandlerGraphicsItem* PolygonGraphicsItem::createVertexHandler(const QPointF& pos)
 {
-    StepCore::Vector2d l = polygon()->pointWorldToLocal(pointToVector(event->scenePos()));
+    StepCore::Vector2d l = polygon()->pointWorldToLocal(pointToVector(pos));
     double s = currentViewScale();
     int num = -1; double minDist2 = HANDLER_SNAP_SIZE*HANDLER_SNAP_SIZE/s/s;
     for(unsigned int i=0; i<polygon()->vertexes().size(); ++i) {
@@ -602,25 +668,14 @@ void PolygonGraphicsItem::hoverMoveEvent(QGraphicsSceneHoverEvent* event)
         if(dist2 < minDist2) { num = i; minDist2 = dist2; }
     }
 
-    if(_vertexHandler && _vertexHandler->vertexNum() != num)
-        delete _vertexHandler;
+    if(_vertexHandler &&
+            static_cast<PolygonVertexHandlerGraphicsItem*>(&*_vertexHandler)->vertexNum() == num)
+        return _vertexHandler;
 
-    if(num != -1 && !_vertexHandler)
-        _vertexHandler = new PolygonVertexHandlerGraphicsItem(_item, _worldModel, this, num);
+    if(num >= 0)
+        return new PolygonVertexHandlerGraphicsItem(_item, _worldModel, this, num);
 
-    BasePolygonGraphicsItem::hoverMoveEvent(event);
-}
-
-void PolygonGraphicsItem::hoverEnterEvent(QGraphicsSceneHoverEvent* event)
-{
-    if(_vertexHandler) _vertexHandler->setShouldBeDeleted(false);
-    BasePolygonGraphicsItem::hoverEnterEvent(event);
-}
-
-void PolygonGraphicsItem::hoverLeaveEvent(QGraphicsSceneHoverEvent* event)
-{
-    if(_vertexHandler) _vertexHandler->setShouldBeDeleted(true);
-    BasePolygonGraphicsItem::hoverLeaveEvent(event);
+    return 0;
 }
 
 inline StepCore::Polygon* PolygonGraphicsItem::polygon() const
@@ -632,7 +687,7 @@ void PolygonGraphicsItem::changePolygonVertex(WorldModel* worldModel,
             StepCore::Item* item, int vertexNum, const StepCore::Vector2d& value)
 {
     StepCore::Vector2dList vertexes = static_cast<StepCore::Polygon*>(item)->vertexes();
-    Q_ASSERT(vertexNum < vertexes.size());
+    Q_ASSERT(vertexNum < (int) vertexes.size());
     vertexes[vertexNum] = value;
     worldModel->setProperty(item, item->metaObject()->property("vertexes"), QVariant::fromValue(vertexes));
 }
