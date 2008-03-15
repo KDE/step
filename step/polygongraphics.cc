@@ -34,42 +34,8 @@
 #include <KLocale>
 #include <KDebug>
 
-AutoHideHandlerGraphicsItem::AutoHideHandlerGraphicsItem(StepCore::Item* item, WorldModel* worldModel,
-                    QGraphicsItem* parent, const StepCore::MetaProperty* property,
-                    const StepCore::MetaProperty* positionProperty)
-    : ArrowHandlerGraphicsItem(item, worldModel, parent, property, positionProperty)
-{
-    _timer = new QTimer(this);
-    _timer->setInterval(500);
-    _timer->setSingleShot(true);
-    _shouldBeDeleted = false;
-    setAcceptsHoverEvents(true);
-    connect(_timer, SIGNAL(timeout()), this, SLOT(deleteLater()));
-}
-
-void AutoHideHandlerGraphicsItem::setShouldBeDeleted(bool enabled)
-{
-    _shouldBeDeleted = enabled;
-    if(enabled && !isMouseOverItem()) _timer->start();
-    else _timer->stop();
-}
-
-void AutoHideHandlerGraphicsItem::hoverEnterEvent(QGraphicsSceneHoverEvent* event)
-{
-    if(_shouldBeDeleted) _timer->stop();
-    ArrowHandlerGraphicsItem::hoverEnterEvent(event);
-}
-
-void AutoHideHandlerGraphicsItem::hoverLeaveEvent(QGraphicsSceneHoverEvent* event)
-{
-    if(_shouldBeDeleted) _timer->start();
-    ArrowHandlerGraphicsItem::hoverLeaveEvent(event);
-}
-
-/////////////////////////////////////////////////////////////////////////////////////////
-
 RigidBodyGraphicsItem::RigidBodyGraphicsItem(StepCore::Item* item, WorldModel* worldModel)
-    : WorldGraphicsItem(item, worldModel), _vertexHandler(0), _vertexHandlerTimer(false)
+    : WorldGraphicsItem(item, worldModel)
 {
     Q_ASSERT(dynamic_cast<StepCore::RigidBody*>(_item) != NULL);
     setFlag(QGraphicsItem::ItemIsSelectable);
@@ -85,6 +51,7 @@ RigidBodyGraphicsItem::RigidBodyGraphicsItem(StepCore::Item* item, WorldModel* w
                    ANGLE_HANDLER_RADIUS, _item->metaObject()->property("angle"));
     _angularVelocityHandler->setVisible(false);
     _angleHandler->setVisible(false);
+    setOnHoverHandlerEnabled(true);
     //scene()->addItem(_velocityHandler);
 }
 
@@ -173,42 +140,6 @@ void RigidBodyGraphicsItem::stateChanged()
 
     viewScaleChanged();
     update();
-}
-
-void RigidBodyGraphicsItem::hoverMoveEvent(QGraphicsSceneHoverEvent* event)
-{
-    AutoHideHandlerGraphicsItem* newVertexHandler = createVertexHandler(event->scenePos());
-    if(_vertexHandler && !newVertexHandler) {
-         if(!_vertexHandlerTimer) {
-            _vertexHandler->setShouldBeDeleted(true);
-            _vertexHandlerTimer = true;
-         }
-    } else if(_vertexHandler == newVertexHandler) {
-        if(_vertexHandler && _vertexHandlerTimer) {
-            _vertexHandler->setShouldBeDeleted(false);
-            _vertexHandlerTimer = false;
-        }
-    } else {
-        delete _vertexHandler;
-        _vertexHandler = newVertexHandler;
-        _vertexHandlerTimer = false;
-    }
-
-    WorldGraphicsItem::hoverMoveEvent(event);
-}
-
-void RigidBodyGraphicsItem::hoverEnterEvent(QGraphicsSceneHoverEvent* event)
-{
-    if(_vertexHandler && !_vertexHandlerTimer)
-        _vertexHandler->setShouldBeDeleted(false);
-    WorldGraphicsItem::hoverEnterEvent(event);
-}
-
-void RigidBodyGraphicsItem::hoverLeaveEvent(QGraphicsSceneHoverEvent* event)
-{
-    if(_vertexHandler && !_vertexHandlerTimer)
-        _vertexHandler->setShouldBeDeleted(true);
-    WorldGraphicsItem::hoverLeaveEvent(event);
 }
 
 /////////////////////////////////////////////////////////////////////////////////////////
@@ -320,7 +251,7 @@ void DiskGraphicsItem::viewScaleChanged()
     RigidBodyGraphicsItem::viewScaleChanged();
 }
 
-AutoHideHandlerGraphicsItem* DiskGraphicsItem::createVertexHandler(const QPointF& pos)
+OnHoverHandlerGraphicsItem* DiskGraphicsItem::createOnHoverHandler(const QPointF& pos)
 {
     StepCore::Vector2d l = (pointToVector(pos) - disk()->position())/disk()->radius();
     double s = currentViewScale();
@@ -331,9 +262,9 @@ AutoHideHandlerGraphicsItem* DiskGraphicsItem::createVertexHandler(const QPointF
         if(dist2 < minDist2) { num = i; minDist2 = dist2; }
     }
 
-    if(_vertexHandler &&
-            static_cast<DiskVertexHandlerGraphicsItem*>(&*_vertexHandler)->vertexNum() == num)
-        return _vertexHandler;
+    if(_onHoverHandler &&
+            static_cast<DiskVertexHandlerGraphicsItem*>(&*_onHoverHandler)->vertexNum() == num)
+        return _onHoverHandler;
 
     if(num >= 0)
         return new DiskVertexHandlerGraphicsItem(_item, _worldModel, this, num);
@@ -621,7 +552,7 @@ void BoxVertexHandlerGraphicsItem::setValue(const StepCore::Vector2d& value)
                                                                 QVariant::fromValue(box()->size() + delta));
 }
 
-AutoHideHandlerGraphicsItem* BoxGraphicsItem::createVertexHandler(const QPointF& pos)
+OnHoverHandlerGraphicsItem* BoxGraphicsItem::createOnHoverHandler(const QPointF& pos)
 {
     StepCore::Vector2d l = basePolygon()->pointWorldToLocal(pointToVector(pos));
     double s = currentViewScale();
@@ -631,9 +562,9 @@ AutoHideHandlerGraphicsItem* BoxGraphicsItem::createVertexHandler(const QPointF&
         if(dist2 < minDist2) { num = i; minDist2 = dist2; }
     }
 
-    if(_vertexHandler &&
-            static_cast<BoxVertexHandlerGraphicsItem*>(&*_vertexHandler)->vertexNum() == num)
-        return _vertexHandler;
+    if(_onHoverHandler &&
+            static_cast<BoxVertexHandlerGraphicsItem*>(&*_onHoverHandler)->vertexNum() == num)
+        return _onHoverHandler;
 
     if(num >= 0)
         return new BoxVertexHandlerGraphicsItem(_item, _worldModel, this, num);
@@ -658,7 +589,7 @@ void PolygonVertexHandlerGraphicsItem::setValue(const StepCore::Vector2d& value)
                 _vertexNum, polygon()->vectorWorldToLocal(value));
 }
 
-AutoHideHandlerGraphicsItem* PolygonGraphicsItem::createVertexHandler(const QPointF& pos)
+OnHoverHandlerGraphicsItem* PolygonGraphicsItem::createOnHoverHandler(const QPointF& pos)
 {
     StepCore::Vector2d l = polygon()->pointWorldToLocal(pointToVector(pos));
     double s = currentViewScale();
@@ -668,9 +599,9 @@ AutoHideHandlerGraphicsItem* PolygonGraphicsItem::createVertexHandler(const QPoi
         if(dist2 < minDist2) { num = i; minDist2 = dist2; }
     }
 
-    if(_vertexHandler &&
-            static_cast<PolygonVertexHandlerGraphicsItem*>(&*_vertexHandler)->vertexNum() == num)
-        return _vertexHandler;
+    if(_onHoverHandler &&
+            static_cast<PolygonVertexHandlerGraphicsItem*>(&*_onHoverHandler)->vertexNum() == num)
+        return _onHoverHandler;
 
     if(num >= 0)
         return new PolygonVertexHandlerGraphicsItem(_item, _worldModel, this, num);

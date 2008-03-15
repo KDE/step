@@ -35,27 +35,6 @@ namespace StepCore {
     class Box;
 }
 
-class QTimer;
-class AutoHideHandlerGraphicsItem: public QObject, public ArrowHandlerGraphicsItem
-{
-    Q_OBJECT
-
-public:
-    AutoHideHandlerGraphicsItem(StepCore::Item* item, WorldModel* worldModel,
-                    QGraphicsItem* parent, const StepCore::MetaProperty* property,
-                    const StepCore::MetaProperty* positionProperty = NULL);
-
-    void setShouldBeDeleted(bool enabled);
-    bool shouldBeDeleted() const { return _shouldBeDeleted; }
-
-protected:
-    void hoverEnterEvent(QGraphicsSceneHoverEvent* event);
-    void hoverLeaveEvent(QGraphicsSceneHoverEvent* event);
-
-    QTimer* _timer;
-    bool _shouldBeDeleted;
-};
-
 /////////////////////////////////////////////////////////////////////////////////////////
 
 class RigidBodyGraphicsItem: public WorldGraphicsItem
@@ -71,21 +50,12 @@ public:
     void worldDataChanged(bool dynamicOnly);
 
 protected:
-    virtual AutoHideHandlerGraphicsItem* createVertexHandler(const QPointF&) { return 0; }
-
-    void hoverEnterEvent(QGraphicsSceneHoverEvent* event);
-    void hoverMoveEvent(QGraphicsSceneHoverEvent* event);
-    void hoverLeaveEvent(QGraphicsSceneHoverEvent* event);
-
     StepCore::RigidBody* rigidBody() const;
     QPainterPath _painterPath;
 
     ArrowHandlerGraphicsItem*         _velocityHandler;
     CircularArrowHandlerGraphicsItem* _angularVelocityHandler;
     CircularArrowHandlerGraphicsItem* _angleHandler;
-
-    QPointer<AutoHideHandlerGraphicsItem> _vertexHandler;
-    bool _vertexHandlerTimer;
 };
 
 /////////////////////////////////////////////////////////////////////////////////////////
@@ -99,14 +69,14 @@ public:
     void start();
 };
 
-class DiskVertexHandlerGraphicsItem: public AutoHideHandlerGraphicsItem
+class DiskVertexHandlerGraphicsItem: public OnHoverHandlerGraphicsItem
 {
     Q_OBJECT
 
 public:
     DiskVertexHandlerGraphicsItem(StepCore::Item* item, WorldModel* worldModel,
                                         QGraphicsItem* parent, int vertexNum)
-        : AutoHideHandlerGraphicsItem(item, worldModel, parent, NULL, NULL), _vertexNum(vertexNum) {}
+        : OnHoverHandlerGraphicsItem(item, worldModel, parent, NULL, NULL), _vertexNum(vertexNum) {}
 
     int vertexNum() const { return _vertexNum; }
 
@@ -128,7 +98,7 @@ public:
     void viewScaleChanged();
 
 protected:
-    AutoHideHandlerGraphicsItem* createVertexHandler(const QPointF& pos);
+    OnHoverHandlerGraphicsItem* createOnHoverHandler(const QPointF& pos);
     StepCore::Disk* disk() const;
 };
 
@@ -158,14 +128,14 @@ protected:
     StepCore::Vector2d _topLeft;
 };
 
-class BoxVertexHandlerGraphicsItem: public AutoHideHandlerGraphicsItem
+class BoxVertexHandlerGraphicsItem: public OnHoverHandlerGraphicsItem
 {
     Q_OBJECT
 
 public:
     BoxVertexHandlerGraphicsItem(StepCore::Item* item, WorldModel* worldModel,
                                         QGraphicsItem* parent, int vertexNum)
-        : AutoHideHandlerGraphicsItem(item, worldModel, parent, NULL, NULL), _vertexNum(vertexNum) {}
+        : OnHoverHandlerGraphicsItem(item, worldModel, parent, NULL, NULL), _vertexNum(vertexNum) {}
 
     int vertexNum() const { return _vertexNum; }
 
@@ -184,7 +154,7 @@ public:
         : BasePolygonGraphicsItem(item, worldModel) {}
 
 protected:
-    AutoHideHandlerGraphicsItem* createVertexHandler(const QPointF& pos);
+    OnHoverHandlerGraphicsItem* createOnHoverHandler(const QPointF& pos);
 };
 
 /////////////////////////////////////////////////////////////////////////////////////////
@@ -202,14 +172,14 @@ protected:
     void fixInertia();
 };
 
-class PolygonVertexHandlerGraphicsItem: public AutoHideHandlerGraphicsItem
+class PolygonVertexHandlerGraphicsItem: public OnHoverHandlerGraphicsItem
 {
     Q_OBJECT
 
 public:
     PolygonVertexHandlerGraphicsItem(StepCore::Item* item, WorldModel* worldModel,
                                         QGraphicsItem* parent, int vertexNum)
-        : AutoHideHandlerGraphicsItem(item, worldModel, parent, NULL, NULL), _vertexNum(vertexNum) {}
+        : OnHoverHandlerGraphicsItem(item, worldModel, parent, NULL, NULL), _vertexNum(vertexNum) {}
 
     int vertexNum() const { return _vertexNum; }
 
@@ -231,7 +201,7 @@ public:
                                 int vertexNum, const StepCore::Vector2d& value);
 
 protected:
-    AutoHideHandlerGraphicsItem* createVertexHandler(const QPointF& pos);
+    OnHoverHandlerGraphicsItem* createOnHoverHandler(const QPointF& pos);
     StepCore::Polygon* polygon() const;
 };
 

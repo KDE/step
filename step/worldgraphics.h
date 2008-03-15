@@ -22,6 +22,7 @@
 #include "worldscene.h"
 
 #include <stepcore/vector.h>
+#include <QPointer>
 #include <QGraphicsItem>
 #include <QRectF>
 #include <QColor>
@@ -37,6 +38,7 @@ namespace StepCore {
 class WorldModel;
 class WorldScene;
 class QEvent;
+class QTimer;
 
 /** \brief Base class for item creators.
  *
@@ -138,6 +140,8 @@ protected:
 };
 
 /////////////////////////////////////////////////////////////////////////////////////////
+
+class OnHoverHandlerGraphicsItem;
 
 /** \brief Base class for all graphics items on the scene.
  *
@@ -241,6 +245,19 @@ protected:
     /** Called when graphicsitem is changed */
     QVariant itemChange(GraphicsItemChange change, const QVariant& value);
 
+    /** Get vertex handler enabled status */
+    bool isOnHoverHandlerEnabled() const { return _onHoverHandlerEnabled; }
+
+    /** Set to true in order to enable on-hover handler.
+     *  \note You should also call setAcceptsHoverEvents(true) in order
+     *  for on-hover handler to work */
+    void setOnHoverHandlerEnabled(bool enabled);
+
+    /** Virtual function which is called to create on-hover handler for given point.
+     *  If the handler is the same as already-existing just return _onHoverHandler.
+     *  If no handler it required for given point just return NULL */
+    virtual OnHoverHandlerGraphicsItem* createOnHoverHandler(const QPointF&) { return 0; }
+
 protected:
     StepCore::Item* _item;
     WorldModel* _worldModel;
@@ -248,17 +265,22 @@ protected:
     QRectF  _boundingRect;
     QString _exclusiveMovingMessage;
     bool    _exclusiveMoving;
+    bool    _onHoverHandlerEnabled;
 
     bool    _isHighlighted; 
     bool    _isMouseOverItem;
     bool    _isSelected;
     bool    _isMoving;
 
+    QPointer<OnHoverHandlerGraphicsItem> _onHoverHandler;
+    bool _onHoverHandlerTimer;
+
     void mousePressEvent(QGraphicsSceneMouseEvent* event);
     void mouseMoveEvent(QGraphicsSceneMouseEvent* event);
     void mouseReleaseEvent(QGraphicsSceneMouseEvent* event);
 
     void hoverEnterEvent(QGraphicsSceneHoverEvent* event);
+    void hoverMoveEvent(QGraphicsSceneHoverEvent* event);
     void hoverLeaveEvent(QGraphicsSceneHoverEvent* event);
 
     void contextMenuEvent(QGraphicsSceneContextMenuEvent* event);
@@ -357,6 +379,29 @@ protected:
     const StepCore::MetaProperty* _property;
     const StepCore::MetaProperty* _positionProperty;
     double _radius;
+};
+
+/////////////////////////////////////////////////////////////////////////////////////////
+
+/** \brief Base class for handler that exists only on mouse hover */
+class OnHoverHandlerGraphicsItem: public QObject, public ArrowHandlerGraphicsItem
+{
+    Q_OBJECT
+
+public:
+    OnHoverHandlerGraphicsItem(StepCore::Item* item, WorldModel* worldModel,
+                    QGraphicsItem* parent, const StepCore::MetaProperty* property,
+                    const StepCore::MetaProperty* positionProperty = NULL);
+
+    void setDeleteTimerEnabled(bool enabled);
+    bool isDeleteTimerEnabled() const { return _deleteTimerEnabled; }
+
+protected:
+    void hoverEnterEvent(QGraphicsSceneHoverEvent* event);
+    void hoverLeaveEvent(QGraphicsSceneHoverEvent* event);
+
+    QTimer* _deleteTimer;
+    bool _deleteTimerEnabled;
 };
 
 /////////////////////////////////////////////////////////////////////////////////////////

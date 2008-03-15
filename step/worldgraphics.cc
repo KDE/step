@@ -28,6 +28,7 @@
 #include <QGraphicsScene>
 #include <QGraphicsSceneMouseEvent>
 #include <QPainter>
+#include <QTimer>
 #include <QMenu>
 #include <KIcon>
 #include <KLocale>
@@ -185,7 +186,8 @@ void AttachableItemCreator::abort()
 
 WorldGraphicsItem::WorldGraphicsItem(StepCore::Item* item, WorldModel* worldModel, QGraphicsItem* parent)
     : QGraphicsItem(parent), _item(item), _worldModel(worldModel), _exclusiveMoving(false),
-      _isHighlighted(false), _isMouseOverItem(false), _isSelected(false), _isMoving(false)
+      _onHoverHandlerEnabled(false), _isHighlighted(false), _isMouseOverItem(false), _isSelected(false),
+      _isMoving(false), _onHoverHandler(0), _onHoverHandlerTimer(false)
 {
     // XXX: use persistant indexes here and in propertiesbrowser
     setZValue(BODY_ZVALUE);
@@ -393,8 +395,32 @@ void WorldGraphicsItem::mouseReleaseEvent(QGraphicsSceneMouseEvent *event)
     }
 }
 
+void WorldGraphicsItem::hoverMoveEvent(QGraphicsSceneHoverEvent* event)
+{
+    if(_onHoverHandlerEnabled) {
+        OnHoverHandlerGraphicsItem* newOnHoverHandler = createOnHoverHandler(event->scenePos());
+        if(_onHoverHandler && !newOnHoverHandler) {
+             if(!_onHoverHandlerTimer) {
+                _onHoverHandler->setDeleteTimerEnabled(true);
+                _onHoverHandlerTimer = true;
+             }
+        } else if(_onHoverHandler == newOnHoverHandler) {
+            if(_onHoverHandler && _onHoverHandlerTimer) {
+                _onHoverHandler->setDeleteTimerEnabled(false);
+                _onHoverHandlerTimer = false;
+            }
+        } else {
+            delete _onHoverHandler;
+            _onHoverHandler = newOnHoverHandler;
+            _onHoverHandlerTimer = false;
+        }
+    }
+}
+
 void WorldGraphicsItem::hoverEnterEvent(QGraphicsSceneHoverEvent* /*event*/)
 {
+    if(_onHoverHandlerEnabled && _onHoverHandler && !_onHoverHandlerTimer)
+        _onHoverHandler->setDeleteTimerEnabled(false);
     _isMouseOverItem = true;
     stateChanged();
     //update(_boundingRect);
@@ -402,6 +428,8 @@ void WorldGraphicsItem::hoverEnterEvent(QGraphicsSceneHoverEvent* /*event*/)
 
 void WorldGraphicsItem::hoverLeaveEvent(QGraphicsSceneHoverEvent* /*event*/)
 {
+    if(_onHoverHandlerEnabled && _onHoverHandler && !_onHoverHandlerTimer)
+        _onHoverHandler->setDeleteTimerEnabled(true);
     _isMouseOverItem = false;
     stateChanged();
     //update(_boundingRect);
@@ -424,6 +452,15 @@ QVariant WorldGraphicsItem::itemChange(GraphicsItemChange change, const QVariant
         stateChanged();
     }
     return QGraphicsItem::itemChange(change, value);
+}
+
+void WorldGraphicsItem::setOnHoverHandlerEnabled(bool enabled)
+{
+    _onHoverHandlerEnabled = enabled;
+    if(!_onHoverHandlerEnabled) {
+        _onHoverHandlerTimer = false;
+        delete _onHoverHandler;
+    }
 }
 
 void WorldGraphicsItem::viewScaleChanged()
@@ -648,6 +685,40 @@ void CircularArrowHandlerGraphicsItem::setValue(double value)
         _worldModel->simulationPause();
         _worldModel->setProperty(_item, _property, QVariant::fromValue(value));
     }
+}
+
+/////////////////////////////////////////////////////////////////////////////////////////
+
+OnHoverHandlerGraphicsItem::OnHoverHandlerGraphicsItem(StepCore::Item* item, WorldModel* worldModel,
+                    QGraphicsItem* parent, const StepCore::MetaProperty* property,
+                    const StepCore::MetaProperty* positionProperty)
+    : ArrowHandlerGraphicsItem(item, worldModel, parent, property, positionProperty)
+{
+    _deleteTimer = new QTimer(this);
+    _deleteTimer->setInterval(500);
+    _deleteTimer->setSingleShot(true);
+    _deleteTimerEnabled = false;
+    setAcceptsHoverEvents(true);
+    connect(_deleteTimer, SIGNAL(timeout()), this, SLOT(deleteLater()));
+}
+
+void OnHoverHandlerGraphicsItem::setDeleteTimerEnabled(bool enabled)
+{
+    _deleteTimerEnabled = enabled;
+    if(_deleteTimerEnabled && !isMouseOverItem()) _deleteTimer->start();
+    else _deleteTimer->stop();
+}
+
+void OnHoverHandlerGraphicsItem::hoverEnterEvent(QGraphicsSceneHoverEvent* event)
+{
+    if(_deleteTimerEnabled) _deleteTimer->stop();
+    ArrowHandlerGraphicsItem::hoverEnterEvent(event);
+}
+
+void OnHoverHandlerGraphicsItem::hoverLeaveEvent(QGraphicsSceneHoverEvent* event)
+{
+    if(_deleteTimerEnabled) _deleteTimer->start();
+    ArrowHandlerGraphicsItem::hoverLeaveEvent(event);
 }
 
 /////////////////////////////////////////////////////////////////////////////////////////
