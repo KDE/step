@@ -31,7 +31,7 @@
 namespace {
 
 bool executeCommand(const QString& cmd, const QStringList& args,
-                    QString workDir, const QString& resultFile, QString* error)
+                    const QString& workDir, const QString& resultFile, QString* error)
 {
     QProcess proc;
     proc.setProcessChannelMode(QProcess::MergedChannels);
@@ -39,7 +39,7 @@ bool executeCommand(const QString& cmd, const QStringList& args,
     proc.start(cmd, args);
 
     if(!proc.waitForStarted()) {
-        *error = i18n("can't launch %1", cmd); return false;
+        *error = i18n("can not launch %1", cmd); return false;
     }
 
     proc.closeWriteChannel();
@@ -81,7 +81,7 @@ bool LatexFormula::compileFormula(const QString& formula, QByteArray* result, QS
 
     QFile latexFile(baseFileName + ".tex");
     if(!latexFile.open(QIODevice::WriteOnly)) {
-        *error = i18n("can't open temporary file");
+        *error = i18n("can not open temporary file");
         return false;
     }
 
@@ -114,7 +114,7 @@ bool LatexFormula::compileFormula(const QString& formula, QByteArray* result, QS
 
     QFile pngFile(baseFileName + ".png");
     if(!pngFile.open(QIODevice::ReadOnly)) {
-        *error = i18n("can't open result file");
+        *error = i18n("can not open result file");
         return false;
     }
 

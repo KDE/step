@@ -288,7 +288,7 @@ class Disk: public RigidBody
     STEPCORE_OBJECT(Disk)
 public:
     /** Constructs Disk */
-    Disk(Vector2d position = Vector2d(0), double angle = 0,
+    explicit Disk(Vector2d position = Vector2d(0), double angle = 0,
               Vector2d velocity = Vector2d(0), double angularVelocity = 0,
               double mass = 1, double inertia = 1, double radius = 1)
         : RigidBody(position, angle, velocity, angularVelocity, mass, inertia),
@@ -311,7 +311,7 @@ class BasePolygon: public RigidBody
     STEPCORE_OBJECT(BasePolygon)
 public:
     /** Constructs BasePolygon */
-    BasePolygon(Vector2d position = Vector2d(0), double angle = 0,
+    explicit BasePolygon(Vector2d position = Vector2d(0), double angle = 0,
               Vector2d velocity = Vector2d(0), double angularVelocity = 0,
               double mass = 1, double inertia = 1)
         : RigidBody(position, angle, velocity, angularVelocity, mass, inertia) {}
@@ -328,7 +328,7 @@ class Box: public BasePolygon
     STEPCORE_OBJECT(Box)
 public:
     /** Constructs Box */
-    Box(Vector2d position = Vector2d(0), double angle = 0,
+    explicit Box(Vector2d position = Vector2d(0), double angle = 0,
               Vector2d velocity = Vector2d(0), double angularVelocity = 0,
               double mass = 1, double inertia = 1, Vector2d size = Vector2d(1,1));
 

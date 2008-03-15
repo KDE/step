@@ -90,7 +90,7 @@ class NoteTextEdit: public KTextEdit
     Q_OBJECT
 
 public:
-    NoteTextEdit(NoteGraphicsItem* noteItem, QWidget* parent = 0)
+    explicit NoteTextEdit(NoteGraphicsItem* noteItem, QWidget* parent = 0)
         : KTextEdit(parent), _noteItem(noteItem), _mousePressPoint(-1,-1) {}
     QString emptyNotice() const;
 

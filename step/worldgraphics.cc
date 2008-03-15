@@ -71,7 +71,9 @@ bool ItemCreator::sceneEvent(QEvent* event)
 
         _worldModel->beginMacro(i18n("Create %1", _worldModel->newItemName(_className)));
         _item = _worldModel->newItem(_className); Q_ASSERT(_item != NULL);
+#ifdef __GNUC__
 #warning Don't add item until it is fully created
+#endif
         const StepCore::MetaProperty* property = _item->metaObject()->property("position");
         if(property != NULL) {
             QGraphicsSceneMouseEvent* mouseEvent = static_cast<QGraphicsSceneMouseEvent*>(event);

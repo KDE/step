@@ -90,7 +90,7 @@ class CircularMotor: public Item, public Force
 
 public:
     /** Constructs CircularMotor */
-    CircularMotor(Object* body = 0, const Vector2d& localPosition = Vector2d(0),
+    explicit CircularMotor(Object* body = 0, const Vector2d& localPosition = Vector2d(0),
                                             double torqueValue = 0);
 
     void calcForce(bool calcVariances);

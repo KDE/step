@@ -74,7 +74,7 @@ public:
      *  \param position Position of the center of the body
      *  \param size Size of the edge of the body
      *  \param split Split count of the edge of the body
-     *  \param mass Total mass of the body
+     *  \param bodyMass Total mass of the body
      *  \param youngModulus Young's modulus of the body
      *  \param bodyDamping Damping of the body
      *  \return List of particles and springs

@@ -33,7 +33,7 @@
 #include <QItemEditorFactory>
 #include <QTreeView>
 #include <QMouseEvent>
-#include <QLineEdit>
+#include <KLineEdit>
 #include <QHBoxLayout>
 #include <QApplication>
 #include <KLocale>
@@ -505,7 +505,7 @@ QWidget* PropertiesBrowserDelegate::createEditor(QWidget* parent,
     } else if(userType == QMetaType::QColor) {
         QWidget* editor = new QWidget(parent);
 
-        QLineEdit* lineEdit = new QLineEdit(editor);
+        KLineEdit* lineEdit = new KLineEdit(editor);
         lineEdit->setFrame(false);
 
         KColorButton* colorButton = new KColorButton(editor);

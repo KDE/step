@@ -98,6 +98,7 @@ public:
 
     /** Check contacts between several bodies
      *  \param bodies list of bodies to check
+     *  \param info ConstraintsInfo structure to fill
      *  \return maximum contact state (i.e. maximum value of Contact::state)
      */
     virtual int checkContacts(BodyList& bodies, ConstraintsInfo* info) = 0;

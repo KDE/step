@@ -725,7 +725,7 @@ QString WorldModel::formatProperty(const StepCore::Object* object,
         QString string;
         unsigned int end = flags.testFlag(FormatEditable) ? list.size() : qMin<unsigned int>(10, list.size());
         for(unsigned int i=0; i<end; ++i) {
-            if(!string.isEmpty()) string += ",";
+            if(!string.isEmpty()) string += ',';
             string += QString("(%1,%2)").arg(list[i][0], 0, 'g', pr)
                                             .arg(list[i][1], 0, 'g', pr);
         }
