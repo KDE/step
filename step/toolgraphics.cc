@@ -66,6 +66,104 @@
 
 #include <float.h>
 
+WidgetGraphicsItem::WidgetGraphicsItem(StepCore::Item* item, WorldModel* worldModel)
+    : WorldGraphicsItem(item, worldModel), _centralWidget(0)
+{
+    setFlag(QGraphicsItem::ItemIsSelectable);
+    setFlag(QGraphicsItem::ItemIsMovable);
+    setAcceptsHoverEvents(true);
+
+    _backgroundBrush = Qt::NoBrush;
+
+    _boundingRect = QRectF(0, 0, 0, 0);
+    _lastScale = 1;
+    scale(1, -1);
+}
+
+WidgetGraphicsItem::~WidgetGraphicsItem()
+{
+    if(_centralWidget) {
+        _centralWidget->hide();
+        _centralWidget->deleteLater();
+    }
+}
+
+void WidgetGraphicsItem::paint(QPainter* painter, const QStyleOptionGraphicsItem* /*option*/, QWidget* /*widget*/)
+{
+    painter->setRenderHint(QPainter::Antialiasing, true);
+    if(_isSelected) painter->setPen(QPen(SELECTION_COLOR, 0, Qt::DashLine));
+    else painter->setPen(QPen(Qt::NoPen));
+    painter->setBrush(_backgroundBrush);
+    painter->drawRect(_boundingRect);
+}
+
+void WidgetGraphicsItem::setCenteralWidget(QWidget* widget)
+{
+    if(_centralWidget) {
+        _centralWidget->hide();
+        _centralWidget->deleteLater();
+    }
+    _centralWidget = widget;
+    viewScaleChanged();
+}
+
+void WidgetGraphicsItem::viewScaleChanged()
+{
+    double s = currentViewScale();
+    if(s != _lastScale) {
+        resetTransform();
+        scale(1/s, -1/s);
+        _lastScale = s;
+    }
+    
+    // FIXME: round position value
+    setPos(vectorToPoint(_item->metaObject()->property("position")->
+                    readVariant(_item).value<StepCore::Vector2d>()));
+
+    StepCore::Vector2d size = _item->metaObject()->property("size")->
+                    readVariant(_item).value<StepCore::Vector2d>();
+
+    QSize wsize((int)size[0], (int)size[1]);
+    QSizeF isize((int)size[0]+2, (int)size[1]+2);
+
+    if(isize != _boundingRect.size()) {
+        prepareGeometryChange();
+        _boundingRect.setSize(isize);
+        update();
+    }
+
+    if(scene() && !scene()->views().isEmpty()) {
+        QGraphicsView* activeView = scene()->views().first();
+
+        // Reparent the widget if necessary.
+        if(_centralWidget->parentWidget() != activeView->viewport()) {
+           _centralWidget->setParent(activeView->viewport());
+           _centralWidget->show();
+        }
+
+        QTransform itemTransform = deviceTransform(activeView->viewportTransform());
+        QPoint viewportPos = itemTransform.map(QPointF(0, 0)).toPoint() + QPoint(1,1);
+
+        if(_centralWidget->pos() != viewportPos)
+            _centralWidget->move(viewportPos);
+
+        if(_centralWidget->size() != wsize)
+            _centralWidget->resize(wsize);
+    }
+}
+
+void WidgetGraphicsItem::stateChanged()
+{
+    update();
+}
+
+void WidgetGraphicsItem::worldDataChanged(bool dynamicOnly)
+{
+    if(!dynamicOnly) viewScaleChanged();
+}
+
+/////////////////////////////////////////////////////////////////////////////////////////
+
 QString NoteTextEdit::emptyNotice() const
 {
     return i18n("Click to enter a text");
@@ -169,7 +267,7 @@ void NoteTextEdit::mouseReleaseEvent(QMouseEvent *e)
 }
 
 NoteGraphicsItem::NoteGraphicsItem(StepCore::Item* item, WorldModel* worldModel)
-    : WorldGraphicsItem(item, worldModel)
+    : WidgetGraphicsItem(item, worldModel)
 {
     Q_ASSERT(dynamic_cast<StepCore::Note*>(_item) != NULL);
     setFlag(QGraphicsItem::ItemIsSelectable);
@@ -294,16 +392,7 @@ NoteGraphicsItem::NoteGraphicsItem(StepCore::Item* item, WorldModel* worldModel)
         fontSize->setToolTip(_actionFontSize->toolTip());
     }
 
-    _boundingRect = QRectF(0, 0, 0, 0);
-    _lastScale = 1;
-    //_updating = 0;
-    scale(1, -1);
-}
-
-NoteGraphicsItem::~NoteGraphicsItem()
-{
-    _widget->hide();
-    delete _widget;
+    setCenteralWidget(_widget);
 }
 
 inline StepCore::Note* NoteGraphicsItem::note() const
@@ -544,69 +633,9 @@ bool NoteGraphicsItem::editFormula(StepCore::NoteFormula* formula)
     return true;
 }
 
-void NoteGraphicsItem::paint(QPainter* painter, const QStyleOptionGraphicsItem* /*option*/, QWidget* /*widget*/)
-{
-    // Do not need to fill the background since widget covers it all
-    if(_isSelected) {
-        painter->setRenderHint(QPainter::Antialiasing, true);
-        painter->setPen(QPen(SELECTION_COLOR, 0, Qt::DashLine));
-        //painter->setBrush(QBrush(Qt::white));
-        painter->drawRect(_boundingRect);
-    }
-}
-
-void NoteGraphicsItem::viewScaleChanged()
-{
-    double s = currentViewScale();
-    if(s != _lastScale) {
-        resetTransform();
-        scale(1/s, -1/s);
-        _lastScale = s;
-    }
-
-    setPos(vectorToPoint(note()->position()));
-
-    StepCore::Vector2d vs = note()->size();
-    QSizeF vss(vs[0]+2, vs[1]+2);
-
-    if(_hasFocus)
-        vss.setHeight(vss.height() + _toolBar->frameGeometry().height());
-
-    if(vss != _boundingRect.size()) {
-        prepareGeometryChange();
-        _boundingRect.setSize(vss);
-        update();
-    }
-
-    if(scene() && !scene()->views().isEmpty()) {
-        QGraphicsView* activeView = scene()->views().first();
-
-        // Reparent the widget if necessary.
-        if(_widget->parentWidget() != activeView->viewport()) {
-           _widget->setParent(activeView->viewport());
-           _widget->show();
-        }
-
-        QTransform itemTransform = deviceTransform(activeView->viewportTransform());
-        QPoint viewportPos = itemTransform.map(QPointF(0, 0)).toPoint() + QPoint(1,1);
-
-        if(_widget->pos() != viewportPos)
-            _widget->move(viewportPos);
-
-        if(_widget->size() != _boundingRect.size())
-            _widget->resize(vss.toSize() - QSize(2,2));
-    }
-}
-
-void NoteGraphicsItem::stateChanged()
-{
-    update();
-}
-
 void NoteGraphicsItem::worldDataChanged(bool dynamicOnly)
 {
     if(!dynamicOnly) {
-        setPos(vectorToPoint(note()->position()));
         if(!_hasFocus && _textEdit->toHtml() != note()->text()) {
             //++_updating;
 
@@ -764,7 +793,7 @@ void DataSourceWidget::propertySelected(int index)
 
 ////////////////////////////////////////////////////
 GraphGraphicsItem::GraphGraphicsItem(StepCore::Item* item, WorldModel* worldModel)
-    : WorldGraphicsItem(item, worldModel)
+    : WidgetGraphicsItem(item, worldModel)
 {
     Q_ASSERT(dynamic_cast<StepCore::Graph*>(_item) != NULL);
     setFlag(QGraphicsItem::ItemIsSelectable);
@@ -797,88 +826,14 @@ GraphGraphicsItem::GraphGraphicsItem(StepCore::Item* item, WorldModel* worldMode
     _plotWidget->addPlotObjects(plotObjects);
 
     _lastColor = 0xff000000;
-
-    _boundingRect = QRectF(0, 0, 0, 0);
-    _lastScale = 1;
-    scale(1, -1);
-
     _lastPointTime = -HUGE_VAL;
-}
 
-GraphGraphicsItem::~GraphGraphicsItem()
-{
-    _plotWidget->hide();
-    delete _plotWidget;
+    setCenteralWidget(_plotWidget);
 }
 
 inline StepCore::Graph* GraphGraphicsItem::graph() const
 {
     return static_cast<StepCore::Graph*>(_item);
-}
-
-void GraphGraphicsItem::paint(QPainter* painter, const QStyleOptionGraphicsItem* /*option*/, QWidget* /*widget*/)
-{
-    // Do not need to fill the background since widget covers it all
-    if(_isSelected) {
-        painter->setRenderHint(QPainter::Antialiasing, true);
-        painter->setPen(QPen(SELECTION_COLOR, 0, Qt::DashLine));
-        painter->setBrush(QBrush(Qt::white));
-        painter->drawRect(_boundingRect);
-    }
-}
-
-void GraphGraphicsItem::viewScaleChanged()
-{
-    double s = currentViewScale();
-    if(s != _lastScale) {
-        resetTransform();
-        scale(1/s, -1/s);
-        _lastScale = s;
-    }
-    
-    /*
-    QSizeF  size = _textItem->boundingRect().size()/s;
-    size.setHeight(-size.height());
-
-    if(size != _boundingRect.size()) {
-        prepareGeometryChange();
-        _boundingRect.setSize(size);
-    }*/
-
-    setPos(vectorToPoint(graph()->position()));
-
-    StepCore::Vector2d vs = graph()->size();
-    QSizeF vss(vs[0]+2, vs[1]+2);
-
-    if(vss != _boundingRect.size()) {
-        prepareGeometryChange();
-        _boundingRect.setSize(vss);
-        update();
-    }
-
-    if(scene() && !scene()->views().isEmpty()) {
-        QGraphicsView* activeView = scene()->views().first();
-
-        // Reparent the widget if necessary.
-        if(_plotWidget->parentWidget() != activeView->viewport()) {
-           _plotWidget->setParent(activeView->viewport());
-           _plotWidget->show();
-        }
-
-        QTransform itemTransform = deviceTransform(activeView->viewportTransform());
-        QPoint viewportPos = itemTransform.map(QPointF(0, 0)).toPoint() + QPoint(1,1);
-
-        if(_plotWidget->pos() != viewportPos)
-            _plotWidget->move(viewportPos);
-
-        if(_plotWidget->size() != _boundingRect.size())
-            _plotWidget->resize(vss.toSize() - QSize(2,2));
-    }
-}
-
-void GraphGraphicsItem::stateChanged()
-{
-    update();
 }
 
 void GraphGraphicsItem::adjustLimits()
@@ -1163,12 +1118,13 @@ void GraphMenuHandler::clearGraph()
 
 ////////////////////////////////////////////////////
 MeterGraphicsItem::MeterGraphicsItem(StepCore::Item* item, WorldModel* worldModel)
-    : WorldGraphicsItem(item, worldModel)
+    : WidgetGraphicsItem(item, worldModel)
 {
     Q_ASSERT(dynamic_cast<StepCore::Meter*>(_item) != NULL);
     setFlag(QGraphicsItem::ItemIsSelectable);
     setFlag(QGraphicsItem::ItemIsMovable);
     setAcceptsHoverEvents(true);
+    setBackgroundBrush(QBrush(Qt::white));
 
     _widget = new QFrame();
     _widget->setFrameShape(QFrame::Box);
@@ -1189,75 +1145,14 @@ MeterGraphicsItem::MeterGraphicsItem(StepCore::Item* item, WorldModel* worldMode
     layout->addWidget(_lcdNumber, 0, 0, 1, 1);
     layout->addWidget(_labelUnits, 0, 1, 1, 1);
 
-    _boundingRect = QRectF(0, 0, 0, 0);
-    _lastScale = 1;
     _lastValue = 0;
-    scale(1, -1);
-}
 
-MeterGraphicsItem::~MeterGraphicsItem()
-{
-    _widget->hide();
-    delete _widget;
+    setCenteralWidget(_widget);
 }
 
 inline StepCore::Meter* MeterGraphicsItem::meter() const
 {
     return static_cast<StepCore::Meter*>(_item);
-}
-
-void MeterGraphicsItem::paint(QPainter* painter, const QStyleOptionGraphicsItem* /*option*/, QWidget* /*widget*/)
-{
-    painter->setRenderHint(QPainter::Antialiasing, true);
-    if(_isSelected) painter->setPen(QPen(SELECTION_COLOR, 0, Qt::DashLine));
-    else painter->setPen(QPen(Qt::white));
-    painter->setBrush(QBrush(Qt::white));
-    painter->drawRect(_boundingRect);
-}
-
-void MeterGraphicsItem::viewScaleChanged()
-{
-    double s = currentViewScale();
-    if(s != _lastScale) {
-        resetTransform();
-        scale(1/s, -1/s);
-        _lastScale = s;
-    }
-    
-    setPos(vectorToPoint(meter()->position()));
-
-    StepCore::Vector2d vs = meter()->size();
-    QSizeF vss(vs[0]+2, vs[1]+2);
-
-    if(vss != _boundingRect.size()) {
-        prepareGeometryChange();
-        _boundingRect.setSize(vss);
-        update();
-    }
-
-    if(scene() && !scene()->views().isEmpty()) {
-        QGraphicsView* activeView = scene()->views().first();
-
-        // Reparent the widget if necessary.
-        if(_widget->parentWidget() != activeView->viewport()) {
-           _widget->setParent(activeView->viewport());
-           _widget->show();
-        }
-
-        QTransform itemTransform = deviceTransform(activeView->viewportTransform());
-        QPoint viewportPos = itemTransform.map(QPointF(0, 0)).toPoint() + QPoint(1,1);
-
-        if(_widget->pos() != viewportPos)
-            _widget->move(viewportPos);
-
-        if(_widget->size() != _boundingRect.size())
-            _widget->resize(vss.toSize() - QSize(2,2));
-    }
-}
-
-void MeterGraphicsItem::stateChanged()
-{
-    update();
 }
 
 void MeterGraphicsItem::worldDataChanged(bool dynamicOnly)
@@ -1367,12 +1262,13 @@ void MeterMenuHandler::confChanged()
 
 ////////////////////////////////////////////////////
 ControllerGraphicsItem::ControllerGraphicsItem(StepCore::Item* item, WorldModel* worldModel)
-    : WorldGraphicsItem(item, worldModel)
+    : WidgetGraphicsItem(item, worldModel)
 {
     Q_ASSERT(dynamic_cast<StepCore::Controller*>(_item) != NULL);
     setFlag(QGraphicsItem::ItemIsSelectable);
     setFlag(QGraphicsItem::ItemIsMovable);
     setAcceptsHoverEvents(true);
+    setBackgroundBrush(QBrush(Qt::white));
 
     _widget = new QWidget();
     _widget->setPalette(QPalette(Qt::lightGray));
@@ -1402,18 +1298,10 @@ ControllerGraphicsItem::ControllerGraphicsItem(StepCore::Item* item, WorldModel*
     //_widget->addAction(_configureAction);
     //_widget->setContextMenuPolicy(Qt::ActionsContextMenu);
 
-    _boundingRect = QRectF(0, 0, 0, 0);
-    _lastScale = 1;
-    scale(1, -1);
-
     _lastValue = 1;
     _changed = false;
-}
 
-ControllerGraphicsItem::~ControllerGraphicsItem()
-{
-    _widget->hide();
-    delete _widget;
+    setCenteralWidget(_widget);
 }
 
 inline StepCore::Controller* ControllerGraphicsItem::controller() const
@@ -1437,60 +1325,6 @@ void ControllerGraphicsItem::incTriggered()
     _worldModel->setProperty(controller(), controller()->metaObject()->property("value"),
                                 controller()->value() + controller()->increment());
     _worldModel->endMacro();
-}
-
-void ControllerGraphicsItem::paint(QPainter* painter, const QStyleOptionGraphicsItem* /*option*/, QWidget* /*widget*/)
-{
-    painter->setRenderHint(QPainter::Antialiasing, true);
-    if(_isSelected) painter->setPen(QPen(SELECTION_COLOR, 0, Qt::DashLine));
-    else painter->setPen(QPen(Qt::white));
-    painter->setBrush(QBrush(Qt::white));
-    painter->drawRect(_boundingRect);
-}
-
-void ControllerGraphicsItem::viewScaleChanged()
-{
-    double s = currentViewScale();
-    if(s != _lastScale) {
-        resetTransform();
-        scale(1/s, -1/s);
-        _lastScale = s;
-    }
-    
-    setPos(vectorToPoint(controller()->position()));
-
-    StepCore::Vector2d vs = controller()->size();
-    QSizeF vss(vs[0]+2, vs[1]+2);
-
-    if(vss != _boundingRect.size()) {
-        prepareGeometryChange();
-        _boundingRect.setSize(vss);
-        update();
-    }
-
-    if(scene() && !scene()->views().isEmpty()) {
-        QGraphicsView* activeView = scene()->views().first();
-
-        // Reparent the widget if necessary.
-        if(_widget->parentWidget() != activeView->viewport()) {
-           _widget->setParent(activeView->viewport());
-           _widget->show();
-        }
-
-        QTransform itemTransform = deviceTransform(activeView->viewportTransform());
-        QPoint viewportPos = itemTransform.map(QPointF(0, 0)).toPoint() + QPoint(1,1);
-
-        if(_widget->pos() != viewportPos)
-            _widget->move(viewportPos);
-
-        if(_widget->size() != _boundingRect.size())
-            _widget->resize(vss.toSize() - QSize(2,2));
-    }
-}
-
-void ControllerGraphicsItem::stateChanged()
-{
-    update();
 }
 
 void ControllerGraphicsItem::worldDataChanged(bool dynamicOnly)

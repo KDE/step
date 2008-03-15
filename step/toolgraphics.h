@@ -53,6 +53,37 @@ namespace StepCore {
 
 /////////////////////////////////////////////////////////////////////////////////////////
 
+class WidgetGraphicsItem: public WorldGraphicsItem
+{
+public:
+    WidgetGraphicsItem(StepCore::Item* item, WorldModel* worldModel);
+    ~WidgetGraphicsItem();
+
+    void paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget);
+
+    void stateChanged();
+    void viewScaleChanged();
+    void worldDataChanged(bool dynamicOnly);
+
+protected:
+    void setCenteralWidget(QWidget* widget);
+    QWidget* centeralWidget() const { return _centralWidget; }
+
+    bool isResizeable() const { return _resizeable; }
+    void setResizeable(bool enabled) { _resizeable = enabled; }
+
+    const QBrush& backgroundBrush() const { return _backgroundBrush; }
+    void setBackgroundBrush(const QBrush& brush) { _backgroundBrush = brush; }
+
+    QWidget* _centralWidget;
+    QBrush   _backgroundBrush;
+    bool     _resizeable;
+
+    double _lastScale;
+};
+
+/////////////////////////////////////////////////////////////////////////////////////////
+
 class NoteGraphicsItem;
 class NoteTextEdit: public KTextEdit
 {
@@ -77,18 +108,12 @@ class KToolBar;
 class KSelectAction;
 class KFontAction;
 class KFontSizeAction;
-class NoteGraphicsItem: public QObject, public WorldGraphicsItem
+class NoteGraphicsItem: public QObject, public WidgetGraphicsItem
 {
     Q_OBJECT
 
 public:
     NoteGraphicsItem(StepCore::Item* item, WorldModel* worldModel);
-    ~NoteGraphicsItem();
-
-    void paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget);
-
-    void stateChanged();
-    void viewScaleChanged();
     void worldDataChanged(bool dynamicOnly);
 
 protected slots:
@@ -108,7 +133,6 @@ protected:
     bool eventFilter(QObject* obj, QEvent* event);
 
     StepCore::Note* note() const;
-    double          _lastScale;
     bool            _hasFocus;
 
     QList<StepCore::Item*> _newItems;
@@ -175,25 +199,16 @@ protected:
 
 /////////////////////////////////////////////////////////////////////////////////////////
 
-class GraphGraphicsItem: public QObject, public WorldGraphicsItem
+class GraphGraphicsItem: public WidgetGraphicsItem
 {
-    Q_OBJECT
-
 public:
     GraphGraphicsItem(StepCore::Item* item, WorldModel* worldModel);
-    ~GraphGraphicsItem();
-
-    void paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget);
-
-    void stateChanged();
-    void viewScaleChanged();
     void worldDataChanged(bool);
 
 protected:
     StepCore::Graph* graph() const;
     void adjustLimits();
 
-    double _lastScale;
     double _lastPointTime;
     QRgb   _lastColor;
 
@@ -229,24 +244,15 @@ protected:
 
 class QLCDNumber;
 class QFrame;
-class MeterGraphicsItem: public QObject, public WorldGraphicsItem
+class MeterGraphicsItem: public WidgetGraphicsItem
 {
-    Q_OBJECT
-
 public:
     MeterGraphicsItem(StepCore::Item* item, WorldModel* worldModel);
-    ~MeterGraphicsItem();
-
-    void paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget);
-
-    void stateChanged();
-    void viewScaleChanged();
     void worldDataChanged(bool);
 
 protected:
     StepCore::Meter* meter() const;
 
-    double _lastScale;
     double _lastValue;
 
     QFrame*     _widget;
@@ -285,18 +291,12 @@ protected:
 
 /////////////////////////////////////////////////////////////////////////////////////////
 
-class ControllerGraphicsItem: public QObject, public WorldGraphicsItem
+class ControllerGraphicsItem: public QObject, public WidgetGraphicsItem
 {
     Q_OBJECT
 
 public:
     ControllerGraphicsItem(StepCore::Item* item, WorldModel* worldModel);
-    ~ControllerGraphicsItem();
-
-    void paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget);
-
-    void stateChanged();
-    void viewScaleChanged();
     void worldDataChanged(bool);
 
 protected slots:
@@ -308,8 +308,8 @@ protected slots:
 protected:
     StepCore::Controller* controller() const;
 
-    double _lastScale;
     double _lastValue;
+    bool _changed;
 
     QWidget* _widget;
     QSlider* _slider;
@@ -321,8 +321,6 @@ protected:
     KAction* _decAction;
     QString  _incShortcut;
     QString  _decShortcut;
-
-    bool _changed;
 
     static const int SLIDER_MIN = 0;
     static const int SLIDER_MAX = INT_MAX-100;
