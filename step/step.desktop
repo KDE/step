@@ -7,7 +7,5 @@ X-DocPath=step/index.html
 Terminal=false
 Name=Step
 GenericName=Interactive physical simulator
-GenericName[sv]=Interaktiv fysiksimulator
 Comment=Simulate physics experiments
-Comment[sv]=Simulera fysikexperiment
 Categories=Qt;KDE;Education;Science;
