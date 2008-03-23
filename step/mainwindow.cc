@@ -430,7 +430,7 @@ void MainWindow::simulationStopped(int result)
     undoBrowser->setUndoEnabled(true);
     if(result == StepCore::Solver::ToleranceError) {
         KMessageBox::sorry(this, i18n("Cannot finish this step because local error "
-               "is bigger then local tolerance.\n"
+               "is bigger than local tolerance.\n"
                "Please check solver settings and try again."));
     } else if(result == StepCore::Solver::IntersectionDetected || 
               result == StepCore::Solver::CollisionDetected) {
@@ -515,7 +515,7 @@ void MainWindow::on_actionStep_triggered(bool checked)
 {
     if(!worldModel->doWorldEvolve(0.1))
         QMessageBox::warning(this, i18n("Step"), // XXX: retrieve error message from solver !
-            i18n("Cannot finish this step becouse local error is bigger then local tolerance.<br />"
+            i18n("Cannot finish this step becouse local error is bigger than local tolerance.<br />"
                "Please check solver settings and try again."));
 }
 

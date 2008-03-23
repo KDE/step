@@ -58,7 +58,7 @@ bool executeCommand(const QString& cmd, const QStringList& args,
     }
     
     if(!QFile::exists(resultFile)) {
-        *error = i18n("%1 did not created output file", cmd); return false;
+        *error = i18n("%1 did not create output file", cmd); return false;
     }
 
     return true;
