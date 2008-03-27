@@ -430,12 +430,12 @@ void MainWindow::simulationStopped(int result)
     undoBrowser->setUndoEnabled(true);
     if(result == StepCore::Solver::ToleranceError) {
         KMessageBox::sorry(this, i18n("Cannot finish this step because local error "
-               "is bigger than local tolerance.\n"
+               "is greater than local tolerance.\n"
                "Please check solver settings and try again."));
     } else if(result == StepCore::Solver::IntersectionDetected || 
               result == StepCore::Solver::CollisionDetected) {
-        KMessageBox::sorry(this, i18n("Cannot finish this step because the are collisions "
-               "which can not be resolved automatically.\n"
+        KMessageBox::sorry(this, i18n("Cannot finish this step because there are collisions "
+               "which cannot be resolved automatically.\n"
                "Please move colliding objects appart and try again."));
     } else if(result != StepCore::Solver::OK) {\
         KMessageBox::sorry(this, i18n("Cannot finish this step because of unknown error."));
