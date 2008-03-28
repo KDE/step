@@ -44,5 +44,7 @@ add_subdirectory(stepcore_tests)
 endif(STEPCORE_TESTS)
 
 else (GMM_INCLUDE_DIR)
-MESSAGE(STATUS "Step will not be built because you are missing GMM")
+message(STATUS "Step will not be built because you are missing GMM")
+message(STATUS "Download the latest stable version of GMM from:")
+message(STATUS "http://home.gna.org/getfem/download.html")
 endif (GMM_INCLUDE_DIR)
