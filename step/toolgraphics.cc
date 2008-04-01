@@ -63,8 +63,69 @@
 #include <KMessageBox>
 #include <KInputDialog>
 #include <KIO/NetAccess>
+#include <KDebug>
 
 #include <float.h>
+
+const StepCore::Vector2d WidgetVertexHandlerGraphicsItem::corners[4] = {
+    StepCore::Vector2d(-0.5,-0.5), StepCore::Vector2d( 0.5,-0.5),
+    StepCore::Vector2d(-0.5, 0.5), StepCore::Vector2d( 0.5, 0.5)
+};
+
+StepCore::Vector2d WidgetVertexHandlerGraphicsItem::value()
+{
+    double s = currentViewScale();
+    StepCore::Vector2d size = _item->metaObject()->property("size")->
+                            readVariant(_item).value<StepCore::Vector2d>()/s;
+    return size.cMultiply(corners[_vertexNum]);
+}
+
+void WidgetVertexHandlerGraphicsItem::setValue(const StepCore::Vector2d& value)
+{
+    double s = currentViewScale();
+    //kDebug() << s;
+
+    QGraphicsView* activeView = scene()->views().first();
+    QTransform itemTransform = activeView->transform() * deviceTransform(activeView->viewportTransform());
+
+    StepCore::Vector2d size = _item->metaObject()->property("size")->
+                        readVariant(_item).value<StepCore::Vector2d>()/s;
+    StepCore::Vector2d position = _item->metaObject()->property("position")->
+                            readVariant(_item).value<StepCore::Vector2d>();
+
+    StepCore::Vector2d oCorner = position - size.cMultiply(corners[_vertexNum]);
+    oCorner = pointToVector( itemTransform.inverted().map(
+                QPointF(itemTransform.map(vectorToPoint(oCorner)).toPoint()) ));
+
+    StepCore::Vector2d delta = (value + position - oCorner)/2.0;
+    StepCore::Vector2d newPos = oCorner + delta;
+    newPos = pointToVector( itemTransform.inverted().map(
+                QPointF(itemTransform.map(vectorToPoint(newPos)).toPoint()) ));
+    StepCore::Vector2d newSize = (newPos - oCorner)*2.0;
+
+    StepCore::Vector2d sign = delta.cMultiply(corners[_vertexNum]);
+    double d = -0.1/s;
+    if(sign[0] < d || sign[1] < d) {
+        if(sign[0] < d) {
+            newPos[0] = oCorner[0]; newSize[0] = 0;
+            _vertexNum ^= 1;
+        }
+        if(sign[1] < d) {
+            newPos[1] = oCorner[1]; newSize[1] = 0;
+            _vertexNum ^= 2;
+        }
+        _worldModel->setProperty(_item, _item->metaObject()->property("position"),
+                                                QVariant::fromValue(newPos));
+        _worldModel->setProperty(_item, _item->metaObject()->property("size"),
+                                                QVariant::fromValue(newSize*s));
+        setValue(value);
+        return;
+    }
+
+    _worldModel->setProperty(_item, _item->metaObject()->property("position"), QVariant::fromValue(newPos));
+    _worldModel->setProperty(_item, _item->metaObject()->property("size"),
+                                            QVariant::fromValue(newSize*s));
+}
 
 WidgetGraphicsItem::WidgetGraphicsItem(StepCore::Item* item, WorldModel* worldModel)
     : WorldGraphicsItem(item, worldModel), _centralWidget(0)
@@ -76,8 +137,6 @@ WidgetGraphicsItem::WidgetGraphicsItem(StepCore::Item* item, WorldModel* worldMo
     _backgroundBrush = Qt::NoBrush;
 
     _boundingRect = QRectF(0, 0, 0, 0);
-    _lastScale = 1;
-    scale(1, -1);
 }
 
 WidgetGraphicsItem::~WidgetGraphicsItem()
@@ -86,6 +145,41 @@ WidgetGraphicsItem::~WidgetGraphicsItem()
         _centralWidget->hide();
         _centralWidget->deleteLater();
     }
+}
+
+OnHoverHandlerGraphicsItem* WidgetGraphicsItem::createOnHoverHandler(const QPointF& pos)
+{
+    double s = currentViewScale();
+    StepCore::Vector2d size = _item->metaObject()->property("size")->
+                            readVariant(_item).value<StepCore::Vector2d>()/s;
+    StepCore::Vector2d position = _item->metaObject()->property("position")->
+                            readVariant(_item).value<StepCore::Vector2d>();
+    StepCore::Vector2d l = pointToVector(pos) - position;
+
+    int num = -1; double minDist2 = HANDLER_SNAP_SIZE*HANDLER_SNAP_SIZE/s/s;
+    for(unsigned int i=0; i<4; ++i) {
+        double dist2 = (l - size.cMultiply(WidgetVertexHandlerGraphicsItem::corners[i])).norm2();
+        if(dist2 < minDist2) { num = i; minDist2 = dist2; }
+    }
+
+    if(_onHoverHandler &&
+            static_cast<WidgetVertexHandlerGraphicsItem*>(&*_onHoverHandler)->vertexNum() == num)
+        return _onHoverHandler;
+
+    if(num >= 0)
+        return new WidgetVertexHandlerGraphicsItem(_item, _worldModel, this, num);
+
+    return 0;
+}
+
+// XXX: ???
+void WidgetGraphicsItem::mouseSetPos(const QPointF& pos, const QPointF&, MovingState)
+{
+    QGraphicsView* activeView = scene()->views().first();
+    QTransform itemTransform = activeView->transform() * deviceTransform(activeView->viewportTransform());
+    StepCore::Vector2d newPos = pointToVector( itemTransform.inverted().map(
+                QPointF(itemTransform.map(pos/*/50.0*/).toPoint()) ))/**50.0*/;
+    _worldModel->setProperty(_item, _item->metaObject()->property("position"), QVariant::fromValue(newPos));
 }
 
 void WidgetGraphicsItem::paint(QPainter* painter, const QStyleOptionGraphicsItem* /*option*/, QWidget* /*widget*/)
@@ -109,47 +203,59 @@ void WidgetGraphicsItem::setCenteralWidget(QWidget* widget)
 
 void WidgetGraphicsItem::viewScaleChanged()
 {
+    if(!scene() || scene()->views().isEmpty()) return;
+    QGraphicsView* activeView = scene()->views().first();
+    QTransform itemTransform = activeView->transform() * deviceTransform(activeView->viewportTransform());
     double s = currentViewScale();
-    if(s != _lastScale) {
-        resetTransform();
-        scale(1/s, -1/s);
-        _lastScale = s;
-    }
     
-    // FIXME: round position value
-    setPos(vectorToPoint(_item->metaObject()->property("position")->
-                    readVariant(_item).value<StepCore::Vector2d>()));
+    QPointF position = vectorToPoint(_item->metaObject()->property("position")->
+                    readVariant(_item).value<StepCore::Vector2d>());
+
+    position = itemTransform.inverted().map(QPointF(itemTransform.map(position).toPoint()));
+    //kDebug() << "*";
+    //kDebug() << sceneTransform();
+    //kDebug() << itemTransform;
+    setPos(position);
 
     StepCore::Vector2d size = _item->metaObject()->property("size")->
                     readVariant(_item).value<StepCore::Vector2d>();
 
-    QSize wsize((int)size[0], (int)size[1]);
-    QSizeF isize((int)size[0]+2, (int)size[1]+2);
+    itemTransform = activeView->transform() * deviceTransform(activeView->viewportTransform());
+    QRectF irect(-(size[0]+2)/s/2, -(size[1]+2)/s/2, (size[0]+2)/s, (size[1]+2)/s);
+    /*
+    kDebug() << "*****";
+    kDebug() << "Before: " << irect;
+    kDebug() << activeView->transform();
+    kDebug() << activeView->viewportTransform();
+    kDebug() << deviceTransform(activeView->viewportTransform());
+    kDebug() << transform();
+    kDebug() << sceneTransform();
+    kDebug() << itemTransform;*/
+    QRect viewportRect = itemTransform.mapRect(irect).toRect();
+    //kDebug() << "Tr: " << viewportRect;
+    //kDebug() << "Tr: " << itemTransform.mapRect(irect);
+    irect = itemTransform.inverted().mapRect(QRectF(viewportRect));
+    //kDebug() << "After: " << irect;
+    //kDebug() << "BoundingRect" << _boundingRect;
 
-    if(isize != _boundingRect.size()) {
+    if(irect != _boundingRect) {
         prepareGeometryChange();
-        _boundingRect.setSize(isize);
+        _boundingRect = irect;
         update();
     }
 
-    if(scene() && !scene()->views().isEmpty()) {
-        QGraphicsView* activeView = scene()->views().first();
-
-        // Reparent the widget if necessary.
-        if(_centralWidget->parentWidget() != activeView->viewport()) {
-           _centralWidget->setParent(activeView->viewport());
-           _centralWidget->show();
-        }
-
-        QTransform itemTransform = deviceTransform(activeView->viewportTransform());
-        QPoint viewportPos = itemTransform.map(QPointF(0, 0)).toPoint() + QPoint(1,1);
-
-        if(_centralWidget->pos() != viewportPos)
-            _centralWidget->move(viewportPos);
-
-        if(_centralWidget->size() != wsize)
-            _centralWidget->resize(wsize);
+    // Reparent the widget if necessary.
+    if(_centralWidget->parentWidget() != activeView->viewport()) {
+       _centralWidget->setParent(activeView->viewport());
+       _centralWidget->show();
     }
+
+    viewportRect = viewportRect.adjusted(1,1,-1,-1).normalized();
+    if(_centralWidget->pos() != viewportRect.topLeft())
+        _centralWidget->move(viewportRect.topLeft());
+
+    if(_centralWidget->size() != viewportRect.size())
+        _centralWidget->resize(viewportRect.size());
 }
 
 void WidgetGraphicsItem::stateChanged()
@@ -159,7 +265,12 @@ void WidgetGraphicsItem::stateChanged()
 
 void WidgetGraphicsItem::worldDataChanged(bool dynamicOnly)
 {
-    if(!dynamicOnly) viewScaleChanged();
+        /*QPointF position = vectorToPoint(_item->metaObject()->property("position")->
+                    readVariant(_item).value<StepCore::Vector2d>());
+        setPos(position);*/
+    if(!dynamicOnly) {
+        viewScaleChanged();
+    }
 }
 
 /////////////////////////////////////////////////////////////////////////////////////////
@@ -393,6 +504,10 @@ NoteGraphicsItem::NoteGraphicsItem(StepCore::Item* item, WorldModel* worldModel)
     }
 
     setCenteralWidget(_widget);
+    setOnHoverHandlerEnabled(true);
+    _widget->setMouseTracking(true);
+    _textEdit->setMouseTracking(true);
+    _toolBar->setMouseTracking(true);
 }
 
 inline StepCore::Note* NoteGraphicsItem::note() const
@@ -829,6 +944,9 @@ GraphGraphicsItem::GraphGraphicsItem(StepCore::Item* item, WorldModel* worldMode
     _lastPointTime = -HUGE_VAL;
 
     setCenteralWidget(_plotWidget);
+
+    setOnHoverHandlerEnabled(true);
+    _plotWidget->setMouseTracking(true);
 }
 
 inline StepCore::Graph* GraphGraphicsItem::graph() const
@@ -1145,9 +1263,11 @@ MeterGraphicsItem::MeterGraphicsItem(StepCore::Item* item, WorldModel* worldMode
     layout->addWidget(_lcdNumber, 0, 0, 1, 1);
     layout->addWidget(_labelUnits, 0, 1, 1, 1);
 
-    _lastValue = 0;
-
     setCenteralWidget(_widget);
+    setOnHoverHandlerEnabled(true);
+    _widget->setMouseTracking(true);
+    _lcdNumber->setMouseTracking(true);
+    _labelUnits->setMouseTracking(true);
 }
 
 inline StepCore::Meter* MeterGraphicsItem::meter() const
@@ -1179,8 +1299,6 @@ void MeterGraphicsItem::worldDataChanged(bool dynamicOnly)
 
     double value = meter()->value();
     _lcdNumber->display(value);
-
-    //_lastValue = value;
 }
 
 void MeterMenuHandler::populateMenu(QMenu* menu)
@@ -1302,6 +1420,12 @@ ControllerGraphicsItem::ControllerGraphicsItem(StepCore::Item* item, WorldModel*
     _changed = false;
 
     setCenteralWidget(_widget);
+    setOnHoverHandlerEnabled(true);
+    _widget->setMouseTracking(true);
+    _labelMin->setMouseTracking(true);
+    _labelMax->setMouseTracking(true);
+    _labelSource->setMouseTracking(true);
+    _slider->setMouseTracking(true);
 }
 
 inline StepCore::Controller* ControllerGraphicsItem::controller() const

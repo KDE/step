@@ -32,6 +32,7 @@ Doxygen-generated documentation and in the source
 code (marked as TODO or XXX).
 
 2. Step.
+* SVG theming
 * do calculations in separate thread (DONE)
 * use statusbar or small graphicsitem to notify
   user when creating items (DONE)

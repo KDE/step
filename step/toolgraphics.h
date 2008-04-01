@@ -53,8 +53,29 @@ namespace StepCore {
 
 /////////////////////////////////////////////////////////////////////////////////////////
 
-class WidgetGraphicsItem: public WorldGraphicsItem
+class WidgetVertexHandlerGraphicsItem: public OnHoverHandlerGraphicsItem
 {
+    Q_OBJECT
+
+public:
+    WidgetVertexHandlerGraphicsItem(StepCore::Item* item, WorldModel* worldModel,
+                                        QGraphicsItem* parent, int vertexNum)
+        : OnHoverHandlerGraphicsItem(item, worldModel, parent, NULL, NULL), _vertexNum(vertexNum) {}
+
+    int vertexNum() const { return _vertexNum; }
+    static const StepCore::Vector2d corners[4];
+
+protected:
+    void setValue(const StepCore::Vector2d& value);
+    StepCore::Vector2d value();
+
+    int _vertexNum;
+};
+
+class WidgetGraphicsItem: public QObject, public WorldGraphicsItem
+{
+    Q_OBJECT
+
 public:
     WidgetGraphicsItem(StepCore::Item* item, WorldModel* worldModel);
     ~WidgetGraphicsItem();
@@ -69,17 +90,14 @@ protected:
     void setCenteralWidget(QWidget* widget);
     QWidget* centeralWidget() const { return _centralWidget; }
 
-    bool isResizeable() const { return _resizeable; }
-    void setResizeable(bool enabled) { _resizeable = enabled; }
-
     const QBrush& backgroundBrush() const { return _backgroundBrush; }
     void setBackgroundBrush(const QBrush& brush) { _backgroundBrush = brush; }
 
+    void mouseSetPos(const QPointF& pos, const QPointF&, MovingState movingState);
+    OnHoverHandlerGraphicsItem* createOnHoverHandler(const QPointF& pos);
+
     QWidget* _centralWidget;
     QBrush   _backgroundBrush;
-    bool     _resizeable;
-
-    double _lastScale;
 };
 
 /////////////////////////////////////////////////////////////////////////////////////////
@@ -108,7 +126,7 @@ class KToolBar;
 class KSelectAction;
 class KFontAction;
 class KFontSizeAction;
-class NoteGraphicsItem: public QObject, public WidgetGraphicsItem
+class NoteGraphicsItem: public WidgetGraphicsItem
 {
     Q_OBJECT
 
@@ -253,8 +271,6 @@ public:
 protected:
     StepCore::Meter* meter() const;
 
-    double _lastValue;
-
     QFrame*     _widget;
     QLCDNumber* _lcdNumber;
     QLabel*     _labelUnits;
@@ -291,7 +307,7 @@ protected:
 
 /////////////////////////////////////////////////////////////////////////////////////////
 
-class ControllerGraphicsItem: public QObject, public WidgetGraphicsItem
+class ControllerGraphicsItem: public WidgetGraphicsItem
 {
     Q_OBJECT
 

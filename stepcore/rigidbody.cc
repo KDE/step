@@ -349,9 +349,7 @@ Box::Box(Vector2d position, double angle,
 
 void Box::setSize(const Vector2d& size)
 {
-    Vector2d s(size/2.0);
-    if(s[0] < 0) s[0] = -s[0];
-    if(s[1] < 0) s[1] = -s[1];
+    Vector2d s(size.cAbs()/2.0);
 
     _vertexes[0] = Vector2d(-s[0], -s[1]);
     _vertexes[1] = Vector2d( s[0], -s[1]);

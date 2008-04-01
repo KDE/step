@@ -58,6 +58,13 @@ public:
     /** Resets all components of *this to zero */
     void setZero();
 
+    /** Returns true if all components of *this is zero */
+    bool isZero();
+
+    /** Returns true if all components of *this
+     *  is not greater than epsilon */
+    bool isZero(T epsilon);
+
     /** Get component of the Vector */
     T  operator[](unsigned int i) const { return _array[i]; }
     /** Get reference to the component of the Vector */
@@ -121,6 +128,8 @@ public:
     Vector cDivide(const Vector<T,N>& b) const;
     /** Calculate square of all vector components individualy */
     Vector cSquare() const { return cMultiply(*this); }
+    /** Return a vector with absolute values of all components */
+    Vector cAbs() const;
 
 protected:
     T _array[N];
@@ -182,6 +191,22 @@ template<typename T, int N>
 inline void Vector<T,N>::setZero()
 {
     for(int i=0; i<N; ++i) _array[i] = 0;
+}
+
+template<typename T, int N>
+inline bool Vector<T,N>::isZero()
+{
+    for(int i=0; i<N; ++i)
+        if(_array[i] != 0) return false;
+    return true;
+}
+
+template<typename T, int N>
+inline bool Vector<T,N>::isZero(T epsilon)
+{
+    for(int i=0; i<N; ++i)
+        if(_array[i] >= epsilon || _array[i] <= -epsilon) return false;
+    return true;
 }
 
 template<typename T, int N>
@@ -299,6 +324,14 @@ inline Vector<T,N> Vector<T,N>::cDivide(const Vector<T,N>& b) const
 {
     Vector<T,N> ret;
     for(int i=0; i<N; i++) ret._array[i] = _array[i] / b._array[i];
+    return ret;
+}
+
+template<typename T, int N>
+inline Vector<T,N> Vector<T,N>::cAbs() const
+{
+    Vector<T,N> ret;
+    for(int i=0; i<N; i++) ret._array[i] = fabs(_array[i]);
     return ret;
 }
 
