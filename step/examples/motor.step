@@ -50,7 +50,7 @@
     <item class="Controller" id="6">
         <name>controller1</name>
         <color>#ff000000</color>
-        <position>(-1.48,-1.27)</position>
+        <position>(-0.167994,-1.31006)</position>
         <size>(300,60)</size>
         <object>5</object>
         <property>forceValue</property>
@@ -72,5 +72,9 @@
         <name>collisionSolver1</name>
         <toleranceAbs>0.001</toleranceAbs>
     </collisionSolver>
+
+    <constraintSolver class="CGConstraintSolver" id="9">
+        <name>constraintSolver1</name>
+    </constraintSolver>
 
 </world>

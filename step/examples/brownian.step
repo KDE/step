@@ -386,7 +386,7 @@
     <item class="Graph" id="47">
         <name>graph1</name>
         <color>#ff000000</color>
-        <position>(-1.5632,3.55366)</position>
+        <position>(-0.25,3.3)</position>
         <size>(400,300)</size>
         <objectX>48</objectX>
         <propertyX>position</propertyX>

@@ -434,9 +434,10 @@
     <item class="Note" id="44">
         <name>note1</name>
         <color>#ff000000</color>
-        <position>(-6.622,6.172)</position>
+        <position>(6.88744,9.05308)</position>
         <size>(400,100)</size>
-        <text>&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
+        <text>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
+&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
 p, li { white-space: pre-wrap; }
 &lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:'Sans Serif'; font-size:10pt; font-weight:400; font-style:normal;&quot;&gt;
 &lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;When you start simulation the wave starts to travel&lt;/p&gt;
@@ -444,12 +445,13 @@ p, li { white-space: pre-wrap; }
 &lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;wave and it will travel in reverse direction unil the red&lt;/p&gt;
 &lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;particle reflects in again. After some time the wave&lt;/p&gt;
 &lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;will wanish because springs have damping.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</text>
+
     </item>
 
     <item class="Graph" id="45">
         <name>graph1</name>
         <color>#ff00ff00</color>
-        <position>(-8.37959,-3.14746)</position>
+        <position>(-5.88156,9.30005)</position>
         <size>(400,300)</size>
         <objectX>1</objectX>
         <propertyX>time</propertyX>
@@ -469,12 +471,14 @@ p, li { white-space: pre-wrap; }
     <item class="Note" id="46">
         <name>note2</name>
         <color>#ff000000</color>
-        <position>(-6.37666,-1.51241)</position>
+        <position>(-6.34768,2.39005)</position>
         <size>(200,100)</size>
-        <text>&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
+        <text>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
+&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
 p, li { white-space: pre-wrap; }
 &lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:'Sans Serif'; font-size:10pt; font-weight:400; font-style:normal;&quot;&gt;
 &lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;The graph shows oscillations of the green particle&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</text>
+
     </item>
 
     <solver class="AdaptiveEulerSolver" id="47">
@@ -488,5 +492,9 @@ p, li { white-space: pre-wrap; }
         <name>collisionSolver1</name>
         <toleranceAbs>0.001</toleranceAbs>
     </collisionSolver>
+
+    <constraintSolver class="CGConstraintSolver" id="49">
+        <name>constraintSolver1</name>
+    </constraintSolver>
 
 </world>

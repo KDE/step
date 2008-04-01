@@ -246,18 +246,19 @@
     <item class="Note" id="29">
         <name>note1</name>
         <color>#ff000000</color>
-        <position>(-1.83083,0.90091)</position>
+        <position>(-1.64038,0.732428)</position>
         <size>(40,30)</size>
         <text>&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
 p, li { white-space: pre-wrap; }
 &lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:'Sans Serif'; font-size:10pt; font-weight:400; font-style:normal;&quot;&gt;
 &lt;p style=&quot; margin-top:14px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-size:large; font-weight:600;&quot;&gt;&lt;span style=&quot; font-size:large;&quot;&gt;n =&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</text>
+
     </item>
 
     <item class="Meter" id="30">
         <name>meter1</name>
         <color>#ff000000</color>
-        <position>(-1.59988,0.908071)</position>
+        <position>(-1.41038,0.742428)</position>
         <size>(70,25)</size>
         <object>6</object>
         <property>rectConcentration</property>
@@ -268,7 +269,7 @@ p, li { white-space: pre-wrap; }
     <item class="Meter" id="31">
         <name>meter2</name>
         <color>#ff000000</color>
-        <position>(-1.59988,0.608071)</position>
+        <position>(-1.41038,0.442428)</position>
         <size>(70,25)</size>
         <object>6</object>
         <property>rectPressure</property>
@@ -279,18 +280,19 @@ p, li { white-space: pre-wrap; }
     <item class="Note" id="32">
         <name>note3</name>
         <color>#ff000000</color>
-        <position>(-1.82962,0.294439)</position>
+        <position>(-1.64038,0.109199)</position>
         <size>(40,30)</size>
         <text>&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
 p, li { white-space: pre-wrap; }
 &lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:'Sans Serif'; font-size:10pt; font-weight:400; font-style:normal;&quot;&gt;
 &lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;h3&gt;T =&lt;/h3&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</text>
+
     </item>
 
     <item class="Meter" id="33">
         <name>meter3</name>
         <color>#ff000000</color>
-        <position>(-1.5996,0.308077)</position>
+        <position>(-1.41038,0.12038)</position>
         <size>(70,25)</size>
         <object>6</object>
         <property>rectTemperature</property>
@@ -301,29 +303,32 @@ p, li { white-space: pre-wrap; }
     <item class="Note" id="34">
         <name>note2</name>
         <color>#ff000000</color>
-        <position>(-1.83157,0.598109)</position>
+        <position>(-1.64038,0.432428)</position>
         <size>(40,30)</size>
         <text>&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
 p, li { white-space: pre-wrap; }
 &lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:'Sans Serif'; font-size:10pt; font-weight:400; font-style:normal;&quot;&gt;
 &lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;h3&gt;p =&lt;/h3&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</text>
+
     </item>
 
     <item class="Note" id="35">
         <name>note5</name>
         <color>#ff000000</color>
-        <position>(-1.8496,-0.224523)</position>
-        <size>(40,30)</size>
-        <text>&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
+        <position>(-1.6692,-0.383162)</position>
+        <size>(62,28)</size>
+        <text>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
+&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
 p, li { white-space: pre-wrap; }
 &lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:'Sans Serif'; font-size:10pt; font-weight:400; font-style:normal;&quot;&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;h3&gt;F&lt;sub&gt;s&lt;/sub&gt; =&lt;/h3&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</text>
+&lt;p style=&quot; margin-top:14px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-size:large; font-weight:600;&quot;&gt;&lt;span style=&quot; font-size:large;&quot;&gt;F&lt;/span&gt;&lt;span style=&quot; font-size:large; vertical-align:sub;&quot;&gt;s&lt;/span&gt;&lt;span style=&quot; font-size:large;&quot;&gt; =&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</text>
+
     </item>
 
     <item class="Meter" id="36">
         <name>meter4</name>
         <color>#ff000000</color>
-        <position>(-1.601,-0.219823)</position>
+        <position>(-1.39715,-0.378752)</position>
         <size>(70,25)</size>
         <object>28</object>
         <property>force</property>
@@ -334,31 +339,37 @@ p, li { white-space: pre-wrap; }
     <item class="Note" id="37">
         <name>note4</name>
         <color>#ff000000</color>
-        <position>(-1.76586,1.22114)</position>
+        <position>(-1.501,1.05243)</position>
         <size>(120,50)</size>
-        <text>&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
+        <text>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
+&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
 p, li { white-space: pre-wrap; }
-&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:'Sans Serif'; font-size:10pt; font-weight:400; font-style:normal;&quot;&gt;&lt;h4&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Macroscopic&lt;/p&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;quantities:&lt;/p&gt;&lt;/h4&gt;&lt;/body&gt;&lt;/html&gt;</text>
+&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:'Sans Serif'; font-size:10pt; font-weight:400; font-style:normal;&quot;&gt;
+&lt;p style=&quot; margin-top:12px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-size:medium; font-weight:600;&quot;&gt;&lt;span style=&quot; font-size:medium;&quot;&gt;Macroscopic&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-size:medium; font-weight:600;&quot;&gt;&lt;span style=&quot; font-size:medium;&quot;&gt;quantities:&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</text>
+
     </item>
 
     <item class="Note" id="38">
         <name>note6</name>
         <color>#ff000000</color>
-        <position>(-1.82872,0.00549995)</position>
-        <size>(120,30)</size>
-        <text>&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
+        <position>(-1.47281,-0.170801)</position>
+        <size>(138,44)</size>
+        <text>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
+&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
 p, li { white-space: pre-wrap; }
-&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:'Sans Serif'; font-size:10pt; font-weight:400; font-style:normal;&quot;&gt;&lt;h4&gt;&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Spring tension:&lt;/p&gt;&lt;/h4&gt;&lt;/body&gt;&lt;/html&gt;</text>
+&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:'Sans Serif'; font-size:10pt; font-weight:400; font-style:normal;&quot;&gt;
+&lt;p style=&quot; margin-top:12px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-size:medium; font-weight:600;&quot;&gt;&lt;span style=&quot; font-size:medium;&quot;&gt;Spring tension:&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</text>
+
     </item>
 
     <item class="Note" id="39">
         <name>note7</name>
         <color>#ff000000</color>
-        <position>(-1.8248,-0.440469)</position>
-        <size>(130,100)</size>
-        <text>&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
+        <position>(-1.44076,-0.792782)</position>
+        <size>(138,104)</size>
+        <text>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
+&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
 p, li { white-space: pre-wrap; }
 &lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:'Sans Serif'; font-size:10pt; font-weight:400; font-style:normal;&quot;&gt;
 &lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;(run simulation&lt;/p&gt;
@@ -366,6 +377,7 @@ p, li { white-space: pre-wrap; }
 &lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;and compare&lt;/p&gt;
 &lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;spring tension&lt;/p&gt;
 &lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;with pressure)&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</text>
+
     </item>
 
     <solver class="AdaptiveEulerSolver" id="40">
@@ -379,5 +391,9 @@ p, li { white-space: pre-wrap; }
         <name>collisionSolver1</name>
         <toleranceAbs>0.001</toleranceAbs>
     </collisionSolver>
+
+    <constraintSolver class="CGConstraintSolver" id="42">
+        <name>constraintSolver1</name>
+    </constraintSolver>
 
 </world>
