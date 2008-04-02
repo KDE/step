@@ -271,7 +271,7 @@ OnHoverHandlerGraphicsItem* DiskGraphicsItem::createOnHoverHandler(const QPointF
 void BoxCreator::start()
 {
     showMessage(MessageFrame::Information,
-            i18n("Press left mouse button to position top left corner of a %1", className()));
+            i18n("Press left mouse button to position\ntop left corner of a %1", className()));
 }
 
 bool BoxCreator::sceneEvent(QEvent* event)
@@ -292,7 +292,7 @@ bool BoxCreator::sceneEvent(QEvent* event)
         _topLeft = WorldGraphicsItem::pointToVector(pos);
 
         showMessage(MessageFrame::Information,
-            i18n("Move mouse and release left mouse button to position bottom right corner of the %1", className()));
+            i18n("Move mouse and release left mouse button to position\nbottom right corner of the %1", className()));
 
         return true;
     } else if(event->type() == QEvent::GraphicsSceneMouseMove &&

@@ -32,6 +32,10 @@ public:
            : ItemCreator(className, worldModel, worldScene) {}
 
     bool sceneEvent(QEvent* event);
+    void start();
+
+protected:
+    StepCore::Vector2d _topLeft;
 };
 
 class GasVertexHandlerGraphicsItem: public OnHoverHandlerGraphicsItem
@@ -83,8 +87,10 @@ public:
 
     void populateMenu(QMenu* menu);
 
-protected slots:
+public slots:
     void createGasParticles();
+
+protected slots:
     bool createGasParticlesApply();
     void createGasParticlesCountChanged();
     void createGasParticlesConcentrationChanged();

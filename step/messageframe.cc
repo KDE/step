@@ -77,6 +77,7 @@ int MessageFrame::showMessage(Type type, const QString& text, Flags flags)
 
     QLabel* textLabel = new QLabel(widget);
     textLabel->setObjectName("textLabel");
+    //textLabel->setWordWrap(true);
     textLabel->setText(text);
     layout->addWidget(textLabel, 1);
 
@@ -139,10 +140,13 @@ void MessageFrame::messageCloseClicked(QWidget* widget)
     int index = _layout->indexOf(widget);
     if(index < 0) return;
 
+    _layout->itemAt(index)->widget()->hide();
     _layout->takeAt(index)->widget()->deleteLater();
     if(index > 0) {
+        _layout->itemAt(index-1)->widget()->hide();
         _layout->takeAt(index-1)->widget()->deleteLater();
     } else if(_layout->count() > 0) {
+        _layout->itemAt(0)->widget()->hide();
         _layout->takeAt(0)->widget()->deleteLater();
     }
 

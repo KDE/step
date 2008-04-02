@@ -31,6 +31,7 @@
 #include <QEvent>
 #include <QPainter>
 #include <QValidator>
+#include <QApplication>
 #include <KDialog>
 #include <KMessageBox>
 #include <KLocale>
@@ -38,13 +39,26 @@
 
 #include <float.h>
 
+void GasCreator::start()
+{
+    showMessage(MessageFrame::Information,
+            i18n("Press left mouse button to position\ntop left corner of a region for %1", className()));
+}
+
 bool GasCreator::sceneEvent(QEvent* event)
 {
-    if(event->type() == QEvent::GraphicsSceneMousePress) {
-        _worldModel->simulationPause();
+    QGraphicsSceneMouseEvent* mouseEvent = static_cast<QGraphicsSceneMouseEvent*>(event);
 
+    if(event->type() == QEvent::GraphicsSceneMousePress && mouseEvent->button() == Qt::LeftButton) {
+        QPointF pos = mouseEvent->scenePos();
+        QVariant vpos = QVariant::fromValue(WorldGraphicsItem::pointToVector(pos));
+
+        _worldModel->simulationPause();
         _worldModel->beginMacro(i18n("Create %1", _worldModel->newItemName(_className)));
         _item = _worldModel->newItem(_className); Q_ASSERT(_item != NULL);
+        _worldModel->setProperty(_item, _item->metaObject()->property("measureRectCenter"), vpos);
+        _worldModel->setProperty(_item, _item->metaObject()->property("measureRectSize"),
+                                                        QVariant::fromValue(StepCore::Vector2d(0)));
         _worldModel->selectionModel()->setCurrentIndex(_worldModel->objectIndex(_item),
                                                     QItemSelectionModel::ClearAndSelect);
 
@@ -54,15 +68,55 @@ bool GasCreator::sceneEvent(QEvent* event)
         _worldModel->setProperty(ljforce, ljforce->metaObject()->property("depth"), 0.1);
         _worldModel->setProperty(ljforce, ljforce->metaObject()->property("rmin"), 0.1);
 
+        _topLeft = WorldGraphicsItem::pointToVector(pos);
+
+        showMessage(MessageFrame::Information,
+            i18n("Move mouse and release left mouse button to position\nbottom right corner of the region for %1", className()));
+
+        return true;
+    } else if(event->type() == QEvent::GraphicsSceneMouseMove &&
+                    mouseEvent->buttons() & Qt::LeftButton) {
+        
+        _worldModel->simulationPause();
+        StepCore::Vector2d pos = WorldGraphicsItem::pointToVector(mouseEvent->scenePos());
+        StepCore::Vector2d position = (_topLeft + pos) / 2.0;
+        StepCore::Vector2d size = _topLeft - pos;
+        _worldModel->setProperty(_item, _item->metaObject()->property("measureRectCenter"), QVariant::fromValue(position));
+        _worldModel->setProperty(_item, _item->metaObject()->property("measureRectSize"), QVariant::fromValue(size));
+        return true;
+
+    } else if(event->type() == QEvent::GraphicsSceneMouseRelease &&
+                    mouseEvent->button() == Qt::LeftButton) {
+
+        _worldModel->simulationPause();
+        StepCore::Vector2d pos = WorldGraphicsItem::pointToVector(mouseEvent->scenePos());
+        StepCore::Vector2d position = (_topLeft + pos) / 2.0;
+        StepCore::Vector2d size = _topLeft - pos;
+        if(size[0] == 0 && size[1] == 0) { size[0] = size[1] = 1; }
+        _worldModel->setProperty(_item, _item->metaObject()->property("measureRectCenter"), QVariant::fromValue(position));
+        _worldModel->setProperty(_item, _item->metaObject()->property("measureRectSize"), QVariant::fromValue(size));
+
+        showMessage(MessageFrame::Information,
+            i18n("Please fill in the parameters for the gas particles."));
+
+        GasMenuHandler* menuHandler = new GasMenuHandler(_item, _worldModel, NULL);
+        menuHandler->createGasParticles();
+        menuHandler->deleteLater();
+
         _worldModel->endMacro();
+
+        showMessage(MessageFrame::Information,
+            i18n("%1 named '%2' created", className(), _item->name()),
+            MessageFrame::CloseButton | MessageFrame::CloseTimer);
 
         setFinished();
         return true;
     }
-    return false;
 
+    return false;
 }
 
+/*
 class GasArrowHandlerGraphicsItem: public ArrowHandlerGraphicsItem
 {
 public:
@@ -81,6 +135,7 @@ protected:
         _worldModel->setProperty(_item, _property, QVariant::fromValue(v));
     }
 };
+*/
 
 inline StepCore::Gas* GasVertexHandlerGraphicsItem::gas() const
 {
