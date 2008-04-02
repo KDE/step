@@ -1,0 +1,163 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE StepCoreXML>
+<world xmlns="http://edu.kde.org/step/StepCoreXML" version="1.0" id="1">
+    <name>world1</name>
+    <color>#ffffffff</color>
+    <time>14.3599999999999</time>
+    <timeScale>1</timeScale>
+    <errorsCalculation>false</errorsCalculation>
+
+    <item class="Particle" id="10">
+        <name>particle1</name>
+        <color>#ff000000</color>
+        <position>(-3.79653,0.741021)</position>
+        <velocity>(-0.975863,0)</velocity>
+        <mass>1</mass>
+    </item>
+
+    <item class="Particle" id="11">
+        <name>particle2</name>
+        <color>#ff000000</color>
+        <position>(-2.60507,0.741021)</position>
+        <velocity>(0.975863,0)</velocity>
+        <mass>1</mass>
+    </item>
+
+
+    <item class="Spring" id="2">
+        <name>spring1</name>
+        <color>#ff00ff00</color>
+        <restLength>1.5</restLength>
+        <stiffness>24.8120300965454</stiffness>
+        <damping>0</damping>
+        <body1>10</body1>
+        <body2>11</body2>
+        <localPosition1>(0,0)</localPosition1>
+        <localPosition2>(0,0)</localPosition2>
+    </item>
+
+    <item class="Controller" id="3">
+        <name>controller1</name>
+        <color>#ff000000</color>
+        <position>(-3.23406,-0.529827)</position>
+        <size>(200,60)</size>
+        <object>2</object>
+        <property>stiffness</property>
+        <index>-1</index>
+        <limits>(0.1,50)</limits>
+        <increaseShortcut>W</increaseShortcut>
+        <decreaseShortcut>Q</decreaseShortcut>
+        <increment>0.1</increment>
+    </item>
+
+    <item class="Graph" id="4">
+        <name>graph1</name>
+        <color>#ff000000</color>
+        <position>(-3.35406,-3.63905)</position>
+        <size>(300,224)</size>
+        <objectX>1</objectX>
+        <propertyX>time</propertyX>
+        <indexX>-1</indexX>
+        <objectY>10</objectY>
+        <propertyY>position</propertyY>
+        <indexY>0</indexY>
+        <autoLimitsX>true</autoLimitsX>
+        <autoLimitsY>true</autoLimitsY>
+        <limitsX>(0,1)</limitsX>
+        <limitsY>(0,1)</limitsY>
+        <showPoints>false</showPoints>
+        <showLines>true</showLines>
+        <points>(12.96,-4.14977),(13,-4.12585),(13.04,-4.0881),(13.08,-4.0395),(13.12,-3.98389),(13.16,-3.92566),(13.2,-3.86942),(13.24,-3.81961),(13.28,-3.78016),(13.32,-3.75419),(13.36,-3.74376),(13.4,-3.74971),(13.44,-3.77157),(13.48,-3.80759),(13.52,-3.85494),(13.56,-3.90986),(13.6,-3.96803),(13.64,-4.02483),(13.68,-4.07579),(13.72,-4.11686),(13.76,-4.14482),(13.8,-4.15743),(13.84,-4.15371),(13.88,-4.1339),(13.92,-4.09962),(13.96,-4.05357),(14,-3.9994),(14.04,-3.9414),(14.08,-3.88414),(14.12,-3.83215),(14.16,-3.78953),(14.2,-3.75965),(14.24,-3.74487),(14.28,-3.74637),(14.32,-3.76406),(14.36,-3.79653)</points>
+    </item>
+
+    <item class="Note" id="5">
+        <name>note1</name>
+        <color>#ff000000</color>
+        <position>(-3.16992,2.09956)</position>
+        <size>(250,60)</size>
+        <text>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
+&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
+p, li { white-space: pre-wrap; }
+&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:'Sans Serif'; font-size:10pt; font-weight:400; font-style:normal;&quot;&gt;
+&lt;p align=&quot;center&quot; style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-size:14pt; font-weight:600;&quot;&gt;Tutorial 2&lt;/span&gt;&lt;/p&gt;
+&lt;p align=&quot;center&quot; style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-size:12pt;&quot;&gt;Controllers and Graphs&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</text>
+
+    </item>
+
+    <item class="Note" id="6">
+        <name>note2</name>
+        <color>#ff000000</color>
+        <position>(5.10544,1.17068)</position>
+        <size>(384,146)</size>
+        <text>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
+&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
+p, li { white-space: pre-wrap; }
+&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:'Sans Serif'; font-size:10pt; font-weight:400; font-style:normal;&quot;&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-weight:600;&quot;&gt;Try it&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;- Change the stiffness of the spring by moving the slider just below the bodies. You can also change it by pressing &quot;Q&quot; and &quot;W&quot; keys !&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;- Try changing it while simulation is active and see how the graph will change.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</text>
+
+    </item>
+
+    <item class="Note" id="7">
+        <name>note3</name>
+        <color>#ff000000</color>
+        <position>(5.13902,-1.76735)</position>
+        <size>(386,172)</size>
+        <text>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
+&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
+p, li { white-space: pre-wrap; }
+&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:'Sans Serif'; font-size:10pt; font-weight:400; font-style:normal;&quot;&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-weight:600;&quot;&gt;Controller&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;- Create new controller on the scene.&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;- Click on in with the right mouse button and choice &quot;Configure controller&quot; from the context menu.&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;- Select mass of the particle1 as the data source, adjust the range and assign keyboard shortcuts.&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;- Now try to moving the slider and pressing selected shortcuts while simulation is active.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</text>
+
+    </item>
+
+    <item class="Note" id="8">
+        <name>note4</name>
+        <color>#ff000000</color>
+        <position>(5.04514,-4.72185)</position>
+        <size>(374,136)</size>
+        <text>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
+&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
+p, li { white-space: pre-wrap; }
+&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:'Sans Serif'; font-size:10pt; font-weight:400; font-style:normal;&quot;&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-weight:600;&quot;&gt;Graph&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;- Create a graph for the velocity of particle1.&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;- Place it below the position graph and make the ranges along X axis the same for the both graphs. See how the graphs relates to each other.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</text>
+
+    </item>
+
+    <item class="Note" id="9">
+        <name>note5</name>
+        <color>#ff000000</color>
+        <position>(7.67972,-4.83128)</position>
+        <size>(50,48)</size>
+        <text>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
+&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
+p, li { white-space: pre-wrap; }
+&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:'Sans Serif'; font-size:10pt; font-weight:400; font-style:normal;&quot;&gt;
+&lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</text>
+
+    </item>
+
+    <solver class="AdaptiveEulerSolver" id="12">
+        <name>solver1</name>
+        <stepSize>0.0134599215025434</stepSize>
+        <toleranceAbs>0.001</toleranceAbs>
+        <toleranceRel>0.001</toleranceRel>
+    </solver>
+
+    <collisionSolver class="GJKCollisionSolver" id="13">
+        <name>collisionSolver1</name>
+        <toleranceAbs>0.001</toleranceAbs>
+    </collisionSolver>
+
+    <constraintSolver class="CGConstraintSolver" id="14">
+        <name>constraintSolver1</name>
+    </constraintSolver>
+
+</world>

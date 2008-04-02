@@ -49,6 +49,7 @@ public slots:
     bool saveFileAs(const KUrl& url = KUrl(), const KUrl& startUrl = KUrl());
     bool saveFile();
 
+    void openTutorial();
     void openExample();
     void openLocalExample();
     void uploadExample();

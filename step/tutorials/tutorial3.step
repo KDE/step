@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE StepCoreXML>
+<world xmlns="http://edu.kde.org/step/StepCoreXML" version="1.0" id="1">
+    <name>world1</name>
+    <color>#ffffffff</color>
+    <time>0</time>
+    <timeScale>1</timeScale>
+    <errorsCalculation>false</errorsCalculation>
+
+    <item class="Disk" id="2">
+        <name>disk1</name>
+        <color>#ff000000</color>
+        <position>(-0.26,0.7)</position>
+        <angle>0</angle>
+        <velocity>(0,0)</velocity>
+        <angularVelocity>0</angularVelocity>
+        <mass>inf</mass>
+        <inertia>inf</inertia>
+        <radius>0.429534631898291</radius>
+    </item>
+
+    <item class="Box" id="3">
+        <name>box1</name>
+        <color>#ff000000</color>
+        <position>(1.74,0.7)</position>
+        <angle>0</angle>
+        <velocity>(0,0)</velocity>
+        <angularVelocity>0.3</angularVelocity>
+        <mass>1</mass>
+        <inertia>0.218083333333333</inertia>
+        <size>(0.39,1.57)</size>
+    </item>
+
+    <item class="Spring" id="4">
+        <name>spring1</name>
+        <color>#ff00ff00</color>
+        <restLength>1.5</restLength>
+        <stiffness>1</stiffness>
+        <damping>0</damping>
+        <body1>2</body1>
+        <body2>3</body2>
+        <localPosition1>(0,0)</localPosition1>
+        <localPosition2>(0,0)</localPosition2>
+    </item>
+
+    <item class="Tracer" id="5">
+        <name>tracer1</name>
+        <color>#ff0000ff</color>
+        <body>3</body>
+        <localPosition>(-0.01,-0.69)</localPosition>
+        <points></points>
+    </item>
+
+    <item class="Note" id="6">
+        <name>note1</name>
+        <color>#ff000000</color>
+        <position>(-0.69,3.11)</position>
+        <size>(224,82)</size>
+        <text>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
+&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
+p, li { white-space: pre-wrap; }
+&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:'Sans Serif'; font-size:10pt; font-weight:400; font-style:normal;&quot;&gt;
+&lt;p align=&quot;center&quot; style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-size:14pt; font-weight:600;&quot;&gt;Tutorial 3&lt;/span&gt;&lt;/p&gt;
+&lt;p align=&quot;center&quot; style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-size:12pt;&quot;&gt;Rigid bodies and tracers&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</text>
+
+    </item>
+
+    <item class="Note" id="7">
+        <name>note2</name>
+        <color>#ff000000</color>
+        <position>(-2.91,1.65)</position>
+        <size>(272,164)</size>
+        <text>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
+&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
+p, li { white-space: pre-wrap; }
+&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:'Sans Serif'; font-size:10pt; font-weight:400; font-style:normal;&quot;&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-weight:600;&quot;&gt;Angle and angular velocity&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;- When the rigid body is selected you see three grey handlers on it. Using them you can change velocity, angle and angular velocity of the body.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</text>
+
+    </item>
+
+    <item class="Note" id="8">
+        <name>note3</name>
+        <color>#ff000000</color>
+        <position>(-2.88,-0.43)</position>
+        <size>(266,208)</size>
+        <text>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
+&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
+p, li { white-space: pre-wrap; }
+&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:'Sans Serif'; font-size:10pt; font-weight:400; font-style:normal;&quot;&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-weight:600;&quot;&gt;Tracer&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;- Tracer is a tool to show trajectory of a given point on a rigid body. Turn on the simulation to see it in action.&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;- Change various properties like spring stiffness and see how they affect trajectory.&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;- Attach one more tracer to the box and compare trajectories of different points.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</text>
+
+    </item>
+
+    <solver class="AdaptiveEulerSolver" id="9">
+        <name>solver1</name>
+        <stepSize>1</stepSize>
+        <toleranceAbs>0.001</toleranceAbs>
+        <toleranceRel>0.001</toleranceRel>
+    </solver>
+
+    <collisionSolver class="GJKCollisionSolver" id="10">
+        <name>collisionSolver1</name>
+        <toleranceAbs>0.001</toleranceAbs>
+    </collisionSolver>
+
+    <constraintSolver class="CGConstraintSolver" id="11">
+        <name>constraintSolver1</name>
+    </constraintSolver>
+
+</world>

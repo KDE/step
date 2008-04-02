@@ -139,6 +139,11 @@ void MainWindow::setupActions()
     actionRecentFiles->loadEntries(config->group("RecentFiles"));
     delete config;
 
+    KAction* actionOpenTutorial = actionCollection()->add<KAction>(
+                "file_tutorial_open", this, SLOT(openTutorial()));
+    actionOpenTutorial->setText(i18n("&Open tutorial..."));
+    actionOpenTutorial->setIcon(KIcon("document-open"));
+
     KAction* actionOpenExample = actionCollection()->add<KAction>(
                 "file_example_open", this, SLOT(openExample()));
     actionOpenExample->setText(i18n("&Open example..."));
@@ -353,6 +358,19 @@ bool MainWindow::maybeSave()
          else if(ret == KMessageBox::Cancel) return false;
     }
     return true;
+}
+
+void MainWindow::openTutorial()
+{
+    // XXX: need to be redone
+    QStringList dirs = KGlobal::dirs()->findDirs("appdata", "tutorials");
+    QString localDir = KStandardDirs::locateLocal("appdata", "");
+    foreach(QString dir, dirs) {
+        if(!dir.startsWith(localDir)) {
+            openFile(KUrl(), dir);
+            return;
+        }
+    }
 }
 
 void MainWindow::openExample()

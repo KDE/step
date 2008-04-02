@@ -1,0 +1,165 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE StepCoreXML>
+<world xmlns="http://edu.kde.org/step/StepCoreXML" version="1.0" id="1">
+    <name>world1</name>
+    <color>#ffffffff</color>
+    <time>38.4399999999994</time>
+    <timeScale>1</timeScale>
+    <errorsCalculation>false</errorsCalculation>
+
+    <item class="Spring" id="2">
+        <name>spring1</name>
+        <color>#ff00ff00</color>
+        <restLength>1.2</restLength>
+        <stiffness>1</stiffness>
+        <damping>0</damping>
+        <body1>9</body1>
+        <body2>10</body2>
+        <localPosition1>(0,0)</localPosition1>
+        <localPosition2>(0,0)</localPosition2>
+    </item>
+
+    <item class="Note" id="3">
+        <name>note1</name>
+        <color>#ff000000</color>
+        <position>(0,2.88)</position>
+        <size>(200,60)</size>
+        <text>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
+&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
+p, li { white-space: pre-wrap; }
+&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:'Sans Serif'; font-size:10pt; font-weight:400; font-style:normal;&quot;&gt;
+&lt;p align=&quot;center&quot; style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-size:14pt; font-weight:600;&quot;&gt;Tutorial 1&lt;/span&gt;&lt;/p&gt;
+&lt;p align=&quot;center&quot; style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-size:12pt;&quot;&gt;Bodies and springs.&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</text>
+
+    </item>
+
+    <item class="Note" id="4">
+        <name>note2</name>
+        <color>#ff000000</color>
+        <position>(-2.2,-0.18)</position>
+        <size>(300,258)</size>
+        <text>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
+&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
+p, li { white-space: pre-wrap; }
+&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:'Sans Serif'; font-size:10pt; font-weight:400; font-style:normal;&quot;&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-weight:600;&quot;&gt;Position and velocity&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;- You can change position of any body simply by dragging it.&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;- Click on one of the disks to select it. Now you can see two arrows on it: blue arrow depicts the velocity and red arrow depicts the acceleration. You can drag the little gray square at the end of the velocity arrow to change the velocity.&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;- Take a look at the Properties panel on the right. Here you can numerically set position and velocity (as well as all other properties) for the current body.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</text>
+
+    </item>
+
+    <item class="Note" id="5">
+        <name>note3</name>
+        <color>#ff000000</color>
+        <position>(-2.2,-2.36)</position>
+        <size>(300,182)</size>
+        <text>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
+&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
+p, li { white-space: pre-wrap; }
+&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:'Sans Serif'; font-size:10pt; font-weight:400; font-style:normal;&quot;&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-weight:600;&quot;&gt;Properties&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;- Take a look at the Properties panel on the right. Here you can numerically set position and velocity (as well as all other properties) for the current body.&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;- Select a spring by clicking on it. Change its stiffness and see how it is affecting the simulation.&lt;/p&gt;
+&lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</text>
+
+    </item>
+
+    <item class="Note" id="6">
+        <name>note4</name>
+        <color>#ff000000</color>
+        <position>(2.2,1.58)</position>
+        <size>(300,200)</size>
+        <text>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
+&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
+p, li { white-space: pre-wrap; }
+&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:'Sans Serif'; font-size:10pt; font-weight:400; font-style:normal;&quot;&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-weight:600;&quot;&gt;Quest&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;- Try to change the system in a way to make the discs spining around the center of the system.&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;- Now try to change the properties of the spring in order to make its lenght constant while discs are spinning.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</text>
+
+    </item>
+
+    <item class="Note" id="7">
+        <name>note5</name>
+        <color>#ff000000</color>
+        <position>(2.2,-0.46)</position>
+        <size>(300,234)</size>
+        <text>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
+&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
+p, li { white-space: pre-wrap; }
+&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:'Sans Serif'; font-size:10pt; font-weight:400; font-style:normal;&quot;&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-weight:600;&quot;&gt;More bodies&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;- In order to create a body click on its icon in the Palette panel and follow the instructions, given in the information widget in the top left corner of scene&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;- Create one more dick and two more springs and connect all the items in the triangle. Now make them all spinning around the center.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</text>
+
+    </item>
+
+    <item class="Spring" id="8">
+        <name>spring2</name>
+        <color>#ff00ff00</color>
+        <restLength>0</restLength>
+        <stiffness>1</stiffness>
+        <damping>0</damping>
+        <body1>0</body1>
+        <body2>0</body2>
+        <localPosition1>(-2.54,2.84)</localPosition1>
+        <localPosition2>(-2.54,2.84)</localPosition2>
+    </item>
+
+    <item class="Disk" id="9">
+        <name>disk1</name>
+        <color>#ff000000</color>
+        <position>(0,0.7)</position>
+        <angle>0</angle>
+        <velocity>(0.232621,0)</velocity>
+        <angularVelocity>0</angularVelocity>
+        <mass>1</mass>
+        <inertia>0.0601</inertia>
+        <radius>0.3</radius>
+    </item>
+
+    <item class="Disk" id="10">
+        <name>disk2</name>
+        <color>#ff000000</color>
+        <position>(0,-0.7)</position>
+        <angle>0</angle>
+        <velocity>(-0.232621,0)</velocity>
+        <angularVelocity>0</angularVelocity>
+        <mass>1</mass>
+        <inertia>0.0144</inertia>
+        <radius>0.3</radius>
+    </item>
+
+    <item class="Note" id="11">
+        <name>note6</name>
+        <color>#ff000000</color>
+        <position>(-2.2,1.74)</position>
+        <size>(300,166)</size>
+        <text>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
+&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
+p, li { white-space: pre-wrap; }
+&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:'Sans Serif'; font-size:10pt; font-weight:400; font-style:normal;&quot;&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-weight:600;&quot;&gt;Simulation&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;- Click on the &quot;Simulate&quot; button in the toolbar to start simulation. Click on the same button again to stop it.&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;- After stopping the simulation you can revert to the initial state by pressing Undo button.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</text>
+
+    </item>
+
+    <solver class="AdaptiveEulerSolver" id="12">
+        <name>solver1</name>
+        <stepSize>1</stepSize>
+        <toleranceAbs>0.001</toleranceAbs>
+        <toleranceRel>0.001</toleranceRel>
+    </solver>
+
+    <collisionSolver class="GJKCollisionSolver" id="13">
+        <name>collisionSolver1</name>
+        <toleranceAbs>0.001</toleranceAbs>
+    </collisionSolver>
+
+    <constraintSolver class="CGConstraintSolver" id="14">
+        <name>constraintSolver1</name>
+    </constraintSolver>
+
+</world>
