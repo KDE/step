@@ -529,7 +529,7 @@ bool NoteGraphicsItem::eventFilter(QObject* obj, QEvent* event)
             }
             _toolBar->show();
             bool multiSelect = (QApplication::keyboardModifiers() & Qt::ControlModifier) != 0;
-            if(!multiSelect && !isSelected()) {
+            if(!multiSelect/* && !isSelected()*/) {
                 if(scene()) scene()->clearSelection();
                 _worldModel->selectionModel()->clearSelection();
             }
