@@ -84,10 +84,9 @@ StepCore::Vector2d WidgetVertexHandlerGraphicsItem::value()
 void WidgetVertexHandlerGraphicsItem::setValue(const StepCore::Vector2d& value)
 {
     double s = currentViewScale();
-    //kDebug() << s;
 
     QGraphicsView* activeView = scene()->views().first();
-    QTransform itemTransform = activeView->transform() * deviceTransform(activeView->viewportTransform());
+    QTransform viewportTransform = activeView->viewportTransform();
 
     StepCore::Vector2d size = _item->metaObject()->property("size")->
                         readVariant(_item).value<StepCore::Vector2d>()/s;
@@ -95,13 +94,14 @@ void WidgetVertexHandlerGraphicsItem::setValue(const StepCore::Vector2d& value)
                             readVariant(_item).value<StepCore::Vector2d>();
 
     StepCore::Vector2d oCorner = position - size.cMultiply(corners[_vertexNum]);
-    oCorner = pointToVector( itemTransform.inverted().map(
-                QPointF(itemTransform.map(vectorToPoint(oCorner)).toPoint()) ));
+
+    oCorner = pointToVector( viewportTransform.inverted().map(
+                QPointF(viewportTransform.map(vectorToPoint(oCorner)).toPoint()) ));
 
     StepCore::Vector2d delta = (value + position - oCorner)/2.0;
     StepCore::Vector2d newPos = oCorner + delta;
-    newPos = pointToVector( itemTransform.inverted().map(
-                QPointF(itemTransform.map(vectorToPoint(newPos)).toPoint()) ));
+    newPos = pointToVector( viewportTransform.inverted().map(
+                QPointF(viewportTransform.map(vectorToPoint(newPos)).toPoint()) ));
     StepCore::Vector2d newSize = (newPos - oCorner)*2.0;
 
     StepCore::Vector2d sign = delta.cMultiply(corners[_vertexNum]);
@@ -206,38 +206,22 @@ void WidgetGraphicsItem::viewScaleChanged()
 {
     if(!scene() || scene()->views().isEmpty()) return;
     QGraphicsView* activeView = scene()->views().first();
-    QTransform itemTransform = activeView->transform() * deviceTransform(activeView->viewportTransform());
-    double s = currentViewScale();
-    
+    QTransform viewportTransform = activeView->viewportTransform();
+
     QPointF position = vectorToPoint(_item->metaObject()->property("position")->
                     readVariant(_item).value<StepCore::Vector2d>());
+    position = viewportTransform.inverted().map(QPointF(viewportTransform.map(position).toPoint()));
+    setPos(position);
 
-    position = itemTransform.inverted().map(QPointF(itemTransform.map(position).toPoint()));
-    //kDebug() << "*";
-    //kDebug() << sceneTransform();
-    //kDebug() << itemTransform;
-    //setPos(position);
+    double s = currentViewScale();
+    QTransform itemTransform = activeView->transform() * deviceTransform(viewportTransform);
 
     StepCore::Vector2d size = _item->metaObject()->property("size")->
                     readVariant(_item).value<StepCore::Vector2d>();
 
-    itemTransform = activeView->transform() * deviceTransform(activeView->viewportTransform());
     QRectF irect(-(size[0]+2)/s/2, -(size[1]+2)/s/2, (size[0]+2)/s, (size[1]+2)/s);
-    /*
-    kDebug() << "*****";
-    kDebug() << "Before: " << irect;
-    kDebug() << activeView->transform();
-    kDebug() << activeView->viewportTransform();
-    kDebug() << deviceTransform(activeView->viewportTransform());
-    kDebug() << transform();
-    kDebug() << sceneTransform();
-    kDebug() << itemTransform;*/
     QRect viewportRect = itemTransform.mapRect(irect).toRect();
-    //kDebug() << "Tr: " << viewportRect;
-    //kDebug() << "Tr: " << itemTransform.mapRect(irect);
     irect = itemTransform.inverted().mapRect(QRectF(viewportRect));
-    //kDebug() << "After: " << irect;
-    //kDebug() << "BoundingRect" << _boundingRect;
 
     if(irect != _boundingRect) {
         prepareGeometryChange();
@@ -267,9 +251,9 @@ void WidgetGraphicsItem::stateChanged()
 void WidgetGraphicsItem::worldDataChanged(bool dynamicOnly)
 {
     if(!dynamicOnly) {
-        QPointF position = vectorToPoint(_item->metaObject()->property("position")->
+        /*QPointF position = vectorToPoint(_item->metaObject()->property("position")->
                     readVariant(_item).value<StepCore::Vector2d>());
-        setPos(position);
+        setPos(position);*/
         viewScaleChanged();
         update();
     }
