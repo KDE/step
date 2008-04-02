@@ -46,6 +46,7 @@
 #include <QLabel>
 #include <QLCDNumber>
 #include <QFocusEvent>
+#include <QApplication>
 #include <KToolBar>
 #include <KPlotWidget>
 #include <KPlotObject>
@@ -527,6 +528,11 @@ bool NoteGraphicsItem::eventFilter(QObject* obj, QEvent* event)
                 //--_updating;
             }
             _toolBar->show();
+            bool multiSelect = (QApplication::keyboardModifiers() & Qt::ControlModifier) != 0;
+            if(!multiSelect && !isSelected()) {
+                if(scene()) scene()->clearSelection();
+                _worldModel->selectionModel()->clearSelection();
+            }
             setSelected(true);
             viewScaleChanged();
         }

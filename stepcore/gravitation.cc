@@ -18,6 +18,7 @@
 
 #include "gravitation.h"
 #include "particle.h"
+#include "rigidbody.h"
 #include <cmath>
 
 namespace StepCore
@@ -108,14 +109,25 @@ void WeightForce::calcForce(bool calcVariances)
 
     const BodyList::const_iterator end = world()->bodies().end();
     for(BodyList::const_iterator b1 = world()->bodies().begin(); b1 != end; ++b1) {
-        if(!(*b1)->metaObject()->inherits<Particle>()) continue;
-        Particle* p1 = static_cast<Particle*>(*b1);
-        p1->applyForce(g*p1->mass());
-        if(calcVariances) {
-            ParticleErrors* pe1 = p1->particleErrors();
-            Vector2d forceV(0, square(_weightConst)*pe1->massVariance()+
-                               square(p1->mass())*weightForceErrors()->weightConstVariance());
-            pe1->applyForceVariance(forceV);
+        if((*b1)->metaObject()->inherits<Particle>()) {
+            Particle* p1 = static_cast<Particle*>(*b1);
+            p1->applyForce(g*p1->mass());
+            if(calcVariances) {
+                ParticleErrors* pe1 = p1->particleErrors();
+                Vector2d forceV(0, square(_weightConst)*pe1->massVariance()+
+                                   square(p1->mass())*weightForceErrors()->weightConstVariance());
+                pe1->applyForceVariance(forceV);
+            }
+        } else if((*b1)->metaObject()->inherits<RigidBody>()) {
+            RigidBody* rb1 = static_cast<RigidBody*>(*b1);
+            rb1->applyForce(g*rb1->mass(), rb1->position());
+            if(calcVariances) {
+                RigidBodyErrors* rbe1 = rb1->rigidBodyErrors();
+                Vector2d forceV(0, square(_weightConst)*rbe1->massVariance()+
+                                   square(rb1->mass())*weightForceErrors()->weightConstVariance());
+                rbe1->applyForceVariance(g*rb1->mass(), rb1->position(),
+                                         forceV, rbe1->positionVariance());
+            }
         }
     }
 }
