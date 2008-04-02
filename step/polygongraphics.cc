@@ -186,7 +186,7 @@ bool DiskCreator::sceneEvent(QEvent* event)
         StepCore::Vector2d pos = WorldGraphicsItem::pointToVector(mouseEvent->scenePos());
         StepCore::Disk* disk = static_cast<StepCore::Disk*>(_item);
         double radius = (pos - disk->position()).norm();
-        if(radius == 0) radius = 1;
+        if(radius == 0) radius = 0.5;
         double inertia = disk->mass() * radius*radius/2.0;
         _worldModel->setProperty(_item, _item->metaObject()->property("radius"), QVariant::fromValue(radius));
         _worldModel->setProperty(_item, _item->metaObject()->property("inertia"), QVariant::fromValue(inertia));
@@ -526,11 +526,43 @@ inline StepCore::Box* BoxVertexHandlerGraphicsItem::box() const
 }
 
 StepCore::Vector2d BoxVertexHandlerGraphicsItem::value() {
-    return box()->vectorLocalToWorld(box()->vertexes()[_vertexNum]);
+    return box()->vectorLocalToWorld(box()->size().cMultiply(corners[_vertexNum]));
+    //return box()->vectorLocalToWorld(box()->vertexes()[_vertexNum]);
 }
 
 void BoxVertexHandlerGraphicsItem::setValue(const StepCore::Vector2d& value)
 {
+    StepCore::Vector2d oCorner = box()->position() -
+                        box()->size().cMultiply(corners[_vertexNum]);
+
+    StepCore::Vector2d delta = (box()->position() + value - oCorner)/2.0;
+    StepCore::Vector2d newPos = oCorner + delta;
+    StepCore::Vector2d newSize = (newPos - oCorner)*2.0;
+
+    double d = -0.1/currentViewScale();
+    StepCore::Vector2d sign = delta.cMultiply(corners[_vertexNum]);
+    if(sign[0] < d || sign[1] < d) {
+        if(sign[0] < d) {
+            newPos[0] = oCorner[0]; newSize[0] = 0;
+            _vertexNum ^= 1;
+        }
+        if(sign[1] < d) {
+            newPos[1] = oCorner[1]; newSize[1] = 0;
+            _vertexNum ^= 2;
+        }
+        _worldModel->setProperty(_item, _item->metaObject()->property("position"),
+                                                QVariant::fromValue(newPos));
+        _worldModel->setProperty(_item, _item->metaObject()->property("size"),
+                                                QVariant::fromValue(newSize));
+        setValue(value);
+        return;
+    }
+
+    _worldModel->setProperty(_item, _item->metaObject()->property("position"),
+                                                QVariant::fromValue(newPos));
+    _worldModel->setProperty(_item, _item->metaObject()->property("size"),
+                                                QVariant::fromValue(newSize));
+#if 0
     StepCore::Vector2d delta = box()->vectorWorldToLocal(value) - box()->vertexes()[_vertexNum];
     StepCore::Vector2d newPos = box()->position() + box()->vectorLocalToWorld(delta/2.0);
 
@@ -544,10 +576,22 @@ void BoxVertexHandlerGraphicsItem::setValue(const StepCore::Vector2d& value)
     _worldModel->setProperty(_item, _item->metaObject()->property("position"), QVariant::fromValue(newPos));
     _worldModel->setProperty(_item, _item->metaObject()->property("size"),
                                                                 QVariant::fromValue(box()->size() + delta));
+#endif
 }
 
 OnHoverHandlerGraphicsItem* BoxGraphicsItem::createOnHoverHandler(const QPointF& pos)
 {
+    double s = currentViewScale();
+    StepCore::Vector2d l = pointToVector(pos) - rigidBody()->position();
+    StepCore::Vector2d size = static_cast<StepCore::Box*>(_item)->size();
+    
+    int num = -1; double minDist2 = HANDLER_SNAP_SIZE*HANDLER_SNAP_SIZE/s/s;
+    for(unsigned int i=0; i<4; ++i) {
+        double dist2 = (l - size.cMultiply(OnHoverHandlerGraphicsItem::corners[i])).norm2();
+        if(dist2 < minDist2) { num = i; minDist2 = dist2; }
+    }
+
+#if 0
     StepCore::Vector2d l = basePolygon()->pointWorldToLocal(pointToVector(pos));
     double s = currentViewScale();
     int num = -1; double minDist2 = HANDLER_SNAP_SIZE*HANDLER_SNAP_SIZE/s/s;
@@ -555,6 +599,7 @@ OnHoverHandlerGraphicsItem* BoxGraphicsItem::createOnHoverHandler(const QPointF&
         double dist2 = (basePolygon()->vertexes()[i] - l).norm2();
         if(dist2 < minDist2) { num = i; minDist2 = dist2; }
     }
+#endif
 
     if(_onHoverHandler && _onHoverHandler->vertexNum() == num)
         return _onHoverHandler;

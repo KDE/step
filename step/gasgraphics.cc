@@ -168,11 +168,11 @@ QPainterPath GasGraphicsItem::shape() const
 
 void GasGraphicsItem::paint(QPainter* painter, const QStyleOptionGraphicsItem* /*option*/, QWidget* /*widget*/)
 {
-    if(_isSelected) {
+    //if(_isSelected) {
         const StepCore::Vector2d& size = gas()->measureRectSize();
         painter->setPen(QPen(QColor::fromRgba(gas()->color()), 0));
         painter->drawRect(QRectF(-size[0]/2, -size[1]/2, size[0], size[1]));
-    }
+    //}
 }
 
 void GasGraphicsItem::viewScaleChanged()
@@ -221,8 +221,7 @@ OnHoverHandlerGraphicsItem* GasGraphicsItem::createOnHoverHandler(const QPointF&
 {
     double s = currentViewScale();
     StepCore::Vector2d size = gas()->measureRectSize();
-    StepCore::Vector2d position = gas()->measureRectCenter();
-    StepCore::Vector2d l = pointToVector(pos) - position;
+    StepCore::Vector2d l = pointToVector(pos) - gas()->measureRectCenter();
 
     int num = -1; double minDist2 = HANDLER_SNAP_SIZE*HANDLER_SNAP_SIZE/s/s;
     for(unsigned int i=0; i<4; ++i) {
