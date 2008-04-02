@@ -60,16 +60,12 @@ class WidgetVertexHandlerGraphicsItem: public OnHoverHandlerGraphicsItem
 public:
     WidgetVertexHandlerGraphicsItem(StepCore::Item* item, WorldModel* worldModel,
                                         QGraphicsItem* parent, int vertexNum)
-        : OnHoverHandlerGraphicsItem(item, worldModel, parent, NULL, NULL), _vertexNum(vertexNum) {}
+        : OnHoverHandlerGraphicsItem(item, worldModel, parent, NULL, NULL, vertexNum) {}
 
-    int vertexNum() const { return _vertexNum; }
-    static const StepCore::Vector2d corners[4];
 
 protected:
     void setValue(const StepCore::Vector2d& value);
     StepCore::Vector2d value();
-
-    int _vertexNum;
 };
 
 class WidgetGraphicsItem: public QObject, public WorldGraphicsItem

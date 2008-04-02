@@ -76,19 +76,12 @@ class DiskVertexHandlerGraphicsItem: public OnHoverHandlerGraphicsItem
 public:
     DiskVertexHandlerGraphicsItem(StepCore::Item* item, WorldModel* worldModel,
                                         QGraphicsItem* parent, int vertexNum)
-        : OnHoverHandlerGraphicsItem(item, worldModel, parent, NULL, NULL), _vertexNum(vertexNum) {}
-
-    int vertexNum() const { return _vertexNum; }
-
-public:
-    static const StepCore::Vector2d corners[4];
+        : OnHoverHandlerGraphicsItem(item, worldModel, parent, NULL, NULL, vertexNum) {}
 
 protected:
     StepCore::Disk* disk() const;
     StepCore::Vector2d value();
     void setValue(const StepCore::Vector2d& value);
-
-    int _vertexNum;
 };
 
 class DiskGraphicsItem: public RigidBodyGraphicsItem
@@ -135,16 +128,12 @@ class BoxVertexHandlerGraphicsItem: public OnHoverHandlerGraphicsItem
 public:
     BoxVertexHandlerGraphicsItem(StepCore::Item* item, WorldModel* worldModel,
                                         QGraphicsItem* parent, int vertexNum)
-        : OnHoverHandlerGraphicsItem(item, worldModel, parent, NULL, NULL), _vertexNum(vertexNum) {}
-
-    int vertexNum() const { return _vertexNum; }
+        : OnHoverHandlerGraphicsItem(item, worldModel, parent, NULL, NULL, vertexNum) {}
 
 protected:
     StepCore::Box* box() const;
     StepCore::Vector2d value();
     void setValue(const StepCore::Vector2d& value);
-
-    int _vertexNum;
 };
 
 class BoxGraphicsItem: public BasePolygonGraphicsItem
@@ -179,16 +168,12 @@ class PolygonVertexHandlerGraphicsItem: public OnHoverHandlerGraphicsItem
 public:
     PolygonVertexHandlerGraphicsItem(StepCore::Item* item, WorldModel* worldModel,
                                         QGraphicsItem* parent, int vertexNum)
-        : OnHoverHandlerGraphicsItem(item, worldModel, parent, NULL, NULL), _vertexNum(vertexNum) {}
-
-    int vertexNum() const { return _vertexNum; }
+        : OnHoverHandlerGraphicsItem(item, worldModel, parent, NULL, NULL, vertexNum) {}
 
 protected:
     StepCore::Polygon* polygon() const;
     StepCore::Vector2d value();
     void setValue(const StepCore::Vector2d& value);
-
-    int _vertexNum;
 };
 
 class PolygonGraphicsItem: public BasePolygonGraphicsItem

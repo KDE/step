@@ -68,11 +68,6 @@
 
 #include <float.h>
 
-const StepCore::Vector2d WidgetVertexHandlerGraphicsItem::corners[4] = {
-    StepCore::Vector2d(-0.5,-0.5), StepCore::Vector2d( 0.5,-0.5),
-    StepCore::Vector2d(-0.5, 0.5), StepCore::Vector2d( 0.5, 0.5)
-};
-
 StepCore::Vector2d WidgetVertexHandlerGraphicsItem::value()
 {
     double s = currentViewScale();
@@ -163,8 +158,7 @@ OnHoverHandlerGraphicsItem* WidgetGraphicsItem::createOnHoverHandler(const QPoin
         if(dist2 < minDist2) { num = i; minDist2 = dist2; }
     }
 
-    if(_onHoverHandler &&
-            static_cast<WidgetVertexHandlerGraphicsItem*>(&*_onHoverHandler)->vertexNum() == num)
+    if(_onHoverHandler && _onHoverHandler->vertexNum() == num)
         return _onHoverHandler;
 
     if(num >= 0)

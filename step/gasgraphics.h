@@ -34,7 +34,21 @@ public:
     bool sceneEvent(QEvent* event);
 };
 
-class GasArrowHandlerGraphicsItem;
+class GasVertexHandlerGraphicsItem: public OnHoverHandlerGraphicsItem
+{
+    Q_OBJECT
+
+public:
+    GasVertexHandlerGraphicsItem(StepCore::Item* item, WorldModel* worldModel,
+                                        QGraphicsItem* parent, int vertexNum)
+        : OnHoverHandlerGraphicsItem(item, worldModel, parent, NULL, NULL, vertexNum) {}
+
+protected:
+    StepCore::Gas* gas() const;
+    StepCore::Vector2d value();
+    void setValue(const StepCore::Vector2d& value);
+};
+
 class GasGraphicsItem: public WorldGraphicsItem {
 public:
     GasGraphicsItem(StepCore::Item* item, WorldModel* worldModel);
@@ -47,10 +61,11 @@ public:
     void worldDataChanged(bool);
 
 protected:
+    void mouseSetPos(const QPointF& pos, const QPointF&, MovingState);
+    OnHoverHandlerGraphicsItem* createOnHoverHandler(const QPointF& pos);
     StepCore::Gas* gas() const;
 
-    ArrowHandlerGraphicsItem *_centerHandler;
-    GasArrowHandlerGraphicsItem *_sizeHandler;
+    //ArrowHandlerGraphicsItem *_centerHandler;
 };
 
 namespace Ui {

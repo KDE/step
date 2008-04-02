@@ -34,6 +34,7 @@
 #include <KDialog>
 #include <KMessageBox>
 #include <KLocale>
+#include <KDebug>
 
 #include <float.h>
 
@@ -81,20 +82,44 @@ protected:
     }
 };
 
+inline StepCore::Gas* GasVertexHandlerGraphicsItem::gas() const
+{
+    return static_cast<StepCore::Gas*>(_item);
+}
+
+StepCore::Vector2d GasVertexHandlerGraphicsItem::value() {
+    return gas()->measureRectSize().cMultiply(corners[_vertexNum]);
+}
+
+void GasVertexHandlerGraphicsItem::setValue(const StepCore::Vector2d& value)
+{
+    StepCore::Vector2d delta = value - gas()->measureRectSize().cMultiply(corners[_vertexNum]);
+    StepCore::Vector2d newPos = gas()->measureRectCenter() + delta/2.0;
+
+    delta = delta.cMultiply(corners[_vertexNum]*2.0);
+
+//#error negative size
+
+    _worldModel->setProperty(_item, _item->metaObject()->property("measureRectCenter"), QVariant::fromValue(newPos));
+    _worldModel->setProperty(_item, _item->metaObject()->property("measureRectSize"),
+                                                            QVariant::fromValue(gas()->measureRectSize() + delta));
+}
+
 GasGraphicsItem::GasGraphicsItem(StepCore::Item* item, WorldModel* worldModel)
     : WorldGraphicsItem(item, worldModel)
 {
     Q_ASSERT(dynamic_cast<StepCore::Gas*>(_item) != NULL);
     setFlag(QGraphicsItem::ItemIsSelectable);
+    setFlag(QGraphicsItem::ItemIsMovable);
+    //setExclusiveMoving(true);
     //setFlag(QGraphicsItem::ItemIsMovable);
     //setAcceptsHoverEvents(true);
-    _centerHandler = new ArrowHandlerGraphicsItem(item, worldModel, this,
-                            _item->metaObject()->property("measureRectCenter"));
-    _sizeHandler = new GasArrowHandlerGraphicsItem(item, worldModel, this,
-                            _item->metaObject()->property("measureRectSize"));
-    _centerHandler->setVisible(false);
-    _sizeHandler->setVisible(false);
-    setZValue(HANDLER_ZVALUE);
+    //_centerHandler = new ArrowHandlerGraphicsItem(item, worldModel, this,
+    //                        _item->metaObject()->property("measureRectCenter"));
+    //_centerHandler->setVisible(false);
+    setZValue(REGION_ZVALUE);
+    setAcceptsHoverEvents(true);
+    setOnHoverHandlerEnabled(true);
 }
 
 inline StepCore::Gas* GasGraphicsItem::gas() const
@@ -102,46 +127,96 @@ inline StepCore::Gas* GasGraphicsItem::gas() const
     return static_cast<StepCore::Gas*>(_item);
 }
 
+void GasGraphicsItem::mouseSetPos(const QPointF& pos, const QPointF&, MovingState)
+{
+#ifdef __GNUC__
+#warning Consider renaming measureRectCenter to position
+#endif
+    const StepCore::MetaProperty* property = _item->metaObject()->property("measureRectCenter");
+    _worldModel->simulationPause();
+    _worldModel->setProperty(_item, property,
+                            QVariant::fromValue( pointToVector(pos) ));
+}
+
 QPainterPath GasGraphicsItem::shape() const
 {
     QPainterPath path;
     //path.addRect(QRectF(-radius,-radius,radius*2,radius*2));
+    path.addRect(_boundingRect);
     return path;
 }
 
 void GasGraphicsItem::paint(QPainter* painter, const QStyleOptionGraphicsItem* /*option*/, QWidget* /*widget*/)
 {
     if(_isSelected) {
+        const StepCore::Vector2d& size = gas()->measureRectSize();
         painter->setPen(QPen(QColor::fromRgba(gas()->color()), 0));
-        painter->drawRect(_boundingRect);
+        painter->drawRect(QRectF(-size[0]/2, -size[1]/2, size[0], size[1]));
     }
 }
 
 void GasGraphicsItem::viewScaleChanged()
 {
+    double s = currentViewScale();
+    prepareGeometryChange();
+    const StepCore::Vector2d& size = gas()->measureRectSize();
+    _boundingRect = QRectF(-(size[0]+SELECTION_MARGIN/s)/2, -(size[1]+SELECTION_MARGIN/s)/2,
+                            (size[0]+SELECTION_MARGIN/s),    (size[1]+SELECTION_MARGIN/s));
+    update();
 }
 
 void GasGraphicsItem::worldDataChanged(bool dynamicOnly)
 {
-    if(!dynamicOnly) stateChanged();
+    if(!dynamicOnly) {
+        setPos(vectorToPoint(gas()->measureRectCenter()));
+        viewScaleChanged();
+        /*prepareGeometryChange();
+        const StepCore::Vector2d& size = gas()->measureRectSize();
+        StepCore::Vector2d r0 = gas()->measureRectCenter() - size/2.0;
+        _boundingRect = QRectF(r0[0], r0[1], size[0], size[1]);*/
+        //stateChanged();
+    }
 }
 
 void GasGraphicsItem::stateChanged()
 {
-    prepareGeometryChange();
+#if 0
     if(_isSelected) {
+        /*
         const StepCore::Vector2d& size = gas()->measureRectSize();
         StepCore::Vector2d r0 = gas()->measureRectCenter() - size/2.0;
         _boundingRect = QRectF(r0[0], r0[1], size[0], size[1]);
+        */
         _centerHandler->setVisible(true);
-        _sizeHandler->setVisible(true);
     }
     else {
-        _boundingRect = QRectF();
+        //_boundingRect = QRectF();
         _centerHandler->setVisible(false);
-        _sizeHandler->setVisible(false);
     }
+#endif
     update();
+}
+
+OnHoverHandlerGraphicsItem* GasGraphicsItem::createOnHoverHandler(const QPointF& pos)
+{
+    double s = currentViewScale();
+    StepCore::Vector2d size = gas()->measureRectSize();
+    StepCore::Vector2d position = gas()->measureRectCenter();
+    StepCore::Vector2d l = pointToVector(pos) - position;
+
+    int num = -1; double minDist2 = HANDLER_SNAP_SIZE*HANDLER_SNAP_SIZE/s/s;
+    for(unsigned int i=0; i<4; ++i) {
+        double dist2 = (l - size.cMultiply(OnHoverHandlerGraphicsItem::corners[i])).norm2();
+        if(dist2 < minDist2) { num = i; minDist2 = dist2; }
+    }
+
+    if(_onHoverHandler && _onHoverHandler->vertexNum() == num)
+        return _onHoverHandler;
+
+    if(num >= 0)
+        return new GasVertexHandlerGraphicsItem(_item, _worldModel, this, num);
+
+    return 0;
 }
 
 class GasKDialog: public KDialog

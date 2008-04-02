@@ -298,10 +298,11 @@ protected:
     static const int ANGULAR_VELOCITY_RADIUS = 30;  ///< Default radius of the angularVelocity handler for RigidBody
     static const int ANGULAR_ACCELERATION_RADIUS = 34; ///< Default radius of the angularAcceleration handler
 
-    static const int BODY_ZVALUE = 100;     ///< Default ZValue for bodies
-    static const int FORCE_ZVALUE = 200;    ///< Default ZValue for forces
-    static const int JOINT_ZVALUE = 300;    ///< Default ZValue for joints
-    static const int HANDLER_ZVALUE = 500;  ///< Default ZValue for handlers
+    static const int REGION_ZVALUE = 100;   ///< Default ZValue for regions
+    static const int BODY_ZVALUE = 200;     ///< Default ZValue for bodies
+    static const int FORCE_ZVALUE = 300;    ///< Default ZValue for forces
+    static const int JOINT_ZVALUE = 400;    ///< Default ZValue for joints
+    static const int HANDLER_ZVALUE = 800;  ///< Default ZValue for handlers
 
     static const int COLOR_HIGHLIGHT_AMOUNT = 30; ///< Highligh amount (in percent for value component)
 };
@@ -391,15 +392,23 @@ class OnHoverHandlerGraphicsItem: public QObject, public ArrowHandlerGraphicsIte
 public:
     OnHoverHandlerGraphicsItem(StepCore::Item* item, WorldModel* worldModel,
                     QGraphicsItem* parent, const StepCore::MetaProperty* property,
-                    const StepCore::MetaProperty* positionProperty = NULL);
+                    const StepCore::MetaProperty* positionProperty = NULL,
+                    int vertexNum = 0);
 
     void setDeleteTimerEnabled(bool enabled);
     bool isDeleteTimerEnabled() const { return _deleteTimerEnabled; }
+
+    int vertexNum() const { return _vertexNum; }
+    void setVertexNum(int vertexNum) { _vertexNum = vertexNum; }
+
+    static const StepCore::Vector2d corners[4];
+    static const StepCore::Vector2d scorners[4];
 
 protected:
     void hoverEnterEvent(QGraphicsSceneHoverEvent* event);
     void hoverLeaveEvent(QGraphicsSceneHoverEvent* event);
 
+    int _vertexNum;
     QTimer* _deleteTimer;
     bool _deleteTimerEnabled;
 };

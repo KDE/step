@@ -691,10 +691,21 @@ void CircularArrowHandlerGraphicsItem::setValue(double value)
 
 /////////////////////////////////////////////////////////////////////////////////////////
 
+const StepCore::Vector2d OnHoverHandlerGraphicsItem::corners[4] = {
+    StepCore::Vector2d(-0.5,-0.5), StepCore::Vector2d( 0.5,-0.5),
+    StepCore::Vector2d(-0.5, 0.5), StepCore::Vector2d( 0.5, 0.5)
+};
+
+const StepCore::Vector2d OnHoverHandlerGraphicsItem::scorners[4] = {
+    StepCore::Vector2d(0,-1), StepCore::Vector2d( 1,0),
+    StepCore::Vector2d(0, 1), StepCore::Vector2d(-1,0)
+};
+
 OnHoverHandlerGraphicsItem::OnHoverHandlerGraphicsItem(StepCore::Item* item, WorldModel* worldModel,
                     QGraphicsItem* parent, const StepCore::MetaProperty* property,
-                    const StepCore::MetaProperty* positionProperty)
-    : ArrowHandlerGraphicsItem(item, worldModel, parent, property, positionProperty)
+                    const StepCore::MetaProperty* positionProperty, int vertexNum)
+    : ArrowHandlerGraphicsItem(item, worldModel, parent, property, positionProperty),
+      _vertexNum(vertexNum)
 {
     _deleteTimer = new QTimer(this);
     _deleteTimer->setInterval(500);

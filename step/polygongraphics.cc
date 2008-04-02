@@ -208,14 +208,9 @@ inline StepCore::Disk* DiskVertexHandlerGraphicsItem::disk() const
     return static_cast<StepCore::Disk*>(_item);
 }
 
-const StepCore::Vector2d DiskVertexHandlerGraphicsItem::corners[4] = {
-    StepCore::Vector2d(0,-1), StepCore::Vector2d( 1,0),
-    StepCore::Vector2d(0, 1), StepCore::Vector2d(-1,0)
-};
-
 StepCore::Vector2d DiskVertexHandlerGraphicsItem::value()
 {
-    return corners[_vertexNum]*disk()->radius();
+    return scorners[_vertexNum]*disk()->radius();
 }
 
 void DiskVertexHandlerGraphicsItem::setValue(const StepCore::Vector2d& value)
@@ -258,12 +253,11 @@ OnHoverHandlerGraphicsItem* DiskGraphicsItem::createOnHoverHandler(const QPointF
     int num = -1; double minDist2 = HANDLER_SNAP_SIZE*HANDLER_SNAP_SIZE
                                         /s/s/disk()->radius()/disk()->radius();
     for(unsigned int i=0; i<4; ++i) {
-        double dist2 = (l - DiskVertexHandlerGraphicsItem::corners[i]).norm2();
+        double dist2 = (l - DiskVertexHandlerGraphicsItem::scorners[i]).norm2();
         if(dist2 < minDist2) { num = i; minDist2 = dist2; }
     }
 
-    if(_onHoverHandler &&
-            static_cast<DiskVertexHandlerGraphicsItem*>(&*_onHoverHandler)->vertexNum() == num)
+    if(_onHoverHandler && _onHoverHandler->vertexNum() == num)
         return _onHoverHandler;
 
     if(num >= 0)
@@ -562,8 +556,7 @@ OnHoverHandlerGraphicsItem* BoxGraphicsItem::createOnHoverHandler(const QPointF&
         if(dist2 < minDist2) { num = i; minDist2 = dist2; }
     }
 
-    if(_onHoverHandler &&
-            static_cast<BoxVertexHandlerGraphicsItem*>(&*_onHoverHandler)->vertexNum() == num)
+    if(_onHoverHandler && _onHoverHandler->vertexNum() == num)
         return _onHoverHandler;
 
     if(num >= 0)
@@ -599,8 +592,7 @@ OnHoverHandlerGraphicsItem* PolygonGraphicsItem::createOnHoverHandler(const QPoi
         if(dist2 < minDist2) { num = i; minDist2 = dist2; }
     }
 
-    if(_onHoverHandler &&
-            static_cast<PolygonVertexHandlerGraphicsItem*>(&*_onHoverHandler)->vertexNum() == num)
+    if(_onHoverHandler && _onHoverHandler->vertexNum() == num)
         return _onHoverHandler;
 
     if(num >= 0)
