@@ -93,16 +93,36 @@ StepCore::Vector2d GasVertexHandlerGraphicsItem::value() {
 
 void GasVertexHandlerGraphicsItem::setValue(const StepCore::Vector2d& value)
 {
-    StepCore::Vector2d delta = value - gas()->measureRectSize().cMultiply(corners[_vertexNum]);
-    StepCore::Vector2d newPos = gas()->measureRectCenter() + delta/2.0;
+    StepCore::Vector2d oCorner = gas()->measureRectCenter() -
+                    gas()->measureRectSize().cMultiply(corners[_vertexNum]);
 
-    delta = delta.cMultiply(corners[_vertexNum]*2.0);
+    StepCore::Vector2d delta = (gas()->measureRectCenter() + value - oCorner)/2.0;
+    StepCore::Vector2d newPos = oCorner + delta;
+    StepCore::Vector2d newSize = (newPos - oCorner)*2.0;
 
-//#error negative size
+    double d = -0.1/currentViewScale();
+    StepCore::Vector2d sign = delta.cMultiply(corners[_vertexNum]);
+    if(sign[0] < d || sign[1] < d) {
+        if(sign[0] < d) {
+            newPos[0] = oCorner[0]; newSize[0] = 0;
+            _vertexNum ^= 1;
+        }
+        if(sign[1] < d) {
+            newPos[1] = oCorner[1]; newSize[1] = 0;
+            _vertexNum ^= 2;
+        }
+        _worldModel->setProperty(_item, _item->metaObject()->property("measureRectCenter"),
+                                                QVariant::fromValue(newPos));
+        _worldModel->setProperty(_item, _item->metaObject()->property("measureRectSize"),
+                                                QVariant::fromValue(newSize));
+        setValue(value);
+        return;
+    }
 
-    _worldModel->setProperty(_item, _item->metaObject()->property("measureRectCenter"), QVariant::fromValue(newPos));
+    _worldModel->setProperty(_item, _item->metaObject()->property("measureRectCenter"),
+                                                QVariant::fromValue(newPos));
     _worldModel->setProperty(_item, _item->metaObject()->property("measureRectSize"),
-                                                            QVariant::fromValue(gas()->measureRectSize() + delta));
+                                                QVariant::fromValue(newSize));
 }
 
 GasGraphicsItem::GasGraphicsItem(StepCore::Item* item, WorldModel* worldModel)
