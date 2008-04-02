@@ -216,7 +216,7 @@ void WidgetGraphicsItem::viewScaleChanged()
     //kDebug() << "*";
     //kDebug() << sceneTransform();
     //kDebug() << itemTransform;
-    setPos(position);
+    //setPos(position);
 
     StepCore::Vector2d size = _item->metaObject()->property("size")->
                     readVariant(_item).value<StepCore::Vector2d>();
@@ -266,11 +266,12 @@ void WidgetGraphicsItem::stateChanged()
 
 void WidgetGraphicsItem::worldDataChanged(bool dynamicOnly)
 {
-        /*QPointF position = vectorToPoint(_item->metaObject()->property("position")->
-                    readVariant(_item).value<StepCore::Vector2d>());
-        setPos(position);*/
     if(!dynamicOnly) {
+        QPointF position = vectorToPoint(_item->metaObject()->property("position")->
+                    readVariant(_item).value<StepCore::Vector2d>());
+        setPos(position);
         viewScaleChanged();
+        update();
     }
 }
 
@@ -789,8 +790,7 @@ void NoteGraphicsItem::worldDataChanged(bool dynamicOnly)
             cursorPositionChanged();
             //--_updating;
         }
-        viewScaleChanged();
-        update();
+        WidgetGraphicsItem::worldDataChanged(dynamicOnly);
     }
 }
 
@@ -1044,6 +1044,7 @@ void GraphGraphicsItem::worldDataChanged(bool dynamicOnly)
         _plotWidget->update();
         */
 
+        WidgetGraphicsItem::worldDataChanged(dynamicOnly);
     }
     
     if(_worldModel->isSimulationActive()) {
@@ -1301,6 +1302,8 @@ void MeterGraphicsItem::worldDataChanged(bool dynamicOnly)
             _labelUnits->setFont(font);
             _labelUnits->setText(units);
         }
+
+        WidgetGraphicsItem::worldDataChanged(dynamicOnly);
     }
 
     double value = meter()->value();
@@ -1505,6 +1508,8 @@ void ControllerGraphicsItem::worldDataChanged(bool dynamicOnly)
         adjustLimits();
         _plotWidget->update();
         */
+
+        WidgetGraphicsItem::worldDataChanged(dynamicOnly);
     }
 
     double value = round((controller()->value() - controller()->limits()[0]) *
