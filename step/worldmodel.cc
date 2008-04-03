@@ -434,6 +434,9 @@ QModelIndex WorldModel::objectIndex(StepCore::Object* obj) const
     else if(obj == _world->constraintSolver()) return constraintSolverIndex();
     else {
         StepCore::Item* item = dynamic_cast<StepCore::Item*>(obj);
+        for(StepCore::Item* it = item; it != _world; it = it->group()) {
+            if(it == NULL) return QModelIndex();
+        }
         STEPCORE_ASSERT_NOABORT(item && item->group());
         return createIndex(item->group()->childItemIndex(item), 0, item);
         //return itemIndex(_world->childItemIndex(dynamic_cast<const StepCore::Item*>(obj)));
@@ -588,10 +591,18 @@ void WorldModel::deleteItem(StepCore::Item* item)
 void WorldModel::deleteSelectedItems()
 {
     simulationPause();
+
     QList<StepCore::Item*> items;
     foreach(QModelIndex index, selectionModel()->selectedIndexes()) {
         StepCore::Item* it = item(index); if(it) items << it;
     }
+
+    foreach(StepCore::Item* it, items) {
+        for(StepCore::Item* it1 = it->group(); it1 != 0 && it1 != _world; it1 = it1->group()) {
+            if(items.contains(it1)) { items.removeOne(it); break; }
+        }
+    }
+
     if(!items.isEmpty()) {
         beginMacro(items.count()==1 ? i18n("Delete %1", items[0]->name())
                                     : i18n("Delete several items"));

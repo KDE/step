@@ -69,6 +69,7 @@ protected slots:
     void worldModelReset();
     void worldDataChanged(bool dynamicOnly);
     void worldCurrentChanged(const QModelIndex& current, const QModelIndex& previous);
+    void worldRowsRemoved(const QModelIndex& parent, int start, int end);
 
     void currentChanged(const QModelIndex& current, const QModelIndex& previous);
     void rowsInserted(const QModelIndex& parent, int start, int end);

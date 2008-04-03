@@ -330,6 +330,8 @@ void WorldScene::worldRowsInserted(const QModelIndex& parent, int start, int end
                 if(gItem) gItem->viewScaleChanged();
             }
         }
+
+        worldGetItemsRecursive(index);
     }
 }
 

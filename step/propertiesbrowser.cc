@@ -697,6 +697,8 @@ PropertiesBrowser::PropertiesBrowser(WorldModel* worldModel, QWidget* parent, Qt
 
     connect(_worldModel, SIGNAL(modelReset()), this, SLOT(worldModelReset()));
     connect(_worldModel, SIGNAL(worldDataChanged(bool)), this, SLOT(worldDataChanged(bool)));
+    connect(_worldModel, SIGNAL(rowsRemoved(const QModelIndex&, int, int)),
+                                this, SLOT(worldRowsRemoved(const QModelIndex&, int, int)));
 
     connect(_worldModel->selectionModel(), SIGNAL(currentChanged(const QModelIndex&, const QModelIndex&)),
                                            this, SLOT(worldCurrentChanged(const QModelIndex&, const QModelIndex&)));
@@ -737,6 +739,12 @@ void PropertiesBrowser::worldCurrentChanged(const QModelIndex& current, const QM
 void PropertiesBrowser::worldDataChanged(bool dynamicOnly)
 {
     _propertiesBrowserModel->emitDataChanged(dynamicOnly);
+}
+
+void PropertiesBrowser::worldRowsRemoved(const QModelIndex& parent, int start, int end)
+{
+    if(!_worldModel->objectIndex(_propertiesBrowserModel->object()).isValid())
+        _propertiesBrowserModel->setObject(NULL);
 }
 
 void PropertiesBrowser::currentChanged(const QModelIndex& current, const QModelIndex& /*previous*/)
