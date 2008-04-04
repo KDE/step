@@ -13,8 +13,8 @@
         <restLength>1.2</restLength>
         <stiffness>1</stiffness>
         <damping>0</damping>
-        <body1>9</body1>
-        <body2>10</body2>
+        <body1>8</body1>
+        <body2>9</body2>
         <localPosition1>(0,0)</localPosition1>
         <localPosition2>(0,0)</localPosition2>
     </item>
@@ -95,19 +95,7 @@ p, li { white-space: pre-wrap; }
 
     </item>
 
-    <item class="Spring" id="8">
-        <name>spring2</name>
-        <color>#ff00ff00</color>
-        <restLength>0</restLength>
-        <stiffness>1</stiffness>
-        <damping>0</damping>
-        <body1>0</body1>
-        <body2>0</body2>
-        <localPosition1>(-2.54,2.84)</localPosition1>
-        <localPosition2>(-2.54,2.84)</localPosition2>
-    </item>
-
-    <item class="Disk" id="9">
+    <item class="Disk" id="8">
         <name>disk1</name>
         <color>#ff000000</color>
         <position>(0,0.7)</position>
@@ -119,7 +107,7 @@ p, li { white-space: pre-wrap; }
         <radius>0.3</radius>
     </item>
 
-    <item class="Disk" id="10">
+    <item class="Disk" id="9">
         <name>disk2</name>
         <color>#ff000000</color>
         <position>(0,-0.7)</position>
@@ -131,7 +119,7 @@ p, li { white-space: pre-wrap; }
         <radius>0.3</radius>
     </item>
 
-    <item class="Note" id="11">
+    <item class="Note" id="10">
         <name>note6</name>
         <color>#ff000000</color>
         <position>(-2.2,1.74)</position>
@@ -146,19 +134,19 @@ p, li { white-space: pre-wrap; }
 
     </item>
 
-    <solver class="AdaptiveEulerSolver" id="12">
+    <solver class="AdaptiveEulerSolver" id="11">
         <name>solver1</name>
         <stepSize>1</stepSize>
         <toleranceAbs>0.001</toleranceAbs>
         <toleranceRel>0.001</toleranceRel>
     </solver>
 
-    <collisionSolver class="GJKCollisionSolver" id="13">
+    <collisionSolver class="GJKCollisionSolver" id="12">
         <name>collisionSolver1</name>
         <toleranceAbs>0.001</toleranceAbs>
     </collisionSolver>
 
-    <constraintSolver class="CGConstraintSolver" id="14">
+    <constraintSolver class="CGConstraintSolver" id="13">
         <name>constraintSolver1</name>
     </constraintSolver>
 
