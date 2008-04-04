@@ -31,5 +31,15 @@
       <Action name="simulation_start" />
       <Action name="simulation_stop" />
     </Menu>
+    <Menu name="settings" >
+        <Menu name="panels" >
+            <text>&amp;Panels</text>
+            <Action name="toggle_palette_dock" />
+            <Action name="toggle_world_dock" />
+            <Action name="toggle_properties_dock" />
+            <Action name="toggle_info_dock" />
+            <Action name="toggle_undo_dock" />
+        </Menu>
+    </Menu>
   </MenuBar>
 </kcfg>

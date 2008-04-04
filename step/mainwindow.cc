@@ -205,6 +205,13 @@ void MainWindow::setupActions()
 
     /* Settings menu */
     KStandardAction::preferences(this, SLOT(configureStep()), actionCollection());
+
+    /* Dock widgets */
+    actionCollection()->addAction("toggle_palette_dock", itemPalette->toggleViewAction());
+    actionCollection()->addAction("toggle_world_dock", worldBrowser->toggleViewAction());
+    actionCollection()->addAction("toggle_properties_dock", propertiesBrowser->toggleViewAction());
+    actionCollection()->addAction("toggle_info_dock", infoBrowser->toggleViewAction());
+    actionCollection()->addAction("toggle_undo_dock", undoBrowser->toggleViewAction());
 }
 
 void MainWindow::updateCaption()
