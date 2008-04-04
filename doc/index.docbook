@@ -2,7 +2,9 @@
 <!DOCTYPE book PUBLIC "-//KDE//DTD DocBook XML V4.2-Based Variant V1.1//EN" "dtd/kdex.dtd" [
   <!ENTITY step "<application>Step</application>">
   <!ENTITY kappname "&step;">
-  <!ENTITY package "playground/edu">
+  <!ENTITY package "kdeedu">
+  <!ENTITY tutorials SYSTEM "tutorials.docbook">
+  <!ENTITY examples SYSTEM "examples.docbook">
   <!ENTITY % addindex "IGNORE">
   <!ENTITY % English "INCLUDE"><!-- change language only here -->
 ]>
@@ -14,11 +16,8 @@
 
 <authorgroup>
 <author>
-<firstname>Anne-Marie</firstname>
-<surname>Mahfouf</surname>
-<affiliation>
-<address><email>annma@kde.org</email></address>
-</affiliation>
+&Anne-Marie.Mahfouf;
+&Anne-Marie.Mahfouf.mail;
 </author>
 </authorgroup>
 
@@ -36,7 +35,7 @@
 
 <abstract>
 <para>
-&step; is an interactive physical simulator. It works like this: you place some bodies on the scene, add some forces such as gravity or springs, then click <guibutton>Simulate</guibutton> and &step; shows you how your scene will evolve according to the laws of physics. You can change every property of the bodies/forces in your experiment (even during simulation) and see how this will change evolution of the experiment. With &step; you can not only learn but feel how physics works!
+&step; is an interactive physical simulator. It allows you to explore the physical world through simulations. It works like this: you place some bodies on the scene, add some forces such as gravity or springs, then click <guibutton>Simulate</guibutton> and &step; shows you how your scene will evolve according to the laws of physics. You can change every property of the bodies/forces in your experiment (even during simulation) and see how this will change evolution of the experiment. With &step; you can not only learn but feel how physics works!
 </para>
 </abstract>
 
@@ -88,7 +87,7 @@ Solver error estimation: errors introduced by the solver is calculated and added
 Several different solvers: up to 8th order, explicit and implicit, with or without adaptive timestep (most of the solvers require GSL library)
 </para></listitem>
 <listitem><para>
-Controller tool to easily control properties during simulation (even with custom keyboard shortcuts)
+Controler tool to easily control properties during simulation (even with custom keyboard shortcuts)
 </para></listitem>
 <listitem><para>
 Tools to visualize results: graph, meter, tracer
@@ -99,13 +98,16 @@ Context information for all objects, integrated wikipedia browser
 <listitem><para>
 Collection of example experiments, more can be downloaded with KNewStuff2
 </para></listitem>
+<listitem><para>
+Integrated tutorials
+</para></listitem>
 </itemizedlist>
 </para>
 </chapter>
 
 <chapter id="using-step">
 <title>Using &step;</title>
-<para>-</para>
+<para>&step; simulates a physical world. The main part of &step; (1) is the world scene in the center of &step; main window where you first place physical objects and where you see the simulation. On the left of this scene a palette (2) let you choose your physical objects. You can freely move this palette anywhere on your desktop by dragging the title bar. On the right of the scene you can see the current world description (3), its properties (4), some help to explain some words (5) and the history of the current world (6). Each of those panels can be placed elsewhere on your screen by dragging the title bar.</para>
 <screenshot>
      <screeninfo>Here's a screenshot of &step; when you start it for the first time</screeninfo>
 	<mediaobject>
@@ -117,6 +119,8 @@ Collection of example experiments, more can be downloaded with KNewStuff2
 	  </textobject>
 	</mediaobject>
 </screenshot>
+
+<para>To help you get started, &step; integrates a serie of tutorials which easily teach you how to build an experiment. Please see step by step to start with the first tutorial.</para>
 
 <sect1 id="board">
 <title>The board</title>
@@ -131,10 +135,12 @@ Collection of example experiments, more can be downloaded with KNewStuff2
 -
 </para>
 </sect1>
-		
-		
+			
 </chapter>
-     
+
+&tutorials;  
+&examples;
+
 <chapter id="commands">
 <title>Command Reference</title>
 
@@ -269,13 +275,13 @@ Contributors:
 <itemizedlist>
 <listitem><para>Author: Vladimir Kuznetsov <email>ks.vladimir AT gmail DOT com</email></para>
 </listitem>
-<listitem><para>Contributor: Carsten Niehaus <email>cniehaus AT kde DOT org</email></para>
+<listitem><para>Contributor: Carsten Niehaus &Carsten.Niehaus.mail;</para>
 </listitem>
 </itemizedlist>
 </para>
 
 <para>
-Documentation copyright 2007 Anne-Marie Mahfouf <email>annma@kde.org</email>
+Documentation copyright 2007 Anne-Marie Mahfouf &Anne-Marie.Mahfouf.mail;
 </para>
 
 <!-- TRANS:CREDIT_FOR_TRANSLATORS -->

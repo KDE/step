@@ -1,0 +1,37 @@
+<chapter id="tutorials">
+<title>Using &step; tutorials</title> 
+<para>The <menuchoice><guimenu>File</guimenu><guimenuitem>Open Tutorial...</guimenuitem></menuchoice> menu action brings you a file dialog where you can load &step; built-in tutorials. There are five tutorials and you will progressively learn how to interact with each of &step; element. The best is to start with the first tutorial by clicking on the file <filename>tutorial1.step</filename>. This will display Tutorial 1 in &step;.</para>
+
+<sect1 id="tutorial1">
+<title>Tutorial 1: bodies and springs</title>
+<para>This tutorial presents you bodies and springs and how to start your first simulation.</para>
+<para>A physical body or body for short is an object which can be described by the theories of classical mechanics, or quantum mechanics, and experimented upon with physical instruments. This includes the determination of position, and in some cases the orientation in space, as well as means to change these, by exerting forces.</para>
+<para>A spring is a flexible elastic object used to store mechanical energy.</para>
+<para>The tutorial consists in explanations in text and a physical experiment: here you can see two disks linked by a spring.</para>
+</sect1>
+
+<sect1 id="tutorial2">
+<title>Tutorial 2: controllers and graphs</title>
+<para>You will learn more about controllers and graphs in this tutorial.</para>
+<para>A controller is a device which allows you to graphically modify a property of a body or a spring. In the tutorial, the controller allows you to change the stifness of the spring "spring1". By moving the slider to the right or using the W key you can increase sprint1 stiffness value and by moving the slider to the left or using the Q key you can decrease it. Right-clicking on the controller brings you several context actions and the <guilabel>Configure Controller...</guilabel> dialog allows you to change each property of the controller.</para>
+<para>Graphs allow you to graphically visualize the relationship between two variables. The example in the tutorial prints the evolution of the position of particle1 while time advances in world1. With a right click on a graph you can clear or delete the graph as well as edit the conguration dialog and change here all the proerties for this graph.</para>
+</sect1>
+
+<sect1 id="tutorial3">
+<title>Tutorial 3</title>
+<para>Tutorial 3 presents you rigid bodies and tracers.</para>
+<para>A rigid body is an idealization of a solid body of finite size in which deformation is neglected. In other words, the distance between any two given points of a rigid body remains constant in time regardless of external forces exerted on it.</para>
+<para>A tracer is a tool which shows the trajectory of a given point on a rigid body.</para>
+</sect1>
+
+<sect1 id="tutorial4">
+<title>Tutorial 4</title>
+<para> - </para>
+</sect1>
+
+<sect1 id="tutorial5">
+<title>Tutorial 5</title>
+<para> - </para>
+</sect1>
+
+</chapter>
