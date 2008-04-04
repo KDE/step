@@ -18,20 +18,21 @@
 </sect1>
 
 <sect1 id="tutorial3">
-<title>Tutorial 3</title>
+<title>Tutorial 3: rigid bodies and tracers</title>
 <para>Tutorial 3 presents you rigid bodies and tracers.</para>
 <para>A rigid body is an idealization of a solid body of finite size in which deformation is neglected. In other words, the distance between any two given points of a rigid body remains constant in time regardless of external forces exerted on it.</para>
 <para>A tracer is a tool which shows the trajectory of a given point on a rigid body.</para>
 </sect1>
 
 <sect1 id="tutorial4">
-<title>Tutorial 4</title>
-<para> - </para>
+<title>Tutorial 4: motors and forces</title>
+<para>You have two sorts of motors available in &step;: linear motors and circular motors. A linear motor applies a constant force to a given point on a body while a circular motor applies a constant angular momentum to a body.</para>
+<para>Three different forces can be added to bodies: the weight force, the gravitation force and the Coulomb force. By default all forces are turned off in &step;. Coulomb force is a force which existed intrinsically between two charges.</para>
 </sect1>
 
 <sect1 id="tutorial5">
-<title>Tutorial 5</title>
-<para> - </para>
+<title>Tutorial 5: joints</title>
+<para>Joints are objects that attaches bodies to each other or to the background. You have a the followong joints in &step;: anchors, pins, sticks and ropes. An anchor is a joint that fixes position of the body. A pin is a joint that fixes one point of the body. A stick is a joint that fixes the distance between two points on two bodies.</para>
 </sect1>
 
 </chapter>
