@@ -141,27 +141,27 @@ void MainWindow::setupActions()
 
     KAction* actionOpenTutorial = actionCollection()->add<KAction>(
                 "file_tutorial_open", this, SLOT(openTutorial()));
-    actionOpenTutorial->setText(i18n("&Open tutorial..."));
+    actionOpenTutorial->setText(i18n("&Open Tutorial..."));
     actionOpenTutorial->setIcon(KIcon("document-open"));
 
     KAction* actionOpenExample = actionCollection()->add<KAction>(
                 "file_example_open", this, SLOT(openExample()));
-    actionOpenExample->setText(i18n("&Open example..."));
+    actionOpenExample->setText(i18n("&Open Example..."));
     actionOpenExample->setIcon(KIcon("document-open"));
 
     KAction* actionOpenLocalExample = actionCollection()->add<KAction>(
                 "file_example_openlocal", this, SLOT(openLocalExample()));
-    actionOpenLocalExample->setText(i18n("Open down&loaded example..."));
+    actionOpenLocalExample->setText(i18n("Open Down&loaded Example..."));
     actionOpenLocalExample->setIcon(KIcon("document-open"));
 
     KAction* actionUploadExample = actionCollection()->add<KAction>(
                 "file_example_upload", this, SLOT(uploadExample()));
-    actionUploadExample->setText(i18n("Share c&urrent experiment..."));
+    actionUploadExample->setText(i18n("Share C&urrent Experiment..."));
     actionUploadExample->setIcon(KIcon("get-hot-new-stuff"));
 
     KAction* actionDownloadExamples = actionCollection()->add<KAction>(
                 "file_example_download", this, SLOT(downloadExamples()));
-    actionDownloadExamples->setText(i18n("&Download new experiments..."));
+    actionDownloadExamples->setText(i18n("&Download New Experiments..."));
     actionDownloadExamples->setIcon(KIcon("get-hot-new-stuff"));
 
     /* Edit menu */
