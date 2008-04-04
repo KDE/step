@@ -112,7 +112,7 @@ p, li { white-space: pre-wrap; }
         <color>#ff000000</color>
         <position>(0,0.7)</position>
         <angle>0</angle>
-        <velocity>(0.232621,0)</velocity>
+        <velocity>(0,0.2326)</velocity>
         <angularVelocity>0</angularVelocity>
         <mass>1</mass>
         <inertia>0.0601</inertia>
@@ -124,7 +124,7 @@ p, li { white-space: pre-wrap; }
         <color>#ff000000</color>
         <position>(0,-0.7)</position>
         <angle>0</angle>
-        <velocity>(-0.232621,0)</velocity>
+        <velocity>(0,-0.2326)</velocity>
         <angularVelocity>0</angularVelocity>
         <mass>1</mass>
         <inertia>0.0144</inertia>
