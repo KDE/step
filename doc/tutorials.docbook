@@ -1,13 +1,19 @@
 <chapter id="tutorials">
-<title>Using &step; tutorials</title> 
+<title>Getting familiar with &step;: the tutorials</title> 
 <para>The <menuchoice><guimenu>File</guimenu><guimenuitem>Open Tutorial...</guimenuitem></menuchoice> menu action brings you a file dialog where you can load &step; built-in tutorials. There are five tutorials and you will progressively learn how to interact with each of &step; element. The best is to start with the first tutorial by clicking on the file <filename>tutorial1.step</filename>. This will display Tutorial 1 in &step;.</para>
+<note><para>If you do not see the tutorial properly you can try to zoom in to display it better.</para></note>
+
+<para>The <guilabel>World</guilabel> panel on the right lists all the objects you have on your scene. By clicking on an object here, the <guilabel>Properties</guilabel> panel below displays this object properties. You can change the properties here by clicking on the one you want to modify.</para>
+
+<para>Each tutorial consists in some text presenting the new elements and explaining their properties. Then you are asked to change some properties of the elements in order to achieve a new result of the experiment. </para>
 
 <sect1 id="tutorial1">
 <title>Tutorial 1: bodies and springs</title>
 <para>This tutorial presents you bodies and springs and how to start your first simulation.</para>
 <para>A physical body or body for short is an object which can be described by the theories of classical mechanics, or quantum mechanics, and experimented upon with physical instruments. This includes the determination of position, and in some cases the orientation in space, as well as means to change these, by exerting forces.</para>
 <para>A spring is a flexible elastic object used to store mechanical energy.</para>
-<para>The tutorial consists in explanations in text and a physical experiment: here you can see two disks linked by a spring.</para>
+<para>The physical experiment in this tutorial represents two disks linked by a spring. Springs have an initial velocity in a tangential direction (the little blue arrows) allowing the disks to move when the simulation is run. The tutorial invites you to modify the spring stiffness and also to try to change the system experiment.</para>
+<para>At the end of this tutorial you should be more familiar with &step; interface and you should also be able to easily change bodies properties.</para>
 </sect1>
 
 <sect1 id="tutorial2">
