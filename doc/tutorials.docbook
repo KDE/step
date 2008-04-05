@@ -81,6 +81,31 @@
 <title>Tutorial 4: motors and forces</title>
 <para>You have two sorts of motors available in &step;: linear motors and circular motors. A linear motor applies a constant force to a given point on a body while a circular motor applies a constant angular momentum to a body.</para>
 <para>Three different forces can be added to bodies: the weight force, the gravitation force and the Coulomb force. By default all forces are turned off in &step;. Coulomb force is a force which existed intrinsically between two charges.</para>
+<screenshot>
+     <screeninfo>Tutorial 4: motors</screeninfo>
+	<mediaobject>
+	  <imageobject>
+	    <imagedata fileref="tutorial4.png" format="PNG"/>
+	  </imageobject>
+	    <textobject>
+	    <phrase>Tutorial 4: motors</phrase>
+	  </textobject>
+	</mediaobject>
+</screenshot>
+<para>In the experiment you have a disk and a box linked by a spring. A flat box at the bottom will make a boundary. The disk and the box both have a linear motor applied to them. Two controllers allow you to change the force value of each motor. Start the simulation and play with the controllers. Then stop the simulation and add a weight force in the world (forces are global and apply to the whole world). Restart the simulation and analyze the difference.</para>
+<para>You can also remove the linear motor on the box and add a circular motor instead. Click on <guilabel>CircularMotor</guilabel> in the <guilabel>Palette</guilabel> panel and then click on the box. The circular mortor is applied to the box. You then need to set the torque value by clicking and moving the grey handler of the motor.</para>
+<screenshot>
+     <screeninfo>Circular motor</screeninfo>
+	<mediaobject>
+	  <imageobject>
+	    <imagedata fileref="circular-motor.png" format="PNG"/>
+	  </imageobject>
+	    <textobject>
+	    <phrase>Circular motor</phrase>
+	  </textobject>
+	</mediaobject>
+</screenshot>
+<para>This tutorial introduced you with motors and forces and you should now be able to add those to bodies.</para>
 </sect1>
 
 <sect1 id="tutorial5">
