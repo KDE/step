@@ -12,7 +12,18 @@
 <para>This tutorial presents you bodies and springs and how to start your first simulation.</para>
 <para>A physical body or body for short is an object which can be described by the theories of classical mechanics, or quantum mechanics, and experimented upon with physical instruments. This includes the determination of position, and in some cases the orientation in space, as well as means to change these, by exerting forces.</para>
 <para>A spring is a flexible elastic object used to store mechanical energy.</para>
-<para>The physical experiment in this tutorial represents two disks linked by a spring. Springs have an initial velocity in a tangential direction (the little blue arrows) allowing the disks to move when the simulation is run. The tutorial invites you to modify the spring stiffness and also to try to change the system experiment.</para>
+<screenshot>
+     <screeninfo>Tutorial 1 experiment</screeninfo>
+	<mediaobject>
+	  <imageobject>
+	    <imagedata fileref="tutorial1.png" format="PNG"/>
+	  </imageobject>
+	    <textobject>
+	    <phrase>Tutorial 1 experiment</phrase>
+	  </textobject>
+	</mediaobject>
+</screenshot>
+<para>The physical experiment in this tutorial represents two disks linked by a spring. Disks have an initial velocity in a tangential direction (the little blue arrow)  and an acceleration (the red arrow) and springs have a stiffness and the length can be changed. Running the experiment you can see the disks being pulled and pushed by the spring. The tutorial invites you to modify the spring stiffness and also to try to change the system experiment.</para>
 <para>At the end of this tutorial you should be more familiar with &step; interface and you should also be able to easily change bodies properties.</para>
 </sect1>
 
@@ -20,7 +31,19 @@
 <title>Tutorial 2: controllers and graphs</title>
 <para>You will learn more about controllers and graphs in this tutorial.</para>
 <para>A controller is a device which allows you to graphically modify a property of a body or a spring. In the tutorial, the controller allows you to change the stifness of the spring "spring1". By moving the slider to the right or using the W key you can increase sprint1 stiffness value and by moving the slider to the left or using the Q key you can decrease it. Right-clicking on the controller brings you several context actions and the <guilabel>Configure Controller...</guilabel> dialog allows you to change each property of the controller.</para>
+<screenshot>
+     <screeninfo>Tutorial 2 experiment</screeninfo>
+	<mediaobject>
+	  <imageobject>
+	    <imagedata fileref="tutorial2.png" format="PNG"/>
+	  </imageobject>
+	    <textobject>
+	    <phrase>Tutorial 2 experiment</phrase>
+	  </textobject>
+	</mediaobject>
+</screenshot>
 <para>Graphs allow you to graphically visualize the relationship between two variables. The example in the tutorial prints the evolution of the position of particle1 while time advances in world1. With a right click on a graph you can clear or delete the graph as well as edit the conguration dialog and change here all the proerties for this graph.</para>
+<para>At the end of this tutorial you are able to use controllers to act on your bodies properties and graphs to monitor specific properties in your experiment.</para>
 </sect1>
 
 <sect1 id="tutorial3">
@@ -28,6 +51,30 @@
 <para>Tutorial 3 presents you rigid bodies and tracers.</para>
 <para>A rigid body is an idealization of a solid body of finite size in which deformation is neglected. In other words, the distance between any two given points of a rigid body remains constant in time regardless of external forces exerted on it.</para>
 <para>A tracer is a tool which shows the trajectory of a given point on a rigid body.</para>
+<screenshot>
+     <screeninfo>Disk properties</screeninfo>
+	<mediaobject>
+	  <imageobject>
+	    <imagedata fileref="disk-properties.png" format="PNG"/>
+	  </imageobject>
+	    <textobject>
+	    <phrase>Disk properties</phrase>
+	  </textobject>
+	</mediaobject>
+</screenshot>
+<para>When a rigid body (here a disk) is selected you see three grey handlers on it. Using them by clicking on them and moving them, you can change the velocity, the angle and the angular velocity of the body.</para>
+<screenshot>
+     <screeninfo>Tutorial 3: 2 tracers</screeninfo>
+	<mediaobject>
+	  <imageobject>
+	    <imagedata fileref="tutorial3.png" format="PNG"/>
+	  </imageobject>
+	    <textobject>
+	    <phrase>Tutorial 3: 2 tracers</phrase>
+	  </textobject>
+	</mediaobject>
+</screenshot>
+<para>The experiment in Tutorial 3 shows a disk and a box linked by a spring. A tracer (the blue one) is already on the box. You can add a second one: select <guilabel>Tracer</guilabel> in the <guilabel>Palette</guilabel> panel then click on the box on the point where you want the tracer to be. In the <guilabel>Properties</guilabel> panel, click on the <guilabel>color</guilabel> line and on the right of this line you can click on the blue square and a color palette appears: you can choose a new color for the tracer. The screenshot above shows two tracers after the simulation is run for a few seconds.</para>
 </sect1>
 
 <sect1 id="tutorial4">
