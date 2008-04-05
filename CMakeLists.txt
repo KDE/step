@@ -4,7 +4,7 @@ include(StepConfigureChecks.cmake)
 
 if (GMM_INCLUDE_DIR)
    set(QALCULATE_MIN_VERSION "0.9.5")
-   include(cmake/modules/FindQalculate.cmake)
+   find_package(FindQalculate)
 
    set(STEPCORE_TESTS OFF CACHE BOOL "Build StepCore tests")
    set(STEPCORE_WITH_GSL ${GSL_FOUND} CACHE BOOL "Enable GSL-powered features for StepCore")
