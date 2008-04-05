@@ -704,7 +704,7 @@ int World::doEvolve(double delta)
                     qDebug("* %e %e %e", targetTime, _time, _solver->stepSize());
         }
         double time = _time;
-        //_collisionExpectedTime = HUGE_VAL;
+
         _stopOnCollision = true;
         _stopOnIntersection = true;
         ret = _solver->doEvolve(&time, targetTime, &_variables[0],
@@ -724,13 +724,13 @@ int World::doEvolve(double delta)
             //STEPCORE_ASSERT_NOABORT(_collisionTime <= targetTime);
             //STEPCORE_ASSERT_NOABORT(_collisionTime > _time);
             double stepSize = fmin(_solver->stepSize() / 2, targetTime - _time);
-            double collisionEndTime = fmin(_time + stepSize*3, targetTime);
+            double collisionEndTime = targetTime - _time > stepSize*3.01 ? _time + stepSize*3 : targetTime;
+
             _stopOnCollision = false;
 
             do {
-                double endTime = stepSize < collisionEndTime - time ? time+stepSize : collisionEndTime;
-                //_collisionExpectedTime = endTime-fmin(stepSize, _solver->stepSize())*1e-5;
-                //_collisionTime = -HUGE_VAL;
+                double endTime = collisionEndTime - time > stepSize*1.01 ? time+stepSize : collisionEndTime;
+
                 ret = _solver->doEvolve(&time, endTime, &_variables[0],
                             _errorsCalculation ? &_variances[0] : NULL);
                 _time = time;
@@ -739,20 +739,20 @@ int World::doEvolve(double delta)
                     //STEPCORE_ASSERT_NOABORT(_collisionTime > _time);
                     //STEPCORE_ASSERT_NOABORT(_collisionTime < _collisionExpectedTime);
                     stepSize = fmin(stepSize/2, targetTime - _time);
-                    collisionEndTime = fmin(_time + stepSize*3, targetTime);
+                    collisionEndTime = targetTime - _time > stepSize*3.01 ? _time + stepSize*3 : targetTime;
+
                     //STEPCORE_ASSERT_NOABORT(_time + stepSize != _time);
                     // XXX: what to do if stepSize becomes too small ?
+
                 } else if(ret == Solver::OK) {
-                    //if(_collisionTime > _collisionExpectedTime) {
-                        // We are at collision point
-                        scatterVariables(&_variables[0], _errorsCalculation ? &_variances[0] : NULL);
-                        _collisionSolver->solveCollisions(_bodies);
-                        //STEPCORE_ASSERT_NOABORT(ret1 == CollisionSolver::CollisionDetected);
-                        gatherVariables(&_variables[0], _errorsCalculation ? &_variances[0] : NULL);
-                    //}
+                    // We can be close to the collision point
+                    scatterVariables(&_variables[0], _errorsCalculation ? &_variances[0] : NULL);
+                    _collisionSolver->solveCollisions(_bodies);
+                    gatherVariables(&_variables[0], _errorsCalculation ? &_variances[0] : NULL);
+
                 } else goto out;
 
-            } while(_time + stepSize/1000 <= collisionEndTime); // XXX
+            } while(_time + stepSize/100 <= collisionEndTime); // XXX
         } else if(ret != Solver::OK) goto out;
     }
 

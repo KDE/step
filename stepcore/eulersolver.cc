@@ -140,7 +140,8 @@ int GenericEulerSolver::doEvolve(double* t, double t1, double* y, double* yvar)
     while(*t < t1) {
         STEPCORE_ASSERT_NOABORT(t1-*t > realStepSize/1000);
 
-        double t11 = _stepSize < t1-*t ? *t + _stepSize : t1;
+        //double t11 = _stepSize < t1-*t ? *t + _stepSize : t1;
+        double t11 = t1 - *t > _stepSize*1.01 ? *t + _stepSize : t1;
         result = doStep(*t, t11 - *t, y, yvar);
 
         if(result != OK && result != ToleranceError) return result;
