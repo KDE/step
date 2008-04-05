@@ -197,7 +197,6 @@ void MainWindow::setupActions()
     actionCollection()->addAction("run_speed", runSpeedAction);
     runSpeedActionMenu->setStatusTip(i18n("Execute the program"));
     runSpeedActionMenu->setWhatsThis(i18n("Run: Execute the program"));
-    connect(runSpeedActionMenu, SIGNAL(triggered()), this, SLOT(simulationStartStop()));
 
     fullSpeedAct = new KAction(i18nc("@option:radio", "1x Speed"), this);
     actionCollection()->addAction("full_speed", fullSpeedAct );
@@ -284,6 +283,8 @@ bool MainWindow::newFile()
     updateCaption();
     undoBrowser->setEmptyLabel(i18n("<new file>"));
     undoBrowser->setCurrentFileUrl(currentFileUrl);
+
+    setFullSpeed(); // resetting the speed to the default speed of 1x
     return true;
 }
 
