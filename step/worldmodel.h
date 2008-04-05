@@ -138,6 +138,19 @@ public:
     void setProperty(StepCore::Object* object, const StepCore::MetaProperty* property,
                             const QVariant& value, UndoFlags flags = 0);
 
+    /** Modify object property.
+     *  \param object object to modify
+     *  \param propertyName name of the property to modify
+     *  \param value new value for the property
+     *  \param flags UndoFlags
+     *
+     *  \note Set flags to UndoNoMerge in order to disable merging this
+     *        command with previous on undo history and avoid changing of command order */
+    void setProperty(StepCore::Object* object, const QString& propertyName,
+                            const QVariant& value, UndoFlags flags = 0) {
+        setProperty(object, object->metaObject()->property(propertyName), value, flags);
+    }
+
     // Format property value for display or edit
     /** Format object name using standard formatting */
     QString formatName(const StepCore::Object* object) const;

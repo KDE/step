@@ -161,8 +161,8 @@ bool DiskCreator::sceneEvent(QEvent* event)
         _worldModel->simulationPause();
         _worldModel->beginMacro(i18n("Create %1", _worldModel->newItemName(_className)));
         _item = _worldModel->newItem(_className); Q_ASSERT(_item != NULL);
-        _worldModel->setProperty(_item, _item->metaObject()->property("position"), vpos);
-        _worldModel->setProperty(_item, _item->metaObject()->property("radius"), QVariant::fromValue(0.0));
+        _worldModel->setProperty(_item, "position", vpos);
+        _worldModel->setProperty(_item, "radius", QVariant::fromValue(0.0));
         _worldModel->selectionModel()->setCurrentIndex(_worldModel->objectIndex(_item),
                                                     QItemSelectionModel::ClearAndSelect);
 
@@ -176,7 +176,7 @@ bool DiskCreator::sceneEvent(QEvent* event)
         _worldModel->simulationPause();
         StepCore::Vector2d pos = WorldGraphicsItem::pointToVector(mouseEvent->scenePos());
         double radius = (pos - static_cast<StepCore::Disk*>(_item)->position()).norm();
-        _worldModel->setProperty(_item, _item->metaObject()->property("radius"), QVariant::fromValue(radius));
+        _worldModel->setProperty(_item, "radius", QVariant::fromValue(radius));
         return true;
 
     } else if(event->type() == QEvent::GraphicsSceneMouseRelease &&
@@ -188,8 +188,8 @@ bool DiskCreator::sceneEvent(QEvent* event)
         double radius = (pos - disk->position()).norm();
         if(radius == 0) radius = 0.5;
         double inertia = disk->mass() * radius*radius/2.0;
-        _worldModel->setProperty(_item, _item->metaObject()->property("radius"), QVariant::fromValue(radius));
-        _worldModel->setProperty(_item, _item->metaObject()->property("inertia"), QVariant::fromValue(inertia));
+        _worldModel->setProperty(_item, "radius", QVariant::fromValue(radius));
+        _worldModel->setProperty(_item, "inertia", QVariant::fromValue(inertia));
         _worldModel->endMacro();
 
         showMessage(MessageFrame::Information,
@@ -215,7 +215,7 @@ StepCore::Vector2d DiskVertexHandlerGraphicsItem::value()
 
 void DiskVertexHandlerGraphicsItem::setValue(const StepCore::Vector2d& value)
 {
-    _worldModel->setProperty(_item, _item->metaObject()->property("radius"), value.norm());
+    _worldModel->setProperty(_item, "radius", value.norm());
 }
 
 DiskGraphicsItem::DiskGraphicsItem(StepCore::Item* item, WorldModel* worldModel)
@@ -285,8 +285,8 @@ bool BoxCreator::sceneEvent(QEvent* event)
         _worldModel->simulationPause();
         _worldModel->beginMacro(i18n("Create %1", _worldModel->newItemName(_className)));
         _item = _worldModel->newItem(_className); Q_ASSERT(_item != NULL);
-        _worldModel->setProperty(_item, _item->metaObject()->property("position"), vpos);
-        _worldModel->setProperty(_item, _item->metaObject()->property("size"), QVariant::fromValue(StepCore::Vector2d(0)));
+        _worldModel->setProperty(_item, "position", vpos);
+        _worldModel->setProperty(_item, "size", QVariant::fromValue(StepCore::Vector2d(0)));
         _worldModel->selectionModel()->setCurrentIndex(_worldModel->objectIndex(_item),
                                                     QItemSelectionModel::ClearAndSelect);
         _topLeft = WorldGraphicsItem::pointToVector(pos);
@@ -302,8 +302,8 @@ bool BoxCreator::sceneEvent(QEvent* event)
         StepCore::Vector2d pos = WorldGraphicsItem::pointToVector(mouseEvent->scenePos());
         StepCore::Vector2d position = (_topLeft + pos) / 2.0;
         StepCore::Vector2d size = _topLeft - pos;
-        _worldModel->setProperty(_item, _item->metaObject()->property("position"), QVariant::fromValue(position));
-        _worldModel->setProperty(_item, _item->metaObject()->property("size"), QVariant::fromValue(size));
+        _worldModel->setProperty(_item, "position", QVariant::fromValue(position));
+        _worldModel->setProperty(_item, "size", QVariant::fromValue(size));
         return true;
 
     } else if(event->type() == QEvent::GraphicsSceneMouseRelease &&
@@ -316,9 +316,9 @@ bool BoxCreator::sceneEvent(QEvent* event)
         StepCore::Vector2d size = _topLeft - pos;
         if(size[0] == 0 && size[1] == 0) { size[0] = size[1] = 1; }
         double inertia = box->mass() * (size[0]*size[0] + size[1]*size[1]) / 12.0;
-        _worldModel->setProperty(_item, _item->metaObject()->property("position"), QVariant::fromValue(position));
-        _worldModel->setProperty(_item, _item->metaObject()->property("size"), QVariant::fromValue(size));
-        _worldModel->setProperty(_item, _item->metaObject()->property("inertia"), QVariant::fromValue(inertia));
+        _worldModel->setProperty(_item, "position", QVariant::fromValue(position));
+        _worldModel->setProperty(_item, "size", QVariant::fromValue(size));
+        _worldModel->setProperty(_item, "inertia", QVariant::fromValue(inertia));
         _worldModel->endMacro();
 
         showMessage(MessageFrame::Information,
@@ -370,8 +370,8 @@ void PolygonCreator::fixCenterOfMass()
     }
 
     for(i=0; i<v.size(); ++i) v[i] -= center;
-    _worldModel->setProperty(_item, _item->metaObject()->property("position"), QVariant::fromValue(position + center));
-    _worldModel->setProperty(_item, _item->metaObject()->property("vertexes"), QVariant::fromValue(v));
+    _worldModel->setProperty(_item, "position", QVariant::fromValue(position + center));
+    _worldModel->setProperty(_item, "vertexes", QVariant::fromValue(v));
 }
 
 void PolygonCreator::fixInertia()
@@ -409,7 +409,7 @@ void PolygonCreator::fixInertia()
     }
 
     inertia = fabs(inertia * mass); // 1 = 1m XXX XXX XXX
-    _worldModel->setProperty(_item, _item->metaObject()->property("inertia"), QVariant::fromValue(inertia));
+    _worldModel->setProperty(_item, "inertia", QVariant::fromValue(inertia));
 }
 
 void PolygonCreator::start()
@@ -429,8 +429,8 @@ bool PolygonCreator::sceneEvent(QEvent* event)
         _worldModel->simulationPause();
         _worldModel->beginMacro(i18n("Create %1", _worldModel->newItemName(_className)));
         _item = _worldModel->newItem(_className); Q_ASSERT(_item != NULL);
-        _worldModel->setProperty(_item, _item->metaObject()->property("position"), vpos);
-        _worldModel->setProperty(_item, _item->metaObject()->property("vertexes"), QString("(0,0)"));
+        _worldModel->setProperty(_item, "position", vpos);
+        _worldModel->setProperty(_item, "vertexes", QString("(0,0)"));
         _worldModel->selectionModel()->setCurrentIndex(_worldModel->objectIndex(_item),
                                                     QItemSelectionModel::ClearAndSelect);
 
@@ -450,17 +450,17 @@ bool PolygonCreator::sceneEvent(QEvent* event)
         // XXX: don't use strings !
         QString vertexes = _item->metaObject()->property("vertexes")->readString(_item).section(',', 0, -3);
         if(vertexes.isEmpty()) {
-            _worldModel->setProperty(_item, _item->metaObject()->property("position"), QVariant::fromValue(v));
+            _worldModel->setProperty(_item, "position", QVariant::fromValue(v));
             vertexes = QString("(0,0)"); v.setZero();
         } else {
             v -= static_cast<StepCore::Polygon*>(_item)->position();
             vertexes += QString(",(%1,%2)").arg(v[0]).arg(v[1]);
-            _worldModel->setProperty(_item, _item->metaObject()->property("vertexes"), vertexes);
+            _worldModel->setProperty(_item, "vertexes", vertexes);
         }
 
         if(event->type() == QEvent::GraphicsSceneMouseRelease) {
             vertexes += QString(",(%1,%2)").arg(v[0]).arg(v[1]);
-            _worldModel->setProperty(_item, _item->metaObject()->property("vertexes"), vertexes);
+            _worldModel->setProperty(_item, "vertexes", vertexes);
             showMessage(MessageFrame::Information,
                 i18n("Click on the scene to add new vertex or press Enter to finish"));
         }
@@ -550,18 +550,14 @@ void BoxVertexHandlerGraphicsItem::setValue(const StepCore::Vector2d& value)
             newPos[1] = oCorner[1]; newSize[1] = 0;
             _vertexNum ^= 2;
         }
-        _worldModel->setProperty(_item, _item->metaObject()->property("position"),
-                                                QVariant::fromValue(newPos));
-        _worldModel->setProperty(_item, _item->metaObject()->property("size"),
-                                                QVariant::fromValue(newSize));
+        _worldModel->setProperty(_item, "position", QVariant::fromValue(newPos));
+        _worldModel->setProperty(_item, "size", QVariant::fromValue(newSize));
         setValue(value);
         return;
     }
 
-    _worldModel->setProperty(_item, _item->metaObject()->property("position"),
-                                                QVariant::fromValue(newPos));
-    _worldModel->setProperty(_item, _item->metaObject()->property("size"),
-                                                QVariant::fromValue(newSize));
+    _worldModel->setProperty(_item, "position", QVariant::fromValue(newPos));
+    _worldModel->setProperty(_item, "size", QVariant::fromValue(newSize));
 #if 0
     StepCore::Vector2d delta = box()->vectorWorldToLocal(value) - box()->vertexes()[_vertexNum];
     StepCore::Vector2d newPos = box()->position() + box()->vectorLocalToWorld(delta/2.0);
@@ -573,9 +569,8 @@ void BoxVertexHandlerGraphicsItem::setValue(const StepCore::Vector2d& value)
         default: break;
     }
 
-    _worldModel->setProperty(_item, _item->metaObject()->property("position"), QVariant::fromValue(newPos));
-    _worldModel->setProperty(_item, _item->metaObject()->property("size"),
-                                                                QVariant::fromValue(box()->size() + delta));
+    _worldModel->setProperty(_item, "position", QVariant::fromValue(newPos));
+    _worldModel->setProperty(_item, "size", QVariant::fromValue(box()->size() + delta));
 #endif
 }
 
@@ -657,6 +652,6 @@ void PolygonGraphicsItem::changePolygonVertex(WorldModel* worldModel,
     StepCore::Vector2dList vertexes = static_cast<StepCore::Polygon*>(item)->vertexes();
     Q_ASSERT(vertexNum < (int) vertexes.size());
     vertexes[vertexNum] = value;
-    worldModel->setProperty(item, item->metaObject()->property("vertexes"), QVariant::fromValue(vertexes));
+    worldModel->setProperty(item, "vertexes", QVariant::fromValue(vertexes));
 }
 

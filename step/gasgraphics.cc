@@ -56,17 +56,16 @@ bool GasCreator::sceneEvent(QEvent* event)
         _worldModel->simulationPause();
         _worldModel->beginMacro(i18n("Create %1", _worldModel->newItemName(_className)));
         _item = _worldModel->newItem(_className); Q_ASSERT(_item != NULL);
-        _worldModel->setProperty(_item, _item->metaObject()->property("measureRectCenter"), vpos);
-        _worldModel->setProperty(_item, _item->metaObject()->property("measureRectSize"),
-                                                        QVariant::fromValue(StepCore::Vector2d(0)));
+        _worldModel->setProperty(_item, "measureRectCenter", vpos);
+        _worldModel->setProperty(_item, "measureRectSize", QVariant::fromValue(StepCore::Vector2d(0)));
         _worldModel->selectionModel()->setCurrentIndex(_worldModel->objectIndex(_item),
                                                     QItemSelectionModel::ClearAndSelect);
 
         StepCore::Gas* gas = static_cast<StepCore::Gas*>(_item);
         _worldModel->newItem("GasLJForce", gas);
         StepCore::Object* ljforce = gas->items()[0];
-        _worldModel->setProperty(ljforce, ljforce->metaObject()->property("depth"), 0.1);
-        _worldModel->setProperty(ljforce, ljforce->metaObject()->property("rmin"), 0.1);
+        _worldModel->setProperty(ljforce, "depth", 0.1);
+        _worldModel->setProperty(ljforce, "rmin", 0.1);
 
         _topLeft = WorldGraphicsItem::pointToVector(pos);
 
@@ -81,8 +80,8 @@ bool GasCreator::sceneEvent(QEvent* event)
         StepCore::Vector2d pos = WorldGraphicsItem::pointToVector(mouseEvent->scenePos());
         StepCore::Vector2d position = (_topLeft + pos) / 2.0;
         StepCore::Vector2d size = _topLeft - pos;
-        _worldModel->setProperty(_item, _item->metaObject()->property("measureRectCenter"), QVariant::fromValue(position));
-        _worldModel->setProperty(_item, _item->metaObject()->property("measureRectSize"), QVariant::fromValue(size));
+        _worldModel->setProperty(_item, "measureRectCenter", QVariant::fromValue(position));
+        _worldModel->setProperty(_item, "measureRectSize", QVariant::fromValue(size));
         return true;
 
     } else if(event->type() == QEvent::GraphicsSceneMouseRelease &&
@@ -93,8 +92,8 @@ bool GasCreator::sceneEvent(QEvent* event)
         StepCore::Vector2d position = (_topLeft + pos) / 2.0;
         StepCore::Vector2d size = _topLeft - pos;
         if(size[0] == 0 && size[1] == 0) { size[0] = size[1] = 1; }
-        _worldModel->setProperty(_item, _item->metaObject()->property("measureRectCenter"), QVariant::fromValue(position));
-        _worldModel->setProperty(_item, _item->metaObject()->property("measureRectSize"), QVariant::fromValue(size));
+        _worldModel->setProperty(_item, "measureRectCenter", QVariant::fromValue(position));
+        _worldModel->setProperty(_item, "measureRectSize", QVariant::fromValue(size));
 
         showMessage(MessageFrame::Information,
             i18n("Please fill in the parameters for the gas particles."));
@@ -166,18 +165,14 @@ void GasVertexHandlerGraphicsItem::setValue(const StepCore::Vector2d& value)
             newPos[1] = oCorner[1]; newSize[1] = 0;
             _vertexNum ^= 2;
         }
-        _worldModel->setProperty(_item, _item->metaObject()->property("measureRectCenter"),
-                                                QVariant::fromValue(newPos));
-        _worldModel->setProperty(_item, _item->metaObject()->property("measureRectSize"),
-                                                QVariant::fromValue(newSize));
+        _worldModel->setProperty(_item, "measureRectCenter", QVariant::fromValue(newPos));
+        _worldModel->setProperty(_item, "measureRectSize", QVariant::fromValue(newSize));
         setValue(value);
         return;
     }
 
-    _worldModel->setProperty(_item, _item->metaObject()->property("measureRectCenter"),
-                                                QVariant::fromValue(newPos));
-    _worldModel->setProperty(_item, _item->metaObject()->property("measureRectSize"),
-                                                QVariant::fromValue(newSize));
+    _worldModel->setProperty(_item, "measureRectCenter", QVariant::fromValue(newPos));
+    _worldModel->setProperty(_item, "measureRectSize", QVariant::fromValue(newSize));
 }
 
 GasGraphicsItem::GasGraphicsItem(StepCore::Item* item, WorldModel* worldModel)
@@ -209,8 +204,7 @@ void GasGraphicsItem::mouseSetPos(const QPointF& pos, const QPointF&, MovingStat
 #endif
     const StepCore::MetaProperty* property = _item->metaObject()->property("measureRectCenter");
     _worldModel->simulationPause();
-    _worldModel->setProperty(_item, property,
-                            QVariant::fromValue( pointToVector(pos) ));
+    _worldModel->setProperty(_item, property, QVariant::fromValue( pointToVector(pos) ));
 }
 
 QPainterPath GasGraphicsItem::shape() const
@@ -436,8 +430,7 @@ void GasMenuHandler::clearGas()
 {
     _worldModel->simulationPause();
     //_lastPointTime = -HUGE_VAL; // XXX
-    _worldModel->setProperty(gas(), gas()->metaObject()->property("points"),
-                               QVariant::fromValue(StepCore::Vector2dList()) );
+    _worldModel->setProperty(gas(), property("points"), QVariant::fromValue(StepCore::Vector2dList()) );
 }
 */
 

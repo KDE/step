@@ -110,17 +110,14 @@ void WidgetVertexHandlerGraphicsItem::setValue(const StepCore::Vector2d& value)
             newPos[1] = oCorner[1]; newSize[1] = 0;
             _vertexNum ^= 2;
         }
-        _worldModel->setProperty(_item, _item->metaObject()->property("position"),
-                                                QVariant::fromValue(newPos));
-        _worldModel->setProperty(_item, _item->metaObject()->property("size"),
-                                                QVariant::fromValue(newSize*s));
+        _worldModel->setProperty(_item, "position", QVariant::fromValue(newPos));
+        _worldModel->setProperty(_item, "size", QVariant::fromValue(newSize*s));
         setValue(value);
         return;
     }
 
-    _worldModel->setProperty(_item, _item->metaObject()->property("position"), QVariant::fromValue(newPos));
-    _worldModel->setProperty(_item, _item->metaObject()->property("size"),
-                                            QVariant::fromValue(newSize*s));
+    _worldModel->setProperty(_item, "position", QVariant::fromValue(newPos));
+    _worldModel->setProperty(_item, "size", QVariant::fromValue(newSize*s));
 }
 
 WidgetGraphicsItem::WidgetGraphicsItem(StepCore::Item* item, WorldModel* worldModel)
@@ -174,7 +171,7 @@ void WidgetGraphicsItem::mouseSetPos(const QPointF& pos, const QPointF&, MovingS
     QTransform itemTransform = activeView->transform() * deviceTransform(activeView->viewportTransform());
     StepCore::Vector2d newPos = pointToVector( itemTransform.inverted().map(
                 QPointF(itemTransform.map(pos/*/50.0*/).toPoint()) ))/**50.0*/;
-    _worldModel->setProperty(_item, _item->metaObject()->property("position"), QVariant::fromValue(newPos));
+    _worldModel->setProperty(_item, "position", QVariant::fromValue(newPos));
 }
 
 void WidgetGraphicsItem::paint(QPainter* painter, const QStyleOptionGraphicsItem* /*option*/, QWidget* /*widget*/)
@@ -541,7 +538,7 @@ bool NoteGraphicsItem::eventFilter(QObject* obj, QEvent* event)
 
                 _newItems.clear();
 
-                _worldModel->setProperty(_item, _item->metaObject()->property("text"), newText);
+                _worldModel->setProperty(_item, "text", newText);
 
                 _worldModel->endMacro();
                 //--_updating;
@@ -1072,7 +1069,7 @@ void GraphGraphicsItem::worldDataChanged(bool dynamicOnly)
         }
         _lastPointTime = _worldModel->world()->time();
         worldDataChanged(false);
-        //_worldModel->setProperty(graph(), graph()->metaObject()->property("name"), QString("test"));
+        //_worldModel->setProperty(graph(), "name", QString("test"));
     }
 #endif
 }
@@ -1167,37 +1164,37 @@ void GraphMenuHandler::confApply()
 
     QVariant objY = QVariant::fromValue(_confUi->dataSourceY->dataObject());
 
-    _worldModel->setProperty(graph(), graph()->metaObject()->property("objectX"), objX);
-    _worldModel->setProperty(graph(), graph()->metaObject()->property("propertyX"),
-                                _confUi->dataSourceX->dataProperty());
-    _worldModel->setProperty(graph(), graph()->metaObject()->property("indexX"),
-                                _confUi->dataSourceX->dataIndex());
+    _worldModel->setProperty(graph(), "objectX", objX);
+    _worldModel->setProperty(graph(), "propertyX",
+                        _confUi->dataSourceX->dataProperty());
+    _worldModel->setProperty(graph(), "indexX",
+                        _confUi->dataSourceX->dataIndex());
 
-    _worldModel->setProperty(graph(), graph()->metaObject()->property("objectY"), objY);
-    _worldModel->setProperty(graph(), graph()->metaObject()->property("propertyY"),
-                                _confUi->dataSourceY->dataProperty());
-    _worldModel->setProperty(graph(), graph()->metaObject()->property("indexY"),
-                                _confUi->dataSourceY->dataIndex());
+    _worldModel->setProperty(graph(), "objectY", objY);
+    _worldModel->setProperty(graph(), "propertyY",
+                        _confUi->dataSourceY->dataProperty());
+    _worldModel->setProperty(graph(), "indexY",
+                        _confUi->dataSourceY->dataIndex());
 
-    _worldModel->setProperty(graph(), graph()->metaObject()->property("autoLimitsX"),
-                                _confUi->checkBoxAutoX->isChecked());
-    _worldModel->setProperty(graph(), graph()->metaObject()->property("autoLimitsY"),
-                                _confUi->checkBoxAutoY->isChecked());
+    _worldModel->setProperty(graph(), "autoLimitsX",
+                        _confUi->checkBoxAutoX->isChecked());
+    _worldModel->setProperty(graph(), "autoLimitsY",
+                        _confUi->checkBoxAutoY->isChecked());
 
     StepCore::Vector2d limitsX(_confUi->lineEditMinX->text().toDouble(),
                                _confUi->lineEditMaxX->text().toDouble());
     StepCore::Vector2d limitsY(_confUi->lineEditMinY->text().toDouble(),
                                _confUi->lineEditMaxY->text().toDouble());
 
-    _worldModel->setProperty(graph(), graph()->metaObject()->property("limitsX"),
-                                        QVariant::fromValue(limitsX));
-    _worldModel->setProperty(graph(), graph()->metaObject()->property("limitsY"),
-                                        QVariant::fromValue(limitsY));
+    _worldModel->setProperty(graph(), "limitsX",
+                        QVariant::fromValue(limitsX));
+    _worldModel->setProperty(graph(), "limitsY",
+                        QVariant::fromValue(limitsY));
 
-    _worldModel->setProperty(graph(), graph()->metaObject()->property("showLines"),
-                                _confUi->checkBoxShowLines->isChecked());
-    _worldModel->setProperty(graph(), graph()->metaObject()->property("showPoints"),
-                                _confUi->checkBoxShowPoints->isChecked());
+    _worldModel->setProperty(graph(), "showLines",
+                        _confUi->checkBoxShowLines->isChecked());
+    _worldModel->setProperty(graph(), "showPoints",
+                        _confUi->checkBoxShowPoints->isChecked());
 
     _worldModel->endMacro();
 }
@@ -1214,8 +1211,8 @@ void GraphMenuHandler::clearGraph()
     _worldModel->simulationPause();
     //_lastPointTime = -HUGE_VAL; // XXX
     _worldModel->beginMacro(i18n("Clear graph %1", _object->name()));
-    _worldModel->setProperty(graph(), graph()->metaObject()->property("points"),
-                               QVariant::fromValue(StepCore::Vector2dList()) );
+    _worldModel->setProperty(graph(), "points",
+                   QVariant::fromValue(StepCore::Vector2dList()) );
     _worldModel->endMacro();
 }
 
@@ -1345,15 +1342,15 @@ void MeterMenuHandler::confApply()
     if(!_confChanged) return;
     _worldModel->beginMacro(i18n("Edit properties of %1", meter()->name()));
 
-    _worldModel->setProperty(meter(), meter()->metaObject()->property("object"),
-                            QVariant::fromValue(_confUi->dataSource->dataObject()));
-    _worldModel->setProperty(meter(), meter()->metaObject()->property("property"),
-                                _confUi->dataSource->dataProperty());
-    _worldModel->setProperty(meter(), meter()->metaObject()->property("index"),
-                                _confUi->dataSource->dataIndex());
+    _worldModel->setProperty(meter(), "object",
+                        QVariant::fromValue(_confUi->dataSource->dataObject()));
+    _worldModel->setProperty(meter(), "property",
+                        _confUi->dataSource->dataProperty());
+    _worldModel->setProperty(meter(), "index",
+                        _confUi->dataSource->dataIndex());
 
-    _worldModel->setProperty(meter(), meter()->metaObject()->property("digits"),
-                                _confUi->lineEditDigits->text().toInt());
+    _worldModel->setProperty(meter(), "digits",
+                        _confUi->lineEditDigits->text().toInt());
 
     _worldModel->endMacro();
 }
@@ -1424,8 +1421,8 @@ void ControllerGraphicsItem::decTriggered()
 {
     _worldModel->simulationPause();
     _worldModel->beginMacro(i18n("Decrease controller %1", _item->name()));
-    _worldModel->setProperty(controller(), controller()->metaObject()->property("value"),
-                                controller()->value() - controller()->increment());
+    _worldModel->setProperty(controller(), "value",
+                    controller()->value() - controller()->increment());
     _worldModel->endMacro();
 }
 
@@ -1433,8 +1430,8 @@ void ControllerGraphicsItem::incTriggered()
 {
     _worldModel->simulationPause();
     _worldModel->beginMacro(i18n("Increase controller %1", _item->name()));
-    _worldModel->setProperty(controller(), controller()->metaObject()->property("value"),
-                                controller()->value() + controller()->increment());
+    _worldModel->setProperty(controller(), "value",
+                    controller()->value() + controller()->increment());
     _worldModel->endMacro();
 }
 
@@ -1554,7 +1551,7 @@ void ControllerGraphicsItem::worldDataChanged(bool dynamicOnly)
         }
         _lastPointTime = _worldModel->world()->time();
         worldDataChanged(false);
-        //_worldModel->setProperty(graph(), graph()->metaObject()->property("name"), QString("test"));
+        //_worldModel->setProperty(graph(), "name", QString("test"));
     }
 #endif
 }
@@ -1571,7 +1568,7 @@ void ControllerGraphicsItem::sliderChanged(int value)
         }
         double v = controller()->limits()[0] + (value - SLIDER_MIN) *
                 (controller()->limits()[1] - controller()->limits()[0]) / (SLIDER_MAX - SLIDER_MIN);
-        _worldModel->setProperty(controller(), controller()->metaObject()->property("value"), v);
+        _worldModel->setProperty(controller(), "value", v);
     //}
 }
 
@@ -1666,27 +1663,27 @@ void ControllerMenuHandler::confApply()
     if(!_confChanged) return;
     _worldModel->beginMacro(i18n("Edit properties of %1", controller()->name()));
 
-    _worldModel->setProperty(controller(), controller()->metaObject()->property("object"),
-                                QVariant::fromValue(_confUi->dataSource->dataObject()));
-    _worldModel->setProperty(controller(), controller()->metaObject()->property("property"),
-                                _confUi->dataSource->dataProperty());
-    _worldModel->setProperty(controller(), controller()->metaObject()->property("index"),
-                                _confUi->dataSource->dataIndex());
+    _worldModel->setProperty(controller(), "object",
+                    QVariant::fromValue(_confUi->dataSource->dataObject()));
+    _worldModel->setProperty(controller(), "property",
+                    _confUi->dataSource->dataProperty());
+    _worldModel->setProperty(controller(), "index",
+                    _confUi->dataSource->dataIndex());
 
     StepCore::Vector2d limits(_confUi->lineEditMin->text().toDouble(),
                               _confUi->lineEditMax->text().toDouble());
 
-    _worldModel->setProperty(controller(), controller()->metaObject()->property("limits"),
-                                        QVariant::fromValue(limits));
+    _worldModel->setProperty(controller(), "limits",
+                            QVariant::fromValue(limits));
 
-    _worldModel->setProperty(controller(), controller()->metaObject()->property("increaseShortcut"),
-                                 QVariant::fromValue(_confUi->keyIncrease->keySequence().toString()));
+    _worldModel->setProperty(controller(), "increaseShortcut",
+                            QVariant::fromValue(_confUi->keyIncrease->keySequence().toString()));
 
-    _worldModel->setProperty(controller(), controller()->metaObject()->property("decreaseShortcut"),
-                                 QVariant::fromValue(_confUi->keyDecrease->keySequence().toString()));
+    _worldModel->setProperty(controller(), "decreaseShortcut",
+                            QVariant::fromValue(_confUi->keyDecrease->keySequence().toString()));
 
-    _worldModel->setProperty(controller(), controller()->metaObject()->property("increment"),
-                                 QVariant::fromValue(_confUi->lineEditIncrement->text().toDouble()));
+    _worldModel->setProperty(controller(), "increment",
+                            QVariant::fromValue(_confUi->lineEditIncrement->text().toDouble()));
 
     _worldModel->endMacro();
 }
@@ -1702,8 +1699,8 @@ void ControllerMenuHandler::decTriggered()
 {
     _worldModel->simulationPause();
     _worldModel->beginMacro(i18n("Decrease controller %1", _object->name()));
-    _worldModel->setProperty(controller(), controller()->metaObject()->property("value"),
-                                controller()->value() - controller()->increment());
+    _worldModel->setProperty(controller(), "value",
+                    controller()->value() - controller()->increment());
     _worldModel->endMacro();
 }
 
@@ -1711,8 +1708,8 @@ void ControllerMenuHandler::incTriggered()
 {
     _worldModel->simulationPause();
     _worldModel->beginMacro(i18n("Increase controller %1", _object->name()));
-    _worldModel->setProperty(controller(), controller()->metaObject()->property("value"),
-                                controller()->value() + controller()->increment());
+    _worldModel->setProperty(controller(), "value",
+                    controller()->value() + controller()->increment());
     _worldModel->endMacro();
 }
 
@@ -1864,8 +1861,8 @@ void TracerMenuHandler::clearTracer()
     _worldModel->simulationPause();
     //_lastPointTime = -HUGE_VAL; // XX
     _worldModel->beginMacro(i18n("Clear tracer %1", _object->name()));
-    _worldModel->setProperty(_object, _object->metaObject()->property("points"),
-                               QVariant::fromValue(StepCore::Vector2dList()) );
+    _worldModel->setProperty(_object, "points",
+                   QVariant::fromValue(StepCore::Vector2dList()) );
     _worldModel->endMacro();
 }
 

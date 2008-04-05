@@ -488,20 +488,19 @@ StepCore::Item* WorldScene::snapItem(QPointF pos, SnapFlags flags, const SnapLis
 
     if(movingState == WorldGraphicsItem::Started || movingState == WorldGraphicsItem::Moving) {
         if(movingState == WorldGraphicsItem::Started)
-            _worldModel->setProperty(item, item->metaObject()->property("body"+n),
+            _worldModel->setProperty(item, "body"+n,
                     QVariant::fromValue<StepCore::Object*>(NULL), WorldModel::UndoNoMerge);
 
         if(flags.testFlag(SnapSetPosition))
-            _worldModel->setProperty(item, item->metaObject()->property("position"+n),
+            _worldModel->setProperty(item, "position"+n,
                                 QVariant::fromValue(WorldGraphicsItem::pointToVector(pos)));
 
         if(flags.testFlag(SnapSetLocalPosition))
-            _worldModel->setProperty(item, item->metaObject()->property("localPosition"+n),
+            _worldModel->setProperty(item, "localPosition"+n,
                                 QVariant::fromValue(WorldGraphicsItem::pointToVector(pos)));
 
         if(flags.testFlag(SnapSetAngle) && movingState == WorldGraphicsItem::Started)
-            _worldModel->setProperty(item, item->metaObject()->property("angle"+n),
-                                                            QVariant::fromValue(0.0));
+            _worldModel->setProperty(item, "angle"+n, QVariant::fromValue(0.0));
 
     } else if(movingState == WorldGraphicsItem::Finished) {
         StepCore::Vector2d wPos(WorldGraphicsItem::pointToVector(pos));
@@ -523,17 +522,15 @@ StepCore::Item* WorldScene::snapItem(QPointF pos, SnapFlags flags, const SnapLis
             lPos = wPos;
         }
 
-        _worldModel->setProperty(item, item->metaObject()->property("body"+n),
+        _worldModel->setProperty(item, "body"+n,
                     QVariant::fromValue<StepCore::Object*>(sItem), WorldModel::UndoNoMerge);
 
         if(flags.testFlag(SnapSetPosition))
-            _worldModel->setProperty(item, item->metaObject()->property("position"+n),
-                                                                QVariant::fromValue(wPos));
+            _worldModel->setProperty(item, "position"+n, QVariant::fromValue(wPos));
         if(flags.testFlag(SnapSetLocalPosition))
-            _worldModel->setProperty(item, item->metaObject()->property("localPosition"+n),
-                                                                QVariant::fromValue(lPos));
+            _worldModel->setProperty(item, "localPosition"+n, QVariant::fromValue(lPos));
         if(flags.testFlag(SnapSetAngle))
-            _worldModel->setProperty(item, item->metaObject()->property("angle"+n), angle);
+            _worldModel->setProperty(item, "angle"+n, angle);
 
         snapClear();
     }

@@ -209,13 +209,13 @@ void SpringGraphicsItem::mouseSetPos(const QPointF& /*pos*/, const QPointF& diff
             scene())->graphicsFromItem(static_cast<StepCore::Item*>(spring()->body1()));
         Q_ASSERT(gItem != NULL);
         if(!gItem->isSelected()) {
-            _worldModel->setProperty(_item, _item->metaObject()->property("localPosition1"),
-                                        _item->metaObject()->property("position1")->readVariant(_item));
-            _worldModel->setProperty(_item, _item->metaObject()->property("body1"),
-                                        QVariant::fromValue<StepCore::Object*>(NULL), WorldModel::UndoNoMerge);
+            _worldModel->setProperty(_item, "localPosition1",
+                        _item->metaObject()->property("position1")->readVariant(_item));
+            _worldModel->setProperty(_item, "body1",
+                        QVariant::fromValue<StepCore::Object*>(NULL), WorldModel::UndoNoMerge);
         }
     } else {
-        _worldModel->setProperty(_item, _item->metaObject()->property("localPosition1"), 
+        _worldModel->setProperty(_item, "localPosition1", 
             QVariant::fromValue( spring()->position1() + pointToVector(diff) ));
     }
 
@@ -225,12 +225,12 @@ void SpringGraphicsItem::mouseSetPos(const QPointF& /*pos*/, const QPointF& diff
             scene())->graphicsFromItem(static_cast<StepCore::Item*>(spring()->body2()));
         Q_ASSERT(gItem != NULL);
         if(!gItem->isSelected()) {
-            _worldModel->setProperty(_item, _item->metaObject()->property("localPosition2"),
-                                        _item->metaObject()->property("position2")->readVariant(_item));
-            _worldModel->setProperty(_item, _item->metaObject()->property("body2"), QString(), WorldModel::UndoNoMerge);
+            _worldModel->setProperty(_item, "localPosition2",
+                        _item->metaObject()->property("position2")->readVariant(_item));
+            _worldModel->setProperty(_item, "body2", QString(), WorldModel::UndoNoMerge);
         }
     } else {
-        _worldModel->setProperty(_item, _item->metaObject()->property("localPosition2"),
+        _worldModel->setProperty(_item, "localPosition2",
             QVariant::fromValue( spring()->position2() + pointToVector(diff) ));
     }
 }

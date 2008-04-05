@@ -128,9 +128,9 @@ bool AttachableItemCreator::sceneEvent(QEvent* event)
 
         if(_twoEnds) {
             _worldScene->snapItem(pos, _snapFlags, _snapTypes, WorldGraphicsItem::Finished, _item, 1);
-            _worldModel->setProperty(_item, _item->metaObject()->property("localPosition2"),
-                                        QVariant::fromValue(WorldGraphicsItem::pointToVector(pos)));
-            _worldModel->setProperty(_item, _item->metaObject()->property("restLength"), 0);
+            _worldModel->setProperty(_item, "localPosition2",
+                            QVariant::fromValue(WorldGraphicsItem::pointToVector(pos)));
+            _worldModel->setProperty(_item, "restLength", 0);
 
             showMessage(MessageFrame::Information,
                 i18n("Release left mouse button to position second end of the %1", className()));
@@ -153,7 +153,7 @@ bool AttachableItemCreator::sceneEvent(QEvent* event)
         double length =
             (_item->metaObject()->property("position2")->readVariant(_item).value<StepCore::Vector2d>() -
              _item->metaObject()->property("position1")->readVariant(_item).value<StepCore::Vector2d>()).norm();
-        _worldModel->setProperty(_item, _item->metaObject()->property("restLength"), length);
+        _worldModel->setProperty(_item, "restLength", length);
         return true;
 
     } else if(event->type() == QEvent::GraphicsSceneMouseRelease &&
@@ -165,7 +165,7 @@ bool AttachableItemCreator::sceneEvent(QEvent* event)
         double length =
             (_item->metaObject()->property("position2")->readVariant(_item).value<StepCore::Vector2d>() -
              _item->metaObject()->property("position1")->readVariant(_item).value<StepCore::Vector2d>()).norm();
-        _worldModel->setProperty(_item, _item->metaObject()->property("restLength"), length);
+        _worldModel->setProperty(_item, "restLength", length);
         _worldModel->endMacro();
 
         showMessage(MessageFrame::Information,

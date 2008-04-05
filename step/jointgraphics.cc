@@ -194,8 +194,8 @@ void StickHandlerGraphicsItem::mouseSetPos(const QPointF& pos, const QPointF&, M
                     WorldScene::SnapSetLocalPosition, 0, movingState, _item, _num);
 
     StepCore::Stick* stick = static_cast<StepCore::Stick*>(_item);
-    _worldModel->setProperty(_item, _item->metaObject()->property("restLength"), 
-                                (stick->position2() - stick->position1()).norm());
+    _worldModel->setProperty(_item, "restLength", 
+                        (stick->position2() - stick->position1()).norm());
 
 }
 
@@ -335,13 +335,13 @@ void StickGraphicsItem::mouseSetPos(const QPointF& /*pos*/, const QPointF& diff,
             scene())->graphicsFromItem(static_cast<StepCore::Item*>(stick()->body1()));
         Q_ASSERT(gItem != NULL);
         if(!gItem->isSelected()) {
-            _worldModel->setProperty(_item, _item->metaObject()->property("localPosition1"),
-                                        _item->metaObject()->property("position1")->readVariant(_item));
-            _worldModel->setProperty(_item, _item->metaObject()->property("body1"),
-                                        QVariant::fromValue<StepCore::Object*>(NULL), WorldModel::UndoNoMerge);
+            _worldModel->setProperty(_item, "localPosition1",
+                            _item->metaObject()->property("position1")->readVariant(_item));
+            _worldModel->setProperty(_item, "body1",
+                            QVariant::fromValue<StepCore::Object*>(NULL), WorldModel::UndoNoMerge);
         }
     } else {
-        _worldModel->setProperty(_item, _item->metaObject()->property("localPosition1"), 
+        _worldModel->setProperty(_item, "localPosition1",
             QVariant::fromValue( stick()->position1() + pointToVector(diff) ));
     }
 
@@ -351,12 +351,12 @@ void StickGraphicsItem::mouseSetPos(const QPointF& /*pos*/, const QPointF& diff,
             scene())->graphicsFromItem(static_cast<StepCore::Item*>(stick()->body2()));
         Q_ASSERT(gItem != NULL);
         if(!gItem->isSelected()) {
-            _worldModel->setProperty(_item, _item->metaObject()->property("localPosition2"),
-                                        _item->metaObject()->property("position2")->readVariant(_item));
-            _worldModel->setProperty(_item, _item->metaObject()->property("body2"), QString(), WorldModel::UndoNoMerge);
+            _worldModel->setProperty(_item, "localPosition2",
+                            _item->metaObject()->property("position2")->readVariant(_item));
+            _worldModel->setProperty(_item, "body2", QString(), WorldModel::UndoNoMerge);
         }
     } else {
-        _worldModel->setProperty(_item, _item->metaObject()->property("localPosition2"),
+        _worldModel->setProperty(_item, "localPosition2",
             QVariant::fromValue( stick()->position2() + pointToVector(diff) ));
     }
 }
