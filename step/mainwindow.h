@@ -22,8 +22,6 @@
 #include <KXmlGuiWindow>
 #include <KUrl>
 
-#include <QActionGroup>
-
 class WorldModel;
 class WorldBrowser;
 class WorldScene;
@@ -32,11 +30,14 @@ class PropertiesBrowser;
 class InfoBrowser;
 class UndoBrowser;
 class ItemPalette;
+
 class KConfig;
 class KAction;
 class KToolBarPopupAction;
 class KRecentFilesAction;
+
 class QItemSelection;
+class QActionGroup;
 
 class MainWindow : public KXmlGuiWindow
 {
@@ -110,10 +111,6 @@ protected:
     WorldScene*         worldScene;
     WorldGraphicsView*  worldGraphicsView;
 
-    KAction* actionSimulation;
-    KAction* actionSimulationStart;
-    KAction* actionSimulationStop;
-
     KAction* actionUndo;
     KAction* actionRedo;
     KAction* actionDelete;
@@ -122,6 +119,7 @@ protected:
 
     KUrl currentFileUrl;
 
+    //The following members are needed for the setting of the timeScale
     int runSpeed;
     KToolBarPopupAction *runSpeedAction;
     KAction *fullSpeedAct;
@@ -129,7 +127,6 @@ protected:
     KAction *slowerSpeedAct;
     KAction *slowestSpeedAct;
     KAction *stepSpeedAct;
-
     QActionGroup *runSpeedGroup;
 
 };

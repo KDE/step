@@ -186,21 +186,7 @@ void MainWindow::setupActions()
     actionDelete->setEnabled(false);
 
     /* Simulation menu */
-    actionSimulationStart = actionCollection()->add<KAction>("simulation_start", this, SLOT(simulationStart()));
-    actionSimulationStop = actionCollection()->add<KAction>("simulation_stop", this, SLOT(simulationStop()));
-    actionSimulation = actionCollection()->add<KAction>("simulation_start_stop", this, SLOT(simulationStartStop()));
-    actionSimulation->setText(i18n("Simulation start/stop"));
-
-    actionSimulationStart->setText(i18n("&Start"));
-    actionSimulationStart->setIcon(KIcon("media-playback-start"));
-
-    actionSimulationStop->setText(i18n("S&top"));
-    actionSimulationStop->setIcon(KIcon("media-playback-stop"));
-
-
-/////////////////////////////////7time scale 
-
-// The run speed action group
+    // The run speed action group
     QActionGroup* runSpeedGroup = new QActionGroup(this);
 
     // The run action collection, this is used in the toolbar to create a dropdown menu on the run button
@@ -248,9 +234,6 @@ void MainWindow::setupActions()
     connect(stepSpeedAct, SIGNAL(triggered()), this, SLOT(setStepSpeed()));
     runSpeedGroup->addAction(stepSpeedAct);
     runSpeedActionMenu->addAction(stepSpeedAct);
-
-
-/////////////////////////////////7time scale 
 
     simulationStopped(0);
 
@@ -494,12 +477,6 @@ void MainWindow::simulationStartStop()
 
 void MainWindow::simulationStart()
 {
-    actionSimulationStart->setEnabled(false);
-    actionSimulationStop->setEnabled(true);
-    actionSimulation->setIconText(i18n("&Stop"));
-    actionSimulation->setIcon(KIcon("media-playback-stop"));
-
-    //FIXME this is new
     runSpeedAction->setIconText(i18n("&Stop"));
     runSpeedAction->setIcon(KIcon("media-playback-stop"));
 
@@ -510,12 +487,6 @@ void MainWindow::simulationStart()
 
 void MainWindow::simulationStopped(int result)
 {
-    actionSimulationStart->setEnabled(true);
-    actionSimulationStop->setEnabled(false);
-    actionSimulation->setIconText(i18n("&Simulate"));
-    actionSimulation->setIcon(KIcon("media-playback-start"));
-
-    //FIXME this is new
     runSpeedAction->setIconText(i18n("&Simulate"));
     runSpeedAction->setIcon(KIcon("media-playback-start"));
 
@@ -530,7 +501,7 @@ void MainWindow::simulationStopped(int result)
                "which cannot be resolved automatically.\n"
                "Please move colliding objects appart and try again."));
     } else if(result != StepCore::Solver::OK) {\
-        KMessageBox::sorry(this, i18n("Cannot finish this step because of unknown error."));
+        KMessageBox::sorry(this, i18n("Cannot finish this step because of an unknown error."));
     }
 }
 
@@ -560,8 +531,6 @@ void MainWindow::setRunSpeed(int speed)
     }
     runSpeed = speed;
 }
-
-
 
 void MainWindow::undoTextChanged(const QString& undoText)
 {
