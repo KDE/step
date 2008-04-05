@@ -71,9 +71,9 @@ public:
     ItemMenuHandler* newItemMenuHandler(StepCore::Object* object,
                         WorldModel* worldModel, QObject* parent) const;
 
-    /** Returns true if the object has assosiated icon */
+    /** Returns true if the object has associated icon */
     bool hasObjectIcon(const StepCore::MetaObject* mObject) const;
-    /** Get assosiated icon for given object */
+    /** Get associated icon for given object */
     const KIcon& objectIcon(const StepCore::MetaObject* mObject) const;
 
     /** Get class names of the objects on ItemPalette */

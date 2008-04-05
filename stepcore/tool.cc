@@ -22,12 +22,12 @@
 
 namespace StepCore {
 
-STEPCORE_META_OBJECT(NoteImage, "NoteImage: an image embeded in Note", 0,
+STEPCORE_META_OBJECT(NoteImage, "NoteImage: an image embedded in Note", 0,
     STEPCORE_SUPER_CLASS(Item),
     STEPCORE_PROPERTY_RW(QByteArray, image, STEPCORE_UNITS_NULL, "Image data", image, setImage)
     )
 
-STEPCORE_META_OBJECT(NoteFormula, "NoteFormula: a formula embeded in Note", 0,
+STEPCORE_META_OBJECT(NoteFormula, "NoteFormula: a formula embedded in Note", 0,
     STEPCORE_SUPER_CLASS(NoteImage),
     STEPCORE_PROPERTY_RW(QString, code, STEPCORE_UNITS_NULL, "Formula code", code, setCode)
     )

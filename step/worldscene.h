@@ -52,7 +52,7 @@ class WorldScene: public QGraphicsScene
 public:
     typedef QList<const StepCore::MetaObject*> SnapList;
 
-    /** Flags for controling item snapping behaviour */
+    /** Flags for controlling item snapping behaviour */
     enum SnapFlag {
         SnapOnCenter = 1,         ///< Snap to the center of the body
         SnapSetPosition = 2,      ///< Set position property
@@ -110,7 +110,7 @@ public:
     StepCore::Item* snapItem(QPointF pos, SnapFlags flags, const SnapList* moreTypes,
                                   int movingState, StepCore::Item* item, int num = -1);
 
-    /** Get assosiated WorldModel */
+    /** Get associated WorldModel */
     WorldModel* worldModel() const { return _worldModel; }
 
 public slots:

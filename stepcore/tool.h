@@ -35,7 +35,7 @@ namespace StepCore
 {
 
 /** \ingroup tools
- *  \brief Image embeded in Note
+ *  \brief Image embedded in Note
  */
 class NoteImage: public Item
 {
@@ -58,7 +58,7 @@ protected:
 };
 
 /** \ingroup tools
- *  \brief LaTeX formula embeded in Note
+ *  \brief LaTeX formula embedded in Note
  */
 class NoteFormula: public NoteImage
 {

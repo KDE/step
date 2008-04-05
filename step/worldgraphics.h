@@ -89,10 +89,10 @@ protected:
     /** Set created item */
     void setItem(StepCore::Item* item) { _item = item; }
 
-    /** Get assosiated WorldModel */
+    /** Get associated WorldModel */
     WorldModel* worldModel() { return _worldModel; }
 
-    /** Get assosiated WorldScene */
+    /** Get associated WorldScene */
     WorldScene* worldScene() { return _worldScene; }
 
 protected:
@@ -315,7 +315,7 @@ class ArrowHandlerGraphicsItem: public WorldGraphicsItem
 public:
     /** Construct ArrowHandlerGraphicsItem.
      *  \param item StepCore::Item to control
-     *  \param worldModel assosiated worldModel
+     *  \param worldModel associated worldModel
      *  \param parent parent WorldGraphicsItem
      *  \param property Property to control
      *  \param positionProperty Origin of the vector described by property or NULL
@@ -351,7 +351,7 @@ class CircularArrowHandlerGraphicsItem: public WorldGraphicsItem
 public:
     /** Construct CircularArrowHandlerGraphicsItem.
      *  \param item StepCore::Item to control
-     *  \param worldModel assosiated worldModel
+     *  \param worldModel associated worldModel
      *  \param parent parent WorldGraphicsItem
      *  \param radius radius of the arrow on the screen
      *  \param property Property to control

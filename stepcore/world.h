@@ -471,7 +471,7 @@ private:
     friend class ItemGroup;
 
     /** \internal Creates a map between pointers to items in two groups
-     *  (groups should contain indentical items). */
+     *  (groups should contain identical items). */
     void fillCopyMap(QHash<const Object*, Object*>* map,
                         const ItemGroup* g1, ItemGroup* g2);
     /** \internal Maps all links to other objects in obj using the map */
@@ -490,7 +490,7 @@ private:
 
     /** \internal This function iterates over all bodies, assigns indexes
      *  for them in the global array (_variables), calculates total
-     *  variables count and reallocates (if neccesary) _variables and
+     *  variables count and reallocates (if necessary) _variables and
      *  _variances arrays. It does the same for joints. */
     void checkVariablesCount();
 
