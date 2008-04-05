@@ -110,7 +110,20 @@
 
 <sect1 id="tutorial5">
 <title>Tutorial 5: joints</title>
-<para>Joints are objects that attaches bodies to each other or to the background. You have a the followong joints in &step;: anchors, pins, sticks and ropes. An anchor is a joint that fixes position of the body. A pin is a joint that fixes one point of the body. A stick is a joint that fixes the distance between two points on two bodies.</para>
+<para>Joints are objects that attaches bodies to each other or to the background. You have a the following joints in &step;: anchors, pins, sticks and ropes. An anchor is a joint that fixes position of the body. The body cannot move when it has an anchor. A pin is a joint that fixes one point of the body, the body can still move around the pin. A stick is a joint that fixes the distance between two points on two bodies.</para>
+<screenshot>
+     <screeninfo>Tutorial 5: double pendulum</screeninfo>
+	<mediaobject>
+	  <imageobject>
+	    <imagedata fileref="tutorial5.png" format="PNG"/>
+	  </imageobject>
+	    <textobject>
+	    <phrase>Tutorial 5: double pendulum</phrase>
+	  </textobject>
+	</mediaobject>
+</screenshot>
+<para>Tutorial 5 describes a double pendulum.</para>
+<para>Add a <guilabel>Particle</guilabel> to the scene then join this particle to Particle2 with a stick. Click on Stick on the <guilabel>Palette</guilabel> panel. You then need to select the first object attached to the stick (particle2) with the left mouse button then drag the mouse to the second object (particle3) and release the mouse button on particle3. You now have a triple pendulum!</para>
 </sect1>
 
 </chapter>
