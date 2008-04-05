@@ -47,6 +47,7 @@
 #include <KStatusBar>
 #include <KLocale>
 #include <KConfig>
+#include <KToolBarPopupAction>
 
 #include <KIO/NetAccess>
 #include <KNS/Engine>
@@ -55,6 +56,7 @@
 #include <QGraphicsView>
 #include <QItemSelectionModel>
 #include <QHBoxLayout>
+#include <QMenu>
 
 #include <cstdlib>
 #include <ctime>
@@ -194,6 +196,61 @@ void MainWindow::setupActions()
 
     actionSimulationStop->setText(i18n("S&top"));
     actionSimulationStop->setIcon(KIcon("media-playback-stop"));
+
+
+/////////////////////////////////7time scale 
+
+// The run speed action group
+    QActionGroup* runSpeedGroup = new QActionGroup(this);
+
+    // The run action collection, this is used in the toolbar to create a dropdown menu on the run button
+    runSpeedAction = new KToolBarPopupAction(KIcon("media-playback-start"), i18n("&Run"), this);
+    connect(runSpeedAction, SIGNAL(triggered()), 
+            this, SLOT(simulationStartStop()));
+    QMenu* runSpeedActionMenu = runSpeedAction->menu();
+    actionCollection()->addAction("run_speed", runSpeedAction);
+    runSpeedActionMenu->setStatusTip(i18n("Execute the program"));
+    runSpeedActionMenu->setWhatsThis(i18n("Run: Execute the program"));
+    connect(runSpeedActionMenu, SIGNAL(triggered()), this, SLOT(simulationStartStop()));
+
+    fullSpeedAct = new KAction(i18nc("@option:radio", "1x Speed"), this);
+    actionCollection()->addAction("full_speed", fullSpeedAct );
+    fullSpeedAct->setCheckable(true);
+    fullSpeedAct->setChecked(true);
+    connect(fullSpeedAct, SIGNAL(triggered()), this, SLOT(setFullSpeed()));
+    runSpeedGroup->addAction(fullSpeedAct);
+    runSpeedActionMenu->addAction(fullSpeedAct);
+	
+    slowSpeedAct = new KAction(i18nc("@option:radio choose the slow speed", "2x Speed"), this);
+    actionCollection()->addAction("slow_speed", slowSpeedAct );
+    slowSpeedAct->setCheckable(true);
+    connect(slowSpeedAct, SIGNAL(triggered()), this, SLOT(setSlowSpeed()));
+    runSpeedGroup->addAction(slowSpeedAct);
+    runSpeedActionMenu->addAction(slowSpeedAct);
+
+    slowerSpeedAct = new KAction(i18nc("@option:radio", "4x Speed"), this);
+    actionCollection()->addAction("slower_speed", slowerSpeedAct );
+    slowerSpeedAct->setCheckable(true);
+    connect(slowerSpeedAct, SIGNAL(triggered()), this, SLOT(setSlowerSpeed()));
+    runSpeedGroup->addAction(slowerSpeedAct);
+    runSpeedActionMenu->addAction(slowerSpeedAct);
+
+    slowestSpeedAct = new KAction(i18nc("@option:radio", "8x Speed"), this);
+    actionCollection()->addAction("slowest_speed", slowestSpeedAct );
+    slowestSpeedAct->setCheckable(true);
+    connect(slowestSpeedAct, SIGNAL(triggered()), this, SLOT(setSlowestSpeed()));
+    runSpeedGroup->addAction(slowestSpeedAct);
+    runSpeedActionMenu->addAction(slowestSpeedAct);
+
+    stepSpeedAct = new KAction(i18nc("@option:radio", "16x Speed"), this);
+    actionCollection()->addAction("step_speed", stepSpeedAct );
+    stepSpeedAct->setCheckable(true);
+    connect(stepSpeedAct, SIGNAL(triggered()), this, SLOT(setStepSpeed()));
+    runSpeedGroup->addAction(stepSpeedAct);
+    runSpeedActionMenu->addAction(stepSpeedAct);
+
+
+/////////////////////////////////7time scale 
 
     simulationStopped(0);
 
@@ -441,6 +498,11 @@ void MainWindow::simulationStart()
     actionSimulationStop->setEnabled(true);
     actionSimulation->setIconText(i18n("&Stop"));
     actionSimulation->setIcon(KIcon("media-playback-stop"));
+
+    //FIXME this is new
+    runSpeedAction->setIconText(i18n("&Stop"));
+    runSpeedAction->setIcon(KIcon("media-playback-stop"));
+
     undoBrowser->setUndoEnabled(false);
     actionUndo->setEnabled(false);
     worldModel->simulationStart();
@@ -452,6 +514,11 @@ void MainWindow::simulationStopped(int result)
     actionSimulationStop->setEnabled(false);
     actionSimulation->setIconText(i18n("&Simulate"));
     actionSimulation->setIcon(KIcon("media-playback-start"));
+
+    //FIXME this is new
+    runSpeedAction->setIconText(i18n("&Simulate"));
+    runSpeedAction->setIcon(KIcon("media-playback-start"));
+
     undoBrowser->setUndoEnabled(true);
     if(result == StepCore::Solver::ToleranceError) {
         KMessageBox::sorry(this, i18n("Cannot finish this step because local error "
@@ -471,6 +538,30 @@ void MainWindow::simulationStop()
 {
     worldModel->simulationStop();
 }
+
+void MainWindow::setRunSpeed(int speed)
+{
+    switch (speed) {
+        case 0: fullSpeedAct->setChecked(true);    
+                worldModel->world()->setTimeScale( 1.0);
+                break;
+        case 1: slowSpeedAct->setChecked(true);
+                worldModel->world()->setTimeScale( 2.0);
+                break;
+        case 2: slowerSpeedAct->setChecked(true);
+                worldModel->world()->setTimeScale( 4.0);
+                break;
+        case 3: slowestSpeedAct->setChecked(true);
+                worldModel->world()->setTimeScale( 8.0);
+                break;
+        case 4: stepSpeedAct->setChecked(true);
+                worldModel->world()->setTimeScale( 16.0);
+                break;
+    }
+    runSpeed = speed;
+}
+
+
 
 void MainWindow::undoTextChanged(const QString& undoText)
 {

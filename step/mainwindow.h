@@ -22,6 +22,8 @@
 #include <KXmlGuiWindow>
 #include <KUrl>
 
+#include <QActionGroup>
+
 class WorldModel;
 class WorldBrowser;
 class WorldScene;
@@ -32,6 +34,7 @@ class UndoBrowser;
 class ItemPalette;
 class KConfig;
 class KAction;
+class KToolBarPopupAction;
 class KRecentFilesAction;
 class QItemSelection;
 
@@ -61,6 +64,15 @@ public slots:
     void simulationStart();
     void simulationStop();
     void simulationStopped(int result);
+
+    void setRunSpeed(int);
+
+    void setFullSpeed()     { setRunSpeed(0); }
+    void setSlowSpeed()     { setRunSpeed(1); }
+    void setSlowerSpeed()   { setRunSpeed(2); }
+    void setSlowestSpeed()  { setRunSpeed(3); }
+    void setStepSpeed()     { setRunSpeed(4); }
+
 
 protected slots:
     void updateCaption();
@@ -109,6 +121,17 @@ protected:
     KRecentFilesAction* actionRecentFiles;
 
     KUrl currentFileUrl;
+
+    int runSpeed;
+    KToolBarPopupAction *runSpeedAction;
+    KAction *fullSpeedAct;
+    KAction *slowSpeedAct;
+    KAction *slowerSpeedAct;
+    KAction *slowestSpeedAct;
+    KAction *stepSpeedAct;
+
+    QActionGroup *runSpeedGroup;
+
 };
 
 #endif

@@ -11,6 +11,8 @@
   <ToolBar name="simulationToolBar" >
     <text>Simulation Toolbar</text>
     <Action name="simulation_start_stop" />
+    <Action name="run_speed" />
+
   </ToolBar>
   <MenuBar>
     <Menu name="file" >
@@ -30,6 +32,13 @@
       <text>&amp;Simulation</text>
       <Action name="simulation_start" />
       <Action name="simulation_stop" />
+        <Menu name="speed"><text>&amp;Run Speed</text>
+          <Action name="full_speed" />
+          <Action name="slow_speed" />
+          <Action name="slower_speed" />
+          <Action name="slowest_speed" />
+          <Action name="step_speed" />
+        </Menu>
     </Menu>
     <Menu name="settings" >
         <Menu name="panels" >
