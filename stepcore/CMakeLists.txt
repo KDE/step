@@ -37,12 +37,11 @@ if(STEPCORE_WITH_QT)
 
     include(${QT_USE_FILE})
     include_directories(${CMAKE_CURRENT_BINARY_DIR})
-    qt4_automoc(${stepcore_SRCS})
     set(stepcore_use_LIBS ${stepcore_use_LIBS} ${QT_LIBRARIES})
 endif(STEPCORE_WITH_QT)
 
 add_definitions(-Wall) # XXX ?
 
-add_library(stepcore STATIC ${stepcore_SRCS})
+kde4_add_library(stepcore STATIC ${stepcore_SRCS})
 target_link_libraries(stepcore ${stepcore_use_LIBS})
 
