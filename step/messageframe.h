@@ -32,7 +32,7 @@ class MessageFrame: public QFrame
 public:
     enum Type { Information, Warning, Error };
     enum Flag { CloseButton = 1, CloseTimer = 2 };
-    Q_DECLARE_FLAGS(Flags, Flag);
+    Q_DECLARE_FLAGS(Flags, Flag)
 
     explicit MessageFrame(QWidget* parent = 0, Qt::WindowFlags f = 0);
 

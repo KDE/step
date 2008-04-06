@@ -53,8 +53,8 @@ public:
     enum FormatFlag { FormatEditable = 1, FormatHideUnits = 2 };
     enum UndoFlag { UndoNoMerge = 1 };
 
-    Q_DECLARE_FLAGS(FormatFlags, FormatFlag);
-    Q_DECLARE_FLAGS(UndoFlags, UndoFlag);
+    Q_DECLARE_FLAGS(FormatFlags, FormatFlag)
+    Q_DECLARE_FLAGS(UndoFlags, UndoFlag)
 
 public:
     WorldModel(QObject* parent = 0);
@@ -265,8 +265,8 @@ protected:
     friend class CommandSimulate;
 };
 
-Q_DECLARE_OPERATORS_FOR_FLAGS(WorldModel::FormatFlags);
-Q_DECLARE_OPERATORS_FOR_FLAGS(WorldModel::UndoFlags);
+Q_DECLARE_OPERATORS_FOR_FLAGS(WorldModel::FormatFlags)
+Q_DECLARE_OPERATORS_FOR_FLAGS(WorldModel::UndoFlags)
 
 #endif
 
