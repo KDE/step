@@ -107,7 +107,7 @@ p, li { white-space: pre-wrap; }
 
     </item>
 
-    <solver class="GslAdaptiveRKF45Solver" id="10">
+    <solver class="AdaptiveEulerSolver" id="10">
         <name>solver1</name>
         <stepSize>1</stepSize>
         <toleranceAbs>0.001</toleranceAbs>
