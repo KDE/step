@@ -645,26 +645,22 @@ void WorldGraphicsView::settingsChanged()
 
 void WorldGraphicsView::mousePressEvent(QMouseEvent* e)
 {
-    #ifdef __GNUC__
-    #warning Uncomment it once dragging will be fixed in Qt
-    #endif
-    /*if(e->button() == Qt::MidButton) {
+    if(e->button() == Qt::MidButton) {
         setDragMode(QGraphicsView::ScrollHandDrag);
-    }*/
-    QGraphicsView::mousePressEvent(e);
+        QMouseEvent e1(e->type(), e->pos(), e->globalPos(), Qt::LeftButton,
+                        e->buttons(), e->modifiers());
+        QGraphicsView::mousePressEvent(&e1);
+    } else {
+        QGraphicsView::mousePressEvent(e);
+    }
 }
 
 void WorldGraphicsView::mouseReleaseEvent(QMouseEvent* e)
 {
     QGraphicsView::mouseReleaseEvent(e);
-    #ifdef __GNUC__
-    #warning Uncomment it once dragging will be fixed in Qt
-    #endif
-    /*
     if(e->button() == Qt::MidButton) {
         setDragMode(QGraphicsView::RubberBandDrag);
     }
-    */
 }
 
 void WorldGraphicsView::scrollContentsBy(int dx, int dy)
