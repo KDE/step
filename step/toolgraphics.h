@@ -23,6 +23,7 @@
 #include <QGraphicsTextItem>
 #include <QAbstractItemModel>
 #include <QWidget>
+#include <QPointer>
 #include <KTextEdit>
 #include <KComboBox>
 #include <limits.h>
@@ -92,7 +93,7 @@ protected:
     void mouseSetPos(const QPointF& pos, const QPointF&, MovingState movingState);
     OnHoverHandlerGraphicsItem* createOnHoverHandler(const QPointF& pos);
 
-    QWidget* _centralWidget;
+    QPointer<QWidget> _centralWidget;
     QBrush   _backgroundBrush;
 };
 
