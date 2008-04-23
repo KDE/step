@@ -209,7 +209,7 @@ Integrated tutorials
 <guimenu>Help</guimenu>
 <guimenuitem>&step; Handbook</guimenuitem>
 </menuchoice></term>
-<listitem><para><action>Open</action> this handbook in the &khelpCenter.</para></listitem>
+<listitem><para><action>Open</action> this handbook in the &khelpcenter;.</para></listitem>
 </varlistentry>
 <varlistentry>
 <term><menuchoice>
@@ -219,7 +219,7 @@ Integrated tutorials
 <guimenu>Help</guimenu>
 <guimenuitem>What's This?</guimenuitem>
 </menuchoice></term>
-<listitem><para><action>Open</action> this handbook in the &khelpCenter.</para></listitem>
+<listitem><para><action>Open</action> this handbook in the &khelpcenter;.</para></listitem>
 </varlistentry>
 <varlistentry>
 <term><menuchoice>
@@ -269,20 +269,20 @@ Not yet written
 &step;
 </para>
 <para>
-Program copyright 2007 Vladimir Kuznetsov &Vladimir.Kuznetsov.mail;
+Program copyright 2007 &Vladimir.Kuznetsov; &Vladimir.Kuznetsov.mail;
 </para>
 <para>
 Contributors:
 <itemizedlist>
-<listitem><para>Author: Vladimir Kuznetsov &Vladimir.Kuznetsov.mail;</para>
+<listitem><para>Author: &Vladimir.Kuznetsov; &Vladimir.Kuznetsov.mail;</para>
 </listitem>
-<listitem><para>Contributor: &Carsten Niehaus &Carsten.Niehaus.mail;</para>
+<listitem><para>Contributor: &Carsten.Niehaus; &Carsten.Niehaus.mail;</para>
 </listitem>
 </itemizedlist>
 </para>
 
 <para>
-Documentation copyright 2007 &Anne-Marie.Mahfouf &Anne-Marie.Mahfouf.mail;
+Documentation copyright 2007 &Anne-Marie.Mahfouf; &Anne-Marie.Mahfouf.mail;
 </para>
 
 <!-- TRANS:CREDIT_FOR_TRANSLATORS -->
