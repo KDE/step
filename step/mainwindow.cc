@@ -413,7 +413,7 @@ void MainWindow::openTutorial()
     // XXX: need to be redone
     QStringList dirs = KGlobal::dirs()->findDirs("appdata", "tutorials");
     QString localDir = KStandardDirs::locateLocal("appdata", "");
-    foreach(QString dir, dirs) {
+    foreach(const QString &dir, dirs) {
         if(!dir.startsWith(localDir)) {
             openFile(KUrl(), dir);
             return;
@@ -426,7 +426,7 @@ void MainWindow::openExample()
     // XXX: need to be redone
     QStringList dirs = KGlobal::dirs()->findDirs("appdata", "examples");
     QString localDir = KStandardDirs::locateLocal("appdata", "");
-    foreach(QString dir, dirs) {
+    foreach(const QString &dir, dirs) {
         if(!dir.startsWith(localDir)) {
             openFile(KUrl(), dir);
             return;
@@ -547,7 +547,7 @@ void MainWindow::redoTextChanged(const QString& redoText)
 
 void MainWindow::worldSelectionChanged(const QItemSelection&, const QItemSelection&)
 {
-    foreach(QModelIndex index, worldModel->selectionModel()->selection().indexes()) {
+    foreach(const QModelIndex &index, worldModel->selectionModel()->selection().indexes()) {
         if(worldModel->item(index)) {
             actionDelete->setEnabled(true);
             return;

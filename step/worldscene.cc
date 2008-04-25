@@ -360,11 +360,11 @@ void WorldScene::worldCurrentChanged(const QModelIndex& current, const QModelInd
 
 void WorldScene::worldSelectionChanged(const QItemSelection& selected, const QItemSelection& deselected)
 {
-    foreach(QModelIndex index, selected.indexes()) {
+    foreach(const QModelIndex &index, selected.indexes()) {
         QGraphicsItem* item = _itemsHash.value(_worldModel->item(index));
         if(item) item->setSelected(true);
     }
-    foreach(QModelIndex index, deselected.indexes()) {
+    foreach(const QModelIndex &index, deselected.indexes()) {
         QGraphicsItem* item = _itemsHash.value(_worldModel->item(index));
         if(item) item->setSelected(false);
     }

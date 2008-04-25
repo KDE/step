@@ -84,7 +84,7 @@ PropertiesBrowserModel::PropertiesBrowserModel(WorldModel* worldModel, QObject* 
     _solverChoices = new ChoicesModel(this);
 
     // Prepare solver list
-    foreach(QString name, _worldModel->worldFactory()->orderedMetaObjects()) {
+    foreach(const QString &name, _worldModel->worldFactory()->orderedMetaObjects()) {
         const StepCore::MetaObject* metaObject = _worldModel->worldFactory()->metaObject(name);
         if(metaObject->isAbstract()) continue;
         if(!metaObject->inherits(StepCore::Solver::staticMetaObject())) continue;

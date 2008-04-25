@@ -218,7 +218,7 @@ ItemPalette::ItemPalette(WorldModel* worldModel, QWidget* parent, Qt::WindowFlag
     createToolButton(_pointerAction);
     createSeparator();
 
-    foreach(QString name, _worldModel->worldFactory()->paletteMetaObjects()) {
+    foreach(const QString &name, _worldModel->worldFactory()->paletteMetaObjects()) {
         if(!name.isEmpty()) createObjectAction(_worldModel->worldFactory()->metaObject(name));
         else createSeparator();
     }
