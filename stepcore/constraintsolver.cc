@@ -91,7 +91,7 @@ int CGConstraintSolver::solve(ConstraintsInfo* info)
     }
 
     GmmSparseRowMatrix c(fminCount + fmaxCount, nc);
-    GmmStdVector f(fmaxCount + fmaxCount);
+    GmmStdVector f(fminCount + fmaxCount);
 
     int fminIndex = 0;
     int fmaxIndex = fminCount;
