@@ -859,10 +859,10 @@ int GJKCollisionSolver::checkContacts(BodyList& bodies, ConstraintsInfo* info)
                 int i1 = info->addContact();
                 // XXX: check signs !
                 // XXX: rotation and friction !
-                info->value[i0] = contact.normal[0] * contact.distance;
+                /*info->value[i0] = contact.normal[0] * contact.distance;
                 info->value[i1] = contact.normal[1] * contact.distance;
                 info->derivative[i0] = contact.normal[0] * contact.vrel[0];
-                info->derivative[i1] = contact.normal[1] * contact.vrel[0];
+                info->derivative[i1] = contact.normal[1] * contact.vrel[0];*/
                 
                 info->jacobian.row(i0).w(contact.body0->variablesOffset() +
                                         RigidBody::PositionOffset, -contact.normal[0]);
