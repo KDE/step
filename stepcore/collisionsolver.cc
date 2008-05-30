@@ -884,7 +884,6 @@ int GJKCollisionSolver::checkContacts(BodyList& bodies, ConstraintsInfo* info, b
 
                     info->forceMin[i0] = 0;
                     info->forceMin[i1] = 0;
-                    qDebug("** added resting contact");
                 }
             } else if(addCollisions && contact.state == Contact::Colliding) {
                 if(contact.type == Contact::DiskDiskType) { // XXX: use something more clever
