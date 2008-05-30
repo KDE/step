@@ -792,8 +792,8 @@ int World::doEvolve(double delta)
                     _constraintsInfo.acceleration = GmmArrayVector(const_cast<double*>(&_tempArray[0]), _variablesCount);
 
                     gatherJointsInfo(&_constraintsInfo);
-                    ret = _collisionSolver->checkContacts(_bodies, &_constraintsInfo, true);
-                    if(ret >= CollisionSolver::InternalError) goto out;
+                    int status = _collisionSolver->checkContacts(_bodies, &_constraintsInfo, true);
+                    if(status >= CollisionSolver::InternalError) { ret = status; goto out; }
 
                         //GmmArrayVector cforce(const_cast<double*>(&_constraintsTotalForce[0]), _variablesCount);
                     if(_constraintsInfo.collisionFlag) {
