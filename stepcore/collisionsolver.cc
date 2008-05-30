@@ -808,6 +808,17 @@ int GJKCollisionSolver::checkContact(Contact* contact)
     return contact->state = Contact::Unknown;
 }*/
 
+inline int GJKCollisionSolver::checkContact(Contact* contact)
+{
+    if(contact->type == Contact::PolygonPolygonType) checkPolygonPolygon(contact);
+    else if(contact->type == Contact::PolygonDiskType) checkPolygonDisk(contact);
+    else if(contact->type == Contact::PolygonParticleType) checkPolygonParticle(contact);
+    else if(contact->type == Contact::DiskDiskType) checkDiskDisk(contact);
+    else if(contact->type == Contact::DiskParticleType) checkDiskParticle(contact);
+    else contact->state = Contact::Unknown;
+    return contact->state;
+}
+
 int GJKCollisionSolver::checkContacts(BodyList& bodies, ConstraintsInfo* info)
 {
     int state = Contact::Unknown;
@@ -819,12 +830,7 @@ int GJKCollisionSolver::checkContacts(BodyList& bodies, ConstraintsInfo* info)
     for(ContactValueList::iterator it = _contacts.begin(); it != end; ++it) {
         Contact& contact = *it;
 
-        if(contact.type == Contact::PolygonPolygonType) checkPolygonPolygon(&contact);
-        else if(contact.type == Contact::PolygonDiskType) checkPolygonDisk(&contact);
-        else if(contact.type == Contact::PolygonParticleType) checkPolygonParticle(&contact);
-        else if(contact.type == Contact::DiskDiskType) checkDiskDisk(&contact);
-        else if(contact.type == Contact::DiskParticleType) checkDiskParticle(&contact);
-        else contact.state = Contact::Unknown;
+        checkContact(&contact);
 
         if(contact.state > state) state = contact.state;
         if(contact.state == Contact::Intersected) return state;

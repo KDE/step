@@ -22,15 +22,22 @@
 #include <stepcore/types.h>
 #include <cmath>
 
-typedef StepCore::GJKCollisionSolver CollisionSolver;
+class CollisionSolver: public StepCore::GJKCollisionSolver
+{
+
+public:
+    int testCheckContact(StepCore::Contact* contact) {
+        return checkContact(contact);
+    }
+};
 
 void MainTest::testCollisionDetection_data()
 {
-    QTest::addColumn<StepCore::Polygon::VertexList>("vertexes0");
+    QTest::addColumn<StepCore::Vector2dList>("vertexes0");
     QTest::addColumn<StepCore::Vector2d>("position0");
     QTest::addColumn<double>("angle0");
 
-    QTest::addColumn<StepCore::Polygon::VertexList>("vertexes1");
+    QTest::addColumn<StepCore::Vector2dList>("vertexes1");
     QTest::addColumn<StepCore::Vector2d>("position1");
     QTest::addColumn<double>("angle1");
 
@@ -138,11 +145,11 @@ void MainTest::testCollisionDetection_data()
 
 void MainTest::testCollisionDetection()
 {
-    QFETCH(StepCore::Polygon::VertexList, vertexes0);
+    QFETCH(StepCore::Vector2dList, vertexes0);
     QFETCH(StepCore::Vector2d, position0);
     QFETCH(double, angle0);
 
-    QFETCH(StepCore::Polygon::VertexList, vertexes1);
+    QFETCH(StepCore::Vector2dList, vertexes1);
     QFETCH(StepCore::Vector2d, position1);
     QFETCH(double, angle1);
 
@@ -171,8 +178,10 @@ void MainTest::testCollisionDetection()
     std::memset(&contact, 0, sizeof(contact));
     contact.body0 = polygon0;
     contact.body1 = polygon1;
+    contact.type = StepCore::Contact::PolygonPolygonType;
+    contact.state = StepCore::Contact::Unknown;
 
-    collisionSolver->checkContact(&contact);
+    collisionSolver->testCheckContact(&contact);
 
     QCOMPARE(int(contact.state), state);
     

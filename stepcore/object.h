@@ -237,54 +237,54 @@ struct MetaPropertyHelper {
 
     /* read */
     template<T (C::*_read)() const> static QVariant read(const Object* obj) {
-        return typeToVariant<T>((static_cast<const C*>(obj)->*_read)());
+        return typeToVariant<T>((dynamic_cast<const C*>(obj)->*_read)());
     }
     template<const T& (C::*_read)() const> static QVariant read(const Object* obj) {
-        return typeToVariant<T>((static_cast<const C*>(obj)->*_read)());
+        return typeToVariant<T>((dynamic_cast<const C*>(obj)->*_read)());
     }
 
     /* write */
     template<void (C::*_write)(T)> static bool write(Object* obj, const QVariant& v) {
         bool ok; T tv = variantToType<T>(v, &ok); if(!ok) return false;
-        (static_cast<C*>(obj)->*_write)(tv); return true;
+        (dynamic_cast<C*>(obj)->*_write)(tv); return true;
     }
     template<void (C::*_write)(const T&)> static bool write(Object* obj, const QVariant& v) {
         bool ok; T tv = variantToType<T>(v, &ok); if(!ok) return false;
-        (static_cast<C*>(obj)->*_write)(tv); return true;
+        (dynamic_cast<C*>(obj)->*_write)(tv); return true;
     }
     template<bool (C::*_write)(T)> static bool write(Object* obj, const QVariant& v) {
         bool ok; T tv = variantToType<T>(v, &ok); if(!ok) return false;
-        return (static_cast<C*>(obj)->*_write)(tv);
+        return (dynamic_cast<C*>(obj)->*_write)(tv);
     }
     template<bool (C::*_write)(const T&)> static bool write(Object* obj, const QVariant& v) {
         bool ok; T tv = variantToType<T>(v, &ok); if(!ok) return false;
-        return (static_cast<C*>(obj)->*_write)(tv);
+        return (dynamic_cast<C*>(obj)->*_write)(tv);
     }
 
     /* readString */
     template<T (C::*_read)() const> static QString readString(const Object* obj) {
-        return typeToString<T>((static_cast<const C*>(obj)->*_read)());
+        return typeToString<T>((dynamic_cast<const C*>(obj)->*_read)());
     }
     template<const T& (C::*_read)() const> static QString readString(const Object* obj) {
-        return typeToString<T>((static_cast<const C*>(obj)->*_read)());
+        return typeToString<T>((dynamic_cast<const C*>(obj)->*_read)());
     }
 
     /* writeString */
     template<void (C::*_write)(T)> static bool writeString(Object* obj, const QString& s) {
         bool ok; T tv = stringToType<T>(s, &ok); if(!ok) return false;
-        (static_cast<C*>(obj)->*_write)(tv); return true;
+        (dynamic_cast<C*>(obj)->*_write)(tv); return true;
     }
     template<void (C::*_write)(const T&)> static bool writeString(Object* obj, const QString& s) {
         bool ok; T tv = stringToType<T>(s, &ok); if(!ok) return false;
-        (static_cast<C*>(obj)->*_write)(tv); return true;
+        (dynamic_cast<C*>(obj)->*_write)(tv); return true;
     }
     template<bool (C::*_write)(T)> static bool writeString(Object* obj, const QString& s) {
         bool ok; T tv = stringToType<T>(s, &ok); if(!ok) return false;
-        return (static_cast<C*>(obj)->*_write)(tv);
+        return (dynamic_cast<C*>(obj)->*_write)(tv);
     }
     template<bool (C::*_write)(const T&)> static bool writeString(Object* obj, const QString& s) {
         bool ok; T tv = stringToType<T>(s, &ok); if(!ok) return false;
-        return (static_cast<C*>(obj)->*_write)(tv);
+        return (dynamic_cast<C*>(obj)->*_write)(tv);
     }
 
     static QVariant readNull(const Object* obj) { return QVariant(); }

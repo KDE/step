@@ -19,6 +19,7 @@
 
 #include <stepcore/world.h>
 #include <stepcore/solver.h>
+#include <stepcore/types.h>
 
 class WorldCopyTestItem: public StepCore::Item,
                          public StepCore::Body,
@@ -37,11 +38,17 @@ public:
     StepCore::World* world1() const { return _world1; }
 
     virtual int  variablesCount() { return 0; }
-    virtual void setVariables(const double* array) {}
-    virtual void getVariables(double* array) {}
-    virtual void getDerivatives(double* array) {}
-    virtual void resetDerivatives() {}
-    virtual void calcForce() {}
+    virtual void setVariables(const double* position, const double* velocity,
+               const double* positionVariance, const double* velocityVariance) {}
+    virtual void getVariables(double* position, double* velocity,
+                     double* positionVariance, double* velocityVariance) {}
+    virtual void addForce(const double* force, const double* forceVariance) {}
+    virtual void resetForce(bool resetVariance) {}
+    virtual void getAccelerations(double* acceleration, double* accelerationVariance) {}
+    virtual void getInverseMass(StepCore::GmmSparseRowMatrix* inverseMass,
+                            StepCore::GmmSparseRowMatrix* variance, int offset) {}
+
+    virtual void calcForce(bool calcVariances) {}
 
 private:
     StepCore::World* _world1;
@@ -53,11 +60,13 @@ class WorldCopyTestSolver: public StepCore::Solver
     STEPCORE_OBJECT(WorldCopyTestSolver)
 
 public:
-    int doCalcFn(double* t, double y[], double f[] = 0) { return OK; };
-    int doEvolve(double* t, double t1, double y[], double yerr[]) { return OK; }
+    virtual int doCalcFn(double* t, const double* y, const double* yvar = 0,
+                            double* f = 0, double* fvar = 0) { return Solver::OK; }
+    virtual int doEvolve(double* t, double t1, double* y, double* yvar) { return Solver::OK; }
 };
 
-STEPCORE_META_OBJECT(WorldCopyTestItem,   "TestItem", 0, STEPCORE_SUPER_CLASS(StepCore::Item),)
+STEPCORE_META_OBJECT(WorldCopyTestItem,   "TestItem", 0,
+    STEPCORE_SUPER_CLASS(StepCore::Item) STEPCORE_SUPER_CLASS(StepCore::Body) STEPCORE_SUPER_CLASS(StepCore::Force),)
 STEPCORE_META_OBJECT(WorldCopyTestSolver, "TestSolver", 0, STEPCORE_SUPER_CLASS(StepCore::Solver),)
 
 void WorldCopyTestItem::worldItemRemoved(Item* item)
@@ -84,9 +93,9 @@ void MainTest::testWorldCopy()
     world->addItem(new WorldCopyTestItem());
     world->setSolver(new WorldCopyTestSolver());
 
-    QVERIFY( world->items().size() == 2 );
-    QVERIFY( world->bodies().size() == 2 );
-    QVERIFY( world->forces().size() == 2 );
+    QCOMPARE( int(world->items().size()), 2 );
+    QCOMPARE( int(world->bodies().size()), 2 );
+    QCOMPARE( int(world->forces().size()), 2 );
 
     world->setName("world1");
     world->setTime(10);

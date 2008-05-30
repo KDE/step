@@ -165,6 +165,8 @@ public:
     void bodyRemoved(BodyList& bodies, Body* body);
 
 protected:
+    int checkContact(Contact* contact);
+
     int checkPolygonPolygon(Contact* contact);
     int solvePolygonPolygon(Contact* contact);
 

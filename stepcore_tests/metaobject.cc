@@ -125,7 +125,6 @@ void MainTest::testMetaObject()
     QVERIFY( metaObject->inherits(StepCore::Object::staticMetaObject()) );
     QVERIFY( metaObject->inherits(MetaObjectTestInterface::staticMetaObject()) );
     QVERIFY( metaObject->inherits(metaObject) );
-    QVERIFY( !metaObject->inherits(reinterpret_cast<StepCore::MetaObject*>(NULL)) );
     QVERIFY( !MetaObjectTestInterface::staticMetaObject()->inherits(metaObject) );
 
     QVERIFY( metaObject->inherits("Object") );

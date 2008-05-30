@@ -24,6 +24,8 @@ include_directories(${CMAKE_CURRENT_BINARY_DIR})
 
 add_definitions(-Wall) # XXX ?
 
+qt4_automoc(${stepcore_tests_SRCS})
+
 add_executable(tests ${stepcore_tests_SRCS})
 target_link_libraries(tests stepcore ${QT_LIBRARIES})
 
