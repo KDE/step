@@ -512,6 +512,9 @@ private:
      *  from one array to all bodies */
     void scatterVariables(const double* variables, const double* variances);
 
+    /** \internal Gather information from all joints */
+    void gatherJointsInfo(ConstraintsInfo* info);
+
     /** \internal Static wrapper for World::solverFunction */ 
     static int solverFunction(double t, const double* y, const double* yvar,
                                  double* f, double* fvar, void* params);
@@ -542,6 +545,8 @@ private:
     GmmStdVector    _variables;       ///< \internal Positions and velocities (size == _variablesCount*2)
     GmmStdVector    _variances;       ///< \internal Variances of positions and velocities
     ConstraintsInfo _constraintsInfo; ///< \internal Constraints information
+
+    GmmStdVector    _tempArray;       ///< \internal Temporary array used in various places
 
     bool    _stopOnCollision;
     bool    _stopOnIntersection;

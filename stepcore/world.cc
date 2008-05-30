@@ -324,6 +324,7 @@ void World::clear()
     _variablesCount = 0;
     _variables.resize(0);
     _variances.resize(0);
+    _tempArray.resize(0);
 
     _constraintsInfo.setDimension(0, 0);
 
@@ -642,6 +643,7 @@ void World::checkVariablesCount()
         _variablesCount = variablesCount;
         _variables.resize(_variablesCount*2);
         _variances.resize(_variablesCount*2);
+        _tempArray.resize(_variablesCount*2);
         if(_solver) _solver->setDimension(_variablesCount*2);
     }
 }
@@ -682,6 +684,25 @@ void World::scatterVariables(const double* variables, const double* variances)
                            variances ? variances + index : NULL,
                            variances ? variances + _variablesCount + index : NULL);
         index += (*b)->variablesCount();
+    }
+}
+
+void World::gatherJointsInfo(ConstraintsInfo* info)
+{
+    info->clear();
+
+    int offset = 0;
+    const BodyList::const_iterator b_end = _bodies.end();
+    for(BodyList::iterator body = _bodies.begin(); body != b_end; ++body) {
+        (*body)->getInverseMass(&(info->inverseMass), NULL, offset);
+        offset += (*body)->variablesCount();
+    }
+
+    offset = 0;
+    const JointList::const_iterator j_end = _joints.end();
+    for(JointList::iterator joint = _joints.begin(); joint != j_end; ++joint) {
+        (*joint)->getConstraintsInfo(info, offset);
+        offset += (*joint)->constraintsCount();
     }
 }
 
@@ -765,38 +786,19 @@ int World::doEvolve(double delta)
                     // We can be close to the collision point
                     scatterVariables(&_variables[0], _errorsCalculation ? &_variances[0] : NULL);
 
-                    double *f = new double[_variablesCount];
-                    std::memset(f, 0, sizeof(double)*_variablesCount);
-
-                    _constraintsInfo.clear();
-
+                    std::fill(_tempArray.begin(), _tempArray.end(), 0);
                     _constraintsInfo.position = GmmArrayVector(const_cast<double*>(&_variables[0]), _variablesCount);
                     _constraintsInfo.velocity = GmmArrayVector(const_cast<double*>(&_variables[0]+_variablesCount), _variablesCount);
-                    _constraintsInfo.acceleration = GmmArrayVector(const_cast<double*>(f), _variablesCount);
+                    _constraintsInfo.acceleration = GmmArrayVector(const_cast<double*>(&_tempArray[0]), _variablesCount);
 
-                    int offset = 0;
-                    const BodyList::const_iterator b_end = _bodies.end();
-                    for(BodyList::iterator body = _bodies.begin(); body != b_end; ++body) {
-                        (*body)->getInverseMass(&_constraintsInfo.inverseMass, NULL, offset);
-                        offset += (*body)->variablesCount();
-                    }
-
-                    offset = 0;
-                    const JointList::const_iterator j_end = _joints.end();
-                    for(JointList::iterator joint = _joints.begin(); joint != j_end; ++joint) {
-                        (*joint)->getConstraintsInfo(&_constraintsInfo, offset);
-                        offset += (*joint)->constraintsCount();
-                    }
-
-                    _collisionSolver->checkContacts(_bodies, &_constraintsInfo, true);
+                    gatherJointsInfo(&_constraintsInfo);
+                    ret = _collisionSolver->checkContacts(_bodies, &_constraintsInfo, true);
+                    if(ret >= CollisionSolver::InternalError) goto out;
 
                         //GmmArrayVector cforce(const_cast<double*>(&_constraintsTotalForce[0]), _variablesCount);
                     if(_constraintsInfo.collisionFlag) {
-                        _constraintSolver->solve(&_constraintsInfo);
-                        /*position, velocity, acceleration, _inverseMass, 
-                                                 _constraints, _constraintsDerivative,
-                                                 _constraintsJacobian, _constraintsJacobianDerivative,
-                                                 _constraintsForceMin, _constraintsForceMax, &cforce);*/
+                        ret = _constraintSolver->solve(&_constraintsInfo);
+                        if(ret != Solver::OK) goto out;
 
                         // XXX: variances
                         gmm::mult_add(_constraintsInfo.inverseMass, _constraintsInfo.force,
@@ -835,35 +837,20 @@ inline int World::solverFunction(double t, const double* y,
 
     // 2. Joints
     if(_constraintSolver) {
-        _constraintsInfo.clear();
-
         _constraintsInfo.position = GmmArrayVector(const_cast<double*>(y), _variablesCount);
         _constraintsInfo.velocity = GmmArrayVector(const_cast<double*>(y+_variablesCount), _variablesCount);
         _constraintsInfo.acceleration = GmmArrayVector(const_cast<double*>(f+_variablesCount), _variablesCount);
 
-        int offset = 0;
-        const BodyList::const_iterator b_end = _bodies.end();
-        for(BodyList::iterator body = _bodies.begin(); body != b_end; ++body) {
-            (*body)->getInverseMass(&_constraintsInfo.inverseMass, NULL, offset);
-            offset += (*body)->variablesCount();
-        }
-
-        offset = 0;
-        const JointList::const_iterator j_end = _joints.end();
-        for(JointList::iterator joint = _joints.begin(); joint != j_end; ++joint) {
-            (*joint)->getConstraintsInfo(&_constraintsInfo, offset);
-            offset += (*joint)->constraintsCount();
-        }
+        gatherJointsInfo(&_constraintsInfo);
     }
 
     // 3. Collisions (TODO: variances for collisions)
-    if(_collisionSolver) {
+    if(_collisionSolver && _constraintSolver) {
         int state = _collisionSolver->checkContacts(_bodies, &_constraintsInfo, false);
-        if(state == Contact::Intersected && _stopOnIntersection) {
-            //_collisionTime = t;
-            return Solver::IntersectionDetected;
-        } else if(state == Contact::Colliding && _stopOnCollision) {
-            return Solver::CollisionDetected;
+        if(state == Contact::Intersected) {
+            if(_stopOnIntersection) return Solver::IntersectionDetected;
+        } else if(state == Contact::Colliding) {
+            if(_stopOnCollision) return Solver::CollisionDetected;
             // XXX: We are not stopping on colliding contact
             // and resolving them only at the end of timestep
             // XXX: is it right solution ? Shouldn't we try to find
@@ -872,6 +859,8 @@ inline int World::solverFunction(double t, const double* y,
             //_collisionTime = t;
             //if(t < _collisionExpectedTime)
             //    return DantzigLCPCollisionSolver::CollisionDetected;
+        } else if(state >= CollisionSolver::InternalError) {
+            return state;
         }
     }
 
@@ -879,12 +868,8 @@ inline int World::solverFunction(double t, const double* y,
     if(_constraintSolver &&
             _constraintsInfo.constraintsCount + _constraintsInfo.contactsCount > 0) {
 
-        //GmmArrayVector cforce(const_cast<double*>(&_constraintsTotalForce[0]), _variablesCount);
-        _constraintSolver->solve(&_constraintsInfo);
-        /*position, velocity, acceleration, _inverseMass, 
-                                 _constraints, _constraintsDerivative,
-                                 _constraintsJacobian, _constraintsJacobianDerivative,
-                                 _constraintsForceMin, _constraintsForceMax, &cforce);*/
+        int state = _constraintSolver->solve(&_constraintsInfo);
+        if(state != Solver::OK) return state;
 
         int offset = 0;
         const BodyList::const_iterator b_end = _bodies.end();

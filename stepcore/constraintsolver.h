@@ -27,6 +27,7 @@
 #include "world.h"
 #include "vector.h"
 #include "types.h"
+#include "solver.h"
 
 namespace StepCore
 {
@@ -42,6 +43,11 @@ class ConstraintSolver: public Object
 
 public:
     virtual int solve(ConstraintsInfo* info) = 0;
+
+public:
+    enum {
+        InternalError = Solver::ConstraintError
+    };
 };
 
 class CGConstraintSolver: public ConstraintSolver

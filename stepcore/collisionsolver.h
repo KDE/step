@@ -26,6 +26,7 @@
 #include "object.h"
 #include "world.h"
 #include "vector.h"
+#include "solver.h"
 
 namespace StepCore
 {
@@ -38,7 +39,7 @@ class Body;
  */
 struct Contact {
     enum {
-        Unknown,        /**< Contact state was not (can not) be determined
+        Unknown = 0,    /**< Contact state was not (can not) be determined
                              (if state == Unknown all other fields are not used) */
         Separated,      /**< Bodies are far away */
         Separating,     /**< Bodies are contacted but moving apart */
@@ -117,6 +118,11 @@ public:
 
     virtual void bodyAdded(BodyList&, Body*) {}
     virtual void bodyRemoved(BodyList&, Body*) {}
+
+public:
+    enum {
+        InternalError = Solver::CollisionError
+    };
 
 protected:
     double _toleranceAbs;
