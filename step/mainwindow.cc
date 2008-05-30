@@ -502,7 +502,7 @@ void MainWindow::simulationStopped(int result)
                "which cannot be resolved automatically.\n"
                "Please move colliding objects appart and try again."));
     } else if(result != StepCore::Solver::OK) {
-        KMessageBox::sorry(this, i18n("Cannot finish this step because of an unknown error."));
+        KMessageBox::sorry(this, i18n("Cannot finish this step because of an unknown error (%1).", result));
     }
 }
 
