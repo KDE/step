@@ -60,6 +60,7 @@ struct Contact {
     int      state;         /**< Contact state (maximum of pointsState if pointsCount > 0) */
     double   distance;      /**< Distance between bodies */
     Vector2d normal;        /**< Contact normal (pointing from body0 to body1) */
+    Vector2d normalDerivative; /**< Time derivative of contact normal (only if state == Contacted) */
     int      pointsCount;   /**< Count of contact points (either one or two) */
     int      pointsState[2];/**< Contact point states */
     Vector2d points[2];     /**< Contact point coordinated */

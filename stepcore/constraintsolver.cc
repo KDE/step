@@ -36,7 +36,7 @@ STEPCORE_META_OBJECT(CGConstraintSolver, "CGConstraintSolver", 0,
 int CGConstraintSolver::solve(ConstraintsInfo* info)
 {
     int np = info->variablesCount;
-    int nc = info->constraintsCount;
+    int nc = info->constraintsCount + info->contactsCount;
 
     // XXX: make this matrixes permanent to avoid memory allocations
     GmmSparseRowMatrix a(nc, nc);

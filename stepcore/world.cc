@@ -240,20 +240,23 @@ void ConstraintsInfo::setDimension(int newVariablesCount, int newConstraintsCoun
 
 int ConstraintsInfo::addContact()
 {
-    ++contactsCount;
+    int n = constraintsCount + contactsCount; ++contactsCount;
+    int s = n+1;
 
-    jacobian.resize(constraintsCount + contactsCount, variablesCount);
-    jacobianDerivative.resize(constraintsCount + contactsCount, variablesCount);
-    value.resize(constraintsCount + contactsCount);
-    derivative.resize(constraintsCount + contactsCount);
-    forceMin.resize(constraintsCount + contactsCount);
-    forceMax.resize(constraintsCount + contactsCount);
+    jacobian.resize(s, variablesCount);
+    jacobianDerivative.resize(s, variablesCount);
 
-    return constraintsCount + contactsCount - 1;
+    value.resize(s); value[n] = 0;
+    derivative.resize(s); derivative[n] = 0;
+    forceMin.resize(s); forceMin[n] = -HUGE_VAL;
+    forceMax.resize(s); forceMax[n] = HUGE_VAL;
+
+    return n;
 }
 
 void ConstraintsInfo::clearContacts()
 {
+    if(contactsCount == 0) return;
     contactsCount = 0;
     jacobian.resize(constraintsCount, variablesCount);
     jacobianDerivative.resize(constraintsCount, variablesCount);
@@ -769,9 +772,25 @@ inline int World::solverFunction(double t, const double* y,
     _time = t;
     scatterVariables(y, yvar); // this will reset force
 
+    // 0. Prepare constraintsInfo array
+    if(_constraintSolver && _constraintsInfo.constraintsCount > 0) {
+        _constraintsInfo.clearContacts(); // XXX: Don't repeat this in each iteration
+
+        gmm::clear(_constraintsInfo.jacobian);
+        gmm::clear(_constraintsInfo.jacobianDerivative);
+        gmm::clear(_constraintsInfo.inverseMass);
+
+        std::fill(_constraintsInfo.forceMin.begin(), _constraintsInfo.forceMin.end(), -HUGE_VAL);
+        std::fill(_constraintsInfo.forceMax.begin(), _constraintsInfo.forceMax.end(),  HUGE_VAL);
+
+        _constraintsInfo.position = GmmArrayVector(const_cast<double*>(y), _variablesCount);
+        _constraintsInfo.velocity = GmmArrayVector(const_cast<double*>(y+_variablesCount), _variablesCount);
+        _constraintsInfo.acceleration = GmmArrayVector(const_cast<double*>(f+_variablesCount), _variablesCount);
+    }
+
     // 1. Collisions (TODO: variances for collisions)
     if(_collisionSolver) {
-        int state = _collisionSolver->checkContacts(_bodies, NULL);
+        int state = _collisionSolver->checkContacts(_bodies, &_constraintsInfo);
         if(state == Contact::Intersected && _stopOnIntersection) {
             //_collisionTime = t;
             return Solver::IntersectionDetected;
@@ -801,17 +820,6 @@ inline int World::solverFunction(double t, const double* y,
 
     // 3. Constraints
     if(_constraintSolver && _constraintsInfo.constraintsCount > 0) {
-        gmm::clear(_constraintsInfo.jacobian);
-        gmm::clear(_constraintsInfo.jacobianDerivative);
-        gmm::clear(_constraintsInfo.inverseMass);
-
-        std::fill(_constraintsInfo.forceMin.begin(), _constraintsInfo.forceMin.end(), -HUGE_VAL);
-        std::fill(_constraintsInfo.forceMax.begin(), _constraintsInfo.forceMax.end(),  HUGE_VAL);
-
-        _constraintsInfo.position = GmmArrayVector(const_cast<double*>(y), _variablesCount);
-        _constraintsInfo.velocity = GmmArrayVector(const_cast<double*>(y+_variablesCount), _variablesCount);
-        _constraintsInfo.acceleration = GmmArrayVector(const_cast<double*>(f+_variablesCount), _variablesCount);
-
         int offset = 0;
         const BodyList::const_iterator b_end = _bodies.end();
         for(BodyList::iterator body = _bodies.begin(); body != b_end; ++body) {
