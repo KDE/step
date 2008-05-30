@@ -832,7 +832,7 @@ inline int GJKCollisionSolver::checkContact(Contact* contact)
     return contact->state;
 }
 
-int GJKCollisionSolver::checkContacts(BodyList& bodies, ConstraintsInfo* info)
+int GJKCollisionSolver::checkContacts(BodyList& bodies, ConstraintsInfo* info, bool addCollisions)
 {
     int state = Contact::Unknown;
 
@@ -853,38 +853,65 @@ int GJKCollisionSolver::checkContacts(BodyList& bodies, ConstraintsInfo* info)
         // Add contact joints
         for(ContactValueList::iterator it = _contacts.begin(); it != end; ++it) {
             Contact& contact = *it;
-            if(contact.state != Contact::Contacted) continue;
-            if(contact.type == Contact::DiskDiskType) { // XXX: use something more clever
-                int i0 = info->addContact();
-                int i1 = info->addContact();
-                // XXX: check signs !
-                // XXX: rotation and friction !
-                /*info->value[i0] = contact.normal[0] * contact.distance;
-                info->value[i1] = contact.normal[1] * contact.distance;
-                info->derivative[i0] = contact.normal[0] * contact.vrel[0];
-                info->derivative[i1] = contact.normal[1] * contact.vrel[0];*/
-                
-                info->jacobian.row(i0).w(contact.body0->variablesOffset() +
-                                        RigidBody::PositionOffset, -contact.normal[0]);
-                info->jacobian.row(i1).w(contact.body0->variablesOffset() +
-                                        RigidBody::PositionOffset+1, -contact.normal[1]);
-                info->jacobian.row(i0).w(contact.body1->variablesOffset() +
-                                        RigidBody::PositionOffset, contact.normal[0]);
-                info->jacobian.row(i1).w(contact.body1->variablesOffset() +
-                                        RigidBody::PositionOffset+1, contact.normal[1]);
+            if(contact.state == Contact::Contacted) {
+                if(contact.type == Contact::DiskDiskType) { // XXX: use something more clever
+                    int i0 = info->addContact();
+                    int i1 = info->addContact();
+                    // XXX: check signs !
+                    // XXX: rotation and friction !
+                    /*info->value[i0] = contact.normal[0] * contact.distance;
+                    info->value[i1] = contact.normal[1] * contact.distance;
+                    info->derivative[i0] = contact.normal[0] * contact.vrel[0];
+                    info->derivative[i1] = contact.normal[1] * contact.vrel[0];*/
+                    
+                    info->jacobian.row(i0).w(contact.body0->variablesOffset() +
+                                            RigidBody::PositionOffset, -contact.normal[0]);
+                    info->jacobian.row(i1).w(contact.body0->variablesOffset() +
+                                            RigidBody::PositionOffset+1, -contact.normal[1]);
+                    info->jacobian.row(i0).w(contact.body1->variablesOffset() +
+                                            RigidBody::PositionOffset, contact.normal[0]);
+                    info->jacobian.row(i1).w(contact.body1->variablesOffset() +
+                                            RigidBody::PositionOffset+1, contact.normal[1]);
 
-                info->jacobianDerivative.row(i0).w(contact.body0->variablesOffset() +
-                                        RigidBody::PositionOffset, -contact.normalDerivative[0]);
-                info->jacobianDerivative.row(i1).w(contact.body0->variablesOffset() +
-                                        RigidBody::PositionOffset+1, -contact.normalDerivative[1]);
-                info->jacobianDerivative.row(i0).w(contact.body1->variablesOffset() +
-                                        RigidBody::PositionOffset, contact.normalDerivative[0]);
-                info->jacobianDerivative.row(i1).w(contact.body1->variablesOffset() +
-                                        RigidBody::PositionOffset+1, contact.normalDerivative[1]);
+                    info->jacobianDerivative.row(i0).w(contact.body0->variablesOffset() +
+                                            RigidBody::PositionOffset, -contact.normalDerivative[0]);
+                    info->jacobianDerivative.row(i1).w(contact.body0->variablesOffset() +
+                                            RigidBody::PositionOffset+1, -contact.normalDerivative[1]);
+                    info->jacobianDerivative.row(i0).w(contact.body1->variablesOffset() +
+                                            RigidBody::PositionOffset, contact.normalDerivative[0]);
+                    info->jacobianDerivative.row(i1).w(contact.body1->variablesOffset() +
+                                            RigidBody::PositionOffset+1, contact.normalDerivative[1]);
 
-                info->forceMin[i0] = 0;
-                info->forceMin[i1] = 0;
-                qDebug("** added resting contact");
+                    info->forceMin[i0] = 0;
+                    info->forceMin[i1] = 0;
+                    qDebug("** added resting contact");
+                }
+            } else if(addCollisions && contact.state == Contact::Colliding) {
+                if(contact.type == Contact::DiskDiskType) { // XXX: use something more clever
+                    int i = info->addContact();
+
+                    info->jacobian.row(i).w(contact.body0->variablesOffset() +
+                                            RigidBody::PositionOffset, -contact.normal[0]);
+                    info->jacobian.row(i).w(contact.body0->variablesOffset() +
+                                            RigidBody::PositionOffset+1, -contact.normal[1]);
+                    info->jacobian.row(i).w(contact.body1->variablesOffset() +
+                                            RigidBody::PositionOffset, contact.normal[0]);
+                    info->jacobian.row(i).w(contact.body1->variablesOffset() +
+                                            RigidBody::PositionOffset+1, contact.normal[1]);
+
+                    info->jacobianDerivative.row(i).w(contact.body0->variablesOffset() +
+                                            RigidBody::PositionOffset, -2*contact.normal[0]);
+                    info->jacobianDerivative.row(i).w(contact.body0->variablesOffset() +
+                                            RigidBody::PositionOffset+1, -2*contact.normal[1]);
+                    info->jacobianDerivative.row(i).w(contact.body1->variablesOffset() +
+                                            RigidBody::PositionOffset, 2*contact.normal[0]);
+                    info->jacobianDerivative.row(i).w(contact.body1->variablesOffset() +
+                                            RigidBody::PositionOffset+1, 2*contact.normal[1]);
+
+                    info->forceMin[i] = 0;
+
+                    info->collisionFlag = true;
+                }
             }
         }
     }

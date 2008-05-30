@@ -211,6 +211,7 @@ public:
 
 /** \ingroup joints
  *  Constraints information structure
+ *  XXX: Move it to constraintsolver.h
  */
 struct ConstraintsInfo
 {
@@ -234,6 +235,8 @@ struct ConstraintsInfo
 
     GmmStdVector       force;               ///< Resulting constraints force
 
+    bool               collisionFlag;       ///< True if there is a collision to be resolved
+
     ConstraintsInfo(): variablesCount(0), constraintsCount(0), contactsCount(0),
                        position(0,0), velocity(0,0), acceleration(0,0) {}
 
@@ -243,10 +246,13 @@ struct ConstraintsInfo
 
     /** Increment contactsCount by one, resize all arrays appropriately and
      *  return an offset of newly created constraint */
-    int addContact();
+    int addContact(); // XXX: make dimensions dynamic
 
     /** Reset contactsCount to zero and resize all arrays appropriately */
     void clearContacts();
+
+    /** Clear the structure */
+    void clear();
 
 private:
     ConstraintsInfo(const ConstraintsInfo&);

@@ -102,7 +102,8 @@ public:
      *  \param info ConstraintsInfo structure to fill
      *  \return maximum contact state (i.e. maximum value of Contact::state)
      */
-    virtual int checkContacts(BodyList& bodies, ConstraintsInfo* info) = 0;
+    virtual int checkContacts(BodyList& bodies,
+            ConstraintsInfo* info, bool addCollisions = false) = 0;
 
     // TODO: add errors
     /** Solve the collisions between bodies
@@ -155,7 +156,7 @@ public:
     };*/
 
     //int checkContact(Contact* contact);
-    int checkContacts(BodyList& bodies, ConstraintsInfo* info);
+    int checkContacts(BodyList& bodies, ConstraintsInfo* info, bool addCollisions = false);
     //int findClosestPoints(const BasePolygon* polygon1, const BasePolygon* polygon2);
 
     int solveCollisions(BodyList& bodies);
