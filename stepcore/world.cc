@@ -783,7 +783,12 @@ int World::doEvolve(double delta)
                     // XXX: what to do if stepSize becomes too small ?
 
                 } else if(ret == Solver::OK) {
-                    // We can be close to the collision point
+                    // We can be close to the collision point.
+                    //
+                    // Now we will calculate impulses required to fix collisions.
+                    // All joints should be taken into account, but since we are
+                    // calculating impulses we should "froze" the jacobian i.e.
+                    // ignore it derivative
                     scatterVariables(&_variables[0], _errorsCalculation ? &_variances[0] : NULL);
 
                     std::fill(_tempArray.begin(), _tempArray.end(), 0);
@@ -792,6 +797,8 @@ int World::doEvolve(double delta)
                     _constraintsInfo.acceleration = GmmArrayVector(const_cast<double*>(&_tempArray[0]), _variablesCount);
 
                     gatherJointsInfo(&_constraintsInfo);
+                    gmm::clear(_constraintsInfo.jacobianDerivative);
+
                     int status = _collisionSolver->checkContacts(_bodies, &_constraintsInfo, true);
                     if(status >= CollisionSolver::InternalError) { ret = status; goto out; }
 
