@@ -143,7 +143,9 @@ public:
            InternalError = 2049,
            CollisionDetected = 4096,
            IntersectionDetected = 4097,
-           Aborted = 8192
+           Aborted = 8192,
+           CollisionError = 16384,
+           ConstraintError = 32768
     };
 
 protected:
