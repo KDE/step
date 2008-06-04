@@ -1,0 +1,4 @@
+FILE(GLOB THEME_FILES "*.svg")
+install(FILES 
+   ${THEME_FILES}
+   DESTINATION  ${DATA_INSTALL_DIR}/step/themes)

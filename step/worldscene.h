@@ -27,6 +27,7 @@
 #include "messageframe.h"
 
 class KUrl;
+class KSvgRenderer;
 class WorldModel;
 //class ItemCreator;
 class QModelIndex;
@@ -43,6 +44,19 @@ namespace StepCore {
     class Item;
     class MetaObject;
 }
+
+class WorldRenderer: public QObject
+{
+    Q_OBJECT
+
+public:
+    explicit WorldRenderer(QObject* parent = 0);
+
+    KSvgRenderer* svgRenderer();
+
+protected:
+    KSvgRenderer* _svgRenderer;
+};
 
 /** \brief World scene class */
 class WorldScene: public QGraphicsScene
@@ -112,6 +126,9 @@ public:
 
     /** Get associated WorldModel */
     WorldModel* worldModel() const { return _worldModel; }
+
+    /** Get current WorldRenderer */
+    WorldRenderer* worldRenderer();
 
 public slots:
     /** Begin adding new item. Creates appropriate ItemCreator */
@@ -183,6 +200,8 @@ protected:
     QPointF            _snapPos;
     QString            _snapToolTip;
     QTimer*            _snapTimer;
+
+    WorldRenderer* _worldRenderer; 
 
     friend class WorldGraphicsView;
 };

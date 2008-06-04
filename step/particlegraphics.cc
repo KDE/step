@@ -27,6 +27,7 @@
 #include <QEvent>
 #include <QPainter>
 #include <KLocale>
+#include <KSvgRenderer>
 
 ParticleGraphicsItem::ParticleGraphicsItem(StepCore::Item* item, WorldModel* worldModel)
     : WorldGraphicsItem(item, worldModel)
@@ -58,6 +59,10 @@ void ParticleGraphicsItem::paint(QPainter* painter, const QStyleOptionGraphicsIt
     double s = currentViewScale();
     double radius = RADIUS/s;
 
+    static_cast<WorldScene*>(scene())->worldRenderer()->svgRenderer()->
+                        render(painter, QRectF(-radius,-radius,radius*2,radius*2));
+
+    /*
     int renderHints = painter->renderHints();
     painter->setRenderHint(QPainter::Antialiasing, true);
     
@@ -67,8 +72,8 @@ void ParticleGraphicsItem::paint(QPainter* painter, const QStyleOptionGraphicsIt
     painter->setBrush(QBrush(color));
 
     painter->drawEllipse(QRectF(-radius,-radius,radius*2,radius*2));
-    //painter->setPen(QPen(QColor::fromRgba(particle()->color()), 2*radius, Qt::SolidLine, Qt::RoundCap));
-    //painter->drawPoint(0,0);
+    painter->setPen(QPen(QColor::fromRgba(particle()->color()), 2*radius, Qt::SolidLine, Qt::RoundCap));
+    painter->drawPoint(0,0);
 
     if(_isSelected) {
         painter->setPen(QPen(SELECTION_COLOR, 0, Qt::DashLine));
@@ -85,6 +90,7 @@ void ParticleGraphicsItem::paint(QPainter* painter, const QStyleOptionGraphicsIt
         painter->setPen(QPen(Qt::red, 0));
         drawArrow(painter, particle()->acceleration());
     }
+    */
 }
 
 void ParticleGraphicsItem::viewScaleChanged()

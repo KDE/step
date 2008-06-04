@@ -50,6 +50,20 @@
 #include <KUrl>
 #include <KLocale>
 #include <KDebug>
+#include <KSvgRenderer>
+#include <KStandardDirs>
+
+WorldRenderer::WorldRenderer(QObject* parent)
+    : QObject(parent)
+{
+    QString fileName = KStandardDirs::locate("appdata", "themes/default.svg");
+    _svgRenderer = new KSvgRenderer(fileName, this);
+}
+
+KSvgRenderer* WorldRenderer::svgRenderer()
+{
+    return _svgRenderer;
+}
 
 class WorldSceneAxes: public QGraphicsItem
 {
@@ -140,6 +154,8 @@ WorldScene::WorldScene(WorldModel* worldModel, QObject* parent)
     _snapTimer = new QTimer(this);
     _snapTimer->setInterval(0);
     _snapTimer->setSingleShot(true);
+
+    _worldRenderer = new WorldRenderer(this);
 
     worldModelReset();
 
@@ -551,6 +567,11 @@ void WorldScene::snapUpdateToolTip()
         QWheelEvent fakeEvent(QPoint(0,0), 0, Qt::NoButton, Qt::NoModifier);
         QCoreApplication::sendEvent(_messageFrame, &fakeEvent);
     }
+}
+
+WorldRenderer* WorldScene::worldRenderer()
+{
+    return _worldRenderer;
 }
 
 WorldGraphicsView::WorldGraphicsView(WorldScene* worldScene, QWidget* parent)
