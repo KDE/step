@@ -3,17 +3,17 @@
 <world xmlns="http://edu.kde.org/step/StepCoreXML" version="1.0" id="1">
     <name>world1</name>
     <color>#ffffffff</color>
-    <time>0.8</time>
+    <time>16.7999999999998</time>
     <timeScale>1</timeScale>
     <errorsCalculation>false</errorsCalculation>
 
     <item class="Box" id="2">
         <name>box1</name>
         <color>#ff000000</color>
-        <position>(-0.000122932,1.49916)</position>
-        <angle>0.000302865759240692</angle>
-        <velocity>(-0.000222299,-0.00130506)</velocity>
-        <angularVelocity>0.00131043531565806</angularVelocity>
+        <position>(-1.59353e-05,1.49997)</position>
+        <angle>9.56463313073404e-05</angle>
+        <velocity>(-4.28652e-05,4.5883e-05)</velocity>
+        <angularVelocity>-0.000174838080211735</angularVelocity>
         <mass>1</mass>
         <inertia>1.10768333333333</inertia>
         <size>(5,0.3)</size>
@@ -22,10 +22,10 @@
     <item class="Disk" id="3">
         <name>disk1</name>
         <color>#ff000000</color>
-        <position>(-1.50004,-1.00128)</position>
-        <angle>-2.59050941054323e-24</angle>
-        <velocity>(-0.000153681,-0.00320801)</velocity>
-        <angularVelocity>-1.09631315375191e-23</angularVelocity>
+        <position>(-1.50162,-1.00023)</position>
+        <angle>-4.23516741598913e-15</angle>
+        <velocity>(0.00977186,0.000347201)</velocity>
+        <angularVelocity>2.39870957885549e-16</angularVelocity>
         <mass>1</mass>
         <inertia>0.125</inertia>
         <radius>0.5</radius>
@@ -34,10 +34,10 @@
     <item class="Disk" id="4">
         <name>disk2</name>
         <color>#ff000000</color>
-        <position>(-0.500041,-1.00106)</position>
-        <angle>-5.47861812416429e-24</angle>
-        <velocity>(-0.000153603,-0.00209344)</velocity>
-        <angularVelocity>-7.34687985594302e-24</angularVelocity>
+        <position>(-0.498932,-1.00007)</position>
+        <angle>-1.20110939808406e-14</angle>
+        <velocity>(0.00835209,0.000239738)</velocity>
+        <angularVelocity>-1.64990809072458e-15</angularVelocity>
         <mass>1</mass>
         <inertia>0.125</inertia>
         <radius>0.5</radius>
@@ -46,10 +46,10 @@
     <item class="Disk" id="5">
         <name>disk3</name>
         <color>#ff000000</color>
-        <position>(0.499959,-1.00082)</position>
-        <angle>8.06859194274073e-24</angle>
-        <velocity>(-0.000153598,-0.000973912)</velocity>
-        <angularVelocity>1.83092015232493e-23</angularVelocity>
+        <position>(0.502175,-0.999926)</position>
+        <angle>2.7138534100015e-14</angle>
+        <velocity>(0.00726552,-0.000198413)</velocity>
+        <angularVelocity>3.35564660101167e-15</angularVelocity>
         <mass>1</mass>
         <inertia>0.125</inertia>
         <radius>0.5</radius>
@@ -58,10 +58,10 @@
     <item class="Disk" id="6">
         <name>disk4</name>
         <color>#ff000000</color>
-        <position>(2.00227,-0.949116)</position>
-        <angle>0</angle>
-        <velocity>(0,0)</velocity>
-        <angularVelocity>0</angularVelocity>
+        <position>(1.98627,-0.952038)</position>
+        <angle>-1.10094091124386e-14</angle>
+        <velocity>(-0.253135,-0.0507811)</velocity>
+        <angularVelocity>-1.95401947557689e-15</angularVelocity>
         <mass>1</mass>
         <inertia>0.125</inertia>
         <radius>0.5</radius>
