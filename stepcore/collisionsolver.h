@@ -26,6 +26,7 @@
 #include "object.h"
 #include "world.h"
 #include "vector.h"
+#include "solver.h"
 
 namespace StepCore
 {
@@ -38,7 +39,7 @@ class Body;
  */
 struct Contact {
     enum {
-        Unknown,        /**< Contact state was not (can not) be determined
+        Unknown = 0,    /**< Contact state was not (can not) be determined
                              (if state == Unknown all other fields are not used) */
         Separated,      /**< Bodies are far away */
         Separating,     /**< Bodies are contacted but moving apart */
@@ -60,6 +61,7 @@ struct Contact {
     int      state;         /**< Contact state (maximum of pointsState if pointsCount > 0) */
     double   distance;      /**< Distance between bodies */
     Vector2d normal;        /**< Contact normal (pointing from body0 to body1) */
+    Vector2d normalDerivative; /**< Time derivative of contact normal (only if state == Contacted) */
     int      pointsCount;   /**< Count of contact points (either one or two) */
     int      pointsState[2];/**< Contact point states */
     Vector2d points[2];     /**< Contact point coordinated */
@@ -101,7 +103,8 @@ public:
      *  \param info ConstraintsInfo structure to fill
      *  \return maximum contact state (i.e. maximum value of Contact::state)
      */
-    virtual int checkContacts(BodyList& bodies, ConstraintsInfo* info) = 0;
+    virtual int checkContacts(BodyList& bodies,
+            ConstraintsInfo* info, bool collisions = false) = 0;
 
     // TODO: add errors
     /** Solve the collisions between bodies
@@ -115,6 +118,11 @@ public:
 
     virtual void bodyAdded(BodyList&, Body*) {}
     virtual void bodyRemoved(BodyList&, Body*) {}
+
+public:
+    enum {
+        InternalError = Solver::CollisionError
+    };
 
 protected:
     double _toleranceAbs;
@@ -154,7 +162,7 @@ public:
     };*/
 
     //int checkContact(Contact* contact);
-    int checkContacts(BodyList& bodies, ConstraintsInfo* info);
+    int checkContacts(BodyList& bodies, ConstraintsInfo* info, bool collisions = false);
     //int findClosestPoints(const BasePolygon* polygon1, const BasePolygon* polygon2);
 
     int solveCollisions(BodyList& bodies);
