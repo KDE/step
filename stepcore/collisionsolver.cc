@@ -1233,11 +1233,14 @@ void GJKCollisionSolver::bodyRemoved(BodyList&, Body* body)
 {
     if(!_contactsIsValid) return;
 
-    const ContactValueList::iterator end = _contacts.end();
-    ContactValueList::iterator it = _contacts.begin();
-    for(; it != end; ++it)
-        if((*it).body0 == body || (*it).body1 == body) break;
-    if(it != end) _contacts.erase(it);
+    for(;;) {
+        const ContactValueList::iterator end = _contacts.end();
+        ContactValueList::iterator it = _contacts.begin();
+        for(; it != end; ++it)
+            if((*it).body0 == body || (*it).body1 == body) break;
+        if(it != end) _contacts.erase(it);
+        else break;
+    }
 }
 
 void GJKCollisionSolver::addContact(Body* body0, Body* body1)
