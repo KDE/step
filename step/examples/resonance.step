@@ -1,0 +1,194 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE StepCoreXML>
+<world xmlns="http://edu.kde.org/step/StepCoreXML" version="1.0" id="1">
+    <name>world1</name>
+    <color>#ffffffff</color>
+    <time>0</time>
+    <timeScale>1</timeScale>
+    <errorsCalculation>false</errorsCalculation>
+
+    <item class="Box" id="2">
+        <name>LeftWall</name>
+        <color>#ff000000</color>
+        <position>(-0.9,1)</position>
+        <angle>0</angle>
+        <velocity>(0,0)</velocity>
+        <angularVelocity>0</angularVelocity>
+        <mass>1e+100</mass>
+        <inertia>1e+100</inertia>
+        <size>(0.2,4)</size>
+    </item>
+
+    <item class="Box" id="3">
+        <name>Body</name>
+        <color>#ff000000</color>
+        <position>(-0.7,1)</position>
+        <angle>0</angle>
+        <velocity>(0,0)</velocity>
+        <angularVelocity>0</angularVelocity>
+        <mass>1</mass>
+        <inertia>1e+100</inertia>
+        <size>(0.19,0.4)</size>
+    </item>
+
+    <item class="Box" id="4">
+        <name>RightWall</name>
+        <color>#ff000000</color>
+        <position>(-0.5,1)</position>
+        <angle>0</angle>
+        <velocity>(0,0)</velocity>
+        <angularVelocity>0</angularVelocity>
+        <mass>1e+100</mass>
+        <inertia>1e+100</inertia>
+        <size>(0.2,4)</size>
+    </item>
+
+    <item class="Disk" id="5">
+        <name>Disk</name>
+        <color>#ff000000</color>
+        <position>(-0.7,-2)</position>
+        <angle>0</angle>
+        <velocity>(0,0)</velocity>
+        <angularVelocity>0</angularVelocity>
+        <mass>1e+100</mass>
+        <inertia>1e+100</inertia>
+        <radius>0.5</radius>
+    </item>
+
+    <item class="Pin" id="6">
+        <name>PinDisk</name>
+        <color>#ffff0000</color>
+        <body>5</body>
+        <localPosition>(0,0)</localPosition>
+        <position>(-0.7,-2)</position>
+    </item>
+
+    <item class="Spring" id="7">
+        <name>Spring</name>
+        <color>#ff00ff00</color>
+        <restLength>3.01</restLength>
+        <stiffness>100</stiffness>
+        <damping>5</damping>
+        <body1>3</body1>
+        <body2>5</body2>
+        <localPosition1>(0,0)</localPosition1>
+        <localPosition2>(0.25,0)</localPosition2>
+    </item>
+
+    <item class="Anchor" id="8">
+        <name>AnchorLeftWall</name>
+        <color>#ffff0000</color>
+        <body>2</body>
+        <position>(-0.9,1)</position>
+        <angle>0</angle>
+    </item>
+
+    <item class="Anchor" id="9">
+        <name>AnchorRightWall</name>
+        <color>#ffff0000</color>
+        <body>4</body>
+        <position>(-0.5,1)</position>
+        <angle>0</angle>
+    </item>
+
+    <item class="Graph" id="10">
+        <name>Graph</name>
+        <color>#ff000000</color>
+        <position>(2,1)</position>
+        <size>(400,300)</size>
+        <objectX>5</objectX>
+        <propertyX>angularVelocity</propertyX>
+        <indexX>-1</indexX>
+        <objectY>3</objectY>
+        <propertyY>position</propertyY>
+        <indexY>1</indexY>
+        <autoLimitsX>false</autoLimitsX>
+        <autoLimitsY>false</autoLimitsY>
+        <limitsX>(0,20)</limitsX>
+        <limitsY>(-0.5,2.5)</limitsY>
+        <showPoints>false</showPoints>
+        <showLines>true</showLines>
+        <points></points>
+    </item>
+
+    <item class="CircularMotor" id="11">
+        <name>CircularMotor</name>
+        <color>#ff0000ff</color>
+        <body>5</body>
+        <localPosition>(0,0)</localPosition>
+        <torqueValue>1e+100</torqueValue>
+    </item>
+
+    <item class="Controller" id="12">
+        <name>Velocity</name>
+        <color>#ff000000</color>
+        <position>(1.2,-2.2)</position>
+        <size>(200,60)</size>
+        <object>5</object>
+        <property>angularVelocity</property>
+        <index>-1</index>
+        <limits>(0,20)</limits>
+        <increaseShortcut>Right</increaseShortcut>
+        <decreaseShortcut>Left</decreaseShortcut>
+        <increment>0.1</increment>
+    </item>
+
+    <item class="Controller" id="13">
+        <name>Acceleration</name>
+        <color>#ff000000</color>
+        <position>(3.2,-2.2)</position>
+        <size>(200,60)</size>
+        <object>11</object>
+        <property>torqueValue</property>
+        <index>-1</index>
+        <limits>(0,1e+100)</limits>
+        <increaseShortcut>Up</increaseShortcut>
+        <decreaseShortcut>Down</decreaseShortcut>
+        <increment>1e+100</increment>
+    </item>
+
+    <item class="Controller" id="14">
+        <name>Stiffness</name>
+        <color>#ff000000</color>
+        <position>(1.2,-1)</position>
+        <size>(200,60)</size>
+        <object>7</object>
+        <property>stiffness</property>
+        <index>-1</index>
+        <limits>(20,200)</limits>
+        <increaseShortcut></increaseShortcut>
+        <decreaseShortcut></decreaseShortcut>
+        <increment>0.1</increment>
+    </item>
+
+    <item class="Controller" id="15">
+        <name>Damping</name>
+        <color>#ff000000</color>
+        <position>(3.2,-1)</position>
+        <size>(200,60)</size>
+        <object>7</object>
+        <property>damping</property>
+        <index>-1</index>
+        <limits>(2,10)</limits>
+        <increaseShortcut></increaseShortcut>
+        <decreaseShortcut></decreaseShortcut>
+        <increment>0.1</increment>
+    </item>
+
+    <solver class="AdaptiveEulerSolver" id="16">
+        <name>solver1</name>
+        <stepSize>1</stepSize>
+        <toleranceAbs>0.001</toleranceAbs>
+        <toleranceRel>0.001</toleranceRel>
+    </solver>
+
+    <collisionSolver class="GJKCollisionSolver" id="17">
+        <name>collisionSolver1</name>
+        <toleranceAbs>0.001</toleranceAbs>
+    </collisionSolver>
+
+    <constraintSolver class="CGConstraintSolver" id="18">
+        <name>constraintSolver1</name>
+    </constraintSolver>
+
+</world>
