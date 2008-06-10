@@ -59,9 +59,9 @@ class WidgetVertexHandlerGraphicsItem: public OnHoverHandlerGraphicsItem
     Q_OBJECT
 
 public:
-    WidgetVertexHandlerGraphicsItem(StepCore::Item* item, WorldModel* worldModel,
+    WidgetVertexHandlerGraphicsItem(StepCore::Item* item, WorldModel* worldModel, WorldScene* worldScene,
                                         QGraphicsItem* parent, int vertexNum)
-        : OnHoverHandlerGraphicsItem(item, worldModel, parent, NULL, NULL, vertexNum) {}
+        : OnHoverHandlerGraphicsItem(item, worldModel, worldScene, parent, NULL, NULL, vertexNum) {}
 
 
 protected:
@@ -74,7 +74,7 @@ class WidgetGraphicsItem: public QObject, public WorldGraphicsItem
     Q_OBJECT
 
 public:
-    WidgetGraphicsItem(StepCore::Item* item, WorldModel* worldModel);
+    WidgetGraphicsItem(StepCore::Item* item, WorldModel* worldModel, WorldScene* worldScene);
     ~WidgetGraphicsItem();
 
     void paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget);
@@ -128,7 +128,7 @@ class NoteGraphicsItem: public WidgetGraphicsItem
     Q_OBJECT
 
 public:
-    NoteGraphicsItem(StepCore::Item* item, WorldModel* worldModel);
+    NoteGraphicsItem(StepCore::Item* item, WorldModel* worldModel, WorldScene* worldScene);
     void worldDataChanged(bool dynamicOnly);
 
 protected slots:
@@ -217,7 +217,7 @@ protected:
 class GraphGraphicsItem: public WidgetGraphicsItem
 {
 public:
-    GraphGraphicsItem(StepCore::Item* item, WorldModel* worldModel);
+    GraphGraphicsItem(StepCore::Item* item, WorldModel* worldModel, WorldScene* worldScene);
     void worldDataChanged(bool);
 
 protected:
@@ -262,7 +262,7 @@ class QFrame;
 class MeterGraphicsItem: public WidgetGraphicsItem
 {
 public:
-    MeterGraphicsItem(StepCore::Item* item, WorldModel* worldModel);
+    MeterGraphicsItem(StepCore::Item* item, WorldModel* worldModel, WorldScene* worldScene);
     void worldDataChanged(bool);
 
 protected:
@@ -309,7 +309,7 @@ class ControllerGraphicsItem: public WidgetGraphicsItem
     Q_OBJECT
 
 public:
-    ControllerGraphicsItem(StepCore::Item* item, WorldModel* worldModel);
+    ControllerGraphicsItem(StepCore::Item* item, WorldModel* worldModel, WorldScene* worldScene);
     void worldDataChanged(bool);
 
 protected slots:
@@ -378,7 +378,7 @@ public:
 class TracerGraphicsItem: public WorldGraphicsItem
 {
 public:
-    TracerGraphicsItem(StepCore::Item* item, WorldModel* worldModel);
+    TracerGraphicsItem(StepCore::Item* item, WorldModel* worldModel, WorldScene* worldScene);
 
     void paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget);
     QPainterPath shape() const;

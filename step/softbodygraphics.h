@@ -57,7 +57,7 @@ protected:
 class SoftBodyGraphicsItem: public WorldGraphicsItem
 {
 public:
-    SoftBodyGraphicsItem(StepCore::Item* item, WorldModel* worldModel);
+    SoftBodyGraphicsItem(StepCore::Item* item, WorldModel* worldModel, WorldScene* worldScene);
 
     QPainterPath shape() const;
     void paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget);
@@ -79,8 +79,8 @@ protected:
 class SoftBodyParticleGraphicsItem: public ParticleGraphicsItem
 {
 public:
-    SoftBodyParticleGraphicsItem(StepCore::Item* item, WorldModel* worldModel)
-        : ParticleGraphicsItem(item, worldModel) {}
+    SoftBodyParticleGraphicsItem(StepCore::Item* item, WorldModel* worldModel, WorldScene* worldScene)
+        : ParticleGraphicsItem(item, worldModel, worldScene) {}
 
     void worldDataChanged(bool dynamicOnly);
 };
@@ -88,8 +88,8 @@ public:
 class SoftBodySpringGraphicsItem: public SpringGraphicsItem
 {
 public:
-    SoftBodySpringGraphicsItem(StepCore::Item* item, WorldModel* worldModel)
-        : SpringGraphicsItem(item, worldModel) {}
+    SoftBodySpringGraphicsItem(StepCore::Item* item, WorldModel* worldModel, WorldScene* worldScene)
+        : SpringGraphicsItem(item, worldModel, worldScene) {}
 
     void worldDataChanged(bool dynamicOnly);
 };

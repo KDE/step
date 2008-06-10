@@ -155,7 +155,8 @@ public:
     enum MovingState { Started, Moving, Finished };
 
     /** Constructs WorldGraphicsItem */
-    WorldGraphicsItem(StepCore::Item* item, WorldModel* worldModel, QGraphicsItem* parent = 0);
+    WorldGraphicsItem(StepCore::Item* item, WorldModel* worldModel,
+                        WorldScene* worldScene, QGraphicsItem* parent = 0);
 
     /** Get StepCore::Item which is represented by this graphicsItem */
     StepCore::Item* item() const { return _item; }
@@ -261,6 +262,7 @@ protected:
 protected:
     StepCore::Item* _item;
     WorldModel* _worldModel;
+    WorldScene* _worldScene;
 
     QRectF  _boundingRect;
     QString _exclusiveMovingMessage;
@@ -320,7 +322,7 @@ public:
      *  \param property Property to control
      *  \param positionProperty Origin of the vector described by property or NULL
      */
-    ArrowHandlerGraphicsItem(StepCore::Item* item, WorldModel* worldModel,
+    ArrowHandlerGraphicsItem(StepCore::Item* item, WorldModel* worldModel, WorldScene* worldScene,
                         QGraphicsItem* parent, const StepCore::MetaProperty* property,
                         const StepCore::MetaProperty* positionProperty = NULL);
 
@@ -357,7 +359,7 @@ public:
      *  \param property Property to control
      *  \param positionProperty Position of the center of the circle
      */
-    CircularArrowHandlerGraphicsItem(StepCore::Item* item, WorldModel* worldModel,
+    CircularArrowHandlerGraphicsItem(StepCore::Item* item, WorldModel* worldModel, WorldScene* worldScene,
                         QGraphicsItem* parent, double radius, const StepCore::MetaProperty* property,
                         const StepCore::MetaProperty* positionProperty = NULL);
 
@@ -391,7 +393,7 @@ class OnHoverHandlerGraphicsItem: public QObject, public ArrowHandlerGraphicsIte
 
 public:
     OnHoverHandlerGraphicsItem(StepCore::Item* item, WorldModel* worldModel,
-                    QGraphicsItem* parent, const StepCore::MetaProperty* property,
+                    WorldScene* worldScene, QGraphicsItem* parent, const StepCore::MetaProperty* property,
                     const StepCore::MetaProperty* positionProperty = NULL,
                     int vertexNum = 0);
 

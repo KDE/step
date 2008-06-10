@@ -40,7 +40,7 @@ namespace StepCore {
 class RigidBodyGraphicsItem: public WorldGraphicsItem
 {
 public:
-    RigidBodyGraphicsItem(StepCore::Item* item, WorldModel* worldModel);
+    RigidBodyGraphicsItem(StepCore::Item* item, WorldModel* worldModel, WorldScene* worldScene);
 
     QPainterPath shape() const;
     void paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget);
@@ -74,9 +74,9 @@ class DiskVertexHandlerGraphicsItem: public OnHoverHandlerGraphicsItem
     Q_OBJECT
 
 public:
-    DiskVertexHandlerGraphicsItem(StepCore::Item* item, WorldModel* worldModel,
+    DiskVertexHandlerGraphicsItem(StepCore::Item* item, WorldModel* worldModel, WorldScene* worldScene,
                                         QGraphicsItem* parent, int vertexNum)
-        : OnHoverHandlerGraphicsItem(item, worldModel, parent, NULL, NULL, vertexNum) {}
+        : OnHoverHandlerGraphicsItem(item, worldModel, worldScene, parent, NULL, NULL, vertexNum) {}
 
 protected:
     StepCore::Disk* disk() const;
@@ -87,7 +87,7 @@ protected:
 class DiskGraphicsItem: public RigidBodyGraphicsItem
 {
 public:
-    DiskGraphicsItem(StepCore::Item* item, WorldModel* worldModel);
+    DiskGraphicsItem(StepCore::Item* item, WorldModel* worldModel, WorldScene* worldScene);
     void viewScaleChanged();
 
 protected:
@@ -100,7 +100,7 @@ protected:
 class BasePolygonGraphicsItem: public RigidBodyGraphicsItem
 {
 public:
-    BasePolygonGraphicsItem(StepCore::Item* item, WorldModel* worldModel);
+    BasePolygonGraphicsItem(StepCore::Item* item, WorldModel* worldModel, WorldScene* worldScene);
     void viewScaleChanged();
 
 protected:
@@ -126,9 +126,9 @@ class BoxVertexHandlerGraphicsItem: public OnHoverHandlerGraphicsItem
     Q_OBJECT
 
 public:
-    BoxVertexHandlerGraphicsItem(StepCore::Item* item, WorldModel* worldModel,
+    BoxVertexHandlerGraphicsItem(StepCore::Item* item, WorldModel* worldModel, WorldScene* worldScene,
                                         QGraphicsItem* parent, int vertexNum)
-        : OnHoverHandlerGraphicsItem(item, worldModel, parent, NULL, NULL, vertexNum) {}
+        : OnHoverHandlerGraphicsItem(item, worldModel, worldScene, parent, NULL, NULL, vertexNum) {}
 
 protected:
     StepCore::Box* box() const;
@@ -139,8 +139,8 @@ protected:
 class BoxGraphicsItem: public BasePolygonGraphicsItem
 {
 public:
-    BoxGraphicsItem(StepCore::Item* item, WorldModel* worldModel)
-        : BasePolygonGraphicsItem(item, worldModel) {}
+    BoxGraphicsItem(StepCore::Item* item, WorldModel* worldModel, WorldScene* worldScene)
+        : BasePolygonGraphicsItem(item, worldModel, worldScene) {}
 
 protected:
     OnHoverHandlerGraphicsItem* createOnHoverHandler(const QPointF& pos);
@@ -166,9 +166,9 @@ class PolygonVertexHandlerGraphicsItem: public OnHoverHandlerGraphicsItem
     Q_OBJECT
 
 public:
-    PolygonVertexHandlerGraphicsItem(StepCore::Item* item, WorldModel* worldModel,
+    PolygonVertexHandlerGraphicsItem(StepCore::Item* item, WorldModel* worldModel, WorldScene* worldScene,
                                         QGraphicsItem* parent, int vertexNum)
-        : OnHoverHandlerGraphicsItem(item, worldModel, parent, NULL, NULL, vertexNum) {}
+        : OnHoverHandlerGraphicsItem(item, worldModel, worldScene, parent, NULL, NULL, vertexNum) {}
 
 protected:
     StepCore::Polygon* polygon() const;
@@ -179,8 +179,8 @@ protected:
 class PolygonGraphicsItem: public BasePolygonGraphicsItem
 {
 public:
-    PolygonGraphicsItem(StepCore::Item* item, WorldModel* worldModel)
-        : BasePolygonGraphicsItem(item, worldModel) {}
+    PolygonGraphicsItem(StepCore::Item* item, WorldModel* worldModel, WorldScene* worldScene)
+        : BasePolygonGraphicsItem(item, worldModel, worldScene) {}
 
     static void changePolygonVertex(WorldModel* worldModel, StepCore::Item* item,
                                 int vertexNum, const StepCore::Vector2d& value);

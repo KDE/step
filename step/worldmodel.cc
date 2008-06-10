@@ -554,6 +554,14 @@ StepCore::Item* WorldModel::newItem(const QString& className, StepCore::ItemGrou
     return item;
 }
 
+StepCore::Item* WorldModel::createItem(const QString& className, StepCore::ItemGroup* parent)
+{
+    StepCore::Item* item = _worldFactory->newItem(className);
+    if(item == NULL) return NULL;
+    item->setName(getUniqueName(className));
+    return item;
+}
+
 void WorldModel::addItem(StepCore::Item* item, StepCore::ItemGroup* parent)
 {
     //if(item->name().isEmpty()) item->setName(getUniqueName(item->metaObject()->className()));

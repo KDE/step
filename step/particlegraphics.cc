@@ -29,17 +29,18 @@
 #include <KLocale>
 #include <KSvgRenderer>
 
-ParticleGraphicsItem::ParticleGraphicsItem(StepCore::Item* item, WorldModel* worldModel)
-    : WorldGraphicsItem(item, worldModel)
+ParticleGraphicsItem::ParticleGraphicsItem(StepCore::Item* item, WorldModel* worldModel, WorldScene* worldScene)
+    : WorldGraphicsItem(item, worldModel, worldScene)
 {
     Q_ASSERT(dynamic_cast<StepCore::Particle*>(_item) != NULL);
     setFlag(QGraphicsItem::ItemIsSelectable);
     setFlag(QGraphicsItem::ItemIsMovable);
     setAcceptsHoverEvents(true);
-    _lastArrowRadius = -1;
-    _velocityHandler = new ArrowHandlerGraphicsItem(item, worldModel, this,
-                   _item->metaObject()->property("velocity"));
-    _velocityHandler->setVisible(false);
+    _boundingRect = QRectF(-RADIUS, -RADIUS, RADIUS*2, RADIUS*2);
+    //_lastArrowRadius = -1;
+    //_velocityHandler = new ArrowHandlerGraphicsItem(item, worldModel, worldScene, this,
+    //               _item->metaObject()->property("velocity"));
+    //_velocityHandler->setVisible(false);
     //scene()->addItem(_velocityHandler);
 }
 
@@ -56,11 +57,8 @@ void ParticleGraphicsItem::paint(QPainter* painter, const QStyleOptionGraphicsIt
     //painter->setPen(QPen(Qt::green, 0));
     //painter->drawRect(boundingRect());
 
-    double s = currentViewScale();
-    double radius = RADIUS/s;
-
     static_cast<WorldScene*>(scene())->worldRenderer()->svgRenderer()->
-                        render(painter, QRectF(-radius,-radius,radius*2,radius*2));
+            render(painter, QRectF(-RADIUS,-RADIUS,RADIUS*2,RADIUS*2));
 
     /*
     int renderHints = painter->renderHints();
@@ -95,6 +93,7 @@ void ParticleGraphicsItem::paint(QPainter* painter, const QStyleOptionGraphicsIt
 
 void ParticleGraphicsItem::viewScaleChanged()
 {
+    /*
     prepareGeometryChange();
 
     double s = currentViewScale();
@@ -110,10 +109,13 @@ void ParticleGraphicsItem::viewScaleChanged()
         _boundingRect |= QRectF(-_lastArrowRadius, -_lastArrowRadius,
                                     2*_lastArrowRadius, 2*_lastArrowRadius);
     }
+    */
+    worldDataChanged(true);
 }
 
 void ParticleGraphicsItem::worldDataChanged(bool)
 {
+    /*
     if(_isMouseOverItem || _isSelected) {
         double vnorm = particle()->velocity().norm();
         double anorm = particle()->acceleration().norm();
@@ -124,15 +126,18 @@ void ParticleGraphicsItem::worldDataChanged(bool)
         }
         update();
     }
-    setPos(vectorToPoint(particle()->position()));
+    */
+    setPos(_worldScene->vectorToPoint(particle()->position()));
 }
 
 void ParticleGraphicsItem::stateChanged()
 {
+    /*
     if(_isSelected) _velocityHandler->setVisible(true);
     else _velocityHandler->setVisible(false);
     if(!_isMouseOverItem && !_isSelected) _lastArrowRadius = -1;
     viewScaleChanged();
     update();
+    */
 }
 

@@ -28,8 +28,8 @@
 #include <QItemSelectionModel>
 #include <KLocale>
 
-AnchorGraphicsItem::AnchorGraphicsItem(StepCore::Item* item, WorldModel* worldModel)
-    : WorldGraphicsItem(item, worldModel)
+AnchorGraphicsItem::AnchorGraphicsItem(StepCore::Item* item, WorldModel* worldModel, WorldScene* worldScene)
+    : WorldGraphicsItem(item, worldModel, worldScene)
 {
     Q_ASSERT(dynamic_cast<StepCore::Anchor*>(_item) != NULL);
     setFlag(QGraphicsItem::ItemIsSelectable);
@@ -95,8 +95,8 @@ void AnchorGraphicsItem::worldDataChanged(bool dynamicOnly)
 
 //////////////////////////////////////////////////////////////////////////
 
-PinGraphicsItem::PinGraphicsItem(StepCore::Item* item, WorldModel* worldModel)
-    : WorldGraphicsItem(item, worldModel)
+PinGraphicsItem::PinGraphicsItem(StepCore::Item* item, WorldModel* worldModel, WorldScene* worldScene)
+    : WorldGraphicsItem(item, worldModel, worldScene)
 {
     Q_ASSERT(dynamic_cast<StepCore::Pin*>(_item) != NULL);
     setFlag(QGraphicsItem::ItemIsSelectable);
@@ -161,9 +161,9 @@ void PinGraphicsItem::worldDataChanged(bool dynamicOnly)
 
 //////////////////////////////////////////////////////////////////////////
 
-StickHandlerGraphicsItem::StickHandlerGraphicsItem(StepCore::Item* item, WorldModel* worldModel, 
+StickHandlerGraphicsItem::StickHandlerGraphicsItem(StepCore::Item* item, WorldModel* worldModel, WorldScene* worldScene, 
                                 QGraphicsItem* parent, int num)
-    : WorldGraphicsItem(item, worldModel, parent), _num(num)
+    : WorldGraphicsItem(item, worldModel, worldScene, parent), _num(num)
 {
     Q_ASSERT(_num == 1 || _num == 2);
     setFlag(QGraphicsItem::ItemIsMovable);
@@ -199,15 +199,15 @@ void StickHandlerGraphicsItem::mouseSetPos(const QPointF& pos, const QPointF&, M
 
 }
 
-StickGraphicsItem::StickGraphicsItem(StepCore::Item* item, WorldModel* worldModel)
-    : WorldGraphicsItem(item, worldModel)
+StickGraphicsItem::StickGraphicsItem(StepCore::Item* item, WorldModel* worldModel, WorldScene* worldScene)
+    : WorldGraphicsItem(item, worldModel, worldScene)
 {
     Q_ASSERT(dynamic_cast<StepCore::Stick*>(_item) != NULL);
     setFlag(QGraphicsItem::ItemIsSelectable);
     setFlag(QGraphicsItem::ItemIsMovable);
     setZValue(JOINT_ZVALUE);
-    _handler1 = new StickHandlerGraphicsItem(item, worldModel, this, 1);
-    _handler2 = new StickHandlerGraphicsItem(item, worldModel, this, 2);
+    _handler1 = new StickHandlerGraphicsItem(item, worldModel, worldScene, this, 1);
+    _handler2 = new StickHandlerGraphicsItem(item, worldModel, worldScene, this, 2);
     _handler1->setVisible(false);
     _handler2->setVisible(false);
 }

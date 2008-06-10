@@ -57,9 +57,9 @@ ItemCreator* newItemCreatorHelper(const QString& className,
 }
 
 template<typename T>
-WorldGraphicsItem* newGraphicsItemHelper(StepCore::Item* item, WorldModel* worldModel)
+WorldGraphicsItem* newGraphicsItemHelper(StepCore::Item* item, WorldModel* worldModel, WorldScene* worldScene)
 {
-    return new T(item, worldModel);
+    return new T(item, worldModel, worldScene);
 }
 
 template<typename T>
@@ -219,11 +219,11 @@ ItemCreator* WorldFactory::newItemCreator(const QString& className,
     else return new ItemCreator(className, worldModel, worldScene);
 }
 
-WorldGraphicsItem* WorldFactory::newGraphicsItem(StepCore::Item* item, WorldModel* worldModel) const
+WorldGraphicsItem* WorldFactory::newGraphicsItem(StepCore::Item* item, WorldModel* worldModel, WorldScene* worldScene) const
 {
     const ExtMetaObject *extMetaObject = _extMetaObjects.value(item->metaObject(), NULL);
     if(extMetaObject && extMetaObject->newGraphicsItem)
-        return extMetaObject->newGraphicsItem(item, worldModel);
+        return extMetaObject->newGraphicsItem(item, worldModel, worldScene);
     return NULL;
 }
 

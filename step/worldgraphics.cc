@@ -70,7 +70,7 @@ bool ItemCreator::sceneEvent(QEvent* event)
         _worldModel->simulationPause();
 
         _worldModel->beginMacro(i18n("Create %1", _worldModel->newItemName(_className)));
-        _item = _worldModel->newItem(_className); Q_ASSERT(_item != NULL);
+        _item = _worldModel->createItem(_className); Q_ASSERT(_item != NULL);
 #ifdef __GNUC__
 #warning Do not add item until it is fully created
 #endif
@@ -78,10 +78,11 @@ bool ItemCreator::sceneEvent(QEvent* event)
         if(property != NULL) {
             QGraphicsSceneMouseEvent* mouseEvent = static_cast<QGraphicsSceneMouseEvent*>(event);
             QPointF pos = mouseEvent->scenePos();
-            QVariant vpos = QVariant::fromValue(WorldGraphicsItem::pointToVector(pos));
-            _worldModel->setProperty(_item, property, vpos);
+            QVariant vpos = QVariant::fromValue(_worldScene->pointToVector(pos));
+            property->writeVariant(_item, vpos);
         }
 
+        _worldModel->addItem(_item);
         _worldModel->endMacro();
 
         _worldModel->selectionModel()->setCurrentIndex(_worldModel->objectIndex(_item),
@@ -186,8 +187,8 @@ void AttachableItemCreator::abort()
 
 /////////////////////////////////////////////////////////////////////////////////////////
 
-WorldGraphicsItem::WorldGraphicsItem(StepCore::Item* item, WorldModel* worldModel, QGraphicsItem* parent)
-    : QGraphicsItem(parent), _item(item), _worldModel(worldModel), _exclusiveMoving(false),
+WorldGraphicsItem::WorldGraphicsItem(StepCore::Item* item, WorldModel* worldModel, WorldScene* worldScene, QGraphicsItem* parent)
+    : QGraphicsItem(parent), _item(item), _worldModel(worldModel), _worldScene(worldScene), _exclusiveMoving(false),
       _onHoverHandlerEnabled(false), _isHighlighted(false), _isMouseOverItem(false), _isSelected(false),
       _isMoving(false), _onHoverHandler(0), _onHoverHandlerTimer(false)
 {
@@ -197,8 +198,8 @@ WorldGraphicsItem::WorldGraphicsItem(StepCore::Item* item, WorldModel* worldMode
 
 double WorldGraphicsItem::currentViewScale() const
 {
-    if(!scene()) return 1;
-    return static_cast<WorldScene*>(scene())->currentViewScale();
+    return 1;
+#warning delete this function
 }
 
 QColor WorldGraphicsItem::highlightColor(const QColor& color)
@@ -499,9 +500,9 @@ void WorldGraphicsItem::contextMenuEvent(QGraphicsSceneContextMenuEvent* event)
 /////////////////////////////////////////////////////////////////////////////////////////
 
 ArrowHandlerGraphicsItem::ArrowHandlerGraphicsItem(StepCore::Item* item, WorldModel* worldModel, 
-                         QGraphicsItem* parent, const StepCore::MetaProperty* property,
+                         WorldScene* worldScene, QGraphicsItem* parent, const StepCore::MetaProperty* property,
                          const StepCore::MetaProperty* positionProperty)
-    : WorldGraphicsItem(item, worldModel, parent), _property(property), _positionProperty(positionProperty)
+    : WorldGraphicsItem(item, worldModel, worldScene, parent), _property(property), _positionProperty(positionProperty)
 {
     Q_ASSERT(!_property || _property->userTypeId() == qMetaTypeId<StepCore::Vector2d>());
     setFlag(QGraphicsItem::ItemIsMovable);
@@ -595,10 +596,11 @@ void ArrowHandlerGraphicsItem::setValue(const StepCore::Vector2d& value)
 
 /////////////////////////////////////////////////////////////////////////////////////////
 
-CircularArrowHandlerGraphicsItem::CircularArrowHandlerGraphicsItem(StepCore::Item* item, WorldModel* worldModel, 
+CircularArrowHandlerGraphicsItem::CircularArrowHandlerGraphicsItem(StepCore::Item* item, WorldModel* worldModel,
+                         WorldScene* worldScene,
                          QGraphicsItem* parent, double radius, const StepCore::MetaProperty* property,
                          const StepCore::MetaProperty* positionProperty)
-    : WorldGraphicsItem(item, worldModel, parent), _property(property), _positionProperty(positionProperty), _radius(radius)
+    : WorldGraphicsItem(item, worldModel, worldScene, parent), _property(property), _positionProperty(positionProperty), _radius(radius)
 {
     Q_ASSERT(!_property || _property->userTypeId() == qMetaTypeId<double>());
     setFlag(QGraphicsItem::ItemIsMovable);
@@ -702,9 +704,9 @@ const StepCore::Vector2d OnHoverHandlerGraphicsItem::scorners[4] = {
 };
 
 OnHoverHandlerGraphicsItem::OnHoverHandlerGraphicsItem(StepCore::Item* item, WorldModel* worldModel,
-                    QGraphicsItem* parent, const StepCore::MetaProperty* property,
+                    WorldScene* worldScene, QGraphicsItem* parent, const StepCore::MetaProperty* property,
                     const StepCore::MetaProperty* positionProperty, int vertexNum)
-    : ArrowHandlerGraphicsItem(item, worldModel, parent, property, positionProperty),
+    : ArrowHandlerGraphicsItem(item, worldModel, worldScene, parent, property, positionProperty),
       _vertexNum(vertexNum)
 {
     _deleteTimer = new QTimer(this);

@@ -34,7 +34,7 @@ public:
 class AnchorGraphicsItem: public WorldGraphicsItem
 {
 public:
-    AnchorGraphicsItem(StepCore::Item* item, WorldModel* worldModel);
+    AnchorGraphicsItem(StepCore::Item* item, WorldModel* worldModel, WorldScene* worldScene);
 
     void paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget);
     QPainterPath shape() const;
@@ -60,7 +60,7 @@ public:
 class PinGraphicsItem: public WorldGraphicsItem
 {
 public:
-    PinGraphicsItem(StepCore::Item* item, WorldModel* worldModel);
+    PinGraphicsItem(StepCore::Item* item, WorldModel* worldModel, WorldScene* worldScene);
 
     void paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget);
     QPainterPath shape() const;
@@ -87,7 +87,7 @@ public:
 class StickHandlerGraphicsItem: public WorldGraphicsItem
 {
 public:
-    StickHandlerGraphicsItem(StepCore::Item* item, WorldModel* worldModel,
+    StickHandlerGraphicsItem(StepCore::Item* item, WorldModel* worldModel, WorldScene* worldScene,
                                 QGraphicsItem* parent, int num);
     void viewScaleChanged();
     void worldDataChanged(bool);
@@ -100,7 +100,7 @@ protected:
 class StickGraphicsItem: public WorldGraphicsItem
 {
 public:
-    StickGraphicsItem(StepCore::Item* item, WorldModel* worldModel);
+    StickGraphicsItem(StepCore::Item* item, WorldModel* worldModel, WorldScene* worldScene);
 
     void paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget);
     QPainterPath shape() const;

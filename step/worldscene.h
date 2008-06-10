@@ -19,6 +19,8 @@
 #ifndef STEP_WORLDSCENE_H
 #define STEP_WORLDSCENE_H
 
+#include <stepcore/vector.h>
+
 #include <QGraphicsScene>
 #include <QGraphicsView>
 #include <QList>
@@ -86,10 +88,21 @@ public:
     /** Get WorldGraphicsItem for given StepCore::Item */
     WorldGraphicsItem* graphicsFromItem(const StepCore::Item* item) const;
 
-    /** Called by WorldView when view scale is updated */
-    void updateViewScale(); // Qt4.3 can help here
+    /** Set view scale of the scene */
+    void setViewScale(double viewScale);
     /** Get current view scale of the scene */
     double currentViewScale() { return _currentViewScale; }
+    /** Get view scale of the scene */
+    double viewScale() const { return _viewScale; }
+    
+    /** Converts QPointF to StepCore::Vector2d and scales it */
+    StepCore::Vector2d pointToVector(const QPointF& point) {
+        return StepCore::Vector2d(point.x()/_viewScale, point.y()/_viewScale);
+    }
+    /** Converts StepCore::Vector2d to QPointF and scales it */
+    QPointF vectorToPoint(const StepCore::Vector2d& vector) {
+        return QPointF(vector[0]*_viewScale, vector[1]*_viewScale);
+    }
 
     /** Calculate united bounding rect of all items
      *  (not taking into account WorldSceneAxes */
@@ -128,7 +141,7 @@ public:
     WorldModel* worldModel() const { return _worldModel; }
 
     /** Get current WorldRenderer */
-    WorldRenderer* worldRenderer();
+    WorldRenderer* worldRenderer() const { return _worldRenderer; }
 
 public slots:
     /** Begin adding new item. Creates appropriate ItemCreator */
@@ -191,6 +204,7 @@ protected:
     WorldGraphicsView* _worldView;
     QHash<const StepCore::Item*, WorldGraphicsItem*> _itemsHash;
     double _currentViewScale;
+    double _viewScale;
     ItemCreator* _itemCreator;
     QRgb         _bgColor;
 

@@ -51,7 +51,7 @@ protected:
 class LinearMotorGraphicsItem: public WorldGraphicsItem
 {
 public:
-    LinearMotorGraphicsItem(StepCore::Item* item, WorldModel* worldModel);
+    LinearMotorGraphicsItem(StepCore::Item* item, WorldModel* worldModel, WorldScene* worldScene);
 
     void paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget);
     QPainterPath shape() const;
@@ -86,7 +86,7 @@ protected:
 class CircularMotorGraphicsItem: public WorldGraphicsItem
 {
 public:
-    CircularMotorGraphicsItem(StepCore::Item* item, WorldModel* worldModel);
+    CircularMotorGraphicsItem(StepCore::Item* item, WorldModel* worldModel, WorldScene* worldScene);
 
     void paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget);
     QPainterPath shape() const;

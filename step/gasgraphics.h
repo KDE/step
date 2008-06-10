@@ -43,9 +43,9 @@ class GasVertexHandlerGraphicsItem: public OnHoverHandlerGraphicsItem
     Q_OBJECT
 
 public:
-    GasVertexHandlerGraphicsItem(StepCore::Item* item, WorldModel* worldModel,
+    GasVertexHandlerGraphicsItem(StepCore::Item* item, WorldModel* worldModel, WorldScene* worldScene,
                                         QGraphicsItem* parent, int vertexNum)
-        : OnHoverHandlerGraphicsItem(item, worldModel, parent, NULL, NULL, vertexNum) {}
+        : OnHoverHandlerGraphicsItem(item, worldModel, worldScene, parent, NULL, NULL, vertexNum) {}
 
 protected:
     StepCore::Gas* gas() const;
@@ -55,7 +55,7 @@ protected:
 
 class GasGraphicsItem: public WorldGraphicsItem {
 public:
-    GasGraphicsItem(StepCore::Item* item, WorldModel* worldModel);
+    GasGraphicsItem(StepCore::Item* item, WorldModel* worldModel, WorldScene* worldScene);
 
     QPainterPath shape() const;
     void paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget);

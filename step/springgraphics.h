@@ -33,7 +33,7 @@ public:
 
 class SpringHandlerGraphicsItem: public WorldGraphicsItem {
 public:
-    SpringHandlerGraphicsItem(StepCore::Item* item, WorldModel* worldModel,
+    SpringHandlerGraphicsItem(StepCore::Item* item, WorldModel* worldModel, WorldScene* worldScene,
                                 QGraphicsItem* parent, int num);
 
     void viewScaleChanged();
@@ -46,7 +46,7 @@ protected:
 
 class SpringGraphicsItem: public WorldGraphicsItem {
 public:
-    SpringGraphicsItem(StepCore::Item* item, WorldModel* worldModel);
+    SpringGraphicsItem(StepCore::Item* item, WorldModel* worldModel, WorldScene* worldScene);
 
     QPainterPath shape() const;
     void paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget);

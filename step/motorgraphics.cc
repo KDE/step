@@ -72,15 +72,15 @@ void LinearMotorCreator::tryAttach(const QPointF& pos)
     }
 }
 
-LinearMotorGraphicsItem::LinearMotorGraphicsItem(StepCore::Item* item, WorldModel* worldModel)
-    : WorldGraphicsItem(item, worldModel), _moving(false)
+LinearMotorGraphicsItem::LinearMotorGraphicsItem(StepCore::Item* item, WorldModel* worldModel, WorldScene* worldScene)
+    : WorldGraphicsItem(item, worldModel, worldScene), _moving(false)
 {
     Q_ASSERT(dynamic_cast<StepCore::LinearMotor*>(_item) != NULL);
     setFlag(QGraphicsItem::ItemIsSelectable);
     setFlag(QGraphicsItem::ItemIsMovable);
     setZValue(HANDLER_ZVALUE);
 
-    _forceHandler = new ArrowHandlerGraphicsItem(item, worldModel, this,
+    _forceHandler = new ArrowHandlerGraphicsItem(item, worldModel, worldScene, this,
                    _item->metaObject()->property("forceValue"));
     _forceHandler->setVisible(false);
 }
@@ -250,13 +250,13 @@ void CircularMotorCreator::tryAttach(const QPointF& pos)
     }
 }
 
-CircularMotorGraphicsItem::CircularMotorGraphicsItem(StepCore::Item* item, WorldModel* worldModel)
-    : WorldGraphicsItem(item, worldModel), _moving(false)
+CircularMotorGraphicsItem::CircularMotorGraphicsItem(StepCore::Item* item, WorldModel* worldModel, WorldScene* worldScene)
+    : WorldGraphicsItem(item, worldModel, worldScene), _moving(false)
 {
     Q_ASSERT(dynamic_cast<StepCore::CircularMotor*>(_item) != NULL);
     setFlag(QGraphicsItem::ItemIsSelectable);
     setFlag(QGraphicsItem::ItemIsMovable);
-    _torqueHandler = new CircularArrowHandlerGraphicsItem(item, worldModel,  this, ARROW_RADIUS,
+    _torqueHandler = new CircularArrowHandlerGraphicsItem(item, worldModel, worldScene, this, ARROW_RADIUS,
                    _item->metaObject()->property("torqueValue"));
     _torqueHandler->setVisible(false);
     setZValue(HANDLER_ZVALUE);

@@ -31,9 +31,9 @@
 
 #include <cmath>
 
-SpringHandlerGraphicsItem::SpringHandlerGraphicsItem(StepCore::Item* item, WorldModel* worldModel, 
+SpringHandlerGraphicsItem::SpringHandlerGraphicsItem(StepCore::Item* item, WorldModel* worldModel, WorldScene* worldScene, 
                                 QGraphicsItem* parent, int num)
-    : WorldGraphicsItem(item, worldModel, parent), _num(num)
+    : WorldGraphicsItem(item, worldModel, worldScene, parent), _num(num)
 {
     Q_ASSERT(_num == 1 || _num == 2);
     setFlag(QGraphicsItem::ItemIsMovable);
@@ -65,15 +65,15 @@ void SpringHandlerGraphicsItem::mouseSetPos(const QPointF& pos, const QPointF&, 
 
 }
 
-SpringGraphicsItem::SpringGraphicsItem(StepCore::Item* item, WorldModel* worldModel)
-    : WorldGraphicsItem(item, worldModel)
+SpringGraphicsItem::SpringGraphicsItem(StepCore::Item* item, WorldModel* worldModel, WorldScene* worldScene)
+    : WorldGraphicsItem(item, worldModel, worldScene)
 {
     Q_ASSERT(dynamic_cast<StepCore::Spring*>(_item) != NULL);
     setFlag(QGraphicsItem::ItemIsSelectable);
     setFlag(QGraphicsItem::ItemIsMovable);
     setZValue(FORCE_ZVALUE);
-    _handler1 = new SpringHandlerGraphicsItem(item, worldModel, this, 1);
-    _handler2 = new SpringHandlerGraphicsItem(item, worldModel, this, 2);
+    _handler1 = new SpringHandlerGraphicsItem(item, worldModel, worldScene, this, 1);
+    _handler2 = new SpringHandlerGraphicsItem(item, worldModel, worldScene, this, 2);
     _handler1->setVisible(false);
     _handler2->setVisible(false);
 }

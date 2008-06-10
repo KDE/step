@@ -24,7 +24,7 @@
 
 class ParticleGraphicsItem: public WorldGraphicsItem {
 public:
-    ParticleGraphicsItem(StepCore::Item* item, WorldModel* worldModel);
+    ParticleGraphicsItem(StepCore::Item* item, WorldModel* worldModel, WorldScene* worldScene);
 
     QPainterPath shape() const;
     void paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget);

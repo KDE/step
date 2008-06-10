@@ -34,20 +34,20 @@
 #include <KLocale>
 #include <KDebug>
 
-RigidBodyGraphicsItem::RigidBodyGraphicsItem(StepCore::Item* item, WorldModel* worldModel)
-    : WorldGraphicsItem(item, worldModel)
+RigidBodyGraphicsItem::RigidBodyGraphicsItem(StepCore::Item* item, WorldModel* worldModel, WorldScene* worldScene)
+    : WorldGraphicsItem(item, worldModel, worldScene)
 {
     Q_ASSERT(dynamic_cast<StepCore::RigidBody*>(_item) != NULL);
     setFlag(QGraphicsItem::ItemIsSelectable);
     setFlag(QGraphicsItem::ItemIsMovable);
     setAcceptsHoverEvents(true);
-    _velocityHandler = new ArrowHandlerGraphicsItem(item, worldModel, this,
+    _velocityHandler = new ArrowHandlerGraphicsItem(item, worldModel, worldScene, this,
                    _item->metaObject()->property("velocity"));
     _velocityHandler->setVisible(false);
 
-    _angularVelocityHandler = new CircularArrowHandlerGraphicsItem(item, worldModel, this,
+    _angularVelocityHandler = new CircularArrowHandlerGraphicsItem(item, worldModel, worldScene, this,
                    ANGULAR_VELOCITY_RADIUS, _item->metaObject()->property("angularVelocity"));
-    _angleHandler = new CircularArrowHandlerGraphicsItem(item, worldModel, this,
+    _angleHandler = new CircularArrowHandlerGraphicsItem(item, worldModel, worldScene, this,
                    ANGLE_HANDLER_RADIUS, _item->metaObject()->property("angle"));
     _angularVelocityHandler->setVisible(false);
     _angleHandler->setVisible(false);
@@ -218,8 +218,8 @@ void DiskVertexHandlerGraphicsItem::setValue(const StepCore::Vector2d& value)
     _worldModel->setProperty(_item, "radius", value.norm());
 }
 
-DiskGraphicsItem::DiskGraphicsItem(StepCore::Item* item, WorldModel* worldModel)
-    : RigidBodyGraphicsItem(item, worldModel)
+DiskGraphicsItem::DiskGraphicsItem(StepCore::Item* item, WorldModel* worldModel, WorldScene* worldScene)
+    : RigidBodyGraphicsItem(item, worldModel, worldScene)
 {
     Q_ASSERT(dynamic_cast<StepCore::Disk*>(_item) != NULL);
 }
@@ -261,7 +261,7 @@ OnHoverHandlerGraphicsItem* DiskGraphicsItem::createOnHoverHandler(const QPointF
         return _onHoverHandler;
 
     if(num >= 0)
-        return new DiskVertexHandlerGraphicsItem(_item, _worldModel, this, num);
+        return new DiskVertexHandlerGraphicsItem(_item, _worldModel, _worldScene, this, num);
 
     return 0;
 }
@@ -487,8 +487,8 @@ bool PolygonCreator::sceneEvent(QEvent* event)
 
 /////////////////////////////////////////////////////////////////////////////////////////
 
-BasePolygonGraphicsItem::BasePolygonGraphicsItem(StepCore::Item* item, WorldModel* worldModel)
-    : RigidBodyGraphicsItem(item, worldModel)
+BasePolygonGraphicsItem::BasePolygonGraphicsItem(StepCore::Item* item, WorldModel* worldModel, WorldScene* worldScene)
+    : RigidBodyGraphicsItem(item, worldModel, worldScene)
 {
     Q_ASSERT(dynamic_cast<StepCore::BasePolygon*>(_item) != NULL);
 }
@@ -600,7 +600,7 @@ OnHoverHandlerGraphicsItem* BoxGraphicsItem::createOnHoverHandler(const QPointF&
         return _onHoverHandler;
 
     if(num >= 0)
-        return new BoxVertexHandlerGraphicsItem(_item, _worldModel, this, num);
+        return new BoxVertexHandlerGraphicsItem(_item, _worldModel, _worldScene, this, num);
 
     return 0;
 }
@@ -636,7 +636,7 @@ OnHoverHandlerGraphicsItem* PolygonGraphicsItem::createOnHoverHandler(const QPoi
         return _onHoverHandler;
 
     if(num >= 0)
-        return new PolygonVertexHandlerGraphicsItem(_item, _worldModel, this, num);
+        return new PolygonVertexHandlerGraphicsItem(_item, _worldModel, _worldScene, this, num);
 
     return 0;
 }

@@ -175,8 +175,8 @@ void GasVertexHandlerGraphicsItem::setValue(const StepCore::Vector2d& value)
     _worldModel->setProperty(_item, "measureRectSize", QVariant::fromValue(newSize));
 }
 
-GasGraphicsItem::GasGraphicsItem(StepCore::Item* item, WorldModel* worldModel)
-    : WorldGraphicsItem(item, worldModel)
+GasGraphicsItem::GasGraphicsItem(StepCore::Item* item, WorldModel* worldModel, WorldScene* worldScene)
+    : WorldGraphicsItem(item, worldModel, worldScene)
 {
     Q_ASSERT(dynamic_cast<StepCore::Gas*>(_item) != NULL);
     setFlag(QGraphicsItem::ItemIsSelectable);
@@ -282,7 +282,7 @@ OnHoverHandlerGraphicsItem* GasGraphicsItem::createOnHoverHandler(const QPointF&
         return _onHoverHandler;
 
     if(num >= 0)
-        return new GasVertexHandlerGraphicsItem(_item, _worldModel, this, num);
+        return new GasVertexHandlerGraphicsItem(_item, _worldModel, _worldScene, this, num);
 
     return 0;
 }

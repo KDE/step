@@ -120,8 +120,8 @@ void WidgetVertexHandlerGraphicsItem::setValue(const StepCore::Vector2d& value)
     _worldModel->setProperty(_item, "size", QVariant::fromValue(newSize*s));
 }
 
-WidgetGraphicsItem::WidgetGraphicsItem(StepCore::Item* item, WorldModel* worldModel)
-    : WorldGraphicsItem(item, worldModel), _centralWidget(0)
+WidgetGraphicsItem::WidgetGraphicsItem(StepCore::Item* item, WorldModel* worldModel, WorldScene* worldScene)
+    : WorldGraphicsItem(item, worldModel, worldScene), _centralWidget(0)
 {
     setFlag(QGraphicsItem::ItemIsSelectable);
     setFlag(QGraphicsItem::ItemIsMovable);
@@ -159,7 +159,7 @@ OnHoverHandlerGraphicsItem* WidgetGraphicsItem::createOnHoverHandler(const QPoin
         return _onHoverHandler;
 
     if(num >= 0)
-        return new WidgetVertexHandlerGraphicsItem(_item, _worldModel, this, num);
+        return new WidgetVertexHandlerGraphicsItem(_item, _worldModel, _worldScene, this, num);
 
     return 0;
 }
@@ -354,8 +354,8 @@ void NoteTextEdit::mouseReleaseEvent(QMouseEvent *e)
     KTextEdit::mouseReleaseEvent(e);
 }
 
-NoteGraphicsItem::NoteGraphicsItem(StepCore::Item* item, WorldModel* worldModel)
-    : WidgetGraphicsItem(item, worldModel)
+NoteGraphicsItem::NoteGraphicsItem(StepCore::Item* item, WorldModel* worldModel, WorldScene* worldScene)
+    : WidgetGraphicsItem(item, worldModel, worldScene)
 {
     Q_ASSERT(dynamic_cast<StepCore::Note*>(_item) != NULL);
     setFlag(QGraphicsItem::ItemIsSelectable);
@@ -888,8 +888,8 @@ void DataSourceWidget::propertySelected(int index)
 }
 
 ////////////////////////////////////////////////////
-GraphGraphicsItem::GraphGraphicsItem(StepCore::Item* item, WorldModel* worldModel)
-    : WidgetGraphicsItem(item, worldModel)
+GraphGraphicsItem::GraphGraphicsItem(StepCore::Item* item, WorldModel* worldModel, WorldScene* worldScene)
+    : WidgetGraphicsItem(item, worldModel, worldScene)
 {
     Q_ASSERT(dynamic_cast<StepCore::Graph*>(_item) != NULL);
     setFlag(QGraphicsItem::ItemIsSelectable);
@@ -1217,8 +1217,8 @@ void GraphMenuHandler::clearGraph()
 }
 
 ////////////////////////////////////////////////////
-MeterGraphicsItem::MeterGraphicsItem(StepCore::Item* item, WorldModel* worldModel)
-    : WidgetGraphicsItem(item, worldModel)
+MeterGraphicsItem::MeterGraphicsItem(StepCore::Item* item, WorldModel* worldModel, WorldScene* worldScene)
+    : WidgetGraphicsItem(item, worldModel, worldScene)
 {
     Q_ASSERT(dynamic_cast<StepCore::Meter*>(_item) != NULL);
     setFlag(QGraphicsItem::ItemIsSelectable);
@@ -1363,8 +1363,8 @@ void MeterMenuHandler::confChanged()
 }
 
 ////////////////////////////////////////////////////
-ControllerGraphicsItem::ControllerGraphicsItem(StepCore::Item* item, WorldModel* worldModel)
-    : WidgetGraphicsItem(item, worldModel)
+ControllerGraphicsItem::ControllerGraphicsItem(StepCore::Item* item, WorldModel* worldModel, WorldScene* worldScene)
+    : WidgetGraphicsItem(item, worldModel, worldScene)
 {
     Q_ASSERT(dynamic_cast<StepCore::Controller*>(_item) != NULL);
     setFlag(QGraphicsItem::ItemIsSelectable);
@@ -1715,8 +1715,8 @@ void ControllerMenuHandler::incTriggered()
 
 ////////////////////////////////////////////////////
 
-TracerGraphicsItem::TracerGraphicsItem(StepCore::Item* item, WorldModel* worldModel)
-    : WorldGraphicsItem(item, worldModel), _moving(false), _movingDelta(0,0)
+TracerGraphicsItem::TracerGraphicsItem(StepCore::Item* item, WorldModel* worldModel, WorldScene* worldScene)
+    : WorldGraphicsItem(item, worldModel, worldScene), _moving(false), _movingDelta(0,0)
 {
     Q_ASSERT(dynamic_cast<StepCore::Tracer*>(_item) != NULL);
     setFlag(QGraphicsItem::ItemIsSelectable);
