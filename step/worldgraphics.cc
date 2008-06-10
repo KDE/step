@@ -288,7 +288,7 @@ void WorldGraphicsItem::mouseSetPos(const QPointF& pos, const QPointF&, MovingSt
     if(property != NULL) {
         _worldModel->simulationPause();
         _worldModel->setProperty(_item, property,
-                                QVariant::fromValue( pointToVector(pos) ));
+                                QVariant::fromValue( _worldScene->pointToVector(pos) ));
     } else {
         Q_ASSERT(false);
     }
