@@ -45,6 +45,11 @@ SpringHandlerGraphicsItem::SpringHandlerGraphicsItem(StepCore::Item* item, World
     _boundingRect = QRectF(-HANDLER_SIZE/2, -HANDLER_SIZE/2, HANDLER_SIZE, HANDLER_SIZE);
 }
 
+void SpringHandlerGraphicsItem::viewScaleChanged()
+{
+    worldDataChanged(true);
+}
+
 void SpringHandlerGraphicsItem::worldDataChanged(bool)
 {
     if(_num == 2)

@@ -37,6 +37,7 @@ public:
                                 QGraphicsItem* parent, int num);
 
     void worldDataChanged(bool);
+    void viewScaleChanged();
 
 protected:
     void mouseSetPos(const QPointF& pos, const QPointF& diff, MovingState movingState);
