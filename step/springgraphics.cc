@@ -28,6 +28,7 @@
 #include <QEvent>
 #include <QPainter>
 #include <KLocale>
+#include <KSvgRenderer>
 
 #include <cmath>
 
@@ -95,10 +96,11 @@ QPainterPath SpringGraphicsItem::shape() const
 
 void SpringGraphicsItem::paint(QPainter* painter, const QStyleOptionGraphicsItem* /*option*/, QWidget* /*widget*/)
 {
-    painter->setRenderHint(QPainter::Antialiasing, true);
-    painter->setPen(QPen(QColor::fromRgba(spring()->color()), 0));
     StepCore::Vector2d r = spring()->position2() - spring()->position1();
-    painter->drawLine(QPointF(0, 0), _worldScene->vectorToPoint(r));
+    double rnorm = r.norm()*_worldScene->viewScale();
+    painter->rotate(atan2(-r[1], r[0])*180/3.14);
+    _worldScene->worldRenderer()->svgRenderer()->
+            render(painter, "spring", QRectF(0, -RADIUS, rnorm, 2*RADIUS));
     //painter->setPen(Qt::red);
     //painter->drawPath(_painterPath);
     /*
@@ -202,9 +204,10 @@ void SpringGraphicsItem::worldDataChanged(bool dynamicOnly)
 
     StepCore::Vector2d r = spring()->position2() - spring()->position1();
     _boundingRect = QRectF(QPointF(0, 0), _worldScene->vectorToPoint(r)).normalized();
+    _boundingRect.adjust(-RADIUS, -RADIUS, RADIUS, RADIUS);
 
     _painterPath = QPainterPath();
-    _painterPath.addRect(QRectF(0, -6, r.norm()*_worldScene->viewScale(), 12));
+    _painterPath.addRect(QRectF(0, -RADIUS, r.norm()*_worldScene->viewScale(), RADIUS*2));
     _painterPath = QMatrix().rotate(atan2(-r[1],r[0])*180/3.14).map(_painterPath);
 }
 

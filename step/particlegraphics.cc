@@ -57,8 +57,8 @@ void ParticleGraphicsItem::paint(QPainter* painter, const QStyleOptionGraphicsIt
     //painter->setPen(QPen(Qt::green, 0));
     //painter->drawRect(boundingRect());
 
-    static_cast<WorldScene*>(scene())->worldRenderer()->svgRenderer()->
-            render(painter, QRectF(-RADIUS,-RADIUS,RADIUS*2,RADIUS*2));
+    _worldScene->worldRenderer()->svgRenderer()->
+            render(painter, "particle", QRectF(-RADIUS,-RADIUS,RADIUS*2,RADIUS*2));
 
     /*
     int renderHints = painter->renderHints();
