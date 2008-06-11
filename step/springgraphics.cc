@@ -41,19 +41,14 @@ SpringHandlerGraphicsItem::SpringHandlerGraphicsItem(StepCore::Item* item, World
     setExclusiveMoving(true);
     setExclusiveMovingMessage(i18n("Move end of %1", _item->name()));
     setPos(0, 0);
-}
-
-void SpringHandlerGraphicsItem::viewScaleChanged()
-{
-    prepareGeometryChange();
-    double w = HANDLER_SIZE/currentViewScale()/2;
-    _boundingRect = QRectF(-w, -w, w*2, w*2);
+    
+    _boundingRect = QRectF(-HANDLER_SIZE/2, -HANDLER_SIZE/2, HANDLER_SIZE, HANDLER_SIZE);
 }
 
 void SpringHandlerGraphicsItem::worldDataChanged(bool)
 {
     if(_num == 2)
-        setPos(vectorToPoint(static_cast<StepCore::Spring*>(_item)->position2()-
+        setPos(_worldScene->vectorToPoint(static_cast<StepCore::Spring*>(_item)->position2()-
                              static_cast<StepCore::Spring*>(_item)->position1()));
 }
 
@@ -95,6 +90,13 @@ QPainterPath SpringGraphicsItem::shape() const
 
 void SpringGraphicsItem::paint(QPainter* painter, const QStyleOptionGraphicsItem* /*option*/, QWidget* /*widget*/)
 {
+    painter->setRenderHint(QPainter::Antialiasing, true);
+    painter->setPen(QPen(QColor::fromRgba(spring()->color()), 0));
+    StepCore::Vector2d r = spring()->position2() - spring()->position1();
+    painter->drawLine(QPointF(0, 0), _worldScene->vectorToPoint(r));
+    //painter->setPen(Qt::red);
+    //painter->drawPath(_painterPath);
+    /*
     static const int seq[4] = { 0,1,0,-1 };
 
     StepCore::Vector2d r = spring()->position2() - spring()->position1();
@@ -133,12 +135,15 @@ void SpringGraphicsItem::paint(QPainter* painter, const QStyleOptionGraphicsItem
         painter->scale( 1/_rscale, 1/_radius );
         painter->drawRect(QRectF(-m, -_radius-m, _rnorm+m*2,  (_radius+m)*2));
     }
+    */
 }
 
 void SpringGraphicsItem::viewScaleChanged()
 {
+    worldDataChanged(true);
+    /*
     prepareGeometryChange();
-
+    
     StepCore::Vector2d r = spring()->position2() - spring()->position1();
     _rnorm = r.norm();
     
@@ -174,15 +179,28 @@ void SpringGraphicsItem::viewScaleChanged()
     _painterPath = QMatrix().rotate(atan2(r[1], r[0])*180/3.14).map(_painterPath);
         
     //update(); // XXX: documentation says this is unnessesary, but it doesn't work without it
+    */
 }
+
 
 void SpringGraphicsItem::worldDataChanged(bool dynamicOnly)
 {
     Q_UNUSED(dynamicOnly)
     // XXX: TODO do not redraw everything each time
-    setPos(vectorToPoint(spring()->position1()));
+    /*
+    
     viewScaleChanged();
     update();
+    */
+    setPos(_worldScene->vectorToPoint(spring()->position1()));
+    prepareGeometryChange();
+
+    StepCore::Vector2d r = spring()->position2() - spring()->position1();
+    _boundingRect = QRectF(QPointF(0, 0), _worldScene->vectorToPoint(r)).normalized();
+
+    _painterPath = QPainterPath();
+    _painterPath.addRect(QRectF(0, -6, r.norm()*_worldScene->viewScale(), 12));
+    _painterPath = QMatrix().rotate(atan2(-r[1],r[0])*180/3.14).map(_painterPath);
 }
 
 void SpringGraphicsItem::stateChanged()
@@ -199,38 +217,42 @@ void SpringGraphicsItem::stateChanged()
     update();
 }
 
-void SpringGraphicsItem::mouseSetPos(const QPointF& /*pos*/, const QPointF& diff, MovingState)
+void SpringGraphicsItem::mouseSetPos(const QPointF& /*pos*/, const QPointF& diff, MovingState movingState)
 {
     _worldModel->simulationPause();
 
     if(spring()->body1()) {
-        Q_ASSERT(spring()->body1()->metaObject()->inherits<StepCore::Item>());
-        WorldGraphicsItem* gItem = static_cast<WorldScene*>(
-            scene())->graphicsFromItem(static_cast<StepCore::Item*>(spring()->body1()));
-        Q_ASSERT(gItem != NULL);
-        if(!gItem->isSelected()) {
-            _worldModel->setProperty(_item, "localPosition1",
-                        _item->metaObject()->property("position1")->readVariant(_item));
-            _worldModel->setProperty(_item, "body1",
-                        QVariant::fromValue<StepCore::Object*>(NULL), WorldModel::UndoNoMerge);
+        if(movingState == WorldGraphicsItem::Started) {
+            Q_ASSERT(spring()->body1()->metaObject()->inherits<StepCore::Item>());
+            WorldGraphicsItem* gItem = static_cast<WorldScene*>(
+                scene())->graphicsFromItem(static_cast<StepCore::Item*>(spring()->body1()));
+            Q_ASSERT(gItem != NULL);
+            if(!gItem->isSelected()) {
+                _worldModel->setProperty(_item, "localPosition1",
+                            _item->metaObject()->property("position1")->readVariant(_item));
+                _worldModel->setProperty(_item, "body1",
+                            QVariant::fromValue<StepCore::Object*>(NULL), WorldModel::UndoNoMerge);
+            }
         }
     } else {
         _worldModel->setProperty(_item, "localPosition1", 
-            QVariant::fromValue( spring()->position1() + pointToVector(diff) ));
+            QVariant::fromValue( spring()->position1() + _worldScene->pointToVector(diff) ));
     }
 
     if(spring()->body2()) {
-        Q_ASSERT(spring()->body2()->metaObject()->inherits<StepCore::Item>());
-        WorldGraphicsItem* gItem = static_cast<WorldScene*>(
-            scene())->graphicsFromItem(static_cast<StepCore::Item*>(spring()->body2()));
-        Q_ASSERT(gItem != NULL);
-        if(!gItem->isSelected()) {
-            _worldModel->setProperty(_item, "localPosition2",
-                        _item->metaObject()->property("position2")->readVariant(_item));
-            _worldModel->setProperty(_item, "body2", QString(), WorldModel::UndoNoMerge);
+        if(movingState == WorldGraphicsItem::Started) {
+            Q_ASSERT(spring()->body2()->metaObject()->inherits<StepCore::Item>());
+            WorldGraphicsItem* gItem = static_cast<WorldScene*>(
+                scene())->graphicsFromItem(static_cast<StepCore::Item*>(spring()->body2()));
+            Q_ASSERT(gItem != NULL);
+            if(!gItem->isSelected()) {
+                _worldModel->setProperty(_item, "localPosition2",
+                            _item->metaObject()->property("position2")->readVariant(_item));
+                _worldModel->setProperty(_item, "body2", QString(), WorldModel::UndoNoMerge);
+            }
         }
     } else {
         _worldModel->setProperty(_item, "localPosition2",
-            QVariant::fromValue( spring()->position2() + pointToVector(diff) ));
+            QVariant::fromValue( spring()->position2() + _worldScene->pointToVector(diff) ));
     }
 }

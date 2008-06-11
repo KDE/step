@@ -36,7 +36,6 @@ public:
     SpringHandlerGraphicsItem(StepCore::Item* item, WorldModel* worldModel, WorldScene* worldScene,
                                 QGraphicsItem* parent, int num);
 
-    void viewScaleChanged();
     void worldDataChanged(bool);
 
 protected:

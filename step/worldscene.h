@@ -97,11 +97,11 @@ public:
     
     /** Converts QPointF to StepCore::Vector2d and scales it */
     StepCore::Vector2d pointToVector(const QPointF& point) {
-        return StepCore::Vector2d(point.x()/_viewScale, point.y()/_viewScale);
+        return StepCore::Vector2d(point.x()/_viewScale, - point.y()/_viewScale);
     }
     /** Converts StepCore::Vector2d to QPointF and scales it */
     QPointF vectorToPoint(const StepCore::Vector2d& vector) {
-        return QPointF(vector[0]*_viewScale, vector[1]*_viewScale);
+        return QPointF(vector[0]*_viewScale, - vector[1]*_viewScale);
     }
 
     /** Calculate united bounding rect of all items

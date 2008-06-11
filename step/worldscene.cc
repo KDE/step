@@ -506,17 +506,17 @@ StepCore::Item* WorldScene::snapItem(QPointF pos, SnapFlags flags, const SnapLis
 
         if(flags.testFlag(SnapSetPosition))
             _worldModel->setProperty(item, "position"+n,
-                                QVariant::fromValue(WorldGraphicsItem::pointToVector(pos)));
+                                QVariant::fromValue(pointToVector(pos)));
 
         if(flags.testFlag(SnapSetLocalPosition))
             _worldModel->setProperty(item, "localPosition"+n,
-                                QVariant::fromValue(WorldGraphicsItem::pointToVector(pos)));
+                                QVariant::fromValue(pointToVector(pos)));
 
         if(flags.testFlag(SnapSetAngle) && movingState == WorldGraphicsItem::Started)
             _worldModel->setProperty(item, "angle"+n, QVariant::fromValue(0.0));
 
     } else if(movingState == WorldGraphicsItem::Finished) {
-        StepCore::Vector2d wPos(WorldGraphicsItem::pointToVector(pos));
+        StepCore::Vector2d wPos(pointToVector(pos));
         StepCore::Vector2d lPos(0,0);
         double angle = 0.0;
 
