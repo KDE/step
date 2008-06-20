@@ -36,9 +36,9 @@
      objecttolerance="10"
      inkscape:pageopacity="0.0"
      inkscape:pageshadow="2"
-     inkscape:zoom="0.35"
-     inkscape:cx="162.46364"
-     inkscape:cy="307.42857"
+     inkscape:zoom="3.959798"
+     inkscape:cx="297.19344"
+     inkscape:cy="366.14374"
      inkscape:document-units="px"
      inkscape:current-layer="layer1"
      showgrid="false"
@@ -63,7 +63,7 @@
      id="layer1"
      transform="translate(-250.92856,-426.1479)">
     <g
-       id="particle">
+       id="Particle">
       <path
          d="M 491.42856,542.36218 A 120,115.71429 0 1 1 251.42856,542.36218 A 120,115.71429 0 1 1 491.42856,542.36218 z"
          sodipodi:ry="115.71429"
@@ -81,6 +81,25 @@
     <path
        style="fill:none;fill-opacity:1;fill-rule:evenodd;stroke:#00ec00;stroke-width:5;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
        d="M 533.10961,491.04609 C 532.24004,507.40837 558.20722,463.76813 574.56951,464.6377 C 612.29337,466.6425 587.16131,512.30817 614.66477,463.90736 C 628.06181,440.33115 662.08995,478.772 667.81259,486.76009 C 683.21709,508.2628 654.86854,486.70192 689.14905,462.14342 C 702.03448,452.91234 718.49696,477.05883 727.72804,489.94426 C 734.49832,499.3947 738.2084,466.21309 749.21613,462.47448 C 763.89619,457.48861 782.6084,480.1965 781.78564,495.67829"
-       id="spring" />
+       id="Spring" />
+    <g
+       id="Anchor"
+       transform="matrix(0.1212065,0,0,0.1109752,493.84056,722.17988)">
+      <path
+         transform="matrix(0.769584,-0.6385456,0.6385456,0.769584,62.565566,675.57125)"
+         d="M 288.57143,385.71429 A 37.142857,20 0 1 1 214.28572,385.71429 A 37.142857,20 0 1 1 288.57143,385.71429 z"
+         sodipodi:ry="20"
+         sodipodi:rx="37.142857"
+         sodipodi:cy="385.71429"
+         sodipodi:cx="251.42857"
+         id="path2394"
+         style="fill:#20ffff;fill-opacity:1;stroke:#6fecff;stroke-width:5;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+         sodipodi:type="arc" />
+      <path
+         style="fill:#00ffff;fill-opacity:1;fill-rule:evenodd;stroke:#23b99c;stroke-width:10;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+         d="M 262.85714,400 L 297.14286,434.28571"
+         id="path2398"
+         transform="translate(250.92856,426.1479)" />
+    </g>
   </g>
 </svg>

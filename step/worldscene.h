@@ -25,6 +25,7 @@
 #include <QGraphicsView>
 #include <QList>
 #include <QHash>
+#include <QCache>
 
 #include "messageframe.h"
 
@@ -53,11 +54,14 @@ class WorldRenderer: public QObject
 
 public:
     explicit WorldRenderer(QObject* parent = 0);
-
+    ~WorldRenderer();
+    
     KSvgRenderer* svgRenderer();
-
+    QCache<QString, QPixmap>* pixmapCache();
+    
 protected:
     KSvgRenderer* _svgRenderer;
+    QCache<QString, QPixmap>* _pixmapCache;
 };
 
 /** \brief World scene class */

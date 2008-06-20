@@ -52,17 +52,30 @@
 #include <KDebug>
 #include <KSvgRenderer>
 #include <KStandardDirs>
+#include <KPixmapCache>
 
 WorldRenderer::WorldRenderer(QObject* parent)
     : QObject(parent)
 {
     QString fileName = KStandardDirs::locate("appdata", "themes/default.svg");
     _svgRenderer = new KSvgRenderer(fileName, this);
+    _pixmapCache = new QCache<QString, QPixmap>(1024*1024);
+//#error XXX: Don't save the cache to disk
+}
+
+WorldRenderer::~WorldRenderer()
+{
+    delete _pixmapCache;
 }
 
 KSvgRenderer* WorldRenderer::svgRenderer()
 {
     return _svgRenderer;
+}
+
+QCache<QString, QPixmap>* WorldRenderer::pixmapCache()
+{
+    return _pixmapCache;
 }
 
 class WorldSceneAxes: public QGraphicsItem

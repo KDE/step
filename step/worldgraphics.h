@@ -39,6 +39,7 @@ class WorldModel;
 class WorldScene;
 class QEvent;
 class QTimer;
+class QPixmap;
 
 /** \brief Base class for item creators.
  *
@@ -187,6 +188,11 @@ public:
     /** Virtual function to paint the item. Default implementation
      *  draws boundingRect() in grey color */
     void paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget);
+    
+    /** Virtual function to generate appropriate pixmap for item */
+    virtual QPixmap* paintPixmap();
+    /** Virtual function to generate pixmapCacheKey*/
+    virtual QString pixmapCacheKey();
 
     /** Get item highlight state */
     bool isItemHighlighted() { return _isHighlighted; }
@@ -307,6 +313,8 @@ protected:
     static const int HANDLER_ZVALUE = 800;  ///< Default ZValue for handlers
 
     static const int COLOR_HIGHLIGHT_AMOUNT = 30; ///< Highligh amount (in percent for value component)
+    
+    static const int PIXMAP_CACHE_GRADING = 10; ///< Count of sub-pixel-shifted copies of the pixmap
 };
 
 /////////////////////////////////////////////////////////////////////////////////////////

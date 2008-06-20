@@ -32,6 +32,7 @@
 #include <QMenu>
 #include <KIcon>
 #include <KLocale>
+#include <KPixmapCache>
 
 #include <cmath>
 
@@ -480,8 +481,27 @@ void WorldGraphicsItem::stateChanged()
 
 void WorldGraphicsItem::paint(QPainter* painter, const QStyleOptionGraphicsItem*, QWidget*)
 {
-    painter->setPen(QPen(Qt::gray, 0));
-    painter->drawRect(_boundingRect);
+    //painter->setPen(QPen(Qt::gray, 0));
+    //painter->drawRect(_boundingRect);
+    static int totalcount = 0;
+    static int misscount = 0;
+    
+    QString key = pixmapCacheKey();
+    if(key.isEmpty()) return;
+    
+    ++totalcount;
+    QPixmap* pixmap = _worldScene->worldRenderer()->pixmapCache()->object(key);
+    if(!pixmap) {
+        ++misscount;
+        pixmap = paintPixmap();
+        if(!pixmap) return;
+        _worldScene->worldRenderer()->pixmapCache()->insert(key, pixmap,
+                                   pixmap->size().width()*pixmap->size().height());
+    }
+    painter->drawPixmap(-pixmap->size().width()/2, -pixmap->size().height()/2 , *pixmap);
+    
+    if(0 == misscount % 10)
+        kDebug() << "totalcount=" << totalcount << " misscount=" << misscount;
 }
 
 void WorldGraphicsItem::contextMenuEvent(QGraphicsSceneContextMenuEvent* event)
@@ -497,6 +517,15 @@ void WorldGraphicsItem::contextMenuEvent(QGraphicsSceneContextMenuEvent* event)
     delete menu;
 }
 
+QString WorldGraphicsItem::pixmapCacheKey()
+{
+    return QString();
+}   
+    
+QPixmap* WorldGraphicsItem::paintPixmap()
+{
+    return 0;
+}  
 /////////////////////////////////////////////////////////////////////////////////////////
 
 ArrowHandlerGraphicsItem::ArrowHandlerGraphicsItem(StepCore::Item* item, WorldModel* worldModel, 

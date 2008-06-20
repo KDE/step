@@ -27,6 +27,8 @@
 #include <QGraphicsSceneMouseEvent>
 #include <QItemSelectionModel>
 #include <KLocale>
+#include <KSvgRenderer>
+#include <KDebug>
 
 AnchorGraphicsItem::AnchorGraphicsItem(StepCore::Item* item, WorldModel* worldModel, WorldScene* worldScene)
     : WorldGraphicsItem(item, worldModel, worldScene)
@@ -36,6 +38,10 @@ AnchorGraphicsItem::AnchorGraphicsItem(StepCore::Item* item, WorldModel* worldMo
     setFlag(QGraphicsItem::ItemIsMovable);
     setZValue(JOINT_ZVALUE);
     setExclusiveMoving(true);
+    
+    _boundingRect = _worldScene->worldRenderer()->svgRenderer()->boundsOnElement("Anchor");
+    _boundingRect.moveCenter(QPointF(0,0));
+    kDebug() << _boundingRect;
 }
 
 inline StepCore::Anchor* AnchorGraphicsItem::anchor() const
@@ -46,8 +52,7 @@ inline StepCore::Anchor* AnchorGraphicsItem::anchor() const
 QPainterPath AnchorGraphicsItem::shape() const
 {
     QPainterPath path;
-    double radius = (HANDLER_SIZE+1)/currentViewScale();
-    path.addEllipse(QRectF(-radius,-radius,radius*2,radius*2));
+    path.addEllipse(QRectF(-HANDLER_SIZE-1,-HANDLER_SIZE-1,(HANDLER_SIZE-1)*2,(HANDLER_SIZE-1)*2));
     return path;
 }
 
@@ -60,37 +65,33 @@ void AnchorGraphicsItem::mouseSetPos(const QPointF& pos, const QPointF&, MovingS
 
 void AnchorGraphicsItem::paint(QPainter* painter, const QStyleOptionGraphicsItem* /*option*/, QWidget* /*widget*/)
 {
-    double s = currentViewScale();
-    double radius = HANDLER_SIZE/s;
-
+    _worldScene->worldRenderer()->svgRenderer()->
+    render(painter, "Anchor", _boundingRect);
+    /*
     painter->setRenderHint(QPainter::Antialiasing, true);
     painter->setPen(QPen(QColor::fromRgba(anchor()->color())));
-    painter->drawEllipse(QRectF(-radius,-radius,radius*2,radius*2));
-    painter->drawLine(QLineF(-radius, -radius, radius, radius));
-    painter->drawLine(QLineF(-radius, radius, radius, -radius));
+    painter->drawEllipse(QRectF(-HANDLER_SIZE,-HANDLER_SIZE,HANDLER_SIZE*2,HANDLER_SIZE*2));
+    painter->drawLine(QLineF(-HANDLER_SIZE, -HANDLER_SIZE, HANDLER_SIZE, HANDLER_SIZE));
+    painter->drawLine(QLineF(-HANDLER_SIZE, HANDLER_SIZE, HANDLER_SIZE, -HANDLER_SIZE));
 
     if(_isSelected) {
         painter->setPen(QPen(SELECTION_COLOR, 0, Qt::DashLine));
         painter->setBrush(Qt::NoBrush);
         //painter->setBrush(QBrush(QColor(0, 0x99, 0xff)));
-        radius = (HANDLER_SIZE+SELECTION_MARGIN)/s;
-        painter->drawEllipse(QRectF(-radius, -radius, radius*2, radius*2));
+        painter->drawEllipse(QRectF(-HANDLER_SIZE, -HANDLER_SIZE, HANDLER_SIZE*2, HANDLER_SIZE*2));
     }
+    */
 }
 
 void AnchorGraphicsItem::viewScaleChanged()
 {
-    prepareGeometryChange();
-
-    double s = currentViewScale();
-    _boundingRect |= QRectF((-HANDLER_SIZE-SELECTION_MARGIN)/s,  (-HANDLER_SIZE-SELECTION_MARGIN)/s,
-                            (HANDLER_SIZE+SELECTION_MARGIN)*2/s,( HANDLER_SIZE+SELECTION_MARGIN)*2/s);
+    worldDataChanged(true);
 }
 
 void AnchorGraphicsItem::worldDataChanged(bool dynamicOnly)
 {
     if(!dynamicOnly) update();
-    setPos(vectorToPoint(anchor()->position()));       
+    setPos(_worldScene->vectorToPoint(anchor()->position()));
 }
 
 //////////////////////////////////////////////////////////////////////////

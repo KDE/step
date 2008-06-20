@@ -100,7 +100,7 @@ void SpringGraphicsItem::paint(QPainter* painter, const QStyleOptionGraphicsItem
     double rnorm = r.norm()*_worldScene->viewScale();
     painter->rotate(atan2(-r[1], r[0])*180/3.14);
     _worldScene->worldRenderer()->svgRenderer()->
-            render(painter, "spring", QRectF(0, -RADIUS, rnorm, 2*RADIUS));
+            render(painter, "Spring", QRectF(0, -RADIUS, rnorm, 2*RADIUS));
     //painter->setPen(Qt::red);
     //painter->drawPath(_painterPath);
     /*

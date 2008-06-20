@@ -28,6 +28,7 @@
 #include <QPainter>
 #include <KLocale>
 #include <KSvgRenderer>
+#include <KDebug>
 
 ParticleGraphicsItem::ParticleGraphicsItem(StepCore::Item* item, WorldModel* worldModel, WorldScene* worldScene)
     : WorldGraphicsItem(item, worldModel, worldScene)
@@ -52,13 +53,14 @@ QPainterPath ParticleGraphicsItem::shape() const
     return path;
 }
 
+#if 0
 void ParticleGraphicsItem::paint(QPainter* painter, const QStyleOptionGraphicsItem* /*option*/, QWidget* /*widget*/)
 {
     //painter->setPen(QPen(Qt::green, 0));
     //painter->drawRect(boundingRect());
 
     _worldScene->worldRenderer()->svgRenderer()->
-            render(painter, "particle", QRectF(-RADIUS,-RADIUS,RADIUS*2,RADIUS*2));
+            render(painter, "Particle", QRectF(-RADIUS,-RADIUS,RADIUS*2,RADIUS*2));
 
     /*
     int renderHints = painter->renderHints();
@@ -89,6 +91,28 @@ void ParticleGraphicsItem::paint(QPainter* painter, const QStyleOptionGraphicsIt
         drawArrow(painter, particle()->acceleration());
     }
     */
+}
+#endif
+
+QString ParticleGraphicsItem::pixmapCacheKey()
+{
+    QPoint c = ((pos() - pos().toPoint())*PIXMAP_CACHE_GRADING).toPoint();
+    //kDebug() << (pos() - pos().toPoint())*10;
+    //kDebug() << QString("Particle-%1x%2").arg(5+c.x()).arg(5+c.y());
+    return QString("Particle-%1x%2").arg(c.x()).arg(c.y());
+}
+
+QPixmap* ParticleGraphicsItem::paintPixmap()
+{
+    QPixmap* pixmap = new QPixmap(2*RADIUS, 2*RADIUS);
+    pixmap->fill(Qt::transparent);
+    
+    QPainter painter;
+    painter.begin(pixmap);
+    _worldScene->worldRenderer()->svgRenderer()->render(&painter, "Particle",
+                        QRectF(pos() - pos().toPoint(), QSize(RADIUS*2,RADIUS*2)));
+    painter.end();
+    return pixmap;
 }
 
 void ParticleGraphicsItem::viewScaleChanged()
