@@ -53,8 +53,11 @@ class LinearMotorGraphicsItem: public WorldGraphicsItem
 public:
     LinearMotorGraphicsItem(StepCore::Item* item, WorldModel* worldModel, WorldScene* worldScene);
 
-    void paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget);
+    //void paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget);
     QPainterPath shape() const;
+    
+    QString pixmapCacheKey();
+    QPixmap* paintPixmap();
 
     void viewScaleChanged();
     void worldDataChanged(bool dynamicOnly);

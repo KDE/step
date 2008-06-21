@@ -28,6 +28,8 @@
 #include <QColor>
 #include <QMenu>
 
+#include <KSvgRenderer>
+
 namespace StepCore {
     class Object;
     class Item;

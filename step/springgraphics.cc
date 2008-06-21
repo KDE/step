@@ -28,7 +28,6 @@
 #include <QEvent>
 #include <QPainter>
 #include <KLocale>
-#include <KSvgRenderer>
 
 #include <cmath>
 

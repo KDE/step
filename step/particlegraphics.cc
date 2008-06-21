@@ -27,7 +27,6 @@
 #include <QEvent>
 #include <QPainter>
 #include <KLocale>
-#include <KSvgRenderer>
 #include <KDebug>
 
 ParticleGraphicsItem::ParticleGraphicsItem(StepCore::Item* item, WorldModel* worldModel, WorldScene* worldScene)

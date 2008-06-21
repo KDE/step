@@ -35,7 +35,7 @@ bool LinearMotorCreator::sceneEvent(QEvent* event)
     QGraphicsSceneMouseEvent* mouseEvent = static_cast<QGraphicsSceneMouseEvent*>(event);
     if(event->type() == QEvent::GraphicsSceneMousePress && mouseEvent->button() == Qt::LeftButton) {
         QPointF pos = mouseEvent->scenePos();
-        QVariant vpos = QVariant::fromValue(WorldGraphicsItem::pointToVector(pos));
+        QVariant vpos = QVariant::fromValue(_worldScene->pointToVector(pos));
 
         _worldModel->simulationPause();
         _worldModel->beginMacro(i18n("Create %1", _worldModel->newItemName(_className)));
@@ -64,7 +64,8 @@ void LinearMotorCreator::tryAttach(const QPointF& pos)
 
             StepCore::Vector2d lPos(0, 0);
             if(dynamic_cast<StepCore::RigidBody*>(item))
-                lPos = dynamic_cast<StepCore::RigidBody*>(item)->pointWorldToLocal(WorldGraphicsItem::pointToVector(pos));
+                lPos = dynamic_cast<StepCore::RigidBody*>(item)->
+                        pointWorldToLocal(_worldScene->pointToVector(pos));
 
             _worldModel->setProperty(_item, "localPosition", QVariant::fromValue(lPos));
             break;
@@ -83,6 +84,11 @@ LinearMotorGraphicsItem::LinearMotorGraphicsItem(StepCore::Item* item, WorldMode
     _forceHandler = new ArrowHandlerGraphicsItem(item, worldModel, worldScene, this,
                    _item->metaObject()->property("forceValue"));
     _forceHandler->setVisible(false);
+    
+    _boundingRect = _worldScene->worldRenderer()->svgRenderer()->
+            boundsOnElement(_item->metaObject()->className());
+    _boundingRect.moveCenter(QPointF(0,0));
+//    kDebug() << _boundingRect;
 }
 
 inline StepCore::LinearMotor* LinearMotorGraphicsItem::motor() const
@@ -93,8 +99,7 @@ inline StepCore::LinearMotor* LinearMotorGraphicsItem::motor() const
 QPainterPath LinearMotorGraphicsItem::shape() const
 {
     QPainterPath path;
-    double radius = (RADIUS+1)/currentViewScale();
-    path.addEllipse(QRectF(-radius,-radius,radius*2,radius*2));
+    path.addEllipse(QRectF(-RADIUS-1,-RADIUS-1,RADIUS*2+2,RADIUS*2+2));
     return path;
 }
 
@@ -102,7 +107,7 @@ void LinearMotorGraphicsItem::mouseMoveEvent(QGraphicsSceneMouseEvent *event)
 {
     if ((event->buttons() & Qt::LeftButton) && (flags() & ItemIsMovable)) {
         QPointF newPos(mapToParent(event->pos()) - matrix().map(event->buttonDownPos(Qt::LeftButton)));
-        QVariant vpos = QVariant::fromValue(pointToVector(newPos));
+        QVariant vpos = QVariant::fromValue(_worldScene->pointToVector(newPos));
 
         _worldModel->simulationPause();
         if(!_moving) {
@@ -144,7 +149,7 @@ void LinearMotorGraphicsItem::mouseReleaseEvent(QGraphicsSceneMouseEvent *event)
     } else WorldGraphicsItem::mouseReleaseEvent(event);
 }
 
-
+#if 0
 void LinearMotorGraphicsItem::paint(QPainter* painter, const QStyleOptionGraphicsItem* /*option*/, QWidget* /*widget*/)
 {
     double s = currentViewScale();
@@ -177,9 +182,34 @@ void LinearMotorGraphicsItem::paint(QPainter* painter, const QStyleOptionGraphic
 //    }
 
 }
+#endif
+
+QString LinearMotorGraphicsItem::pixmapCacheKey()
+{
+    QPoint c = ((pos() - pos().toPoint())*PIXMAP_CACHE_GRADING).toPoint();
+    //kDebug() << (pos() - pos().toPoint())*10;
+    //kDebug() << QString("Particle-%1x%2").arg(5+c.x()).arg(5+c.y());
+    return QString("%1:%2x%3").arg(_item->metaObject()->className()).arg(c.x()).arg(c.y());
+}
+
+QPixmap* LinearMotorGraphicsItem::paintPixmap()
+{
+    QSize size = (_boundingRect.size()/2.0).toSize()+QSize(1,1);
+    QPixmap* pixmap = new QPixmap(size*2);
+    pixmap->fill(Qt::transparent);
+    
+    QPainter painter;
+    painter.begin(pixmap);
+    _worldScene->worldRenderer()->svgRenderer()->render(&painter, _item->metaObject()->className(),
+                               _boundingRect.translated(QPointF(size.width(), size.height()) + pos() - pos().toPoint()));
+    painter.end();
+    return pixmap;
+}
 
 void LinearMotorGraphicsItem::viewScaleChanged()
 {
+    worldDataChanged(true);
+    /*
     prepareGeometryChange();
 
     double s = currentViewScale();
@@ -190,21 +220,27 @@ void LinearMotorGraphicsItem::viewScaleChanged()
     _boundingRect |= QRectF((-RADIUS-SELECTION_MARGIN)/s,  (-RADIUS-SELECTION_MARGIN)/s,
                             (RADIUS+SELECTION_MARGIN)*2/s,( RADIUS+SELECTION_MARGIN)*2/s);
 //    worldDataChanged(false);
+    */
 }
 
 void LinearMotorGraphicsItem::worldDataChanged(bool dynamicOnly)
 {
+    /*
     if(!dynamicOnly) {
         viewScaleChanged();
         update();
     }
-    setPos(vectorToPoint(motor()->position()));       
+    setPos(vectorToPoint(motor()->position()));
+    */  
+    setPos(_worldScene->vectorToPoint(motor()->position()));
 }
 
 void LinearMotorGraphicsItem::stateChanged()
 {
+    /*
     if(_isSelected) _forceHandler->setVisible(true);
     else _forceHandler->setVisible(false);
+    */
 }
 
 

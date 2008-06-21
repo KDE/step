@@ -36,16 +36,16 @@
      objecttolerance="10"
      inkscape:pageopacity="0.0"
      inkscape:pageshadow="2"
-     inkscape:zoom="0.49497475"
-     inkscape:cx="218.62451"
-     inkscape:cy="736.57212"
+     inkscape:zoom="5.0809055"
+     inkscape:cx="185.67271"
+     inkscape:cy="753.78822"
      inkscape:document-units="px"
      inkscape:current-layer="layer1"
      showgrid="false"
      inkscape:window-width="681"
      inkscape:window-height="672"
-     inkscape:window-x="572"
-     inkscape:window-y="49" />
+     inkscape:window-x="225"
+     inkscape:window-y="95" />
   <metadata
      id="metadata7">
     <rdf:RDF>
@@ -115,7 +115,8 @@
          style="fill:none;fill-opacity:1;stroke:none;stroke-width:8.23843288;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1" />
     </g>
     <g
-       id="Anchor">
+       id="Anchor"
+       transform="matrix(0.7992117,0,0,0.7250234,76.183408,126.80904)">
       <path
          transform="translate(250.92856,426.1479)"
          id="path3217"
@@ -141,6 +142,24 @@
          id="path3225"
          d="M 137.99746,42.204975 C 134.50385,46.810184 134.50385,46.810184 134.50385,46.810184"
          style="fill:none;fill-rule:evenodd;stroke:#000000;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1" />
+    </g>
+    <g
+       id="LinearMotor">
+      <path
+         transform="matrix(0.8265071,0,0,0.7070294,273.70562,439.20801)"
+         d="M 160.79811,40.883347 A 2.853822,2.3617837 0 1 1 155.09047,40.883347 A 2.853822,2.3617837 0 1 1 160.79811,40.883347 z"
+         sodipodi:ry="2.3617837"
+         sodipodi:rx="2.853822"
+         sodipodi:cy="40.883347"
+         sodipodi:cx="157.94429"
+         id="path2403"
+         style="fill:#004353;fill-opacity:1;stroke:#004d54;stroke-width:10;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+         sodipodi:type="arc" />
+      <path
+         transform="translate(250.92856,426.1479)"
+         id="path2405"
+         d="M 151.35097,39.308824 L 151.7446,44.426023 L 155.4841,44.426023"
+         style="fill:none;fill-opacity:1;fill-rule:evenodd;stroke:#ffffff;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1" />
     </g>
   </g>
 </svg>

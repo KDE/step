@@ -27,7 +27,6 @@
 #include <QGraphicsSceneMouseEvent>
 #include <QItemSelectionModel>
 #include <KLocale>
-#include <KSvgRenderer>
 #include <KDebug>
 
 AnchorGraphicsItem::AnchorGraphicsItem(StepCore::Item* item, WorldModel* worldModel, WorldScene* worldScene)
