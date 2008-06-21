@@ -161,5 +161,22 @@
          d="M 151.35097,39.308824 L 151.7446,44.426023 L 155.4841,44.426023"
          style="fill:none;fill-opacity:1;fill-rule:evenodd;stroke:#ffffff;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1" />
     </g>
+    <g
+       id="CircularMotor">
+      <path
+         transform="matrix(0.8265071,0,0,0.7070294,290.43491,438.32233)"
+         d="M 160.79811,40.883347 A 2.853822,2.3617837 0 1 1 155.09047,40.883347 A 2.853822,2.3617837 0 1 1 160.79811,40.883347 z"
+         sodipodi:ry="2.3617837"
+         sodipodi:rx="2.853822"
+         sodipodi:cy="40.883347"
+         sodipodi:cx="157.94429"
+         id="path2408"
+         style="fill:#004353;fill-opacity:1;stroke:#004d54;stroke-width:10;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+         sodipodi:type="arc" />
+      <path
+         id="path2416"
+         d="M 422.74832,465.45672 C 421.95875,464.44385 420.53594,463.92961 419.20565,465.2599 C 418.79266,465.6729 418.81202,467.69873 418.81202,468.40895 C 418.81202,470.58537 422.07114,469.98347 422.74832,469.98347 C 422.89502,469.98347 422.87953,469.72105 422.94514,469.58984"
+         style="fill:none;fill-opacity:1;fill-rule:evenodd;stroke:#fffdff;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1" />
+    </g>
   </g>
 </svg>

@@ -136,7 +136,8 @@ void LinearMotorGraphicsItem::mouseReleaseEvent(QGraphicsSceneMouseEvent *event)
 
                 StepCore::Vector2d lPos(0, 0);
                 if(dynamic_cast<StepCore::RigidBody*>(item))
-                    lPos = dynamic_cast<StepCore::RigidBody*>(item)->pointWorldToLocal(WorldGraphicsItem::pointToVector(pos));
+                    lPos = dynamic_cast<StepCore::RigidBody*>(item)->
+                            pointWorldToLocal(_worldScene->pointToVector(pos));
 
                 _worldModel->setProperty(_item, "localPosition", QVariant::fromValue(lPos));
 
@@ -251,7 +252,7 @@ bool CircularMotorCreator::sceneEvent(QEvent* event)
     QGraphicsSceneMouseEvent* mouseEvent = static_cast<QGraphicsSceneMouseEvent*>(event);
     if(event->type() == QEvent::GraphicsSceneMousePress && mouseEvent->button() == Qt::LeftButton) {
         QPointF pos = mouseEvent->scenePos();
-        QVariant vpos = QVariant::fromValue(WorldGraphicsItem::pointToVector(pos));
+        QVariant vpos = QVariant::fromValue(_worldScene->pointToVector(pos));
 
         _worldModel->simulationPause();
         _worldModel->beginMacro(i18n("Create %1", _worldModel->newItemName(_className)));
@@ -279,7 +280,8 @@ void CircularMotorCreator::tryAttach(const QPointF& pos)
                     QVariant::fromValue<StepCore::Object*>(item), WorldModel::UndoNoMerge);
 
             StepCore::Vector2d lPos(0, 0);
-            lPos = dynamic_cast<StepCore::RigidBody*>(item)->pointWorldToLocal(WorldGraphicsItem::pointToVector(pos));
+            lPos = dynamic_cast<StepCore::RigidBody*>(item)->
+                    pointWorldToLocal(_worldScene->pointToVector(pos));
             _worldModel->setProperty(_item, "localPosition", QVariant::fromValue(lPos));
             break;
         }
@@ -296,6 +298,11 @@ CircularMotorGraphicsItem::CircularMotorGraphicsItem(StepCore::Item* item, World
                    _item->metaObject()->property("torqueValue"));
     _torqueHandler->setVisible(false);
     setZValue(HANDLER_ZVALUE);
+    
+    _boundingRect = _worldScene->worldRenderer()->svgRenderer()->
+            boundsOnElement(_item->metaObject()->className());
+    _boundingRect.moveCenter(QPointF(0,0));
+//    kDebug() << _boundingRect
 }
 
 inline StepCore::CircularMotor* CircularMotorGraphicsItem::motor() const
@@ -306,8 +313,7 @@ inline StepCore::CircularMotor* CircularMotorGraphicsItem::motor() const
 QPainterPath CircularMotorGraphicsItem::shape() const
 {
     QPainterPath path;
-    double radius = (RADIUS+1)/currentViewScale();
-    path.addEllipse(QRectF(-radius,-radius,radius*2,radius*2));
+    path.addEllipse(QRectF(-RADIUS-1,-RADIUS-1,RADIUS*2+2,RADIUS*2+2));
     return path;
 }
 
@@ -315,7 +321,7 @@ void CircularMotorGraphicsItem::mouseMoveEvent(QGraphicsSceneMouseEvent *event)
 {
     if ((event->buttons() & Qt::LeftButton) && (flags() & ItemIsMovable)) {
         QPointF newPos(mapToParent(event->pos()) - matrix().map(event->buttonDownPos(Qt::LeftButton)));
-        QVariant vpos = QVariant::fromValue(pointToVector(newPos));
+        QVariant vpos = QVariant::fromValue(_worldScene->pointToVector(newPos));
 
         _worldModel->simulationPause();
         if(!_moving) {
@@ -344,7 +350,8 @@ void CircularMotorGraphicsItem::mouseReleaseEvent(QGraphicsSceneMouseEvent *even
 
                 StepCore::Vector2d lPos(0, 0);
                 if(dynamic_cast<StepCore::RigidBody*>(item))
-                    lPos = dynamic_cast<StepCore::RigidBody*>(item)->pointWorldToLocal(WorldGraphicsItem::pointToVector(pos));
+                    lPos = dynamic_cast<StepCore::RigidBody*>(item)->
+                            pointWorldToLocal(_worldScene->pointToVector(pos));
 
                 _worldModel->setProperty(_item, "localPosition", QVariant::fromValue(lPos));
 
@@ -357,7 +364,7 @@ void CircularMotorGraphicsItem::mouseReleaseEvent(QGraphicsSceneMouseEvent *even
     } else WorldGraphicsItem::mouseReleaseEvent(event);
 }
 
-
+#if 0
 void CircularMotorGraphicsItem::paint(QPainter* painter, const QStyleOptionGraphicsItem* /*option*/, QWidget* /*widget*/)
 {
     double s = currentViewScale();
@@ -390,28 +397,58 @@ void CircularMotorGraphicsItem::paint(QPainter* painter, const QStyleOptionGraph
 //    }
 
 }
+#endif
+
+QString CircularMotorGraphicsItem::pixmapCacheKey()
+{
+    QPoint c = ((pos() - pos().toPoint())*PIXMAP_CACHE_GRADING).toPoint();
+    //kDebug() << (pos() - pos().toPoint())*10;
+    //kDebug() << QString("Particle-%1x%2").arg(5+c.x()).arg(5+c.y());
+    return QString("%1:%2x%3").arg(_item->metaObject()->className()).arg(c.x()).arg(c.y());
+}
+
+QPixmap* CircularMotorGraphicsItem::paintPixmap()
+{
+    QSize size = (_boundingRect.size()/2.0).toSize()+QSize(1,1);
+    QPixmap* pixmap = new QPixmap(size*2);
+    pixmap->fill(Qt::transparent);
+    
+    QPainter painter;
+    painter.begin(pixmap);
+    _worldScene->worldRenderer()->svgRenderer()->render(&painter, _item->metaObject()->className(),
+                               _boundingRect.translated
+                                (QPointF(size.width(), size.height()) + pos() - pos().toPoint()));
+    painter.end();
+    return pixmap;
+}
 
 void CircularMotorGraphicsItem::viewScaleChanged()
 {
+    worldDataChanged(true);
+    /*
     prepareGeometryChange();
 
     double s = currentViewScale();
     double r = (ARROW_RADIUS + CIRCULAR_ARROW_STROKE + SELECTION_MARGIN)/s;
     _boundingRect = QRectF(-r, -r, 2*r, 2*r);
+    */
 }
 
 void CircularMotorGraphicsItem::worldDataChanged(bool dynamicOnly)
 {
+    setPos(_worldScene->vectorToPoint(motor()->position()));
+    /*
     if(!dynamicOnly) {
         viewScaleChanged();
         update();
     }
-    setPos(vectorToPoint(motor()->position()));       
+    setPos(vectorToPoint(motor()->position()));
+    */       
 }
 
 void CircularMotorGraphicsItem::stateChanged()
 {
-    if(_isSelected) _torqueHandler->setVisible(true);
-    else _torqueHandler->setVisible(false);
+    //if(_isSelected) _torqueHandler->setVisible(true);
+    //else _torqueHandler->setVisible(false);
 }
 
