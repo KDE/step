@@ -36,7 +36,10 @@ class AnchorGraphicsItem: public WorldGraphicsItem
 public:
     AnchorGraphicsItem(StepCore::Item* item, WorldModel* worldModel, WorldScene* worldScene);
 
-    void paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget);
+    QString pixmapCacheKey();
+    QPixmap* paintPixmap();
+    
+    //void paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget);
     QPainterPath shape() const;
 
     void viewScaleChanged();

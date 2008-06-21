@@ -155,7 +155,8 @@ QString SpringGraphicsItem::pixmapCacheKey()
     QPoint c2 = ((p2-p1)*PIXMAP_CACHE_GRADING).toPoint();
     //kDebug() << (pos() - pos().toPoint())*10;
     //kDebug() << QString("Particle-%1x%2").arg(5+c.x()).arg(5+c.y());
-    return QString("Spring:%1x%2:%3x%4").arg(c1.x()).arg(c1.y()).arg(c2.x()).arg(c2.y());
+    return QString("%1:%2x%3:%4x%5").arg(_item->metaObject()->className())
+                            .arg(c1.x()).arg(c1.y()).arg(c2.x()).arg(c2.y());
 }
 
 QPixmap* SpringGraphicsItem::paintPixmap()
@@ -172,7 +173,7 @@ QPixmap* SpringGraphicsItem::paintPixmap()
     painter.translate(QPointF(rnormi, rnormi)+(pos()-pos().toPoint()));
     painter.rotate(atan2(-r[1], r[0])*180/3.14);
     _worldScene->worldRenderer()->svgRenderer()->
-            render(&painter, "Spring", QRectF(0, -RADIUS, rnorm, 2*RADIUS));
+            render(&painter, _item->metaObject()->className(), QRectF(0, -RADIUS, rnorm, 2*RADIUS));
     painter.end();
     return pixmap;
 }

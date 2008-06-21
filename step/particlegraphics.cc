@@ -37,7 +37,10 @@ ParticleGraphicsItem::ParticleGraphicsItem(StepCore::Item* item, WorldModel* wor
     setFlag(QGraphicsItem::ItemIsSelectable);
     setFlag(QGraphicsItem::ItemIsMovable);
     setAcceptsHoverEvents(true);
-    _boundingRect = QRectF(-RADIUS, -RADIUS, RADIUS*2, RADIUS*2);
+    
+    _boundingRect = _worldScene->worldRenderer()->svgRenderer()->boundsOnElement(
+                                               _item->metaObject()->className() );
+    _boundingRect.moveCenter(QPointF(0,0));
     //_lastArrowRadius = -1;
     //_velocityHandler = new ArrowHandlerGraphicsItem(item, worldModel, worldScene, this,
     //               _item->metaObject()->property("velocity"));
@@ -99,18 +102,19 @@ QString ParticleGraphicsItem::pixmapCacheKey()
     QPoint c = ((pos() - pos().toPoint())*PIXMAP_CACHE_GRADING).toPoint();
     //kDebug() << (pos() - pos().toPoint())*10;
     //kDebug() << QString("Particle-%1x%2").arg(5+c.x()).arg(5+c.y());
-    return QString("Particle:%1x%2").arg(c.x()).arg(c.y());
+    return QString("%1:%2x%3").arg(_item->metaObject()->className()).arg(c.x()).arg(c.y());
 }
 
 QPixmap* ParticleGraphicsItem::paintPixmap()
 {
-    QPixmap* pixmap = new QPixmap(2*RADIUS, 2*RADIUS);
+    QSize size = (_boundingRect.size()/2.0).toSize()+QSize(1,1);
+    QPixmap* pixmap = new QPixmap(size*2);
     pixmap->fill(Qt::transparent);
     
     QPainter painter;
     painter.begin(pixmap);
-    _worldScene->worldRenderer()->svgRenderer()->render(&painter, "Particle",
-                        QRectF(pos() - pos().toPoint(), QSize(RADIUS*2,RADIUS*2)));
+    _worldScene->worldRenderer()->svgRenderer()->render(&painter, _item->metaObject()->className(),
+                _boundingRect.translated(QPointF(size.width(), size.height()) + pos() - pos().toPoint()));
     painter.end();
     return pixmap;
 }

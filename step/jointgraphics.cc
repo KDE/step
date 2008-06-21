@@ -39,7 +39,8 @@ AnchorGraphicsItem::AnchorGraphicsItem(StepCore::Item* item, WorldModel* worldMo
     setZValue(JOINT_ZVALUE);
     setExclusiveMoving(true);
     
-    _boundingRect = _worldScene->worldRenderer()->svgRenderer()->boundsOnElement("Anchor");
+    _boundingRect = _worldScene->worldRenderer()->svgRenderer()->
+            boundsOnElement(_item->metaObject()->className());
     _boundingRect.moveCenter(QPointF(0,0));
     kDebug() << _boundingRect;
 }
@@ -62,7 +63,7 @@ void AnchorGraphicsItem::mouseSetPos(const QPointF& pos, const QPointF&, MovingS
                 WorldScene::SnapRigidBody | WorldScene::SnapParticle | WorldScene::SnapOnCenter |
                 WorldScene::SnapSetPosition | WorldScene::SnapSetAngle, 0, movingState, _item);
 }
-
+#if 0
 void AnchorGraphicsItem::paint(QPainter* painter, const QStyleOptionGraphicsItem* /*option*/, QWidget* /*widget*/)
 {
     _worldScene->worldRenderer()->svgRenderer()->
@@ -81,6 +82,30 @@ void AnchorGraphicsItem::paint(QPainter* painter, const QStyleOptionGraphicsItem
         painter->drawEllipse(QRectF(-HANDLER_SIZE, -HANDLER_SIZE, HANDLER_SIZE*2, HANDLER_SIZE*2));
     }
     */
+}
+#endif
+
+QString AnchorGraphicsItem::pixmapCacheKey()
+{
+    QPoint c = ((pos() - pos().toPoint())*PIXMAP_CACHE_GRADING).toPoint();
+    //kDebug() << (pos() - pos().toPoint())*10;
+    //kDebug() << QString("Particle-%1x%2").arg(5+c.x()).arg(5+c.y());
+    return QString("%1:%2x%3").arg(_item->metaObject()->className()).arg(c.x()).arg(c.y());
+}
+
+QPixmap* AnchorGraphicsItem::paintPixmap()
+{
+    QSize size = (_boundingRect.size()/2.0).toSize()+QSize(1,1);
+    QPixmap* pixmap = new QPixmap(size*2);
+    pixmap->fill(Qt::transparent);
+    
+    QPainter painter;
+    painter.begin(pixmap);
+    _worldScene->worldRenderer()->svgRenderer()->render(&painter, _item->metaObject()->className(),
+                               _boundingRect.translated(QPointF(size.width(),
+                               size.height()) + pos() - pos().toPoint()));
+    painter.end();
+    return pixmap;
 }
 
 void AnchorGraphicsItem::viewScaleChanged()
