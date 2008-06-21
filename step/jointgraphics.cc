@@ -129,6 +129,11 @@ PinGraphicsItem::PinGraphicsItem(StepCore::Item* item, WorldModel* worldModel, W
     setFlag(QGraphicsItem::ItemIsMovable);
     setZValue(JOINT_ZVALUE);
     setExclusiveMoving(true);
+    
+    _boundingRect = _worldScene->worldRenderer()->svgRenderer()->
+            boundsOnElement(_item->metaObject()->className());
+    _boundingRect.moveCenter(QPointF(0,0));
+    kDebug() << _boundingRect;
 }
 
 inline StepCore::Pin* PinGraphicsItem::pin() const
@@ -139,8 +144,7 @@ inline StepCore::Pin* PinGraphicsItem::pin() const
 QPainterPath PinGraphicsItem::shape() const
 {
     QPainterPath path;
-    double radius = (HANDLER_SIZE+1)/currentViewScale();
-    path.addEllipse(QRectF(-radius,-radius,radius*2,radius*2));
+    path.addEllipse(QRectF(-HANDLER_SIZE-1,-HANDLER_SIZE-1,HANDLER_SIZE*2+2,HANDLER_SIZE*2+2));
     return path;
 }
 
@@ -150,7 +154,7 @@ void PinGraphicsItem::mouseSetPos(const QPointF& pos, const QPointF&, MovingStat
                 WorldScene::SnapRigidBody | WorldScene::SnapSetPosition |
                 WorldScene::SnapSetLocalPosition, 0, movingState, _item);
 }
-
+#if 0
 void PinGraphicsItem::paint(QPainter* painter, const QStyleOptionGraphicsItem* /*option*/, QWidget* /*widget*/)
 {
     double s = currentViewScale();
@@ -169,21 +173,42 @@ void PinGraphicsItem::paint(QPainter* painter, const QStyleOptionGraphicsItem* /
         painter->drawEllipse(QRectF(-radius, -radius, radius*2, radius*2));
     }
 }
+#endif
+
+QString PinGraphicsItem::pixmapCacheKey()
+{
+    QPoint c = ((pos() - pos().toPoint())*PIXMAP_CACHE_GRADING).toPoint();
+    //kDebug() << (pos() - pos().toPoint())*10;
+    //kDebug() << QString("Particle-%1x%2").arg(5+c.x()).arg(5+c.y());
+    return QString("%1:%2x%3").arg(_item->metaObject()->className()).arg(c.x()).arg(c.y());
+}
+
+QPixmap* PinGraphicsItem::paintPixmap()
+{
+    QSize size = (_boundingRect.size()/2.0).toSize()+QSize(1,1);
+    QPixmap* pixmap = new QPixmap(size*2);
+    pixmap->fill(Qt::transparent);
+    
+    QPainter painter;
+    painter.begin(pixmap);
+    _worldScene->worldRenderer()->svgRenderer()->render(&painter, _item->metaObject()->className(),
+                               _boundingRect.translated(QPointF(size.width(),
+                                       size.height()) + pos() - pos().toPoint()));
+    painter.end();
+    return pixmap;
+}
 
 void PinGraphicsItem::viewScaleChanged()
 {
-    prepareGeometryChange();
-
-    double s = currentViewScale();
-    _boundingRect |= QRectF((-HANDLER_SIZE-SELECTION_MARGIN)/s,  (-HANDLER_SIZE-SELECTION_MARGIN)/s,
-                            (HANDLER_SIZE+SELECTION_MARGIN)*2/s,( HANDLER_SIZE+SELECTION_MARGIN)*2/s);
+    worldDataChanged(true);
 }
 
 void PinGraphicsItem::worldDataChanged(bool dynamicOnly)
 {
     if(!dynamicOnly) update();
-    setPos(vectorToPoint(pin()->position()));       
+    setPos(_worldScene->vectorToPoint(pin()->position()));
 }
+
 
 //////////////////////////////////////////////////////////////////////////
 

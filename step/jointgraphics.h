@@ -64,8 +64,11 @@ class PinGraphicsItem: public WorldGraphicsItem
 {
 public:
     PinGraphicsItem(StepCore::Item* item, WorldModel* worldModel, WorldScene* worldScene);
+    
+    QString pixmapCacheKey();
+    QPixmap* paintPixmap();
 
-    void paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget);
+    //void paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget);
     QPainterPath shape() const;
 
     void viewScaleChanged();
