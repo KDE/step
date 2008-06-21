@@ -49,7 +49,7 @@ public:
     SpringGraphicsItem(StepCore::Item* item, WorldModel* worldModel, WorldScene* worldScene);
 
     QPainterPath shape() const;
-    void paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget);
+   // void paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget);
 
     void viewScaleChanged();
     void stateChanged();
@@ -57,6 +57,9 @@ public:
 
 protected:
     static void tryAttach(StepCore::Item* item, WorldScene* worldScene, const QPointF& pos, int num);
+    
+    QString pixmapCacheKey();
+    QPixmap* paintPixmap();
 
     void mouseSetPos(const QPointF& pos, const QPointF& diff, MovingState);
     StepCore::Spring* spring() const {

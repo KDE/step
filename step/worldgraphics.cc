@@ -501,7 +501,9 @@ void WorldGraphicsItem::paint(QPainter* painter, const QStyleOptionGraphicsItem*
     painter->drawPixmap(-pixmap->size().width()/2, -pixmap->size().height()/2 , *pixmap);
     
     if(0 == misscount % 10)
-        kDebug() << "totalcount=" << totalcount << " misscount=" << misscount;
+        kDebug() << "totalcount=" << totalcount << " misscount=" << misscount
+                 << " cachesize=" << (double(_worldScene->worldRenderer()->pixmapCache()->totalCost())/
+                                     double(_worldScene->worldRenderer()->pixmapCache()->maxCost()));
 }
 
 void WorldGraphicsItem::contextMenuEvent(QGraphicsSceneContextMenuEvent* event)

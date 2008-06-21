@@ -99,7 +99,7 @@ QString ParticleGraphicsItem::pixmapCacheKey()
     QPoint c = ((pos() - pos().toPoint())*PIXMAP_CACHE_GRADING).toPoint();
     //kDebug() << (pos() - pos().toPoint())*10;
     //kDebug() << QString("Particle-%1x%2").arg(5+c.x()).arg(5+c.y());
-    return QString("Particle-%1x%2").arg(c.x()).arg(c.y());
+    return QString("Particle:%1x%2").arg(c.x()).arg(c.y());
 }
 
 QPixmap* ParticleGraphicsItem::paintPixmap()

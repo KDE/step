@@ -94,6 +94,7 @@ QPainterPath SpringGraphicsItem::shape() const
     */
 }
 
+#if 0
 void SpringGraphicsItem::paint(QPainter* painter, const QStyleOptionGraphicsItem* /*option*/, QWidget* /*widget*/)
 {
     StepCore::Vector2d r = spring()->position2() - spring()->position1();
@@ -143,6 +144,37 @@ void SpringGraphicsItem::paint(QPainter* painter, const QStyleOptionGraphicsItem
         painter->drawRect(QRectF(-m, -_radius-m, _rnorm+m*2,  (_radius+m)*2));
     }
     */
+}
+#endif
+
+QString SpringGraphicsItem::pixmapCacheKey()
+{
+    QPointF p1 = _worldScene->vectorToPoint(spring()->position1());
+    QPointF p2 = _worldScene->vectorToPoint(spring()->position2());
+    QPoint c1 = ((p1-p1.toPoint())*PIXMAP_CACHE_GRADING).toPoint();
+    QPoint c2 = ((p2-p1)*PIXMAP_CACHE_GRADING).toPoint();
+    //kDebug() << (pos() - pos().toPoint())*10;
+    //kDebug() << QString("Particle-%1x%2").arg(5+c.x()).arg(5+c.y());
+    return QString("Spring:%1x%2:%3x%4").arg(c1.x()).arg(c1.y()).arg(c2.x()).arg(c2.y());
+}
+
+QPixmap* SpringGraphicsItem::paintPixmap()
+{
+    StepCore::Vector2d r = spring()->position2() - spring()->position1();
+    double rnorm = r.norm()*_worldScene->viewScale();
+    int rnormi = int(std::ceil(rnorm));
+    
+    QPixmap* pixmap = new QPixmap(2*rnormi, 2*rnormi);
+    pixmap->fill(Qt::transparent);
+    
+    QPainter painter;
+    painter.begin(pixmap);
+    painter.translate(QPointF(rnormi, rnormi)+(pos()-pos().toPoint()));
+    painter.rotate(atan2(-r[1], r[0])*180/3.14);
+    _worldScene->worldRenderer()->svgRenderer()->
+            render(&painter, "Spring", QRectF(0, -RADIUS, rnorm, 2*RADIUS));
+    painter.end();
+    return pixmap;
 }
 
 void SpringGraphicsItem::viewScaleChanged()
