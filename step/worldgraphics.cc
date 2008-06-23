@@ -481,8 +481,9 @@ void WorldGraphicsItem::stateChanged()
 
 void WorldGraphicsItem::paint(QPainter* painter, const QStyleOptionGraphicsItem*, QWidget*)
 {
-    //painter->setPen(QPen(Qt::gray, 0));
-    //painter->drawRect(_boundingRect);
+    painter->setPen(QPen(Qt::gray, 0));
+    painter->drawRect(_boundingRect);
+
     static int totalcount = 0;
     static int misscount = 0;
     

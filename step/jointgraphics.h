@@ -108,7 +108,7 @@ class StickGraphicsItem: public WorldGraphicsItem
 public:
     StickGraphicsItem(StepCore::Item* item, WorldModel* worldModel, WorldScene* worldScene);
 
-    void paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget);
+    //void paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget);
     QPainterPath shape() const;
 
     void viewScaleChanged();
@@ -117,6 +117,9 @@ public:
 
 protected:
     void mouseSetPos(const QPointF& pos, const QPointF& diff, MovingState);
+    
+    QString pixmapCacheKey();
+    QPixmap* paintPixmap();
 
     StepCore::Stick* stick() const { return static_cast<StepCore::Stick*>(_item); }
 

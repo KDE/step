@@ -241,6 +241,8 @@ void SpringGraphicsItem::worldDataChanged(bool dynamicOnly)
     _painterPath = QPainterPath();
     _painterPath.addRect(QRectF(0, -RADIUS, r.norm()*_worldScene->viewScale(), RADIUS*2));
     _painterPath = QMatrix().rotate(atan2(-r[1],r[0])*180/3.14).map(_painterPath);
+    
+    update();
 }
 
 void SpringGraphicsItem::stateChanged()

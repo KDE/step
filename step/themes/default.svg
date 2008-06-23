@@ -37,7 +37,7 @@
      inkscape:pageopacity="0.0"
      inkscape:pageshadow="2"
      inkscape:zoom="5.0809055"
-     inkscape:cx="185.67271"
+     inkscape:cx="183.63817"
      inkscape:cy="753.78822"
      inkscape:document-units="px"
      inkscape:current-layer="layer1"
@@ -178,5 +178,9 @@
          d="M 422.74832,465.45672 C 421.95875,464.44385 420.53594,463.92961 419.20565,465.2599 C 418.79266,465.6729 418.81202,467.69873 418.81202,468.40895 C 418.81202,470.58537 422.07114,469.98347 422.74832,469.98347 C 422.89502,469.98347 422.87953,469.72105 422.94514,469.58984"
          style="fill:none;fill-opacity:1;fill-rule:evenodd;stroke:#fffdff;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1" />
     </g>
+    <path
+       style="fill:none;fill-rule:evenodd;stroke:#4e41b2;stroke-width:1.8249259;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+       d="M 434.74964,468.99939 L 453.45594,468.99939"
+       id="Stick" />
   </g>
 </svg>

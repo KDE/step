@@ -221,19 +221,19 @@ StickHandlerGraphicsItem::StickHandlerGraphicsItem(StepCore::Item* item, WorldMo
     setExclusiveMoving(true);
     setExclusiveMovingMessage(i18n("Move end of %1", _item->name()));
     setPos(0, 0);
+    
+    _boundingRect = QRectF(-HANDLER_SIZE/2, -HANDLER_SIZE/2, HANDLER_SIZE, HANDLER_SIZE);
 }
 
 void StickHandlerGraphicsItem::viewScaleChanged()
 {
-    prepareGeometryChange();
-    double w = HANDLER_SIZE/currentViewScale()/2;
-    _boundingRect = QRectF(-w, -w, w*2, w*2);
+    worldDataChanged(true);
 }
 
 void StickHandlerGraphicsItem::worldDataChanged(bool)
 {
     if(_num == 2)
-        setPos(vectorToPoint(static_cast<StepCore::Stick*>(_item)->position2()-
+        setPos(_worldScene->vectorToPoint(static_cast<StepCore::Stick*>(_item)->position2()-
                              static_cast<StepCore::Stick*>(_item)->position1()));
 }
 
@@ -276,7 +276,7 @@ QPainterPath StickGraphicsItem::shape() const
     return QMatrix().rotate(atan2(r[1], r[0])*180/3.14).map(path);
     */
 }
-
+#if 0
 void StickGraphicsItem::paint(QPainter* painter, const QStyleOptionGraphicsItem* /*option*/, QWidget* /*widget*/)
 {
     StepCore::Vector2d r = stick()->position2() - stick()->position1();
@@ -316,23 +316,103 @@ void StickGraphicsItem::paint(QPainter* painter, const QStyleOptionGraphicsItem*
         painter->drawRect(QRectF(-m, -_radius-m, _rnorm+m*2,  (_radius+m)*2));
     }
 }
+#endif
+
+QString StickGraphicsItem::pixmapCacheKey()
+{
+    QPointF p1 = _worldScene->vectorToPoint(stick()->position1());
+    QPointF p2 = _worldScene->vectorToPoint(stick()->position2());
+    QPoint c1 = ((p1-p1.toPoint())*PIXMAP_CACHE_GRADING).toPoint();
+    QPoint c2 = ((p2-p1)*PIXMAP_CACHE_GRADING).toPoint();
+    int    len = int(stick()->restLength()*_worldScene->viewScale()*PIXMAP_CACHE_GRADING);
+    //kDebug() << (pos() - pos().toPoint())*10;
+    //kDebug() << QString("Particle-%1x%2").arg(5+c.x()).arg(5+c.y());
+    return QString("%1:%2x%3:%4x%5:%6").arg(_item->metaObject()->className())
+            .arg(c1.x()).arg(c1.y()).arg(c2.x()).arg(c2.y()).arg(len);
+}
+
+QPixmap* StickGraphicsItem::paintPixmap()
+{
+    StepCore::Vector2d r = stick()->position2() - stick()->position1();
+    StepCore::Vector2d len = stick()->restLength()*r/r.norm();
+    double rnorm = r.norm()*_worldScene->viewScale();
+    double lennorm = len.norm()*_worldScene->viewScale();
+    int pixsize = qMax(int(std::ceil(rnorm)), int(std::ceil(lennorm)));
+    
+    QPixmap* pixmap = new QPixmap(2*pixsize, 2*pixsize);
+    pixmap->fill(Qt::transparent);
+    
+    QPainter painter;
+    painter.begin(pixmap);
+    painter.translate(QPointF(pixsize, pixsize)+(pos()-pos().toPoint()));
+    painter.rotate(atan2(-r[1], r[0])*180/3.14);
+    _worldScene->worldRenderer()->svgRenderer()->
+            render(&painter, _item->metaObject()->className(), QRectF(0, -RADIUS, lennorm, 2*RADIUS));
+    painter.end();
+    return pixmap;
+}
 
 void StickGraphicsItem::viewScaleChanged()
 {
+    worldDataChanged(true);
+
+}
+
+
+void StickGraphicsItem::worldDataChanged(bool dynamicOnly)
+{
+    Q_UNUSED(dynamicOnly)
+    // XXX: TODO do not redraw everything each time
+    /*
+    
+            viewScaleChanged();
+            update();
+    */
+    setPos(_worldScene->vectorToPoint(stick()->position1()));
     prepareGeometryChange();
 
-    double s = currentViewScale();
-    double m = (SELECTION_MARGIN+1) / s;
-    double u = 1/s;
+    StepCore::Vector2d r = stick()->position2() - stick()->position1();
+    if(r.norm() < stick()->restLength())
+        _boundingRect = QRectF(QPointF(0, 0),
+            _worldScene->vectorToPoint(stick()->restLength()*r/r.norm())).normalized();
+    else
+        _boundingRect = QRectF(QPointF(0, 0), _worldScene->vectorToPoint(r)).normalized();
+    _boundingRect.adjust(-RADIUS, -RADIUS, RADIUS, RADIUS);
+    kDebug() << _boundingRect;
+
+    _painterPath = QPainterPath();
+    _painterPath.addRect(QRectF(0, -RADIUS, stick()->restLength()*_worldScene->viewScale(), RADIUS*2));
+    _painterPath = QMatrix().rotate(atan2(-r[1],r[0])*180/3.14).map(_painterPath);
+    
+    update();
+}
+
+void StickGraphicsItem::stateChanged()
+{
+    if(_isSelected) {
+        _handler1->setVisible(true);
+        _handler2->setVisible(true);
+    }
+    else {
+        _handler1->setVisible(false);
+        _handler2->setVisible(false);
+    }
+    viewScaleChanged();
+    update();
+}
+/*
+void StickGraphicsItem::viewScaleChanged()
+{
+    prepareGeometryChange();
     
     StepCore::Vector2d r = stick()->position2() - stick()->position1();
     _rnorm = r.norm();
-    _radius = RADIUS/s;
 
     if(_rnorm < stick()->restLength()) r *= stick()->restLength() / _rnorm;
     
     _boundingRect = QRectF(0, 0, r[0], r[1]).normalized();
-    _boundingRect.adjust(-_radius-m, -_radius-m, _radius+m, _radius+m);
+    _boundingRect.adjust(-RADIUS-SELECTION_MARGIN-1, -RADIUS-SELECTION_MARGIN-1,
+                           RADIUS+SELECTION_MARGIN+1, RADIUS+SELECTION_MARGIN+1);
 
     StepCore::Vector2d p1c, p2c;
     if(stick()->rigidBody1()) p1c = stick()->rigidBody1()->position();
@@ -343,10 +423,12 @@ void StickGraphicsItem::viewScaleChanged()
     else if(stick()->particle2()) p2c = stick()->particle2()->position();
     else p2c = stick()->position2();
 
-    _boundingRect |= QRectF(QPoint(0, 0), vectorToPoint(p1c - stick()->position1())).normalized();
-    _boundingRect |= QRectF(vectorToPoint(r), vectorToPoint(p2c - stick()->position2())).normalized();
+    _boundingRect = QRectF(QPoint(0, 0),
+                            _worldScene->vectorToPoint(p1c - stick()->position1())).normalized();
+    _boundingRect |= QRectF(_worldScene->vectorToPoint(r),
+                            _worldScene->vectorToPoint(p2c - stick()->position2())).normalized();
 
-    _painterPath.addRect(QRectF(-u, -_radius-u, _rnorm+u, _radius*2+u));
+    _painterPath.addRect(QRectF(-1, -RADIUS-1, _rnorm+1, RADIUS*2+1));
     _painterPath = QMatrix().rotate(atan2(r[1], r[0])*180/3.14).map(_painterPath);
         
     //update(); // XXX: documentation says this is unnessesary, but it doesn't work without it
@@ -374,7 +456,7 @@ void StickGraphicsItem::stateChanged()
     viewScaleChanged();
     update();
 }
-
+*/
 void StickGraphicsItem::mouseSetPos(const QPointF& /*pos*/, const QPointF& diff, MovingState)
 {
     _worldModel->simulationPause();
@@ -392,7 +474,7 @@ void StickGraphicsItem::mouseSetPos(const QPointF& /*pos*/, const QPointF& diff,
         }
     } else {
         _worldModel->setProperty(_item, "localPosition1",
-            QVariant::fromValue( stick()->position1() + pointToVector(diff) ));
+            QVariant::fromValue( stick()->position1() + _worldScene->pointToVector(diff) ));
     }
 
     if(stick()->body2()) {
@@ -407,6 +489,6 @@ void StickGraphicsItem::mouseSetPos(const QPointF& /*pos*/, const QPointF& diff,
         }
     } else {
         _worldModel->setProperty(_item, "localPosition2",
-            QVariant::fromValue( stick()->position2() + pointToVector(diff) ));
+            QVariant::fromValue( stick()->position2() + _worldScene->pointToVector(diff) ));
     }
 }
