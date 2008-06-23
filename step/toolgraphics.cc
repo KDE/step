@@ -78,13 +78,11 @@ StepCore::Vector2d WidgetVertexHandlerGraphicsItem::value()
 
 void WidgetVertexHandlerGraphicsItem::setValue(const StepCore::Vector2d& value)
 {
-    double s = currentViewScale();
-
     QGraphicsView* activeView = scene()->views().first();
     QTransform viewportTransform = activeView->viewportTransform();
 
     StepCore::Vector2d size = _item->metaObject()->property("size")->
-                        readVariant(_item).value<StepCore::Vector2d>()/s;
+                        readVariant(_item).value<StepCore::Vector2d>();
     StepCore::Vector2d position = _item->metaObject()->property("position")->
                             readVariant(_item).value<StepCore::Vector2d>();
 
@@ -100,24 +98,23 @@ void WidgetVertexHandlerGraphicsItem::setValue(const StepCore::Vector2d& value)
     StepCore::Vector2d newSize = (newPos - oCorner)*2.0;
 
     StepCore::Vector2d sign = delta.cMultiply(corners[_vertexNum]);
-    double d = -0.1/s;
-    if(sign[0] < d || sign[1] < d) {
-        if(sign[0] < d) {
+    if(sign[0] < -0.1 || sign[1] < -0.1) {
+        if(sign[0] < -0.1) {
             newPos[0] = oCorner[0]; newSize[0] = 0;
             _vertexNum ^= 1;
         }
-        if(sign[1] < d) {
+        if(sign[1] < -0.1) {
             newPos[1] = oCorner[1]; newSize[1] = 0;
             _vertexNum ^= 2;
         }
         _worldModel->setProperty(_item, "position", QVariant::fromValue(newPos));
-        _worldModel->setProperty(_item, "size", QVariant::fromValue(newSize*s));
+        _worldModel->setProperty(_item, "size", QVariant::fromValue(newSize));
         setValue(value);
         return;
     }
 
     _worldModel->setProperty(_item, "position", QVariant::fromValue(newPos));
-    _worldModel->setProperty(_item, "size", QVariant::fromValue(newSize*s));
+    _worldModel->setProperty(_item, "size", QVariant::fromValue(newSize));
 }
 
 WidgetGraphicsItem::WidgetGraphicsItem(StepCore::Item* item, WorldModel* worldModel, WorldScene* worldScene)
@@ -142,14 +139,13 @@ WidgetGraphicsItem::~WidgetGraphicsItem()
 
 OnHoverHandlerGraphicsItem* WidgetGraphicsItem::createOnHoverHandler(const QPointF& pos)
 {
-    double s = currentViewScale();
     StepCore::Vector2d size = _item->metaObject()->property("size")->
-                            readVariant(_item).value<StepCore::Vector2d>()/s;
+                            readVariant(_item).value<StepCore::Vector2d>();
     StepCore::Vector2d position = _item->metaObject()->property("position")->
                             readVariant(_item).value<StepCore::Vector2d>();
-    StepCore::Vector2d l = pointToVector(pos) - position;
+    StepCore::Vector2d l = _worldScene->pointToVector(pos) - position;
 
-    int num = -1; double minDist2 = HANDLER_SNAP_SIZE*HANDLER_SNAP_SIZE/s/s;
+    int num = -1; double minDist2 = HANDLER_SNAP_SIZE*HANDLER_SNAP_SIZE;
     for(unsigned int i=0; i<4; ++i) {
         double dist2 = (l - size.cMultiply(WidgetVertexHandlerGraphicsItem::corners[i])).norm2();
         if(dist2 < minDist2) { num = i; minDist2 = dist2; }
@@ -164,14 +160,49 @@ OnHoverHandlerGraphicsItem* WidgetGraphicsItem::createOnHoverHandler(const QPoin
     return 0;
 }
 
+bool WidgetItemCreator::sceneEvent(QEvent* event)
+{
+    if(event->type() == QEvent::GraphicsSceneMousePress) {
+        _worldModel->simulationPause();
+
+        _worldModel->beginMacro(i18n("Create %1", _worldModel->newItemName(_className)));
+        _item = _worldModel->createItem(_className); Q_ASSERT(_item != NULL);
+#ifdef __GNUC__
+#warning Do not add item until it is fully created
+#endif
+        const StepCore::MetaProperty* property = _item->metaObject()->property("position");
+        if(property != NULL) {
+            QGraphicsSceneMouseEvent* mouseEvent = static_cast<QGraphicsSceneMouseEvent*>(event);
+            QPointF pos = mouseEvent->scenePos();
+            QVariant vpos = QVariant::fromValue(StepCore::Vector2d(pos.x(),-pos.y()));
+            property->writeVariant(_item, vpos);
+        }
+
+        _worldModel->addItem(_item);
+        _worldModel->endMacro();
+
+        _worldModel->selectionModel()->setCurrentIndex(_worldModel->objectIndex(_item),
+                                    QItemSelectionModel::ClearAndSelect);
+
+        showMessage(MessageFrame::Information,
+                    i18n("%1 named '%2' created", className(), _item->name()),
+                         MessageFrame::CloseButton | MessageFrame::CloseTimer);
+
+        setFinished();
+        return true;
+    }
+    return false;
+}
 // XXX: ???
 void WidgetGraphicsItem::mouseSetPos(const QPointF& pos, const QPointF&, MovingState)
 {
-    QGraphicsView* activeView = scene()->views().first();
-    QTransform itemTransform = activeView->transform() * deviceTransform(activeView->viewportTransform());
-    StepCore::Vector2d newPos = pointToVector( itemTransform.inverted().map(
-                QPointF(itemTransform.map(pos/*/50.0*/).toPoint()) ))/**50.0*/;
-    _worldModel->setProperty(_item, "position", QVariant::fromValue(newPos));
+    //QGraphicsView* activeView = scene()->views().first();
+    //QTransform itemTransform = activeView->transform() * deviceTransform(activeView->viewportTransform());
+    //QPointF newPos = itemTransform.inverted().map(
+    //            QPointF(itemTransform.map(pos/*/50.0*/).toPoint()) )/**50.0*/;
+    QPoint newPos(pos.toPoint());
+    _worldModel->setProperty(_item, "position", QVariant::fromValue(
+                             StepCore::Vector2d(newPos.x(), -newPos.y())));
 }
 
 void WidgetGraphicsItem::paint(QPainter* painter, const QStyleOptionGraphicsItem* /*option*/, QWidget* /*widget*/)
@@ -199,18 +230,18 @@ void WidgetGraphicsItem::viewScaleChanged()
     QGraphicsView* activeView = scene()->views().first();
     QTransform viewportTransform = activeView->viewportTransform();
 
-    QPointF position = vectorToPoint(_item->metaObject()->property("position")->
-                    readVariant(_item).value<StepCore::Vector2d>());
+    QPointF position =
+   (QPointF(_item->metaObject()->property("position")->readVariant(_item).value<StepCore::Vector2d>()[0],
+   - _item->metaObject()->property("position")->readVariant(_item).value<StepCore::Vector2d>()[1]));
     position = viewportTransform.inverted().map(QPointF(viewportTransform.map(position).toPoint()));
     setPos(position);
 
-    double s = currentViewScale();
     QTransform itemTransform = activeView->transform() * deviceTransform(viewportTransform);
 
     StepCore::Vector2d size = _item->metaObject()->property("size")->
                     readVariant(_item).value<StepCore::Vector2d>();
 
-    QRectF irect(-(size[0]+2)/s/2, -(size[1]+2)/s/2, (size[0]+2)/s, (size[1]+2)/s);
+    QRectF irect(-(size[0]+2)/2, -(size[1]+2)/2, (size[0]+2), (size[1]+2));
     QRect viewportRect = itemTransform.mapRect(irect).toRect();
     irect = itemTransform.inverted().mapRect(QRectF(viewportRect));
 

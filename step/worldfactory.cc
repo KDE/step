@@ -167,10 +167,10 @@ WorldFactory::WorldFactory()
 
     __REGISTER(NoteImage);
     __REGISTER(NoteFormula);
-    __REGISTER_EXT(Note, ItemCreator, NoteGraphicsItem, ItemMenuHandler);
-    __REGISTER_EXT(Meter, ItemCreator, MeterGraphicsItem, MeterMenuHandler);
-    __REGISTER_EXT(Graph, ItemCreator, GraphGraphicsItem, GraphMenuHandler);
-    __REGISTER_EXT(Controller, ItemCreator, ControllerGraphicsItem, ControllerMenuHandler);
+    __REGISTER_EXT(Note, WidgetItemCreator, NoteGraphicsItem, ItemMenuHandler);
+    __REGISTER_EXT(Meter, WidgetItemCreator, MeterGraphicsItem, MeterMenuHandler);
+    __REGISTER_EXT(Graph, WidgetItemCreator, GraphGraphicsItem, GraphMenuHandler);
+    __REGISTER_EXT(Controller, WidgetItemCreator, ControllerGraphicsItem, ControllerMenuHandler);
     __REGISTER_EXT(Tracer, TracerCreator, TracerGraphicsItem, TracerMenuHandler);
 
     // Palette

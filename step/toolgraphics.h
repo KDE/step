@@ -91,10 +91,20 @@ protected:
     void setBackgroundBrush(const QBrush& brush) { _backgroundBrush = brush; }
 
     void mouseSetPos(const QPointF& pos, const QPointF&, MovingState movingState);
+    
     OnHoverHandlerGraphicsItem* createOnHoverHandler(const QPointF& pos);
 
     QPointer<QWidget> _centralWidget;
     QBrush   _backgroundBrush;
+};
+/////////////////////////////////////////////////////////////////////////////////////////
+
+class WidgetItemCreator: public ItemCreator
+{
+public:
+    WidgetItemCreator(const QString& className, WorldModel* worldModel, WorldScene* worldScene)
+                    : ItemCreator(className, worldModel, worldScene) {}
+    bool sceneEvent(QEvent* event);
 };
 
 /////////////////////////////////////////////////////////////////////////////////////////
