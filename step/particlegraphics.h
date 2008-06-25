@@ -40,8 +40,7 @@ protected:
         return static_cast<StepCore::Particle*>(_item); }
 
     ArrowHandlerGraphicsItem *_velocityHandler;
-    double _lastArrowRadius;
-    LinearArrowGraphicsItem* _arrow;
+    ArrowsGraphicsItem* _arrows;
 
     static const int RADIUS = 7;
 };

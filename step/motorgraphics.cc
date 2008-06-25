@@ -238,6 +238,13 @@ void LinearMotorGraphicsItem::worldDataChanged(bool dynamicOnly)
 
 void LinearMotorGraphicsItem::stateChanged()
 {
+    if((_isSelected || _isMouseOverItem) && !_arrows) {
+        _arrows = new ArrowsGraphicsItem(_item, _worldModel, _worldScene, this, "forceValue", NULL);
+    }
+    if(!_isMouseOverItem && !_isSelected && _arrows) {
+        delete _arrows; _arrows = 0;
+    }
+    
     /*
     if(_isSelected) _forceHandler->setVisible(true);
     else _forceHandler->setVisible(false);

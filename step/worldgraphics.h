@@ -321,11 +321,11 @@ protected:
 
 /////////////////////////////////////////////////////////////////////////////////////////
 
-class LinearArrowGraphicsItem:public WorldGraphicsItem
+class ArrowsGraphicsItem:public WorldGraphicsItem
 {
 public:
-    LinearArrowGraphicsItem(StepCore::Item* item, WorldModel* worldModel, WorldScene* worldScene,
-                WorldGraphicsItem* parent, const StepCore::MetaProperty* property, bool editable);
+    ArrowsGraphicsItem(StepCore::Item* item, WorldModel* worldModel, WorldScene* worldScene,
+                WorldGraphicsItem* parent, ...);
     QString pixmapCacheKey();
     QPixmap* paintPixmap();
 
@@ -333,10 +333,15 @@ public:
     void worldDataChanged(bool);
 
 protected:
-    const StepCore::MetaProperty* _property;
-    bool _editable;
-    QSizeF _headSize;
-    double _bodyHeight;
+    struct Property
+    {
+        const StepCore::MetaProperty* property;
+        QSizeF headSize;
+        double bodyHeight;
+        Property(const StepCore::MetaProperty* p, const QSizeF& h, double b)
+            : property(p), headSize(h), bodyHeight(b) {}
+    };
+    QList<Property> _properties;
 };
 
 /////////////////////////////////////////////////////////////////////////////////////////

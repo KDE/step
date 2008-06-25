@@ -35,6 +35,7 @@
 #include <KPixmapCache>
 
 #include <cmath>
+#include <stdarg.h>
 
 // XXX
 #include "worldscene.h"
@@ -531,70 +532,88 @@ QPixmap* WorldGraphicsItem::paintPixmap()
 }  
 /////////////////////////////////////////////////////////////////////////////////////////
 
-LinearArrowGraphicsItem::LinearArrowGraphicsItem(StepCore::Item* item, WorldModel* worldModel,
-                                            WorldScene* worldScene, WorldGraphicsItem* parent,
-                                        const StepCore::MetaProperty* property, bool editable)
-    : WorldGraphicsItem(item, worldModel, worldScene, parent),
-                            _property(property), _editable(editable)
+ArrowsGraphicsItem::ArrowsGraphicsItem(StepCore::Item* item, WorldModel* worldModel,
+                                            WorldScene* worldScene, WorldGraphicsItem* parent, ...)
+    : WorldGraphicsItem(item, worldModel, worldScene, parent)
 {
-    _headSize = _worldScene->worldRenderer()->svgRenderer()->boundsOnElement(
-            QString("LinearArrow_%1_head").arg(_property->name())).size();
-    _bodyHeight = _worldScene->worldRenderer()->svgRenderer()->boundsOnElement(
-            QString("LinearArrow_%1_body").arg(_property->name())).size().height();
-    
+    va_list ap;
+    va_start(ap, parent);
+    const char* propertyName;
+    while(NULL != (propertyName = va_arg(ap, const char*))) {
+        _properties << Property(
+                _item->metaObject()->property(propertyName),
+                _worldScene->worldRenderer()->svgRenderer()->boundsOnElement(
+                            QString("LinearArrow_%1_head").arg(propertyName)).size(),
+                _worldScene->worldRenderer()->svgRenderer()->boundsOnElement(
+                            QString("LinearArrow_%1_body").arg(propertyName)).size().height());
+    }
+    va_end(ap);
     worldDataChanged(true);
 }
 
-void LinearArrowGraphicsItem::viewScaleChanged()
+void ArrowsGraphicsItem::viewScaleChanged()
 {
     worldDataChanged(true);
 }
 
-void LinearArrowGraphicsItem::worldDataChanged(bool)
+void ArrowsGraphicsItem::worldDataChanged(bool)
 {    
+    double L = 0;
+    foreach (const Property& p, _properties) {
+        StepCore::Vector2d v = p.property->readVariant(_item).value<StepCore::Vector2d>();
+        double L1 = std::sqrt(StepCore::square(v.norm()*_worldScene->viewScale() + p.headSize.width()/2)
+            + StepCore::square(qMax(p.headSize.height(), p.bodyHeight)/2));
+        if(L1>L) L=L1;
+    }
     prepareGeometryChange();
-
-    StepCore::Vector2d v = _property->readVariant(_item).value<StepCore::Vector2d>();
-    double L = std::sqrt(StepCore::square(v.norm()*_worldScene->viewScale() + _headSize.width()/2)
-        + StepCore::square(qMax(_headSize.height(), _bodyHeight)/2));
     _boundingRect = QRectF(-L, -L, 2*L, 2*L);
     update();
-    kDebug() << _boundingRect;
 }
 
-QString LinearArrowGraphicsItem::pixmapCacheKey()
+QString ArrowsGraphicsItem::pixmapCacheKey()
 {
     QPointF p1 = parentItem()->pos();
     QPoint c1 = ((p1-p1.toPoint())*PIXMAP_CACHE_GRADING).toPoint();
-    QPoint c2 = (_worldScene->vectorToPoint(_property->readVariant(_item).value<StepCore::Vector2d>())
-            *PIXMAP_CACHE_GRADING).toPoint();
+    QString key = QString("Arrows:%1x%2").arg(c1.x()).arg(c1.y());
+    
+    foreach (const Property& p, _properties) {
+        QPoint c2 = (_worldScene->vectorToPoint(p.property->readVariant(_item).value<StepCore::Vector2d>())
+                            *PIXMAP_CACHE_GRADING).toPoint();
+        key.append( QString(":%1x%2").arg(c2.x()).arg(c2.y()) );
+    }
     //kDebug() << (pos() - pos().toPoint())*10;
     //kDebug() << QString("Particle-%1x%2").arg(5+c.x()).arg(5+c.y());
-    return QString("LinearArrow:%2x%3:%4x%5")
-            .arg(c1.x()).arg(c1.y()).arg(c2.x()).arg(c2.y());
+    //return QString("LinearArrow:%2x%3:%4x%5")
+    //        .arg(c1.x()).arg(c1.y()).arg(c2.x()).arg(c2.y());
+    return key;
 }
 
-QPixmap* LinearArrowGraphicsItem::paintPixmap()
+QPixmap* ArrowsGraphicsItem::paintPixmap()
 {
-    StepCore::Vector2d r = _property->readVariant(_item).value<StepCore::Vector2d>();
-    double rnorm = r.norm()*_worldScene->viewScale();
-    double L = std::sqrt(StepCore::square(r.norm()*_worldScene->viewScale() + _headSize.width()/2)
-                + StepCore::square(qMax(_headSize.height(), _bodyHeight)/2));
+    
+    double L = _boundingRect.bottomRight().x();
     int Li = int(std::ceil(L))+1;
     QPixmap* pixmap = new QPixmap(2*Li,2*Li);
     pixmap->fill(Qt::transparent);
     
-    QPainter painter;
-    painter.begin(pixmap);
-    painter.translate(QPointF(Li, Li)+(parentItem()->pos()-parentItem()->pos().toPoint()));
-    painter.rotate(atan2(-r[1], r[0])*180/3.14);
-    _worldScene->worldRenderer()->svgRenderer()->
-            render(&painter, QString("LinearArrow_%1_body").arg(_property->name()),
-                    QRectF(0, -_bodyHeight/2, rnorm, _bodyHeight));
-    _worldScene->worldRenderer()->svgRenderer()->
-            render(&painter, QString("LinearArrow_%1_head").arg(_property->name()), 
-                    QRectF(QPointF(rnorm-_headSize.width()/2, -_headSize.height()/2), _headSize));
-    painter.end();
+    foreach (const Property& p, _properties) {
+        StepCore::Vector2d r = p.property->readVariant(_item).value<StepCore::Vector2d>();
+        double rnorm = r.norm()*_worldScene->viewScale();
+
+        QPainter painter;
+        painter.begin(pixmap);
+        painter.translate(QPointF(Li, Li)+(parentItem()->pos()-parentItem()->pos().toPoint()));
+        painter.rotate(atan2(-r[1], r[0])*180/3.14);
+        
+        _worldScene->worldRenderer()->svgRenderer()->
+                render(&painter, QString("LinearArrow_%1_body").arg(p.property->name()),
+                        QRectF(0, -p.bodyHeight/2, rnorm, p.bodyHeight));
+        _worldScene->worldRenderer()->svgRenderer()->
+                render(&painter, QString("LinearArrow_%1_head").arg(p.property->name()), 
+                        QRectF(QPointF(rnorm-p.headSize.width()/2, -p.headSize.height()/2), p.headSize));
+        
+        painter.end();
+    }
     return pixmap;
 }
 

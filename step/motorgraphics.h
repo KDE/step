@@ -71,6 +71,8 @@ protected:
     ArrowHandlerGraphicsItem* _forceHandler;
     bool      _moving;
     static const int RADIUS = 5;
+    
+    ArrowsGraphicsItem* _arrows;
 
 };
 /////////////////////////////////////////////////////////////////////////////////////////////

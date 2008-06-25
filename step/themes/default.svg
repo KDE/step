@@ -202,5 +202,14 @@
        d="M 86.563393,59.75774 L 90.599306,64.071993 L 85.867545,67.968737"
        id="LinearArrow_acceleration_head"
        transform="translate(250.92856,426.1479)" />
+    <path
+       style="fill:none;fill-rule:evenodd;stroke:#9500a7;stroke-width:2;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+       d="M 108.83887,63.713919 L 134.81849,63.713919"
+       id="LinearArrow_forceValue_body"
+       transform="translate(250.92856,426.1479)" />
+    <path
+       style="fill:none;fill-rule:evenodd;stroke:#9500a7;stroke-width:2;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+       d="M 393.81647,484.94144 L 399.91775,489.46819 L 394.40692,495.37265"
+       id="LinearArrow_forceValue_head" />
   </g>
 </svg>
