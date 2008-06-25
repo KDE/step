@@ -30,7 +30,7 @@
 #include <KDebug>
 
 ParticleGraphicsItem::ParticleGraphicsItem(StepCore::Item* item, WorldModel* worldModel, WorldScene* worldScene)
-    : WorldGraphicsItem(item, worldModel, worldScene)
+    : WorldGraphicsItem(item, worldModel, worldScene), _arrow(0)
 {
     Q_ASSERT(dynamic_cast<StepCore::Particle*>(_item) != NULL);
     setFlag(QGraphicsItem::ItemIsSelectable);
@@ -159,6 +159,14 @@ void ParticleGraphicsItem::worldDataChanged(bool)
 
 void ParticleGraphicsItem::stateChanged()
 {
+    if((_isSelected || _isMouseOverItem) && !_arrow) {
+        _arrow = new LinearArrowGraphicsItem(_item, _worldModel, _worldScene, this,
+                                             _item->metaObject()->property("velocity"), true);
+    }
+    if(!_isMouseOverItem && !_isSelected && _arrow) {
+        delete _arrow; _arrow = 0;
+    }
+    
     /*
     if(_isSelected) _velocityHandler->setVisible(true);
     else _velocityHandler->setVisible(false);

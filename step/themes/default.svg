@@ -37,15 +37,15 @@
      inkscape:pageopacity="0.0"
      inkscape:pageshadow="2"
      inkscape:zoom="5.0809055"
-     inkscape:cx="183.63817"
-     inkscape:cy="753.78822"
+     inkscape:cx="59.011716"
+     inkscape:cy="745.91561"
      inkscape:document-units="px"
      inkscape:current-layer="layer1"
      showgrid="false"
      inkscape:window-width="681"
      inkscape:window-height="672"
-     inkscape:window-x="225"
-     inkscape:window-y="95" />
+     inkscape:window-x="57"
+     inkscape:window-y="81" />
   <metadata
      id="metadata7">
     <rdf:RDF>
@@ -182,5 +182,25 @@
        style="fill:none;fill-rule:evenodd;stroke:#4e41b2;stroke-width:1.8249259;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
        d="M 434.74964,468.99939 L 453.45594,468.99939"
        id="Stick" />
+    <path
+       style="fill:none;fill-rule:evenodd;stroke:#004700;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+       d="M 16.004486,65.881195 L 37.714919,65.881195"
+       id="LinearArrow_velocity_body"
+       transform="translate(250.92856,426.1479)" />
+    <path
+       style="fill:none;fill-rule:evenodd;stroke:#003c00;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+       d="M 46.204255,60.731926 L 51.492693,64.489501 L 46.482594,69.082093"
+       id="LinearArrow_velocity_head"
+       transform="translate(250.92856,426.1479)" />
+    <path
+       style="fill:none;fill-rule:evenodd;stroke:#5e0000;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+       d="M 66.522993,64.350332 L 81.831632,64.211162"
+       id="LinearArrow_acceleration_body"
+       transform="translate(250.92856,426.1479)" />
+    <path
+       style="fill:none;fill-rule:evenodd;stroke:#4f0000;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+       d="M 86.563393,59.75774 L 90.599306,64.071993 L 85.867545,67.968737"
+       id="LinearArrow_acceleration_head"
+       transform="translate(250.92856,426.1479)" />
   </g>
 </svg>

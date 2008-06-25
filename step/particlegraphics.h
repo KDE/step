@@ -41,6 +41,7 @@ protected:
 
     ArrowHandlerGraphicsItem *_velocityHandler;
     double _lastArrowRadius;
+    LinearArrowGraphicsItem* _arrow;
 
     static const int RADIUS = 7;
 };

@@ -321,6 +321,26 @@ protected:
 
 /////////////////////////////////////////////////////////////////////////////////////////
 
+class LinearArrowGraphicsItem:public WorldGraphicsItem
+{
+public:
+    LinearArrowGraphicsItem(StepCore::Item* item, WorldModel* worldModel, WorldScene* worldScene,
+                WorldGraphicsItem* parent, const StepCore::MetaProperty* property, bool editable);
+    QString pixmapCacheKey();
+    QPixmap* paintPixmap();
+
+    void viewScaleChanged();
+    void worldDataChanged(bool);
+
+protected:
+    const StepCore::MetaProperty* _property;
+    bool _editable;
+    QSizeF _headSize;
+    double _bodyHeight;
+};
+
+/////////////////////////////////////////////////////////////////////////////////////////
+
 /** \brief Handler item that controls vector property */
 class ArrowHandlerGraphicsItem: public WorldGraphicsItem
 {

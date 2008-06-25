@@ -531,6 +531,76 @@ QPixmap* WorldGraphicsItem::paintPixmap()
 }  
 /////////////////////////////////////////////////////////////////////////////////////////
 
+LinearArrowGraphicsItem::LinearArrowGraphicsItem(StepCore::Item* item, WorldModel* worldModel,
+                                            WorldScene* worldScene, WorldGraphicsItem* parent,
+                                        const StepCore::MetaProperty* property, bool editable)
+    : WorldGraphicsItem(item, worldModel, worldScene, parent),
+                            _property(property), _editable(editable)
+{
+    _headSize = _worldScene->worldRenderer()->svgRenderer()->boundsOnElement(
+            QString("LinearArrow_%1_head").arg(_property->name())).size();
+    _bodyHeight = _worldScene->worldRenderer()->svgRenderer()->boundsOnElement(
+            QString("LinearArrow_%1_body").arg(_property->name())).size().height();
+    
+    worldDataChanged(true);
+}
+
+void LinearArrowGraphicsItem::viewScaleChanged()
+{
+    worldDataChanged(true);
+}
+
+void LinearArrowGraphicsItem::worldDataChanged(bool)
+{    
+    prepareGeometryChange();
+
+    StepCore::Vector2d v = _property->readVariant(_item).value<StepCore::Vector2d>();
+    double L = std::sqrt(StepCore::square(v.norm()*_worldScene->viewScale() + _headSize.width()/2)
+        + StepCore::square(qMax(_headSize.height(), _bodyHeight)/2));
+    _boundingRect = QRectF(-L, -L, 2*L, 2*L);
+    update();
+    kDebug() << _boundingRect;
+}
+
+QString LinearArrowGraphicsItem::pixmapCacheKey()
+{
+    QPointF p1 = parentItem()->pos();
+    QPoint c1 = ((p1-p1.toPoint())*PIXMAP_CACHE_GRADING).toPoint();
+    QPoint c2 = (_worldScene->vectorToPoint(_property->readVariant(_item).value<StepCore::Vector2d>())
+            *PIXMAP_CACHE_GRADING).toPoint();
+    //kDebug() << (pos() - pos().toPoint())*10;
+    //kDebug() << QString("Particle-%1x%2").arg(5+c.x()).arg(5+c.y());
+    return QString("LinearArrow:%2x%3:%4x%5")
+            .arg(c1.x()).arg(c1.y()).arg(c2.x()).arg(c2.y());
+}
+
+QPixmap* LinearArrowGraphicsItem::paintPixmap()
+{
+    StepCore::Vector2d r = _property->readVariant(_item).value<StepCore::Vector2d>();
+    double rnorm = r.norm()*_worldScene->viewScale();
+    double L = std::sqrt(StepCore::square(r.norm()*_worldScene->viewScale() + _headSize.width()/2)
+                + StepCore::square(qMax(_headSize.height(), _bodyHeight)/2));
+    int Li = int(std::ceil(L))+1;
+    QPixmap* pixmap = new QPixmap(2*Li,2*Li);
+    pixmap->fill(Qt::transparent);
+    
+    QPainter painter;
+    painter.begin(pixmap);
+    painter.translate(QPointF(Li, Li)+(parentItem()->pos()-parentItem()->pos().toPoint()));
+    painter.rotate(atan2(-r[1], r[0])*180/3.14);
+    _worldScene->worldRenderer()->svgRenderer()->
+            render(&painter, QString("LinearArrow_%1_body").arg(_property->name()),
+                    QRectF(0, -_bodyHeight/2, rnorm, _bodyHeight));
+    _worldScene->worldRenderer()->svgRenderer()->
+            render(&painter, QString("LinearArrow_%1_head").arg(_property->name()), 
+                    QRectF(QPointF(rnorm-_headSize.width()/2, -_headSize.height()/2), _headSize));
+    painter.end();
+    return pixmap;
+}
+
+
+/////////////////////////////////////////////////////////////////////////////////////////
+
 ArrowHandlerGraphicsItem::ArrowHandlerGraphicsItem(StepCore::Item* item, WorldModel* worldModel, 
                          WorldScene* worldScene, QGraphicsItem* parent, const StepCore::MetaProperty* property,
                          const StepCore::MetaProperty* positionProperty)
