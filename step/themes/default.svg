@@ -38,14 +38,14 @@
      inkscape:pageshadow="2"
      inkscape:zoom="1.7963714"
      inkscape:cx="180.77464"
-     inkscape:cy="676.46468"
+     inkscape:cy="186.58825"
      inkscape:document-units="px"
      inkscape:current-layer="layer1"
      showgrid="false"
      inkscape:window-width="1053"
-     inkscape:window-height="1012"
+     inkscape:window-height="973"
      inkscape:window-x="58"
-     inkscape:window-y="81" />
+     inkscape:window-y="12" />
   <metadata
      id="metadata7">
     <rdf:RDF>
@@ -367,7 +367,7 @@
        inkscape:label="#path2522" />
     <path
        id="CircularArrow_head_torqueValue"
-       d="M 489.00836,1138.4811 L 495.10964,1143.0078 L 489.59881,1148.9123"
+       d="M 486.8101,1146.6897 L 491.40376,1140.6387 L 497.24717,1146.2142"
        style="fill:none;fill-rule:evenodd;stroke:#9500a7;stroke-width:2;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
        inkscape:label="#path2524" />
     <text
@@ -532,12 +532,12 @@
        inkscape:label="#path2628" />
     <path
        id="CircularArrow_head_angularVelocity"
-       d="M 303.81295,1137.6361 L 309.10139,1141.3936 L 304.09129,1145.9862"
+       d="M 302.03225,1144.0118 L 306.31385,1139.138 L 310.36669,1144.594"
        style="fill:none;fill-rule:evenodd;stroke:#003c00;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
        inkscape:label="#path3400" />
     <path
        id="CircularArrow_head_angularAcceleration"
-       d="M 393.15973,1137.2186 L 397.19564,1141.5328 L 392.46388,1145.4296"
+       d="M 390.85077,1143.2765 L 394.87289,1138.9494 L 399.09031,1143.3978"
        style="fill:none;fill-rule:evenodd;stroke:#4f0000;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1" />
     <path
        transform="matrix(0.7990909,0,0,0.7990909,345.81656,718.11628)"

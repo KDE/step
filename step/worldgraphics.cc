@@ -540,12 +540,22 @@ ArrowsGraphicsItem::ArrowsGraphicsItem(StepCore::Item* item, WorldModel* worldMo
     va_start(ap, parent);
     const char* propertyName;
     while(NULL != (propertyName = va_arg(ap, const char*))) {
-        _properties << Property(
-                _item->metaObject()->property(propertyName),
+        const StepCore::MetaProperty* property = _item->metaObject()->property(propertyName);
+        if(property->userTypeId() == qMetaTypeId<StepCore::Vector2d>()) {
+            _properties << Property(
+                property,
                 _worldScene->worldRenderer()->svgRenderer()->boundsOnElement(
-                            QString("LinearArrow_%1_head").arg(propertyName)).size(),
+                            QString("LinearArrow_head_%1").arg(propertyName)).size(),
                 _worldScene->worldRenderer()->svgRenderer()->boundsOnElement(
-                            QString("LinearArrow_%1_body").arg(propertyName)).size().height());
+                            QString("LinearArrow_body_%1").arg(propertyName)).size().height());
+        } else if(property->userTypeId() == qMetaTypeId<double>()) {
+            _properties << Property(
+                property,
+                _worldScene->worldRenderer()->svgRenderer()->boundsOnElement(
+                            QString("CircularArrow_head_%1").arg(propertyName)).size(),
+                _worldScene->worldRenderer()->svgRenderer()->boundsOnElement(
+                            QString("CircularArrow_body_%1").arg(propertyName)).size().height());
+        }
     }
     va_end(ap);
     worldDataChanged(true);
@@ -560,10 +570,15 @@ void ArrowsGraphicsItem::worldDataChanged(bool)
 {    
     double L = 0;
     foreach (const Property& p, _properties) {
-        StepCore::Vector2d v = p.property->readVariant(_item).value<StepCore::Vector2d>();
-        double L1 = std::sqrt(StepCore::square(v.norm()*_worldScene->viewScale() + p.headSize.width()/2)
-            + StepCore::square(qMax(p.headSize.height(), p.bodyHeight)/2));
-        if(L1>L) L=L1;
+        if(p.property->userTypeId() == qMetaTypeId<StepCore::Vector2d>()){
+            StepCore::Vector2d v = p.property->readVariant(_item).value<StepCore::Vector2d>();
+            double L1 = std::sqrt(StepCore::square(v.norm()*_worldScene->viewScale() + p.headSize.width()/2)
+                + StepCore::square(qMax(p.headSize.height(), p.bodyHeight)/2));
+            if(L1>L) L=L1;
+        } else if(p.property->userTypeId() == qMetaTypeId<double>()) {
+            double L1 = (p.bodyDiameter + p.headSize.height())/2;
+            if(L1>L) L=L1;
+        }
     }
     prepareGeometryChange();
     _boundingRect = QRectF(-L, -L, 2*L, 2*L);
@@ -577,9 +592,15 @@ QString ArrowsGraphicsItem::pixmapCacheKey()
     QString key = QString("Arrows:%1x%2").arg(c1.x()).arg(c1.y());
     
     foreach (const Property& p, _properties) {
-        QPoint c2 = (_worldScene->vectorToPoint(p.property->readVariant(_item).value<StepCore::Vector2d>())
-                            *PIXMAP_CACHE_GRADING).toPoint();
-        key.append( QString(":%1x%2").arg(c2.x()).arg(c2.y()) );
+        if(p.property->userTypeId() == qMetaTypeId<StepCore::Vector2d>()){
+            QPoint c2 = (_worldScene->vectorToPoint(p.property->readVariant(_item).value<StepCore::Vector2d>())
+                                *PIXMAP_CACHE_GRADING).toPoint();
+            key.append( QString(":%1x%2").arg(c2.x()).arg(c2.y()) );
+        } else if(p.property->userTypeId() == qMetaTypeId<double>()) {
+            int c2 = int(p.property->readVariant(_item).value<double>()
+                    *PIXMAP_CACHE_GRADING*p.bodyDiameter/2);
+            key.append( QString(":%1").arg(c2) );
+        }
     }
     //kDebug() << (pos() - pos().toPoint())*10;
     //kDebug() << QString("Particle-%1x%2").arg(5+c.x()).arg(5+c.y());
@@ -597,22 +618,45 @@ QPixmap* ArrowsGraphicsItem::paintPixmap()
     pixmap->fill(Qt::transparent);
     
     foreach (const Property& p, _properties) {
-        StepCore::Vector2d r = p.property->readVariant(_item).value<StepCore::Vector2d>();
-        double rnorm = r.norm()*_worldScene->viewScale();
+        if(p.property->userTypeId() == qMetaTypeId<StepCore::Vector2d>()){
+            StepCore::Vector2d r = p.property->readVariant(_item).value<StepCore::Vector2d>();
+            double rnorm = r.norm()*_worldScene->viewScale();
 
-        QPainter painter;
-        painter.begin(pixmap);
-        painter.translate(QPointF(Li, Li)+(parentItem()->pos()-parentItem()->pos().toPoint()));
-        painter.rotate(atan2(-r[1], r[0])*180/3.14);
-        
-        _worldScene->worldRenderer()->svgRenderer()->
-                render(&painter, QString("LinearArrow_%1_body").arg(p.property->name()),
-                        QRectF(0, -p.bodyHeight/2, rnorm, p.bodyHeight));
-        _worldScene->worldRenderer()->svgRenderer()->
-                render(&painter, QString("LinearArrow_%1_head").arg(p.property->name()), 
-                        QRectF(QPointF(rnorm-p.headSize.width()/2, -p.headSize.height()/2), p.headSize));
-        
-        painter.end();
+            QPainter painter;
+            painter.begin(pixmap);
+            painter.translate(QPointF(Li, Li)+(parentItem()->pos()-parentItem()->pos().toPoint()));
+            painter.rotate(atan2(-r[1], r[0])*180/3.14);
+
+            _worldScene->worldRenderer()->svgRenderer()->
+                    render(&painter, QString("LinearArrow_body_%1").arg(p.property->name()),
+                            QRectF(0, -p.bodyHeight/2, rnorm, p.bodyHeight));
+            _worldScene->worldRenderer()->svgRenderer()->
+                    render(&painter, QString("LinearArrow_head_%1").arg(p.property->name()), 
+                            QRectF(QPointF(rnorm-p.headSize.width()/2, -p.headSize.height()/2), p.headSize));
+            painter.end();
+        } else if(p.property->userTypeId() == qMetaTypeId<double>()) {
+
+            double w = p.property->readVariant(_item).value<double>()*180/M_PI;
+
+            QPainter painter;
+            painter.begin(pixmap);
+            painter.translate(QPointF(Li, Li)+(parentItem()->pos()-parentItem()->pos().toPoint()));
+            QPainterPath path(QPointF(0,0));
+            path.arcTo(_boundingRect, 0, w);
+            path.closeSubpath();
+            painter.setClipPath(path);
+            _worldScene->worldRenderer()->svgRenderer()->
+                    render(&painter, QString("CircularArrow_body_%1").arg(p.property->name()),
+                            QRectF(-p.bodyDiameter/2, -p.bodyDiameter/2, p.bodyDiameter, p.bodyDiameter));
+            painter.setClipping(false);
+            painter.rotate(-w);
+            //painter.translate(QPointF(p.bodyDiameter/2, 0)+(parentItem()->pos()-parentItem()->pos().toPoint()));
+            _worldScene->worldRenderer()->svgRenderer()->
+                    render(&painter, QString("CircularArrow_head_%1").arg(p.property->name()),
+                            QRectF(QPointF(p.bodyDiameter/2-p.headSize.width()/2, -p.headSize.height()/2),
+                                   p.headSize));
+            painter.end();
+        }
     }
     return pixmap;
 }

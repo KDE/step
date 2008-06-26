@@ -337,7 +337,10 @@ protected:
     {
         const StepCore::MetaProperty* property;
         QSizeF headSize;
-        double bodyHeight;
+        union {
+            double bodyHeight;
+            double bodyDiameter;
+        };
         Property(const StepCore::MetaProperty* p, const QSizeF& h, double b)
             : property(p), headSize(h), bodyHeight(b) {}
     };

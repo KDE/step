@@ -455,6 +455,12 @@ void CircularMotorGraphicsItem::worldDataChanged(bool dynamicOnly)
 
 void CircularMotorGraphicsItem::stateChanged()
 {
+    if((_isSelected || _isMouseOverItem) && !_arrows) {
+        _arrows = new ArrowsGraphicsItem(_item, _worldModel, _worldScene, this, "torqueValue", NULL);
+    }
+    if(!_isMouseOverItem && !_isSelected && _arrows) {
+        delete _arrows; _arrows = 0;
+    }
     //if(_isSelected) _torqueHandler->setVisible(true);
     //else _torqueHandler->setVisible(false);
 }

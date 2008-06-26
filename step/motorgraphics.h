@@ -110,6 +110,7 @@ protected:
     QPainterPath _path;
     CircularArrowHandlerGraphicsItem* _torqueHandler;
     bool      _moving;
+    ArrowsGraphicsItem* _arrows;
     static const int RADIUS = 5;
     static const int ARROW_RADIUS = 45;
 };
