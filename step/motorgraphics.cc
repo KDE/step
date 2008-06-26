@@ -74,14 +74,14 @@ void LinearMotorCreator::tryAttach(const QPointF& pos)
 }
 
 LinearMotorGraphicsItem::LinearMotorGraphicsItem(StepCore::Item* item, WorldModel* worldModel, WorldScene* worldScene)
-    : WorldGraphicsItem(item, worldModel, worldScene), _moving(false)
+    : WorldGraphicsItem(item, worldModel, worldScene), _moving(false), _arrows(0)
 {
     Q_ASSERT(dynamic_cast<StepCore::LinearMotor*>(_item) != NULL);
     setFlag(QGraphicsItem::ItemIsSelectable);
     setFlag(QGraphicsItem::ItemIsMovable);
     setZValue(HANDLER_ZVALUE);
 
-    _forceHandler = new ArrowHandlerGraphicsItem(item, worldModel, worldScene, this,
+    _forceHandler = new LinearArrowHandlerGraphicsItem(item, worldModel, worldScene, this,
                    _item->metaObject()->property("forceValue"));
     _forceHandler->setVisible(false);
     

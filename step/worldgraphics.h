@@ -350,7 +350,7 @@ protected:
 /////////////////////////////////////////////////////////////////////////////////////////
 
 /** \brief Handler item that controls vector property */
-class ArrowHandlerGraphicsItem: public WorldGraphicsItem
+class LinearArrowHandlerGraphicsItem: public WorldGraphicsItem
 {
 public:
     /** Construct ArrowHandlerGraphicsItem.
@@ -360,11 +360,13 @@ public:
      *  \param property Property to control
      *  \param positionProperty Origin of the vector described by property or NULL
      */
-    ArrowHandlerGraphicsItem(StepCore::Item* item, WorldModel* worldModel, WorldScene* worldScene,
+    LinearArrowHandlerGraphicsItem(StepCore::Item* item, WorldModel* worldModel, WorldScene* worldScene,
                         QGraphicsItem* parent, const StepCore::MetaProperty* property,
                         const StepCore::MetaProperty* positionProperty = NULL);
 
-    void paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget);
+    //void paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget);
+    QString pixmapCacheKey();
+    QPixmap* paintPixmap();
 
     void viewScaleChanged();
     void worldDataChanged(bool);
@@ -378,7 +380,7 @@ protected:
     virtual void setValue(const StepCore::Vector2d& value);
 
     void mouseSetPos(const QPointF& pos, const QPointF& diff, MovingState movingState);
-    QVariant itemChange(GraphicsItemChange change, const QVariant& value);
+    //QVariant itemChange(GraphicsItemChange change, const QVariant& value);
     const StepCore::MetaProperty* _property;
     const StepCore::MetaProperty* _positionProperty;
 };
@@ -401,10 +403,11 @@ public:
                         QGraphicsItem* parent, double radius, const StepCore::MetaProperty* property,
                         const StepCore::MetaProperty* positionProperty = NULL);
 
-    void paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget);
-
     void viewScaleChanged();
     void worldDataChanged(bool);
+    
+    QString pixmapCacheKey();
+    QPixmap* paintPixmap();
 
 protected:
     /** Virtual function which is called to get current vector value.
@@ -414,7 +417,6 @@ protected:
      *  Default implementation sets the value pointed by property */
     virtual void setValue(double value);
 
-    QVariant itemChange(GraphicsItemChange change, const QVariant& value);
     void mouseMoveEvent(QGraphicsSceneMouseEvent *event);
     void mouseReleaseEvent(QGraphicsSceneMouseEvent *event);
     const StepCore::MetaProperty* _property;
@@ -425,7 +427,7 @@ protected:
 /////////////////////////////////////////////////////////////////////////////////////////
 
 /** \brief Base class for handler that exists only on mouse hover */
-class OnHoverHandlerGraphicsItem: public QObject, public ArrowHandlerGraphicsItem
+class OnHoverHandlerGraphicsItem: public QObject, public LinearArrowHandlerGraphicsItem
 {
     Q_OBJECT
 

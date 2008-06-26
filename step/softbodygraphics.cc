@@ -139,7 +139,7 @@ SoftBodyGraphicsItem::SoftBodyGraphicsItem(StepCore::Item* item, WorldModel* wor
     setFlag(QGraphicsItem::ItemIsMovable);
     setAcceptsHoverEvents(true);
     setZValue(BODY_ZVALUE-1);
-    _velocityHandler = new ArrowHandlerGraphicsItem(item, worldModel, worldScene, this,
+    _velocityHandler = new LinearArrowHandlerGraphicsItem(item, worldModel, worldScene, this,
                    _item->metaObject()->property("velocity"),
                    _item->metaObject()->property("position"));
     _velocityHandler->setVisible(false);

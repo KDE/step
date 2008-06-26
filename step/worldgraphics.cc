@@ -42,61 +42,65 @@
 #include <QDebug>
 
 //XXX
-const QColor WorldGraphicsItem::SELECTION_COLOR = QColor(0xff, 0x70, 0x70);
+const QColor WorldGraphicsItem::SELECTION_COLOR = QColor ( 0xff, 0x70, 0x70 );
 
-void ItemCreator::showMessage(MessageFrame::Type type, const QString& text, MessageFrame::Flags flags)
+void ItemCreator::showMessage ( MessageFrame::Type type, const QString& text, MessageFrame::Flags flags )
 {
-    if(Settings::showCreationTips()) {
-        if(!(flags & MessageFrame::CloseButton) && !(flags & MessageFrame::CloseTimer)) {
-            _messageId = _worldScene->changeMessage(_messageId, type, text, flags);
+    if ( Settings::showCreationTips() ) {
+        if ( ! ( flags & MessageFrame::CloseButton ) && ! ( flags & MessageFrame::CloseTimer ) ) {
+            _messageId = _worldScene->changeMessage ( _messageId, type, text, flags );
         } else {
-            _worldScene->showMessage(type, text, flags);
+            _worldScene->showMessage ( type, text, flags );
         }
     }
 }
 
 void ItemCreator::closeMessage()
 {
-    _worldScene->closeMessage(_messageId);
+    _worldScene->closeMessage ( _messageId );
 }
 
 void ItemCreator::start()
 {
-    showMessage(MessageFrame::Information,
-            i18n("Click on the scene to create a %1", className()));
+    showMessage ( MessageFrame::Information,
+                  i18n ( "Click on the scene to create a %1", className() ) );
 }
 
-bool ItemCreator::sceneEvent(QEvent* event)
+bool ItemCreator::sceneEvent ( QEvent* event )
 {
-    if(event->type() == QEvent::GraphicsSceneMousePress) {
+    if ( event->type() == QEvent::GraphicsSceneMousePress ) {
         _worldModel->simulationPause();
 
-        _worldModel->beginMacro(i18n("Create %1", _worldModel->newItemName(_className)));
-        _item = _worldModel->createItem(_className); Q_ASSERT(_item != NULL);
+        _worldModel->beginMacro ( i18n ( "Create %1", _worldModel->newItemName ( _className ) ) );
+        _item = _worldModel->createItem ( _className );
+        Q_ASSERT ( _item != NULL );
 #ifdef __GNUC__
 #warning Do not add item until it is fully created
 #endif
-        const StepCore::MetaProperty* property = _item->metaObject()->property("position");
-        if(property != NULL) {
-            QGraphicsSceneMouseEvent* mouseEvent = static_cast<QGraphicsSceneMouseEvent*>(event);
+        const StepCore::MetaProperty* property = _item->metaObject()->property ( "position" );
+
+        if ( property != NULL ) {
+            QGraphicsSceneMouseEvent* mouseEvent = static_cast<QGraphicsSceneMouseEvent*> ( event );
             QPointF pos = mouseEvent->scenePos();
-            QVariant vpos = QVariant::fromValue(_worldScene->pointToVector(pos));
-            property->writeVariant(_item, vpos);
+            QVariant vpos = QVariant::fromValue ( _worldScene->pointToVector ( pos ) );
+            property->writeVariant ( _item, vpos );
         }
 
-        _worldModel->addItem(_item);
+        _worldModel->addItem ( _item );
+
         _worldModel->endMacro();
 
-        _worldModel->selectionModel()->setCurrentIndex(_worldModel->objectIndex(_item),
-                                                    QItemSelectionModel::ClearAndSelect);
+        _worldModel->selectionModel()->setCurrentIndex ( _worldModel->objectIndex ( _item ),
+                QItemSelectionModel::ClearAndSelect );
 
-        showMessage(MessageFrame::Information,
-                i18n("%1 named '%2' created", className(), _item->name()),
-                MessageFrame::CloseButton | MessageFrame::CloseTimer);
+        showMessage ( MessageFrame::Information,
+                      i18n ( "%1 named '%2' created", className(), _item->name() ),
+                      MessageFrame::CloseButton | MessageFrame::CloseTimer );
 
         setFinished();
         return true;
     }
+
     return false;
 }
 
@@ -104,76 +108,78 @@ bool ItemCreator::sceneEvent(QEvent* event)
 
 void AttachableItemCreator::start()
 {
-    if(_twoEnds)
-        showMessage(MessageFrame::Information,
-            i18n("Press left mouse button to position first end of a %1\n"
-                 "then drag and release it to position the second end", className()));
+    if ( _twoEnds )
+        showMessage ( MessageFrame::Information,
+                      i18n ( "Press left mouse button to position first end of a %1\n"
+                             "then drag and release it to position the second end", className() ) );
     else
-        showMessage(MessageFrame::Information,
-            i18n("Click on the scene to create a %1", className()));
+        showMessage ( MessageFrame::Information,
+                      i18n ( "Click on the scene to create a %1", className() ) );
 }
 
-bool AttachableItemCreator::sceneEvent(QEvent* event)
+bool AttachableItemCreator::sceneEvent ( QEvent* event )
 {
-    QGraphicsSceneMouseEvent* mouseEvent = static_cast<QGraphicsSceneMouseEvent*>(event);
+    QGraphicsSceneMouseEvent* mouseEvent = static_cast<QGraphicsSceneMouseEvent*> ( event );
 
-    if(event->type() == QEvent::GraphicsSceneMouseMove && _item == NULL) {
-        _worldScene->snapHighlight(mouseEvent->scenePos(), _snapFlags, _snapTypes);
+    if ( event->type() == QEvent::GraphicsSceneMouseMove && _item == NULL ) {
+        _worldScene->snapHighlight ( mouseEvent->scenePos(), _snapFlags, _snapTypes );
         return false;
 
-    } else if(event->type() == QEvent::GraphicsSceneMousePress && mouseEvent->button() == Qt::LeftButton) {
+    } else if ( event->type() == QEvent::GraphicsSceneMousePress && mouseEvent->button() == Qt::LeftButton ) {
         QPointF pos = mouseEvent->scenePos();
         _worldModel->simulationPause();
-        _worldModel->beginMacro(i18n("Create %1", _worldModel->newItemName(_className)));
-        _item = _worldModel->newItem(className()); Q_ASSERT(_item != NULL);
-        _worldModel->selectionModel()->setCurrentIndex(_worldModel->objectIndex(_item),
-                                                QItemSelectionModel::ClearAndSelect);
+        _worldModel->beginMacro ( i18n ( "Create %1", _worldModel->newItemName ( _className ) ) );
+        _item = _worldModel->newItem ( className() );
+        Q_ASSERT ( _item != NULL );
+        _worldModel->selectionModel()->setCurrentIndex ( _worldModel->objectIndex ( _item ),
+                QItemSelectionModel::ClearAndSelect );
 
-        if(_twoEnds) {
-            _worldScene->snapItem(pos, _snapFlags, _snapTypes, WorldGraphicsItem::Finished, _item, 1);
-            _worldModel->setProperty(_item, "localPosition2", // FIXME: take snapFlags into account here !
-                            QVariant::fromValue(_worldScene->pointToVector(pos)));
-            _worldModel->setProperty(_item, "restLength", 0); // FIXME: take snapFlags into account here !
+        if ( _twoEnds ) {
+            _worldScene->snapItem ( pos, _snapFlags, _snapTypes, WorldGraphicsItem::Finished, _item, 1 );
+            _worldModel->setProperty ( _item, "localPosition2", // FIXME: take snapFlags into account here !
+                                       QVariant::fromValue ( _worldScene->pointToVector ( pos ) ) );
+            _worldModel->setProperty ( _item, "restLength", 0 ); // FIXME: take snapFlags into account here !
 
-            showMessage(MessageFrame::Information,
-                i18n("Release left mouse button to position second end of the %1", className()));
+            showMessage ( MessageFrame::Information,
+                          i18n ( "Release left mouse button to position second end of the %1", className() ) );
         } else {
-            _worldScene->snapItem(pos, _snapFlags, _snapTypes, WorldGraphicsItem::Finished, _item);
-            showMessage(MessageFrame::Information,
-                i18n("%1 named '%2' created", className(), _item->name()),
-                MessageFrame::CloseButton | MessageFrame::CloseTimer);
+            _worldScene->snapItem ( pos, _snapFlags, _snapTypes, WorldGraphicsItem::Finished, _item );
+            showMessage ( MessageFrame::Information,
+                          i18n ( "%1 named '%2' created", className(), _item->name() ),
+                          MessageFrame::CloseButton | MessageFrame::CloseTimer );
             _worldModel->endMacro();
             setFinished();
         }
+
         return true;
 
-    } else if(event->type() == QEvent::GraphicsSceneMouseMove &&
-                    (mouseEvent->buttons() & Qt::LeftButton) && _twoEnds) {
+    } else if ( event->type() == QEvent::GraphicsSceneMouseMove &&
+                ( mouseEvent->buttons() & Qt::LeftButton ) && _twoEnds ) {
 
         QPointF pos = mouseEvent->scenePos();
-        _worldScene->snapItem(pos, _snapFlags, _snapTypes, WorldGraphicsItem::Moving, _item, 2);
+        _worldScene->snapItem ( pos, _snapFlags, _snapTypes, WorldGraphicsItem::Moving, _item, 2 );
 
         double length =
-            (_item->metaObject()->property("position2")->readVariant(_item).value<StepCore::Vector2d>() -
-             _item->metaObject()->property("position1")->readVariant(_item).value<StepCore::Vector2d>()).norm();
-        _worldModel->setProperty(_item, "restLength", length); // FIXME: take snapFlags into account here !
+            ( _item->metaObject()->property ( "position2" )->readVariant ( _item ).value<StepCore::Vector2d>() -
+              _item->metaObject()->property ( "position1" )->readVariant ( _item ).value<StepCore::Vector2d>() ).norm();
+        _worldModel->setProperty ( _item, "restLength", length ); // FIXME: take snapFlags into account here !
         return true;
 
-    } else if(event->type() == QEvent::GraphicsSceneMouseRelease &&
-                    (mouseEvent->button() == Qt::LeftButton) && _twoEnds) {
+    } else if ( event->type() == QEvent::GraphicsSceneMouseRelease &&
+                ( mouseEvent->button() == Qt::LeftButton ) && _twoEnds ) {
 
         QPointF pos = mouseEvent->scenePos();
-        _worldScene->snapItem(pos, _snapFlags, _snapTypes, WorldGraphicsItem::Finished, _item, 2);
+        _worldScene->snapItem ( pos, _snapFlags, _snapTypes, WorldGraphicsItem::Finished, _item, 2 );
 
         double length =
-            (_item->metaObject()->property("position2")->readVariant(_item).value<StepCore::Vector2d>() -
-             _item->metaObject()->property("position1")->readVariant(_item).value<StepCore::Vector2d>()).norm();
-        _worldModel->setProperty(_item, "restLength", length); // FIXME: take snapFlags into account here !
+            ( _item->metaObject()->property ( "position2" )->readVariant ( _item ).value<StepCore::Vector2d>() -
+              _item->metaObject()->property ( "position1" )->readVariant ( _item ).value<StepCore::Vector2d>() ).norm();
+        _worldModel->setProperty ( _item, "restLength", length ); // FIXME: take snapFlags into account here !
         _worldModel->endMacro();
 
-        showMessage(MessageFrame::Information,
-            i18n("%1 named '%2' created", className(), _item->name()),
-            MessageFrame::CloseButton | MessageFrame::CloseTimer);
+        showMessage ( MessageFrame::Information,
+                      i18n ( "%1 named '%2' created", className(), _item->name() ),
+                      MessageFrame::CloseButton | MessageFrame::CloseTimer );
 
         setFinished();
         return true;
@@ -189,13 +195,13 @@ void AttachableItemCreator::abort()
 
 /////////////////////////////////////////////////////////////////////////////////////////
 
-WorldGraphicsItem::WorldGraphicsItem(StepCore::Item* item, WorldModel* worldModel, WorldScene* worldScene, QGraphicsItem* parent)
-    : QGraphicsItem(parent), _item(item), _worldModel(worldModel), _worldScene(worldScene), _exclusiveMoving(false),
-      _onHoverHandlerEnabled(false), _isHighlighted(false), _isMouseOverItem(false), _isSelected(false),
-      _isMoving(false), _onHoverHandler(0), _onHoverHandlerTimer(false)
+WorldGraphicsItem::WorldGraphicsItem ( StepCore::Item* item, WorldModel* worldModel, WorldScene* worldScene, QGraphicsItem* parent )
+        : QGraphicsItem ( parent ), _item ( item ), _worldModel ( worldModel ), _worldScene ( worldScene ), _exclusiveMoving ( false ),
+        _onHoverHandlerEnabled ( false ), _isHighlighted ( false ), _isMouseOverItem ( false ), _isSelected ( false ),
+        _isMoving ( false ), _onHoverHandler ( 0 ), _onHoverHandlerTimer ( false )
 {
     // XXX: use persistant indexes here and in propertiesbrowser
-    setZValue(BODY_ZVALUE);
+    setZValue ( BODY_ZVALUE );
 }
 
 double WorldGraphicsItem::currentViewScale() const
@@ -204,214 +210,240 @@ double WorldGraphicsItem::currentViewScale() const
 #warning delete this function
 }
 
-QColor WorldGraphicsItem::highlightColor(const QColor& color)
+QColor WorldGraphicsItem::highlightColor ( const QColor& color )
 {
     qreal h, s, v, a;
     QColor hsv = color.toHsv();
-    hsv.getHsvF(&h, &s, &v, &a);
+    hsv.getHsvF ( &h, &s, &v, &a );
 
-    v += float(COLOR_HIGHLIGHT_AMOUNT)/100;
-    if (v > 1.0) {
+    v += float ( COLOR_HIGHLIGHT_AMOUNT ) / 100;
+
+    if ( v > 1.0 ) {
         // overflow... adjust saturation
         s -= v - 1.0;
-        if (s < 0) s = 0.0;
+
+        if ( s < 0 ) s = 0.0;
+
         v = 1.0;
     }
 
-    hsv.setHsvF(h, s, v, a);
+    hsv.setHsvF ( h, s, v, a );
 
     // convert back to same color spec as original color
-    return hsv.convertTo(color.spec());
+    return hsv.convertTo ( color.spec() );
 }
 
-void WorldGraphicsItem::drawArrow(QPainter* painter, const StepCore::Vector2d& r,
-                                                    const StepCore::Vector2d& v)
+void WorldGraphicsItem::drawArrow ( QPainter* painter, const StepCore::Vector2d& r,
+                                    const StepCore::Vector2d& v )
 {
     double s = currentViewScale();
-    if(v.norm2()*s*s > ARROW_STROKE*ARROW_STROKE) { // do not draw too small vectors
-        StepCore::Vector2d vv = r+v;
-        painter->drawLine(QLineF(r[0], r[1], vv[0], vv[1]));
 
-        const StepCore::Vector2d vn = v * (ARROW_STROKE / s / v.norm());
-        painter->drawLine(QLineF(vv[0], vv[1], vv[0] - 0.866*vn[0] - 0.5  *vn[1],
-                                               vv[1] + 0.5  *vn[0] - 0.866*vn[1]));
-        painter->drawLine(QLineF(vv[0], vv[1], vv[0] - 0.866*vn[0] + 0.5  *vn[1],
-                                               vv[1] - 0.5  *vn[0] - 0.866*vn[1]));
+    if ( v.norm2() *s*s > ARROW_STROKE*ARROW_STROKE ) { // do not draw too small vectors
+        StepCore::Vector2d vv = r + v;
+        painter->drawLine ( QLineF ( r[0], r[1], vv[0], vv[1] ) );
+
+        const StepCore::Vector2d vn = v * ( ARROW_STROKE / s / v.norm() );
+        painter->drawLine ( QLineF ( vv[0], vv[1], vv[0] - 0.866*vn[0] - 0.5  *vn[1],
+                                     vv[1] + 0.5  *vn[0] - 0.866*vn[1] ) );
+        painter->drawLine ( QLineF ( vv[0], vv[1], vv[0] - 0.866*vn[0] + 0.5  *vn[1],
+                                     vv[1] - 0.5  *vn[0] - 0.866*vn[1] ) );
     }
 }
 
-void WorldGraphicsItem::drawCircularArrow(QPainter* painter, const StepCore::Vector2d& r,
-                                                    double angle, double radius)
+void WorldGraphicsItem::drawCircularArrow ( QPainter* painter, const StepCore::Vector2d& r,
+        double angle, double radius )
 {
     double s = currentViewScale();
-    double rs = radius/s;
-    double x0 = rs*cos(angle)+r[0]/s;
-    double y0 = rs*sin(angle)+r[1]/s;
-    double xAr1 = CIRCULAR_ARROW_STROKE*cos(2*M_PI/3 + angle)/s;
-    double yAr1 = CIRCULAR_ARROW_STROKE*sin(2*M_PI/3 + angle)/s;
-    double xAr2 = CIRCULAR_ARROW_STROKE*cos(M_PI/3 + angle)/s;
-    double yAr2 = CIRCULAR_ARROW_STROKE*sin(M_PI/3 + angle)/s;
+    double rs = radius / s;
+    double x0 = rs * cos ( angle ) + r[0] / s;
+    double y0 = rs * sin ( angle ) + r[1] / s;
+    double xAr1 = CIRCULAR_ARROW_STROKE * cos ( 2 * M_PI / 3 + angle ) / s;
+    double yAr1 = CIRCULAR_ARROW_STROKE * sin ( 2 * M_PI / 3 + angle ) / s;
+    double xAr2 = CIRCULAR_ARROW_STROKE * cos ( M_PI / 3 + angle ) / s;
+    double yAr2 = CIRCULAR_ARROW_STROKE * sin ( M_PI / 3 + angle ) / s;
 
-    QRectF rr(-rs, -rs, 2*rs, 2*rs);
+    QRectF rr ( -rs, -rs, 2*rs, 2*rs );
 
-    if(angle > 2*M_PI || angle < -2*M_PI) {
-        painter->drawArc(rr, int(-angle*180*16/M_PI-150*16), 300*16);
-        for(int i=1; i<5; ++i)
-            painter->drawArc(rr, int(-angle*180*16/M_PI-150*16-i*12*16), 1*16);
-    } else if(angle > 0) {
-        painter->drawArc(rr, -int(angle*180*16/M_PI), int(angle*180*16/M_PI));
+    if ( angle > 2*M_PI || angle < -2*M_PI ) {
+        painter->drawArc ( rr, int ( -angle*180*16 / M_PI - 150*16 ), 300*16 );
+
+        for ( int i = 1; i < 5; ++i )
+            painter->drawArc ( rr, int ( -angle*180*16 / M_PI - 150*16 - i*12*16 ), 1*16 );
+    } else if ( angle > 0 ) {
+        painter->drawArc ( rr, -int ( angle*180*16 / M_PI ), int ( angle*180*16 / M_PI ) );
     } else {
-        painter->drawArc(rr, 0, int(-angle*180*16/M_PI));
+        painter->drawArc ( rr, 0, int ( -angle*180*16 / M_PI ) );
     }
 
     // do not draw too small vectors
-    if(angle > 0 && angle*radius > CIRCULAR_ARROW_STROKE) {
-        painter->drawLine(QLineF(x0, y0, x0-xAr1, y0-yAr1));
-        painter->drawLine(QLineF(x0, y0, x0-xAr2, y0-yAr2));
-    } if(angle < 0 && -angle*radius > CIRCULAR_ARROW_STROKE) {
-        painter->drawLine(QLineF(x0, y0, x0+xAr1, y0+yAr1));
-        painter->drawLine(QLineF(x0, y0, x0+xAr2, y0+yAr2));
+    if ( angle > 0 && angle*radius > CIRCULAR_ARROW_STROKE ) {
+        painter->drawLine ( QLineF ( x0, y0, x0 - xAr1, y0 - yAr1 ) );
+        painter->drawLine ( QLineF ( x0, y0, x0 - xAr2, y0 - yAr2 ) );
+    }
+
+    if ( angle < 0 && -angle*radius > CIRCULAR_ARROW_STROKE ) {
+        painter->drawLine ( QLineF ( x0, y0, x0 + xAr1, y0 + yAr1 ) );
+        painter->drawLine ( QLineF ( x0, y0, x0 + xAr2, y0 + yAr2 ) );
     }
 }
 
-void WorldGraphicsItem::drawArrow(QPainter* painter, const StepCore::Vector2d& v)
+void WorldGraphicsItem::drawArrow ( QPainter* painter, const StepCore::Vector2d& v )
 {
-    drawArrow(painter, StepCore::Vector2d(0), v);
+    drawArrow ( painter, StepCore::Vector2d ( 0 ), v );
 }
 
-void WorldGraphicsItem::drawCircularArrow(QPainter* painter, double angle, double radius)
+void WorldGraphicsItem::drawCircularArrow ( QPainter* painter, double angle, double radius )
 {
-    drawCircularArrow(painter, StepCore::Vector2d(0), angle, radius);
+    drawCircularArrow ( painter, StepCore::Vector2d ( 0 ), angle, radius );
 }
 
-void WorldGraphicsItem::mouseSetPos(const QPointF& pos, const QPointF&, MovingState)
+void WorldGraphicsItem::mouseSetPos ( const QPointF& pos, const QPointF&, MovingState )
 {
-    const StepCore::MetaProperty* property = _item->metaObject()->property("position");
-    if(property != NULL) {
+    const StepCore::MetaProperty* property = _item->metaObject()->property ( "position" );
+
+    if ( property != NULL ) {
         _worldModel->simulationPause();
-        _worldModel->setProperty(_item, property,
-                                QVariant::fromValue( _worldScene->pointToVector(pos) ));
+        _worldModel->setProperty ( _item, property,
+                                   QVariant::fromValue ( _worldScene->pointToVector ( pos ) ) );
     } else {
-        Q_ASSERT(false);
+        Q_ASSERT ( false );
     }
 }
 
-void WorldGraphicsItem::mousePressEvent(QGraphicsSceneMouseEvent *event)
+void WorldGraphicsItem::mousePressEvent ( QGraphicsSceneMouseEvent *event )
 {
-    if(event->button() == Qt::LeftButton && (flags() & ItemIsSelectable)) {
-        bool multiSelect = (event->modifiers() & Qt::ControlModifier) != 0;
-        if(!multiSelect && !isSelected()) {
-            if(scene()) scene()->clearSelection();
+    if ( event->button() == Qt::LeftButton && ( flags() & ItemIsSelectable ) ) {
+        bool multiSelect = ( event->modifiers() & Qt::ControlModifier ) != 0;
+
+        if ( !multiSelect && !isSelected() ) {
+            if ( scene() ) scene()->clearSelection();
+
             _worldModel->selectionModel()->clearSelection();
-            setSelected(true);
+
+            setSelected ( true );
         }
-    } else if (!(flags() & ItemIsMovable)) {
+    } else if ( ! ( flags() & ItemIsMovable ) ) {
         event->ignore();
     }
 }
 
-void WorldGraphicsItem::mouseMoveEvent(QGraphicsSceneMouseEvent *event)
+void WorldGraphicsItem::mouseMoveEvent ( QGraphicsSceneMouseEvent *event )
 {
-    if((event->buttons() & Qt::LeftButton) && (flags() & ItemIsMovable)) {
-        QPointF pdiff(mapToParent(event->pos()) - mapToParent(event->lastPos()));
-        QPointF newPos(mapToParent(event->pos()) - matrix().map(event->buttonDownPos(Qt::LeftButton)));
+    if ( ( event->buttons() & Qt::LeftButton ) && ( flags() & ItemIsMovable ) ) {
+        QPointF pdiff ( mapToParent ( event->pos() ) - mapToParent ( event->lastPos() ) );
+        QPointF newPos ( mapToParent ( event->pos() ) - matrix().map ( event->buttonDownPos ( Qt::LeftButton ) ) );
 
         QPointF diff = newPos - pos();
-        if(diff == QPointF(0, 0)) return;
+
+        if ( diff == QPointF ( 0, 0 ) ) return;
 
         MovingState movingState = Moving;
-        if(!_isMoving) {
-            if(_exclusiveMoving) {
-                if(!_exclusiveMovingMessage.isEmpty()) _worldModel->beginMacro(_exclusiveMovingMessage);
-                else _worldModel->beginMacro(i18n("Move %1", _item->name()));
+
+        if ( !_isMoving ) {
+            if ( _exclusiveMoving ) {
+                if ( !_exclusiveMovingMessage.isEmpty() ) _worldModel->beginMacro ( _exclusiveMovingMessage );
+                else _worldModel->beginMacro ( i18n ( "Move %1", _item->name() ) );
 
             } else {
                 int count = 0;
-                foreach(QGraphicsItem *item, scene()->selectedItems())
-                    if(item != this && (item->flags() & ItemIsMovable) &&
-                                (!item->parentItem() || !item->parentItem()->isSelected()) &&
-                                dynamic_cast<WorldGraphicsItem*>(item)) {
-                        ++count;
-                    }
-                if(!this->parentItem() || !this->parentItem()->isSelected()) ++count;
+                foreach ( QGraphicsItem *item, scene()->selectedItems() )
 
-                _worldModel->beginMacro(i18n("Move %1", count == 1 ? _item->name() : i18n("several objects")));
+                if ( item != this && ( item->flags() & ItemIsMovable ) &&
+                        ( !item->parentItem() || !item->parentItem()->isSelected() ) &&
+                        dynamic_cast<WorldGraphicsItem*> ( item ) ) {
+                    ++count;
+                }
+
+                if ( !this->parentItem() || !this->parentItem()->isSelected() ) ++count;
+
+                _worldModel->beginMacro ( i18n ( "Move %1", count == 1 ? _item->name() : i18n ( "several objects" ) ) );
             }
 
             movingState = Started;
+
             _isMoving = true;
         }
 
-        if(_exclusiveMoving) {
-            mouseSetPos(newPos, pdiff, movingState);
+        if ( _exclusiveMoving ) {
+            mouseSetPos ( newPos, pdiff, movingState );
         } else {
             // Move all selected items
-            foreach(QGraphicsItem *item, scene()->selectedItems()) {
-                if(item != this && (item->flags() & ItemIsMovable) &&
-                            (!item->parentItem() || !item->parentItem()->isSelected())) {
-                    WorldGraphicsItem* worldItem = dynamic_cast<WorldGraphicsItem*>(item);
-                    if(worldItem) worldItem->mouseSetPos(item->pos() + diff, pdiff, movingState);
+            foreach ( QGraphicsItem *item, scene()->selectedItems() ) {
+                if ( item != this && ( item->flags() & ItemIsMovable ) &&
+                        ( !item->parentItem() || !item->parentItem()->isSelected() ) ) {
+                    WorldGraphicsItem* worldItem = dynamic_cast<WorldGraphicsItem*> ( item );
+
+                    if ( worldItem ) worldItem->mouseSetPos ( item->pos() + diff, pdiff, movingState );
                 }
             }
-            if(!this->parentItem() || !this->parentItem()->isSelected())
-                mouseSetPos(newPos, pdiff, movingState);
+
+            if ( !this->parentItem() || !this->parentItem()->isSelected() )
+                mouseSetPos ( newPos, pdiff, movingState );
         }
     } else {
         event->ignore();
     }
 }
 
-void WorldGraphicsItem::mouseReleaseEvent(QGraphicsSceneMouseEvent *event)
+void WorldGraphicsItem::mouseReleaseEvent ( QGraphicsSceneMouseEvent *event )
 {
-    if(_isMoving && event->button() == Qt::LeftButton) {
-        QPointF pdiff(mapToParent(event->pos()) - mapToParent(event->lastPos()));
-        QPointF newPos(mapToParent(event->pos()) - matrix().map(event->buttonDownPos(Qt::LeftButton)));
+    if ( _isMoving && event->button() == Qt::LeftButton ) {
+        QPointF pdiff ( mapToParent ( event->pos() ) - mapToParent ( event->lastPos() ) );
+        QPointF newPos ( mapToParent ( event->pos() ) - matrix().map ( event->buttonDownPos ( Qt::LeftButton ) ) );
         QPointF diff = newPos - pos();
 
-        if(_exclusiveMoving) {
-            mouseSetPos(newPos, pdiff, Finished);
+        if ( _exclusiveMoving ) {
+            mouseSetPos ( newPos, pdiff, Finished );
         } else {
-            foreach(QGraphicsItem *item, scene()->selectedItems()) {
-                if(item != this && (item->flags() & ItemIsMovable) &&
-                            (!item->parentItem() || !item->parentItem()->isSelected())) {
-                    WorldGraphicsItem* worldItem = dynamic_cast<WorldGraphicsItem*>(item);
-                    if(worldItem) worldItem->mouseSetPos(item->pos() + diff, pdiff, Finished);
+            foreach ( QGraphicsItem *item, scene()->selectedItems() ) {
+                if ( item != this && ( item->flags() & ItemIsMovable ) &&
+                        ( !item->parentItem() || !item->parentItem()->isSelected() ) ) {
+                    WorldGraphicsItem* worldItem = dynamic_cast<WorldGraphicsItem*> ( item );
+
+                    if ( worldItem ) worldItem->mouseSetPos ( item->pos() + diff, pdiff, Finished );
                 }
             }
-            if(!this->parentItem() || !this->parentItem()->isSelected())
-                mouseSetPos(newPos, pdiff, Finished);
+
+            if ( !this->parentItem() || !this->parentItem()->isSelected() )
+                mouseSetPos ( newPos, pdiff, Finished );
         }
 
         _worldModel->endMacro();
+
         _isMoving = false;
     }
-    if(flags() & ItemIsSelectable) {
-        bool multiSelect = (event->modifiers() & Qt::ControlModifier) != 0;
-        if(event->scenePos() == event->buttonDownScenePos(Qt::LeftButton)) {
+
+    if ( flags() & ItemIsSelectable ) {
+        bool multiSelect = ( event->modifiers() & Qt::ControlModifier ) != 0;
+
+        if ( event->scenePos() == event->buttonDownScenePos ( Qt::LeftButton ) ) {
             // The item didn't move
-            if (multiSelect) {
-                setSelected(!isSelected());
+            if ( multiSelect ) {
+                setSelected ( !isSelected() );
             } else {
-                if(scene()) scene()->clearSelection();
+                if ( scene() ) scene()->clearSelection();
+
                 _worldModel->selectionModel()->clearSelection();
-                setSelected(true);
+
+                setSelected ( true );
             }
         }
     }
 }
 
-void WorldGraphicsItem::hoverMoveEvent(QGraphicsSceneHoverEvent* event)
+void WorldGraphicsItem::hoverMoveEvent ( QGraphicsSceneHoverEvent* event )
 {
-    if(_onHoverHandlerEnabled) {
-        OnHoverHandlerGraphicsItem* newOnHoverHandler = createOnHoverHandler(event->scenePos());
-        if(_onHoverHandler && !newOnHoverHandler) {
-             if(!_onHoverHandlerTimer) {
-                _onHoverHandler->setDeleteTimerEnabled(true);
+    if ( _onHoverHandlerEnabled ) {
+        OnHoverHandlerGraphicsItem* newOnHoverHandler = createOnHoverHandler ( event->scenePos() );
+
+        if ( _onHoverHandler && !newOnHoverHandler ) {
+            if ( !_onHoverHandlerTimer ) {
+                _onHoverHandler->setDeleteTimerEnabled ( true );
                 _onHoverHandlerTimer = true;
-             }
-        } else if(_onHoverHandler == newOnHoverHandler) {
-            if(_onHoverHandler && _onHoverHandlerTimer) {
-                _onHoverHandler->setDeleteTimerEnabled(false);
+            }
+        } else if ( _onHoverHandler == newOnHoverHandler ) {
+            if ( _onHoverHandler && _onHoverHandlerTimer ) {
+                _onHoverHandler->setDeleteTimerEnabled ( false );
                 _onHoverHandlerTimer = false;
             }
         } else {
@@ -422,47 +454,57 @@ void WorldGraphicsItem::hoverMoveEvent(QGraphicsSceneHoverEvent* event)
     }
 }
 
-void WorldGraphicsItem::hoverEnterEvent(QGraphicsSceneHoverEvent* /*event*/)
+void WorldGraphicsItem::hoverEnterEvent ( QGraphicsSceneHoverEvent* /*event*/ )
 {
-    if(_onHoverHandlerEnabled && _onHoverHandler && !_onHoverHandlerTimer)
-        _onHoverHandler->setDeleteTimerEnabled(false);
+    if ( _onHoverHandlerEnabled && _onHoverHandler && !_onHoverHandlerTimer )
+        _onHoverHandler->setDeleteTimerEnabled ( false );
+
     _isMouseOverItem = true;
+
     stateChanged();
+
     //update(_boundingRect);
 }
 
-void WorldGraphicsItem::hoverLeaveEvent(QGraphicsSceneHoverEvent* /*event*/)
+void WorldGraphicsItem::hoverLeaveEvent ( QGraphicsSceneHoverEvent* /*event*/ )
 {
-    if(_onHoverHandlerEnabled && _onHoverHandler && !_onHoverHandlerTimer)
-        _onHoverHandler->setDeleteTimerEnabled(true);
+    if ( _onHoverHandlerEnabled && _onHoverHandler && !_onHoverHandlerTimer )
+        _onHoverHandler->setDeleteTimerEnabled ( true );
+
     _isMouseOverItem = false;
+
     stateChanged();
+
     //update(_boundingRect);
 }
 
-QVariant WorldGraphicsItem::itemChange(GraphicsItemChange change, const QVariant& value)
+QVariant WorldGraphicsItem::itemChange ( GraphicsItemChange change, const QVariant& value )
 {
-    if(change == ItemSelectedHasChanged && value.toBool() != _isSelected && scene()) {
+    if ( change == ItemSelectedHasChanged && value.toBool() != _isSelected && scene() ) {
         _isSelected = value.toBool();
-        if(_isSelected) setZValue(zValue() + 1);
-        else setZValue(zValue() - 1);
 
-        QModelIndex index = _worldModel->objectIndex(_item);
-        if(_isSelected && !_worldModel->selectionModel()->isSelected(index)) {
-            _worldModel->selectionModel()->setCurrentIndex(index, QItemSelectionModel::Select);
-        } else if(!_isSelected && _worldModel->selectionModel()->isSelected(index)) {
-            _worldModel->selectionModel()->select(index, QItemSelectionModel::Deselect);
+        if ( _isSelected ) setZValue ( zValue() + 1 );
+        else setZValue ( zValue() - 1 );
+
+        QModelIndex index = _worldModel->objectIndex ( _item );
+
+        if ( _isSelected && !_worldModel->selectionModel()->isSelected ( index ) ) {
+            _worldModel->selectionModel()->setCurrentIndex ( index, QItemSelectionModel::Select );
+        } else if ( !_isSelected && _worldModel->selectionModel()->isSelected ( index ) ) {
+            _worldModel->selectionModel()->select ( index, QItemSelectionModel::Deselect );
         }
 
         stateChanged();
     }
-    return QGraphicsItem::itemChange(change, value);
+
+    return QGraphicsItem::itemChange ( change, value );
 }
 
-void WorldGraphicsItem::setOnHoverHandlerEnabled(bool enabled)
+void WorldGraphicsItem::setOnHoverHandlerEnabled ( bool enabled )
 {
     _onHoverHandlerEnabled = enabled;
-    if(!_onHoverHandlerEnabled) {
+
+    if ( !_onHoverHandlerEnabled ) {
         _onHoverHandlerTimer = false;
         delete _onHoverHandler;
     }
@@ -472,7 +514,7 @@ void WorldGraphicsItem::viewScaleChanged()
 {
 }
 
-void WorldGraphicsItem::worldDataChanged(bool)
+void WorldGraphicsItem::worldDataChanged ( bool )
 {
 }
 
@@ -480,128 +522,154 @@ void WorldGraphicsItem::stateChanged()
 {
 }
 
-void WorldGraphicsItem::paint(QPainter* painter, const QStyleOptionGraphicsItem*, QWidget*)
+void WorldGraphicsItem::paint ( QPainter* painter, const QStyleOptionGraphicsItem*, QWidget* )
 {
-    painter->setPen(QPen(Qt::gray, 0));
-    painter->drawRect(_boundingRect);
+    painter->setPen ( QPen ( Qt::gray, 0 ) );
+    painter->drawRect ( _boundingRect );
 
     static int totalcount = 0;
     static int misscount = 0;
-    
+
     QString key = pixmapCacheKey();
-    if(key.isEmpty()) return;
-    
+
+    if ( key.isEmpty() ) return;
+
     ++totalcount;
-    QPixmap* pixmap = _worldScene->worldRenderer()->pixmapCache()->object(key);
-    if(!pixmap) {
+
+    QPixmap* pixmap = _worldScene->worldRenderer()->pixmapCache()->object ( key );
+
+    if ( !pixmap ) {
         ++misscount;
         pixmap = paintPixmap();
-        if(!pixmap) return;
-        _worldScene->worldRenderer()->pixmapCache()->insert(key, pixmap,
-                                   pixmap->size().width()*pixmap->size().height());
+
+        if ( !pixmap ) return;
+
+        _worldScene->worldRenderer()->pixmapCache()->insert ( key, pixmap,
+                pixmap->size().width() *pixmap->size().height() );
     }
-    painter->drawPixmap(-pixmap->size().width()/2, -pixmap->size().height()/2 , *pixmap);
-    
-    if(0 == misscount % 10)
+
+    painter->drawPixmap ( -pixmap->size().width() / 2, -pixmap->size().height() / 2 , *pixmap );
+
+    if ( 0 == misscount % 10 )
         kDebug() << "totalcount=" << totalcount << " misscount=" << misscount
-                 << " cachesize=" << (double(_worldScene->worldRenderer()->pixmapCache()->totalCost())/
-                                     double(_worldScene->worldRenderer()->pixmapCache()->maxCost()));
+        << " cachesize=" << ( double ( _worldScene->worldRenderer()->pixmapCache()->totalCost() ) /
+                              double ( _worldScene->worldRenderer()->pixmapCache()->maxCost() ) );
 }
 
-void WorldGraphicsItem::contextMenuEvent(QGraphicsSceneContextMenuEvent* event)
+void WorldGraphicsItem::contextMenuEvent ( QGraphicsSceneContextMenuEvent* event )
 {
     event->accept();
 
-    QModelIndex index = _worldModel->objectIndex(_item);
-    if(flags() & QGraphicsItem::ItemIsSelectable)
-        _worldModel->selectionModel()->setCurrentIndex(index, QItemSelectionModel::ClearAndSelect);
+    QModelIndex index = _worldModel->objectIndex ( _item );
 
-    QMenu* menu = _worldModel->createContextMenu(index);
-    menu->exec(event->screenPos());
+    if ( flags() & QGraphicsItem::ItemIsSelectable )
+        _worldModel->selectionModel()->setCurrentIndex ( index, QItemSelectionModel::ClearAndSelect );
+
+    QMenu* menu = _worldModel->createContextMenu ( index );
+
+    menu->exec ( event->screenPos() );
+
     delete menu;
 }
 
 QString WorldGraphicsItem::pixmapCacheKey()
 {
     return QString();
-}   
-    
+}
+
 QPixmap* WorldGraphicsItem::paintPixmap()
 {
     return 0;
-}  
+}
+
 /////////////////////////////////////////////////////////////////////////////////////////
 
-ArrowsGraphicsItem::ArrowsGraphicsItem(StepCore::Item* item, WorldModel* worldModel,
-                                            WorldScene* worldScene, WorldGraphicsItem* parent, ...)
-    : WorldGraphicsItem(item, worldModel, worldScene, parent)
+ArrowsGraphicsItem::ArrowsGraphicsItem ( StepCore::Item* item, WorldModel* worldModel,
+        WorldScene* worldScene, WorldGraphicsItem* parent, ... )
+        : WorldGraphicsItem ( item, worldModel, worldScene, parent )
 {
     va_list ap;
-    va_start(ap, parent);
+    va_start ( ap, parent );
     const char* propertyName;
-    while(NULL != (propertyName = va_arg(ap, const char*))) {
-        const StepCore::MetaProperty* property = _item->metaObject()->property(propertyName);
-        if(property->userTypeId() == qMetaTypeId<StepCore::Vector2d>()) {
-            _properties << Property(
+
+    while ( NULL != ( propertyName = va_arg ( ap, const char* ) ) ) {
+        const StepCore::MetaProperty* property = _item->metaObject()->property ( propertyName );
+
+        if ( property->userTypeId() == qMetaTypeId<StepCore::Vector2d>() ) {
+            _properties << Property (
                 property,
-                _worldScene->worldRenderer()->svgRenderer()->boundsOnElement(
-                            QString("LinearArrow_head_%1").arg(propertyName)).size(),
-                _worldScene->worldRenderer()->svgRenderer()->boundsOnElement(
-                            QString("LinearArrow_body_%1").arg(propertyName)).size().height());
-        } else if(property->userTypeId() == qMetaTypeId<double>()) {
-            _properties << Property(
+                _worldScene->worldRenderer()->svgRenderer()->boundsOnElement (
+                    QString ( "LinearArrow_head_%1" ).arg ( propertyName ) ).size(),
+                _worldScene->worldRenderer()->svgRenderer()->boundsOnElement (
+                    QString ( "LinearArrow_body_%1" ).arg ( propertyName ) ).size().height() );
+
+            if ( property->isWritable() ) {
+                new LinearArrowHandlerGraphicsItem ( _item, _worldModel, _worldScene, this, property );
+            }
+        } else if ( property->userTypeId() == qMetaTypeId<double>() ) {
+            double R = _worldScene->worldRenderer()->svgRenderer()->boundsOnElement (
+                           QString ( "CircularArrow_body_%1" ).arg ( propertyName ) ).size().height();
+            _properties << Property (
                 property,
-                _worldScene->worldRenderer()->svgRenderer()->boundsOnElement(
-                            QString("CircularArrow_head_%1").arg(propertyName)).size(),
-                _worldScene->worldRenderer()->svgRenderer()->boundsOnElement(
-                            QString("CircularArrow_body_%1").arg(propertyName)).size().height());
+                _worldScene->worldRenderer()->svgRenderer()->boundsOnElement (
+                    QString ( "CircularArrow_head_%1" ).arg ( propertyName ) ).size(), R);
+
+            if ( property->isWritable() ) {
+                new CircularArrowHandlerGraphicsItem ( _item, _worldModel, _worldScene, this, R/2, property );
+            }
         }
     }
-    va_end(ap);
-    worldDataChanged(true);
+
+    va_end ( ap );
+
+    worldDataChanged ( true );
 }
 
 void ArrowsGraphicsItem::viewScaleChanged()
 {
-    worldDataChanged(true);
+    worldDataChanged ( true );
 }
 
-void ArrowsGraphicsItem::worldDataChanged(bool)
-{    
+void ArrowsGraphicsItem::worldDataChanged ( bool )
+{
     double L = 0;
-    foreach (const Property& p, _properties) {
-        if(p.property->userTypeId() == qMetaTypeId<StepCore::Vector2d>()){
-            StepCore::Vector2d v = p.property->readVariant(_item).value<StepCore::Vector2d>();
-            double L1 = std::sqrt(StepCore::square(v.norm()*_worldScene->viewScale() + p.headSize.width()/2)
-                + StepCore::square(qMax(p.headSize.height(), p.bodyHeight)/2));
-            if(L1>L) L=L1;
-        } else if(p.property->userTypeId() == qMetaTypeId<double>()) {
-            double L1 = (p.bodyDiameter + p.headSize.height())/2;
-            if(L1>L) L=L1;
+    foreach ( const Property& p, _properties ) {
+        if ( p.property->userTypeId() == qMetaTypeId<StepCore::Vector2d>() ) {
+            StepCore::Vector2d v = p.property->readVariant ( _item ).value<StepCore::Vector2d>();
+            double L1 = std::sqrt ( StepCore::square ( v.norm() * _worldScene->viewScale() + p.headSize.width() / 2 )
+                                    + StepCore::square ( qMax ( p.headSize.height(), p.bodyHeight ) / 2 ) );
+
+            if ( L1 > L ) L = L1;
+        } else if ( p.property->userTypeId() == qMetaTypeId<double>() ) {
+            double L1 = ( p.bodyDiameter + p.headSize.height() ) / 2;
+
+            if ( L1 > L ) L = L1;
         }
     }
+
     prepareGeometryChange();
-    _boundingRect = QRectF(-L, -L, 2*L, 2*L);
+    _boundingRect = QRectF ( -L, -L, 2 * L, 2 * L );
     update();
 }
 
 QString ArrowsGraphicsItem::pixmapCacheKey()
 {
     QPointF p1 = parentItem()->pos();
-    QPoint c1 = ((p1-p1.toPoint())*PIXMAP_CACHE_GRADING).toPoint();
-    QString key = QString("Arrows:%1x%2").arg(c1.x()).arg(c1.y());
-    
-    foreach (const Property& p, _properties) {
-        if(p.property->userTypeId() == qMetaTypeId<StepCore::Vector2d>()){
-            QPoint c2 = (_worldScene->vectorToPoint(p.property->readVariant(_item).value<StepCore::Vector2d>())
-                                *PIXMAP_CACHE_GRADING).toPoint();
-            key.append( QString(":%1x%2").arg(c2.x()).arg(c2.y()) );
-        } else if(p.property->userTypeId() == qMetaTypeId<double>()) {
-            int c2 = int(p.property->readVariant(_item).value<double>()
-                    *PIXMAP_CACHE_GRADING*p.bodyDiameter/2);
-            key.append( QString(":%1").arg(c2) );
+    QPoint c1 = ( ( p1 - p1.toPoint() ) * PIXMAP_CACHE_GRADING ).toPoint();
+    QString key = QString ( "Arrows:%1x%2" ).arg ( c1.x() ).arg ( c1.y() );
+
+    foreach ( const Property& p, _properties ) {
+        if ( p.property->userTypeId() == qMetaTypeId<StepCore::Vector2d>() ) {
+            QPoint c2 = ( _worldScene->vectorToPoint ( p.property->readVariant ( _item ).value<StepCore::Vector2d>() )
+                          * PIXMAP_CACHE_GRADING ).toPoint();
+            key.append ( QString ( ":%1x%2" ).arg ( c2.x() ).arg ( c2.y() ) );
+        } else if ( p.property->userTypeId() == qMetaTypeId<double>() ) {
+            int c2 = int ( p.property->readVariant ( _item ).value<double>()
+                           * PIXMAP_CACHE_GRADING * p.bodyDiameter / 2 );
+            key.append ( QString ( ":%1" ).arg ( c2 ) );
         }
     }
+
     //kDebug() << (pos() - pos().toPoint())*10;
     //kDebug() << QString("Particle-%1x%2").arg(5+c.x()).arg(5+c.y());
     //return QString("LinearArrow:%2x%3:%4x%5")
@@ -611,95 +679,126 @@ QString ArrowsGraphicsItem::pixmapCacheKey()
 
 QPixmap* ArrowsGraphicsItem::paintPixmap()
 {
-    
+
     double L = _boundingRect.bottomRight().x();
-    int Li = int(std::ceil(L))+1;
-    QPixmap* pixmap = new QPixmap(2*Li,2*Li);
-    pixmap->fill(Qt::transparent);
-    
-    foreach (const Property& p, _properties) {
-        if(p.property->userTypeId() == qMetaTypeId<StepCore::Vector2d>()){
-            StepCore::Vector2d r = p.property->readVariant(_item).value<StepCore::Vector2d>();
-            double rnorm = r.norm()*_worldScene->viewScale();
+    int Li = int ( std::ceil ( L ) ) + 1;
+    QPixmap* pixmap = new QPixmap ( 2*Li, 2*Li );
+    pixmap->fill ( Qt::transparent );
+
+    foreach ( const Property& p, _properties ) {
+        if ( p.property->userTypeId() == qMetaTypeId<StepCore::Vector2d>() ) {
+            StepCore::Vector2d r = p.property->readVariant ( _item ).value<StepCore::Vector2d>();
+            double rnorm = r.norm() * _worldScene->viewScale();
 
             QPainter painter;
-            painter.begin(pixmap);
-            painter.translate(QPointF(Li, Li)+(parentItem()->pos()-parentItem()->pos().toPoint()));
-            painter.rotate(atan2(-r[1], r[0])*180/3.14);
+            painter.begin ( pixmap );
+            painter.translate ( QPointF ( Li, Li ) + ( parentItem()->pos() - parentItem()->pos().toPoint() ) );
+            painter.rotate ( atan2 ( -r[1], r[0] ) *180 / 3.14 );
 
             _worldScene->worldRenderer()->svgRenderer()->
-                    render(&painter, QString("LinearArrow_body_%1").arg(p.property->name()),
-                            QRectF(0, -p.bodyHeight/2, rnorm, p.bodyHeight));
+            render ( &painter, QString ( "LinearArrow_body_%1" ).arg ( p.property->name() ),
+                     QRectF ( 0, -p.bodyHeight / 2, rnorm, p.bodyHeight ) );
             _worldScene->worldRenderer()->svgRenderer()->
-                    render(&painter, QString("LinearArrow_head_%1").arg(p.property->name()), 
-                            QRectF(QPointF(rnorm-p.headSize.width()/2, -p.headSize.height()/2), p.headSize));
+            render ( &painter, QString ( "LinearArrow_head_%1" ).arg ( p.property->name() ),
+                     QRectF ( QPointF ( rnorm - p.headSize.width() / 2, -p.headSize.height() / 2 ), p.headSize ) );
             painter.end();
-        } else if(p.property->userTypeId() == qMetaTypeId<double>()) {
+        } else if ( p.property->userTypeId() == qMetaTypeId<double>() ) {
 
-            double w = p.property->readVariant(_item).value<double>()*180/M_PI;
+            double w = p.property->readVariant ( _item ).value<double>() * 180 / M_PI;
 
             QPainter painter;
-            painter.begin(pixmap);
-            painter.translate(QPointF(Li, Li)+(parentItem()->pos()-parentItem()->pos().toPoint()));
-            QPainterPath path(QPointF(0,0));
-            path.arcTo(_boundingRect, 0, w);
+            painter.begin ( pixmap );
+            painter.translate ( QPointF ( Li, Li ) + ( parentItem()->pos() - parentItem()->pos().toPoint() ) );
+            QPainterPath path ( QPointF ( 0, 0 ) );
+            path.arcTo ( _boundingRect, 0, w );
             path.closeSubpath();
-            painter.setClipPath(path);
+            painter.setClipPath ( path );
             _worldScene->worldRenderer()->svgRenderer()->
-                    render(&painter, QString("CircularArrow_body_%1").arg(p.property->name()),
-                            QRectF(-p.bodyDiameter/2, -p.bodyDiameter/2, p.bodyDiameter, p.bodyDiameter));
-            painter.setClipping(false);
-            painter.rotate(-w);
+            render ( &painter, QString ( "CircularArrow_body_%1" ).arg ( p.property->name() ),
+                     QRectF ( -p.bodyDiameter / 2, -p.bodyDiameter / 2, p.bodyDiameter, p.bodyDiameter ) );
+            painter.setClipping ( false );
+            painter.rotate ( -w );
             //painter.translate(QPointF(p.bodyDiameter/2, 0)+(parentItem()->pos()-parentItem()->pos().toPoint()));
             _worldScene->worldRenderer()->svgRenderer()->
-                    render(&painter, QString("CircularArrow_head_%1").arg(p.property->name()),
-                            QRectF(QPointF(p.bodyDiameter/2-p.headSize.width()/2, -p.headSize.height()/2),
-                                   p.headSize));
+            render ( &painter, QString ( "CircularArrow_head_%1" ).arg ( p.property->name() ),
+                     QRectF ( QPointF ( p.bodyDiameter / 2 - p.headSize.width() / 2, -p.headSize.height() / 2 ),
+                              p.headSize ) );
             painter.end();
         }
     }
+
     return pixmap;
 }
 
 
 /////////////////////////////////////////////////////////////////////////////////////////
 
-ArrowHandlerGraphicsItem::ArrowHandlerGraphicsItem(StepCore::Item* item, WorldModel* worldModel, 
-                         WorldScene* worldScene, QGraphicsItem* parent, const StepCore::MetaProperty* property,
-                         const StepCore::MetaProperty* positionProperty)
-    : WorldGraphicsItem(item, worldModel, worldScene, parent), _property(property), _positionProperty(positionProperty)
+LinearArrowHandlerGraphicsItem::LinearArrowHandlerGraphicsItem ( StepCore::Item* item, WorldModel* worldModel,
+        WorldScene* worldScene, QGraphicsItem* parent, const StepCore::MetaProperty* property,
+        const StepCore::MetaProperty* positionProperty )
+        : WorldGraphicsItem ( item, worldModel, worldScene, parent ), _property ( property ), _positionProperty ( positionProperty )
 {
-    Q_ASSERT(!_property || _property->userTypeId() == qMetaTypeId<StepCore::Vector2d>());
-    setFlag(QGraphicsItem::ItemIsMovable);
-    setZValue(HANDLER_ZVALUE);
+    Q_ASSERT ( !_property || _property->userTypeId() == qMetaTypeId<StepCore::Vector2d>() );
+    setFlag ( QGraphicsItem::ItemIsMovable );
+    setZValue ( HANDLER_ZVALUE );
     _exclusiveMoving = true;
-    if(_property) _exclusiveMovingMessage = i18n("Change %1.%2", _item->name(), _property->name());
-    else _exclusiveMovingMessage = i18n("Change %1", _item->name());
+
+    if ( _property ) _exclusiveMovingMessage = i18n ( "Change %1.%2", _item->name(), _property->name() );
+    else _exclusiveMovingMessage = i18n ( "Change %1", _item->name() );
+
+
+    _boundingRect = _worldScene->worldRenderer()->svgRenderer()->boundsOnElement ( "LinearHandler" );
+
+    _boundingRect.moveCenter ( QPointF ( 0, 0 ) );
+
+    worldDataChanged ( false );
 }
 
-void ArrowHandlerGraphicsItem::paint(QPainter* painter, const QStyleOptionGraphicsItem* /*option*/, QWidget* /*widget*/)
+QString LinearArrowHandlerGraphicsItem::pixmapCacheKey()
 {
-    painter->setPen(QPen(Qt::gray, 0));
-    painter->drawRect(_boundingRect);
+    QPoint c = ( ( pos() - pos().toPoint() ) * PIXMAP_CACHE_GRADING ).toPoint();
+    //kDebug() << (pos() - pos().toPoint())*10;
+    //kDebug() << QString("Particle-%1x%2").arg(5+c.x()).arg(5+c.y());
+    return QString ( "LinearHandler:%1x%2" ).arg ( c.x() ).arg ( c.y() );
 }
 
-void ArrowHandlerGraphicsItem::viewScaleChanged()
+QPixmap* LinearArrowHandlerGraphicsItem::paintPixmap()
 {
-    if(isVisible()) {
-        prepareGeometryChange();
-        double w = HANDLER_SIZE/currentViewScale()/2;
-        _boundingRect = QRectF(-w, -w, w*2, w*2);
-    }
+    QSize size = ( _boundingRect.size() / 2.0 ).toSize() + QSize ( 1, 1 );
+    QPixmap* pixmap = new QPixmap ( size*2 );
+    pixmap->fill ( Qt::transparent );
+
+    QPainter painter;
+    painter.begin ( pixmap );
+    _worldScene->worldRenderer()->svgRenderer()->render ( &painter, "LinearHandler",
+            _boundingRect.translated ( QPointF ( size.width(), size.height() ) + pos() - pos().toPoint() ) );
+    painter.end();
+    return pixmap;
 }
 
-void ArrowHandlerGraphicsItem::worldDataChanged(bool)
+
+#if 0
+void ArrowHandlerGraphicsItem::paint ( QPainter* painter, const QStyleOptionGraphicsItem* /*option*/, QWidget* /*widget*/ )
 {
-    if(isVisible()) {
-        //kDebug() << "ArrowHandlerGraphicsItem::worldDataChanged()" << endl;
-        setPos(vectorToPoint(value()));
-    }
+    painter->setPen ( QPen ( Qt::gray, 0 ) );
+    painter->drawRect ( _boundingRect );
 }
 
+#endif
+
+void LinearArrowHandlerGraphicsItem::viewScaleChanged()
+{
+    worldDataChanged ( true );
+}
+
+void LinearArrowHandlerGraphicsItem::worldDataChanged ( bool )
+{
+    //kDebug() << "ArrowHandlerGraphicsItem::worldDataChanged()" << endl;
+    setPos ( _worldScene->vectorToPoint ( value() ) );
+
+}
+
+/*
 QVariant ArrowHandlerGraphicsItem::itemChange(GraphicsItemChange change, const QVariant& value)
 {
     if(change == QGraphicsItem::ItemVisibleHasChanged) {
@@ -710,10 +809,10 @@ QVariant ArrowHandlerGraphicsItem::itemChange(GraphicsItemChange change, const Q
     }
     return WorldGraphicsItem::itemChange(change, value);
 }
-
-void ArrowHandlerGraphicsItem::mouseSetPos(const QPointF& pos, const QPointF&, MovingState)
+*/
+void LinearArrowHandlerGraphicsItem::mouseSetPos ( const QPointF& pos, const QPointF&, MovingState )
 {
-    setValue(pointToVector(pos));
+    setValue ( _worldScene->pointToVector ( pos ) );
 }
 
 /*
@@ -736,107 +835,129 @@ void ArrowHandlerGraphicsItem::mouseMoveEvent(QGraphicsSceneMouseEvent *event)
     } else  event->ignore();
 }*/
 
-StepCore::Vector2d ArrowHandlerGraphicsItem::value()
+StepCore::Vector2d LinearArrowHandlerGraphicsItem::value()
 {
-    if(_property) {
-        StepCore::Vector2d ret = _property->readVariant(_item).value<StepCore::Vector2d>();
-        if(_positionProperty)
-            ret += _positionProperty->readVariant(_item).value<StepCore::Vector2d>();
+    if ( _property ) {
+        StepCore::Vector2d ret = _property->readVariant ( _item ).value<StepCore::Vector2d>();
+
+        if ( _positionProperty )
+            ret += _positionProperty->readVariant ( _item ).value<StepCore::Vector2d>();
+
         return ret;
     } else {
-        return StepCore::Vector2d(0);
+        return StepCore::Vector2d ( 0 );
     }
 }
 
-void ArrowHandlerGraphicsItem::setValue(const StepCore::Vector2d& value)
+void LinearArrowHandlerGraphicsItem::setValue ( const StepCore::Vector2d& value )
 {
-    if(_property) {
+    if ( _property ) {
         _worldModel->simulationPause();
         StepCore::Vector2d v = value;
-        if(_positionProperty)
-            v -= _positionProperty->readVariant(_item).value<StepCore::Vector2d>();
-        _worldModel->setProperty(_item, _property, QVariant::fromValue(v));
+
+        if ( _positionProperty )
+            v -= _positionProperty->readVariant ( _item ).value<StepCore::Vector2d>();
+
+        _worldModel->setProperty ( _item, _property, QVariant::fromValue ( v ) );
     }
 }
 
 /////////////////////////////////////////////////////////////////////////////////////////
 
-CircularArrowHandlerGraphicsItem::CircularArrowHandlerGraphicsItem(StepCore::Item* item, WorldModel* worldModel,
-                         WorldScene* worldScene,
-                         QGraphicsItem* parent, double radius, const StepCore::MetaProperty* property,
-                         const StepCore::MetaProperty* positionProperty)
-    : WorldGraphicsItem(item, worldModel, worldScene, parent), _property(property), _positionProperty(positionProperty), _radius(radius)
+CircularArrowHandlerGraphicsItem::CircularArrowHandlerGraphicsItem ( StepCore::Item* item, WorldModel* worldModel,
+        WorldScene* worldScene,
+        QGraphicsItem* parent, double radius, const StepCore::MetaProperty* property,
+        const StepCore::MetaProperty* positionProperty )
+        : WorldGraphicsItem ( item, worldModel, worldScene, parent ), _property ( property ),
+        _positionProperty ( positionProperty ), _radius ( radius )
 {
-    Q_ASSERT(!_property || _property->userTypeId() == qMetaTypeId<double>());
-    setFlag(QGraphicsItem::ItemIsMovable);
-    setZValue(HANDLER_ZVALUE);
+    Q_ASSERT ( !_property || _property->userTypeId() == qMetaTypeId<double>() );
+    setFlag ( QGraphicsItem::ItemIsMovable );
+    setZValue ( HANDLER_ZVALUE );
+    _boundingRect = _worldScene->worldRenderer()->svgRenderer()->boundsOnElement ( "CircularHandler" );
+    _boundingRect.moveCenter ( QPointF ( 0, 0 ) );
+
+    worldDataChanged ( false );
 }
 
-void CircularArrowHandlerGraphicsItem::paint(QPainter* painter, const QStyleOptionGraphicsItem* /*option*/, QWidget* /*widget*/)
+#if 0
+void CircularArrowHandlerGraphicsItem::paint ( QPainter* painter, const QStyleOptionGraphicsItem* /*option*/, QWidget* /*widget*/ )
 {
-    painter->setPen(QPen(Qt::gray, 0));
-    painter->drawRect(_boundingRect);
+    painter->setPen ( QPen ( Qt::gray, 0 ) );
+    painter->drawRect ( _boundingRect );
 }
+
+#endif
+
+QString CircularArrowHandlerGraphicsItem::pixmapCacheKey()
+{
+    QPoint c = ( ( pos() - pos().toPoint() ) * PIXMAP_CACHE_GRADING ).toPoint();
+    //kDebug() << (pos() - pos().toPoint())*10;
+    //kDebug() << QString("Particle-%1x%2").arg(5+c.x()).arg(5+c.y());
+    return QString ( "CircularHandler:%1x%2" ).arg ( c.x() ).arg ( c.y() );
+}
+
+QPixmap* CircularArrowHandlerGraphicsItem::paintPixmap()
+{
+    QSize size = ( _boundingRect.size() / 2.0 ).toSize() + QSize ( 1, 1 );
+    QPixmap* pixmap = new QPixmap ( size*2 );
+    pixmap->fill ( Qt::transparent );
+
+    QPainter painter;
+    painter.begin ( pixmap );
+    _worldScene->worldRenderer()->svgRenderer()->render ( &painter, "CircularHandler",
+            _boundingRect.translated ( QPointF ( size.width(), size.height() )
+                                       + pos() - pos().toPoint() ) );
+    painter.end();
+    return pixmap;
+}
+
 
 void CircularArrowHandlerGraphicsItem::viewScaleChanged()
 {
-    if(isVisible()) {
-        prepareGeometryChange();
-        double w = HANDLER_SIZE/currentViewScale()/2;
-        _boundingRect = QRectF(-w, -w, w*2, w*2);
-        worldDataChanged(true);
-    }
+    worldDataChanged ( true );
 }
 
-void CircularArrowHandlerGraphicsItem::worldDataChanged(bool)
+void CircularArrowHandlerGraphicsItem::worldDataChanged ( bool )
 {
-    if(isVisible()) {
-        double s = currentViewScale();
-        double angle = value();
-        setPos(_radius*cos(angle)/s, _radius*sin(angle)/s);
-    }
+    double angle = value();
+    setPos ( _radius*cos ( angle ), -_radius*sin ( angle ) );
 }
 
-QVariant CircularArrowHandlerGraphicsItem::itemChange(GraphicsItemChange change, const QVariant& value)
+void CircularArrowHandlerGraphicsItem::mouseMoveEvent ( QGraphicsSceneMouseEvent *event )
 {
-    if(change == QGraphicsItem::ItemVisibleHasChanged) {
-        if(isVisible()) {
-            viewScaleChanged();
-            worldDataChanged(false);
-        }
-    }
-    return WorldGraphicsItem::itemChange(change, value);
-}
-
-void CircularArrowHandlerGraphicsItem::mouseMoveEvent(QGraphicsSceneMouseEvent *event)
-{
-    if ((event->buttons() & Qt::LeftButton) && (flags() & ItemIsMovable)) {
-        if(!_isMoving) {
-            if(_property)
-                _worldModel->beginMacro(i18n("Change %1.%2", _item->name(), _property->name()));
+    if ( ( event->buttons() & Qt::LeftButton ) && ( flags() & ItemIsMovable ) ) {
+        if ( !_isMoving ) {
+            if ( _property )
+                _worldModel->beginMacro ( i18n ( "Change %1.%2", _item->name(), _property->name() ) );
             else
-                _worldModel->beginMacro(i18n("Change %1", _item->name()));
+                _worldModel->beginMacro ( i18n ( "Change %1", _item->name() ) );
+
             _isMoving = true;
         }
 
-        QPointF newPos(mapToParent(event->pos()) - matrix().map(event->buttonDownPos(Qt::LeftButton)));
-        double newValue = atan2(newPos.y(),newPos.x());
-        if(newValue < 0) newValue += 2*M_PI;
+        QPointF newPos ( mapToParent ( event->pos() ) - matrix().map ( event->buttonDownPos ( Qt::LeftButton ) ) );
+
+        double newValue = atan2 ( -newPos.y(), newPos.x() );
+
+        if ( newValue < 0 ) newValue += 2 * M_PI;
 
         double v = value();
-        double b = 2*M_PI * int(v / (2*M_PI) - (v<0 ? 1 : 0));
+
+        double b = 2 * M_PI * int ( v / ( 2 * M_PI ) - ( v < 0 ? 1 : 0 ) );
+
         double f = v - b;
 
-        if(f < M_PI_2 && newValue > 3*M_PI_2) newValue -= 2*M_PI;
-        else if(f > 3*M_PI_2 && newValue < M_PI_2) newValue += 2*M_PI;
+        if ( f < M_PI_2 && newValue > 3*M_PI_2 ) newValue -= 2 * M_PI;
+        else if ( f > 3*M_PI_2 && newValue < M_PI_2 ) newValue += 2 * M_PI;
 
-        setValue(b + newValue);
+        setValue ( b + newValue );
     } else event->ignore();
 }
 
-void CircularArrowHandlerGraphicsItem::mouseReleaseEvent(QGraphicsSceneMouseEvent *event)
+void CircularArrowHandlerGraphicsItem::mouseReleaseEvent ( QGraphicsSceneMouseEvent *event )
 {
-    if(_isMoving && event->button() == Qt::LeftButton) {
+    if ( _isMoving && event->button() == Qt::LeftButton ) {
         _worldModel->endMacro();
         _isMoving = false;
     }
@@ -844,80 +965,84 @@ void CircularArrowHandlerGraphicsItem::mouseReleaseEvent(QGraphicsSceneMouseEven
 
 double CircularArrowHandlerGraphicsItem::value()
 {
-    if(_property) return _property->readVariant(_item).value<double>();
+    if ( _property ) return _property->readVariant ( _item ).value<double>();
     else return 0;
 }
 
-void CircularArrowHandlerGraphicsItem::setValue(double value)
+void CircularArrowHandlerGraphicsItem::setValue ( double value )
 {
-    if(_property) {
+    if ( _property ) {
         _worldModel->simulationPause();
-        _worldModel->setProperty(_item, _property, QVariant::fromValue(value));
+        _worldModel->setProperty ( _item, _property, QVariant::fromValue ( value ) );
     }
 }
 
 /////////////////////////////////////////////////////////////////////////////////////////
 
 const StepCore::Vector2d OnHoverHandlerGraphicsItem::corners[4] = {
-    StepCore::Vector2d(-0.5,-0.5), StepCore::Vector2d( 0.5,-0.5),
-    StepCore::Vector2d(-0.5, 0.5), StepCore::Vector2d( 0.5, 0.5)
+    StepCore::Vector2d ( -0.5, -0.5 ), StepCore::Vector2d ( 0.5, -0.5 ),
+    StepCore::Vector2d ( -0.5, 0.5 ), StepCore::Vector2d ( 0.5, 0.5 )
 };
 
 const StepCore::Vector2d OnHoverHandlerGraphicsItem::scorners[4] = {
-    StepCore::Vector2d(0,-1), StepCore::Vector2d( 1,0),
-    StepCore::Vector2d(0, 1), StepCore::Vector2d(-1,0)
+    StepCore::Vector2d ( 0, -1 ), StepCore::Vector2d ( 1, 0 ),
+    StepCore::Vector2d ( 0, 1 ), StepCore::Vector2d ( -1, 0 )
 };
 
-OnHoverHandlerGraphicsItem::OnHoverHandlerGraphicsItem(StepCore::Item* item, WorldModel* worldModel,
-                    WorldScene* worldScene, QGraphicsItem* parent, const StepCore::MetaProperty* property,
-                    const StepCore::MetaProperty* positionProperty, int vertexNum)
-    : ArrowHandlerGraphicsItem(item, worldModel, worldScene, parent, property, positionProperty),
-      _vertexNum(vertexNum)
+OnHoverHandlerGraphicsItem::OnHoverHandlerGraphicsItem ( StepCore::Item* item, WorldModel* worldModel,
+        WorldScene* worldScene, QGraphicsItem* parent, const StepCore::MetaProperty* property,
+        const StepCore::MetaProperty* positionProperty, int vertexNum )
+        : LinearArrowHandlerGraphicsItem ( item, worldModel, worldScene, parent, property, positionProperty ),
+        _vertexNum ( vertexNum )
 {
-    _deleteTimer = new QTimer(this);
-    _deleteTimer->setInterval(500);
-    _deleteTimer->setSingleShot(true);
+    _deleteTimer = new QTimer ( this );
+    _deleteTimer->setInterval ( 500 );
+    _deleteTimer->setSingleShot ( true );
     _deleteTimerEnabled = false;
-    setAcceptsHoverEvents(true);
-    connect(_deleteTimer, SIGNAL(timeout()), this, SLOT(deleteLater()));
+    setAcceptsHoverEvents ( true );
+    connect ( _deleteTimer, SIGNAL ( timeout() ), this, SLOT ( deleteLater() ) );
 }
 
-void OnHoverHandlerGraphicsItem::setDeleteTimerEnabled(bool enabled)
+void OnHoverHandlerGraphicsItem::setDeleteTimerEnabled ( bool enabled )
 {
     _deleteTimerEnabled = enabled;
-    if(_deleteTimerEnabled && !isMouseOverItem()) _deleteTimer->start();
+
+    if ( _deleteTimerEnabled && !isMouseOverItem() ) _deleteTimer->start();
     else _deleteTimer->stop();
 }
 
-void OnHoverHandlerGraphicsItem::hoverEnterEvent(QGraphicsSceneHoverEvent* event)
+void OnHoverHandlerGraphicsItem::hoverEnterEvent ( QGraphicsSceneHoverEvent* event )
 {
-    if(_deleteTimerEnabled) _deleteTimer->stop();
-    ArrowHandlerGraphicsItem::hoverEnterEvent(event);
+    if ( _deleteTimerEnabled ) _deleteTimer->stop();
+
+    LinearArrowHandlerGraphicsItem::hoverEnterEvent ( event );
 }
 
-void OnHoverHandlerGraphicsItem::hoverLeaveEvent(QGraphicsSceneHoverEvent* event)
+void OnHoverHandlerGraphicsItem::hoverLeaveEvent ( QGraphicsSceneHoverEvent* event )
 {
-    if(_deleteTimerEnabled) _deleteTimer->start();
-    ArrowHandlerGraphicsItem::hoverLeaveEvent(event);
+    if ( _deleteTimerEnabled ) _deleteTimer->start();
+
+    LinearArrowHandlerGraphicsItem::hoverLeaveEvent ( event );
 }
 
 /////////////////////////////////////////////////////////////////////////////////////////
 
-ItemMenuHandler::ItemMenuHandler(StepCore::Object* object, WorldModel* worldModel, QObject* parent)
-    : QObject(parent), _object(object), _worldModel(worldModel)
+ItemMenuHandler::ItemMenuHandler ( StepCore::Object* object, WorldModel* worldModel, QObject* parent )
+        : QObject ( parent ), _object ( object ), _worldModel ( worldModel )
 {
 }
 
-void ItemMenuHandler::populateMenu(QMenu* menu)
+void ItemMenuHandler::populateMenu ( QMenu* menu )
 {
-    StepCore::Item* item = dynamic_cast<StepCore::Item*>(_object);
-    if(item && item->world() != item) {
-        menu->addAction(KIcon("edit-delete"), i18n("&Delete"), this, SLOT(deleteItem()));
+    StepCore::Item* item = dynamic_cast<StepCore::Item*> ( _object );
+
+    if ( item && item->world() != item ) {
+        menu->addAction ( KIcon ( "edit-delete" ), i18n ( "&Delete" ), this, SLOT ( deleteItem() ) );
     }
 }
 
 void ItemMenuHandler::deleteItem()
 {
-    _worldModel->deleteItem(static_cast<StepCore::Item*>(_object));
+    _worldModel->deleteItem ( static_cast<StepCore::Item*> ( _object ) );
 }
 

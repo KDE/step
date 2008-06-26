@@ -68,7 +68,7 @@ protected:
     void mouseReleaseEvent(QGraphicsSceneMouseEvent *event);
     StepCore::LinearMotor* motor() const;
     QPainterPath _path;
-    ArrowHandlerGraphicsItem* _forceHandler;
+    LinearArrowHandlerGraphicsItem* _forceHandler;
     bool      _moving;
     static const int RADIUS = 5;
     

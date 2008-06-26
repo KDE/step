@@ -43,9 +43,9 @@
      inkscape:current-layer="layer1"
      showgrid="false"
      inkscape:window-width="1053"
-     inkscape:window-height="973"
-     inkscape:window-x="58"
-     inkscape:window-y="12" />
+     inkscape:window-height="975"
+     inkscape:window-x="66"
+     inkscape:window-y="0" />
   <metadata
      id="metadata7">
     <rdf:RDF>
@@ -569,5 +569,20 @@
          id="tspan3412"
          x="343.89374"
          y="1166.5834">angularAcceleration</tspan></text>
+    <path
+       sodipodi:type="arc"
+       style="fill:none;fill-opacity:1;stroke:#70e900;stroke-width:1.60000002;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+       id="LinearHandler"
+       sodipodi:cx="21.988771"
+       sodipodi:cy="758.24915"
+       sodipodi:rx="1.9483721"
+       sodipodi:ry="1.6700332"
+       d="M 23.937144,758.24915 A 1.9483721,1.6700332 0 1 1 20.040399,758.24915 A 1.9483721,1.6700332 0 1 1 23.937144,758.24915 z"
+       transform="translate(250.92856,426.1479)" />
+    <path
+       style="fill:none;fill-rule:evenodd;stroke:#7f6bff;stroke-width:1.5;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+       d="M 36.184054,754.35242 L 36.184054,758.80585 L 40.637476,757.13581 L 36.184054,754.35242 z"
+       id="CircularHandler"
+       transform="translate(250.92856,426.1479)" />
   </g>
 </svg>

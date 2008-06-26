@@ -71,7 +71,7 @@ protected:
     StepCore::SoftBody* softBody() const;
     QPainterPath _painterPath;
 
-    ArrowHandlerGraphicsItem *_velocityHandler;
+    LinearArrowHandlerGraphicsItem *_velocityHandler;
 
     static const int RADIUS = 7;
 };
