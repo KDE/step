@@ -8,7 +8,7 @@
    xmlns="http://www.w3.org/2000/svg"
    xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
    xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
-   width="800"
+   width="400"
    height="800"
    id="svg2"
    sodipodi:version="0.32"
@@ -36,15 +36,15 @@
      objecttolerance="10"
      inkscape:pageopacity="0.0"
      inkscape:pageshadow="2"
-     inkscape:zoom="5.0809055"
-     inkscape:cx="59.011716"
-     inkscape:cy="745.91561"
+     inkscape:zoom="1.7963714"
+     inkscape:cx="180.77464"
+     inkscape:cy="676.46468"
      inkscape:document-units="px"
      inkscape:current-layer="layer1"
      showgrid="false"
-     inkscape:window-width="681"
-     inkscape:window-height="672"
-     inkscape:window-x="57"
+     inkscape:window-width="1053"
+     inkscape:window-height="1012"
+     inkscape:window-x="58"
      inkscape:window-y="81" />
   <metadata
      id="metadata7">
@@ -62,9 +62,87 @@
      inkscape:groupmode="layer"
      id="layer1"
      transform="translate(-250.92856,-426.1479)">
+    <path
+       style="fill:none;fill-opacity:1;fill-rule:evenodd;stroke:#00ec00;stroke-width:1.03239918;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+       d="M 408.38931,780.37096 C 408.22633,784.09268 413.09354,774.16639 416.16043,774.36418 C 423.23129,774.82019 418.5206,785.20717 423.67577,774.19806 C 426.18688,768.83548 432.56501,777.57913 433.63765,779.39608 C 436.52502,784.28702 431.21145,779.38285 437.63689,773.79684 C 440.0521,771.69716 443.13778,777.18945 444.86803,780.12034 C 446.13702,782.26991 446.83243,774.72251 448.89569,773.87214 C 451.64727,772.73807 455.15464,777.90314 455.00042,781.42459"
+       id="Spring" />
+    <path
+       style="fill:none;fill-rule:evenodd;stroke:#4e41b2;stroke-width:1.8249259;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+       d="M 420.8327,868.13734 L 439.539,868.13734"
+       id="Stick" />
+    <path
+       style="fill:none;fill-rule:evenodd;stroke:#004700;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+       d="M 267.48972,1088.231 L 289.20016,1088.231"
+       id="LinearArrow_body_velocity" />
+    <path
+       style="fill:none;fill-rule:evenodd;stroke:#003c00;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+       d="M 288.22597,1084.1951 L 293.51441,1087.9526 L 288.50431,1092.5452"
+       id="LinearArrow_head_velocity" />
+    <path
+       style="fill:none;fill-rule:evenodd;stroke:#5e0000;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+       d="M 319.12159,1088.3701 L 334.43023,1088.231"
+       id="LinearArrow_body_acceleration" />
+    <path
+       style="fill:none;fill-rule:evenodd;stroke:#4f0000;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+       d="M 335.82192,1084.3342 L 339.85783,1088.6485 L 335.12607,1092.5452"
+       id="LinearArrow_head_acceleration" />
+    <path
+       style="fill:none;fill-rule:evenodd;stroke:#9500a7;stroke-width:2;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+       d="M 378.69447,1088.2904 L 404.67409,1088.2904"
+       id="LinearArrow_body_forceValue" />
+    <path
+       style="fill:none;fill-rule:evenodd;stroke:#9500a7;stroke-width:2;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+       d="M 406.06338,1083.37 L 412.16466,1087.8968 L 406.65383,1093.8012"
+       id="LinearArrow_head_forceValue" />
+    <text
+       xml:space="preserve"
+       style="font-size:8px;font-style:normal;font-weight:normal;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;font-family:Bitstream Vera Sans"
+       x="255.71196"
+       y="436.47345"
+       id="text_GeneralNotes"><tspan
+         sodipodi:role="line"
+         id="tspan2418"
+         x="255.71196"
+         y="436.47345">General notes:</tspan><tspan
+         sodipodi:role="line"
+         x="255.71196"
+         y="446.47345"
+         id="tspan2514">- When Step loads a theme it knows which elements to draw by id of the element. In most</tspan><tspan
+         sodipodi:role="line"
+         x="255.71196"
+         y="456.47345"
+         id="tspan2516">cases the  corresponds to the name of the object on Step palette (in english translation).</tspan><tspan
+         sodipodi:role="line"
+         x="255.71196"
+         y="466.47345"
+         id="tspan2518">- In Inkscape you can set element id using &quot;object properties&quot; dialog available from context</tspan><tspan
+         sodipodi:role="line"
+         x="255.71196"
+         y="476.47345"
+         id="tspan2534">menu of the element.</tspan><tspan
+         sodipodi:role="line"
+         x="255.71196"
+         y="486.47345"
+         id="tspan2430">- If graphics for an object should be composed of several SVG elements, just group all elements</tspan><tspan
+         sodipodi:role="line"
+         x="255.71196"
+         y="496.47345"
+         id="tspan2432">together (using Group tool) and and assign required id to the whole group.</tspan><tspan
+         sodipodi:role="line"
+         x="255.71196"
+         y="506.47345"
+         id="tspan2482">- Items with non-special ids have no meaning for Step and can be used as comments for artists</tspan><tspan
+         sodipodi:role="line"
+         x="255.71196"
+         y="516.47345"
+         id="tspan3524">or as sketches for future elements.</tspan></text>
+    <path
+       style="fill:none;fill-rule:evenodd;stroke:#000000;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+       d="M 255.38198,561.72598 L 648.39648,561.72598"
+       id="path2484" />
     <g
        id="Particle"
-       transform="matrix(5.7948835e-2,0,0,6.131656e-2,264.67328,438.39575)">
+       transform="matrix(5.7948835e-2,0,0,6.131656e-2,266.89999,634.34632)">
       <path
          d="M 491.42856,542.36218 A 120,115.71429 0 1 1 251.42856,542.36218 A 120,115.71429 0 1 1 491.42856,542.36218 z"
          sodipodi:ry="115.71429"
@@ -79,13 +157,9 @@
          d="M 408.57143,492.36218 C 412.83224,492.64898 445.71429,512.75265 445.71429,540.93361 C 445.71429,566.94477 432.13079,577.37425 454.28571,555.21933 C 475.16373,534.34131 464.44924,515.92158 445.71429,500.93361 C 419.29705,479.79983 425.11943,489.60418 391.42857,495.21933"
          style="fill:#ffaaaa;fill-rule:evenodd;stroke:#000000;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1" />
     </g>
-    <path
-       style="fill:none;fill-opacity:1;fill-rule:evenodd;stroke:#00ec00;stroke-width:1.03239918;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
-       d="M 323.7743,474.1982 C 323.61132,477.91992 328.47853,467.99363 331.54542,468.19142 C 338.61628,468.64743 333.90559,479.03441 339.06076,468.0253 C 341.57187,462.66272 347.95,471.40637 349.02264,473.22332 C 351.91001,478.11426 346.59644,473.21009 353.02188,467.62408 C 355.43709,465.5244 358.52277,471.01669 360.25302,473.94758 C 361.52201,476.09715 362.21742,468.54975 364.28068,467.69938 C 367.03226,466.56531 370.53963,471.73038 370.38541,475.25183"
-       id="Spring" />
     <g
        id="Pin"
-       transform="matrix(1.015705,0,0,0.9453629,-257.14537,-299.25874)">
+       transform="matrix(1.015705,0,0,0.9453629,-224.30139,-108.31827)">
       <g
          transform="matrix(0.1212065,0,0,0.1109752,493.84056,722.17988)"
          id="pinpart"
@@ -116,7 +190,7 @@
     </g>
     <g
        id="Anchor"
-       transform="matrix(0.7992117,0,0,0.7250234,76.183408,126.80904)">
+       transform="matrix(0.7992117,0,0,0.7250234,78.966796,324.42964)">
       <path
          transform="translate(250.92856,426.1479)"
          id="path3217"
@@ -144,7 +218,8 @@
          style="fill:none;fill-rule:evenodd;stroke:#000000;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1" />
     </g>
     <g
-       id="LinearMotor">
+       id="LinearMotor"
+       transform="translate(47.874287,197.62061)">
       <path
          transform="matrix(0.8265071,0,0,0.7070294,273.70562,439.20801)"
          d="M 160.79811,40.883347 A 2.853822,2.3617837 0 1 1 155.09047,40.883347 A 2.853822,2.3617837 0 1 1 160.79811,40.883347 z"
@@ -162,7 +237,8 @@
          style="fill:none;fill-opacity:1;fill-rule:evenodd;stroke:#ffffff;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1" />
     </g>
     <g
-       id="CircularMotor">
+       id="CircularMotor"
+       transform="translate(111.33555,198.73396)">
       <path
          transform="matrix(0.8265071,0,0,0.7070294,290.43491,438.32233)"
          d="M 160.79811,40.883347 A 2.853822,2.3617837 0 1 1 155.09047,40.883347 A 2.853822,2.3617837 0 1 1 160.79811,40.883347 z"
@@ -178,38 +254,320 @@
          d="M 422.74832,465.45672 C 421.95875,464.44385 420.53594,463.92961 419.20565,465.2599 C 418.79266,465.6729 418.81202,467.69873 418.81202,468.40895 C 418.81202,470.58537 422.07114,469.98347 422.74832,469.98347 C 422.89502,469.98347 422.87953,469.72105 422.94514,469.58984"
          style="fill:none;fill-opacity:1;fill-rule:evenodd;stroke:#fffdff;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1" />
     </g>
+    <text
+       xml:space="preserve"
+       style="font-size:8px;font-style:normal;font-weight:normal;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;font-family:Bitstream Vera Sans"
+       x="257.052"
+       y="576.75623"
+       id="text2434"><tspan
+         sodipodi:role="line"
+         id="tspan2436"
+         x="257.052"
+         y="576.75623">Elements with constant on-screen size:</tspan><tspan
+         sodipodi:role="line"
+         x="257.052"
+         y="586.75623"
+         id="tspan2438">- These element are always painted by Step with the same size regardless of zoom level.</tspan><tspan
+         sodipodi:role="line"
+         x="257.052"
+         y="596.75623"
+         id="tspan2458">- This size is defined by size of an item in this SVG file.</tspan><tspan
+         sodipodi:role="line"
+         x="257.052"
+         y="606.75623"
+         id="tspan2464">- In Step these items will always be positioned according to their geometrical center.</tspan><tspan
+         sodipodi:role="line"
+         x="257.052"
+         y="616.75623"
+         id="tspan2466">If you want something other (for example a pin can be painted like a real 3d pin visible at</tspan><tspan
+         sodipodi:role="line"
+         x="257.052"
+         y="626.75623"
+         id="tspan2468">some angle and it should be positioned according to the end of the needle) you could group</tspan><tspan
+         sodipodi:role="line"
+         x="257.052"
+         y="636.75623"
+         id="tspan2478">you item with another invisible item to make the center of the group coincide with the end</tspan><tspan
+         sodipodi:role="line"
+         x="257.052"
+         y="646.75623"
+         id="tspan2480">of the needle.</tspan><tspan
+         sodipodi:role="line"
+         x="257.052"
+         y="656.75623"
+         id="tspan2460" /><tspan
+         sodipodi:role="line"
+         x="257.052"
+         y="666.75623"
+         id="tspan2456" /></text>
+    <text
+       xml:space="preserve"
+       style="font-size:8px;font-style:normal;font-weight:normal;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;font-family:Bitstream Vera Sans"
+       x="274.30905"
+       y="683.63837"
+       id="text2486"><tspan
+         sodipodi:role="line"
+         id="tspan2488"
+         x="274.30905"
+         y="683.63837">Particle</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-size:8px;font-style:normal;font-weight:normal;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;font-family:Bitstream Vera Sans"
+       x="329.42014"
+       y="684.19507"
+       id="text2490"><tspan
+         sodipodi:role="line"
+         id="tspan2492"
+         x="329.42014"
+         y="684.19507">Needle</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-size:8px;font-style:normal;font-weight:normal;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;font-family:Bitstream Vera Sans"
+       x="373.39771"
+       y="684.75177"
+       id="text2494"><tspan
+         sodipodi:role="line"
+         x="373.39771"
+         y="684.75177"
+         id="tspan2498">Anchor</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-size:8px;font-style:normal;font-weight:normal;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;font-family:Bitstream Vera Sans"
+       x="429.62216"
+       y="685.86505"
+       id="text2502"><tspan
+         sodipodi:role="line"
+         id="tspan2504"
+         x="429.62216"
+         y="685.86505">LinearMotor</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-size:8px;font-style:normal;font-weight:normal;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;font-family:Bitstream Vera Sans"
+       x="502.54694"
+       y="686.97845"
+       id="text2506"><tspan
+         sodipodi:role="line"
+         id="tspan2508"
+         x="502.54694"
+         y="686.97845">CircularMotor</tspan></text>
     <path
-       style="fill:none;fill-rule:evenodd;stroke:#4e41b2;stroke-width:1.8249259;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
-       d="M 434.74964,468.99939 L 453.45594,468.99939"
-       id="Stick" />
+       id="path2512"
+       d="M 255.38199,735.40943 L 648.39649,735.40943"
+       style="fill:none;fill-rule:evenodd;stroke:#000000;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1" />
     <path
-       style="fill:none;fill-rule:evenodd;stroke:#004700;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
-       d="M 16.004486,65.881195 L 37.714919,65.881195"
-       id="LinearArrow_velocity_body"
-       transform="translate(250.92856,426.1479)" />
+       sodipodi:type="arc"
+       style="fill:none;fill-opacity:1;stroke:#9500a7;stroke-width:2;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+       id="CircularArrow_body_torqueValue"
+       sodipodi:cx="205.41409"
+       sodipodi:cy="348.50729"
+       sodipodi:rx="11.133555"
+       sodipodi:ry="10.855216"
+       d="M 216.54765,348.50729 A 11.133555,10.855216 0 1 1 194.28054,348.50729 A 11.133555,10.855216 0 1 1 216.54765,348.50729 z"
+       transform="translate(258.16537,795.78192)"
+       inkscape:label="#path2522" />
     <path
+       id="CircularArrow_head_torqueValue"
+       d="M 489.00836,1138.4811 L 495.10964,1143.0078 L 489.59881,1148.9123"
+       style="fill:none;fill-rule:evenodd;stroke:#9500a7;stroke-width:2;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+       inkscape:label="#path2524" />
+    <text
+       xml:space="preserve"
+       style="font-size:8px;font-style:normal;font-weight:normal;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;font-family:Bitstream Vera Sans"
+       x="12.803589"
+       y="37.602776"
+       id="text2530"
+       transform="translate(250.92856,426.1479)"><tspan
+         sodipodi:role="line"
+         id="tspan2532"
+         x="12.803589"
+         y="37.602776" /></text>
+    <text
+       xml:space="preserve"
+       style="font-size:8px;font-style:normal;font-weight:normal;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;font-family:Bitstream Vera Sans"
+       x="255.38199"
+       y="749.88306"
+       id="text2550"><tspan
+         sodipodi:role="line"
+         x="255.38199"
+         y="749.88306"
+         id="tspan2558">Spring. It will be stretched by the Step to required length, but its width will be always preserved.</tspan><tspan
+         sodipodi:role="line"
+         x="255.38199"
+         y="759.88306"
+         id="tspan3520">- WARNING: In the future Spring will be reimplemented and will require different graphics</tspan></text>
+    <text
+       id="text2562"
+       y="845.63159"
+       x="253.71194"
+       style="font-size:8px;font-style:normal;font-weight:normal;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;font-family:Bitstream Vera Sans"
+       xml:space="preserve"><tspan
+         id="tspan2564"
+         y="845.63159"
+         x="253.71194"
+         sodipodi:role="line">Stick. It will be stretched by the Step to required length, but its width will be always preserved.</tspan><tspan
+         y="855.63159"
+         x="253.71194"
+         sodipodi:role="line"
+         id="tspan3522">- WARNING: In the future Stick will be reimplemented and will require different graphics</tspan></text>
+    <path
+       style="fill:none;fill-rule:evenodd;stroke:#000000;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+       d="M 254.26864,835.61143 L 647.28314,835.61143"
+       id="path2566" />
+    <path
+       id="path2568"
+       d="M 253.71196,924.1232 L 646.72646,924.1232"
+       style="fill:none;fill-rule:evenodd;stroke:#000000;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1" />
+    <text
+       xml:space="preserve"
+       style="font-size:8px;font-style:normal;font-weight:normal;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;font-family:Bitstream Vera Sans"
+       x="258.72205"
+       y="934.14343"
+       id="text2570"><tspan
+         sodipodi:role="line"
+         id="tspan2572"
+         x="258.72205"
+         y="934.14343">Arrows.</tspan><tspan
+         sodipodi:role="line"
+         x="258.72205"
+         y="944.14343"
+         id="tspan2576">- Each arrow consists of a body and a head.</tspan><tspan
+         sodipodi:role="line"
+         x="258.72205"
+         y="954.14343"
+         id="tspan2574">- For linear arrows body length will be stretched, all other sizes will be preserved.</tspan><tspan
+         sodipodi:role="line"
+         x="258.72205"
+         y="964.14343"
+         id="tspan2626">- For circular arrows all sizes will be preserved, but the body will be clipped.</tspan><tspan
+         sodipodi:role="line"
+         x="258.72205"
+         y="974.14343"
+         id="tspan2614">- A head will be centered around the end of the body. If you want something else, see</tspan><tspan
+         sodipodi:role="line"
+         x="258.72205"
+         y="984.14343"
+         id="tspan2620">general notes at the begining of the file.</tspan><tspan
+         sodipodi:role="line"
+         x="258.72205"
+         y="994.14343"
+         id="tspan2578">- Names should follow the following patterns:</tspan><tspan
+         sodipodi:role="line"
+         x="258.72205"
+         y="1004.1434"
+         id="tspan2580">LinearArrow_body_&lt;name of the property&gt;</tspan><tspan
+         sodipodi:role="line"
+         x="258.72205"
+         y="1014.1434"
+         id="tspan2582">LinearArrow_head_&lt;name of the property&gt;</tspan><tspan
+         sodipodi:role="line"
+         x="258.72205"
+         y="1024.1434"
+         id="tspan2584">CircularArrow_body_&lt;name of the property&gt;</tspan><tspan
+         sodipodi:role="line"
+         x="258.72205"
+         y="1034.1434"
+         id="tspan2588">CircularArrow_head_&lt;name of the property&gt;</tspan><tspan
+         sodipodi:role="line"
+         x="258.72205"
+         y="1044.1434"
+         id="tspan2618">- Currently arrows are used for the following properties:</tspan><tspan
+         sodipodi:role="line"
+         x="258.72205"
+         y="1054.1434"
+         id="tspan2592">LinearArrow: velocity, acceleration, forceValue</tspan><tspan
+         sodipodi:role="line"
+         x="258.72205"
+         y="1064.1434"
+         id="tspan2596">CircularArrow: angularVelocity, angularAcceleration, torqueValue</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-size:8px;font-style:normal;font-weight:normal;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;font-family:Bitstream Vera Sans"
+       x="266.5155"
+       y="1105.3489"
+       id="text2598"><tspan
+         sodipodi:role="line"
+         id="tspan2600"
+         x="266.5155"
+         y="1105.3489">velocity</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-size:8px;font-style:normal;font-weight:normal;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;font-family:Bitstream Vera Sans"
+       x="307.15298"
+       y="1105.9055"
+       id="text2602"><tspan
+         sodipodi:role="line"
+         id="tspan2604"
+         x="307.15298"
+         y="1105.9055">acceleration</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-size:8px;font-style:normal;font-weight:normal;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;font-family:Bitstream Vera Sans"
+       x="375.06766"
+       y="1106.4623"
+       id="text2606"><tspan
+         sodipodi:role="line"
+         id="tspan2608"
+         x="375.06766"
+         y="1106.4623">forceValue</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-size:8px;font-style:normal;font-weight:normal;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;font-family:Bitstream Vera Sans"
+       x="450.77585"
+       y="1168.8101"
+       id="text2610"><tspan
+         sodipodi:role="line"
+         id="tspan2612"
+         x="450.77585"
+         y="1168.8101">torqueValue</tspan></text>
+    <path
+       sodipodi:type="arc"
+       style="fill:none;fill-opacity:1;stroke:#004700;stroke-width:1;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+       id="CircularArrow_body_angularVelocity"
+       sodipodi:cx="33.122326"
+       sodipodi:cy="529.73297"
+       sodipodi:rx="11.968572"
+       sodipodi:ry="11.411894"
+       d="M 45.090898,529.73297 A 11.968572,11.411894 0 1 1 21.153754,529.73297 A 11.968572,11.411894 0 1 1 45.090898,529.73297 z"
+       transform="matrix(0.6428282,0,0,0.6428282,265.54231,801.64179)"
+       inkscape:label="#path2628" />
+    <path
+       id="CircularArrow_head_angularVelocity"
+       d="M 303.81295,1137.6361 L 309.10139,1141.3936 L 304.09129,1145.9862"
        style="fill:none;fill-rule:evenodd;stroke:#003c00;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
-       d="M 46.204255,60.731926 L 51.492693,64.489501 L 46.482594,69.082093"
-       id="LinearArrow_velocity_head"
-       transform="translate(250.92856,426.1479)" />
+       inkscape:label="#path3400" />
     <path
-       style="fill:none;fill-rule:evenodd;stroke:#5e0000;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
-       d="M 66.522993,64.350332 L 81.831632,64.211162"
-       id="LinearArrow_acceleration_body"
-       transform="translate(250.92856,426.1479)" />
+       id="CircularArrow_head_angularAcceleration"
+       d="M 393.15973,1137.2186 L 397.19564,1141.5328 L 392.46388,1145.4296"
+       style="fill:none;fill-rule:evenodd;stroke:#4f0000;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1" />
     <path
-       style="fill:none;fill-rule:evenodd;stroke:#4f0000;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
-       d="M 86.563393,59.75774 L 90.599306,64.071993 L 85.867545,67.968737"
-       id="LinearArrow_acceleration_head"
-       transform="translate(250.92856,426.1479)" />
-    <path
-       style="fill:none;fill-rule:evenodd;stroke:#9500a7;stroke-width:2;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
-       d="M 108.83887,63.713919 L 134.81849,63.713919"
-       id="LinearArrow_forceValue_body"
-       transform="translate(250.92856,426.1479)" />
-    <path
-       style="fill:none;fill-rule:evenodd;stroke:#9500a7;stroke-width:2;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
-       d="M 393.81647,484.94144 L 399.91775,489.46819 L 394.40692,495.37265"
-       id="LinearArrow_forceValue_head" />
+       transform="matrix(0.7990909,0,0,0.7990909,345.81656,718.11628)"
+       d="M 45.090898,529.73297 A 11.968572,11.411894 0 1 1 21.153754,529.73297 A 11.968572,11.411894 0 1 1 45.090898,529.73297 z"
+       sodipodi:ry="11.411894"
+       sodipodi:rx="11.968572"
+       sodipodi:cy="529.73297"
+       sodipodi:cx="33.122326"
+       id="CircularArrow_body_angularAcceleration"
+       style="fill:none;fill-opacity:1;stroke:#4f0000;stroke-width:1;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+       sodipodi:type="arc" />
+    <text
+       xml:space="preserve"
+       style="font-size:8px;font-style:normal;font-weight:normal;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;font-family:Bitstream Vera Sans"
+       x="260.39209"
+       y="1166.5834"
+       id="text3406"><tspan
+         sodipodi:role="line"
+         id="tspan3408"
+         x="260.39209"
+         y="1166.5834">angularVelocity</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-size:8px;font-style:normal;font-weight:normal;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;font-family:Bitstream Vera Sans"
+       x="343.89374"
+       y="1166.5834"
+       id="text3410"><tspan
+         sodipodi:role="line"
+         id="tspan3412"
+         x="343.89374"
+         y="1166.5834">angularAcceleration</tspan></text>
   </g>
 </svg>
