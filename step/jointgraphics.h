@@ -97,6 +97,9 @@ public:
                                 QGraphicsItem* parent, int num);
     void viewScaleChanged();
     void worldDataChanged(bool);
+    
+    QString pixmapCacheKey();
+    QPixmap* paintPixmap();
 
 protected:
     void mouseSetPos(const QPointF& pos, const QPointF& diff, MovingState movingState);

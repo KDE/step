@@ -222,8 +222,34 @@ StickHandlerGraphicsItem::StickHandlerGraphicsItem(StepCore::Item* item, WorldMo
     setExclusiveMovingMessage(i18n("Move end of %1", _item->name()));
     setPos(0, 0);
     
-    _boundingRect = QRectF(-HANDLER_SIZE/2, -HANDLER_SIZE/2, HANDLER_SIZE, HANDLER_SIZE);
+    _boundingRect = _worldScene->worldRenderer()->svgRenderer()->boundsOnElement ( "StickHandler" );
+    _boundingRect.moveCenter ( QPointF ( 0, 0 ) );
+    worldDataChanged ( false );
+    
 }
+QString StickHandlerGraphicsItem::pixmapCacheKey()
+{
+    QPoint c = ( ( pos() - pos().toPoint() ) * PIXMAP_CACHE_GRADING ).toPoint();
+    //kDebug() << (pos() - pos().toPoint())*10;
+    //kDebug() << QString("Particle-%1x%2").arg(5+c.x()).arg(5+c.y());
+    return QString ( "StickHandler:%1x%2" ).arg ( c.x() ).arg ( c.y() );
+}
+
+QPixmap* StickHandlerGraphicsItem::paintPixmap()
+{
+    QSize size = ( _boundingRect.size() / 2.0 ).toSize() + QSize ( 1, 1 );
+    QPixmap* pixmap = new QPixmap ( size*2 );
+    pixmap->fill ( Qt::transparent );
+
+    QPainter painter;
+    painter.begin ( pixmap );
+    _worldScene->worldRenderer()->svgRenderer()->render ( &painter, "StickHandler",
+                               _boundingRect.translated ( QPointF ( size.width(), size.height() ) + pos() - pos().toPoint() ) );
+    painter.end();
+    return pixmap;
+}
+
+
 
 void StickHandlerGraphicsItem::viewScaleChanged()
 {

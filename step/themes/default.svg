@@ -44,7 +44,7 @@
      showgrid="false"
      inkscape:window-width="1053"
      inkscape:window-height="975"
-     inkscape:window-x="66"
+     inkscape:window-x="0"
      inkscape:window-y="0" />
   <metadata
      id="metadata7">
@@ -591,6 +591,11 @@
        height="4.4534221"
        x="57.337811"
        y="754.90912"
+       transform="translate(250.92856,426.1479)" />
+    <path
+       style="fill:none;fill-rule:evenodd;stroke:#ff6200;stroke-width:1.5;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+       d="M 72.368108,754.9091 L 76.82153,759.36252"
+       id="StickHandler"
        transform="translate(250.92856,426.1479)" />
   </g>
 </svg>
