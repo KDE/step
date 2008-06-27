@@ -296,7 +296,7 @@ void CircularMotorCreator::tryAttach(const QPointF& pos)
 }
 
 CircularMotorGraphicsItem::CircularMotorGraphicsItem(StepCore::Item* item, WorldModel* worldModel, WorldScene* worldScene)
-    : WorldGraphicsItem(item, worldModel, worldScene), _moving(false)
+    : WorldGraphicsItem(item, worldModel, worldScene), _moving(false), _arrows(0)
 {
     Q_ASSERT(dynamic_cast<StepCore::CircularMotor*>(_item) != NULL);
     setFlag(QGraphicsItem::ItemIsSelectable);

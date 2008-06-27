@@ -9,7 +9,7 @@
    xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
    xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
    width="400"
-   height="1500"
+   height="800"
    id="svg2"
    sodipodi:version="0.32"
    inkscape:version="0.46"
@@ -37,15 +37,15 @@
      inkscape:pageopacity="0.0"
      inkscape:pageshadow="2"
      inkscape:zoom="1.7963714"
-     inkscape:cx="180.77464"
-     inkscape:cy="1378.4779"
+     inkscape:cx="145.91394"
+     inkscape:cy="186.58825"
      inkscape:document-units="px"
      inkscape:current-layer="layer1"
      showgrid="false"
      inkscape:window-width="1053"
      inkscape:window-height="975"
-     inkscape:window-x="859"
-     inkscape:window-y="149" />
+     inkscape:window-x="66"
+     inkscape:window-y="0" />
   <metadata
      id="metadata7">
     <rdf:RDF>
@@ -135,15 +135,7 @@
          sodipodi:role="line"
          x="255.71196"
          y="516.47345"
-         id="tspan3524">or as sketches for future elements.</tspan><tspan
-         sodipodi:role="line"
-         x="255.71196"
-         y="526.47345"
-         id="tspan2525">- If you have any questions/suggestions, please ask either on kde-edu@kde.org mailinglist or</tspan><tspan
-         sodipodi:role="line"
-         x="255.71196"
-         y="536.47345"
-         id="tspan2527">in #kde-edu IRC channel</tspan></text>
+         id="tspan3524">or as sketches for future elements.</tspan></text>
     <path
        style="fill:none;fill-rule:evenodd;stroke:#000000;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
        d="M 255.38198,561.72598 L 648.39648,561.72598"
@@ -321,13 +313,13 @@
     <text
        xml:space="preserve"
        style="font-size:8px;font-style:normal;font-weight:normal;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;font-family:Bitstream Vera Sans"
-       x="335.71823"
-       y="684.9823"
+       x="329.42014"
+       y="684.19507"
        id="text2490"><tspan
          sodipodi:role="line"
          id="tspan2492"
-         x="335.71823"
-         y="684.9823">Pin</tspan></text>
+         x="329.42014"
+         y="684.19507">Needle</tspan></text>
     <text
        xml:space="preserve"
        style="font-size:8px;font-style:normal;font-weight:normal;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;font-family:Bitstream Vera Sans"
@@ -586,61 +578,19 @@
        sodipodi:rx="1.9483721"
        sodipodi:ry="1.6700332"
        d="M 23.937144,758.24915 A 1.9483721,1.6700332 0 1 1 20.040399,758.24915 A 1.9483721,1.6700332 0 1 1 23.937144,758.24915 z"
-       transform="translate(283.21587,542.49354)" />
+       transform="translate(250.92856,426.1479)" />
     <path
        style="fill:none;fill-rule:evenodd;stroke:#7f6bff;stroke-width:1.5;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
-       d="M 383.97454,1297.9593 L 383.97454,1302.4127 L 388.42796,1300.7427 L 383.97454,1297.9593 z"
-       id="CircularHandler" />
-    <path
-       style="fill:none;fill-rule:evenodd;stroke:#000000;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
-       d="M 254.26864,1235.8628 L 647.28314,1235.8628"
-       id="path2494" />
-    <text
-       xml:space="preserve"
-       style="font-size:8px;font-style:normal;font-weight:normal;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;font-family:Bitstream Vera Sans"
-       x="11.133555"
-       y="825.86322"
-       id="text2496"
-       transform="translate(250.92856,426.1479)"><tspan
-         sodipodi:role="line"
-         x="11.133555"
-         y="825.86322"
-         id="tspan2501">Hanlders. These are items that the user can drag to change some property. Currently there</tspan><tspan
-         sodipodi:role="line"
-         x="11.133555"
-         y="835.86322"
-         id="tspan2507">are two types of handlers:</tspan><tspan
-         sodipodi:role="line"
-         x="11.133555"
-         y="845.86322"
-         id="tspan2503">LinearHandler for changing vector property (for example velocity)</tspan><tspan
-         sodipodi:role="line"
-         x="11.133555"
-         y="855.86322"
-         id="tspan2509">CircularHandler for changing angle property (for example angularVelocity)</tspan></text>
-    <text
-       xml:space="preserve"
-       style="font-size:8px;font-style:normal;font-weight:normal;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;font-family:Bitstream Vera Sans"
-       x="278.76245"
-       y="1317.6991"
-       id="text2511"><tspan
-         sodipodi:role="line"
-         id="tspan2513"
-         x="278.76245"
-         y="1317.6991">LinearHandler</tspan></text>
-    <text
-       xml:space="preserve"
-       style="font-size:8px;font-style:normal;font-weight:normal;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;font-family:Bitstream Vera Sans"
-       x="357.8107"
-       y="1317.6991"
-       id="text2515"><tspan
-         sodipodi:role="line"
-         x="357.8107"
-         y="1317.6991"
-         id="tspan2519">CircularHandler</tspan></text>
-    <path
-       id="path2523"
-       d="M 255.93867,1391.1759 L 648.95317,1391.1759"
-       style="fill:none;fill-rule:evenodd;stroke:#000000;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1" />
+       d="M 36.184054,754.35242 L 36.184054,758.80585 L 40.637476,757.13581 L 36.184054,754.35242 z"
+       id="CircularHandler"
+       transform="translate(250.92856,426.1479)" />
+    <rect
+       style="fill:none;fill-opacity:1;stroke:#ed67ff;stroke-width:1.5;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+       id="SpringHandler"
+       width="4.4534221"
+       height="4.4534221"
+       x="57.337811"
+       y="754.90912"
+       transform="translate(250.92856,426.1479)" />
   </g>
 </svg>
