@@ -165,7 +165,6 @@ void ParticleGraphicsItem::stateChanged()
     if(!_isMouseOverItem && !_isSelected && _arrows) {
         delete _arrows; _arrows = 0;
     }
-    
     /*
     if(_isSelected) _velocityHandler->setVisible(true);
     else _velocityHandler->setVisible(false);

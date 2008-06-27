@@ -198,7 +198,7 @@ void AttachableItemCreator::abort()
 WorldGraphicsItem::WorldGraphicsItem ( StepCore::Item* item, WorldModel* worldModel, WorldScene* worldScene, QGraphicsItem* parent )
         : QGraphicsItem ( parent ), _item ( item ), _worldModel ( worldModel ), _worldScene ( worldScene ), _exclusiveMoving ( false ),
         _onHoverHandlerEnabled ( false ), _isHighlighted ( false ), _isMouseOverItem ( false ), _isSelected ( false ),
-        _isMoving ( false ), _onHoverHandler ( 0 ), _onHoverHandlerTimer ( false )
+        _isMoving ( false ), _onHoverHandler ( 0 ), _onHoverHandlerTimer ( false ), _selection(0)
 {
     // XXX: use persistant indexes here and in propertiesbrowser
     setZValue ( BODY_ZVALUE );
@@ -495,6 +495,13 @@ QVariant WorldGraphicsItem::itemChange ( GraphicsItemChange change, const QVaria
         }
 
         stateChanged();
+        
+        if(_isSelected && !_selection) {
+           _selection = new SelectionGraphicsItem(_item, _worldModel, _worldScene, this);
+        }
+        if(!_isSelected && _selection) {
+            delete _selection; _selection = 0;
+        }
     }
 
     return QGraphicsItem::itemChange ( change, value );
@@ -729,9 +736,64 @@ QPixmap* ArrowsGraphicsItem::paintPixmap()
 
     return pixmap;
 }
+///////////////////////////////////////////////////////////////////////////////////////////////////////////
 
+SelectionGraphicsItem::SelectionGraphicsItem ( StepCore::Item* item, WorldModel* worldModel,
+        WorldScene* worldScene, QGraphicsItem* parent)
+    : WorldGraphicsItem ( item, worldModel, worldScene, parent )
+{
+    setZValue ( HANDLER_ZVALUE );
+    worldDataChanged ( false );
+}
 
-/////////////////////////////////////////////////////////////////////////////////////////
+QString SelectionGraphicsItem::pixmapCacheKey()
+{
+    QPoint c = (( parentItem()->pos() - parentItem()->pos().toPoint() ) * PIXMAP_CACHE_GRADING ).toPoint();
+    QPoint c1 = (_boundingRect.topLeft()*PIXMAP_CACHE_GRADING).toPoint();
+    QPoint c2 = (_boundingRect.bottomRight()*PIXMAP_CACHE_GRADING).toPoint();
+    
+    //kDebug() << (pos() - pos().toPoint())*10;
+    //kDebug() << QString("Particle-%1x%2").arg(5+c.x()).arg(5+c.y());
+    return QString ( "Selection:%1x%2:%3x%4:%5x%6" ).arg(c.x()).arg(c.y())
+            .arg(c1.x()).arg(c1.y()).arg(c2.x()).arg(c2.y());
+}
+
+QPixmap* SelectionGraphicsItem::paintPixmap()
+{
+    QPointF bottomRight = _boundingRect.bottomRight();
+    QPointF topLeft = _boundingRect.topLeft();
+    double w = qMax(std::abs(bottomRight.x()),std::abs(topLeft.x()));
+    double h = qMax(std::abs(bottomRight.y()),std::abs(topLeft.y()));
+    QSize size = QSizeF(w, h).toSize() + QSize(1, 1);
+    QPixmap* pixmap = new QPixmap ( size*2 );
+    pixmap->fill ( Qt::transparent );
+    
+    QPainter painter;
+    painter.begin ( pixmap );
+    QPointF diff = QPointF(size.width(),size.height());
+    _worldScene->worldRenderer()->svgRenderer()->render( &painter, "Selection",
+                _boundingRect.translated(diff
+                    + parentItem()->pos() - parentItem()->pos().toPoint()));
+
+    painter.end();
+    return pixmap;
+}
+
+void SelectionGraphicsItem::viewScaleChanged()
+{
+    worldDataChanged ( true );
+}
+
+void SelectionGraphicsItem::worldDataChanged ( bool )
+{
+    prepareGeometryChange();
+    // FIXME: this item can be called before parent!
+    _boundingRect = parentItem()->boundingRect();
+    _boundingRect.adjust(-SELECTION_MARGIN, -SELECTION_MARGIN, SELECTION_MARGIN, SELECTION_MARGIN);
+    update();
+}
+
+////////////////////////////////////////////////////////////////////////////////////////
 
 LinearArrowHandlerGraphicsItem::LinearArrowHandlerGraphicsItem ( StepCore::Item* item, WorldModel* worldModel,
         WorldScene* worldScene, QGraphicsItem* parent, const StepCore::MetaProperty* property,

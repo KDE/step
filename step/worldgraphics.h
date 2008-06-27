@@ -145,6 +145,7 @@ protected:
 /////////////////////////////////////////////////////////////////////////////////////////
 
 class OnHoverHandlerGraphicsItem;
+class SelectionGraphicsItem;
 
 /** \brief Base class for all graphics items on the scene.
  *
@@ -271,6 +272,7 @@ protected:
     StepCore::Item* _item;
     WorldModel* _worldModel;
     WorldScene* _worldScene;
+    SelectionGraphicsItem* _selection;
 
     QRectF  _boundingRect;
     QString _exclusiveMovingMessage;
@@ -383,6 +385,28 @@ protected:
     //QVariant itemChange(GraphicsItemChange change, const QVariant& value);
     const StepCore::MetaProperty* _property;
     const StepCore::MetaProperty* _positionProperty;
+};
+
+/////////////////////////////////////////////////////////////////////////////////////////
+
+/** \brief Selection of elements */
+class SelectionGraphicsItem: public WorldGraphicsItem
+{
+    public:
+    /** Construct ArrowHandlerGraphicsItem.
+     *  \param item StepCore::Item to control
+     *  \param worldModel associated worldModel
+     *  \param parent parent WorldGraphicsItem
+     */
+        SelectionGraphicsItem(StepCore::Item* item, WorldModel* worldModel, WorldScene* worldScene,
+                                       QGraphicsItem* parent);
+
+    //void paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget);
+        QString pixmapCacheKey();
+        QPixmap* paintPixmap();
+
+        void viewScaleChanged();
+        void worldDataChanged(bool);
 };
 
 /////////////////////////////////////////////////////////////////////////////////////////

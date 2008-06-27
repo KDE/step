@@ -37,7 +37,7 @@
      inkscape:pageopacity="0.0"
      inkscape:pageshadow="2"
      inkscape:zoom="1.7963714"
-     inkscape:cx="145.91394"
+     inkscape:cx="214.8655"
      inkscape:cy="186.58825"
      inkscape:document-units="px"
      inkscape:current-layer="layer1"
@@ -596,6 +596,14 @@
        style="fill:none;fill-rule:evenodd;stroke:#ff6200;stroke-width:1.5;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
        d="M 72.368108,754.9091 L 76.82153,759.36252"
        id="StickHandler"
+       transform="translate(250.92856,426.1479)" />
+    <rect
+       style="fill:none;fill-opacity:1;stroke:#090909;stroke-width:1.5;stroke-miterlimit:4;stroke-dasharray:6,6;stroke-dashoffset:0;stroke-opacity:1"
+       id="Selection"
+       width="49.544319"
+       height="51.214352"
+       x="292.8125"
+       y="699.24133"
        transform="translate(250.92856,426.1479)" />
   </g>
 </svg>
