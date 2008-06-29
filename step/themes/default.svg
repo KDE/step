@@ -37,8 +37,8 @@
      inkscape:pageopacity="0.0"
      inkscape:pageshadow="2"
      inkscape:zoom="1.7963714"
-     inkscape:cx="214.8655"
-     inkscape:cy="186.58825"
+     inkscape:cx="313.11913"
+     inkscape:cy="97.519809"
      inkscape:document-units="px"
      inkscape:current-layer="layer1"
      showgrid="false"
@@ -605,5 +605,21 @@
        x="292.8125"
        y="699.24133"
        transform="translate(250.92856,426.1479)" />
+    <g
+       id="DiskTexture">
+      <rect
+         transform="translate(250.92856,426.1479)"
+         y="638.00677"
+         x="298.93594"
+         height="26"
+         width="32"
+         id="rect2498"
+         style="fill:#a5c700;fill-opacity:1;stroke:none;stroke-width:1.5;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1" />
+      <path
+         transform="translate(250.92856,426.1479)"
+         id="path2500"
+         d="M 307.8428,647.47029 L 317.863,656.93382 L 314.52293,643.57355"
+         style="fill:none;fill-rule:evenodd;stroke:#000000;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1" />
+    </g>
   </g>
 </svg>

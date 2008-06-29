@@ -41,17 +41,8 @@ RigidBodyGraphicsItem::RigidBodyGraphicsItem(StepCore::Item* item, WorldModel* w
     setFlag(QGraphicsItem::ItemIsSelectable);
     setFlag(QGraphicsItem::ItemIsMovable);
     setAcceptsHoverEvents(true);
-    _velocityHandler = new LinearArrowHandlerGraphicsItem(item, worldModel, worldScene, this,
-                   _item->metaObject()->property("velocity"));
-    _velocityHandler->setVisible(false);
-
-    _angularVelocityHandler = new CircularArrowHandlerGraphicsItem(item, worldModel, worldScene, this,
-                   ANGULAR_VELOCITY_RADIUS, _item->metaObject()->property("angularVelocity"));
-    _angleHandler = new CircularArrowHandlerGraphicsItem(item, worldModel, worldScene, this,
-                   ANGLE_HANDLER_RADIUS, _item->metaObject()->property("angle"));
-    _angularVelocityHandler->setVisible(false);
-    _angleHandler->setVisible(false);
     setOnHoverHandlerEnabled(true);
+    _textureSize = _worldScene->worldRenderer()->svgRenderer()->boundsOnElement("DiskTexture").size().toSize();
     //scene()->addItem(_velocityHandler);
 }
 
@@ -65,6 +56,56 @@ QPainterPath RigidBodyGraphicsItem::shape() const
     return _painterPath;
 }
 
+//TODO PaintPixmap
+
+QPixmap* RigidBodyGraphicsItem::paintPixmap()
+{
+
+    double L = _boundingRect.bottomRight().x();
+    int Li = int ( std::ceil ( L ) ) + 1;
+    kDebug() << Li;
+    QPixmap* pixmap = new QPixmap ( 2*Li, 2*Li );
+    pixmap->fill ( Qt::transparent );
+    
+    QPainter painter;
+    QPoint c = ((pos() - pos().toPoint())*PIXMAP_CACHE_GRADING).toPoint();
+    QString textureKey = QString("TextureUnit:%1x%2").arg(c.x()).arg(c.y());
+    QPixmap* texturePixmap = _worldScene->worldRenderer()->pixmapCache()->object ( textureKey );
+    QSize size = _textureSize/2 + QSize(2,2);
+
+    if ( !texturePixmap ) {
+        texturePixmap = new QPixmap(2*size);
+        painter.begin(texturePixmap);
+        _worldScene->worldRenderer()->svgRenderer()->render(&painter, "DiskTexture",
+                                   QRectF(c, _textureSize ));
+        painter.end();
+        _worldScene->worldRenderer()->pixmapCache()->insert ( textureKey, texturePixmap,
+                                   texturePixmap->width() * texturePixmap->height() );
+    }
+    
+    painter.begin ( pixmap );
+    painter.translate(QPointF(Li, Li) + pos() - pos().toPoint());
+    painter.setClipPath ( _painterPath );
+    //_item->metaObject()->className()
+    
+    int h = _textureSize.height();
+    int w = _textureSize.width();
+    
+    for(int i= - int(_boundingRect.size().height()) ; i*h < int(_boundingRect.size().height()); i++) {
+        for(int j=- int(_boundingRect.size().width()); j*w < int(_boundingRect.size().width()); j++) {
+            painter.drawPixmap(w*j - size.width()/2, h*i - size.height()/2, *texturePixmap);
+            //_worldScene->worldRenderer()->svgRenderer()->
+            //    render ( &painter, "DiskTexture", QRectF (w*j,h*i,w,h) );
+        }
+    }
+    painter.setClipping ( false );
+    painter.end();
+
+    return pixmap;
+}
+
+
+#if 0
 void RigidBodyGraphicsItem::paint(QPainter* painter, const QStyleOptionGraphicsItem* /*option*/, QWidget* /*widget*/)
 {
     //int renderHints = painter->renderHints();
@@ -78,14 +119,13 @@ void RigidBodyGraphicsItem::paint(QPainter* painter, const QStyleOptionGraphicsI
     painter->drawPath(_painterPath);
 
     if(_isSelected) {
-        double s = currentViewScale();
         QRectF rect = _painterPath.boundingRect();
-        rect.adjust(-SELECTION_MARGIN/s, -SELECTION_MARGIN/s, SELECTION_MARGIN/s, SELECTION_MARGIN/s);
+        rect.adjust(-SELECTION_MARGIN, -SELECTION_MARGIN, SELECTION_MARGIN, SELECTION_MARGIN);
         painter->setPen(QPen(SELECTION_COLOR, 0, Qt::DashLine));
         painter->setBrush(QBrush());
         painter->drawRect(rect);
     }
-
+/*
     if(_isSelected || _isMouseOverItem) {
         //painter->setRenderHint(QPainter::Antialiasing, renderHints & QPainter::Antialiasing);
         painter->setPen(QPen(Qt::blue, 0));
@@ -95,39 +135,25 @@ void RigidBodyGraphicsItem::paint(QPainter* painter, const QStyleOptionGraphicsI
         drawArrow(painter, rigidBody()->acceleration());
         drawCircularArrow(painter, rigidBody()->angularAcceleration(), ANGULAR_ACCELERATION_RADIUS);
     }
+*/
 }
-
+#endif
 void RigidBodyGraphicsItem::viewScaleChanged()
 {
-    /// XXX: optimize it !
-    prepareGeometryChange();
-
-    const StepCore::Vector2d& v = rigidBody()->velocity();
-    const StepCore::Vector2d  a = rigidBody()->acceleration();
-    double s = currentViewScale();
-
-    double avr = (ANGULAR_VELOCITY_RADIUS+CIRCULAR_ARROW_STROKE)/s;
-    double aar = (ANGULAR_ACCELERATION_RADIUS+CIRCULAR_ARROW_STROKE)/s;
-    _boundingRect = _painterPath.boundingRect() 
-                    | QRectF(0, 0, v[0], v[1]).normalized()
-                    | QRectF(0, 0, a[0], a[1]).normalized()
-                    | QRectF(-avr, -avr, 2*avr, 2*avr)
-                    | QRectF(-aar, -aar, 2*aar, 2*aar);
-    double adjust = (ARROW_STROKE+SELECTION_MARGIN)/s;
-    _boundingRect.adjust(-adjust,-adjust, adjust, adjust);
+    worldDataChanged(false);
 }
 
 void RigidBodyGraphicsItem::worldDataChanged(bool dynamicOnly)
 {
     Q_UNUSED(dynamicOnly)
     // XXX: TODO do not redraw everything each time
-    setPos(vectorToPoint(rigidBody()->position()));
-    viewScaleChanged();
+    setPos(_worldScene->vectorToPoint(rigidBody()->position()));
     update();
 }
 
 void RigidBodyGraphicsItem::stateChanged()
 {
+    /*
     if(_isSelected) {
         _velocityHandler->setVisible(true);
         _angularVelocityHandler->setVisible(true);
@@ -137,9 +163,9 @@ void RigidBodyGraphicsItem::stateChanged()
         _angularVelocityHandler->setVisible(false);
         _angleHandler->setVisible(false);
     }
-
-    viewScaleChanged();
-    update();
+    */
+    //viewScaleChanged();
+    //update();
 }
 
 /////////////////////////////////////////////////////////////////////////////////////////
@@ -156,7 +182,7 @@ bool DiskCreator::sceneEvent(QEvent* event)
 
     if(event->type() == QEvent::GraphicsSceneMousePress && mouseEvent->button() == Qt::LeftButton) {
         QPointF pos = mouseEvent->scenePos();
-        QVariant vpos = QVariant::fromValue(WorldGraphicsItem::pointToVector(pos));
+        QVariant vpos = QVariant::fromValue(_worldScene->pointToVector(pos));
 
         _worldModel->simulationPause();
         _worldModel->beginMacro(i18n("Create %1", _worldModel->newItemName(_className)));
@@ -174,7 +200,7 @@ bool DiskCreator::sceneEvent(QEvent* event)
                     mouseEvent->buttons() & Qt::LeftButton) {
         
         _worldModel->simulationPause();
-        StepCore::Vector2d pos = WorldGraphicsItem::pointToVector(mouseEvent->scenePos());
+        StepCore::Vector2d pos = _worldScene->pointToVector(mouseEvent->scenePos());
         double radius = (pos - static_cast<StepCore::Disk*>(_item)->position()).norm();
         _worldModel->setProperty(_item, "radius", QVariant::fromValue(radius));
         return true;
@@ -183,7 +209,7 @@ bool DiskCreator::sceneEvent(QEvent* event)
                     mouseEvent->button() == Qt::LeftButton) {
 
         _worldModel->simulationPause();
-        StepCore::Vector2d pos = WorldGraphicsItem::pointToVector(mouseEvent->scenePos());
+        StepCore::Vector2d pos = _worldScene->pointToVector(mouseEvent->scenePos());
         StepCore::Disk* disk = static_cast<StepCore::Disk*>(_item);
         double radius = (pos - disk->position()).norm();
         if(radius == 0) radius = 0.5;
@@ -222,6 +248,10 @@ DiskGraphicsItem::DiskGraphicsItem(StepCore::Item* item, WorldModel* worldModel,
     : RigidBodyGraphicsItem(item, worldModel, worldScene)
 {
     Q_ASSERT(dynamic_cast<StepCore::Disk*>(_item) != NULL);
+    double r = disk()->radius();
+    _boundingRect = QRectF(-r, -r ,2*r ,2*r);
+    _boundingRect.moveCenter(QPointF(0,0));
+    _painterPath.addEllipse(-r, -r, 2*r, 2*r);
 }
 
 inline StepCore::Disk* DiskGraphicsItem::disk() const
@@ -229,29 +259,38 @@ inline StepCore::Disk* DiskGraphicsItem::disk() const
     return static_cast<StepCore::Disk*>(_item);
 }
 
-void DiskGraphicsItem::viewScaleChanged()
+QString DiskGraphicsItem::pixmapCacheKey()
+{
+    QPoint c = ((pos() - pos().toPoint())*PIXMAP_CACHE_GRADING).toPoint();
+    double radius = _worldScene->viewScale()*disk()->radius();
+    int r = int((radius)*PIXMAP_CACHE_GRADING);
+    //kDebug() << (pos() - pos().toPoint())*10;
+    //kDebug() << QString("Particle-%1x%2").arg(5+c.x()).arg(5+c.y());
+    return QString("%1:%2x%3:%4").arg(_item->metaObject()->className()).arg(c.x()).arg(c.y()).arg(r);
+}
+
+void DiskGraphicsItem::worldDataChanged(bool dynamicOnly)
 {
     _painterPath = QPainterPath();
     _painterPath.setFillRule(Qt::WindingFill);
 
-    double s = currentViewScale();
-    double radius = disk()->radius();
-    if(radius > 1/s) {
-        _painterPath.addEllipse(-radius, -radius, 2*radius, 2*radius);
+    double radius = _worldScene->viewScale()*disk()->radius();
+    _boundingRect = QRectF(-radius, -radius ,2*radius ,2*radius);
+    if(radius > 1) {
+        _painterPath.addEllipse(_boundingRect);
         //_painterPath = QMatrix().rotate(disk()->angle() * 180 / StepCore::Constants::Pi).map(_painterPath);
     } else {
-        _painterPath.addEllipse(-1/s, -1/s, 2/s, 2/s);
+        _painterPath.addEllipse(-1, -1, 2, 2);
     }
 
-    RigidBodyGraphicsItem::viewScaleChanged();
+    RigidBodyGraphicsItem::worldDataChanged(dynamicOnly);
 }
 
 OnHoverHandlerGraphicsItem* DiskGraphicsItem::createOnHoverHandler(const QPointF& pos)
 {
-    StepCore::Vector2d l = (pointToVector(pos) - disk()->position())/disk()->radius();
-    double s = currentViewScale();
+    StepCore::Vector2d l = (_worldScene->pointToVector(pos) - disk()->position())/disk()->radius();
     int num = -1; double minDist2 = HANDLER_SNAP_SIZE*HANDLER_SNAP_SIZE
-                                        /s/s/disk()->radius()/disk()->radius();
+                                        /disk()->radius()/disk()->radius();
     for(unsigned int i=0; i<4; ++i) {
         double dist2 = (l - DiskVertexHandlerGraphicsItem::scorners[i]).norm2();
         if(dist2 < minDist2) { num = i; minDist2 = dist2; }
@@ -289,7 +328,7 @@ bool BoxCreator::sceneEvent(QEvent* event)
         _worldModel->setProperty(_item, "size", QVariant::fromValue(StepCore::Vector2d(0)));
         _worldModel->selectionModel()->setCurrentIndex(_worldModel->objectIndex(_item),
                                                     QItemSelectionModel::ClearAndSelect);
-        _topLeft = WorldGraphicsItem::pointToVector(pos);
+        _topLeft = _worldScene->pointToVector(pos);
 
         showMessage(MessageFrame::Information,
             i18n("Move mouse and release left mouse button to position\nbottom right corner of the %1", className()));
@@ -299,7 +338,7 @@ bool BoxCreator::sceneEvent(QEvent* event)
                     mouseEvent->buttons() & Qt::LeftButton) {
         
         _worldModel->simulationPause();
-        StepCore::Vector2d pos = WorldGraphicsItem::pointToVector(mouseEvent->scenePos());
+        StepCore::Vector2d pos = _worldScene->pointToVector(mouseEvent->scenePos());
         StepCore::Vector2d position = (_topLeft + pos) / 2.0;
         StepCore::Vector2d size = _topLeft - pos;
         _worldModel->setProperty(_item, "position", QVariant::fromValue(position));
@@ -310,7 +349,7 @@ bool BoxCreator::sceneEvent(QEvent* event)
                     mouseEvent->button() == Qt::LeftButton) {
 
         _worldModel->simulationPause();
-        StepCore::Vector2d pos = WorldGraphicsItem::pointToVector(mouseEvent->scenePos());
+        StepCore::Vector2d pos = _worldScene->pointToVector(mouseEvent->scenePos());
         StepCore::Box* box = static_cast<StepCore::Box*>(_item);
         StepCore::Vector2d position = (_topLeft + pos) / 2.0;
         StepCore::Vector2d size = _topLeft - pos;
@@ -424,7 +463,7 @@ bool PolygonCreator::sceneEvent(QEvent* event)
 
     if(!_item && event->type() == QEvent::GraphicsSceneMousePress && mouseEvent->button() == Qt::LeftButton) {
         QPointF pos = mouseEvent->scenePos();
-        QVariant vpos = QVariant::fromValue(WorldGraphicsItem::pointToVector(pos));
+        QVariant vpos = QVariant::fromValue(_worldScene->pointToVector(pos));
 
         _worldModel->simulationPause();
         _worldModel->beginMacro(i18n("Create %1", _worldModel->newItemName(_className)));
@@ -439,12 +478,13 @@ bool PolygonCreator::sceneEvent(QEvent* event)
     } else if(_item && event->type() == QEvent::GraphicsSceneMousePress) {
         return true;
 
+        
     } else if(_item && (event->type() == QEvent::GraphicsSceneMouseMove ||
                         (event->type() == QEvent::GraphicsSceneMouseRelease &&
                          mouseEvent->button() == Qt::LeftButton))) {
 
         QPointF pos = mouseEvent->scenePos();
-        StepCore::Vector2d v = WorldGraphicsItem::pointToVector(pos);
+        StepCore::Vector2d v = _worldScene->pointToVector(pos);
 
         _worldModel->simulationPause();
         // XXX: don't use strings !
@@ -504,15 +544,14 @@ void BasePolygonGraphicsItem::viewScaleChanged()
     _painterPath.setFillRule(Qt::WindingFill);
 
     if(basePolygon()->vertexes().size() > 0) {
-        _painterPath.moveTo(vectorToPoint( basePolygon()->vertexes()[0] ));
+        _painterPath.moveTo(_worldScene->vectorToPoint( basePolygon()->vertexes()[0] ));
         for(unsigned int i=1; i<basePolygon()->vertexes().size(); ++i) {
-            _painterPath.lineTo(vectorToPoint( basePolygon()->vertexes()[i] ));
+            _painterPath.lineTo(_worldScene->vectorToPoint( basePolygon()->vertexes()[i] ));
         }
         _painterPath.closeSubpath();
         _painterPath = QMatrix().rotate(basePolygon()->angle() * 180 / StepCore::Constants::Pi).map(_painterPath);
     } else {
-        double s = currentViewScale();
-        _painterPath.addEllipse(-1/s, -1/s, 2/s, 2/s);
+        _painterPath.addEllipse(-1, -1, 2, 2);
     }
 
     RigidBodyGraphicsItem::viewScaleChanged();
@@ -576,11 +615,10 @@ void BoxVertexHandlerGraphicsItem::setValue(const StepCore::Vector2d& value)
 
 OnHoverHandlerGraphicsItem* BoxGraphicsItem::createOnHoverHandler(const QPointF& pos)
 {
-    double s = currentViewScale();
-    StepCore::Vector2d l = pointToVector(pos) - rigidBody()->position();
+    StepCore::Vector2d l = _worldScene->pointToVector(pos) - rigidBody()->position();
     StepCore::Vector2d size = static_cast<StepCore::Box*>(_item)->size();
     
-    int num = -1; double minDist2 = HANDLER_SNAP_SIZE*HANDLER_SNAP_SIZE/s/s;
+    int num = -1; double minDist2 = HANDLER_SNAP_SIZE*HANDLER_SNAP_SIZE;
     for(unsigned int i=0; i<4; ++i) {
         double dist2 = (l - size.cMultiply(OnHoverHandlerGraphicsItem::corners[i])).norm2();
         if(dist2 < minDist2) { num = i; minDist2 = dist2; }
@@ -624,9 +662,8 @@ void PolygonVertexHandlerGraphicsItem::setValue(const StepCore::Vector2d& value)
 
 OnHoverHandlerGraphicsItem* PolygonGraphicsItem::createOnHoverHandler(const QPointF& pos)
 {
-    StepCore::Vector2d l = polygon()->pointWorldToLocal(pointToVector(pos));
-    double s = currentViewScale();
-    int num = -1; double minDist2 = HANDLER_SNAP_SIZE*HANDLER_SNAP_SIZE/s/s;
+    StepCore::Vector2d l = polygon()->pointWorldToLocal(_worldScene->pointToVector(pos));
+    int num = -1; double minDist2 = HANDLER_SNAP_SIZE*HANDLER_SNAP_SIZE;
     for(unsigned int i=0; i<polygon()->vertexes().size(); ++i) {
         double dist2 = (polygon()->vertexes()[i] - l).norm2();
         if(dist2 < minDist2) { num = i; minDist2 = dist2; }

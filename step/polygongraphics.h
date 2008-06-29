@@ -43,15 +43,17 @@ public:
     RigidBodyGraphicsItem(StepCore::Item* item, WorldModel* worldModel, WorldScene* worldScene);
 
     QPainterPath shape() const;
-    void paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget);
+    //void paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget);
 
     void viewScaleChanged();
     void stateChanged();
     void worldDataChanged(bool dynamicOnly);
+    QPixmap* paintPixmap();
 
 protected:
     StepCore::RigidBody* rigidBody() const;
     QPainterPath _painterPath;
+    QSize _textureSize;
 
     LinearArrowHandlerGraphicsItem*         _velocityHandler;
     CircularArrowHandlerGraphicsItem* _angularVelocityHandler;
@@ -88,7 +90,8 @@ class DiskGraphicsItem: public RigidBodyGraphicsItem
 {
 public:
     DiskGraphicsItem(StepCore::Item* item, WorldModel* worldModel, WorldScene* worldScene);
-    void viewScaleChanged();
+    void worldDataChanged(bool);
+    QString pixmapCacheKey();
 
 protected:
     OnHoverHandlerGraphicsItem* createOnHoverHandler(const QPointF& pos);
