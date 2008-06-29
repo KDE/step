@@ -47,7 +47,7 @@ if(STEP_WITH_QALCULATE)
     add_definitions(-DSTEP_WITH_QALCULATE)
     add_definitions(-DSTEP_WITH_UNITSCALC)
     add_definitions(${QALCULATE_CFLAGS})
-    add_definitions(${KDE4_ENABLE_EXCEPTIONS})
+    set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} ${KDE4_ENABLE_EXCEPTIONS}")
     set(qalculate_LIBS ${QALCULATE_LIBRARIES})
 endif(STEP_WITH_QALCULATE)
 
