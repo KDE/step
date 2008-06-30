@@ -1753,8 +1753,16 @@ TracerGraphicsItem::TracerGraphicsItem(StepCore::Item* item, WorldModel* worldMo
     setFlag(QGraphicsItem::ItemIsSelectable);
     setFlag(QGraphicsItem::ItemIsMovable);
     setZValue(HANDLER_ZVALUE);
-
-    /*
+    setExclusiveMoving(true);
+    
+    _boundingRect = _worldScene->worldRenderer()->svgRenderer()->boundsOnElement(
+                                               _item->metaObject()->className() );
+    _boundingRect.moveCenter(QPointF(0,0));
+    
+    _boundingRectTracer = _worldScene->worldRenderer()->svgRenderer()->boundsOnElement(
+                                               _item->metaObject()->className() );
+    _boundingRectTracer.moveCenter(QPointF(0,0));
+ /*
     _lastArrowRadius = -1;
     _velocityHandler = new ArrowHandlerGraphicsItem(item, worldModel, this,
                    _item->metaObject()->property("velocity"));
@@ -1774,44 +1782,51 @@ inline StepCore::Tracer* TracerGraphicsItem::tracer() const
 QPainterPath TracerGraphicsItem::shape() const
 {
     QPainterPath path;
-    double w = (HANDLER_SIZE+1)/currentViewScale();
     // XXX: add _points here!
-    path.addEllipse(QRectF(_lastPos.x()-w,  _lastPos.y()-w,w*2,w*2));
+    path.addEllipse(QRectF(-HANDLER_SIZE-1,
+                    -HANDLER_SIZE-1,(HANDLER_SIZE+1)*2,(HANDLER_SIZE+1)*2));
     return path;
 }
 
-void TracerGraphicsItem::paint(QPainter* painter, const QStyleOptionGraphicsItem* /*option*/, QWidget* /*widget*/)
+void TracerGraphicsItem::paint(QPainter* painter, const QStyleOptionGraphicsItem* option, QWidget* widget)
 {
-    double s = currentViewScale();
-    double w = HANDLER_SIZE/s;
-
+    WorldGraphicsItem::paint(painter, option, widget);
     painter->setRenderHint(QPainter::Antialiasing, true);
     painter->setPen(QPen(QColor::fromRgba(tracer()->color()), 0));
     //painter->setBrush(QBrush(Qt::black));
+    painter->translate(-pos());
     painter->drawPolyline(_points);
-    painter->drawEllipse(QRectF(_lastPos.x()-w,  _lastPos.y()-w, w*2,w*2));
     painter->drawPoint(_lastPos);
+    
+}
 
-    if(_isSelected) {
-        painter->setPen(QPen(SELECTION_COLOR, 0, Qt::DashLine));
-        //painter->setBrush(QBrush());
-        //painter->setBrush(QBrush(QColor(0, 0x99, 0xff)));
-        w = (HANDLER_SIZE + SELECTION_MARGIN)/s;
-        painter->drawEllipse(QRectF(_lastPos.x()-w, _lastPos.y()-w, w*2, w*2));
-    }
+QString TracerGraphicsItem::pixmapCacheKey()
+{
+    QPoint c = ((pos() - pos().toPoint())*PIXMAP_CACHE_GRADING).toPoint();
+    //kDebug() << (pos() - pos().toPoint())*10;
+    //kDebug() << QString("Particle-%1x%2").arg(5+c.x()).arg(5+c.y());
+    return QString("%1:%2x%3").arg(_item->metaObject()->className()).arg(c.x()).arg(c.y());
+}
 
+QPixmap* TracerGraphicsItem::paintPixmap()
+{
+    QSize size = (_boundingRectTracer.size()/2.0).toSize()+QSize(1,1);
+    QPixmap* pixmap = new QPixmap(size*2);
+    pixmap->fill(Qt::transparent);
+    
+    QPainter painter;
+    painter.begin(pixmap);
+    _worldScene->worldRenderer()->svgRenderer()->render(&painter, _item->metaObject()->className(),
+            _boundingRectTracer.translated(QPointF(size.width(), size.height()) + pos() - pos().toPoint()));
+    painter.end();
+    return pixmap;
 }
 
 void TracerGraphicsItem::viewScaleChanged()
 {
     prepareGeometryChange();
-
-    double s = currentViewScale();
-    double w = (HANDLER_SIZE+SELECTION_MARGIN)/s;
-    QPointF p = vectorToPoint(tracer()->position());
-
-    _boundingRect = _points.boundingRect() | QRectF(p.x()-w, p.y()-w,2*w,2*w);
-    update();
+    _boundingRect = _points.boundingRect().translated(-pos()) | _boundingRectTracer;
+    //update();
 }
 
 void TracerGraphicsItem::worldDataChanged(bool)
@@ -1845,7 +1860,7 @@ void TracerGraphicsItem::worldDataChanged(bool)
         po_count = _points.size(); p_count = tracer()->points().size();
         int count = qMin(po_count, p_count);
         for(int p=0; p < count; ++p) {
-            QPointF point = vectorToPoint(tracer()->points()[p]);
+            QPointF point = _worldScene->vectorToPoint(tracer()->points()[p]);
             if(point != _points[p]) {
                 geometryChange = true;
                 _points[p] = point;
@@ -1856,26 +1871,27 @@ void TracerGraphicsItem::worldDataChanged(bool)
     if(po_count < p_count) {
         geometryChange = true;
         for(; po_count < p_count; ++po_count)
-            _points << vectorToPoint(tracer()->points()[po_count]);
-    } else {
+            _points << _worldScene->vectorToPoint(tracer()->points()[po_count]);
+    } else if(po_count > p_count) {
         geometryChange = true;
         _points.resize(p_count);
     }
 
-    QPointF point = vectorToPoint(tracer()->position());
+    QPointF point = _worldScene->vectorToPoint(tracer()->position());
     if(point != _lastPos) {
         geometryChange = true;
         _lastPos = point;
     }
 
     if(geometryChange) {
+        setPos(_worldScene->vectorToPoint(tracer()->position()));
         viewScaleChanged();
     }
 }
 
-void TracerGraphicsItem::mouseSetPos(const QPointF&, const QPointF& diff, MovingState movingState)
+void TracerGraphicsItem::mouseSetPos(const QPointF& pos, const QPointF&, MovingState movingState)
 {
-    static_cast<WorldScene*>(scene())->snapItem(vectorToPoint(tracer()->position()) + diff,
+    static_cast<WorldScene*>(scene())->snapItem(pos,
                 WorldScene::SnapRigidBody | WorldScene::SnapParticle |
                 WorldScene::SnapSetLocalPosition, 0, movingState, _item);
 }

@@ -37,8 +37,8 @@
      inkscape:pageopacity="0.0"
      inkscape:pageshadow="2"
      inkscape:zoom="1.7963714"
-     inkscape:cx="313.11913"
-     inkscape:cy="97.519809"
+     inkscape:cx="66.35673"
+     inkscape:cy="453.79357"
      inkscape:document-units="px"
      inkscape:current-layer="layer1"
      showgrid="false"
@@ -621,5 +621,33 @@
          d="M 307.8428,647.47029 L 317.863,656.93382 L 314.52293,643.57355"
          style="fill:none;fill-rule:evenodd;stroke:#000000;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1" />
     </g>
+    <g
+       id="ChargedParticle"
+       transform="matrix(5.7948835e-2,0,0,6.131656e-2,270.59886,681.86194)"
+       style="fill:#ff6c00;fill-opacity:1;stroke:none;stroke-opacity:1">
+      <path
+         d="M 491.42856,542.36218 A 120,115.71429 0 1 1 251.42856,542.36218 A 120,115.71429 0 1 1 491.42856,542.36218 z"
+         sodipodi:ry="115.71429"
+         sodipodi:rx="120"
+         sodipodi:cy="542.36218"
+         sodipodi:cx="371.42856"
+         id="path2522"
+         style="fill:#ff6c00;fill-opacity:1;fill-rule:evenodd;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+         sodipodi:type="arc" />
+      <path
+         id="path2524"
+         d="M 408.57143,492.36218 C 412.83224,492.64898 445.71429,512.75265 445.71429,540.93361 C 445.71429,566.94477 432.13079,577.37425 454.28571,555.21933 C 475.16373,534.34131 464.44924,515.92158 445.71429,500.93361 C 419.29705,479.79983 425.11943,489.60418 391.42857,495.21933"
+         style="fill:#ff6c00;fill-opacity:1;fill-rule:evenodd;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1" />
+    </g>
+    <path
+       sodipodi:type="arc"
+       style="fill:#326500;fill-opacity:1;stroke:#2b9e00;stroke-width:3;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1"
+       id="Tracer"
+       sodipodi:cx="88.7901"
+       sodipodi:cy="291.19653"
+       sodipodi:rx="7.5151496"
+       sodipodi:ry="7.7934885"
+       d="M 96.30525,291.19653 A 7.5151496,7.7934885 0 1 1 81.274951,291.19653 A 7.5151496,7.7934885 0 1 1 96.30525,291.19653 z"
+       transform="translate(250.92856,426.1479)" />
   </g>
 </svg>

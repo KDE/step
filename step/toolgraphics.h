@@ -395,6 +395,9 @@ public:
 
     void viewScaleChanged();
     void worldDataChanged(bool dynamicOnly);
+    
+    QString pixmapCacheKey();
+    QPixmap* paintPixmap();
 
 protected:
     void mouseSetPos(const QPointF& pos, const QPointF&, MovingState movingState);
@@ -404,6 +407,7 @@ protected:
     double    _lastPointTime;
     bool      _moving;
     QPointF   _movingDelta;
+    QRectF    _boundingRectTracer;
 };
 
 class TracerMenuHandler: public ItemMenuHandler

@@ -50,8 +50,7 @@ ParticleGraphicsItem::ParticleGraphicsItem(StepCore::Item* item, WorldModel* wor
 QPainterPath ParticleGraphicsItem::shape() const
 {
     QPainterPath path;
-    double radius = (RADIUS+1)/currentViewScale();
-    path.addEllipse(QRectF(-radius,-radius,radius*2,radius*2));
+    path.addEllipse(QRectF(-RADIUS-1,-RADIUS-1,(RADIUS+1)*2,(RADIUS+1)*2));
     return path;
 }
 
