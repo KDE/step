@@ -114,6 +114,8 @@ protected:
     KAction* actionUndo;
     KAction* actionRedo;
     KAction* actionDelete;
+    KAction* actionGroup;
+    KAction* actionUngroup;
 
     KRecentFilesAction* actionRecentFiles;
 

@@ -146,6 +146,8 @@ public:
 
     /** Get current WorldRenderer */
     WorldRenderer* worldRenderer() const { return _worldRenderer; }
+    
+    MessageFrame* messageFrame() const { return _messageFrame; }
 
 public slots:
     /** Begin adding new item. Creates appropriate ItemCreator */

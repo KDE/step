@@ -450,6 +450,7 @@ void WorldGraphicsItem::hoverMoveEvent ( QGraphicsSceneHoverEvent* event )
             delete _onHoverHandler;
             _onHoverHandler = newOnHoverHandler;
             _onHoverHandlerTimer = false;
+            _onHoverHandler->worldDataChanged(false);
         }
     }
 }
@@ -1042,13 +1043,13 @@ void CircularArrowHandlerGraphicsItem::setValue ( double value )
 /////////////////////////////////////////////////////////////////////////////////////////
 
 const StepCore::Vector2d OnHoverHandlerGraphicsItem::corners[4] = {
-    StepCore::Vector2d ( -0.5, -0.5 ), StepCore::Vector2d ( 0.5, -0.5 ),
-    StepCore::Vector2d ( -0.5, 0.5 ), StepCore::Vector2d ( 0.5, 0.5 )
+    StepCore::Vector2d ( -0.5, 0.5 ), StepCore::Vector2d ( 0.5, 0.5 ),
+    StepCore::Vector2d ( -0.5, -0.5 ), StepCore::Vector2d ( 0.5, -0.5 )
 };
 
 const StepCore::Vector2d OnHoverHandlerGraphicsItem::scorners[4] = {
-    StepCore::Vector2d ( 0, -1 ), StepCore::Vector2d ( 1, 0 ),
-    StepCore::Vector2d ( 0, 1 ), StepCore::Vector2d ( -1, 0 )
+    StepCore::Vector2d ( 0, 1 ), StepCore::Vector2d ( 1, 0 ),
+    StepCore::Vector2d ( 0, -1 ), StepCore::Vector2d ( -1, 0 )
 };
 
 OnHoverHandlerGraphicsItem::OnHoverHandlerGraphicsItem ( StepCore::Item* item, WorldModel* worldModel,
@@ -1063,6 +1064,33 @@ OnHoverHandlerGraphicsItem::OnHoverHandlerGraphicsItem ( StepCore::Item* item, W
     _deleteTimerEnabled = false;
     setAcceptsHoverEvents ( true );
     connect ( _deleteTimer, SIGNAL ( timeout() ), this, SLOT ( deleteLater() ) );
+    
+    _boundingRect = _worldScene->worldRenderer()->svgRenderer()->boundsOnElement ( "OnHoverHandler" );
+    _boundingRect.moveCenter ( QPointF ( 0, 0 ) );
+
+    worldDataChanged ( false );
+}
+
+QString OnHoverHandlerGraphicsItem::pixmapCacheKey()
+{
+    QPoint c = ( ( pos() - pos().toPoint() ) * PIXMAP_CACHE_GRADING ).toPoint();
+    //kDebug() << (pos() - pos().toPoint())*10;
+    //kDebug() << QString("Particle-%1x%2").arg(5+c.x()).arg(5+c.y());
+    return QString ( "OnHoverHandler:%1x%2" ).arg ( c.x() ).arg ( c.y() );
+}
+
+QPixmap* OnHoverHandlerGraphicsItem::paintPixmap()
+{
+    QSize size = ( _boundingRect.size() / 2.0 ).toSize() + QSize ( 1, 1 );
+    QPixmap* pixmap = new QPixmap ( size*2 );
+    pixmap->fill ( Qt::transparent );
+
+    QPainter painter;
+    painter.begin ( pixmap );
+    _worldScene->worldRenderer()->svgRenderer()->render ( &painter, "OnHoverHandler",
+            _boundingRect.translated ( QPointF ( size.width(), size.height() ) + pos() - pos().toPoint() ) );
+    painter.end();
+    return pixmap;
 }
 
 void OnHoverHandlerGraphicsItem::setDeleteTimerEnabled ( bool enabled )

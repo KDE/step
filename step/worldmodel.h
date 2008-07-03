@@ -43,6 +43,7 @@ class QMenu;
 class WorldFactory;
 class CommandSimulate;
 class SimulationThread;
+class MessageFrame;
 
 /** \brief Central class that represents StepCore::World in Step */
 class WorldModel: public QAbstractItemModel
@@ -203,12 +204,18 @@ public:
 
     /** Pauses the simulation until control returns to event loop */
     void simulationPause();
+    
+    MessageFrame* messageFrame() { return _messageFrame; }
+    void setMessageFrame(MessageFrame* messageFrame) { _messageFrame = messageFrame; }
 
 public slots:
     void simulationStart(); ///< Start simulation
     void simulationStop();  ///< Stop simulation
 
     void deleteSelectedItems(); ///< Delete all selected items
+    
+    void groupSelectedItems();
+    void ungroupSelectedGroup();
 
 protected slots:
     void simulationFrameBegin();
@@ -260,9 +267,12 @@ protected:
     bool _simulationFrameSkipped;
     bool _simulationStopping;
     bool _simulationPaused;
+    
+    MessageFrame* _messageFrame;
 
     friend class CommandEditProperty;
     friend class CommandNewItem;
+    friend class CommandGroupItems;
     friend class CommandSetSolver;
     friend class CommandSimulate;
 };

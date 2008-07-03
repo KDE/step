@@ -58,6 +58,7 @@ protected:
     LinearArrowHandlerGraphicsItem*         _velocityHandler;
     CircularArrowHandlerGraphicsItem* _angularVelocityHandler;
     CircularArrowHandlerGraphicsItem* _angleHandler;
+    ArrowsGraphicsItem* _arrows;
 };
 
 /////////////////////////////////////////////////////////////////////////////////////////
@@ -104,7 +105,8 @@ class BasePolygonGraphicsItem: public RigidBodyGraphicsItem
 {
 public:
     BasePolygonGraphicsItem(StepCore::Item* item, WorldModel* worldModel, WorldScene* worldScene);
-    void viewScaleChanged();
+    void worldDataChanged(bool);
+    QString pixmapCacheKey();
 
 protected:
     StepCore::BasePolygon* basePolygon() const;

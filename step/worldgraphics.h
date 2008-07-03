@@ -463,6 +463,9 @@ public:
 
     void setDeleteTimerEnabled(bool enabled);
     bool isDeleteTimerEnabled() const { return _deleteTimerEnabled; }
+    
+    QString pixmapCacheKey();
+    QPixmap* paintPixmap();
 
     int vertexNum() const { return _vertexNum; }
     void setVertexNum(int vertexNum) { _vertexNum = vertexNum; }

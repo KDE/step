@@ -70,14 +70,15 @@
 
 StepCore::Vector2d WidgetVertexHandlerGraphicsItem::value()
 {
-    double s = currentViewScale();
+    double s = _worldScene->viewScale();
     StepCore::Vector2d size = _item->metaObject()->property("size")->
-                            readVariant(_item).value<StepCore::Vector2d>()/s;
+                            readVariant(_item).value<StepCore::Vector2d>()*s;
     return size.cMultiply(corners[_vertexNum]);
 }
 
 void WidgetVertexHandlerGraphicsItem::setValue(const StepCore::Vector2d& value)
 {
+    StepCore::Vector2d val = value/_worldScene->viewScale();
     QGraphicsView* activeView = scene()->views().first();
     QTransform viewportTransform = activeView->viewportTransform();
 
@@ -91,7 +92,7 @@ void WidgetVertexHandlerGraphicsItem::setValue(const StepCore::Vector2d& value)
     oCorner = pointToVector( viewportTransform.inverted().map(
                 QPointF(viewportTransform.map(vectorToPoint(oCorner)).toPoint()) ));
 
-    StepCore::Vector2d delta = (value + position - oCorner)/2.0;
+    StepCore::Vector2d delta = (val + position - oCorner)/2.0;
     StepCore::Vector2d newPos = oCorner + delta;
     newPos = pointToVector( viewportTransform.inverted().map(
                 QPointF(viewportTransform.map(vectorToPoint(newPos)).toPoint()) ));
@@ -109,7 +110,7 @@ void WidgetVertexHandlerGraphicsItem::setValue(const StepCore::Vector2d& value)
         }
         _worldModel->setProperty(_item, "position", QVariant::fromValue(newPos));
         _worldModel->setProperty(_item, "size", QVariant::fromValue(newSize));
-        setValue(value);
+        setValue(val);
         return;
     }
 

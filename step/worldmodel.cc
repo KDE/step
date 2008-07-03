@@ -190,6 +190,69 @@ void CommandNewItem::undo()
     _shouldDelete = _create;
 }
 
+class CommandGroupItems: public QUndoCommand
+{
+public:
+    CommandGroupItems(WorldModel* worldModel, const QList<StepCore::Item*>& items , bool create)
+            : _worldModel(worldModel), _items(items), _create(create), _shouldDelete(create) {}
+    
+    ~CommandGroupItems() { }
+
+    void redo();
+    void undo();
+
+protected:
+    void ungroupItems();
+    void groupItems();
+    
+    QList<StepCore::Item*> _items;
+    StepCore::ItemGroup* _group;
+    WorldModel* _worldModel;
+    bool _create;
+    bool _shouldDelete;
+};
+
+void CommandGroupItems::ungroupItems()
+{
+    foreach(StepCore::Item* item, _items){
+        _worldModel->removeCreatedItem(item);
+    }
+    _worldModel->removeCreatedItem(_group);
+    
+    foreach(StepCore::Item* item, _items){
+        _worldModel->addCreatedItem(item);
+    }
+}
+
+void CommandGroupItems::groupItems()
+{
+    foreach(StepCore::Item* item, _items) {
+        _worldModel->removeCreatedItem(item);
+    }
+    _group = new StepCore::ItemGroup(_worldModel->getUniqueName("itemGroup"));
+    _worldModel->addCreatedItem(_group);
+    
+    foreach(StepCore::Item* item, _items){
+        _worldModel->addCreatedItem(item, _group);
+    }
+}
+
+void CommandGroupItems::redo()
+{
+    groupItems();
+    //if(_create) readdItem();
+    //else removeItem();
+    //_shouldDelete = !_create;
+}
+
+void CommandGroupItems::undo()
+{
+    ungroupItems();
+    //if(_create) removeItem();
+    //else readdItem();
+    //_shouldDelete = _create;
+}
+
 class CommandSetSolver: public QUndoCommand
 {
 public:
@@ -617,6 +680,28 @@ void WorldModel::deleteSelectedItems()
         foreach(StepCore::Item* it, items) deleteItem(it);
         endMacro();
     }
+}
+
+void WorldModel::groupSelectedItems()
+{
+    simulationPause();
+    
+    QList<StepCore::Item*> items;
+    foreach(QModelIndex index, selectionModel()->selectedIndexes()) {
+        StepCore::Item* it = item(index); if(it) items << it;
+        if(!items.isEmpty() && items[0]->group() != it->group()) {
+            if(_messageFrame) _messageFrame->showMessage(MessageFrame::Error,
+            i18n("Selected items are from different groups"), MessageFrame::CloseButton);
+            return;
+        }
+    }
+
+    pushCommand(new CommandGroupItems(this, items, true));
+}
+
+void WorldModel::ungroupSelectedGroup()
+{
+    
 }
 
 void WorldModel::addCreatedItem(StepCore::Item* item, StepCore::ItemGroup* parent)

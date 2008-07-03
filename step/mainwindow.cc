@@ -101,6 +101,8 @@ MainWindow::MainWindow()
     worldScene = new WorldScene(worldModel);
     worldGraphicsView = new WorldGraphicsView(worldScene, this);
     setCentralWidget(worldGraphicsView);
+    
+    worldModel->setMessageFrame(worldScene->messageFrame());
 
     connect(worldModel, SIGNAL(simulationStopped(int)), this, SLOT(simulationStopped(int)));
     connect(worldModel->selectionModel(), SIGNAL(selectionChanged(const QItemSelection&, const QItemSelection&)),
@@ -184,6 +186,14 @@ void MainWindow::setupActions()
     actionDelete->setIcon(KIcon("edit-delete"));
     actionDelete->setShortcut(KShortcut(Qt::CTRL+Qt::Key_Delete));
     actionDelete->setEnabled(false);
+
+    actionGroup = actionCollection()->add<KAction>("edit_group", worldModel, SLOT(groupSelectedItems()));
+    actionGroup->setText(i18n("&Group"));
+    //actionGroup->setIcon(KIcon("edit-group"));
+    
+    actionUngroup = actionCollection()->add<KAction>("edit_ungroup", worldModel, SLOT(ungroupSelectedGroup()));
+    actionUngroup->setText(i18n("&Ungroup"));
+    //actionGroup->setIcon(KIcon("edit-ungroup"));
 
     /* Simulation menu */
     // The run speed action group

@@ -26,6 +26,8 @@
       </Menu>
     </Menu>
     <Menu name="edit" >
+      <Action name="edit_group" />
+      <Action name="edit_ungroup" />
       <Action name="edit_delete" />
     </Menu>
     <Menu name="simulation" >

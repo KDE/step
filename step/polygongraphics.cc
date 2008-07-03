@@ -35,7 +35,7 @@
 #include <KDebug>
 
 RigidBodyGraphicsItem::RigidBodyGraphicsItem(StepCore::Item* item, WorldModel* worldModel, WorldScene* worldScene)
-    : WorldGraphicsItem(item, worldModel, worldScene)
+    : WorldGraphicsItem(item, worldModel, worldScene), _arrows(0)
 {
     Q_ASSERT(dynamic_cast<StepCore::RigidBody*>(_item) != NULL);
     setFlag(QGraphicsItem::ItemIsSelectable);
@@ -60,21 +60,22 @@ QPainterPath RigidBodyGraphicsItem::shape() const
 
 QPixmap* RigidBodyGraphicsItem::paintPixmap()
 {
-
-    double L = _boundingRect.bottomRight().x();
-    int Li = int ( std::ceil ( L ) ) + 1;
-    kDebug() << Li;
-    QPixmap* pixmap = new QPixmap ( 2*Li, 2*Li );
+    QPointF bottomRight = _boundingRect.bottomRight();
+    QPointF topLeft = _boundingRect.topLeft();
+    double w = qMax(std::abs(bottomRight.x()),std::abs(topLeft.x()));
+    double h = qMax(std::abs(bottomRight.y()),std::abs(topLeft.y()));
+    QSize size = QSizeF(w, h).toSize() + QSize(1, 1);
+    QPixmap* pixmap = new QPixmap ( size*2 );
     pixmap->fill ( Qt::transparent );
-    
+     
     QPainter painter;
     QPoint c = ((pos() - pos().toPoint())*PIXMAP_CACHE_GRADING).toPoint();
     QString textureKey = QString("TextureUnit:%1x%2").arg(c.x()).arg(c.y());
     QPixmap* texturePixmap = _worldScene->worldRenderer()->pixmapCache()->object ( textureKey );
-    QSize size = _textureSize/2 + QSize(2,2);
+    QSize texturePixmapSize = _textureSize/2 + QSize(2,2);
 
     if ( !texturePixmap ) {
-        texturePixmap = new QPixmap(2*size);
+        texturePixmap = new QPixmap(2*texturePixmapSize);
         painter.begin(texturePixmap);
         _worldScene->worldRenderer()->svgRenderer()->render(&painter, "DiskTexture",
                                    QRectF(c, _textureSize ));
@@ -84,21 +85,25 @@ QPixmap* RigidBodyGraphicsItem::paintPixmap()
     }
     
     painter.begin ( pixmap );
-    painter.translate(QPointF(Li, Li) + pos() - pos().toPoint());
+    QPointF diff = QPointF(size.width(),size.height());
+    painter.translate(diff + pos() - pos().toPoint());
     painter.setClipPath ( _painterPath );
     //_item->metaObject()->className()
     
-    int h = _textureSize.height();
-    int w = _textureSize.width();
+    int h1 = _textureSize.height();
+    int w1 = _textureSize.width();
     
-    for(int i= - int(_boundingRect.size().height()) ; i*h < int(_boundingRect.size().height()); i++) {
-        for(int j=- int(_boundingRect.size().width()); j*w < int(_boundingRect.size().width()); j++) {
-            painter.drawPixmap(w*j - size.width()/2, h*i - size.height()/2, *texturePixmap);
+    for(int i= - int(_boundingRect.size().height()) ; i*h1 < int(_boundingRect.size().height()); i++) {
+        for(int j=- int(_boundingRect.size().width()); j*w1 < int(_boundingRect.size().width()); j++) {
+            painter.drawPixmap(w1*j - texturePixmapSize.width()/2,
+                               h1*i - texturePixmapSize.height()/2, *texturePixmap);
             //_worldScene->worldRenderer()->svgRenderer()->
             //    render ( &painter, "DiskTexture", QRectF (w*j,h*i,w,h) );
         }
     }
     painter.setClipping ( false );
+    painter.setPen(Qt::red);
+    painter.drawPath(_painterPath);
     painter.end();
 
     return pixmap;
@@ -153,6 +158,13 @@ void RigidBodyGraphicsItem::worldDataChanged(bool dynamicOnly)
 
 void RigidBodyGraphicsItem::stateChanged()
 {
+    if((_isSelected || _isMouseOverItem) && !_arrows) {
+        _arrows = new ArrowsGraphicsItem(_item, _worldModel, _worldScene, this, 
+                            "velocity", "acceleration", "angularVelocity", "angularAcceleration", NULL);
+    }
+    if(!_isMouseOverItem && !_isSelected && _arrows) {
+        delete _arrows; _arrows = 0;
+    }
     /*
     if(_isSelected) {
         _velocityHandler->setVisible(true);
@@ -275,6 +287,7 @@ void DiskGraphicsItem::worldDataChanged(bool dynamicOnly)
     _painterPath.setFillRule(Qt::WindingFill);
 
     double radius = _worldScene->viewScale()*disk()->radius();
+    prepareGeometryChange();
     _boundingRect = QRectF(-radius, -radius ,2*radius ,2*radius);
     if(radius > 1) {
         _painterPath.addEllipse(_boundingRect);
@@ -288,8 +301,9 @@ void DiskGraphicsItem::worldDataChanged(bool dynamicOnly)
 
 OnHoverHandlerGraphicsItem* DiskGraphicsItem::createOnHoverHandler(const QPointF& pos)
 {
+    double s = _worldScene->viewScale();
     StepCore::Vector2d l = (_worldScene->pointToVector(pos) - disk()->position())/disk()->radius();
-    int num = -1; double minDist2 = HANDLER_SNAP_SIZE*HANDLER_SNAP_SIZE
+    int num = -1; double minDist2 = HANDLER_SNAP_SIZE*HANDLER_SNAP_SIZE/s/s
                                         /disk()->radius()/disk()->radius();
     for(unsigned int i=0; i<4; ++i) {
         double dist2 = (l - DiskVertexHandlerGraphicsItem::scorners[i]).norm2();
@@ -319,7 +333,7 @@ bool BoxCreator::sceneEvent(QEvent* event)
 
     if(event->type() == QEvent::GraphicsSceneMousePress && mouseEvent->button() == Qt::LeftButton) {
         QPointF pos = mouseEvent->scenePos();
-        QVariant vpos = QVariant::fromValue(WorldGraphicsItem::pointToVector(pos));
+        QVariant vpos = QVariant::fromValue(_worldScene->pointToVector(pos));
 
         _worldModel->simulationPause();
         _worldModel->beginMacro(i18n("Create %1", _worldModel->newItemName(_className)));
@@ -538,23 +552,42 @@ inline StepCore::BasePolygon* BasePolygonGraphicsItem::basePolygon() const
     return static_cast<StepCore::BasePolygon*>(_item);
 }
 
-void BasePolygonGraphicsItem::viewScaleChanged()
+void BasePolygonGraphicsItem::worldDataChanged(bool dynamicOnly)
 {
-    _painterPath = QPainterPath();
-    _painterPath.setFillRule(Qt::WindingFill);
+    if(!dynamicOnly){
+        _painterPath = QPainterPath();
+        _painterPath.setFillRule(Qt::WindingFill);
 
-    if(basePolygon()->vertexes().size() > 0) {
-        _painterPath.moveTo(_worldScene->vectorToPoint( basePolygon()->vertexes()[0] ));
-        for(unsigned int i=1; i<basePolygon()->vertexes().size(); ++i) {
-            _painterPath.lineTo(_worldScene->vectorToPoint( basePolygon()->vertexes()[i] ));
+        if(basePolygon()->vertexes().size() > 0) {
+            _painterPath.moveTo(_worldScene->vectorToPoint( basePolygon()->vertexes()[0] ));
+            for(unsigned int i=1; i<basePolygon()->vertexes().size(); ++i) {
+                _painterPath.lineTo(_worldScene->vectorToPoint( basePolygon()->vertexes()[i] ));
+                kDebug() << "vertex" << _worldScene->vectorToPoint( basePolygon()->vertexes()[i]);
         }
-        _painterPath.closeSubpath();
-        _painterPath = QMatrix().rotate(basePolygon()->angle() * 180 / StepCore::Constants::Pi).map(_painterPath);
-    } else {
-        _painterPath.addEllipse(-1, -1, 2, 2);
+            _painterPath.closeSubpath();
+            _painterPath = QMatrix().rotate(basePolygon()->angle() * 180 
+                / StepCore::Constants::Pi).map(_painterPath);
+        } else {
+            _painterPath.addEllipse(-1, -1, 2, 2);
+        }
+        prepareGeometryChange();
+        _boundingRect = _painterPath.boundingRect();
     }
+    RigidBodyGraphicsItem::worldDataChanged(dynamicOnly);
+}
 
-    RigidBodyGraphicsItem::viewScaleChanged();
+QString BasePolygonGraphicsItem::pixmapCacheKey()
+{
+    QPoint c = ((pos() - pos().toPoint())*PIXMAP_CACHE_GRADING).toPoint();
+    QString key = QString("%1:%2x%3")
+            .arg(_item->metaObject()->className()).arg(c.x()).arg(c.y());
+    for(unsigned int i=0; i<basePolygon()->vertexes().size(); ++i) {
+        QPointF v = _worldScene->vectorToPoint( basePolygon()->vertexes()[i]);
+        QPoint v1 = (v*PIXMAP_CACHE_GRADING).toPoint();
+        key = key.append(":%1x%2").arg(v1.x()).arg(v1.y());
+//        kDebug() << "vertex" << _worldScene->vectorToPoint( basePolygon()->vertexes()[i]);
+    }
+    return key;
 }
 
 /////////////////////////////////////////////////////////////////////////////////////////
@@ -578,14 +611,13 @@ void BoxVertexHandlerGraphicsItem::setValue(const StepCore::Vector2d& value)
     StepCore::Vector2d newPos = oCorner + delta;
     StepCore::Vector2d newSize = (newPos - oCorner)*2.0;
 
-    double d = -0.1/currentViewScale();
     StepCore::Vector2d sign = delta.cMultiply(corners[_vertexNum]);
-    if(sign[0] < d || sign[1] < d) {
-        if(sign[0] < d) {
+    if(sign[0] < -0.1 || sign[1] < -0.1) {
+        if(sign[0] < -0.1) {
             newPos[0] = oCorner[0]; newSize[0] = 0;
             _vertexNum ^= 1;
         }
-        if(sign[1] < d) {
+        if(sign[1] < - 0.1) {
             newPos[1] = oCorner[1]; newSize[1] = 0;
             _vertexNum ^= 2;
         }
@@ -615,14 +647,16 @@ void BoxVertexHandlerGraphicsItem::setValue(const StepCore::Vector2d& value)
 
 OnHoverHandlerGraphicsItem* BoxGraphicsItem::createOnHoverHandler(const QPointF& pos)
 {
+    double s = _worldScene->viewScale();
     StepCore::Vector2d l = _worldScene->pointToVector(pos) - rigidBody()->position();
     StepCore::Vector2d size = static_cast<StepCore::Box*>(_item)->size();
     
-    int num = -1; double minDist2 = HANDLER_SNAP_SIZE*HANDLER_SNAP_SIZE;
+    int num = -1; double minDist2 = HANDLER_SNAP_SIZE*HANDLER_SNAP_SIZE/s/s;
     for(unsigned int i=0; i<4; ++i) {
         double dist2 = (l - size.cMultiply(OnHoverHandlerGraphicsItem::corners[i])).norm2();
         if(dist2 < minDist2) { num = i; minDist2 = dist2; }
     }
+
 
 #if 0
     StepCore::Vector2d l = basePolygon()->pointWorldToLocal(pointToVector(pos));
@@ -662,8 +696,9 @@ void PolygonVertexHandlerGraphicsItem::setValue(const StepCore::Vector2d& value)
 
 OnHoverHandlerGraphicsItem* PolygonGraphicsItem::createOnHoverHandler(const QPointF& pos)
 {
+    double s = _worldScene->viewScale();
     StepCore::Vector2d l = polygon()->pointWorldToLocal(_worldScene->pointToVector(pos));
-    int num = -1; double minDist2 = HANDLER_SNAP_SIZE*HANDLER_SNAP_SIZE;
+    int num = -1; double minDist2 = HANDLER_SNAP_SIZE*HANDLER_SNAP_SIZE/s/s;
     for(unsigned int i=0; i<polygon()->vertexes().size(); ++i) {
         double dist2 = (polygon()->vertexes()[i] - l).norm2();
         if(dist2 < minDist2) { num = i; minDist2 = dist2; }
