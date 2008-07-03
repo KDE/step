@@ -1,5 +1,4 @@
-set(step_SRCS
-    mainwindow.cc
+set(libstepgui_SRCS
     worldmodel.cc
     worldscene.cc
     worldgraphics.cc
@@ -21,15 +20,21 @@ set(step_SRCS
     unitscalc.cc
     latexformula.cc
     messageframe.cc
+)
+
+set(step_SRCS
+    mainwindow.cc
     main.cc
 )
 
-set(step_UIS
+set(libstepgui_UIS
     create_gas_particles.ui
     create_softbody_items.ui
     configure_graph.ui
     configure_meter.ui
-    configure_controller.ui
+    configure_controller.ui)
+
+set(step_UIS
     configure_step_general.ui)
 
 set(step_KCFGS
@@ -56,13 +61,17 @@ include_directories( ${KDE4_INCLUDES} )
 add_definitions( ${KDE4_DEFINITIONS} )
 
 kde4_add_ui_files( step_SRCS ${step_UIS} )
+kde4_add_ui_files( libstepgui_SRCS ${libstepgui_UIS} )
 kde4_add_kcfg_files( step_SRCS ${step_KCFGS} )
 
 include_directories(${CMAKE_CURRENT_BINARY_DIR})
 include_directories(${CMAKE_CURRENT_SOURCE_DIR})
 
+kde4_add_library(libstepgui STATIC ${libstepgui_SRCS})
+
 kde4_add_executable(step ${step_SRCS})
 target_link_libraries(step
+    libstepgui
     stepcore
     ${KDE4_KHTML_LIBS}
     ${KDE4_KNEWSTUFF2_LIBS}

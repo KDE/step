@@ -193,10 +193,17 @@ void CommandNewItem::undo()
 class CommandGroupItems: public QUndoCommand
 {
 public:
-    CommandGroupItems(WorldModel* worldModel, const QList<StepCore::Item*>& items , bool create)
-            : _worldModel(worldModel), _items(items), _create(create), _shouldDelete(create) {}
+    CommandGroupItems(WorldModel* worldModel, const QList<StepCore::Item*>& items)
+            : _worldModel(worldModel), _items(items), _create(true), _shouldDelete(true) {
+        _group = new StepCore::ItemGroup(_worldModel->getUniqueName("itemGroup"));
+    }
     
-    ~CommandGroupItems() { }
+    CommandGroupItems(WorldModel* worldModel, StepCore::ItemGroup* group)
+        : _worldModel(worldModel), _group(group), _create(false), _shouldDelete(false) {
+        foreach(StepCore::Item* it, group->items()) _items << it;
+    }
+    
+    ~CommandGroupItems() { if(_shouldDelete) delete _group; }
 
     void redo();
     void undo();
@@ -217,20 +224,21 @@ void CommandGroupItems::ungroupItems()
     foreach(StepCore::Item* item, _items){
         _worldModel->removeCreatedItem(item);
     }
-    _worldModel->removeCreatedItem(_group);
     
     foreach(StepCore::Item* item, _items){
-        _worldModel->addCreatedItem(item);
+        _worldModel->addCreatedItem(item, _group->group());
     }
+    
+    _worldModel->removeCreatedItem(_group);
 }
 
 void CommandGroupItems::groupItems()
 {
+    _worldModel->addCreatedItem(_group, _items[0]->group());
+
     foreach(StepCore::Item* item, _items) {
         _worldModel->removeCreatedItem(item);
     }
-    _group = new StepCore::ItemGroup(_worldModel->getUniqueName("itemGroup"));
-    _worldModel->addCreatedItem(_group);
     
     foreach(StepCore::Item* item, _items){
         _worldModel->addCreatedItem(item, _group);
@@ -239,18 +247,16 @@ void CommandGroupItems::groupItems()
 
 void CommandGroupItems::redo()
 {
-    groupItems();
-    //if(_create) readdItem();
-    //else removeItem();
-    //_shouldDelete = !_create;
+    if(_create) groupItems();
+    else ungroupItems();
+    _shouldDelete = !_create;
 }
 
 void CommandGroupItems::undo()
 {
-    ungroupItems();
-    //if(_create) removeItem();
-    //else readdItem();
-    //_shouldDelete = _create;
+    if(_create) ungroupItems();
+    else groupItems();
+    _shouldDelete = _create;
 }
 
 class CommandSetSolver: public QUndoCommand
@@ -695,13 +701,39 @@ void WorldModel::groupSelectedItems()
             return;
         }
     }
-
-    pushCommand(new CommandGroupItems(this, items, true));
+    
+    if(items.isEmpty()) return;
+    
+    beginMacro(i18n("Group %1 items into %2", items.count(), getUniqueName("itemGroup")));
+    pushCommand(new CommandGroupItems(this, items));
+    endMacro();
 }
 
 void WorldModel::ungroupSelectedGroup()
 {
+    simulationPause();
     
+    int count = 0;
+    StepCore::Item* firstGroup = 0;
+    foreach(QModelIndex index, selectionModel()->selectedIndexes()) {
+        StepCore::Item* it = item(index);
+        if(it->metaObject()->inherits<StepCore::ItemGroup>()) {
+            if(!firstGroup) firstGroup = it;
+            ++count;
+        }
+    }
+    if(count == 0) return;
+    
+    beginMacro(count==1 ? i18n("Ungroup %1", firstGroup->name())
+                    : i18n("Ungroup several groups"));
+
+    foreach(QModelIndex index, selectionModel()->selectedIndexes()) {
+        StepCore::Item* it = item(index);
+        if(it->metaObject()->inherits<StepCore::ItemGroup>())
+            pushCommand(new CommandGroupItems(this, static_cast<StepCore::ItemGroup*>(it)));
+    }
+    
+    endMacro();
 }
 
 void WorldModel::addCreatedItem(StepCore::Item* item, StepCore::ItemGroup* parent)
