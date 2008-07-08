@@ -194,7 +194,7 @@ Integrated tutorials
 <guimenu>Settings</guimenu>
 <guimenuitem>Configure &step;..</guimenuitem>
 </menuchoice></term>
-<listitem><para><action>Open</action> a dialog which allows you to configure the theme of the cards and the timer duration.</para></listitem>
+<listitem><para><action>Open</action> a dialog which allows you to configure &step;.</para></listitem>
 </varlistentry>
 </variablelist>
 </para>
