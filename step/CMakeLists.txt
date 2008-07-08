@@ -63,6 +63,7 @@ add_definitions( ${KDE4_DEFINITIONS} )
 kde4_add_ui_files( step_SRCS ${step_UIS} )
 kde4_add_ui_files( libstepgui_SRCS ${libstepgui_UIS} )
 kde4_add_kcfg_files( step_SRCS ${step_KCFGS} )
+kde4_add_kcfg_files( libstepgui_SRCS ${step_KCFGS} )
 
 include_directories(${CMAKE_CURRENT_BINARY_DIR})
 include_directories(${CMAKE_CURRENT_SOURCE_DIR})

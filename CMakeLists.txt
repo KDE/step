@@ -16,6 +16,7 @@ add_definitions(-DGETFEM_PARA_LEVEL=0)
 
 add_subdirectory(stepcore)
 add_subdirectory(step)
+add_subdirectory(stepgame)
 
 if(STEPCORE_TESTS)
   add_subdirectory(stepcore_tests)

@@ -57,7 +57,7 @@
 WorldRenderer::WorldRenderer(QObject* parent)
     : QObject(parent)
 {
-    QString fileName = KStandardDirs::locate("appdata", "themes/default.svg");
+    QString fileName = KStandardDirs::locate("data", "step/themes/default.svg");
     _svgRenderer = new KSvgRenderer(fileName, this);
     _pixmapCache = new QCache<QString, QPixmap>(1024*1024*10);
 //#error XXX: Don't save the cache to disk
