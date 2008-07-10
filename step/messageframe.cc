@@ -29,7 +29,7 @@
 #include <KDebug>
 
 MessageFrame::MessageFrame(QWidget* parent, Qt::WindowFlags f)
-    : QFrame(parent, f), _lastId(0)
+    : QFrame(parent, f), _lastId(1)
 {
     hide();
 
