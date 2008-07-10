@@ -439,7 +439,7 @@ QString XmlFileHandler::errorString() const
 bool XmlFile::save(const World* world)
 {
     if(!_device->isOpen() || !_device-> isWritable()) {
-        _errorString = QObject::tr("File is not writeble.");
+        _errorString = QObject::tr("File is not writable.");
         return false;
     }
 
