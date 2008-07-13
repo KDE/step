@@ -76,8 +76,11 @@ public:
     /** Get associated icon for given object */
     const KIcon& objectIcon(const StepCore::MetaObject* mObject) const;
 
+    /** Get item group names */
+    QList<QString> paletteGroups() const { return _paletteGroups; }
+
     /** Get class names of the objects on ItemPalette */
-    QList<QString> paletteMetaObjects() const { return _paletteMetaObjects; }
+    QList<QString> paletteMetaObjects(const QString& group) const { return _paletteMetaObjects[group]; }
     /** Get class names of the objects in the order of creation */
     QList<QString> orderedMetaObjects() const { return _orderedMetaObjects; }
 
@@ -85,7 +88,10 @@ private:
     void loadIcon(const StepCore::MetaObject* metaObject, ExtMetaObject* extMetaObject);
 
     QHash<const void*, const ExtMetaObject*> _extMetaObjects;
-    QList<QString> _paletteMetaObjects;
+
+    QList<QString> _paletteGroups;
+    QHash<QString, QList<QString> > _paletteMetaObjects;
+
     QList<QString> _orderedMetaObjects;
 
     KIcon* _nullIcon;

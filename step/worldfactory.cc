@@ -96,11 +96,15 @@ WorldFactory::WorldFactory()
         __REGISTER_EXT(Class, GraphicsCreator, GraphicsItem, ItemMenuHandler); \
         registerMetaObject(StepCore::Class##Errors::staticMetaObject())
 
-    #define __ADD_TO_PALETTE(Class) \
-        _paletteMetaObjects.push_back(QString(StepCore::Class::staticMetaObject()->className()))
+    #define __ADD_PALETTE_GROUP(group) \
+        _paletteGroups.push_back(group); \
+        _paletteMetaObjects.insert(group, QList<QString>());
 
-    #define __ADD_SEPARATOR \
-        _paletteMetaObjects.push_back(QString())
+    #define __ADD_TO_PALETTE(group, Class) \
+        _paletteMetaObjects[group].push_back(QString(StepCore::Class::staticMetaObject()->className()))
+
+    #define __ADD_SEPARATOR(group) \
+        _paletteMetaObjects[group].push_back(QString())
 
     __REGISTER_E(Object);
 
@@ -174,38 +178,42 @@ WorldFactory::WorldFactory()
     __REGISTER_EXT(Tracer, TracerCreator, TracerGraphicsItem, TracerMenuHandler);
 
     // Palette
-    __ADD_TO_PALETTE(Particle);
-    __ADD_TO_PALETTE(ChargedParticle);
-    __ADD_TO_PALETTE(Disk);
-    __ADD_TO_PALETTE(Box);
-    __ADD_TO_PALETTE(Polygon);
-    __ADD_SEPARATOR;
+    __ADD_PALETTE_GROUP("Main");
 
-    __ADD_TO_PALETTE(Spring);
-    __ADD_TO_PALETTE(LinearMotor);
-    __ADD_TO_PALETTE(CircularMotor);
-    __ADD_SEPARATOR;
+    __ADD_TO_PALETTE("Main", Particle);
+    __ADD_TO_PALETTE("Main", ChargedParticle);
+    __ADD_TO_PALETTE("Main", Disk);
+    __ADD_TO_PALETTE("Main", Box);
+    __ADD_TO_PALETTE("Main", Polygon);
+    __ADD_SEPARATOR("Main");
 
-    __ADD_TO_PALETTE(Gas);
-    __ADD_TO_PALETTE(SoftBody);
-    __ADD_SEPARATOR;
+    __ADD_TO_PALETTE("Main", Spring);
+    __ADD_TO_PALETTE("Main", LinearMotor);
+    __ADD_TO_PALETTE("Main", CircularMotor);
+    __ADD_SEPARATOR("Main");
 
-    __ADD_TO_PALETTE(WeightForce);
-    __ADD_TO_PALETTE(GravitationForce);
-    __ADD_TO_PALETTE(CoulombForce);
-    __ADD_SEPARATOR;
+    __ADD_TO_PALETTE("Main", Gas);
+    __ADD_TO_PALETTE("Main", SoftBody);
+    __ADD_SEPARATOR("Main");
 
-    __ADD_TO_PALETTE(Anchor);
-    __ADD_TO_PALETTE(Pin);
-    __ADD_TO_PALETTE(Stick);
-    __ADD_TO_PALETTE(Rope);
-    __ADD_SEPARATOR;
+    __ADD_TO_PALETTE("Main", WeightForce);
+    __ADD_TO_PALETTE("Main", GravitationForce);
+    __ADD_TO_PALETTE("Main", CoulombForce);
+    __ADD_SEPARATOR("Main");
 
-    __ADD_TO_PALETTE(Note);
-    __ADD_TO_PALETTE(Meter);
-    __ADD_TO_PALETTE(Tracer);
-    __ADD_TO_PALETTE(Graph);
-    __ADD_TO_PALETTE(Controller);
+    __ADD_TO_PALETTE("Main", Anchor);
+    __ADD_TO_PALETTE("Main", Pin);
+    __ADD_TO_PALETTE("Main", Stick);
+    __ADD_TO_PALETTE("Main", Rope);
+    __ADD_SEPARATOR("Main");
+
+    __ADD_TO_PALETTE("Main", Note);
+    __ADD_TO_PALETTE("Main", Meter);
+    __ADD_TO_PALETTE("Main", Tracer);
+    __ADD_TO_PALETTE("Main", Graph);
+    __ADD_TO_PALETTE("Main", Controller);
+
+    __ADD_PALETTE_GROUP("Game");
 }
 
 ItemCreator* WorldFactory::newItemCreator(const QString& className,

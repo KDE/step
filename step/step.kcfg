@@ -41,5 +41,10 @@
             <whatsthis>Show text beside icon</whatsthis>
             <default>true</default>
         </entry>
+        <entry name="groupsToShow" type="StringList">
+            <label>Groups to show in the palette</label>
+            <whatsthis>Groups to show in the palette</whatsthis>
+            <default>Main</default>
+        </entry>
     </group>
 </kcfg>

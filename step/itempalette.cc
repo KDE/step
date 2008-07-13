@@ -218,10 +218,27 @@ ItemPalette::ItemPalette(WorldModel* worldModel, QWidget* parent, Qt::WindowFlag
     createToolButton(_pointerAction);
     createSeparator();
 
-    foreach(const QString &name, _worldModel->worldFactory()->paletteMetaObjects()) {
-        if(!name.isEmpty()) createObjectAction(_worldModel->worldFactory()->metaObject(name));
-        else createSeparator();
+    QActionGroup* gActionGroup = new QActionGroup(this);
+    gActionGroup->setExclusive(false);
+
+    foreach(const QString &group, _worldModel->worldFactory()->paletteGroups()) {
+        QAction* action = new QAction(i18n(group.toLatin1().constData()), this);
+        action->setProperty("step_group", group);
+        action->setCheckable(true);
+        action->setChecked(Settings::groupsToShow().contains(group));
+        gActionGroup->addAction(action);
+        _widget->addAction(action);
+
+        _groups.insert(group, QList<QAction*>());
+        foreach(const QString &name, _worldModel->worldFactory()->paletteMetaObjects(group)) {
+            if(!name.isEmpty()) _groups[group] << createObjectAction(_worldModel->worldFactory()->metaObject(name));
+            else _groups[group] << createSeparator();
+        }
+
+        _groups[group] << createSeparator(); // XXX: ?
     }
+
+    connect(gActionGroup, SIGNAL(triggered(QAction*)), this, SLOT(groupVisibilityToggled(QAction*)));
 
     _scrollArea->setWidget(_widget);
     _scrollArea->setMinimumWidth(_widget->minimumSizeHint().width());
@@ -239,6 +256,38 @@ ItemPalette::ItemPalette(WorldModel* worldModel, QWidget* parent, Qt::WindowFlag
 
     _widget->addAction(showText);
     _widget->setContextMenuPolicy(Qt::ActionsContextMenu);
+
+    updateGroupsVisibility();
+}
+
+void ItemPalette::updateGroupsVisibility()
+{
+    foreach(const QString& group, _worldModel->worldFactory()->paletteGroups()) {
+        bool visible = Settings::groupsToShow().contains(group);
+        foreach(QAction* action, _groups[group]) {
+            //action->setVisible(visible);
+            //action->property("step_widget").value<QWidget*>()->setVisible(visible);
+            if(visible)
+                action->property("step_widget").value<QWidget*>()->show();
+            else
+                action->property("step_widget").value<QWidget*>()->hide();
+            kDebug() << action->text() << visible;
+        }
+    }
+    _widget->adjustSize();
+}
+
+void ItemPalette::groupVisibilityToggled(QAction* action)
+{
+    QString group = action->property("step_group").toString();
+    QStringList groups = Settings::groupsToShow();
+    if(action->isChecked() && !groups.contains(group)) {
+        groups.append(group); Settings::setGroupsToShow(groups);
+    } else if(!action->isChecked()) {
+        groups.removeOne(group); Settings::setGroupsToShow(groups);
+    }
+    Settings::self()->writeConfig();
+    updateGroupsVisibility();
 }
 
 void ItemPalette::createToolButton(QAction* action)
@@ -252,17 +301,21 @@ void ItemPalette::createToolButton(QAction* action)
     button->setDefaultAction(action);
     _toolButtons.append(button);
     _layout->addWidget(button);
+    action->setProperty("step_widget", QVariant::fromValue<QWidget*>(button));
 }
 
-void ItemPalette::createSeparator()
+QAction* ItemPalette::createSeparator()
 {
     QAction* action = new QAction(this);
     action->setSeparator(true);
     _actionGroup->addAction(action);
-    _layout->addWidget(new Separator(_widget));
+    Separator* separator = new Separator(_widget);
+    _layout->addWidget(separator);
+    action->setProperty("step_widget", QVariant::fromValue<QWidget*>(separator));
+    return action;
 }
 
-void ItemPalette::createObjectAction(const StepCore::MetaObject* metaObject)
+QAction* ItemPalette::createObjectAction(const StepCore::MetaObject* metaObject)
 {
     Q_ASSERT(metaObject && !metaObject->isAbstract());
 
@@ -273,6 +326,7 @@ void ItemPalette::createObjectAction(const StepCore::MetaObject* metaObject)
     action->setProperty("step_object", metaObject->className());
     _actionGroup->addAction(action);
     createToolButton(action);
+    return action;
 }
 
 void ItemPalette::showButtonTextToggled(bool b)

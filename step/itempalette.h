@@ -21,6 +21,7 @@
 
 #include <QDockWidget>
 #include <QList>
+#include <QHash>
 
 class WorldModel;
 class QVBoxLayout;
@@ -48,11 +49,14 @@ public slots:
 protected slots:
     void actionTriggered(QAction* action);
     void showButtonTextToggled(bool b);
+    void groupVisibilityToggled(QAction* action);
 
 protected:
-    void createSeparator();
+    QAction* createSeparator();
+    QAction* createObjectAction(const StepCore::MetaObject* metaObject);
     void createToolButton(QAction* action);
-    void createObjectAction(const StepCore::MetaObject* metaObject);
+
+    void updateGroupsVisibility();
 
     bool event(QEvent* event);
 
@@ -65,6 +69,8 @@ protected:
     QActionGroup*   _actionGroup;
 
     QList<QToolButton*> _toolButtons;
+
+    QHash<QString, QList<QAction*> > _groups;
 };
 
 #endif
