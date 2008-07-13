@@ -148,6 +148,8 @@ public:
     WorldRenderer* worldRenderer() const { return _worldRenderer; }
     
     MessageFrame* messageFrame() const { return _messageFrame; }
+    
+    void updateBackground();
 
 public slots:
     /** Begin adding new item. Creates appropriate ItemCreator */
@@ -201,6 +203,7 @@ protected:
     void mousePressEvent(QGraphicsSceneMouseEvent* mouseEvent);
     void keyPressEvent(QKeyEvent* keyEvent);
     void helpEvent(QGraphicsSceneHelpEvent *helpEvent);
+    void drawBackground ( QPainter* painter, const QRectF& rect );
     //void contextMenuEvent(QGraphicsSceneContextMenuEvent* contextMenuEvent);
 
     void worldGetItemsRecursive(const QModelIndex& parent);
@@ -222,6 +225,9 @@ protected:
     QTimer*            _snapTimer;
 
     WorldRenderer* _worldRenderer; 
+    QPixmap        _backgroundPixmap;
+    
+    QString _lastBackground;
 
     friend class WorldGraphicsView;
 };

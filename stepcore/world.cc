@@ -41,6 +41,8 @@ STEPCORE_META_OBJECT(ItemGroup, "ItemGroup", 0, STEPCORE_SUPER_CLASS(Item),)
 STEPCORE_META_OBJECT(World, "World", 0, STEPCORE_SUPER_CLASS(ItemGroup),
         STEPCORE_PROPERTY_RW_D(double, time, "s", "Current time", time, setTime)
         STEPCORE_PROPERTY_RW  (double, timeScale, STEPCORE_UNITS_1, "Simulation speed scale", timeScale, setTimeScale)
+	STEPCORE_PROPERTY_RW  (QString, background, STEPCORE_UNITS_NULL,
+                        "Background texture", background, setBackground)
         STEPCORE_PROPERTY_RW  (bool, errorsCalculation, STEPCORE_UNITS_NULL,
                         "Enable global errors calculation", errorsCalculation, setErrorsCalculation))
 
@@ -367,6 +369,7 @@ World& World::operator=(const World& world)
 
     _time = world._time;
     _timeScale = world._timeScale;
+    _background = world._background;
     _errorsCalculation = world._errorsCalculation;
 
     _stopOnCollision = world._stopOnCollision;

@@ -403,30 +403,50 @@ void WorldScene::worldDataChanged(bool dynamicOnly)
     //if(dynamicOnly) return;
     _worldModel->simulationPause();
 
-    if(!dynamicOnly) {
-        /* Background */
-        if(_bgColor != _worldModel->world()->color()) {
-            _bgColor = _worldModel->world()->color();
-            if(_bgColor == 0) setBackgroundBrush(Qt::NoBrush);
-            else setBackgroundBrush(QBrush(QColor::fromRgba(_bgColor)));
-        }
+    if(_worldModel->world()->background()!=_lastBackground){
+        updateBackground();
+        _lastBackground = _worldModel->world()->background();
     }
+ //   if(!dynamicOnly) {
+ //       /* Background */
+ //       if(_bgColor != _worldModel->world()->color()) {
+ //           _bgColor = _worldModel->world()->color();
+ //           if(_bgColor == 0) setBackgroundBrush(Qt::NoBrush);
+ //           else setBackgroundBrush(QBrush(QColor::fromRgba(_bgColor)));
+ //       }
+ //   }
 
     foreach (QGraphicsItem *item, items()) {
         WorldGraphicsItem* gItem = dynamic_cast<WorldGraphicsItem*>(item);
         if(gItem) gItem->worldDataChanged(dynamicOnly);
     }
+    update();
 }
 
 void WorldScene::setViewScale(double viewScale)
 {
     _viewScale = viewScale;
     _worldModel->simulationPause();
+    updateBackground();
     foreach (QGraphicsItem *item, items()) {
         WorldGraphicsItem* gItem = dynamic_cast<WorldGraphicsItem*>(item);
         if(gItem) gItem->viewScaleChanged();
     }
     if(_sceneAxes) _sceneAxes->viewScaleChanged();
+    update();
+}
+
+void WorldScene::updateBackground()
+{
+    QSvgRenderer backgroundRenderer(_worldModel->world()->background());
+    QSize isize(backgroundRenderer.defaultSize());
+    isize = isize*_viewScale/100;
+    _backgroundPixmap = QPixmap(isize);
+    _backgroundPixmap.fill(Qt::transparent);
+    QPainter painter1;
+    painter1.begin(&_backgroundPixmap);
+    backgroundRenderer.render(&painter1, QRectF(QPointF(0,0), isize));
+    painter1.end();
 }
 
 QRectF WorldScene::calcItemsBoundingRect()
@@ -577,6 +597,15 @@ void WorldScene::snapUpdateToolTip()
         QWheelEvent fakeEvent(QPoint(0,0), 0, Qt::NoButton, Qt::NoModifier);
         QCoreApplication::sendEvent(_messageFrame, &fakeEvent);
     }
+}
+
+void WorldScene::drawBackground ( QPainter* painter, const QRectF& rect )
+{
+    QSize isize = _backgroundPixmap.size();
+    QRect irect(QPoint(-isize.width()/2, -isize.height()/2), isize);
+    
+    QRect srect = irect.intersected(rect.toRect());
+    painter->drawPixmap ( srect.topLeft(), _backgroundPixmap, srect.translated(isize.width()/2, isize.height()/2) );
 }
 
 WorldGraphicsView::WorldGraphicsView(WorldScene* worldScene, QWidget* parent)

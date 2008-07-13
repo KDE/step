@@ -406,6 +406,11 @@ public:
     /** Set simulation speed scale */
     void setTimeScale(double timeScale) { _timeScale = timeScale; }
 
+    /** Get background */
+    QString background() const { return _background; }
+    /** Set background */
+    void setBackground(QString background) { _background = background; }
+    
     /** Is errors calculation enabled */
     bool errorsCalculation() const { return _errorsCalculation; }
     /** Enable or disable errors calculation */
@@ -551,6 +556,8 @@ private:
     bool    _stopOnCollision;
     bool    _stopOnIntersection;
     bool    _evolveAbort;
+
+    QString _background;
 };
 
 } // namespace StepCore
