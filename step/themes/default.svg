@@ -38,13 +38,13 @@
      inkscape:pageshadow="2"
      inkscape:zoom="1.7963714"
      inkscape:cx="174.51628"
-     inkscape:cy="231.12247"
+     inkscape:cy="631.93045"
      inkscape:document-units="px"
      inkscape:current-layer="layer1"
      showgrid="false"
      inkscape:window-width="1053"
      inkscape:window-height="975"
-     inkscape:window-x="184"
+     inkscape:window-x="0"
      inkscape:window-y="0" />
   <metadata
      id="metadata7">
@@ -159,7 +159,7 @@
     </g>
     <g
        id="Pin"
-       transform="matrix(1.015705,0,0,0.9453629,-224.30139,-108.31827)">
+       transform="matrix(1.015705,0,0,0.9453629,-162.51016,-106.09156)">
       <g
          transform="matrix(0.1212065,0,0,0.1109752,493.84056,722.17988)"
          id="pinpart"
@@ -190,7 +190,7 @@
     </g>
     <g
        id="Anchor"
-       transform="matrix(0.7992117,0,0,0.7250234,78.966796,324.42964)">
+       transform="matrix(0.7992117,0,0,0.7250234,140.75803,326.65635)">
       <path
          transform="translate(250.92856,426.1479)"
          id="path3217"
@@ -219,7 +219,7 @@
     </g>
     <g
        id="LinearMotor"
-       transform="translate(47.874287,197.62061)">
+       transform="translate(109.66552,199.84732)">
       <path
          transform="matrix(0.8265071,0,0,0.7070294,273.70562,439.20801)"
          d="M 160.79811,40.883347 A 2.853822,2.3617837 0 1 1 155.09047,40.883347 A 2.853822,2.3617837 0 1 1 160.79811,40.883347 z"
@@ -238,7 +238,7 @@
     </g>
     <g
        id="CircularMotor"
-       transform="translate(111.33555,198.73396)">
+       transform="translate(173.12678,200.96067)">
       <path
          transform="matrix(0.8265071,0,0,0.7070294,290.43491,438.32233)"
          d="M 160.79811,40.883347 A 2.853822,2.3617837 0 1 1 155.09047,40.883347 A 2.853822,2.3617837 0 1 1 160.79811,40.883347 z"
@@ -313,43 +313,43 @@
     <text
        xml:space="preserve"
        style="font-size:8px;font-style:normal;font-weight:normal;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;font-family:Bitstream Vera Sans"
-       x="329.42014"
-       y="684.19507"
+       x="391.21136"
+       y="686.42181"
        id="text2490"><tspan
          sodipodi:role="line"
          id="tspan2492"
-         x="329.42014"
-         y="684.19507">Needle</tspan></text>
+         x="391.21136"
+         y="686.42181">Needle</tspan></text>
     <text
        xml:space="preserve"
        style="font-size:8px;font-style:normal;font-weight:normal;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;font-family:Bitstream Vera Sans"
-       x="373.39771"
-       y="684.75177"
+       x="435.18893"
+       y="686.97852"
        id="text2494"><tspan
          sodipodi:role="line"
-         x="373.39771"
-         y="684.75177"
+         x="435.18893"
+         y="686.97852"
          id="tspan2498">Anchor</tspan></text>
     <text
        xml:space="preserve"
        style="font-size:8px;font-style:normal;font-weight:normal;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;font-family:Bitstream Vera Sans"
-       x="429.62216"
-       y="685.86505"
+       x="491.41339"
+       y="688.0918"
        id="text2502"><tspan
          sodipodi:role="line"
          id="tspan2504"
-         x="429.62216"
-         y="685.86505">LinearMotor</tspan></text>
+         x="491.41339"
+         y="688.0918">LinearMotor</tspan></text>
     <text
        xml:space="preserve"
        style="font-size:8px;font-style:normal;font-weight:normal;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;font-family:Bitstream Vera Sans"
-       x="502.54694"
-       y="686.97845"
+       x="564.3382"
+       y="689.2052"
        id="text2506"><tspan
          sodipodi:role="line"
          id="tspan2508"
-         x="502.54694"
-         y="686.97845">CircularMotor</tspan></text>
+         x="564.3382"
+         y="689.2052">CircularMotor</tspan></text>
     <path
        id="path2512"
        d="M 255.38199,735.40943 L 648.39649,735.40943"
@@ -680,5 +680,33 @@
        sodipodi:ry="1.1133555"
        d="M 102.4287,758.80585 A 1.6700332,1.1133555 0 1 1 99.088634,758.80585 A 1.6700332,1.1133555 0 1 1 102.4287,758.80585 z"
        transform="translate(250.92856,426.1479)" />
+    <g
+       id="GasParticle"
+       transform="matrix(5.7948835e-2,0,0,6.131656e-2,324.29932,632.8318)"
+       inkscape:label="#g2515">
+      <path
+         d="M 491.42856,542.36218 A 120,115.71429 0 1 1 251.42856,542.36218 A 120,115.71429 0 1 1 491.42856,542.36218 z"
+         sodipodi:ry="115.71429"
+         sodipodi:rx="120"
+         sodipodi:cy="542.36218"
+         sodipodi:cx="371.42856"
+         id="path2517"
+         style="fill:#ff0000;fill-rule:evenodd;stroke:#000000;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+         sodipodi:type="arc" />
+      <path
+         id="path2519"
+         d="M 408.57143,492.36218 C 412.83224,492.64898 445.71429,512.75265 445.71429,540.93361 C 445.71429,566.94477 432.13079,577.37425 454.28571,555.21933 C 475.16373,534.34131 464.44924,515.92158 445.71429,500.93361 C 419.29705,479.79983 425.11943,489.60418 391.42857,495.21933"
+         style="fill:#ffaaaa;fill-rule:evenodd;stroke:#000000;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1" />
+    </g>
+    <text
+       xml:space="preserve"
+       style="font-size:8px;font-style:normal;font-weight:normal;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;font-family:Bitstream Vera Sans"
+       x="322.80151"
+       y="683.23718"
+       id="text2521"><tspan
+         sodipodi:role="line"
+         x="322.80151"
+         y="683.23718"
+         id="tspan2525">GasParticle</tspan></text>
   </g>
 </svg>
