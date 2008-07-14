@@ -46,6 +46,8 @@
 #include "jointgraphics.h"
 #include "toolgraphics.h"
 
+#include "gameitems/victorycondition.h"
+
 #include <KIcon>
 #include <KIconLoader>
 
@@ -176,6 +178,8 @@ WorldFactory::WorldFactory()
     __REGISTER_EXT(Graph, WidgetItemCreator, GraphGraphicsItem, GraphMenuHandler);
     __REGISTER_EXT(Controller, WidgetItemCreator, ControllerGraphicsItem, ControllerMenuHandler);
     __REGISTER_EXT(Tracer, TracerCreator, TracerGraphicsItem, TracerMenuHandler);
+    
+    __REGISTER_EXT(DiskTarget, DiskTargetCreator, DiskTargetGraphicsItem, ItemMenuHandler);
 
     // Palette
     __ADD_PALETTE_GROUP("Main");
@@ -214,6 +218,7 @@ WorldFactory::WorldFactory()
     __ADD_TO_PALETTE("Main", Controller);
 
     __ADD_PALETTE_GROUP("Game");
+    __ADD_TO_PALETTE(DiskTarget);
 }
 
 ItemCreator* WorldFactory::newItemCreator(const QString& className,

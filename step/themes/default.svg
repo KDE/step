@@ -38,7 +38,7 @@
      inkscape:pageshadow="2"
      inkscape:zoom="1.7963714"
      inkscape:cx="174.51628"
-     inkscape:cy="631.93045"
+     inkscape:cy="119.78691"
      inkscape:document-units="px"
      inkscape:current-layer="layer1"
      showgrid="false"
@@ -650,7 +650,7 @@
        d="M 96.30525,291.19653 A 7.5151496,7.7934885 0 1 1 81.274951,291.19653 A 7.5151496,7.7934885 0 1 1 96.30525,291.19653 z"
        transform="translate(250.92856,426.1479)" />
     <g
-       id="PoligonTexture">
+       id="TargetTexture">
       <rect
          transform="translate(250.92856,426.1479)"
          y="600.70935"

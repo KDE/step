@@ -20,6 +20,7 @@ set(libstepgui_SRCS
     unitscalc.cc
     latexformula.cc
     messageframe.cc
+    gameitems/victorycondition.cc
 )
 
 set(step_SRCS
