@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<kcfg xmlns="http://www.kde.org/standards/kcfg/1.0"
+      xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+      xsi:schemaLocation="http://www.kde.org/standards/kcfg/1.0
+                          http://www.kde.org/standards/kcfg/1.0/kcfg.xsd" >
+  <!--ToolBar name="mainToolBar" >
+    <text>Main Toolbar</text>
+    <Action name="view_zoom_in" />
+    <Action name="view_zoom_out" />
+  </ToolBar-->
+  <ToolBar name="simulationToolBar" >
+    <text>Simulation Toolbar</text>
+    <Action name="simulation_start_stop" />
+    <Action name="simulation_reset" />
+    <Action name="run_speed" />
+
+  </ToolBar>
+  <MenuBar>
+    <Menu name="file" >
+        <Menu name="levels">
+        <text>&amp;Examples</text>
+        <Action name="file_level_open" />
+        <Action name="file_level_openlocal" />
+        <Action name="file_level_download" />
+        <Action name="file_level_upload" />
+      </Menu>
+    </Menu>
+    <!--Menu name="edit" >
+      <Action name="edit_group" />
+      <Action name="edit_ungroup" />
+    </Menu-->
+    <Menu name="simulation" >
+      <text>&amp;Simulation</text>
+      <Action name="simulation_start" />
+      <Action name="simulation_stop" />
+      <Action name="simulation_reset" />
+        <Menu name="speed"><text>&amp;Run Speed</text>
+          <Action name="full_speed" />
+          <Action name="slow_speed" />
+          <Action name="slower_speed" />
+          <Action name="slowest_speed" />
+          <Action name="step_speed" />
+        </Menu>
+    </Menu>
+    <!--Menu name="settings" >
+        <Menu name="panels" >
+            <text>&amp;Panels</text>
+            <Action name="toggle_palette_dock" />
+            <Action name="toggle_world_dock" />
+            <Action name="toggle_properties_dock" />
+            <Action name="toggle_info_dock" />
+            <Action name="toggle_undo_dock" />
+        </Menu>
+    </Menu-->
+  </MenuBar>
+</kcfg>

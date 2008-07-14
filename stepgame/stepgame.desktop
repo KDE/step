@@ -1,0 +1,11 @@
+# KDE Config File
+[Desktop Entry]
+Type=Application
+Exec=stepgame -caption "%c" %i
+Icon=stepgame
+X-DocPath=stepgame/index.html
+Terminal=false
+Name=Stepgame
+Name[x-test]=xxStepgamexx
+GenericName=Educational game for learning physics
+Categories=Qt;KDE;Education;Game;

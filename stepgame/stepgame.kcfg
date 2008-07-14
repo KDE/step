@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<kcfg xmlns="http://www.kde.org/standards/kcfg/1.0"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.kde.org/standards/kcfg/1.0
+            http://www.kde.org/standards/kcfg/1.0/kcfg.xsd" >
+    <kcfgfile name="stepgamerc"/>
+    
+    <group name="General">
+        <entry name="showCreationTips" type="Bool">
+            <label>Show tips when creating items</label>
+            <whatsthis>Show tips when creating items</whatsthis>
+            <default>false</default>
+        </entry>
+        <entry name="showAxes" type="Bool">
+            <label>Show axes on the scene</label>
+            <whatsthis>Show axes on the scene</whatsthis>
+            <default>false</default>
+        </entry>
+        <entry name="floatDisplayPrecision" type="Int">
+            <label>Display precision of double numbers</label>
+            <whatsthis>Display precision of double numbers</whatsthis>
+            <min>1</min>
+            <max>15</max>
+            <default>4</default>
+        </entry>
+        <entry name="enableOpenGL" type="Bool">
+            <label>Use OpenGL to accelerate drawing whenever possible</label>
+            <whatsthis>Use OpenGL to accelerate drawing whenever possible</whatsthis>
+            <default>false</default>
+        </entry>
+    </group>
+    <group name="InfoBrowser">
+        <entry name="wikiExternal" type="Bool">
+            <label>Browse wikipedia in external browser</label>
+            <whatsthis>Browse wikipedia in external browser</whatsthis>
+            <default>false</default>
+        </entry>
+    </group>
+    <group name="ItemPalette">
+        <entry name="showButtonText" type="Bool">
+            <label>Show text beside icon</label>
+            <whatsthis>Show text beside icon</whatsthis>
+            <default>false</default>
+        </entry>
+    </group>
+</kcfg>
