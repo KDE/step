@@ -33,9 +33,10 @@
 
 namespace StepCore {
 
-class VictoryCondition;
+class RigidBody;
+class Particle;
 
-class VictoryCondition: public Item
+class VictoryCondition: public Item, public Tool
 {
     STEPCORE_OBJECT(VictoryCondition)
 
@@ -51,7 +52,7 @@ public:
     /** Constructs DiskTarget */
     explicit DiskTarget(Vector2d position = Vector2d(0), double radius = 0.5)
         : _position(position),
-          _radius(radius) {}
+          _radius(radius), _body(0), _p(0), _r(0) {}
 
     /** Get disk target radius */
     double radius() const { return _radius; }
@@ -62,10 +63,18 @@ public:
     StepCore::Vector2d position() const { return _position; }
     /** Set disk radius */
     void setPosition(StepCore::Vector2d position) { _position = position; }
+    bool checkVictory();
+    
+    Object* body() const { return _body; }
+    void setBody(Object* body);
 
 protected:
     double _radius;
     StepCore::Vector2d _position;
+    Object* _body;
+    
+    Particle*  _p;
+    RigidBody* _r;
 };
 
 } // namespace StepCore
@@ -125,12 +134,16 @@ class DiskTargetGraphicsItem: public TargetGraphicsItem
 {
 public:
     DiskTargetGraphicsItem(StepCore::Item* item, WorldModel* worldModel, WorldScene* worldScene);
+    ~DiskTargetGraphicsItem();
     void worldDataChanged(bool);
     QString pixmapCacheKey();
 
 protected:
     OnHoverHandlerGraphicsItem* createOnHoverHandler(const QPointF& pos);
     StepCore::DiskTarget* diskTarget() const;
+    
+protected:  
+    int _victoryMessageId;
 };
 #if 0
 /////////////////////////////////////////////////////////////////////////////////////////

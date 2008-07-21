@@ -23,6 +23,7 @@
 #include "polygongraphics.h"
 
 #include <stepcore/rigidbody.h>
+#include <stepcore/particle.h>
 
 #include <stepcore/constants.h>
 #include <stepcore/types.h>
@@ -41,10 +42,12 @@
 namespace StepCore
 {
 
-STEPCORE_META_OBJECT(VictoryCondition, "Generic victory condition", 0, STEPCORE_SUPER_CLASS(Item),)
+STEPCORE_META_OBJECT(VictoryCondition, "Generic victory condition", 0,
+        STEPCORE_SUPER_CLASS(Item) STEPCORE_SUPER_CLASS(Tool),)
 STEPCORE_META_OBJECT(DiskTarget, "Disk Target", 0, STEPCORE_SUPER_CLASS(VictoryCondition),
-        STEPCORE_PROPERTY_RW(double, radius, "R", "Radius of the disk target", radius, setRadius)
-        STEPCORE_PROPERTY_RW(StepCore::Vector2d, position, "C", "Position of the disk target", position, setPosition))
+        STEPCORE_PROPERTY_RW(double, radius, "m", "Radius of the disk target", radius, setRadius)
+        STEPCORE_PROPERTY_RW(StepCore::Vector2d, position, "m", "Position of the disk target", position, setPosition)
+        STEPCORE_PROPERTY_RW(StepCore::Object*, body, STEPCORE_UNITS_NULL, "Body to catch", body, setBody))
 
 //STEPCORE_META_OBJECT(BasePolygon, "Base polygon body", 0, STEPCORE_SUPER_CLASS(RigidBody),)
 //
@@ -53,6 +56,45 @@ STEPCORE_META_OBJECT(DiskTarget, "Disk Target", 0, STEPCORE_SUPER_CLASS(VictoryC
 //
 //STEPCORE_META_OBJECT(Polygon, "Rigid polygon body", 0, STEPCORE_SUPER_CLASS(BasePolygon),
 //        STEPCORE_PROPERTY_RW(Vector2dList, vertexes, "m", "Vertex list", vertexes, setVertexes))
+
+
+void DiskTarget::setBody(Object* body)
+{
+    if(body) {
+        if(body->metaObject()->inherits<Particle>()) {
+            _body = body;
+            _p = static_cast<Particle*>(body);
+            _r = NULL;
+            return;
+        } else if(body->metaObject()->inherits<RigidBody>()) {
+            _body = body;
+            _p = NULL;
+            _r = static_cast<RigidBody*>(body);
+            return;
+        }
+    }
+    _body = NULL;
+    _p = NULL;
+    _r = NULL;
+}
+
+bool DiskTarget::checkVictory()
+{
+    if(_p){
+        if((_p->position()-_position).norm() < _radius) {
+            //showMessage( MessageFrame::Information, i18n ( "You won!") );
+            qDebug("victory");
+            return true;
+        }
+        else return false;
+    }else if(_r) {
+        if((_r->position()-_position).norm() < _radius){
+            qDebug("victory");
+            return true;
+        }
+        else return false;
+    }
+}
 
 } // namespace StepCore
 
@@ -245,13 +287,19 @@ void DiskTargetVertexHandlerGraphicsItem::setValue(const StepCore::Vector2d& val
 }
 
 DiskTargetGraphicsItem::DiskTargetGraphicsItem(StepCore::Item* item, WorldModel* worldModel, WorldScene* worldScene)
-    : TargetGraphicsItem(item, worldModel, worldScene)
+    : TargetGraphicsItem(item, worldModel, worldScene), _victoryMessageId(0)
 {
     Q_ASSERT(dynamic_cast<StepCore::DiskTarget*>(_item) != NULL);
     double r = diskTarget()->radius();
     _boundingRect = QRectF(-r, -r ,2*r ,2*r);
     _boundingRect.moveCenter(QPointF(0,0));
     _painterPath.addEllipse(-r, -r, 2*r, 2*r);
+}
+
+DiskTargetGraphicsItem::~DiskTargetGraphicsItem()
+{
+    if(_victoryMessageId)
+        _worldScene->messageFrame()->closeMessage(_victoryMessageId);
 }
 
 inline StepCore::DiskTarget* DiskTargetGraphicsItem::diskTarget() const
@@ -283,7 +331,17 @@ void DiskTargetGraphicsItem::worldDataChanged(bool dynamicOnly)
     } else {
         _painterPath.addEllipse(-1, -1, 2, 2);
     }
+    
+    if(diskTarget()->checkVictory()) {
+        if(!_victoryMessageId)
+            _victoryMessageId = _worldScene->showMessage( MessageFrame::Information, i18n ( "You won!") );
 
+        if(_worldModel->isSimulationActive()) _worldModel->simulationStop();
+    } else {
+        if(_victoryMessageId)
+            _worldScene->messageFrame()->closeMessage(_victoryMessageId);
+            _victoryMessageId = 0;
+    }
     TargetGraphicsItem::worldDataChanged(dynamicOnly);
     
     Q_UNUSED(dynamicOnly)

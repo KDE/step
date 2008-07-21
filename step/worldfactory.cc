@@ -218,7 +218,7 @@ WorldFactory::WorldFactory()
     __ADD_TO_PALETTE("Main", Controller);
 
     __ADD_PALETTE_GROUP("Game");
-    __ADD_TO_PALETTE(DiskTarget);
+    __ADD_TO_PALETTE("Game", DiskTarget);
 }
 
 ItemCreator* WorldFactory::newItemCreator(const QString& className,
