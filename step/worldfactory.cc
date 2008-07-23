@@ -178,6 +178,7 @@ WorldFactory::WorldFactory()
     __REGISTER_EXT(Graph, WidgetItemCreator, GraphGraphicsItem, GraphMenuHandler);
     __REGISTER_EXT(Controller, WidgetItemCreator, ControllerGraphicsItem, ControllerMenuHandler);
     __REGISTER_EXT(Tracer, TracerCreator, TracerGraphicsItem, TracerMenuHandler);
+    __REGISTER_EXT(Fixator, FixatorCreator, FixatorGraphicsItem, ItemMenuHandler);
     
     __REGISTER_EXT(DiskTarget, DiskTargetCreator, DiskTargetGraphicsItem, ItemMenuHandler);
 
@@ -216,6 +217,7 @@ WorldFactory::WorldFactory()
     __ADD_TO_PALETTE("Main", Tracer);
     __ADD_TO_PALETTE("Main", Graph);
     __ADD_TO_PALETTE("Main", Controller);
+    __ADD_TO_PALETTE("Main", Fixator);
 
     __ADD_PALETTE_GROUP("Game");
     __ADD_TO_PALETTE("Game", DiskTarget);

@@ -80,6 +80,7 @@ LinearMotorGraphicsItem::LinearMotorGraphicsItem(StepCore::Item* item, WorldMode
     setFlag(QGraphicsItem::ItemIsSelectable);
     setFlag(QGraphicsItem::ItemIsMovable);
     setZValue(HANDLER_ZVALUE);
+    setExclusiveMoving(true);
 
     _forceHandler = new LinearArrowHandlerGraphicsItem(item, worldModel, worldScene, this,
                    _item->metaObject()->property("forceValue"));
@@ -103,51 +104,11 @@ QPainterPath LinearMotorGraphicsItem::shape() const
     return path;
 }
 
-void LinearMotorGraphicsItem::mouseMoveEvent(QGraphicsSceneMouseEvent *event)
+void LinearMotorGraphicsItem::mouseSetPos(const QPointF& pos, const QPointF&, MovingState movingState)
 {
-    if ((event->buttons() & Qt::LeftButton) && (flags() & ItemIsMovable)) {
-        QPointF newPos(mapToParent(event->pos()) - matrix().map(event->buttonDownPos(Qt::LeftButton)));
-        QVariant vpos = QVariant::fromValue(_worldScene->pointToVector(newPos));
-
-        _worldModel->simulationPause();
-        if(!_moving) {
-            _moving = true;
-            _worldModel->beginMacro(i18n("Move %1", _item->name()));
-            _worldModel->setProperty(_item, "body",
-                        QVariant::fromValue<StepCore::Object*>(NULL), WorldModel::UndoNoMerge);
-        }
-
-        _worldModel->setProperty(_item, "localPosition", vpos);
-    } else {
-        event->ignore();
-    }
-}
-
-void LinearMotorGraphicsItem::mouseReleaseEvent(QGraphicsSceneMouseEvent *event)
-{
-    if(_moving) {
-        QPointF pos = event->scenePos();
-        foreach(QGraphicsItem* it, scene()->items(pos)) {
-            StepCore::Item* item = static_cast<WorldScene*>(scene())->itemFromGraphics(it);
-            if(dynamic_cast<StepCore::Particle*>(item) || dynamic_cast<StepCore::RigidBody*>(item)) {
-                _worldModel->simulationPause();
-                _worldModel->setProperty(_item, "body",
-                            QVariant::fromValue<StepCore::Object*>(item), WorldModel::UndoNoMerge);
-
-                StepCore::Vector2d lPos(0, 0);
-                if(dynamic_cast<StepCore::RigidBody*>(item))
-                    lPos = dynamic_cast<StepCore::RigidBody*>(item)->
-                            pointWorldToLocal(_worldScene->pointToVector(pos));
-
-                _worldModel->setProperty(_item, "localPosition", QVariant::fromValue(lPos));
-
-                break;
-            }
-        }
-
-        _moving = false;
-        _worldModel->endMacro();
-    } else WorldGraphicsItem::mouseReleaseEvent(event);
+    static_cast<WorldScene*>(scene())->snapItem(pos,
+                WorldScene::SnapRigidBody | WorldScene::SnapParticle| 
+                WorldScene::SnapSetLocalPosition, 0, movingState, _item);
 }
 
 #if 0
@@ -305,6 +266,7 @@ CircularMotorGraphicsItem::CircularMotorGraphicsItem(StepCore::Item* item, World
                    _item->metaObject()->property("torqueValue"));
     _torqueHandler->setVisible(false);
     setZValue(HANDLER_ZVALUE);
+    setExclusiveMoving(true);
     
     _boundingRect = _worldScene->worldRenderer()->svgRenderer()->
             boundsOnElement(_item->metaObject()->className());
@@ -324,53 +286,11 @@ QPainterPath CircularMotorGraphicsItem::shape() const
     return path;
 }
 
-void CircularMotorGraphicsItem::mouseMoveEvent(QGraphicsSceneMouseEvent *event)
+void CircularMotorGraphicsItem::mouseSetPos(const QPointF& pos, const QPointF&, MovingState movingState)
 {
-    if ((event->buttons() & Qt::LeftButton) && (flags() & ItemIsMovable)) {
-        QPointF newPos(mapToParent(event->pos()) - matrix().map(event->buttonDownPos(Qt::LeftButton)));
-        QVariant vpos = QVariant::fromValue(_worldScene->pointToVector(newPos));
-
-        _worldModel->simulationPause();
-        if(!_moving) {
-            _moving = true;
-            _worldModel->beginMacro(i18n("Move %1", _item->name()));
-            _worldModel->setProperty(_item, "body",
-                    QVariant::fromValue<StepCore::Object*>(NULL), WorldModel::UndoNoMerge);
-        }
-
-        _worldModel->setProperty(_item, "localPosition", vpos);
-    } else {
-        event->ignore();
-    }
+    static_cast<WorldScene*>(scene())->snapItem(pos,
+                WorldScene::SnapRigidBody |  WorldScene::SnapOnCenter | WorldScene::SnapSetLocalPosition, 0, movingState, _item);
 }
-
-void CircularMotorGraphicsItem::mouseReleaseEvent(QGraphicsSceneMouseEvent *event)
-{
-    if(_moving) {
-        QPointF pos = event->scenePos();
-        foreach(QGraphicsItem* it, scene()->items(pos)) {
-            StepCore::Item* item = static_cast<WorldScene*>(scene())->itemFromGraphics(it);
-            if(dynamic_cast<StepCore::RigidBody*>(item)) {
-                _worldModel->simulationPause();
-                _worldModel->setProperty(_item, "body",
-                        QVariant::fromValue<StepCore::Object*>(item), WorldModel::UndoNoMerge);
-
-                StepCore::Vector2d lPos(0, 0);
-                if(dynamic_cast<StepCore::RigidBody*>(item))
-                    lPos = dynamic_cast<StepCore::RigidBody*>(item)->
-                            pointWorldToLocal(_worldScene->pointToVector(pos));
-
-                _worldModel->setProperty(_item, "localPosition", QVariant::fromValue(lPos));
-
-                break;
-            }
-        }
-
-        _moving = false;
-        _worldModel->endMacro();
-    } else WorldGraphicsItem::mouseReleaseEvent(event);
-}
-
 #if 0
 void CircularMotorGraphicsItem::paint(QPainter* painter, const QStyleOptionGraphicsItem* /*option*/, QWidget* /*widget*/)
 {

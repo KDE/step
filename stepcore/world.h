@@ -309,6 +309,8 @@ typedef std::vector<Body*>  BodyList;
 typedef std::vector<Force*> ForceList;
 /** List of pointers to Joint */
 typedef std::vector<Joint*> JointList;
+/** List of pointers to Tool */
+typedef std::vector<Tool*>  ToolList;
 
 /** \ingroup world
  *  \brief Groups several items together
@@ -441,6 +443,8 @@ public:
     const ForceList& forces() const { return _forces; }
     /** Get list of all joints (including sub-items) in the World */
     const JointList& joints() const { return _joints; }
+    /** Get list of all tools (including sub-items) in the World */
+    const ToolList& tools() const { return _tools; }
 
     /** Get current Solver */
     Solver* solver() const { return _solver; }
@@ -541,6 +545,7 @@ private:
     BodyList  _bodies;
     ForceList _forces;
     JointList _joints;
+    ToolList  _tools;
 
     Solver*           _solver;
     CollisionSolver*  _collisionSolver;

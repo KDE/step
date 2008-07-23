@@ -64,8 +64,7 @@ public:
     void stateChanged();
 
 protected:
-    void mouseMoveEvent(QGraphicsSceneMouseEvent *event);
-    void mouseReleaseEvent(QGraphicsSceneMouseEvent *event);
+    void mouseSetPos(const QPointF& pos, const QPointF&, MovingState movingState);
     StepCore::LinearMotor* motor() const;
     QPainterPath _path;
     LinearArrowHandlerGraphicsItem* _forceHandler;
@@ -104,8 +103,7 @@ public:
     void stateChanged();
 
 protected:
-    void mouseMoveEvent(QGraphicsSceneMouseEvent *event);
-    void mouseReleaseEvent(QGraphicsSceneMouseEvent *event);
+    void mouseSetPos(const QPointF& pos, const QPointF&, MovingState movingState);
     StepCore::CircularMotor* motor() const;
     QPainterPath _path;
     CircularArrowHandlerGraphicsItem* _torqueHandler;

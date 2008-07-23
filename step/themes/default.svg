@@ -37,8 +37,8 @@
      inkscape:pageopacity="0.0"
      inkscape:pageshadow="2"
      inkscape:zoom="1.7963714"
-     inkscape:cx="174.51628"
-     inkscape:cy="119.78691"
+     inkscape:cx="76.262656"
+     inkscape:cy="587.39623"
      inkscape:document-units="px"
      inkscape:current-layer="layer1"
      showgrid="false"
@@ -708,5 +708,18 @@
          x="322.80151"
          y="683.23718"
          id="tspan2525">GasParticle</tspan></text>
+    <g
+       id="Fixator">
+      <path
+         transform="translate(250.92856,426.1479)"
+         id="path2518"
+         d="M 122.46911,282.84636 C 125.92455,282.7205 131.03769,288.84997 133.04598,292.86656 C 134.70568,296.18595 138.99829,298.13429 139.72612,301.77341"
+         style="fill:none;fill-rule:evenodd;stroke:#000000;stroke-width:3;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1" />
+      <path
+         transform="translate(250.92856,426.1479)"
+         id="path2520"
+         d="M 141.39615,280.61965 C 141.75386,281.33507 130.87748,291.695 126.92253,295.64995 C 125.01892,297.55356 122.74555,299.27026 120.79907,301.21673"
+         style="fill:none;fill-rule:evenodd;stroke:#000000;stroke-width:3;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1" />
+    </g>
   </g>
 </svg>

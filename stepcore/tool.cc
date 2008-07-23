@@ -99,6 +99,12 @@ STEPCORE_META_OBJECT(Tracer, "Tracer: traces trajectory of a point on a body", 0
     STEPCORE_PROPERTY_R_D(StepCore::Vector2d, position, "m", "Position", position)
     STEPCORE_PROPERTY_RW_D(StepCore::Vector2dList, points, "m", "points", points, setPoints)
     )
+    
+STEPCORE_META_OBJECT(Fixator, "Fixator: fixes position of the body until simulation starts", 0,
+    STEPCORE_SUPER_CLASS(Item) STEPCORE_SUPER_CLASS(Tool),
+    STEPCORE_PROPERTY_RW(Object*, body, STEPCORE_UNITS_NULL, "Body", body, setBody)
+    STEPCORE_PROPERTY_RW(StepCore::Vector2d, localPosition, "m", "Position of the fixator on a body", localPosition, setLocalPosition)
+    )
 
 namespace {
 
@@ -422,6 +428,44 @@ void Tracer::setWorld(World* world)
     Item::setWorld(world);
 }
 */
+
+Fixator::Fixator(Object* body)
+{
+    setBody(body);
+    setColor(0xffff0000);
+}
+
+void Fixator::setBody(Object* body)
+{
+    if(body) {
+        if(body->metaObject()->inherits<Particle>()) {
+            _body = body;
+            _p = static_cast<Particle*>(body);
+            _r = NULL;
+            return;
+        } else if(body->metaObject()->inherits<RigidBody>()) {
+            _body = body;
+            _p = NULL;
+            _r = static_cast<RigidBody*>(body);
+            return;
+        }
+    }
+    _body = NULL;
+    _p = NULL;
+    _r = NULL;
+}
+
+Vector2d Fixator::position()
+{
+    if(_p){
+        _position = _p->position() + _localPosition;
+    }else if(_r){
+        _position = _r->position() + _localPosition;
+    }else{
+        _position = _localPosition;
+    }
+    return _position;
+}
 
 } // namespace StepCore
 

@@ -164,7 +164,7 @@ public:
 
     /** Get StepCore::Item which is represented by this graphicsItem */
     StepCore::Item* item() const { return _item; }
-
+    
     /** Get item bounding rect. Default implementation returns
      *  value set by setBoundingRect function */
     QRectF boundingRect() const { return _boundingRect; }
@@ -210,6 +210,9 @@ public:
     bool isItemSelected() { return _isSelected; }
     /** Return true if item is hovered by the mouse */
     bool isMouseOverItem() { return _isMouseOverItem; }
+    
+    /** Return true if item can be altered with the mouse */
+    bool isFixed() const;
 
     /** Converts QPointF to StepCore::Vector2d */
     static StepCore::Vector2d pointToVector(const QPointF& point) {

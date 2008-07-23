@@ -423,6 +423,39 @@ public:
 protected slots:
     void clearTracer();
 };
+///////////////////////////////////////////////////////////////////////////////////////
+
+class FixatorCreator: public AttachableItemCreator
+{
+public:
+    FixatorCreator(const QString& className, WorldModel* worldModel, WorldScene* worldScene)
+        : AttachableItemCreator(className, worldModel, worldScene, WorldScene::SnapRigidBody |
+                        WorldScene::SnapParticle | WorldScene::SnapOnCenter |
+                        WorldScene::SnapSetLocalPosition, 0) {}
+};
+
+class FixatorGraphicsItem: public WorldGraphicsItem
+{
+public:
+    FixatorGraphicsItem(StepCore::Item* item, WorldModel* worldModel, WorldScene* worldScene);
+    
+    QString pixmapCacheKey();
+    QPixmap* paintPixmap();
+
+    //void paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget);
+    QPainterPath shape() const;
+
+    void viewScaleChanged();
+    void worldDataChanged(bool dynamicOnly);
+
+protected:
+    void mouseSetPos(const QPointF& pos, const QPointF&, MovingState movingState);
+    StepCore::Fixator* fixator() const;
+    QPainterPath _path;
+    StepCore::Vector2d _position;
+    bool      _moving;
+    static const int RADIUS = 5;
+};
 
 
 #endif

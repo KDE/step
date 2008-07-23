@@ -316,6 +316,7 @@ void World::clear()
     STEPCORE_ASSERT_NOABORT(_bodies.empty());
     STEPCORE_ASSERT_NOABORT(_forces.empty());
     STEPCORE_ASSERT_NOABORT(_joints.empty());
+    STEPCORE_ASSERT_NOABORT(_tools.empty());
     //_bodies.clear();
     //_forces.clear();
 
@@ -438,6 +439,8 @@ void World::worldItemCopied(QHash<const Object*, Object*>* map, Item* item)
         _joints.push_back(dynamic_cast<Joint*>(item));
     if(item->metaObject()->inherits<Body>())
         _bodies.push_back(dynamic_cast<Body*>(item));
+    if(item->metaObject()->inherits<Tool>())
+        _tools.push_back(dynamic_cast<Tool*>(item));
 
     if(item->metaObject()->inherits<ItemGroup>()) {
         ItemGroup* group = static_cast<ItemGroup*>(item);
@@ -461,6 +464,10 @@ void World::worldItemAdded(Item* item)
         _bodies.push_back(body);
         if(_collisionSolver) _collisionSolver->bodyAdded(_bodies, body);
     }
+
+    if(item->metaObject()->inherits<Tool>())
+        _tools.push_back(dynamic_cast<Tool*>(item));
+
 
     if(item->metaObject()->inherits<ItemGroup>()) {
         ItemGroup* group = static_cast<ItemGroup*>(item);
@@ -508,6 +515,13 @@ void World::worldItemRemoved(Item* item)
                                             dynamic_cast<Force*>(item));
         STEPCORE_ASSERT_NOABORT(f != _forces.end());
         _forces.erase(f);
+    }
+
+    if(item->metaObject()->inherits<Tool>()) {
+        ToolList::iterator j = std::find(_tools.begin(), _tools.end(),
+                                            dynamic_cast<Tool*>(item));
+        STEPCORE_ASSERT_NOABORT(j != _tools.end());
+        _tools.erase(j);
     }
 
     // XXX: on ItemGroup::clear this will be called on each object !

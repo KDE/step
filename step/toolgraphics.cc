@@ -1914,3 +1914,70 @@ void TracerMenuHandler::clearTracer()
     _worldModel->endMacro();
 }
 
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+FixatorGraphicsItem::FixatorGraphicsItem(StepCore::Item* item, WorldModel* worldModel, WorldScene* worldScene)
+    : WorldGraphicsItem(item, worldModel, worldScene), _moving(false)
+{
+    Q_ASSERT(dynamic_cast<StepCore::Fixator*>(_item) != NULL);
+    setFlag(QGraphicsItem::ItemIsSelectable);
+    setFlag(QGraphicsItem::ItemIsMovable);
+    setZValue(HANDLER_ZVALUE);
+    setExclusiveMoving(true);
+    
+    _boundingRect = _worldScene->worldRenderer()->svgRenderer()->
+            boundsOnElement(_item->metaObject()->className());
+    _boundingRect.moveCenter(QPointF(0,0));
+//    kDebug() << _boundingRect
+}
+
+inline StepCore::Fixator* FixatorGraphicsItem::fixator() const
+{
+    return static_cast<StepCore::Fixator*>(_item);
+}
+
+QPainterPath FixatorGraphicsItem::shape() const
+{
+    QPainterPath path;
+    path.addEllipse(QRectF(-RADIUS-1,-RADIUS-1,RADIUS*2+2,RADIUS*2+2));
+    return path;
+}
+
+void FixatorGraphicsItem::mouseSetPos(const QPointF& pos, const QPointF&, MovingState movingState)
+{
+    static_cast<WorldScene*>(scene())->snapItem(pos,
+                WorldScene::SnapRigidBody | WorldScene::SnapParticle |  WorldScene::SnapOnCenter | WorldScene::SnapSetLocalPosition, 0, movingState, _item);
+}
+
+QString FixatorGraphicsItem::pixmapCacheKey()
+{
+    QPoint c = ((pos() - pos().toPoint())*PIXMAP_CACHE_GRADING).toPoint();
+    //kDebug() << (pos() - pos().toPoint())*10;
+    //kDebug() << QString("Particle-%1x%2").arg(5+c.x()).arg(5+c.y());
+    return QString("%1:%2x%3").arg(_item->metaObject()->className()).arg(c.x()).arg(c.y());
+}
+
+QPixmap* FixatorGraphicsItem::paintPixmap()
+{
+    QSize size = (_boundingRect.size()/2.0).toSize()+QSize(1,1);
+    QPixmap* pixmap = new QPixmap(size*2);
+    pixmap->fill(Qt::transparent);
+    
+    QPainter painter;
+    painter.begin(pixmap);
+    _worldScene->worldRenderer()->svgRenderer()->render(&painter, _item->metaObject()->className(),
+                               _boundingRect.translated
+                                (QPointF(size.width(), size.height()) + pos() - pos().toPoint()));
+    painter.end();
+    return pixmap;
+}
+
+void FixatorGraphicsItem::viewScaleChanged()
+{
+    worldDataChanged(true);
+}
+
+void FixatorGraphicsItem::worldDataChanged(bool dynamicOnly)
+{
+    setPos(_worldScene->vectorToPoint(fixator()->position()));
+}

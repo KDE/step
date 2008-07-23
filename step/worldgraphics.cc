@@ -24,6 +24,7 @@
 #include <stepcore/object.h>
 #include <stepcore/world.h>
 #include <stepcore/particle.h>
+#include <stepcore/tool.h>
 #include <QItemSelectionModel>
 #include <QGraphicsScene>
 #include <QGraphicsSceneMouseEvent>
@@ -297,6 +298,19 @@ void WorldGraphicsItem::drawCircularArrow ( QPainter* painter, double angle, dou
     drawCircularArrow ( painter, StepCore::Vector2d ( 0 ), angle, radius );
 }
 
+bool WorldGraphicsItem::isFixed() const
+{
+    const StepCore::ToolList& tools = _worldModel->world()->tools();
+    StepCore::ToolList::const_iterator end = tools.end();
+    for(StepCore::ToolList::const_iterator it = tools.begin(); it != end; ++it) {
+        if((*it)->metaObject()->inherits<StepCore::Fixator>()) {
+            if(static_cast<StepCore::Fixator*>(*it)->body() == _item) return true;
+        }
+    }
+
+    return false;
+}
+
 void WorldGraphicsItem::mouseSetPos ( const QPointF& pos, const QPointF&, MovingState )
 {
     const StepCore::MetaProperty* property = _item->metaObject()->property ( "position" );
@@ -329,7 +343,7 @@ void WorldGraphicsItem::mousePressEvent ( QGraphicsSceneMouseEvent *event )
 
 void WorldGraphicsItem::mouseMoveEvent ( QGraphicsSceneMouseEvent *event )
 {
-    if ( ( event->buttons() & Qt::LeftButton ) && ( flags() & ItemIsMovable ) ) {
+    if ( ( event->buttons() & Qt::LeftButton ) && ( flags() & ItemIsMovable ) && !isFixed() ) {
         QPointF pdiff ( mapToParent ( event->pos() ) - mapToParent ( event->lastPos() ) );
         QPointF newPos ( mapToParent ( event->pos() ) - matrix().map ( event->buttonDownPos ( Qt::LeftButton ) ) );
 
@@ -373,7 +387,11 @@ void WorldGraphicsItem::mouseMoveEvent ( QGraphicsSceneMouseEvent *event )
                         ( !item->parentItem() || !item->parentItem()->isSelected() ) ) {
                     WorldGraphicsItem* worldItem = dynamic_cast<WorldGraphicsItem*> ( item );
 
-                    if ( worldItem ) worldItem->mouseSetPos ( item->pos() + diff, pdiff, movingState );
+                    if ( worldItem ) {
+                        if(!worldItem->isFixed()) {
+                            worldItem->mouseSetPos ( item->pos() + diff, pdiff, movingState );
+                        }
+                    }
                 }
             }
 
@@ -400,7 +418,11 @@ void WorldGraphicsItem::mouseReleaseEvent ( QGraphicsSceneMouseEvent *event )
                         ( !item->parentItem() || !item->parentItem()->isSelected() ) ) {
                     WorldGraphicsItem* worldItem = dynamic_cast<WorldGraphicsItem*> ( item );
 
-                    if ( worldItem ) worldItem->mouseSetPos ( item->pos() + diff, pdiff, Finished );
+                    if ( worldItem ) {
+                        if(!worldItem->isFixed()) {
+                            worldItem->mouseSetPos ( item->pos() + diff, pdiff, Finished );
+                        }
+                    }
                 }
             }
 

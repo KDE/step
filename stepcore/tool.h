@@ -504,6 +504,35 @@ protected:
     RigidBody* _r;
 };
 
+class Fixator: public Item, public Tool
+{
+    STEPCORE_OBJECT(Fixator)
+        
+public:
+    /** Constructs Anchor */
+    explicit Fixator(Object* body = 0);
+
+    /** Get pointer to the body */
+    Object* body() const { return _body; }
+    /** Set pointer to the body */
+    void setBody(Object* body);
+    
+    Vector2d position();
+    /** Local position of the tracer on the body
+     *  or in the world (if the tracer is not connected) */
+    Vector2d localPosition() const { return _localPosition; }
+    /** Set local position of the tracer on the body
+     *  or in the world (if the tracer is not connected) */
+    void setLocalPosition(const Vector2d& localPosition) { _localPosition = localPosition; }
+
+protected:
+    Object*  _body;
+    Particle*  _p;
+    RigidBody* _r;
+    Vector2d _localPosition;
+    Vector2d _position;
+};
+
 } // namespace StepCore
 
 #endif
