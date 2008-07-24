@@ -334,7 +334,7 @@ void WorldGraphicsItem::mousePressEvent ( QGraphicsSceneMouseEvent *event )
 
             _worldModel->selectionModel()->clearSelection();
 
-            setSelected ( true );
+            trySelect();
         }
     } else if ( ! ( flags() & ItemIsMovable ) ) {
         event->ignore();
@@ -447,9 +447,19 @@ void WorldGraphicsItem::mouseReleaseEvent ( QGraphicsSceneMouseEvent *event )
 
                 _worldModel->selectionModel()->clearSelection();
 
-                setSelected ( true );
+                trySelect();
             }
         }
+    }
+}
+
+void WorldGraphicsItem::trySelect()
+{
+    StepCore::ItemGroup* group = _item->group();
+    if(group){
+        _worldScene->graphicsFromItem(group)->setSelected(true);
+    }else{ 
+        setSelected ( true );
     }
 }
 

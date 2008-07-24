@@ -196,6 +196,8 @@ public:
     virtual QPixmap* paintPixmap();
     /** Virtual function to generate pixmapCacheKey*/
     virtual QString pixmapCacheKey();
+    
+    void trySelect();
 
     /** Get item highlight state */
     bool isItemHighlighted() { return _isHighlighted; }
