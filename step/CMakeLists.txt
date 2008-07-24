@@ -21,6 +21,7 @@ set(libstepgui_SRCS
     latexformula.cc
     messageframe.cc
     gameitems/victorycondition.cc
+    groupgraphics.cc
 )
 
 set(step_SRCS

@@ -45,6 +45,7 @@
 #include "motorgraphics.h"
 #include "jointgraphics.h"
 #include "toolgraphics.h"
+#include "groupgraphics.h"
 
 #include "gameitems/victorycondition.h"
 
@@ -112,7 +113,7 @@ WorldFactory::WorldFactory()
 
     __REGISTER(Item);
     __REGISTER(World);
-    __REGISTER(ItemGroup);
+    //__REGISTER(ItemGroup);
     __REGISTER(Body);
     __REGISTER(Force);
     __REGISTER(Solver);
@@ -181,6 +182,8 @@ WorldFactory::WorldFactory()
     __REGISTER_EXT(Fixator, FixatorCreator, FixatorGraphicsItem, ItemMenuHandler);
     
     __REGISTER_EXT(DiskTarget, DiskTargetCreator, DiskTargetGraphicsItem, ItemMenuHandler);
+    
+    __REGISTER_EXT(ItemGroup, ItemCreator, GroupGraphicsItem, ItemMenuHandler);
 
     // Palette
     __ADD_PALETTE_GROUP("Main");
