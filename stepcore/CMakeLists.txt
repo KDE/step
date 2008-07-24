@@ -19,6 +19,7 @@ set(stepcore_SRCS
     joint.cc
     eulersolver.cc
     tool.cc
+    group.cc
 )
 
 if(STEPCORE_WITH_GSL)

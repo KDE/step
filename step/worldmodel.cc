@@ -30,6 +30,7 @@
 #include <stepcore/collisionsolver.h>
 #include <stepcore/constraintsolver.h>
 #include <stepcore/types.h>
+#include <stepcore/group.h>
 #include <QApplication>
 #include <QItemSelectionModel>
 #include <QTimer>
@@ -195,10 +196,10 @@ class CommandGroupItems: public QUndoCommand
 public:
     CommandGroupItems(WorldModel* worldModel, const QList<StepCore::Item*>& items)
             : _worldModel(worldModel), _items(items), _create(true), _shouldDelete(true) {
-        _group = new StepCore::ItemGroup(_worldModel->getUniqueName("itemGroup"));
+        _group = new StepCore::Group(_worldModel->getUniqueName("group"));
     }
     
-    CommandGroupItems(WorldModel* worldModel, StepCore::ItemGroup* group)
+    CommandGroupItems(WorldModel* worldModel, StepCore::Group* group)
         : _worldModel(worldModel), _group(group), _create(false), _shouldDelete(false) {
         foreach(StepCore::Item* it, group->items()) _items << it;
     }
@@ -213,7 +214,7 @@ protected:
     void groupItems();
     
     QList<StepCore::Item*> _items;
-    StepCore::ItemGroup* _group;
+    StepCore::Group* _group;
     WorldModel* _worldModel;
     bool _create;
     bool _shouldDelete;
@@ -730,7 +731,7 @@ void WorldModel::ungroupSelectedGroup()
     foreach(QModelIndex index, selectionModel()->selectedIndexes()) {
         StepCore::Item* it = item(index);
         if(it->metaObject()->inherits<StepCore::ItemGroup>())
-            pushCommand(new CommandGroupItems(this, static_cast<StepCore::ItemGroup*>(it)));
+            pushCommand(new CommandGroupItems(this, static_cast<StepCore::Group*>(it)));
     }
     
     endMacro();

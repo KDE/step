@@ -113,7 +113,7 @@ WorldFactory::WorldFactory()
 
     __REGISTER(Item);
     __REGISTER(World);
-    //__REGISTER(ItemGroup);
+    __REGISTER(ItemGroup);
     __REGISTER(Body);
     __REGISTER(Force);
     __REGISTER(Solver);
@@ -183,7 +183,7 @@ WorldFactory::WorldFactory()
     
     __REGISTER_EXT(DiskTarget, DiskTargetCreator, DiskTargetGraphicsItem, ItemMenuHandler);
     
-    __REGISTER_EXT(ItemGroup, ItemCreator, GroupGraphicsItem, ItemMenuHandler);
+    __REGISTER_EXT(Group, ItemCreator, GroupGraphicsItem, ItemMenuHandler);
 
     // Palette
     __ADD_PALETTE_GROUP("Main");
