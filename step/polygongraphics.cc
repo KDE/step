@@ -42,7 +42,7 @@ RigidBodyGraphicsItem::RigidBodyGraphicsItem(StepCore::Item* item, WorldModel* w
     setFlag(QGraphicsItem::ItemIsMovable);
     setAcceptsHoverEvents(true);
     setOnHoverHandlerEnabled(true);
-    _textureSize = _worldScene->worldRenderer()->svgRenderer()->boundsOnElement("DiskTexture").size().toSize();
+    _textureSize = (_worldScene->worldRenderer()->svgRenderer()->boundsOnElement("DiskTexture").size().toSize()/6)*2;
     //scene()->addItem(_velocityHandler);
 }
 
@@ -67,18 +67,33 @@ QPixmap* RigidBodyGraphicsItem::paintPixmap()
     QSize size = QSizeF(w, h).toSize() + QSize(1, 1);
     QPixmap* pixmap = new QPixmap ( size*2 );
     pixmap->fill ( Qt::transparent );
-     
+    
     QPainter painter;
+    
+    QMatrix r; r.rotate(rigidBody()->angle()*180/M_PI);
+    QRectF tRect(QPoint(0,0), _textureSize);
+    QSize texturePixmapSize = r.mapRect(tRect).size().toSize()/2 + QSize(1,1);
+
     QPoint c = ((pos() - pos().toPoint())*PIXMAP_CACHE_GRADING).toPoint();
-    QString textureKey = QString("TextureUnit:%1x%2").arg(c.x()).arg(c.y());
+    QString textureKey = QString("TextureUnit:%1x%2:%3").arg(c.x()).arg(c.y())
+                            .arg(int(rigidBody()->angle()*_textureSize.width()*PIXMAP_CACHE_GRADING));
     QPixmap* texturePixmap = _worldScene->worldRenderer()->pixmapCache()->object ( textureKey );
-    QSize texturePixmapSize = _textureSize/2 + QSize(2,2);
+    //QSize texturePixmapSize = _textureSize/2 + QSize(1,1);
 
     if ( !texturePixmap ) {
         texturePixmap = new QPixmap(2*texturePixmapSize);
+        texturePixmap->fill(Qt::red);
         painter.begin(texturePixmap);
+        
+        painter.translate(QPoint(texturePixmapSize.width(), texturePixmapSize.height()) + (pos()-pos().toPoint()));
+        painter.rotate(rigidBody()->angle()*180/M_PI);
+
         _worldScene->worldRenderer()->svgRenderer()->render(&painter, "DiskTexture",
-                                   QRectF(c, _textureSize ));
+                    QRectF(QPoint(-_textureSize.width()*3/2,
+                                    -_textureSize.height()*3/2), _textureSize*3));
+
+        kDebug()<< _textureSize;
+        
         painter.end();
         _worldScene->worldRenderer()->pixmapCache()->insert ( textureKey, texturePixmap,
                                    texturePixmap->width() * texturePixmap->height() );
@@ -86,8 +101,12 @@ QPixmap* RigidBodyGraphicsItem::paintPixmap()
     
     painter.begin ( pixmap );
     QPointF diff = QPointF(size.width(),size.height());
-    painter.translate(diff + pos() - pos().toPoint());
-    painter.setClipPath ( _painterPath );
+    painter.translate(diff);
+    QPainterPath path = QMatrix(1,0,0,1,
+                     (pos() - pos().toPoint()).x(), (pos() - pos().toPoint()).y() )
+								.map(_painterPath);
+    /*
+    painter.setClipPath ( path );
     //_item->metaObject()->className()
     
     int h1 = _textureSize.height();
@@ -102,8 +121,19 @@ QPixmap* RigidBodyGraphicsItem::paintPixmap()
         }
     }
     painter.setClipping ( false );
+    */
+
+    painter.fillPath(path, QBrush(*texturePixmap));
+    //painter.drawPixmap(0, 0, *texturePixmap);
     painter.setPen(Qt::red);
-    painter.drawPath(_painterPath);
+    painter.drawPath(path);
+    /*
+    painter.setPen(Qt::blue);
+    painter.setBrush(Qt::blue);
+    tRect = r.mapRect(tRect);
+    tRect.moveCenter(QPointF(0,0));
+    painter.drawRect(tRect);
+    */
     painter.end();
 
     return pixmap;
@@ -554,7 +584,7 @@ inline StepCore::BasePolygon* BasePolygonGraphicsItem::basePolygon() const
 
 void BasePolygonGraphicsItem::worldDataChanged(bool dynamicOnly)
 {
-    if(!dynamicOnly){
+    //if(!dynamicOnly) { XXX FIXME: implement dynamicOnly optimization
         _painterPath = QPainterPath();
         _painterPath.setFillRule(Qt::WindingFill);
 
@@ -563,7 +593,7 @@ void BasePolygonGraphicsItem::worldDataChanged(bool dynamicOnly)
             for(unsigned int i=1; i<basePolygon()->vertexes().size(); ++i) {
                 _painterPath.lineTo(_worldScene->vectorToPoint( basePolygon()->vertexes()[i] ));
                 kDebug() << "vertex" << _worldScene->vectorToPoint( basePolygon()->vertexes()[i]);
-        }
+            }
             _painterPath.closeSubpath();
             _painterPath = QMatrix().rotate(basePolygon()->angle() * 180 
                 / StepCore::Constants::Pi).map(_painterPath);
@@ -572,7 +602,7 @@ void BasePolygonGraphicsItem::worldDataChanged(bool dynamicOnly)
         }
         prepareGeometryChange();
         _boundingRect = _painterPath.boundingRect();
-    }
+    //}
     RigidBodyGraphicsItem::worldDataChanged(dynamicOnly);
 }
 
@@ -581,12 +611,16 @@ QString BasePolygonGraphicsItem::pixmapCacheKey()
     QPoint c = ((pos() - pos().toPoint())*PIXMAP_CACHE_GRADING).toPoint();
     QString key = QString("%1:%2x%3")
             .arg(_item->metaObject()->className()).arg(c.x()).arg(c.y());
+    double maxDist = 0;
     for(unsigned int i=0; i<basePolygon()->vertexes().size(); ++i) {
         QPointF v = _worldScene->vectorToPoint( basePolygon()->vertexes()[i]);
         QPoint v1 = (v*PIXMAP_CACHE_GRADING).toPoint();
         key = key.append(":%1x%2").arg(v1.x()).arg(v1.y());
+        double dist = basePolygon()->vertexes()[i].norm();
+        if(dist > maxDist) maxDist = dist;
 //        kDebug() << "vertex" << _worldScene->vectorToPoint( basePolygon()->vertexes()[i]);
     }
+    key = key.append(":%1").arg(int(rigidBody()->angle()*maxDist*PIXMAP_CACHE_GRADING));
     return key;
 }
 
