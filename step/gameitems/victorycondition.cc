@@ -47,7 +47,8 @@ STEPCORE_META_OBJECT(VictoryCondition, "Generic victory condition", 0,
 STEPCORE_META_OBJECT(DiskTarget, "Disk Target", 0, STEPCORE_SUPER_CLASS(VictoryCondition),
         STEPCORE_PROPERTY_RW(double, radius, "m", "Radius of the disk target", radius, setRadius)
         STEPCORE_PROPERTY_RW(StepCore::Vector2d, position, "m", "Position of the disk target", position, setPosition)
-        STEPCORE_PROPERTY_RW(StepCore::Object*, body, STEPCORE_UNITS_NULL, "Body to catch", body, setBody))
+        STEPCORE_PROPERTY_RW(StepCore::Object*, body, STEPCORE_UNITS_NULL, "Body to catch", body, setBody)
+        STEPCORE_PROPERTY_RW_D(StepCore::Vector2d, size, "m", "Size of the target", size, setSize))
 
 //STEPCORE_META_OBJECT(BasePolygon, "Base polygon body", 0, STEPCORE_SUPER_CLASS(RigidBody),)
 //

@@ -67,6 +67,11 @@ public:
     
     Object* body() const { return _body; }
     void setBody(Object* body);
+    
+    /** Get target size */
+    StepCore::Vector2d size() const { return StepCore::Vector2d(2*_radius, 2*_radius); }
+    /** Set target size */
+    void setSize(StepCore::Vector2d size) { _radius = (size[0] > size[1] ? size[0] : size[1])/2; }
 
 protected:
     double _radius;
