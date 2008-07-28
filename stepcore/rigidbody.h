@@ -298,7 +298,12 @@ public:
     double radius() const { return _radius; }
     /** Set disk radius */
     void setRadius(double radius) { _radius = radius; }
-
+    
+    /** Get disk size */
+    Vector2d size() const { return Vector2d(2*_radius, 2*_radius); }
+    /** Set disk size */
+    void setSize(Vector2d size) { _radius = (size[0] > size[1] ? size[0] : size[1])/2; }
+    
 protected:
     double _radius;
 };
