@@ -90,7 +90,8 @@ STEPCORE_META_OBJECT(Box, "Rigid box", 0, STEPCORE_SUPER_CLASS(BasePolygon),
         STEPCORE_PROPERTY_RW(StepCore::Vector2d, size, "m", "Size of the box", size, setSize))
 
 STEPCORE_META_OBJECT(Polygon, "Rigid polygon body", 0, STEPCORE_SUPER_CLASS(BasePolygon),
-        STEPCORE_PROPERTY_RW(Vector2dList, vertexes, "m", "Vertex list", vertexes, setVertexes))
+        STEPCORE_PROPERTY_RW(Vector2dList, vertexes, "m", "Vertex list", vertexes, setVertexes)
+        STEPCORE_PROPERTY_RW_D(StepCore::Vector2d, size, "m", "Size of the poligon", size, setSize))
 
 #if 0
 STEPCORE_META_OBJECT(Plane, "Unmoveable rigid plane", 0, STEPCORE_SUPER_CLASS(Item) STEPCORE_SUPER_CLASS(Body),
@@ -356,6 +357,31 @@ void Box::setSize(const Vector2d& size)
     _vertexes[1] = Vector2d( s[0], -s[1]);
     _vertexes[2] = Vector2d( s[0],  s[1]);
     _vertexes[3] = Vector2d(-s[0],  s[1]);
+}
+
+Vector2d Polygon::size() const {
+    Vector2dList::const_iterator end = vertexes().end();
+    Vector2d initPos = (*vertexes().begin());
+    double right = initPos[0]; 
+    double left = initPos[0];
+    double top = initPos[1] ;
+    double buttom = initPos[1];
+    for(Vector2dList::const_iterator it = vertexes().begin(); it != end; ++it) {
+        if(right < (*it)[0]) right = (*it)[0];
+        if(left > (*it)[0]) left = (*it)[0];
+        if(top < (*it)[1]) top = (*it)[1];
+        if(buttom > (*it)[1]) buttom = (*it)[1];
+    }
+    return Vector2d(right-left, top-buttom);
+}
+
+void Polygon::setSize(const Vector2d& size){
+    Vector2d initSize = this->size();
+    Vector2dList::iterator end = vertexes().end();
+    for(Vector2dList::iterator it = vertexes().begin(); it != end; ++it) {
+        (*it)[0]*= size[0]/initSize[0];
+        (*it)[1]*= size[1]/initSize[1];
+    }
 }
 
 } // namespace StepCore

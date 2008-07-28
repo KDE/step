@@ -358,6 +358,10 @@ public:
     Vector2dList& vertexes() { return _vertexes; }
     /** Set vertex list */
     void setVertexes(const Vector2dList& vertexes) { _vertexes = vertexes; }
+    /** Get size of poligon */
+    Vector2d size() const;
+    /** Set size of poligon */
+    void setSize(const Vector2d& size);
 };
 
 #if 0
