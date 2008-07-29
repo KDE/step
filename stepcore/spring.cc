@@ -210,13 +210,61 @@ Vector2d Spring::size() const{
 }
 
 void Spring::setSize(Vector2d size){
+    if(_body1 && _body2) return;
     Vector2d initSize = this->size();
-    Vector2d position = _localPosition1/2.0 + _localPosition2/2.0;
-    _localPosition1[0] = (_localPosition1[0] - position[0])*size[0]/initSize[0] + position[0];
-    _localPosition1[1] = (_localPosition1[1] - position[1])*size[1]/initSize[1] + position[1];
-    _localPosition2[0] = (_localPosition2[0] - position[0])*size[0]/initSize[0] + position[0];
-    _localPosition2[1] = (_localPosition2[1] - position[1])*size[1]/initSize[1] + position[1];
-    _restLength = _restLength*size.norm()/initSize.norm();
+    if(initSize[0] && initSize[1]){
+        if(_body1 && (!_body2)) {
+        Vector2d position = _localPosition2/2.0;
+            if(_p1) position = _p1->position()/2.0 + _localPosition2/2.0;
+            if(_r1) position = _r1->position()/2.0 + _localPosition2/2.0;
+            _localPosition2[0] = (_localPosition2[0] - position[0])*size[0]/initSize[0] + position[0];
+            _localPosition2[1] = (_localPosition2[1] - position[1])*size[1]/initSize[1] + position[1];
+            _restLength = _restLength*size.norm()/initSize.norm();
+        }
+        if(_body2 && (!_body1)) {
+            Vector2d position = _localPosition1/2.0;
+            if(_p2) position = _p2->position()/2.0 + _localPosition1/2.0;
+            if(_r2) position = _r2->position()/2.0 + _localPosition1/2.0;
+            _localPosition1[0] = (_localPosition1[0] - position[0])*size[0]/initSize[0] + position[0];
+            _localPosition1[1] = (_localPosition1[1] - position[1])*size[1]/initSize[1] + position[1];
+            _restLength = _restLength*size.norm()/initSize.norm();
+        }
+        if((!_body2) && (!_body1)){
+            Vector2d position = _localPosition1/2.0 + _localPosition2/2.0;
+            _localPosition1[0] = (_localPosition1[0] - position[0])*size[0]/initSize[0] + position[0];
+            _localPosition1[1] = (_localPosition1[1] - position[1])*size[1]/initSize[1] + position[1];
+            _localPosition2[0] = (_localPosition2[0] - position[0])*size[0]/initSize[0] + position[0];
+            _localPosition2[1] = (_localPosition2[1] - position[1])*size[1]/initSize[1] + position[1];
+            _restLength = _restLength*size.norm()/initSize.norm();
+        }
+    }else{
+        if(_localPosition1[0] > _localPosition2[0]) size[0]=-size[0];
+        if(_localPosition1[1] > _localPosition2[1]) size[1]=-size[1];
+        if(_body1 && (!_body2)) {
+        Vector2d position = _localPosition2/2.0;
+            if(_p1) position = _p1->position()/2.0 + _localPosition2/2.0;
+            if(_r1) position = _r1->position()/2.0 + _localPosition2/2.0;
+            _localPosition2[0] = size[0]/2 + position[0];
+            _localPosition2[1] = size[1]/2 + position[1];
+            _restLength = _restLength*size.norm()/initSize.norm();
+        }
+        if(_body2 && (!_body1)) {
+            Vector2d position = _localPosition1/2.0;
+            if(_p2) position = _p2->position()/2.0 + _localPosition1/2.0;
+            if(_r2) position = _r2->position()/2.0 + _localPosition1/2.0;
+            _localPosition1[0] = -size[0]/2 + position[0];
+            _localPosition1[1] = -size[1]/2 + position[1];
+            _restLength = _restLength*size.norm()/initSize.norm();
+        }
+        if((!_body2) && (!_body1)){
+            Vector2d position = _localPosition1/2.0 + _localPosition2/2.0;
+            _localPosition2[0] = size[0]/2 + position[0];
+            _localPosition2[1] = size[1]/2 + position[1];
+            _localPosition1[0] = -size[0]/2 + position[0];
+            _localPosition1[1] = -size[1]/2 + position[1];
+            _restLength = _restLength*size.norm()/initSize.norm();
+        }
+    }
 }
 
 Vector2d SpringErrors::position2Variance() const
