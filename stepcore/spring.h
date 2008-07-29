@@ -149,6 +149,11 @@ public:
     double stiffness() const { return _stiffness; }
     /** Set stiffness of the spring */
     void   setStiffness(double stiffness) { _stiffness = stiffness; }
+    
+    /** Get size of spring */
+    Vector2d size() const;
+    /** Set size of spring */
+    void setSize(Vector2d size); 
 
     /** Get damping of the spring */
     double damping() const { return _damping; }
