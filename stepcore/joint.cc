@@ -46,6 +46,7 @@ STEPCORE_META_OBJECT(Stick, "Massless stick which can be connected to bodies", 0
                     "Local position 2", localPosition2, setLocalPosition2)
     STEPCORE_PROPERTY_R_D(StepCore::Vector2d, position1, "m", "Position1", position1)
     STEPCORE_PROPERTY_R_D(StepCore::Vector2d, position2, "m", "Position2", position2)
+    STEPCORE_PROPERTY_RW_D(StepCore::Vector2d, size, "m", "Size of stick", size, setSize)
     )
 
 STEPCORE_META_OBJECT(Rope, "Massless rope which can be connected to bodies", 0,
@@ -256,6 +257,23 @@ Vector2d Stick::position2() const
     if(_p2) return _p2->position() + _localPosition2;
     else if(_r2) return _r2->pointLocalToWorld(_localPosition2);
     else return _localPosition2;
+}
+
+Vector2d Stick::size() const{
+    Vector2d size = position2()-position1();
+    if(size[0]<0) size[0] = -size[0]; 
+    if(size[1]<0) size[1] = -size[1]; 
+    return size;
+}
+
+void Stick::setSize(Vector2d size){
+    Vector2d initSize = this->size();
+    Vector2d position = _localPosition1/2.0 + _localPosition2/2.0;
+    _localPosition1[0] = (_localPosition1[0] - position[0])*size[0]/initSize[0] + position[0];
+    _localPosition1[1] = (_localPosition1[1] - position[1])*size[1]/initSize[1] + position[1];
+    _localPosition2[0] = (_localPosition2[0] - position[0])*size[0]/initSize[0] + position[0];
+    _localPosition2[1] = (_localPosition2[1] - position[1])*size[1]/initSize[1] + position[1];
+    _restLength = _restLength*size.norm()/initSize.norm();
 }
 
 Vector2d Stick::velocity1() const

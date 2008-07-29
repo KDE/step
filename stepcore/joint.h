@@ -132,6 +132,11 @@ public:
     double restLength() const { return _restLength; }
     /** Set the restLength of the stick */
     void   setRestLength(double restLength) { _restLength = restLength; }
+    
+    /** Get size of stick */
+    Vector2d size() const;
+    /** Set size of stick */
+    void setSize(Vector2d size); 
 
     /** Get pointer to the first connected body */
     Object* body1() const { return _body1; }

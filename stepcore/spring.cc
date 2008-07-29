@@ -211,10 +211,11 @@ Vector2d Spring::size() const{
 
 void Spring::setSize(Vector2d size){
     Vector2d initSize = this->size();
-    _localPosition1[0] = _localPosition1[0]*size[0]/initSize[0];
-    _localPosition1[1] = _localPosition1[1]*size[1]/initSize[1];
-    _localPosition2[0] = _localPosition2[0]*size[0]/initSize[0];
-    _localPosition2[1] = _localPosition2[1]*size[1]/initSize[1];
+    Vector2d position = _localPosition1/2.0 + _localPosition2/2.0;
+    _localPosition1[0] = (_localPosition1[0] - position[0])*size[0]/initSize[0] + position[0];
+    _localPosition1[1] = (_localPosition1[1] - position[1])*size[1]/initSize[1] + position[1];
+    _localPosition2[0] = (_localPosition2[0] - position[0])*size[0]/initSize[0] + position[0];
+    _localPosition2[1] = (_localPosition2[1] - position[1])*size[1]/initSize[1] + position[1];
     _restLength = _restLength*size.norm()/initSize.norm();
 }
 
