@@ -194,6 +194,12 @@ public:
     /** Set position of the second end of the spring (will be ignored the end is connected) */
     //void setPosition2(const Vector2d& position2) { if(!_body2) _position2 = position2; }
     
+    /** Position of the center of the spring */
+    Vector2d position() const;
+    
+    /** Velocity of the center of the spring */
+    Vector2d velocity() const;
+     
     /** Velocity of the first end of the spring */
     Vector2d velocity1() const;
 
