@@ -171,7 +171,13 @@ public:
     Vector2d velocity1() const;
     /** Velocity of the second end of the stick */
     Vector2d velocity2() const;
-
+    
+    /** Position of the center of the spring */
+    Vector2d position() const;
+    
+    /** Velocity of the center of the spring */
+    Vector2d velocity() const;
+    
     /** Get first connected Particle */
     Particle* particle1() const { return _p1; }
     /** Get second connected Particle */

@@ -46,6 +46,10 @@ STEPCORE_META_OBJECT(Stick, "Massless stick which can be connected to bodies", 0
                     "Local position 2", localPosition2, setLocalPosition2)
     STEPCORE_PROPERTY_R_D(StepCore::Vector2d, position1, "m", "Position1", position1)
     STEPCORE_PROPERTY_R_D(StepCore::Vector2d, position2, "m", "Position2", position2)
+    STEPCORE_PROPERTY_R_D(StepCore::Vector2d, position, "m", "Position", position)
+    STEPCORE_PROPERTY_R_D(StepCore::Vector2d, velocity1, "m/s", "Velocity1", velocity1)
+    STEPCORE_PROPERTY_R_D(StepCore::Vector2d, velocity2, "m/s", "Velocity2", velocity2)
+    STEPCORE_PROPERTY_R_D(StepCore::Vector2d, velocity, "m/s", "Velocity", velocity)
     STEPCORE_PROPERTY_RW_D(StepCore::Vector2d, size, "m", "Size of stick", size, setSize)
     )
 
@@ -259,6 +263,15 @@ Vector2d Stick::position2() const
     else return _localPosition2;
 }
 
+Vector2d Stick::position() const{
+    return position1()/2.0 + position2()/2.0;
+}
+
+Vector2d Stick::velocity() const{
+    return velocity1()/2.0 + velocity2()/2.0;
+}
+
+
 Vector2d Stick::size() const{
     Vector2d size = position2()-position1();
     if(size[0]<0) size[0] = -size[0]; 
@@ -272,23 +285,19 @@ void Stick::setSize(Vector2d size){
     Vector2d initSize = this->size();
     if(initSize[0] && initSize[1]){
         if(_body1 && (!_body2)) {
-        Vector2d position = _localPosition2/2.0;
-            if(_p1) position = _p1->position()/2.0 + _localPosition2/2.0;
-            if(_r1) position = _r1->position()/2.0 + _localPosition2/2.0;
+        Vector2d position = this->position();
             _localPosition2[0] = (_localPosition2[0] - position[0])*size[0]/initSize[0] + position[0];
             _localPosition2[1] = (_localPosition2[1] - position[1])*size[1]/initSize[1] + position[1];
             _restLength = _restLength*size.norm()/initSize.norm();
         }
         if(_body2 && (!_body1)) {
-            Vector2d position = _localPosition1/2.0;
-            if(_p2) position = _p2->position()/2.0 + _localPosition1/2.0;
-            if(_r2) position = _r2->position()/2.0 + _localPosition1/2.0;
+            Vector2d position = this->position();
             _localPosition1[0] = (_localPosition1[0] - position[0])*size[0]/initSize[0] + position[0];
             _localPosition1[1] = (_localPosition1[1] - position[1])*size[1]/initSize[1] + position[1];
             _restLength = _restLength*size.norm()/initSize.norm();
         }
         if((!_body2) && (!_body1)){
-            Vector2d position = _localPosition1/2.0 + _localPosition2/2.0;
+            Vector2d position = this->position();
             _localPosition1[0] = (_localPosition1[0] - position[0])*size[0]/initSize[0] + position[0];
             _localPosition1[1] = (_localPosition1[1] - position[1])*size[1]/initSize[1] + position[1];
             _localPosition2[0] = (_localPosition2[0] - position[0])*size[0]/initSize[0] + position[0];
@@ -299,23 +308,19 @@ void Stick::setSize(Vector2d size){
         if(_localPosition1[0] > _localPosition2[0]) size[0]=-size[0];
         if(_localPosition1[1] > _localPosition2[1]) size[1]=-size[1];
         if(_body1 && (!_body2)) {
-        Vector2d position = _localPosition2/2.0;
-            if(_p1) position = _p1->position()/2.0 + _localPosition2/2.0;
-            if(_r1) position = _r1->position()/2.0 + _localPosition2/2.0;
+        Vector2d position = this->position();
             _localPosition2[0] = size[0]/2 + position[0];
             _localPosition2[1] = size[1]/2 + position[1];
             _restLength = _restLength*size.norm()/initSize.norm();
         }
         if(_body2 && (!_body1)) {
-            Vector2d position = _localPosition1/2.0;
-            if(_p2) position = _p2->position()/2.0 + _localPosition1/2.0;
-            if(_r2) position = _r2->position()/2.0 + _localPosition1/2.0;
+            Vector2d position = this->position();
             _localPosition1[0] = -size[0]/2 + position[0];
             _localPosition1[1] = -size[1]/2 + position[1];
             _restLength = _restLength*size.norm()/initSize.norm();
         }
         if((!_body2) && (!_body1)){
-            Vector2d position = _localPosition1/2.0 + _localPosition2/2.0;
+            Vector2d position = this->position();
             _localPosition2[0] = size[0]/2 + position[0];
             _localPosition2[1] = size[1]/2 + position[1];
             _localPosition1[0] = -size[0]/2 + position[0];
