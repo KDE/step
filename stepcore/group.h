@@ -40,6 +40,11 @@ public:
     Vector2d velocity() const;
     /** Set velocity of the particle */
     void setVelocity(const Vector2d& velocity); 
+    
+    /** Get size of the group */
+    Vector2d size() const;
+    /** Set size of the group */
+    void setSize(const Vector2d& size);
 
 protected:
 

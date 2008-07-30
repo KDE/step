@@ -27,7 +27,8 @@ namespace StepCore
 STEPCORE_META_OBJECT(Group, "Group of bodies", 0,
         STEPCORE_SUPER_CLASS(ItemGroup),
         STEPCORE_PROPERTY_RW_D(StepCore::Vector2d, position, "m", "position", position, setPosition)
-        STEPCORE_PROPERTY_RW_D(StepCore::Vector2d, velocity, "m/s", "velocity", velocity, setVelocity))
+        STEPCORE_PROPERTY_RW_D(StepCore::Vector2d, velocity, "m/s", "velocity", velocity, setVelocity)
+        STEPCORE_PROPERTY_R_D(StepCore::Vector2d, size, "m", "velocity", size))
 
 Group::Group(QString name)
 {
@@ -89,6 +90,40 @@ void Group::setVelocity(const Vector2d& velocity) {
             property->writeVariant(*it, QVariant::fromValue(itemVelocity + velocity - groupVelocity));
         }
     }
+}
+
+Vector2d Group::size() const{
+    double top = -HUGE_VAL;
+    double bottom = HUGE_VAL ;
+    double left = HUGE_VAL ;
+    double right = -HUGE_VAL ;
+    Vector2d point = Vector2d(0);
+    ItemList::const_iterator end = items().end();
+    for(ItemList::const_iterator it = items().begin(); it != end; ++it) {
+        const StepCore::MetaProperty* property = (*it)->metaObject()->property("position");
+        const StepCore::MetaProperty* propertyBody = (*it)->metaObject()->property("size");
+        const StepCore::MetaProperty* propertySpring1 = (*it)->metaObject()->property("position1");
+        const StepCore::MetaProperty* propertySpring2 = (*it)->metaObject()->property("position2");
+        if(property && propertyBody){
+            point = property->readVariant(*it).value<StepCore::Vector2d>() + 
+                    propertyBody->readVariant(*it).value<StepCore::Vector2d>()/2.0;
+        }else if(property){
+            point = property->readVariant(*it).value<StepCore::Vector2d>();
+        }else if(propertySpring1 && propertySpring2){
+            point = propertySpring1->readVariant(*it).value<StepCore::Vector2d>();
+            Vector2d point1 = propertySpring2->readVariant(*it).value<StepCore::Vector2d>();
+            if(right < point1[0]) right = point1[0];
+            if(left > point1[0]) left = point1[0];
+            if(top < point1[1]) top = point1[1];
+            if(bottom > point1[1]) bottom = point1[1];
+        }else break;
+        
+        if(right < point[0]) right = point[0];
+        if(left > point[0]) left = point[0];
+        if(top < point[1]) top = point[1];
+        if(bottom > point[1]) bottom = point[1];
+    }
+    return Vector2d(right-left, top-bottom);
 }
 
 } // namespace StepCore
