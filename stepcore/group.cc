@@ -98,30 +98,25 @@ Vector2d Group::size() const{
     double left = HUGE_VAL ;
     double right = -HUGE_VAL ;
     Vector2d point = Vector2d(0);
+    Vector2d point1 = Vector2d(0);
     ItemList::const_iterator end = items().end();
     for(ItemList::const_iterator it = items().begin(); it != end; ++it) {
-        const StepCore::MetaProperty* property = (*it)->metaObject()->property("position");
-        const StepCore::MetaProperty* propertyBody = (*it)->metaObject()->property("size");
-        const StepCore::MetaProperty* propertySpring1 = (*it)->metaObject()->property("position1");
-        const StepCore::MetaProperty* propertySpring2 = (*it)->metaObject()->property("position2");
-        if(property && propertyBody){
-            point = property->readVariant(*it).value<StepCore::Vector2d>() + 
-                    propertyBody->readVariant(*it).value<StepCore::Vector2d>()/2.0;
-        }else if(property){
-            point = property->readVariant(*it).value<StepCore::Vector2d>();
-        }else if(propertySpring1 && propertySpring2){
-            point = propertySpring1->readVariant(*it).value<StepCore::Vector2d>();
-            Vector2d point1 = propertySpring2->readVariant(*it).value<StepCore::Vector2d>();
-            if(right < point1[0]) right = point1[0];
-            if(left > point1[0]) left = point1[0];
-            if(top < point1[1]) top = point1[1];
-            if(bottom > point1[1]) bottom = point1[1];
+        const StepCore::MetaProperty* propertyP = (*it)->metaObject()->property("position");
+        const StepCore::MetaProperty* propertyS = (*it)->metaObject()->property("size");
+        if(propertyP && propertyS){
+            point = propertyP->readVariant(*it).value<StepCore::Vector2d>() + 
+                    propertyS->readVariant(*it).value<StepCore::Vector2d>()/2.0;
+            point1 = propertyP->readVariant(*it).value<StepCore::Vector2d>() - 
+                    propertyS->readVariant(*it).value<StepCore::Vector2d>()/2.0;
+        }else if(propertyP){
+            point = propertyP->readVariant(*it).value<StepCore::Vector2d>();
+            point1 = propertyP->readVariant(*it).value<StepCore::Vector2d>();
         }else break;
         
         if(right < point[0]) right = point[0];
-        if(left > point[0]) left = point[0];
+        if(left > point1[0]) left = point1[0];
         if(top < point[1]) top = point[1];
-        if(bottom > point[1]) bottom = point[1];
+        if(bottom > point1[1]) bottom = point1[1];
     }
     return Vector2d(right-left, top-bottom);
 }
