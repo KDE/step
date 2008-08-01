@@ -196,7 +196,9 @@ public:
     
     /** Position of the center of the spring */
     Vector2d position() const;
-    
+    /** Set position of the center of the spring */
+    void setPosition(const Vector2d& position);
+        
     /** Velocity of the center of the spring */
     Vector2d velocity() const;
      

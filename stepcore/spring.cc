@@ -38,7 +38,7 @@ STEPCORE_META_OBJECT(Spring, "Massless spring which can be connected to bodies",
                     "Local position 2", localPosition2, setLocalPosition2)
     STEPCORE_PROPERTY_R_D(StepCore::Vector2d, position1, "m", "Position1", position1)
     STEPCORE_PROPERTY_R_D(StepCore::Vector2d, position2, "m", "Position2", position2)
-    STEPCORE_PROPERTY_R_D(StepCore::Vector2d, position, "m", "Position", position)
+    STEPCORE_PROPERTY_RW_D(StepCore::Vector2d, position, "m", "Position", position, setPosition)
     STEPCORE_PROPERTY_R_D(StepCore::Vector2d, velocity1, "m/s", "Velocity1", velocity1)
     STEPCORE_PROPERTY_R_D(StepCore::Vector2d, velocity2, "m/s", "Velocity2", velocity2)
     STEPCORE_PROPERTY_R_D(StepCore::Vector2d, velocity, "m/s", "Velocity", velocity)
@@ -208,6 +208,28 @@ Vector2d Spring::position2() const
 
 Vector2d Spring::position() const{
     return position1()/2.0 + position2()/2.0;
+}
+
+void Spring::setPosition(const Vector2d& position){
+    Vector2d size = this->size();
+    Vector2d pos1 = position1();
+    Vector2d pos2 = position2();
+    if(_body1 && _body2){
+        return;
+    }else if(_body1 && !_body2){
+        if(pos1[0] > pos2[0]) size[0] = -size[0];
+        if(pos1[1] > pos2[1]) size[1] = -size[1];
+        _localPosition2 = position + size/2.0;
+    }else if(_body2 && !_body1){
+        if(pos2[0] > pos1[0]) size[0] = -size[0];
+        if(pos2[1] > pos1[1]) size[1] = -size[1];
+        _localPosition1 = position - size/2.0;
+    }else{
+        if(pos1[0] > pos2[0]) size[0] = -size[0];
+        if(pos1[1] > pos2[1]) size[1] = -size[1];
+        _localPosition2 = position + size/2.0;
+        _localPosition1 = position - size/2.0;
+    }
 }
 
 Vector2d Spring::velocity() const{
