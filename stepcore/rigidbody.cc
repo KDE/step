@@ -87,11 +87,14 @@ STEPCORE_META_OBJECT(Disk, "Rigid disk", 0, STEPCORE_SUPER_CLASS(RigidBody),
 STEPCORE_META_OBJECT(BasePolygon, "Base polygon body", 0, STEPCORE_SUPER_CLASS(RigidBody),)
 
 STEPCORE_META_OBJECT(Box, "Rigid box", 0, STEPCORE_SUPER_CLASS(BasePolygon),
-        STEPCORE_PROPERTY_RW(StepCore::Vector2d, size, "m", "Size of the box", size, setSize))
+        STEPCORE_PROPERTY_RW(StepCore::Vector2d, localSize, "m", "Size of the box", localSize, setLocalSize))
 
 STEPCORE_META_OBJECT(Polygon, "Rigid polygon body", 0, STEPCORE_SUPER_CLASS(BasePolygon),
         STEPCORE_PROPERTY_RW(Vector2dList, vertexes, "m", "Vertex list", vertexes, setVertexes)
-        STEPCORE_PROPERTY_RW_D(StepCore::Vector2d, size, "m", "Size of the poligon", size, setSize))
+        STEPCORE_PROPERTY_RWF(StepCore::Vector2d, localSize, "m", "Local size of the poligon",
+                                                0, localSize, setLocalSize)
+        STEPCORE_PROPERTY_RWF(StepCore::Vector2d, size, "m", "Size of the poligon",
+                                                0, size, setSize))
 
 #if 0
 STEPCORE_META_OBJECT(Plane, "Unmoveable rigid plane", 0, STEPCORE_SUPER_CLASS(Item) STEPCORE_SUPER_CLASS(Body),
@@ -342,16 +345,16 @@ void RigidBody::setKineticEnergy(double kineticEnergy)
 
 Box::Box(Vector2d position, double angle,
               Vector2d velocity, double angularVelocity,
-              double mass, double inertia, Vector2d size)
+              double mass, double inertia, Vector2d localSize)
     : BasePolygon(position, angle, velocity, angularVelocity, mass, inertia)
 {
     _vertexes.resize(4);
-    setSize(size);
+    setLocalSize(localSize);
 }
 
-void Box::setSize(const Vector2d& size)
+void Box::setLocalSize(const Vector2d& localSize)
 {
-    Vector2d s(size.cAbs()/2.0);
+    Vector2d s(localSize.cAbs()/2.0);
 
     _vertexes[0] = Vector2d(-s[0], -s[1]);
     _vertexes[1] = Vector2d( s[0], -s[1]);
@@ -359,7 +362,7 @@ void Box::setSize(const Vector2d& size)
     _vertexes[3] = Vector2d(-s[0],  s[1]);
 }
 
-Vector2d Polygon::size() const {
+Vector2d Polygon::localSize() const {
     Vector2dList::const_iterator end = vertexes().end();
     Vector2d initPos = (*vertexes().begin());
     double right = initPos[0]; 
@@ -375,12 +378,39 @@ Vector2d Polygon::size() const {
     return Vector2d(right-left, top-buttom);
 }
 
+void Polygon::setLocalSize(const Vector2d& localSize){
+    Vector2d initSize = this->localSize();
+    Vector2dList::iterator end = vertexes().end();
+    for(Vector2dList::iterator it = vertexes().begin(); it != end; ++it) {
+        (*it)[0]*= localSize[0]/initSize[0];
+        (*it)[1]*= localSize[1]/initSize[1];
+    }
+}
+
+Vector2d Polygon::size() const {
+    Vector2dList::const_iterator end = vertexes().end();
+    double right = - HUGE_VAL; 
+    double left = HUGE_VAL;
+    double top = - HUGE_VAL;
+    double buttom = HUGE_VAL;
+    for(Vector2dList::const_iterator it = vertexes().begin(); it != end; ++it) {
+        Vector2d vertex = pointLocalToWorld(*it);
+        if(right < vertex[0]) right = vertex[0];
+        if(left > vertex[0]) left = vertex[0];
+        if(top < vertex[1]) top = vertex[1];
+        if(buttom > vertex[1]) buttom = vertex[1];
+    }
+    return Vector2d(right-left, top-buttom);
+}
+
 void Polygon::setSize(const Vector2d& size){
     Vector2d initSize = this->size();
     Vector2dList::iterator end = vertexes().end();
     for(Vector2dList::iterator it = vertexes().begin(); it != end; ++it) {
-        (*it)[0]*= size[0]/initSize[0];
-        (*it)[1]*= size[1]/initSize[1];
+        Vector2d vertex = pointLocalToWorld(*it);
+        vertex[0]*= size[0]/initSize[0];
+        vertex[1]*= size[1]/initSize[1];
+        (*it) = pointWorldToLocal(vertex);
     }
 }
 

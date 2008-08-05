@@ -335,13 +335,13 @@ public:
     /** Constructs Box */
     explicit Box(Vector2d position = Vector2d(0), double angle = 0,
               Vector2d velocity = Vector2d(0), double angularVelocity = 0,
-              double mass = 1, double inertia = 1, Vector2d size = Vector2d(1,1));
+              double mass = 1, double inertia = 1, Vector2d localSize = Vector2d(1,1));
 
     /** Get box size */
-    Vector2d size() const { return Vector2d(_vertexes[1][0] - _vertexes[0][0],
+    Vector2d localSize() const { return Vector2d(_vertexes[1][0] - _vertexes[0][0],
                                             _vertexes[3][1] - _vertexes[0][1]); }
     /** Set box size */
-    void setSize(const Vector2d& size);
+    void setLocalSize(const Vector2d& LocalSize);
 };
 
 /** \ingroup bodies
@@ -358,9 +358,13 @@ public:
     Vector2dList& vertexes() { return _vertexes; }
     /** Set vertex list */
     void setVertexes(const Vector2dList& vertexes) { _vertexes = vertexes; }
-    /** Get size of poligon */
+    /** Get local size of poligon */
+    Vector2d localSize() const;
+    /** Set local size of poligon */
+    void setLocalSize(const Vector2d& size);
+    /** Get local size of poligon */
     Vector2d size() const;
-    /** Set size of poligon */
+    /** Set local size of poligon */
     void setSize(const Vector2d& size);
 };
 

@@ -107,10 +107,10 @@ MainWindow::MainWindow()
     connect(worldModel, SIGNAL(simulationStopped(int)), this, SLOT(simulationStopped(int)));
     connect(worldModel->selectionModel(), SIGNAL(selectionChanged(const QItemSelection&, const QItemSelection&)),
                                  this, SLOT(worldSelectionChanged(const QItemSelection&, const QItemSelection&)));
-    connect(itemPalette, SIGNAL(beginAddItem(const QString&)),
-                                 worldScene, SLOT(beginAddItem(const QString&)));
-    connect(worldScene, SIGNAL(endAddItem(const QString&, bool)),
-                                 itemPalette, SLOT(endAddItem(const QString&, bool)));
+    connect(itemPalette, SIGNAL(beginAddItem(const QString&, const StepCore::Item*)),
+                                 worldScene, SLOT(beginAddItem(const QString&, const StepCore::Item*)));
+    connect(worldScene, SIGNAL(endAddItem(const QString&, bool, bool)),
+                                 itemPalette, SLOT(endAddItem(const QString&, bool, bool)));
     connect(worldScene, SIGNAL(linkActivated(const KUrl&)),
                                  infoBrowser, SLOT(openUrl(const KUrl&)));
     

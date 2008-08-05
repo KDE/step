@@ -31,7 +31,11 @@ class QAction;
 class QActionGroup;
 class PaletteLayout;
 
-namespace StepCore { class MetaObject; }
+namespace StepCore {
+    class MetaObject;
+    class World;
+    class Item;
+}
 
 class ItemPalette: public QDockWidget
 {
@@ -39,22 +43,27 @@ class ItemPalette: public QDockWidget
 
 public:
     explicit ItemPalette(WorldModel* worldModel, QWidget* parent = 0, Qt::WindowFlags flags = 0);
+    ~ItemPalette();
 
 signals:
-    void beginAddItem(const QString& name);
+    void beginAddItem(const QString& name, const StepCore::Item* item);
 
 public slots:
-    void endAddItem(const QString& name, bool success);
+    void endAddItem(const QString& name, bool success, bool selectPointer);
 
 protected slots:
     void actionTriggered(QAction* action);
     void showButtonTextToggled(bool b);
     void groupVisibilityToggled(QAction* action);
+    void configureCustomGroups();
 
 protected:
     QAction* createSeparator();
     QAction* createObjectAction(const StepCore::MetaObject* metaObject);
+    QAction* createCustomItemAction(const QString& filename, const StepCore::Item* item);
     void createToolButton(QAction* action);
+
+    void loadCustomGroup(const QString& filename);
 
     void updateGroupsVisibility();
 
@@ -67,10 +76,12 @@ protected:
 
     QAction*        _pointerAction;
     QActionGroup*   _actionGroup;
+    QActionGroup*   _groupsActionGroup;
 
     QList<QToolButton*> _toolButtons;
 
     QHash<QString, QList<QAction*> > _groups;
+    QHash<QString, StepCore::World* > _groupWorlds;
 };
 
 #endif

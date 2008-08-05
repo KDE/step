@@ -153,7 +153,7 @@ public:
 
 public slots:
     /** Begin adding new item. Creates appropriate ItemCreator */
-    void beginAddItem(const QString& name);
+    void beginAddItem(const QString& name,const StepCore::Item* item);
 
     /** Shows a message to the user
      *  \param type message type
@@ -181,7 +181,7 @@ public slots:
 
 signals:
     /** This signal is emitted when item creation is finished or canceled */
-    void endAddItem(const QString& name, bool success);
+    void endAddItem(const QString& name, bool success, bool selectPointer);
     /** This signal is emitted when a link in the message is activated */
     void linkActivated(const KUrl& url);
 

@@ -21,6 +21,7 @@
 #include "worldmodel.h"
 #include "worldfactory.h"
 #include <stepcore/world.h>
+#include <stepcore/xmlfile.h>
 
 #include "settings.h"
 
@@ -34,14 +35,41 @@
 #include <QScrollBar>
 #include <QPainter>
 #include <QtAlgorithms>
+#include <QFile>
 
+#include <KMessageBox>
 #include <KLocale>
 #include <KIcon>
 
 #include "itempalette.moc"
 
 class QPaintEvent;
+/*
+class CustomGroup{
 
+public:
+    CustomGroup(const QString& filename, const WorldFactory* worldFactory);
+    
+private:
+    QList<QAction> _groups;
+    StepCore::World _world;
+    QString _error;
+};
+
+CustomGroup::CustomGroup(const QString& filename, const WorldFactory* worldFactory){
+    QFile qfile(filename);
+    if(!qfile.open(QIODevice::ReadOnly | QIODevice::Text)){
+        _error = i18n("Can not open file");
+    };
+    StepCore::XmlFile file(&qfile);
+    bool ret = file.load(&_world, worldFactory);
+    const StepCore::ItemList& items = _world.items();
+    StepCore::ItemList::const_iterator end = items.end();
+    for(StepCore::ItemList::const_iterator it = items.begin(); it != end; ++it) {
+            _groups << (*it)->name();
+    }
+}
+*/
 // Inspired by QToolBarSeparator
 class Separator: public QWidget
 {
@@ -218,15 +246,15 @@ ItemPalette::ItemPalette(WorldModel* worldModel, QWidget* parent, Qt::WindowFlag
     createToolButton(_pointerAction);
     createSeparator();
 
-    QActionGroup* gActionGroup = new QActionGroup(this);
-    gActionGroup->setExclusive(false);
+    _groupsActionGroup = new QActionGroup(this);
+    _groupsActionGroup->setExclusive(false);
 
     foreach(const QString &group, _worldModel->worldFactory()->paletteGroups()) {
         QAction* action = new QAction(i18n(group.toLatin1().constData()), this);
         action->setProperty("step_group", group);
         action->setCheckable(true);
         action->setChecked(Settings::groupsToShow().contains(group));
-        gActionGroup->addAction(action);
+        _groupsActionGroup->addAction(action);
         _widget->addAction(action);
 
         _groups.insert(group, QList<QAction*>());
@@ -238,7 +266,7 @@ ItemPalette::ItemPalette(WorldModel* worldModel, QWidget* parent, Qt::WindowFlag
         _groups[group] << createSeparator(); // XXX: ?
     }
 
-    connect(gActionGroup, SIGNAL(triggered(QAction*)), this, SLOT(groupVisibilityToggled(QAction*)));
+    connect(_groupsActionGroup, SIGNAL(triggered(QAction*)), this, SLOT(groupVisibilityToggled(QAction*)));
 
     _scrollArea->setWidget(_widget);
     _scrollArea->setMinimumWidth(_widget->minimumSizeHint().width());
@@ -253,16 +281,26 @@ ItemPalette::ItemPalette(WorldModel* worldModel, QWidget* parent, Qt::WindowFlag
     showText->setCheckable(true);
     showText->setChecked(Settings::showButtonText());
     QObject::connect(showText, SIGNAL(toggled(bool)), this, SLOT(showButtonTextToggled(bool)));
-
     _widget->addAction(showText);
+
+    QAction* customGroups = new QAction(i18n("Configure custom items"), this);
+    QObject::connect(customGroups, SIGNAL(triggered(bool)), this, SLOT(configureCustomGroups()));
+    _widget->addAction(customGroups);
+
     _widget->setContextMenuPolicy(Qt::ActionsContextMenu);
 
     updateGroupsVisibility();
 }
 
+ItemPalette::~ItemPalette()
+{
+    foreach (StepCore::World* world, _groupWorlds)
+        delete world;
+}
+
 void ItemPalette::updateGroupsVisibility()
 {
-    foreach(const QString& group, _worldModel->worldFactory()->paletteGroups()) {
+    foreach(const QString& group, _groups.keys()) {
         bool visible = Settings::groupsToShow().contains(group);
         foreach(QAction* action, _groups[group]) {
             //action->setVisible(visible);
@@ -329,6 +367,20 @@ QAction* ItemPalette::createObjectAction(const StepCore::MetaObject* metaObject)
     return action;
 }
 
+QAction* ItemPalette::createCustomItemAction(const QString& filename, const StepCore::Item* item)
+{
+    kDebug() << filename << item->name();
+    QAction* action = new QAction(item->name(), this);
+    action->setToolTip(i18n("Create custom item: %1", item->name()));
+    //action->setIcon(_worldModel->worldFactory()->objectIcon(metaObject));
+    action->setCheckable(true);
+    action->setProperty("step_filename", filename);
+    action->setProperty("step_item", QVariant::fromValue<void*>((void*) item));
+    _actionGroup->addAction(action);
+    createToolButton(action);
+    return action;
+}
+
 void ItemPalette::showButtonTextToggled(bool b)
 {
     Settings::setShowButtonText(b);
@@ -341,19 +393,59 @@ void ItemPalette::showButtonTextToggled(bool b)
     _scrollArea->setMinimumWidth(_widget->minimumSizeHint().width());
 }
 
-void ItemPalette::actionTriggered(QAction* action)
+void ItemPalette::configureCustomGroups()
 {
-    emit beginAddItem(action->property("step_object").toString());
+   loadCustomGroup("/home/kde-devel/s.step");
 }
 
-void ItemPalette::endAddItem(const QString& name, bool /*success*/)
+void ItemPalette::loadCustomGroup(const QString& filename)
 {
-    if(name == _actionGroup->checkedAction()->property("step_object").toString())
-        _pointerAction->setChecked(true);
+    QFile qfile(filename);
+    if(!qfile.open(QIODevice::ReadOnly | QIODevice::Text)) {
+        KMessageBox::error(this, i18n("Can't open file"));
+        return;
+    }
+    StepCore::XmlFile file(&qfile);
+    StepCore::World* world = new StepCore::World();
+    bool ret = file.load(world, _worldModel->worldFactory());
+    if(!ret) {
+        KMessageBox::error(this, i18n("Can't parse file"));
+        return;
+    }
+    _groupWorlds.insert(filename, world);
+    _groups.insert(filename, QList<QAction*>());
+
+    StepCore::ItemList::const_iterator end = world->items().end();
+    for(StepCore::ItemList::const_iterator it = world->items().begin(); it != end; ++it) {
+        _groups[filename] << createCustomItemAction(filename, *it);
+    }
+    
+    QAction* action = new QAction(filename, this);
+    action->setProperty("step_group", filename);
+    action->setCheckable(true);
+    action->setChecked(true);
+    _groupsActionGroup->addAction(action);
+    _widget->addAction(action);
+
+    if(!Settings::groupsToShow().contains(filename)) {
+        groupVisibilityToggled(action);
+    }
+    updateGroupsVisibility();
+}
+
+void ItemPalette::actionTriggered(QAction* action)
+{
+    kDebug() << action << " " << action->property("step_object").toString() << " " << action->property("step_item").value<void*>();
+    emit beginAddItem(action->property("step_object").toString(),
+        static_cast<StepCore::Item*>(action->property("step_item").value<void*>()));
+}
+
+void ItemPalette::endAddItem(const QString& name, bool /*success*/, bool selectPointer)
+{
+    if(selectPointer) _pointerAction->setChecked(true);
 }
 
 bool ItemPalette::event(QEvent* event)
 {
     return QDockWidget::event(event);
 }
-

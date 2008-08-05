@@ -204,18 +204,23 @@ WorldGraphicsItem* WorldScene::graphicsFromItem(const StepCore::Item* item) cons
     return _itemsHash.value(item, NULL);
 }
 
-void WorldScene::beginAddItem(const QString& name)
+void WorldScene::beginAddItem(const QString& name, const StepCore::Item* item)
 {
     //_currentCreator = name;
     if(_itemCreator) {
         _itemCreator->abort();
-        emit endAddItem(_itemCreator->className(), _itemCreator->item() != NULL);
+        emit endAddItem(_itemCreator->className(), _itemCreator->item() != NULL, false);
         delete _itemCreator;
     }
     if(name == "Pointer") {
         _itemCreator = NULL;
     } else {
-        _itemCreator = _worldModel->worldFactory()->newItemCreator(name, _worldModel, this);
+        Q_ASSERT( (item && name.isEmpty()) || (!item && !name.isEmpty()) );
+        if(!item) {
+            _itemCreator = _worldModel->worldFactory()->newItemCreator(name, _worldModel, this);
+        } else {
+            _itemCreator = new GroupCopyCreator(item->metaObject()->className(), _worldModel, this, item);
+        }
         Q_ASSERT(_itemCreator != NULL);
         _itemCreator->start();
     }
@@ -235,7 +240,7 @@ bool WorldScene::event(QEvent* event)
     if(_itemCreator) {
         bool handled = _itemCreator->sceneEvent(event);
         if(_itemCreator->finished()) {
-            emit endAddItem(_itemCreator->className(), _itemCreator->item() != NULL);
+            emit endAddItem(_itemCreator->className(), _itemCreator->item() != NULL, true);
             delete _itemCreator; _itemCreator = NULL;
         }
         if(handled) {

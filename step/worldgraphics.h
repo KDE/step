@@ -109,6 +109,23 @@ protected:
 
 /////////////////////////////////////////////////////////////////////////////////////////
 
+class GroupCopyCreator: public ItemCreator
+{
+public:
+    GroupCopyCreator(const QString& className, WorldModel* worldModel, WorldScene* worldScene, const StepCore::Item* itemCopy)
+           : ItemCreator(className, worldModel, worldScene), _itemToCopy(itemCopy) {}
+
+    /** Virtual function which is called on any scene event. Should return true if
+     *  event is accepted or false to allow the scene to continue event processing. */
+    virtual bool sceneEvent(QEvent* event);
+
+protected:
+    const StepCore::Item* _itemToCopy;
+};
+
+/////////////////////////////////////////////////////////////////////////////////////////
+
+
 /** \brief ItemCreator for items that can be attached to other items */
 class AttachableItemCreator: public ItemCreator
 {

@@ -107,6 +107,47 @@ bool ItemCreator::sceneEvent ( QEvent* event )
 
 /////////////////////////////////////////////////////////////////////////////////////////
 
+bool GroupCopyCreator::sceneEvent ( QEvent* event )
+{
+    if ( event->type() == QEvent::GraphicsSceneMousePress ) {
+        _worldModel->simulationPause();
+
+        _worldModel->beginMacro ( i18n ( "Create %1", _worldModel->newItemName ( _className ) ) );
+        _item = static_cast<StepCore::Item*>(_itemToCopy->metaObject()->cloneObject(*_itemToCopy));
+        _item->setName(_worldModel->newItemName ( _className ));
+        Q_ASSERT ( _item != NULL );
+#ifdef __GNUC__
+#warning Do not add item until it is fully created
+#endif
+        const StepCore::MetaProperty* property = _item->metaObject()->property ( "position" );
+
+        if ( property != NULL ) {
+            QGraphicsSceneMouseEvent* mouseEvent = static_cast<QGraphicsSceneMouseEvent*> ( event );
+            QPointF pos = mouseEvent->scenePos();
+            QVariant vpos = QVariant::fromValue ( _worldScene->pointToVector ( pos ) );
+            property->writeVariant ( _item, vpos );
+        }
+
+        _worldModel->addItem ( _item );
+
+        _worldModel->endMacro();
+
+        _worldModel->selectionModel()->setCurrentIndex ( _worldModel->objectIndex ( _item ),
+                QItemSelectionModel::ClearAndSelect );
+
+        showMessage ( MessageFrame::Information,
+                      i18n ( "%1 named '%2' created", className(), _item->name() ),
+                      MessageFrame::CloseButton | MessageFrame::CloseTimer );
+
+        setFinished();
+        return true;
+    }
+
+    return false;
+}
+
+////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
 void AttachableItemCreator::start()
 {
     if ( _twoEnds )
@@ -456,8 +497,9 @@ void WorldGraphicsItem::mouseReleaseEvent ( QGraphicsSceneMouseEvent *event )
 void WorldGraphicsItem::trySelect()
 {
     StepCore::ItemGroup* group = _item->group();
-    if(group){
-        _worldScene->graphicsFromItem(group)->setSelected(true);
+    WorldGraphicsItem* item;
+    if(group && group!=(_item->world()) && ((item = _worldScene->graphicsFromItem(group))!=0)){
+        item->setSelected(true);
     }else{ 
         setSelected ( true );
     }

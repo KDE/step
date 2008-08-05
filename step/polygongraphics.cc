@@ -632,14 +632,14 @@ inline StepCore::Box* BoxVertexHandlerGraphicsItem::box() const
 }
 
 StepCore::Vector2d BoxVertexHandlerGraphicsItem::value() {
-    return box()->vectorLocalToWorld(box()->size().cMultiply(corners[_vertexNum]));
+    return box()->vectorLocalToWorld(box()->localSize().cMultiply(corners[_vertexNum]));
     //return box()->vectorLocalToWorld(box()->vertexes()[_vertexNum]);
 }
 
 void BoxVertexHandlerGraphicsItem::setValue(const StepCore::Vector2d& value)
 {
     StepCore::Vector2d oCorner = box()->position() -
-                        box()->size().cMultiply(corners[_vertexNum]);
+                        box()->localSize().cMultiply(corners[_vertexNum]);
 
     StepCore::Vector2d delta = (box()->position() + value - oCorner)/2.0;
     StepCore::Vector2d newPos = oCorner + delta;
@@ -662,7 +662,7 @@ void BoxVertexHandlerGraphicsItem::setValue(const StepCore::Vector2d& value)
     }
 
     _worldModel->setProperty(_item, "position", QVariant::fromValue(newPos));
-    _worldModel->setProperty(_item, "size", QVariant::fromValue(newSize));
+    _worldModel->setProperty(_item, "localSize", QVariant::fromValue(newSize));
 #if 0
     StepCore::Vector2d delta = box()->vectorWorldToLocal(value) - box()->vertexes()[_vertexNum];
     StepCore::Vector2d newPos = box()->position() + box()->vectorLocalToWorld(delta/2.0);
@@ -683,7 +683,7 @@ OnHoverHandlerGraphicsItem* BoxGraphicsItem::createOnHoverHandler(const QPointF&
 {
     double s = _worldScene->viewScale();
     StepCore::Vector2d l = _worldScene->pointToVector(pos) - rigidBody()->position();
-    StepCore::Vector2d size = static_cast<StepCore::Box*>(_item)->size();
+    StepCore::Vector2d size = static_cast<StepCore::Box*>(_item)->localSize();
     
     int num = -1; double minDist2 = HANDLER_SNAP_SIZE*HANDLER_SNAP_SIZE/s/s;
     for(unsigned int i=0; i<4; ++i) {
