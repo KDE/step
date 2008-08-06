@@ -40,6 +40,7 @@
 #include <KMessageBox>
 #include <KLocale>
 #include <KIcon>
+#include <KFileDialog>
 
 #include "itempalette.moc"
 
@@ -395,7 +396,13 @@ void ItemPalette::showButtonTextToggled(bool b)
 
 void ItemPalette::configureCustomGroups()
 {
-   loadCustomGroup("/home/kde-devel/s.step");
+    KUrl fileUrl;
+    fileUrl = KFileDialog::getOpenUrl(KUrl(), "*.step|Step files (*.step)", this);
+    if(fileUrl.isEmpty()) return;
+    if ( fileUrl.isLocalFile() ){
+	QString path = fileUrl.path();
+        loadCustomGroup(path);
+    }
 }
 
 void ItemPalette::loadCustomGroup(const QString& filename)
