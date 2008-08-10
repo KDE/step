@@ -46,5 +46,10 @@
             <whatsthis>Groups to show in the palette</whatsthis>
             <default>Main</default>
         </entry>
+	<entry name="customGroups" type="StringList">
+            <label>Custom groups to show in the palette</label>
+            <whatsthis>Custom groups to show in the palette</whatsthis>
+            <default></default>
+        </entry>
     </group>
 </kcfg>

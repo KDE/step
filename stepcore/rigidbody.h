@@ -38,6 +38,7 @@ class RigidBodyErrors: public ObjectErrors
 {
     STEPCORE_OBJECT(RigidBodyErrors)
 
+
 public:
     /** Constructs RigidBodyErrors */
     RigidBodyErrors(Item* owner = 0)
@@ -186,6 +187,8 @@ public:
     /** Get angular acceleration of the body */
     double angularAcceleration() const { return _torque/_inertia; }
 
+     virtual double area() const {return 0;}
+
     /** Get force that acts upon the body */
     const Vector2d& force() const { return _force; }
     /** Set force that acts upon the body */
@@ -298,6 +301,9 @@ public:
     double radius() const { return _radius; }
     /** Set disk radius */
     void setRadius(double radius) { _radius = radius; }
+
+    /** Get disk area */
+    double area() const {return M_PI*_radius*_radius;}
     
     /** Get disk size */
     Vector2d size() const { return Vector2d(2*_radius, 2*_radius); }
@@ -312,7 +318,7 @@ protected:
  *  \brief Base class for all polygons
  */
 class BasePolygon: public RigidBody
-{
+{//FIXME Move size to basic poligons 
     STEPCORE_OBJECT(BasePolygon)
 public:
     /** Constructs BasePolygon */
@@ -320,6 +326,14 @@ public:
               Vector2d velocity = Vector2d(0), double angularVelocity = 0,
               double mass = 1, double inertia = 1)
         : RigidBody(position, angle, velocity, angularVelocity, mass, inertia) {}
+
+    Vector2d localSize() const;
+    /** Set local size of poligon */
+    void setLocalSize(const Vector2d& size);
+    /** Get size of poligon */
+    Vector2d size() const;
+    /** Set size of poligon */
+    void setSize(const Vector2d& size);
 
     /** Get vertex list (constant) */
     const Vector2dList& vertexes() const { return _vertexes; }
@@ -342,6 +356,9 @@ public:
                                             _vertexes[3][1] - _vertexes[0][1]); }
     /** Set box size */
     void setLocalSize(const Vector2d& LocalSize);
+
+    /** Get box area*/
+    double area() const {return(_vertexes[1][0] - _vertexes[0][0])*(_vertexes[3][1] - _vertexes[0][1]);}
 };
 
 /** \ingroup bodies
@@ -358,14 +375,13 @@ public:
     Vector2dList& vertexes() { return _vertexes; }
     /** Set vertex list */
     void setVertexes(const Vector2dList& vertexes) { _vertexes = vertexes; }
-    /** Get local size of poligon */
-    Vector2d localSize() const;
-    /** Set local size of poligon */
-    void setLocalSize(const Vector2d& size);
-    /** Get local size of poligon */
-    Vector2d size() const;
-    /** Set local size of poligon */
-    void setSize(const Vector2d& size);
+    /** Get area of poligon */
+    double area();
+
+    /** Get box size */
+    Vector2d localSize() const { return BasePolygon::localSize(); }
+    /** Set box size */
+    void setLocalSize(const Vector2d& localSize) { return BasePolygon::setLocalSize(localSize); }
 };
 
 #if 0

@@ -31,6 +31,8 @@ STEPCORE_META_OBJECT(RigidBody, "Generic rigid body", 0, STEPCORE_SUPER_CLASS(It
         STEPCORE_PROPERTY_RW_D(StepCore::Vector2d, velocity, "m/s", "Velocity of the center of mass", velocity, setVelocity)
         STEPCORE_PROPERTY_RW_D(double, angularVelocity, "rad/s", "Angular velocity of the body", angularVelocity, setAngularVelocity)
 
+        STEPCORE_PROPERTY_R(double, area, STEPCORE_FROM_UTF8("m²"), "Area of the body", area)
+
         STEPCORE_PROPERTY_R_D(StepCore::Vector2d, acceleration, STEPCORE_FROM_UTF8("m/s²"),
                                             "Acceleration of the center of mass", acceleration)
         STEPCORE_PROPERTY_R_D(double, angularAcceleration, STEPCORE_FROM_UTF8("rad/s²"),
@@ -82,20 +84,18 @@ STEPCORE_META_OBJECT(RigidBodyErrors, "Errors class for RigidBody", 0, STEPCORE_
 
 STEPCORE_META_OBJECT(Disk, "Rigid disk", 0, STEPCORE_SUPER_CLASS(RigidBody),
         STEPCORE_PROPERTY_RW(double, radius, "m", "Radius of the disk", radius, setRadius)
-        STEPCORE_PROPERTY_RW_D(StepCore::Vector2d, size, "m", "Size of the disk", size, setSize))
+        STEPCORE_PROPERTY_RW_D(StepCore::Vector2d, size, "m", "Size of the disk", size, setSize)
+        STEPCORE_PROPERTY_R(double, area, "m²", "Area of the disk", area))
 
-STEPCORE_META_OBJECT(BasePolygon, "Base polygon body", 0, STEPCORE_SUPER_CLASS(RigidBody),)
+STEPCORE_META_OBJECT(BasePolygon, "Base polygon body", 0, STEPCORE_SUPER_CLASS(RigidBody),
+        STEPCORE_PROPERTY_RWF(StepCore::Vector2d, size, "m", "Size of the poligon",0, size, setSize))
 
 STEPCORE_META_OBJECT(Box, "Rigid box", 0, STEPCORE_SUPER_CLASS(BasePolygon),
         STEPCORE_PROPERTY_RW(StepCore::Vector2d, localSize, "m", "Size of the box", localSize, setLocalSize))
 
 STEPCORE_META_OBJECT(Polygon, "Rigid polygon body", 0, STEPCORE_SUPER_CLASS(BasePolygon),
         STEPCORE_PROPERTY_RW(Vector2dList, vertexes, "m", "Vertex list", vertexes, setVertexes)
-        STEPCORE_PROPERTY_RWF(StepCore::Vector2d, localSize, "m", "Local size of the poligon",
-                                                0, localSize, setLocalSize)
-        STEPCORE_PROPERTY_RWF(StepCore::Vector2d, size, "m", "Size of the poligon",
-                                                0, size, setSize))
-
+        STEPCORE_PROPERTY_RWF(StepCore::Vector2d, localSize, "m", "Local size of the poligon", 0, localSize, setLocalSize))
 #if 0
 STEPCORE_META_OBJECT(Plane, "Unmoveable rigid plane", 0, STEPCORE_SUPER_CLASS(Item) STEPCORE_SUPER_CLASS(Body),
         STEPCORE_PROPERTY_RW_D(StepCore::Vector2d, point1, "m", "First point which defines the plane", point1, setPoint1),
@@ -362,7 +362,7 @@ void Box::setLocalSize(const Vector2d& localSize)
     _vertexes[3] = Vector2d(-s[0],  s[1]);
 }
 
-Vector2d Polygon::localSize() const {
+Vector2d BasePolygon::localSize() const {
     Vector2dList::const_iterator end = vertexes().end();
     Vector2d initPos = (*vertexes().begin());
     double right = initPos[0]; 
@@ -378,16 +378,16 @@ Vector2d Polygon::localSize() const {
     return Vector2d(right-left, top-buttom);
 }
 
-void Polygon::setLocalSize(const Vector2d& localSize){
+void BasePolygon::setLocalSize(const Vector2d& localSize){
     Vector2d initSize = this->localSize();
-    Vector2dList::iterator end = vertexes().end();
-    for(Vector2dList::iterator it = vertexes().begin(); it != end; ++it) {
+    Vector2dList::iterator end = _vertexes.end();
+    for(Vector2dList::iterator it = _vertexes.begin(); it != end; ++it) {
         (*it)[0]*= localSize[0]/initSize[0];
         (*it)[1]*= localSize[1]/initSize[1];
     }
 }
 
-Vector2d Polygon::size() const {
+Vector2d BasePolygon::size() const {
     Vector2dList::const_iterator end = vertexes().end();
     double right = - HUGE_VAL; 
     double left = HUGE_VAL;
@@ -403,10 +403,10 @@ Vector2d Polygon::size() const {
     return Vector2d(right-left, top-buttom);
 }
 
-void Polygon::setSize(const Vector2d& size){
+void BasePolygon::setSize(const Vector2d& size){
     Vector2d initSize = this->size();
-    Vector2dList::iterator end = vertexes().end();
-    for(Vector2dList::iterator it = vertexes().begin(); it != end; ++it) {
+    Vector2dList::iterator end = _vertexes.end();
+    for(Vector2dList::iterator it = _vertexes.begin(); it != end; ++it) {
         Vector2d vertex = pointLocalToWorld(*it);
         vertex[0]*= size[0]/initSize[0];
         vertex[1]*= size[1]/initSize[1];

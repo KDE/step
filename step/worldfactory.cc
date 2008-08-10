@@ -36,6 +36,7 @@
 #include <stepcore/joint.h>
 #include <stepcore/tool.h>
 #include <stepcore/types.h>
+#include <stepcore/air.h>
 
 #include "particlegraphics.h"
 #include "polygongraphics.h"
@@ -48,6 +49,8 @@
 #include "groupgraphics.h"
 
 #include "gameitems/victorycondition.h"
+#include "gameitems/baloon.h"
+#include "gameitems/fork.h"
 
 #include <KIcon>
 #include <KIconLoader>
@@ -124,6 +127,7 @@ WorldFactory::WorldFactory()
     __REGISTER_EXT_E(ChargedParticle, ItemCreator, ParticleGraphicsItem, ItemMenuHandler);
 
     __REGISTER_EXT(Disk, DiskCreator, DiskGraphicsItem, ItemMenuHandler);
+    __REGISTER_EXT(Baloon, DiskCreator, DiskGraphicsItem, ItemMenuHandler);
     __REGISTER_EXT(Box, BoxCreator, BoxGraphicsItem, ItemMenuHandler);
     __REGISTER_EXT(Polygon, PolygonCreator, PolygonGraphicsItem, ItemMenuHandler);
 
@@ -142,6 +146,7 @@ WorldFactory::WorldFactory()
     __REGISTER_E(WeightForce);
     __REGISTER_E(GravitationForce);
     __REGISTER_E(CoulombForce);
+    __REGISTER_E(Air);
 
     __REGISTER_EXT(Anchor, AnchorCreator, AnchorGraphicsItem, ItemMenuHandler);
     __REGISTER_EXT(Pin, PinCreator, PinGraphicsItem, ItemMenuHandler);
@@ -180,6 +185,7 @@ WorldFactory::WorldFactory()
     __REGISTER_EXT(Controller, WidgetItemCreator, ControllerGraphicsItem, ControllerMenuHandler);
     __REGISTER_EXT(Tracer, TracerCreator, TracerGraphicsItem, TracerMenuHandler);
     __REGISTER_EXT(Fixator, FixatorCreator, FixatorGraphicsItem, ItemMenuHandler);
+    __REGISTER_EXT(Fork, BoxCreator, ForkGraphicsItem, ItemMenuHandler);
     
     __REGISTER_EXT(DiskTarget, DiskTargetCreator, DiskTargetGraphicsItem, ItemMenuHandler);
     
@@ -207,6 +213,7 @@ WorldFactory::WorldFactory()
     __ADD_TO_PALETTE("Main", WeightForce);
     __ADD_TO_PALETTE("Main", GravitationForce);
     __ADD_TO_PALETTE("Main", CoulombForce);
+    __ADD_TO_PALETTE("Main", Air);
     __ADD_SEPARATOR("Main");
 
     __ADD_TO_PALETTE("Main", Anchor);
@@ -222,8 +229,11 @@ WorldFactory::WorldFactory()
     __ADD_TO_PALETTE("Main", Controller);
     __ADD_TO_PALETTE("Main", Fixator);
 
+
     __ADD_PALETTE_GROUP("Game");
     __ADD_TO_PALETTE("Game", DiskTarget);
+    __ADD_TO_PALETTE("Game", Baloon);
+    __ADD_TO_PALETTE("Game", Fork);
 }
 
 ItemCreator* WorldFactory::newItemCreator(const QString& className,

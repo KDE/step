@@ -21,6 +21,8 @@ set(libstepgui_SRCS
     latexformula.cc
     messageframe.cc
     gameitems/victorycondition.cc
+    gameitems/baloon.cc
+    gameitems/fork.cc
     groupgraphics.cc
 )
 

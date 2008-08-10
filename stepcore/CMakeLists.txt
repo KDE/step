@@ -20,6 +20,7 @@ set(stepcore_SRCS
     eulersolver.cc
     tool.cc
     group.cc
+    air.cc
 )
 
 if(STEPCORE_WITH_GSL)

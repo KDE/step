@@ -800,6 +800,9 @@ void WorldModel::endMacro()
 void WorldModel::setProperty(StepCore::Object* object,
             const StepCore::MetaProperty* property, const QVariant& value, UndoFlags flags)
 {
+    if(property == NULL){
+        kDebug() << "X";
+    }
     Q_ASSERT(object != NULL); Q_ASSERT(property != NULL);
     pushCommand(new CommandEditProperty(this, object, property, value, !flags.testFlag(UndoNoMerge)));
 }

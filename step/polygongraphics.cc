@@ -369,7 +369,7 @@ bool BoxCreator::sceneEvent(QEvent* event)
         _worldModel->beginMacro(i18n("Create %1", _worldModel->newItemName(_className)));
         _item = _worldModel->newItem(_className); Q_ASSERT(_item != NULL);
         _worldModel->setProperty(_item, "position", vpos);
-        _worldModel->setProperty(_item, "size", QVariant::fromValue(StepCore::Vector2d(0)));
+        _worldModel->setProperty(_item, "localSize", QVariant::fromValue(StepCore::Vector2d(0)));
         _worldModel->selectionModel()->setCurrentIndex(_worldModel->objectIndex(_item),
                                                     QItemSelectionModel::ClearAndSelect);
         _topLeft = _worldScene->pointToVector(pos);
@@ -386,7 +386,7 @@ bool BoxCreator::sceneEvent(QEvent* event)
         StepCore::Vector2d position = (_topLeft + pos) / 2.0;
         StepCore::Vector2d size = _topLeft - pos;
         _worldModel->setProperty(_item, "position", QVariant::fromValue(position));
-        _worldModel->setProperty(_item, "size", QVariant::fromValue(size));
+        _worldModel->setProperty(_item, "localSize", QVariant::fromValue(size));
         return true;
 
     } else if(event->type() == QEvent::GraphicsSceneMouseRelease &&
@@ -400,8 +400,7 @@ bool BoxCreator::sceneEvent(QEvent* event)
         if(size[0] == 0 && size[1] == 0) { size[0] = size[1] = 1; }
         double inertia = box->mass() * (size[0]*size[0] + size[1]*size[1]) / 12.0;
         _worldModel->setProperty(_item, "position", QVariant::fromValue(position));
-        _worldModel->setProperty(_item, "size", QVariant::fromValue(size));
-        _worldModel->setProperty(_item, "inertia", QVariant::fromValue(inertia));
+        _worldModel->setProperty(_item, "localSize", QVariant::fromValue(size));
         _worldModel->endMacro();
 
         showMessage(MessageFrame::Information,

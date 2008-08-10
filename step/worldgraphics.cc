@@ -739,7 +739,6 @@ QString ArrowsGraphicsItem::pixmapCacheKey()
     QPointF p1 = parentItem()->pos();
     QPoint c1 = ( ( p1 - p1.toPoint() ) * PIXMAP_CACHE_GRADING ).toPoint();
     QString key = QString ( "Arrows:%1x%2" ).arg ( c1.x() ).arg ( c1.y() );
-
     foreach ( const Property& p, _properties ) {
         if ( p.property->userTypeId() == qMetaTypeId<StepCore::Vector2d>() ) {
             QPoint c2 = ( _worldScene->vectorToPoint ( p.property->readVariant ( _item ).value<StepCore::Vector2d>() )
