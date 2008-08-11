@@ -37,8 +37,8 @@
      inkscape:pageopacity="0.0"
      inkscape:pageshadow="2"
      inkscape:zoom="1.7963714"
-     inkscape:cx="97.072272"
-     inkscape:cy="541.42731"
+     inkscape:cx="-1.1813519"
+     inkscape:cy="185.15355"
      inkscape:document-units="px"
      inkscape:current-layer="layer1"
      showgrid="false"
@@ -886,6 +886,24 @@
          id="path2549"
          d="M 194.83721,280.06298 C 196.82141,277.58273 195.95057,286.35023 195.95057,289.5265 C 195.95057,292.11053 194.83721,295.59041 194.83721,299.5467 C 194.83721,302.18512 195.95057,303.39226 195.95057,305.11347"
          style="fill:none;fill-rule:evenodd;stroke:#000000;stroke-width:2.3;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1" />
+    </g>
+    <g
+       id="Baloon">
+      <path
+         transform="translate(250.92856,426.1479)"
+         d="M 334.00666,668.62402 A 16.978672,15.586977 0 1 1 300.04931,668.62402 A 16.978672,15.586977 0 1 1 334.00666,668.62402 z"
+         sodipodi:ry="15.586977"
+         sodipodi:rx="16.978672"
+         sodipodi:cy="668.62402"
+         sodipodi:cx="317.02798"
+         id="path2554"
+         style="fill:#ffffff;fill-opacity:1;fill-rule:nonzero;stroke:#000000;stroke-width:1;stroke-linecap:square;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+         sodipodi:type="arc" />
+      <path
+         transform="translate(250.92856,426.1479)"
+         id="path2562"
+         d="M 315.63629,683.65435 C 317.05563,684.22209 307.68891,690.89116 313.40958,690.89116 C 316.62996,690.89116 322.54273,689.08898 317.30632,686.99442 C 316.15058,686.53212 316.19297,684.7677 315.63629,683.65435 z"
+         style="fill:none;fill-rule:evenodd;stroke:#000000;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1" />
     </g>
   </g>
 </svg>

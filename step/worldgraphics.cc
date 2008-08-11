@@ -720,6 +720,7 @@ void ArrowsGraphicsItem::worldDataChanged ( bool )
             StepCore::Vector2d v = p.property->readVariant ( _item ).value<StepCore::Vector2d>();
             double L1 = std::sqrt ( StepCore::square ( v.norm() * _worldScene->viewScale() + p.headSize.width() / 2 )
                                     + StepCore::square ( qMax ( p.headSize.height(), p.bodyHeight ) / 2 ) );
+        if(L1 > 500) continue;
 
             if ( L1 > L ) L = L1;
         } else if ( p.property->userTypeId() == qMetaTypeId<double>() ) {
@@ -770,6 +771,7 @@ QPixmap* ArrowsGraphicsItem::paintPixmap()
         if ( p.property->userTypeId() == qMetaTypeId<StepCore::Vector2d>() ) {
             StepCore::Vector2d r = p.property->readVariant ( _item ).value<StepCore::Vector2d>();
             double rnorm = r.norm() * _worldScene->viewScale();
+            if(rnorm > 500) continue;
 
             QPainter painter;
             painter.begin ( pixmap );

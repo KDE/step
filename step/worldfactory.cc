@@ -127,7 +127,7 @@ WorldFactory::WorldFactory()
     __REGISTER_EXT_E(ChargedParticle, ItemCreator, ParticleGraphicsItem, ItemMenuHandler);
 
     __REGISTER_EXT(Disk, DiskCreator, DiskGraphicsItem, ItemMenuHandler);
-    __REGISTER_EXT(Baloon, DiskCreator, DiskGraphicsItem, ItemMenuHandler);
+    __REGISTER_EXT(Baloon, DiskCreator, BaloonGraphicsItem, ItemMenuHandler);
     __REGISTER_EXT(Box, BoxCreator, BoxGraphicsItem, ItemMenuHandler);
     __REGISTER_EXT(Polygon, PolygonCreator, PolygonGraphicsItem, ItemMenuHandler);
 
