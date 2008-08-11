@@ -47,7 +47,8 @@ ForkGraphicsItem::ForkGraphicsItem(StepCore::Item* item, WorldModel* worldModel,
     Q_ASSERT(dynamic_cast<StepCore::Fork*>(_item) != NULL);
     setFlag(QGraphicsItem::ItemIsSelectable);
     setFlag(QGraphicsItem::ItemIsMovable);
-    setZValue(FORCE_ZVALUE);
+    setAcceptsHoverEvents(true);
+    setOnHoverHandlerEnabled(true);
 
     StepCore::Vector2d localSize = fork()->localSize();
     double rnorm = (localSize[0] + localSize[1])*_worldScene->viewScale();
@@ -108,6 +109,8 @@ void ForkGraphicsItem::worldDataChanged(bool dynamicOnly)
     double maxsize = size[0];
     if(size[1] > size[0]) maxsize = size[1]; 
     _boundingRect = QRectF(QPointF(-size[0]/2, -size[1]/2), QSize(size[0],size[1]));
+    _painterPath = QPainterPath();
+    _painterPath.addRect(QRectF(QPointF(-size[0]/2, -size[1]/2), QSizeF(size[0], size[1])));
     // XXX: TODO do not redraw everything each time
     setPos(_worldScene->vectorToPoint(fork()->position()));
     prepareGeometryChange();
