@@ -74,8 +74,8 @@ public:
     void setSize(StepCore::Vector2d size) { _radius = (size[0] > size[1] ? size[0] : size[1])/2; }
 
 protected:
-    double _radius;
     StepCore::Vector2d _position;
+    double _radius;
     Object* _body;
     
     Particle*  _p;

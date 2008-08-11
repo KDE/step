@@ -187,7 +187,7 @@ public:
     /** Get angular acceleration of the body */
     double angularAcceleration() const { return _torque/_inertia; }
 
-     virtual double area() const {return 0;}
+    virtual double area() const {return 0;}
 
     /** Get force that acts upon the body */
     const Vector2d& force() const { return _force; }
@@ -376,7 +376,7 @@ public:
     /** Set vertex list */
     void setVertexes(const Vector2dList& vertexes) { _vertexes = vertexes; }
     /** Get area of poligon */
-    double area();
+    double area() const { return 0; } // FIXME
 
     /** Get box size */
     Vector2d localSize() const { return BasePolygon::localSize(); }

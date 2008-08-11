@@ -401,6 +401,7 @@ bool BoxCreator::sceneEvent(QEvent* event)
         double inertia = box->mass() * (size[0]*size[0] + size[1]*size[1]) / 12.0;
         _worldModel->setProperty(_item, "position", QVariant::fromValue(position));
         _worldModel->setProperty(_item, "localSize", QVariant::fromValue(size));
+        _worldModel->setProperty(_item, "inertia", QVariant::fromValue(inertia));
         _worldModel->endMacro();
 
         showMessage(MessageFrame::Information,

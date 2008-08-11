@@ -43,7 +43,7 @@ public:
     : Disk(position, angle, velocity, angularVelocity, mass, inertia, radius)
     {}
 
-    void boom();
+    bool checkBreak();
 
 };
 

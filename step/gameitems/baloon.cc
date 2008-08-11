@@ -17,6 +17,7 @@
 */
 
 #include "baloon.h"
+#include "fork.h"
 //#include "particle.h"
 //#include "rigidbody.h"
 #include <cmath>
@@ -29,6 +30,7 @@
 #include <QEvent>
 #include <QPainter>
 #include <KLocale>
+#include <KDebug>
 
 
 namespace StepCore
@@ -37,18 +39,35 @@ namespace StepCore
 STEPCORE_META_OBJECT(Baloon, "Baloon", 0,
     STEPCORE_SUPER_CLASS(Disk),)
 
-void Baloon::boom() {
-//    bool shouldBoom = false;
-//    const ItemList& items = world()->items();
-//    StepCore::ItemList::const_iterator end = items.end();
-//    for(StepCore::ItemList::const_iterator it = items.begin(); it != end; ++it) {
-//        if((*it)->metaObject()->inherits<Fork>()) {
-//            StepCore::Vector2d a0 = static_cast<Fork*>(*it)->vertexes()[0];
-//            StepCore::Vector2d a1 = static_cast<Fork*>(*it)->vertexes()[1];
-//            StepCore::Vector2d d = a0-a1;
-//            double lambda = a1.innerProduct(d)/d.norm2();
-//        }
-//    }
+bool Baloon::checkBreak() {
+    if(_radius == 0) return false;
+
+    bool shouldBreak = false;
+    const ItemList& items = world()->items();
+    StepCore::ItemList::const_iterator end = items.end();
+    for(StepCore::ItemList::const_iterator it = items.begin(); it != end; ++it) {
+        if((*it)->metaObject()->inherits<Fork>()) {
+            Fork* fork = static_cast<Fork*>(*it);
+            StepCore::Vector2d a0 = fork->pointLocalToWorld(fork->vertexes()[0]);
+            StepCore::Vector2d a1 = fork->pointLocalToWorld(fork->vertexes()[1]);
+            double err = (a0-a1).norm() / 20.0;
+
+            if(((a0-position()).norm() < _radius + err) ||
+                 ((a1-position()).norm() < _radius + err)) {
+                shouldBreak = true; break;
+            }
+
+            StepCore::Vector2d d = a0-a1;
+            double lambda = (position()-a1).innerProduct(d)/d.norm2();
+            if(lambda >= 0 && lambda <= 1) {
+                double dist = (lambda*a0 + (1-lambda)*a1 - position()).norm();
+                if(dist < _radius+err) {
+                    shouldBreak = true; break;
+                }
+            }
+        }
+    }
+    return shouldBreak;
 }
 
 } // namespace StepCore
@@ -62,6 +81,7 @@ BaloonGraphicsItem::BaloonGraphicsItem(StepCore::Item* item, WorldModel* worldMo
 
     setAcceptsHoverEvents(true);
     setOnHoverHandlerEnabled(true);
+
 
     StepCore::Vector2d localSize = baloon()->size();
     double rnorm = (localSize[0] + localSize[1])*_worldScene->viewScale();
@@ -116,6 +136,14 @@ void BaloonGraphicsItem::viewScaleChanged()
 void BaloonGraphicsItem::worldDataChanged(bool dynamicOnly)
 {
     Q_UNUSED(dynamicOnly);
+
+    if(_worldModel->isSimulationActive()) {
+        if(baloon()->checkBreak()) {
+            //kDebug() << "*************** boom!";
+            _worldModel->simulationPause();
+            _worldModel->setProperty(_item, "radius", 0.0);
+        }
+    }
 
     StepCore::Vector2d size = baloon()->size()*_worldScene->viewScale();
     double maxsize = size[0];
@@ -175,7 +203,6 @@ bool BaloonCreator::sceneEvent(QEvent* event)
 
         _worldModel->simulationPause();
         StepCore::Vector2d pos = _worldScene->pointToVector(mouseEvent->scenePos());
-        StepCore::Baloon* baloon = static_cast<StepCore::Baloon*>(_item);
         StepCore::Vector2d position = (_topLeft + pos) / 2.0;
         StepCore::Vector2d size = _topLeft - pos;
         if(size[0] == 0 && size[1] == 0) { size[0] = size[1] = 1; }
