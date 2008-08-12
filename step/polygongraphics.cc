@@ -42,7 +42,7 @@ RigidBodyGraphicsItem::RigidBodyGraphicsItem(StepCore::Item* item, WorldModel* w
     setFlag(QGraphicsItem::ItemIsMovable);
     setAcceptsHoverEvents(true);
     setOnHoverHandlerEnabled(true);
-    _textureSize = (_worldScene->worldRenderer()->svgRenderer()->boundsOnElement("DiskTexture").size().toSize()/6)*2;
+    _textureSize = (_worldScene->worldRenderer()->svgRenderer()->boundsOnElement("DiskTexture").size().toSize()/2)*2;
     //scene()->addItem(_velocityHandler);
 }
 
@@ -69,7 +69,30 @@ QPixmap* RigidBodyGraphicsItem::paintPixmap()
     pixmap->fill ( Qt::transparent );
     
     QPainter painter;
+    painter.setRenderHint(QPainter::Antialiasing, true);
+
+    painter.begin(pixmap);
+    painter.translate(QPointF(size.width(), size.height()) + pos() - pos().toPoint());
+    painter.rotate(rigidBody()->angle()*180.0/M_PI);
+
+    painter.setClipPath(_rotatedPainterPath);
+
+    int countx = 1+((size.width() - (_textureSize.width()/2) ) / _textureSize.width());
+    int county = 1+((size.height() - (_textureSize.height()/2) ) / _textureSize.height());
+
+    for(int i = -countx; i<countx+1; ++i) {
+        for(int j = -county; j<county+1; ++j) {
+            _worldScene->worldRenderer()->svgRenderer()->render(&painter, "DiskTexture",
+                    QRectF(QPoint(-_textureSize.width()/2 - i*_textureSize.width(),
+                                  -_textureSize.height()/2 - j*_textureSize.height() ), _textureSize));
+        }
+    }
+
+    painter.end();
+
+    return pixmap;
     
+    #if 0
     QMatrix r; r.rotate(rigidBody()->angle()*180/M_PI);
     QRectF tRect(QPoint(0,0), _textureSize);
     QSize texturePixmapSize = r.mapRect(tRect).size().toSize()/2 + QSize(1,1);
@@ -137,6 +160,7 @@ QPixmap* RigidBodyGraphicsItem::paintPixmap()
     painter.end();
 
     return pixmap;
+#endif
 }
 
 
@@ -294,6 +318,7 @@ DiskGraphicsItem::DiskGraphicsItem(StepCore::Item* item, WorldModel* worldModel,
     _boundingRect = QRectF(-r, -r ,2*r ,2*r);
     _boundingRect.moveCenter(QPointF(0,0));
     _painterPath.addEllipse(-r, -r, 2*r, 2*r);
+    _rotatedPainterPath = _painterPath;
 }
 
 inline StepCore::Disk* DiskGraphicsItem::disk() const
@@ -308,7 +333,9 @@ QString DiskGraphicsItem::pixmapCacheKey()
     int r = int((radius)*PIXMAP_CACHE_GRADING);
     //kDebug() << (pos() - pos().toPoint())*10;
     //kDebug() << QString("Particle-%1x%2").arg(5+c.x()).arg(5+c.y());
-    return QString("%1:%2x%3:%4").arg(_item->metaObject()->className()).arg(c.x()).arg(c.y()).arg(r);
+    return QString("%1:%2x%3:%4:%5").arg(_item->metaObject()->className())
+            .arg(c.x()).arg(c.y()).arg(r)
+            .arg(int(disk()->angle()*disk()->radius()*_worldScene->viewScale()*PIXMAP_CACHE_GRADING));
 }
 
 void DiskGraphicsItem::worldDataChanged(bool dynamicOnly)
@@ -325,6 +352,7 @@ void DiskGraphicsItem::worldDataChanged(bool dynamicOnly)
     } else {
         _painterPath.addEllipse(-1, -1, 2, 2);
     }
+    _rotatedPainterPath = _painterPath;
 
     RigidBodyGraphicsItem::worldDataChanged(dynamicOnly);
 }
@@ -592,13 +620,14 @@ void BasePolygonGraphicsItem::worldDataChanged(bool dynamicOnly)
             _painterPath.moveTo(_worldScene->vectorToPoint( basePolygon()->vertexes()[0] ));
             for(unsigned int i=1; i<basePolygon()->vertexes().size(); ++i) {
                 _painterPath.lineTo(_worldScene->vectorToPoint( basePolygon()->vertexes()[i] ));
-                kDebug() << "vertex" << _worldScene->vectorToPoint( basePolygon()->vertexes()[i]);
+                //kDebug() << "vertex" << _worldScene->vectorToPoint( basePolygon()->vertexes()[i]);
             }
             _painterPath.closeSubpath();
-            _painterPath = QMatrix().rotate(basePolygon()->angle() * 180 
-                / StepCore::Constants::Pi).map(_painterPath);
+            _rotatedPainterPath = _painterPath;
+            _painterPath = QMatrix().rotate(basePolygon()->angle() * 180.0 / M_PI).map(_painterPath);
         } else {
             _painterPath.addEllipse(-1, -1, 2, 2);
+            _rotatedPainterPath = _painterPath;
         }
         prepareGeometryChange();
         _boundingRect = _painterPath.boundingRect();
@@ -620,7 +649,7 @@ QString BasePolygonGraphicsItem::pixmapCacheKey()
         if(dist > maxDist) maxDist = dist;
 //        kDebug() << "vertex" << _worldScene->vectorToPoint( basePolygon()->vertexes()[i]);
     }
-    key = key.append(":%1").arg(int(rigidBody()->angle()*maxDist*PIXMAP_CACHE_GRADING));
+    key = key.append(":%1").arg(int(rigidBody()->angle()*maxDist*_worldScene->viewScale()*PIXMAP_CACHE_GRADING));
     return key;
 }
 

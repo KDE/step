@@ -95,6 +95,7 @@ bool DiskTarget::checkVictory()
         }
         else return false;
     }
+    return false;
 }
 
 } // namespace StepCore

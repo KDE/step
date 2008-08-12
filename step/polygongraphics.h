@@ -53,6 +53,7 @@ public:
 protected:
     StepCore::RigidBody* rigidBody() const;
     QPainterPath _painterPath;
+    QPainterPath _rotatedPainterPath;
     QSize _textureSize;
 
     LinearArrowHandlerGraphicsItem*         _velocityHandler;
