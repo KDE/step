@@ -130,9 +130,9 @@ QPixmap* TargetGraphicsItem::paintPixmap()
     pixmap->fill ( Qt::transparent );
     
     QPainter painter;
-    painter.setRenderHint(QPainter::Antialiasing, true);
 
     painter.begin(pixmap);
+    painter.setRenderHint(QPainter::Antialiasing, true);
     painter.translate(QPointF(size.width(), size.height()) + pos() - pos().toPoint());
     //painter.rotate(rigidBody()->angle()*180.0/M_PI);
 
@@ -157,7 +157,7 @@ QPixmap* TargetGraphicsItem::paintPixmap()
 
 void TargetGraphicsItem::viewScaleChanged()
 {
-    //worldDataChanged(false); FIXME
+    worldDataChanged(false);
 }
 
 //void TargetGraphicsItem::worldDataChanged(bool dynamicOnly)
@@ -353,6 +353,7 @@ QString DiskTargetGraphicsItem::pixmapCacheKey()
     int r = int((radius)*PIXMAP_CACHE_GRADING);
     //kDebug() << (pos() - pos().toPoint())*10;
     //kDebug() << QString("Particle-%1x%2").arg(5+c.x()).arg(5+c.y());
+    kDebug() << QString("%1:%2x%3:%4").arg(_item->metaObject()->className()).arg(c.x()).arg(c.y()).arg(r);
     return QString("%1:%2x%3:%4").arg(_item->metaObject()->className()).arg(c.x()).arg(c.y()).arg(r);
 }
 
