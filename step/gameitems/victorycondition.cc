@@ -225,7 +225,7 @@ bool DiskTargetCreator::sceneEvent(QEvent* event)
         
         _worldModel->simulationPause();
         StepCore::Vector2d pos = _worldScene->pointToVector(mouseEvent->scenePos());
-        double radius = (pos - static_cast<StepCore::Disk*>(_item)->position()).norm();
+        double radius = (pos - static_cast<StepCore::DiskTarget*>(_item)->position()).norm();
         _worldModel->setProperty(_item, "radius", QVariant::fromValue(radius));
         return true;
 
@@ -234,7 +234,7 @@ bool DiskTargetCreator::sceneEvent(QEvent* event)
 
         _worldModel->simulationPause();
         StepCore::Vector2d pos = _worldScene->pointToVector(mouseEvent->scenePos());
-        StepCore::Disk* disk = static_cast<StepCore::Disk*>(_item);
+        StepCore::DiskTarget* disk = static_cast<StepCore::DiskTarget*>(_item);
         double radius = (pos - disk->position()).norm();
         if(radius == 0) radius = 0.5;
         _worldModel->setProperty(_item, "radius", QVariant::fromValue(radius));
