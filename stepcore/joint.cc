@@ -50,7 +50,8 @@ STEPCORE_META_OBJECT(Stick, "Massless stick which can be connected to bodies", 0
     STEPCORE_PROPERTY_R_D(StepCore::Vector2d, velocity1, "m/s", "Velocity1", velocity1)
     STEPCORE_PROPERTY_R_D(StepCore::Vector2d, velocity2, "m/s", "Velocity2", velocity2)
     STEPCORE_PROPERTY_R_D(StepCore::Vector2d, velocity, "m/s", "Velocity", velocity)
-    STEPCORE_PROPERTY_RW_D(StepCore::Vector2d, size, "m", "Size of stick", size, setSize)
+    STEPCORE_PROPERTY_RWF(StepCore::Vector2d, size, "m", "Size of stick",
+                    StepCore::MetaProperty::DYNAMIC, size, setSize)
     )
 
 STEPCORE_META_OBJECT(Rope, "Massless rope which can be connected to bodies", 0,
