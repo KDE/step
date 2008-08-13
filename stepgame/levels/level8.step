@@ -1,0 +1,173 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE StepCoreXML>
+<world xmlns="http://edu.kde.org/step/StepCoreXML" version="1.0" id="1">
+    <name>world1</name>
+    <color>#ffffffff</color>
+    <time>0</time>
+    <timeScale>1</timeScale>
+    <background></background>
+    <errorsCalculation>false</errorsCalculation>
+
+    <item class="Box" id="2">
+        <name>box1</name>
+        <color>#ff000000</color>
+        <position>(-2.365,-0.54)</position>
+        <angle>0</angle>
+        <velocity>(0,0)</velocity>
+        <angularVelocity>0</angularVelocity>
+        <mass>3.61111111227526</mass>
+        <inertia>0.0777083333333334</inertia>
+        <localSize>(0.93,0.26)</localSize>
+    </item>
+
+    <item class="Box" id="3">
+        <name>box2</name>
+        <color>#ff000000</color>
+        <position>(-1.35,-0.835)</position>
+        <angle>0</angle>
+        <velocity>(0,0)</velocity>
+        <angularVelocity>0</angularVelocity>
+        <mass>1.87499999970896</mass>
+        <inertia>0.0861083333333333</inertia>
+        <localSize>(0.98,0.27)</localSize>
+    </item>
+
+    <item class="Box" id="4">
+        <name>box3</name>
+        <color>#ff000000</color>
+        <position>(-0.26,-1.13)</position>
+        <angle>0</angle>
+        <velocity>(0,0)</velocity>
+        <angularVelocity>0</angularVelocity>
+        <mass>5.4166666684129</mass>
+        <inertia>0.102833333333333</inertia>
+        <localSize>(1.08,0.26)</localSize>
+    </item>
+
+    <item class="Box" id="5">
+        <name>box4</name>
+        <color>#ff000000</color>
+        <position>(0.855,-1.395)</position>
+        <angle>0</angle>
+        <velocity>(0,0)</velocity>
+        <angularVelocity>0</angularVelocity>
+        <mass>4.23611110907384</mass>
+        <inertia>0.0944833333333333</inertia>
+        <localSize>(1.03,0.27)</localSize>
+    </item>
+
+    <item class="DiskTarget" id="6">
+        <name>diskTarget1</name>
+        <color>#ff000000</color>
+        <radius>0.5</radius>
+        <position>(2.1,1.57)</position>
+        <body>7</body>
+        <size>(1,1)</size>
+    </item>
+
+    <item class="Disk" id="7">
+        <name>disk1</name>
+        <color>#ff000000</color>
+        <position>(-2.87,1.92)</position>
+        <angle>0</angle>
+        <velocity>(0.25,-0.92)</velocity>
+        <angularVelocity>0</angularVelocity>
+        <mass>1</mass>
+        <inertia>0.02925</inertia>
+        <radius>0.2418675</radius>
+        <size>(0.483735,0.483735)</size>
+    </item>
+
+    <item class="Box" id="8">
+        <name>box5</name>
+        <color>#ff000000</color>
+        <position>(-0.285,2.74)</position>
+        <angle>0</angle>
+        <velocity>(0,0)</velocity>
+        <angularVelocity>0</angularVelocity>
+        <mass>1</mass>
+        <inertia>2.99334166666667</inertia>
+        <localSize>(5.99,0.2)</localSize>
+    </item>
+
+    <item class="Anchor" id="9">
+        <name>anchor1</name>
+        <color>#ffff0000</color>
+        <body>8</body>
+        <position>(-0.285,2.74)</position>
+        <angle>0</angle>
+    </item>
+
+    <item class="Controller" id="10">
+        <name>controller1</name>
+        <color>#ff000000</color>
+        <position>(291,10)</position>
+        <size>(200,60)</size>
+        <object>2</object>
+        <property>mass</property>
+        <index>-1</index>
+        <limits>(0,10)</limits>
+        <increaseShortcut></increaseShortcut>
+        <decreaseShortcut></decreaseShortcut>
+        <increment>0.1</increment>
+    </item>
+
+    <item class="Controller" id="11">
+        <name>controller2</name>
+        <color>#ff000000</color>
+        <position>(290,-41)</position>
+        <size>(200,60)</size>
+        <object>3</object>
+        <property>mass</property>
+        <index>-1</index>
+        <limits>(0,10)</limits>
+        <increaseShortcut></increaseShortcut>
+        <decreaseShortcut></decreaseShortcut>
+        <increment>0.1</increment>
+    </item>
+
+    <item class="Controller" id="12">
+        <name>controller3</name>
+        <color>#ff000000</color>
+        <position>(286,-97)</position>
+        <size>(200,60)</size>
+        <object>4</object>
+        <property>mass</property>
+        <index>-1</index>
+        <limits>(0,10)</limits>
+        <increaseShortcut></increaseShortcut>
+        <decreaseShortcut></decreaseShortcut>
+        <increment>0.1</increment>
+    </item>
+
+    <item class="Controller" id="13">
+        <name>controller4</name>
+        <color>#ff000000</color>
+        <position>(279,-157)</position>
+        <size>(200,60)</size>
+        <object>5</object>
+        <property>mass</property>
+        <index>-1</index>
+        <limits>(0,10)</limits>
+        <increaseShortcut></increaseShortcut>
+        <decreaseShortcut></decreaseShortcut>
+        <increment>0.1</increment>
+    </item>
+
+    <solver class="AdaptiveEulerSolver" id="14">
+        <name>solver1</name>
+        <stepSize>1</stepSize>
+        <toleranceAbs>0.001</toleranceAbs>
+        <toleranceRel>0.001</toleranceRel>
+    </solver>
+
+    <collisionSolver class="GJKCollisionSolver" id="15">
+        <name>collisionSolver1</name>
+        <toleranceAbs>0.001</toleranceAbs>
+    </collisionSolver>
+
+    <constraintSolver class="CGConstraintSolver" id="16">
+        <name>constraintSolver1</name>
+    </constraintSolver>
+
+</world>

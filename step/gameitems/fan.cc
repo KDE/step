@@ -53,6 +53,32 @@ void Fan::calcForce(bool calcVariances)
     for(ItemList::const_iterator body = world()->items().begin(); body != end; ++body) { //all bodies
         //const StepCore::MetaProperty* propertyP = (*body)->metaObject()->property("position");
         //const StepCore::MetaProperty* propertyS = (*body)->metaObject()->property("size");
+
+        if((*body)->metaObject()->inherits<Disk>()){ //FIXME
+            bool up = false;
+            bool down = false;
+            bool inside = false;
+            double s = 0;
+            Disk* disk = static_cast<Disk*>(*body);
+            Vector2d center = disk->position();
+            double radius = disk->radius();
+            double dist = a1*center[0]+b1 - center[1];
+            if(dist < -radius) s = 0;
+            else if((dist > -radius)&&(dist < radius)) s = radius + dist;
+            else if((dist > radius)&&(dist < height - radius)) s = 2*radius;
+            else if((dist > height-radius )&&( dist < height + radius )) s = radius - (dist-height);
+            else if( dist > height + radius) s = 0;
+            Vector2d bodyVelocity = disk->velocity();
+            Vector2d force = _viscosity*(_power - bodyVelocity.norm())*s*Vector2d(1,0); //FIXME
+            Vector2d point = Vector2d(0);
+            if(!up && !down){ point = disk->position(); }
+            else if(up && down){ point = this->position(); }
+            else if(up && inside) { point = this->position() + Vector2d(0, (height-s)/2); }
+            else if(down && inside) { point = this->position() + Vector2d(0, -(height-s)/2); } 
+            disk->applyForce(force, point);
+            
+        }
+
         if((*body)->metaObject()->inherits<BasePolygon>()) {
             bool up = false;
             bool down = false;

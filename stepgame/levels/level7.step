@@ -1,0 +1,149 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE StepCoreXML>
+<world xmlns="http://edu.kde.org/step/StepCoreXML" version="1.0" id="1">
+    <name>world1</name>
+    <color>#ffffffff</color>
+    <time>0</time>
+    <timeScale>1</timeScale>
+    <background></background>
+    <errorsCalculation>false</errorsCalculation>
+
+    <item class="Box" id="2">
+        <name>box1</name>
+        <color>#ff000000</color>
+        <position>(0.275,-1.555)</position>
+        <angle>0</angle>
+        <velocity>(0,0)</velocity>
+        <angularVelocity>0</angularVelocity>
+        <mass>1</mass>
+        <inertia>0.293216666666667</inertia>
+        <localSize>(1.85,0.31)</localSize>
+    </item>
+
+    <item class="Anchor" id="3">
+        <name>anchor1</name>
+        <color>#ffff0000</color>
+        <body>2</body>
+        <position>(0.275,-1.555)</position>
+        <angle>0</angle>
+    </item>
+
+    <item class="Box" id="4">
+        <name>box2</name>
+        <color>#ff000000</color>
+        <position>(0.275,0.655)</position>
+        <angle>0</angle>
+        <velocity>(0,0)</velocity>
+        <angularVelocity>0</angularVelocity>
+        <mass>10</mass>
+        <inertia>0.0760166666666666</inertia>
+        <localSize>(0.91,0.29)</localSize>
+    </item>
+
+    <item class="DiskTarget" id="5">
+        <name>diskTarget1</name>
+        <color>#ff000000</color>
+        <radius>0.3301515</radius>
+        <position>(0.29,2.19)</position>
+        <body>0</body>
+        <size>(0.660303,0.660303)</size>
+    </item>
+
+    <item class="Particle" id="6">
+        <name>particle1</name>
+        <color>#ff000000</color>
+        <position>(2.57,0.04)</position>
+        <velocity>(0.04,0.21)</velocity>
+        <mass>1</mass>
+    </item>
+
+    <item class="Particle" id="7">
+        <name>particle2</name>
+        <color>#ff000000</color>
+        <position>(2.33,0.38)</position>
+        <velocity>(0,0)</velocity>
+        <mass>1</mass>
+    </item>
+
+    <item class="Particle" id="8">
+        <name>particle3</name>
+        <color>#ff000000</color>
+        <position>(3.04,0.54)</position>
+        <velocity>(0,0)</velocity>
+        <mass>1</mass>
+    </item>
+
+    <item class="Particle" id="9">
+        <name>particle4</name>
+        <color>#ff000000</color>
+        <position>(2.93,0.17)</position>
+        <velocity>(0,0)</velocity>
+        <mass>1</mass>
+    </item>
+
+    <item class="Particle" id="10">
+        <name>particle5</name>
+        <color>#ff000000</color>
+        <position>(2.69,0.32)</position>
+        <velocity>(0.03,0.03)</velocity>
+        <mass>1</mass>
+    </item>
+
+    <item class="Fixator" id="11">
+        <name>fixator1</name>
+        <color>#ffff0000</color>
+        <body>4</body>
+        <localPosition>(0,0)</localPosition>
+    </item>
+
+    <item class="Fixator" id="12">
+        <name>fixator2</name>
+        <color>#ffff0000</color>
+        <body>0</body>
+        <localPosition>(0.33,2.1)</localPosition>
+    </item>
+
+    <item class="WeightForce" id="13">
+        <name>weightForce1</name>
+        <color>#ff000000</color>
+        <weightConst>0.5</weightConst>
+        <weightConstVariance>1e-10</weightConstVariance>
+    </item>
+
+    <item class="Box" id="14">
+        <name>box3</name>
+        <color>#ff000000</color>
+        <position>(0.22,0.425)</position>
+        <angle>0</angle>
+        <velocity>(0,0)</velocity>
+        <angularVelocity>0</angularVelocity>
+        <mass>1</mass>
+        <inertia>0.00850833333333333</inertia>
+        <localSize>(0.3,0.11)</localSize>
+    </item>
+
+    <item class="Anchor" id="15">
+        <name>anchor2</name>
+        <color>#ffff0000</color>
+        <body>14</body>
+        <position>(0.22,0.425)</position>
+        <angle>0</angle>
+    </item>
+
+    <solver class="AdaptiveEulerSolver" id="16">
+        <name>solver1</name>
+        <stepSize>1</stepSize>
+        <toleranceAbs>0.001</toleranceAbs>
+        <toleranceRel>0.001</toleranceRel>
+    </solver>
+
+    <collisionSolver class="GJKCollisionSolver" id="17">
+        <name>collisionSolver1</name>
+        <toleranceAbs>0.001</toleranceAbs>
+    </collisionSolver>
+
+    <constraintSolver class="CGConstraintSolver" id="18">
+        <name>constraintSolver1</name>
+    </constraintSolver>
+
+</world>

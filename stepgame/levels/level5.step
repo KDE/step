@@ -1,0 +1,235 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE StepCoreXML>
+<world xmlns="http://edu.kde.org/step/StepCoreXML" version="1.0" id="1">
+    <name>world1</name>
+    <color>#ffffffff</color>
+    <time>0</time>
+    <timeScale>1</timeScale>
+    <background></background>
+    <errorsCalculation>false</errorsCalculation>
+
+    <item class="Box" id="2">
+        <name>box1</name>
+        <color>#ff000000</color>
+        <position>(-3.39,0.17)</position>
+        <angle>0</angle>
+        <velocity>(0,0)</velocity>
+        <angularVelocity>0</angularVelocity>
+        <mass>1</mass>
+        <inertia>1e+100</inertia>
+        <localSize>(0.98,0.48)</localSize>
+    </item>
+
+    <item class="Box" id="3">
+        <name>box5</name>
+        <color>#ff000000</color>
+        <position>(2.68,7.10543e-17)</position>
+        <angle>0</angle>
+        <velocity>(0,0)</velocity>
+        <angularVelocity>0</angularVelocity>
+        <mass>1</mass>
+        <inertia>1.02533333333333</inertia>
+        <localSize>(0.44,3.48)</localSize>
+    </item>
+
+    <item class="Anchor" id="4">
+        <name>anchor1</name>
+        <color>#ffff0000</color>
+        <body>3</body>
+        <position>(2.68,7.10543e-17)</position>
+        <angle>0</angle>
+    </item>
+
+    <item class="Spring" id="5">
+        <name>spring1</name>
+        <color>#ff00ff00</color>
+        <restLength>1.2</restLength>
+        <stiffness>1</stiffness>
+        <damping>0</damping>
+        <body1>16</body1>
+        <body2>0</body2>
+        <localPosition1>(-0.01,0.025)</localPosition1>
+        <localPosition2>(-2.03,1.71)</localPosition2>
+    </item>
+
+    <item class="Spring" id="6">
+        <name>spring2</name>
+        <color>#ff00ff00</color>
+        <restLength>1.2</restLength>
+        <stiffness>1</stiffness>
+        <damping>0</damping>
+        <body1>17</body1>
+        <body2>0</body2>
+        <localPosition1>(-0.04,-0.01)</localPosition1>
+        <localPosition2>(-0.61,-1.51)</localPosition2>
+    </item>
+
+    <item class="Spring" id="7">
+        <name>spring3</name>
+        <color>#ff00ff00</color>
+        <restLength>1.2</restLength>
+        <stiffness>1</stiffness>
+        <damping>0</damping>
+        <body1>18</body1>
+        <body2>0</body2>
+        <localPosition1>(-0.005,0.01)</localPosition1>
+        <localPosition2>(0.69,1.57)</localPosition2>
+    </item>
+
+    <item class="Spring" id="8">
+        <name>spring4</name>
+        <color>#ff00ff00</color>
+        <restLength>1.2</restLength>
+        <stiffness>1</stiffness>
+        <damping>0</damping>
+        <body1>19</body1>
+        <body2>0</body2>
+        <localPosition1>(-0.015,0.01)</localPosition1>
+        <localPosition2>(2.7,-3.64)</localPosition2>
+    </item>
+
+    <item class="Fixator" id="9">
+        <name>fixator1</name>
+        <color>#ffff0000</color>
+        <body>2</body>
+        <localPosition>(0,0)</localPosition>
+    </item>
+
+    <item class="Controller" id="10">
+        <name>controller1</name>
+        <color>#ff000000</color>
+        <position>(-304,-223)</position>
+        <size>(200,60)</size>
+        <object>6</object>
+        <property>stiffness</property>
+        <index>-1</index>
+        <limits>(0,10)</limits>
+        <increaseShortcut></increaseShortcut>
+        <decreaseShortcut></decreaseShortcut>
+        <increment>0.1</increment>
+    </item>
+
+    <item class="Controller" id="11">
+        <name>controller2</name>
+        <color>#ff000000</color>
+        <position>(-307,-294)</position>
+        <size>(200,60)</size>
+        <object>7</object>
+        <property>stiffness</property>
+        <index>-1</index>
+        <limits>(0,10)</limits>
+        <increaseShortcut></increaseShortcut>
+        <decreaseShortcut></decreaseShortcut>
+        <increment>0.1</increment>
+    </item>
+
+    <item class="Controller" id="12">
+        <name>controller3</name>
+        <color>#ff000000</color>
+        <position>(-299,-364)</position>
+        <size>(200,60)</size>
+        <object>8</object>
+        <property>stiffness</property>
+        <index>-1</index>
+        <limits>(0,10)</limits>
+        <increaseShortcut></increaseShortcut>
+        <decreaseShortcut></decreaseShortcut>
+        <increment>0.1</increment>
+    </item>
+
+    <item class="Controller" id="13">
+        <name>controller4</name>
+        <color>#ff000000</color>
+        <position>(-299,-150)</position>
+        <size>(200,60)</size>
+        <object>5</object>
+        <property>stiffness</property>
+        <index>-1</index>
+        <limits>(0,10)</limits>
+        <increaseShortcut></increaseShortcut>
+        <decreaseShortcut></decreaseShortcut>
+        <increment>0.1</increment>
+    </item>
+
+    <item class="LinearMotor" id="14">
+        <name>linearMotor1</name>
+        <color>#ff0000ff</color>
+        <body>2</body>
+        <localPosition>(0.27,-0.01)</localPosition>
+        <forceValue>(0.19,0)</forceValue>
+    </item>
+
+    <item class="DiskTarget" id="15">
+        <name>diskTarget1</name>
+        <color>#ff000000</color>
+        <radius>1</radius>
+        <position>(4.66,-1.11)</position>
+        <body>2</body>
+        <size>(2,2)</size>
+    </item>
+
+    <item class="Box" id="16">
+        <name>box2</name>
+        <color>#ff000000</color>
+        <position>(-2.02,0.995)</position>
+        <angle>0</angle>
+        <velocity>(0,0)</velocity>
+        <angularVelocity>0</angularVelocity>
+        <mass>1</mass>
+        <inertia>100</inertia>
+        <localSize>(0.88,0.11)</localSize>
+    </item>
+
+    <item class="Box" id="17">
+        <name>box3</name>
+        <color>#ff000000</color>
+        <position>(-0.59,-0.905)</position>
+        <angle>0</angle>
+        <velocity>(0,0)</velocity>
+        <angularVelocity>0</angularVelocity>
+        <mass>1</mass>
+        <inertia>1e+100</inertia>
+        <localSize>(0.84,0.09)</localSize>
+    </item>
+
+    <item class="Box" id="18">
+        <name>box4</name>
+        <color>#ff000000</color>
+        <position>(0.7,0.97)</position>
+        <angle>0</angle>
+        <velocity>(0,0)</velocity>
+        <angularVelocity>0</angularVelocity>
+        <mass>1</mass>
+        <inertia>1e+100</inertia>
+        <localSize>(0.78,0.06)</localSize>
+    </item>
+
+    <item class="Box" id="19">
+        <name>box6</name>
+        <color>#ff000000</color>
+        <position>(2.67,-3.03)</position>
+        <angle>0</angle>
+        <velocity>(0,0)</velocity>
+        <angularVelocity>0</angularVelocity>
+        <mass>1</mass>
+        <inertia>1e+100</inertia>
+        <localSize>(0.74,0.12)</localSize>
+    </item>
+
+    <solver class="AdaptiveEulerSolver" id="20">
+        <name>solver1</name>
+        <stepSize>1</stepSize>
+        <toleranceAbs>0.001</toleranceAbs>
+        <toleranceRel>0.001</toleranceRel>
+    </solver>
+
+    <collisionSolver class="GJKCollisionSolver" id="21">
+        <name>collisionSolver1</name>
+        <toleranceAbs>0.001</toleranceAbs>
+    </collisionSolver>
+
+    <constraintSolver class="CGConstraintSolver" id="22">
+        <name>constraintSolver1</name>
+    </constraintSolver>
+
+</world>

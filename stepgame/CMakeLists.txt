@@ -33,6 +33,8 @@ include_directories(${CMAKE_CURRENT_BINARY_DIR})
 include_directories(${CMAKE_CURRENT_SOURCE_DIR})
 include_directories(${CMAKE_CURRENT_SOURCE_DIR}/../step)
 
+add_subdirectory(levels)
+
 kde4_add_executable(stepgame ${stepgame_SRCS})
 target_link_libraries(stepgame
     libstepgui

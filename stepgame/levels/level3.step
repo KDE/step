@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE StepCoreXML>
+<world xmlns="http://edu.kde.org/step/StepCoreXML" version="1.0" id="1">
+    <name>world1</name>
+    <color>#ffffffff</color>
+    <time>16.9199999999998</time>
+    <timeScale>1</timeScale>
+    <background></background>
+    <errorsCalculation>false</errorsCalculation>
+
+    <item class="Box" id="2">
+        <name>box1</name>
+        <color>#ff000000</color>
+        <position>(1.13469,0)</position>
+        <angle>0</angle>
+        <velocity>(-0.0938034,0)</velocity>
+        <angularVelocity>0</angularVelocity>
+        <mass>1</mass>
+        <inertia>10000000000</inertia>
+        <localSize>(0.19,0.84)</localSize>
+    </item>
+
+    <item class="Spring" id="3">
+        <name>spring1</name>
+        <color>#ff00ff00</color>
+        <restLength>1.1</restLength>
+        <stiffness>1</stiffness>
+        <damping>0</damping>
+        <body1>0</body1>
+        <body2>2</body2>
+        <localPosition1>(0,0)</localPosition1>
+        <localPosition2>(0,0)</localPosition2>
+    </item>
+
+    <item class="Controller" id="4">
+        <name>controller1</name>
+        <color>#ff000000</color>
+        <position>(214,-119)</position>
+        <size>(200,60)</size>
+        <object>3</object>
+        <property>stiffness</property>
+        <index>-1</index>
+        <limits>(1,2)</limits>
+        <increaseShortcut></increaseShortcut>
+        <decreaseShortcut></decreaseShortcut>
+        <increment>0.1</increment>
+    </item>
+
+    <item class="DiskTarget" id="5">
+        <name>diskTarget1</name>
+        <color>#ff000000</color>
+        <radius>0.2766</radius>
+        <position>(3.42,-0.01)</position>
+        <body>2</body>
+        <size>(0.5532,0.5532)</size>
+    </item>
+
+    <solver class="AdaptiveEulerSolver" id="6">
+        <name>solver1</name>
+        <stepSize>1</stepSize>
+        <toleranceAbs>0.001</toleranceAbs>
+        <toleranceRel>0.001</toleranceRel>
+    </solver>
+
+    <collisionSolver class="GJKCollisionSolver" id="7">
+        <name>collisionSolver1</name>
+        <toleranceAbs>0.001</toleranceAbs>
+    </collisionSolver>
+
+    <constraintSolver class="CGConstraintSolver" id="8">
+        <name>constraintSolver1</name>
+    </constraintSolver>
+
+</world>
