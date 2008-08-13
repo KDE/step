@@ -76,6 +76,7 @@ QPixmap* RigidBodyGraphicsItem::paintPixmap()
     painter.translate(QPointF(size.width(), size.height()) + pos() - pos().toPoint());
     painter.rotate(rigidBody()->angle()*180.0/M_PI);
 
+    painter.fillPath(_rotatedPainterPath, Qt::red);
     painter.setClipPath(_rotatedPainterPath);
 
     int countx = 1+((size.width() - (_textureSize.width()/2) ) / _textureSize.width());
