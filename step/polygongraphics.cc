@@ -70,9 +70,9 @@ QPixmap* RigidBodyGraphicsItem::paintPixmap()
     pixmap->fill ( Qt::transparent );
     
     QPainter painter;
-    painter.setRenderHint(QPainter::Antialiasing, true);
 
     painter.begin(pixmap);
+    painter.setRenderHint(QPainter::Antialiasing, true);
     painter.translate(QPointF(size.width(), size.height()) + pos() - pos().toPoint());
     painter.rotate(-rigidBody()->angle()*180.0/M_PI);
 
