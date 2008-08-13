@@ -37,8 +37,8 @@
      inkscape:pageopacity="0.0"
      inkscape:pageshadow="2"
      inkscape:zoom="1.7963714"
-     inkscape:cx="203.33865"
-     inkscape:cy="519.1602"
+     inkscape:cx="50.719201"
+     inkscape:cy="-73.341249"
      inkscape:document-units="px"
      inkscape:current-layer="layer1"
      showgrid="false"
@@ -706,173 +706,6 @@
          style="fill:none;fill-rule:evenodd;stroke:#000000;stroke-width:3;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1" />
     </g>
     <g
-       id="DiskTexture">
-      <rect
-         ry="0"
-         y="1276.1479"
-         x="310.92856"
-         height="75"
-         width="90"
-         id="rect4876"
-         style="fill:#a5c700;fill-opacity:1;fill-rule:nonzero;stroke:none;stroke-width:1;stroke-linecap:square;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1" />
-      <g
-         id="g4878">
-        <g
-           id="DiskTextureBase"
-           transform="matrix(0.9375,0,0,0.9615385,-174.56941,277.92221)">
-          <rect
-             transform="translate(250.92856,426.1479)"
-             y="638.00677"
-             x="298.93594"
-             height="26"
-             width="32"
-             id="rect2498"
-             style="fill:#a5c700;fill-opacity:1;fill-rule:nonzero;stroke:#0000ff;stroke-width:1.05324892;stroke-linecap:square;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1" />
-          <path
-             transform="translate(250.92856,426.1479)"
-             id="path2500"
-             d="M 307.8428,647.47029 L 317.863,656.93382 L 314.52293,643.57355"
-             style="fill:none;fill-rule:evenodd;stroke:#000000;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1" />
-        </g>
-        <g
-           transform="matrix(0.9375,0,0,0.9615385,-144.56941,302.92221)"
-           id="g4828">
-          <rect
-             style="fill:#a5c700;fill-opacity:1;stroke:none;stroke-width:1.5;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1"
-             id="rect4830"
-             width="32"
-             height="26"
-             x="298.93594"
-             y="638.00677"
-             transform="translate(250.92856,426.1479)" />
-          <path
-             style="fill:none;fill-rule:evenodd;stroke:#000000;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
-             d="M 307.8428,647.47029 L 317.863,656.93382 L 314.52293,643.57355"
-             id="path4832"
-             transform="translate(250.92856,426.1479)" />
-        </g>
-        <g
-           id="g4834"
-           transform="matrix(0.9375,0,0,0.9615385,-174.56941,302.92221)">
-          <rect
-             transform="translate(250.92856,426.1479)"
-             y="638.00677"
-             x="298.93594"
-             height="26"
-             width="32"
-             id="rect4836"
-             style="fill:#a5c700;fill-opacity:1;stroke:none;stroke-width:1.5;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1" />
-          <path
-             transform="translate(250.92856,426.1479)"
-             id="path4838"
-             d="M 307.8428,647.47029 L 317.863,656.93382 L 314.52293,643.57355"
-             style="fill:none;fill-rule:evenodd;stroke:#000000;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1" />
-        </g>
-        <g
-           transform="matrix(0.9375,0,0,0.9615385,-204.56941,302.92221)"
-           id="g4840">
-          <rect
-             style="fill:#a5c700;fill-opacity:1;stroke:none;stroke-width:1.5;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1"
-             id="rect4842"
-             width="32"
-             height="26"
-             x="298.93594"
-             y="638.00677"
-             transform="translate(250.92856,426.1479)" />
-          <path
-             style="fill:none;fill-rule:evenodd;stroke:#000000;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
-             d="M 307.8428,647.47029 L 317.863,656.93382 L 314.52293,643.57355"
-             id="path4844"
-             transform="translate(250.92856,426.1479)" />
-        </g>
-        <g
-           id="g4846"
-           transform="matrix(0.9375,0,0,0.9615385,-144.56941,277.92221)">
-          <rect
-             transform="translate(250.92856,426.1479)"
-             y="638.00677"
-             x="298.93594"
-             height="26"
-             width="32"
-             id="rect4848"
-             style="fill:#a5c700;fill-opacity:1;stroke:none;stroke-width:1.5;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1" />
-          <path
-             transform="translate(250.92856,426.1479)"
-             id="path4850"
-             d="M 307.8428,647.47029 L 317.863,656.93382 L 314.52293,643.57355"
-             style="fill:none;fill-rule:evenodd;stroke:#000000;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1" />
-        </g>
-        <g
-           transform="matrix(0.9375,0,0,0.9615385,-204.56941,277.92221)"
-           id="g4852">
-          <rect
-             style="fill:#a5c700;fill-opacity:1;stroke:none;stroke-width:1.5;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1"
-             id="rect4854"
-             width="32"
-             height="26"
-             x="298.93594"
-             y="638.00677"
-             transform="translate(250.92856,426.1479)" />
-          <path
-             style="fill:none;fill-rule:evenodd;stroke:#000000;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
-             d="M 307.8428,647.47029 L 317.863,656.93382 L 314.52293,643.57355"
-             id="path4856"
-             transform="translate(250.92856,426.1479)" />
-        </g>
-        <g
-           id="g4858"
-           transform="matrix(0.9375,0,0,0.9615385,-144.56941,252.92221)">
-          <rect
-             transform="translate(250.92856,426.1479)"
-             y="638.00677"
-             x="298.93594"
-             height="26"
-             width="32"
-             id="rect4860"
-             style="fill:#a5c700;fill-opacity:1;stroke:none;stroke-width:1.5;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1" />
-          <path
-             transform="translate(250.92856,426.1479)"
-             id="path4862"
-             d="M 307.8428,647.47029 L 317.863,656.93382 L 314.52293,643.57355"
-             style="fill:none;fill-rule:evenodd;stroke:#000000;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1" />
-        </g>
-        <g
-           transform="matrix(0.9375,0,0,0.9615385,-174.56941,252.92221)"
-           id="g4864">
-          <rect
-             style="fill:#a5c700;fill-opacity:1;stroke:none;stroke-width:1.5;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1"
-             id="rect4866"
-             width="32"
-             height="26"
-             x="298.93594"
-             y="638.00677"
-             transform="translate(250.92856,426.1479)" />
-          <path
-             style="fill:none;fill-rule:evenodd;stroke:#000000;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
-             d="M 307.8428,647.47029 L 317.863,656.93382 L 314.52293,643.57355"
-             id="path4868"
-             transform="translate(250.92856,426.1479)" />
-        </g>
-        <g
-           id="g4870"
-           transform="matrix(0.9375,0,0,0.9615385,-204.56941,252.92221)">
-          <rect
-             transform="translate(250.92856,426.1479)"
-             y="638.00677"
-             x="298.93594"
-             height="26"
-             width="32"
-             id="rect4872"
-             style="fill:#a5c700;fill-opacity:1;stroke:none;stroke-width:1.5;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1" />
-          <path
-             transform="translate(250.92856,426.1479)"
-             id="path4874"
-             d="M 307.8428,647.47029 L 317.863,656.93382 L 314.52293,643.57355"
-             style="fill:none;fill-rule:evenodd;stroke:#000000;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1" />
-        </g>
-      </g>
-    </g>
-    <g
        id="Fork"
        transform="matrix(-0.9988199,4.8567202e-2,-4.8567202e-2,-0.9988199,897.90498,1409.9451)"
        style="stroke:#000000;stroke-width:2.29999995;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1">
@@ -904,6 +737,74 @@
          id="path2562"
          d="M 315.63629,683.65435 C 317.05563,684.22209 307.68891,690.89116 313.40958,690.89116 C 316.62996,690.89116 322.54273,689.08898 317.30632,686.99442 C 316.15058,686.53212 316.19297,684.7677 315.63629,683.65435 z"
          style="fill:none;fill-rule:evenodd;stroke:#000000;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1" />
+    </g>
+    <g
+       id="Disk_Texture"
+       transform="matrix(0.9375,0,0,0.9615385,-251.73553,233.2864)">
+      <rect
+         transform="translate(250.92856,426.1479)"
+         y="638.00677"
+         x="298.93594"
+         height="26"
+         width="32"
+         id="rect3317"
+         style="fill:#a5c700;fill-opacity:1;fill-rule:nonzero;stroke:none;stroke-width:1.05324888;stroke-linecap:square;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1" />
+      <path
+         transform="translate(250.92856,426.1479)"
+         id="path3319"
+         d="M 307.8428,647.47029 L 317.863,656.93382 L 314.52293,643.57355"
+         style="fill:none;fill-rule:evenodd;stroke:#000000;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1" />
+    </g>
+    <g
+       transform="matrix(0.9375,0,0,0.9615385,-186.60423,238.2965)"
+       id="Box_Texture">
+      <rect
+         style="fill:#a5c700;fill-opacity:1;fill-rule:nonzero;stroke:none;stroke-width:1.05324888;stroke-linecap:square;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1"
+         id="rect3323"
+         width="32"
+         height="26"
+         x="298.93594"
+         y="638.00677"
+         transform="translate(250.92856,426.1479)" />
+      <path
+         style="fill:none;fill-rule:evenodd;stroke:#000000;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+         d="M 307.8428,647.47029 L 317.863,656.93382 L 314.52293,643.57355"
+         id="path3325"
+         transform="translate(250.92856,426.1479)" />
+    </g>
+    <g
+       id="Polygon_Texture"
+       transform="matrix(0.9375,0,0,0.9615385,-246.72543,303.4278)">
+      <rect
+         transform="translate(250.92856,426.1479)"
+         y="638.00677"
+         x="298.93594"
+         height="26"
+         width="32"
+         id="rect3329"
+         style="fill:#a5c700;fill-opacity:1;fill-rule:nonzero;stroke:none;stroke-width:1.05324888;stroke-linecap:square;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1" />
+      <path
+         transform="translate(250.92856,426.1479)"
+         id="path3331"
+         d="M 307.8428,647.47029 L 317.863,656.93382 L 314.52293,643.57355"
+         style="fill:none;fill-rule:evenodd;stroke:#000000;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1" />
+    </g>
+    <g
+       transform="matrix(0.9375,0,0,0.9615385,-182.15081,302.87112)"
+       id="DiskTarget_Texture">
+      <rect
+         style="fill:#a5c700;fill-opacity:1;fill-rule:nonzero;stroke:none;stroke-width:1.05324888;stroke-linecap:square;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1"
+         id="rect3335"
+         width="32"
+         height="26"
+         x="298.93594"
+         y="638.00677"
+         transform="translate(250.92856,426.1479)" />
+      <path
+         style="fill:none;fill-rule:evenodd;stroke:#000000;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+         d="M 307.8428,647.47029 L 317.863,656.93382 L 314.52293,643.57355"
+         id="path3337"
+         transform="translate(250.92856,426.1479)" />
     </g>
     <g
        id="Fan">

@@ -107,9 +107,9 @@ TargetGraphicsItem::TargetGraphicsItem(StepCore::Item* item, WorldModel* worldMo
     setFlag(QGraphicsItem::ItemIsSelectable);
     setFlag(QGraphicsItem::ItemIsMovable);
     setAcceptsHoverEvents(true);
-    setOnHoverHandlerEnabled(true);
-    _textureSize = _worldScene->worldRenderer()->svgRenderer()->boundsOnElement("TargetTexture").size().toSize();
-    //scene()->addItem(_velocityHandler);
+    //setOnHoverHandlerEnabled(true);
+    _textureSize = (_worldScene->worldRenderer()->svgRenderer()->boundsOnElement(
+            _item->metaObject()->className() + "_Texture").size().toSize()/2)*2;
 }
 
 QPainterPath TargetGraphicsItem::shape() const
@@ -128,50 +128,28 @@ QPixmap* TargetGraphicsItem::paintPixmap()
     QSize size = QSizeF(w, h).toSize() + QSize(1, 1);
     QPixmap* pixmap = new QPixmap ( size*2 );
     pixmap->fill ( Qt::transparent );
-     
+    
     QPainter painter;
-    QPoint c = ((pos() - pos().toPoint())*PIXMAP_CACHE_GRADING).toPoint();
-    QString textureKey = QString("TargetTextureUnit:%1x%2").arg(c.x()).arg(c.y());
-    QPixmap* texturePixmap = _worldScene->worldRenderer()->pixmapCache()->object ( textureKey );
-    QSize texturePixmapSize = _textureSize/2 + QSize(1,1);
+    painter.setRenderHint(QPainter::Antialiasing, true);
 
-    if ( !texturePixmap ) {
-        texturePixmap = new QPixmap(2*texturePixmapSize);
-        texturePixmap->fill(Qt::white);
-        painter.begin(texturePixmap);
-        _worldScene->worldRenderer()->svgRenderer()->render(&painter, "TargetTexture",
-                                   QRectF(pos() - pos().toPoint(), _textureSize ));
-        painter.end();
-        _worldScene->worldRenderer()->pixmapCache()->insert ( textureKey, texturePixmap,
-                                   texturePixmap->width() * texturePixmap->height() );
-    }
-    
-    painter.begin ( pixmap );
-    QPointF diff = QPointF(size.width(),size.height());
-    painter.translate(diff);
-    QPainterPath path = QMatrix(1,0,0,1,
-                     (pos() - pos().toPoint()).x(), (pos() - pos().toPoint()).y() )
-								.map(_painterPath);
-    /*
-    painter.setClipPath ( path );
-    //_item->metaObject()->className()
-    
-    int h1 = _textureSize.height();
-    int w1 = _textureSize.width();
-    
-    for(int i= - int(_boundingRect.size().height()) ; i*h1 < int(_boundingRect.size().height()); i++) {
-        for(int j=- int(_boundingRect.size().width()); j*w1 < int(_boundingRect.size().width()); j++) {
-            er.drawPixmap(w1*j - texturePixmapSize.width()/2,
-                               h1*i - texturePixmapSize.height()/2, *texturePixmap);
-            //_worldScene->worldRenderer()->svgRenderer()->
-            //    render ( &painter, "DiskTexture", QRectF (w*j,h*i,w,h) );
+    painter.begin(pixmap);
+    painter.translate(QPointF(size.width(), size.height()) + pos() - pos().toPoint());
+    //painter.rotate(rigidBody()->angle()*180.0/M_PI);
+
+    painter.setClipPath(_rotatedPainterPath);
+
+    int countx = 1+((size.width() - (_textureSize.width()/2) ) / _textureSize.width());
+    int county = 1+((size.height() - (_textureSize.height()/2) ) / _textureSize.height());
+
+    for(int i = -countx; i<countx+1; ++i) {
+        for(int j = -county; j<county+1; ++j) {
+            _worldScene->worldRenderer()->svgRenderer()->render(&painter,
+                    _item->metaObject()->className() + "_Texture",
+                    QRectF(QPoint(-_textureSize.width()/2 - i*_textureSize.width(),
+                                  -_textureSize.height()/2 - j*_textureSize.height() ), _textureSize));
         }
     }
-    painter.setClipping ( false );
-    */
-    painter.fillPath(path, QBrush(*texturePixmap));
-    painter.setPen(Qt::red);
-    painter.drawPath(path);
+
     painter.end();
 
     return pixmap;
@@ -256,6 +234,64 @@ bool DiskTargetCreator::sceneEvent(QEvent* event)
 
         _worldModel->simulationPause();
         StepCore::Vector2d pos = _worldScene->pointToVector(mouseEvent->scenePos());
+        StepCore::Disk* disk = static_cast<StepCore::Disk*>(_item);
+        double radius = (pos - disk->position()).norm();
+        if(radius == 0) radius = 0.5;
+        _worldModel->setProperty(_item, "radius", QVariant::fromValue(radius));
+        _worldModel->endMacro();
+
+        showMessage(MessageFrame::Information,
+            i18n("%1 named '%2' created", className(), _item->name()),
+            MessageFrame::CloseButton | MessageFrame::CloseTimer);
+
+        setFinished();
+        return true;
+    }
+
+    return false;
+}
+
+#if 0
+void DiskTargetCreator::start()
+{
+    showMessage(MessageFrame::Information,
+            i18n("Press left mouse button to position a center of a %1", className()));
+}
+
+bool DiskTargetCreator::sceneEvent(QEvent* event)
+{
+    QGraphicsSceneMouseEvent* mouseEvent = static_cast<QGraphicsSceneMouseEvent*>(event);
+
+    if(event->type() == QEvent::GraphicsSceneMousePress && mouseEvent->button() == Qt::LeftButton) {
+        QPointF pos = mouseEvent->scenePos();
+        QVariant vpos = QVariant::fromValue(_worldScene->pointToVector(pos));
+
+        _worldModel->simulationPause();
+        _worldModel->beginMacro(i18n("Create %1", _worldModel->newItemName(_className)));
+        _item = _worldModel->newItem(_className); Q_ASSERT(_item != NULL);
+        _worldModel->setProperty(_item, "position", vpos);
+        _worldModel->setProperty(_item, "radius", QVariant::fromValue(0.0));
+        _worldModel->selectionModel()->setCurrentIndex(_worldModel->objectIndex(_item),
+                                                    QItemSelectionModel::ClearAndSelect);
+
+        showMessage(MessageFrame::Information,
+            i18n("Move mouse and release left mouse button to define a radius of the %1", className()));
+
+        return true;
+    } else if(event->type() == QEvent::GraphicsSceneMouseMove &&
+                    mouseEvent->buttons() & Qt::LeftButton) {
+        
+        _worldModel->simulationPause();
+        StepCore::Vector2d pos = _worldScene->pointToVector(mouseEvent->scenePos());
+        double radius = (pos - static_cast<StepCore::Disk*>(_item)->position()).norm();
+        _worldModel->setProperty(_item, "radius", QVariant::fromValue(radius));
+        return true;
+
+    } else if(event->type() == QEvent::GraphicsSceneMouseRelease &&
+                    mouseEvent->button() == Qt::LeftButton) {
+
+        _worldModel->simulationPause();
+        StepCore::Vector2d pos = _worldScene->pointToVector(mouseEvent->scenePos());
         StepCore::DiskTarget* diskTarget = static_cast<StepCore::DiskTarget*>(_item);
         double radius = (pos - diskTarget->position()).norm();
         if(radius == 0) radius = 0.5;
@@ -272,6 +308,7 @@ bool DiskTargetCreator::sceneEvent(QEvent* event)
 
     return false;
 }
+#endif
 
 inline StepCore::DiskTarget* DiskTargetVertexHandlerGraphicsItem::diskTarget() const
 {
@@ -333,6 +370,7 @@ void DiskTargetGraphicsItem::worldDataChanged(bool dynamicOnly)
     } else {
         _painterPath.addEllipse(-1, -1, 2, 2);
     }
+    _rotatedPainterPath = _painterPath;
     
     if(diskTarget()->checkVictory()) {
         if(!_victoryMessageId)

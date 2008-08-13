@@ -606,8 +606,8 @@ void WorldGraphicsItem::stateChanged()
 
 void WorldGraphicsItem::paint ( QPainter* painter, const QStyleOptionGraphicsItem*, QWidget* )
 {
-    painter->setPen ( QPen ( Qt::gray, 0 ) );
-    painter->drawRect ( _boundingRect );
+    //painter->setPen ( QPen ( Qt::gray, 0 ) );
+    //painter->drawRect ( _boundingRect );
 
     static int totalcount = 0;
     static int misscount = 0;
@@ -847,9 +847,14 @@ QPixmap* SelectionGraphicsItem::paintPixmap()
     QPainter painter;
     painter.begin ( pixmap );
     QPointF diff = QPointF(size.width(),size.height());
-    _worldScene->worldRenderer()->svgRenderer()->render( &painter, "Selection",
-                _boundingRect.translated(diff
-                    + parentItem()->pos() - parentItem()->pos().toPoint()));
+    //_worldScene->worldRenderer()->svgRenderer()->render( &painter, "Selection",
+    //            _boundingRect.translated(diff
+    //                + parentItem()->pos() - parentItem()->pos().toPoint()));
+
+    painter.setPen(QPen(Qt::black, 0, Qt::DashLine));
+    painter.setRenderHint(QPainter::Antialiasing, true);
+    painter.drawRect(_boundingRect.translated(diff
+                   + parentItem()->pos() - parentItem()->pos().toPoint()));
 
     painter.end();
     return pixmap;

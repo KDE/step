@@ -42,7 +42,8 @@ RigidBodyGraphicsItem::RigidBodyGraphicsItem(StepCore::Item* item, WorldModel* w
     setFlag(QGraphicsItem::ItemIsMovable);
     setAcceptsHoverEvents(true);
     setOnHoverHandlerEnabled(true);
-    _textureSize = (_worldScene->worldRenderer()->svgRenderer()->boundsOnElement("DiskTexture").size().toSize()/2)*2;
+    _textureSize = (_worldScene->worldRenderer()->svgRenderer()->boundsOnElement(
+            _item->metaObject()->className() + "_Texture").size().toSize()/2)*2;
     //scene()->addItem(_velocityHandler);
 }
 
@@ -82,7 +83,8 @@ QPixmap* RigidBodyGraphicsItem::paintPixmap()
 
     for(int i = -countx; i<countx+1; ++i) {
         for(int j = -county; j<county+1; ++j) {
-            _worldScene->worldRenderer()->svgRenderer()->render(&painter, "DiskTexture",
+            _worldScene->worldRenderer()->svgRenderer()->render(&painter,
+                    _item->metaObject()->className() + "_Texture",
                     QRectF(QPoint(-_textureSize.width()/2 - i*_textureSize.width(),
                                   -_textureSize.height()/2 - j*_textureSize.height() ), _textureSize));
         }
