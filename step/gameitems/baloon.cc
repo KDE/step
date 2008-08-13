@@ -100,10 +100,11 @@ QString BaloonGraphicsItem::pixmapCacheKey()
     QPointF p = _worldScene->vectorToPoint(baloon()->position());
     QPoint c = ((p-p.toPoint())*PIXMAP_CACHE_GRADING).toPoint();
     QPointF s = _worldScene->vectorToPoint(baloon()->size());
+    double angle = baloon()->angle();
     //kDebug() << (pos() - pos().toPoint())*10;
     //kDebug() << QString("Particle-%1x%2").arg(5+c.x()).arg(5+c.y());
     return QString("%1:%2x%3:%4x%5:%6").arg(_item->metaObject()->className())
-                            .arg(c.x()).arg(c.y()).arg(s.x()).arg(s.y());
+                            .arg(c.x()).arg(c.y()).arg(s.x()).arg(s.y()).arg(angle);
 }
 
 QPixmap* BaloonGraphicsItem::paintPixmap() 
