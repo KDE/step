@@ -179,7 +179,7 @@ QPixmap* FanGraphicsItem::paintPixmap()
     QPainter painter;
     painter.begin(pixmap);
     painter.translate(QPointF(rnormi1+rnormi2, rnormi2+rnormi1)+(pos()-pos().toPoint()));
-    painter.rotate(fan()->angle()*180/3.14);
+    painter.rotate(-fan()->angle()*180/3.14);
     _worldScene->worldRenderer()->svgRenderer()->
             render(&painter, _item->metaObject()->className(), QRectF(-rnormi1/2, -rnormi2/2, rnormi1, rnormi2));
     painter.end();

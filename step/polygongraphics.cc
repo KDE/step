@@ -74,7 +74,7 @@ QPixmap* RigidBodyGraphicsItem::paintPixmap()
 
     painter.begin(pixmap);
     painter.translate(QPointF(size.width(), size.height()) + pos() - pos().toPoint());
-    painter.rotate(rigidBody()->angle()*180.0/M_PI);
+    painter.rotate(-rigidBody()->angle()*180.0/M_PI);
 
     painter.fillPath(_rotatedPainterPath, Qt::red);
     painter.setClipPath(_rotatedPainterPath);
@@ -627,7 +627,7 @@ void BasePolygonGraphicsItem::worldDataChanged(bool dynamicOnly)
             }
             _painterPath.closeSubpath();
             _rotatedPainterPath = _painterPath;
-            _painterPath = QMatrix().rotate(basePolygon()->angle() * 180.0 / M_PI).map(_painterPath);
+            _painterPath = QMatrix().rotate(-basePolygon()->angle() * 180.0 / M_PI).map(_painterPath);
         } else {
             _painterPath.addEllipse(-1, -1, 2, 2);
             _rotatedPainterPath = _painterPath;
