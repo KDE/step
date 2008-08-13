@@ -115,7 +115,7 @@ QPixmap* RigidBodyGraphicsItem::paintPixmap()
                     QRectF(QPoint(-_textureSize.width()*3/2,
                                     -_textureSize.height()*3/2), _textureSize*3));
 
-        kDebug()<< _textureSize;
+        //kDebug()<< _textureSize;
         
         painter.end();
         _worldScene->worldRenderer()->pixmapCache()->insert ( textureKey, texturePixmap,

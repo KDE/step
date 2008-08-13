@@ -24,6 +24,7 @@
 namespace StepCore
 {
 
+
 STEPCORE_META_OBJECT(RigidBody, "Generic rigid body", 0, STEPCORE_SUPER_CLASS(Item) STEPCORE_SUPER_CLASS(Body),
         STEPCORE_PROPERTY_RW_D(StepCore::Vector2d, position, "m", "Position of the center of mass", position, setPosition)
         STEPCORE_PROPERTY_RW_D(double, angle, "rad", "Rotation angle", angle, setAngle)

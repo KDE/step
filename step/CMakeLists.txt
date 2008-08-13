@@ -23,6 +23,7 @@ set(libstepgui_SRCS
     gameitems/victorycondition.cc
     gameitems/baloon.cc
     gameitems/fork.cc
+    gameitems/fan.cc
     groupgraphics.cc
 )
 

@@ -51,6 +51,7 @@
 #include "gameitems/victorycondition.h"
 #include "gameitems/baloon.h"
 #include "gameitems/fork.h"
+#include "gameitems/fan.h"
 
 #include <KIcon>
 #include <KIconLoader>
@@ -186,6 +187,7 @@ WorldFactory::WorldFactory()
     __REGISTER_EXT(Tracer, TracerCreator, TracerGraphicsItem, TracerMenuHandler);
     __REGISTER_EXT(Fixator, FixatorCreator, FixatorGraphicsItem, ItemMenuHandler);
     __REGISTER_EXT(Fork, BoxCreator, ForkGraphicsItem, ItemMenuHandler);
+    __REGISTER_EXT(Fan, BoxCreator, FanGraphicsItem, ItemMenuHandler);
     
     __REGISTER_EXT(DiskTarget, DiskTargetCreator, DiskTargetGraphicsItem, ItemMenuHandler);
     
@@ -234,6 +236,8 @@ WorldFactory::WorldFactory()
     __ADD_TO_PALETTE("Game", DiskTarget);
     __ADD_TO_PALETTE("Game", Baloon);
     __ADD_TO_PALETTE("Game", Fork);
+    __ADD_TO_PALETTE("Game", Fan);
+
 }
 
 ItemCreator* WorldFactory::newItemCreator(const QString& className,
