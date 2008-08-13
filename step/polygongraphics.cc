@@ -79,8 +79,9 @@ QPixmap* RigidBodyGraphicsItem::paintPixmap()
     painter.fillPath(_rotatedPainterPath, Qt::red);
     painter.setClipPath(_rotatedPainterPath);
 
-    int countx = 1+((size.width() - (_textureSize.width()/2) ) / _textureSize.width());
-    int county = 1+((size.height() - (_textureSize.height()/2) ) / _textureSize.height());
+    QSize s = _rotatedPainterPath.boundingRect().size().toSize();
+    int countx = 1+((s.width() - (_textureSize.width()/2) ) / _textureSize.width());
+    int county = 1+((s.height() - (_textureSize.height()/2) ) / _textureSize.height());
 
     for(int i = -countx; i<countx+1; ++i) {
         for(int j = -county; j<county+1; ++j) {
