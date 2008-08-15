@@ -1862,7 +1862,7 @@
      inkscape:pageshadow="2"
      inkscape:zoom="1.7963714"
      inkscape:cx="152.32745"
-     inkscape:cy="-0.03495376"
+     inkscape:cy="601.17702"
      inkscape:document-units="px"
      inkscape:current-layer="layer1"
      showgrid="false"
@@ -2402,7 +2402,7 @@
          id="path8153" />
     </g>
     <g
-       id="Anchor1"
+       id="Anchor"
        transform="matrix(0.5312578,0,0,0.5312578,351.81238,629.28992)">
       <path
          sodipodi:nodetypes="ccccccccccccc"
@@ -2883,12 +2883,5 @@
          d="M 345.26027,190.94793 L 388.26027,190.94793 L 388.26027,221.94793 L 345.26027,221.94793 L 345.26027,190.94793 z"
          style="fill:#3d513d;fill-opacity:1;stroke:none;stroke-width:0.5;stroke-linecap:butt;stroke-linejoin:round;stroke-miterlimit:4;stroke-opacity:1" />
     </g>
-    <rect
-       style="opacity:0.42489271;fill:#9c989f;fill-opacity:1;fill-rule:nonzero;stroke:none;stroke-width:1;stroke-linecap:square;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
-       id="Anchor"
-       width="8.9068441"
-       height="7.7934885"
-       x="441.86905"
-       y="702.31415" />
   </g>
 </svg>
