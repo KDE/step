@@ -353,7 +353,7 @@ QString DiskTargetGraphicsItem::pixmapCacheKey()
     int r = int((radius)*PIXMAP_CACHE_GRADING);
     //kDebug() << (pos() - pos().toPoint())*10;
     //kDebug() << QString("Particle-%1x%2").arg(5+c.x()).arg(5+c.y());
-    kDebug() << QString("%1:%2x%3:%4").arg(_item->metaObject()->className()).arg(c.x()).arg(c.y()).arg(r);
+    //kDebug() << QString("%1:%2x%3:%4").arg(_item->metaObject()->className()).arg(c.x()).arg(c.y()).arg(r);
     return QString("%1:%2x%3:%4").arg(_item->metaObject()->className()).arg(c.x()).arg(c.y()).arg(r);
 }
 
@@ -654,7 +654,7 @@ void BasePolygonGraphicsItem::worldDataChanged(bool dynamicOnly)
             _painterPath.moveTo(_worldScene->vectorToPoint( basePolygon()->vertexes()[0] ));
             for(unsigned int i=1; i<basePolygon()->vertexes().size(); ++i) {
                 _painterPath.lineTo(_worldScene->vectorToPoint( basePolygon()->vertexes()[i] ));
-                kDebug() << "vertex" << _worldScene->vectorToPoint( basePolygon()->vertexes()[i]);
+                //kDebug() << "vertex" << _worldScene->vectorToPoint( basePolygon()->vertexes()[i]);
             }
             _painterPath.closeSubpath();
             _painterPath = QMatrix().rotate(basePolygon()->angle() * 180 

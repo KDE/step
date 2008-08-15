@@ -28,6 +28,7 @@ class QModelIndex;
 class QAbstractItemModel;
 class KComboBox;
 class KColorButton;
+class KPushButton;
 class QLineEdit;
 
 class PropertiesBrowserDelegate: public QItemDelegate
@@ -45,12 +46,13 @@ protected slots:
     void editorActivated();
 
 protected:
-    enum { SolverChoiser, ColorChoiser,
+    enum { SolverChoiser, ColorChoiser, ImageChoiser,
            BoolChoiser, Standard } _editorType; 
     QWidget* _editor;
     KComboBox*    _comboBox;
     KColorButton* _colorButton;
     QLineEdit*    _lineEdit;
+    KPushButton*  _pushButton;
     mutable bool _updating;
 };
 

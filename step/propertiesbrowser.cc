@@ -34,6 +34,7 @@
 #include <QTreeView>
 #include <QMouseEvent>
 #include <KLineEdit>
+#include <KPushButton>
 #include <QHBoxLayout>
 #include <QApplication>
 #include <KLocale>
@@ -544,6 +545,28 @@ QWidget* PropertiesBrowserDelegate::createEditor(QWidget* parent,
         const_cast<PropertiesBrowserDelegate*>(this)->_editorType = ColorChoiser;
         return editor;
 
+    } else if(userType == qMetaTypeId<StepCore::Image>()) {
+        QWidget* editor = new QWidget(parent);
+
+        KPushButton* pushButton = new KPushButton(i18n("Change image"), editor);
+        // XXX: do not use hard-coded pixel sizes
+        //colorButton->setMinimumWidth(15);
+        //colorButton->setMaximumWidth(15);
+        connect(pushButton, SIGNAL(clicked()), this, SLOT(editorActivated()));
+
+        QHBoxLayout* layout = new QHBoxLayout(editor);
+        layout->setContentsMargins(0,0,0,0);
+        layout->setSpacing(0);
+        layout->addWidget(pushButton);
+
+        editor->setFocusProxy(pushButton);
+        editor->installEventFilter(const_cast<PropertiesBrowserDelegate*>(this));
+
+        const_cast<PropertiesBrowserDelegate*>(this)->_editor = editor;
+        const_cast<PropertiesBrowserDelegate*>(this)->_pushButton = pushButton;
+        const_cast<PropertiesBrowserDelegate*>(this)->_editorType = ImageChoiser;
+        return editor;
+
     } else if(userType == QMetaType::Bool) {
         KComboBox* editor = new KComboBox(parent);
         editor->addItem(i18n("false"));
@@ -578,6 +601,8 @@ void PropertiesBrowserDelegate::setEditorData(QWidget* editor, const QModelIndex
         _colorButton->setColor(data.value<QColor>());
         _lineEdit->setText(data1.toString());
         _updating = false;
+    } else if(_editorType == ImageChoiser) {
+        _pushButton->setProperty("image", index.data(Qt::EditRole));
     } else if(_editorType == BoolChoiser) {
         bool value = index.data(Qt::EditRole).toBool();
         _comboBox->setCurrentIndex(value ? 1 : 0);
