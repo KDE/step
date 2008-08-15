@@ -16,7 +16,6 @@
         <angularVelocity>0.00131043531565806</angularVelocity>
         <mass>1</mass>
         <inertia>1.10768333333333</inertia>
-        <size>(5,0.3)</size>
     </item>
 
     <item class="Disk" id="3">
