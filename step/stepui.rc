@@ -17,6 +17,7 @@
   <MenuBar>
     <Menu name="file" >
       <Action name="file_tutorial_open" />
+      <Action name="file_level_open" />
       <Menu name="examples">
         <text>&amp;Examples</text>
         <Action name="file_example_open" />

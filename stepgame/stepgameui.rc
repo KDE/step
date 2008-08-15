@@ -18,7 +18,7 @@
   <MenuBar>
     <Menu name="file" >
         <Menu name="levels">
-        <text>&amp;Examples</text>
+        <text>&amp;Levels</text>
         <Action name="file_level_open" />
         <Action name="file_level_openlocal" />
         <Action name="file_level_download" />

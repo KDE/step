@@ -154,19 +154,32 @@
         <increment>0.1</increment>
     </item>
 
-    <solver class="AdaptiveEulerSolver" id="14">
+    <item class="Note" id="14">
+        <name>note1</name>
+        <color>#ff000000</color>
+        <position>(-244,-216)</position>
+        <size>(250,100)</size>
+        <text>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
+&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
+p, li { white-space: pre-wrap; }
+&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:'Sans Serif'; font-size:10pt; font-weight:400; font-style:normal;&quot;&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-size:12pt;&quot;&gt;Get disk1 to the target&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</text>
+
+    </item>
+
+    <solver class="AdaptiveEulerSolver" id="15">
         <name>solver1</name>
         <stepSize>1</stepSize>
         <toleranceAbs>0.001</toleranceAbs>
         <toleranceRel>0.001</toleranceRel>
     </solver>
 
-    <collisionSolver class="GJKCollisionSolver" id="15">
+    <collisionSolver class="GJKCollisionSolver" id="16">
         <name>collisionSolver1</name>
         <toleranceAbs>0.001</toleranceAbs>
     </collisionSolver>
 
-    <constraintSolver class="CGConstraintSolver" id="16">
+    <constraintSolver class="CGConstraintSolver" id="17">
         <name>constraintSolver1</name>
     </constraintSolver>
 
