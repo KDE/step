@@ -443,7 +443,8 @@ void WorldScene::setViewScale(double viewScale)
 
 void WorldScene::updateBackground()
 {
-    QSvgRenderer backgroundRenderer(_worldModel->world()->background());
+    QSvgRenderer backgroundRenderer(QByteArray(_worldModel->world()->background()));
+    kDebug() << "updateBackground" << QByteArray(_worldModel->world()->background());
     QSize isize(backgroundRenderer.defaultSize());
     isize = isize*_viewScale/100;
     _backgroundPixmap = QPixmap(isize);

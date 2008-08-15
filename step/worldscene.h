@@ -227,7 +227,7 @@ protected:
     WorldRenderer* _worldRenderer; 
     QPixmap        _backgroundPixmap;
     
-    QString _lastBackground;
+    QByteArray _lastBackground;
 
     friend class WorldGraphicsView;
 };

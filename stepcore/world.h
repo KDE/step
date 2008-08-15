@@ -409,9 +409,9 @@ public:
     void setTimeScale(double timeScale) { _timeScale = timeScale; }
 
     /** Get background */
-    QString background() const { return _background; }
+    SvgImage background() const { return _background; }
     /** Set background */
-    void setBackground(QString background) { _background = background; }
+    void setBackground(SvgImage background) { _background = background; }
     
     /** Is errors calculation enabled */
     bool errorsCalculation() const { return _errorsCalculation; }
@@ -562,7 +562,7 @@ private:
     bool    _stopOnIntersection;
     bool    _evolveAbort;
 
-    QString _background;
+    SvgImage _background;
 };
 
 } // namespace StepCore

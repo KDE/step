@@ -35,11 +35,15 @@
 #include <QMouseEvent>
 #include <KLineEdit>
 #include <KPushButton>
+#include <KFileDialog>
+#include <KMessageBox>
 #include <QHBoxLayout>
 #include <QApplication>
 #include <KLocale>
 #include <KComboBox>
 #include <KColorButton>
+#include <QPainter>
+#include <QSvgRenderer>
 
 class ChoicesModel: public QStandardItemModel
 {
@@ -191,7 +195,8 @@ QVariant PropertiesBrowserModel::data(const QModelIndex &index, int role) const
                         return QColor::fromRgba(p->readVariant(_object).value<StepCore::Color>());
                     else
                         return p->readString(_object);
-                } else if(p->userTypeId() == qMetaTypeId<StepCore::Image>()) {
+                } else if(p->userTypeId() == qMetaTypeId<StepCore::Image>() ||
+                          p->userTypeId() == qMetaTypeId<StepCore::SvgImage>()) {
                     if(role == Qt::EditRole) {
                         return p->readVariant(_object);
                     } else {
@@ -237,8 +242,18 @@ QVariant PropertiesBrowserModel::data(const QModelIndex &index, int role) const
             if(res) {
                 if(pix.width() <= 16 && pix.height() <= 16) return pix;
                 else return pix.scaled(QSize(16,16), Qt::KeepAspectRatio, Qt::SmoothTransformation);
+            } else {
+                pix = QPixmap(16,16); pix.fill(Qt::transparent);
+                return pix;
             }
-            else return QVariant();
+        } else if(index.column() == 1 && role == Qt::DecorationRole &&
+                    p->userTypeId() == qMetaTypeId<StepCore::SvgImage>()) {
+            QPixmap pix(16,16); pix.fill(Qt::transparent);
+            QPainter painter; painter.begin(&pix);
+            QSvgRenderer r(p->readVariant(_object).value<StepCore::SvgImage>());
+            r.render(&painter, QRectF(0,0,16,16));
+            painter.end();
+            return pix;
         } else if(index.column() == 0 && role == Qt::DecorationRole &&
                     p->userTypeId() == qMetaTypeId<StepCore::Vector2dList >() &&
                     rowCount(index) > 0) {
@@ -320,6 +335,13 @@ bool PropertiesBrowserModel::setData(const QModelIndex &index, const QVariant &v
                     _worldModel->beginMacro(i18n("Change %1.%2", _object->name(), p->name()));
                     _worldModel->setProperty(_object, p, value.type() == QVariant::String ? value :
                                     QVariant::fromValue(StepCore::Color(value.value<QColor>().rgba())));
+                    _worldModel->endMacro();
+                    return true;
+                } else if(p->userTypeId() == qMetaTypeId<StepCore::Image>() ||
+                          p->userTypeId() == qMetaTypeId<StepCore::SvgImage>()) {
+                    Q_ASSERT(!pv);
+                    _worldModel->beginMacro(i18n("Change %1.%2", _object->name(), p->name()));
+                    _worldModel->setProperty(_object, p, value);
                     _worldModel->endMacro();
                     return true;
                 } else if(p->userTypeId() == qMetaTypeId<bool>()) {
@@ -545,7 +567,8 @@ QWidget* PropertiesBrowserDelegate::createEditor(QWidget* parent,
         const_cast<PropertiesBrowserDelegate*>(this)->_editorType = ColorChoiser;
         return editor;
 
-    } else if(userType == qMetaTypeId<StepCore::Image>()) {
+    } else if(userType == qMetaTypeId<StepCore::Image>() ||
+              userType == qMetaTypeId<StepCore::SvgImage>()) {
         QWidget* editor = new QWidget(parent);
 
         KPushButton* pushButton = new KPushButton(i18n("Change image"), editor);
@@ -564,7 +587,10 @@ QWidget* PropertiesBrowserDelegate::createEditor(QWidget* parent,
 
         const_cast<PropertiesBrowserDelegate*>(this)->_editor = editor;
         const_cast<PropertiesBrowserDelegate*>(this)->_pushButton = pushButton;
-        const_cast<PropertiesBrowserDelegate*>(this)->_editorType = ImageChoiser;
+        if(userType == qMetaTypeId<StepCore::Image>())
+            const_cast<PropertiesBrowserDelegate*>(this)->_editorType = ImageChoiser;
+        else
+            const_cast<PropertiesBrowserDelegate*>(this)->_editorType = SvgImageChoiser;
         return editor;
 
     } else if(userType == QMetaType::Bool) {
@@ -602,7 +628,7 @@ void PropertiesBrowserDelegate::setEditorData(QWidget* editor, const QModelIndex
         _lineEdit->setText(data1.toString());
         _updating = false;
     } else if(_editorType == ImageChoiser) {
-        _pushButton->setProperty("image", index.data(Qt::EditRole));
+        _pushButton->setProperty("imageData", index.data(Qt::EditRole));
     } else if(_editorType == BoolChoiser) {
         bool value = index.data(Qt::EditRole).toBool();
         _comboBox->setCurrentIndex(value ? 1 : 0);
@@ -616,6 +642,10 @@ void PropertiesBrowserDelegate::setModelData(QWidget* editor, QAbstractItemModel
         model->setData(index, _comboBox->currentText());
     } else if(_editorType == ColorChoiser) {
         model->setData(index, _lineEdit->text());
+    } else if(_editorType == ImageChoiser ||
+              _editorType == SvgImageChoiser) {
+        if(_pushButton->property("imageModified").toBool())
+            model->setData(index, _pushButton->property("imageData"));
     } else if(_editorType == BoolChoiser) {
         model->setData(index, _comboBox->currentIndex());
     } else QItemDelegate::setModelData(editor, model, index);
@@ -627,6 +657,39 @@ void PropertiesBrowserDelegate::editorActivated()
         if(_editorType == ColorChoiser) {
             QRgb v = _colorButton->color().rgba();
             _lineEdit->setText(StepCore::typeToString<StepCore::Color>(v));
+        } else if(_editorType == ImageChoiser || _editorType == SvgImageChoiser) {
+            do {
+                QString filename = KFileDialog::getOpenFileName(KUrl(),
+                        (_editorType == ImageChoiser ? "image/png image/jpeg" : "image/svg+xml"), _editor);
+                if(filename.isEmpty()) break;
+
+                QFile file(filename);
+
+                if(!file.open(QIODevice::ReadOnly | QIODevice::Text)) {
+                    KMessageBox::sorry(_editor, i18n("Cannot open file '%1'", filename));
+                    break;
+                }
+                QByteArray data = file.readAll();
+
+                if(_editorType == ImageChoiser) {
+                    QPixmap pix;
+                    if(!pix.loadFromData(data)) {
+                        KMessageBox::sorry(_editor, i18n("Cannot load image '%1'", filename));
+                        break;
+                    }
+                    _pushButton->setProperty("imageData", QVariant::fromValue<StepCore::Image>(data));
+                    _pushButton->setProperty("imageModified", true);
+                } else {
+                    QSvgRenderer r(data);
+                    if(!r.isValid()) {
+                        KMessageBox::sorry(_editor, i18n("Cannot load image '%1'", filename));
+                        break;
+                    }
+                    _pushButton->setProperty("imageData", QVariant::fromValue<StepCore::SvgImage>(data));
+                    _pushButton->setProperty("imageModified", true);
+                }
+
+            } while(0);
         }
         emit commitData(_editor);
         emit closeEditor(_editor);

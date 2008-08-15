@@ -46,7 +46,7 @@ protected slots:
     void editorActivated();
 
 protected:
-    enum { SolverChoiser, ColorChoiser, ImageChoiser,
+    enum { SolverChoiser, ColorChoiser, ImageChoiser, SvgImageChoiser,
            BoolChoiser, Standard } _editorType; 
     QWidget* _editor;
     KComboBox*    _comboBox;

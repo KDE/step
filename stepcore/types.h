@@ -82,6 +82,26 @@ template<> inline Image stringToType(const QString& s, bool *ok)
     return QByteArray::fromBase64(s.toAscii());
 }
 
+///////////////// SvgImage
+struct SvgImage
+{
+    SvgImage() {}
+    SvgImage(const QByteArray& v): value(v) {}
+    operator QByteArray() const { return value; }
+    QByteArray value;
+};
+
+template<> inline QString typeToString(const SvgImage& v)
+{
+    return QString::fromAscii(v.value.toBase64());
+}
+
+template<> inline SvgImage stringToType(const QString& s, bool *ok)
+{
+    if(ok) *ok = true;
+    return QByteArray::fromBase64(s.toAscii());
+}
+
 ///////////////// QByteArray
 template<> inline QString typeToString(const QByteArray& v)
 {
@@ -181,6 +201,7 @@ Q_DECLARE_METATYPE(StepCore::Vector2dList)
 Q_DECLARE_METATYPE(StepCore::Object*)
 Q_DECLARE_METATYPE(StepCore::Color)
 Q_DECLARE_METATYPE(StepCore::Image)
+Q_DECLARE_METATYPE(StepCore::SvgImage)
 #endif
 
 
