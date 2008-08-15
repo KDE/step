@@ -665,7 +665,7 @@ void PropertiesBrowserDelegate::editorActivated()
 
                 QFile file(filename);
 
-                if(!file.open(QIODevice::ReadOnly | QIODevice::Text)) {
+                if(!file.open(QIODevice::ReadOnly)) {
                     KMessageBox::sorry(_editor, i18n("Cannot open file '%1'", filename));
                     break;
                 }
@@ -673,7 +673,8 @@ void PropertiesBrowserDelegate::editorActivated()
 
                 if(_editorType == ImageChoiser) {
                     QPixmap pix;
-                    if(!pix.loadFromData(data)) {
+                    pix.loadFromData(data);
+                    if(pix.isNull()) {
                         KMessageBox::sorry(_editor, i18n("Cannot load image '%1'", filename));
                         break;
                     }
