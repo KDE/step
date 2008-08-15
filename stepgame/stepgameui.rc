@@ -13,6 +13,12 @@
     <Action name="simulation_start_stop" />
     <Action name="simulation_reset" />
     <Action name="run_speed" />
+    
+  <ToolBar name="mainToolBar" >
+        <text>Main Toolbar</text>
+        <Action name="view_zoom_in" />
+        <Action name="view_zoom_out" />
+  </ToolBar>
 
   </ToolBar>
   <MenuBar>

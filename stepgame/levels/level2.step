@@ -1,0 +1,195 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE StepCoreXML>
+<world xmlns="http://edu.kde.org/step/StepCoreXML" version="1.0" id="1">
+    <name>world1</name>
+    <color>#ffffffff</color>
+    <time>0</time>
+    <timeScale>1</timeScale>
+    <background></background>
+    <errorsCalculation>false</errorsCalculation>
+
+    <item class="Box" id="2">
+        <name>box1</name>
+        <color>#ff000000</color>
+        <position>(-1.205,0.5)</position>
+        <angle>0</angle>
+        <velocity>(0,0)</velocity>
+        <angularVelocity>0</angularVelocity>
+        <mass>1</mass>
+        <inertia>0.0789416666666667</inertia>
+        <localSize>(0.97,0.08)</localSize>
+    </item>
+
+    <item class="Box" id="3">
+        <name>box2</name>
+        <color>#ff000000</color>
+        <position>(1.365,0.51)</position>
+        <angle>0</angle>
+        <velocity>(0,0)</velocity>
+        <angularVelocity>0</angularVelocity>
+        <mass>1</mass>
+        <inertia>0.0887083333333333</inertia>
+        <localSize>(1.05,0.08)</localSize>
+    </item>
+
+    <item class="Anchor" id="4">
+        <name>anchor1</name>
+        <color>#ffff0000</color>
+        <body>2</body>
+        <position>(-1.205,0.5)</position>
+        <angle>0</angle>
+    </item>
+
+    <item class="Anchor" id="5">
+        <name>anchor2</name>
+        <color>#ffff0000</color>
+        <body>3</body>
+        <position>(1.365,0.51)</position>
+        <angle>0</angle>
+    </item>
+
+    <item class="Box" id="6">
+        <name>box3</name>
+        <color>#ff000000</color>
+        <position>(0.045,0.505)</position>
+        <angle>0</angle>
+        <velocity>(0,0)</velocity>
+        <angularVelocity>0</angularVelocity>
+        <mass>1</mass>
+        <inertia>0.190416666666667</inertia>
+        <localSize>(1.51,0.07)</localSize>
+    </item>
+
+    <item class="Box" id="7">
+        <name>box4</name>
+        <color>#ff000000</color>
+        <position>(-1.475,0.61)</position>
+        <angle>0</angle>
+        <velocity>(1.0375,-0.01)</velocity>
+        <angularVelocity>0</angularVelocity>
+        <mass>0.08</mass>
+        <inertia>0.0166083333333333</inertia>
+        <localSize>(0.43,0.12)</localSize>
+    </item>
+
+    <item class="WeightForce" id="8">
+        <name>weightForce1</name>
+        <color>#ff000000</color>
+        <weightConst>9.80665</weightConst>
+        <weightConstVariance>1e-10</weightConstVariance>
+    </item>
+
+    <item class="DiskTarget" id="9">
+        <name>diskTarget1</name>
+        <color>#ff000000</color>
+        <radius>0.130384</radius>
+        <position>(1.74,0.74)</position>
+        <body>7</body>
+        <size>(0.260768,0.260768)</size>
+    </item>
+
+    <item class="Baloon" id="10">
+        <name>baloon1</name>
+        <color>#ff000000</color>
+        <position>(3.075,2.53)</position>
+        <angle>0</angle>
+        <velocity>(0,0)</velocity>
+        <angularVelocity>0</angularVelocity>
+        <mass>0.01</mass>
+        <inertia>0.0004225</inertia>
+        <radius>0.484</radius>
+        <size>(0.968,0.968)</size>
+    </item>
+
+    <item class="Stick" id="11">
+        <name>stick1</name>
+        <color>#ffff0000</color>
+        <restLength>1.08573707682846</restLength>
+        <body1>0</body1>
+        <body2>0</body2>
+        <localPosition1>(3.845,2.98)</localPosition1>
+        <localPosition2>(3.885,1.895)</localPosition2>
+    </item>
+
+    <item class="Air" id="12">
+        <name>air1</name>
+        <color>#ff000000</color>
+    </item>
+
+    <item class="Box" id="13">
+        <name>box5</name>
+        <color>#ff000000</color>
+        <position>(0.02,-0.4)</position>
+        <angle>0</angle>
+        <velocity>(0,0)</velocity>
+        <angularVelocity>0</angularVelocity>
+        <mass>1</mass>
+        <inertia>0.448833333333333</inertia>
+        <localSize>(2.32,0.06)</localSize>
+    </item>
+
+    <item class="Pin" id="14">
+        <name>pin1</name>
+        <color>#ffff0000</color>
+        <body>13</body>
+        <localPosition>(0,0)</localPosition>
+        <position>(-0.04,-0.42)</position>
+    </item>
+
+    <item class="Disk" id="15">
+        <name>disk1</name>
+        <color>#ff000000</color>
+        <position>(3.5225,1.87)</position>
+        <angle>0</angle>
+        <velocity>(0.035,0)</velocity>
+        <angularVelocity>0</angularVelocity>
+        <mass>0.1</mass>
+        <inertia>0.010625</inertia>
+        <radius>0.145774</radius>
+        <size>(0.291548,0.291548)</size>
+    </item>
+
+    <item class="Fixator" id="16">
+        <name>fixator1</name>
+        <color>#ffff0000</color>
+        <body>6</body>
+        <localPosition>(0,0)</localPosition>
+    </item>
+
+    <item class="Fixator" id="17">
+        <name>fixator2</name>
+        <color>#ffff0000</color>
+        <body>7</body>
+        <localPosition>(0,0)</localPosition>
+    </item>
+
+    <item class="Note" id="18">
+        <name>note1</name>
+        <color>#ff000000</color>
+        <position>(-276,236)</position>
+        <size>(250,100)</size>
+        <text>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
+&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
+p, li { white-space: pre-wrap; }
+&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:'Sans Serif'; font-size:10pt; font-weight:400; font-style:normal;&quot;&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-size:12pt;&quot;&gt;Get box4 to the target&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</text>
+
+    </item>
+
+    <solver class="AdaptiveEulerSolver" id="19">
+        <name>solver1</name>
+        <stepSize>1</stepSize>
+        <toleranceAbs>0.001</toleranceAbs>
+        <toleranceRel>0.001</toleranceRel>
+    </solver>
+
+    <collisionSolver class="GJKCollisionSolver" id="20">
+        <name>collisionSolver1</name>
+        <toleranceAbs>0.001</toleranceAbs>
+    </collisionSolver>
+
+    <constraintSolver class="CGConstraintSolver" id="21">
+        <name>constraintSolver1</name>
+    </constraintSolver>
+
+</world>

@@ -1,0 +1,222 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE StepCoreXML>
+<world xmlns="http://edu.kde.org/step/StepCoreXML" version="1.0" id="1">
+    <name>world1</name>
+    <color>#ffffffff</color>
+    <time>0</time>
+    <timeScale>1</timeScale>
+    <background></background>
+    <errorsCalculation>false</errorsCalculation>
+
+    <item class="Box" id="2">
+        <name>box1</name>
+        <color>#ff000000</color>
+        <position>(-3.375,-2.74)</position>
+        <angle>0</angle>
+        <velocity>(0,0)</velocity>
+        <angularVelocity>0</angularVelocity>
+        <mass>1</mass>
+        <inertia>0.0639083333333334</inertia>
+        <localSize>(0.87,0.1)</localSize>
+    </item>
+
+    <item class="Anchor" id="3">
+        <name>anchor1</name>
+        <color>#ffff0000</color>
+        <body>2</body>
+        <position>(-3.375,-2.74)</position>
+        <angle>0</angle>
+    </item>
+
+    <item class="Disk" id="4">
+        <name>disk1</name>
+        <color>#ff000000</color>
+        <position>(-3.38,-2.45)</position>
+        <angle>0</angle>
+        <velocity>(0,0)</velocity>
+        <angularVelocity>0</angularVelocity>
+        <mass>1</mass>
+        <inertia>0.026</inertia>
+        <radius>0.228035085019828</radius>
+        <size>(0.45607,0.45607)</size>
+    </item>
+
+    <item class="WeightForce" id="5">
+        <name>weightForce1</name>
+        <color>#ff000000</color>
+        <weightConst>9.80665</weightConst>
+        <weightConstVariance>1e-10</weightConstVariance>
+    </item>
+
+    <item class="Baloon" id="6">
+        <name>baloon1</name>
+        <color>#ff000000</color>
+        <position>(-3.36,-0.78)</position>
+        <angle>0</angle>
+        <velocity>(0,0)</velocity>
+        <angularVelocity>0</angularVelocity>
+        <mass>0.01</mass>
+        <inertia>0.0009505</inertia>
+        <radius>0.47</radius>
+        <size>(0.94,0.94)</size>
+    </item>
+
+    <item class="Stick" id="7">
+        <name>stick1</name>
+        <color>#ffff0000</color>
+        <restLength>1.78101094887145</restLength>
+        <body1>6</body1>
+        <body2>4</body2>
+        <localPosition1>(0,0)</localPosition1>
+        <localPosition2>(0,0)</localPosition2>
+    </item>
+
+    <item class="Air" id="8">
+        <name>air1</name>
+        <color>#ff000000</color>
+    </item>
+
+    <item class="Fan" id="9">
+        <name>fan1</name>
+        <color>#ff000000</color>
+        <position>(-4.29,1.16)</position>
+        <angle>0</angle>
+        <velocity>(0,0)</velocity>
+        <angularVelocity>0</angularVelocity>
+        <mass>1</mass>
+        <inertia>0.321133333333333</inertia>
+        <localSize>(0.3,1.94)</localSize>
+        <power>1</power>
+        <viscosity>1.2</viscosity>
+    </item>
+
+    <item class="Anchor" id="10">
+        <name>anchor2</name>
+        <color>#ffff0000</color>
+        <body>9</body>
+        <position>(-4.29,1.16)</position>
+        <angle>0</angle>
+    </item>
+
+    <item class="Fork" id="11">
+        <name>fork1</name>
+        <color>#ff000000</color>
+        <position>(-1.23438,4.15625)</position>
+        <angle>0</angle>
+        <velocity>(0,0)</velocity>
+        <angularVelocity>0</angularVelocity>
+        <mass>1</mass>
+        <inertia>0.0652669270833333</inertia>
+        <localSize>(0.59375,0.65625)</localSize>
+    </item>
+
+    <item class="Anchor" id="12">
+        <name>anchor3</name>
+        <color>#ffff0000</color>
+        <body>11</body>
+        <position>(-1.23438,4.15625)</position>
+        <angle>0</angle>
+    </item>
+
+    <item class="Box" id="13">
+        <name>box2</name>
+        <color>#ff000000</color>
+        <position>(-0.53125,0.578125)</position>
+        <angle>0</angle>
+        <velocity>(0,0)</velocity>
+        <angularVelocity>0</angularVelocity>
+        <mass>0.4</mass>
+        <inertia>0.575520833333333</inertia>
+        <localSize>(2.625,0.125)</localSize>
+    </item>
+
+    <item class="Pin" id="14">
+        <name>pin1</name>
+        <color>#ffff0000</color>
+        <body>13</body>
+        <localPosition>(0,0)</localPosition>
+        <position>(-0.59375,0.546875)</position>
+    </item>
+
+    <item class="Disk" id="15">
+        <name>disk2</name>
+        <color>#ff000000</color>
+        <position>(0.5625,2.75)</position>
+        <angle>0</angle>
+        <velocity>(0,0)</velocity>
+        <angularVelocity>1.61447506775458</angularVelocity>
+        <mass>1</mass>
+        <inertia>0.0220947265625</inertia>
+        <radius>0.210212875735527</radius>
+        <size>(0.420426,0.420426)</size>
+    </item>
+
+    <item class="Baloon" id="16">
+        <name>baloon2</name>
+        <color>#ff000000</color>
+        <position>(0.578125,5.875)</position>
+        <angle>0</angle>
+        <velocity>(0,0)</velocity>
+        <angularVelocity>0</angularVelocity>
+        <mass>0.01</mass>
+        <inertia>0.001876220703125</inertia>
+        <radius>0.477</radius>
+        <size>(0.954,0.954)</size>
+    </item>
+
+    <item class="Stick" id="17">
+        <name>stick2</name>
+        <color>#ffff0000</color>
+        <restLength>3.23471465607865</restLength>
+        <body1>16</body1>
+        <body2>15</body2>
+        <localPosition1>(0,0)</localPosition1>
+        <localPosition2>(0,0)</localPosition2>
+    </item>
+
+    <item class="Fork" id="18">
+        <name>fork2</name>
+        <color>#ff000000</color>
+        <position>(0.492188,9.64844)</position>
+        <angle>0</angle>
+        <velocity>(0,0)</velocity>
+        <angularVelocity>0</angularVelocity>
+        <mass>1</mass>
+        <inertia>0.132364908854167</inertia>
+        <localSize>(0.859375,0.921875)</localSize>
+    </item>
+
+    <item class="Anchor" id="19">
+        <name>anchor4</name>
+        <color>#ffff0000</color>
+        <body>18</body>
+        <position>(0.492188,9.64844)</position>
+        <angle>0</angle>
+    </item>
+
+    <item class="DiskTarget" id="20">
+        <name>diskTarget1</name>
+        <color>#ff000000</color>
+        <radius>0.415083938865217</radius>
+        <position>(2.89917,2.10571)</position>
+        <body>4</body>
+        <size>(0.830168,0.830168)</size>
+    </item>
+
+    <solver class="AdaptiveEulerSolver" id="21">
+        <name>solver1</name>
+        <stepSize>1</stepSize>
+        <toleranceAbs>0.001</toleranceAbs>
+        <toleranceRel>0.001</toleranceRel>
+    </solver>
+
+    <collisionSolver class="GJKCollisionSolver" id="22">
+        <name>collisionSolver1</name>
+        <toleranceAbs>0.001</toleranceAbs>
+    </collisionSolver>
+
+    <constraintSolver class="CGConstraintSolver" id="23">
+        <name>constraintSolver1</name>
+    </constraintSolver>
+
+</world>

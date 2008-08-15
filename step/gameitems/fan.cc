@@ -118,12 +118,12 @@ void Fan::calcForce(bool calcVariances)
                     Vector2d vertex = rb1->pointLocalToWorld(*it);
                     double dist1 = a0*vertex[0]+b0 - vertex[1];
                     double dist2 = a1*vertex[0]+b1 - vertex[1];
-                    if((dist1 > 0) && (dist2 <= 0)){
-                        if(s < (dist1)) s = dist1;
-                    };
-                    //if((dist1 <= 0) && (dist2 > 0)){
-                    //    if(s < dist2) s = dist2;
+                    //if((dist1 > 0) && (dist2 <= 0)){
+                    //    if(s < (dist1)) s = dist1;
                     //};
+                    if((dist1 <= 0) && (dist2 > 0)){
+                        if(s < height - dist2) s = height - dist2;
+                    };
                 }
             }
             else if(!up && inside && !down){
@@ -146,7 +146,7 @@ void Fan::calcForce(bool calcVariances)
             if(!up && !down){ point = rb1->position(); }
             else if(up && down){ point = this->position(); }
             else if(up && inside) { point = this->position() + Vector2d(0, (height-s)/2); }
-            else if(down && inside) { point = this->position() + Vector2d(0, -(height-s)/2); } //wrong
+            else if(down && inside) { point = this->position() + Vector2d(0, -(height-s)/2); }
             rb1->applyForce(force, point);
         }else continue;
     }
