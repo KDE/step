@@ -48,13 +48,13 @@ public:
                             : Item(name), _image(image) {}
 
     /** Get image data */
-    const QByteArray& image() const { return _image; }
+    const Image& image() const { return _image; }
 
     /** Set image data */
-    void setImage(const QByteArray& image) { _image = image; }
+    void setImage(const Image& image) { _image = image; }
 
 protected:
-    QByteArray _image;
+    Image _image;
 };
 
 /** \ingroup tools

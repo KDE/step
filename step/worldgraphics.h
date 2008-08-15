@@ -340,7 +340,7 @@ protected:
 
     static const int COLOR_HIGHLIGHT_AMOUNT = 30; ///< Highligh amount (in percent for value component)
     
-    static const int PIXMAP_CACHE_GRADING = 5; ///< Count of sub-pixel-shifted copies of the pixmap
+    static const int PIXMAP_CACHE_GRADING = 2; ///< Count of sub-pixel-shifted copies of the pixmap
 };
 
 /////////////////////////////////////////////////////////////////////////////////////////

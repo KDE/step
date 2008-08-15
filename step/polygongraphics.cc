@@ -76,7 +76,7 @@ QPixmap* RigidBodyGraphicsItem::paintPixmap()
     painter.translate(QPointF(size.width(), size.height()) + pos() - pos().toPoint());
     painter.rotate(-rigidBody()->angle()*180.0/M_PI);
 
-    painter.fillPath(_rotatedPainterPath, Qt::red);
+    //painter.fillPath(_rotatedPainterPath, Qt::red);
     painter.setClipPath(_rotatedPainterPath);
 
     QSize s = _rotatedPainterPath.boundingRect().size().toSize();

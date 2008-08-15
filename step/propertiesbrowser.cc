@@ -190,6 +190,12 @@ QVariant PropertiesBrowserModel::data(const QModelIndex &index, int role) const
                         return QColor::fromRgba(p->readVariant(_object).value<StepCore::Color>());
                     else
                         return p->readString(_object);
+                } else if(p->userTypeId() == qMetaTypeId<StepCore::Image>()) {
+                    if(role == Qt::EditRole) {
+                        return p->readVariant(_object);
+                    } else {
+                        return QVariant();
+                    }
                 } else if(p->userTypeId() == QMetaType::Bool) {
                     Q_ASSERT( !_objectErrors || !_objectErrors->metaObject()->property(p->name() + "Variance") );
                     Q_ASSERT( p->units().isEmpty() );
@@ -223,6 +229,15 @@ QVariant PropertiesBrowserModel::data(const QModelIndex &index, int role) const
             QPixmap pix(8, 8);
             pix.fill(QColor::fromRgba(p->readVariant(_object).value<StepCore::Color>()));
             return pix;
+        } else if(index.column() == 1 && role == Qt::DecorationRole &&
+                    p->userTypeId() == qMetaTypeId<StepCore::Image>()) {
+            QPixmap pix;
+            bool res = pix.loadFromData(p->readVariant(_object).value<StepCore::Image>());
+            if(res) {
+                if(pix.width() <= 16 && pix.height() <= 16) return pix;
+                else return pix.scaled(QSize(16,16), Qt::KeepAspectRatio, Qt::SmoothTransformation);
+            }
+            else return QVariant();
         } else if(index.column() == 0 && role == Qt::DecorationRole &&
                     p->userTypeId() == qMetaTypeId<StepCore::Vector2dList >() &&
                     rowCount(index) > 0) {

@@ -62,6 +62,26 @@ template<> inline Color stringToType(const QString& s, bool *ok)
     return Color(s1.toUInt(ok, 16));
 }
 
+///////////////// Image
+struct Image
+{
+    Image() {}
+    Image(const QByteArray& v): value(v) {}
+    operator QByteArray() const { return value; }
+    QByteArray value;
+};
+
+template<> inline QString typeToString(const Image& v)
+{
+    return QString::fromAscii(v.value.toBase64());
+}
+
+template<> inline Image stringToType(const QString& s, bool *ok)
+{
+    if(ok) *ok = true;
+    return QByteArray::fromBase64(s.toAscii());
+}
+
 ///////////////// QByteArray
 template<> inline QString typeToString(const QByteArray& v)
 {
@@ -160,6 +180,7 @@ template<> inline Vector2dList stringToType(const QString& s, bool *ok)
 Q_DECLARE_METATYPE(StepCore::Vector2dList)
 Q_DECLARE_METATYPE(StepCore::Object*)
 Q_DECLARE_METATYPE(StepCore::Color)
+Q_DECLARE_METATYPE(StepCore::Image)
 #endif
 
 
