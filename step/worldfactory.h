@@ -52,6 +52,7 @@ class WorldFactory: public StepCore::Factory
 {
 public:
     WorldFactory();
+    ~WorldFactory();
 
     /** Get ExtMetaObject for given StepCore::MetaObject */
     const ExtMetaObject* extMetaObject(const StepCore::MetaObject* mObject) const
