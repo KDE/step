@@ -48,6 +48,7 @@
 
 #include <KIcon>
 #include <KIconLoader>
+#include <KDebug>
 
 template<typename T>
 ItemCreator* newItemCreatorHelper(const QString& className,
@@ -206,6 +207,11 @@ WorldFactory::WorldFactory()
     __ADD_TO_PALETTE(Tracer);
     __ADD_TO_PALETTE(Graph);
     __ADD_TO_PALETTE(Controller);
+}
+
+WorldFactory::~WorldFactory()
+{
+    delete _nullIcon; 
 }
 
 ItemCreator* WorldFactory::newItemCreator(const QString& className,
