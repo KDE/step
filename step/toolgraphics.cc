@@ -811,18 +811,18 @@ DataSourceWidget::DataSourceWidget(QWidget* parent)
     layout->setContentsMargins(0,0,0,0);
 
     _object = new KComboBox(this);
-    _object->setToolTip("Object name");
+    _object->setToolTip(i18n("Object name"));
     _object->setMinimumContentsLength(10);
     layout->addWidget(_object, 1);
 
     _property = new KComboBox(this);
-    _property->setToolTip("Property name");
+    _property->setToolTip(i18n("Property name"));
     _property->setEnabled(false);
     _property->setMinimumContentsLength(10);
     layout->addWidget(_property, 1);
 
     _index = new KComboBox(this);
-    _index->setToolTip("Vector index");
+    _index->setToolTip(i18n("Vector index"));
     _index->setMinimumContentsLength(1);
     _index->setSizeAdjustPolicy(QComboBox::AdjustToMinimumContentsLength);
     layout->addWidget(_index, 0);
