@@ -202,48 +202,9 @@ Integrated tutorials
 
 <sect1  id="step-help-menu">
 <title>The <guimenu>Help</guimenu> Menu</title>
-<para>
-<variablelist>
-<varlistentry>
-<term><menuchoice>
-<guimenu>Help</guimenu>
-<guimenuitem>&step; Handbook</guimenuitem>
-</menuchoice></term>
-<listitem><para><action>Open</action> this handbook in the &khelpcenter;.</para></listitem>
-</varlistentry>
-<varlistentry>
-<term><menuchoice>
-<shortcut>
-<keycombo>&Ctrl;<keycap>F1</keycap></keycombo>
-</shortcut>
-<guimenu>Help</guimenu>
-<guimenuitem>What's This?</guimenuitem>
-</menuchoice></term>
-<listitem><para><action>Open</action> this handbook in the &khelpcenter;.</para></listitem>
-</varlistentry>
-<varlistentry>
-<term><menuchoice>
-<guimenu>Help</guimenu>
-<guimenuitem>Report Bug...</guimenuitem>
-</menuchoice></term>
-<listitem><para><action>Open</action> a dialog that allows you to easily report a bug in &step;. Fill up the fields and send it!</para></listitem>
-</varlistentry>
-<varlistentry>
-<term><menuchoice>
-<guimenu>Help</guimenu>
-<guimenuitem>About KDE</guimenuitem>
-</menuchoice></term>
-<listitem><para><action>Open</action> a dialog that indicates the &kde; version and gives you some indications about the &kde; project.</para></listitem>
-</varlistentry>
-<varlistentry>
-<term><menuchoice>
-<guimenu>Help</guimenu>
-<guimenuitem>About &step;</guimenuitem>
-</menuchoice></term>
-<listitem><para><action>Open</action> a dialog that gives you the &step; version, the author name and email, the contributors names and the licence.</para></listitem>
-</varlistentry>
-</variablelist>
-</para>
+
+&help.menu.documentation;
+
 </sect1>
 
 </chapter>
@@ -325,16 +286,3 @@ sgml-indent-step:0
 sgml-indent-data:nil
 End:
 -->
-
-
-
-
-
-
-
-
-
-
-
-
-
