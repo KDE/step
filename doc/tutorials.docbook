@@ -30,7 +30,7 @@
 <sect1 id="tutorial2">
 <title>Tutorial 2: controllers and graphs</title>
 <para>You will learn more about controllers and graphs in this tutorial.</para>
-<para>A controller is a device which allows you to graphically modify a property of a body or a spring. In the tutorial, the controller allows you to change the stifness of the spring "spring1". By moving the slider to the right or using the W key you can increase sprint1 stiffness value and by moving the slider to the left or using the Q key you can decrease it. Right-clicking on the controller brings you several context actions and the <guilabel>Configure Controller...</guilabel> dialog allows you to change each property of the controller.</para>
+<para>A controller is a device which allows you to graphically modify a property of a body or a spring. In the tutorial, the controller allows you to change the stifness of the spring "spring1". By moving the slider to the right or using the W key you can increase spring1 stiffness value and by moving the slider to the left or using the Q key you can decrease it. Right-clicking on the controller brings you several context actions and the <guilabel>Configure Controller...</guilabel> dialog allows you to change each property of the controller.</para>
 <screenshot>
      <screeninfo>Tutorial 2 experiment</screeninfo>
 	<mediaobject>
@@ -42,7 +42,7 @@
 	  </textobject>
 	</mediaobject>
 </screenshot>
-<para>Graphs allow you to graphically visualize the relationship between two variables. The example in the tutorial prints the evolution of the position of particle1 while time advances in world1. With a right click on a graph you can clear or delete the graph as well as edit the conguration dialog and change here all the proerties for this graph.</para>
+<para>Graphs allow you to graphically visualize the relationship between two variables. The example in the tutorial prints the evolution of the position of particle1 while time advances in world1. With a right click on a graph you can clear or delete the graph as well as edit the configuration dialog and change here all the properties for this graph.</para>
 <para>At the end of this tutorial you are able to use controllers to act on your bodies properties and graphs to monitor specific properties in your experiment.</para>
 </sect1>
 
@@ -82,18 +82,18 @@
 <para>You have two sorts of motors available in &step;: linear motors and circular motors. A linear motor applies a constant force to a given point on a body while a circular motor applies a constant angular momentum to a body.</para>
 <para>Three different forces can be added to bodies: the weight force, the gravitation force and the Coulomb force. By default all forces are turned off in &step;. Coulomb force is a force which existed intrinsically between two charges.</para>
 <screenshot>
-     <screeninfo>Tutorial 4: motors</screeninfo>
+     <screeninfo>Tutorial 4: Motors</screeninfo>
 	<mediaobject>
 	  <imageobject>
 	    <imagedata fileref="tutorial4.png" format="PNG"/>
 	  </imageobject>
 	    <textobject>
-	    <phrase>Tutorial 4: motors</phrase>
+	    <phrase>Tutorial 4: Motors</phrase>
 	  </textobject>
 	</mediaobject>
 </screenshot>
 <para>In the experiment you have a disk and a box linked by a spring. A flat box at the bottom will make a boundary. The disk and the box both have a linear motor applied to them. Two controllers allow you to change the force value of each motor. Start the simulation and play with the controllers. Then stop the simulation and add a weight force in the world (forces are global and apply to the whole world). Restart the simulation and analyze the difference.</para>
-<para>You can also remove the linear motor on the box and add a circular motor instead. Click on <guilabel>CircularMotor</guilabel> in the <guilabel>Palette</guilabel> panel and then click on the box. The circular mortor is applied to the box. You then need to set the torque value by clicking and moving the grey handler of the motor.</para>
+<para>You can also remove the linear motor on the box and add a circular motor instead. Click on <guilabel>CircularMotor</guilabel> in the <guilabel>Palette</guilabel> panel and then click on the box. The circular motor is applied to the box. You then need to set the torque value by clicking and moving the grey handler of the motor.</para>
 <screenshot>
      <screeninfo>Circular motor</screeninfo>
 	<mediaobject>
