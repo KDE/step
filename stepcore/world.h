@@ -177,7 +177,7 @@ public:
                             GmmSparseRowMatrix* variance, int offset) = 0;
 
     /** Offset of body's variables in global arrays
-     *  (meaningles if the the body is not a part of the world) */
+     *  (meaningless if the body is not a part of the world) */
     int variablesOffset() const { return _variablesOffset; }
 
 private:
