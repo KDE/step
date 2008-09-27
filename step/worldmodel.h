@@ -60,9 +60,9 @@ public:
     WorldModel(QObject* parent = 0);
     ~WorldModel();
 
-    /** Get QItemSelectionModel assosiated with this WorldModel */
+    /** Get QItemSelectionModel associated with this WorldModel */
     QItemSelectionModel* selectionModel() const { return _selectionModel; }
-    /** Get WorldFactory assosiated with this WorldModel */
+    /** Get WorldFactory associated with this WorldModel */
     const WorldFactory* worldFactory() const { return _worldFactory; }
 
     // QModelIndex quick-access functions
@@ -121,7 +121,7 @@ public:
     StepCore::Solver* newSolver(const QString& name);
 
     // Undo/redo helpers
-    KUndoStack* undoStack() { return _undoStack; } ///< Get assosiated KUndoStack
+    KUndoStack* undoStack() { return _undoStack; } ///< Get associated KUndoStack
     void pushCommand(QUndoCommand* command); ///< Push new undo command
     void beginMacro(const QString& text); ///< Begin undo macro
     void endMacro(); ///< End undo macro
@@ -158,7 +158,7 @@ public:
     QString formatNameFull(const StepCore::Object* object) const;
     /** Format property using standard formatting
      *  \param object object
-     *  \param objectErrors assosiated StepCore::ObjecErrors (if required)
+     *  \param objectErrors associated StepCore::ObjecErrors (if required)
      *  \param property property
      *  \param flags Format flags */
     QString formatProperty(const StepCore::Object* object,
