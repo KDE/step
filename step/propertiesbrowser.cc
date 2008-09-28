@@ -88,7 +88,7 @@ PropertiesBrowserModel::PropertiesBrowserModel(WorldModel* worldModel, QObject* 
         const StepCore::MetaObject* metaObject = _worldModel->worldFactory()->metaObject(name);
         if(metaObject->isAbstract()) continue;
         if(!metaObject->inherits(StepCore::Solver::staticMetaObject())) continue;
-        QString solverName = QString(metaObject->className()).replace("Solver", "");
+        QString solverName = QString(metaObject->className()).remove("Solver");
         QStandardItem* item = new QStandardItem(solverName);
         item->setToolTip(QString(metaObject->description()));
         _solverChoices->appendRow(item);
@@ -172,7 +172,7 @@ QVariant PropertiesBrowserModel::data(const QModelIndex &index, int role) const
 
                 // Solver type combobox ?
                 if(index.row() == 1 && dynamic_cast<StepCore::Solver*>(_object)) {
-                    if(role == Qt::DisplayRole) return p->readString(_object).replace("Solver", "");
+                    if(role == Qt::DisplayRole) return p->readString(_object).remove("Solver");
                     else return QVariant::fromValue(_solverChoices);
                 }
 

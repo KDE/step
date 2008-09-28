@@ -316,8 +316,8 @@ void InfoBrowser::wikiResult(KJob* job)
     //if(data.find( "var wgArticleId = 0" ) != -1) // - article not found
 
     // remove the new-lines and tabs
-    data.replace( "\n", " " );
-    data.replace( "\t", " " );
+    data.replace( '\n', ' ' );
+    data.replace( '\t', ' ' );
 
     QString wikiLanguages;
     // Get the available language list

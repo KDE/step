@@ -59,10 +59,10 @@ protected:
 QString StepStreamWriter::escapeText(const QString& str)
 {
     QString result = str;
-    result.replace("&", "&amp;");
-    result.replace("<", "&lt;");
-    result.replace(">", "&gt;");
-    result.replace("\"", "&quot;");
+    result.replace('&', "&amp;");
+    result.replace('<', "&lt;");
+    result.replace('>', "&gt;");
+    result.replace('\"', "&quot;");
     return result;
 }
 

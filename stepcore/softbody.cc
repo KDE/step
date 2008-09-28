@@ -310,7 +310,7 @@ double SoftBody::torque() const
 const SoftBodyParticleList& SoftBody::borderParticles()
 {
     if(_borderParticles.empty() && !_borderParticleNames.isEmpty() && world()) {
-        QStringList list = _borderParticleNames.split(",");
+        QStringList list = _borderParticleNames.split(',');
         QStringList::const_iterator end = list.end();
         for(QStringList::const_iterator it = list.begin(); it != end; ++it) {
             Object* obj = world()->object(*it);
