@@ -256,7 +256,7 @@ void MainWindow::setupActions()
 void MainWindow::updateCaption()
 {
     QString shownName;
-    if(currentFileUrl.isEmpty()) shownName = "untitled.step";
+    if(currentFileUrl.isEmpty()) shownName = i18nc("filename", "untitled.step"); //Fixme if needed
     else shownName = currentFileUrl.pathOrUrl(); //QFileInfo(currentFileName).fileName();
     setCaption(shownName, !worldModel->undoStack()->isClean());
 }
@@ -295,7 +295,7 @@ bool MainWindow::openFile(const KUrl& url, const KUrl& startUrl)
 
     KUrl fileUrl = url;
     if(fileUrl.isEmpty()) {
-        fileUrl = KFileDialog::getOpenUrl(startUrl, "*.step|Step files (*.step)", this);
+        fileUrl = KFileDialog::getOpenUrl(startUrl, i18n("*.step|Step files (*.step)"), this); //is this i18n legal?
         if(fileUrl.isEmpty()) return false;
     }
 
@@ -340,7 +340,7 @@ bool MainWindow::saveFileAs(const KUrl& url, const KUrl& startUrl)
     KUrl fileUrl = url;
     if(fileUrl.isEmpty()) {
         fileUrl = KFileDialog::getSaveUrl(startUrl.isEmpty() ? currentFileUrl : startUrl,
-                                             "*.step|Step files (*.step)", this);
+                                             i18n("*.step|Step files (*.step)"), this);
         if(fileUrl.isEmpty()) return false;
         else if(KIO::NetAccess::exists(fileUrl, KIO::NetAccess::DestinationSide, this)) {
             int ret = KMessageBox::warningContinueCancel(this,
@@ -566,7 +566,7 @@ void MainWindow::configureStep()
     QWidget* generalWidget = new QWidget(0);
     generalWidget->setObjectName("general");
     generalUi.setupUi(generalWidget);
-    dialog->addPage(generalWidget, i18n("General"), "general");
+    dialog->addPage(generalWidget, i18n("General"), "step"); //shows the "step" icon, the "general" icon doesn't exist
 
     connect(dialog, SIGNAL(settingsChanged(const QString&)),
                 worldGraphicsView, SLOT(settingsChanged())); 
