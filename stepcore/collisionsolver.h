@@ -135,8 +135,8 @@ typedef std::vector<Contact> ContactValueList;
 /** \ingroup contacts
  *  \brief Discrete collision solver using Gilbert-Johnson-Keerthi distance algorithm
  *
- *  Objects are treated as colliding if distance between them are greater then zero
- *  but smaller then certain small value. If distance is less then zero objects are
+ *  Objects are treated as colliding if distance between them is greater than zero
+ *  but smaller than certain small value. If distance is less than zero objects are
  *  always treated as interpenetrating - this signals World::doEvolve to invalidate
  *  current time step and try with smaller stepSize until objects are colliding but
  *  not interpenetrating.
