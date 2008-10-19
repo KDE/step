@@ -18,7 +18,7 @@
 #ifndef STEPCORE_TESTS_MAINTEST_H
 #define STEPCORE_TESTS_MAINTEST_H
 
-#include <QtTest>
+#include <QtTest/QtTest>
 
 class MainTest: public QObject
 {
