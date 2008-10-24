@@ -357,7 +357,7 @@ public:
 
 #if 0
 /** \ingroup bodies
- *  \brief Unmoveable rigid plane
+ *  \brief Unmovable rigid plane
  */
 class Plane: public Item, public Body
 {
