@@ -23,24 +23,24 @@
 
 namespace StepCore {
 
-STEPCORE_META_OBJECT(NoteImage, QT_TR_NOOP("NoteImage"), QT_TR_NOOP("NoteImage: an image embedded in Note"), 0,
+STEPCORE_META_OBJECT(NoteImage, QT_TRANSLATE_NOOP("ObjectClass", "NoteImage"), QT_TR_NOOP("NoteImage: an image embedded in Note"), 0,
     STEPCORE_SUPER_CLASS(Item),
     STEPCORE_PROPERTY_RW(QByteArray, image, QT_TR_NOOP("image"), STEPCORE_UNITS_NULL, QT_TR_NOOP("Image data"), image, setImage)
     )
 
-STEPCORE_META_OBJECT(NoteFormula, QT_TR_NOOP("NoteFormula"), QT_TR_NOOP("NoteFormula: a formula embedded in Note"), 0,
+STEPCORE_META_OBJECT(NoteFormula, QT_TRANSLATE_NOOP("ObjectClass", "NoteFormula"), QT_TR_NOOP("NoteFormula: a formula embedded in Note"), 0,
     STEPCORE_SUPER_CLASS(NoteImage),
     STEPCORE_PROPERTY_RW(QString, code, QT_TR_NOOP("code"), STEPCORE_UNITS_NULL, QT_TR_NOOP("Formula code"), code, setCode)
     )
 
-STEPCORE_META_OBJECT(Note, QT_TR_NOOP("Note"), QT_TR_NOOP("Note: displays a textual note on the scene"), 0,
+STEPCORE_META_OBJECT(Note, QT_TRANSLATE_NOOP("ObjectClass", "Note"), QT_TR_NOOP("Note: displays a textual note on the scene"), 0,
     STEPCORE_SUPER_CLASS(ItemGroup) STEPCORE_SUPER_CLASS(Tool),
     STEPCORE_PROPERTY_RW(StepCore::Vector2d, position, QT_TR_NOOP("position"), QT_TR_NOOP("m"), QT_TR_NOOP("Note position on the scene"), position, setPosition)
     STEPCORE_PROPERTY_RW(StepCore::Vector2d, size, QT_TR_NOOP("size"), QT_TR_NOOP("m"), QT_TR_NOOP("Note size on the scene"), size, setSize)
     STEPCORE_PROPERTY_RW(QString, text, QT_TR_NOOP("text"), STEPCORE_UNITS_NULL, QT_TR_NOOP("Text"), text, setText)
     )
 
-STEPCORE_META_OBJECT(Graph, QT_TR_NOOP("Graph"), QT_TR_NOOP("Graph: plots a graph of any properties"), 0,
+STEPCORE_META_OBJECT(Graph, QT_TRANSLATE_NOOP("ObjectClass", "Graph"), QT_TR_NOOP("Graph: plots a graph of any properties"), 0,
     STEPCORE_SUPER_CLASS(Item) STEPCORE_SUPER_CLASS(Tool),
     STEPCORE_PROPERTY_RW(StepCore::Vector2d, position, QT_TR_NOOP("position"), QT_TR_NOOP("m"), QT_TR_NOOP("Graph position on the scene"), position, setPosition)
     STEPCORE_PROPERTY_RW(StepCore::Vector2d, size, QT_TR_NOOP("size"), QT_TR_NOOP("m"), QT_TR_NOOP("Graph size on the scene"), size, setSize)
@@ -62,7 +62,7 @@ STEPCORE_META_OBJECT(Graph, QT_TR_NOOP("Graph"), QT_TR_NOOP("Graph: plots a grap
     STEPCORE_PROPERTY_R (QString, unitsY, QT_TR_NOOP("unitsY"), STEPCORE_UNITS_NULL, QT_TR_NOOP("Units along Y axis"), unitsY)
     )
 
-STEPCORE_META_OBJECT(Meter, QT_TR_NOOP("Meter"), QT_TR_NOOP("Meter: displays any property on the scene"), 0,
+STEPCORE_META_OBJECT(Meter, QT_TRANSLATE_NOOP("ObjectClass", "Meter"), QT_TR_NOOP("Meter: displays any property on the scene"), 0,
     STEPCORE_SUPER_CLASS(Item) STEPCORE_SUPER_CLASS(Tool),
     STEPCORE_PROPERTY_RW(StepCore::Vector2d, position, QT_TR_NOOP("position"), QT_TR_NOOP("m"), QT_TR_NOOP("Meter position on the scene"), position, setPosition)
     STEPCORE_PROPERTY_RW(StepCore::Vector2d, size, QT_TR_NOOP("size"), QT_TR_NOOP("m"), QT_TR_NOOP("Meter size on the scene"), size, setSize)
@@ -74,7 +74,7 @@ STEPCORE_META_OBJECT(Meter, QT_TR_NOOP("Meter"), QT_TR_NOOP("Meter: displays any
     STEPCORE_PROPERTY_R (QString, units, QT_TR_NOOP("units"), STEPCORE_UNITS_NULL, QT_TR_NOOP("Units of measured property"), units)
     )
 
-STEPCORE_META_OBJECT(Controller, QT_TR_NOOP("Controller"), QT_TR_NOOP("Controller: allows to easily control any property"), 0,
+STEPCORE_META_OBJECT(Controller, QT_TRANSLATE_NOOP("ObjectClass", "Controller"), QT_TR_NOOP("Controller: allows to easily control any property"), 0,
     STEPCORE_SUPER_CLASS(Item) STEPCORE_SUPER_CLASS(Tool),
     STEPCORE_PROPERTY_RW(StepCore::Vector2d, position, QT_TR_NOOP("position"), QT_TR_NOOP("m"), QT_TR_NOOP("Controller position on the scene"), position, setPosition)
     STEPCORE_PROPERTY_RW(StepCore::Vector2d, size, QT_TR_NOOP("size"), QT_TR_NOOP("m"), QT_TR_NOOP("Controller size on the scene"), size, setSize)
@@ -92,7 +92,7 @@ STEPCORE_META_OBJECT(Controller, QT_TR_NOOP("Controller"), QT_TR_NOOP("Controlle
     STEPCORE_PROPERTY_R (QString, units, QT_TR_NOOP("units"), STEPCORE_UNITS_NULL, QT_TR_NOOP("Units of controlled property"), units)
     )
 
-STEPCORE_META_OBJECT(Tracer, QT_TR_NOOP("Tracer"), QT_TR_NOOP("Tracer: traces trajectory of a point on a body"), 0,
+STEPCORE_META_OBJECT(Tracer, QT_TRANSLATE_NOOP("ObjectClass", "Tracer"), QT_TR_NOOP("Tracer: traces trajectory of a point on a body"), 0,
     STEPCORE_SUPER_CLASS(Item) STEPCORE_SUPER_CLASS(Tool),
     STEPCORE_PROPERTY_RW(Object*, body, QT_TR_NOOP("body"), STEPCORE_UNITS_NULL, QT_TR_NOOP("Traced body"), body, setBody)
     STEPCORE_PROPERTY_RW(StepCore::Vector2d, localPosition, QT_TR_NOOP("localPosition"), QT_TR_NOOP("m"),

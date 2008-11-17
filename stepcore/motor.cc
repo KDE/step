@@ -25,13 +25,13 @@
 namespace StepCore
 {
 
-STEPCORE_META_OBJECT(LinearMotor, QT_TR_NOOP("LinearMotor"), QT_TR_NOOP("Linear motor: applies a constant force to a given position of the body"), 0,
+STEPCORE_META_OBJECT(LinearMotor, QT_TRANSLATE_NOOP("ObjectClass", "LinearMotor"), QT_TR_NOOP("Linear motor: applies a constant force to a given position of the body"), 0,
     STEPCORE_SUPER_CLASS(Item) STEPCORE_SUPER_CLASS(Force),
     STEPCORE_PROPERTY_RW(Object*, body, QT_TR_NOOP("body"), STEPCORE_UNITS_NULL, QT_TR_NOOP("Body"), body, setBody)
     STEPCORE_PROPERTY_RW(StepCore::Vector2d, localPosition, QT_TR_NOOP("localPosition"), QT_TR_NOOP("m"), QT_TR_NOOP("Position of the motor on a body"), localPosition, setLocalPosition)
     STEPCORE_PROPERTY_RW(StepCore::Vector2d, forceValue, QT_TR_NOOP("forceValue"), QT_TR_NOOP("N"), QT_TR_NOOP("Value of the force, acting on the body"), forceValue, setForceValue))
 
-STEPCORE_META_OBJECT(CircularMotor, QT_TR_NOOP("CircularMotor"), QT_TR_NOOP("Circular motor: applies a constant torque to the body"), 0,
+STEPCORE_META_OBJECT(CircularMotor, QT_TRANSLATE_NOOP("ObjectClass", "CircularMotor"), QT_TR_NOOP("Circular motor: applies a constant torque to the body"), 0,
     STEPCORE_SUPER_CLASS(Item) STEPCORE_SUPER_CLASS(Force),
     STEPCORE_PROPERTY_RW(Object*, body, QT_TR_NOOP("body"), STEPCORE_UNITS_NULL, QT_TR_NOOP("Body"), body, setBody)
     STEPCORE_PROPERTY_RW(StepCore::Vector2d, localPosition, QT_TR_NOOP("localPosition"), QT_TR_NOOP("m"), QT_TR_NOOP("Position of the motor on a body"), localPosition, setLocalPosition)

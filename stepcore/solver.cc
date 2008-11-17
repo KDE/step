@@ -22,7 +22,7 @@
 namespace StepCore {
 
 // XXX: units for toleranceAbs, localError
-STEPCORE_META_OBJECT(Solver, QT_TR_NOOP("Solver"), QT_TR_NOOP("Solver"), MetaObject::ABSTRACT, STEPCORE_SUPER_CLASS(Object),
+STEPCORE_META_OBJECT(Solver, QT_TRANSLATE_NOOP("ObjectClass", "Solver"), QT_TR_NOOP("Solver"), MetaObject::ABSTRACT, STEPCORE_SUPER_CLASS(Object),
     STEPCORE_PROPERTY_R(QString, solverType, QT_TR_NOOP("solverType"), STEPCORE_UNITS_NULL, QT_TR_NOOP("Solver type"), solverType)
     STEPCORE_PROPERTY_RW_D(double, stepSize, QT_TR_NOOP("stepSize"), QT_TR_NOOP("s"), QT_TR_NOOP("Step size"), stepSize, setStepSize)
     STEPCORE_PROPERTY_RW(double, toleranceAbs, QT_TR_NOOP("toleranceAbs"), STEPCORE_UNITS_1, QT_TR_NOOP("Allowed absolute tolerance"), toleranceAbs, setToleranceAbs)

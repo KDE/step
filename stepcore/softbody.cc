@@ -28,9 +28,9 @@
 namespace StepCore
 {
 
-STEPCORE_META_OBJECT(SoftBodyParticle, QT_TR_NOOP("SoftBodyParticle"), QT_TR_NOOP("SoftBody particle"), 0, STEPCORE_SUPER_CLASS(Particle),)
-STEPCORE_META_OBJECT(SoftBodySpring, QT_TR_NOOP("SoftBodySpring"), QT_TR_NOOP("SoftBody spring"), 0, STEPCORE_SUPER_CLASS(Spring),)
-STEPCORE_META_OBJECT(SoftBody, QT_TR_NOOP("SoftBody"), QT_TR_NOOP("Deformable SoftBody"), 0, STEPCORE_SUPER_CLASS(ItemGroup),
+STEPCORE_META_OBJECT(SoftBodyParticle, QT_TRANSLATE_NOOP("ObjectClass", "SoftBodyParticle"), QT_TR_NOOP("SoftBody particle"), 0, STEPCORE_SUPER_CLASS(Particle),)
+STEPCORE_META_OBJECT(SoftBodySpring, QT_TRANSLATE_NOOP("ObjectClass", "SoftBodySpring"), QT_TR_NOOP("SoftBody spring"), 0, STEPCORE_SUPER_CLASS(Spring),)
+STEPCORE_META_OBJECT(SoftBody, QT_TRANSLATE_NOOP("ObjectClass", "SoftBody"), QT_TR_NOOP("Deformable SoftBody"), 0, STEPCORE_SUPER_CLASS(ItemGroup),
         STEPCORE_PROPERTY_RW(bool, showInternalItems, QT_TR_NOOP("showInternalItems"), STEPCORE_UNITS_NULL, QT_TR_NOOP("Show internal items"),
                                             showInternalItems, setShowInternalItems)
         STEPCORE_PROPERTY_RW_D(StepCore::Vector2d, position, QT_TR_NOOP("position"), QT_TR_NOOP("m"), QT_TR_NOOP("Position of the center of mass"), position, setPosition)

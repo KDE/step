@@ -24,7 +24,7 @@
 namespace StepCore
 {
 
-STEPCORE_META_OBJECT(RigidBody, QT_TR_NOOP("RigidBody"), QT_TR_NOOP("Generic rigid body"), 0, STEPCORE_SUPER_CLASS(Item) STEPCORE_SUPER_CLASS(Body),
+STEPCORE_META_OBJECT(RigidBody, QT_TRANSLATE_NOOP("ObjectClass", "RigidBody"), QT_TR_NOOP("Generic rigid body"), 0, STEPCORE_SUPER_CLASS(Item) STEPCORE_SUPER_CLASS(Body),
         STEPCORE_PROPERTY_RW_D(StepCore::Vector2d, position, QT_TR_NOOP("position"), QT_TR_NOOP("m"), QT_TR_NOOP("Position of the center of mass"), position, setPosition)
         STEPCORE_PROPERTY_RW_D(double, angle, QT_TR_NOOP("angle"), QT_TR_NOOP("rad"), QT_TR_NOOP("Rotation angle"), angle, setAngle)
 
@@ -49,7 +49,7 @@ STEPCORE_META_OBJECT(RigidBody, QT_TR_NOOP("RigidBody"), QT_TR_NOOP("Generic rig
         STEPCORE_PROPERTY_RWF(double, kineticEnergy, QT_TR_NOOP("kineticEnergy"), QT_TR_NOOP("J"), QT_TR_NOOP("kinetic energy"),
                         StepCore::MetaProperty::DYNAMIC, kineticEnergy, setKineticEnergy))
 
-STEPCORE_META_OBJECT(RigidBodyErrors, QT_TR_NOOP("RigidBodyErrors"), QT_TR_NOOP("Errors class for RigidBody"), 0, STEPCORE_SUPER_CLASS(ObjectErrors),
+STEPCORE_META_OBJECT(RigidBodyErrors, QT_TRANSLATE_NOOP("ObjectClass", "RigidBodyErrors"), QT_TR_NOOP("Errors class for RigidBody"), 0, STEPCORE_SUPER_CLASS(ObjectErrors),
         STEPCORE_PROPERTY_RW_D(StepCore::Vector2d, positionVariance, QT_TR_NOOP("positionVariance"), QT_TR_NOOP("m"),
                     QT_TR_NOOP("position variance"), positionVariance, setPositionVariance)
         STEPCORE_PROPERTY_RW_D(double, angleVariance, QT_TR_NOOP("angleVariance"), QT_TR_NOOP("rad"),
@@ -80,19 +80,19 @@ STEPCORE_META_OBJECT(RigidBodyErrors, QT_TR_NOOP("RigidBodyErrors"), QT_TR_NOOP(
         STEPCORE_PROPERTY_RWF(double, kineticEnergyVariance, QT_TR_NOOP("kineticEnergyVariance"), QT_TR_NOOP("J"),
                     QT_TR_NOOP("kinetic energy variance"), StepCore::MetaProperty::DYNAMIC, kineticEnergyVariance, setKineticEnergyVariance))
 
-STEPCORE_META_OBJECT(Disk, QT_TR_NOOP("Disk"), QT_TR_NOOP("Rigid disk"), 0, STEPCORE_SUPER_CLASS(RigidBody),
+STEPCORE_META_OBJECT(Disk, QT_TRANSLATE_NOOP("ObjectClass", "Disk"), QT_TR_NOOP("Rigid disk"), 0, STEPCORE_SUPER_CLASS(RigidBody),
         STEPCORE_PROPERTY_RW(double, radius, QT_TR_NOOP("radius"), QT_TR_NOOP("m"), QT_TR_NOOP("Radius of the disk"), radius, setRadius))
 
-STEPCORE_META_OBJECT(BasePolygon, QT_TR_NOOP("BasePolygon"), QT_TR_NOOP("Base polygon body"), 0, STEPCORE_SUPER_CLASS(RigidBody),)
+STEPCORE_META_OBJECT(BasePolygon, QT_TRANSLATE_NOOP("ObjectClass", "BasePolygon"), QT_TR_NOOP("Base polygon body"), 0, STEPCORE_SUPER_CLASS(RigidBody),)
 
-STEPCORE_META_OBJECT(Box, QT_TR_NOOP("Box"), QT_TR_NOOP("Rigid box"), 0, STEPCORE_SUPER_CLASS(BasePolygon),
+STEPCORE_META_OBJECT(Box, QT_TRANSLATE_NOOP("ObjectClass", "Box"), QT_TR_NOOP("Rigid box"), 0, STEPCORE_SUPER_CLASS(BasePolygon),
         STEPCORE_PROPERTY_RW(StepCore::Vector2d, size, QT_TR_NOOP("size"), QT_TR_NOOP("m"), QT_TR_NOOP("Size of the box"), size, setSize))
 
-STEPCORE_META_OBJECT(Polygon, QT_TR_NOOP("Polygon"), QT_TR_NOOP("Rigid polygon body"), 0, STEPCORE_SUPER_CLASS(BasePolygon),
+STEPCORE_META_OBJECT(Polygon, QT_TRANSLATE_NOOP("ObjectClass", "Polygon"), QT_TR_NOOP("Rigid polygon body"), 0, STEPCORE_SUPER_CLASS(BasePolygon),
         STEPCORE_PROPERTY_RW(Vector2dList, vertexes, QT_TR_NOOP("vertexes"), QT_TR_NOOP("m"), QT_TR_NOOP("Vertex list"), vertexes, setVertexes))
 
 #if 0
-STEPCORE_META_OBJECT(Plane, QT_TR_NOOP("Plane"), QT_TR_NOOP("Unmovable rigid plane"), 0, STEPCORE_SUPER_CLASS(Item) STEPCORE_SUPER_CLASS(Body),
+STEPCORE_META_OBJECT(Plane, QT_TRANSLATE_NOOP("ObjectClass", "Plane"), QT_TR_NOOP("Unmovable rigid plane"), 0, STEPCORE_SUPER_CLASS(Item) STEPCORE_SUPER_CLASS(Body),
         STEPCORE_PROPERTY_RW_D(StepCore::Vector2d, point1, QT_TR_NOOP("point1"), QT_TR_NOOP("m"), QT_TR_NOOP("First point which defines the plane"), point1, setPoint1),
         STEPCORE_PROPERTY_RW_D(StepCore::Vector2d, point2, QT_TR_NOOP("point2"), QT_TR_NOOP("m"), QT_TR_NOOP("Second point which defines the plane"), point2, setPoint2))
 #endif

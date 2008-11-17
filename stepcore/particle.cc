@@ -25,7 +25,7 @@
 namespace StepCore
 {
 
-STEPCORE_META_OBJECT(Particle, QT_TR_NOOP("Particle"), QT_TR_NOOP("Simple zero-size particle"), 0,
+STEPCORE_META_OBJECT(Particle, QT_TRANSLATE_NOOP("ObjectClass", "Particle"), QT_TR_NOOP("Simple zero-size particle"), 0,
         STEPCORE_SUPER_CLASS(Item) STEPCORE_SUPER_CLASS(Body),
         STEPCORE_PROPERTY_RW_D(StepCore::Vector2d, position, QT_TR_NOOP("position"), QT_TR_NOOP("m"), QT_TR_NOOP("position"), position, setPosition)
         STEPCORE_PROPERTY_RW_D(StepCore::Vector2d, velocity, QT_TR_NOOP("velocity"), QT_TR_NOOP("m/s"), QT_TR_NOOP("velocity"), velocity, setVelocity)
@@ -38,7 +38,7 @@ STEPCORE_META_OBJECT(Particle, QT_TR_NOOP("Particle"), QT_TR_NOOP("Simple zero-s
         STEPCORE_PROPERTY_RWF(double, kineticEnergy, QT_TR_NOOP("kineticEnergy"), QT_TR_NOOP("J"), QT_TR_NOOP("kinetic energy"),
                         StepCore::MetaProperty::DYNAMIC, kineticEnergy, setKineticEnergy))
 
-STEPCORE_META_OBJECT(ParticleErrors, QT_TR_NOOP("ParticleErrors"), QT_TR_NOOP("Errors class for Particle"), 0, STEPCORE_SUPER_CLASS(ObjectErrors),
+STEPCORE_META_OBJECT(ParticleErrors, QT_TRANSLATE_NOOP("ObjectClass", "ParticleErrors"), QT_TR_NOOP("Errors class for Particle"), 0, STEPCORE_SUPER_CLASS(ObjectErrors),
         STEPCORE_PROPERTY_RW_D(StepCore::Vector2d, positionVariance, QT_TR_NOOP("positionVariance"), QT_TR_NOOP("m"),
                     QT_TR_NOOP("position variance"), positionVariance, setPositionVariance)
         STEPCORE_PROPERTY_RW_D(StepCore::Vector2d, velocityVariance, QT_TR_NOOP("velocityVariance"), QT_TR_NOOP("m/s"),
@@ -54,10 +54,10 @@ STEPCORE_META_OBJECT(ParticleErrors, QT_TR_NOOP("ParticleErrors"), QT_TR_NOOP("E
         STEPCORE_PROPERTY_RWF(double, kineticEnergyVariance, QT_TR_NOOP("kineticEnergyVariance"), QT_TR_NOOP("J"),
                     QT_TR_NOOP("kinetic energy variance"), StepCore::MetaProperty::DYNAMIC, kineticEnergyVariance, setKineticEnergyVariance))
 
-STEPCORE_META_OBJECT(ChargedParticle, QT_TR_NOOP("ChargedParticle"), QT_TR_NOOP("Charged zero-size particle"), 0, STEPCORE_SUPER_CLASS(Particle),
+STEPCORE_META_OBJECT(ChargedParticle, QT_TRANSLATE_NOOP("ObjectClass", "ChargedParticle"), QT_TR_NOOP("Charged zero-size particle"), 0, STEPCORE_SUPER_CLASS(Particle),
         STEPCORE_PROPERTY_RW(double, charge, QT_TR_NOOP("charge"), QT_TR_NOOP("C"), QT_TR_NOOP("charge"), charge, setCharge))
 
-STEPCORE_META_OBJECT(ChargedParticleErrors, QT_TR_NOOP("ChargedParticleErrors"), QT_TR_NOOP("Errors class for ChargedParticle"), 0,
+STEPCORE_META_OBJECT(ChargedParticleErrors, QT_TRANSLATE_NOOP("ObjectClass", "ChargedParticleErrors"), QT_TR_NOOP("Errors class for ChargedParticle"), 0,
         STEPCORE_SUPER_CLASS(ParticleErrors),
         STEPCORE_PROPERTY_RW(double, chargeVariance, QT_TR_NOOP("chargeVariance"), QT_TR_NOOP("kg"),
                     QT_TR_NOOP("charge variance"), chargeVariance, setChargeVariance ))

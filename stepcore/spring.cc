@@ -25,7 +25,7 @@
 
 namespace StepCore {
 
-STEPCORE_META_OBJECT(Spring, QT_TR_NOOP("Spring"), QT_TR_NOOP("Massless spring which can be connected to bodies"), 0,
+STEPCORE_META_OBJECT(Spring, QT_TRANSLATE_NOOP("ObjectClass", "Spring"), QT_TR_NOOP("Massless spring which can be connected to bodies"), 0,
     STEPCORE_SUPER_CLASS(Item) STEPCORE_SUPER_CLASS(Force),
     STEPCORE_PROPERTY_RW(double, restLength, QT_TR_NOOP("restLength"), QT_TR_NOOP("m"), QT_TR_NOOP("Rest length"), restLength, setRestLength)
     STEPCORE_PROPERTY_R_D(double, length, QT_TR_NOOP("length"), QT_TR_NOOP("m"), QT_TR_NOOP("Current length"), length)
@@ -42,7 +42,7 @@ STEPCORE_META_OBJECT(Spring, QT_TR_NOOP("Spring"), QT_TR_NOOP("Massless spring w
     STEPCORE_PROPERTY_R_D(double, force, QT_TR_NOOP("force"), QT_TR_NOOP("N"), QT_TR_NOOP("Spring tension force"), force)
     )
 
-STEPCORE_META_OBJECT(SpringErrors, QT_TR_NOOP("SpringErrors"), QT_TR_NOOP("Errors class for Spring"), 0,
+STEPCORE_META_OBJECT(SpringErrors, QT_TRANSLATE_NOOP("ObjectClass", "SpringErrors"), QT_TR_NOOP("Errors class for Spring"), 0,
     STEPCORE_SUPER_CLASS(ObjectErrors),
     STEPCORE_PROPERTY_RW(double, restLengthVariance, QT_TR_NOOP("restLengthVariance"), QT_TR_NOOP("m"),
                     QT_TR_NOOP("Rest length variance"), restLengthVariance, setRestLengthVariance)

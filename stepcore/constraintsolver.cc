@@ -26,11 +26,11 @@
 
 namespace StepCore {
 
-STEPCORE_META_OBJECT(ConstraintSolver, QT_TR_NOOP("ConstraintSolver"), "ConstraintSolver", MetaObject::ABSTRACT, STEPCORE_SUPER_CLASS(Object),)
+STEPCORE_META_OBJECT(ConstraintSolver, QT_TRANSLATE_NOOP("ObjectClass", "ConstraintSolver"), "ConstraintSolver", MetaObject::ABSTRACT, STEPCORE_SUPER_CLASS(Object),)
     //STEPCORE_PROPERTY_RW(double, toleranceAbs, QT_TR_NOOP("toleranceAbs"), STEPCORE_UNITS_1, "Allowed absolute tolerance", toleranceAbs, setToleranceAbs)
     //STEPCORE_PROPERTY_R_D(double, localError, QT_TR_NOOP("localError"), STEPCORE_UNITS_1, "Maximal local error during last step", localError))
 
-STEPCORE_META_OBJECT(CGConstraintSolver, QT_TR_NOOP("CGConstraintSolver"), "CGConstraintSolver", 0,
+STEPCORE_META_OBJECT(CGConstraintSolver, QT_TRANSLATE_NOOP("ObjectClass", "CGConstraintSolver"), "CGConstraintSolver", 0,
                         STEPCORE_SUPER_CLASS(ConstraintSolver),)
 
 int CGConstraintSolver::solve(ConstraintsInfo* info)

@@ -26,11 +26,11 @@
 namespace StepCore {
 
 // XXX: units for toleranceAbs and localError
-STEPCORE_META_OBJECT(CollisionSolver, QT_TR_NOOP("CollisionSolver"), "CollisionSolver", MetaObject::ABSTRACT, STEPCORE_SUPER_CLASS(Object),
+STEPCORE_META_OBJECT(CollisionSolver, QT_TRANSLATE_NOOP("ObjectClass", "CollisionSolver"), "CollisionSolver", MetaObject::ABSTRACT, STEPCORE_SUPER_CLASS(Object),
     STEPCORE_PROPERTY_RW(double, toleranceAbs, QT_TR_NOOP("toleranceAbs"), STEPCORE_UNITS_1, QT_TR_NOOP("Allowed absolute tolerance"), toleranceAbs, setToleranceAbs)
     STEPCORE_PROPERTY_R_D(double, localError, QT_TR_NOOP("localError"), STEPCORE_UNITS_1, QT_TR_NOOP("Maximal local error during last step"), localError))
 
-STEPCORE_META_OBJECT(GJKCollisionSolver, QT_TR_NOOP("GJKCollisionSolver"), "GJKCollisionSolver", 0,
+STEPCORE_META_OBJECT(GJKCollisionSolver, QT_TRANSLATE_NOOP("ObjectClass", "GJKCollisionSolver"), "GJKCollisionSolver", 0,
                         STEPCORE_SUPER_CLASS(CollisionSolver),)
 
 int GJKCollisionSolver::checkPolygonPolygon(Contact* contact)
