@@ -55,6 +55,9 @@ public:
 
     /** Returns class name of the item which this creator creates */
     QString className() const { return _className; }
+
+    /** Returns translated class name of the item which this creator creates */
+    QString classNameTr() const { return QObject::trUtf8(_className.toUtf8().constData()); }
     
     /** Returns created item or NULL if item is not yet created */
     StepCore::Item* item() const { return _item; }

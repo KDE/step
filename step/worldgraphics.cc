@@ -61,7 +61,7 @@ void ItemCreator::closeMessage()
 void ItemCreator::start()
 {
     showMessage(MessageFrame::Information,
-            i18n("Click on the scene to create a %1", className()));
+            i18n("Click on the scene to create a %1", classNameTr()));
 }
 
 bool ItemCreator::sceneEvent(QEvent* event)
@@ -88,7 +88,7 @@ bool ItemCreator::sceneEvent(QEvent* event)
                                                     QItemSelectionModel::ClearAndSelect);
 
         showMessage(MessageFrame::Information,
-                i18n("%1 named '%2' created", className(), _item->name()),
+                i18n("%1 named '%2' created", classNameTr(), _item->name()),
                 MessageFrame::CloseButton | MessageFrame::CloseTimer);
 
         setFinished();
@@ -104,10 +104,10 @@ void AttachableItemCreator::start()
     if(_twoEnds)
         showMessage(MessageFrame::Information,
             i18n("Press left mouse button to position first end of a %1\n"
-                 "then drag and release it to position the second end", className()));
+                 "then drag and release it to position the second end", classNameTr()));
     else
         showMessage(MessageFrame::Information,
-            i18n("Click on the scene to create a %1", className()));
+            i18n("Click on the scene to create a %1", classNameTr()));
 }
 
 bool AttachableItemCreator::sceneEvent(QEvent* event)
@@ -133,11 +133,11 @@ bool AttachableItemCreator::sceneEvent(QEvent* event)
             _worldModel->setProperty(_item, "restLength", 0);
 
             showMessage(MessageFrame::Information,
-                i18n("Release left mouse button to position second end of the %1", className()));
+                i18n("Release left mouse button to position second end of the %1", classNameTr()));
         } else {
             _worldScene->snapItem(pos, _snapFlags, _snapTypes, WorldGraphicsItem::Finished, _item);
             showMessage(MessageFrame::Information,
-                i18n("%1 named '%2' created", className(), _item->name()),
+                i18n("%1 named '%2' created", classNameTr(), _item->name()),
                 MessageFrame::CloseButton | MessageFrame::CloseTimer);
             _worldModel->endMacro();
             setFinished();
@@ -169,7 +169,7 @@ bool AttachableItemCreator::sceneEvent(QEvent* event)
         _worldModel->endMacro();
 
         showMessage(MessageFrame::Information,
-            i18n("%1 named '%2' created", className(), _item->name()),
+            i18n("%1 named '%2' created", classNameTr(), _item->name()),
             MessageFrame::CloseButton | MessageFrame::CloseTimer);
 
         setFinished();
@@ -507,7 +507,7 @@ ArrowHandlerGraphicsItem::ArrowHandlerGraphicsItem(StepCore::Item* item, WorldMo
     setFlag(QGraphicsItem::ItemIsMovable);
     setZValue(HANDLER_ZVALUE);
     _exclusiveMoving = true;
-    if(_property) _exclusiveMovingMessage = i18n("Change %1.%2", _item->name(), _property->name());
+    if(_property) _exclusiveMovingMessage = i18n("Change %1.%2", _item->name(), _property->nameTr());
     else _exclusiveMovingMessage = i18n("Change %1", _item->name());
 }
 
@@ -556,7 +556,7 @@ void ArrowHandlerGraphicsItem::mouseMoveEvent(QGraphicsSceneMouseEvent *event)
     if ((event->buttons() & Qt::LeftButton) && (flags() & ItemIsMovable)) {
         if(!_isMoving) {
             if(_property)
-                _worldModel->beginMacro(i18n("Change %1.%2", _item->name(), _property->name()));
+                _worldModel->beginMacro(i18n("Change %1.%2", _item->name(), _property->nameTr()));
             else
                 _worldModel->beginMacro(i18n("Change %1", _item->name()));
             _isMoving = true;
@@ -646,7 +646,7 @@ void CircularArrowHandlerGraphicsItem::mouseMoveEvent(QGraphicsSceneMouseEvent *
     if ((event->buttons() & Qt::LeftButton) && (flags() & ItemIsMovable)) {
         if(!_isMoving) {
             if(_property)
-                _worldModel->beginMacro(i18n("Change %1.%2", _item->name(), _property->name()));
+                _worldModel->beginMacro(i18n("Change %1.%2", _item->name(), _property->nameTr()));
             else
                 _worldModel->beginMacro(i18n("Change %1", _item->name()));
             _isMoving = true;

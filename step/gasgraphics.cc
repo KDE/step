@@ -42,7 +42,7 @@
 void GasCreator::start()
 {
     showMessage(MessageFrame::Information,
-            i18n("Press left mouse button to position\ntop left corner of a region for %1", className()));
+            i18n("Press left mouse button to position\ntop left corner of a region for %1", classNameTr()));
 }
 
 bool GasCreator::sceneEvent(QEvent* event)
@@ -70,7 +70,7 @@ bool GasCreator::sceneEvent(QEvent* event)
         _topLeft = WorldGraphicsItem::pointToVector(pos);
 
         showMessage(MessageFrame::Information,
-            i18n("Move mouse and release left mouse button to position\nbottom right corner of the region for %1", className()));
+            i18n("Move mouse and release left mouse button to position\nbottom right corner of the region for %1", classNameTr()));
 
         return true;
     } else if(event->type() == QEvent::GraphicsSceneMouseMove &&
@@ -105,7 +105,7 @@ bool GasCreator::sceneEvent(QEvent* event)
         _worldModel->endMacro();
 
         showMessage(MessageFrame::Information,
-            i18n("%1 named '%2' created", className(), _item->name()),
+            i18n("%1 named '%2' created", classNameTr(), _item->name()),
             MessageFrame::CloseButton | MessageFrame::CloseTimer);
 
         setFinished();

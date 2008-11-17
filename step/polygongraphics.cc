@@ -147,7 +147,7 @@ void RigidBodyGraphicsItem::stateChanged()
 void DiskCreator::start()
 {
     showMessage(MessageFrame::Information,
-            i18n("Press left mouse button to position a center of a %1", className()));
+            i18n("Press left mouse button to position a center of a %1", classNameTr()));
 }
 
 bool DiskCreator::sceneEvent(QEvent* event)
@@ -167,7 +167,7 @@ bool DiskCreator::sceneEvent(QEvent* event)
                                                     QItemSelectionModel::ClearAndSelect);
 
         showMessage(MessageFrame::Information,
-            i18n("Move mouse and release left mouse button to define a radius of the %1", className()));
+            i18n("Move mouse and release left mouse button to define a radius of the %1", classNameTr()));
 
         return true;
     } else if(event->type() == QEvent::GraphicsSceneMouseMove &&
@@ -193,7 +193,7 @@ bool DiskCreator::sceneEvent(QEvent* event)
         _worldModel->endMacro();
 
         showMessage(MessageFrame::Information,
-            i18n("%1 named '%2' created", className(), _item->name()),
+            i18n("%1 named '%2' created", classNameTr(), _item->name()),
             MessageFrame::CloseButton | MessageFrame::CloseTimer);
 
         setFinished();
@@ -271,7 +271,7 @@ OnHoverHandlerGraphicsItem* DiskGraphicsItem::createOnHoverHandler(const QPointF
 void BoxCreator::start()
 {
     showMessage(MessageFrame::Information,
-            i18n("Press left mouse button to position\ntop left corner of a %1", className()));
+            i18n("Press left mouse button to position\ntop left corner of a %1", classNameTr()));
 }
 
 bool BoxCreator::sceneEvent(QEvent* event)
@@ -292,7 +292,7 @@ bool BoxCreator::sceneEvent(QEvent* event)
         _topLeft = WorldGraphicsItem::pointToVector(pos);
 
         showMessage(MessageFrame::Information,
-            i18n("Move mouse and release left mouse button to position\nbottom right corner of the %1", className()));
+            i18n("Move mouse and release left mouse button to position\nbottom right corner of the %1", classNameTr()));
 
         return true;
     } else if(event->type() == QEvent::GraphicsSceneMouseMove &&
@@ -322,7 +322,7 @@ bool BoxCreator::sceneEvent(QEvent* event)
         _worldModel->endMacro();
 
         showMessage(MessageFrame::Information,
-            i18n("%1 named '%2' created", className(), _item->name()),
+            i18n("%1 named '%2' created", classNameTr(), _item->name()),
             MessageFrame::CloseButton | MessageFrame::CloseTimer);
 
         setFinished();
@@ -415,7 +415,7 @@ void PolygonCreator::fixInertia()
 void PolygonCreator::start()
 {
     showMessage(MessageFrame::Information,
-            i18n("Click on the scene to create a first vertex of %1", className()));
+            i18n("Click on the scene to create a first vertex of %1", classNameTr()));
 }
 
 bool PolygonCreator::sceneEvent(QEvent* event)
@@ -476,7 +476,7 @@ bool PolygonCreator::sceneEvent(QEvent* event)
         _worldModel->endMacro();
 
         showMessage(MessageFrame::Information,
-            i18n("%1 named '%2' created", className(), _item->name()),
+            i18n("%1 named '%2' created", classNameTr(), _item->name()),
             MessageFrame::CloseButton | MessageFrame::CloseTimer);
 
         setFinished();

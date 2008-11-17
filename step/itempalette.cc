@@ -266,8 +266,8 @@ void ItemPalette::createObjectAction(const StepCore::MetaObject* metaObject)
 {
     Q_ASSERT(metaObject && !metaObject->isAbstract());
 
-    QAction* action = new QAction(metaObject->className(), this);
-    action->setToolTip(metaObject->description());
+    QAction* action = new QAction(metaObject->classNameTr(), this);
+    action->setToolTip(metaObject->descriptionTr());
     action->setIcon(_worldModel->worldFactory()->objectIcon(metaObject));
     action->setCheckable(true);
     action->setProperty("step_object", metaObject->className());

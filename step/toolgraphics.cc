@@ -859,7 +859,7 @@ void DataSourceWidget::objectSelected(int index)
             if(_skipReadOnly && !pr->isWritable()) continue;
             if(pr->userTypeId() == qMetaTypeId<double>() ||
                         pr->userTypeId() == qMetaTypeId<StepCore::Vector2d>()) {
-                _property->addItem(pr->name(), pr->name());
+                _property->addItem(pr->nameTr(), pr->name());
             }
         }
         propertySelected(_property->currentIndex());

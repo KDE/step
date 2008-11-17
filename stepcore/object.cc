@@ -60,6 +60,10 @@ void MetaObject::init() const
         _allSuperClassIds |= superClass(i)->_allSuperClassIds;
     }
 
+    // strings
+    _classNameTr = QObject::trUtf8(_className.toUtf8().constData());
+    _descriptionTr = QObject::trUtf8(_descriptionTr.toUtf8().constData());
+
     _initialized = true;
 }
 
@@ -105,6 +109,14 @@ const MetaProperty* MetaObject::property(int n) const
     if(n < classPropertyCount()) return &_classProperties[n];
     else return NULL;
 }*/
+
+void MetaProperty::init() const
+{
+    _nameTr = QObject::trUtf8(_name.toUtf8().constData());
+    _unitsTr = QObject::trUtf8(_units.toUtf8().constData());
+    _descriptionTr = QObject::trUtf8(_description.toUtf8().constData());
+    _initialized = true;
+}
 
 const MetaProperty* MetaObject::property(const QString& name) const
 {

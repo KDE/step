@@ -688,7 +688,7 @@ QString WorldModel::formatName(const StepCore::Object* object) const
 QString WorldModel::formatNameFull(const StepCore::Object* object) const
 {
     if(!object) return i18n("<no object>");
-    return i18n("%1: %2", formatName(object), object->metaObject()->className());
+    return i18n("%1: %2", formatName(object), object->metaObject()->classNameTr());
 }
 
 QString WorldModel::formatProperty(const StepCore::Object* object,
@@ -788,7 +788,7 @@ QString WorldModel::createToolTip(const QModelIndex& index) const
         } else {
             value.append(units);
         }*/
-        toolTip += i18n("<tr><td>%1&nbsp;&nbsp;</td><td>%2</td></tr>", p->name(),
+        toolTip += i18n("<tr><td>%1&nbsp;&nbsp;</td><td>%2</td></tr>", p->nameTr(),
                             formatProperty(object, objectErrors, p));
     }
     toolTip += "</table>";

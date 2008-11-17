@@ -90,7 +90,7 @@ PropertiesBrowserModel::PropertiesBrowserModel(WorldModel* worldModel, QObject* 
         if(!metaObject->inherits(StepCore::Solver::staticMetaObject())) continue;
         QString solverName = QString(metaObject->className()).remove("Solver");
         QStandardItem* item = new QStandardItem(solverName);
-        item->setToolTip(QString(metaObject->description()));
+        item->setToolTip(QString(metaObject->descriptionTr()));
         _solverChoices->appendRow(item);
     }
 }
@@ -166,7 +166,7 @@ QVariant PropertiesBrowserModel::data(const QModelIndex &index, int role) const
     if(index.internalId() == 0) {
         const StepCore::MetaProperty* p = _object->metaObject()->property(index.row());
         if(role == Qt::DisplayRole || role == Qt::EditRole) {
-            if(index.column() == 0) return p->name();
+            if(index.column() == 0) return p->nameTr();
             else if(index.column() == 1) {
                 _worldModel->simulationPause();
 
@@ -215,9 +215,9 @@ QVariant PropertiesBrowserModel::data(const QModelIndex &index, int role) const
             }
         } else if(role == Qt::ToolTipRole) {
             if(index.row() == 1 && index.column() == 1 && dynamic_cast<StepCore::Solver*>(_object)) {
-                return _object->metaObject()->description();
+                return _object->metaObject()->descriptionTr();
             }
-            return p->description(); // XXX: translation
+            return p->descriptionTr(); // XXX: translation
         } else if(index.column() == 1 && role == Qt::DecorationRole &&
                     p->userTypeId() == qMetaTypeId<StepCore::Color>()) {
             QPixmap pix(8, 8);
@@ -237,7 +237,7 @@ QVariant PropertiesBrowserModel::data(const QModelIndex &index, int role) const
     } else { // index.internalId() != 0
         const StepCore::MetaProperty* p = _object->metaObject()->property(index.internalId()-1);
         if(role == Qt::DisplayRole || role == Qt::EditRole) {
-            if(index.column() == 0) return QString("%1[%2]").arg(p->name()).arg(index.row());
+            if(index.column() == 0) return QString("%1[%2]").arg(p->nameTr()).arg(index.row());
             else if(index.column() == 1) {
 #ifdef __GNUC__
 #warning XXX: add error information for lists
@@ -261,7 +261,7 @@ QVariant PropertiesBrowserModel::data(const QModelIndex &index, int role) const
                 return QBrush(Qt::darkGray); // XXX: how to get scheme color ?
             }
         } else if(role == Qt::ToolTipRole) {
-            return p->description(); // XXX: translation
+            return p->descriptionTr(); // XXX: translation
         }
     }
 
@@ -295,20 +295,20 @@ bool PropertiesBrowserModel::setData(const QModelIndex &index, const QVariant &v
                     Q_ASSERT(!pv);
                     StepCore::Object* obj = _worldModel->world()->object(value.toString());
                     if(!obj) return false;
-                    _worldModel->beginMacro(i18n("Change %1.%2", _object->name(), p->name()));
+                    _worldModel->beginMacro(i18n("Change %1.%2", _object->name(), p->nameTr()));
                     _worldModel->setProperty(_object, p, QVariant::fromValue(obj));
                     _worldModel->endMacro();
                     return true;
                 } else if(p->userTypeId() == qMetaTypeId<StepCore::Color>()) {
                     Q_ASSERT(!pv);
-                    _worldModel->beginMacro(i18n("Change %1.%2", _object->name(), p->name()));
+                    _worldModel->beginMacro(i18n("Change %1.%2", _object->name(), p->nameTr()));
                     _worldModel->setProperty(_object, p, value.type() == QVariant::String ? value :
                                     QVariant::fromValue(StepCore::Color(value.value<QColor>().rgba())));
                     _worldModel->endMacro();
                     return true;
                 } else if(p->userTypeId() == qMetaTypeId<bool>()) {
                     Q_ASSERT(!pv);
-                    _worldModel->beginMacro(i18n("Change %1.%2", _object->name(), p->name()));
+                    _worldModel->beginMacro(i18n("Change %1.%2", _object->name(), p->nameTr()));
                     _worldModel->setProperty(_object, p, value);
                     _worldModel->endMacro();
                     return true;
@@ -317,7 +317,7 @@ bool PropertiesBrowserModel::setData(const QModelIndex &index, const QVariant &v
                     if(index.row() == 0)
                         _worldModel->beginMacro(i18n("Rename %1 to %2", _object->name(), value.toString()));
                     else
-                        _worldModel->beginMacro(i18n("Change %1.%2", _object->name(), p->name()));
+                        _worldModel->beginMacro(i18n("Change %1.%2", _object->name(), p->nameTr()));
                     _worldModel->setProperty(_object, p, value);
                     _worldModel->endMacro();
                     return true;
@@ -401,7 +401,7 @@ bool PropertiesBrowserModel::setData(const QModelIndex &index, const QVariant &v
                     }
                 }
 
-                _worldModel->beginMacro(i18n("Change %1.%2", _object->name(), p->name()));
+                _worldModel->beginMacro(i18n("Change %1.%2", _object->name(), p->nameTr()));
                 _worldModel->setProperty(_object, p, v);
                 if(vv.isValid() && !pv) {
                     // XXX: Make this undo-able
@@ -418,7 +418,7 @@ bool PropertiesBrowserModel::setData(const QModelIndex &index, const QVariant &v
             bool ok;
             v[index.row()] = StepCore::stringToType<StepCore::Vector2d>(value.toString(), &ok);
             if(!ok) return true; // dataChanged should be emitted anyway
-            _worldModel->beginMacro(i18n("Change %1.%2", _object->name(), p->name()));
+            _worldModel->beginMacro(i18n("Change %1.%2", _object->name(), p->nameTr()));
             _worldModel->setProperty(_object, p, QVariant::fromValue(v));
             _worldModel->endMacro();
         }

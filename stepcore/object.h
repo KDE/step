@@ -85,7 +85,7 @@ public:
     MetaProperty():
         _name(""), _units(QString()), _description(""),
         _flags(0), _userTypeId(0), _readVariant(0), _writeVariant(0),
-        _readString(0), _writeString(0) {}
+        _readString(0), _writeString(0), _initialized(false) {}
 
     /*MetaProperty(const MetaProperty& p):
         _name(p._name), _units(p._units), _flags(p.flags), _userTypeId(p._userTypeId),
@@ -101,7 +101,7 @@ public:
         : _name(name), _units(units), _description(description),
           _flags(flags), _userTypeId(userType),
           _readVariant(readVariant), _writeVariant(writeVariant),
-          _readString(readString), _writeString(writeString) {}
+          _readString(readString), _writeString(writeString), _initialized(false) {}
 
     /** Returns property name */
     const QString& name() const { return _name; }
@@ -111,6 +111,13 @@ public:
     const QString& description() const { return _description; }
     /** Returns property flags */
     int flags() const { return _flags; }
+
+    /** Returns translated property name */
+    const QString& nameTr() const { tryInit(); return _nameTr; }
+    /** Returns translated property units (if appropriate) */
+    const QString& unitsTr() const { tryInit(); return _unitsTr; }
+    /** Returns translated property description */
+    const QString& descriptionTr() const { tryInit(); return _descriptionTr; }
 
     /** Returns property userType (see QMetaProperty) */
     int userTypeId() const { return _userTypeId; }
@@ -146,6 +153,15 @@ public:
     bool (*const _writeVariant)(Object* obj, const QVariant& v);
     QString (*const _readString)(const Object* obj);
     bool (*const _writeString)(Object* obj, const QString& v);
+
+    mutable bool _initialized;
+    mutable QString _nameTr;
+    mutable QString _unitsTr;
+    mutable QString _descriptionTr;
+
+public:
+    void init() const;
+    void tryInit() const { if(!_initialized) init(); }
 };
 
 /** \ingroup reflections
@@ -163,8 +179,14 @@ public:
     const QString& className() const { return _className; }
     /** Returns class description */
     const QString& description() const { return _description; }
+
+    /** Returns translated class name */
+    const QString& classNameTr() const { tryInit(); return _classNameTr; }
+    /** Returns translated class description */
+    const QString& descriptionTr() const { tryInit(); return _descriptionTr; } 
+
     /** Returns class id */
-    int classId() const { if(!_initialized) init(); return _classId; }
+    int classId() const { tryInit(); return _classId; }
 
     /** Returns true if class is abstract */
     bool isAbstract() const { return _flags & ABSTRACT; }
@@ -194,14 +216,15 @@ public:
     const MetaProperty* classProperty(int n) const { return &_classProperties[n]; }
 
     /** Returns property count */
-    int propertyCount() const { if(!_initialized) init(); return _allPropertyCount; }
+    int propertyCount() const { tryInit(); return _allPropertyCount; }
     /** Returns property by index */
-    const MetaProperty* property(int n) const { if(!_initialized) init(); return _allProperties[n]; }
+    const MetaProperty* property(int n) const { tryInit(); return _allProperties[n]; }
     /** Returns property by name */
     const MetaProperty* property(const QString& name) const;
 
 public:
     void init() const;
+    void tryInit() const { if(!_initialized) init(); }
     void copyProperties(const MetaProperty** dest) const;
 
     const QString     _className;
@@ -221,6 +244,9 @@ public:
 
     mutable int _classId;
     mutable QBitArray _allSuperClassIds;
+
+    mutable QString     _classNameTr;
+    mutable QString     _descriptionTr;
 
     static int  s_classIdCount;
 };
@@ -343,7 +369,7 @@ struct MetaObjectHelper<Class, MetaObject::ABSTRACT> {
         StepCore::MetaObjectHelper<_className, _flags & StepCore::MetaObject::ABSTRACT>::newObjectHelper, \
         StepCore::MetaObjectHelper<_className, _flags & StepCore::MetaObject::ABSTRACT>::cloneObjectHelper, \
         _superClasses+1, sizeof(_superClasses)/sizeof(*_superClasses)-1, \
-        _classProperties+1, sizeof(_classProperties)/sizeof(*_classProperties)-1, false, 0, 0, 0, QBitArray() };
+        _classProperties+1, sizeof(_classProperties)/sizeof(*_classProperties)-1, false, 0, 0, 0, QBitArray(), "", "" };
     
 #define STEPCORE_SUPER_CLASS(_className) _className::staticMetaObject(),
 
