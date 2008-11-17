@@ -20,65 +20,66 @@
 #include "types.h"
 #include "constants.h"
 #include <cstdlib>
+#include <QtGlobal>
 
 namespace StepCore
 {
 
-STEPCORE_META_OBJECT(GasParticle, "Gas particle", 0, STEPCORE_SUPER_CLASS(Particle),)
+STEPCORE_META_OBJECT(GasParticle, QT_TR_NOOP("Gas particle"), 0, STEPCORE_SUPER_CLASS(Particle),)
 
-STEPCORE_META_OBJECT(GasLJForce, "Lennard-Jones force", 0,
+STEPCORE_META_OBJECT(GasLJForce, QT_TR_NOOP("Lennard-Jones force"), 0,
     STEPCORE_SUPER_CLASS(Item) STEPCORE_SUPER_CLASS(Force),
-    STEPCORE_PROPERTY_RW(double, depth, "J", "Potential depth", depth, setDepth)
-    STEPCORE_PROPERTY_RW(double, rmin, "m", "Distance at which the force is zero", rmin, setRmin)
-    STEPCORE_PROPERTY_RW(double, cutoff, "m", "Cut-off distance", cutoff, setCutoff))
+    STEPCORE_PROPERTY_RW(double, depth, QT_TR_NOOP("J"), QT_TR_NOOP("Potential depth"), depth, setDepth)
+    STEPCORE_PROPERTY_RW(double, rmin, QT_TR_NOOP("m"), QT_TR_NOOP("Distance at which the force is zero"), rmin, setRmin)
+    STEPCORE_PROPERTY_RW(double, cutoff, QT_TR_NOOP("m"), QT_TR_NOOP("Cut-off distance"), cutoff, setCutoff))
 
-STEPCORE_META_OBJECT(GasLJForceErrors, "Errors class for GasLJForce", 0,
+STEPCORE_META_OBJECT(GasLJForceErrors, QT_TR_NOOP("Errors class for GasLJForce"), 0,
     STEPCORE_SUPER_CLASS(ObjectErrors),
-    STEPCORE_PROPERTY_RW(double, depthVariance, "J",
-            "Potential depth variance", depthVariance, setDepthVariance)
-    STEPCORE_PROPERTY_RW(double, rminVariance, "m",
-            "Variance of the distance at which the force is zero", rminVariance, setRminVariance))
+    STEPCORE_PROPERTY_RW(double, depthVariance, QT_TR_NOOP("J"),
+            QT_TR_NOOP("Potential depth variance"), depthVariance, setDepthVariance)
+    STEPCORE_PROPERTY_RW(double, rminVariance, QT_TR_NOOP("m"),
+            QT_TR_NOOP("Variance of the distance at which the force is zero"), rminVariance, setRminVariance))
 
 // XXX: Check units for 2d
 // XXX: add cmPosition and cmVelocity
-STEPCORE_META_OBJECT(Gas, "Particle gas", 0, STEPCORE_SUPER_CLASS(ItemGroup),
-    STEPCORE_PROPERTY_RW(StepCore::Vector2d, measureRectCenter, "m",
-                "Center of the rect for measurements", measureRectCenter, setMeasureRectCenter)
-    STEPCORE_PROPERTY_RW(StepCore::Vector2d, measureRectSize, "m",
-                "Size of the rect for measurements", measureRectSize, setMeasureRectSize)
+STEPCORE_META_OBJECT(Gas, QT_TR_NOOP("Particle gas"), 0, STEPCORE_SUPER_CLASS(ItemGroup),
+    STEPCORE_PROPERTY_RW(StepCore::Vector2d, measureRectCenter, QT_TR_NOOP("m"),
+                QT_TR_NOOP("Center of the rect for measurements"), measureRectCenter, setMeasureRectCenter)
+    STEPCORE_PROPERTY_RW(StepCore::Vector2d, measureRectSize, QT_TR_NOOP("m"),
+                QT_TR_NOOP("Size of the rect for measurements"), measureRectSize, setMeasureRectSize)
     STEPCORE_PROPERTY_R_D(double, rectVolume, STEPCORE_FROM_UTF8("m²"),
-                "Volume of the measureRect", rectVolume)
+                QT_TR_NOOP("Volume of the measureRect"), rectVolume)
     STEPCORE_PROPERTY_R_D(double, rectParticleCount, STEPCORE_UNITS_1,
-                "Count of particles in the measureRect", rectParticleCount)
+                QT_TR_NOOP("Count of particles in the measureRect"), rectParticleCount)
     STEPCORE_PROPERTY_R_D(double, rectConcentration, STEPCORE_FROM_UTF8("1/m²"),
-                "Concentration of particles in the measureRect", rectConcentration)
-    STEPCORE_PROPERTY_R_D(double, rectPressure, "Pa",
-                "Pressure of particles in the measureRect", rectPressure)
-    STEPCORE_PROPERTY_R_D(double, rectTemperature, "K",
-                "Temperature of particles in the measureRect", rectTemperature)
-    STEPCORE_PROPERTY_R_D(double, rectMeanKineticEnergy, "J",
-                "Mean kinetic energy of particles in the measureRect", rectMeanKineticEnergy)
-    STEPCORE_PROPERTY_R_D(StepCore::Vector2d, rectMeanVelocity, "m/s",
-                "Mean velocity of particles in the measureRect", rectMeanVelocity)
-    STEPCORE_PROPERTY_R_D(double, rectMeanParticleMass, "kg",
-                "Mean mass of particles in the measureRect", rectMeanParticleMass)
-    STEPCORE_PROPERTY_R_D(double, rectMass, "kg",
-                "Total mass of particles in the measureRect", rectMass)
+                QT_TR_NOOP("Concentration of particles in the measureRect"), rectConcentration)
+    STEPCORE_PROPERTY_R_D(double, rectPressure, QT_TR_NOOP("Pa"),
+                QT_TR_NOOP("Pressure of particles in the measureRect"), rectPressure)
+    STEPCORE_PROPERTY_R_D(double, rectTemperature, QT_TR_NOOP("K"),
+                QT_TR_NOOP("Temperature of particles in the measureRect"), rectTemperature)
+    STEPCORE_PROPERTY_R_D(double, rectMeanKineticEnergy, QT_TR_NOOP("J"),
+                QT_TR_NOOP("Mean kinetic energy of particles in the measureRect"), rectMeanKineticEnergy)
+    STEPCORE_PROPERTY_R_D(StepCore::Vector2d, rectMeanVelocity, QT_TR_NOOP("m/s"),
+                QT_TR_NOOP("Mean velocity of particles in the measureRect"), rectMeanVelocity)
+    STEPCORE_PROPERTY_R_D(double, rectMeanParticleMass, QT_TR_NOOP("kg"),
+                QT_TR_NOOP("Mean mass of particles in the measureRect"), rectMeanParticleMass)
+    STEPCORE_PROPERTY_R_D(double, rectMass, QT_TR_NOOP("kg"),
+                QT_TR_NOOP("Total mass of particles in the measureRect"), rectMass)
     )
 
-STEPCORE_META_OBJECT(GasErrors, "Errors class for Gas", 0, STEPCORE_SUPER_CLASS(ObjectErrors),
-    STEPCORE_PROPERTY_R_D(double, rectPressureVariance, "Pa",
-                "Variance of pressure of particles in the measureRect", rectPressureVariance)
-    STEPCORE_PROPERTY_R_D(double, rectTemperatureVariance, "K",
-                "Variance of temperature of particles in the measureRect", rectTemperatureVariance)
-    STEPCORE_PROPERTY_R_D(double, rectMeanKineticEnergyVariance, "J",
-                "Variance of mean kinetic energy of particles in the measureRect", rectMeanKineticEnergyVariance)
-    STEPCORE_PROPERTY_R_D(StepCore::Vector2d, rectMeanVelocityVariance, "m/s",
-                "Variance of mean velocity of particles in the measureRect", rectMeanVelocityVariance)
-    STEPCORE_PROPERTY_R_D(double, rectMeanParticleMassVariance, "kg",
-                "Variance of mean mass of particles in the measureRect", rectMeanParticleMassVariance)
-    STEPCORE_PROPERTY_R_D(double, rectMassVariance, "kg",
-                "Variance of total mass of particles in the measureRect", rectMassVariance)
+STEPCORE_META_OBJECT(GasErrors, QT_TR_NOOP("Errors class for Gas"), 0, STEPCORE_SUPER_CLASS(ObjectErrors),
+    STEPCORE_PROPERTY_R_D(double, rectPressureVariance, QT_TR_NOOP("Pa"),
+                QT_TR_NOOP("Variance of pressure of particles in the measureRect"), rectPressureVariance)
+    STEPCORE_PROPERTY_R_D(double, rectTemperatureVariance, QT_TR_NOOP("K"),
+                QT_TR_NOOP("Variance of temperature of particles in the measureRect"), rectTemperatureVariance)
+    STEPCORE_PROPERTY_R_D(double, rectMeanKineticEnergyVariance, QT_TR_NOOP("J"),
+                QT_TR_NOOP("Variance of mean kinetic energy of particles in the measureRect"), rectMeanKineticEnergyVariance)
+    STEPCORE_PROPERTY_R_D(StepCore::Vector2d, rectMeanVelocityVariance, QT_TR_NOOP("m/s"),
+                QT_TR_NOOP("Variance of mean velocity of particles in the measureRect"), rectMeanVelocityVariance)
+    STEPCORE_PROPERTY_R_D(double, rectMeanParticleMassVariance, QT_TR_NOOP("kg"),
+                QT_TR_NOOP("Variance of mean mass of particles in the measureRect"), rectMeanParticleMassVariance)
+    STEPCORE_PROPERTY_R_D(double, rectMassVariance, QT_TR_NOOP("kg"),
+                QT_TR_NOOP("Variance of total mass of particles in the measureRect"), rectMassVariance)
     )
 
 GasLJForce* GasLJForceErrors::gasLJForce() const

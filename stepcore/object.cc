@@ -18,11 +18,12 @@
 
 #include "object.h"
 #include <cstring>
+#include <QtGlobal>
 
 namespace StepCore {
 
-STEPCORE_META_OBJECT(Object, "Object", MetaObject::ABSTRACT,,
-        STEPCORE_PROPERTY_RW(QString, name, STEPCORE_UNITS_NULL, "Object name", name, setName))
+STEPCORE_META_OBJECT(Object, QT_TR_NOOP("Object"), MetaObject::ABSTRACT,,
+        STEPCORE_PROPERTY_RW(QString, name, STEPCORE_UNITS_NULL, QT_TR_NOOP("Object name"), name, setName))
 
 int MetaObject::s_classIdCount = 0;
 

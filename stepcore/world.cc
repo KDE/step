@@ -23,26 +23,27 @@
 
 #include <algorithm>
 #include <cmath>
+#include <QtGlobal>
 
 namespace StepCore
 {
 
-STEPCORE_META_OBJECT(Item, "Item", MetaObject::ABSTRACT, STEPCORE_SUPER_CLASS(Object),
-        STEPCORE_PROPERTY_RW(StepCore::Color, color, STEPCORE_UNITS_NULL, "Item color", color, setColor))
-STEPCORE_META_OBJECT(Body, "Body", MetaObject::ABSTRACT,,)
-STEPCORE_META_OBJECT(Force, "Force", MetaObject::ABSTRACT,,)
-STEPCORE_META_OBJECT(Joint, "Joint", MetaObject::ABSTRACT,,)
-STEPCORE_META_OBJECT(Tool, "Tool", MetaObject::ABSTRACT,,)
+STEPCORE_META_OBJECT(Item, QT_TR_NOOP("Item"), MetaObject::ABSTRACT, STEPCORE_SUPER_CLASS(Object),
+        STEPCORE_PROPERTY_RW(StepCore::Color, color, STEPCORE_UNITS_NULL, QT_TR_NOOP("Item color"), color, setColor))
+STEPCORE_META_OBJECT(Body, QT_TR_NOOP("Body"), MetaObject::ABSTRACT,,)
+STEPCORE_META_OBJECT(Force, QT_TR_NOOP("Force"), MetaObject::ABSTRACT,,)
+STEPCORE_META_OBJECT(Joint, QT_TR_NOOP("Joint"), MetaObject::ABSTRACT,,)
+STEPCORE_META_OBJECT(Tool, QT_TR_NOOP("Tool"), MetaObject::ABSTRACT,,)
 
-STEPCORE_META_OBJECT(ObjectErrors, "ObjectErrors", MetaObject::ABSTRACT, STEPCORE_SUPER_CLASS(Object),)
+STEPCORE_META_OBJECT(ObjectErrors, QT_TR_NOOP("ObjectErrors"), MetaObject::ABSTRACT, STEPCORE_SUPER_CLASS(Object),)
 
-STEPCORE_META_OBJECT(ItemGroup, "ItemGroup", 0, STEPCORE_SUPER_CLASS(Item),)
+STEPCORE_META_OBJECT(ItemGroup, QT_TR_NOOP("ItemGroup"), 0, STEPCORE_SUPER_CLASS(Item),)
 
-STEPCORE_META_OBJECT(World, "World", 0, STEPCORE_SUPER_CLASS(ItemGroup),
-        STEPCORE_PROPERTY_RW_D(double, time, "s", "Current time", time, setTime)
-        STEPCORE_PROPERTY_RW  (double, timeScale, STEPCORE_UNITS_1, "Simulation speed scale", timeScale, setTimeScale)
+STEPCORE_META_OBJECT(World, QT_TR_NOOP("World"), 0, STEPCORE_SUPER_CLASS(ItemGroup),
+        STEPCORE_PROPERTY_RW_D(double, time, QT_TR_NOOP("s"), QT_TR_NOOP("Current time"), time, setTime)
+        STEPCORE_PROPERTY_RW  (double, timeScale, STEPCORE_UNITS_1, QT_TR_NOOP("Simulation speed scale"), timeScale, setTimeScale)
         STEPCORE_PROPERTY_RW  (bool, errorsCalculation, STEPCORE_UNITS_NULL,
-                        "Enable global errors calculation", errorsCalculation, setErrorsCalculation))
+                        QT_TR_NOOP("Enable global errors calculation"), errorsCalculation, setErrorsCalculation))
 
 Item& Item::operator=(const Item& item)
 {

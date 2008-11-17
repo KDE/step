@@ -20,29 +20,30 @@
 #include "particle.h"
 #include "rigidbody.h"
 #include <cmath>
+#include <QtGlobal>
 
 namespace StepCore
 {
 
-STEPCORE_META_OBJECT(GravitationForce, "Gravitation force", 0,
+STEPCORE_META_OBJECT(GravitationForce, QT_TR_NOOP("Gravitation force"), 0,
     STEPCORE_SUPER_CLASS(Item) STEPCORE_SUPER_CLASS(Force),
     STEPCORE_PROPERTY_RW(double, gravitationConst, STEPCORE_FROM_UTF8("N m²/kg²"),
-            "Gravitation constant", gravitationConst, setGravitationConst))
+            QT_TR_NOOP("Gravitation constant"), gravitationConst, setGravitationConst))
 
-STEPCORE_META_OBJECT(GravitationForceErrors, "Errors class for GravitationForce", 0,
+STEPCORE_META_OBJECT(GravitationForceErrors, QT_TR_NOOP("Errors class for GravitationForce"), 0,
     STEPCORE_SUPER_CLASS(ObjectErrors),
     STEPCORE_PROPERTY_RW(double, gravitationConstVariance, STEPCORE_FROM_UTF8("N m²/kg²"),
-            "Gravitation constant variance", gravitationConstVariance, setGravitationConstVariance))
+            QT_TR_NOOP("Gravitation constant variance"), gravitationConstVariance, setGravitationConstVariance))
 
-STEPCORE_META_OBJECT(WeightForce, "Weight force", 0,
+STEPCORE_META_OBJECT(WeightForce, QT_TR_NOOP("Weight force"), 0,
     STEPCORE_SUPER_CLASS(Item) STEPCORE_SUPER_CLASS(Force),
-    STEPCORE_PROPERTY_RW(double, weightConst, STEPCORE_FROM_UTF8("m/s²"), "Weight constant",
+    STEPCORE_PROPERTY_RW(double, weightConst, STEPCORE_FROM_UTF8("m/s²"), QT_TR_NOOP("Weight constant"),
                             weightConst, setWeightConst))
 
-STEPCORE_META_OBJECT(WeightForceErrors, "Errors class for WeightForce", 0,
+STEPCORE_META_OBJECT(WeightForceErrors, QT_TR_NOOP("Errors class for WeightForce"), 0,
     STEPCORE_SUPER_CLASS(ObjectErrors),
     STEPCORE_PROPERTY_RW(double, weightConstVariance, STEPCORE_FROM_UTF8("m/s²"),
-            "Weight constant variance", weightConstVariance, setWeightConstVariance))
+            QT_TR_NOOP("Weight constant variance"), weightConstVariance, setWeightConstVariance))
 
 GravitationForce* GravitationForceErrors::gravitationForce() const
 {

@@ -23,51 +23,52 @@
 #include "util.h"
 #include <cstring>
 #include <cmath>
+#include <QtGlobal>
 
 namespace StepCore
 {
 
-STEPCORE_META_OBJECT(GslGenericSolver, "GSL generic solver", MetaObject::ABSTRACT, STEPCORE_SUPER_CLASS(Solver),)
+STEPCORE_META_OBJECT(GslGenericSolver, QT_TR_NOOP("GSL generic solver"), MetaObject::ABSTRACT, STEPCORE_SUPER_CLASS(Solver),)
 
-STEPCORE_META_OBJECT(GslSolver, "GSL non-adaptive solver", MetaObject::ABSTRACT,
+STEPCORE_META_OBJECT(GslSolver, QT_TR_NOOP("GSL non-adaptive solver"), MetaObject::ABSTRACT,
     STEPCORE_SUPER_CLASS(GslGenericSolver),)
 
-STEPCORE_META_OBJECT(GslAdaptiveSolver, "GSL adaptive solver", MetaObject::ABSTRACT,
+STEPCORE_META_OBJECT(GslAdaptiveSolver, QT_TR_NOOP("GSL adaptive solver"), MetaObject::ABSTRACT,
     STEPCORE_SUPER_CLASS(GslGenericSolver),)
 
-STEPCORE_META_OBJECT(GslRK2Solver, "Runge-Kutta second-order solver from GSL library",
+STEPCORE_META_OBJECT(GslRK2Solver, QT_TR_NOOP("Runge-Kutta second-order solver from GSL library"),
                         0, STEPCORE_SUPER_CLASS(GslSolver),)
-STEPCORE_META_OBJECT(GslAdaptiveRK2Solver, "Adaptive Runge-Kutta second-order solver from GSL library",
+STEPCORE_META_OBJECT(GslAdaptiveRK2Solver, QT_TR_NOOP("Adaptive Runge-Kutta second-order solver from GSL library"),
                         0, STEPCORE_SUPER_CLASS(GslAdaptiveSolver),)
 
-STEPCORE_META_OBJECT(GslRK4Solver, "Runge-Kutta classical fourth-order solver from GSL library",
+STEPCORE_META_OBJECT(GslRK4Solver, QT_TR_NOOP("Runge-Kutta classical fourth-order solver from GSL library"),
                         0, STEPCORE_SUPER_CLASS(GslSolver),)
-STEPCORE_META_OBJECT(GslAdaptiveRK4Solver, "Adaptive Runge-Kutta classical fourth-order solver from GSL library",
+STEPCORE_META_OBJECT(GslAdaptiveRK4Solver, QT_TR_NOOP("Adaptive Runge-Kutta classical fourth-order solver from GSL library"),
                         0, STEPCORE_SUPER_CLASS(GslAdaptiveSolver),)
 
-STEPCORE_META_OBJECT(GslRKF45Solver, "Runge-Kutta-Fehlberg (4,5) solver from GSL library",
+STEPCORE_META_OBJECT(GslRKF45Solver, QT_TR_NOOP("Runge-Kutta-Fehlberg (4,5) solver from GSL library"),
                         0, STEPCORE_SUPER_CLASS(GslSolver),)
-STEPCORE_META_OBJECT(GslAdaptiveRKF45Solver, "Adaptive Runge-Kutta-Fehlberg (4,5) solver from GSL library",
+STEPCORE_META_OBJECT(GslAdaptiveRKF45Solver, QT_TR_NOOP("Adaptive Runge-Kutta-Fehlberg (4,5) solver from GSL library"),
                         0, STEPCORE_SUPER_CLASS(GslAdaptiveSolver),)
 
-STEPCORE_META_OBJECT(GslRKCKSolver, "Runge-Kutta Cash-Karp (4,5) solver from GSL library",
+STEPCORE_META_OBJECT(GslRKCKSolver, QT_TR_NOOP("Runge-Kutta Cash-Karp (4,5) solver from GSL library"),
                         0, STEPCORE_SUPER_CLASS(GslSolver),)
-STEPCORE_META_OBJECT(GslAdaptiveRKCKSolver, "Adaptive Runge-Kutta Cash-Karp (4,5) solver from GSL library",
+STEPCORE_META_OBJECT(GslAdaptiveRKCKSolver, QT_TR_NOOP("Adaptive Runge-Kutta Cash-Karp (4,5) solver from GSL library"),
                         0, STEPCORE_SUPER_CLASS(GslAdaptiveSolver),)
 
-STEPCORE_META_OBJECT(GslRK8PDSolver, "Runge-Kutta Prince-Dormand (8,9) solver from GSL library",
+STEPCORE_META_OBJECT(GslRK8PDSolver, QT_TR_NOOP("Runge-Kutta Prince-Dormand (8,9) solver from GSL library"),
                         0, STEPCORE_SUPER_CLASS(GslSolver),)
-STEPCORE_META_OBJECT(GslAdaptiveRK8PDSolver, "Adaptive Runge-Kutta Prince-Dormand (8,9) solver from GSL library",
+STEPCORE_META_OBJECT(GslAdaptiveRK8PDSolver, QT_TR_NOOP("Adaptive Runge-Kutta Prince-Dormand (8,9) solver from GSL library"),
                         0, STEPCORE_SUPER_CLASS(GslAdaptiveSolver),)
 
-STEPCORE_META_OBJECT(GslRK2IMPSolver, "Runge-Kutta implicit second-order solver from GSL library",
+STEPCORE_META_OBJECT(GslRK2IMPSolver, QT_TR_NOOP("Runge-Kutta implicit second-order solver from GSL library"),
                         0, STEPCORE_SUPER_CLASS(GslSolver),)
-STEPCORE_META_OBJECT(GslAdaptiveRK2IMPSolver, "Adaptive Runge-Kutta implicit second-order solver from GSL library",
+STEPCORE_META_OBJECT(GslAdaptiveRK2IMPSolver, QT_TR_NOOP("Adaptive Runge-Kutta implicit second-order solver from GSL library"),
                         0, STEPCORE_SUPER_CLASS(GslAdaptiveSolver),)
 
-STEPCORE_META_OBJECT(GslRK4IMPSolver, "Runge-Kutta implicit fourth-order solver from GSL library",
+STEPCORE_META_OBJECT(GslRK4IMPSolver, QT_TR_NOOP("Runge-Kutta implicit fourth-order solver from GSL library"),
                         0, STEPCORE_SUPER_CLASS(GslSolver),)
-STEPCORE_META_OBJECT(GslAdaptiveRK4IMPSolver, "Adaptive Runge-Kutta implicit fource-order solver from GSL library",
+STEPCORE_META_OBJECT(GslAdaptiveRK4IMPSolver, QT_TR_NOOP("Adaptive Runge-Kutta implicit fource-order solver from GSL library"),
                         0, STEPCORE_SUPER_CLASS(GslAdaptiveSolver),)
 
 

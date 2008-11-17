@@ -21,12 +21,13 @@
 
 #include <cmath>
 #include <cstring>
+#include <QtGlobal>
 
 namespace StepCore {
 
-STEPCORE_META_OBJECT(GenericEulerSolver, "Generic Euler solver", MetaObject::ABSTRACT, STEPCORE_SUPER_CLASS(Solver),)
-STEPCORE_META_OBJECT(EulerSolver, "Non-adaptive Euler solver", 0, STEPCORE_SUPER_CLASS(GenericEulerSolver),)
-STEPCORE_META_OBJECT(AdaptiveEulerSolver, "Adaptive Euler solver", 0, STEPCORE_SUPER_CLASS(GenericEulerSolver),)
+STEPCORE_META_OBJECT(GenericEulerSolver, QT_TR_NOOP("Generic Euler solver"), MetaObject::ABSTRACT, STEPCORE_SUPER_CLASS(Solver),)
+STEPCORE_META_OBJECT(EulerSolver, QT_TR_NOOP("Non-adaptive Euler solver"), 0, STEPCORE_SUPER_CLASS(GenericEulerSolver),)
+STEPCORE_META_OBJECT(AdaptiveEulerSolver, QT_TR_NOOP("Adaptive Euler solver"), 0, STEPCORE_SUPER_CLASS(GenericEulerSolver),)
 
 void GenericEulerSolver::init()
 {

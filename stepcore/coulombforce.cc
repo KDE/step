@@ -20,18 +20,19 @@
 #include "particle.h"
 
 #include <cmath>
+#include <QtGlobal>
 
 namespace StepCore {
 
-STEPCORE_META_OBJECT(CoulombForce, "Coulomb force", 0,
+STEPCORE_META_OBJECT(CoulombForce, QT_TR_NOOP("Coulomb force"), 0,
     STEPCORE_SUPER_CLASS(Item) STEPCORE_SUPER_CLASS(Force),
     STEPCORE_PROPERTY_RW(double, coulombConst, STEPCORE_FROM_UTF8("N m²/C²"),
-                "Coulomb constant", coulombConst, setCoulombConst))
+                QT_TR_NOOP("Coulomb constant"), coulombConst, setCoulombConst))
 
-STEPCORE_META_OBJECT(CoulombForceErrors, "Errors class for CoulombForce", 0,
+STEPCORE_META_OBJECT(CoulombForceErrors, QT_TR_NOOP("Errors class for CoulombForce"), 0,
     STEPCORE_SUPER_CLASS(ObjectErrors),
     STEPCORE_PROPERTY_RW(double, coulombConstVariance, STEPCORE_FROM_UTF8("N m²/C²"),
-                "Coulomb constant variance", coulombConstVariance, setCoulombConstVariance))
+                QT_TR_NOOP("Coulomb constant variance"), coulombConstVariance, setCoulombConstVariance))
 
 CoulombForce* CoulombForceErrors::coulombForce() const
 {

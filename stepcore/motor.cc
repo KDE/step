@@ -20,21 +20,22 @@
 #include "rigidbody.h"
 #include "particle.h"
 #include <cmath>
+#include <QtGlobal>
 
 namespace StepCore
 {
 
-STEPCORE_META_OBJECT(LinearMotor, "Linear motor: applies a constant force to a given position of the body", 0,
+STEPCORE_META_OBJECT(LinearMotor, QT_TR_NOOP("Linear motor: applies a constant force to a given position of the body"), 0,
     STEPCORE_SUPER_CLASS(Item) STEPCORE_SUPER_CLASS(Force),
-    STEPCORE_PROPERTY_RW(Object*, body, STEPCORE_UNITS_NULL, "Body", body, setBody)
-    STEPCORE_PROPERTY_RW(StepCore::Vector2d, localPosition, "m", "Position of the motor on a body", localPosition, setLocalPosition)
-    STEPCORE_PROPERTY_RW(StepCore::Vector2d, forceValue, "N", "Value of the force, acting on the body", forceValue, setForceValue))
+    STEPCORE_PROPERTY_RW(Object*, body, STEPCORE_UNITS_NULL, QT_TR_NOOP("Body"), body, setBody)
+    STEPCORE_PROPERTY_RW(StepCore::Vector2d, localPosition, QT_TR_NOOP("m"), QT_TR_NOOP("Position of the motor on a body"), localPosition, setLocalPosition)
+    STEPCORE_PROPERTY_RW(StepCore::Vector2d, forceValue, QT_TR_NOOP("N"), QT_TR_NOOP("Value of the force, acting on the body"), forceValue, setForceValue))
 
-STEPCORE_META_OBJECT(CircularMotor, "Circular motor: applies a constant torque to the body", 0,
+STEPCORE_META_OBJECT(CircularMotor, QT_TR_NOOP("Circular motor: applies a constant torque to the body"), 0,
     STEPCORE_SUPER_CLASS(Item) STEPCORE_SUPER_CLASS(Force),
-    STEPCORE_PROPERTY_RW(Object*, body, STEPCORE_UNITS_NULL, "Body", body, setBody)
-    STEPCORE_PROPERTY_RW(StepCore::Vector2d, localPosition, "m", "Position of the motor on a body", localPosition, setLocalPosition)
-    STEPCORE_PROPERTY_RW(double, torqueValue, "N m", "Value of the torque, acting on the body", torqueValue, setTorqueValue))
+    STEPCORE_PROPERTY_RW(Object*, body, STEPCORE_UNITS_NULL, QT_TR_NOOP("Body"), body, setBody)
+    STEPCORE_PROPERTY_RW(StepCore::Vector2d, localPosition, QT_TR_NOOP("m"), QT_TR_NOOP("Position of the motor on a body"), localPosition, setLocalPosition)
+    STEPCORE_PROPERTY_RW(double, torqueValue, QT_TR_NOOP("N m"), QT_TR_NOOP("Value of the torque, acting on the body"), torqueValue, setTorqueValue))
 
 
 LinearMotor::LinearMotor(Object* body, const Vector2d& localPosition, Vector2d forceValue)
