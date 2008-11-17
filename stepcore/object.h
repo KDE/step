@@ -335,7 +335,7 @@ struct MetaObjectHelper<Class, MetaObject::ABSTRACT> {
 
 #define _STEPCORE_PROPERTY_NULL StepCore::MetaProperty()
 
-#define STEPCORE_META_OBJECT(_className, _description, _flags, __superClasses, __properties) \
+#define STEPCORE_META_OBJECT(_className, _classNameNoop, _description, _flags, __superClasses, __properties) \
     const StepCore::MetaProperty _className::_classProperties[] = { _STEPCORE_PROPERTY_NULL, __properties }; \
     const StepCore::MetaObject*  _className::_superClasses[] = { 0, __superClasses }; \
     const StepCore::MetaObject   _className::_metaObject = { \
@@ -347,7 +347,7 @@ struct MetaObjectHelper<Class, MetaObject::ABSTRACT> {
     
 #define STEPCORE_SUPER_CLASS(_className) _className::staticMetaObject(),
 
-#define STEPCORE_PROPERTY_RF(_type, _name, _units, _description, _flags, _read) \
+#define STEPCORE_PROPERTY_RF(_type, _name, _nameNoop, _units, _description, _flags, _read) \
     StepCore::MetaProperty( STEPCORE_STRINGIFY(_name), _units, _description, \
       StepCore::MetaProperty::READABLE | _flags, qMetaTypeId<_type>(), \
       StepCore::MetaPropertyHelper<_thisType, _type>::read<&_thisType::_read>, \
@@ -355,7 +355,7 @@ struct MetaObjectHelper<Class, MetaObject::ABSTRACT> {
       StepCore::MetaPropertyHelper<_thisType, _type>::readString<&_thisType::_read>, \
       StepCore::MetaPropertyHelper<_thisType, _type>::writeStringNull ),
 
-#define STEPCORE_PROPERTY_RWF(_type, _name, _units, _description, _flags, _read, _write) \
+#define STEPCORE_PROPERTY_RWF(_type, _name, _nameNoop, _units, _description, _flags, _read, _write) \
     StepCore::MetaProperty( STEPCORE_STRINGIFY(_name), _units, _description, \
       StepCore::MetaProperty::READABLE | StepCore::MetaProperty::WRITABLE | _flags, \
       qMetaTypeId<_type>(), \
@@ -364,18 +364,18 @@ struct MetaObjectHelper<Class, MetaObject::ABSTRACT> {
       StepCore::MetaPropertyHelper<_thisType, _type>::readString<&_thisType::_read>, \
       StepCore::MetaPropertyHelper<_thisType, _type>::writeString<&_thisType::_write> ),
 
-#define STEPCORE_PROPERTY_R(_type, _name, _units, _description, _read) \
-    STEPCORE_PROPERTY_RF(_type, _name, _units, _description, 0, _read)
+#define STEPCORE_PROPERTY_R(_type, _name, _nameNoop, _units, _description, _read) \
+    STEPCORE_PROPERTY_RF(_type, _name, _nameNoop, _units, _description, 0, _read)
 
-#define STEPCORE_PROPERTY_RW(_type, _name, _units, _description, _read, _write) \
-    STEPCORE_PROPERTY_RWF(_type, _name, _units, _description, \
+#define STEPCORE_PROPERTY_RW(_type, _name, _nameNoop, _units, _description, _read, _write) \
+    STEPCORE_PROPERTY_RWF(_type, _name, _nameNoop, _units, _description, \
         StepCore::MetaProperty::STORED, _read, _write)
 
-#define STEPCORE_PROPERTY_R_D(_type, _name, _units, _description, _read) \
-    STEPCORE_PROPERTY_RF(_type, _name, _units, _description, StepCore::MetaProperty::DYNAMIC, _read)
+#define STEPCORE_PROPERTY_R_D(_type, _name, _nameNoop, _units, _description, _read) \
+    STEPCORE_PROPERTY_RF(_type, _name, _nameNoop, _units, _description, StepCore::MetaProperty::DYNAMIC, _read)
 
-#define STEPCORE_PROPERTY_RW_D(_type, _name, _units, _description, _read, _write) \
-    STEPCORE_PROPERTY_RWF(_type, _name, _units, _description, \
+#define STEPCORE_PROPERTY_RW_D(_type, _name, _nameNoop, _units, _description, _read, _write) \
+    STEPCORE_PROPERTY_RWF(_type, _name, _nameNoop, _units, _description, \
         StepCore::MetaProperty::STORED | StepCore::MetaProperty::DYNAMIC, _read, _write)
 
 } // namespace StepCore

@@ -24,77 +24,77 @@
 namespace StepCore
 {
 
-STEPCORE_META_OBJECT(RigidBody, "Generic rigid body", 0, STEPCORE_SUPER_CLASS(Item) STEPCORE_SUPER_CLASS(Body),
-        STEPCORE_PROPERTY_RW_D(StepCore::Vector2d, position, "m", "Position of the center of mass", position, setPosition)
-        STEPCORE_PROPERTY_RW_D(double, angle, "rad", "Rotation angle", angle, setAngle)
+STEPCORE_META_OBJECT(RigidBody, QT_TRANSLATE_NOOP("ObjectClass", "RigidBody"), "Generic rigid body", 0, STEPCORE_SUPER_CLASS(Item) STEPCORE_SUPER_CLASS(Body),
+        STEPCORE_PROPERTY_RW_D(StepCore::Vector2d, position, QT_TRANSLATE_NOOP("ObjectProperty", "position"), "m", "Position of the center of mass", position, setPosition)
+        STEPCORE_PROPERTY_RW_D(double, angle, QT_TRANSLATE_NOOP("ObjectProperty", "angle"), "rad", "Rotation angle", angle, setAngle)
 
-        STEPCORE_PROPERTY_RW_D(StepCore::Vector2d, velocity, "m/s", "Velocity of the center of mass", velocity, setVelocity)
-        STEPCORE_PROPERTY_RW_D(double, angularVelocity, "rad/s", "Angular velocity of the body", angularVelocity, setAngularVelocity)
+        STEPCORE_PROPERTY_RW_D(StepCore::Vector2d, velocity, QT_TRANSLATE_NOOP("ObjectProperty", "velocity"), "m/s", "Velocity of the center of mass", velocity, setVelocity)
+        STEPCORE_PROPERTY_RW_D(double, angularVelocity, QT_TRANSLATE_NOOP("ObjectProperty", "angularVelocity"), "rad/s", "Angular velocity of the body", angularVelocity, setAngularVelocity)
 
-        STEPCORE_PROPERTY_R_D(StepCore::Vector2d, acceleration, STEPCORE_FROM_UTF8("m/s²"),
+        STEPCORE_PROPERTY_R_D(StepCore::Vector2d, acceleration, QT_TRANSLATE_NOOP("ObjectProperty", "acceleration"), STEPCORE_FROM_UTF8("m/s²"),
                                             "Acceleration of the center of mass", acceleration)
-        STEPCORE_PROPERTY_R_D(double, angularAcceleration, STEPCORE_FROM_UTF8("rad/s²"),
+        STEPCORE_PROPERTY_R_D(double, angularAcceleration, QT_TRANSLATE_NOOP("ObjectProperty", "angularAcceleration"), STEPCORE_FROM_UTF8("rad/s²"),
                                             "Angular acceleration of the body", angularAcceleration)
 
-        STEPCORE_PROPERTY_R_D(StepCore::Vector2d, force, "N", "Force that acts upon the body", force)
-        STEPCORE_PROPERTY_R_D(double, torque, "N m", "Torque that acts upon the body", torque)
+        STEPCORE_PROPERTY_R_D(StepCore::Vector2d, force, QT_TRANSLATE_NOOP("ObjectProperty", "force"), "N", "Force that acts upon the body", force)
+        STEPCORE_PROPERTY_R_D(double, torque, QT_TRANSLATE_NOOP("ObjectProperty", "torque"), "N m", "Torque that acts upon the body", torque)
 
-        STEPCORE_PROPERTY_RW(double, mass, "kg", "Total mass of the body", mass, setMass)
-        STEPCORE_PROPERTY_RW(double, inertia, STEPCORE_FROM_UTF8("kg m²"),
+        STEPCORE_PROPERTY_RW(double, mass, QT_TRANSLATE_NOOP("ObjectProperty", "mass"), "kg", "Total mass of the body", mass, setMass)
+        STEPCORE_PROPERTY_RW(double, inertia, QT_TRANSLATE_NOOP("ObjectProperty", "inertia"), STEPCORE_FROM_UTF8("kg m²"),
                                     "Inertia \"tensor\" of the body", inertia, setInertia)
-        STEPCORE_PROPERTY_RWF(StepCore::Vector2d, momentum, "kg m/s", "momentum",
+        STEPCORE_PROPERTY_RWF(StepCore::Vector2d, momentum, QT_TRANSLATE_NOOP("ObjectProperty", "momentum"), "kg m/s", "momentum",
                         StepCore::MetaProperty::DYNAMIC, momentum, setMomentum)
-        STEPCORE_PROPERTY_RWF(double, angularMomentum, STEPCORE_FROM_UTF8("kg m² rad/s"), "angular momentum",
+        STEPCORE_PROPERTY_RWF(double, angularMomentum, QT_TRANSLATE_NOOP("ObjectProperty", "angularMomentum"), STEPCORE_FROM_UTF8("kg m² rad/s"), "angular momentum",
                         StepCore::MetaProperty::DYNAMIC, angularMomentum, setAngularMomentum)
-        STEPCORE_PROPERTY_RWF(double, kineticEnergy, "J", "kinetic energy",
+        STEPCORE_PROPERTY_RWF(double, kineticEnergy, QT_TRANSLATE_NOOP("ObjectProperty", "kineticEnergy"), "J", "kinetic energy",
                         StepCore::MetaProperty::DYNAMIC, kineticEnergy, setKineticEnergy))
 
-STEPCORE_META_OBJECT(RigidBodyErrors, "Errors class for RigidBody", 0, STEPCORE_SUPER_CLASS(ObjectErrors),
-        STEPCORE_PROPERTY_RW_D(StepCore::Vector2d, positionVariance, "m",
+STEPCORE_META_OBJECT(RigidBodyErrors, QT_TRANSLATE_NOOP("ObjectClass", "RigidBodyErrors"), "Errors class for RigidBody", 0, STEPCORE_SUPER_CLASS(ObjectErrors),
+        STEPCORE_PROPERTY_RW_D(StepCore::Vector2d, positionVariance, QT_TRANSLATE_NOOP("ObjectProperty", "positionVariance"), "m",
                     "position variance", positionVariance, setPositionVariance)
-        STEPCORE_PROPERTY_RW_D(double, angleVariance, "rad",
+        STEPCORE_PROPERTY_RW_D(double, angleVariance, QT_TRANSLATE_NOOP("ObjectProperty", "angleVariance"), "rad",
                     "angle variance", angleVariance, setAngleVariance)
 
-        STEPCORE_PROPERTY_RW_D(StepCore::Vector2d, velocityVariance, "m/s",
+        STEPCORE_PROPERTY_RW_D(StepCore::Vector2d, velocityVariance, QT_TRANSLATE_NOOP("ObjectProperty", "velocityVariance"), "m/s",
                     "velocity variance", velocityVariance, setVelocityVariance)
-        STEPCORE_PROPERTY_RW_D(double, angularVelocityVariance, "rad/s",
+        STEPCORE_PROPERTY_RW_D(double, angularVelocityVariance, QT_TRANSLATE_NOOP("ObjectProperty", "angularVelocityVariance"), "rad/s",
                     "angularVelocity variance", angularVelocityVariance, setAngularVelocityVariance)
 
-        STEPCORE_PROPERTY_R_D(StepCore::Vector2d, accelerationVariance, STEPCORE_FROM_UTF8("m/s²"),
+        STEPCORE_PROPERTY_R_D(StepCore::Vector2d, accelerationVariance, QT_TRANSLATE_NOOP("ObjectProperty", "accelerationVariance"), STEPCORE_FROM_UTF8("m/s²"),
                     "acceleration variance", accelerationVariance)
-        STEPCORE_PROPERTY_R_D(double, angularAccelerationVariance, STEPCORE_FROM_UTF8("rad/s²"),
+        STEPCORE_PROPERTY_R_D(double, angularAccelerationVariance, QT_TRANSLATE_NOOP("ObjectProperty", "angularAccelerationVariance"), STEPCORE_FROM_UTF8("rad/s²"),
                     "angularAcceleration variance", angularAccelerationVariance)
 
-        STEPCORE_PROPERTY_R_D(StepCore::Vector2d, forceVariance, "N", "force variance", forceVariance)
-        STEPCORE_PROPERTY_R_D(double, torqueVariance, "N m", "torque variance", torqueVariance)
+        STEPCORE_PROPERTY_R_D(StepCore::Vector2d, forceVariance, QT_TRANSLATE_NOOP("ObjectProperty", "forceVariance"), "N", "force variance", forceVariance)
+        STEPCORE_PROPERTY_R_D(double, torqueVariance, QT_TRANSLATE_NOOP("ObjectProperty", "torqueVariance"), "N m", "torque variance", torqueVariance)
 
-        STEPCORE_PROPERTY_RW(double, massVariance, "kg",
+        STEPCORE_PROPERTY_RW(double, massVariance, QT_TRANSLATE_NOOP("ObjectProperty", "massVariance"), "kg",
                     "mass variance", massVariance, setMassVariance )
-        STEPCORE_PROPERTY_RW(double, inertiaVariance, STEPCORE_FROM_UTF8("kg m²"),
+        STEPCORE_PROPERTY_RW(double, inertiaVariance, QT_TRANSLATE_NOOP("ObjectProperty", "inertiaVariance"), STEPCORE_FROM_UTF8("kg m²"),
                     "inertia variance", inertiaVariance, setInertiaVariance )
-        STEPCORE_PROPERTY_RWF(StepCore::Vector2d, momentumVariance, "kg m/s",
+        STEPCORE_PROPERTY_RWF(StepCore::Vector2d, momentumVariance, QT_TRANSLATE_NOOP("ObjectProperty", "momentumVariance"), "kg m/s",
                     "momentum variance", StepCore::MetaProperty::DYNAMIC, momentumVariance, setMomentumVariance)
-        STEPCORE_PROPERTY_RWF(double, angularMomentumVariance, STEPCORE_FROM_UTF8("kg m² rad/s"),
+        STEPCORE_PROPERTY_RWF(double, angularMomentumVariance, QT_TRANSLATE_NOOP("ObjectProperty", "angularMomentumVariance"), STEPCORE_FROM_UTF8("kg m² rad/s"),
                     "angular momentum variance", StepCore::MetaProperty::DYNAMIC,
                     angularMomentumVariance, setAngularMomentumVariance)
-        STEPCORE_PROPERTY_RWF(double, kineticEnergyVariance, "J",
+        STEPCORE_PROPERTY_RWF(double, kineticEnergyVariance, QT_TRANSLATE_NOOP("ObjectProperty", "kineticEnergyVariance"), "J",
                     "kinetic energy variance", StepCore::MetaProperty::DYNAMIC, kineticEnergyVariance, setKineticEnergyVariance))
 
-STEPCORE_META_OBJECT(Disk, "Rigid disk", 0, STEPCORE_SUPER_CLASS(RigidBody),
-        STEPCORE_PROPERTY_RW(double, radius, "m", "Radius of the disk", radius, setRadius))
+STEPCORE_META_OBJECT(Disk, QT_TRANSLATE_NOOP("ObjectClass", "Disk"), "Rigid disk", 0, STEPCORE_SUPER_CLASS(RigidBody),
+        STEPCORE_PROPERTY_RW(double, radius, QT_TRANSLATE_NOOP("ObjectProperty", "radius"), "m", "Radius of the disk", radius, setRadius))
 
-STEPCORE_META_OBJECT(BasePolygon, "Base polygon body", 0, STEPCORE_SUPER_CLASS(RigidBody),)
+STEPCORE_META_OBJECT(BasePolygon, QT_TRANSLATE_NOOP("ObjectClass", "BasePolygon"), "Base polygon body", 0, STEPCORE_SUPER_CLASS(RigidBody),)
 
-STEPCORE_META_OBJECT(Box, "Rigid box", 0, STEPCORE_SUPER_CLASS(BasePolygon),
-        STEPCORE_PROPERTY_RW(StepCore::Vector2d, size, "m", "Size of the box", size, setSize))
+STEPCORE_META_OBJECT(Box, QT_TRANSLATE_NOOP("ObjectClass", "Box"), "Rigid box", 0, STEPCORE_SUPER_CLASS(BasePolygon),
+        STEPCORE_PROPERTY_RW(StepCore::Vector2d, size, QT_TRANSLATE_NOOP("ObjectProperty", "size"), "m", "Size of the box", size, setSize))
 
-STEPCORE_META_OBJECT(Polygon, "Rigid polygon body", 0, STEPCORE_SUPER_CLASS(BasePolygon),
-        STEPCORE_PROPERTY_RW(Vector2dList, vertexes, "m", "Vertex list", vertexes, setVertexes))
+STEPCORE_META_OBJECT(Polygon, QT_TRANSLATE_NOOP("ObjectClass", "Polygon"), "Rigid polygon body", 0, STEPCORE_SUPER_CLASS(BasePolygon),
+        STEPCORE_PROPERTY_RW(Vector2dList, vertexes, QT_TRANSLATE_NOOP("ObjectProperty", "vertexes"), "m", "Vertex list", vertexes, setVertexes))
 
 #if 0
-STEPCORE_META_OBJECT(Plane, "Unmovable rigid plane", 0, STEPCORE_SUPER_CLASS(Item) STEPCORE_SUPER_CLASS(Body),
-        STEPCORE_PROPERTY_RW_D(StepCore::Vector2d, point1, "m", "First point which defines the plane", point1, setPoint1),
-        STEPCORE_PROPERTY_RW_D(StepCore::Vector2d, point2, "m", "Second point which defines the plane", point2, setPoint2))
+STEPCORE_META_OBJECT(Plane, QT_TRANSLATE_NOOP("ObjectClass", "Plane"), "Unmovable rigid plane", 0, STEPCORE_SUPER_CLASS(Item) STEPCORE_SUPER_CLASS(Body),
+        STEPCORE_PROPERTY_RW_D(StepCore::Vector2d, point1, QT_TRANSLATE_NOOP("ObjectProperty", "point1"), "m", "First point which defines the plane", point1, setPoint1),
+        STEPCORE_PROPERTY_RW_D(StepCore::Vector2d, point2, QT_TRANSLATE_NOOP("ObjectProperty", "point2"), "m", "Second point which defines the plane", point2, setPoint2))
 #endif
 
 RigidBody* RigidBodyErrors::rigidBody() const

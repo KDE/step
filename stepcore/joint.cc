@@ -24,32 +24,32 @@
 
 namespace StepCore {
 
-STEPCORE_META_OBJECT(Anchor, QT_TR_NOOP("Anchor: fixes position of the body"), 0,
+STEPCORE_META_OBJECT(Anchor, QT_TRANSLATE_NOOP("ObjectClass", "Anchor"), QT_TR_NOOP("Anchor: fixes position of the body"), 0,
     STEPCORE_SUPER_CLASS(Item) STEPCORE_SUPER_CLASS(Joint),
-    STEPCORE_PROPERTY_RW(Object*, body, STEPCORE_UNITS_NULL, QT_TR_NOOP("Body"), body, setBody)
-    STEPCORE_PROPERTY_RW(StepCore::Vector2d, position, QT_TR_NOOP("m"), QT_TR_NOOP("Position"), position, setPosition)
-    STEPCORE_PROPERTY_RW(double, angle, QT_TR_NOOP("rad"), QT_TR_NOOP("Angle"), angle, setAngle))
+    STEPCORE_PROPERTY_RW(Object*, body, QT_TRANSLATE_NOOP("ObjectProperty", "body"), STEPCORE_UNITS_NULL, QT_TR_NOOP("Body"), body, setBody)
+    STEPCORE_PROPERTY_RW(StepCore::Vector2d, position, QT_TRANSLATE_NOOP("ObjectProperty", "position"), QT_TR_NOOP("m"), QT_TR_NOOP("Position"), position, setPosition)
+    STEPCORE_PROPERTY_RW(double, angle, QT_TRANSLATE_NOOP("ObjectProperty", "angle"), QT_TR_NOOP("rad"), QT_TR_NOOP("Angle"), angle, setAngle))
 
-STEPCORE_META_OBJECT(Pin, QT_TR_NOOP("Pin: fixes position of a given point on the body"), 0,
+STEPCORE_META_OBJECT(Pin, QT_TRANSLATE_NOOP("ObjectClass", "Pin"), QT_TR_NOOP("Pin: fixes position of a given point on the body"), 0,
     STEPCORE_SUPER_CLASS(Item) STEPCORE_SUPER_CLASS(Joint),
-    STEPCORE_PROPERTY_RW(Object*, body, STEPCORE_UNITS_NULL, QT_TR_NOOP("Body"), body, setBody)
-    STEPCORE_PROPERTY_RW(StepCore::Vector2d, localPosition, QT_TR_NOOP("m"), QT_TR_NOOP("Position on the on a body"), localPosition, setLocalPosition)
-    STEPCORE_PROPERTY_RW(StepCore::Vector2d, position, QT_TR_NOOP("m"), QT_TR_NOOP("Position in the world"), position, setPosition))
+    STEPCORE_PROPERTY_RW(Object*, body, QT_TRANSLATE_NOOP("ObjectProperty", "body"), STEPCORE_UNITS_NULL, QT_TR_NOOP("Body"), body, setBody)
+    STEPCORE_PROPERTY_RW(StepCore::Vector2d, localPosition, QT_TRANSLATE_NOOP("ObjectProperty", "localPosition"), QT_TR_NOOP("m"), QT_TR_NOOP("Position on the on a body"), localPosition, setLocalPosition)
+    STEPCORE_PROPERTY_RW(StepCore::Vector2d, position, QT_TRANSLATE_NOOP("ObjectProperty", "position"), QT_TR_NOOP("m"), QT_TR_NOOP("Position in the world"), position, setPosition))
 
-STEPCORE_META_OBJECT(Stick, QT_TR_NOOP("Massless stick which can be connected to bodies"), 0,
+STEPCORE_META_OBJECT(Stick, QT_TRANSLATE_NOOP("ObjectClass", "Stick"), QT_TR_NOOP("Massless stick which can be connected to bodies"), 0,
     STEPCORE_SUPER_CLASS(Item) STEPCORE_SUPER_CLASS(Joint),
-    STEPCORE_PROPERTY_RW(double, restLength, QT_TR_NOOP("m"), QT_TR_NOOP("Rest length of the stick"), restLength, setRestLength)
-    STEPCORE_PROPERTY_RW(Object*, body1, STEPCORE_UNITS_NULL, QT_TR_NOOP("Body1"), body1, setBody1)
-    STEPCORE_PROPERTY_RW(Object*, body2, STEPCORE_UNITS_NULL, QT_TR_NOOP("Body2"), body2, setBody2)
-    STEPCORE_PROPERTY_RW(StepCore::Vector2d, localPosition1, QT_TR_NOOP("m"),
+    STEPCORE_PROPERTY_RW(double, restLength, QT_TRANSLATE_NOOP("ObjectProperty", "restLength"), QT_TR_NOOP("m"), QT_TR_NOOP("Rest length of the stick"), restLength, setRestLength)
+    STEPCORE_PROPERTY_RW(Object*, body1, QT_TRANSLATE_NOOP("ObjectProperty", "body1"), STEPCORE_UNITS_NULL, QT_TR_NOOP("Body1"), body1, setBody1)
+    STEPCORE_PROPERTY_RW(Object*, body2, QT_TRANSLATE_NOOP("ObjectProperty", "body2"), STEPCORE_UNITS_NULL, QT_TR_NOOP("Body2"), body2, setBody2)
+    STEPCORE_PROPERTY_RW(StepCore::Vector2d, localPosition1, QT_TRANSLATE_NOOP("ObjectProperty", "localPosition1"), QT_TR_NOOP("m"),
                     QT_TR_NOOP("Local position 1"), localPosition1, setLocalPosition1)
-    STEPCORE_PROPERTY_RW(StepCore::Vector2d, localPosition2, QT_TR_NOOP("m"),
+    STEPCORE_PROPERTY_RW(StepCore::Vector2d, localPosition2, QT_TRANSLATE_NOOP("ObjectProperty", "localPosition2"), QT_TR_NOOP("m"),
                     QT_TR_NOOP("Local position 2"), localPosition2, setLocalPosition2)
-    STEPCORE_PROPERTY_R_D(StepCore::Vector2d, position1, QT_TR_NOOP("m"), QT_TR_NOOP("Position1"), position1)
-    STEPCORE_PROPERTY_R_D(StepCore::Vector2d, position2, QT_TR_NOOP("m"), QT_TR_NOOP("Position2"), position2)
+    STEPCORE_PROPERTY_R_D(StepCore::Vector2d, position1, QT_TRANSLATE_NOOP("ObjectProperty", "position1"), QT_TR_NOOP("m"), QT_TR_NOOP("Position1"), position1)
+    STEPCORE_PROPERTY_R_D(StepCore::Vector2d, position2, QT_TRANSLATE_NOOP("ObjectProperty", "position2"), QT_TR_NOOP("m"), QT_TR_NOOP("Position2"), position2)
     )
 
-STEPCORE_META_OBJECT(Rope, QT_TR_NOOP("Massless rope which can be connected to bodies"), 0,
+STEPCORE_META_OBJECT(Rope, QT_TRANSLATE_NOOP("ObjectClass", "Rope"), QT_TR_NOOP("Massless rope which can be connected to bodies"), 0,
     STEPCORE_SUPER_CLASS(Stick),)
 
 Anchor::Anchor(Object* body, const Vector2d& position, double angle)
