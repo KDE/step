@@ -31,26 +31,26 @@ namespace StepCore
 STEPCORE_META_OBJECT(SoftBodyParticle, QT_TRANSLATE_NOOP("ObjectClass", "SoftBodyParticle"), QT_TR_NOOP("SoftBody particle"), 0, STEPCORE_SUPER_CLASS(Particle),)
 STEPCORE_META_OBJECT(SoftBodySpring, QT_TRANSLATE_NOOP("ObjectClass", "SoftBodySpring"), QT_TR_NOOP("SoftBody spring"), 0, STEPCORE_SUPER_CLASS(Spring),)
 STEPCORE_META_OBJECT(SoftBody, QT_TRANSLATE_NOOP("ObjectClass", "SoftBody"), QT_TR_NOOP("Deformable SoftBody"), 0, STEPCORE_SUPER_CLASS(ItemGroup),
-        STEPCORE_PROPERTY_RW(bool, showInternalItems, QT_TR_NOOP("showInternalItems"), STEPCORE_UNITS_NULL, QT_TR_NOOP("Show internal items"),
+        STEPCORE_PROPERTY_RW(bool, showInternalItems, QT_TRANSLATE_NOOP("PropertyName", "showInternalItems"), STEPCORE_UNITS_NULL, QT_TR_NOOP("Show internal items"),
                                             showInternalItems, setShowInternalItems)
-        STEPCORE_PROPERTY_RW_D(StepCore::Vector2d, position, QT_TR_NOOP("position"), QT_TR_NOOP("m"), QT_TR_NOOP("Position of the center of mass"), position, setPosition)
+        STEPCORE_PROPERTY_RW_D(StepCore::Vector2d, position, QT_TRANSLATE_NOOP("PropertyName", "position"), QT_TRANSLATE_NOOP("Units", "m"), QT_TR_NOOP("Position of the center of mass"), position, setPosition)
 
-        STEPCORE_PROPERTY_RW_D(StepCore::Vector2d, velocity, QT_TR_NOOP("velocity"), QT_TR_NOOP("m/s"), QT_TR_NOOP("Velocity of the center of mass"), velocity, setVelocity)
-        STEPCORE_PROPERTY_RW_D(double, angularVelocity, QT_TR_NOOP("angularVelocity"), QT_TR_NOOP("rad/s"), QT_TR_NOOP("Angular velocity of the body"), angularVelocity, setAngularVelocity)
-        STEPCORE_PROPERTY_RW_D(double, angularMomentum, QT_TR_NOOP("angularMomentum"), STEPCORE_FROM_UTF8("kg m²/s"),
+        STEPCORE_PROPERTY_RW_D(StepCore::Vector2d, velocity, QT_TRANSLATE_NOOP("PropertyName", "velocity"), QT_TRANSLATE_NOOP("Units", "m/s"), QT_TR_NOOP("Velocity of the center of mass"), velocity, setVelocity)
+        STEPCORE_PROPERTY_RW_D(double, angularVelocity, QT_TRANSLATE_NOOP("PropertyName", "angularVelocity"), QT_TRANSLATE_NOOP("Units", "rad/s"), QT_TR_NOOP("Angular velocity of the body"), angularVelocity, setAngularVelocity)
+        STEPCORE_PROPERTY_RW_D(double, angularMomentum, QT_TRANSLATE_NOOP("PropertyName", "angularMomentum"), STEPCORE_FROM_UTF8(QT_TRANSLATE_NOOP("Units", "kg m²/s")),
                                 QT_TR_NOOP("Angular momentum of the body"), angularMomentum, setAngularMomentum)
 
-        STEPCORE_PROPERTY_R_D(StepCore::Vector2d, acceleration, QT_TR_NOOP("acceleration"), STEPCORE_FROM_UTF8("m/s²"),
+        STEPCORE_PROPERTY_R_D(StepCore::Vector2d, acceleration, QT_TRANSLATE_NOOP("PropertyName", "acceleration"), STEPCORE_FROM_UTF8(QT_TRANSLATE_NOOP("Units", "m/s²")),
                                             QT_TR_NOOP("Acceleration of the center of mass"), acceleration)
-        STEPCORE_PROPERTY_R_D(double, angularAcceleration, QT_TR_NOOP("angularAcceleration"), STEPCORE_FROM_UTF8("rad/s²"),
+        STEPCORE_PROPERTY_R_D(double, angularAcceleration, QT_TRANSLATE_NOOP("PropertyName", "angularAcceleration"), STEPCORE_FROM_UTF8(QT_TRANSLATE_NOOP("Units", "rad/s²")),
                                             QT_TR_NOOP("Angular acceleration of the body"), angularAcceleration)
 
-        STEPCORE_PROPERTY_R_D(StepCore::Vector2d, force, QT_TR_NOOP("force"), QT_TR_NOOP("N"), QT_TR_NOOP("Force that acts upon the body"), force)
-        STEPCORE_PROPERTY_R_D(double, torque, QT_TR_NOOP("torque"), QT_TR_NOOP("N m"), QT_TR_NOOP("Torque that acts upon the body"), torque)
-        STEPCORE_PROPERTY_R_D(double, mass, QT_TR_NOOP("mass"), QT_TR_NOOP("kg"), QT_TR_NOOP("Total mass of the body"), mass)
-        STEPCORE_PROPERTY_R_D(double, inertia, QT_TR_NOOP("inertia"), STEPCORE_FROM_UTF8("kg m²"),
+        STEPCORE_PROPERTY_R_D(StepCore::Vector2d, force, QT_TRANSLATE_NOOP("PropertyName", "force"), QT_TRANSLATE_NOOP("Units", "N"), QT_TR_NOOP("Force that acts upon the body"), force)
+        STEPCORE_PROPERTY_R_D(double, torque, QT_TRANSLATE_NOOP("PropertyName", "torque"), QT_TRANSLATE_NOOP("Units", "N m"), QT_TR_NOOP("Torque that acts upon the body"), torque)
+        STEPCORE_PROPERTY_R_D(double, mass, QT_TRANSLATE_NOOP("PropertyName", "mass"), QT_TRANSLATE_NOOP("Units", "kg"), QT_TR_NOOP("Total mass of the body"), mass)
+        STEPCORE_PROPERTY_R_D(double, inertia, QT_TRANSLATE_NOOP("PropertyName", "inertia"), STEPCORE_FROM_UTF8(QT_TRANSLATE_NOOP("Units", "kg m²")),
                                 QT_TR_NOOP("Inertia \"tensor\" of the body"), inertia)
-        STEPCORE_PROPERTY_RW(QString, borderParticleNames, QT_TR_NOOP("borderParticleNames"), STEPCORE_UNITS_NULL,
+        STEPCORE_PROPERTY_RW(QString, borderParticleNames, QT_TRANSLATE_NOOP("PropertyName", "borderParticleNames"), STEPCORE_UNITS_NULL,
                                 QT_TR_NOOP("Border particle names (temporal property)"), borderParticleNames, setBorderParticleNames)
         )
 

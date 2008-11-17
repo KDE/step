@@ -23,7 +23,7 @@
 namespace StepCore {
 
 STEPCORE_META_OBJECT(Object, QT_TRANSLATE_NOOP("ObjectClass", "Object"), QT_TR_NOOP("Object"), MetaObject::ABSTRACT,,
-        STEPCORE_PROPERTY_RW(QString, name, QT_TR_NOOP("name"), STEPCORE_UNITS_NULL, QT_TR_NOOP("Object name"), name, setName))
+        STEPCORE_PROPERTY_RW(QString, name, QT_TRANSLATE_NOOP("PropertyName", "name"), STEPCORE_UNITS_NULL, QT_TR_NOOP("Object name"), name, setName))
 
 int MetaObject::s_classIdCount = 0;
 

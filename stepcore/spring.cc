@@ -27,40 +27,40 @@ namespace StepCore {
 
 STEPCORE_META_OBJECT(Spring, QT_TRANSLATE_NOOP("ObjectClass", "Spring"), QT_TR_NOOP("Massless spring which can be connected to bodies"), 0,
     STEPCORE_SUPER_CLASS(Item) STEPCORE_SUPER_CLASS(Force),
-    STEPCORE_PROPERTY_RW(double, restLength, QT_TR_NOOP("restLength"), QT_TR_NOOP("m"), QT_TR_NOOP("Rest length"), restLength, setRestLength)
-    STEPCORE_PROPERTY_R_D(double, length, QT_TR_NOOP("length"), QT_TR_NOOP("m"), QT_TR_NOOP("Current length"), length)
-    STEPCORE_PROPERTY_RW(double, stiffness, QT_TR_NOOP("stiffness"), QT_TR_NOOP("N/m"), QT_TR_NOOP("Stiffness"), stiffness, setStiffness)
-    STEPCORE_PROPERTY_RW(double, damping, QT_TR_NOOP("damping"), QT_TR_NOOP("N s/m"), QT_TR_NOOP("Damping"), damping, setDamping)
-    STEPCORE_PROPERTY_RW(Object*, body1, QT_TR_NOOP("body1"), STEPCORE_UNITS_NULL, QT_TR_NOOP("Body1"), body1, setBody1)
-    STEPCORE_PROPERTY_RW(Object*, body2, QT_TR_NOOP("body2"), STEPCORE_UNITS_NULL, QT_TR_NOOP("Body2"), body2, setBody2)
-    STEPCORE_PROPERTY_RW(StepCore::Vector2d, localPosition1, QT_TR_NOOP("localPosition1"), QT_TR_NOOP("m"),
+    STEPCORE_PROPERTY_RW(double, restLength, QT_TRANSLATE_NOOP("PropertyName", "restLength"), QT_TRANSLATE_NOOP("Units", "m"), QT_TR_NOOP("Rest length"), restLength, setRestLength)
+    STEPCORE_PROPERTY_R_D(double, length, QT_TRANSLATE_NOOP("PropertyName", "length"), QT_TRANSLATE_NOOP("Units", "m"), QT_TR_NOOP("Current length"), length)
+    STEPCORE_PROPERTY_RW(double, stiffness, QT_TRANSLATE_NOOP("PropertyName", "stiffness"), QT_TRANSLATE_NOOP("Units", "N/m"), QT_TR_NOOP("Stiffness"), stiffness, setStiffness)
+    STEPCORE_PROPERTY_RW(double, damping, QT_TRANSLATE_NOOP("PropertyName", "damping"), QT_TRANSLATE_NOOP("Units", "N s/m"), QT_TR_NOOP("Damping"), damping, setDamping)
+    STEPCORE_PROPERTY_RW(Object*, body1, QT_TRANSLATE_NOOP("PropertyName", "body1"), STEPCORE_UNITS_NULL, QT_TR_NOOP("Body1"), body1, setBody1)
+    STEPCORE_PROPERTY_RW(Object*, body2, QT_TRANSLATE_NOOP("PropertyName", "body2"), STEPCORE_UNITS_NULL, QT_TR_NOOP("Body2"), body2, setBody2)
+    STEPCORE_PROPERTY_RW(StepCore::Vector2d, localPosition1, QT_TRANSLATE_NOOP("PropertyName", "localPosition1"), QT_TRANSLATE_NOOP("Units", "m"),
                     QT_TR_NOOP("Local position 1"), localPosition1, setLocalPosition1)
-    STEPCORE_PROPERTY_RW(StepCore::Vector2d, localPosition2, QT_TR_NOOP("localPosition2"), QT_TR_NOOP("m"),
+    STEPCORE_PROPERTY_RW(StepCore::Vector2d, localPosition2, QT_TRANSLATE_NOOP("PropertyName", "localPosition2"), QT_TRANSLATE_NOOP("Units", "m"),
                     QT_TR_NOOP("Local position 2"), localPosition2, setLocalPosition2)
-    STEPCORE_PROPERTY_R_D(StepCore::Vector2d, position1, QT_TR_NOOP("position1"), QT_TR_NOOP("m"), QT_TR_NOOP("Position1"), position1)
-    STEPCORE_PROPERTY_R_D(StepCore::Vector2d, position2, QT_TR_NOOP("position2"), QT_TR_NOOP("m"), QT_TR_NOOP("Position2"), position2)
-    STEPCORE_PROPERTY_R_D(double, force, QT_TR_NOOP("force"), QT_TR_NOOP("N"), QT_TR_NOOP("Spring tension force"), force)
+    STEPCORE_PROPERTY_R_D(StepCore::Vector2d, position1, QT_TRANSLATE_NOOP("PropertyName", "position1"), QT_TRANSLATE_NOOP("Units", "m"), QT_TR_NOOP("Position1"), position1)
+    STEPCORE_PROPERTY_R_D(StepCore::Vector2d, position2, QT_TRANSLATE_NOOP("PropertyName", "position2"), QT_TRANSLATE_NOOP("Units", "m"), QT_TR_NOOP("Position2"), position2)
+    STEPCORE_PROPERTY_R_D(double, force, QT_TRANSLATE_NOOP("PropertyName", "force"), QT_TRANSLATE_NOOP("Units", "N"), QT_TR_NOOP("Spring tension force"), force)
     )
 
 STEPCORE_META_OBJECT(SpringErrors, QT_TRANSLATE_NOOP("ObjectClass", "SpringErrors"), QT_TR_NOOP("Errors class for Spring"), 0,
     STEPCORE_SUPER_CLASS(ObjectErrors),
-    STEPCORE_PROPERTY_RW(double, restLengthVariance, QT_TR_NOOP("restLengthVariance"), QT_TR_NOOP("m"),
+    STEPCORE_PROPERTY_RW(double, restLengthVariance, QT_TRANSLATE_NOOP("PropertyName", "restLengthVariance"), QT_TRANSLATE_NOOP("Units", "m"),
                     QT_TR_NOOP("Rest length variance"), restLengthVariance, setRestLengthVariance)
-    STEPCORE_PROPERTY_R_D(double, lengthVariance, QT_TR_NOOP("lengthVariance"), QT_TR_NOOP("m"),
+    STEPCORE_PROPERTY_R_D(double, lengthVariance, QT_TRANSLATE_NOOP("PropertyName", "lengthVariance"), QT_TRANSLATE_NOOP("Units", "m"),
                     QT_TR_NOOP("Current length variance"), lengthVariance)
-    STEPCORE_PROPERTY_RW(double, stiffnessVariance, QT_TR_NOOP("stiffnessVariance"), QT_TR_NOOP("N/m"),
+    STEPCORE_PROPERTY_RW(double, stiffnessVariance, QT_TRANSLATE_NOOP("PropertyName", "stiffnessVariance"), QT_TRANSLATE_NOOP("Units", "N/m"),
                     QT_TR_NOOP("Stiffness variance"), stiffnessVariance, setStiffnessVariance)
-    STEPCORE_PROPERTY_RW(double, dampingVariance, QT_TR_NOOP("dampingVariance"), QT_TR_NOOP("N/m"),
+    STEPCORE_PROPERTY_RW(double, dampingVariance, QT_TRANSLATE_NOOP("PropertyName", "dampingVariance"), QT_TRANSLATE_NOOP("Units", "N/m"),
                     QT_TR_NOOP("Damping variance"), dampingVariance, setDampingVariance)
-    STEPCORE_PROPERTY_RW(StepCore::Vector2d, localPosition1Variance, QT_TR_NOOP("localPosition1Variance"), QT_TR_NOOP("m"),
+    STEPCORE_PROPERTY_RW(StepCore::Vector2d, localPosition1Variance, QT_TRANSLATE_NOOP("PropertyName", "localPosition1Variance"), QT_TRANSLATE_NOOP("Units", "m"),
                     QT_TR_NOOP("Local position 1 variance"), localPosition1Variance, setLocalPosition1Variance)
-    STEPCORE_PROPERTY_RW(StepCore::Vector2d, localPosition2Variance, QT_TR_NOOP("localPosition2Variance"), QT_TR_NOOP("m"),
+    STEPCORE_PROPERTY_RW(StepCore::Vector2d, localPosition2Variance, QT_TRANSLATE_NOOP("PropertyName", "localPosition2Variance"), QT_TRANSLATE_NOOP("Units", "m"),
                     QT_TR_NOOP("Local position 2 variance"), localPosition2Variance, setLocalPosition2Variance)
-    STEPCORE_PROPERTY_R_D(StepCore::Vector2d, position1Variance, QT_TR_NOOP("position1Variance"), QT_TR_NOOP("m"),
+    STEPCORE_PROPERTY_R_D(StepCore::Vector2d, position1Variance, QT_TRANSLATE_NOOP("PropertyName", "position1Variance"), QT_TRANSLATE_NOOP("Units", "m"),
                     QT_TR_NOOP("Position1 variance"), position1Variance)
-    STEPCORE_PROPERTY_R_D(StepCore::Vector2d, position2Variance, QT_TR_NOOP("position2Variance"), QT_TR_NOOP("m"),
+    STEPCORE_PROPERTY_R_D(StepCore::Vector2d, position2Variance, QT_TRANSLATE_NOOP("PropertyName", "position2Variance"), QT_TRANSLATE_NOOP("Units", "m"),
                     QT_TR_NOOP("Position2 variance"), position2Variance)
-    STEPCORE_PROPERTY_R_D(double, forceVariance, QT_TR_NOOP("forceVariance"), QT_TR_NOOP("N"),
+    STEPCORE_PROPERTY_R_D(double, forceVariance, QT_TRANSLATE_NOOP("PropertyName", "forceVariance"), QT_TRANSLATE_NOOP("Units", "N"),
                     QT_TR_NOOP("Spring tension force variance"), forceVariance)
     )
 

@@ -29,7 +29,7 @@ namespace StepCore
 {
 
 STEPCORE_META_OBJECT(Item, QT_TRANSLATE_NOOP("ObjectClass", "Item"), QT_TR_NOOP("Item"), MetaObject::ABSTRACT, STEPCORE_SUPER_CLASS(Object),
-        STEPCORE_PROPERTY_RW(StepCore::Color, color, QT_TR_NOOP("color"), STEPCORE_UNITS_NULL, QT_TR_NOOP("Item color"), color, setColor))
+        STEPCORE_PROPERTY_RW(StepCore::Color, color, QT_TRANSLATE_NOOP("PropertyName", "color"), STEPCORE_UNITS_NULL, QT_TR_NOOP("Item color"), color, setColor))
 STEPCORE_META_OBJECT(Body, QT_TRANSLATE_NOOP("ObjectClass", "Body"), QT_TR_NOOP("Body"), MetaObject::ABSTRACT,,)
 STEPCORE_META_OBJECT(Force, QT_TRANSLATE_NOOP("ObjectClass", "Force"), QT_TR_NOOP("Force"), MetaObject::ABSTRACT,,)
 STEPCORE_META_OBJECT(Joint, QT_TRANSLATE_NOOP("ObjectClass", "Joint"), QT_TR_NOOP("Joint"), MetaObject::ABSTRACT,,)
@@ -40,7 +40,7 @@ STEPCORE_META_OBJECT(ObjectErrors, QT_TRANSLATE_NOOP("ObjectClass", "ObjectError
 STEPCORE_META_OBJECT(ItemGroup, QT_TRANSLATE_NOOP("ObjectClass", "ItemGroup"), QT_TR_NOOP("ItemGroup"), 0, STEPCORE_SUPER_CLASS(Item),)
 
 STEPCORE_META_OBJECT(World, QT_TRANSLATE_NOOP("ObjectClass", "World"), QT_TR_NOOP("World"), 0, STEPCORE_SUPER_CLASS(ItemGroup),
-        STEPCORE_PROPERTY_RW_D(double, time, QT_TR_NOOP("time"), QT_TR_NOOP("s"), QT_TR_NOOP("Current time"), time, setTime)
+        STEPCORE_PROPERTY_RW_D(double, time, QT_TRANSLATE_NOOP("PropertyName", "time"), QT_TRANSLATE_NOOP("Units", "s"), QT_TR_NOOP("Current time"), time, setTime)
         STEPCORE_PROPERTY_RW  (double, timeScale, QT_TR_NOOP("timeScale"), STEPCORE_UNITS_1, QT_TR_NOOP("Simulation speed scale"), timeScale, setTimeScale)
         STEPCORE_PROPERTY_RW  (bool, errorsCalculation, QT_TR_NOOP("errorsCalculation"), STEPCORE_UNITS_NULL,
                         QT_TR_NOOP("Enable global errors calculation"), errorsCalculation, setErrorsCalculation))

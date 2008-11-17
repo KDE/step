@@ -27,39 +27,39 @@ namespace StepCore
 
 STEPCORE_META_OBJECT(Particle, QT_TRANSLATE_NOOP("ObjectClass", "Particle"), QT_TR_NOOP("Simple zero-size particle"), 0,
         STEPCORE_SUPER_CLASS(Item) STEPCORE_SUPER_CLASS(Body),
-        STEPCORE_PROPERTY_RW_D(StepCore::Vector2d, position, QT_TR_NOOP("position"), QT_TR_NOOP("m"), QT_TR_NOOP("position"), position, setPosition)
-        STEPCORE_PROPERTY_RW_D(StepCore::Vector2d, velocity, QT_TR_NOOP("velocity"), QT_TR_NOOP("m/s"), QT_TR_NOOP("velocity"), velocity, setVelocity)
-        STEPCORE_PROPERTY_R_D(StepCore::Vector2d, acceleration, QT_TR_NOOP("acceleration"), STEPCORE_FROM_UTF8("m/s²"),
+        STEPCORE_PROPERTY_RW_D(StepCore::Vector2d, position, QT_TRANSLATE_NOOP("PropertyName", "position"), QT_TRANSLATE_NOOP("Units", "m"), QT_TR_NOOP("position"), position, setPosition)
+        STEPCORE_PROPERTY_RW_D(StepCore::Vector2d, velocity, QT_TRANSLATE_NOOP("PropertyName", "velocity"), QT_TRANSLATE_NOOP("Units", "m/s"), QT_TR_NOOP("velocity"), velocity, setVelocity)
+        STEPCORE_PROPERTY_R_D(StepCore::Vector2d, acceleration, QT_TRANSLATE_NOOP("PropertyName", "acceleration"), STEPCORE_FROM_UTF8(QT_TRANSLATE_NOOP("Units", "m/s²")),
                                                             QT_TR_NOOP("acceleration"), acceleration)
-        STEPCORE_PROPERTY_R_D(StepCore::Vector2d, force, QT_TR_NOOP("force"), QT_TR_NOOP("N"), QT_TR_NOOP("force"), force)
-        STEPCORE_PROPERTY_RW(double, mass, QT_TR_NOOP("mass"), QT_TR_NOOP("kg"), QT_TR_NOOP("mass"), mass, setMass)
-        STEPCORE_PROPERTY_RWF(StepCore::Vector2d, momentum, QT_TR_NOOP("momentum"), QT_TR_NOOP("kg m/s"), QT_TR_NOOP("momentum"),
+        STEPCORE_PROPERTY_R_D(StepCore::Vector2d, force, QT_TRANSLATE_NOOP("PropertyName", "force"), QT_TRANSLATE_NOOP("Units", "N"), QT_TR_NOOP("force"), force)
+        STEPCORE_PROPERTY_RW(double, mass, QT_TRANSLATE_NOOP("PropertyName", "mass"), QT_TRANSLATE_NOOP("Units", "kg"), QT_TR_NOOP("mass"), mass, setMass)
+        STEPCORE_PROPERTY_RWF(StepCore::Vector2d, momentum, QT_TRANSLATE_NOOP("PropertyName", "momentum"), QT_TRANSLATE_NOOP("Units", "kg m/s"), QT_TR_NOOP("momentum"),
                         StepCore::MetaProperty::DYNAMIC, momentum, setMomentum)
-        STEPCORE_PROPERTY_RWF(double, kineticEnergy, QT_TR_NOOP("kineticEnergy"), QT_TR_NOOP("J"), QT_TR_NOOP("kinetic energy"),
+        STEPCORE_PROPERTY_RWF(double, kineticEnergy, QT_TRANSLATE_NOOP("PropertyName", "kineticEnergy"), QT_TRANSLATE_NOOP("Units", "J"), QT_TR_NOOP("kinetic energy"),
                         StepCore::MetaProperty::DYNAMIC, kineticEnergy, setKineticEnergy))
 
 STEPCORE_META_OBJECT(ParticleErrors, QT_TRANSLATE_NOOP("ObjectClass", "ParticleErrors"), QT_TR_NOOP("Errors class for Particle"), 0, STEPCORE_SUPER_CLASS(ObjectErrors),
-        STEPCORE_PROPERTY_RW_D(StepCore::Vector2d, positionVariance, QT_TR_NOOP("positionVariance"), QT_TR_NOOP("m"),
+        STEPCORE_PROPERTY_RW_D(StepCore::Vector2d, positionVariance, QT_TRANSLATE_NOOP("PropertyName", "positionVariance"), QT_TRANSLATE_NOOP("Units", "m"),
                     QT_TR_NOOP("position variance"), positionVariance, setPositionVariance)
-        STEPCORE_PROPERTY_RW_D(StepCore::Vector2d, velocityVariance, QT_TR_NOOP("velocityVariance"), QT_TR_NOOP("m/s"),
+        STEPCORE_PROPERTY_RW_D(StepCore::Vector2d, velocityVariance, QT_TRANSLATE_NOOP("PropertyName", "velocityVariance"), QT_TRANSLATE_NOOP("Units", "m/s"),
                     QT_TR_NOOP("velocity variance"), velocityVariance, setVelocityVariance)
-        STEPCORE_PROPERTY_R_D(StepCore::Vector2d, accelerationVariance, QT_TR_NOOP("accelerationVariance"), STEPCORE_FROM_UTF8("m/s²"),
+        STEPCORE_PROPERTY_R_D(StepCore::Vector2d, accelerationVariance, QT_TRANSLATE_NOOP("PropertyName", "accelerationVariance"), STEPCORE_FROM_UTF8(QT_TRANSLATE_NOOP("Units", "m/s²")),
                     QT_TR_NOOP("acceleration variance"), accelerationVariance)
-        STEPCORE_PROPERTY_R_D(StepCore::Vector2d, forceVariance, QT_TR_NOOP("forceVariance"), QT_TR_NOOP("N"),
+        STEPCORE_PROPERTY_R_D(StepCore::Vector2d, forceVariance, QT_TRANSLATE_NOOP("PropertyName", "forceVariance"), QT_TRANSLATE_NOOP("Units", "N"),
                     QT_TR_NOOP("force variance"), forceVariance)
-        STEPCORE_PROPERTY_RW(double, massVariance, QT_TR_NOOP("massVariance"), QT_TR_NOOP("kg"),
+        STEPCORE_PROPERTY_RW(double, massVariance, QT_TRANSLATE_NOOP("PropertyName", "massVariance"), QT_TRANSLATE_NOOP("Units", "kg"),
                     QT_TR_NOOP("mass variance"), massVariance, setMassVariance )
-        STEPCORE_PROPERTY_RWF(StepCore::Vector2d, momentumVariance, QT_TR_NOOP("momentumVariance"), QT_TR_NOOP("kg m/s"),
+        STEPCORE_PROPERTY_RWF(StepCore::Vector2d, momentumVariance, QT_TRANSLATE_NOOP("PropertyName", "momentumVariance"), QT_TRANSLATE_NOOP("Units", "kg m/s"),
                     QT_TR_NOOP("momentum variance"), StepCore::MetaProperty::DYNAMIC, momentumVariance, setMomentumVariance)
-        STEPCORE_PROPERTY_RWF(double, kineticEnergyVariance, QT_TR_NOOP("kineticEnergyVariance"), QT_TR_NOOP("J"),
+        STEPCORE_PROPERTY_RWF(double, kineticEnergyVariance, QT_TRANSLATE_NOOP("PropertyName", "kineticEnergyVariance"), QT_TRANSLATE_NOOP("Units", "J"),
                     QT_TR_NOOP("kinetic energy variance"), StepCore::MetaProperty::DYNAMIC, kineticEnergyVariance, setKineticEnergyVariance))
 
 STEPCORE_META_OBJECT(ChargedParticle, QT_TRANSLATE_NOOP("ObjectClass", "ChargedParticle"), QT_TR_NOOP("Charged zero-size particle"), 0, STEPCORE_SUPER_CLASS(Particle),
-        STEPCORE_PROPERTY_RW(double, charge, QT_TR_NOOP("charge"), QT_TR_NOOP("C"), QT_TR_NOOP("charge"), charge, setCharge))
+        STEPCORE_PROPERTY_RW(double, charge, QT_TRANSLATE_NOOP("PropertyName", "charge"), QT_TRANSLATE_NOOP("Units", "C"), QT_TR_NOOP("charge"), charge, setCharge))
 
 STEPCORE_META_OBJECT(ChargedParticleErrors, QT_TRANSLATE_NOOP("ObjectClass", "ChargedParticleErrors"), QT_TR_NOOP("Errors class for ChargedParticle"), 0,
         STEPCORE_SUPER_CLASS(ParticleErrors),
-        STEPCORE_PROPERTY_RW(double, chargeVariance, QT_TR_NOOP("chargeVariance"), QT_TR_NOOP("kg"),
+        STEPCORE_PROPERTY_RW(double, chargeVariance, QT_TRANSLATE_NOOP("PropertyName", "chargeVariance"), QT_TRANSLATE_NOOP("Units", "kg"),
                     QT_TR_NOOP("charge variance"), chargeVariance, setChargeVariance ))
 
 Particle* ParticleErrors::particle() const
