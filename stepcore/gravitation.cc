@@ -25,24 +25,24 @@
 namespace StepCore
 {
 
-STEPCORE_META_OBJECT(GravitationForce, QT_TRANSLATE_NOOP("ObjectClass", "GravitationForce"), QT_TR_NOOP("Gravitation force"), 0,
+STEPCORE_META_OBJECT(GravitationForce, QT_TR_NOOP("GravitationForce"), QT_TR_NOOP("Gravitation force"), 0,
     STEPCORE_SUPER_CLASS(Item) STEPCORE_SUPER_CLASS(Force),
-    STEPCORE_PROPERTY_RW(double, gravitationConst, QT_TRANSLATE_NOOP("ObjectProperty", "gravitationConst"), STEPCORE_FROM_UTF8("N m²/kg²"),
+    STEPCORE_PROPERTY_RW(double, gravitationConst, QT_TR_NOOP("gravitationConst"), STEPCORE_FROM_UTF8("N m²/kg²"),
             QT_TR_NOOP("Gravitation constant"), gravitationConst, setGravitationConst))
 
-STEPCORE_META_OBJECT(GravitationForceErrors, QT_TRANSLATE_NOOP("ObjectClass", "GravitationForceErrors"), QT_TR_NOOP("Errors class for GravitationForce"), 0,
+STEPCORE_META_OBJECT(GravitationForceErrors, QT_TR_NOOP("GravitationForceErrors"), QT_TR_NOOP("Errors class for GravitationForce"), 0,
     STEPCORE_SUPER_CLASS(ObjectErrors),
-    STEPCORE_PROPERTY_RW(double, gravitationConstVariance, QT_TRANSLATE_NOOP("ObjectProperty", "gravitationConstVariance"), STEPCORE_FROM_UTF8("N m²/kg²"),
+    STEPCORE_PROPERTY_RW(double, gravitationConstVariance, QT_TR_NOOP("gravitationConstVariance"), STEPCORE_FROM_UTF8("N m²/kg²"),
             QT_TR_NOOP("Gravitation constant variance"), gravitationConstVariance, setGravitationConstVariance))
 
-STEPCORE_META_OBJECT(WeightForce, QT_TRANSLATE_NOOP("ObjectClass", "WeightForce"), QT_TR_NOOP("Weight force"), 0,
+STEPCORE_META_OBJECT(WeightForce, QT_TR_NOOP("WeightForce"), QT_TR_NOOP("Weight force"), 0,
     STEPCORE_SUPER_CLASS(Item) STEPCORE_SUPER_CLASS(Force),
-    STEPCORE_PROPERTY_RW(double, weightConst, QT_TRANSLATE_NOOP("ObjectProperty", "weightConst"), STEPCORE_FROM_UTF8("m/s²"), QT_TR_NOOP("Weight constant"),
+    STEPCORE_PROPERTY_RW(double, weightConst, QT_TR_NOOP("weightConst"), STEPCORE_FROM_UTF8("m/s²"), QT_TR_NOOP("Weight constant"),
                             weightConst, setWeightConst))
 
-STEPCORE_META_OBJECT(WeightForceErrors, QT_TRANSLATE_NOOP("ObjectClass", "WeightForceErrors"), QT_TR_NOOP("Errors class for WeightForce"), 0,
+STEPCORE_META_OBJECT(WeightForceErrors, QT_TR_NOOP("WeightForceErrors"), QT_TR_NOOP("Errors class for WeightForce"), 0,
     STEPCORE_SUPER_CLASS(ObjectErrors),
-    STEPCORE_PROPERTY_RW(double, weightConstVariance, QT_TRANSLATE_NOOP("ObjectProperty", "weightConstVariance"), STEPCORE_FROM_UTF8("m/s²"),
+    STEPCORE_PROPERTY_RW(double, weightConstVariance, QT_TR_NOOP("weightConstVariance"), STEPCORE_FROM_UTF8("m/s²"),
             QT_TR_NOOP("Weight constant variance"), weightConstVariance, setWeightConstVariance))
 
 GravitationForce* GravitationForceErrors::gravitationForce() const
