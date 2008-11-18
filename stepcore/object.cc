@@ -19,6 +19,7 @@
 #include "object.h"
 #include <cstring>
 #include <QtGlobal>
+#include <QCoreApplication>
 
 namespace StepCore {
 
@@ -61,8 +62,10 @@ void MetaObject::init() const
     }
 
     // strings
-    _classNameTr = QObject::trUtf8(_className.toUtf8().constData());
-    _descriptionTr = QObject::trUtf8(_descriptionTr.toUtf8().constData());
+    _classNameTr = QCoreApplication::translate("ObjectClass", _className.toUtf8().constData(),
+                                        NULL, QCoreApplication::UnicodeUTF8);
+    _descriptionTr = QCoreApplication::translate(NULL, _description.toUtf8().constData(),
+                                        NULL, QCoreApplication::UnicodeUTF8);
 
     _initialized = true;
 }
@@ -112,9 +115,12 @@ const MetaProperty* MetaObject::property(int n) const
 
 void MetaProperty::init() const
 {
-    _nameTr = QObject::trUtf8(_name.toUtf8().constData());
-    _unitsTr = QObject::trUtf8(_units.toUtf8().constData());
-    _descriptionTr = QObject::trUtf8(_description.toUtf8().constData());
+    _nameTr = QCoreApplication::translate("PropertyName", _name.toUtf8().constData(),
+                                                NULL, QCoreApplication::UnicodeUTF8);
+    _unitsTr = QCoreApplication::translate("Units", _units.toUtf8().constData(),
+                                                NULL, QCoreApplication::UnicodeUTF8);
+    _descriptionTr = QCoreApplication::translate(NULL, _description.toUtf8().constData(),
+                                                NULL, QCoreApplication::UnicodeUTF8);
     _initialized = true;
 }
 
