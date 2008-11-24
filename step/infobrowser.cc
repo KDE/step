@@ -180,7 +180,7 @@ void InfoBrowser::openUrl(const KUrl& url, bool clearHistory, bool fromHistory)
                     "<div id='doc_box-body' class='box-body'>\n"
                         "<div class='error'><p>\n"
                         + i18n("Documentation for %1 not available.", className)
-                        + i18n("You can help <a href=\"http://edu.kde.org/step\">Step</a> by writting it!") +
+                        + i18n("You can help <a href=\"http://edu.kde.org/step\">Step</a> by writing it!") +
                         "</p></div>\n"
                     "</div>\n"
                 "</div>\n"
@@ -199,7 +199,7 @@ void InfoBrowser::openUrl(const KUrl& url, bool clearHistory, bool fromHistory)
                         "</span>\n"
                     "</div>\n"
                     "<div id='wiki_box-body' class='box-body'>\n"
-                        "<div class='info'><p>\n" + i18n( "Fetching Wikipedia Information ..." ) + "</p></div>\n"
+                        "<div class='info'><p>\n" + i18n( "Fetching Wikipedia Information..." ) + "</p></div>\n"
                     "</div>\n"
                 "</div>\n"
                 "</body></html>\n", fromHistory);
