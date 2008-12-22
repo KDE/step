@@ -260,7 +260,7 @@ void WorldScene::helpEvent(QGraphicsSceneHelpEvent *helpEvent)
             text += QString("<br /><nobr>%1</nobr>")
                         .arg(_worldModel->objectIndex(activeItems[i]).data(Qt::DisplayRole).toString());
         if(count > 10)
-            text += QString("<br /><nobr>%1</nobr>").arg(i18n("... (%1 more items)", count - 10));
+            text += QString("<br /><nobr>%1</nobr>").arg(i18np("... (1 more item)", "... (%1 more items)", count - 10));
     } else {
         for(int i=0; i<count; ++i)
             text += _worldModel->objectIndex(activeItems[i]).data(Qt::ToolTipRole).toString();
