@@ -30,7 +30,7 @@
 <sect1 id="tutorial2">
 <title>Tutorial 2: controllers and graphs</title>
 <para>You will learn more about controllers and graphs in this tutorial.</para>
-<para>A controller is a device which allows you to graphically modify a property of a body or a spring. In the tutorial, the controller allows you to change the stifness of the spring "spring1". By moving the slider to the right or using the W key you can increase spring1 stiffness value and by moving the slider to the left or using the Q key you can decrease it. Right-clicking on the controller brings you several context actions and the <guilabel>Configure Controller...</guilabel> dialog allows you to change each property of the controller.</para>
+<para>A controller is a device which allows you to graphically modify a property of a body or a spring. In the tutorial, the controller allows you to change the stiffness of the spring "spring1". By moving the slider to the right or using the W key you can increase spring1 stiffness value and by moving the slider to the left or using the Q key you can decrease it. Right-clicking on the controller brings you several context actions and the <guilabel>Configure Controller...</guilabel> dialog allows you to change each property of the controller.</para>
 <screenshot>
      <screeninfo>Tutorial 2 experiment</screeninfo>
 	<mediaobject>
