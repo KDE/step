@@ -179,7 +179,7 @@ void InfoBrowser::openUrl(const KUrl& url, bool clearHistory, bool fromHistory)
                     "</div>\n"
                     "<div id='doc_box-body' class='box-body'>\n"
                         "<div class='error'><p>\n"
-                        + i18n("Documentation for %1 not available.", className)
+                        + i18n("Documentation for %1 not available. ", className)
                         + i18n("You can help <a href=\"http://edu.kde.org/step\">Step</a> by writing it!") +
                         "</p></div>\n"
                     "</div>\n"
