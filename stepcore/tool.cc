@@ -79,7 +79,7 @@ STEPCORE_META_OBJECT(Controller, QT_TRANSLATE_NOOP("ObjectClass", "Controller"),
     STEPCORE_PROPERTY_RW(StepCore::Vector2d, position, QT_TRANSLATE_NOOP("PropertyName", "position"), QT_TRANSLATE_NOOP("Units", "m"), QT_TR_NOOP("Controller position on the scene"), position, setPosition)
     STEPCORE_PROPERTY_RW(StepCore::Vector2d, size, QT_TRANSLATE_NOOP("PropertyName", "size"), QT_TRANSLATE_NOOP("Units", "m"), QT_TR_NOOP("Controller size on the scene"), size, setSize)
     STEPCORE_PROPERTY_RW(Object*, object, QT_TRANSLATE_NOOP("PropertyName", "object"), STEPCORE_UNITS_NULL, QT_TR_NOOP("Controlled object"), object, setObject)
-    STEPCORE_PROPERTY_RW(QString, property, QT_TRANSLATE_NOOP("PropertyName", "property"), STEPCORE_UNITS_NULL, QT_TR_NOOP("Controlled property property"), property, setProperty)
+    STEPCORE_PROPERTY_RW(QString, property, QT_TRANSLATE_NOOP("PropertyName", "property"), STEPCORE_UNITS_NULL, QT_TR_NOOP("Controlled property"), property, setProperty)
     STEPCORE_PROPERTY_RW(int, index, QT_TRANSLATE_NOOP("PropertyName", "index"), STEPCORE_UNITS_NULL, QT_TR_NOOP("Vector index"), index, setIndex)
     STEPCORE_PROPERTY_RW(StepCore::Vector2d, limits, QT_TRANSLATE_NOOP("PropertyName", "limits"), STEPCORE_UNITS_NULL, QT_TR_NOOP("Limits"), limits, setLimits)
     STEPCORE_PROPERTY_RW(QString, increaseShortcut, QT_TRANSLATE_NOOP("PropertyName", "increaseShortcut"), STEPCORE_UNITS_NULL,
