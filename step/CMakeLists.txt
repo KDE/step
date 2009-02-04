@@ -76,8 +76,5 @@ install(FILES step.knsrc DESTINATION  ${CONFIG_INSTALL_DIR})
 install( FILES step.desktop DESTINATION ${XDG_APPS_INSTALL_DIR} )
 
 add_subdirectory(icons)
-add_subdirectory(objinfo)
-add_subdirectory(examples)
-add_subdirectory(tutorials)
-
+add_subdirectory(data)
 
