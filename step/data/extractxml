@@ -1,0 +1,355 @@
+#!/usr/bin/env python
+#
+# This file is part of Step.
+# Copyright (C) 2009 Vladimir Kuznetsov <ks.vladimir@gmail.com>
+#
+# Step is free software; you can redistribute it and/or modify
+# it under the terms of the GNU General Public License as published by
+# the Free Software Foundation; either version 2 of the License, or
+# (at your option) any later version.
+#
+# Step is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+# GNU General Public License for more details.
+#
+# You should have received a copy of the GNU General Public License
+# along with Step; if not, write to the Free Software
+# Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
+
+import xml.parsers.expat
+import xml.sax.saxutils
+import optparse
+import gettext
+import sys
+import re
+import os
+
+class XmlFileTranslator(object):
+    def __init__(self, opt):
+        self.opt = opt
+        self.tag_regex = []
+        for r in self.opt.tag_regex:
+            self.tag_regex.append(re.compile(r))
+
+    def init_parser(self):
+        self.parser = xml.parsers.expat.ParserCreate()
+        self.parser.ordered_attributes = 1
+        self.parser.DefaultHandler = self.default_handler
+        self.parser.StartElementHandler = self.start_element_handler
+        self.parser.EndElementHandler = self.end_element_handler
+
+    def parse(self, infile):
+        try:
+            self.parser.ParseFile(infile)
+        except xml.parsers.expat.ExpatError, e:
+            raise
+
+    def translate(self, infile_name, infile, outfile, translation):
+        self.i18n_file = infile_name
+        self.outfile = outfile
+        self.translation = translation
+
+        self.i18n_stack = []
+        self.i18n_save = False
+        self.i18n_string = ''
+
+        self.init_parser()
+        self.parse(infile)
+
+    def extract(self, infile_name, infile, outfile):
+        self.i18n_file = infile_name
+        self.outfile = outfile
+        self.translation = None
+
+        self.i18n_stack = []
+        self.i18n_save = False
+        self.i18n_string = ''
+
+        self.init_parser()
+        self.parse(infile)
+
+    def quote_str(self, s):
+        return s.replace('&', '&amp;').replace('"', '&quot;') \
+                .replace('>', '&gt;').replace('<', '&lt;')
+
+    def unquote_str(self, s):
+        return s.replace('&lt;', '<').replace('&gt;', '>') \
+                .replace('&quot;', '"').replace('&amp;', '&')
+
+    def encode_str(self, s):
+        return '"' + s.replace('\\', '\\\\').replace('\"', '\\"') \
+                      .replace('\r', '\\r').replace('\n', '\\n"\n"') + '"'
+
+    def encode_utf8(self, s):
+        if isinstance(s, unicode):
+            return s.encode('UTF-8')
+        else:
+            return s
+
+    def select_context(self, patterns, attr):
+        for pattern in patterns:
+            try:
+                return pattern % attr
+            except (KeyError, ValueError):
+                pass
+
+    def write_data(self, data):
+        if self.i18n_save:
+            self.i18n_string += data
+        elif self.translation is not None:
+            self.outfile.write(self.encode_utf8(data))
+
+    def write_i18n(self):
+        if not self.i18n_string or (self.opt.strip and self.i18n_string.isspace()):
+            return
+
+        if self.translation is not None:
+            if self.opt.strip:
+                string0 = self.i18n_string.lstrip()
+                begin_string = self.i18n_string[:-len(string0)]
+                string = string0.rstrip()
+                end_string = string0[len(string):]
+            else:
+                string = self.i18n_string
+                begin_string = end_string = ''
+            string = self.translation.ugettext(string)
+            if self.opt.unquote:
+                string = self.quote_str(string)
+            self.outfile.write(self.encode_utf8(begin_string + string + end_string))
+
+        else:
+            if self.opt.strip:
+                string = self.i18n_string.strip()
+            else:
+                string = self.i18n_string
+
+            if self.opt.unquote:
+                string = self.unquote_str(string)
+
+            info = {}
+            for n in xrange(2):
+                try:
+                    d = self.i18n_stack[-1-n]
+                except IndexError:
+                    break
+                p = '../'*n
+                info[p+'tag'] = d['name']
+                info[p+'line'] = d['line']
+                for aname, avalue in d['attr'].iteritems():
+                    info[p+'attr/'+aname] = avalue
+
+            self.outfile.write(self.encode_utf8('%s i18n: file: %s:%d\n' % \
+                     (self.opt.cstart, self.i18n_file, info['line'])))
+
+            ectx = self.select_context(self.opt.ectx, info)
+            if ectx:
+                self.outfile.write(self.encode_utf8('%s i18n: ectx: %s\n' % \
+                     (self.opt.cstart, ectx)))
+
+            ctx = self.select_context(self.opt.context, info)
+            if ctx:
+                self.outfile.write(self.encode_utf8('i18nc(%s, %s)\n' % \
+                     (self.encode_str(ctx), self.encode_str(string))))
+            else:
+                self.outfile.write(self.encode_utf8('i18n(%s)\n' % \
+                    (self.encode_str(string),)))
+
+    def default_handler(self, data):
+        self.write_data(data)
+
+    def start_element_handler(self, name, attr):
+        data = '<' + name
+        attr_dict = {}
+        for n in xrange(0, len(attr), 2):
+            attr_dict[attr[n]] = attr[n+1]
+            data += ' %s=%s' % (attr[n], xml.sax.saxutils.quoteattr(attr[n+1]))
+        data += '>'
+
+        match = False
+        if name in self.opt.tag:
+            match = True
+        else:
+            for regex in self.tag_regex:
+                if regex.search(name):
+                    match = True
+                    break
+
+        if self.i18n_stack and self.opt.recursive:
+            if match:
+                self.write_i18n()
+                self.i18n_string = ''
+                self.i18n_save = False
+
+        self.write_data(data)
+
+        if match:
+            self.i18n_stack.append(dict(name=name, attr=attr_dict,
+                                line=self.parser.CurrentLineNumber))
+            self.i18n_save = True
+
+    def end_element_handler(self, name):
+        if self.i18n_stack and self.i18n_stack[-1]['name'] == name:
+            if self.opt.recursive or len(self.i18n_stack) == 1:
+                self.write_i18n()
+                self.i18n_string = ''
+                self.i18n_save = False
+            self.i18n_stack.pop()
+
+        self.write_data('</%s>' % (name,))
+
+        if self.i18n_stack:
+            self.i18n_save = True
+
+def safe_remove(fname):
+    try:
+        os.remove(fname)
+    except (IOError, OSError):
+        pass
+
+def open_mo_file(opt, mo_file_name, remove=False):
+    try:
+        mo_file = file(mo_file_name, 'r')
+    except IOError, e:
+        sys.stderr.write('Can not open .mo file: %s\n' % (str(e),))
+        mo_file.close()
+        if remove:
+            safe_remove(mo_file_name)
+        sys.exit(1)
+
+    try:
+        translation = gettext.GNUTranslations(mo_file)
+    except IOError, e:
+        sys.stderr.write('Can not parse .mo file: %s\n' % (str(e),))
+        mo_file.close()
+        if remove:
+            safe_remove(mo_file_name)
+        sys.exit(1)
+
+    mo_file.close()
+    if remove:
+        safe_remove(mo_file_name)
+
+    return translation
+
+def compile_po_file(opt, po_file_name):
+    mo_file_name = os.tmpnam() + '.mo'
+    msgfmt_cmd = 'msgfmt "%s" -o "%s"' % (po_file_name, mo_file_name)
+
+    if os.system(msgfmt_cmd):
+        sys.stderr.write('Error running msgfmt\n')
+        sys.exit(1)
+
+    return open_mo_file(opt, mo_file_name, remove=True)
+
+def main():
+    optparser = optparse.OptionParser(usage='\n\t%prog --extract [options] XML_FILE...\n' + \
+                                     '\t%prog --translate [options] XML_FILE...')
+
+    optparser.add_option('-e', '--extract', action='store_true', default=False,
+                help='Extract i18n strings from xml files')
+    optparser.add_option('-t', '--translate', action='store_true', default=False,
+                help='Translate i18n strings in xml files')
+    optparser.add_option('-n', '--tag', action='append', default=[],
+                help='Extract TAG contants as i18n string. ' + \
+                     'Repeate this option to specify multiple tags')
+    optparser.add_option('-x', '--tag-regex', action='append', default=[],
+                help='Extract contents of all tags matching TAG_REGEX as i18n string. ' + \
+                     'Repeate this option to specify multiple regex')
+    optparser.add_option('-r', '--recursive', action='store_true', default=False,
+                help='Recursively pass i18n tags. This means that children tags ' + \
+                     'will be extracted separately even if parent is also i18n-enabled')
+    optparser.add_option('-s', '--strip', action='store_true', default=False,
+                help='Strip leading and trailing whitespaces of i18n strings')
+    optparser.add_option('-q', '--unquote', action='store_true', default=False,
+                help='Unquote XML-quoted entities on extraction ' + \
+                     'and quote them back when translating')
+
+    optgroup_extract = optparse.OptionGroup(optparser, 'Options for extracting messages')
+    optgroup_extract.add_option('--context', action='append', default=[],
+                help='Pattern to generate context. ' + \
+                     'TODO: pattern syntax. ' + \
+                     'If specified multiple times, the first matching pattern will be used')
+    optgroup_extract.add_option('--ectx', action='append', default=[],
+                help='Pattern to generate ectx. Format is the same as in --context')
+    optgroup_extract.add_option('--cstart', default='//',
+                help='A string to used to start the comment')
+    optgroup_extract.add_option('--output', help='Output file for extracted messages')
+    optparser.add_option_group(optgroup_extract)
+
+    optgroup_translate = optparse.OptionGroup(optparser, 'Options for translating messages')
+    optgroup_translate.add_option('--po-file', help='A file with translations')
+    optgroup_translate.add_option('--mo-file', help='A file with translations')
+    optgroup_translate.add_option('--output-dir', default='./i18n', help='A directory to output translated files')
+    optparser.add_option_group(optgroup_translate)
+
+    opt, args = optparser.parse_args()
+
+    if not args:
+        optparser.error('no xml files was specified')
+
+    if opt.extract and opt.translate:
+        optparser.error('options --extract and --translate are mutually exclusive')
+    
+    if not opt.extract and not opt.translate:
+        optparser.error('please specify either --extract or --translate option')
+
+    if opt.extract:
+        if opt.output:
+            try:
+                outfile = file(opt.output, 'w')
+            except IOError, e:
+                optparser.error('can not open output file: ' + str(e))
+        else:
+            outfile = sys.stdout
+    else:
+        if not opt.po_file and not opt.mo_file:
+            optparser.error('please specify either --po-file or --mo-file option for translation')
+
+        if opt.po_file:
+            gnutranslation = compile_po_file(opt, opt.po_file)
+        else:
+            gnutranslation = open_mo_file(opt, opt.mo_file)
+
+        if not os.path.isdir(opt.output_dir):
+            try:
+                os.mkdir(opt.output_dir)
+            except IOError, e:
+                sys.stderr.write('Can not create output directory: %s\n' % (str(e),))
+                sys.exit(1)
+
+    translator = XmlFileTranslator(opt)
+    for fname in args:
+        try:
+            infile = file(fname, 'r')
+        except IOError, e:
+            sys.stderr.write('can not open input file: %s\n' % (str(e),))
+            sys.exit(1)
+
+        if opt.extract:
+            try:
+                translator.extract(fname, infile, outfile)
+            except xml.parsers.expat.ExpatError, e:
+                sys.stderr.write('can not parse file %s: %s\n' % (fname, str(e)))
+                sys.exit(1)
+        else:
+            outfile_name = os.path.join(opt.output_dir, os.path.basename(fname))
+            try:
+                outfile = file(outfile_name, 'w')
+            except IOError, e:
+                sys.stderr.write('can not open output file: %s\n' % (str(e),))
+                sys.exit(1)
+
+            try:
+                translator.translate(fname, infile, outfile, gnutranslation)
+            except xml.parsers.expat.ExpatError, e:
+                sys.stderr.write('can not parse file %s: %s\n' % (fname, str(e)))
+                sys.exit(1)
+
+            outfile.close()
+
+        infile.close()
+
+if __name__ == '__main__':
+    main()
+
