@@ -27,6 +27,23 @@ import sys
 import re
 import os
 
+# current python gettext module does not
+# support contexts, so we implement them ourself
+class GNUTranslations(gettext.GNUTranslations):
+    # The encoding of a msgctxt and a msgid in a .mo file is
+    # msgctxt + "\x04" + msgid (gettext version >= 0.15)
+    CONTEXT_ENCODING = "%s\x04%s"
+
+    def upgettext(self, context, message):
+        ctxt_message_id = self.CONTEXT_ENCODING % (context, message)
+        missing = object()
+        tmsg = self._catalog.get(ctxt_message_id, missing)
+        if tmsg is missing:
+            if self._fallback:
+                return self._fallback.upgettext(context, message)
+            return unicode(message)
+        return tmsg
+
 class XmlFileTranslator(object):
     def __init__(self, opt):
         self.opt = opt
@@ -87,6 +104,7 @@ class XmlFileTranslator(object):
             outfile = StringIO.StringIO()
             translator1.translate(self.i18n_file, infile,
                 outfile, self.translation, self.i18n_stack, self.i18n_stack[-1]['line'])
+            self.outfile.write(self.encode_utf8(outfile.getvalue()))
 
     def quote_str(self, s):
         return s.replace('&', '&amp;').replace('"', '&quot;') \
@@ -120,10 +138,15 @@ class XmlFileTranslator(object):
             self.outfile.write(self.encode_utf8(data))
 
     def write_i18n(self):
-        if not self.i18n_string or (self.opt.strip and self.i18n_string.isspace()):
-            return
+        string = self.i18n_string
+        if self.opt.unquote:
+            string = self.unquote_str(string)
 
-        if self.translation is not None:
+        if self.opt.unquote and self.opt.parse_unquoted \
+                and string.lstrip().startswith('<'):
+            self.parse_unquoted_substring(string)
+
+        else:
             if self.opt.strip:
                 string0 = self.i18n_string.lstrip()
                 begin_string = self.i18n_string[:-len(string0)]
@@ -132,49 +155,43 @@ class XmlFileTranslator(object):
             else:
                 string = self.i18n_string
                 begin_string = end_string = ''
-            string = self.translation.ugettext(string)
-            if self.opt.unquote:
-                string = self.quote_str(string)
-            self.outfile.write(self.encode_utf8(begin_string + string + end_string))
 
-        else:
-            if self.opt.strip:
-                string = self.i18n_string.strip()
+            if not string:
+                return
+
+            info = {'file': self.i18n_file, \
+                    'filename': os.path.basename(self.i18n_file)}
+            for n in xrange(2):
+                try:
+                    d = self.i18n_stack[-1-n]
+                except IndexError:
+                    break
+                p = '../'*n
+                info[p+'tag'] = d['name']
+                info[p+'line'] = d['line']
+                for aname, avalue in d['attr'].iteritems():
+                    info[p+'attr/'+aname] = avalue
+
+            ectx = self.select_context(self.opt.ectx, info)
+            context = self.select_context(self.opt.context, info)
+
+            if self.translation is not None:
+                string = self.translation.upgettext(context, string)
+                if self.opt.unquote:
+                    string = self.quote_str(string)
+                self.outfile.write(self.encode_utf8(begin_string + string + end_string))
+
             else:
-                string = self.i18n_string
-
-            if self.opt.unquote:
-                string = self.unquote_str(string)
-
-            if self.opt.parse_unquoted and string.lstrip().startswith('<'):
-                self.parse_unquoted_substring(string)
-
-            else:
-                info = {'file': self.i18n_file, \
-                        'filename': os.path.basename(self.i18n_file)}
-                for n in xrange(2):
-                    try:
-                        d = self.i18n_stack[-1-n]
-                    except IndexError:
-                        break
-                    p = '../'*n
-                    info[p+'tag'] = d['name']
-                    info[p+'line'] = d['line']
-                    for aname, avalue in d['attr'].iteritems():
-                        info[p+'attr/'+aname] = avalue
-
                 self.outfile.write(self.encode_utf8('%s i18n: file: %s:%d\n' % \
                          (self.opt.cstart, self.i18n_file, info['line'])))
 
-                ectx = self.select_context(self.opt.ectx, info)
                 if ectx:
                     self.outfile.write(self.encode_utf8('%s i18n: ectx: %s\n' % \
                          (self.opt.cstart, ectx)))
 
-                ctx = self.select_context(self.opt.context, info)
-                if ctx:
+                if context:
                     self.outfile.write(self.encode_utf8('i18nc(%s, %s)\n' % \
-                         (self.encode_str(ctx), self.encode_str(string))))
+                         (self.encode_str(context), self.encode_str(string))))
                 else:
                     self.outfile.write(self.encode_utf8('i18n(%s)\n' % \
                         (self.encode_str(string),)))
@@ -244,7 +261,7 @@ def open_mo_file(opt, mo_file_name, remove=False):
         sys.exit(1)
 
     try:
-        translation = gettext.GNUTranslations(mo_file)
+        translation = GNUTranslations(mo_file)
     except IOError, e:
         sys.stderr.write('Can not parse .mo file: %s\n' % (str(e),))
         mo_file.close()
@@ -285,6 +302,15 @@ def main():
                 help='Unquote XML-quoted entities on extraction ' + \
                      'and quote them back when translating'),
     ]
+    context_options = [
+        optparse.make_option('--context', action='append', default=[],
+                help='Pattern to generate context. ' + \
+                     'TODO: pattern syntax. ' + \
+                     'If specified multiple times, the first matching pattern will be used'),
+        optparse.make_option('--ectx', action='append', default=[],
+                help='Pattern to generate ectx. Format is the same as in --context')
+    ]
+
 
     optparser = optparse.OptionParser(usage='\n\t%prog --extract [options] XML_FILE...\n' + \
                                      '\t%prog --translate [options] XML_FILE...')
@@ -295,21 +321,14 @@ def main():
                 help='Translate i18n strings in xml files')
 
     optgroup_format = optparse.OptionGroup(optparser, 'Formatting options')
-    for option in format_options:
-        optgroup_format.add_option(option)
-
+    map(optgroup_format.add_option, copy.deepcopy(format_options))
     optgroup_format.add_option('--parse-unquoted', default=None,
                 help='Parse unquoted strings using PARSE_UNQUOTED as options. '
                      'This option is usefull when XML file contains quoted HTML fragments')
     optparser.add_option_group(optgroup_format)
 
     optgroup_extract = optparse.OptionGroup(optparser, 'Options for extracting messages')
-    optgroup_extract.add_option('--context', action='append', default=[],
-                help='Pattern to generate context. ' + \
-                     'TODO: pattern syntax. ' + \
-                     'If specified multiple times, the first matching pattern will be used')
-    optgroup_extract.add_option('--ectx', action='append', default=[],
-                help='Pattern to generate ectx. Format is the same as in --context')
+    map(optgroup_extract.add_option, copy.deepcopy(context_options))
     optgroup_extract.add_option('--cstart', default='//',
                 help='A string to used to start the comment')
     optgroup_extract.add_option('--output', help='Output file for extracted messages')
@@ -335,15 +354,14 @@ def main():
 
     if opt.parse_unquoted is not None:
         optparser1 = optparse.OptionParser(usage='%prog --parse-unquoted="[options]"')
-        for option in format_options:
-            optparser1.add_option(option)
-         # TODO: correct splitting
+        options = copy.deepcopy(format_options+context_options)
+        map(optparser1.add_option, options)
         opt1, args1 = optparser1.parse_args(opt.parse_unquoted.split(' '))
         if args1:
             optparser1.error('unexpected argument')
         opt.parse_unquoted = copy.deepcopy(opt)
         opt.parse_unquoted.parse_unquoted = None
-        for option in format_options:
+        for option in options:
             setattr(opt.parse_unquoted, option.dest,
                     getattr(opt1, option.dest))
 
