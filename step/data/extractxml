@@ -127,7 +127,8 @@ class XmlFileTranslator(object):
             if self.opt.unquote:
                 string = self.unquote_str(string)
 
-            info = {}
+            info = {'file': self.i18n_file, \
+                    'filename': os.path.basename(self.i18n_file)}
             for n in xrange(2):
                 try:
                     d = self.i18n_stack[-1-n]
