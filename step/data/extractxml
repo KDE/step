@@ -19,8 +19,10 @@
 
 import xml.parsers.expat
 import xml.sax.saxutils
+import StringIO
 import optparse
 import gettext
+import copy
 import sys
 import re
 import os
@@ -45,11 +47,14 @@ class XmlFileTranslator(object):
         except xml.parsers.expat.ExpatError, e:
             raise
 
-    def translate(self, infile_name, infile, outfile, translation):
+    def translate(self, infile_name, infile, outfile,
+                translation, i18n_stack_base=[], i18n_line_base=0):
         self.i18n_file = infile_name
         self.outfile = outfile
         self.translation = translation
 
+        self.i18n_line_base = i18n_line_base
+        self.i18n_stack_base = i18n_stack_base
         self.i18n_stack = []
         self.i18n_save = False
         self.i18n_string = ''
@@ -57,17 +62,31 @@ class XmlFileTranslator(object):
         self.init_parser()
         self.parse(infile)
 
-    def extract(self, infile_name, infile, outfile):
+    def extract(self, infile_name, infile, outfile,
+                i18n_stack_base=[], i18n_line_base=0):
         self.i18n_file = infile_name
         self.outfile = outfile
         self.translation = None
 
+        self.i18n_line_base = i18n_line_base
+        self.i18n_stack_base = []
         self.i18n_stack = []
         self.i18n_save = False
         self.i18n_string = ''
 
         self.init_parser()
         self.parse(infile)
+
+    def parse_unquoted_substring(self, string):
+        infile = StringIO.StringIO(string.encode('UTF-8'))
+        translator1 = XmlFileTranslator(self.opt.parse_unquoted)
+        if self.opt.extract:
+            translator1.extract(self.i18n_file, infile,
+                    self.outfile, self.i18n_stack, self.i18n_stack[-1]['line'])
+        else:
+            outfile = StringIO.StringIO()
+            translator1.translate(self.i18n_file, infile,
+                outfile, self.translation, self.i18n_stack, self.i18n_stack[-1]['line'])
 
     def quote_str(self, s):
         return s.replace('&', '&amp;').replace('"', '&quot;') \
@@ -127,34 +146,38 @@ class XmlFileTranslator(object):
             if self.opt.unquote:
                 string = self.unquote_str(string)
 
-            info = {'file': self.i18n_file, \
-                    'filename': os.path.basename(self.i18n_file)}
-            for n in xrange(2):
-                try:
-                    d = self.i18n_stack[-1-n]
-                except IndexError:
-                    break
-                p = '../'*n
-                info[p+'tag'] = d['name']
-                info[p+'line'] = d['line']
-                for aname, avalue in d['attr'].iteritems():
-                    info[p+'attr/'+aname] = avalue
+            if self.opt.parse_unquoted and string.lstrip().startswith('<'):
+                self.parse_unquoted_substring(string)
 
-            self.outfile.write(self.encode_utf8('%s i18n: file: %s:%d\n' % \
-                     (self.opt.cstart, self.i18n_file, info['line'])))
-
-            ectx = self.select_context(self.opt.ectx, info)
-            if ectx:
-                self.outfile.write(self.encode_utf8('%s i18n: ectx: %s\n' % \
-                     (self.opt.cstart, ectx)))
-
-            ctx = self.select_context(self.opt.context, info)
-            if ctx:
-                self.outfile.write(self.encode_utf8('i18nc(%s, %s)\n' % \
-                     (self.encode_str(ctx), self.encode_str(string))))
             else:
-                self.outfile.write(self.encode_utf8('i18n(%s)\n' % \
-                    (self.encode_str(string),)))
+                info = {'file': self.i18n_file, \
+                        'filename': os.path.basename(self.i18n_file)}
+                for n in xrange(2):
+                    try:
+                        d = self.i18n_stack[-1-n]
+                    except IndexError:
+                        break
+                    p = '../'*n
+                    info[p+'tag'] = d['name']
+                    info[p+'line'] = d['line']
+                    for aname, avalue in d['attr'].iteritems():
+                        info[p+'attr/'+aname] = avalue
+
+                self.outfile.write(self.encode_utf8('%s i18n: file: %s:%d\n' % \
+                         (self.opt.cstart, self.i18n_file, info['line'])))
+
+                ectx = self.select_context(self.opt.ectx, info)
+                if ectx:
+                    self.outfile.write(self.encode_utf8('%s i18n: ectx: %s\n' % \
+                         (self.opt.cstart, ectx)))
+
+                ctx = self.select_context(self.opt.context, info)
+                if ctx:
+                    self.outfile.write(self.encode_utf8('i18nc(%s, %s)\n' % \
+                         (self.encode_str(ctx), self.encode_str(string))))
+                else:
+                    self.outfile.write(self.encode_utf8('i18n(%s)\n' % \
+                        (self.encode_str(string),)))
 
     def default_handler(self, data):
         self.write_data(data)
@@ -186,7 +209,7 @@ class XmlFileTranslator(object):
 
         if match:
             self.i18n_stack.append(dict(name=name, attr=attr_dict,
-                                line=self.parser.CurrentLineNumber))
+                    line=self.i18n_line_base+self.parser.CurrentLineNumber))
             self.i18n_save = True
 
     def end_element_handler(self, name):
@@ -200,6 +223,8 @@ class XmlFileTranslator(object):
         self.write_data('</%s>' % (name,))
 
         if self.i18n_stack:
+            self.i18n_stack[-1]['line'] = self.i18n_line_base + \
+                                    self.parser.CurrentLineNumber
             self.i18n_save = True
 
 def safe_remove(fname):
@@ -244,6 +269,23 @@ def compile_po_file(opt, po_file_name):
     return open_mo_file(opt, mo_file_name, remove=True)
 
 def main():
+    format_options = [
+        optparse.make_option('-n', '--tag', action='append', default=[],
+                help='Extract TAG contants as i18n string. ' + \
+                     'Repeate this option to specify multiple tags'),
+        optparse.make_option('-x', '--tag-regex', action='append', default=[],
+                help='Extract contents of all tags matching TAG_REGEX as i18n string. ' + \
+                     'Repeate this option to specify multiple regex'),
+        optparse.make_option('-r', '--recursive', action='store_true', default=False,
+                help='Recursively pass i18n tags. This means that children tags ' + \
+                     'will be extracted separately even if parent is also i18n-enabled'),
+        optparse.make_option('-s', '--strip', action='store_true', default=False,
+                help='Strip leading and trailing whitespaces of i18n strings'),
+        optparse.make_option('-q', '--unquote', action='store_true', default=False,
+                help='Unquote XML-quoted entities on extraction ' + \
+                     'and quote them back when translating'),
+    ]
+
     optparser = optparse.OptionParser(usage='\n\t%prog --extract [options] XML_FILE...\n' + \
                                      '\t%prog --translate [options] XML_FILE...')
 
@@ -251,20 +293,15 @@ def main():
                 help='Extract i18n strings from xml files')
     optparser.add_option('-t', '--translate', action='store_true', default=False,
                 help='Translate i18n strings in xml files')
-    optparser.add_option('-n', '--tag', action='append', default=[],
-                help='Extract TAG contants as i18n string. ' + \
-                     'Repeate this option to specify multiple tags')
-    optparser.add_option('-x', '--tag-regex', action='append', default=[],
-                help='Extract contents of all tags matching TAG_REGEX as i18n string. ' + \
-                     'Repeate this option to specify multiple regex')
-    optparser.add_option('-r', '--recursive', action='store_true', default=False,
-                help='Recursively pass i18n tags. This means that children tags ' + \
-                     'will be extracted separately even if parent is also i18n-enabled')
-    optparser.add_option('-s', '--strip', action='store_true', default=False,
-                help='Strip leading and trailing whitespaces of i18n strings')
-    optparser.add_option('-q', '--unquote', action='store_true', default=False,
-                help='Unquote XML-quoted entities on extraction ' + \
-                     'and quote them back when translating')
+
+    optgroup_format = optparse.OptionGroup(optparser, 'Formatting options')
+    for option in format_options:
+        optgroup_format.add_option(option)
+
+    optgroup_format.add_option('--parse-unquoted', default=None,
+                help='Parse unquoted strings using PARSE_UNQUOTED as options. '
+                     'This option is usefull when XML file contains quoted HTML fragments')
+    optparser.add_option_group(optgroup_format)
 
     optgroup_extract = optparse.OptionGroup(optparser, 'Options for extracting messages')
     optgroup_extract.add_option('--context', action='append', default=[],
@@ -281,7 +318,8 @@ def main():
     optgroup_translate = optparse.OptionGroup(optparser, 'Options for translating messages')
     optgroup_translate.add_option('--po-file', help='A file with translations')
     optgroup_translate.add_option('--mo-file', help='A file with translations')
-    optgroup_translate.add_option('--output-dir', default='./i18n', help='A directory to output translated files')
+    optgroup_translate.add_option('--output-dir', default='./i18n',
+                help='A directory to output translated files')
     optparser.add_option_group(optgroup_translate)
 
     opt, args = optparser.parse_args()
@@ -294,6 +332,20 @@ def main():
     
     if not opt.extract and not opt.translate:
         optparser.error('please specify either --extract or --translate option')
+
+    if opt.parse_unquoted is not None:
+        optparser1 = optparse.OptionParser(usage='%prog --parse-unquoted="[options]"')
+        for option in format_options:
+            optparser1.add_option(option)
+         # TODO: correct splitting
+        opt1, args1 = optparser1.parse_args(opt.parse_unquoted.split(' '))
+        if args1:
+            optparser1.error('unexpected argument')
+        opt.parse_unquoted = copy.deepcopy(opt)
+        opt.parse_unquoted.parse_unquoted = None
+        for option in format_options:
+            setattr(opt.parse_unquoted, option.dest,
+                    getattr(opt1, option.dest))
 
     if opt.extract:
         if opt.output:
