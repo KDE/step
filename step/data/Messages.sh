@@ -2,16 +2,18 @@
 
 EXTRACTXML="./extractxml"
 
-EXTRACTXML_HTML="${EXTRACTXML} --context=%(filename)s --tag-regex=^(?:html|head|title|body|p)$ --recursive --strip"
-EXTRACTXML_STEP="${EXTRACTXML} --tag=name --tag=text --unquote"
-
-$EXTRACTXML_HTML --extract ./objinfo/*.html --output=objinfo.cpp
-$EXTRACTXML_STEP --extract ./examples/*.step ./tutorials/*.step --output=examples.cpp
+$EXTRACTXML --extract \
+        --context='%(filename)s:%(tag)s' --tag-regex='^(?:title|body|p|h[1-6])$' --recursive --strip \
+        ./objinfo/*.html --output=objinfo.cpp
+$EXTRACTXML --extract \
+        --context='%(tag)s' --tag=name --tag=text --unquote \
+        --parse-unquoted='--context=HTML:%(tag)s --tag-regex=^(?:title|body|p|h[1-6])$ --recursive --strip' \
+        ./examples/*.step ./tutorials/*.step --output=examples.cpp
 
 # Temporary commented-out
-$XGETTEXT objinfo.cpp -o $podir/step_objinfo_files.pot
-$XGETTEXT examples.cpp -o $podir/step_example_files.pot
+#$XGETTEXT objinfo.cpp -o $podir/step_objinfo_files.pot
+#$XGETTEXT examples.cpp -o $podir/step_example_files.pot
 
-#rm -f objinfo.cpp
-#rm -f examples.cpp
+rm -f objinfo.cpp
+rm -f examples.cpp
 

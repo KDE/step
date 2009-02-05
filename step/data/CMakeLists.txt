@@ -40,8 +40,10 @@ if(STEP_BUILD_TRANSLATIONS)
                 foreach(_xmlfile ${_args})
                     get_filename_component(_xmlfile_basename ${_xmlfile} NAME)
                     set(_xmlfile_tr ${CMAKE_CURRENT_BINARY_DIR}/${_xmlfile_basename})
+                    set(_extractxml_args_copy ${_extractxml_args})
+                    separate_arguments(_extractxml_args_copy)
                     add_custom_command(OUTPUT ${_xmlfile_tr}
-                        COMMAND ${EXTRACTXML_EXECUTABLE} --translate --mo-file=${_mo_file} --output-dir=${CMAKE_CURRENT_BINARY_DIR} ${_extractxml_args} ${_xmlfile}
+                        COMMAND ${EXTRACTXML_EXECUTABLE} --translate --mo-file=${_mo_file} --output-dir=${CMAKE_CURRENT_BINARY_DIR} ${_extractxml_args_copy} ${_xmlfile}
                         WORKING_DIRECTORY "${CMAKE_CURRENT_SOURCE_DIR}"
                         DEPENDS ${_xmlfile} ${_mo_file}
                     )

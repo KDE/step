@@ -301,6 +301,9 @@ def main():
         optparse.make_option('-q', '--unquote', action='store_true', default=False,
                 help='Unquote XML-quoted entities on extraction ' + \
                      'and quote them back when translating'),
+        optparse.make_option('--parse-unquoted', default=None, metavar='PARSE_UNQUOTED_OPTIONS',
+                help='Parse unquoted strings using PARSE_UNQUOTED_OPTIONS as options. '
+                     'This option is usefull when XML file contains quoted HTML fragments')
     ]
     context_options = [
         optparse.make_option('--context', action='append', default=[],
@@ -322,13 +325,10 @@ def main():
 
     optgroup_format = optparse.OptionGroup(optparser, 'Formatting options')
     map(optgroup_format.add_option, copy.deepcopy(format_options))
-    optgroup_format.add_option('--parse-unquoted', default=None,
-                help='Parse unquoted strings using PARSE_UNQUOTED as options. '
-                     'This option is usefull when XML file contains quoted HTML fragments')
+    map(optgroup_format.add_option, copy.deepcopy(context_options))
     optparser.add_option_group(optgroup_format)
 
     optgroup_extract = optparse.OptionGroup(optparser, 'Options for extracting messages')
-    map(optgroup_extract.add_option, copy.deepcopy(context_options))
     optgroup_extract.add_option('--cstart', default='//',
                 help='A string to used to start the comment')
     optgroup_extract.add_option('--output', help='Output file for extracted messages')
@@ -360,10 +360,10 @@ def main():
         if args1:
             optparser1.error('unexpected argument')
         opt.parse_unquoted = copy.deepcopy(opt)
-        opt.parse_unquoted.parse_unquoted = None
         for option in options:
             setattr(opt.parse_unquoted, option.dest,
                     getattr(opt1, option.dest))
+        opt.parse_unquoted.parse_unquoted = None
 
     if opt.extract:
         if opt.output:
