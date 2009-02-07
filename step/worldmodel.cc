@@ -634,12 +634,8 @@ StepCore::Solver* WorldModel::swapSolver(StepCore::Solver* solver)
 {
     bool selected = selectionModel()->isSelected(solverIndex());
     bool current = selectionModel()->currentIndex() == solverIndex();
-    beginRemoveRows(QModelIndex(), 1, 1);
     StepCore::Solver* oldSolver = _world->removeSolver();
-    endRemoveRows();
-    beginInsertRows(QModelIndex(), 1, 1);
     _world->setSolver(solver);
-    endInsertRows();
     if(selected) selectionModel()->select(solverIndex(), QItemSelectionModel::Select);
     if(current) selectionModel()->setCurrentIndex(solverIndex(), QItemSelectionModel::Current);
     emitChanged(true, true);
