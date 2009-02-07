@@ -110,7 +110,8 @@
 
 <sect1 id="tutorial5">
 <title>Tutorial 5: joints</title>
-<para>Joints are objects that attaches bodies to each other or to the background. You have a the following joints in &step;: anchors, pins, sticks and ropes. An anchor is a joint that fixes position of the body. The body cannot move when it has an anchor. A pin is a joint that fixes one point of the body, the body can still move around the pin. A stick is a joint that fixes the distance between two points on two bodies.</para>
+<para>Joints are objects that attaches bodies to each other or to the background. You have a the following joints in &step;: anchors, pins and sticks. An anchor is a joint that 
+fixes position of the body. The body cannot move when it has an anchor. A pin is a joint that fixes one point of the body, the body can still move around the pin. A stick is a joint that fixes the distance between two points on two bodies.</para>
 <screenshot>
      <screeninfo>Tutorial 5: double pendulum</screeninfo>
 	<mediaobject>
