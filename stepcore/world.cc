@@ -20,7 +20,6 @@
 #include "solver.h"
 #include "collisionsolver.h"
 #include "constraintsolver.h"
-
 #include <algorithm>
 #include <cmath>
 #include <QtGlobal>
@@ -214,69 +213,45 @@ void ItemGroup::allItems(ItemList* items) const
     }
 }
 
-void ConstraintsInfo::setDimension(int newVariablesCount, int newConstraintsCount)
+void ConstraintsInfo::setDimension(int newVariablesCount, int newConstraintsCount, int newContactsCount)
 {
-    constraintsCount += contactsCount;
-    contactsCount = 0;
+//     std::cerr << "   ConstraintsInfo::setDimension("
+//       << newVariablesCount <<","<< newConstraintsCount <<"," << newContactsCount << ")\n";
+    
+    int totalConstraintsCount = newConstraintsCount+newContactsCount;
 
-    if(variablesCount != newConstraintsCount || constraintsCount != newConstraintsCount) {
-        jacobian.resize(newConstraintsCount, newVariablesCount);
-        jacobianDerivative.resize(newConstraintsCount, newVariablesCount);
+    jacobian.resize(totalConstraintsCount, newVariablesCount);
+    jacobianDerivative.resize(totalConstraintsCount, newVariablesCount);
+    inverseMass.resize(newVariablesCount, newVariablesCount);
+    force.resize(newVariablesCount);
+    value.resize(totalConstraintsCount);
+    derivative.resize(totalConstraintsCount);
+    if (totalConstraintsCount>0)
+    {
+      derivative.setZero();
+      value.setZero();
     }
-
-    if(variablesCount != newVariablesCount) {
-        variablesCount = newVariablesCount;
-        inverseMass.resize(variablesCount, variablesCount);
-        force.resize(variablesCount);
-    }
-
-    if(constraintsCount != newConstraintsCount) {
-        constraintsCount = newConstraintsCount;
-        value.resize(constraintsCount);
-        derivative.resize(constraintsCount);
-        forceMin.resize(constraintsCount);
-        forceMax.resize(constraintsCount);
-    }
-}
-
-int ConstraintsInfo::addContact()
-{
-    int n = constraintsCount + contactsCount; ++contactsCount;
-    int s = n+1;
-
-    jacobian.resize(s, variablesCount);
-    jacobianDerivative.resize(s, variablesCount);
-
-    value.resize(s); value[n] = 0;
-    derivative.resize(s); derivative[n] = 0;
-    forceMin.resize(s); forceMin[n] = -HUGE_VAL;
-    forceMax.resize(s); forceMax[n] = HUGE_VAL;
-
-    return n;
-}
-
-void ConstraintsInfo::clearContacts()
-{
-    if(contactsCount == 0) return;
-    contactsCount = 0;
-    jacobian.resize(constraintsCount, variablesCount);
-    jacobianDerivative.resize(constraintsCount, variablesCount);
-    value.resize(constraintsCount);
-    derivative.resize(constraintsCount);
-    forceMin.resize(constraintsCount);
-    forceMax.resize(constraintsCount);
+    forceMin.resize(totalConstraintsCount);
+    forceMax.resize(totalConstraintsCount);
+    
+    contactsCount = newContactsCount;
+    constraintsCount = newConstraintsCount;
+    variablesCount = newVariablesCount;
 }
 
 void ConstraintsInfo::clear()
 {
-    clearContacts();
-
-    gmm::clear(jacobian);
-    gmm::clear(jacobianDerivative);
-    gmm::clear(inverseMass);
-
-    std::fill(forceMin.begin(), forceMin.end(), -HUGE_VAL);
-    std::fill(forceMax.begin(), forceMax.end(),  HUGE_VAL);
+    jacobian.setZero();
+    jacobianDerivative.setZero();
+    if(inverseMass.size()>0)
+    {
+      inverseMass.setZero();
+    }
+    if(forceMin.size()>0)
+    {
+      forceMin.fill(-HUGE_VAL);
+      forceMax.fill(HUGE_VAL);
+    }
 
     collisionFlag = false;
 }
@@ -637,8 +612,8 @@ void World::checkVariablesCount()
     for(JointList::iterator j = _joints.begin(); j != _joints.end(); ++j) {
         constraintsCount += (*j)->constraintsCount();
     }
-
-    _constraintsInfo.setDimension(variablesCount, constraintsCount);
+    
+    _constraintsInfo.setDimension(variablesCount, constraintsCount, 0);
 
     if(variablesCount != _variablesCount) {
         _variablesCount = variablesCount;
@@ -716,24 +691,24 @@ int World::doCalcFn()
     _stopOnCollision = false;
     _stopOnIntersection = false;
     checkVariablesCount();
-    double* variances = _errorsCalculation ? &_variances[0] : NULL;
-    gatherVariables(&_variables[0], variances);
-    return _solver->doCalcFn(&_time, &_variables[0], variances, NULL, variances);
+    double* variances = _errorsCalculation ? _variances.data() : NULL;
+    gatherVariables(_variables.data(), variances);
+    return _solver->doCalcFn(&_time, _variables.data(), variances, NULL, variances);
 }
 
 int World::doEvolve(double delta)
 {
     STEPCORE_ASSERT_NOABORT(_solver != NULL);
-
+    
     checkVariablesCount();
-    gatherVariables(&_variables[0], _errorsCalculation ? &_variances[0] : NULL);
+    gatherVariables(_variables.data(), _errorsCalculation ? _variances.data() : NULL);
 
     int ret = Solver::OK;
     double targetTime = _time + delta*_timeScale;
     
     if(_collisionSolver) {
         //_collisionSolver->resetCaches();
-        if(Contact::Intersected == _collisionSolver->checkContacts(_bodies, NULL))
+        if(Contact::Intersected == _collisionSolver->checkContacts(_bodies))
             return Solver::IntersectionDetected;
     }
 
@@ -746,8 +721,10 @@ int World::doEvolve(double delta)
 
         _stopOnCollision = true;
         _stopOnIntersection = true;
-        ret = _solver->doEvolve(&time, targetTime, &_variables[0],
-                            _errorsCalculation ? &_variances[0] : NULL);
+        
+        ret = _solver->doEvolve(&time, targetTime, _variables.data(),
+                            _errorsCalculation ? _variances.data() : NULL);
+        
         _time = time;
 
         if(ret == Solver::CollisionDetected ||
@@ -770,8 +747,9 @@ int World::doEvolve(double delta)
             do {
                 double endTime = collisionEndTime - time > stepSize*1.01 ? time+stepSize : collisionEndTime;
 
-                ret = _solver->doEvolve(&time, endTime, &_variables[0],
-                            _errorsCalculation ? &_variances[0] : NULL);
+                ret = _solver->doEvolve(&time, endTime, _variables.data(),
+                            _errorsCalculation ? _variances.data() : NULL);
+                
                 _time = time;
 
                 if(ret == Solver::IntersectionDetected || ret == Solver::CollisionDetected) {
@@ -790,29 +768,39 @@ int World::doEvolve(double delta)
                     // All joints should be taken into account, but since we are
                     // calculating impulses we should "froze" the jacobian i.e.
                     // ignore it derivative
-                    scatterVariables(&_variables[0], _errorsCalculation ? &_variances[0] : NULL);
-
-                    std::fill(_tempArray.begin(), _tempArray.end(), 0);
-                    _constraintsInfo.position = GmmArrayVector(const_cast<double*>(&_variables[0]), _variablesCount);
-                    _constraintsInfo.velocity = GmmArrayVector(const_cast<double*>(&_variables[0]+_variablesCount), _variablesCount);
-                    _constraintsInfo.acceleration = GmmArrayVector(const_cast<double*>(&_tempArray[0]), _variablesCount);
-
+                    scatterVariables(_variables.data(), _errorsCalculation ? _variances.data() : NULL);
+                    
+                    // check and count contacts before the sparse matrix assembly
+                    int contactsCount = 0;
+                    int status = _collisionSolver->checkContacts(_bodies, true, &contactsCount);
+                    if (contactsCount!=_constraintsInfo.contactsCount)
+                    {
+                      _constraintsInfo.setDimension(_constraintsInfo.variablesCount,
+                                                    _constraintsInfo.constraintsCount,
+                                                    contactsCount);
+                    }
+                    
+                    _tempArray.setZero();
+                    ::new (&_constraintsInfo.position) MappedVector(_variables.data(), _variablesCount);
+                    ::new (&_constraintsInfo.velocity) MappedVector(_variables.data()+_variablesCount, _variablesCount);
+                    ::new (&_constraintsInfo.acceleration) MappedVector(_tempArray.data(), _variablesCount);
+                    
+                    // start sparse matrix assembly
                     gatherJointsInfo(&_constraintsInfo);
-                    gmm::clear(_constraintsInfo.jacobianDerivative);
-
-                    int status = _collisionSolver->checkContacts(_bodies, &_constraintsInfo, true);
+                    _constraintsInfo.jacobianDerivative.setZero();
+                    
                     if(status >= CollisionSolver::InternalError) { ret = status; goto out; }
+                    
+                    _collisionSolver->getContactsInfo(_constraintsInfo, true);
+                    // end sparse matrix assembly
 
-                        //GmmArrayVector cforce(const_cast<double*>(&_constraintsTotalForce[0]), _variablesCount);
                     if(_constraintsInfo.collisionFlag) {
                         ret = _constraintSolver->solve(&_constraintsInfo);
                         if(ret != Solver::OK) goto out;
 
                         // XXX: variances
-                        gmm::mult_add(_constraintsInfo.inverseMass, _constraintsInfo.force,
-                                                    _constraintsInfo.velocity);
+                        _constraintsInfo.velocity += _constraintsInfo.inverseMass * _constraintsInfo.force;
                     }
-
                 } else goto out;
 
             } while(_time + stepSize/100 <= collisionEndTime); // XXX
@@ -820,7 +808,7 @@ int World::doEvolve(double delta)
     }
 
 out:
-    scatterVariables(&_variables[0], _errorsCalculation ? &_variances[0] : NULL);
+    scatterVariables(_variables.data(), _errorsCalculation ? _variances.data() : NULL);
     return ret;
 }
 
@@ -838,54 +826,78 @@ inline int World::solverFunction(double t, const double* y,
     for(ForceList::iterator force = _forces.begin(); force != f_end; ++force) {
         (*force)->calcForce(calcVariances);
     }
-
+    
     std::memcpy(f, y+_variablesCount, _variablesCount*sizeof(*f));
     if(fvar) std::memcpy(fvar, y+_variablesCount, _variablesCount*sizeof(*fvar));
     gatherAccelerations(f+_variablesCount, fvar ? fvar+_variablesCount : NULL);
+    
+    if (_constraintSolver)
+    {
+      // setup...
+      
+      // check contacts
+      int state = 0;
+      if(_collisionSolver) {
+          int contactsCount = 0;
+          state = _collisionSolver->checkContacts(_bodies, false, &contactsCount);
+          
+          if (contactsCount!=_constraintsInfo.contactsCount)
+          {
+            std::cout << _constraintsInfo.contactsCount << " => " << contactsCount << "\n";
+            _constraintsInfo.setDimension(_constraintsInfo.variablesCount,
+                                          _constraintsInfo.constraintsCount,
+                                          contactsCount);
+          }
+      }
 
-    // 2. Joints
-    if(_constraintSolver) {
-        _constraintsInfo.position = GmmArrayVector(const_cast<double*>(y), _variablesCount);
-        _constraintsInfo.velocity = GmmArrayVector(const_cast<double*>(y+_variablesCount), _variablesCount);
-        _constraintsInfo.acceleration = GmmArrayVector(const_cast<double*>(f+_variablesCount), _variablesCount);
+      if(_variablesCount>0)
+      {
+        ::new (&_constraintsInfo.position) MappedVector(y, _variablesCount);
+        ::new (&_constraintsInfo.velocity) MappedVector(y+_variablesCount, _variablesCount);
+        ::new (&_constraintsInfo.acceleration) MappedVector(f+_variablesCount, _variablesCount);
+      }
 
-        gatherJointsInfo(&_constraintsInfo);
-    }
+      // end sparse matrix assembly
+      
+      // 2. Joints
+      gatherJointsInfo(&_constraintsInfo);
 
-    // 3. Collisions (TODO: variances for collisions)
-    if(_collisionSolver && _constraintSolver) {
-        int state = _collisionSolver->checkContacts(_bodies, &_constraintsInfo, false);
-        if(state == Contact::Intersected) {
-            if(_stopOnIntersection) return Solver::IntersectionDetected;
-        } else if(state == Contact::Colliding) {
-            if(_stopOnCollision) return Solver::CollisionDetected;
-            // XXX: We are not stopping on colliding contact
-            // and resolving them only at the end of timestep
-            // XXX: is it right solution ? Shouldn't we try to find
-            // contact point more exactly for example using binary search ?
-            //_collisionTime = t;
-            //_collisionTime = t;
-            //if(t < _collisionExpectedTime)
-            //    return DantzigLCPCollisionSolver::CollisionDetected;
-        } else if(state >= CollisionSolver::InternalError) {
-            return state;
-        }
-    }
+      // 3. Collisions (TODO: variances for collisions)
+      if(_collisionSolver) {
+          _collisionSolver->getContactsInfo(_constraintsInfo, false);
+                      
+          if(state == Contact::Intersected) {
+              if(_stopOnIntersection) return Solver::IntersectionDetected;
+          } else if(state == Contact::Colliding) {
+              if(_stopOnCollision) return Solver::CollisionDetected;
+              // XXX: We are not stopping on colliding contact
+              // and resolving them only at the end of timestep
+              // XXX: is it right solution ? Shouldn't we try to find
+              // contact point more exactly for example using binary search ?
+              //_collisionTime = t;
+              //_collisionTime = t;
+              //if(t < _collisionExpectedTime)
+              //    return DantzigLCPCollisionSolver::CollisionDetected;
+          } else if(state >= CollisionSolver::InternalError) {
+              return state;
+          }
+      }
+      // end sparse matrix assembly
 
-    // 4. Solve constraints
-    if(_constraintSolver &&
-            _constraintsInfo.constraintsCount + _constraintsInfo.contactsCount > 0) {
+      // 4. Solve constraints
+      if(_constraintsInfo.constraintsCount + _constraintsInfo.contactsCount > 0) {
 
-        int state = _constraintSolver->solve(&_constraintsInfo);
-        if(state != Solver::OK) return state;
+          int state = _constraintSolver->solve(&_constraintsInfo);
+          if(state != Solver::OK) return state;
 
-        int offset = 0;
-        const BodyList::const_iterator b_end = _bodies.end();
-        for(BodyList::iterator body = _bodies.begin(); body != b_end; ++body) {
-            (*body)->addForce(&_constraintsInfo.force[offset], NULL);
-            (*body)->getAccelerations(f+_variablesCount+offset, NULL);
-            offset += (*body)->variablesCount();
-        }
+          int offset = 0;
+          const BodyList::const_iterator b_end = _bodies.end();
+          for(BodyList::iterator body = _bodies.begin(); body != b_end; ++body) {
+              (*body)->addForce(&_constraintsInfo.force[offset], NULL);
+              (*body)->getAccelerations(f+_variablesCount+offset, NULL);
+              offset += (*body)->variablesCount();
+          }
+      }
     }
 
     return 0;

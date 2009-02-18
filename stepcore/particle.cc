@@ -168,15 +168,15 @@ void Particle::resetForce(bool resetVariance)
     if(resetVariance) particleErrors()->_forceVariance.setZero();
 }
 
-void Particle::getInverseMass(GmmSparseRowMatrix* inverseMass,
-                        GmmSparseRowMatrix* variance, int offset)
+void Particle::getInverseMass(DiagonalMatrix* inverseMass,
+                              DynSparseRowMatrix* variance, int offset)
 {
-    inverseMass->row(offset).w(offset, 1/_mass);
-    inverseMass->row(offset+1).w(offset+1, 1/_mass);
+    inverseMass->coeffRef(offset, offset) = ( 1/_mass);
+    inverseMass->coeffRef(offset+1, offset+1) = ( 1/_mass);
     if(variance) {
         double v = particleErrors()->_massVariance / square(square(_mass));
-        variance->row(offset).w(offset, v);
-        variance->row(offset+1).w(offset+1, v);
+        variance->coeffRef(offset, offset) = (v);
+        variance->coeffRef(offset+1, offset+1) = (v);
     }
 }
 

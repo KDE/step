@@ -157,8 +157,8 @@ public:
     void addForce(const double* force, const double* forceVariance);
     void resetForce(bool resetVariance);
     void getAccelerations(double* acceleration, double* accelerationVariance);
-    void getInverseMass(GmmSparseRowMatrix* inverseMass,
-                            GmmSparseRowMatrix* variance, int offset);
+    void getInverseMass(DiagonalMatrix* inverseMass,
+                        DynSparseRowMatrix* variance, int offset);
 
     /** Get (and possibly create) ParticleErrors object */
     ParticleErrors* particleErrors() {

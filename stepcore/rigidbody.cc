@@ -310,19 +310,19 @@ void RigidBody::resetForce(bool resetVariance)
     }
 }
 
-void RigidBody::getInverseMass(GmmSparseRowMatrix* inverseMass,
-                        GmmSparseRowMatrix* variance, int offset)
+void RigidBody::getInverseMass(DiagonalMatrix* inverseMass,
+                               DynSparseRowMatrix* variance, int offset)
 {
-    inverseMass->row(offset).w(offset, 1/_mass);
-    inverseMass->row(offset+1).w(offset+1, 1/_mass);
-    inverseMass->row(offset+2).w(offset+2, 1/_inertia);
+    inverseMass->coeffRef(offset, offset) = (1/_mass);
+    inverseMass->coeffRef(offset+1, offset+1) = (1/_mass);
+    inverseMass->coeffRef(offset+2, offset+2) = (1/_inertia);
     if(variance) {
         RigidBodyErrors* re = rigidBodyErrors();
         double vm = re->_massVariance / square(square(_mass));
         double vi = re->_inertiaVariance /  square(square(_inertia));
-        variance->row(offset).w(offset, vm);
-        variance->row(offset+1).w(offset+1, vm);
-        variance->row(offset+2).w(offset+2, vi);
+        variance->coeffRef(offset, offset) = ( vm);
+        variance->coeffRef(offset+1, offset+1) = ( vm);
+        variance->coeffRef(offset+2, offset+2) = ( vi);
     }
 }
 

@@ -27,17 +27,17 @@
 #include "vector.h"
 #include <vector>
 #include <QByteArray>
-#include <gmm/gmm_vector.h>
-#include <gmm/gmm_matrix.h>
-#include <gmm/gmm_interface.h>
+#include <Eigen/Sparse>
 
 namespace StepCore {
 
-typedef std::vector<double> GmmStdVector;
-typedef gmm::array1D_reference<double*> GmmArrayVector;
-typedef gmm::rsvector<double> GmmSparseVector;
-typedef gmm::row_matrix<GmmSparseVector> GmmSparseRowMatrix;
-typedef gmm::col_matrix<GmmSparseVector> GmmSparseColMatrix;
+typedef Eigen::VectorXd DenseVector;
+typedef Eigen::SparseMatrix<double> SparseColMatrix;
+typedef Eigen::SparseMatrix<double,Eigen::RowMajor> SparseRowMatrix;
+// a sparse matrix with efficient write facilities
+typedef Eigen::DynamicSparseMatrix<double,Eigen::RowMajor> DynSparseRowMatrix;
+typedef Eigen::Map<DenseVector> MappedVector;
+typedef Eigen::DiagonalMatrix<double,Eigen::Dynamic> DiagonalMatrix;
 
 ///////////////// Color
 struct Color

@@ -98,13 +98,17 @@ public:
      */
     //virtual int checkContact(Contact* contact) = 0;
 
-    /** Check contacts between several bodies
+    /** Check and count contacts between several bodies
      *  \param bodies list of bodies to check
-     *  \param info ConstraintsInfo structure to fill
+     *  \param count number of contacts
      *  \return maximum contact state (i.e. maximum value of Contact::state)
      */
-    virtual int checkContacts(BodyList& bodies,
-            ConstraintsInfo* info, bool collisions = false) = 0;
+    virtual int checkContacts(BodyList& bodies, bool collisions = false, int* count = NULL) = 0;
+    
+    /** Fill the constraint info structure with the contacts computed by checkContacts()
+     *  \param info ConstraintsInfo structure to fill
+     */
+    virtual void getContactsInfo(ConstraintsInfo& info, bool collisions = false) = 0;
 
     // TODO: add errors
     /** Solve the collisions between bodies
@@ -161,8 +165,8 @@ public:
         PenetrationDetected = 4097
     };*/
 
-    //int checkContact(Contact* contact);
-    int checkContacts(BodyList& bodies, ConstraintsInfo* info, bool collisions = false);
+    int checkContacts(BodyList& bodies, bool collisions = false, int* count = NULL);
+    void getContactsInfo(ConstraintsInfo& info, bool collisions = false);
     //int findClosestPoints(const BasePolygon* polygon1, const BasePolygon* polygon2);
 
     int solveCollisions(BodyList& bodies);

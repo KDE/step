@@ -833,13 +833,15 @@ inline int GJKCollisionSolver::checkContact(Contact* contact)
     return contact->state;
 }
 
-int GJKCollisionSolver::checkContacts(BodyList& bodies, ConstraintsInfo* info, bool collisions)
+int GJKCollisionSolver::checkContacts(BodyList& bodies, bool collisions, int* retCount)
 {
     int state = Contact::Unknown;
+    int count = 0;
 
     checkCache(bodies);
 
-    // Detect and classify contacts
+    // Detect and classify contacts...
+    // ... and count contact joints
     const ContactValueList::iterator end = _contacts.end();
     for(ContactValueList::iterator it = _contacts.begin(); it != end; ++it) {
         Contact& contact = *it;
@@ -848,126 +850,126 @@ int GJKCollisionSolver::checkContacts(BodyList& bodies, ConstraintsInfo* info, b
 
         if(contact.state > state) state = contact.state;
         if(contact.state == Contact::Intersected) return state;
+        
+        if( (it->state == Contact::Contacted) || (collisions && it->state == Contact::Colliding) )
+            count += it->pointsCount;
     }
+    if (retCount)
+      *retCount = count;
+    return state;
+}
 
-    if(info) {
-        // Add contact joints
-        for(ContactValueList::iterator it = _contacts.begin(); it != end; ++it) {
-            Contact& contact = *it;
-            if(contact.state == Contact::Contacted) {
-                //qDebug("** resting contact, points: %d", contact.pointsCount);
-                for(int p=0; p<contact.pointsCount; ++p) {
-                    int i = info->addContact();
-                    // XXX: check signs !
-                    // XXX: rotation and friction !
-                    /*info->value[i0] = contact.normal[0] * contact.distance;
-                    info->value[i1] = contact.normal[1] * contact.distance;
-                    info->derivative[i0] = contact.normal[0] * contact.vrel[0];
-                    info->derivative[i1] = contact.normal[1] * contact.vrel[0];*/
-                    /*info->value[i] = contact.distance;
-                    info->derivative[i] = contact.vrel[p];*/
-                    
-                    info->jacobian.row(i).w(contact.body0->variablesOffset() +
-                                            RigidBody::PositionOffset, -contact.normal[0]);
-                    info->jacobian.row(i).w(contact.body0->variablesOffset() +
-                                            RigidBody::PositionOffset+1, -contact.normal[1]);
-                    info->jacobian.row(i).w(contact.body1->variablesOffset() +
-                                            RigidBody::PositionOffset, contact.normal[0]);
-                    info->jacobian.row(i).w(contact.body1->variablesOffset() +
-                                            RigidBody::PositionOffset+1, contact.normal[1]);
+void GJKCollisionSolver::getContactsInfo(ConstraintsInfo& info, bool collisions)
+{
+    const ContactValueList::iterator end = _contacts.end();
 
-                    if(!collisions) {
-                        info->jacobianDerivative.row(i).w(contact.body0->variablesOffset() +
-                                                RigidBody::PositionOffset, -contact.normalDerivative[0]);
-                        info->jacobianDerivative.row(i).w(contact.body0->variablesOffset() +
-                                                RigidBody::PositionOffset+1, -contact.normalDerivative[1]);
-                        info->jacobianDerivative.row(i).w(contact.body1->variablesOffset() +
-                                                RigidBody::PositionOffset, contact.normalDerivative[0]);
-                        info->jacobianDerivative.row(i).w(contact.body1->variablesOffset() +
-                                                RigidBody::PositionOffset+1, contact.normalDerivative[1]);
-                    }
+    int i = info.constraintsCount-1;
+    // Add contact joints
+    for(ContactValueList::iterator it = _contacts.begin(); it != end; ++it) {
+        Contact& contact = *it;
+        if(contact.state == Contact::Contacted) {
+            //qDebug("** resting contact, points: %d", contact.pointsCount);
+            for(int p=0; p<contact.pointsCount; ++p) {
+                // XXX: check signs !
+                // XXX: rotation and friction !
+                /*info.value[i0] = contact.normal[0] * contact.distance;
+                info.value[i1] = contact.normal[1] * contact.distance;
+                info.derivative[i0] = contact.normal[0] * contact.vrel[0];
+                info.derivative[i1] = contact.normal[1] * contact.vrel[0];*/
+                /*info.value[i] = contact.distance;
+                info.derivative[i] = contact.vrel[p];*/
+                ++i;
+                info.jacobian.coeffRef(i, contact.body0->variablesOffset() + RigidBody::PositionOffset)   = -contact.normal[0];
+                info.jacobian.coeffRef(i, contact.body0->variablesOffset() + RigidBody::PositionOffset+1) = -contact.normal[1];
+                info.jacobian.coeffRef(i, contact.body1->variablesOffset() + RigidBody::PositionOffset)   = contact.normal[0];
+                info.jacobian.coeffRef(i, contact.body1->variablesOffset() + RigidBody::PositionOffset+1) = contact.normal[1];
 
-                    if(contact.body0->metaObject()->inherits<RigidBody>()) {
-                        Vector2d r = static_cast<RigidBody*>(contact.body0)->position() - contact.points[p];
-                        Vector2d v = static_cast<RigidBody*>(contact.body0)->velocity();
-                        double rn = r[0]*contact.normal[1] - r[1]*contact.normal[0];
-                        double rd = v[0]*contact.normal[1] - v[1]*contact.normal[0] +
-                                    r[0]*contact.normalDerivative[1] - r[1]*contact.normalDerivative[0];
-                        info->jacobian.row(i).w(contact.body0->variablesOffset() +
-                                                    RigidBody::AngleOffset, +rn);
-                        if(!collisions)
-                            info->jacobianDerivative.row(i).w(contact.body0->variablesOffset() +
-                                                    RigidBody::AngleOffset, +rd);
-                    }
+                if(!collisions) {
+                    info.jacobianDerivative.coeffRef(i, contact.body0->variablesOffset() +
+                                            RigidBody::PositionOffset) = ( -contact.normalDerivative[0]);
+                    info.jacobianDerivative.coeffRef(i, contact.body0->variablesOffset() +
+                                            RigidBody::PositionOffset+1) = ( -contact.normalDerivative[1]);
+                    info.jacobianDerivative.coeffRef(i, contact.body1->variablesOffset() +
+                                            RigidBody::PositionOffset) = ( contact.normalDerivative[0]);
+                    info.jacobianDerivative.coeffRef(i, contact.body1->variablesOffset() +
+                                            RigidBody::PositionOffset+1) = ( contact.normalDerivative[1]);
+                }
 
-                    if(contact.body1->metaObject()->inherits<RigidBody>()) {
-                        Vector2d r = static_cast<RigidBody*>(contact.body1)->position() - contact.points[p];
-                        Vector2d v = static_cast<RigidBody*>(contact.body1)->velocity();
-                        double rn = r[0]*contact.normal[1] - r[1]*contact.normal[0];
-                        double rd = v[0]*contact.normal[1] - v[1]*contact.normal[0] +
-                                    r[0]*contact.normalDerivative[1] - r[1]*contact.normalDerivative[0];
-                        info->jacobian.row(i).w(contact.body1->variablesOffset() +
-                                                    RigidBody::AngleOffset, -rn);
-                        if(!collisions)
-                            info->jacobianDerivative.row(i).w(contact.body1->variablesOffset() +
-                                                    RigidBody::AngleOffset, -rd);
-                    }
+                if(contact.body0->metaObject()->inherits<RigidBody>()) {
+                    Vector2d r = static_cast<RigidBody*>(contact.body0)->position() - contact.points[p];
+                    Vector2d v = static_cast<RigidBody*>(contact.body0)->velocity();
+                    double rn = r[0]*contact.normal[1] - r[1]*contact.normal[0];
+                    double rd = v[0]*contact.normal[1] - v[1]*contact.normal[0] +
+                                r[0]*contact.normalDerivative[1] - r[1]*contact.normalDerivative[0];
+                    info.jacobian.coeffRef(i, contact.body0->variablesOffset() +
+                                                RigidBody::AngleOffset) = ( +rn);
+                    if(!collisions)
+                        info.jacobianDerivative.coeffRef(i, contact.body0->variablesOffset() +
+                                                RigidBody::AngleOffset) = ( +rd);
+                }
 
-                    info->forceMin[i] = 0;
+                if(contact.body1->metaObject()->inherits<RigidBody>()) {
+                    Vector2d r = static_cast<RigidBody*>(contact.body1)->position() - contact.points[p];
+                    Vector2d v = static_cast<RigidBody*>(contact.body1)->velocity();
+                    double rn = r[0]*contact.normal[1] - r[1]*contact.normal[0];
+                    double rd = v[0]*contact.normal[1] - v[1]*contact.normal[0] +
+                                r[0]*contact.normalDerivative[1] - r[1]*contact.normalDerivative[0];
+                    info.jacobian.coeffRef(i, contact.body1->variablesOffset() + RigidBody::AngleOffset) = -rn;
+                    if(!collisions)
+                        info.jacobianDerivative.coeffRef(i, contact.body1->variablesOffset() + RigidBody::AngleOffset) = -rd;
                 }
                 
-            } else if(collisions && contact.state == Contact::Colliding) {
-                //qDebug("** collision, points: %d", contact.pointsCount);
-                for(int p = 0; p<contact.pointsCount; ++p) {
-                    int i = info->addContact();
+                info.forceMin[i] = 0;
+            }
+            
+        } else if(collisions && contact.state == Contact::Colliding) {
+            //qDebug("** collision, points: %d", contact.pointsCount);
+            for(int p = 0; p<contact.pointsCount; ++p) {
+                ++i;
+                info.jacobian.coeffRef(i, contact.body0->variablesOffset() +
+                                        RigidBody::PositionOffset) = ( -contact.normal[0]);
+                info.jacobian.coeffRef(i, contact.body0->variablesOffset() +
+                                        RigidBody::PositionOffset+1) = ( -contact.normal[1]);
+                info.jacobian.coeffRef(i, contact.body1->variablesOffset() +
+                                        RigidBody::PositionOffset) = ( contact.normal[0]);
+                info.jacobian.coeffRef(i, contact.body1->variablesOffset() +
+                                        RigidBody::PositionOffset+1) = ( contact.normal[1]);
 
-                    info->jacobian.row(i).w(contact.body0->variablesOffset() +
-                                            RigidBody::PositionOffset, -contact.normal[0]);
-                    info->jacobian.row(i).w(contact.body0->variablesOffset() +
-                                            RigidBody::PositionOffset+1, -contact.normal[1]);
-                    info->jacobian.row(i).w(contact.body1->variablesOffset() +
-                                            RigidBody::PositionOffset, contact.normal[0]);
-                    info->jacobian.row(i).w(contact.body1->variablesOffset() +
-                                            RigidBody::PositionOffset+1, contact.normal[1]);
+                // jacobianDerivative is special in this case: it is not really
+                // a derivative, but rather just an expression that should be in
+                // constraint equation
+                info.jacobianDerivative.coeffRef(i, contact.body0->variablesOffset() +
+                                        RigidBody::PositionOffset) = ( -2*contact.normal[0]);
+                info.jacobianDerivative.coeffRef(i, contact.body0->variablesOffset() +
+                                        RigidBody::PositionOffset+1) = ( -2*contact.normal[1]);
+                info.jacobianDerivative.coeffRef(i, contact.body1->variablesOffset() +
+                                        RigidBody::PositionOffset) = ( 2*contact.normal[0]);
+                info.jacobianDerivative.coeffRef(i, contact.body1->variablesOffset() +
+                                        RigidBody::PositionOffset+1) = ( 2*contact.normal[1]);
 
-                    // jacobianDerivative is special in this case: it is not really
-                    // a derivative, but rather just an expression that should be in
-                    // constraint equation
-                    info->jacobianDerivative.row(i).w(contact.body0->variablesOffset() +
-                                            RigidBody::PositionOffset, -2*contact.normal[0]);
-                    info->jacobianDerivative.row(i).w(contact.body0->variablesOffset() +
-                                            RigidBody::PositionOffset+1, -2*contact.normal[1]);
-                    info->jacobianDerivative.row(i).w(contact.body1->variablesOffset() +
-                                            RigidBody::PositionOffset, 2*contact.normal[0]);
-                    info->jacobianDerivative.row(i).w(contact.body1->variablesOffset() +
-                                            RigidBody::PositionOffset+1, 2*contact.normal[1]);
-
-                    if(contact.body0->metaObject()->inherits<RigidBody>()) {
-                        Vector2d r = static_cast<RigidBody*>(contact.body0)->position() - contact.points[p];
-                        double rn = r[0]*contact.normal[1] - r[1]*contact.normal[0];
-                        info->jacobian.row(i).w(contact.body0->variablesOffset() +
-                                                    RigidBody::AngleOffset, +rn);
-                        info->jacobianDerivative.row(i).w(contact.body0->variablesOffset() +
-                                                    RigidBody::AngleOffset, +2*rn);
-                    }
-
-                    if(contact.body1->metaObject()->inherits<RigidBody>()) {
-                        Vector2d r = static_cast<RigidBody*>(contact.body1)->position() - contact.points[p];
-                        double rn = r[0]*contact.normal[1] - r[1]*contact.normal[0];
-                        info->jacobian.row(i).w(contact.body1->variablesOffset() +
-                                                    RigidBody::AngleOffset, -rn);
-                        info->jacobianDerivative.row(i).w(contact.body1->variablesOffset() +
-                                                    RigidBody::AngleOffset, -2*rn);
-                    }
-
-                    info->forceMin[i] = 0;
-                    info->collisionFlag = true;
+                if(contact.body0->metaObject()->inherits<RigidBody>()) {
+                    Vector2d r = static_cast<RigidBody*>(contact.body0)->position() - contact.points[p];
+                    double rn = r[0]*contact.normal[1] - r[1]*contact.normal[0];
+                    info.jacobian.coeffRef(i, contact.body0->variablesOffset() +
+                                                RigidBody::AngleOffset) = ( +rn);
+                    info.jacobianDerivative.coeffRef(i, contact.body0->variablesOffset() +
+                                                RigidBody::AngleOffset) = ( +2*rn);
                 }
+
+                if(contact.body1->metaObject()->inherits<RigidBody>()) {
+                    Vector2d r = static_cast<RigidBody*>(contact.body1)->position() - contact.points[p];
+                    double rn = r[0]*contact.normal[1] - r[1]*contact.normal[0];
+                    info.jacobian.coeffRef(i, contact.body1->variablesOffset() +
+                                                RigidBody::AngleOffset) = ( -rn);
+                    info.jacobianDerivative.coeffRef(i, contact.body1->variablesOffset() +
+                                                RigidBody::AngleOffset) = ( -2*rn);
+                }
+
+                info.forceMin[i] = 0;
+                info.collisionFlag = true;
             }
         }
     }
-
-    return state;
 }
 
 int GJKCollisionSolver::solvePolygonPolygon(Contact* contact)
@@ -1174,7 +1176,7 @@ int GJKCollisionSolver::solveCollisions(BodyList& bodies)
     int ret = 0;
 
     // Detect and classify contacts
-    ret = checkContacts(bodies, NULL);
+    ret = checkContacts(bodies);
     STEPCORE_ASSERT_NOABORT(ret != Contact::Intersected);
 
     // Solve collisions

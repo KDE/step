@@ -173,9 +173,9 @@ public:
 
     /** Get inverse mass and (possibly) its variance matrixes.
      *  Variance should only be copied of variance != NULL. */
-    virtual void getInverseMass(GmmSparseRowMatrix* inverseMass,
-                            GmmSparseRowMatrix* variance, int offset) = 0;
-
+    virtual void getInverseMass(DiagonalMatrix* inverseMass,
+                                DynSparseRowMatrix* variance, int offset) = 0;
+    
     /** Offset of body's variables in global arrays
      *  (meaningless if the body is not a part of the world) */
     int variablesOffset() const { return _variablesOffset; }
@@ -220,20 +220,20 @@ struct ConstraintsInfo
     int                contactsCount;       ///< Number of additional constrains 
                                             ///< equations due to contacts
 
-    GmmStdVector       value;               ///< Current constarints values (amount of brokenness)
-    GmmStdVector       derivative;          ///< Time-derivative of constraints values
-    GmmSparseRowMatrix jacobian;            ///< Position-derivative of constraints values
-    GmmSparseRowMatrix jacobianDerivative;  ///< Time-derivative of constraintsJacobian
-    GmmSparseRowMatrix inverseMass;         ///< Inverse mass matrix of the system
+    DenseVector        value;               ///< Current constarints values (amount of brokenness)
+    DenseVector        derivative;          ///< Time-derivative of constraints values
+    DynSparseRowMatrix jacobian;            ///< Position-derivative of constraints values
+    DynSparseRowMatrix jacobianDerivative;  ///< Time-derivative of constraintsJacobian
+    DiagonalMatrix     inverseMass;         ///< Inverse mass matrix of the system
 
-    GmmArrayVector     position;            ///< Positions of the bodies
-    GmmArrayVector     velocity;            ///< Velocities of the bodies
-    GmmArrayVector     acceleration;        ///< Accelerations of the bodies before applying constraints
+    MappedVector       position;            ///< Positions of the bodies
+    MappedVector       velocity;            ///< Velocities of the bodies
+    MappedVector       acceleration;        ///< Accelerations of the bodies before applying constraints
 
-    GmmStdVector       forceMin;            ///< Constraints force lower limit
-    GmmStdVector       forceMax;            ///< Constraints force upper limit
+    DenseVector        forceMin;            ///< Constraints force lower limit
+    DenseVector        forceMax;            ///< Constraints force upper limit
 
-    GmmStdVector       force;               ///< Resulting constraints force
+    DenseVector        force;               ///< Resulting constraints force
 
     bool               collisionFlag;       ///< True if there is a collision to be resolved
 
@@ -242,14 +242,7 @@ struct ConstraintsInfo
 
     /** Set variablesCount, constraintsCount and reset contactsCount,
      *  resize all arrays appropriately */
-    void setDimension(int newVariablesCount, int newConstraintsCount);
-
-    /** Increment contactsCount by one, resize all arrays appropriately and
-     *  return an offset of newly created constraint */
-    int addContact(); // XXX: make dimensions dynamic
-
-    /** Reset contactsCount to zero and resize all arrays appropriately */
-    void clearContacts();
+    void setDimension(int newVariablesCount, int newConstraintsCount, int newContactsCount = 0);
 
     /** Clear the structure */
     void clear();
@@ -542,11 +535,10 @@ private:
     ConstraintSolver* _constraintSolver;
 
     int             _variablesCount;  ///< \internal Count of positions (not including velocities)
-    GmmStdVector    _variables;       ///< \internal Positions and velocities (size == _variablesCount*2)
-    GmmStdVector    _variances;       ///< \internal Variances of positions and velocities
+    DenseVector    _variables;       ///< \internal Positions and velocities (size == _variablesCount*2)
+    DenseVector    _variances;       ///< \internal Variances of positions and velocities
+    DenseVector    _tempArray;       ///< \internal Temporary array used in various places
     ConstraintsInfo _constraintsInfo; ///< \internal Constraints information
-
-    GmmStdVector    _tempArray;       ///< \internal Temporary array used in various places
 
     bool    _stopOnCollision;
     bool    _stopOnIntersection;

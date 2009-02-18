@@ -19,10 +19,11 @@
 #include "constraintsolver.h"
 #include "rigidbody.h"
 #include "particle.h"
-
-#include <gmm/gmm_iter.h>
-#include <gmm/gmm_iter_solvers.h>
+#include "types.h"
+#include <unsupported/Eigen/IterativeSolvers>
 #include <cmath>
+
+using namespace Eigen;
 
 namespace StepCore {
 
@@ -33,36 +34,24 @@ STEPCORE_META_OBJECT(ConstraintSolver, QT_TRANSLATE_NOOP("ObjectClass", "Constra
 STEPCORE_META_OBJECT(CGConstraintSolver, QT_TRANSLATE_NOOP("ObjectClass", "CGConstraintSolver"), "CGConstraintSolver", 0,
                         STEPCORE_SUPER_CLASS(ConstraintSolver),)
 
+
 int CGConstraintSolver::solve(ConstraintsInfo* info)
 {
-    int np = info->variablesCount;
     int nc = info->constraintsCount + info->contactsCount;
-
+    
     // XXX: make this matrixes permanent to avoid memory allocations
-    GmmSparseRowMatrix a(nc, nc);
-    GmmStdVector b(nc);
-    GmmStdVector l(nc);
+    SparseRowMatrix a(nc, nc);
+    DenseVector b(nc);
+    DenseVector x(nc);
+    x.setZero();
 
-    {
-        GmmSparseRowMatrix wj(np, nc);
+    a = info->jacobian * (info->inverseMass * info->jacobian.transpose());
 
-        GmmSparseRowMatrix jacobianT(np, nc);
-        gmm::copy(gmm::transposed(info->jacobian), jacobianT);
+    b = info->jacobian * info->acceleration;
+    b += info->jacobianDerivative * info->velocity;
+    b = - (b + info->value + info->derivative);
 
-        gmm::mult(info->inverseMass, jacobianT, wj);
-        gmm::mult(info->jacobian, wj, a);
-
-        gmm::mult(info->jacobian, info->acceleration, b);
-        gmm::mult_add(info->jacobianDerivative, info->velocity, b);
-        gmm::add(gmm::scaled(info->value, 1.0), b);
-        gmm::add(gmm::scaled(info->derivative, 1.0), b);
-
-        gmm::scale(b, -1);
-    }
-
-    gmm::iteration iter(2.0E-5); // XXX
-    gmm::identity_matrix ps;
-    gmm::identity_matrix pr;
+    IterationController iter(2.0E-5); // XXX
 
     // print debug info
     /*std::cout << "ConstraintSolver:" << endl
@@ -90,28 +79,26 @@ int CGConstraintSolver::solve(ConstraintsInfo* info)
         if(std::isinf(info->forceMax[i]) != +1) ++fmaxCount;
     }
 
-    GmmSparseRowMatrix c(fminCount + fmaxCount, nc);
-    GmmStdVector f(fminCount + fmaxCount);
+    DynSparseRowMatrix c(fminCount + fmaxCount, nc);
+    DenseVector f(fminCount + fmaxCount);
 
     int fminIndex = 0;
     int fmaxIndex = fminCount;
     for(int i=0; i<nc; ++i) {
         if(std::isinf(info->forceMin[i]) != -1) {
-            c.row(fminIndex).w(i, -1);
+            c.coeffRef(fminIndex,i) = -1;
             f[fminIndex] = -info->forceMin[i];
             ++fminIndex;
         }
         if(std::isinf(info->forceMax[i]) != +1) {
-            c.row(fmaxIndex).w(i, 1);
+            c.coeffRef(fmaxIndex, i) = 1;
             f[fmaxIndex] = info->forceMax[i];
             ++fmaxIndex;
         }
-    }
+    }    
+    ei_constrained_cg(a, c, x, b, f, iter);
 
-    gmm::constrained_cg(a, c, l, b, f, ps, pr, iter);
-
-    //gmm::cg(a, l, b, ps, pr, iter);
-    gmm::mult(transposed(info->jacobian), l, info->force);
+    info->force = info->jacobian.transpose() * x;
 
     // print debug info
     /*std::cout << "Solved:" << endl
@@ -127,7 +114,6 @@ int CGConstraintSolver::solve(ConstraintsInfo* info)
               << "b=" << b << endl
               << "l=" << l << endl
               << "force=" << info->force << endl << endl << endl;*/
-
     return 0;
 }
 
