@@ -104,7 +104,10 @@ class XmlFileTranslator(object):
             outfile = StringIO.StringIO()
             translator1.translate(self.i18n_file, infile,
                 outfile, self.translation, self.i18n_stack, self.i18n_stack[-1]['line'])
-            self.outfile.write(self.encode_utf8(outfile.getvalue()))
+            string = outfile.getvalue()
+            if self.opt.unquote:
+                string = self.quote_str(string)
+            self.outfile.write(self.encode_utf8(string))
 
     def quote_str(self, s):
         return s.replace('&', '&amp;').replace('"', '&quot;') \
