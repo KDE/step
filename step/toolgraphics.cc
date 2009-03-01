@@ -254,7 +254,7 @@ void WidgetGraphicsItem::worldDataChanged(bool dynamicOnly)
 
 QString NoteTextEdit::emptyNotice() const
 {
-    return i18n("Click to enter a text");
+    return i18n("Click to enter text");
 }
 
 /*

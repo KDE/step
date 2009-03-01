@@ -58,17 +58,17 @@
       <item row="1" column="0" >
        <widget class="QLabel" name="label" >
         <property name="text" >
-         <string>Particles count:</string>
+         <string>Particle count:</string>
         </property>
        </widget>
       </item>
       <item row="1" column="1" >
        <widget class="QLineEdit" name="lineEditCount" >
         <property name="toolTip" >
-         <string>The number of partcles of this gas.</string>
+         <string>The number of particles of this gas.</string>
         </property>
         <property name="whatsThis" >
-         <string>The number of partcles of this gas.</string>
+         <string>The number of particles of this gas.</string>
         </property>
         <property name="text" >
          <string>20</string>
@@ -109,7 +109,7 @@
       <item row="3" column="0" >
        <widget class="QLabel" name="label_2" >
         <property name="text" >
-         <string>Particles mass:</string>
+         <string>Particle mass:</string>
         </property>
        </widget>
       </item>

@@ -42,7 +42,7 @@ STEPCORE_META_OBJECT(World, QT_TRANSLATE_NOOP("ObjectClass", "World"), QT_TR_NOO
         STEPCORE_PROPERTY_RW_D(double, time, QT_TRANSLATE_NOOP("PropertyName", "time"), QT_TRANSLATE_NOOP("Units", "s"), QT_TR_NOOP("Current time"), time, setTime)
         STEPCORE_PROPERTY_RW  (double, timeScale, QT_TR_NOOP("timeScale"), STEPCORE_UNITS_1, QT_TR_NOOP("Simulation speed scale"), timeScale, setTimeScale)
         STEPCORE_PROPERTY_RW  (bool, errorsCalculation, QT_TR_NOOP("errorsCalculation"), STEPCORE_UNITS_NULL,
-                        QT_TR_NOOP("Enable global errors calculation"), errorsCalculation, setErrorsCalculation))
+                        QT_TR_NOOP("Enable global error calculation"), errorsCalculation, setErrorsCalculation))
 
 Item& Item::operator=(const Item& item)
 {

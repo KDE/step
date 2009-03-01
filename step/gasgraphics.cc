@@ -397,7 +397,7 @@ bool GasMenuHandler::createGasParticlesApply()
     if(count > MAX_PARTICLES) {
         int ret = KMessageBox::warningContinueCancel(NULL, 
               i18n("You are trying to create a very large number of particles. "
-                   "It will make simulation very slow. Do you want to continue ?"),
+                   "This will make simulation very slow. Do you want to continue?"),
               i18n("Warning - Step"));
         if(ret != KMessageBox::Continue) return false;
     }

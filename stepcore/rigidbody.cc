@@ -89,7 +89,7 @@ STEPCORE_META_OBJECT(Box, QT_TRANSLATE_NOOP("ObjectClass", "Box"), QT_TR_NOOP("R
         STEPCORE_PROPERTY_RW(StepCore::Vector2d, size, QT_TRANSLATE_NOOP("PropertyName", "size"), QT_TRANSLATE_NOOP("Units", "m"), QT_TR_NOOP("Size of the box"), size, setSize))
 
 STEPCORE_META_OBJECT(Polygon, QT_TRANSLATE_NOOP("ObjectClass", "Polygon"), QT_TR_NOOP("Rigid polygon body"), 0, STEPCORE_SUPER_CLASS(BasePolygon),
-        STEPCORE_PROPERTY_RW(Vector2dList, vertexes, QT_TRANSLATE_NOOP("PropertyName", "vertexes"), QT_TRANSLATE_NOOP("Units", "m"), QT_TR_NOOP("Vertex list"), vertexes, setVertexes))
+        STEPCORE_PROPERTY_RW(Vector2dList, vertexes, QT_TRANSLATE_NOOP("PropertyName", "vertices"), QT_TRANSLATE_NOOP("Units", "m"), QT_TR_NOOP("Vertex list"), vertexes, setVertexes))
 
 #if 0
 STEPCORE_META_OBJECT(Plane, QT_TRANSLATE_NOOP("ObjectClass", "Plane"), QT_TR_NOOP("Unmovable rigid plane"), 0, STEPCORE_SUPER_CLASS(Item) STEPCORE_SUPER_CLASS(Body),
