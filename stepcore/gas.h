@@ -42,7 +42,7 @@ class GasParticle: public Particle
 
 public:
     /** Constructs a GasParticle */
-    explicit GasParticle(Vector2d position = Vector2d(0), Vector2d velocity = Vector2d(0), double mass = 1)
+    explicit GasParticle(Vector2d position = Vector2d::Zero(), Vector2d velocity = Vector2d::Zero(), double mass = 1)
         : Particle(position, velocity, mass) {}
 };
 
@@ -172,7 +172,9 @@ class Gas: public ItemGroup
     STEPCORE_OBJECT(Gas)
 
 public:
-    Gas() : _measureRectCenter(0), _measureRectSize(1,1) {
+    EIGEN_MAKE_ALIGNED_OPERATOR_NEW
+    
+    Gas() : _measureRectCenter(0,0), _measureRectSize(1,1) {
         setColor(0xffff0000); objectErrors();
     }
 
@@ -198,7 +200,7 @@ public:
     void setMeasureRectCenter(const Vector2d& measureRectCenter) { _measureRectCenter = measureRectCenter; }
 
     const Vector2d& measureRectSize() const { return _measureRectSize; }
-    void setMeasureRectSize(const Vector2d& measureRectSize) { _measureRectSize = measureRectSize.cAbs(); }
+    void setMeasureRectSize(const Vector2d& measureRectSize) { _measureRectSize = measureRectSize.cwise().abs(); }
 
     /** Get (and possibly create) GasErrors object */
     GasErrors* gasErrors() {

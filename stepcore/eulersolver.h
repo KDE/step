@@ -57,21 +57,21 @@ public:
 
     void setDimension(int dimension) { fini(); _dimension = dimension; init(); }
 
-    int doCalcFn(double* t, const double* y, const double* yvar = 0,
-                        double* f = 0, double* fvar = 0);
-    int doEvolve(double* t, double t1, double* y, double* yvar);
+    int doCalcFn(double* t, const VectorXd* y, const VectorXd* yvar = 0,
+                        VectorXd* f = 0, VectorXd* fvar = 0);
+    int doEvolve(double* t, double t1, VectorXd* y, VectorXd* yvar);
 
 protected:
-    int doStep(double t, double stepSize, double* y, double* yvar);
+    int doStep(double t, double stepSize, VectorXd* y, VectorXd* yvar);
     void init();
     void fini();
 
     bool    _adaptive;
-    double* _yerr;
-    double* _ytemp;
-    double* _ydiff;
-    double* _ytempvar;
-    double* _ydiffvar;
+    VectorXd _yerr;
+    VectorXd _ytemp;
+    VectorXd _ydiff;
+    VectorXd _ytempvar;
+    VectorXd _ydiffvar;
 };
 
 /** \ingroup solvers

@@ -105,7 +105,7 @@ RigidBody* RigidBodyErrors::rigidBody() const
 Vector2d RigidBodyErrors::accelerationVariance() const
 {
     return _forceVariance/square(rigidBody()->mass()) +
-        _massVariance*(rigidBody()->force()/square(rigidBody()->mass())).cSquare();
+        _massVariance*(rigidBody()->force()/square(rigidBody()->mass())).cwise().square();
 }
 
 double RigidBodyErrors::angularAccelerationVariance() const
@@ -117,12 +117,12 @@ double RigidBodyErrors::angularAccelerationVariance() const
 Vector2d RigidBodyErrors::momentumVariance() const
 {
     return _velocityVariance * square(rigidBody()->mass()) +
-           rigidBody()->velocity().cSquare() * _massVariance;
+           rigidBody()->velocity().cwise().square() * _massVariance;
 }
 
 void RigidBodyErrors::setMomentumVariance(const Vector2d& momentumVariance)
 {
-    _velocityVariance = (momentumVariance - rigidBody()->velocity().cSquare() * _massVariance) /
+    _velocityVariance = (momentumVariance - rigidBody()->velocity().cwise().square() * _massVariance) /
                         square(rigidBody()->mass());
 }
 
@@ -141,8 +141,8 @@ void RigidBodyErrors::setAngularMomentumVariance(double angularMomentumVariance)
 
 double RigidBodyErrors::kineticEnergyVariance() const
 {
-    return _velocityVariance.innerProduct(rigidBody()->velocity().cSquare()) * square(rigidBody()->mass()) +
-           square(rigidBody()->velocity().norm2()/2) * _massVariance +
+    return _velocityVariance.dot(rigidBody()->velocity().cwise().square()) * square(rigidBody()->mass()) +
+           square(rigidBody()->velocity().squaredNorm()/2) * _massVariance +
            _angularVelocityVariance * square(rigidBody()->angularVelocity() * rigidBody()->inertia()) +
            square(square(rigidBody()->angularVelocity())/2) * _inertiaVariance;
 }
@@ -150,9 +150,9 @@ double RigidBodyErrors::kineticEnergyVariance() const
 void RigidBodyErrors::setKineticEnergyVariance(double kineticEnergyVariance)
 {
     double t = kineticEnergyVariance - this->kineticEnergyVariance() +
-              _velocityVariance.innerProduct(rigidBody()->velocity().cSquare()) * square(rigidBody()->mass());
+              _velocityVariance.dot(rigidBody()->velocity().cwise().square()) * square(rigidBody()->mass());
     _velocityVariance = t / square(rigidBody()->mass()) / 2 *
-                        Vector2d(1,1).cDivide(rigidBody()->velocity().cSquare());
+                        (rigidBody()->velocity().cwise().square().cwise().inverse());
     if(!std::isfinite(_velocityVariance[0]) || _velocityVariance[0] < 0 ||
        !std::isfinite(_velocityVariance[1]) || _velocityVariance[1]) {
         _velocityVariance.setZero();
@@ -163,7 +163,7 @@ void RigidBodyErrors::setKineticEnergyVariance(double kineticEnergyVariance)
 RigidBody::RigidBody(Vector2d position, double angle,
         Vector2d velocity, double angularVelocity, double mass, double inertia)
     : _position(position), _angle(angle), _velocity(velocity), _angularVelocity(angularVelocity),
-      _force(0), _torque(0), _mass(mass), _inertia(inertia)
+      _force(Vector2d::Zero()), _torque(0), _mass(mass), _inertia(inertia)
 {
 }
 
@@ -233,15 +233,15 @@ Vector2d RigidBody::vectorWorldToLocal(const Vector2d& v) const
 void RigidBody::getVariables(double* position, double* velocity,
                      double* positionVariance, double* velocityVariance)
 {
-    std::memcpy(position, _position.array(), 2*sizeof(*position));
-    std::memcpy(velocity, _velocity.array(), 2*sizeof(*velocity));
+    Vector2d::Map(position) = _position;
+    Vector2d::Map(velocity) = _velocity;
     position[2] = _angle;
     velocity[2] = _angularVelocity;
 
     if(positionVariance) {
         RigidBodyErrors* re = rigidBodyErrors();
-        std::memcpy(positionVariance, re->_positionVariance.array(), 2*sizeof(*positionVariance));
-        std::memcpy(velocityVariance, re->_velocityVariance.array(), 2*sizeof(*velocityVariance));
+        Vector2d::Map(positionVariance) = re->_positionVariance;
+        Vector2d::Map(velocityVariance) = re->_velocityVariance;
         positionVariance[2] = re->_angleVariance;
         velocityVariance[2] = re->_angularVelocityVariance;
     }
@@ -250,8 +250,8 @@ void RigidBody::getVariables(double* position, double* velocity,
 void RigidBody::setVariables(const double* position, const double* velocity,
                const double* positionVariance, const double* velocityVariance)
 {
-    std::memcpy(_position.array(), position, 2*sizeof(*position));
-    std::memcpy(_velocity.array(), velocity, 2*sizeof(*velocity));
+    _position = Vector2d::Map(position);
+    _velocity = Vector2d::Map(velocity);
     _angle = position[2];
     _angularVelocity = velocity[2];
 
@@ -260,8 +260,8 @@ void RigidBody::setVariables(const double* position, const double* velocity,
 
     if(positionVariance) {
         RigidBodyErrors* re = rigidBodyErrors();
-        std::memcpy(re->_positionVariance.array(), positionVariance, 2*sizeof(*positionVariance));
-        std::memcpy(re->_velocityVariance.array(), velocityVariance, 2*sizeof(*velocityVariance));
+        re->_positionVariance = Vector2d::Map(positionVariance);
+        re->_velocityVariance = Vector2d::Map(velocityVariance);
         re->_angleVariance = positionVariance[2];
         re->_angularVelocityVariance = velocityVariance[2];
 
@@ -331,7 +331,7 @@ void RigidBody::setKineticEnergy(double kineticEnergy)
     double e = kineticEnergy - _inertia * square(_angularVelocity)/2;
     if(e > 0) {
         double v = _velocity.norm();
-        _velocity = sqrt(e*2/_mass) * (v>0 ? _velocity/v : Vector2d(1,0));
+        _velocity = sqrt(e*2/_mass) * (v>0 ? (_velocity/v).eval() : Vector2d(1,0));
     } else {
         _velocity.setZero();
         _angularVelocity = sqrt(kineticEnergy*2/_inertia);
@@ -349,12 +349,12 @@ Box::Box(Vector2d position, double angle,
 
 void Box::setSize(const Vector2d& size)
 {
-    Vector2d s(size.cAbs()/2.0);
+    Vector2d s(size.cwise().abs()/2.0);
 
-    _vertexes[0] = Vector2d(-s[0], -s[1]);
-    _vertexes[1] = Vector2d( s[0], -s[1]);
-    _vertexes[2] = Vector2d( s[0],  s[1]);
-    _vertexes[3] = Vector2d(-s[0],  s[1]);
+    _vertexes[0] << -s[0], -s[1];
+    _vertexes[1] <<  s[0], -s[1];
+    _vertexes[2] <<  s[0],  s[1];
+    _vertexes[3] << -s[0],  s[1];
 }
 
 } // namespace StepCore

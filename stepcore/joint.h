@@ -40,7 +40,7 @@ class Anchor: public Item, public Joint
         
 public:
     /** Constructs Anchor */
-    explicit Anchor(Object* body = 0, const Vector2d& position = Vector2d(0), double angle = 0);
+    explicit Anchor(Object* body = 0, const Vector2d& position = Vector2d::Zero(), double angle = 0);
 
     /** Get pointer to the body */
     Object* body() const { return _body; }
@@ -80,9 +80,11 @@ class Pin: public Item, public Joint
     STEPCORE_OBJECT(Pin)
 
 public:
+    EIGEN_MAKE_ALIGNED_OPERATOR_NEW
+    
     /** Constructs Pin */
-    explicit Pin(Object* body = 0, const Vector2d& localPosition = Vector2d(0),
-                        const Vector2d& position = Vector2d(0));
+    explicit Pin(Object* body = 0, const Vector2d& localPosition = Vector2d::Zero(),
+                        const Vector2d& position = Vector2d::Zero());
 
     /** Get pointer to the body */
     Object* body() const { return _body; }
@@ -125,8 +127,8 @@ public:
     /** Constructs Stick */
     explicit Stick(double restLength = 1, 
                Object* body1 = 0, Object* body2 = 0,
-               const Vector2d& localPosition1 = Vector2d(0),
-               const Vector2d& localPosition2 = Vector2d(0));
+               const Vector2d& localPosition1 = Vector2d::Zero(),
+               const Vector2d& localPosition2 = Vector2d::Zero());
 
     /** Get the restLength of the stick */
     double restLength() const { return _restLength; }

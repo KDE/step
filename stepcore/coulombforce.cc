@@ -57,10 +57,10 @@ void CoulombForce::calcForce(bool calcVariances)
             ChargedParticle* p2 = static_cast<ChargedParticle*>(*b2);
 
             Vector2d r = p2->position() - p1->position();
-            double rnorm2 = r.norm2();
+            double rnorm2 = r.squaredNorm();
             Vector2d force = _coulombConst* p1->charge() * p2->charge() * r / (rnorm2*sqrt(rnorm2));
             p2->applyForce(force);
-            force.invert();
+            force = -force;
             p1->applyForce(force);
 
             if(calcVariances) {
@@ -68,7 +68,7 @@ void CoulombForce::calcForce(bool calcVariances)
                 ChargedParticleErrors* pe1 = p1->chargedParticleErrors();
                 ChargedParticleErrors* pe2 = p2->chargedParticleErrors();
                 Vector2d rV = pe2->positionVariance() + pe1->positionVariance();
-                Vector2d forceV = force.cSquare().cMultiply(
+                Vector2d forceV = force.cwise().square().cwise()* (
                         Vector2d(coulombForceErrors()->_coulombConstVariance / square(_coulombConst) +
                                  pe1->chargeVariance() / square(p1->charge()) +
                                  pe2->chargeVariance() / square(p2->charge())) +

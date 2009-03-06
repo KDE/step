@@ -187,7 +187,7 @@ Vector2d Graph::currentValue(bool* ok) const
     }
 
     if(ok) *ok = false;
-    return Vector2d(0);
+    return Vector2d::Zero();
 }
 
 Vector2d Graph::recordPoint(bool* ok)
@@ -201,7 +201,7 @@ Vector2d Graph::recordPoint(bool* ok)
     }
 
     if(ok) *ok = false;
-    return Vector2d(0);
+    return Vector2d::Zero();
 }
 
 /*

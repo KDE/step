@@ -24,6 +24,7 @@
 #define STEPCORE_SOLVER_H
 
 #include "object.h"
+#include "vector.h"
 
 namespace StepCore
 {
@@ -123,8 +124,8 @@ public:
     double localErrorRatio() const { return _localErrorRatio; }
 
     /** Calculate function value */
-    virtual int doCalcFn(double* t, const double* y, const double* yvar = 0,
-                            double* f = 0, double* fvar = 0) = 0;
+    virtual int doCalcFn(double* t, const VectorXd* y, const VectorXd* yvar = 0,
+                            VectorXd* f = 0, VectorXd* fvar = 0) = 0;
 
     /** Integrate.
      *  \param t Current time (will be updated by the new value)
@@ -134,7 +135,7 @@ public:
      *  \return Solver::OK on success, error status on failure
      *  \todo Provide error message
      */
-    virtual int doEvolve(double* t, double t1, double* y, double* yvar) = 0;
+    virtual int doEvolve(double* t, double t1, VectorXd* y, VectorXd* yvar) = 0;
 
 public:
     /** Status codes for doCalcFn and doEvolve */

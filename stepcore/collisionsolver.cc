@@ -90,7 +90,7 @@ int GJKCollisionSolver::checkPolygonPolygon(Contact* contact)
     for(;; ++iteration) {
         //STEPCORE_ASSERT_NOABORT( iteration < vertexes[0].size()*vertexes[1].size() );
 
-        double smin = v.norm2();
+        double smin = v.squaredNorm();
 
         // Check for penetration (part 1)
         // If we are closer to the origin then given tolerance
@@ -109,7 +109,7 @@ int GJKCollisionSolver::checkPolygonPolygon(Contact* contact)
         for(unsigned int i0=0; i0<vertex0_size; ++i0) {
             for(unsigned int i1=0; i1<vertex1_size; ++i1) {
                 Vector2d sn = vertexes[1][i1] - vertexes[0][i0];
-                double scurr = v.innerProduct(sn);
+                double scurr = v.dot(sn);
                 if(smin - scurr > _toleranceAbs*_toleranceAbs*1e-4) { // XXX: separate tolerance ?
                     smin = scurr;
                     s = sn;
@@ -155,10 +155,10 @@ int GJKCollisionSolver::checkPolygonPolygon(Contact* contact)
         double lambda = 0;
         int ii = -1;
         for(int i=0; i<wsize; ++i) {
-            double lambda0 = - s.innerProduct(w[i]-s) / (w[i]-s).norm2();
+            double lambda0 = - s.dot(w[i]-s) / (w[i]-s).squaredNorm();
             if(lambda0 > 0) {
                 Vector2d vn = s*(1-lambda0) + w[i]*lambda0;
-                if(vn.norm2() < v.norm2()) {
+                if(vn.squaredNorm() < v.squaredNorm()) {
                     v = vn; ii = i;
                     lambda = lambda0;
                 }
@@ -179,7 +179,7 @@ int GJKCollisionSolver::checkPolygonPolygon(Contact* contact)
                 ++wsize;
             }
         } else { // Closest simplex is vertex
-            STEPCORE_ASSERT_NOABORT(iteration == 0 || s.norm2() < v.norm2());
+            STEPCORE_ASSERT_NOABORT(iteration == 0 || s.squaredNorm() < v.squaredNorm());
 
             v = w[0] = s;
             vv[0] = vertexes[0][si[0]];
@@ -247,13 +247,13 @@ int GJKCollisionSolver::checkPolygonPolygon(Contact* contact)
             int ai1 = wi[i][0] - 1; if(ai1 < 0) ai1 = vertexes[i].size()-1;
             Vector2d av1 = vertexes[i][ai1];
             Vector2d dv1 = wm[i][0] - av1;
-            double dist1 = vunit.innerProduct( dv1 ) * (i==0 ? 1 : -1);
+            double dist1 = vunit.dot( dv1 ) * (i==0 ? 1 : -1);
             double angle1 = dist1 / dv1.norm();
 
             int ai2 = wi[i][0] + 1; if(ai2 >= (int) vertexes[i].size()) ai2 = 0;
             Vector2d av2 = vertexes[i][ai2];
             Vector2d dv2 = wm[i][0] - av2;
-            double dist2 = vunit.innerProduct( dv2 ) * (i==0 ? 1 : -1);
+            double dist2 = vunit.dot( dv2 ) * (i==0 ? 1 : -1);
             double angle2 = dist2 / dv2.norm();
 
             if(angle1 <= angle2 && dist1 < (_toleranceAbs-vnorm)/2) {
@@ -275,8 +275,8 @@ int GJKCollisionSolver::checkPolygonPolygon(Contact* contact)
         double wm_o[2][2];
 
         for(int i=0; i<2; ++i) {
-            wm_o[i][0] = vunit_o.innerProduct(wm[i][0]);
-            wm_o[i][1] = vunit_o.innerProduct(wm[i][1]);
+            wm_o[i][0] = vunit_o.dot(wm[i][0]);
+            wm_o[i][1] = vunit_o.dot(wm[i][1]);
 
             if(wm_o[i][0] > wm_o[i][1]) {
                 std::swap(wm_o[i][0], wm_o[i][1]);
@@ -300,10 +300,10 @@ int GJKCollisionSolver::checkPolygonPolygon(Contact* contact)
             contact->pointsCount = 2;
         }
         /*
-            contact->vrel[0] = contact->normal.innerProduct(
+            contact->vrel[0] = contact->normal.dot(
                                 polygon1->velocityWorld(contact->points[0]) -
                                 polygon0->velocityWorld(contact->points[0]));
-            contact->vrel[1] = contact->normal.innerProduct(
+            contact->vrel[1] = contact->normal.dot(
                                 polygon1->velocityWorld(contact->points[1]) -
                                 polygon0->velocityWorld(contact->points[1]));
             if(contact->vrel[0] < 0 || contact->vrel[1] < 0)
@@ -323,7 +323,7 @@ int GJKCollisionSolver::checkPolygonPolygon(Contact* contact)
 
     int pCount = contact->pointsCount;
     for(int i=0; i<pCount; ++i) {
-        contact->vrel[i] = contact->normal.innerProduct(
+        contact->vrel[i] = contact->normal.dot(
                         polygon1->velocityWorld(contact->points[i]) -
                         polygon0->velocityWorld(contact->points[i]));
 
@@ -385,7 +385,7 @@ int GJKCollisionSolver::checkPolygonDisk(Contact* contact)
     for(;; ++iteration) {
         //STEPCORE_ASSERT_NOABORT( iteration < vertexes.size()*vertexes.size() );
 
-        double smin = v.norm2();
+        double smin = v.squaredNorm();
 
         // Check for penetration (part 1)
         // If we are closer to the origin then given tolerance
@@ -402,7 +402,7 @@ int GJKCollisionSolver::checkPolygonDisk(Contact* contact)
 
         for(unsigned int i0=0; i0<vertex_size; ++i0) {
             Vector2d sn = disk1->position() - vertexes[i0];
-            double scurr = v.innerProduct(sn);
+            double scurr = v.dot(sn);
             if(smin - scurr > _toleranceAbs*_toleranceAbs*1e-4) { // XXX: separate tolerance ?
                 smin = scurr;
                 s = sn;
@@ -427,7 +427,7 @@ int GJKCollisionSolver::checkPolygonDisk(Contact* contact)
             // XXX: are there faster method to test it ?
             Vector2d w02 = w[0] - s;
             Vector2d w12 = w[1] - s;
-            Vector2d s0 = s - s.unit() * disk1->radius();
+            Vector2d s0 = s - s.normalized() * disk1->radius();
             double det  =  w02[0]*w12[1] - w02[1]*w12[0];
             double det0 =  -s0[0]*w12[1] +  s0[1]*w12[0];
             double det1 = -w02[0]* s0[1] + w02[1]* s0[0];
@@ -445,10 +445,10 @@ int GJKCollisionSolver::checkPolygonDisk(Contact* contact)
         double lambda = 0;
         int ii = -1;
         for(int i=0; i<wsize; ++i) {
-            double lambda0 = - s.innerProduct(w[i]-s) / (w[i]-s).norm2();
+            double lambda0 = - s.dot(w[i]-s) / (w[i]-s).squaredNorm();
             if(lambda0 > 0) {
                 Vector2d vn = s*(1-lambda0) + w[i]*lambda0;
-                if(vn.norm2() < v.norm2()) {
+                if(vn.squaredNorm() < v.squaredNorm()) {
                     v = vn; ii = i;
                     lambda = lambda0;
                 }
@@ -466,7 +466,7 @@ int GJKCollisionSolver::checkPolygonDisk(Contact* contact)
                 ++wsize;
             }
         } else { // Closest simplex is vertex
-            STEPCORE_ASSERT_NOABORT(iteration == 0 || s.norm2() < v.norm2());
+            STEPCORE_ASSERT_NOABORT(iteration == 0 || s.squaredNorm() < v.squaredNorm());
 
             v = w[0] = s;
             vv = vertexes[si];
@@ -520,7 +520,7 @@ int GJKCollisionSolver::checkPolygonDisk(Contact* contact)
 
     contact->pointsCount = 1;
     contact->points[0] = disk1->position() - contact->normal * disk1->radius();
-    contact->vrel[0] = contact->normal.innerProduct(
+    contact->vrel[0] = contact->normal.dot(
                         disk1->velocity() - 
                         polygon0->velocityWorld(contact->points[0]));
 
@@ -579,7 +579,7 @@ int GJKCollisionSolver::checkPolygonParticle(Contact* contact)
     for(;; ++iteration) {
         //STEPCORE_ASSERT_NOABORT( iteration < vertexes[0].size()*vertexes[1].size() );
 
-        double smin = v.norm2();
+        double smin = v.squaredNorm();
 
         // Check for penetration (part 1)
         // If we are closer to the origin then given tolerance
@@ -596,7 +596,7 @@ int GJKCollisionSolver::checkPolygonParticle(Contact* contact)
 
         for(unsigned int i0=0; i0<vertex_size; ++i0) {
             Vector2d sn = particle1->position() - vertexes[i0];
-            double scurr = v.innerProduct(sn);
+            double scurr = v.dot(sn);
             if(smin - scurr > _toleranceAbs*_toleranceAbs*1e-4) { // XXX: separate tolerance ?
                 smin = scurr;
                 s = sn;
@@ -638,10 +638,10 @@ int GJKCollisionSolver::checkPolygonParticle(Contact* contact)
         double lambda = 0;
         int ii = -1;
         for(int i=0; i<wsize; ++i) {
-            double lambda0 = - s.innerProduct(w[i]-s) / (w[i]-s).norm2();
+            double lambda0 = - s.dot(w[i]-s) / (w[i]-s).squaredNorm();
             if(lambda0 > 0) {
                 Vector2d vn = s*(1-lambda0) + w[i]*lambda0;
-                if(vn.norm2() < v.norm2()) {
+                if(vn.squaredNorm() < v.squaredNorm()) {
                     v = vn; ii = i;
                     lambda = lambda0;
                 }
@@ -659,7 +659,7 @@ int GJKCollisionSolver::checkPolygonParticle(Contact* contact)
                 ++wsize;
             }
         } else { // Closest simplex is vertex
-            STEPCORE_ASSERT_NOABORT(iteration == 0 || s.norm2() < v.norm2());
+            STEPCORE_ASSERT_NOABORT(iteration == 0 || s.squaredNorm() < v.squaredNorm());
 
             v = w[0] = s;
             vv = vertexes[si];
@@ -712,7 +712,7 @@ int GJKCollisionSolver::checkPolygonParticle(Contact* contact)
 
     contact->pointsCount = 1;
     contact->points[0] = particle1->position();
-    contact->vrel[0] = contact->normal.innerProduct(
+    contact->vrel[0] = contact->normal.dot(
                         particle1->velocity() - 
                         polygon0->velocityWorld(contact->points[0]));
 
@@ -749,8 +749,8 @@ int GJKCollisionSolver::checkDiskDisk(Contact* contact)
     contact->points[0] = disk0->position() + contact->normal * disk0->radius();
 
     Vector2d v = disk1->velocity() - disk0->velocity();
-    contact->vrel[0] = contact->normal.innerProduct(v);
-    contact->normalDerivative = v / rn - (r.innerProduct(v)/rn/rn/rn) * r;
+    contact->vrel[0] = contact->normal.dot(v);
+    contact->normalDerivative = v / rn - (r.dot(v)/rn/rn/rn) * r;
 
     if(contact->vrel[0] < 0)
         contact->pointsState[0] = Contact::Colliding;
@@ -786,8 +786,8 @@ int GJKCollisionSolver::checkDiskParticle(Contact* contact)
     contact->points[0] = disk0->position() + contact->normal * disk0->radius();
 
     Vector2d v = particle1->velocity() - disk0->velocity();
-    contact->vrel[0] = contact->normal.innerProduct(v);
-    contact->normalDerivative = v / rn - (r.innerProduct(v)/rn/rn/rn) * r;
+    contact->vrel[0] = contact->normal.dot(v);
+    contact->normalDerivative = v / rn - (r.dot(v)/rn/rn/rn) * r;
 
     if(contact->vrel[0] < 0)
         contact->pointsState[0] = Contact::Colliding;
@@ -849,13 +849,10 @@ int GJKCollisionSolver::checkContacts(BodyList& bodies, bool collisions, int* re
         checkContact(&contact);
 
         if(contact.state > state) state = contact.state;
-        if(contact.state == Contact::Intersected) return state;
-        
         if( (it->state == Contact::Contacted) || (collisions && it->state == Contact::Colliding) )
             count += it->pointsCount;
     }
-    if (retCount)
-      *retCount = count;
+    if (retCount) *retCount = count;
     return state;
 }
 
@@ -918,7 +915,6 @@ void GJKCollisionSolver::getContactsInfo(ConstraintsInfo& info, bool collisions)
                     if(!collisions)
                         info.jacobianDerivative.coeffRef(i, contact.body1->variablesOffset() + RigidBody::AngleOffset) = -rd;
                 }
-                
                 info.forceMin[i] = 0;
             }
             
@@ -997,9 +993,9 @@ int GJKCollisionSolver::solvePolygonPolygon(Contact* contact)
     double r0n = r0[0]*contact->normal[1] - r0[1]*contact->normal[0];
     double r1n = r1[0]*contact->normal[1] - r1[1]*contact->normal[0];
 
-    double term0 = contact->normal.innerProduct(
+    double term0 = contact->normal.dot(
                 Vector2d( -r0n*r0[1], r0n*r0[0] )) / body0->inertia();
-    double term1 = contact->normal.innerProduct(
+    double term1 = contact->normal.dot(
                 Vector2d( -r1n*r1[1], r1n*r1[0] )) / body1->inertia();
 
     double term2 = 1/body0->mass() + 1/body1->mass();
@@ -1019,7 +1015,7 @@ int GJKCollisionSolver::solvePolygonPolygon(Contact* contact)
     body1->setAngularVelocity(body1->angularVelocity() + j.norm() * r1n / body1->inertia());
 
     /*
-    double vrel1 = contact->normal.innerProduct(
+    double vrel1 = contact->normal.dot(
                     body1->velocityWorld(contact->points[pointNum]) -
                     body0->velocityWorld(contact->points[pointNum]));
     STEPCORE_ASSERT_NOABORT(vrel1 >= 0);
@@ -1048,7 +1044,7 @@ int GJKCollisionSolver::solvePolygonDisk(Contact* contact)
     
     Vector2d r0 = contact->points[0] - body0->position();
     double r0n = r0[0]*contact->normal[1] - r0[1]*contact->normal[0];
-    double term0 = contact->normal.innerProduct(
+    double term0 = contact->normal.dot(
                 Vector2d( -r0n*r0[1], r0n*r0[0] )) / body0->inertia();
 
     double term2 = 1/body0->mass() + 1/body1->mass();
@@ -1067,7 +1063,7 @@ int GJKCollisionSolver::solvePolygonDisk(Contact* contact)
     body0->setAngularVelocity(body0->angularVelocity() - j.norm() * r0n / body0->inertia());
 
     /*
-    double vrel1 = contact->normal.innerProduct(
+    double vrel1 = contact->normal.dot(
                     body1->velocity() -
                     body0->velocityWorld(contact->points[0]));
     STEPCORE_ASSERT_NOABORT(vrel1 >= 0);
@@ -1096,7 +1092,7 @@ int GJKCollisionSolver::solvePolygonParticle(Contact* contact)
     
     Vector2d r0 = contact->points[0] - body0->position();
     double r0n = r0[0]*contact->normal[1] - r0[1]*contact->normal[0];
-    double term0 = contact->normal.innerProduct(
+    double term0 = contact->normal.dot(
                 Vector2d( -r0n*r0[1], r0n*r0[0] )) / body0->inertia();
 
     double term2 = 1/body0->mass() + 1/body1->mass();
@@ -1115,7 +1111,7 @@ int GJKCollisionSolver::solvePolygonParticle(Contact* contact)
     body0->setAngularVelocity(body0->angularVelocity() - j.norm() * r0n / body0->inertia());
 
     /*
-    double vrel1 = contact->normal.innerProduct(
+    double vrel1 = contact->normal.dot(
                     body1->velocity() -
                     body0->velocityWorld(contact->points[0]));
     STEPCORE_ASSERT_NOABORT(vrel1 >= 0);

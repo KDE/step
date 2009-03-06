@@ -691,9 +691,9 @@ int World::doCalcFn()
     _stopOnCollision = false;
     _stopOnIntersection = false;
     checkVariablesCount();
-    double* variances = _errorsCalculation ? _variances.data() : NULL;
-    gatherVariables(_variables.data(), variances);
-    return _solver->doCalcFn(&_time, _variables.data(), variances, NULL, variances);
+    gatherVariables(_variables.data(), _errorsCalculation ? _variances.data() : NULL);
+    return _solver->doCalcFn(&_time, &_variables, _errorsCalculation ? &_variances : NULL,
+                             NULL, _errorsCalculation ? &_variances : NULL);
 }
 
 int World::doEvolve(double delta)
@@ -722,8 +722,8 @@ int World::doEvolve(double delta)
         _stopOnCollision = true;
         _stopOnIntersection = true;
         
-        ret = _solver->doEvolve(&time, targetTime, _variables.data(),
-                            _errorsCalculation ? _variances.data() : NULL);
+        ret = _solver->doEvolve(&time, targetTime, &_variables,
+                            _errorsCalculation ? &_variances : NULL);
         
         _time = time;
 
@@ -747,8 +747,8 @@ int World::doEvolve(double delta)
             do {
                 double endTime = collisionEndTime - time > stepSize*1.01 ? time+stepSize : collisionEndTime;
 
-                ret = _solver->doEvolve(&time, endTime, _variables.data(),
-                            _errorsCalculation ? _variances.data() : NULL);
+                ret = _solver->doEvolve(&time, endTime, &_variables,
+                            _errorsCalculation ? &_variances : NULL);
                 
                 _time = time;
 
@@ -843,7 +843,6 @@ inline int World::solverFunction(double t, const double* y,
           
           if (contactsCount!=_constraintsInfo.contactsCount)
           {
-            std::cout << _constraintsInfo.contactsCount << " => " << contactsCount << "\n";
             _constraintsInfo.setDimension(_constraintsInfo.variablesCount,
                                           _constraintsInfo.constraintsCount,
                                           contactsCount);
@@ -865,21 +864,22 @@ inline int World::solverFunction(double t, const double* y,
       // 3. Collisions (TODO: variances for collisions)
       if(_collisionSolver) {
           _collisionSolver->getContactsInfo(_constraintsInfo, false);
-                      
           if(state == Contact::Intersected) {
               if(_stopOnIntersection) return Solver::IntersectionDetected;
-          } else if(state == Contact::Colliding) {
-              if(_stopOnCollision) return Solver::CollisionDetected;
-              // XXX: We are not stopping on colliding contact
-              // and resolving them only at the end of timestep
-              // XXX: is it right solution ? Shouldn't we try to find
-              // contact point more exactly for example using binary search ?
-              //_collisionTime = t;
-              //_collisionTime = t;
-              //if(t < _collisionExpectedTime)
-              //    return DantzigLCPCollisionSolver::CollisionDetected;
-          } else if(state >= CollisionSolver::InternalError) {
-              return state;
+          } else {
+              if(state == Contact::Colliding) {
+                  if(_stopOnCollision) return Solver::CollisionDetected;
+                  // XXX: We are not stopping on colliding contact
+                  // and resolving them only at the end of timestep
+                  // XXX: is it right solution ? Shouldn't we try to find
+                  // contact point more exactly for example using binary search ?
+                  //_collisionTime = t;
+                  //_collisionTime = t;
+                  //if(t < _collisionExpectedTime)
+                  //    return DantzigLCPCollisionSolver::CollisionDetected;
+              } else if(state >= CollisionSolver::InternalError) {
+                  return state;
+              }
           }
       }
       // end sparse matrix assembly

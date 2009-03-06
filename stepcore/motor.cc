@@ -126,7 +126,7 @@ void CircularMotor::setBody(Object* body)
 
 Vector2d CircularMotor::localPosition() const
 {
-    if(_r) return Vector2d(0);
+    if(_r) return Vector2d::Zero();
     else return _localPosition;
 }
 

@@ -39,7 +39,7 @@ class SoftBodyParticle: public Particle
 
 public:
     /** Constructs a SoftBadyParticle */
-    explicit SoftBodyParticle(Vector2d position = Vector2d(0), Vector2d velocity = Vector2d(0), double mass = 1)
+    explicit SoftBodyParticle(Vector2d position = Vector2d::Zero(), Vector2d velocity = Vector2d::Zero(), double mass = 1)
         : Particle(position, velocity, mass) {}
 };
 

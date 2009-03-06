@@ -65,9 +65,9 @@ public:
     void setToleranceAbs(double toleranceAbs) { fini(); _toleranceAbs = toleranceAbs; init(); }
     void setToleranceRel(double toleranceRel) { fini(); _toleranceRel = toleranceRel; init(); }
 
-    int doCalcFn(double* t, const double* y, const double* yvar,
-                                double* f = 0, double* fvar = 0);
-    int doEvolve(double* t, double t1, double* y, double* yvar);
+    int doCalcFn(double* t, const VectorXd* y, const VectorXd* yvar,
+                            VectorXd* f = 0, VectorXd* fvar = 0);
+    int doEvolve(double* t, double t1, VectorXd* y, VectorXd* yvar);
 
 protected:
     static int gslFunction(double t, const double* y, double* f, void* params);
@@ -78,11 +78,11 @@ protected:
 
     //gsl_odeiv_control*  _gslControl;
     //gsl_odeiv_evolve*   _gslEvolve;
-    double* _yerr;
-    double* _ytemp;
-    double* _ydiff;
-    double* _dydt_in;
-    double* _dydt_out;
+    VectorXd _yerr;
+    VectorXd _ytemp;
+    VectorXd _ydiff;
+    VectorXd _dydt_in;
+    VectorXd _dydt_out;
 
     const gsl_odeiv_step_type* _gslStepType;
     gsl_odeiv_system   _gslSystem;

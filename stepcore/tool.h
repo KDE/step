@@ -91,8 +91,10 @@ class Note: public ItemGroup, public Tool
     STEPCORE_OBJECT(Note)
 
 public:
+    EIGEN_MAKE_ALIGNED_OPERATOR_NEW
+    
     /** Constructs Note */
-    explicit Note(Vector2d position = Vector2d(0),
+    explicit Note(Vector2d position = Vector2d::Zero(),
             Vector2d size = Vector2d(250,100), QString text = QString());
 
     /** Get position of the note */
@@ -103,7 +105,7 @@ public:
     /** Get size of the note */
     const Vector2d& size() const { return _size; }
     /** Set size of the note */
-    void setSize(const Vector2d& size) { _size = size.cAbs(); }
+    void setSize(const Vector2d& size) { _size = size.cwise().abs(); }
 
     /** Get note text */
     const QString& text() const { return _text; }
@@ -127,8 +129,10 @@ class Graph: public Item, public Tool
     STEPCORE_OBJECT(Graph)
 
 public:
+    EIGEN_MAKE_ALIGNED_OPERATOR_NEW
+    
     /** Constructs Graph */
-    explicit Graph(Vector2d position = Vector2d(0), Vector2d size = Vector2d(400,300));
+    explicit Graph(Vector2d position = Vector2d::Zero(), Vector2d size = Vector2d(400,300));
 
     /** Get position of the graph */
     const Vector2d& position() const { return _position; }
@@ -138,7 +142,7 @@ public:
     /** Get size of the graph */
     const Vector2d& size() const { return _size; }
     /** Set size of the graph */
-    void setSize(const Vector2d& size) { _size = size.cAbs(); }
+    void setSize(const Vector2d& size) { _size = size.cwise().abs(); }
 
     /** Get pointer to the objects for X axis */
     Object* objectX() const { return _objectX; }
@@ -280,8 +284,10 @@ class Meter: public Item, public Tool
     STEPCORE_OBJECT(Meter)
 
 public:
+    EIGEN_MAKE_ALIGNED_OPERATOR_NEW
+    
     /** Constructs Meter */
-    explicit Meter(Vector2d position = Vector2d(0), Vector2d size = Vector2d(70,24));
+    explicit Meter(Vector2d position = Vector2d::Zero(), Vector2d size = Vector2d(70,24));
 
     /** Get position of the meter */
     const Vector2d& position() const { return _position; }
@@ -291,7 +297,7 @@ public:
     /** Get size of the meter */
     const Vector2d& size() const { return _size; }
     /** Set size of the meter */
-    void setSize(const Vector2d& size) { _size = size.cAbs(); }
+    void setSize(const Vector2d& size) { _size = size.cwise().abs(); }
 
     /** Get pointer to the observed object */
     Object* object() const { return _object; }
@@ -359,8 +365,10 @@ class Controller: public Item, public Tool
     STEPCORE_OBJECT(Controller)
 
 public:
+    EIGEN_MAKE_ALIGNED_OPERATOR_NEW
+    
     /** Constructs Controller */
-    explicit Controller(Vector2d position = Vector2d(0), Vector2d size = Vector2d(200,60));
+    explicit Controller(Vector2d position = Vector2d::Zero(), Vector2d size = Vector2d(200,60));
 
     /** Get position of the Controller */
     const Vector2d& position() const { return _position; }
@@ -370,7 +378,7 @@ public:
     /** Get size of the Controller */
     const Vector2d& size() const { return _size; }
     /** Set size of the Controller */
-    void setSize(const Vector2d& size) { _size = size.cAbs(); }
+    void setSize(const Vector2d& size) { _size = size.cwise().abs(); }
 
     /** Get pointer to the controlled object */
     Object* object() const { return _object; }
@@ -463,8 +471,10 @@ class Tracer: public Item, public Tool
     STEPCORE_OBJECT(Tracer)
 
 public:
+    EIGEN_MAKE_ALIGNED_OPERATOR_NEW
+    
     /** Constructs Spring */
-    explicit Tracer(Object* body = 0, const Vector2d& localPosition = Vector2d(0));
+    explicit Tracer(Object* body = 0, const Vector2d& localPosition = Vector2d::Zero());
 
     /** Get pointer to the first body */
     Object* body() const { return _body; }

@@ -70,32 +70,32 @@ Particle* ParticleErrors::particle() const
 Vector2d ParticleErrors::accelerationVariance() const
 {
     return _forceVariance/square(particle()->mass()) +
-        _massVariance*(particle()->force()/square(particle()->mass())).cSquare();
+        _massVariance*(particle()->force()/square(particle()->mass())).cwise().square();
 }
 
 Vector2d ParticleErrors::momentumVariance() const
 {
     return _velocityVariance * square(particle()->mass()) +
-           particle()->velocity().cSquare() * _massVariance;
+           particle()->velocity().cwise().square() * _massVariance;
 }
 
 void ParticleErrors::setMomentumVariance(const Vector2d& momentumVariance)
 {
-    _velocityVariance = (momentumVariance - particle()->velocity().cSquare() * _massVariance) /
+    _velocityVariance = (momentumVariance - particle()->velocity().cwise().square() * _massVariance) /
                         square(particle()->mass());
 }
 
 double ParticleErrors::kineticEnergyVariance() const
 {
-    return _velocityVariance.innerProduct(particle()->velocity().cSquare()) * square(particle()->mass()) +
-           square(particle()->velocity().norm2()/2) * _massVariance;
+    return _velocityVariance.dot(particle()->velocity().cwise().square()) * square(particle()->mass()) +
+           square(particle()->velocity().squaredNorm()/2) * _massVariance;
 }
 
 void ParticleErrors::setKineticEnergyVariance(double kineticEnergyVariance)
 {
-    _velocityVariance = (kineticEnergyVariance - square(particle()->velocity().norm2()/2) * _massVariance) /
+    _velocityVariance = (kineticEnergyVariance - square(particle()->velocity().squaredNorm()/2) * _massVariance) /
                         square(particle()->mass()) / 2 *
-                        Vector2d(1,1).cDivide(particle()->velocity().cSquare());
+                        (particle()->velocity().cwise().square().cwise().inverse());
     if(!std::isfinite(_velocityVariance[0]) || _velocityVariance[0] < 0 ||
        !std::isfinite(_velocityVariance[1]) || _velocityVariance[1]) {
         _velocityVariance.setZero();
@@ -108,32 +108,32 @@ ChargedParticle* ChargedParticleErrors::chargedParticle() const
 }
 
 Particle::Particle(Vector2d position, Vector2d velocity, double mass)
-    : _position(position), _velocity(velocity), _force(0), _mass(mass)
+    : _position(position), _velocity(velocity), _force(Vector2d::Zero()), _mass(mass)
 {
 }
 
 void Particle::getVariables(double* position, double* velocity,
                      double* positionVariance, double* velocityVariance)
 {
-    std::memcpy(position, _position.array(), 2*sizeof(*position));
-    std::memcpy(velocity, _velocity.array(), 2*sizeof(*velocity));
+    Vector2d::Map(position) = _position;
+    Vector2d::Map(velocity) = _velocity;
     if(positionVariance) {
         ParticleErrors* pe = particleErrors();
-        std::memcpy(positionVariance, pe->_positionVariance.array(), 2*sizeof(*positionVariance));
-        std::memcpy(velocityVariance, pe->_velocityVariance.array(), 2*sizeof(*velocityVariance));
+        Vector2d::Map(positionVariance) = pe->_positionVariance;
+        Vector2d::Map(velocityVariance) = pe->_velocityVariance;
     }
 }
 
 void Particle::setVariables(const double* position, const double* velocity,
                const double* positionVariance, const double* velocityVariance)
 {
-    std::memcpy(_position.array(), position, 2*sizeof(*position));
-    std::memcpy(_velocity.array(), velocity, 2*sizeof(*velocity));
+    _position = Vector2d::Map(position);
+    _velocity = Vector2d::Map(velocity);
     _force.setZero();
     if(positionVariance) {
         ParticleErrors* pe = particleErrors();
-        std::memcpy(pe->_positionVariance.array(), positionVariance, 2*sizeof(*positionVariance));
-        std::memcpy(pe->_velocityVariance.array(), velocityVariance, 2*sizeof(*positionVariance));
+        pe->_positionVariance = Vector2d::Map(positionVariance);
+        pe->_velocityVariance = Vector2d::Map(velocityVariance);
         pe->_forceVariance.setZero();
     }
 }
@@ -183,7 +183,7 @@ void Particle::getInverseMass(DiagonalMatrix* inverseMass,
 void Particle::setKineticEnergy(double kineticEnergy)
 {
     double v = _velocity.norm();
-    _velocity = sqrt(kineticEnergy*2/_mass) * (v>0 ? _velocity/v : Vector2d(1,0));
+    _velocity = sqrt(kineticEnergy*2/_mass) * (v>0 ? (_velocity/v).eval() : Vector2d(1,0));
 }
 
 } // namespace StepCore

@@ -48,7 +48,7 @@ public:
     /** Constructs SpringErrors */
     SpringErrors(Item* owner = NULL)
         : ObjectErrors(owner), _restLengthVariance(0), _stiffnessVariance(0),
-          _dampingVariance(0), _localPosition1Variance(0), _localPosition2Variance(0) {}
+          _dampingVariance(0), _localPosition1Variance(0,0), _localPosition2Variance(0,0) {}
 
     /** Get owner as String */
     Spring* spring() const;

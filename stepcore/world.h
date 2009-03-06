@@ -220,8 +220,8 @@ struct ConstraintsInfo
     int                contactsCount;       ///< Number of additional constrains 
                                             ///< equations due to contacts
 
-    DenseVector        value;               ///< Current constarints values (amount of brokenness)
-    DenseVector        derivative;          ///< Time-derivative of constraints values
+    VectorXd           value;               ///< Current constarints values (amount of brokenness)
+    VectorXd           derivative;          ///< Time-derivative of constraints values
     DynSparseRowMatrix jacobian;            ///< Position-derivative of constraints values
     DynSparseRowMatrix jacobianDerivative;  ///< Time-derivative of constraintsJacobian
     DiagonalMatrix     inverseMass;         ///< Inverse mass matrix of the system
@@ -230,10 +230,10 @@ struct ConstraintsInfo
     MappedVector       velocity;            ///< Velocities of the bodies
     MappedVector       acceleration;        ///< Accelerations of the bodies before applying constraints
 
-    DenseVector        forceMin;            ///< Constraints force lower limit
-    DenseVector        forceMax;            ///< Constraints force upper limit
+    VectorXd           forceMin;            ///< Constraints force lower limit
+    VectorXd           forceMax;            ///< Constraints force upper limit
 
-    DenseVector        force;               ///< Resulting constraints force
+    VectorXd           force;               ///< Resulting constraints force
 
     bool               collisionFlag;       ///< True if there is a collision to be resolved
 
@@ -535,9 +535,9 @@ private:
     ConstraintSolver* _constraintSolver;
 
     int             _variablesCount;  ///< \internal Count of positions (not including velocities)
-    DenseVector    _variables;       ///< \internal Positions and velocities (size == _variablesCount*2)
-    DenseVector    _variances;       ///< \internal Variances of positions and velocities
-    DenseVector    _tempArray;       ///< \internal Temporary array used in various places
+    VectorXd    _variables;       ///< \internal Positions and velocities (size == _variablesCount*2)
+    VectorXd    _variances;       ///< \internal Variances of positions and velocities
+    VectorXd    _tempArray;       ///< \internal Temporary array used in various places
     ConstraintsInfo _constraintsInfo; ///< \internal Constraints information
 
     bool    _stopOnCollision;

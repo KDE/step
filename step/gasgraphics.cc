@@ -57,7 +57,7 @@ bool GasCreator::sceneEvent(QEvent* event)
         _worldModel->beginMacro(i18n("Create %1", _worldModel->newItemName(_className)));
         _item = _worldModel->newItem(_className); Q_ASSERT(_item != NULL);
         _worldModel->setProperty(_item, "measureRectCenter", vpos);
-        _worldModel->setProperty(_item, "measureRectSize", QVariant::fromValue(StepCore::Vector2d(0)));
+        _worldModel->setProperty(_item, "measureRectSize", QVariant::fromValue(StepCore::Vector2d::Zero().eval()));
         _worldModel->selectionModel()->setCurrentIndex(_worldModel->objectIndex(_item),
                                                     QItemSelectionModel::ClearAndSelect);
 
@@ -142,20 +142,20 @@ inline StepCore::Gas* GasVertexHandlerGraphicsItem::gas() const
 }
 
 StepCore::Vector2d GasVertexHandlerGraphicsItem::value() {
-    return gas()->measureRectSize().cMultiply(corners[_vertexNum]);
+    return gas()->measureRectSize().cwise()*(corners[_vertexNum]);
 }
 
 void GasVertexHandlerGraphicsItem::setValue(const StepCore::Vector2d& value)
 {
     StepCore::Vector2d oCorner = gas()->measureRectCenter() -
-                    gas()->measureRectSize().cMultiply(corners[_vertexNum]);
+                    gas()->measureRectSize().cwise()*(corners[_vertexNum]);
 
     StepCore::Vector2d delta = (gas()->measureRectCenter() + value - oCorner)/2.0;
     StepCore::Vector2d newPos = oCorner + delta;
     StepCore::Vector2d newSize = (newPos - oCorner)*2.0;
 
     double d = -0.1/currentViewScale();
-    StepCore::Vector2d sign = delta.cMultiply(corners[_vertexNum]);
+    StepCore::Vector2d sign = delta.cwise()*(corners[_vertexNum]);
     if(sign[0] < d || sign[1] < d) {
         if(sign[0] < d) {
             newPos[0] = oCorner[0]; newSize[0] = 0;
@@ -274,7 +274,7 @@ OnHoverHandlerGraphicsItem* GasGraphicsItem::createOnHoverHandler(const QPointF&
 
     int num = -1; double minDist2 = HANDLER_SNAP_SIZE*HANDLER_SNAP_SIZE/s/s;
     for(unsigned int i=0; i<4; ++i) {
-        double dist2 = (l - size.cMultiply(OnHoverHandlerGraphicsItem::corners[i])).norm2();
+        double dist2 = (l - size.cwise()*(OnHoverHandlerGraphicsItem::corners[i])).squaredNorm();
         if(dist2 < minDist2) { num = i; minDist2 = dist2; }
     }
 

@@ -222,10 +222,10 @@ QColor WorldGraphicsItem::highlightColor(const QColor& color)
 }
 
 void WorldGraphicsItem::drawArrow(QPainter* painter, const StepCore::Vector2d& r,
-                                                    const StepCore::Vector2d& v)
+                                                     const StepCore::Vector2d& v)
 {
     double s = currentViewScale();
-    if(v.norm2()*s*s > ARROW_STROKE*ARROW_STROKE) { // do not draw too small vectors
+    if(v.squaredNorm()*s*s > ARROW_STROKE*ARROW_STROKE) { // do not draw too small vectors
         StepCore::Vector2d vv = r+v;
         painter->drawLine(QLineF(r[0], r[1], vv[0], vv[1]));
 
@@ -273,12 +273,12 @@ void WorldGraphicsItem::drawCircularArrow(QPainter* painter, const StepCore::Vec
 
 void WorldGraphicsItem::drawArrow(QPainter* painter, const StepCore::Vector2d& v)
 {
-    drawArrow(painter, StepCore::Vector2d(0), v);
+    drawArrow(painter, StepCore::Vector2d::Zero(), v);
 }
 
 void WorldGraphicsItem::drawCircularArrow(QPainter* painter, double angle, double radius)
 {
-    drawCircularArrow(painter, StepCore::Vector2d(0), angle, radius);
+    drawCircularArrow(painter, StepCore::Vector2d::Zero(), angle, radius);
 }
 
 void WorldGraphicsItem::mouseSetPos(const QPointF& pos, const QPointF&, MovingState)
@@ -578,7 +578,7 @@ StepCore::Vector2d ArrowHandlerGraphicsItem::value()
             ret += _positionProperty->readVariant(_item).value<StepCore::Vector2d>();
         return ret;
     } else {
-        return StepCore::Vector2d(0);
+        return StepCore::Vector2d::Zero();
     }
 }
 

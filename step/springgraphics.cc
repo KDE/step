@@ -216,7 +216,7 @@ void SpringGraphicsItem::mouseSetPos(const QPointF& /*pos*/, const QPointF& diff
         }
     } else {
         _worldModel->setProperty(_item, "localPosition1", 
-            QVariant::fromValue( spring()->position1() + pointToVector(diff) ));
+            QVariant::fromValue( (spring()->position1() + pointToVector(diff)).eval() ));
     }
 
     if(spring()->body2()) {
@@ -231,6 +231,6 @@ void SpringGraphicsItem::mouseSetPos(const QPointF& /*pos*/, const QPointF& diff
         }
     } else {
         _worldModel->setProperty(_item, "localPosition2",
-            QVariant::fromValue( spring()->position2() + pointToVector(diff) ));
+            QVariant::fromValue( (spring()->position2() + pointToVector(diff)).eval() ));
     }
 }

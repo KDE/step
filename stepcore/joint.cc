@@ -143,7 +143,7 @@ void Pin::setBody(Object* body)
 int Pin::constraintsCount()
 {
     if(_p) {
-        if(_localPosition.norm2() != 0) return 1; // XXX: add some epsilon here
+        if(_localPosition.squaredNorm() != 0) return 1; // XXX: add some epsilon here
         else return 2;
     } else if(_r) return 2;
     else return 0;
@@ -153,11 +153,11 @@ void Pin::getConstraintsInfo(ConstraintsInfo* info, int offset)
 {
     if(_p) {
         Vector2d r = _p->position() - _position;
-        double lnorm2 = _localPosition.norm2();
+        double lnorm2 = _localPosition.squaredNorm();
 
         if(lnorm2 != 0) { // XXX: add some epsilon here
-            info->value[offset] = (r.norm2() - lnorm2)*0.5;
-            info->derivative[offset] = _p->velocity().innerProduct(r); 
+            info->value[offset] = (r.squaredNorm() - lnorm2)*0.5;
+            info->derivative[offset] = _p->velocity().dot(r); 
 
             info->jacobian.coeffRef(offset, _p->variablesOffset()+Particle::PositionOffset) = r[0];
             info->jacobian.coeffRef(offset, _p->variablesOffset()+Particle::PositionOffset+1) = r[1];
@@ -263,14 +263,14 @@ Vector2d Stick::velocity1() const
 {
     if(_p1) return _p1->velocity();
     else if(_r1) return _r1->velocityLocal(_localPosition1);
-    else return Vector2d(0);
+    else return Vector2d::Zero();
 }
 
 Vector2d Stick::velocity2() const
 {
     if(_p2) return _p2->velocity();
     else if(_r2) return _r2->velocityLocal(_localPosition2);
-    else return Vector2d(0);
+    else return Vector2d::Zero();
 }
 
 int Stick::constraintsCount()
@@ -290,8 +290,8 @@ void Stick::getConstraintsInfo(ConstraintsInfo* info, int offset)
 
     //qDebug("_restLength=%f", _restLength);
     if(_restLength != 0) {
-        info->value[offset] = (p.norm2() - _restLength*_restLength)*0.5;
-        info->derivative[offset] = p.innerProduct(v); 
+        info->value[offset] = (p.squaredNorm() - _restLength*_restLength)*0.5;
+        info->derivative[offset] = p.dot(v); 
 
         if(p[0] == 0 && p[1] == 0) p[0] = 0.1; //XXX: add epsilon
 
@@ -312,7 +312,7 @@ void Stick::getConstraintsInfo(ConstraintsInfo* info, int offset)
             info->jacobianDerivative.coeffRef(offset, _r1->variablesOffset() + RigidBody::PositionOffset) =(   -v[0]);
             info->jacobianDerivative.coeffRef(offset, _r1->variablesOffset() + RigidBody::PositionOffset+1) =( -v[1]);
             info->jacobianDerivative.coeffRef(offset, _r1->variablesOffset() + RigidBody::AngleOffset) =(
-                                + v[0]*r1[1] - v[1]*r1[0] + _r1->angularVelocity()*p.innerProduct(r1));
+                                + v[0]*r1[1] - v[1]*r1[0] + _r1->angularVelocity()*p.dot(r1));
         }
 
         if(_p2) {
@@ -332,7 +332,7 @@ void Stick::getConstraintsInfo(ConstraintsInfo* info, int offset)
             info->jacobianDerivative.coeffRef(offset, _r2->variablesOffset() + RigidBody::PositionOffset) =(   v[0]);
             info->jacobianDerivative.coeffRef(offset, _r2->variablesOffset() + RigidBody::PositionOffset+1) =( v[1]);
             info->jacobianDerivative.coeffRef(offset, _r2->variablesOffset() + RigidBody::AngleOffset) =(
-                                - v[0]*r2[1] + v[1]*r2[0] - _r2->angularVelocity()*p.innerProduct(r2));
+                                - v[0]*r2[1] + v[1]*r2[0] - _r2->angularVelocity()*p.dot(r2));
         }
 
     } else {

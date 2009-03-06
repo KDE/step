@@ -43,9 +43,11 @@ class LinearMotor: public Item, public Force
     STEPCORE_OBJECT(LinearMotor)
 
 public:
+    EIGEN_MAKE_ALIGNED_OPERATOR_NEW
+    
     /** Constructs LinearMotor */
-    explicit LinearMotor(Object* body = 0, const Vector2d& localPosition = Vector2d(0),
-                        Vector2d forceValue = Vector2d(0));
+    explicit LinearMotor(Object* body = 0, const Vector2d& localPosition = Vector2d::Zero(),
+                        Vector2d forceValue = Vector2d::Zero());
 
     void calcForce(bool calcVariances);
 
@@ -90,7 +92,7 @@ class CircularMotor: public Item, public Force
 
 public:
     /** Constructs CircularMotor */
-    explicit CircularMotor(Object* body = 0, const Vector2d& localPosition = Vector2d(0),
+    explicit CircularMotor(Object* body = 0, const Vector2d& localPosition = Vector2d::Zero(),
                                             double torqueValue = 0);
 
     void calcForce(bool calcVariances);

@@ -42,8 +42,8 @@ class ParticleErrors: public ObjectErrors
 public:
     /** Constructs ParticleErrors */
     ParticleErrors(Item* owner = 0)
-        : ObjectErrors(owner), _positionVariance(0), _velocityVariance(0),
-          _forceVariance(0), _massVariance(0) {}
+        : ObjectErrors(owner), _positionVariance(0,0), _velocityVariance(0,0),
+          _forceVariance(0,0), _massVariance(0) {}
 
     /** Get owner as Particle */
     Particle* particle() const;
@@ -105,13 +105,15 @@ class Particle: public Item, public Body
     STEPCORE_OBJECT(Particle)
 
 public:
+    EIGEN_MAKE_ALIGNED_OPERATOR_NEW
+    
     enum {
         PositionOffset = 0 ///< Offset of particle position in variables array
     };
 
     /** Constructs a particle */
-    explicit Particle(Vector2d position = Vector2d(0),
-            Vector2d velocity = Vector2d(0), double mass = 1);
+    explicit Particle(Vector2d position = Vector2d::Zero(),
+            Vector2d velocity = Vector2d::Zero(), double mass = 1);
 
     /** Get position of the particle */
     const Vector2d& position() const { return _position; }
@@ -145,7 +147,7 @@ public:
     void setMomentum(const Vector2d& momentum) { _velocity = momentum / _mass; }
 
     /** Get kinetic energy of the particle */
-    double kineticEnergy() const { return _mass * _velocity.norm2()/2; }
+    double kineticEnergy() const { return _mass * _velocity.squaredNorm()/2; }
     /** Set kinetic energy of the particle (will modify only velocity) */
     void setKineticEnergy(double kineticEnergy);
 
@@ -209,8 +211,8 @@ class ChargedParticle: public Particle
 
 public:
     /** Constructs a charged particle */
-    explicit ChargedParticle(Vector2d position = Vector2d(0),
-            Vector2d velocity = Vector2d(0), double mass = 1, double charge = 0)
+    explicit ChargedParticle(Vector2d position = Vector2d::Zero(),
+            Vector2d velocity = Vector2d::Zero(), double mass = 1, double charge = 0)
                 : Particle(position, velocity, mass), _charge(charge) {}
 
     /** Charge of the particle */

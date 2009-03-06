@@ -41,8 +41,8 @@ int CGConstraintSolver::solve(ConstraintsInfo* info)
     
     // XXX: make this matrixes permanent to avoid memory allocations
     SparseRowMatrix a(nc, nc);
-    DenseVector b(nc);
-    DenseVector x(nc);
+    VectorXd b(nc);
+    VectorXd x(nc);
     x.setZero();
 
     a = info->jacobian * (info->inverseMass * info->jacobian.transpose());
@@ -80,7 +80,7 @@ int CGConstraintSolver::solve(ConstraintsInfo* info)
     }
 
     DynSparseRowMatrix c(fminCount + fmaxCount, nc);
-    DenseVector f(fminCount + fmaxCount);
+    VectorXd f(fminCount + fmaxCount);
 
     int fminIndex = 0;
     int fmaxIndex = fminCount;

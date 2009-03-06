@@ -65,7 +65,7 @@ ItemList SoftBody::createSoftBodyItems(const Vector2d& position, const Vector2d&
         return items;
     }
 
-    Vector2d vel = Vector2d(0); //to be changed
+    Vector2d vel = Vector2d::Zero(); //to be changed
     Vector2d pos;
 
     double mass = bodyMass/(split[0]*split[1]);
@@ -170,7 +170,7 @@ double SoftBody::mass() const
 
 Vector2d SoftBody::position() const
 {
-    Vector2d cmPosition = Vector2d(0);
+    Vector2d cmPosition = Vector2d::Zero();
 
     const ItemList::const_iterator end = items().end();
     for(ItemList::const_iterator i1 = items().begin(); i1 != end; ++i1) {
@@ -196,7 +196,7 @@ void SoftBody::setPosition(const Vector2d position)
 
 Vector2d SoftBody::velocity() const
 {
-    Vector2d cmVelocity = Vector2d(0);
+    Vector2d cmVelocity = Vector2d::Zero();
 
     const ItemList::const_iterator end = items().end();
     for(ItemList::const_iterator i1 = items().begin(); i1 != end; ++i1) {
@@ -230,7 +230,7 @@ double SoftBody::inertia() const
     for(ItemList::const_iterator i1 = items().begin(); i1 != end; ++i1) {
         if(!(*i1)->metaObject()->inherits<SoftBodyParticle>()) continue;
         SoftBodyParticle* p1 = static_cast<SoftBodyParticle*>(*i1);
-        inertia += p1->mass() * (p1->position() - position).norm2();
+        inertia += p1->mass() * (p1->position() - position).squaredNorm();
     }
 
     return inertia;
@@ -269,8 +269,8 @@ void SoftBody::setAngularVelocity(double angularVelocity)
         SoftBodyParticle* p1 = static_cast<SoftBodyParticle*>(*i1);
         Vector2d r = p1->position() - pos;
         Vector2d n(-r[1], r[0]);
-        double vn = (p1->velocity() - vel).innerProduct(n);
-        p1->setVelocity(p1->velocity() + (angularVelocity - vn/r.norm2())*n);
+        double vn = (p1->velocity() - vel).dot(n);
+        p1->setVelocity(p1->velocity() + (angularVelocity - vn/r.squaredNorm())*n);
     }
 }
 
@@ -281,7 +281,7 @@ void SoftBody::setAngularMomentum(double angularMomentum)
 
 Vector2d SoftBody::force() const
 {
-    Vector2d force = Vector2d(0);
+    Vector2d force = Vector2d::Zero();
 
     const ItemList::const_iterator end = items().end();
     for(ItemList::const_iterator i1 = items().begin(); i1 != end; ++i1) {

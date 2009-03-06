@@ -253,7 +253,7 @@ OnHoverHandlerGraphicsItem* DiskGraphicsItem::createOnHoverHandler(const QPointF
     int num = -1; double minDist2 = HANDLER_SNAP_SIZE*HANDLER_SNAP_SIZE
                                         /s/s/disk()->radius()/disk()->radius();
     for(unsigned int i=0; i<4; ++i) {
-        double dist2 = (l - DiskVertexHandlerGraphicsItem::scorners[i]).norm2();
+        double dist2 = (l - DiskVertexHandlerGraphicsItem::scorners[i]).squaredNorm();
         if(dist2 < minDist2) { num = i; minDist2 = dist2; }
     }
 
@@ -286,7 +286,7 @@ bool BoxCreator::sceneEvent(QEvent* event)
         _worldModel->beginMacro(i18n("Create %1", _worldModel->newItemName(_className)));
         _item = _worldModel->newItem(_className); Q_ASSERT(_item != NULL);
         _worldModel->setProperty(_item, "position", vpos);
-        _worldModel->setProperty(_item, "size", QVariant::fromValue(StepCore::Vector2d(0)));
+        _worldModel->setProperty(_item, "size", QVariant::fromValue(StepCore::Vector2d::Zero().eval()));
         _worldModel->selectionModel()->setCurrentIndex(_worldModel->objectIndex(_item),
                                                     QItemSelectionModel::ClearAndSelect);
         _topLeft = WorldGraphicsItem::pointToVector(pos);
@@ -370,7 +370,7 @@ void PolygonCreator::fixCenterOfMass()
     }
 
     for(i=0; i<v.size(); ++i) v[i] -= center;
-    _worldModel->setProperty(_item, "position", QVariant::fromValue(position + center));
+    _worldModel->setProperty(_item, "position", QVariant::fromValue((position + center).eval()));
     _worldModel->setProperty(_item, "vertexes", QVariant::fromValue(v));
 }
 
@@ -387,11 +387,11 @@ void PolygonCreator::fixInertia()
         if(v.size() > 2) {
             for(i=0; i+1<v.size(); ++i) {
                 area_i = (v[i][0]*v[i+1][1] - v[i][1]*v[i+1][0]) / 2;
-                inertia += (v[i].norm2() + v[i].innerProduct(v[i+1]) + v[i+1].norm2())*(area_i/6);
+                inertia += (v[i].squaredNorm() + v[i].dot(v[i+1]) + v[i+1].squaredNorm())*(area_i/6);
                 area += area_i;
             }
             area_i = (v[i][0]*v[0][1] - v[i][1]*v[0][0]) / 2;
-            inertia += (v[i].norm2() + v[i].innerProduct(v[0]) + v[0].norm2())*(area_i/6);
+            inertia += (v[i].squaredNorm() + v[i].dot(v[0]) + v[0].squaredNorm())*(area_i/6);
             area += area_i;
         }
     }
@@ -400,7 +400,7 @@ void PolygonCreator::fixInertia()
         inertia = 0;
         for(i=0; i+1<v.size(); ++i) {
             area_i = (v[i+1] - v[i]).norm();
-            inertia += area_i*area_i*area_i / 12 + area_i * (v[i]+v[i+1]).norm2() / 4;
+            inertia += area_i*area_i*area_i / 12 + area_i * (v[i]+v[i+1]).squaredNorm() / 4;
             area += area_i;
         }
 
@@ -526,21 +526,21 @@ inline StepCore::Box* BoxVertexHandlerGraphicsItem::box() const
 }
 
 StepCore::Vector2d BoxVertexHandlerGraphicsItem::value() {
-    return box()->vectorLocalToWorld(box()->size().cMultiply(corners[_vertexNum]));
+    return box()->vectorLocalToWorld(box()->size().cwise()*(corners[_vertexNum]));
     //return box()->vectorLocalToWorld(box()->vertexes()[_vertexNum]);
 }
 
 void BoxVertexHandlerGraphicsItem::setValue(const StepCore::Vector2d& value)
 {
     StepCore::Vector2d oCorner = box()->position() -
-                        box()->size().cMultiply(corners[_vertexNum]);
+                        box()->size().cwise()*(corners[_vertexNum]);
 
     StepCore::Vector2d delta = (box()->position() + value - oCorner)/2.0;
     StepCore::Vector2d newPos = oCorner + delta;
     StepCore::Vector2d newSize = (newPos - oCorner)*2.0;
 
     double d = -0.1/currentViewScale();
-    StepCore::Vector2d sign = delta.cMultiply(corners[_vertexNum]);
+    StepCore::Vector2d sign = delta.cwise()*(corners[_vertexNum]);
     if(sign[0] < d || sign[1] < d) {
         if(sign[0] < d) {
             newPos[0] = oCorner[0]; newSize[0] = 0;
@@ -582,7 +582,7 @@ OnHoverHandlerGraphicsItem* BoxGraphicsItem::createOnHoverHandler(const QPointF&
     
     int num = -1; double minDist2 = HANDLER_SNAP_SIZE*HANDLER_SNAP_SIZE/s/s;
     for(unsigned int i=0; i<4; ++i) {
-        double dist2 = (l - size.cMultiply(OnHoverHandlerGraphicsItem::corners[i])).norm2();
+        double dist2 = (l - size.cwise()*(OnHoverHandlerGraphicsItem::corners[i])).squaredNorm();
         if(dist2 < minDist2) { num = i; minDist2 = dist2; }
     }
 
@@ -591,7 +591,7 @@ OnHoverHandlerGraphicsItem* BoxGraphicsItem::createOnHoverHandler(const QPointF&
     double s = currentViewScale();
     int num = -1; double minDist2 = HANDLER_SNAP_SIZE*HANDLER_SNAP_SIZE/s/s;
     for(unsigned int i=0; i<basePolygon()->vertexes().size(); ++i) {
-        double dist2 = (basePolygon()->vertexes()[i] - l).norm2();
+        double dist2 = (basePolygon()->vertexes()[i] - l).squaredNorm();
         if(dist2 < minDist2) { num = i; minDist2 = dist2; }
     }
 #endif
@@ -628,7 +628,7 @@ OnHoverHandlerGraphicsItem* PolygonGraphicsItem::createOnHoverHandler(const QPoi
     double s = currentViewScale();
     int num = -1; double minDist2 = HANDLER_SNAP_SIZE*HANDLER_SNAP_SIZE/s/s;
     for(unsigned int i=0; i<polygon()->vertexes().size(); ++i) {
-        double dist2 = (polygon()->vertexes()[i] - l).norm2();
+        double dist2 = (polygon()->vertexes()[i] - l).squaredNorm();
         if(dist2 < minDist2) { num = i; minDist2 = dist2; }
     }
 

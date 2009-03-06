@@ -342,7 +342,7 @@ void StickGraphicsItem::mouseSetPos(const QPointF& /*pos*/, const QPointF& diff,
         }
     } else {
         _worldModel->setProperty(_item, "localPosition1",
-            QVariant::fromValue( stick()->position1() + pointToVector(diff) ));
+            QVariant::fromValue( (stick()->position1() + pointToVector(diff)).eval() ));
     }
 
     if(stick()->body2()) {
@@ -357,6 +357,6 @@ void StickGraphicsItem::mouseSetPos(const QPointF& /*pos*/, const QPointF& diff,
         }
     } else {
         _worldModel->setProperty(_item, "localPosition2",
-            QVariant::fromValue( stick()->position2() + pointToVector(diff) ));
+            QVariant::fromValue( (stick()->position2() + pointToVector(diff)).eval() ));
     }
 }

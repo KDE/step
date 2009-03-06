@@ -25,18 +25,17 @@
 
 #include "object.h"
 #include "vector.h"
-#include <vector>
+#include <Eigen/StdVector>
 #include <QByteArray>
 #include <Eigen/Sparse>
 
 namespace StepCore {
 
-typedef Eigen::VectorXd DenseVector;
 typedef Eigen::SparseMatrix<double> SparseColMatrix;
 typedef Eigen::SparseMatrix<double,Eigen::RowMajor> SparseRowMatrix;
 // a sparse matrix with efficient write facilities
 typedef Eigen::DynamicSparseMatrix<double,Eigen::RowMajor> DynSparseRowMatrix;
-typedef Eigen::Map<DenseVector> MappedVector;
+typedef Eigen::Map<VectorXd> MappedVector;
 typedef Eigen::DiagonalMatrix<double,Eigen::Dynamic> DiagonalMatrix;
 
 ///////////////// Color

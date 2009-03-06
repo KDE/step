@@ -74,11 +74,11 @@ STEPCORE_META_OBJECT(GslAdaptiveRK4IMPSolver, QT_TRANSLATE_NOOP("ObjectClass", "
 
 void GslGenericSolver::init()
 {
-    _yerr = new double[_dimension];
-    _ytemp = new double[_dimension];
-    _ydiff = new double[_dimension];
-    _dydt_in  = new double[_dimension];
-    _dydt_out = new double[_dimension];
+    _yerr.resize(_dimension);
+    _ytemp.resize(_dimension);
+    _ydiff.resize(_dimension);
+    _dydt_in.resize(_dimension);
+    _dydt_out.resize(_dimension);
 
     _gslStep = gsl_odeiv_step_alloc(_gslStepType, _dimension);
     STEPCORE_ASSERT_NOABORT(NULL != _gslStep);
@@ -104,11 +104,6 @@ void GslGenericSolver::fini()
     if(_gslStep != NULL) gsl_odeiv_step_free(_gslStep);
     if(_gslControl != NULL) gsl_odeiv_control_free(_gslControl);
     if(_gslEvolve != NULL) gsl_odeiv_evolve_free(_gslEvolve);
-    delete[] _dydt_out;
-    delete[] _dydt_in;
-    delete[] _ydiff;
-    delete[] _ytemp;
-    delete[] _yerr;
 }
 
 int GslGenericSolver::gslFunction(double t, const double* y, double* f, void* params)
@@ -117,17 +112,18 @@ int GslGenericSolver::gslFunction(double t, const double* y, double* f, void* pa
     return s->_function(t, y, 0, f, 0, s->_params);
 }
 
-int GslGenericSolver::doCalcFn(double* t, const double* y,
-            const double* yvar, double* f, double* fvar)
+int GslGenericSolver::doCalcFn(double* t, const VectorXd* y,
+            const VectorXd* yvar, VectorXd* f, VectorXd* fvar)
 {
     //int ret = GSL_ODEIV_FN_EVAL(&_gslSystem, *t, y, _ydiff);
-    int ret = _function(*t, y, yvar, f ? f : _ydiff, fvar, _params);
+    int ret = _function(*t, y->data(), yvar?yvar->data():0, f ? f->data() : _ydiff.data(),
+                        fvar?fvar->data():0, _params);
     //if(f != NULL) std::memcpy(f, _ydiff, _dimension*sizeof(*f));
     return ret;
     //_hasSavedState = true;
 }
 
-int GslGenericSolver::doEvolve(double* t, double t1, double* y, double* yvar)
+int GslGenericSolver::doEvolve(double* t, double t1, VectorXd* y, VectorXd* yvar)
 {
     STEPCORE_ASSERT_NOABORT(*t + _stepSize != *t);
     STEPCORE_ASSERT_NOABORT(*t != t1);
@@ -143,10 +139,10 @@ int GslGenericSolver::doEvolve(double* t, double t1, double* y, double* yvar)
     */
 
     int gsl_result;
-    std::memcpy(_ytemp, y, _dimension*sizeof(*_ytemp));
+    _ytemp = *y;
 
     if(!_adaptive) {
-        gsl_result = GSL_ODEIV_FN_EVAL(&_gslSystem, *t, y, _dydt_in);
+        gsl_result = GSL_ODEIV_FN_EVAL(&_gslSystem, *t, y->data(), _dydt_in.data());
         if(gsl_result != 0) return gsl_result;
     }
 
@@ -155,12 +151,13 @@ int GslGenericSolver::doEvolve(double* t, double t1, double* y, double* yvar)
         if(_adaptive) {
             gsl_odeiv_evolve_reset(_gslEvolve); // XXX
             gsl_result = gsl_odeiv_evolve_apply(_gslEvolve, _gslControl, _gslStep, &_gslSystem,
-                                            &tt, t1, &_stepSize, _ytemp);
-            std::memcpy(_yerr, _gslEvolve->yerr, _dimension*sizeof(*_yerr));
+                                            &tt, t1, &_stepSize, _ytemp.data());
+            _yerr = VectorXd::Map(_gslEvolve->yerr, _dimension);
         } else {
             STEPCORE_ASSERT_NOABORT(t1-tt > _stepSize/100);
             gsl_result = gsl_odeiv_step_apply(_gslStep, tt, (_stepSize < t1-tt ? _stepSize : t1-tt),
-                                                _ytemp, _yerr, _dydt_in, _dydt_out, &_gslSystem);
+                                              _ytemp.data(), _yerr.data(), _dydt_in.data(),
+                                              _dydt_out.data(), &_gslSystem);
             tt = _stepSize < t1-tt ? tt + _stepSize : t1;
         }
         if(gsl_result != 0) return gsl_result;
@@ -177,8 +174,8 @@ int GslGenericSolver::doEvolve(double* t, double t1, double* y, double* yvar)
         if(_localErrorRatio > 1.1) return ToleranceError;
 
         *t = tt;
-        std::memcpy(y, _ytemp, _dimension*sizeof(*y));
-        if(!_adaptive) std::memcpy(_dydt_in, _dydt_out, _dimension*sizeof(*_dydt_in));
+        *y = _ytemp;
+        if(!_adaptive) _dydt_in = _dydt_out;
     }
 
     return OK;

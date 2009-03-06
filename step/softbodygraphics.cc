@@ -234,7 +234,7 @@ void SoftBodyGraphicsItem::mouseSetPos(const QPointF& /*pos*/, const QPointF& di
 {
     _worldModel->simulationPause();
     _worldModel->setProperty(_item, "position",
-                QVariant::fromValue( softBody()->position() + pointToVector(diff) ));
+                QVariant::fromValue((softBody()->position() + pointToVector(diff)).eval()));
 }
 
 void SoftBodyParticleGraphicsItem::worldDataChanged(bool dynamicOnly)

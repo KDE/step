@@ -72,7 +72,7 @@ Spring* SpringErrors::spring() const
 Spring::Spring(double restLength, double stiffness, double damping, Item* body1, Item* body2)
     : _restLength(restLength),
       _stiffness(stiffness), _damping(damping),
-      _localPosition1(0), _localPosition2(0)
+      _localPosition1(0,0), _localPosition2(0,0)
 {
     setColor(0xff00ff00);
     setBody1(body1);
@@ -92,13 +92,13 @@ void Spring::calcForce(bool calcVariances)
     if(l == 0) return; // XXX: take orientation from previous step
 
     double dl = l - _restLength;
-    double vr = v.innerProduct(r);
+    double vr = v.dot(r);
     Vector2d force = (_stiffness*dl + _damping*vr/l) / l * r;
     
     if(_p1) _p1->applyForce(force);
     else if(_r1) _r1->applyForce(force, position1);
 
-    force.invert();
+    force = -force;
     if(_p2) _p2->applyForce(force);
     else if(_r2) _r2->applyForce(force, position2);
 
@@ -111,8 +111,8 @@ void Spring::calcForce(bool calcVariances)
         Vector2d forceV = (se->_restLengthVariance * square(_stiffness) +
                            se->_stiffnessVariance * square(dl) +
                            se->_dampingVariance * square(vr/l) +
-                           vV.innerProduct( (_damping/l*r).cSquare() )
-                           )/square(l)*r.cSquare();
+                           vV.dot( (_damping/l*r).cwise().square() )
+                           )/square(l)*r.cwise().square();
 
         forceV[0] += rV[0] * square(_stiffness*( 1 - _restLength/l*(1 - square(r[0]/l)) ) +
                                     _damping/(l*l)*( v[0]*r[0] + vr - 2*vr*square(r[0]/l) )) +
@@ -216,14 +216,14 @@ double SpringErrors::lengthVariance() const
 {
     Vector2d r = spring()->position2() - spring()->position1();
     Vector2d rV = position2Variance() + position1Variance();
-    return (r[0]*r[0]*rV[0] + r[1]*r[1]*rV[1])/r.norm2();
+    return (r[0]*r[0]*rV[0] + r[1]*r[1]*rV[1])/r.squaredNorm();
 }
 
 Vector2d Spring::velocity1() const
 {
     if(_p1) return _p1->velocity();
     else if(_r1) return _r1->velocityLocal(_localPosition1);
-    else return Vector2d(0);
+    else return Vector2d::Zero();
 }
 
 Vector2d SpringErrors::velocity1Variance() const
@@ -233,14 +233,14 @@ Vector2d SpringErrors::velocity1Variance() const
     // XXX: TODO
     //RigidBody* _r1 = dynamic_cast<RigidBody*>(_body1);
     //if(_r1) return _r1->pointLocalToWorld(_localPosition1);
-    else return Vector2d(0);
+    else return Vector2d::Zero();
 }
 
 Vector2d Spring::velocity2() const
 {
     if(_p2) return _p2->velocity();
     else if(_r2) return _r2->velocityLocal(_localPosition2);
-    else return Vector2d(0);
+    else return Vector2d::Zero();
 }
 
 Vector2d SpringErrors::velocity2Variance() const
@@ -250,7 +250,7 @@ Vector2d SpringErrors::velocity2Variance() const
     // XXX: TODO
     //RigidBody* _r2 = dynamic_cast<RigidBody*>(_body2);
     //if(_r2) return _r2->pointLocalToWorld(_localPosition2);
-    else return Vector2d(0);
+    else return Vector2d::Zero();
 }
 
 double Spring::force() const
@@ -259,7 +259,7 @@ double Spring::force() const
     Vector2d v = velocity2() - velocity1();
     double l = r.norm();
     return _stiffness * (l - _restLength) +
-                _damping * v.innerProduct(r)/l;
+                _damping * v.dot(r)/l;
 }
 
 double SpringErrors::forceVariance() const
@@ -274,10 +274,10 @@ double SpringErrors::forceVariance() const
     // XXX: CHECKME
     return square(dl) * _stiffnessVariance +
            square(s->stiffness()) * _restLengthVariance +
-           square(v.innerProduct(r)/l) * _dampingVariance +
-           (s->damping()/l*r).cSquare().innerProduct(vV) +
-           (( s->stiffness() - s->damping()*v.innerProduct(r) / (l*l) ) / l * r +
-              s->damping() / l * v).cSquare().innerProduct(rV);
+           square(v.dot(r)/l) * _dampingVariance +
+           (s->damping()/l*r).cwise().square().dot(vV) +
+           (( s->stiffness() - s->damping()*v.dot(r) / (l*l) ) / l * r +
+              s->damping() / l * v).cwise().square().dot(rV);
 }
 
 /*

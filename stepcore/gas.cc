@@ -116,13 +116,13 @@ void GasLJForce::calcForce(bool calcVariances)
             GasParticle* p1 = static_cast<GasParticle*>(*i1);
             GasParticle* p2 = static_cast<GasParticle*>(*i2);
             Vector2d r = p2->position() - p1->position();
-            double rnorm2 = r.norm2();
-            if(rnorm2 < _c) {
-                double rnorm6 = rnorm2*rnorm2*rnorm2;
-                double rnorm8 = rnorm6*rnorm2;
+            double rsquaredNorm = r.squaredNorm();
+            if(rsquaredNorm < _c) {
+                double rnorm6 = rsquaredNorm*rsquaredNorm*rsquaredNorm;
+                double rnorm8 = rnorm6*rsquaredNorm;
                 Vector2d force = r * ((_a/rnorm6 - _b)/rnorm8);
                 p2->applyForce(force);
-                force.invert();
+                force = -force;
                 p1->applyForce(force);
 
                 if(calcVariances) {
@@ -131,16 +131,16 @@ void GasLJForce::calcForce(bool calcVariances)
                     Vector2d rV = pe2->positionVariance() + pe1->positionVariance();
 
                     GasLJForceErrors* ge = gasLJForceErrors();
-                    Vector2d forceV = r.cSquare() * (
+                    Vector2d forceV = r.cwise().square() * (
                         ge->_rminVariance * square( (12*_a/_rmin/rnorm6 - 6*_b/_rmin)/rnorm8 ) +
                         ge->_depthVariance * square( 12*(_rmin12/rnorm6 - _rmin6)/rnorm8 ) );
 
-                    forceV[0] += rV[0] * square( (_a/rnorm6*( 1 - 14*r[0]*r[0]/rnorm2 ) -
-                                                  _b*( 1 - 8*r[0]*r[0]/rnorm2 ))/rnorm8 ) +
-                                 rV[1] * square( (_a/rnorm6*14 - _b*8)*r[0]*r[1]/(rnorm8*rnorm2) );
-                    forceV[1] += rV[1] * square( (_a/rnorm6*( 1 - 14*r[1]*r[1]/rnorm2 ) -
-                                                  _b*( 1 - 8*r[1]*r[1]/rnorm2 ))/rnorm8 ) +
-                                 rV[0] * square( (_a/rnorm6*14 - _b*8)*r[0]*r[1]/(rnorm8*rnorm2) );
+                    forceV[0] += rV[0] * square( (_a/rnorm6*( 1 - 14*r[0]*r[0]/rsquaredNorm ) -
+                                                  _b*( 1 - 8*r[0]*r[0]/rsquaredNorm ))/rnorm8 ) +
+                                 rV[1] * square( (_a/rnorm6*14 - _b*8)*r[0]*r[1]/(rnorm8*rsquaredNorm) );
+                    forceV[1] += rV[1] * square( (_a/rnorm6*( 1 - 14*r[1]*r[1]/rsquaredNorm ) -
+                                                  _b*( 1 - 8*r[1]*r[1]/rsquaredNorm ))/rnorm8 ) +
+                                 rV[0] * square( (_a/rnorm6*14 - _b*8)*r[0]*r[1]/(rnorm8*rsquaredNorm) );
 
                     pe1->applyForceVariance(forceV);
                     pe2->applyForceVariance(forceV);
@@ -328,7 +328,7 @@ Vector2d Gas::rectMeanVelocity() const
     Vector2d r1 = _measureRectCenter+_measureRectSize/2.0;
 
     double count = 0;
-    Vector2d velocity(0);
+    Vector2d velocity(0.,0.);
 
     const ItemList::const_iterator end = items().end();
     for(ItemList::const_iterator i1 = items().begin(); i1 != end; ++i1) {
@@ -352,7 +352,7 @@ Vector2d GasErrors::rectMeanVelocityVariance() const
     double count = 0;
 
     Vector2d velocity = gas()->rectMeanVelocity();
-    Vector2d velocityVariance(0);
+    Vector2d velocityVariance(0.,0.);
 
     const ItemList::const_iterator end = gas()->items().end();
     for(ItemList::const_iterator i1 = gas()->items().begin(); i1 != end; ++i1) {
@@ -361,7 +361,7 @@ Vector2d GasErrors::rectMeanVelocityVariance() const
         if(p1->position()[0] < r0[0] || p1->position()[0] > r1[0] ||
             p1->position()[1] < r0[1] || p1->position()[1] > r1[1]) continue;
 
-        velocityVariance += (p1->velocity() - velocity).cSquare(); 
+        velocityVariance += (p1->velocity() - velocity).cwise().square(); 
 
         ParticleErrors* pe1 = static_cast<ParticleErrors*>(p1->tryGetObjectErrors());
         if(pe1) velocityVariance += pe1->velocityVariance();
@@ -387,7 +387,7 @@ double Gas::rectMeanKineticEnergy() const
         GasParticle* p1 = static_cast<GasParticle*>(*i1);
         if(p1->position()[0] < r0[0] || p1->position()[0] > r1[0] ||
             p1->position()[1] < r0[1] || p1->position()[1] > r1[1]) continue;
-        energy += p1->mass() * p1->velocity().norm2();
+        energy += p1->mass() * p1->velocity().squaredNorm();
         ++count;
     }
 
@@ -412,15 +412,15 @@ double GasErrors::rectMeanKineticEnergyVariance() const
         if(p1->position()[0] < r0[0] || p1->position()[0] > r1[0] ||
             p1->position()[1] < r0[1] || p1->position()[1] > r1[1]) continue;
 
-        double pEnergy = p1->mass() * p1->velocity().norm2();
+        double pEnergy = p1->mass() * p1->velocity().squaredNorm();
         energyVariance += square(pEnergy - energy);
 
         ParticleErrors* pe1 = static_cast<ParticleErrors*>(p1->tryGetObjectErrors());
         if(pe1) {
             energyVariance +=
-                pe1->massVariance() * square(p1->velocity().norm2()) +
-                pe1->velocityVariance().innerProduct(
-                    (2*p1->mass()*p1->velocity()).cSquare() );
+                pe1->massVariance() * square(p1->velocity().squaredNorm()) +
+                pe1->velocityVariance().dot(
+                    (2*p1->mass()*p1->velocity()).cwise().square() );
         }
 
         ++count;
@@ -445,7 +445,7 @@ double Gas::rectTemperature() const
         GasParticle* p1 = static_cast<GasParticle*>(*i1);
         if(p1->position()[0] < r0[0] || p1->position()[0] > r1[0] ||
             p1->position()[1] < r0[1] || p1->position()[1] > r1[1]) continue;
-        temperature += p1->mass() * (p1->velocity() - meanVelocity).norm2();
+        temperature += p1->mass() * (p1->velocity() - meanVelocity).squaredNorm();
         ++count;
     }
 
@@ -472,15 +472,15 @@ double GasErrors::rectTemperatureVariance() const
         if(p1->position()[0] < r0[0] || p1->position()[0] > r1[0] ||
             p1->position()[1] < r0[1] || p1->position()[1] > r1[1]) continue;
 
-        double pTemperature = p1->mass() * (p1->velocity() - meanVelocity).norm2();
+        double pTemperature = p1->mass() * (p1->velocity() - meanVelocity).squaredNorm();
         temperatureVariance += square(pTemperature - temperature);
 
         ParticleErrors* pe1 = static_cast<ParticleErrors*>(p1->tryGetObjectErrors());
         if(pe1) {
             temperatureVariance +=
-                pe1->massVariance() * square((p1->velocity() - meanVelocity).norm2()) +
-                pe1->velocityVariance().innerProduct(
-                    (p1->mass()*(p1->velocity() - meanVelocity)).cSquare() );
+                pe1->massVariance() * square((p1->velocity() - meanVelocity).squaredNorm()) +
+                pe1->velocityVariance().dot(
+                    (p1->mass()*(p1->velocity() - meanVelocity)).cwise().square() );
         }
 
         ++count;
@@ -509,7 +509,7 @@ double Gas::rectPressure() const
         GasParticle* p1 = static_cast<GasParticle*>(*i1);
         if(p1->position()[0] < r0[0] || p1->position()[0] > r1[0] ||
             p1->position()[1] < r0[1] || p1->position()[1] > r1[1]) continue;
-        pressure += p1->mass() * (p1->velocity() - meanVelocity).norm2();
+        pressure += p1->mass() * (p1->velocity() - meanVelocity).squaredNorm();
     }
 
     pressure /= (2.0 * rectVolume());
@@ -532,15 +532,15 @@ double GasErrors::rectPressureVariance() const
         if(p1->position()[0] < r0[0] || p1->position()[0] > r1[0] ||
             p1->position()[1] < r0[1] || p1->position()[1] > r1[1]) continue;
 
-        double pPressure = p1->mass() * (p1->velocity() - meanVelocity).norm2();
+        double pPressure = p1->mass() * (p1->velocity() - meanVelocity).squaredNorm();
         pressureVariance += square(pPressure - pressure);
 
         ParticleErrors* pe1 = static_cast<ParticleErrors*>(p1->tryGetObjectErrors());
         if(pe1) {
             pressureVariance +=
-                pe1->massVariance() * square((p1->velocity() - meanVelocity).norm2()) +
-                pe1->velocityVariance().innerProduct(
-                    (p1->mass()*(p1->velocity() - meanVelocity)).cSquare() );
+                pe1->massVariance() * square((p1->velocity() - meanVelocity).squaredNorm()) +
+                pe1->velocityVariance().dot(
+                    (p1->mass()*(p1->velocity() - meanVelocity)).cwise().square() );
         }
     }
 

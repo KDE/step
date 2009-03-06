@@ -73,7 +73,7 @@ StepCore::Vector2d WidgetVertexHandlerGraphicsItem::value()
     double s = currentViewScale();
     StepCore::Vector2d size = _item->metaObject()->property("size")->
                             readVariant(_item).value<StepCore::Vector2d>()/s;
-    return size.cMultiply(corners[_vertexNum]);
+    return size.cwise()* corners[_vertexNum];
 }
 
 void WidgetVertexHandlerGraphicsItem::setValue(const StepCore::Vector2d& value)
@@ -88,7 +88,7 @@ void WidgetVertexHandlerGraphicsItem::setValue(const StepCore::Vector2d& value)
     StepCore::Vector2d position = _item->metaObject()->property("position")->
                             readVariant(_item).value<StepCore::Vector2d>();
 
-    StepCore::Vector2d oCorner = position - size.cMultiply(corners[_vertexNum]);
+    StepCore::Vector2d oCorner = position - size.cwise()*(corners[_vertexNum]);
 
     oCorner = pointToVector( viewportTransform.inverted().map(
                 QPointF(viewportTransform.map(vectorToPoint(oCorner)).toPoint()) ));
@@ -99,7 +99,7 @@ void WidgetVertexHandlerGraphicsItem::setValue(const StepCore::Vector2d& value)
                 QPointF(viewportTransform.map(vectorToPoint(newPos)).toPoint()) ));
     StepCore::Vector2d newSize = (newPos - oCorner)*2.0;
 
-    StepCore::Vector2d sign = delta.cMultiply(corners[_vertexNum]);
+    StepCore::Vector2d sign = delta.cwise()*(corners[_vertexNum]);
     double d = -0.1/s;
     if(sign[0] < d || sign[1] < d) {
         if(sign[0] < d) {
@@ -111,13 +111,13 @@ void WidgetVertexHandlerGraphicsItem::setValue(const StepCore::Vector2d& value)
             _vertexNum ^= 2;
         }
         _worldModel->setProperty(_item, "position", QVariant::fromValue(newPos));
-        _worldModel->setProperty(_item, "size", QVariant::fromValue(newSize*s));
+        _worldModel->setProperty(_item, "size", QVariant::fromValue((newSize*s).eval()));
         setValue(value);
         return;
     }
 
     _worldModel->setProperty(_item, "position", QVariant::fromValue(newPos));
-    _worldModel->setProperty(_item, "size", QVariant::fromValue(newSize*s));
+    _worldModel->setProperty(_item, "size", QVariant::fromValue((newSize*s).eval()));
 }
 
 WidgetGraphicsItem::WidgetGraphicsItem(StepCore::Item* item, WorldModel* worldModel)
@@ -151,7 +151,7 @@ OnHoverHandlerGraphicsItem* WidgetGraphicsItem::createOnHoverHandler(const QPoin
 
     int num = -1; double minDist2 = HANDLER_SNAP_SIZE*HANDLER_SNAP_SIZE/s/s;
     for(unsigned int i=0; i<4; ++i) {
-        double dist2 = (l - size.cMultiply(WidgetVertexHandlerGraphicsItem::corners[i])).norm2();
+        double dist2 = (l - size.cwise()*(WidgetVertexHandlerGraphicsItem::corners[i])).squaredNorm();
         if(dist2 < minDist2) { num = i; minDist2 = dist2; }
     }
 

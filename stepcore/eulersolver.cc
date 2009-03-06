@@ -31,31 +31,28 @@ STEPCORE_META_OBJECT(AdaptiveEulerSolver, QT_TRANSLATE_NOOP("ObjectClass", "Adap
 
 void GenericEulerSolver::init()
 {
-    _yerr  = new double[_dimension];
-    _ytemp = new double[_dimension];
-    _ydiff = new double[_dimension];
-    _ytempvar = new double[_dimension];
-    _ydiffvar = new double[_dimension];
+    _yerr.resize(_dimension);
+    _ytemp.resize(_dimension);
+    _ydiff.resize(_dimension);
+    _ytempvar.resize(_dimension);
+    _ydiffvar.resize(_dimension);
 }
 
 void GenericEulerSolver::fini()
 {
-    delete[] _ydiffvar;
-    delete[] _ytempvar;
-    delete[] _ydiff;
-    delete[] _ytemp;
-    delete[] _yerr;
 }
 
-int GenericEulerSolver::doCalcFn(double* t, const double* y,
-                    const double* yvar, double* f, double* fvar)
+int GenericEulerSolver::doCalcFn(double* t, const VectorXd* y,
+                    const VectorXd* yvar, VectorXd* f, VectorXd* fvar)
 {
-    int ret = _function(*t, y, yvar, f ? f : _ydiff, fvar, _params);
+    int ret = _function(*t, y->data(), yvar?yvar->data():0,
+                            f ? f->data() : _ydiff.data(),
+                            fvar?fvar->data():0, _params);
     //if(f != NULL) std::memcpy(f, _ydiff, _dimension*sizeof(*f));
     return ret;
 }
 
-int GenericEulerSolver::doStep(double t, double stepSize, double* y, double* yvar)
+int GenericEulerSolver::doStep(double t, double stepSize, VectorXd* y, VectorXd* yvar)
 {
     _localError = 0;
     _localErrorRatio = 0;
@@ -63,22 +60,20 @@ int GenericEulerSolver::doStep(double t, double stepSize, double* y, double* yva
     //int ret = _function(t, y, _ydiff, _params);
     //if(ret != OK) return ret;
 
-    double* ytempvar = yvar ? _ytempvar : 0;
-    double* ydiffvar = yvar ? _ydiffvar : 0;
+    VectorXd* ytempvar = yvar ? &_ytempvar : 0;
+    VectorXd* ydiffvar = yvar ? &_ydiffvar : 0;
 
-    for(int i=0; i<_dimension; ++i) {
-        // Error estimation: integration with timestep = stepSize
-        _yerr[i] = - y[i] - stepSize*_ydiff[i];
-        // First integration with timestep = stepSize/2
-        _ytemp[i] = y[i] + stepSize*_ydiff[i]/2;
-    }
-
+    // Error estimation: integration with timestep = stepSize
+    _yerr = - *y - stepSize*_ydiff;
+    // First integration with timestep = stepSize/2
+    _ytemp = *y + (stepSize/2)*_ydiff;
+        
     if(yvar) { // error calculation
-        for(int i=0; i<_dimension; ++i)
-            ytempvar[i] = square(sqrt(yvar[i])+ydiffvar[i]*stepSize/2);
+        *ytempvar = (yvar->cwise().sqrt()+(stepSize/2)*(*ydiffvar)).cwise().square();
     }
 
-    int ret = _function(t + stepSize/2, _ytemp, ytempvar, _ydiff, ydiffvar, _params);
+    int ret = _function(t + stepSize/2, _ytemp.data(), ytempvar?ytempvar->data():0,
+                        _ydiff.data(), ydiffvar?ydiffvar->data():0, _params);
     if(ret != OK) return ret;
 
     for(int i=0; i<_dimension; ++i) {
@@ -99,25 +94,25 @@ int GenericEulerSolver::doStep(double t, double stepSize, double* y, double* yva
     if(_localErrorRatio > 1.1) return ToleranceError;
 
     // XXX
-    ret = _function(t + stepSize, _ytemp, ytempvar, _ydiff, ydiffvar, _params);
+    ret = _function(t + stepSize, _ytemp.data(), ytempvar?ytempvar->data():0,
+                    _ydiff.data(), ydiffvar?ydiffvar->data():0, _params);
     if(ret != OK) return ret;
 
-    std::memcpy(y, _ytemp, _dimension*sizeof(*y));
+    *y = _ytemp;
 
     if(yvar) { // error calculation
         // XXX: Strictly speaking yerr are correlated between steps.
         // For now we are using the following formula which
         // assumes that yerr are equal and correlated on adjacent steps
         // TODO: improve this formula
-        for(int i=0; i<_dimension; ++i)
-            yvar[i] = square(sqrt(ytempvar[i])+ydiffvar[i]*stepSize/2)
-                      + 3*square(_yerr[i]);
+        *yvar = (ytempvar->cwise().sqrt()+(stepSize/2)*(*ydiffvar)).cwise().square()
+              + 3*_yerr.cwise().square();
     }
 
     return OK;
 }
 
-int GenericEulerSolver::doEvolve(double* t, double t1, double* y, double* yvar)
+int GenericEulerSolver::doEvolve(double* t, double t1, VectorXd* y, VectorXd* yvar)
 {
     // XXX: add better checks
     // XXX: replace asserts by error codes here
@@ -133,9 +128,9 @@ int GenericEulerSolver::doEvolve(double* t, double t1, double* y, double* yvar)
     const double S = 0.9;
     int result;
 
-    double* ydiffvar = yvar ? _ydiffvar : 0;
+    VectorXd* ydiffvar = yvar ? &_ydiffvar : 0;
 
-    result = _function(*t, y, yvar, _ydiff, ydiffvar, _params);
+    result = _function(*t, y->data(), yvar?yvar->data():0, _ydiff.data(), ydiffvar?ydiffvar->data():0, _params);
     if(result != OK) return result;
 
     while(*t < t1) {
@@ -160,7 +155,8 @@ int GenericEulerSolver::doEvolve(double* t, double t1, double* y, double* yvar)
                 if(newStepSize < t1 - t11) _stepSize = newStepSize;
             }
             if(result != OK) {
-                result = _function(*t, y, yvar, _ydiff, ydiffvar, _params);
+                result = _function(*t, y->data(), yvar?yvar->data():0, _ydiff.data(),
+                                   ydiffvar?ydiffvar->data():0, _params);
                 if(result != OK) return result;
                 continue;
             }
