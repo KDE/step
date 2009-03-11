@@ -88,7 +88,7 @@ Solver error estimation: errors introduced by the solver is calculated and added
 Several different solvers: up to 8th order, explicit and implicit, with or without adaptive timestep (most of the solvers require GSL library)
 </para></listitem>
 <listitem><para>
-Controler tool to easily control properties during simulation (even with custom keyboard shortcuts)
+Controller tool to easily control properties during simulation (even with custom keyboard shortcuts)
 </para></listitem>
 <listitem><para>
 Tools to visualize results: graph, meter, tracer
@@ -121,7 +121,7 @@ Integrated tutorials
 	</mediaobject>
 </screenshot>
 
-<para>To help you get started, &step; integrates a serie of tutorials which easily teach you how to build an experiment. Please see step by step to start with the first tutorial.</para>
+<para>To help you get started, &step; integrates a series of tutorials which easily teach you how to build an experiment. Please see step by step to start with the first tutorial.</para>
 
 <sect1 id="board">
 <title>The board</title>
