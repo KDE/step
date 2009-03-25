@@ -52,7 +52,7 @@ if(STEP_WITH_QALCULATE)
 endif(STEP_WITH_QALCULATE)
 
 find_package(KDE4 REQUIRED)
-include_directories( ${KDE4_INCLUDES} )
+include_directories( ${KDE4_INCLUDES} ${OPENGL_INCLUDE_DIR})
 add_definitions( ${KDE4_DEFINITIONS} )
 
 kde4_add_ui_files( step_SRCS ${step_UIS} )
