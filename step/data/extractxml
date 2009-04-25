@@ -181,7 +181,11 @@ class XmlFileTranslator(object):
             context = self.select_context(self.opt.context, info)
 
             if self.translation is not None:
-                string = self.translation.upgettext(context, string)
+                if context:
+                    string = self.translation.upgettext(context, string)
+                else:
+                    string = self.translation.ugettext(string)
+
                 if self.opt.unquote:
                     string = self.quote_str(string)
                 self.outfile.write(self.encode_utf8(begin_string + string + end_string))
@@ -281,7 +285,8 @@ def open_mo_file(opt, mo_file_name, remove=False):
     return translation
 
 def compile_po_file(opt, po_file_name):
-    mo_file_name = os.tmpnam() + '.mo'
+    (mo_file_id, mo_file_name) = tempfile.mkstemp(suffix='.mo')
+    os.close(mo_file_id)
     msgfmt_cmd = 'msgfmt "%s" -o "%s"' % (po_file_name, mo_file_name)
 
     if os.system(msgfmt_cmd):
