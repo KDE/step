@@ -185,30 +185,30 @@ class XmlFileTranslator(object):
                 self.outfile.write(self.encode_utf8(begin_string + string + end_string))
 
             else:
-                self.outfile.write(self.encode_utf8('%s i18n: file: %s:%d\n' % \
+                self.outfile.write(self.encode_utf8(u'%s i18n: file: %s:%d\n' % \
                          (self.opt.cstart, self.i18n_file, info['line'])))
 
                 if ectx:
-                    self.outfile.write(self.encode_utf8('%s i18n: ectx: %s\n' % \
+                    self.outfile.write(self.encode_utf8(u'%s i18n: ectx: %s\n' % \
                          (self.opt.cstart, ectx)))
 
                 if context:
-                    self.outfile.write(self.encode_utf8('i18nc(%s, %s)\n' % \
+                    self.outfile.write(self.encode_utf8(u'i18nc(%s, %s)\n' % \
                          (self.encode_str(context), self.encode_str(string))))
                 else:
-                    self.outfile.write(self.encode_utf8('i18n(%s)\n' % \
+                    self.outfile.write(self.encode_utf8(u'i18n(%s)\n' % \
                         (self.encode_str(string),)))
 
     def default_handler(self, data):
         self.write_data(data)
 
     def start_element_handler(self, name, attr):
-        data = '<' + name
+        data = u'<' + name
         attr_dict = {}
         for n in xrange(0, len(attr), 2):
             attr_dict[attr[n]] = attr[n+1]
-            data += ' %s=%s' % (attr[n], xml.sax.saxutils.quoteattr(attr[n+1]))
-        data += '>'
+            data += u' %s=%s' % (attr[n], xml.sax.saxutils.quoteattr(attr[n+1]))
+        data += u'>'
 
         match = False
         if name in self.opt.tag:
@@ -240,7 +240,7 @@ class XmlFileTranslator(object):
                 self.i18n_save = False
             self.i18n_stack.pop()
 
-        self.write_data('</%s>' % (name,))
+        self.write_data(u'</%s>' % (name,))
 
         if self.i18n_stack:
             self.i18n_stack[-1]['line'] = self.i18n_line_base + \
