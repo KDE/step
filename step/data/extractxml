@@ -23,6 +23,7 @@ import StringIO
 import optparse
 import tempfile
 import gettext
+import locale
 import copy
 import sys
 import re
@@ -289,6 +290,16 @@ def compile_po_file(opt, po_file_name):
 
     return open_mo_file(opt, mo_file_name, remove=True)
 
+def decode_options(options, str_options):
+    enc = locale.getdefaultlocale()[1]
+    for name in str_options:
+        opt = getattr(options, name)
+        if isinstance(opt, str):
+            opt = opt.decode(enc)
+        elif isinstance(opt, list):
+            opt = [x.decode(enc) for x in opt]
+        setattr(options, name, opt)
+
 def main():
     format_options = [
         optparse.make_option('-n', '--tag', action='append', default=[],
@@ -349,6 +360,7 @@ def main():
     optparser.add_option_group(optgroup_translate)
 
     opt, args = optparser.parse_args()
+    decode_options(opt, ('tag', 'tag_regex', 'context', 'ectx'))
 
     if not args:
         optparser.error('no xml files was specified')
@@ -364,6 +376,7 @@ def main():
         options = copy.deepcopy(format_options+context_options)
         map(optparser1.add_option, options)
         opt1, args1 = optparser1.parse_args(opt.parse_unquoted.split(' '))
+        decode_options(opt1, ('tag', 'tag_regex', 'context', 'ectx'))
         if args1:
             optparser1.error('unexpected argument')
         opt.parse_unquoted = copy.deepcopy(opt)
