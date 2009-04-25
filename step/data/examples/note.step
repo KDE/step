@@ -49,4 +49,8 @@ p, li { white-space: pre-wrap; }
         <toleranceAbs>0.001</toleranceAbs>
     </collisionSolver>
 
+    <constraintSolver class="CGConstraintSolver" id="7">
+        <name>constraintSolver1</name>
+    </constraintSolver>
+
 </world>

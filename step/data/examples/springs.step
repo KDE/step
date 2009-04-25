@@ -107,4 +107,8 @@
         <toleranceAbs>0.001</toleranceAbs>
     </collisionSolver>
 
+    <constraintSolver class="CGConstraintSolver" id="13">
+        <name>constraintSolver1</name>
+    </constraintSolver>
+
 </world>

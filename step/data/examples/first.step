@@ -57,7 +57,6 @@
         <name></name>
         <color>#ff000000</color>
         <coulombConst>8987551787</coulombConst>
-        <name></name>
         <coulombConstVariance>8077608712.40069</coulombConstVariance>
     </item>
 
@@ -72,5 +71,9 @@
         <name>collisionSolver1</name>
         <toleranceAbs>0.001</toleranceAbs>
     </collisionSolver>
+
+    <constraintSolver class="CGConstraintSolver" id="10">
+        <name>constraintSolver1</name>
+    </constraintSolver>
 
 </world>

@@ -91,7 +91,6 @@
         <name></name>
         <color>#ff000000</color>
         <gravitationConst>6.6742e-11</gravitationConst>
-        <name></name>
         <gravitationConstVariance>4.45460135184e-29</gravitationConstVariance>
     </item>
 
@@ -106,5 +105,9 @@
         <name>collisionSolver1</name>
         <toleranceAbs>0.001</toleranceAbs>
     </collisionSolver>
+
+    <constraintSolver class="CGConstraintSolver" id="15">
+        <name>constraintSolver1</name>
+    </constraintSolver>
 
 </world>
