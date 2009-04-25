@@ -451,10 +451,10 @@ def main():
         outfile.close()
         xgettext_cmd = 'xgettext ' + opt.xgettext_args
         if opt.output:
-            xgettext_cmd += ' --output=' + opt.output
+            xgettext_cmd += ' --output="' + opt.output + '"'
         else:
             xgettext_cmd += ' --output=-'
-        xgettext_cmd += ' ' + tmp_fname
+        xgettext_cmd += ' "' + tmp_fname + '"'
         ret = os.system(xgettext_cmd)
         if ret != 0:
             sys.stderr.write('error running xgettext: exit code = %d' % (ret,))
