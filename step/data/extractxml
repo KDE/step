@@ -21,6 +21,7 @@ import xml.parsers.expat
 import xml.sax.saxutils
 import StringIO
 import optparse
+import tempfile
 import gettext
 import copy
 import sys
@@ -372,15 +373,18 @@ def main():
         opt.parse_unquoted.parse_unquoted = None
 
     if opt.extract:
-        if opt.output:
-            try:
-                outfile = file(opt.output, 'w')
-            except IOError, e:
-                optparser.error('can not open output file: ' + str(e))
+        if opt.xgettext:
+            (tmp_id, tmp_fname) = tempfile.mkstemp(suffix='.cc')
+            os.close(tmp_id)
+            outfile = file(tmp_fname, 'w')
         else:
-            if opt.xgettext:
-                optparser.error('you can not use --xgettext without --output')
-            outfile = sys.stdout
+            if opt.output:
+                try:
+                    outfile = file(opt.output, 'w')
+                except IOError, e:
+                    optparser.error('can not open output file: ' + str(e))
+            else:
+                outfile = sys.stdout
     else:
         if not opt.po_file and not opt.mo_file:
             optparser.error('please specify either --po-file or --mo-file option for translation')
@@ -412,15 +416,6 @@ def main():
                 sys.stderr.write('can not parse file %s: %s\n' % (fname, str(e)))
                 sys.exit(1)
 
-            if opt.xgettext:
-                if outfile != sys.stdout:
-                    outfile.close()
-                xgettext_cmd = 'xgettext %s %s' % (opt.xgettext_args, opt.output)
-                ret = os.system(xgettext_cmd)
-                if ret != 0:
-                    sys.stderr.write('error running xgettext: exit code = %d' % (ret,))
-                    sys.exit(1)
-
         else:
             outfile_name = os.path.join(opt.output_dir, os.path.basename(fname))
             try:
@@ -438,6 +433,19 @@ def main():
             outfile.close()
 
         infile.close()
+
+    if opt.extract and opt.xgettext:
+        outfile.close()
+        xgettext_cmd = 'xgettext ' + opt.xgettext_args
+        if opt.output:
+            xgettext_cmd += ' --output=' + opt.output
+        else:
+            xgettext_cmd += ' --output=-'
+        xgettext_cmd += ' ' + tmp_fname
+        ret = os.system(xgettext_cmd)
+        if ret != 0:
+            sys.stderr.write('error running xgettext: exit code = %d' % (ret,))
+            sys.exit(1)
 
 if __name__ == '__main__':
     main()
