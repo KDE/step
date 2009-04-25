@@ -353,8 +353,11 @@ def main():
                 help='A string to used to start the comment')
     optgroup_extract.add_option('--output', help='Output file for extracted messages')
     optgroup_extract.add_option('--xgettext', action='store_true', help='Execute xgettext after extracting messages')
-    optgroup_extract.add_option('--xgettext-args', default='-ki18n -ki18nc:1,2c --from-code=UTF-8',
-                help='Arguments for xgettext')
+    optgroup_extract.add_option('--xgettext-args',
+                default='-ki18n -ki18nc:1c,2 -ci18n --no-location --from-code=UTF-8',
+                help='Arguments for xgettext (overrides the defaults)')
+    optgroup_extract.add_option('--xgettext-extra-args', default='',
+                help='Additional arguments for xgettext (appenends to the defaults)')
     optparser.add_option_group(optgroup_extract)
 
     optgroup_translate = optparse.OptionGroup(optparser, 'Options for translating messages')
@@ -455,6 +458,7 @@ def main():
     if opt.extract and opt.xgettext:
         outfile.close()
         xgettext_cmd = 'xgettext ' + opt.xgettext_args
+        xgettext_cmd += ' ' + opt.xgettext_extra_args
         if opt.output:
             xgettext_cmd += ' --output="' + opt.output + '"'
         else:
