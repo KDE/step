@@ -335,6 +335,9 @@ def main():
     optgroup_extract.add_option('--cstart', default='//',
                 help='A string to used to start the comment')
     optgroup_extract.add_option('--output', help='Output file for extracted messages')
+    optgroup_extract.add_option('--xgettext', action='store_true', help='Execute xgettext after extracting messages')
+    optgroup_extract.add_option('--xgettext-args', default='-ki18n -ki18nc:1,2c --from-code=UTF-8',
+                help='Arguments for xgettext')
     optparser.add_option_group(optgroup_extract)
 
     optgroup_translate = optparse.OptionGroup(optparser, 'Options for translating messages')
@@ -375,6 +378,8 @@ def main():
             except IOError, e:
                 optparser.error('can not open output file: ' + str(e))
         else:
+            if opt.xgettext:
+                optparser.error('you can not use --xgettext without --output')
             outfile = sys.stdout
     else:
         if not opt.po_file and not opt.mo_file:
@@ -406,6 +411,16 @@ def main():
             except xml.parsers.expat.ExpatError, e:
                 sys.stderr.write('can not parse file %s: %s\n' % (fname, str(e)))
                 sys.exit(1)
+
+            if opt.xgettext:
+                if outfile != sys.stdout:
+                    outfile.close()
+                xgettext_cmd = 'xgettext %s %s' % (opt.xgettext_args, opt.output)
+                ret = os.system(xgettext_cmd)
+                if ret != 0:
+                    sys.stderr.write('error running xgettext: exit code = %d' % (ret,))
+                    sys.exit(1)
+
         else:
             outfile_name = os.path.join(opt.output_dir, os.path.basename(fname))
             try:
