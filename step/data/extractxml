@@ -296,7 +296,7 @@ def compile_po_file(opt, po_file_name):
     return open_mo_file(opt, mo_file_name, remove=True)
 
 def decode_options(options, str_options):
-    enc = locale.getdefaultlocale()[1]
+    enc = locale.getdefaultlocale()[1] or 'UTF8'
     for name in str_options:
         opt = getattr(options, name)
         if isinstance(opt, str):
