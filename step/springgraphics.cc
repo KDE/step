@@ -122,6 +122,7 @@ void SpringGraphicsItem::paint(QPainter* painter, const QStyleOptionGraphicsItem
             painter->drawLine(QLineF( i-1, seq[(i-1)&3], i, seq[i&3] ));
         }
         painter->drawLine(QLineF(n, seq[n&3], _rnorm/_rscale, 0));
+        painter->scale( 1/_rscale, 1/_radius );
     } else {
         painter->drawLine(QLineF( 0, 0, _rnorm, 0 ));
     }
@@ -130,7 +131,6 @@ void SpringGraphicsItem::paint(QPainter* painter, const QStyleOptionGraphicsItem
         painter->setRenderHint(QPainter::Antialiasing, true);
         painter->setPen(QPen(SELECTION_COLOR, 0, Qt::DashLine));
         double m = SELECTION_MARGIN / currentViewScale();
-        painter->scale( 1/_rscale, 1/_radius );
         painter->drawRect(QRectF(-m, -_radius-m, _rnorm+m*2,  (_radius+m)*2));
     }
 }
