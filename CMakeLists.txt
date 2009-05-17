@@ -13,11 +13,6 @@ set(STEP_WITH_QALCULATE ${QALCULATE_FOUND} CACHE BOOL "Enable unit conversion su
 
 include_directories(${CMAKE_CURRENT_SOURCE_DIR} ${EIGEN2_INCLUDE_DIR})
 
-# -fexceptions is required because (ironically) of the use of new operator
-# definitions from Eigen that don't throw exceptions (but that use
-# try...catch blocks to achieve this)
-add_definitions(-fexceptions)
-
 add_subdirectory(stepcore)
 add_subdirectory(step)
 
