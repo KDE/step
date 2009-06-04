@@ -173,7 +173,7 @@ public:
 
     /** Get inverse mass and (possibly) its variance matrixes.
      *  Variance should only be copied of variance != NULL. */
-    virtual void getInverseMass(DiagonalMatrix* inverseMass,
+    virtual void getInverseMass(VectorXd* inverseMass,
                                 DynSparseRowMatrix* variance, int offset) = 0;
     
     /** Offset of body's variables in global arrays
@@ -224,7 +224,7 @@ struct ConstraintsInfo
     VectorXd           derivative;          ///< Time-derivative of constraints values
     DynSparseRowMatrix jacobian;            ///< Position-derivative of constraints values
     DynSparseRowMatrix jacobianDerivative;  ///< Time-derivative of constraintsJacobian
-    DiagonalMatrix     inverseMass;         ///< Inverse mass matrix of the system
+    VectorXd           inverseMass;         ///< Diagonal coefficients of the inverse mass matrix of the system
 
     MappedVector       position;            ///< Positions of the bodies
     MappedVector       velocity;            ///< Velocities of the bodies

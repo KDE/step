@@ -168,11 +168,11 @@ void Particle::resetForce(bool resetVariance)
     if(resetVariance) particleErrors()->_forceVariance.setZero();
 }
 
-void Particle::getInverseMass(DiagonalMatrix* inverseMass,
+void Particle::getInverseMass(VectorXd* inverseMass,
                               DynSparseRowMatrix* variance, int offset)
 {
-    inverseMass->coeffRef(offset, offset) = ( 1/_mass);
-    inverseMass->coeffRef(offset+1, offset+1) = ( 1/_mass);
+    inverseMass->coeffRef(offset) = ( 1/_mass);
+    inverseMass->coeffRef(offset+1) = ( 1/_mass);
     if(variance) {
         double v = particleErrors()->_massVariance / square(square(_mass));
         variance->coeffRef(offset, offset) = (v);
