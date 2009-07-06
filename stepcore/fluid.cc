@@ -27,7 +27,7 @@ namespace StepCore
 
 STEPCORE_META_OBJECT(FluidParticle, QT_TRANSLATE_NOOP("ObjectClass", "FluidParticle"), QT_TR_NOOP("Fluid particle"), 0, STEPCORE_SUPER_CLASS(Particle),)
 
-STEPCORE_META_OBJECT(FluidForce, QT_TRANSLATE_NOOP("ObjectClass", "FluidForce"), QT_TR_NOOP("Lennard-Jones force"), 0,
+STEPCORE_META_OBJECT(FluidForce, QT_TRANSLATE_NOOP("ObjectClass", "FluidForce"), QT_TR_NOOP("Smoothed Particle Hydrodynamics Force"), 0,
     STEPCORE_SUPER_CLASS(Item) STEPCORE_SUPER_CLASS(Force),
     STEPCORE_PROPERTY_RW(double, depth, QT_TRANSLATE_NOOP("PropertyName", "depth"), QT_TRANSLATE_NOOP("Units", "J"), QT_TR_NOOP("Potential depth"), depth, setDepth)
     STEPCORE_PROPERTY_RW(double, rmin, QT_TRANSLATE_NOOP("PropertyName", "rmin"), QT_TRANSLATE_NOOP("Units", "m"), QT_TR_NOOP("Distance at which the force is zero"), rmin, setRmin)
@@ -87,9 +87,10 @@ FluidForce* FluidForceErrors::fluidForce() const
     return static_cast<FluidForce*>(owner());
 }
 
-FluidForce::FluidForce(double depth, double rmin, double cutoff)
-    : _depth(depth), _rmin(rmin), _cutoff(cutoff)
+FluidForce::FluidForce(double depth, double rmin, double cutoff, double skradius)
+    : _depth(depth), _rmin(rmin), _cutoff(cutoff), _skradius(skradius)
 {
+    _skradiussquare = pow(_skradius,2);
     calcABC();
 }
 
@@ -100,12 +101,87 @@ void FluidForce::calcABC()
     _rmin12 = _rmin6*_rmin6;
     _a = m*_rmin12; _b = m*_rmin6;
     _c = _cutoff*_cutoff;
+
+    _SKGeneralFactor = (315.0 / (64.0 * Constants::Pi * pow(_skradius,9)));
+    _SKPressureFactor = (15.0 / (Constants::Pi * pow(_skradius,6)));
+    _SKViscosityFactor = (15.0 / (2.0 * Constants::Pi * pow(_skradius,3)));
+}
+
+double FluidForce::calcSKGeneral(double rsquarenorm)
+{
+    if (rsquarenorm > _skradiussquare)
+    {
+         return 0.0;
+    }
+    double diffsquare = _skradiussquare - rsquarenorm;
+    return _SKGeneralFactor * diffsquare * diffsquare * diffsquare;
+}
+
+double FluidForce::calcSKGeneralGradient(Vector2d r)
+{
+    double rsquarenorm = r.squaredNorm();
+    //this returns a double, but must be multiplied by position vector
+    if (rsquarenorm > _skradiussquare)
+    {
+         return 0.0;
+    }
+    double diffsquare = _skradiussquare - rsquarenorm;
+    double scalar = -_SKGeneralFactor * 6.0f * diffsquare * diffsquare;
+    return scalar * r
+}
+
+double FluidForce::calcSKPressure(double rsquarenorm)
+{
+    if (rsquarenorm > _skradiussquare)
+    {
+         return 0.0;
+    }
+    double diff = _skradius - sqrt(rsquarenorm);
+    return _SKPressureFactor * diff * diff * diff;
+}
+
+Vector2d FluidForce::calcSKPressureGradient(Vector2d r)
+{
+    double rsquarenorm = r.squaredNorm();
+    //returns a double, but must be multiplied by position vector
+    if (rsquarenorm > _skradiussquare)
+    {
+         return Vector2d::Zero();
+    }
+    double rnorm = sqrt(rsquarenorm);
+    double scalar = -_SKPressureFactor * 3 * (_skradius - rnorm) * (_skradius - rnorm) / rnorm;
+    return scalar * r;
+}
+
+double FluidForce::calcSKVicosity(double rsquarenorm)
+{
+    if (rsquarenorm > _skradiussquare)
+    {
+         return 0.0;
+    }
+    double rnorm = sqrt(rsquarenorm);
+    return _SKViscosityFactor * ((((rnorm*rsquarenorm) / (2 * (_skradiussquare * _skradius))) + (rsquarenorm / _skradiussquare) + (_skradius / (2 * rnorm))) - 1);
+}
+
+double FluidForce::calcSKVicosityLaplacian(double rsquarenorm)
+{
+    if (rsquarenorm > _skradiussquare)
+    {
+         return 0.0;
+    }
+    double rnorm = sqrt(rsquarenorm);
+    return _SKViscosityFactor * (6 / (_skradiussquare * _skradius)) * (_skradius - rnorm);
 }
 
 void FluidForce::calcForce(bool calcVariances)
 {
+// As described in Müller et al. 2003, this method will apply forces to each particle in the fluid particle group.
+// these values will be divided by the density at each particle location which is calculated by a helper method
+// CalcPressureDensity. 
+
     if(!group()) return;
 
+    calcPressureDensity(); //start off with some old fashion pressure/density updates
     // NOTE: Currently we are handling only children of the same group
     const ItemList::const_iterator end = group()->items().end();
     for(ItemList::const_iterator i1 = group()->items().begin(); i1 != end; ++i1) {
@@ -113,40 +189,57 @@ void FluidForce::calcForce(bool calcVariances)
         for(ItemList::const_iterator i2 = i1+1; i2 != end; ++i2) {
             if(!(*i2)->metaObject()->inherits<FluidParticle>()) continue;
 
+            double scalar;
+            Vector2d r, force;
             FluidParticle* p1 = static_cast<FluidParticle*>(*i1);
+            FluidParticle* p2 = static_cast<FluidParticle*>(*i2);
+ 	    if (p2->density() > 0) {
+                //applying pressure forces
+		r = p2->position() - p1->position();
+		scalar = p1->mass() * (p1->pressure() + p2->pressure()) / (2 * p2->density());
+                force = scalar * calcSKPressureGradient(r);
+
+		p2->applyForce(force);
+                force = -force;
+                p1->applyForce(force);
+
+                //applying viscosity forces
+                double rsquaredNorm = r.squaredNorm();
+                scalar = p2->mass() * (calcSKVicosityLaplacian(rsquaredNorm) * 0.002 / p2->density());
+                force = scalar * (p2->velocity() - p1->velocity());
+
+		p2->applyForce(force);
+                force = -force;
+                p1->applyForce(force);
+
+                //variances not implemented!!
+	    }
+       }
+    }
+}
+
+
+void FluidForce::calcPressureDensity()
+{
+if(!group()) return;
+
+    // NOTE: Currently we are handling only children of the same group
+    const ItemList::const_iterator end = group()->items().end();
+    for(ItemList::const_iterator i1 = group()->items().begin(); i1 != end; ++i1) {
+        if(!(*i1)->metaObject()->inherits<FluidParticle>()) continue;
+	FluidParticle* p1 = static_cast<FluidParticle*>(*i1);
+	p1->setDensity(0);
+        for(ItemList::const_iterator i2 = i1+1; i2 != end; ++i2) {
+            if(!(*i2)->metaObject()->inherits<FluidParticle>()) continue;
             FluidParticle* p2 = static_cast<FluidParticle*>(*i2);
             Vector2d r = p2->position() - p1->position();
             double rsquaredNorm = r.squaredNorm();
             if(rsquaredNorm < _c) {
-                double rnorm6 = rsquaredNorm*rsquaredNorm*rsquaredNorm;
-                double rnorm8 = rnorm6*rsquaredNorm;
-                Vector2d force = r * ((_a/rnorm6 - _b)/rnorm8);
-                p2->applyForce(force);
-                force = -force;
-                p1->applyForce(force);
-
-                if(calcVariances) {
-                    ParticleErrors* pe1 = p1->particleErrors();
-                    ParticleErrors* pe2 = p2->particleErrors();
-                    Vector2d rV = pe2->positionVariance() + pe1->positionVariance();
-
-                    FluidForceErrors* ge = fluidForceErrors();
-                    Vector2d forceV = r.cwise().square() * (
-                        ge->_rminVariance * square( (12*_a/_rmin/rnorm6 - 6*_b/_rmin)/rnorm8 ) +
-                        ge->_depthVariance * square( 12*(_rmin12/rnorm6 - _rmin6)/rnorm8 ) );
-
-                    forceV[0] += rV[0] * square( (_a/rnorm6*( 1 - 14*r[0]*r[0]/rsquaredNorm ) -
-                                                  _b*( 1 - 8*r[0]*r[0]/rsquaredNorm ))/rnorm8 ) +
-                                 rV[1] * square( (_a/rnorm6*14 - _b*8)*r[0]*r[1]/(rnorm8*rsquaredNorm) );
-                    forceV[1] += rV[1] * square( (_a/rnorm6*( 1 - 14*r[1]*r[1]/rsquaredNorm ) -
-                                                  _b*( 1 - 8*r[1]*r[1]/rsquaredNorm ))/rnorm8 ) +
-                                 rV[0] * square( (_a/rnorm6*14 - _b*8)*r[0]*r[1]/(rnorm8*rsquaredNorm) );
-
-                    pe1->applyForceVariance(forceV);
-                    pe2->applyForceVariance(forceV);
-                }
+	       p1->applyDensity(p2->mass() * calcSKGeneral(rsquaredNorm));
             }
         }
+        //where 0.1 is the gas constant
+        p1->setPressure(0.1 * (p1->density() - 100));
     }
 }
 

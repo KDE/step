@@ -44,6 +44,22 @@ public:
     /** Constructs a FluidParticle */
     explicit FluidParticle(Vector2d position = Vector2d::Zero(), Vector2d velocity = Vector2d::Zero(), double mass = 1)
         : Particle(position, velocity, mass) {}
+
+  /** Get mass of the particle */
+    double density() const { return _density; }
+    /** Set mass of the particle */
+    void setDensity(double density) { _density = density; }
+    /** Apply density to the body */
+    void applyDensity(double density) { _density += density; }
+
+  /** Get mass of the particle */
+    double pressure() const { return _pressure; }
+    /** Set mass of the particle */
+    void setPressure(double pressure) { _pressure = pressure; }
+
+protected:
+    double _pressure;
+    double _density;
 };
 
 /** \ingroup errors
@@ -102,9 +118,10 @@ class FluidForce: public Item, public Force
 
 public:
     /** Constructs FluidForce */
-    explicit FluidForce(double depth = 1, double rmin = 1, double cutoff = HUGE_VAL);
+    explicit FluidForce(double depth = 1, double rmin = 1, double cutoff = HUGE_VAL, double skradius = HUGE_VAL);
 
     void calcForce(bool calcVariances);
+    void calcPressureDensity();
 
     /** Get depth of the potential */
     double depth() const { return _depth; }
@@ -129,6 +146,17 @@ protected:
     ObjectErrors* createObjectErrors() { return new FluidForceErrors(this); }
     void calcABC();
 
+    double calcSKGeneral(double);
+    Vector2d calcSKGeneralGradient(Vector2d);
+    double calcSKPressure(double);
+    Vector2d calcSKPressureGradient(Vector2d);
+    double calcSKVicosity(double);
+    double calcSKVicosityLaplacian(double);
+
+    double _SKGeneralFactor;
+    double _SKPressureFactor;
+    double _SKViscosityFactor;
+    double _skradius,_skradiussquare;
     double _depth;
     double _rmin;
     double _cutoff;
@@ -191,6 +219,7 @@ public:
     double rectConcentration() const;
     double rectTemperature() const;
     double rectPressure() const;
+    double rectDensity() const;
     Vector2d rectMeanVelocity() const;
     double rectMeanKineticEnergy() const;
     double rectMeanParticleMass() const;
