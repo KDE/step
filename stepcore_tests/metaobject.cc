@@ -87,14 +87,14 @@ template<> inline MetaObjectTestType variantToType(const QVariant& v, bool* ok)
 
 }
 
-STEPCORE_META_OBJECT(MetaObjectTestInterface, "TestInterface", StepCore::MetaObject::ABSTRACT,,
-        STEPCORE_PROPERTY_RW(double, property1, "m", "Property1", property1, setProperty1))
+STEPCORE_META_OBJECT(MetaObjectTestInterface, "MetaObjectTestInterface", "TestInterface", StepCore::MetaObject::ABSTRACT,,
+        STEPCORE_PROPERTY_RW(double, property1, "property1", "m", "Property1", property1, setProperty1))
 
-STEPCORE_META_OBJECT(MetaObjectTestObject, "TestObject", 0,
+STEPCORE_META_OBJECT(MetaObjectTestObject, "MetaObjectTestObject", "TestObject", 0,
         STEPCORE_SUPER_CLASS(StepCore::Object) STEPCORE_SUPER_CLASS(MetaObjectTestInterface),
-        STEPCORE_PROPERTY_R (int,   property2, STEPCORE_UNITS_1, "Property2", property2)
-        STEPCORE_PROPERTY_RW(MetaObjectTestType, property3, STEPCORE_UNITS_NULL, "Property3", property3, setProperty3)
-        STEPCORE_PROPERTY_RW(MetaObjectTestType, property4, STEPCORE_UNITS_NULL, "Property4", property4, setProperty4)
+        STEPCORE_PROPERTY_R (int,   property2, "property2", STEPCORE_UNITS_1, "Property2", property2)
+        STEPCORE_PROPERTY_RW(MetaObjectTestType, property3, "property3", STEPCORE_UNITS_NULL, "Property3", property3, setProperty3)
+        STEPCORE_PROPERTY_RW(MetaObjectTestType, property4, "property4", STEPCORE_UNITS_NULL, "Property4", property4, setProperty4)
         )
 
 void MainTest::testMetaObject()
