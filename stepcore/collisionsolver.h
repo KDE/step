@@ -28,6 +28,8 @@
 #include "vector.h"
 #include "solver.h"
 
+#include <Eigen/StdVector>
+
 namespace StepCore
 {
 
@@ -38,6 +40,8 @@ class Body;
  *  \brief Description of contact between two bodies
  */
 struct Contact {
+    EIGEN_MAKE_ALIGNED_OPERATOR_NEW
+
     enum {
         Unknown = 0,    /**< Contact state was not (can not) be determined
                              (if state == Unknown all other fields are not used) */
@@ -134,7 +138,8 @@ protected:
     double _localError;
 };
 
-typedef std::vector<Contact> ContactValueList;
+typedef std::vector<Contact, Eigen::aligned_allocator<Contact> >
+            ContactValueList;
 
 /** \ingroup contacts
  *  \brief Discrete collision solver using Gilbert-Johnson-Keerthi distance algorithm

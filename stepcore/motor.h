@@ -43,8 +43,6 @@ class LinearMotor: public Item, public Force
     STEPCORE_OBJECT(LinearMotor)
 
 public:
-    EIGEN_MAKE_ALIGNED_OPERATOR_NEW
-    
     /** Constructs LinearMotor */
     explicit LinearMotor(Object* body = 0, const Vector2d& localPosition = Vector2d::Zero(),
                         Vector2d forceValue = Vector2d::Zero());

@@ -26,6 +26,7 @@
 #include <QString>
 #include <QVariant>
 #include <QBitArray>
+#include <Eigen/Core> // for EIGEN_MAKE_ALIGNED_OPERATOR_NEW
 
 #include "util.h"
 
@@ -34,7 +35,7 @@ namespace StepCore {
 class MetaObject;
 class MetaProperty;
 
-#define STEPCORE_OBJECT(_className) \
+#define STEPCORE_OBJECT_NA(_className) \
     private: \
         typedef _className _thisType; \
         static const StepCore::MetaObject   _metaObject; \
@@ -44,6 +45,11 @@ class MetaProperty;
         static  const StepCore::MetaObject* staticMetaObject() { return &_metaObject; } \
         virtual const StepCore::MetaObject* metaObject() const { return &_metaObject; } \
     private:
+
+#define STEPCORE_OBJECT(_className) \
+    public: \
+        EIGEN_MAKE_ALIGNED_OPERATOR_NEW \
+    STEPCORE_OBJECT_NA(_className)
 
 /** \ingroup reflections
  *  \brief Root of the StepCore classes hierarchy

@@ -113,7 +113,7 @@ template<> inline Vector2i stringToType(const QString& s, bool *ok)
 }
 
 ///////////////// Vector2dList
-typedef std::vector<Vector2d> Vector2dList;
+typedef std::vector<Vector2d, Eigen::aligned_allocator<Vector2d> > Vector2dList;
 
 template<> inline QString typeToString(const Vector2dList& v)
 {

@@ -105,8 +105,6 @@ class Particle: public Item, public Body
     STEPCORE_OBJECT(Particle)
 
 public:
-    EIGEN_MAKE_ALIGNED_OPERATOR_NEW
-    
     enum {
         PositionOffset = 0 ///< Offset of particle position in variables array
     };
