@@ -48,7 +48,7 @@ void MainTest::testCollisionDetection_data()
     QTest::addColumn<StepCore::Vector2d>("point0");
     QTest::addColumn<StepCore::Vector2d>("point1");
 
-    std::vector<StepCore::Vector2d> vertexes;
+    StepCore::Vector2dList vertexes;
     vertexes.push_back(StepCore::Vector2d(1,1));
     vertexes.push_back(StepCore::Vector2d(1,-1));
     vertexes.push_back(StepCore::Vector2d(-1,-1));
