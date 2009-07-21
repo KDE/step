@@ -105,8 +105,6 @@ class Particle: public Item, public Body
     STEPCORE_OBJECT(Particle)
 
 public:
-    EIGEN_MAKE_ALIGNED_OPERATOR_NEW
-    
     enum {
         PositionOffset = 0 ///< Offset of particle position in variables array
     };
@@ -159,7 +157,7 @@ public:
     void addForce(const double* force, const double* forceVariance);
     void resetForce(bool resetVariance);
     void getAccelerations(double* acceleration, double* accelerationVariance);
-    void getInverseMass(DiagonalMatrix* inverseMass,
+    void getInverseMass(VectorXd* inverseMass,
                         DynSparseRowMatrix* variance, int offset);
 
     /** Get (and possibly create) ParticleErrors object */

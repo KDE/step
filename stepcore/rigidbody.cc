@@ -310,12 +310,12 @@ void RigidBody::resetForce(bool resetVariance)
     }
 }
 
-void RigidBody::getInverseMass(DiagonalMatrix* inverseMass,
+void RigidBody::getInverseMass(VectorXd* inverseMass,
                                DynSparseRowMatrix* variance, int offset)
 {
-    inverseMass->coeffRef(offset, offset) = (1/_mass);
-    inverseMass->coeffRef(offset+1, offset+1) = (1/_mass);
-    inverseMass->coeffRef(offset+2, offset+2) = (1/_inertia);
+    inverseMass->coeffRef(offset) = (1/_mass);
+    inverseMass->coeffRef(offset+1) = (1/_mass);
+    inverseMass->coeffRef(offset+2) = (1/_inertia);
     if(variance) {
         RigidBodyErrors* re = rigidBodyErrors();
         double vm = re->_massVariance / square(square(_mass));

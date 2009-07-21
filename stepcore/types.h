@@ -35,8 +35,7 @@ typedef Eigen::SparseMatrix<double> SparseColMatrix;
 typedef Eigen::SparseMatrix<double,Eigen::RowMajor> SparseRowMatrix;
 // a sparse matrix with efficient write facilities
 typedef Eigen::DynamicSparseMatrix<double,Eigen::RowMajor> DynSparseRowMatrix;
-typedef Eigen::Map<VectorXd> MappedVector;
-typedef Eigen::DiagonalMatrix<double,Eigen::Dynamic> DiagonalMatrix;
+typedef Eigen::Map<Eigen::VectorXd> MappedVector;
 
 ///////////////// Color
 struct Color
@@ -114,7 +113,7 @@ template<> inline Vector2i stringToType(const QString& s, bool *ok)
 }
 
 ///////////////// Vector2dList
-typedef std::vector<Vector2d> Vector2dList;
+typedef std::vector<Vector2d, Eigen::aligned_allocator<Vector2d> > Vector2dList;
 
 template<> inline QString typeToString(const Vector2dList& v)
 {

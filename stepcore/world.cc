@@ -222,7 +222,7 @@ void ConstraintsInfo::setDimension(int newVariablesCount, int newConstraintsCoun
 
     jacobian.resize(totalConstraintsCount, newVariablesCount);
     jacobianDerivative.resize(totalConstraintsCount, newVariablesCount);
-    inverseMass.resize(newVariablesCount, newVariablesCount);
+    inverseMass.resize(newVariablesCount);
     force.resize(newVariablesCount);
     value.resize(totalConstraintsCount);
     derivative.resize(totalConstraintsCount);
@@ -799,7 +799,7 @@ int World::doEvolve(double delta)
                         if(ret != Solver::OK) goto out;
 
                         // XXX: variances
-                        _constraintsInfo.velocity += _constraintsInfo.inverseMass * _constraintsInfo.force;
+                        _constraintsInfo.velocity += _constraintsInfo.inverseMass.asDiagonal() * _constraintsInfo.force;
                     }
                 } else goto out;
 

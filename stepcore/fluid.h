@@ -200,8 +200,6 @@ class Fluid: public ItemGroup
     STEPCORE_OBJECT(Fluid)
 
 public:
-    EIGEN_MAKE_ALIGNED_OPERATOR_NEW
-    
     Fluid() : _measureRectCenter(0,0), _measureRectSize(1,1) {
         setColor(0xffff0000); objectErrors();
     }

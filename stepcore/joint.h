@@ -80,8 +80,6 @@ class Pin: public Item, public Joint
     STEPCORE_OBJECT(Pin)
 
 public:
-    EIGEN_MAKE_ALIGNED_OPERATOR_NEW
-    
     /** Constructs Pin */
     explicit Pin(Object* body = 0, const Vector2d& localPosition = Vector2d::Zero(),
                         const Vector2d& position = Vector2d::Zero());

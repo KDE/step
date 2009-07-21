@@ -39,8 +39,6 @@ class RigidBodyErrors: public ObjectErrors
     STEPCORE_OBJECT(RigidBodyErrors)
 
 public:
-    EIGEN_MAKE_ALIGNED_OPERATOR_NEW
-    
     /** Constructs RigidBodyErrors */
     RigidBodyErrors(Item* owner = 0)
         : ObjectErrors(owner), _positionVariance(0,0), _velocityVariance(0,0),
@@ -257,7 +255,7 @@ public:
     void addForce(const double* force, const double* forceVariance);
     void resetForce(bool resetVariance);
     void getAccelerations(double* acceleration, double* accelerationVariance);
-    void getInverseMass(DiagonalMatrix* inverseMass,
+    void getInverseMass(VectorXd* inverseMass,
                         DynSparseRowMatrix* variance, int offset);
     /** Get (and possibly create) RigidBodyErrors object */
     RigidBodyErrors* rigidBodyErrors() {

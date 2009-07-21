@@ -45,8 +45,8 @@ public:
     virtual void addForce(const double* force, const double* forceVariance) {}
     virtual void resetForce(bool resetVariance) {}
     virtual void getAccelerations(double* acceleration, double* accelerationVariance) {}
-    virtual void getInverseMass(StepCore::GmmSparseRowMatrix* inverseMass,
-                            StepCore::GmmSparseRowMatrix* variance, int offset) {}
+    virtual void getInverseMass(StepCore::VectorXd* inverseMass,
+                            StepCore::DynSparseRowMatrix* variance, int offset) {}
 
     virtual void calcForce(bool calcVariances) {}
 
@@ -60,14 +60,14 @@ class WorldCopyTestSolver: public StepCore::Solver
     STEPCORE_OBJECT(WorldCopyTestSolver)
 
 public:
-    virtual int doCalcFn(double* t, const double* y, const double* yvar = 0,
-                            double* f = 0, double* fvar = 0) { return Solver::OK; }
-    virtual int doEvolve(double* t, double t1, double* y, double* yvar) { return Solver::OK; }
+    virtual int doCalcFn(double* t, const StepCore::VectorXd* y, const StepCore::VectorXd* yvar = 0,
+                            StepCore::VectorXd* f = 0, StepCore::VectorXd* fvar = 0) { return Solver::OK; }
+    virtual int doEvolve(double* t, double t1, StepCore::VectorXd* y, StepCore::VectorXd* yvar) { return Solver::OK; }
 };
 
-STEPCORE_META_OBJECT(WorldCopyTestItem,   "TestItem", 0,
+STEPCORE_META_OBJECT(WorldCopyTestItem, "WorldCopyTestItem", "TestItem", 0,
     STEPCORE_SUPER_CLASS(StepCore::Item) STEPCORE_SUPER_CLASS(StepCore::Body) STEPCORE_SUPER_CLASS(StepCore::Force),)
-STEPCORE_META_OBJECT(WorldCopyTestSolver, "TestSolver", 0, STEPCORE_SUPER_CLASS(StepCore::Solver),)
+STEPCORE_META_OBJECT(WorldCopyTestSolver, "WorldCopyTestSolver", "TestSolver", 0, STEPCORE_SUPER_CLASS(StepCore::Solver),)
 
 void WorldCopyTestItem::worldItemRemoved(Item* item)
 {
