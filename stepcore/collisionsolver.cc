@@ -23,6 +23,8 @@
 #include <algorithm>
 #include <QtGlobal>
 
+#include <Eigen/StdVector>
+
 namespace StepCore {
 
 // XXX: units for toleranceAbs and localError

@@ -39,8 +39,6 @@ class RigidBodyErrors: public ObjectErrors
     STEPCORE_OBJECT(RigidBodyErrors)
 
 public:
-    EIGEN_MAKE_ALIGNED_OPERATOR_NEW
-    
     /** Constructs RigidBodyErrors */
     RigidBodyErrors(Item* owner = 0)
         : ObjectErrors(owner), _positionVariance(0,0), _velocityVariance(0,0),

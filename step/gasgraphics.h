@@ -36,6 +36,9 @@ public:
 
 protected:
     StepCore::Vector2d _topLeft;
+
+public:
+    EIGEN_MAKE_ALIGNED_OPERATOR_NEW
 };
 
 class GasVertexHandlerGraphicsItem: public OnHoverHandlerGraphicsItem

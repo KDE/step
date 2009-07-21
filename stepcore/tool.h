@@ -91,8 +91,6 @@ class Note: public ItemGroup, public Tool
     STEPCORE_OBJECT(Note)
 
 public:
-    EIGEN_MAKE_ALIGNED_OPERATOR_NEW
-    
     /** Constructs Note */
     explicit Note(Vector2d position = Vector2d::Zero(),
             Vector2d size = Vector2d(250,100), QString text = QString());
@@ -129,8 +127,6 @@ class Graph: public Item, public Tool
     STEPCORE_OBJECT(Graph)
 
 public:
-    EIGEN_MAKE_ALIGNED_OPERATOR_NEW
-    
     /** Constructs Graph */
     explicit Graph(Vector2d position = Vector2d::Zero(), Vector2d size = Vector2d(400,300));
 
@@ -284,8 +280,6 @@ class Meter: public Item, public Tool
     STEPCORE_OBJECT(Meter)
 
 public:
-    EIGEN_MAKE_ALIGNED_OPERATOR_NEW
-    
     /** Constructs Meter */
     explicit Meter(Vector2d position = Vector2d::Zero(), Vector2d size = Vector2d(70,24));
 
@@ -365,8 +359,6 @@ class Controller: public Item, public Tool
     STEPCORE_OBJECT(Controller)
 
 public:
-    EIGEN_MAKE_ALIGNED_OPERATOR_NEW
-    
     /** Constructs Controller */
     explicit Controller(Vector2d position = Vector2d::Zero(), Vector2d size = Vector2d(200,60));
 
@@ -471,8 +463,6 @@ class Tracer: public Item, public Tool
     STEPCORE_OBJECT(Tracer)
 
 public:
-    EIGEN_MAKE_ALIGNED_OPERATOR_NEW
-    
     /** Constructs Spring */
     explicit Tracer(Object* body = 0, const Vector2d& localPosition = Vector2d::Zero());
 

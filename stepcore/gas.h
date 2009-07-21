@@ -172,8 +172,6 @@ class Gas: public ItemGroup
     STEPCORE_OBJECT(Gas)
 
 public:
-    EIGEN_MAKE_ALIGNED_OPERATOR_NEW
-    
     Gas() : _measureRectCenter(0,0), _measureRectSize(1,1) {
         setColor(0xffff0000); objectErrors();
     }
