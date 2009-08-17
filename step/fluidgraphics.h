@@ -64,10 +64,11 @@ public:
     void stateChanged();
     void worldDataChanged(bool);
 
-protected:
+protected: 
     void mouseSetPos(const QPointF& pos, const QPointF&, MovingState);
     OnHoverHandlerGraphicsItem* createOnHoverHandler(const QPointF& pos);
     StepCore::Fluid* fluid() const;
+    QRectF _measureRect;
 
     //ArrowHandlerGraphicsItem *_centerHandler;
 };

@@ -64,8 +64,7 @@ bool FluidCreator::sceneEvent(QEvent* event)
         StepCore::Fluid* fluid = static_cast<StepCore::Fluid*>(_item);
         _worldModel->newItem("FluidForce", fluid);
         StepCore::Object* fluidforce = fluid->items()[0];
-        _worldModel->setProperty(fluidforce, "depth", 0.1);
-        _worldModel->setProperty(fluidforce, "rmin", 0.1);
+        _worldModel->setProperty(fluidforce, "skradius", 0.5);
 
         _topLeft = WorldGraphicsItem::pointToVector(pos);
 
@@ -211,7 +210,10 @@ QPainterPath FluidGraphicsItem::shape() const
 {
     QPainterPath path;
     //path.addRect(QRectF(-radius,-radius,radius*2,radius*2));
+    path.setFillRule(Qt::WindingFill);
+    //path.addRect(_measureRect);
     path.addRect(_boundingRect);
+
     return path;
 }
 
@@ -222,15 +224,55 @@ void FluidGraphicsItem::paint(QPainter* painter, const QStyleOptionGraphicsItem*
         painter->setPen(QPen(QColor::fromRgba(fluid()->color()), 0));
         painter->drawRect(QRectF(-size[0]/2, -size[1]/2, size[0], size[1]));
     //}
+        painter->setPen(QPen(Qt::blue, 0.3, Qt::SolidLine, Qt::RoundCap));
+        double s = currentViewScale();
+
+        double precision = fluid()->skradius()*100;
+        double radius = 0.05;
+
+        StepCore::Vector2d r0 = StepCore::Vector2d(-size[0]/2,-size[1]/2);
+        StepCore::Vector2d center = fluid()->measureRectCenter();
+        StepCore::Vector2d delta = StepCore::Vector2d(size[0]/precision,size[1]/precision);
+        StepCore::Vector2d rpoint;
+        //qDebug("CENTER IS %f %f - DELTA %f %f",center[0],center[1], delta[0],delta[1]);
+
+        for(int i=0; i < precision-1; ++i) {
+    	   for(int j=0; j < precision-1; ++j) {
+              rpoint = StepCore::Vector2d(r0[0]+0.5*delta[0]+i*delta[0],r0[1]+0.5*delta[1]+j*delta[1]);
+              double density = fluid()->calcDensity(rpoint);
+              if (density > 0.0005) {
+                 //qDebug("%d %d %f - r point - %f %f",i,j,fluid()->calcDensity(rpoint), rpoint[0],rpoint[1]);
+                 painter->setOpacity(density/5.0);
+	         //painter->drawEllipse(QRectF(rpoint[0],rpoint[1],
+                 //                            radius,radius));
+		 
+                 painter->drawPoint(QGraphicsItem::mapFromScene(QPointF(rpoint[0]-center[0],rpoint[1]-center[1])));
+              }
+           }
+        }
 }
 
 void FluidGraphicsItem::viewScaleChanged()
 {
     double s = currentViewScale();
     prepareGeometryChange();
+    //const StepCore::Vector2d& size = fluid()->measureFluidSize();
     const StepCore::Vector2d& size = fluid()->measureRectSize();
+
+    /*//Must double check the /s factor is necessary!
+    if (size[0] > SCENE_LENGTH / s) {
+       size[0]=SCENE_LENGTH / s;
+    }
+    if (size[1] > SCENE_LENGTH / s) {
+       size[1]=SCENE_LENGTH / s;
+    }*/
+
+    //position the boundingRect about the origin
     _boundingRect = QRectF(-(size[0]+SELECTION_MARGIN/s)/2, -(size[1]+SELECTION_MARGIN/s)/2,
                             (size[0]+SELECTION_MARGIN/s),    (size[1]+SELECTION_MARGIN/s));
+
+    //_measureRect = QRectF(-(rectsize[0]+SELECTION_MARGIN/s)/2, -(rectsize[1]+SELECTION_MARGIN/s)/2,
+    //                        (rectsize[0]+SELECTION_MARGIN/s),    (rectsize[1]+SELECTION_MARGIN/s));
     update();
 }
 
@@ -417,6 +459,7 @@ bool FluidMenuHandler::createFluidParticlesApply()
 
     const StepCore::FluidParticleList::const_iterator end = particles.end();
     for(StepCore::FluidParticleList::const_iterator it = particles.begin(); it != end; ++it) {
+	//qDebug("INITIAL? pressure=(%f) density=(%f)", it->pressure(), it->density());
         _worldModel->addItem(*it, fluid());
     }
 

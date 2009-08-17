@@ -6,7 +6,7 @@
     <x>0</x>
     <y>0</y>
     <width>277</width>
-    <height>246</height>
+    <height>295</height>
    </rect>
   </property>
   <layout class="QVBoxLayout" >
@@ -113,7 +113,7 @@
          <string>The mass of one particle</string>
         </property>
         <property name="text" >
-         <string>1</string>
+         <string>0.1</string>
         </property>
         <property name="alignment" >
          <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>

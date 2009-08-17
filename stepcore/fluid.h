@@ -42,8 +42,8 @@ class FluidParticle: public Particle
 
 public:
     /** Constructs a FluidParticle */
-    explicit FluidParticle(Vector2d position = Vector2d::Zero(), Vector2d velocity = Vector2d::Zero(), double mass = 1)
-        : Particle(position, velocity, mass) {}
+    explicit FluidParticle(Vector2d position = Vector2d::Zero(), Vector2d velocity = Vector2d::Zero(), double mass = 0.1, double density = 10)
+        : Particle(position, velocity, mass), _density(density) {}
 
   /** Get mass of the particle */
     double density() const { return _density; }
@@ -118,25 +118,25 @@ class FluidForce: public Item, public Force
 
 public:
     /** Constructs FluidForce */
-    explicit FluidForce(double depth = 1, double rmin = 1, double cutoff = HUGE_VAL, double skradius = HUGE_VAL);
+    explicit FluidForce(double skradius = 0.5);
 
     void calcForce(bool calcVariances);
     void calcPressureDensity();
 
-    /** Get depth of the potential */
-    double depth() const { return _depth; }
-    /** Set depth of the potential */
-    void setDepth(double depth) { _depth = depth; calcABC(); }
+    /** Get owner as a Fluid */
+    Fluid* fluid() const;
 
     /** Get distance at which the interparticle force is zero */
-    double rmin() const { return _rmin; }
+    double skradius() const { return _skradius; }
     /** Set distance at which the interparticle force is zero */
-    void setRmin(double rmin) { _rmin = rmin; calcABC(); }
+    void setSKradius(double skradius) { _skradius = skradius; calcABC(); }
 
-    /** Get cut-off distance */
-    double cutoff() const { return _cutoff; }
-    /** Set cut-off distance */
-    void setCutoff(double cutoff) { _cutoff = cutoff; calcABC(); }
+    double calcSKGeneral(double);
+    Vector2d calcSKGeneralGradient(Vector2d);
+    double calcSKPressure(double);
+    Vector2d calcSKPressureGradient(Vector2d);
+    double calcSKVicosity(double);
+    double calcSKVicosityLaplacian(double);
 
     /** Get (and possibly create) FluidForceErrors object */
     FluidForceErrors* fluidForceErrors() {
@@ -146,22 +146,10 @@ protected:
     ObjectErrors* createObjectErrors() { return new FluidForceErrors(this); }
     void calcABC();
 
-    double calcSKGeneral(double);
-    Vector2d calcSKGeneralGradient(Vector2d);
-    double calcSKPressure(double);
-    Vector2d calcSKPressureGradient(Vector2d);
-    double calcSKVicosity(double);
-    double calcSKVicosityLaplacian(double);
-
     double _SKGeneralFactor;
     double _SKPressureFactor;
     double _SKViscosityFactor;
     double _skradius,_skradiussquare;
-    double _depth;
-    double _rmin;
-    double _cutoff;
-    double _a, _b, _c;
-    double _rmin6, _rmin12;
 };
 
 typedef std::vector<FluidParticle*> FluidParticleList;
@@ -211,7 +199,10 @@ public:
                                 const Vector2d& meanVelocity);
 
     void addParticles(const FluidParticleList& particles);
-
+    
+    double calcNormal(Vector2d);
+    double calcDensity(Vector2d);
+    double skradius() const;
     double rectVolume() const;
     double rectParticleCount() const;
     double rectConcentration() const;
@@ -222,6 +213,8 @@ public:
     double rectMeanKineticEnergy() const;
     double rectMeanParticleMass() const;
     double rectMass() const;
+    Vector2d measureFluidSize() const;
+
 
     const Vector2d& measureRectCenter() const { return _measureRectCenter; }
     void setMeasureRectCenter(const Vector2d& measureRectCenter) { _measureRectCenter = measureRectCenter; }
@@ -229,6 +222,7 @@ public:
     const Vector2d& measureRectSize() const { return _measureRectSize; }
     void setMeasureRectSize(const Vector2d& measureRectSize) { _measureRectSize = measureRectSize.cwise().abs(); }
 
+    
     /** Get (and possibly create) FluidErrors object */
     FluidErrors* fluidErrors() {
         return static_cast<FluidErrors*>(objectErrors()); }
