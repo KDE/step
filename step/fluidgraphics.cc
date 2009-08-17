@@ -64,7 +64,7 @@ bool FluidCreator::sceneEvent(QEvent* event)
         StepCore::Fluid* fluid = static_cast<StepCore::Fluid*>(_item);
         _worldModel->newItem("FluidForce", fluid);
         StepCore::Object* fluidforce = fluid->items()[0];
-        _worldModel->setProperty(fluidforce, "skradius", 0.5);
+        _worldModel->setProperty(fluidforce, "skradius", 1.0);
 
         _topLeft = WorldGraphicsItem::pointToVector(pos);
 
@@ -227,7 +227,7 @@ void FluidGraphicsItem::paint(QPainter* painter, const QStyleOptionGraphicsItem*
         painter->setPen(QPen(Qt::blue, 0.3, Qt::SolidLine, Qt::RoundCap));
         double s = currentViewScale();
 
-        double precision = fluid()->skradius()*100;
+        double precision = fluid()->skradius()*25;
         double radius = 0.05;
 
         StepCore::Vector2d r0 = StepCore::Vector2d(-size[0]/2,-size[1]/2);
@@ -240,13 +240,13 @@ void FluidGraphicsItem::paint(QPainter* painter, const QStyleOptionGraphicsItem*
     	   for(int j=0; j < precision-1; ++j) {
               rpoint = StepCore::Vector2d(r0[0]+0.5*delta[0]+i*delta[0],r0[1]+0.5*delta[1]+j*delta[1]);
               double density = fluid()->calcDensity(rpoint);
-              if (density > 0.0005) {
+              if (density > 0.05) {
                  //qDebug("%d %d %f - r point - %f %f",i,j,fluid()->calcDensity(rpoint), rpoint[0],rpoint[1]);
-                 painter->setOpacity(density/5.0);
+                 painter->setOpacity(density/2.0);
 	         //painter->drawEllipse(QRectF(rpoint[0],rpoint[1],
                  //                            radius,radius));
 		 
-                 painter->drawPoint(QGraphicsItem::mapFromScene(QPointF(rpoint[0]-center[0],rpoint[1]-center[1])));
+                 painter->drawPoint(QGraphicsItem::mapFromScene(QPointF(rpoint[0],rpoint[1])));
               }
            }
         }

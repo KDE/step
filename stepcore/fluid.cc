@@ -192,19 +192,23 @@ void FluidForce::calcForce(bool calcVariances)
             Vector2d r, force;
             FluidParticle* p1 = static_cast<FluidParticle*>(*i1);
             FluidParticle* p2 = static_cast<FluidParticle*>(*i2);
- 	    if (p2->density() > 0) {
+            
+            //this condition needs some threshold value or forces become far too strong since
+            //we divide by density
+ 	    if (p2->density() > 0.05) {
                 //applying pressure forces
 		r = p2->position() - p1->position();
 		scalar = p1->mass() * (p1->pressure() + p2->pressure()) / (2 * p2->density());
                 force = scalar * calcSKPressureGradient(r);
 
+                //qDebug("Look at this force: %f , %f . Check tha scalar  %f",force[0],force[1],scalar);
 		p2->applyForce(force);
                 force = -force;
                 p1->applyForce(force);
 
                 //applying viscosity forces
                 double rsquaredNorm = r.squaredNorm();
-                scalar = p2->mass() * (calcSKVicosityLaplacian(rsquaredNorm) * 0.02 / p2->density());
+                scalar = p2->mass() * (calcSKVicosityLaplacian(rsquaredNorm) * 0.002 / p2->density());
                 force = scalar * (p2->velocity() - p1->velocity());
 
 		p2->applyForce(force);
@@ -237,9 +241,9 @@ if(!group()) return;
 	    p1->applyDensity(p2->mass() * calcSKGeneral(rsquaredNorm));
         }
 
-        //Eq 12 of Muller 03. k=0.01 is the gas constant, dependent on temperature!
+        //Eq 12 of Muller 03. k=0.0001 is the gas constant, dependent on temperature!
 	//P_o = 100, is the rest density (doesn't affect gradients.. offers "numerical stability"
-        p1->setPressure(0.01 * (p1->density() - 100));
+        p1->setPressure(0.001 * (p1->density() - 100));
 	//qDebug("DENSITY AT P1 =(%f), PRESSURE=(%f)", p1->density(), (0.1 * (p1->density() - 100)));
 
     }
@@ -288,7 +292,7 @@ FluidParticleList Fluid::rectCreateParticles(int count,
     for(int i=0; i<count; ++i) {
         Vector2d pos(randomUniform(r0[0], r1[0]), randomUniform(r0[1], r1[1]));
         Vector2d vel(randomGauss(meanVelocity[0], deviation), randomGauss(meanVelocity[1], deviation));
-        FluidParticle* particle = new FluidParticle(pos, vel, mass, 10.0);
+        FluidParticle* particle = new FluidParticle(pos, vel, mass, 100.0);
         particles.push_back(particle);
     }
 
@@ -826,7 +830,7 @@ Vector2d Fluid::measureFluidSize() const
    for(ItemList::const_iterator i1 = items().begin(); i1 != end; ++i1) {
       if(!(*i1)->metaObject()->inherits<FluidParticle>()) continue;
       FluidParticle* p1 = static_cast<FluidParticle*>(*i1);
-      if (p1->density() > 0.001) {
+      if (p1->density() > 0.05) {
          r0 = p1->position();
          r1 = p1->position();
       }

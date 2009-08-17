@@ -42,7 +42,7 @@ class FluidParticle: public Particle
 
 public:
     /** Constructs a FluidParticle */
-    explicit FluidParticle(Vector2d position = Vector2d::Zero(), Vector2d velocity = Vector2d::Zero(), double mass = 0.1, double density = 10)
+    explicit FluidParticle(Vector2d position = Vector2d::Zero(), Vector2d velocity = Vector2d::Zero(), double mass = 0.1, double density = 100)
         : Particle(position, velocity, mass), _density(density) {}
 
   /** Get mass of the particle */
@@ -118,7 +118,7 @@ class FluidForce: public Item, public Force
 
 public:
     /** Constructs FluidForce */
-    explicit FluidForce(double skradius = 0.5);
+    explicit FluidForce(double skradius = 1.0);
 
     void calcForce(bool calcVariances);
     void calcPressureDensity();

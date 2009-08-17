@@ -1,0 +1,280 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE StepCoreXML>
+<world xmlns="http://edu.kde.org/step/StepCoreXML" version="1.0" id="1">
+    <name>world1</name>
+    <color>#ffffffff</color>
+    <time>0</time>
+    <timeScale>1</timeScale>
+    <errorsCalculation>false</errorsCalculation>
+
+    <item class="Fluid" id="2">
+        <name>fluid1</name>
+        <color>#ffff0000</color>
+        <measureRectCenter>(0.04,0.085)</measureRectCenter>
+        <measureRectSize>(5.16,2.79)</measureRectSize>
+
+        <item class="FluidForce" id="3">
+            <name>fluidForce1</name>
+            <color>#ff000000</color>
+            <skradius>1</skradius>
+        </item>
+
+        <item class="FluidParticle" id="4">
+            <name></name>
+            <color>#ff000000</color>
+            <position>(-1.62926,-0.158767)</position>
+            <velocity>(0.126246,-0.0492026)</velocity>
+            <mass>0.1</mass>
+        </item>
+
+        <item class="FluidParticle" id="5">
+            <name></name>
+            <color>#ff000000</color>
+            <position>(-0.893916,0.128048)</position>
+            <velocity>(0.115132,-0.025004)</velocity>
+            <mass>0.1</mass>
+        </item>
+
+        <item class="FluidParticle" id="6">
+            <name></name>
+            <color>#ff000000</color>
+            <position>(-1.45078,-1.17144)</position>
+            <velocity>(-0.500014,-0.675168)</velocity>
+            <mass>0.1</mass>
+        </item>
+
+        <item class="FluidParticle" id="7">
+            <name></name>
+            <color>#ff000000</color>
+            <position>(-0.973761,-0.728106)</position>
+            <velocity>(-0.640091,0.42606)</velocity>
+            <mass>0.1</mass>
+        </item>
+
+        <item class="FluidParticle" id="8">
+            <name></name>
+            <color>#ff000000</color>
+            <position>(1.97855,1.44493)</position>
+            <velocity>(-0.863552,-0.228287)</velocity>
+            <mass>0.1</mass>
+        </item>
+
+        <item class="FluidParticle" id="9">
+            <name></name>
+            <color>#ff000000</color>
+            <position>(-0.709416,-0.0414046)</position>
+            <velocity>(-0.68458,0.145841)</velocity>
+            <mass>0.1</mass>
+        </item>
+
+        <item class="FluidParticle" id="10">
+            <name></name>
+            <color>#ff000000</color>
+            <position>(1.62235,-1.18499)</position>
+            <velocity>(0.452202,0.443246)</velocity>
+            <mass>0.1</mass>
+        </item>
+
+        <item class="FluidParticle" id="11">
+            <name></name>
+            <color>#ff000000</color>
+            <position>(0.583601,0.822164)</position>
+            <velocity>(-0.167246,0.0516148)</velocity>
+            <mass>0.1</mass>
+        </item>
+
+        <item class="FluidParticle" id="12">
+            <name></name>
+            <color>#ff000000</color>
+            <position>(-2.18851,-0.910979)</position>
+            <velocity>(-0.002175,0.235853)</velocity>
+            <mass>0.1</mass>
+        </item>
+
+        <item class="FluidParticle" id="13">
+            <name></name>
+            <color>#ff000000</color>
+            <position>(0.638469,-0.0431615)</position>
+            <velocity>(-0.197695,-0.338351)</velocity>
+            <mass>0.1</mass>
+        </item>
+
+        <item class="FluidParticle" id="14">
+            <name></name>
+            <color>#ff000000</color>
+            <position>(0.361526,0.176)</position>
+            <velocity>(-0.200897,-0.69357)</velocity>
+            <mass>0.1</mass>
+        </item>
+
+        <item class="FluidParticle" id="15">
+            <name></name>
+            <color>#ff000000</color>
+            <position>(2.23121,-0.997015)</position>
+            <velocity>(0.0611744,0.102035)</velocity>
+            <mass>0.1</mass>
+        </item>
+
+        <item class="FluidParticle" id="16">
+            <name></name>
+            <color>#ff000000</color>
+            <position>(0.564678,1.28127)</position>
+            <velocity>(0.111691,-0.216061)</velocity>
+            <mass>0.1</mass>
+        </item>
+
+        <item class="FluidParticle" id="17">
+            <name></name>
+            <color>#ff000000</color>
+            <position>(1.72077,-0.0842781)</position>
+            <velocity>(0.0207442,0.289247)</velocity>
+            <mass>0.1</mass>
+        </item>
+
+        <item class="FluidParticle" id="18">
+            <name></name>
+            <color>#ff000000</color>
+            <position>(1.0715,-0.879728)</position>
+            <velocity>(0.041661,0.706966)</velocity>
+            <mass>0.1</mass>
+        </item>
+
+        <item class="FluidParticle" id="19">
+            <name></name>
+            <color>#ff000000</color>
+            <position>(2.0477,1.44544)</position>
+            <velocity>(-0.38925,0.485951)</velocity>
+            <mass>0.1</mass>
+        </item>
+
+        <item class="FluidParticle" id="20">
+            <name></name>
+            <color>#ff000000</color>
+            <position>(1.64598,0.724283)</position>
+            <velocity>(-0.00964445,0.213089)</velocity>
+            <mass>0.1</mass>
+        </item>
+
+        <item class="FluidParticle" id="21">
+            <name></name>
+            <color>#ff000000</color>
+            <position>(-1.0186,-1.22878)</position>
+            <velocity>(-0.0911174,-0.516954)</velocity>
+            <mass>0.1</mass>
+        </item>
+
+        <item class="FluidParticle" id="22">
+            <name></name>
+            <color>#ff000000</color>
+            <position>(2.3956,-0.705207)</position>
+            <velocity>(0.786141,0.386366)</velocity>
+            <mass>0.1</mass>
+        </item>
+
+        <item class="FluidParticle" id="23">
+            <name></name>
+            <color>#ff000000</color>
+            <position>(-1.57641,0.91166)</position>
+            <velocity>(-0.252345,0.219915)</velocity>
+            <mass>0.1</mass>
+        </item>
+
+    </item>
+
+    <item class="Box" id="24">
+        <name>box1</name>
+        <color>#ff000000</color>
+        <position>(-2.95,0.08)</position>
+        <angle>0</angle>
+        <velocity>(0,0)</velocity>
+        <angularVelocity>0</angularVelocity>
+        <mass>1</mass>
+        <inertia>0.881233333333333</inertia>
+        <size>(0.68,3.18)</size>
+    </item>
+
+    <item class="Box" id="25">
+        <name>box2</name>
+        <color>#ff000000</color>
+        <position>(0.06,1.83)</position>
+        <angle>0</angle>
+        <velocity>(0,0)</velocity>
+        <angularVelocity>0</angularVelocity>
+        <mass>1</mass>
+        <inertia>2.22416666666667</inertia>
+        <size>(5.14,0.52)</size>
+    </item>
+
+    <item class="Box" id="26">
+        <name>box3</name>
+        <color>#ff000000</color>
+        <position>(0.035,-1.715)</position>
+        <angle>0</angle>
+        <velocity>(0,0)</velocity>
+        <angularVelocity>0</angularVelocity>
+        <mass>1</mass>
+        <inertia>2.24328333333333</inertia>
+        <size>(5.15,0.63)</size>
+    </item>
+
+    <item class="Box" id="27">
+        <name>box4</name>
+        <color>#ff000000</color>
+        <position>(3.01,0.08)</position>
+        <angle>0</angle>
+        <velocity>(0,0)</velocity>
+        <angularVelocity>0</angularVelocity>
+        <mass>1</mass>
+        <inertia>0.881233333333333</inertia>
+        <size>(0.68,3.18)</size>
+    </item>
+
+    <item class="Anchor" id="28">
+        <name>anchor1</name>
+        <color>#ffff0000</color>
+        <body>24</body>
+        <position>(-2.95,0.08)</position>
+        <angle>0</angle>
+    </item>
+
+    <item class="Anchor" id="29">
+        <name>anchor2</name>
+        <color>#ffff0000</color>
+        <body>25</body>
+        <position>(0.06,1.83)</position>
+        <angle>0</angle>
+    </item>
+
+    <item class="Anchor" id="30">
+        <name>anchor3</name>
+        <color>#ffff0000</color>
+        <body>26</body>
+        <position>(0.035,-1.715)</position>
+        <angle>0</angle>
+    </item>
+
+    <item class="Anchor" id="31">
+        <name>anchor4</name>
+        <color>#ffff0000</color>
+        <body>27</body>
+        <position>(3.01,0.08)</position>
+        <angle>0</angle>
+    </item>
+
+    <solver class="AdaptiveEulerSolver" id="32">
+        <name>solver1</name>
+        <stepSize>1</stepSize>
+        <toleranceAbs>0.001</toleranceAbs>
+        <toleranceRel>0.001</toleranceRel>
+    </solver>
+
+    <collisionSolver class="GJKCollisionSolver" id="33">
+        <name>collisionSolver1</name>
+        <toleranceAbs>0.001</toleranceAbs>
+    </collisionSolver>
+
+    <constraintSolver class="CGConstraintSolver" id="34">
+        <name>constraintSolver1</name>
+    </constraintSolver>
+
+</world>
