@@ -63,8 +63,8 @@ bool FluidCreator::sceneEvent(QEvent* event)
 
         StepCore::Fluid* fluid = static_cast<StepCore::Fluid*>(_item);
         _worldModel->newItem("FluidForce", fluid);
-        StepCore::Object* fluidforce = fluid->items()[0];
-        _worldModel->setProperty(fluidforce, "skradius", 1.0);
+        //StepCore::Object* fluidforce = fluid->items()[0];
+        //_worldModel->setProperty(fluidforce, "skradius", 2.0);
 
         _topLeft = WorldGraphicsItem::pointToVector(pos);
 
@@ -224,11 +224,8 @@ void FluidGraphicsItem::paint(QPainter* painter, const QStyleOptionGraphicsItem*
         painter->setPen(QPen(QColor::fromRgba(fluid()->color()), 0));
         painter->drawRect(QRectF(-size[0]/2, -size[1]/2, size[0], size[1]));
     //}
-        painter->setPen(QPen(Qt::blue, 0.3, Qt::SolidLine, Qt::RoundCap));
-        double s = currentViewScale();
-
-        double precision = fluid()->skradius()*25;
-        double radius = 0.05;
+        painter->setPen(QPen(Qt::blue, 0.2, Qt::SolidLine, Qt::RoundCap));
+        double precision = (fluid()->skradius())*25;
 
         StepCore::Vector2d r0 = StepCore::Vector2d(-size[0]/2,-size[1]/2);
         StepCore::Vector2d center = fluid()->measureRectCenter();
@@ -236,13 +233,27 @@ void FluidGraphicsItem::paint(QPainter* painter, const QStyleOptionGraphicsItem*
         StepCore::Vector2d rpoint;
         //qDebug("CENTER IS %f %f - DELTA %f %f",center[0],center[1], delta[0],delta[1]);
 
+        //determine the density range
+        double mindensity = 100000;
+        double maxdensity = 0;
+	for(int i=0; i < precision-1; ++i) {
+    	   for(int j=0; j < precision-1; ++j) {
+              rpoint = StepCore::Vector2d(r0[0]+0.5*delta[0]+i*delta[0],r0[1]+0.5*delta[1]+j*delta[1]);
+              double density = fluid()->calcDensity(rpoint);
+              if (density < mindensity){ mindensity = density; }
+              if (density > maxdensity){ maxdensity = density; }
+           }
+        }
+        double avgdensity = (maxdensity-mindensity)/2.0;
+
         for(int i=0; i < precision-1; ++i) {
     	   for(int j=0; j < precision-1; ++j) {
               rpoint = StepCore::Vector2d(r0[0]+0.5*delta[0]+i*delta[0],r0[1]+0.5*delta[1]+j*delta[1]);
               double density = fluid()->calcDensity(rpoint);
-              if (density > 0.05) {
+              //qDebug("%f %f",density,precision);
+              if (density > avgdensity) {
                  //qDebug("%d %d %f - r point - %f %f",i,j,fluid()->calcDensity(rpoint), rpoint[0],rpoint[1]);
-                 painter->setOpacity(density/2.0);
+                 painter->setOpacity(density/(maxdensity-mindensity));
 	         //painter->drawEllipse(QRectF(rpoint[0],rpoint[1],
                  //                            radius,radius));
 		 
@@ -392,6 +403,8 @@ void FluidMenuHandler::createFluidParticles()
     _createFluidParticlesUi->lineEditMeanVelocity->setValidator(
                 new QRegExpValidator(QRegExp("^\\([+-]?\\d+(\\.\\d*)?([eE]\\d*)?,[+-]?\\d+(\\.\\d*)?([eE]\\d*)?\\)$"),
                         _createFluidParticlesUi->lineEditMeanVelocity));
+    _createFluidParticlesUi->lineEditTemperature->setValidator(
+                new QDoubleValidator(0, 3, DBL_DIG, _createFluidParticlesUi->smoothingSlider));
 
     _createFluidParticlesUi->lineEditVolume->setText(QString::number(fluid()->rectVolume()));
     createFluidParticlesCountChanged();
@@ -446,11 +459,18 @@ bool FluidMenuHandler::createFluidParticlesApply()
 
     double mass = _createFluidParticlesUi->lineEditMass->text().toDouble();
     double temperature = _createFluidParticlesUi->lineEditTemperature->text().toDouble();
+    double smoothing = double(_createFluidParticlesUi->smoothingSlider->value())/10.0;
 
     bool ok;
     StepCore::Vector2d meanVelocity = StepCore::stringToType<StepCore::Vector2d>(
                     _createFluidParticlesUi->lineEditMeanVelocity->text(), &ok);
 
+    //StepCore::Fluid* fluid = static_cast<StepCore::Fluid*>(_item);
+    //_worldModel->newItem("FluidForce", fluid);
+    //StepCore::Object* fluidforce = fluid->items()[0];
+
+    StepCore::Object* fluidforce = fluid()->items()[0];
+    _worldModel->setProperty(fluidforce, "skradius", smoothing);
     _worldModel->beginMacro(i18n("Create particles for %1", fluid()->name()));
 
     std::vector<StepCore::FluidParticle*> particles =

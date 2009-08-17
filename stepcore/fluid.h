@@ -118,7 +118,7 @@ class FluidForce: public Item, public Force
 
 public:
     /** Constructs FluidForce */
-    explicit FluidForce(double skradius = 1.0);
+    explicit FluidForce(double skradius = 2.0);
 
     void calcForce(bool calcVariances);
     void calcPressureDensity();

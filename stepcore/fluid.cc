@@ -207,6 +207,7 @@ void FluidForce::calcForce(bool calcVariances)
                 p1->applyForce(force);
 
                 //applying viscosity forces
+                //0.002 is the visocity value in Muller 03 equation 13
                 double rsquaredNorm = r.squaredNorm();
                 scalar = p2->mass() * (calcSKVicosityLaplacian(rsquaredNorm) * 0.002 / p2->density());
                 force = scalar * (p2->velocity() - p1->velocity());
