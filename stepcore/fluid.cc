@@ -29,15 +29,15 @@ STEPCORE_META_OBJECT(FluidParticle, QT_TRANSLATE_NOOP("ObjectClass", "FluidParti
 
 STEPCORE_META_OBJECT(FluidForce, QT_TRANSLATE_NOOP("ObjectClass", "FluidForce"), QT_TR_NOOP("Smoothed Particle Hydrodynamics Force"), 0,
     STEPCORE_SUPER_CLASS(Item) STEPCORE_SUPER_CLASS(Force),
-    STEPCORE_PROPERTY_RW(double, skradius, QT_TRANSLATE_NOOP("PropertyName", "skradius"), QT_TRANSLATE_NOOP("Units", "m"),
-            QT_TR_NOOP("Distance at which the smoothing kernel is zero"), skradius, setSKradius))
+    STEPCORE_PROPERTY_RW(double, skRadius, QT_TRANSLATE_NOOP("PropertyName", "skRadius"), QT_TRANSLATE_NOOP("Units", "m"),
+            QT_TR_NOOP("Distance at which the smoothing kernel is zero"), skRadius, setSKradius)
+    STEPCORE_PROPERTY_RW(double, densityCutoff, QT_TRANSLATE_NOOP("PropertyName", "densityCutoff"), QT_TRANSLATE_NOOP("Units", "kg/m²"),
+            QT_TR_NOOP("Value at which the density is zero"), densityCutoff, setDensityCutoff))
 
 STEPCORE_META_OBJECT(FluidForceErrors, QT_TRANSLATE_NOOP("ObjectClass", "FluidForceErrors"), QT_TR_NOOP("Errors class for FluidForce"), 0,
     STEPCORE_SUPER_CLASS(ObjectErrors),
-    STEPCORE_PROPERTY_RW(double, depthVariance, QT_TRANSLATE_NOOP("PropertyName", "depthVariance"), QT_TRANSLATE_NOOP("Units", "J"),
-            QT_TR_NOOP("Potential depth variance"), depthVariance, setDepthVariance)
-    STEPCORE_PROPERTY_RW(double, rminVariance, QT_TRANSLATE_NOOP("PropertyName", "rminVariance"), QT_TRANSLATE_NOOP("Units", "m"),
-            QT_TR_NOOP("Variance of the distance at which the force is zero"), rminVariance, setRminVariance))
+    STEPCORE_PROPERTY_RW(double, skRadiusVariance, QT_TRANSLATE_NOOP("PropertyName", "skRadiusVariance"), QT_TRANSLATE_NOOP("Units", "m"),
+            QT_TR_NOOP("Variance of the smoothing kernel radius"), skRadiusVariance, setskRadiusVariance))
 
 // XXX: Check units for 2d
 // XXX: add cmPosition and cmVelocity
@@ -88,99 +88,101 @@ FluidForce* FluidForceErrors::fluidForce() const
     return static_cast<FluidForce*>(owner());
 }
 
-FluidForce::FluidForce(double skradius)
-    : _skradius(skradius)
+FluidForce::FluidForce(double skRadius, double densityCutoff)
+    : _skRadius(skRadius), _densityCutoff(densityCutoff)
 {
-    _skradiussquare = pow(_skradius,2);
-    calcABC();
+    _skRadiussquare = pow(_skRadius,2);
+    calcPrefactors();
 }
 
-void FluidForce::calcABC()
+void FluidForce::calcPrefactors()
 {
-    double skradius3 = pow(_skradius,3);
-    double skradius6 = skradius3 * skradius3;
-    double skradius9 = skradius3 * skradius6;
+    double skRadius3 = pow(_skRadius,3);
+    double skRadius6 = skRadius3 * skRadius3;
+    double skRadius9 = skRadius3 * skRadius6;
 
-    _SKGeneralFactor = (315.0 / (64.0 * Constants::Pi * skradius9));
-    _SKPressureFactor = (15.0 / (Constants::Pi * skradius6));
-    _SKViscosityFactor = (15.0 / (2.0 * Constants::Pi * skradius3));
+    _SKGeneralFactor = (315.0 / (64.0 * Constants::Pi * skRadius9));
+    _SKPressureFactor = (15.0 / (Constants::Pi * skRadius6));
+    _SKViscosityFactor = (15.0 / (2.0 * Constants::Pi * skRadius3));
     //qDebug("%f %f %f",_SKGeneralFactor,_SKPressureFactor,_SKViscosityFactor);
 }
 
 double FluidForce::calcSKGeneral(double rsquarenorm)
 {
-    if (rsquarenorm > _skradiussquare)
+    if (rsquarenorm > _skRadiussquare)
     {
          return 0.0;
     }
 
-    double diffsquare = _skradiussquare - rsquarenorm;
+    double diffsquare = _skRadiussquare - rsquarenorm;
     return _SKGeneralFactor * diffsquare * diffsquare * diffsquare;
 }
 
 Vector2d FluidForce::calcSKGeneralGradient(Vector2d r)
 {
     double rsquarenorm = r.squaredNorm();
-    if (rsquarenorm > _skradiussquare)
+    if (rsquarenorm > _skRadiussquare)
     {
          return Vector2d::Zero();
     }
-    double diffsquare = _skradiussquare - rsquarenorm;
+    double diffsquare = _skRadiussquare - rsquarenorm;
     double scalar = -_SKGeneralFactor * 6.0f * diffsquare * diffsquare;
     return scalar * r;
 }
 
 double FluidForce::calcSKPressure(double rsquarenorm)
 {
-    if (rsquarenorm > _skradiussquare)
+    if (rsquarenorm > _skRadiussquare)
     {
          return 0.0;
     }
-    double diff = _skradius - sqrt(rsquarenorm);
+    double diff = _skRadius - sqrt(rsquarenorm);
     return _SKPressureFactor * diff * diff * diff;
 }
 
 Vector2d FluidForce::calcSKPressureGradient(Vector2d r)
 {
     double rsquarenorm = r.squaredNorm();
-    if (rsquarenorm > _skradiussquare)
+    if (rsquarenorm > _skRadiussquare)
     {
          return Vector2d::Zero();
     }
     double rnorm = sqrt(rsquarenorm);
-    double scalar = -_SKPressureFactor * 3 * (_skradius - rnorm) * (_skradius - rnorm) / rnorm;
+    double scalar = -_SKPressureFactor * 3 * (_skRadius - rnorm) * (_skRadius - rnorm) / rnorm;
     return scalar * r;
 }
 
 double FluidForce::calcSKVicosity(double rsquarenorm)
 {
-    if (rsquarenorm > _skradiussquare)
+    if (rsquarenorm > _skRadiussquare)
     {
          return 0.0;
     }
     double rnorm = sqrt(rsquarenorm);
-    return _SKViscosityFactor * ((((rnorm*rsquarenorm) / (2 * (_skradiussquare * _skradius))) + (rsquarenorm / _skradiussquare) + (_skradius / (2 * rnorm))) - 1);
+    return _SKViscosityFactor * ((((rnorm*rsquarenorm) / (2 * (_skRadiussquare * _skRadius))) + (rsquarenorm / _skRadiussquare) + (_skRadius / (2 * rnorm))) - 1);
 }
 
 double FluidForce::calcSKVicosityLaplacian(double rsquarenorm)
 {
-    if (rsquarenorm > _skradiussquare)
+    if (rsquarenorm > _skRadiussquare)
     {
          return 0.0;
     }
     double rnorm = sqrt(rsquarenorm);
-    return _SKViscosityFactor * (6 / (_skradiussquare * _skradius)) * (_skradius - rnorm);
+    return _SKViscosityFactor * (6 / (_skRadiussquare * _skRadius)) * (_skRadius - rnorm);
 }
 
-void FluidForce::calcForce(bool calcVariances)
-{
 // As described in Müller et al. 2003, this method will apply forces to each particle in the fluid particle group.
 // these values will be divided by the density at each particle location which is calculated by a helper method
 // CalcPressureDensity. 
 
+void FluidForce::calcForce(bool calcVariances)
+{
     if(!group()) return;
+    double cutoff = densityCutoff();
+    //update pressure and density for the entire fluid
+    calcPressureDensity();
 
-    calcPressureDensity(); //start off with some old fashion pressure/density updates
     // NOTE: Currently we are handling only children of the same group
     const ItemList::const_iterator end = group()->items().end();
     for(ItemList::const_iterator i1 = group()->items().begin(); i1 != end; ++i1) {
@@ -192,32 +194,33 @@ void FluidForce::calcForce(bool calcVariances)
             Vector2d r, force;
             FluidParticle* p1 = static_cast<FluidParticle*>(*i1);
             FluidParticle* p2 = static_cast<FluidParticle*>(*i2);
-            
+
             //this condition needs some threshold value or forces become far too strong since
             //we divide by density
- 	    if (p2->density() > 0.05) {
+            if (p2->density() > cutoff) {
                 //applying pressure forces
-		r = p2->position() - p1->position();
-		scalar = p1->mass() * (p1->pressure() + p2->pressure()) / (2 * p2->density());
+                r = p2->position() - p1->position();
+                scalar = p1->mass() * (p1->pressure() + p2->pressure()) / (2 * p2->density());
                 force = scalar * calcSKPressureGradient(r);
 
                 //qDebug("Look at this force: %f , %f . Check tha scalar  %f",force[0],force[1],scalar);
-		p2->applyForce(force);
+                p2->applyForce(force);
                 force = -force;
                 p1->applyForce(force);
 
                 //applying viscosity forces
                 //0.002 is the visocity value in Muller 03 equation 13
-                double rsquaredNorm = r.squaredNorm();
-                scalar = p2->mass() * (calcSKVicosityLaplacian(rsquaredNorm) * 0.002 / p2->density());
+                scalar = p2->mass() * (calcSKVicosityLaplacian(r.squaredNorm()) * 0.002 / p2->density());
                 force = scalar * (p2->velocity() - p1->velocity());
 
-		p2->applyForce(force);
+                p2->applyForce(force);
                 force = -force;
                 p1->applyForce(force);
 
-                //variances not implemented!!
-	    }
+                //surface tension forces not implemented, Muller 03 equation 19
+
+                //variances not implemented!
+            }
        }
     }
 }
@@ -230,22 +233,22 @@ if(!group()) return;
     const ItemList::const_iterator end = group()->items().end();
     for(ItemList::const_iterator i1 = group()->items().begin(); i1 != end; ++i1) {
         if(!(*i1)->metaObject()->inherits<FluidParticle>()) continue;
-	FluidParticle* p1 = static_cast<FluidParticle*>(*i1);
+        FluidParticle* p1 = static_cast<FluidParticle*>(*i1);
         p1->setDensity(0);
         for(ItemList::const_iterator i2 = i1+1; i2 != end; ++i2) {
             if(!(*i2)->metaObject()->inherits<FluidParticle>()) continue;
             FluidParticle* p2 = static_cast<FluidParticle*>(*i2);
             Vector2d r = p2->position() - p1->position();
             double rsquaredNorm = r.squaredNorm();
-	    //qDebug("DIST BETWEEN r=(%f), SKGeneral=(%f)", rsquaredNorm, calcSKGeneral(rsquaredNorm));
+            //qDebug("DIST BETWEEN r=(%f), SKGeneral=(%f)", rsquaredNorm, calcSKGeneral(rsquaredNorm));
 
-	    p1->applyDensity(p2->mass() * calcSKGeneral(rsquaredNorm));
+            p1->applyDensity(p2->mass() * calcSKGeneral(rsquaredNorm));
         }
 
         //Eq 12 of Muller 03. k=0.0001 is the gas constant, dependent on temperature!
-	//P_o = 100, is the rest density (doesn't affect gradients.. offers "numerical stability"
+        //P_o = 100, is the rest density (doesn't affect gradients.. offers "numerical stability"
         p1->setPressure(0.001 * (p1->density() - 100));
-	//qDebug("DENSITY AT P1 =(%f), PRESSURE=(%f)", p1->density(), (0.1 * (p1->density() - 100)));
+        //qDebug("DENSITY AT P1 =(%f), PRESSURE=(%f)", p1->density(), (0.1 * (p1->density() - 100)));
 
     }
 }
@@ -589,26 +592,26 @@ double FluidErrors::rectTemperatureVariance() const
     temperatureVariance /= square(2.0*Constants::Boltzmann*count);
     // XXX: We could easily take into account BoltzmannError here
     // but this can confuse users so for now we don't do it
-    
     return temperatureVariance;
 }
 
 double Fluid::rectPressure() const
 {
-    if(!group()) return 0.0;
+    double pressure = 0.0;
+
+    if(!group()) return pressure;
     // NOTE: Currently we are handling only children of the same group
     FluidForce* force = 0;
     const ItemList::const_iterator end = items().end();
     for(ItemList::const_iterator i1 = items().begin(); i1 != end; ++i1) {
-   	if((*i1)->metaObject()->inherits<FluidForce>()) {
-       	  force = static_cast<FluidForce*>(*i1);
-           break;
-   	}
+        if((*i1)->metaObject()->inherits<FluidForce>()) {
+            force = static_cast<FluidForce*>(*i1);
+            break;
+        }
     }
 
     if(force) {
-       double pressure = 0.0;
-       double precision = force->skradius()*5;
+       double precision = force->skRadius()*5;
        double pointpressure = 0.0;
 
        double dx = _measureRectSize[0]/precision;
@@ -620,139 +623,125 @@ double Fluid::rectPressure() const
 
        //divide the rectangle into dx*dy area elements 
        //and then pick the midpoint!
-       for(int i=0; i < precision-1; ++i) {
-    	   for(int j=0; j < precision-1; ++j) {
-	       //qDebug("rectangle points: %d %d %f %f",i,j,r0[0],r0[1]);
-	       rpoint[0] = r0[0] + 0.5*dx + dx*i;
-	       rpoint[1] = r0[1] + 0.5*dy + dy*j;
-               pointpressure=0;
-    	       for(ItemList::const_iterator i2 = items().begin(); i2 != end; ++i2) {
-        	   if(!(*i2)->metaObject()->inherits<FluidParticle>()) continue;
-		   FluidParticle* p1 = static_cast<FluidParticle*>(*i2);
-		   Vector2d r = rpoint - p1->position();
-        	   double rsquaredNorm = r.squaredNorm();
-	           //qDebug("%f %f %f",r[0],r[1],rsquaredNorm);
+        for(int i=0; i < precision-1; ++i) {
+            for(int j=0; j < precision-1; ++j) {
+                //qDebug("rectangle points: %d %d %f %f",i,j,r0[0],r0[1]);
+                rpoint[0] = r0[0] + 0.5*dx + dx*i;
+                rpoint[1] = r0[1] + 0.5*dy + dy*j;
+                pointpressure=0;
+                for(ItemList::const_iterator i2 = items().begin(); i2 != end; ++i2) {
+                    if(!(*i2)->metaObject()->inherits<FluidParticle>()) continue;
+                    FluidParticle* p1 = static_cast<FluidParticle*>(*i2);
+                    double rsquaredNorm = (rpoint - p1->position()).squaredNorm();
 
-		   pointpressure+=0.01*((p1->mass() * force->calcSKGeneral(rsquaredNorm))-0.1);
-               }
-               pressure+=da*pointpressure;
-	       //qDebug("%f %f %f",rpoint[0],rpoint[1],(da*pointpressure));
-
-    	  }
-       }
-       return pressure;
+                    pointpressure+=0.01*((p1->mass() * force->calcSKGeneral(rsquaredNorm))-0.1);
+                }
+            pressure+=da*pointpressure;
+            //qDebug("%f %f %f",rpoint[0],rpoint[1],(da*pointpressure));
+            }
+        }
     }
-    else {
-       return 0.0;
-    }
+    return pressure;
 }
 
 //Divides rectangle area into a grid of m discrete points, then returns the summed density
 //at these points, This calculation runs in O(m*n) time where m is a function of smoothing radius
 double Fluid::rectDensity() const
 {
-    if(!group()) return 0.0;
+    double density = 0.0;
+    if(!group()) return density;
     // NOTE: Currently we are handling only children of the same group
     FluidForce* force = 0;
     const ItemList::const_iterator end = items().end();
     for(ItemList::const_iterator i1 = items().begin(); i1 != end; ++i1) {
-   	if((*i1)->metaObject()->inherits<FluidForce>()) {
-       	  force = static_cast<FluidForce*>(*i1);
-           break;
-   	}
-    }
-
-    if(force) {
-       double density = 0.0;
-       double precision = force->skradius()*5;
-       double pointdensity = 0.0;
-
-       double dx = _measureRectSize[0]/precision;
-       double dy = _measureRectSize[1]/precision;
-       double da = dx*dy;
-       Vector2d r0 = (_measureRectCenter-_measureRectSize/2.0);
-       Vector2d rpoint;
-       //qDebug("dx %f dy %f r0 %f %f",dx,dy,r0[0],r0[1]);
-
-       //divide the rectangle into dx*dy area elements 
-       //and then pick the midpoint!
-       for(int i=0; i < precision-1; ++i) {
-    	   for(int j=0; j < precision-1; ++j) {
-	       //qDebug("rectangle points: %d %d %f %f",i,j,r0[0],r0[1]);
-	       rpoint[0] = r0[0] + 0.5*dx + dx*i;
-	       rpoint[1] = r0[1] + 0.5*dy + dy*j;
-               pointdensity=0;
-    	       for(ItemList::const_iterator i2 = items().begin(); i2 != end; ++i2) {
-        	   if(!(*i2)->metaObject()->inherits<FluidParticle>()) continue;
-		   FluidParticle* p1 = static_cast<FluidParticle*>(*i2);
-		   Vector2d r = rpoint - p1->position();
-        	   double rsquaredNorm = r.squaredNorm();
-
-		   pointdensity+=(p1->mass() * force->calcSKGeneral(rsquaredNorm));
-               }
-	       //qDebug("%f %f %f",rpoint[0],rpoint[1],(da*pointdensity));
-               density+=da*pointdensity;
-    	  }
-       }
-       return density;
-    }
-    else {
-       return 0.0;
-    }
-}
-
-
-double Fluid::skradius() const
-{
-    FluidForce* force = 0;
-    const ItemList::const_iterator end = items().end();
-    for(ItemList::const_iterator i1 = items().begin(); i1 != end; ++i1) {
-   	if((*i1)->metaObject()->inherits<FluidForce>()) {
-       	  force = static_cast<FluidForce*>(*i1);
-           break;
-   	}
-    }
-    if(force) {
-       return force->skradius();
-    }
-    else {
-       return 0.0;
-    }
-}
-
-double Fluid::calcNormal(Vector2d r)
-{
-    if(!group()) return 0.0;
-    // NOTE: Currently we are handling only children of the same group
-    FluidForce* force = 0;
-    const ItemList::const_iterator end = items().end();
-    for(ItemList::const_iterator i1 = items().begin(); i1 != end; ++i1) {
-   	if((*i1)->metaObject()->inherits<FluidForce>()) {
-       	  force = static_cast<FluidForce*>(*i1);
-           break;
-   	}
-    }
-
-    if(force) {
-        Vector2d normal = Vector2d::Zero();
-        for(ItemList::const_iterator i1 = items().begin(); i1 != end; ++i1) {
-           if(!(*i1)->metaObject()->inherits<FluidParticle>()) continue;
-	   FluidParticle* p1 = static_cast<FluidParticle*>(*i1);
- 	   if (p1->density() > 0) {
-              Vector2d rpoint = r - p1->position();
-
-	      //Equation 15-16, Muller et. al 2003
-              //qDebug("%f %f %f %f",p1->mass(),force->calcSKGeneralGradient(rpoint)[0],force->calcSKGeneralGradient(rpoint)[1],p1->density());
-              //qDebug("%f %f",test[0],test[1]);
-              normal += (p1->mass() * force->calcSKGeneralGradient(rpoint))/(p1->density());
-           }
+        if((*i1)->metaObject()->inherits<FluidForce>()) {
+            force = static_cast<FluidForce*>(*i1);
+            break;
         }
-	//qDebug("%f %f %f",normal[0],normal[1],normal.squaredNorm());
-        return normal.squaredNorm();
+    }
+
+    if(force) {
+        double precision = force->skRadius()*5;
+        double pointdensity = 0.0;
+
+        double dx = _measureRectSize[0]/precision;
+        double dy = _measureRectSize[1]/precision;
+        double da = dx*dy;
+        Vector2d r0 = (_measureRectCenter-_measureRectSize/2.0);
+        Vector2d rpoint;
+        //qDebug("dx %f dy %f r0 %f %f",dx,dy,r0[0],r0[1]);
+
+        //divide the rectangle into dx*dy area elements 
+        //and then pick the midpoint!
+        for(int i=0; i < precision-1; ++i) {
+            for(int j=0; j < precision-1; ++j) {
+                //qDebug("rectangle points: %d %d %f %f",i,j,r0[0],r0[1]);
+                rpoint[0] = r0[0] + 0.5*dx + dx*i;
+                rpoint[1] = r0[1] + 0.5*dy + dy*j;
+                pointdensity=0;
+                for(ItemList::const_iterator i2 = items().begin(); i2 != end; ++i2) {
+                    if(!(*i2)->metaObject()->inherits<FluidParticle>()) continue;
+                    FluidParticle* p1 = static_cast<FluidParticle*>(*i2);
+                    Vector2d r = rpoint - p1->position();
+                    double rsquaredNorm = r.squaredNorm();
+
+                    pointdensity+=(p1->mass() * force->calcSKGeneral(rsquaredNorm));
+               }
+                //qDebug("%f %f %f",rpoint[0],rpoint[1],(da*pointdensity));
+                density+=da*pointdensity;
+            }
+        }
+    }
+    return density;
+}
+
+
+double Fluid::skRadius()
+{
+    FluidForce* force = 0;
+    const ItemList::const_iterator end = items().end();
+    for(ItemList::const_iterator i1 = items().begin(); i1 != end; ++i1) {
+        if((*i1)->metaObject()->inherits<FluidForce>()) {
+            force = static_cast<FluidForce*>(*i1);
+            break;
+        }
+    }
+    if(force) {
+       return force->skRadius();
     }
     else {
        return 0.0;
     }
+}
+
+Vector2d Fluid::calcNormal(Vector2d r)
+{
+    Vector2d normal = Vector2d::Zero();
+
+    if(!group()) return normal;
+    // NOTE: Currently we are handling only children of the same group
+    FluidForce* force = 0;
+    const ItemList::const_iterator end = items().end();
+    for(ItemList::const_iterator i1 = items().begin(); i1 != end; ++i1) {
+        if((*i1)->metaObject()->inherits<FluidForce>()) {
+            force = static_cast<FluidForce*>(*i1);
+            break;
+        }
+    }
+
+    if(force) {
+        double density = force->densityCutoff();
+        for(ItemList::const_iterator i1 = items().begin(); i1 != end; ++i1) {
+            if(!(*i1)->metaObject()->inherits<FluidParticle>()) continue;
+            FluidParticle* p1 = static_cast<FluidParticle*>(*i1);
+            if (p1->density() > density) {
+                //Equation 15-16, Muller et. al 2003
+                normal += (p1->mass() * force->calcSKGeneralGradient(r - p1->position()))/(p1->density());
+            }
+        }
+    }
+    //qDebug("%f %f %f",normal[0],normal[1],normal.squaredNorm());
+    return normal;
 }
 
 double Fluid::calcDensity(Vector2d r)
@@ -762,27 +751,27 @@ double Fluid::calcDensity(Vector2d r)
     FluidForce* force = 0;
     const ItemList::const_iterator end = items().end();
     for(ItemList::const_iterator i1 = items().begin(); i1 != end; ++i1) {
-   	if((*i1)->metaObject()->inherits<FluidForce>()) {
-       	  force = static_cast<FluidForce*>(*i1);
-           break;
-   	}
+        if((*i1)->metaObject()->inherits<FluidForce>()) {
+            force = static_cast<FluidForce*>(*i1);
+            break;
+        }
     }
 
     if(force) {
         double pointdensity = 0;
+        double cutoff = force->densityCutoff();
         for(ItemList::const_iterator i1 = items().begin(); i1 != end; ++i1) {
-           if(!(*i1)->metaObject()->inherits<FluidParticle>()) continue;
-	   FluidParticle* p1 = static_cast<FluidParticle*>(*i1);
- 	   if (p1->density() > 0) {
-              Vector2d rpoint = r - p1->position();
-              double rsquaredNorm = rpoint.squaredNorm();
-	      pointdensity+=(p1->mass() * force->calcSKGeneral(rsquaredNorm));
-           }
+            if(!(*i1)->metaObject()->inherits<FluidParticle>()) continue;
+            FluidParticle* p1 = static_cast<FluidParticle*>(*i1);
+            if (p1->density() > cutoff) {
+                double rsquaredNorm = (r - p1->position()).squaredNorm();
+                pointdensity+=(p1->mass() * force->calcSKGeneral(rsquaredNorm));
+            }
         }
         return pointdensity;
     }
     else {
-       return 0.0;
+        return 0.0;
     }
 }
 
@@ -820,45 +809,62 @@ double FluidErrors::rectPressureVariance() const
 
 Vector2d Fluid::measureFluidSize() const
 {
-   const ItemList::const_iterator end = items().end();
+    //r0 stores the maximum left/top coordinates
+    //r1 stores the maximum right/bottom coordinates
+    Vector2d r0 = Vector2d::Zero();
+    Vector2d r1 = Vector2d::Zero();
 
-   //Set default size at origin, although this is incorrect in general
-   Vector2d r0 = Vector2d::Zero();
-   Vector2d r1 = Vector2d::Zero();
+    //Choose an arbitrary fluid particle to define the max/min vectors
+    //this particle must meet a density threshold to be considered
+    const ItemList::const_iterator end = items().end();
 
-   //Sets a default for fluid size. If particle count is 1, this returns zero
-   //This initial loop is negligable for a large number of particles
-   for(ItemList::const_iterator i1 = items().begin(); i1 != end; ++i1) {
-      if(!(*i1)->metaObject()->inherits<FluidParticle>()) continue;
-      FluidParticle* p1 = static_cast<FluidParticle*>(*i1);
-      if (p1->density() > 0.05) {
-         r0 = p1->position();
-         r1 = p1->position();
-      }
-   }
-
-   for(ItemList::const_iterator i1 = items().begin(); i1 != end; ++i1) {
-      if(!(*i1)->metaObject()->inherits<FluidParticle>()) continue;
-        FluidParticle* p1 = static_cast<FluidParticle*>(*i1);
-        //left-most particle
-        if(p1->position()[0] < r0[0]) {
-           r0[0]=p1->position()[0];
-        }
-        //top-most particle
-        if(p1->position()[1] > r0[1]) {
-           r0[1]=p1->position()[1];
-        }
-        //width-most particle
-        if(p1->position()[0] > r1[0]) {
-           r1[0]=p1->position()[0];
-        }
-        //height-most particle
-        if(p1->position()[1] < r1[1]) {
-           r1[1]=p1->position()[1];
+    FluidForce* force = 0;
+    for(ItemList::const_iterator i1 = items().begin(); i1 != end; ++i1) {
+        if((*i1)->metaObject()->inherits<FluidForce>()) {
+            force = static_cast<FluidForce*>(*i1);
+            break;
         }
     }
+
+    if(force) {
+        double cutoff = force->densityCutoff();
+        for(ItemList::const_iterator i1 = items().begin(); i1 != end; ++i1) {
+            if(!(*i1)->metaObject()->inherits<FluidParticle>()) continue;
+            FluidParticle* p1 = static_cast<FluidParticle*>(*i1);
+            if (p1->density() > cutoff) {
+                r0 = p1->position();
+                r1 = p1->position();
+                break;
+            }
+        }
+
+        for(ItemList::const_iterator i1 = items().begin(); i1 != end; ++i1) {
+            if(!(*i1)->metaObject()->inherits<FluidParticle>()) continue;
+            FluidParticle* p1 = static_cast<FluidParticle*>(*i1);
+
+            //left-most particle
+            if(p1->position()[0] < r0[0]) {
+                r0[0]=p1->position()[0];
+            }
+            //top-most particle
+            if(p1->position()[1] > r0[1]) {
+                r0[1]=p1->position()[1];
+            }
+            //right-most particle
+            if(p1->position()[0] > r1[0]) {
+                r1[0]=p1->position()[0];
+            }
+            //bottom-most particle
+            if(p1->position()[1] < r1[1]) {
+                r1[1]=p1->position()[1];
+            }
+        }
+    }
+
     Vector2d size=r1-r0;
-    //if ()
+
+    //It is recommended to test here if the size of the fluid
+    //is larger than the viewable worldscene area
     return size;
 }
 

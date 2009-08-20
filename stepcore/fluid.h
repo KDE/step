@@ -45,16 +45,16 @@ public:
     explicit FluidParticle(Vector2d position = Vector2d::Zero(), Vector2d velocity = Vector2d::Zero(), double mass = 0.1, double density = 100)
         : Particle(position, velocity, mass), _density(density) {}
 
-  /** Get mass of the particle */
+  /** Get density of the particle */
     double density() const { return _density; }
-    /** Set mass of the particle */
+    /** Set density of the particle */
     void setDensity(double density) { _density = density; }
     /** Apply density to the body */
     void applyDensity(double density) { _density += density; }
 
-  /** Get mass of the particle */
+  /** Get pressure of the particle */
     double pressure() const { return _pressure; }
-    /** Set mass of the particle */
+    /** Set pressure of the particle */
     void setPressure(double pressure) { _pressure = pressure; }
 
 protected:
@@ -63,7 +63,7 @@ protected:
 };
 
 /** \ingroup errors
- *  \brief Errors object for FluidForce
+ *  \brief Errors object for FluidForce, not fully implemented
  */
 class FluidForceErrors: public ObjectErrors
 {
@@ -72,45 +72,28 @@ class FluidForceErrors: public ObjectErrors
 public:
     /** Constructs FluidForceErrors */
     FluidForceErrors(Item* owner = 0)
-        : ObjectErrors(owner), _depthVariance(0), _rminVariance(0) {}
+        : ObjectErrors(owner), _skRadiusVariance(0) {}
 
     /** Get owner as FluidForce */
     FluidForce* fluidForce() const;
 
-    /** Get depth variance */
-    double depthVariance() const { return _depthVariance; }
-    /** Set depth variance */
-    void setDepthVariance(double depthVariance) { _depthVariance = depthVariance; }
-
-    /** Get rmin variance */
-    double rminVariance() const { return _rminVariance; }
-    /** Set rmin variance */
-    void setRminVariance(double rminVariance) { _rminVariance = rminVariance; }
+    /** Get smoothing radius variance */
+    double skRadiusVariance() const { return _skRadiusVariance; }
+    /** Set smoothing radius variance */
+    void setskRadiusVariance(double skRadiusVariance) { _skRadiusVariance = skRadiusVariance; }
 
 protected:
-    double _depthVariance;
-    double _rminVariance;
+    double _skRadiusVariance;
     friend class FluidForce;
 };
 
 /** \ingroup forces
- *  \brief Lennard-Jones force with cut-off which acts between particles in the Fluid
+ *  \brief Smoothed Particle Hydrodynamics forces with smoothing kernel radius, skRadius
  *
- *  The force acts between pairs of FluidParticle and equals:
- *  \f{eqnarray*}
- *      \overrightarrow{f} = & 12 \epsilon \left(
- *             \frac{ r_{min}^{12} }{ r^{13} } -
- *             \frac{ r_{min}^{6} }{ r^{7} }
- *         \right) \frac{\overrightarrow{r}}{r} & \mbox{  if  } r<\mbox{cutoff} \\
- *     \overrightarrow{f} = & 0 & \mbox{  if  } r \ge \mbox{cutoff}
- *  \f}
- *  where:\n
- *  \f$\epsilon\f$ is the depth of the potential\n
- *  \f$r_{min}\f$ is the distance at which the interparticle force is zero\n
- *  \f$\overrightarrow{r}\f$ is difference of FluidParticle::position
-                             of the first and second particle\n
- *  \f$\mbox{cutoff}\f$ is a cut-off distance (can be set to infinity)
- *
+ *  The force acts between pairs of FluidParticle 
+ *  is mediated by Pressure, Viscosity, and Surface Tension Forces
+ *  outlined in "Particle-Based Fluid Simulation for Interactive Applications" by Muller, M., Charypar, D., and Gross, M.
+ *  in equations 10, 14, and 19 respectively.
  */
 class FluidForce: public Item, public Force
 {
@@ -118,23 +101,33 @@ class FluidForce: public Item, public Force
 
 public:
     /** Constructs FluidForce */
-    explicit FluidForce(double skradius = 2.0);
+    explicit FluidForce(double skRadius = 2.0, double cutoff = 0.05);
 
+    //
     void calcForce(bool calcVariances);
-    void calcPressureDensity();
 
     /** Get owner as a Fluid */
     Fluid* fluid() const;
 
     /** Get distance at which the interparticle force is zero */
-    double skradius() const { return _skradius; }
+    double skRadius() const { return _skRadius; }
     /** Set distance at which the interparticle force is zero */
-    void setSKradius(double skradius) { _skradius = skradius; calcABC(); }
+    void setSKradius(double skRadius) { _skRadius = skRadius; _skRadiussquare = pow(skRadius,2); calcPrefactors(); }
 
+    /** Density values lower than this value are excluded from calculations to prevent 
+      * numerical explosions! */
+    double densityCutoff() const { return _densityCutoff;}
+    void setDensityCutoff(double cutoff) { _densityCutoff = cutoff; }
+
+    /** Calculates the smoothing kernel at distance r using Poly6 (Equation 20 of Muller 2003)*/
     double calcSKGeneral(double);
     Vector2d calcSKGeneralGradient(Vector2d);
+
+    /** Calculates the smoothing kernel at distance r using Spiky (Equation 21 of Muller 2003)*/
     double calcSKPressure(double);
     Vector2d calcSKPressureGradient(Vector2d);
+
+    /** Calculates the smoothing kernel at distance r using Visocity (Equation 22 of Muller 2003)*/
     double calcSKVicosity(double);
     double calcSKVicosityLaplacian(double);
 
@@ -144,12 +137,14 @@ public:
 
 protected:
     ObjectErrors* createObjectErrors() { return new FluidForceErrors(this); }
-    void calcABC();
+    void calcPrefactors();
+    void calcPressureDensity();
 
     double _SKGeneralFactor;
     double _SKPressureFactor;
     double _SKViscosityFactor;
-    double _skradius,_skradiussquare;
+    double _skRadius,_skRadiussquare;
+    double _densityCutoff;
 };
 
 typedef std::vector<FluidParticle*> FluidParticleList;
@@ -199,10 +194,13 @@ public:
                                 const Vector2d& meanVelocity);
 
     void addParticles(const FluidParticleList& particles);
-    
-    double calcNormal(Vector2d);
+
+    /** Returns the normal vector of the color field at position r*/
+    Vector2d calcNormal(Vector2d);
+
     double calcDensity(Vector2d);
-    double skradius() const;
+    double skRadius();
+
     double rectVolume() const;
     double rectParticleCount() const;
     double rectConcentration() const;
@@ -213,12 +211,15 @@ public:
     double rectMeanKineticEnergy() const;
     double rectMeanParticleMass() const;
     double rectMass() const;
+
+    /** Returns the largest box that contains all fluid particles measured from (0,0) */
     Vector2d measureFluidSize() const;
 
-
+    /** Returns the center of the measurement rectangle */
     const Vector2d& measureRectCenter() const { return _measureRectCenter; }
     void setMeasureRectCenter(const Vector2d& measureRectCenter) { _measureRectCenter = measureRectCenter; }
 
+    /** Returns the size of the measurement rectangle */
     const Vector2d& measureRectSize() const { return _measureRectSize; }
     void setMeasureRectSize(const Vector2d& measureRectSize) { _measureRectSize = measureRectSize.cwise().abs(); }
 
