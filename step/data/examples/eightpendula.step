@@ -1,0 +1,229 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE StepCoreXML>
+<world xmlns="http://edu.kde.org/step/StepCoreXML" version="1.0" id="1">
+    <name>Pendule de Newton à 8 billes (http://fr.wikipedia.org/wiki/Pendule_de_Newton)</name>
+    <color>#fff9f9f9</color>
+    <time>0</time>
+    <timeScale>1</timeScale>
+    <errorsCalculation>true</errorsCalculation>
+
+
+    <item class="WeightForce" id="3">
+        <name>weightForce1</name>
+        <color>#ff000000</color>
+        <weightConst>9.80665</weightConst>
+        <weightConstVariance>1e-10</weightConstVariance>
+    </item>
+
+    <item class="Disk" id="4">
+        <name>disk1</name>
+        <color>#ff9e0000</color>
+        <position>(-5.5,0)</position>
+        <angle>0</angle>
+        <velocity>(0,0)</velocity>
+        <angularVelocity>0</angularVelocity>
+        <mass>1</mass>
+        <inertia>0.03425</inertia>
+        <radius>0.499</radius>
+    </item>
+
+    <item class="Stick" id="5">
+        <name>stick1</name>
+        <color>#ff64686c</color>
+        <restLength>2</restLength>
+        <body1>4</body1>
+        <body2>2</body2>
+        <localPosition1>(0,0)</localPosition1>
+        <localPosition2>(-3.5,0)</localPosition2>
+    </item>
+
+    <item class="Disk" id="6">
+        <name>disk2</name>
+        <color>#ff000000</color>
+        <position>(-1.5,-2)</position>
+        <angle>0</angle>
+        <velocity>(0,0)</velocity>
+        <angularVelocity>0</angularVelocity>
+        <mass>1</mass>
+        <inertia>0.1237</inertia>
+        <radius>0.499</radius>
+    </item>
+
+    <item class="Disk" id="7">
+        <name>disk4</name>
+        <color>#ff000000</color>
+        <position>(-2.5,-2)</position>
+        <angle>0</angle>
+        <velocity>(0,0)</velocity>
+        <angularVelocity>0</angularVelocity>
+        <mass>1</mass>
+        <inertia>0.1237</inertia>
+        <radius>0.499</radius>
+    </item>
+
+    <item class="Stick" id="8">
+        <name>stick3</name>
+        <color>#ff64686c</color>
+        <restLength>2</restLength>
+        <body1>7</body1>
+        <body2>2</body2>
+        <localPosition1>(0,0)</localPosition1>
+        <localPosition2>(-2.5,0)</localPosition2>
+    </item>
+
+    <item class="Anchor" id="9">
+        <name>anchor1</name>
+        <color>#ff64686c</color>
+        <body>2</body>
+        <position>(0,0)</position>
+        <angle>0</angle>
+    </item>
+
+    <item class="Stick" id="10">
+        <name>stick2</name>
+        <color>#ff64686c</color>
+        <restLength>2</restLength>
+        <body1>6</body1>
+        <body2>2</body2>
+        <localPosition1>(0,0)</localPosition1>
+        <localPosition2>(-1.5,0)</localPosition2>
+    </item>
+
+    <item class="Disk" id="11">
+        <name>disk5</name>
+        <color>#ff000000</color>
+        <position>(-0.5,-2)</position>
+        <angle>0</angle>
+        <velocity>(0,0)</velocity>
+        <angularVelocity>0</angularVelocity>
+        <mass>1</mass>
+        <inertia>0.1237</inertia>
+        <radius>0.499</radius>
+    </item>
+
+    <item class="Stick" id="12">
+        <name>stick4</name>
+        <color>#ff64686c</color>
+        <restLength>2</restLength>
+        <body1>11</body1>
+        <body2>2</body2>
+        <localPosition1>(0,0)</localPosition1>
+        <localPosition2>(-0.5,0)</localPosition2>
+    </item>
+
+    <item class="Disk" id="13">
+        <name>disk6</name>
+        <color>#ff000000</color>
+        <position>(0.5,-2)</position>
+        <angle>0</angle>
+        <velocity>(0,0)</velocity>
+        <angularVelocity>0</angularVelocity>
+        <mass>1</mass>
+        <inertia>0.1237</inertia>
+        <radius>0.499</radius>
+    </item>
+
+    <item class="Stick" id="14">
+        <name>stick5</name>
+        <color>#ff64686c</color>
+        <restLength>2</restLength>
+        <body1>13</body1>
+        <body2>2</body2>
+        <localPosition1>(0,0)</localPosition1>
+        <localPosition2>(0.5,0)</localPosition2>
+    </item>
+
+    <item class="Disk" id="15">
+        <name>disk7</name>
+        <color>#ff000000</color>
+        <position>(1.5,-2)</position>
+        <angle>0</angle>
+        <velocity>(0,0)</velocity>
+        <angularVelocity>0</angularVelocity>
+        <mass>1</mass>
+        <inertia>0.1237</inertia>
+        <radius>0.499</radius>
+    </item>
+
+    <item class="Stick" id="16">
+        <name>stick6</name>
+        <color>#ff64686c</color>
+        <restLength>2</restLength>
+        <body1>15</body1>
+        <body2>2</body2>
+        <localPosition1>(0,0)</localPosition1>
+        <localPosition2>(1.5,0)</localPosition2>
+    </item>
+
+    <item class="Disk" id="17">
+        <name>disk8</name>
+        <color>#ff000000</color>
+        <position>(2.5,-2)</position>
+        <angle>0</angle>
+        <velocity>(0,0)</velocity>
+        <angularVelocity>0</angularVelocity>
+        <mass>1</mass>
+        <inertia>0.1237</inertia>
+        <radius>0.499</radius>
+    </item>
+
+    <item class="Stick" id="18">
+        <name>stick7</name>
+        <color>#ff64686c</color>
+        <restLength>2</restLength>
+        <body1>17</body1>
+        <body2>2</body2>
+        <localPosition1>(0,0)</localPosition1>
+        <localPosition2>(2.5,0)</localPosition2>
+    </item>
+
+    <item class="Disk" id="19">
+        <name>disk9</name>
+        <color>#ff000000</color>
+        <position>(3.5,-2)</position>
+        <angle>0</angle>
+        <velocity>(0,0)</velocity>
+        <angularVelocity>0</angularVelocity>
+        <mass>1</mass>
+        <inertia>0.1237</inertia>
+        <radius>0.499</radius>
+    </item>
+
+    <item class="Stick" id="20">
+        <name>stick8</name>
+        <color>#ff64686c</color>
+        <restLength>2</restLength>
+        <body1>19</body1>
+        <body2>2</body2>
+        <localPosition1>(0,0)</localPosition1>
+        <localPosition2>(3.5,0)</localPosition2>
+    </item>
+
+    <solver class="AdaptiveEulerSolver" id="22">
+        <name>solver1</name>
+        <stepSize>0.0341481512046179</stepSize>
+        <toleranceAbs>0.001</toleranceAbs>
+        <toleranceRel>0.001</toleranceRel>
+    </solver>
+
+    <collisionSolver class="GJKCollisionSolver" id="23">
+        <name>collisionSolver1</name>
+        <toleranceAbs>0.001</toleranceAbs>
+    </collisionSolver>
+
+    <constraintSolver class="CGConstraintSolver" id="24">
+        <name>constraintSolver1</name>
+    </constraintSolver>
+
+    <item class="Box" id="2">
+        <name>box1</name>
+        <color>#ffdce7e6</color>
+        <position>(0,0)</position>
+        <angle>0</angle>
+        <velocity>(0,0)</velocity>
+        <angularVelocity>0</angularVelocity>
+        <mass>1</mass>
+        <inertia>4.62626666666667</inertia>
+        <size>(8,1)</size>
+    </item>
+</world>
