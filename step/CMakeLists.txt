@@ -65,7 +65,7 @@ kde4_add_executable(step ${step_SRCS})
 target_link_libraries(step
     stepcore
     ${KDE4_KHTML_LIBS}
-    ${KDE4_KNEWSTUFF2_LIBS}
+    ${KDE4_KNEWSTUFF3_LIBS}
     ${QT_QTOPENGL_LIBRARY}
     ${qalculate_LIBS})
 

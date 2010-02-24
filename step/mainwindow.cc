@@ -50,7 +50,7 @@
 #include <KToolBarPopupAction>
 
 #include <KIO/NetAccess>
-#include <KNS/Engine>
+#include <knewstuff3/downloaddialog.h>
 
 #include <QFile>
 #include <QGraphicsView>
@@ -467,7 +467,8 @@ void MainWindow::uploadExample()
 
 void MainWindow::downloadExamples()
 {
-    KNS::Entry::List entries = KNS::Engine::download();
+    KNS3::DownloadDialog dialog("step.knsrc", this);
+    dialog.exec();
 }
 
 void MainWindow::simulationStartStop()
