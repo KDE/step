@@ -208,7 +208,11 @@ bool WorldScene::event(QEvent* event)
         bool handled = _itemCreator->sceneEvent(event);
         if(_itemCreator->finished()) {
             emit endAddItem(_itemCreator->className(), _itemCreator->item() != NULL);
-            delete _itemCreator; _itemCreator = NULL;
+            // ~ItemCreator() will indirectly call this method, thus we must set
+            // the pointer to NULL before deleting the ItemCreator.
+            ItemCreator* itemCreator = _itemCreator;
+            _itemCreator = NULL;
+            delete itemCreator;
         }
         if(handled) {
             event->accept();
