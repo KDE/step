@@ -160,9 +160,10 @@ bool DiskCreator::sceneEvent(QEvent* event)
 
         _worldModel->simulationPause();
         _worldModel->beginMacro(i18n("Create %1", _worldModel->newItemName(_className)));
-        _item = _worldModel->newItem(_className); Q_ASSERT(_item != NULL);
+        _item = _worldModel->createItem(_className); Q_ASSERT(_item != NULL);
         _worldModel->setProperty(_item, "position", vpos);
         _worldModel->setProperty(_item, "radius", QVariant::fromValue(0.0));
+        _worldModel->addItem(_item);
         _worldModel->selectionModel()->setCurrentIndex(_worldModel->objectIndex(_item),
                                                     QItemSelectionModel::ClearAndSelect);
 
@@ -284,9 +285,10 @@ bool BoxCreator::sceneEvent(QEvent* event)
 
         _worldModel->simulationPause();
         _worldModel->beginMacro(i18n("Create %1", _worldModel->newItemName(_className)));
-        _item = _worldModel->newItem(_className); Q_ASSERT(_item != NULL);
+        _item = _worldModel->createItem(_className); Q_ASSERT(_item != NULL);
         _worldModel->setProperty(_item, "position", vpos);
         _worldModel->setProperty(_item, "size", QVariant::fromValue(StepCore::Vector2d::Zero().eval()));
+        _worldModel->addItem(_item);
         _worldModel->selectionModel()->setCurrentIndex(_worldModel->objectIndex(_item),
                                                     QItemSelectionModel::ClearAndSelect);
         _topLeft = WorldGraphicsItem::pointToVector(pos);
@@ -428,9 +430,10 @@ bool PolygonCreator::sceneEvent(QEvent* event)
 
         _worldModel->simulationPause();
         _worldModel->beginMacro(i18n("Create %1", _worldModel->newItemName(_className)));
-        _item = _worldModel->newItem(_className); Q_ASSERT(_item != NULL);
+        _item = _worldModel->createItem(_className); Q_ASSERT(_item != NULL);
         _worldModel->setProperty(_item, "position", vpos);
         _worldModel->setProperty(_item, "vertexes", QString("(0,0)"));
+        _worldModel->addItem(_item);
         _worldModel->selectionModel()->setCurrentIndex(_worldModel->objectIndex(_item),
                                                     QItemSelectionModel::ClearAndSelect);
 

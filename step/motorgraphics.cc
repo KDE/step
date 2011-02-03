@@ -39,9 +39,10 @@ bool LinearMotorCreator::sceneEvent(QEvent* event)
 
         _worldModel->simulationPause();
         _worldModel->beginMacro(i18n("Create %1", _worldModel->newItemName(_className)));
-        _item = _worldModel->newItem(className()); Q_ASSERT(_item != NULL);
+        _item = _worldModel->createItem(className()); Q_ASSERT(_item != NULL);
 
         _worldModel->setProperty(_item, "localPosition", vpos);
+        _worldModel->addItem(_item);
         tryAttach(pos);
 
         _worldModel->selectionModel()->setCurrentIndex(_worldModel->objectIndex(_item),
@@ -219,9 +220,10 @@ bool CircularMotorCreator::sceneEvent(QEvent* event)
 
         _worldModel->simulationPause();
         _worldModel->beginMacro(i18n("Create %1", _worldModel->newItemName(_className)));
-        _item = _worldModel->newItem(className()); Q_ASSERT(_item != NULL);
+        _item = _worldModel->createItem(className()); Q_ASSERT(_item != NULL);
 
         _worldModel->setProperty(_item, "localPosition", vpos);
+        _worldModel->addItem(_item);
         tryAttach(pos);
 
         _worldModel->selectionModel()->setCurrentIndex(_worldModel->objectIndex(_item),

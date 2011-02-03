@@ -70,10 +70,7 @@ bool ItemCreator::sceneEvent(QEvent* event)
         _worldModel->simulationPause();
 
         _worldModel->beginMacro(i18n("Create %1", _worldModel->newItemName(_className)));
-        _item = _worldModel->newItem(_className); Q_ASSERT(_item != NULL);
-#ifdef __GNUC__
-#warning Do not add item until it is fully created
-#endif
+        _item = _worldModel->createItem(_className); Q_ASSERT(_item != NULL);
         const StepCore::MetaProperty* property = _item->metaObject()->property("position");
         if(property != NULL) {
             QGraphicsSceneMouseEvent* mouseEvent = static_cast<QGraphicsSceneMouseEvent*>(event);
@@ -81,6 +78,7 @@ bool ItemCreator::sceneEvent(QEvent* event)
             QVariant vpos = QVariant::fromValue(WorldGraphicsItem::pointToVector(pos));
             _worldModel->setProperty(_item, property, vpos);
         }
+        _worldModel->addItem(_item);
 
         _worldModel->endMacro();
 
@@ -122,9 +120,7 @@ bool AttachableItemCreator::sceneEvent(QEvent* event)
         QPointF pos = mouseEvent->scenePos();
         _worldModel->simulationPause();
         _worldModel->beginMacro(i18n("Create %1", _worldModel->newItemName(_className)));
-        _item = _worldModel->newItem(className()); Q_ASSERT(_item != NULL);
-        _worldModel->selectionModel()->setCurrentIndex(_worldModel->objectIndex(_item),
-                                                QItemSelectionModel::ClearAndSelect);
+        _item = _worldModel->createItem(className()); Q_ASSERT(_item != NULL);
 
         if(_twoEnds) {
             _worldScene->snapItem(pos, _snapFlags, _snapTypes, WorldGraphicsItem::Finished, _item, 1);
@@ -142,6 +138,9 @@ bool AttachableItemCreator::sceneEvent(QEvent* event)
             _worldModel->endMacro();
             setFinished();
         }
+        _worldModel->addItem(_item);
+        _worldModel->selectionModel()->setCurrentIndex(_worldModel->objectIndex(_item),
+                                                       QItemSelectionModel::ClearAndSelect);
         return true;
 
     } else if(event->type() == QEvent::GraphicsSceneMouseMove &&

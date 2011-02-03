@@ -109,6 +109,7 @@ public:
     // Add/remove/set functions
     /** Generates new unique item name */
     QString newItemName(const QString& className);
+    StepCore::Item* createItem(const QString& className, StepCore::ItemGroup* parent = 0);
     /** Creates new item of className with unique name */
     StepCore::Item* newItem(const QString& className, StepCore::ItemGroup* parent = 0);
     /** Add already created item to the world */
