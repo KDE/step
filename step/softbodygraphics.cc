@@ -38,6 +38,55 @@
 
 #include <float.h>
 
+void SoftBodyCreator::start()
+{
+    showMessage(MessageFrame::Information,
+            i18n("Click on the scene to create a %1", classNameTr()));
+}
+
+bool SoftBodyCreator::sceneEvent(QEvent* event)
+{
+    QGraphicsSceneMouseEvent* mouseEvent = static_cast<QGraphicsSceneMouseEvent*>(event);
+    
+    if (event->type() == QEvent::GraphicsSceneMousePress &&
+        mouseEvent->button() == Qt::LeftButton) {
+        QPointF pos = mouseEvent->scenePos();
+        StepCore::Vector2d position = WorldGraphicsItem::pointToVector(pos);
+        
+        _worldModel->simulationPause();
+        _worldModel->beginMacro(i18n("Create %1",
+                                     _worldModel->newItemName(_className)));
+
+        showMessage(MessageFrame::Information,
+            i18n("Please fill in the parameters for %1", classNameTr()));
+
+        _item = _worldModel->createItem(_className); Q_ASSERT(_item != 0);
+        
+        SoftBodyMenuHandler* menuHandler =
+            new SoftBodyMenuHandler(_item, _worldModel, 0);
+        menuHandler->createSoftBodyItems(position);
+        menuHandler->deleteLater();
+        
+        _worldModel->endMacro();
+
+        if (menuHandler->applied()) {
+            showMessage(MessageFrame::Information,
+                i18n("%1 named '%2' created", classNameTr(), _item->name()),
+                MessageFrame::CloseButton | MessageFrame::CloseTimer);
+        }
+        else {
+            delete _item;
+            _item = 0;
+        }
+
+        setFinished();
+        
+        return true;
+    }
+    
+    return false;
+}
+
 void SoftBodyMenuHandler::populateMenu(QMenu* menu)
 {
     _createSoftBodyItemsUi = 0;
@@ -61,7 +110,7 @@ void SoftBodyMenuHandler::clearSoftBody()
 //    _worldModel->simulationPause();
 }
 
-void SoftBodyMenuHandler::createSoftBodyItems()
+void SoftBodyMenuHandler::createSoftBodyItems(const StepCore::Vector2d& pos)
 {
     if(_worldModel->isSimulationActive())
         _worldModel->simulationStop();
@@ -77,6 +126,7 @@ void SoftBodyMenuHandler::createSoftBodyItems()
     _createSoftBodyItemsUi->lineEditPosition->setValidator(
                 new QRegExpValidator(QRegExp("^\\([+-]?\\d+(\\.\\d*)?([eE]\\d*)?,[+-]?\\d+(\\.\\d*)?([eE]\\d*)?\\)$"),
                         _createSoftBodyItemsUi->lineEditPosition));
+    _createSoftBodyItemsUi->lineEditPosition->setText(StepCore::typeToString(pos));
     _createSoftBodyItemsUi->lineEditSize->setValidator(
                 new QRegExpValidator(QRegExp("^\\([+-]?\\d+(\\.\\d*)?([eE]\\d*)?,[+-]?\\d+(\\.\\d*)?([eE]\\d*)?\\)$"),
                         _createSoftBodyItemsUi->lineEditSize));
@@ -120,6 +170,10 @@ void SoftBodyMenuHandler::createSoftBodyItemsApply()
     StepCore::ItemList items =
             softBody()->createSoftBodyItems(position, size, split, bodyMass, youngModulus, bodyDamping);
 
+    _worldModel->addItem(softBody());
+    _worldModel->selectionModel()->setCurrentIndex(_worldModel->objectIndex(softBody()),
+                                                   QItemSelectionModel::ClearAndSelect);
+
     const StepCore::ItemList::const_iterator end = items.end();
     for(StepCore::ItemList::const_iterator it = items.begin(); it != end; ++it) {
         (*it)->setName(_worldModel->getUniqueName((*it)->metaObject()->className()));
@@ -127,6 +181,8 @@ void SoftBodyMenuHandler::createSoftBodyItemsApply()
     }
 
     _worldModel->endMacro();
+
+    _applied = true;
 }
 
 /////////////////////////////////////////////////

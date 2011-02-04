@@ -31,6 +31,19 @@ namespace StepCore{
     class SoftBody;
 }
 
+class SoftBodyCreator: public ItemCreator
+{
+public:
+    SoftBodyCreator(const QString& className, WorldModel* worldModel, WorldScene* worldScene)
+           : ItemCreator(className, worldModel, worldScene) {}
+
+    bool sceneEvent(QEvent* event);
+    void start();
+    
+public:
+    EIGEN_MAKE_ALIGNED_OPERATOR_NEW
+};
+
 class KDialog;
 class SoftBodyMenuHandler: public ItemMenuHandler
 {
@@ -38,12 +51,16 @@ class SoftBodyMenuHandler: public ItemMenuHandler
 
 public:
     SoftBodyMenuHandler(StepCore::Object* object, WorldModel* worldModel, QObject* parent)
-        : ItemMenuHandler(object, worldModel, parent) {}
+        : ItemMenuHandler(object, worldModel, parent), _applied(false) {}
 
     void populateMenu(QMenu* menu);
 
+    bool applied() const { return _applied; }
+
+public slots:
+    void createSoftBodyItems(const StepCore::Vector2d& pos);
+
 protected slots:
-    void createSoftBodyItems();
     void createSoftBodyItemsApply();
     void clearSoftBody();
 
@@ -51,6 +68,7 @@ protected:
     StepCore::SoftBody* softBody() const;
     Ui::WidgetCreateSoftBodyItems* _createSoftBodyItemsUi;
     KDialog*                       _createSoftBodyItemsDialog;
+    bool                           _applied;
 //    bool                      _confChanged;
 };
 
