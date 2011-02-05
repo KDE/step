@@ -77,6 +77,7 @@ MainWindow::MainWindow()
     setCorner(Qt::BottomRightCorner, Qt::RightDockWidgetArea);
 
     worldModel = new WorldModel(this);
+    worldModel->setActions(actionCollection());
 
     itemPalette = new ItemPalette(worldModel, this);
     itemPalette->setObjectName("itemPalette");
@@ -104,13 +105,15 @@ MainWindow::MainWindow()
 
     connect(worldModel, SIGNAL(simulationStopped(int)), this, SLOT(simulationStopped(int)));
     connect(worldModel->selectionModel(), SIGNAL(selectionChanged(const QItemSelection&, const QItemSelection&)),
-                                 this, SLOT(worldSelectionChanged(const QItemSelection&, const QItemSelection&)));
+                                 this, SLOT(worldSelectionChanged()));
     connect(itemPalette, SIGNAL(beginAddItem(const QString&)),
                                  worldScene, SLOT(beginAddItem(const QString&)));
     connect(worldScene, SIGNAL(endAddItem(const QString&, bool)),
                                  itemPalette, SLOT(endAddItem(const QString&, bool)));
     connect(worldScene, SIGNAL(linkActivated(const KUrl&)),
                                  infoBrowser, SLOT(openUrl(const KUrl&)));
+    connect(worldScene, SIGNAL(endAddItem(QString, bool)),
+            this, SLOT(worldSelectionChanged()));
     
 
     setupActions();
@@ -182,7 +185,7 @@ void MainWindow::setupActions()
     actionDelete = actionCollection()->add<KAction>("edit_delete", worldModel, SLOT(deleteSelectedItems()));
     actionDelete->setText(i18n("&Delete"));
     actionDelete->setIcon(KIcon("edit-delete"));
-    actionDelete->setShortcut(KShortcut(Qt::CTRL+Qt::Key_Delete));
+    actionDelete->setShortcut(KShortcut(Qt::Key_Delete));
     actionDelete->setEnabled(false);
 
     /* Simulation menu */
@@ -546,12 +549,15 @@ void MainWindow::redoTextChanged(const QString& redoText)
     else actionRedo->setText(i18n("Re&do: %1", redoText));
 }
 
-void MainWindow::worldSelectionChanged(const QItemSelection&, const QItemSelection&)
+void MainWindow::worldSelectionChanged()
 {
-    foreach(const QModelIndex &index, worldModel->selectionModel()->selection().indexes()) {
-        if(worldModel->item(index)) {
-            actionDelete->setEnabled(true);
-            return;
+    if (!worldScene->hasItemCreator()) {
+        foreach (const QModelIndex &index,
+                 worldModel->selectionModel()->selection().indexes()) {
+            if (index != worldModel->worldIndex() && worldModel->item(index)) {
+                actionDelete->setEnabled(true);
+                return;
+            }
         }
     }
     actionDelete->setEnabled(false);

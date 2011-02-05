@@ -233,15 +233,6 @@ void WorldScene::mousePressEvent(QGraphicsSceneMouseEvent* mouseEvent)
     QGraphicsScene::mousePressEvent(mouseEvent);
 }
 
-void WorldScene::keyPressEvent(QKeyEvent* keyEvent)
-{
-    if(keyEvent->matches(QKeySequence::Delete)) {
-        _worldModel->simulationPause();
-        _worldModel->deleteSelectedItems();
-        keyEvent->accept();
-    } else QGraphicsScene::keyPressEvent(keyEvent);
-}
-
 void WorldScene::helpEvent(QGraphicsSceneHelpEvent *helpEvent)
 {
     helpEvent->accept();
@@ -555,6 +546,11 @@ void WorldScene::snapUpdateToolTip()
         QWheelEvent fakeEvent(QPoint(0,0), 0, Qt::NoButton, Qt::NoModifier);
         QCoreApplication::sendEvent(_messageFrame, &fakeEvent);
     }
+}
+
+bool WorldScene::hasItemCreator() const
+{
+    return _itemCreator && !_itemCreator->finished();
 }
 
 WorldGraphicsView::WorldGraphicsView(WorldScene* worldScene, QWidget* parent)

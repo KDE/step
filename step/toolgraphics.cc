@@ -1074,7 +1074,7 @@ void GraphGraphicsItem::worldDataChanged(bool dynamicOnly)
 #endif
 }
 
-void GraphMenuHandler::populateMenu(QMenu* menu)
+void GraphMenuHandler::populateMenu(QMenu* menu, KActionCollection* actions)
 {
     _confUi = 0;
     _confDialog = 0;
@@ -1083,7 +1083,7 @@ void GraphMenuHandler::populateMenu(QMenu* menu)
     menu->addAction(KIcon("edit-clear"), i18n("Clear graph"), this, SLOT(clearGraph()));
     menu->addAction(KIcon("configure"), i18n("Configure graph..."), this, SLOT(configureGraph()));
     menu->addSeparator();
-    ItemMenuHandler::populateMenu(menu);
+    ItemMenuHandler::populateMenu(menu, actions);
 }
 
 inline StepCore::Graph* GraphMenuHandler::graph() const
@@ -1285,7 +1285,7 @@ void MeterGraphicsItem::worldDataChanged(bool dynamicOnly)
     _lcdNumber->display(value);
 }
 
-void MeterMenuHandler::populateMenu(QMenu* menu)
+void MeterMenuHandler::populateMenu(QMenu* menu, KActionCollection* actions)
 {
     _confUi = 0;
     _confDialog = 0;
@@ -1293,7 +1293,7 @@ void MeterMenuHandler::populateMenu(QMenu* menu)
 
     menu->addAction(KIcon("configure"), i18n("Configure meter..."), this, SLOT(configureMeter()));
     menu->addSeparator();
-    ItemMenuHandler::populateMenu(menu);
+    ItemMenuHandler::populateMenu(menu, actions);
 }
 
 inline StepCore::Meter* MeterMenuHandler::meter() const
@@ -1580,7 +1580,7 @@ void ControllerGraphicsItem::sliderReleased()
     }
 }
 
-void ControllerMenuHandler::populateMenu(QMenu* menu)
+void ControllerMenuHandler::populateMenu(QMenu* menu, KActionCollection* actions)
 {
     _confUi = 0;
     _confDialog = 0;
@@ -1591,7 +1591,7 @@ void ControllerMenuHandler::populateMenu(QMenu* menu)
     menu->addSeparator();
     menu->addAction(KIcon("configure"), i18n("Configure controller..."), this, SLOT(configureController()));
     menu->addSeparator();
-    ItemMenuHandler::populateMenu(menu);
+    ItemMenuHandler::populateMenu(menu, actions);
 }
 
 inline StepCore::Controller* ControllerMenuHandler::controller() const
@@ -1849,11 +1849,11 @@ void TracerGraphicsItem::mouseSetPos(const QPointF&, const QPointF& diff, Moving
                 WorldScene::SnapSetLocalPosition, 0, movingState, _item);
 }
 
-void TracerMenuHandler::populateMenu(QMenu* menu)
+void TracerMenuHandler::populateMenu(QMenu* menu, KActionCollection* actions)
 {
     menu->addAction(KIcon("edit-clear"), i18n("Clear trace"), this, SLOT(clearTracer()));
     menu->addSeparator();
-    ItemMenuHandler::populateMenu(menu);
+    ItemMenuHandler::populateMenu(menu, actions);
 }
 
 void TracerMenuHandler::clearTracer()

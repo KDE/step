@@ -53,7 +53,7 @@ public:
     SoftBodyMenuHandler(StepCore::Object* object, WorldModel* worldModel, QObject* parent)
         : ItemMenuHandler(object, worldModel, parent), _applied(false) {}
 
-    void populateMenu(QMenu* menu);
+    void populateMenu(QMenu* menu, KActionCollection* actions);
 
     bool applied() const { return _applied; }
 

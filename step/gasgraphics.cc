@@ -303,7 +303,7 @@ protected slots:
     GasMenuHandler* _handler;
 };
 
-void GasMenuHandler::populateMenu(QMenu* menu)
+void GasMenuHandler::populateMenu(QMenu* menu, KActionCollection* actions)
 {
     _createGasParticlesUi = 0;
     _createGasParticlesDialog = 0;
@@ -312,7 +312,7 @@ void GasMenuHandler::populateMenu(QMenu* menu)
     menu->addAction(KIcon("step_object_GasParticle"), i18n("Create particles..."), this, SLOT(createGasParticles()));
     //menu->addAction(KIcon("edit-clear"), i18n("Clear gas"), this, SLOT(clearGas()));
     menu->addSeparator();
-    ItemMenuHandler::populateMenu(menu);
+    ItemMenuHandler::populateMenu(menu, actions);
 }
 
 inline StepCore::Gas* GasMenuHandler::gas() const

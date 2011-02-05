@@ -20,6 +20,7 @@
 #define STEP_GASGRAPHICS_H
 
 #include "worldgraphics.h"
+#include <kaction.h>
 
 namespace StepCore {
     class Gas;
@@ -88,7 +89,7 @@ public:
     GasMenuHandler(StepCore::Object* object, WorldModel* worldModel, QObject* parent)
         : ItemMenuHandler(object, worldModel, parent) {}
 
-    void populateMenu(QMenu* menu);
+    void populateMenu(QMenu* menu, KActionCollection* actions);
 
 public slots:
     void createGasParticles();

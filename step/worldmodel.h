@@ -202,6 +202,8 @@ public:
 
     /** Pauses the simulation until control returns to event loop */
     void simulationPause();
+    
+    void setActions(KActionCollection* actions) { _actions = actions; }
 
 public slots:
     void simulationStart(); ///< Start simulation
@@ -259,6 +261,8 @@ protected:
     bool _simulationFrameSkipped;
     bool _simulationStopping;
     bool _simulationPaused;
+    
+    KActionCollection* _actions;
 
     friend class CommandEditProperty;
     friend class CommandNewItem;

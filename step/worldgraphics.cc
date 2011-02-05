@@ -30,6 +30,7 @@
 #include <QPainter>
 #include <QTimer>
 #include <QMenu>
+#include <KActionCollection>
 #include <KIcon>
 #include <KLocale>
 
@@ -740,11 +741,12 @@ ItemMenuHandler::ItemMenuHandler(StepCore::Object* object, WorldModel* worldMode
 {
 }
 
-void ItemMenuHandler::populateMenu(QMenu* menu)
+void ItemMenuHandler::populateMenu(QMenu* menu, KActionCollection* actions)
 {
     StepCore::Item* item = dynamic_cast<StepCore::Item*>(_object);
     if(item && item->world() != item) {
-        menu->addAction(KIcon("edit-delete"), i18n("&Delete"), this, SLOT(deleteItem()));
+        menu->addAction(actions->action("edit_delete"));
+        //menu->addAction(KIcon("edit-delete"), i18n("&Delete"), this, SLOT(deleteItem()));
     }
 }
 

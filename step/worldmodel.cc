@@ -305,7 +305,7 @@ void CommandSimulate::undo()
 }
 
 WorldModel::WorldModel(QObject* parent)
-    : QAbstractItemModel(parent)
+    : QAbstractItemModel(parent), _actions(0)
 {
     _selectionModel = new QItemSelectionModel(this, this);
     _undoStack = new KUndoStack(this);
@@ -807,7 +807,7 @@ QMenu* WorldModel::createContextMenu(const QModelIndex& index)
     KMenu* menu = new KMenu();
     menu->addTitle(index.data(Qt::DisplayRole).toString());
     ItemMenuHandler* handler = _worldFactory->newItemMenuHandler(object(index), this, menu);
-    handler->populateMenu(menu);
+    handler->populateMenu(menu, _actions);
     return menu;
 }
 

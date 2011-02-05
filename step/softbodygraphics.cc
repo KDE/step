@@ -87,7 +87,7 @@ bool SoftBodyCreator::sceneEvent(QEvent* event)
     return false;
 }
 
-void SoftBodyMenuHandler::populateMenu(QMenu* menu)
+void SoftBodyMenuHandler::populateMenu(QMenu* menu, KActionCollection* actions)
 {
     _createSoftBodyItemsUi = 0;
     _createSoftBodyItemsDialog = 0;
@@ -97,7 +97,7 @@ void SoftBodyMenuHandler::populateMenu(QMenu* menu)
     menu->addAction(KIcon("step_object_GasParticle"), i18n("Create items..."), this, SLOT(createSoftBodyItems()));
     //menu->addAction(KIcon("edit-clear"), i18n("Clear gas"), this, SLOT(clearGas()));
     menu->addSeparator();
-    ItemMenuHandler::populateMenu(menu);
+    ItemMenuHandler::populateMenu(menu, actions);
 }
 
 inline StepCore::SoftBody* SoftBodyMenuHandler::softBody() const

@@ -113,6 +113,9 @@ public:
     /** Get associated WorldModel */
     WorldModel* worldModel() const { return _worldModel; }
 
+    /** Check if scene has an active item creator */
+    bool hasItemCreator() const;
+
 public slots:
     /** Begin adding new item. Creates appropriate ItemCreator */
     void beginAddItem(const QString& name);
@@ -140,7 +143,7 @@ public slots:
 
     /** Reload application settings */
     void settingsChanged();
-
+    
 signals:
     /** This signal is emitted when item creation is finished or canceled */
     void endAddItem(const QString& name, bool success);
@@ -163,7 +166,6 @@ protected slots:
 protected:
     bool event(QEvent* event);
     void mousePressEvent(QGraphicsSceneMouseEvent* mouseEvent);
-    void keyPressEvent(QKeyEvent* keyEvent);
     void helpEvent(QGraphicsSceneHelpEvent *helpEvent);
     //void contextMenuEvent(QGraphicsSceneContextMenuEvent* contextMenuEvent);
 

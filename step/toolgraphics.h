@@ -240,7 +240,7 @@ public:
     GraphMenuHandler(StepCore::Object* object, WorldModel* worldModel, QObject* parent)
         : ItemMenuHandler(object, worldModel, parent) {}
 
-    void populateMenu(QMenu* menu);
+    void populateMenu(QMenu* menu, KActionCollection* actions);
 
 protected slots:
     void clearGraph();
@@ -287,7 +287,7 @@ public:
     MeterMenuHandler(StepCore::Object* object, WorldModel* worldModel, QObject* parent)
         : ItemMenuHandler(object, worldModel, parent) {}
 
-    void populateMenu(QMenu* menu);
+    void populateMenu(QMenu* menu, KActionCollection* actions);
 
 protected slots:
     void configureMeter();
@@ -347,7 +347,7 @@ public:
     ControllerMenuHandler(StepCore::Object* object, WorldModel* worldModel, QObject* parent)
         : ItemMenuHandler(object, worldModel, parent) {}
 
-    void populateMenu(QMenu* menu);
+    void populateMenu(QMenu* menu, KActionCollection* actions);
 
 protected slots:
     void incTriggered();
@@ -404,7 +404,7 @@ public:
     TracerMenuHandler(StepCore::Object* object, WorldModel* worldModel, QObject* parent)
         : ItemMenuHandler(object, worldModel, parent) {}
 
-    void populateMenu(QMenu* menu);
+    void populateMenu(QMenu* menu, KActionCollection* actions);
 
 protected slots:
     void clearTracer();

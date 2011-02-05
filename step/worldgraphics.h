@@ -39,6 +39,7 @@ class WorldModel;
 class WorldScene;
 class QEvent;
 class QTimer;
+class KActionCollection;
 
 /** \brief Base class for item creators.
  *
@@ -430,7 +431,7 @@ public:
 
     /** Populate context menu by item-specific entries.
      *  Default implementation adds delete action. */
-    virtual void populateMenu(QMenu* menu);
+    virtual void populateMenu(QMenu* menu, KActionCollection* actions);
 
 protected slots:
     void deleteItem();

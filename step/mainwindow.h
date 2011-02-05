@@ -79,7 +79,7 @@ protected slots:
     void updateCaption();
     void undoTextChanged(const QString& undoText);
     void redoTextChanged(const QString& redoText);
-    void worldSelectionChanged(const QItemSelection&, const QItemSelection&);
+    void worldSelectionChanged();
 
     /*
 protected slots:
