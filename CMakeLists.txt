@@ -23,6 +23,7 @@ set(STEP_WITH_QALCULATE ${QALCULATE_FOUND} CACHE BOOL "Enable unit conversion su
 
 include_directories(${CMAKE_CURRENT_SOURCE_DIR} ${EIGEN2_INCLUDE_DIR})
 
+add_subdirectory(doc) 
 add_subdirectory(stepcore)
 add_subdirectory(step)
 
