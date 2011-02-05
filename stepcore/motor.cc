@@ -45,7 +45,7 @@ LinearMotor::LinearMotor(Object* body, const Vector2d& localPosition, Vector2d f
     setColor(0xff0000ff);
 }
 
-void LinearMotor::calcForce(bool calcVariances)
+void LinearMotor::calcForce(bool /*calcVariances*/)
 {
      if(_p) _p->applyForce(_forceValue);
      else if(_r) _r->applyForce(_forceValue,
@@ -106,7 +106,7 @@ CircularMotor::CircularMotor(Object* body, const Vector2d& localPosition, double
     setColor(0xff0000ff);
 }
 
-void CircularMotor::calcForce(bool calcVariances)
+void CircularMotor::calcForce(bool /*calcVariances*/)
 {
      if(_r) _r->applyTorque(_torqueValue);        
 }

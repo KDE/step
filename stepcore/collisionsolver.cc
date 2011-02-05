@@ -72,7 +72,7 @@ int GJKCollisionSolver::checkPolygonPolygon(Contact* contact)
 
     Vector2d vv[2]; // Closest points on the first and second objects
     int wi[2][3];   // Indexes of vertexes corresponding to w
-    int si[2];      // Indexes of vertexes corresponding to s
+    int si[2] = {0, 0};      // Indexes of vertexes corresponding to s
 
     wsize = 1;
     // Start with arbitrary vertex (TODO: cache the whole w simplex)
@@ -370,7 +370,7 @@ int GJKCollisionSolver::checkPolygonDisk(Contact* contact)
 
     Vector2d vv; // Closest points on the polygon
     int wi[3];   // Indexes of vertexes corresponding to w
-    int si;      // Indexes of vertexes corresponding to s
+    int si = 0;      // Indexes of vertexes corresponding to s
 
     // Start with arbitrary vertex (TODO: cache the whole w simplex)
     wsize = 1;
@@ -564,7 +564,7 @@ int GJKCollisionSolver::checkPolygonParticle(Contact* contact)
 
     Vector2d vv; // Closest points on the polygon
     int wi[3];   // Indexes of vertexes corresponding to w
-    int si;      // Indexes of vertexes corresponding to s
+    int si = 0;      // Indexes of vertexes corresponding to s
 
     // Start with arbitrary vertex (TODO: cache the whole w simplex)
     wsize = 1;
@@ -1190,7 +1190,7 @@ int GJKCollisionSolver::solveCollisions(BodyList& bodies)
         else if(contact.type == Contact::PolygonParticleType) ret = solvePolygonParticle(&contact);
         else if(contact.type == Contact::DiskDiskType) ret = solveDiskDisk(&contact);
         else if(contact.type == Contact::DiskParticleType) ret = solveDiskParticle(&contact);
-        else STEPCORE_ASSERT_NOABORT(0);
+        else { STEPCORE_ASSERT_NOABORT(0); }
 
     }
 
