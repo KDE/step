@@ -602,7 +602,11 @@ void WorldModel::deleteSelectedItems()
 
     QList<StepCore::Item*> items;
     foreach(QModelIndex index, selectionModel()->selectedIndexes()) {
-        StepCore::Item* it = item(index); if(it) items << it;
+        // Do not delete world item
+        if (index == worldIndex()) continue;
+        
+        StepCore::Item* it = item(index);
+        if (it) items << it;
     }
 
     foreach(StepCore::Item* it, items) {
