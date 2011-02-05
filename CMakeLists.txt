@@ -1,5 +1,15 @@
 project(step)
 
+cmake_minimum_required(VERSION 2.6.0)
+set(KDE_MIN_VERSION "4.3")
+
+find_package(KDE4 REQUIRED)
+
+include(KDE4Defaults)
+
+set(CMAKE_MODULE_PATH ${CMAKE_SOURCE_DIR}/cmake/modules )
+
+find_package(Eigen2 2.0.3)
 macro_optional_find_package(GSL)
 macro_optional_find_package(Qalculate)
 
