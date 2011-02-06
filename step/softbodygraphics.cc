@@ -94,7 +94,8 @@ void SoftBodyMenuHandler::populateMenu(QMenu* menu, KActionCollection* actions)
     //_confChanged = false;
 
     // XXX: better icon
-    menu->addAction(KIcon("step_object_GasParticle"), i18n("Create items..."), this, SLOT(createSoftBodyItems()));
+    // TODO: This will never work the way SoftBody is right now...
+    //menu->addAction(KIcon("step_object_GasParticle"), i18n("Create items..."), this, SLOT(createSoftBodyItems()));
     //menu->addAction(KIcon("edit-clear"), i18n("Clear gas"), this, SLOT(clearGas()));
     menu->addSeparator();
     ItemMenuHandler::populateMenu(menu, actions);
