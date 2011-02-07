@@ -197,41 +197,42 @@ void WidgetGraphicsItem::viewScaleChanged()
 {
     if(!scene() || scene()->views().isEmpty()) return;
     QGraphicsView* activeView = scene()->views().first();
-    QTransform viewportTransform = activeView->viewportTransform();
 
     QPointF position = vectorToPoint(_item->metaObject()->property("position")->
                     readVariant(_item).value<StepCore::Vector2d>());
-    position = viewportTransform.inverted().map(QPointF(viewportTransform.map(position).toPoint()));
-    setPos(position);
-
-    double s = currentViewScale();
-    QTransform itemTransform = activeView->transform() * deviceTransform(viewportTransform);
+    
+    // Move item to the closest pixel position
+    QPoint viewPosition = activeView->mapFromScene(position);
+    setPos(activeView->mapToScene(viewPosition));
 
     StepCore::Vector2d size = _item->metaObject()->property("size")->
                     readVariant(_item).value<StepCore::Vector2d>();
 
-    QRectF irect(-(size[0]+2)/s/2, -(size[1]+2)/s/2, (size[0]+2)/s, (size[1]+2)/s);
-    QRect viewportRect = itemTransform.mapRect(irect).toRect();
-    irect = itemTransform.inverted().mapRect(QRectF(viewportRect));
-
-    if(irect != _boundingRect) {
+    QSize viewSize(qRound(size[0]), qRound(size[1]));
+    QPoint viewTopLeft =
+        viewPosition - QPoint(viewSize.width() / 2, viewSize.height() / 2);
+    QRect viewRect(viewTopLeft, viewSize);
+    
+    QRectF sceneRect =
+        activeView->mapToScene(viewRect.adjusted(0, 0, 1, 1)).boundingRect();
+    QRectF boundingRect = mapRectFromScene(sceneRect);
+    double s = currentViewScale();
+    boundingRect.adjust(-SELECTION_MARGIN/s, -SELECTION_MARGIN/s,
+                        SELECTION_MARGIN/s, SELECTION_MARGIN/s);
+    
+    if(boundingRect != _boundingRect) {
         prepareGeometryChange();
-        _boundingRect = irect;
+        _boundingRect = boundingRect;
         update();
     }
-
+    
     // Reparent the widget if necessary.
     if(_centralWidget->parentWidget() != activeView->viewport()) {
        _centralWidget->setParent(activeView->viewport());
        _centralWidget->show();
     }
 
-    viewportRect = viewportRect.adjusted(1,1,-1,-1).normalized();
-    if(_centralWidget->pos() != viewportRect.topLeft())
-        _centralWidget->move(viewportRect.topLeft());
-
-    if(_centralWidget->size() != viewportRect.size())
-        _centralWidget->resize(viewportRect.size());
+    _centralWidget->setGeometry(viewRect.adjusted(0, 0, 1, 1));
 }
 
 void WidgetGraphicsItem::stateChanged()
