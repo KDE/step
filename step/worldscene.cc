@@ -21,6 +21,7 @@
 
 #include "settings.h"
 
+#include "arrow.h"
 #include "worldmodel.h"
 #include "worldfactory.h"
 #include "worldgraphics.h"
@@ -89,25 +90,31 @@ QPainterPath WorldSceneAxes::shape() const
 
 void WorldSceneAxes::paint(QPainter* painter, const QStyleOptionGraphicsItem* /*option*/, QWidget* /*widget*/)
 {
-    painter->setPen(QPen(Qt::gray, 0));//, Qt::DotLine, Qt::SquareCap, Qt::RoundJoin));
+    QPen pen(Qt::gray, 2);
+    pen.setCosmetic(true);
+    painter->setPen(pen);//, Qt::DotLine, Qt::SquareCap, Qt::RoundJoin));
     //painter->drawLine(QLineF(0, -LENGTH, 0, LENGTH));
     //painter->drawLine(QLineF(-LENGTH, 0, LENGTH, 0));
-    painter->drawLine(QLineF(0, -LENGTH, 0, LENGTH));
-    painter->drawLine(QLineF(-LENGTH, 0, LENGTH, 0));
+    Arrow arrow(0, LENGTH, 0, -LENGTH, 8);
+    arrow.draw(painter);
+    Arrow arrow2(-LENGTH, 0, LENGTH, 0, 8);
+    arrow2.draw(painter);
+    //painter->drawLine(QLineF(0, -LENGTH, 0, LENGTH));
+    //painter->drawLine(QLineF(-LENGTH, 0, LENGTH, 0));
     //painter->drawLine(QLineF(-2, -LENGTHT, 2, -LENGTHT));
     //painter->drawLine(QLineF(LENGTHT, -2, LENGTHT, 2));
 
-    painter->drawLine(QLineF(0, -LENGTH, -0.5*ARROW_STROKE, -LENGTH+0.866*ARROW_STROKE ));
-    painter->drawLine(QLineF(0, -LENGTH, +0.5*ARROW_STROKE, -LENGTH+0.866*ARROW_STROKE ));
-    painter->drawLine(QLineF(LENGTH, 0, LENGTH-0.866*ARROW_STROKE, -0.5*ARROW_STROKE ));
-    painter->drawLine(QLineF(LENGTH, 0, LENGTH-0.866*ARROW_STROKE, +0.5*ARROW_STROKE ));
+    //painter->drawLine(QLineF(0, -LENGTH, -0.5*ARROW_STROKE, -LENGTH+0.866*ARROW_STROKE ));
+    //painter->drawLine(QLineF(0, -LENGTH, +0.5*ARROW_STROKE, -LENGTH+0.866*ARROW_STROKE ));
+    //painter->drawLine(QLineF(LENGTH, 0, LENGTH-0.866*ARROW_STROKE, -0.5*ARROW_STROKE ));
+    //painter->drawLine(QLineF(LENGTH, 0, LENGTH-0.866*ARROW_STROKE, +0.5*ARROW_STROKE ));
 
-    painter->drawText(QRectF(-LENGTH-2, 0, LENGTH, LENGTH),
+    painter->drawText(QRectF(-LENGTH - 6, 6, LENGTH, LENGTH),
                         Qt::AlignRight | Qt::AlignTop,
                         QString("%1,%2").arg( pos().x(), 0, 'g', 3 ).arg( pos().y(), 0, 'g', 3 ));
-    painter->drawText(QRectF(5, -LENGTH, LENGTH-5, LENGTH),
+    painter->drawText(QRectF(6, -LENGTH, LENGTH - 6, LENGTH - 6),
             Qt::AlignLeft | Qt::AlignTop, QString::number( pos().y() + LENGTH/_viewScale, 'g', 3 ));
-    painter->drawText(QRectF(5, -LENGTH, LENGTH-5, LENGTH),
+    painter->drawText(QRectF(6, -LENGTH, LENGTH - 6, LENGTH - 6),
             Qt::AlignRight | Qt::AlignBottom, QString::number( pos().x() + LENGTH/_viewScale, 'g', 3 ));
 
     //painter->drawText(QRectF(ARROW_STROKE, -LENGTHT-50, LENGTHT, 100), Qt::AlignLeft | Qt::AlignVCenter,
