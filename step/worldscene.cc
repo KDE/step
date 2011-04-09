@@ -670,6 +670,31 @@ void WorldGraphicsView::mouseReleaseEvent(QMouseEvent* e)
     }
 }
 
+void WorldGraphicsView::wheelEvent(QWheelEvent* e)
+{
+    if (e->modifiers() == Qt::ControlModifier) {
+        if (e->orientation() != Qt::Vertical) {
+            e->ignore();
+            return;
+        }
+        
+        QGraphicsView::ViewportAnchor anchor = transformationAnchor();
+        setTransformationAnchor(QGraphicsView::AnchorUnderMouse);
+        if (e->delta() > 0) {
+            zoomIn();
+        }
+        else {
+            zoomOut();
+        }
+        setTransformationAnchor(anchor);
+        
+        e->accept();
+        return;
+    }
+    
+    QGraphicsView::wheelEvent(e);
+}
+
 void WorldGraphicsView::scrollContentsBy(int dx, int dy)
 {
     QGraphicsView::scrollContentsBy(dx, dy);
