@@ -295,6 +295,12 @@ void WorldGraphicsItem::mouseSetPos(const QPointF& pos, const QPointF&, MovingSt
 
 void WorldGraphicsItem::mousePressEvent(QGraphicsSceneMouseEvent *event)
 {
+    // Workaround for bug in Qt
+    if (scene()->itemAt(event->scenePos()) != this) {
+        event->ignore();
+        return;
+    }
+    
     if(event->button() == Qt::LeftButton && (flags() & ItemIsSelectable)) {
         bool multiSelect = (event->modifiers() & Qt::ControlModifier) != 0;
         if(!multiSelect && !isSelected()) {
@@ -309,6 +315,13 @@ void WorldGraphicsItem::mousePressEvent(QGraphicsSceneMouseEvent *event)
 
 void WorldGraphicsItem::mouseMoveEvent(QGraphicsSceneMouseEvent *event)
 {
+    // Workaround for bug in Qt
+    if (scene()->mouseGrabberItem() != this &&
+        scene()->itemAt(event->scenePos()) != this) {
+        event->ignore();
+        return;
+    }
+    
     if((event->buttons() & Qt::LeftButton) && (flags() & ItemIsMovable)) {
         QPointF pdiff(mapToParent(event->pos()) - mapToParent(event->lastPos()));
         QPointF newPos(mapToParent(event->pos()) - matrix().map(event->buttonDownPos(Qt::LeftButton)));
@@ -360,6 +373,12 @@ void WorldGraphicsItem::mouseMoveEvent(QGraphicsSceneMouseEvent *event)
 
 void WorldGraphicsItem::mouseReleaseEvent(QGraphicsSceneMouseEvent *event)
 {
+    // Workaround for bug in Qt
+    if (scene()->itemAt(event->scenePos()) != this) {
+        event->ignore();
+        return;
+    }
+    
     if(_isMoving && event->button() == Qt::LeftButton) {
         QPointF pdiff(mapToParent(event->pos()) - mapToParent(event->lastPos()));
         QPointF newPos(mapToParent(event->pos()) - matrix().map(event->buttonDownPos(Qt::LeftButton)));
