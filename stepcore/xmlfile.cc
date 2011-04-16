@@ -20,20 +20,18 @@
 
 #ifdef STEPCORE_WITH_QT
 
-#include "object.h"
 #include "world.h"
 #include "solver.h"
 #include "collisionsolver.h"
 #include "constraintsolver.h"
 #include "factory.h"
 
-#include <QTextStream>
-#include <QMetaProperty>
-#include <QXmlDefaultHandler>
+#include <QDomDocument>
+#include <QXmlStreamWriter>
 
 namespace StepCore {
 
-const char* XmlFile::DOCKTYPE = "StepCoreXML";
+const char* XmlFile::DOCTYPE = "<!DOCTYPE StepCoreXML>";
 const char* XmlFile::NAMESPACE_URI = "http://edu.kde.org/step/StepCoreXML";
 const char* XmlFile::VERSION = "1.0";
 
@@ -42,80 +40,72 @@ namespace {
 class StepStreamWriter
 {
 public:
-    StepStreamWriter(QIODevice* device): _device(device) {}
+    StepStreamWriter(QIODevice* device);
     bool writeWorld(const World* world);
 
 protected:
-    QString escapeText(const QString& str);
-    void saveProperties(const Object* obj, int first, int indent);
-    void saveObject(const QString& tag, const Object* obj, int indent);
+    void saveProperties(const Object* obj, int first);
+    void saveObject(const QString& tag, const Object* obj);
 
-    QIODevice*   _device;
-    QTextStream* _stream;
+    QXmlStreamWriter _writer;
+    QIODevice* _device;
     QHash<const Object*, int> _ids;
     static const int INDENT = 4;
 };
 
-QString StepStreamWriter::escapeText(const QString& str)
+StepStreamWriter::StepStreamWriter(QIODevice* device) : _device(device)
 {
-    QString result = str;
-    result.replace('&', "&amp;");
-    result.replace('<', "&lt;");
-    result.replace('>', "&gt;");
-    result.replace('\"', "&quot;");
-    return result;
+    _writer.setAutoFormatting(true);
+    _writer.setAutoFormattingIndent(INDENT);
 }
 
-void StepStreamWriter::saveProperties(const Object* obj, int first, int indent)
+void StepStreamWriter::saveProperties(const Object* obj, int first)
 {
     const MetaObject* metaObject = obj->metaObject();
     for(int i = first; i < metaObject->propertyCount(); ++i) {
         const MetaProperty* p = metaObject->property(i);
         if(p->isStored()) {
-            *_stream << QString(indent*INDENT, ' ')
-                     << "<" << p->name() << ">";
-
-            if(p->userTypeId() == qMetaTypeId<Object*>())
-                *_stream << _ids.value(p->readVariant(obj).value<Object*>(), -1);
-            else *_stream << escapeText(p->readString(obj));
-
-            *_stream << "</" << p->name() << ">\n";
+            if(p->userTypeId() == qMetaTypeId<Object*>()) {
+                int id = _ids.value(p->readVariant(obj).value<Object*>(), -1);
+                _writer.writeTextElement(p->name(), QString::number(id));
+            }
+            else {
+                _writer.writeTextElement(p->name(), p->readString(obj));
+            }
         }
     }
 }
 
-void StepStreamWriter::saveObject(const QString& tag, const Object* obj, int indent)
+void StepStreamWriter::saveObject(const QString& tag, const Object* obj)
 {
     Q_ASSERT(obj != NULL);
+    
+    _writer.writeStartElement(tag);
+    _writer.writeAttribute("class", obj->metaObject()->className());
+    _writer.writeAttribute("id", QString::number(_ids.value(obj, -1)));
 
-    *_stream << QString(indent*INDENT, ' ') << "<" << tag
-             << " class=\"" << QString(obj->metaObject()->className())
-             << "\" id=\"" << _ids.value(obj, -1) << "\">\n";
-
-    saveProperties(obj, 0, indent+1);
+    saveProperties(obj, 0);
 
     if(obj->metaObject()->inherits<Item>()) {
         const ObjectErrors* objErrors = static_cast<const Item*>(obj)->tryGetObjectErrors();
-        if(objErrors) saveProperties(objErrors, 1, indent+1);
+        if(objErrors) saveProperties(objErrors, 1);
     }
 
     if(obj->metaObject()->inherits<ItemGroup>()) {
         const ItemGroup* group = static_cast<const ItemGroup*>(obj);
-        *_stream << "\n";
         ItemList::const_iterator end = group->items().end();
         for(ItemList::const_iterator it = group->items().begin(); it != end; ++it) {
-            saveObject("item", *it, indent+1);
-            *_stream << "\n";
+            saveObject("item", *it);
         }
     }
-
-    *_stream << QString(indent*INDENT, ' ') << "</" << tag << ">\n";
+    
+    _writer.writeEndElement();
 }
 
 bool StepStreamWriter::writeWorld(const World* world)
 {
     Q_ASSERT(_device->isOpen() && _device->isWritable());
-    _stream = new QTextStream(_device);
+    _writer.setDevice(_device);
 
     int maxid = -1;
     _ids.insert(NULL, ++maxid);
@@ -130,310 +120,262 @@ bool StepStreamWriter::writeWorld(const World* world)
     if(world->collisionSolver()) _ids.insert(world->collisionSolver(), ++maxid);
     if(world->constraintSolver()) _ids.insert(world->constraintSolver(), ++maxid);
 
-    *_stream << "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n"
-             << "<!DOCTYPE " << XmlFile::DOCKTYPE << ">\n"
-             << "<world xmlns=\"" << XmlFile::NAMESPACE_URI << "\""
-             << " version=\"" << XmlFile::VERSION << "\" id=\"1\">\n";
+    _writer.writeStartDocument();
+    _writer.writeDTD(XmlFile::DOCTYPE);
+    _writer.writeStartElement("world");
+    _writer.writeAttribute("xmlns", XmlFile::NAMESPACE_URI);
+    _writer.writeAttribute("version", XmlFile::VERSION);
+    _writer.writeAttribute("id", "1");
 
-    saveProperties(world, 0, 1);
-    *_stream << "\n";
+    saveProperties(world, 0);
 
     ItemList::const_iterator end = world->items().end();
     for(ItemList::const_iterator it = world->items().begin(); it != end; ++it) {
-        saveObject("item", *it, 1);
-        *_stream << "\n";
+        saveObject("item", *it);
     }
 
     if(world->solver()) {
-        saveObject("solver", world->solver(), 1);
-        *_stream << "\n";
+        saveObject("solver", world->solver());
     }
 
     if(world->collisionSolver()) {
-        saveObject("collisionSolver", world->collisionSolver(), 1);
-        *_stream << "\n";
+        saveObject("collisionSolver", world->collisionSolver());
     }
 
     if(world->constraintSolver()) {
-        saveObject("constraintSolver", world->constraintSolver(), 1);
-        *_stream << "\n";
+        saveObject("constraintSolver", world->constraintSolver());
     }
-
-    *_stream << "</world>\n";
-
-    delete _stream;
+    
+    _writer.writeEndElement();
+    _writer.writeEndDocument();
+    
     return true;
 }
 
-class XmlFileHandler: public QXmlDefaultHandler
+class StepDomDocument
 {
 public:
-    XmlFileHandler(World* world, const Factory* factory);
-
-    bool startElement(const QString &namespaceURI, const QString &localName,
-                      const QString &qName, const QXmlAttributes &attributes);
-    bool endElement(const QString &namespaceURI, const QString &localName,
-                    const QString &qName);
-    bool characters(const QString &str);
-    bool fatalError(const QXmlParseException &exception);
-    bool endDocument();
-    QString errorString() const;
-
-protected:
-    bool addId(Object* obj, const QString& id);
-
-    enum { START, ITEM, PROPERTY, END } _state;
-    World*         _world;
-    const Factory* _factory;
-
-    ItemGroup* _parent;
-    Object*    _object;
-    ObjectErrors*       _objectErrors;
-    const MetaProperty* _property;
-
+    StepDomDocument(World* world, const Factory* factory);
+    
+    bool parse(QIODevice* device);
+    
+    const QString& errorMsg() const { return _errorMsg; }
+    
+private:
     typedef QPair<QPair<Object*, const MetaProperty*>, int> Link;
+    
+    Item* createItem(const QDomElement& element);
+    Solver* createSolver(const QDomElement& element);
+    CollisionSolver* createCollisionSolver(const QDomElement& element);
+    ConstraintSolver* createConstraintSolver(const QDomElement& element);
+    bool parseWorld(const QDomElement& element);
+    bool parseItems(ItemGroup* parent, const QDomElement& element);
+    bool parseObject(Object* object, const QDomElement& element);
+    bool parseProperties(Object* object, const QDomElement& parent);
+    bool connectLinks();
+    
+    World* _world;
+    const Factory* _factory;
+    QDomDocument _document;
+    QString _errorMsg;
+    int _errorLine;
+    int _errorCount;
+    QString _version;
     QHash<int, Object*> _ids;
     QList<Link> _links;
-
-    QString _text;
-    QString _errorString;
 };
 
-XmlFileHandler::XmlFileHandler(World* world, const Factory* factory)
-    : _state(START), _world(world), _factory(factory),
-      _parent(NULL), _object(NULL), _objectErrors(NULL), _property(NULL)
+StepDomDocument::StepDomDocument(World* world, const StepCore::Factory* factory) :
+    _world(world), _factory(factory), _errorLine(0), _errorCount(0)
 {
 }
 
-bool XmlFileHandler::addId(Object* obj, const QString& id)
+bool StepDomDocument::parse(QIODevice* device)
 {
-    /*
-#ifdef __GNUC__
-#warning Temporary code
-#endif
-    if(id.isEmpty()) return true;
-    */
-    int n = id.trimmed().toInt();
-    if(!n) {
-        _errorString = QObject::tr("Wrong ID attribute value for %1")
-                        .arg(obj->metaObject()->className());
+    if (!_document.setContent(device, &_errorMsg, &_errorLine, &_errorCount)) {
         return false;
     }
-    if(_ids.contains(n)) {
-        _errorString = QObject::tr("Non-unique ID attribute value for %1")
-                        .arg(obj->metaObject()->className());
+    
+    QDomElement worldElement = _document.firstChildElement("world");
+    if (worldElement.isNull()) {
+        _errorMsg = QObject::tr("The file is not a StepCoreXML file.");
         return false;
+    }
+    
+    return parseWorld(worldElement);
+}
+
+bool StepDomDocument::parseWorld(const QDomElement& world)
+{
+    _version = world.attribute("version", "1.0");
+    
+    if (!parseObject(_world, world)) return false;
+    if (!parseItems(_world, world)) return false;
+    
+    QDomElement solverElement = world.firstChildElement("solver");
+    if (!solverElement.isNull()) {
+        Solver *solver = createSolver(solverElement);
+        if (!solver) return false;
+        
+        _world->setSolver(solver);
+    }
+    
+    QDomElement collisionSolverElement = world.firstChildElement("collisionSolver");
+    if (!collisionSolverElement.isNull()) {
+        CollisionSolver *solver = createCollisionSolver(collisionSolverElement);
+        if (!solver) return false;
+        
+        _world->setCollisionSolver(solver);
+    }
+    
+    QDomElement constraintSolverElement = world.firstChildElement("constraintSolver");
+    if (!constraintSolverElement.isNull()) {
+        ConstraintSolver *solver = createConstraintSolver(constraintSolverElement);
+        if (!solver) return false;
+        
+        _world->setConstraintSolver(solver);
+    }
+    
+    return connectLinks();
+}
+
+Item* StepDomDocument::createItem(const QDomElement& element)
+{
+    QString className = element.attribute("class");
+    QScopedPointer<Item> item(_factory->newItem(className));
+    if (!item) {
+        _errorMsg = QObject::tr("Unknown item type \"%1\"").arg(className);
+        return 0;
+    }
+    
+    if (!parseObject(item.data(), element)) return 0;
+    ObjectErrors *objErrors = item->objectErrors();
+    if (objErrors && !parseProperties(objErrors, element)) return 0;
+    
+    if (item->metaObject()->inherits("ItemGroup")) {
+        ItemGroup *group = static_cast<ItemGroup*>(item.data());
+        if (!parseItems(group, element)) return 0;
     }
 
-    _ids.insert(n, _object);
+    return item.take();
+}
+
+Solver* StepDomDocument::createSolver(const QDomElement& element)
+{
+    QString className = element.attribute("class");
+    QScopedPointer<Solver> solver(_factory->newSolver(className));
+    if (!solver) {
+        _errorMsg = QObject::tr("Unknown solver type \"%1\"").arg(className);
+        return 0;
+    }
+    
+    if (!parseObject(solver.data(), element)) return 0;
+    
+    return solver.take();
+}
+
+CollisionSolver* StepDomDocument::createCollisionSolver(const QDomElement& element)
+{
+    QString className = element.attribute("class");
+    QScopedPointer<CollisionSolver> solver(_factory->newCollisionSolver(className));
+    if (!solver) {
+        _errorMsg = QObject::tr("Unknown collisionSolver type \"%1\"").arg(className);
+        return 0;
+    }
+    
+    if (!parseObject(solver.data(), element)) return 0;
+    
+    return solver.take();
+}
+
+ConstraintSolver* StepDomDocument::createConstraintSolver(const QDomElement& element)
+{
+    QString className = element.attribute("class");
+    QScopedPointer<ConstraintSolver> solver(_factory->newConstraintSolver(className));
+    if (!solver) {
+        _errorMsg = QObject::tr("Unknown constraint solver type \"%1\"").arg(className);
+        return 0;
+    }
+    
+    if (!parseObject(solver.data(), element)) return 0;
+    
+    return solver.take();
+}
+
+bool StepDomDocument::parseItems(ItemGroup* parent, const QDomElement& element)
+{
+    QDomElement itemElement = element.firstChildElement("item");
+    while (!itemElement.isNull()) {
+        Item *item = createItem(itemElement);
+        if (!item) return false;
+        
+        parent->addItem(item);
+        itemElement = itemElement.nextSiblingElement("item");
+    }
+    
     return true;
 }
 
-bool XmlFileHandler::startElement(const QString &namespaceURI, const QString &,
-                  const QString &qName, const QXmlAttributes &attributes)
+bool StepDomDocument::parseObject(Object* object, const QDomElement& element)
 {
-    if(namespaceURI != XmlFile::NAMESPACE_URI) return true; // XXX: is it correct behaviour ?
-
-    switch(_state) {
-    case START:
-        if(qName == "world") {
-            _parent = NULL;
-            _object = _world;
-            _state = ITEM;
-
-            if(!addId(_object, attributes.value("id"))) return false;
-
-        } else {
-            _errorString = QObject::tr("The file is not a StepCoreXML file.");
-            return false;
-        }
-        break;
-
-    case ITEM:
-        if(qName == "item" && _object->metaObject()->inherits<ItemGroup>()) {
-            _parent = static_cast<ItemGroup*>(_object);
-
-            QString className = attributes.value("class");
-            Item* item = _factory->newItem(className);
-            if(item == NULL) {
-                _errorString = QObject::tr("Unknown item type \"%1\"").arg(className);
-                return false;
-            }
-
-            _parent->addItem(item);
-            _object = item;
-
-            if(!addId(_object, attributes.value("id"))) return false;
-
-            break;
-
-        } else if(_object == _world && qName == "solver") {
-            Solver* solver = _factory->newSolver(attributes.value("class")); 
-            if(solver == NULL) {
-                _errorString = QObject::tr("Unknown solver type \"%1\"").arg(attributes.value("class"));
-                return false;
-            }
-
-            _world->setSolver(solver);
-            _object = solver;
-            _parent = _world;
-
-            if(!addId(_object, attributes.value("id"))) return false;
-
-            break;
-
-        } else if(_object == _world && qName == "collisionSolver") {
-            CollisionSolver* collisionSolver = _factory->newCollisionSolver(attributes.value("class")); 
-            if(collisionSolver == NULL) {
-                _errorString = QObject::tr("Unknown collisionSolver type \"%1\"").arg(attributes.value("class"));
-                return false;
-            }
-
-            _world->setCollisionSolver(collisionSolver);
-            _object = collisionSolver;
-            _parent = _world;
-
-            if(!addId(_object, attributes.value("id"))) return false;
-
-            break;
-
-        } else if(_object == _world && qName == "constraintSolver") {
-            ConstraintSolver* constraintSolver = _factory->newConstraintSolver(attributes.value("class")); 
-            if(constraintSolver == NULL) {
-                _errorString = QObject::tr("Unknown constraintSolver type \"%1\"").arg(attributes.value("class"));
-                return false;
-            }
-
-            _world->setConstraintSolver(constraintSolver);
-            _object = constraintSolver;
-            _parent = _world;
-
-            if(!addId(_object, attributes.value("id"))) return false;
-
-            break;
-
-        }
-
-
-        _property = _object->metaObject()->property(qName);
-        if(!_property && _object->metaObject()->inherits<Item>()) {
-            const MetaObject* objErrors = _factory->metaObject(_object->metaObject()->className()+"Errors");
-            if(objErrors) {
-                _property = objErrors->property(qName);
-                if(_property && _property->isStored())
-                    _objectErrors = static_cast<Item*>(_object)->objectErrors();
-            }
-        }
-
-        if(!_property || !_property->isStored()) {
-            _errorString = QObject::tr("Item \"%1\" has no stored property named \"%2\"")
-                                .arg(QString(_object->metaObject()->className())).arg(qName);
-            return false;
-        }
-
-        _text.clear();
-        _state = PROPERTY;
-        break;
-
-    case PROPERTY:
-    default:
-        _errorString = QObject::tr("Unexpected tag \"%1\"").arg(qName);
+    int n = element.attribute("id").trimmed().toInt();
+    
+    if (!n) {
+        _errorMsg = QObject::tr("Wrong ID attribute value for %1")
+        .arg(object->metaObject()->className());
         return false;
     }
-
-    return true;
-}
-
-bool XmlFileHandler::endElement(const QString &namespaceURI, const QString &,
-                const QString &qName)
-{
-    if(namespaceURI != XmlFile::NAMESPACE_URI) return true; // XXX: is it correct behaviour ?
-
-    switch(_state) {
-    case PROPERTY:
-        if(_property->userTypeId() == qMetaTypeId<Object*>()) {
-            /*
-#ifdef __GNUC__
-#warning Temporary code
-#endif
-            if(!_text.trimmed()[0].isDigit()) {
-                Object* o = _world->object(_text);
-                qDebug("deprecated link to %s (%p)", _text.toLatin1().constData(), o);
-                QVariant obj = QVariant::fromValue(o);
-                _property->writeVariant(_object, obj);
-            } else*/ {
-                int n = _text.trimmed().toInt();
-                _links.push_back(qMakePair(qMakePair(
-                        static_cast<Object*>(_objectErrors ? _objectErrors : _object),
-                        _property), n));
-            }
-        }
-        else if(!_property->writeString(_objectErrors ? _objectErrors : _object, _text)) {
-            _errorString = QObject::tr("Property \"%1\" of \"%2\" has illegal value")
-                                .arg(qName, _object->metaObject()->className());
-            return false;
-        }
-        _objectErrors = NULL;
-        _state = ITEM;
-        break;
-
-    case ITEM:
-        if(_parent == NULL) {
-            STEPCORE_ASSERT_NOABORT(_object == _world);
-            _state = END;
-        } else {
-            STEPCORE_ASSERT_NOABORT(_parent->metaObject()->inherits<Item>());
-            Item* item = static_cast<Item*>(_parent);
-            _object = _parent;
-            _parent = item->group();
-        }
-        break;
-
-    default:
-        STEPCORE_ASSERT_NOABORT(false);
-    }
-
-    return true;
-}
-
-bool XmlFileHandler::characters(const QString &str)
-{
-    if(_state == PROPERTY) _text += str;
-    return true;
-}
-
-bool XmlFileHandler::endDocument()
-{
-    if(_state != END) {
-        _errorString = QObject::tr("\"world\" tag not found");
+    if (_ids.contains(n)) {
+        _errorMsg = QObject::tr("Non-unique ID attribute value for %1")
+        .arg(object->metaObject()->className());
         return false;
     }
+    
+    _ids.insert(n, object);
+    
+    return parseProperties(object, element);
+}
 
-    // Connect links
-    foreach(const Link& link, _links) {
-        QVariant target = QVariant::fromValue(_ids.value(link.second, NULL));
-        if(!link.first.second->writeVariant(link.first.first, target)) {
-            _errorString = QObject::tr("Property \"%1\" of \"%2\" has illegal value")
-                    .arg(link.first.second->name(), link.first.first->metaObject()->className());
+bool StepDomDocument::parseProperties(Object* object, const QDomElement& parent)
+{
+    int properties = object->metaObject()->propertyCount();
+    for (int n = 0; n < properties; ++n) {
+        const MetaProperty* property = object->metaObject()->property(n);
+        
+        if (!property->isStored()) continue;
+        
+        QString name = property->name();
+        QDomElement propertyElement = parent.firstChildElement(name);
+        if (propertyElement.isNull()) continue;
+        
+        QString text = propertyElement.text();
+        if (property->userTypeId() == qMetaTypeId<Object*>()) {
+            int n = text.trimmed().toInt();
+            _links.push_back(qMakePair(qMakePair(object, property), n));
+        }
+        else if (!property->writeString(object, text)) {
+            _errorMsg = QObject::tr("Property \"%1\" of \"%2\" has illegal value")
+                .arg(name, object->metaObject()->className());
             return false;
         }
     }
-
+    
     return true;
 }
 
-bool XmlFileHandler::fatalError(const QXmlParseException &exception)
+bool StepDomDocument::connectLinks()
 {
-    _errorString = QObject::tr("Error parsing file at line %1: %2")
-                        .arg(exception.lineNumber()).arg(exception.message());
-    return false;
+    foreach (const Link& link, _links) {
+        QVariant target = QVariant::fromValue(_ids.value(link.second, 0));
+        if (!link.first.second->writeVariant(link.first.first, target)) {
+            _errorMsg = QObject::tr("Property \"%1\" of \"%2\" has illegal value")
+                .arg(link.first.second->name(), link.first.first->metaObject()->className());
+            return false;
+        }
+    }
+    
+    return true;
 }
-
-QString XmlFileHandler::errorString() const
-{
-    return _errorString;
-}
-
 } // namespace
 
 bool XmlFile::save(const World* world)
@@ -449,17 +391,14 @@ bool XmlFile::save(const World* world)
 
 bool XmlFile::load(World* world, const Factory* factory)
 {
-    XmlFileHandler handler(world, factory);
-    QXmlInputSource source(_device);
-    QXmlSimpleReader reader;
-
-    reader.setContentHandler(&handler);
-    reader.setErrorHandler(&handler);
-    if(reader.parse(source)) return true;
-    _errorString = handler.errorString();
-    return false;
+    StepDomDocument document(world, factory);
+    if (!document.parse(_device)) {
+        _errorString = document.errorMsg();
+        return false;
+    }
+    
+    return true;
 }
-
 } // namespace StepCore
 
 #endif //STEPCORE_WITH_QT

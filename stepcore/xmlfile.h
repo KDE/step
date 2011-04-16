@@ -25,11 +25,9 @@
 
 #include <QString>
 class QIODevice;
-class QTextStream;
 
 namespace StepCore {
 
-class Object;
 class World;
 class Factory;
 
@@ -67,7 +65,7 @@ protected:
     QString _errorString;
 
 public:
-    static const char* DOCKTYPE;
+    static const char* DOCTYPE;
     static const char* NAMESPACE_URI;
     static const char* VERSION;
 };
