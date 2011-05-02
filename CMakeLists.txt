@@ -7,7 +7,7 @@ find_package(KDE4 REQUIRED)
 
 include(KDE4Defaults)
 
-set(CMAKE_MODULE_PATH ${CMAKE_SOURCE_DIR}/cmake/modules )
+set(CMAKE_MODULE_PATH ${step_SOURCE_DIR}/cmake/modules )
 
 find_package(Eigen2 2.0.3)
 macro_optional_find_package(GSL)
