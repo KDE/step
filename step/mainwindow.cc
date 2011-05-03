@@ -115,7 +115,7 @@ MainWindow::MainWindow()
  
     tab->addTab(worldGraphicsView, "Normal");
     tab->addTab(worldGLScene, "3D");
-    setCentralWidget(KTabWidget);
+    setCentralWidget(tab);
    
     connect(worldModel, SIGNAL(simulationStopped(int)), this, SLOT(simulationStopped(int)));
     

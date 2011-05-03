@@ -60,7 +60,7 @@ WorldGLScene::~WorldGLScene(){
      qDeleteAll(cubes);
      qDeleteAll(tiles);
      delete cubo;
-     delete cube;
+//     delete cube;
 }
 
 
