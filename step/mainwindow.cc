@@ -17,20 +17,18 @@
 */
 
 #include "mainwindow.h"
-#include "mainwindow.moc"
 
 #include "ui_configure_step_general.h"
-
+#include "worldglscene.h"
 #include "worldmodel.h"
 #include "worldscene.h"
-#include "worldbrowser.h"
+#include "worldbrowser.h"settings
 #include "propertiesbrowser.h"
 #include "infobrowser.h"
 #include "undobrowser.h"
 #include "itempalette.h"
-#include "settings.h"
 #include "unitscalc.h"
-
+#include "settings.h"
 #include <stepcore/solver.h>
 #include <stepcore/collisionsolver.h>
 
@@ -48,6 +46,9 @@
 #include <KLocale>
 #include <KConfig>
 #include <KToolBarPopupAction>
+#include <GL/gl.h>
+#include <QGLWidget>
+
 
 #include <KIO/NetAccess>
 #include <knewstuff3/downloaddialog.h>
@@ -57,7 +58,7 @@
 #include <QItemSelectionModel>
 #include <QHBoxLayout>
 #include <QMenu>
-
+#include <QMessageBox>
 #include <cstdlib>
 #include <ctime>
 
@@ -76,8 +77,14 @@ MainWindow::MainWindow()
     setCorner(Qt::TopRightCorner, Qt::RightDockWidgetArea);
     setCorner(Qt::BottomRightCorner, Qt::RightDockWidgetArea);
 
+    QMessageBox msg;
+    
     worldModel = new WorldModel(this);
     worldModel->setActions(actionCollection());
+
+
+  //  modelogeral = new ModeloGeral(this);
+  //  modelogeral->setActions(actionCollection());
 
     itemPalette = new ItemPalette(worldModel, this);
     itemPalette->setObjectName("itemPalette");
@@ -100,21 +107,40 @@ MainWindow::MainWindow()
     addDockWidget(Qt::RightDockWidgetArea, undoBrowser);
 
     worldScene = new WorldScene(worldModel);
-    worldGraphicsView = new WorldGraphicsView(worldScene, this);
-    setCentralWidget(worldGraphicsView);
-
+    worldGLScene = new WorldGLScene(this,worldModel);
+ 
+    setCentralWidget(worldGLScene);
+   
     connect(worldModel, SIGNAL(simulationStopped(int)), this, SLOT(simulationStopped(int)));
+    
     connect(worldModel->selectionModel(), SIGNAL(selectionChanged(const QItemSelection&, const QItemSelection&)),
                                  this, SLOT(worldSelectionChanged()));
+    
     connect(itemPalette, SIGNAL(beginAddItem(const QString&)),
-                                 worldScene, SLOT(beginAddItem(const QString&)));
+        worldGLScene, SLOT(beginAddItem(const QString&)));
+
+     
+//     connect(worldGLScene, SIGNAL(endAddItem(const QString&, bool)),
+//                                  itemPalette, SLOT(endAddItem(const QString&, bool)));
+//     connect(worldGLScene, SIGNAL(linkActivated(const KUrl&)),
+//                                  infoBrowser, SLOT(openUrl(const KUrl&)));
+//     
+//    connect(worldGLScene, SIGNAL(endAddItem(const QString&, bool)),
+//                                   itemPalette, SLOT(endAddItem(const QString&, bool)));
+
+    
+    connect(itemPalette, SIGNAL(beginAddItem(const QString&)), 
+	    worldScene, SLOT(beginAddItem(const QString&)));
+    
     connect(worldScene, SIGNAL(endAddItem(const QString&, bool)),
                                  itemPalette, SLOT(endAddItem(const QString&, bool)));
     connect(worldScene, SIGNAL(linkActivated(const KUrl&)),
                                  infoBrowser, SLOT(openUrl(const KUrl&)));
     connect(worldScene, SIGNAL(endAddItem(QString, bool)),
             this, SLOT(worldSelectionChanged()));
-    
+   
+
+
 
     setupActions();
     setupGUI();
@@ -240,11 +266,18 @@ void MainWindow::setupActions()
     simulationStopped(0);
 
     /* View menu */
-    KStandardAction::actualSize(worldGraphicsView, SLOT(actualSize()), actionCollection());
+ /*   KStandardAction::actualSize(worldGraphicsView, SLOT(actualSize()), actionCollection());
     KStandardAction::fitToPage(worldGraphicsView, SLOT(fitToPage()), actionCollection());
     KStandardAction::zoomIn(worldGraphicsView, SLOT(zoomIn()), actionCollection());
     KStandardAction::zoomOut(worldGraphicsView, SLOT(zoomOut()), actionCollection());
-
+*/
+   // KStandardAction::actualSize(worldGLScene, SLOT(actualSize()), actionCollection());
+  //  KStandardAction::fitToPage(worldGLScene, SLOT(fitToPage()), actionCollection());
+   // KStandardAction::zoomIn(worldGLScene, SLOT(zoomIn()), actionCollection());
+   // KStandardAction::zoomOut(worldGLScene, SLOT(zoomOut()), actionCollection());
+ 
+ 
+ 
     /* Settings menu */
     KStandardAction::preferences(this, SLOT(configureStep()), actionCollection());
 
@@ -279,9 +312,10 @@ bool MainWindow::newFile()
     if(worldModel->isSimulationActive()) simulationStop();
     if(!maybeSave()) return false;
 
-    worldModel->clearWorld();
-    worldGraphicsView->actualSize();
-    worldGraphicsView->centerOn(0,0);
+      worldModel->clearWorld();
+   // worldGraphicsView->actualSize();
+   // worldGraphicsView->centerOn(0,0);
+    
     currentFileUrl = KUrl();
     updateCaption();
     undoBrowser->setEmptyLabel(i18n("<new file>"));
@@ -327,7 +361,7 @@ bool MainWindow::openFile(const KUrl& url, const KUrl& startUrl)
 
     KIO::NetAccess::removeTempFile(tmpFileName);
 
-    worldGraphicsView->fitToPage();
+//    worldGLScene->fitToPage();
     currentFileUrl = fileUrl;
     updateCaption();
     actionRecentFiles->addUrl(fileUrl);
@@ -575,64 +609,13 @@ void MainWindow::configureStep()
     generalUi.setupUi(generalWidget);
     dialog->addPage(generalWidget, i18n("General"), "step"); //shows the "step" icon, the "general" icon doesn't exist
 
-    connect(dialog, SIGNAL(settingsChanged(const QString&)),
-                worldGraphicsView, SLOT(settingsChanged())); 
+   // connect(dialog, SIGNAL(settingsChanged(const QString&)), worldGLScene, SLOT(settingsChanged())); 
+    
+    //connect(dialog, SIGNAL(settingsChanged(const QString&)), worldGraphicsView, SLOT(settingsChanged())); 
+      
     connect(dialog, SIGNAL(settingsChanged(const QString&)),
                 propertiesBrowser, SLOT(settingsChanged())); 
 
     dialog->show();
 }
 
-/*
-void MainWindow::on_actionNew_triggered(bool checked)
-{
-    if(maybeSave()) newFile();
-}
-
-void MainWindow::on_actionOpen_triggered(bool checked)
-{
-    if(maybeSave()) openFile(QString());
-}
-
-void MainWindow::on_actionSave_triggered(bool checked)
-{
-    saveFileAs(currentFileName);
-}
-
-void MainWindow::on_actionSaveAs_triggered(bool checked)
-{
-    saveFile();
-}
-
-void MainWindow::on_actionStep_triggered(bool checked)
-{
-    if(!worldModel->doWorldEvolve(0.1))
-        QMessageBox::warning(this, i18n("Step"), // XXX: retrieve error message from solver !
-            i18n("Cannot finish this step becouse local error is bigger than local tolerance.<br />"
-               "Please check solver settings and try again."));
-}
-
-void MainWindow::on_actionSimulation_triggered(bool checked)
-{
-    if(!simulationTimer->isActive()) {
-        actionSimulation->setText(i18n("&Stop"));
-        simulationTimer->start();
-    } else {
-        simulationTimer->stop();
-        actionSimulation->setText(i18n("&Simulation"));
-    }
-}
-
-void MainWindow::on_simulationTimer_timeout()
-{
-    worldModel->doWorldEvolve(1.0/FPS);
-}
-
-void MainWindow::on_actionAboutStep_triggered(bool checked)
-{
-    QMessageBox::about(this, i18n("About Step"),
-             i18n("<center>The <b>Step</b> is an interactive physical simulator.<br /><br />"
-                "Distributed under terms of the GNU GPL license.<br />"
-                "(C) 2006-2007 Kuznetsov Vladimir.</center>"));
-}
-*/

@@ -1,4 +1,4 @@
-set(step_SRCS
+set(step_SRCS cube.cc worldglscene.cc
     arrow.cc
     mainwindow.cc
     worldmodel.cc

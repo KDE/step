@@ -21,7 +21,10 @@
 
 #include <KXmlGuiWindow>
 #include <KUrl>
+#include <QMouseEvent>
 
+class WorldGLScene;
+class ModeloGeral;
 class WorldModel;
 class WorldBrowser;
 class WorldScene;
@@ -38,6 +41,10 @@ class KRecentFilesAction;
 
 class QItemSelection;
 class QActionGroup;
+class QMouseEvent;
+
+
+
 
 class MainWindow : public KXmlGuiWindow
 {
@@ -73,7 +80,7 @@ public slots:
     void setSlowerSpeed()   { setRunSpeed(2); }
     void setSlowestSpeed()  { setRunSpeed(3); }
     void setStepSpeed()     { setRunSpeed(4); }
-
+   
 
 protected slots:
     void updateCaption();
@@ -102,6 +109,7 @@ protected:
     bool maybeSave();
 
 protected:
+    ModeloGeral*        modelogeral; 
     WorldModel*         worldModel;
     WorldBrowser*       worldBrowser;
     PropertiesBrowser*  propertiesBrowser;
@@ -110,6 +118,8 @@ protected:
     ItemPalette*        itemPalette;
     WorldScene*         worldScene;
     WorldGraphicsView*  worldGraphicsView;
+    WorldGLScene*       worldGLScene; 
+    QMouseEvent* 	mouseEvent;
 
     KAction* actionUndo;
     KAction* actionRedo;
@@ -128,6 +138,7 @@ protected:
     KAction *slowestSpeedAct;
     KAction *stepSpeedAct;
     QActionGroup *runSpeedGroup;
+   
 
 };
 
