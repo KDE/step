@@ -1,5 +1,6 @@
 set(step_SRCS
     arrow.cc
+    clipboard.cc
     mainwindow.cc
     worldmodel.cc
     worldscene.cc

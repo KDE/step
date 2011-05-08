@@ -40,6 +40,8 @@ namespace StepCore {
 class QItemSelectionModel;
 class QTimer;
 class QMenu;
+
+class Clipboard;
 class WorldFactory;
 class CommandSimulate;
 class SimulationThread;
@@ -126,6 +128,8 @@ public:
     void pushCommand(QUndoCommand* command); ///< Push new undo command
     void beginMacro(const QString& text); ///< Begin undo macro
     void endMacro(); ///< End undo macro
+    
+    Clipboard* clipboard() const { return _clipboard; }
 
     // Property edit
     /** Modify object property.
@@ -209,6 +213,9 @@ public slots:
     void simulationStart(); ///< Start simulation
     void simulationStop();  ///< Stop simulation
 
+    void cutSelectedItems();
+    void copySelectedItems();
+    void pasteItems();
     void deleteSelectedItems(); ///< Delete all selected items
 
 protected slots:
@@ -233,6 +240,7 @@ protected:
     void addCreatedItem(StepCore::Item* item, StepCore::ItemGroup* parent = 0);
     void removeCreatedItem(StepCore::Item* item);
     StepCore::Solver* swapSolver(StepCore::Solver* solver);
+    QList<StepCore::Item*> selectedItems();
 
     // Only for UndoCommand* classes
     //void objectChanged(const StepCore::Object* object);
@@ -241,6 +249,7 @@ protected:
     StepCore::World* _world;
     QItemSelectionModel* _selectionModel;
     KUndoStack* _undoStack;
+    Clipboard* _clipboard;
     const WorldFactory* _worldFactory;
     QString _errorString;
 

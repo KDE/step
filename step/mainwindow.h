@@ -114,6 +114,9 @@ protected:
     KAction* actionUndo;
     KAction* actionRedo;
     KAction* actionDelete;
+    KAction* actionCut;
+    KAction* actionCopy;
+    KAction* actionPaste;
 
     KRecentFilesAction* actionRecentFiles;
 

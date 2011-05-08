@@ -763,14 +763,10 @@ ItemMenuHandler::ItemMenuHandler(StepCore::Object* object, WorldModel* worldMode
 void ItemMenuHandler::populateMenu(QMenu* menu, KActionCollection* actions)
 {
     StepCore::Item* item = dynamic_cast<StepCore::Item*>(_object);
-    if(item && item->world() != item) {
+    
+    if (item && item->world() != item) {
+        menu->addAction(actions->action("edit_cut"));
+        menu->addAction(actions->action("edit_copy"));
         menu->addAction(actions->action("edit_delete"));
-        //menu->addAction(KIcon("edit-delete"), i18n("&Delete"), this, SLOT(deleteItem()));
     }
 }
-
-void ItemMenuHandler::deleteItem()
-{
-    _worldModel->deleteItem(static_cast<StepCore::Item*>(_object));
-}
-

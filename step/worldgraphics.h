@@ -433,9 +433,6 @@ public:
      *  Default implementation adds delete action. */
     virtual void populateMenu(QMenu* menu, KActionCollection* actions);
 
-protected slots:
-    void deleteItem();
-
 protected:
     StepCore::Object* _object;
     WorldModel* _worldModel;

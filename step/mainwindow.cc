@@ -21,6 +21,7 @@
 
 #include "ui_configure_step_general.h"
 
+#include "clipboard.h"
 #include "worldmodel.h"
 #include "worldscene.h"
 #include "worldbrowser.h"
@@ -181,6 +182,18 @@ void MainWindow::setupActions()
                                  this, SLOT(undoTextChanged(const QString&)));
     connect(worldModel->undoStack(), SIGNAL(redoTextChanged(const QString&)),
                                  this, SLOT(redoTextChanged(const QString&)));
+    
+    actionCut = KStandardAction::cut(worldModel, SLOT(cutSelectedItems()),
+                                     actionCollection());
+    actionCopy = KStandardAction::copy(worldModel, SLOT(copySelectedItems()),
+                                       actionCollection());
+    actionPaste = KStandardAction::paste(worldModel, SLOT(pasteItems()),
+                                         actionCollection());
+    actionCut->setEnabled(false);
+    actionCopy->setEnabled(false);
+    actionPaste->setEnabled(worldModel->clipboard()->canPaste());
+    connect(worldModel->clipboard(), SIGNAL(canPasteChanged(bool)),
+            actionPaste, SLOT(setEnabled(bool)));
 
     actionDelete = actionCollection()->add<KAction>("edit_delete", worldModel, SLOT(deleteSelectedItems()));
     actionDelete->setText(i18n("&Delete"));
@@ -556,11 +569,15 @@ void MainWindow::worldSelectionChanged()
                  worldModel->selectionModel()->selection().indexes()) {
             if (index != worldModel->worldIndex() && worldModel->item(index)) {
                 actionDelete->setEnabled(true);
+                actionCut->setEnabled(true);
+                actionCopy->setEnabled(true);
                 return;
             }
         }
     }
     actionDelete->setEnabled(false);
+    actionCut->setEnabled(false);
+    actionCopy->setEnabled(false);
 }
 
 void MainWindow::configureStep()

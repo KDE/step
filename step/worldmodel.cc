@@ -17,6 +17,8 @@
 */
 
 #include "worldmodel.h"
+
+#include "clipboard.h"
 #include "simulationthread.h"
 #include "worldgraphics.h"
 #include "worldmodel.moc"
@@ -309,6 +311,7 @@ WorldModel::WorldModel(QObject* parent)
 {
     _selectionModel = new QItemSelectionModel(this, this);
     _undoStack = new KUndoStack(this);
+    _clipboard = new Clipboard(this);
     _worldFactory = new WorldFactory();
     _world = new StepCore::World();
 
@@ -1015,3 +1018,73 @@ void WorldModel::simulationFrameEnd(int result)
     }
 }
 
+QList<StepCore::Item*> WorldModel::selectedItems()
+{
+    QList<StepCore::Item*> items;
+    foreach (QModelIndex index, selectionModel()->selectedIndexes()) {
+        // Do not delete world item
+        if (index == worldIndex()) continue;
+        
+        StepCore::Item* it = item(index);
+        if (it) items << it;
+    }
+    
+    foreach (StepCore::Item* it, items) {
+        for (StepCore::Item* it1 = it->group(); it1 != 0 && it1 != _world; it1 = it1->group()) {
+            if (items.contains(it1)) {
+                items.removeOne(it);
+                break;
+            }
+        }
+    }
+    
+    return items;
+}
+
+void WorldModel::cutSelectedItems()
+{
+    simulationPause();
+    
+    QList<StepCore::Item*> items = selectedItems();
+    
+    _clipboard->copy(items);
+    
+    if (!items.isEmpty()) {
+        beginMacro(items.count() == 1 ? i18n("Cut %1", items[0]->name()) :
+                   i18n("Cut several items"));
+        foreach (StepCore::Item* it, items) deleteItem(it);
+        endMacro();
+    }
+}
+
+void WorldModel::copySelectedItems()
+{
+    simulationPause();
+    
+    QList<StepCore::Item*> items = selectedItems();
+    
+    _clipboard->copy(items);
+}
+
+void WorldModel::pasteItems()
+{
+    simulationPause();
+    
+    QList<StepCore::Item*> items = _clipboard->paste(_worldFactory);
+    if (items.isEmpty()) return;
+    
+    beginMacro(items.count() == 1 ? i18n("Pasted %1", items[0]->name()) :
+               i18n("Pasted several items"));
+    QItemSelection selection;
+    foreach (StepCore::Item* item, items) {
+        QString className = item->metaObject()->className();
+        item->setName(getUniqueName(className));
+        addItem(item, _world);
+        QModelIndex index = objectIndex(item);
+        selection.select(index, index);
+    }
+    if (!selection.isEmpty()) {
+        selectionModel()->select(selection, QItemSelectionModel::ClearAndSelect);
+    }
+    endMacro();
+}
