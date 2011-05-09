@@ -206,12 +206,18 @@ public slots:
     /** Reload application settings */
     void settingsChanged();
 
+protected slots:
+    void sceneRectChanged(const QRectF& rect);
+    
 protected:
     void mousePressEvent(QMouseEvent* e);
     void mouseReleaseEvent(QMouseEvent* e);
     void scrollContentsBy(int dx, int dy);
+    void updateSceneRect();
 
     static const int SCENE_LENGTH = 2000;
+    
+    QRectF _sceneRect;
 };
 
 Q_DECLARE_OPERATORS_FOR_FLAGS(WorldScene::SnapFlags)

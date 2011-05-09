@@ -141,7 +141,8 @@ WorldScene::WorldScene(WorldModel* worldModel, QObject* parent)
     #endif
     setItemIndexMethod(NoIndex);
     //XXX
-    //setSceneRect(-200,-200,400,400);
+    //setct(-200,-200,400,400);
+    setSceneRect(-20, -20, 40, 40);
 
     _messageFrame = new MessageFrame();
     _snapTimer = new QTimer(this);
@@ -388,8 +389,13 @@ void WorldScene::worldDataChanged(bool dynamicOnly)
 
     foreach (QGraphicsItem *item, items()) {
         WorldGraphicsItem* gItem = dynamic_cast<WorldGraphicsItem*>(item);
-        if(gItem) gItem->worldDataChanged(dynamicOnly);
+        if(gItem) {
+            gItem->worldDataChanged(dynamicOnly);
+        }
     }
+    
+    QRectF boundingRect = itemsBoundingRect();
+    setSceneRect(boundingRect.united(QRectF(-20, -20, 40, 40)));
 }
 
 void WorldScene::updateViewScale()
@@ -566,6 +572,12 @@ WorldGraphicsView::WorldGraphicsView(WorldScene* worldScene, QWidget* parent)
     worldScene->_worldView = this;
     worldScene->_messageFrame->setParent(this);
     worldScene->_messageFrame->move(15,15);
+    
+    _sceneRect = worldScene->sceneRect();
+    updateSceneRect();
+    connect(worldScene, SIGNAL(sceneRectChanged(const QRectF&)),
+            this, SLOT(sceneRectChanged(const QRectF&)));
+    
     //worldGraphicsView->setRenderHints(QPainter::Antialiasing);
     setDragMode(QGraphicsView::RubberBandDrag);
     //setDragMode(QGraphicsView::ScrollHandDrag);
@@ -583,16 +595,16 @@ WorldGraphicsView::WorldGraphicsView(WorldScene* worldScene, QWidget* parent)
 void WorldGraphicsView::zoomIn()
 {
     scale(1.25, 1.25);
-    double length = SCENE_LENGTH / matrix().m11();
-    setSceneRect(-length, -length, length*2, length*2);
+    updateSceneRect();
+    
     static_cast<WorldScene*>(scene())->updateViewScale();
 }
 
 void WorldGraphicsView::zoomOut()
 {
-    scale(1/1.25, 1/1.25);
-    double length = SCENE_LENGTH / matrix().m11();
-    setSceneRect(-length, -length, length*2, length*2);
+    scale(1 / 1.25, 1 / 1.25);
+    updateSceneRect();
+    
     static_cast<WorldScene*>(scene())->updateViewScale();
 }
 
@@ -611,12 +623,11 @@ void WorldGraphicsView::fitToPage()
         s *= 0.9;
         resetMatrix();
         scale(s, -s);
+        updateSceneRect();
     } else {
         s = currentViewScale;
     }
 
-    double length = SCENE_LENGTH / s;
-    setSceneRect(-length, -length, length*2, length*2);
     centerOn(br.center());
 
     if(s != currentViewScale)
@@ -627,10 +638,10 @@ void WorldGraphicsView::actualSize()
 {
     resetMatrix();
     scale(100, -100);
-    setSceneRect(-SCENE_LENGTH/100, -SCENE_LENGTH/100,
-                  SCENE_LENGTH*2/100, SCENE_LENGTH*2/100);
-    //setSceneRect(-1e100, -1e100, 2e100, 2e100);
+    updateSceneRect();
+    
     centerOn(0, 0);
+    
     static_cast<WorldScene*>(scene())->updateViewScale();
 }
 
@@ -677,5 +688,24 @@ void WorldGraphicsView::scrollContentsBy(int dx, int dy)
     if(axes)
         axes->setPos(mapToScene(viewport()->width()/2, viewport()->height()/2));
         //axes->setPos(mapToScene(20, maximumViewportSize().height()-horizontalScrollBar()->height()-23));
+}
+
+void WorldGraphicsView::sceneRectChanged(const QRectF& rect)
+{
+    _sceneRect = rect;
+    updateSceneRect();
+}
+
+void WorldGraphicsView::updateSceneRect()
+{
+    QPointF topleft = mapToScene(0, 0);
+    QPointF bottomright = mapToScene(viewport()->width(), viewport()->height());
+    
+    QRectF viewportRect(topleft, bottomright);
+    QRectF sceneRect = _sceneRect.adjusted(-viewportRect.width() / 4,
+                                           viewportRect.height() / 4,
+                                           viewportRect.width() / 4,
+                                           -viewportRect.height() / 4);
+    setSceneRect(sceneRect.united(viewportRect));
 }
 
