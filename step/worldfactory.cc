@@ -89,7 +89,7 @@ WorldFactory::WorldFactory()
 
     #define ___REGISTER_EXT(Class, newGraphicsCreator, newGraphicsItem, newItemMenuHandler,newGraphicsItem3D) \
         static ExtMetaObject extMetaObject ## Class = \
-                { newGraphicsCreator, newGraphicsItem, newItemMenuHandler, false,false}; \
+                { newGraphicsCreator, newGraphicsItem, newItemMenuHandler, false,NULL}; \
         registerMetaObject(StepCore::Class::staticMetaObject()); \
         _extMetaObjects.insert(StepCore::Class::staticMetaObject(), &extMetaObject ## Class); \
         _orderedMetaObjects.push_back(QString(StepCore::Class::staticMetaObject()->className())); \
@@ -127,32 +127,32 @@ WorldFactory::WorldFactory()
     __REGISTER(CollisionSolver);
     __REGISTER(ConstraintSolver);
 
-    __REGISTER_EXT_E(Particle, ItemCreator, ParticleGraphicsItem, ItemMenuHandler,false);
-    __REGISTER_EXT_E(ChargedParticle, ItemCreator, ParticleGraphicsItem, ItemMenuHandler,false);
+    __REGISTER_EXT_E(Particle, ItemCreator, ParticleGraphicsItem, ItemMenuHandler,NULL);
+    __REGISTER_EXT_E(ChargedParticle, ItemCreator, ParticleGraphicsItem, ItemMenuHandler,NULL);
 
-    __REGISTER_EXT(Disk, DiskCreator, DiskGraphicsItem, ItemMenuHandler,false);
+    __REGISTER_EXT(Disk, DiskCreator, DiskGraphicsItem, ItemMenuHandler,NULL);
     __REGISTER_EXT(Box, BoxCreator, BoxGraphicsItem, ItemMenuHandler, BoxGraphicsItem3D);
-    __REGISTER_EXT(Polygon, PolygonCreator, PolygonGraphicsItem, ItemMenuHandler,false);
+    __REGISTER_EXT(Polygon, PolygonCreator, PolygonGraphicsItem, ItemMenuHandler,NULL);
 
-    __REGISTER_EXT(GasParticle, ItemCreator, ParticleGraphicsItem, ItemMenuHandler,false);
+    __REGISTER_EXT(GasParticle, ItemCreator, ParticleGraphicsItem, ItemMenuHandler,NULL);
     __REGISTER(GasLJForce);
-    __REGISTER_EXT(Gas, GasCreator, GasGraphicsItem, GasMenuHandler,false);
+    __REGISTER_EXT(Gas, GasCreator, GasGraphicsItem, GasMenuHandler,NULL);
 
-    __REGISTER_EXT(SoftBodySpring, SpringCreator, SoftBodySpringGraphicsItem, ItemMenuHandler,false);
-    __REGISTER_EXT(SoftBodyParticle, ItemCreator, SoftBodyParticleGraphicsItem, ItemMenuHandler,false);
-    __REGISTER_EXT(SoftBody, SoftBodyCreator, SoftBodyGraphicsItem, SoftBodyMenuHandler,false);
+    __REGISTER_EXT(SoftBodySpring, SpringCreator, SoftBodySpringGraphicsItem, ItemMenuHandler,NULL);
+    __REGISTER_EXT(SoftBodyParticle, ItemCreator, SoftBodyParticleGraphicsItem, ItemMenuHandler,NULL);
+    __REGISTER_EXT(SoftBody, SoftBodyCreator, SoftBodyGraphicsItem, SoftBodyMenuHandler,NULL);
 
-    __REGISTER_EXT_E(Spring, SpringCreator, SpringGraphicsItem, ItemMenuHandler,false);
-    __REGISTER_EXT(LinearMotor, LinearMotorCreator, LinearMotorGraphicsItem, ItemMenuHandler,false);
-    __REGISTER_EXT(CircularMotor, CircularMotorCreator, CircularMotorGraphicsItem, ItemMenuHandler,false);
+    __REGISTER_EXT_E(Spring, SpringCreator, SpringGraphicsItem, ItemMenuHandler,NULL);
+    __REGISTER_EXT(LinearMotor, LinearMotorCreator, LinearMotorGraphicsItem, ItemMenuHandler,NULL);
+    __REGISTER_EXT(CircularMotor, CircularMotorCreator, CircularMotorGraphicsItem, ItemMenuHandler,NULL);
 
     __REGISTER_E(WeightForce);
     __REGISTER_E(GravitationForce);
     __REGISTER_E(CoulombForce);
 
-    __REGISTER_EXT(Anchor, AnchorCreator, AnchorGraphicsItem, ItemMenuHandler,false);
-    __REGISTER_EXT(Pin, PinCreator, PinGraphicsItem, ItemMenuHandler,false);
-    __REGISTER_EXT(Stick, StickCreator, StickGraphicsItem, ItemMenuHandler,false);
+    __REGISTER_EXT(Anchor, AnchorCreator, AnchorGraphicsItem, ItemMenuHandler,NULL);
+    __REGISTER_EXT(Pin, PinCreator, PinGraphicsItem, ItemMenuHandler,NULL);
+    __REGISTER_EXT(Stick, StickCreator, StickGraphicsItem, ItemMenuHandler,NULL);
     //__REGISTER_EXT(Rope, StickCreator, StickGraphicsItem, ItemMenuHandler);
 
     __REGISTER(EulerSolver);
@@ -181,11 +181,11 @@ WorldFactory::WorldFactory()
 
     __REGISTER(NoteImage);
     __REGISTER(NoteFormula);
-    __REGISTER_EXT(Note, ItemCreator, NoteGraphicsItem, ItemMenuHandler,false);
-    __REGISTER_EXT(Meter, ItemCreator, MeterGraphicsItem, MeterMenuHandler,false);
-    __REGISTER_EXT(Graph, ItemCreator, GraphGraphicsItem, GraphMenuHandler,false);
-    __REGISTER_EXT(Controller, ItemCreator, ControllerGraphicsItem, ControllerMenuHandler,false);
-    __REGISTER_EXT(Tracer, TracerCreator, TracerGraphicsItem, TracerMenuHandler,false);
+    __REGISTER_EXT(Note, ItemCreator, NoteGraphicsItem, ItemMenuHandler,NULL);
+    __REGISTER_EXT(Meter, ItemCreator, MeterGraphicsItem, MeterMenuHandler,NULL);
+    __REGISTER_EXT(Graph, ItemCreator, GraphGraphicsItem, GraphMenuHandler,NULL);
+    __REGISTER_EXT(Controller, ItemCreator, ControllerGraphicsItem, ControllerMenuHandler,NULL);
+    __REGISTER_EXT(Tracer, TracerCreator, TracerGraphicsItem, TracerMenuHandler,NULL);
 
     // Palette
     __ADD_TO_PALETTE(Particle);
