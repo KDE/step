@@ -46,6 +46,7 @@
 #include "jointgraphics.h"
 #include "toolgraphics.h"
 
+#include <QMessageBox>
 #include <KIcon>
 #include <KIconLoader>
 #include <KDebug>
@@ -55,6 +56,13 @@ ItemCreator* newItemCreatorHelper(const QString& className,
                     WorldModel* worldModel, WorldScene* worldScene)
 {
     return new T(className, worldModel, worldScene);
+}
+
+template<typename T>
+ItemCreator* newItemCreator3DHelper(const QString& className,
+                    WorldModel* worldModel, WorldGLScene* worldGLScene)
+{
+    return new T(className, worldModel, worldGLScene);
 }
 
 template<typename T>
@@ -69,32 +77,37 @@ ItemMenuHandler* newItemMenuHandlerHelper(StepCore::Object* object, WorldModel* 
     return new T(object, worldModel, parent);
 }
 
+template<typename T>
+WorldGraphicsItem3D* newGraphicsItem3DHelper(StepCore::Item* item, WorldModel* worldModel)
+{
+    return new T(item, worldModel);
+}
 
 WorldFactory::WorldFactory()
 {
     _nullIcon = new KIcon();
 
-    #define ___REGISTER_EXT(Class, newGraphicsCreator, newGraphicsItem, newItemMenuHandler) \
+    #define ___REGISTER_EXT(Class, newGraphicsCreator, newGraphicsItem, newItemMenuHandler,newGraphicsItem3D) \
         static ExtMetaObject extMetaObject ## Class = \
-                { newGraphicsCreator, newGraphicsItem, newItemMenuHandler, false, NULL }; \
+                { newGraphicsCreator, newGraphicsItem, newItemMenuHandler, false,false}; \
         registerMetaObject(StepCore::Class::staticMetaObject()); \
         _extMetaObjects.insert(StepCore::Class::staticMetaObject(), &extMetaObject ## Class); \
         _orderedMetaObjects.push_back(QString(StepCore::Class::staticMetaObject()->className())); \
         loadIcon(StepCore::Class::staticMetaObject(), const_cast<ExtMetaObject*>(&extMetaObject ## Class))
 
-    #define ___REGISTER_EXT_E(Class, newGraphicsCreator, newGraphicsItem, newItemMenuHandler) \
-        ___REGISTER_EXT(Class, newGraphicsCreator, newGraphicsItem, newItemMenuHandler); \
+    #define ___REGISTER_EXT_E(Class, newGraphicsCreator, newGraphicsItem, newItemMenuHandler,newGraphicsItem3D) \
+        ___REGISTER_EXT(Class, newGraphicsCreator, newGraphicsItem, newItemMenuHandler,newGraphicsItem3D); \
         registerMetaObject(StepCore::Class##Errors::staticMetaObject())
 
-    #define __REGISTER(Class) ___REGISTER_EXT(Class, NULL, NULL, NULL)
-    #define __REGISTER_E(Class) ___REGISTER_EXT_E(Class, NULL, NULL, NULL)
+    #define __REGISTER(Class) ___REGISTER_EXT(Class, NULL, NULL, NULL, NULL)
+    #define __REGISTER_E(Class) ___REGISTER_EXT_E(Class, NULL, NULL, NULL, NULL)
 
-    #define __REGISTER_EXT(Class, GraphicsCreator, GraphicsItem, ItemMenuHandler) \
+    #define __REGISTER_EXT(Class, GraphicsCreator, GraphicsItem, ItemMenuHandler,GraphicsItem3D) \
         ___REGISTER_EXT(Class, newItemCreatorHelper<GraphicsCreator>, \
-                   newGraphicsItemHelper<GraphicsItem>, newItemMenuHandlerHelper<ItemMenuHandler>)
+                   newGraphicsItemHelper<GraphicsItem>, newItemMenuHandlerHelper<ItemMenuHandler>,newItemCreator3DHelper<GraphicsItem3D>)
 
-    #define __REGISTER_EXT_E(Class, GraphicsCreator, GraphicsItem, ItemMenuHandler) \
-        __REGISTER_EXT(Class, GraphicsCreator, GraphicsItem, ItemMenuHandler); \
+    #define __REGISTER_EXT_E(Class, GraphicsCreator, GraphicsItem, ItemMenuHandler,GraphicsItem3D) \
+        __REGISTER_EXT(Class, GraphicsCreator, GraphicsItem, ItemMenuHandler,GraphicsItem3D); \
         registerMetaObject(StepCore::Class##Errors::staticMetaObject())
 
     #define __ADD_TO_PALETTE(Class) \
@@ -114,32 +127,32 @@ WorldFactory::WorldFactory()
     __REGISTER(CollisionSolver);
     __REGISTER(ConstraintSolver);
 
-    __REGISTER_EXT_E(Particle, ItemCreator, ParticleGraphicsItem, ItemMenuHandler);
-    __REGISTER_EXT_E(ChargedParticle, ItemCreator, ParticleGraphicsItem, ItemMenuHandler);
+    __REGISTER_EXT_E(Particle, ItemCreator, ParticleGraphicsItem, ItemMenuHandler,false);
+    __REGISTER_EXT_E(ChargedParticle, ItemCreator, ParticleGraphicsItem, ItemMenuHandler,false);
 
-    __REGISTER_EXT(Disk, DiskCreator, DiskGraphicsItem, ItemMenuHandler);
-    __REGISTER_EXT(Box, BoxCreator, BoxGraphicsItem, ItemMenuHandler);
-    __REGISTER_EXT(Polygon, PolygonCreator, PolygonGraphicsItem, ItemMenuHandler);
+    __REGISTER_EXT(Disk, DiskCreator, DiskGraphicsItem, ItemMenuHandler,false);
+    __REGISTER_EXT(Box, BoxCreator, BoxGraphicsItem, ItemMenuHandler, BoxGraphicsItem3D);
+    __REGISTER_EXT(Polygon, PolygonCreator, PolygonGraphicsItem, ItemMenuHandler,false);
 
-    __REGISTER_EXT(GasParticle, ItemCreator, ParticleGraphicsItem, ItemMenuHandler);
+    __REGISTER_EXT(GasParticle, ItemCreator, ParticleGraphicsItem, ItemMenuHandler,false);
     __REGISTER(GasLJForce);
-    __REGISTER_EXT(Gas, GasCreator, GasGraphicsItem, GasMenuHandler);
+    __REGISTER_EXT(Gas, GasCreator, GasGraphicsItem, GasMenuHandler,false);
 
-    __REGISTER_EXT(SoftBodySpring, SpringCreator, SoftBodySpringGraphicsItem, ItemMenuHandler);
-    __REGISTER_EXT(SoftBodyParticle, ItemCreator, SoftBodyParticleGraphicsItem, ItemMenuHandler);
-    __REGISTER_EXT(SoftBody, SoftBodyCreator, SoftBodyGraphicsItem, SoftBodyMenuHandler);
+    __REGISTER_EXT(SoftBodySpring, SpringCreator, SoftBodySpringGraphicsItem, ItemMenuHandler,false);
+    __REGISTER_EXT(SoftBodyParticle, ItemCreator, SoftBodyParticleGraphicsItem, ItemMenuHandler,false);
+    __REGISTER_EXT(SoftBody, SoftBodyCreator, SoftBodyGraphicsItem, SoftBodyMenuHandler,false);
 
-    __REGISTER_EXT_E(Spring, SpringCreator, SpringGraphicsItem, ItemMenuHandler);
-    __REGISTER_EXT(LinearMotor, LinearMotorCreator, LinearMotorGraphicsItem, ItemMenuHandler);
-    __REGISTER_EXT(CircularMotor, CircularMotorCreator, CircularMotorGraphicsItem, ItemMenuHandler);
+    __REGISTER_EXT_E(Spring, SpringCreator, SpringGraphicsItem, ItemMenuHandler,false);
+    __REGISTER_EXT(LinearMotor, LinearMotorCreator, LinearMotorGraphicsItem, ItemMenuHandler,false);
+    __REGISTER_EXT(CircularMotor, CircularMotorCreator, CircularMotorGraphicsItem, ItemMenuHandler,false);
 
     __REGISTER_E(WeightForce);
     __REGISTER_E(GravitationForce);
     __REGISTER_E(CoulombForce);
 
-    __REGISTER_EXT(Anchor, AnchorCreator, AnchorGraphicsItem, ItemMenuHandler);
-    __REGISTER_EXT(Pin, PinCreator, PinGraphicsItem, ItemMenuHandler);
-    __REGISTER_EXT(Stick, StickCreator, StickGraphicsItem, ItemMenuHandler);
+    __REGISTER_EXT(Anchor, AnchorCreator, AnchorGraphicsItem, ItemMenuHandler,false);
+    __REGISTER_EXT(Pin, PinCreator, PinGraphicsItem, ItemMenuHandler,false);
+    __REGISTER_EXT(Stick, StickCreator, StickGraphicsItem, ItemMenuHandler,false);
     //__REGISTER_EXT(Rope, StickCreator, StickGraphicsItem, ItemMenuHandler);
 
     __REGISTER(EulerSolver);
@@ -168,11 +181,11 @@ WorldFactory::WorldFactory()
 
     __REGISTER(NoteImage);
     __REGISTER(NoteFormula);
-    __REGISTER_EXT(Note, ItemCreator, NoteGraphicsItem, ItemMenuHandler);
-    __REGISTER_EXT(Meter, ItemCreator, MeterGraphicsItem, MeterMenuHandler);
-    __REGISTER_EXT(Graph, ItemCreator, GraphGraphicsItem, GraphMenuHandler);
-    __REGISTER_EXT(Controller, ItemCreator, ControllerGraphicsItem, ControllerMenuHandler);
-    __REGISTER_EXT(Tracer, TracerCreator, TracerGraphicsItem, TracerMenuHandler);
+    __REGISTER_EXT(Note, ItemCreator, NoteGraphicsItem, ItemMenuHandler,false);
+    __REGISTER_EXT(Meter, ItemCreator, MeterGraphicsItem, MeterMenuHandler,false);
+    __REGISTER_EXT(Graph, ItemCreator, GraphGraphicsItem, GraphMenuHandler,false);
+    __REGISTER_EXT(Controller, ItemCreator, ControllerGraphicsItem, ControllerMenuHandler,false);
+    __REGISTER_EXT(Tracer, TracerCreator, TracerGraphicsItem, TracerMenuHandler,false);
 
     // Palette
     __ADD_TO_PALETTE(Particle);
@@ -225,6 +238,17 @@ ItemCreator* WorldFactory::newItemCreator(const QString& className,
     else return new ItemCreator(className, worldModel, worldScene);
 }
 
+ItemCreator* WorldFactory::newItemCreator3D(const QString& className,
+                    WorldModel* worldModel, WorldGLScene* worldGLScene) const
+{
+    const StepCore::MetaObject* mObject = metaObject(className);
+    if(!mObject) return NULL;
+    const ExtMetaObject *extMetaObject = _extMetaObjects.value(mObject, NULL);
+    if(extMetaObject && extMetaObject->newItemCreator3D)
+        return extMetaObject->newItemCreator3D(className, worldModel, worldGLScene);
+    else return new ItemCreator(className, worldModel, worldGLScene);
+}
+
 WorldGraphicsItem* WorldFactory::newGraphicsItem(StepCore::Item* item, WorldModel* worldModel) const
 {
     const ExtMetaObject *extMetaObject = _extMetaObjects.value(item->metaObject(), NULL);
@@ -232,6 +256,14 @@ WorldGraphicsItem* WorldFactory::newGraphicsItem(StepCore::Item* item, WorldMode
         return extMetaObject->newGraphicsItem(item, worldModel);
     return NULL;
 }
+WorldGraphicsItem3D* WorldFactory::newGraphicsItem3D(StepCore::Item* item, WorldModel* worldModel) const
+{
+     const ExtMetaObject *extMetaObject = _extMetaObjects.value(item->metaObject(), NULL);
+     if(extMetaObject && extMetaObject->newGraphicsItem3D)
+         return extMetaObject->newGraphicsItem3D(item, worldModel);
+     return NULL;
+}
+
 
 ItemMenuHandler* WorldFactory::newItemMenuHandler(StepCore::Object* object, WorldModel* worldModel, QObject* parent) const
 {

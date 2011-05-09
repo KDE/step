@@ -122,8 +122,7 @@ MainWindow::MainWindow()
     connect(worldModel->selectionModel(), SIGNAL(selectionChanged(const QItemSelection&, const QItemSelection&)),
                                  this, SLOT(worldSelectionChanged()));
     
-    connect(itemPalette, SIGNAL(beginAddItem(const QString&)),
-        worldGLScene, SLOT(beginAddItem(const QString&)));
+
      
 //     connect(worldGLScene, SIGNAL(endAddItem(const QString&, bool)),
 //                                  itemPalette, SLOT(endAddItem(const QString&, bool)));
@@ -135,6 +134,9 @@ MainWindow::MainWindow()
 
     connect(itemPalette, SIGNAL(beginAddItem(const QString&)), 
 	    worldScene, SLOT(beginAddItem(const QString&)));
+    
+    connect(itemPalette, SIGNAL(beginAddItem(const QString&)),
+        worldGLScene, SLOT(beginAddItem(const QString&)));
     
     connect(worldScene, SIGNAL(endAddItem(const QString&, bool)),
                                  itemPalette, SLOT(endAddItem(const QString&, bool)));

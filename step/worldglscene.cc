@@ -127,6 +127,23 @@ void WorldGLScene::paintGL(){
 
 }
 
+void WorldGLScene::beginAddItem(const QString& name)
+{
+    //_currentCreator = name;
+    if(_itemCreator) {
+        _itemCreator->abort();
+        emit endAddItem(_itemCreator->className(), _itemCreator->item() != NULL);
+        delete _itemCreator;
+    }
+    if(name == "Pointer") {
+        _itemCreator = NULL;
+    } else {
+        _itemCreator = _worldModel->worldFactory()->newItemCreator3D(name, _worldModel, this);
+        Q_ASSERT(_itemCreator != NULL);
+        _itemCreator->start();
+    }
+}
+
 void WorldGLScene::initializeGeometry()
  {
      geom = new Geometry();

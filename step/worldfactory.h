@@ -26,9 +26,11 @@ class QGraphicsScene;
 class WorldModel;
 class WorldScene;
 class WorldGraphicsItem;
+class WorldGraphicsItem3D;
 class ItemCreator;
 class ItemMenuHandler;
 class KIcon;
+class WorldGLScene;
 
 namespace StepCore {
     class Item;
@@ -39,10 +41,16 @@ struct ExtMetaObject
     ItemCreator* (*newItemCreator)(const QString& className,
                         WorldModel* worldModel, WorldScene* worldScene);
     WorldGraphicsItem* (*newGraphicsItem)(StepCore::Item*, WorldModel*);
+    
     ItemMenuHandler* (*newItemMenuHandler)(StepCore::Object*, WorldModel*, QObject*);
 
     bool hasIcon;
     KIcon* icon;
+    
+    WorldGraphicsItem3D* (*newGraphicsItem3D)(StepCore::Item*, WorldModel*);
+    
+    ItemCreator* (*newItemCreator3D)(const QString& className,
+                        WorldModel* worldModel, WorldGLScene* worldGLScene);
 };
 
 
@@ -64,9 +72,16 @@ public:
     /** Create ItemCreator for given class */
     ItemCreator* newItemCreator(const QString& className,
                         WorldModel* worldModel, WorldScene* worldScene) const;
-                                
+    
+    /** Create ItemCreator for given class */
+    ItemCreator* newItemCreator3D(const QString& className,
+                        WorldModel* worldModel, WorldGLScene* worldGLScene) const;
+			
     /** Create WorldGraphicsItem for given item */
     WorldGraphicsItem* newGraphicsItem(StepCore::Item* item, WorldModel* worldModel) const;
+    
+    /** Create WorldGraphicsItem for given item */
+    WorldGraphicsItem3D* newGraphicsItem3D(StepCore::Item* item, WorldModel* worldModel) const;
 
     /** Create ItemMenuHandler for given object */
     ItemMenuHandler* newItemMenuHandler(StepCore::Object* object,

@@ -40,6 +40,7 @@ class WorldScene;
 class QEvent;
 class QTimer;
 class KActionCollection;
+class WorldGLScene;
 
 /** \brief Base class for item creators.
  *
@@ -52,6 +53,11 @@ public:
     ItemCreator(const QString& className, WorldModel* worldModel, WorldScene* worldScene)
            : _className(className), _worldModel(worldModel),
              _worldScene(worldScene), _item(NULL), _finished(false), _messageId(-1) {}
+             
+    ItemCreator(const QString& className, WorldModel* worldModel, WorldGLScene* worldGLScene)
+           : _className(className), _worldModel(worldModel),
+             _worldGLScene(worldGLScene), _item(NULL), _finished(false), _messageId(-1) {}
+    
     virtual ~ItemCreator() { closeMessage(); }
 
     /** Returns class name of the item which this creator creates */
@@ -99,10 +105,14 @@ protected:
     /** Get associated WorldScene */
     WorldScene* worldScene() { return _worldScene; }
 
+    /** Get associated WorldGLScene 3D*/
+    WorldGLScene* worldGLScene() { return _worldGLScene; }
+
 protected:
     QString     _className;
     WorldModel* _worldModel;
     WorldScene* _worldScene;
+    WorldGLScene* _worldGLScene;
     StepCore::Item* _item;
     bool _finished;
     int _messageId;
@@ -288,6 +298,68 @@ protected:
     void hoverLeaveEvent(QGraphicsSceneHoverEvent* event);
 
     void contextMenuEvent(QGraphicsSceneContextMenuEvent* event);
+
+protected:
+    static const QColor SELECTION_COLOR;     ///< Default color for selection rectangle
+    static const int SELECTION_MARGIN = 4;   ///< Default distance from object to selection rectangle
+    static const int ARROW_STROKE = 6;       ///< Default size of an arrow stroke
+    static const int CIRCULAR_ARROW_STROKE = 6; ///< Default size of circular arrow stroke
+
+    static const int HANDLER_SIZE = 6;          ///< Default size of the handler
+    static const int HANDLER_SNAP_SIZE = 12;    ///< Handler snapping radius
+
+    static const int ANGLE_HANDLER_RADIUS = 15;     ///< Default radius of the angle handler for RigidBody
+    static const int ANGULAR_VELOCITY_RADIUS = 30;  ///< Default radius of the angularVelocity handler for RigidBody
+    static const int ANGULAR_ACCELERATION_RADIUS = 34; ///< Default radius of the angularAcceleration handler
+
+    static const int REGION_ZVALUE = 100;   ///< Default ZValue for regions
+    static const int BODY_ZVALUE = 200;     ///< Default ZValue for bodies
+    static const int FORCE_ZVALUE = 300;    ///< Default ZValue for forces
+    static const int JOINT_ZVALUE = 400;    ///< Default ZValue for joints
+    static const int HANDLER_ZVALUE = 800;  ///< Default ZValue for handlers
+
+    static const int COLOR_HIGHLIGHT_AMOUNT = 30; ///< Highligh amount (in percent for value component)
+};
+//////////////////////////////////3d/////////////////////////////////////////////////////
+
+class WorldGraphicsItem3D 
+{
+public:
+    /** Flags describing movingState when
+     *  moving item with the mouse */
+    enum MovingState { Started, Moving, Finished };
+
+    /** Constructs WorldGraphicsItem */
+    WorldGraphicsItem3D(StepCore::Item* item, WorldModel* worldModel);
+
+    /** Get StepCore::Item which is represented by this graphicsItem */
+    StepCore::Item* item() const { return _item; }
+
+      /** Converts QPointF to StepCore::Vector2d */
+    static StepCore::Vector2d pointToVector(const QPointF& point) {
+        return StepCore::Vector2d(point.x(), point.y());
+    }
+    /** Converts StepCore::Vector2d to QPointF */
+    static QPointF vectorToPoint(const StepCore::Vector2d& vector) {
+        return QPointF(vector[0], vector[1]);
+    }
+
+   
+protected:
+    StepCore::Item* _item;
+    WorldModel* _worldModel;
+
+    QRectF  _boundingRect;
+    QString _exclusiveMovingMessage;
+    bool    _exclusiveMoving;
+    bool    _onHoverHandlerEnabled;
+
+    bool    _isHighlighted; 
+    bool    _isMouseOverItem;
+    bool    _isSelected;
+    bool    _isMoving;
+
+   
 
 protected:
     static const QColor SELECTION_COLOR;     ///< Default color for selection rectangle

@@ -149,6 +149,17 @@ protected:
     OnHoverHandlerGraphicsItem* createOnHoverHandler(const QPointF& pos);
 };
 
+
+
+class BoxGraphicsItem3D: public WorldGraphicsItem3D
+{
+public:
+    BoxGraphicsItem3D(StepCore::Item* item, WorldModel* worldModel)
+        : WorldGraphicsItem3D(item, worldModel) {}
+
+
+};
+
 /////////////////////////////////////////////////////////////////////////////////////////
 
 class PolygonCreator: public ItemCreator

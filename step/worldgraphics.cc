@@ -514,6 +514,13 @@ void WorldGraphicsItem::contextMenuEvent(QGraphicsSceneContextMenuEvent* event)
     menu->exec(event->screenPos());
     delete menu;
 }
+/////////////////////////////////////////GRAPHICS 3D//////////////////////////////////////
+
+/*WorldGraphicsItem3D::WorldGraphicsItem3D(StepCore::Item* item, WorldModel* worldModel)
+    :  _item(item), _worldModel(worldModel){
+    
+}*/
+
 
 /////////////////////////////////////////////////////////////////////////////////////////
 

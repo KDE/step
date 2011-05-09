@@ -96,6 +96,9 @@ signals:
 	   
 public slots:
 	  void messageLinkActivated(const QString& link);
+	  
+	 /** Begin adding new item. Creates appropriate ItemCreator */
+	  void beginAddItem(const QString& name);
 
 
 
@@ -127,10 +130,6 @@ private:
 public:     
      ItemCreator *_itemCreator;
      WorldModel* _worldModel;  
-	  
-
-
-    
 
 };
 
