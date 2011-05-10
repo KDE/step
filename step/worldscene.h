@@ -212,6 +212,7 @@ protected slots:
 protected:
     void mousePressEvent(QMouseEvent* e);
     void mouseReleaseEvent(QMouseEvent* e);
+    void wheelEvent(QWheelEvent* e);
     void scrollContentsBy(int dx, int dy);
     void updateSceneRect();
 
