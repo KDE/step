@@ -615,6 +615,8 @@ void WorldGraphicsView::zoomOut()
 void WorldGraphicsView::fitToPage()
 {
     QRectF br = static_cast<WorldScene*>(scene())->calcItemsBoundingRect();
+    if(br.isNull())
+        return;
     //kDebug() << br << " " << (br | QRectF(0,0,0,0)) << endl;
     QRect  ws = viewport()->rect();
 
