@@ -17,6 +17,11 @@
 <para> - </para>
 </sect1>
 
+<sect1 id="eightpendulum">
+  <title>eightpendulum.step</title>
+  <para>This example is a simple demonstration of the famous Newton's cradle. It is done in &step; using sticks, discs and a box. The six balls in the middle are not moving because they have been pinned.</para>
+</sect1>
+ 
 <sect1 id="gas">
 <title>gas.step</title>
 <para> - </para>
