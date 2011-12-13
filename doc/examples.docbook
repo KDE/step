@@ -24,7 +24,7 @@
 
 <sect1 id="eightpendulum">
   <title>eightpendulum.step</title>
-  <para>This example is a simple demonstration of the famous <ulink url="http://en.wikipedia.org/wiki/Newton%27s_cradle">Newton's cradle</ulink>. It is done in &step; using sticks, 8 discs and a box. The six balls in the middle are not moving because they have been pinned.</para>
+  <para>This example is a simple demonstration of the famous <ulink url="http://en.wikipedia.org/wiki/Newton%27s_cradle">Newton's cradle</ulink>. It is done in &step; using sticks, 8 discs and a box. The six balls in the middle are not moving because they just transfer momentum, not a motion.</para>
 </sect1>
  
 <sect1 id="first">
