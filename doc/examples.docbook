@@ -1,29 +1,100 @@
 <chapter id="examples">
 <title>&step; examples</title> 
-<para> - </para>
+<para>
+  &step; package contains several instructive examples to help you understand the principles of the application work. To open an example from the default set choose <menuchoice><guimenu>File</guimenu> <guisubmenu>Examples</guisubmenu> <guimenuitem>Open Example...</guimenuitem></menuchoice> from the main window menu.
+</para>
 
-<sect1 id="first">
-<title>first.step: First example</title>
-<para> - </para>
-</sect1>
+<para>
+   You can share your own examples with <menuchoice><guimenu>File</guimenu> <guisubmenu>Examples</guisubmenu> <guimenuitem>Share Current Experiment...</guimenuitem></menuchoice> or download examples shared by other users with <menuchoice><guimenu>File</guimenu> <guisubmenu>Examples</guisubmenu> <guimenuitem>Download New Experiments...</guimenuitem></menuchoice>. Downloaded examples can be opened using <menuchoice><guimenu>File</guimenu> <guisubmenu>Examples</guisubmenu> <guimenuitem>Open Downloaded Example...</guimenuitem></menuchoice> menu item.
+</para>
+
+<para>
+  You can find the descriptions of the default example files below.
+</para>
 
 <sect1 id="brownian">
 <title>brownian.step</title>
-<para> - </para>
+<para>Plots trajectory of the rigid disk interacting with 40 particles that randomly drifting in a box. This example simulates <ulink url="http://en.wikipedia.org/wiki/Brownian_motion">Brownian motion</ulink> of ideal gas particles.</para>
 </sect1>
 
 <sect1 id="pendulum">
 <title>doublependulum.step</title>
-<para> - </para>
+<para>This example simulates <ulink url="http://en.wikipedia.org/wiki/Double_pendulum">double pendulum motion</ulink> using 2 massive particles an two sticks.</para>
 </sect1>
 
 <sect1 id="eightpendulum">
   <title>eightpendulum.step</title>
-  <para>This example is a simple demonstration of the famous Newton's cradle. It is done in &step; using sticks, discs and a box. The six balls in the middle are not moving because they have been pinned.</para>
+  <para>This example is a simple demonstration of the famous <ulink url="http://en.wikipedia.org/wiki/Newton%27s_cradle">Newton's cradle</ulink>. It is done in &step; using sticks, 8 discs and a box. The six balls in the middle are not moving because they have been pinned.</para>
 </sect1>
  
+<sect1 id="first">
+<title>first.step: First example</title>
+<para>this example simulates interaction of 2 charged particles and two particles connected with a spring.</para>
+</sect1>
+
+<sect1 id="fourpendula">
+<title>fourpendula.step</title>
+<para>This example is a correct demonstration of the <ulink url="http://en.wikipedia.org/wiki/Newton%27s_cradle">Newton's cradle</ulink>. As the system is imperfect two disks in the middle get visual movement with time.</para>
+</sect1>
+
 <sect1 id="gas">
 <title>gas.step</title>
-<para> - </para>
+<para>This example simulates ideal gas pressure caused by <ulink url="http://en.wikipedia.org/wiki/Brownian_motion">Brownian motion</ulink>.</para>
 </sect1>
+
+<sect1 id="graph">
+<title>graph.step</title>
+<para>Plots velocity vs. position graph for particle1 in the system of two particles connected with a spring.</para>
+</sect1>
+
+<sect1 id="liquid">
+<title>liquid.step</title>
+<para>This example simulates monoatomic liquid.</para>
+</sect1>
+
+<sect1 id="lissajous">
+<title>lissajous.step</title>
+<para>This example simulates <ulink url="http://en.wikipedia.org/wiki/Lissajous_curve">Lissajous curve</ulink> using two-particle model. The parameters on the model can be changed using the controller at the center of the world.</para>
+</sect1>
+
+<sect1 id="motor1">
+<title>motor1.step</title>
+<para>Simulates triangular rigid body under the loading of the three linear motors.</para>
+</sect1>
+
+<sect1 id="motor-example">
+<title>motor.step</title>
+<para>Simulates interaction of the linear motor with a rigid rectangular body on a spring.</para>
+</sect1>
+
+<sect1 id="note-example">
+<title>note.step</title>
+<para>Example with LaTeX formula (<ulink url="http://en.wikipedia.org/wiki/Divergence_theorem">divergence theorem</ulink>) and embedded image.</para>
+</sect1>
+
+<sect1 id="resonance">
+<title>resonance.step</title>
+<para>This example simulates resonance in the system with angular motor.</para>
+</sect1>
+
+<sect1 id="softbody">
+<title>softbody.step</title>
+<para>This example simulates interaction of two rigid bodies with a soft body between them.</para>
+</sect1>
+
+<sect1 id="solar">
+<title>solar.step</title>
+<para>This example simulates the motion of Solar system major bodies (Sun and the planets).</para>
+</sect1>
+
+<sect1 id="springs">
+<title>springs.step</title>
+<para>This example simulates the motion of the planar system of five particles connected with four springs.</para>
+</sect1>
+
+<sect1 id="wave">
+<title>wave.step</title>
+<para>The graph on the scene shows oscillations of the green particle. When you start simulation the wave starts to travel from the red particle. The blue particle will reflect the wave and it will travel in reverse direction until the red particle reflects in again. After some time the wave will vanish because springs have damping.</para>
+</sect1>
+
 </chapter>
