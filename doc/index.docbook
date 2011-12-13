@@ -122,7 +122,7 @@ Integrated tutorials
 </screenshot>
 
 <para>To help you get started, &step; integrates a series of tutorials which easily teach you how to build an experiment. Please see step by step to start with the first tutorial.</para>
-
+<!--
 <sect1 id="board">
 <title>The board</title>
 <para>
@@ -136,7 +136,7 @@ Integrated tutorials
 -
 </para>
 </sect1>
-			
+-->			
 </chapter>
 
 &tutorials;  

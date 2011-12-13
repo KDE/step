@@ -24,12 +24,50 @@
 
 <sect1 id="eightpendulum">
   <title>eightpendulum.step</title>
-  <para>This example is a simple demonstration of the famous <ulink url="http://en.wikipedia.org/wiki/Newton%27s_cradle">Newton's cradle</ulink>. It is done in &step; using sticks, 8 discs and a box. The six balls in the middle are not moving because they just transfer momentum, not a motion.</para>
+  <para>This example is a simple demonstration of the famous <ulink url="http://en.wikipedia.org/wiki/Newton%27s_cradle">Newton's cradle</ulink>. It is done in &step; using sticks, 8 discs and a box. The six balls in the middle are not moving because they just transfer momentum and energy, not a motion.</para>
 </sect1>
  
 <sect1 id="first">
 <title>first.step: First example</title>
-<para>this example simulates interaction of 2 charged particles and two particles connected with a spring.</para>
+<para>
+This example has two parts. The first part contains two particles connected 
+by a spring and the second part contains two charged particles.</para>
+
+<sect2 id="first-two-particles">
+  <title>Two particles connected by a spring</title>
+  <para>
+    In this example two particles are added to the scene and spring is connected 
+    between them. The properties of both the particles such as velocity, momentum, 
+    position &etc; has been set in the properties browser. The properties of the 
+    spring such as stiffness, restLength, damping &etc; also has been set in the 
+    properties browser.
+  </para>
+
+ <para>
+   <emphasis>Explanation of the simulation:</emphasis>
+ </para>
+ 
+ <para>
+   This is good example of a simple harmonic motion. Here the acceleration of the 
+   one particle is set in direction of positive x-axis and the acceleration of 
+   the other particle is set along negative x-axis. As a result both the particles 
+   pulls the spring in opposite directions, where as spring tries to bring the 
+   two particles back to their original positions. Thus the system executes 
+   simple harmonic motion. The simulation of the particles and spring under these 
+   conditions can be seen on the scene.
+ </para>
+</sect2>
+
+<sect2 id="first-two-charged">
+  <title>Two charged particles</title>
+  <para>
+    Velocity of the each charged particle is set in some direction so, the charged 
+    particles moves in respective direction of their velocity but each particle 
+    has been given a equal and opposite charge so the particles try to attract 
+    each other. As a result the simulation of the charged particles under these 
+    conditions can be seen on the scene.
+  </para>
+</sect2>
 </sect1>
 
 <sect1 id="fourpendula">
