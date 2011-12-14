@@ -141,7 +141,7 @@ Integrated tutorials
 
 &tutorials;  
 &examples;
-
+<!--
 <chapter id="commands">
 <title>Command Reference</title>
 
@@ -221,7 +221,7 @@ Not yet written
 Not yet written
 </para>
 </chapter>
-
+-->
 <chapter id="credits">
 
 <title>Credits and License</title>
