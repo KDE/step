@@ -19,7 +19,7 @@
 
 <sect1 id="pendulum">
 <title>doublependulum.step</title>
-<para>This example simulates <ulink url="http://en.wikipedia.org/wiki/Double_pendulum">double pendulum motion</ulink> using 2 massive particles an two sticks.</para>
+<para>This example simulates <ulink url="http://en.wikipedia.org/wiki/Double_pendulum">double pendulum motion</ulink> using 2 massive particles and two sticks.</para>
 </sect1>
 
 <sect1 id="eightpendulum">
