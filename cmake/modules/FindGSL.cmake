@@ -23,8 +23,7 @@ else (GSL_INCLUDE_DIR AND GSL_LIBRARIES)
   ENDIF(NOT WIN32)
 
   find_path(GSL_INCLUDE_DIR
-            NAMES gsl_cdf.h gsl_randist.h
-            PATH_SUFFIXES gsl
+            NAMES gsl/gsl_cdf.h gsl/gsl_randist.h
             PATHS ${_GSLIncDir})
   set(GSL_LIBRARIES ${_GSLLinkFlags})
 
