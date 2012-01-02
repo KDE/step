@@ -29,7 +29,7 @@
 #include "solver.h"
 #include "object.h"
 
-#include <gsl/gsl_odeiv.h>
+#include <gsl_odeiv.h>
 
 namespace StepCore
 {
