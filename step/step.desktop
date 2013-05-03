@@ -1,7 +1,7 @@
 # KDE Config File
 [Desktop Entry]
 Type=Application
-Exec=step -caption "%c" %i
+Exec=step -caption %c %i
 Icon=step
 X-DocPath=step/index.html
 Terminal=false
