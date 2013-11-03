@@ -28,6 +28,7 @@
 #include "vector.h"
 #include "solver.h"
 
+#define EIGEN_USE_NEW_STDVECTOR
 #include <Eigen/StdVector>
 
 namespace StepCore
