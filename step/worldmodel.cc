@@ -741,7 +741,7 @@ QString WorldModel::formatProperty(const StepCore::Object* object,
         return QString("(%1,%2)").arg(v[0], 0, 'g', pr).arg(v[1], 0, 'g', pr).append(units).append(error);
     } else if(property->userTypeId() == qMetaTypeId<StepCore::Vector2dList >() ) {
         // XXX: add error information
-        if(pv) kDebug() << "Unhandled property variance type" << endl;
+//         if(pv) kDebug() << "Unhandled property variance type" << endl;
         StepCore::Vector2dList list =
                 property->readVariant(object).value<StepCore::Vector2dList >();
         QString string;

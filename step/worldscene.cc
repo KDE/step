@@ -77,11 +77,13 @@ protected:
 };
 
 WorldSceneAxes::WorldSceneAxes(QGraphicsItem* parent, QGraphicsScene* scene)
-    : QGraphicsItem(parent, scene),
+    : QGraphicsItem(parent),
     _boundingRect(-LENGTH, -LENGTH, LENGTH+LENGTH, LENGTH+LENGTH)
 {
     _viewScale = 1;
     setZValue(-100);
+    if (scene)
+      scene->addItem(this);
 }
 
 QRectF WorldSceneAxes::boundingRect() const

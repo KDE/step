@@ -65,6 +65,7 @@
 #include <KInputDialog>
 #include <KIO/NetAccess>
 #include <KDebug>
+#include <KUrl>
 
 #include <float.h>
 
@@ -380,22 +381,22 @@ NoteGraphicsItem::NoteGraphicsItem(StepCore::Item* item, WorldModel* worldModel)
     if(_toolBar->layout()) _toolBar->layout()->setSpacing(0);
     //_toolBar->setStyleSheet(".KToolBar {margin: 0px; border-width: 0px; padding: 0px; }");
 
-    _actionColor = new KAction(KIcon(), i18n("&Color"), _toolBar);
+    _actionColor = new KAction(QIcon(), i18n("&Color"), _toolBar);
 
-    _actionBold = new KToggleAction(KIcon("format-text-bold"), i18n("&Bold"), _toolBar);
+    _actionBold = new KToggleAction(QIcon::fromTheme("format-text-bold"), i18n("&Bold"), _toolBar);
     _actionBold->setShortcut(Qt::CTRL + Qt::Key_B);
-    _actionItalic = new KToggleAction(KIcon("format-text-italic"), i18n("&Italic"), _toolBar);
+    _actionItalic = new KToggleAction(QIcon::fromTheme("format-text-italic"), i18n("&Italic"), _toolBar);
     _actionItalic->setShortcut(Qt::CTRL + Qt::Key_I);
-    _actionUnderline = new KToggleAction(KIcon("format-text-underline"), i18n("&Underline"), _toolBar);
+    _actionUnderline = new KToggleAction(QIcon::fromTheme("format-text-underline"), i18n("&Underline"), _toolBar);
     _actionUnderline->setShortcut(Qt::CTRL + Qt::Key_U);
 
-    _actionAlignLeft = new KToggleAction(KIcon("format-justify-left"), i18n("Align &Left"), _toolBar);
+    _actionAlignLeft = new KToggleAction(QIcon::fromTheme("format-justify-left"), i18n("Align &Left"), _toolBar);
     _actionAlignLeft->setShortcut(Qt::CTRL + Qt::Key_L);
-    _actionAlignCenter = new KToggleAction(KIcon("format-justify-center"), i18n("Align C&enter"), _toolBar);
+    _actionAlignCenter = new KToggleAction(QIcon::fromTheme("format-justify-center"), i18n("Align C&enter"), _toolBar);
     _actionAlignCenter->setShortcut(Qt::CTRL + Qt::Key_E);
-    _actionAlignRight = new KToggleAction(KIcon("format-justify-right"), i18n("Align &Right"), _toolBar);
+    _actionAlignRight = new KToggleAction(QIcon::fromTheme("format-justify-right"), i18n("Align &Right"), _toolBar);
     _actionAlignRight->setShortcut(Qt::CTRL + Qt::Key_R);
-    _actionAlignJustify = new KToggleAction(KIcon("format-justify-fill"), i18n("Align &Justify"), _toolBar);
+    _actionAlignJustify = new KToggleAction(QIcon::fromTheme("format-justify-fill"), i18n("Align &Justify"), _toolBar);
     _actionAlignJustify->setShortcut(Qt::CTRL + Qt::Key_J);
 
     _actionAlign = new KSelectAction(i18n("&Align"), _toolBar);
@@ -410,11 +411,11 @@ NoteGraphicsItem::NoteGraphicsItem(StepCore::Item* item, WorldModel* worldModel)
     _actionFont = new KFontAction(i18n("&Font"), _toolBar);
     _actionFontSize = new KFontSizeAction(i18n("Font &Size"), _toolBar);
 
-    _actionInsertImage = new KAction(KIcon("insert-image"), i18n("Insert &Image"), _toolBar);
+    _actionInsertImage = new KAction(QIcon::fromTheme("insert-image"), i18n("Insert &Image"), _toolBar);
 #ifdef __GNUC__
 #warning Select right icon here
 #endif
-    _actionInsertFormula = new KAction(KIcon("application-vnd.oasis.opendocument.formula"),
+    _actionInsertFormula = new KAction(QIcon::fromTheme("application-vnd.oasis.opendocument.formula"),
                                     i18n("Insert &Formula"), _toolBar);
 
     connect(_actionColor, SIGNAL(triggered(bool)), this, SLOT(formatColor()));
@@ -1081,8 +1082,8 @@ void GraphMenuHandler::populateMenu(QMenu* menu, KActionCollection* actions)
     _confDialog = 0;
     _confChanged = false;
 
-    menu->addAction(KIcon("edit-clear"), i18n("Clear graph"), this, SLOT(clearGraph()));
-    menu->addAction(KIcon("configure"), i18n("Configure graph..."), this, SLOT(configureGraph()));
+    menu->addAction(QIcon::fromTheme("edit-clear"), i18n("Clear graph"), this, SLOT(clearGraph()));
+    menu->addAction(QIcon::fromTheme("configure"), i18n("Configure graph..."), this, SLOT(configureGraph()));
     menu->addSeparator();
     ItemMenuHandler::populateMenu(menu, actions);
 }
@@ -1263,8 +1264,8 @@ void MeterGraphicsItem::worldDataChanged(bool dynamicOnly)
     if(!dynamicOnly) {
         viewScaleChanged();
 
-        if(meter()->digits() != _lcdNumber->numDigits())
-            _lcdNumber->setNumDigits(meter()->digits());
+        if(meter()->digits() != _lcdNumber->digitCount())
+            _lcdNumber->setDigitCount(meter()->digits());
 
         QString units = meter()->units();
         if(units != _labelUnits->text()) {
@@ -1292,7 +1293,7 @@ void MeterMenuHandler::populateMenu(QMenu* menu, KActionCollection* actions)
     _confDialog = 0;
     _confChanged = false;
 
-    menu->addAction(KIcon("configure"), i18n("Configure meter..."), this, SLOT(configureMeter()));
+    menu->addAction(QIcon::fromTheme("configure"), i18n("Configure meter..."), this, SLOT(configureMeter()));
     menu->addSeparator();
     ItemMenuHandler::populateMenu(menu, actions);
 }
@@ -1463,12 +1464,12 @@ void ControllerGraphicsItem::worldDataChanged(bool dynamicOnly)
 
         if(_incShortcut != controller()->increaseShortcut()) {
             _incShortcut = controller()->increaseShortcut();
-            _incAction->setShortcut(KShortcut(_incShortcut));
+            _incAction->setShortcut(QKeySequence(_incShortcut));
         }
 
         if(_decShortcut != controller()->decreaseShortcut()) {
             _decShortcut = controller()->decreaseShortcut();
-            _decAction->setShortcut(KShortcut(_decShortcut));
+            _decAction->setShortcut(QKeySequence(_decShortcut));
         }
 
         //if(!graph()->autoLimitsX() && !graph()->autoLimitsY()) adjustLimits();
@@ -1587,10 +1588,10 @@ void ControllerMenuHandler::populateMenu(QMenu* menu, KActionCollection* actions
     _confDialog = 0;
     _confChanged = false;
 
-    menu->addAction(KIcon("arrow-up"), i18n("Increase value"), this, SLOT(incTriggered()));
-    menu->addAction(KIcon("arrow-down"), i18n("Decrease value"), this, SLOT(decTriggered()));
+    menu->addAction(QIcon::fromTheme("arrow-up"), i18n("Increase value"), this, SLOT(incTriggered()));
+    menu->addAction(QIcon::fromTheme("arrow-down"), i18n("Decrease value"), this, SLOT(decTriggered()));
     menu->addSeparator();
-    menu->addAction(KIcon("configure"), i18n("Configure controller..."), this, SLOT(configureController()));
+    menu->addAction(QIcon::fromTheme("configure"), i18n("Configure controller..."), this, SLOT(configureController()));
     menu->addSeparator();
     ItemMenuHandler::populateMenu(menu, actions);
 }
@@ -1631,8 +1632,8 @@ void ControllerMenuHandler::configureController()
 
     //_confUi->keyIncrease->setKeySequence(_incAction->shortcut().primary());
     //_confUi->keyDecrease->setKeySequence(_decAction->shortcut().primary());
-    _confUi->keyIncrease->setKeySequence(KShortcut(controller()->increaseShortcut()).primary());
-    _confUi->keyDecrease->setKeySequence(KShortcut(controller()->decreaseShortcut()).primary());
+    _confUi->keyIncrease->setKeySequence(QKeySequence(controller()->increaseShortcut()));
+    _confUi->keyDecrease->setKeySequence(QKeySequence(controller()->decreaseShortcut()));
 
     _confUi->lineEditIncrement->setValidator(
                 new QDoubleValidator(-HUGE_VAL, HUGE_VAL, DBL_DIG, _confUi->lineEditIncrement));
@@ -1852,7 +1853,7 @@ void TracerGraphicsItem::mouseSetPos(const QPointF&, const QPointF& diff, Moving
 
 void TracerMenuHandler::populateMenu(QMenu* menu, KActionCollection* actions)
 {
-    menu->addAction(KIcon("edit-clear"), i18n("Clear trace"), this, SLOT(clearTracer()));
+    menu->addAction(QIcon::fromTheme("edit-clear"), i18n("Clear trace"), this, SLOT(clearTracer()));
     menu->addSeparator();
     ItemMenuHandler::populateMenu(menu, actions);
 }

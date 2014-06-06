@@ -32,7 +32,7 @@ class UndoBrowser;
 class ItemPalette;
 
 class KConfig;
-class KAction;
+class QAction;
 class KToolBarPopupAction;
 class KRecentFilesAction;
 
@@ -111,12 +111,12 @@ protected:
     WorldScene*         worldScene;
     WorldGraphicsView*  worldGraphicsView;
 
-    KAction* actionUndo;
-    KAction* actionRedo;
-    KAction* actionDelete;
-    KAction* actionCut;
-    KAction* actionCopy;
-    KAction* actionPaste;
+    QAction* actionUndo;
+    QAction* actionRedo;
+    QAction* actionDelete;
+    QAction* actionCut;
+    QAction* actionCopy;
+    QAction* actionPaste;
 
     KRecentFilesAction* actionRecentFiles;
 
@@ -125,11 +125,11 @@ protected:
     //The following members are needed for the setting of the timeScale
     int runSpeed;
     KToolBarPopupAction *runSpeedAction;
-    KAction *fullSpeedAct;
-    KAction *slowSpeedAct;
-    KAction *slowerSpeedAct;
-    KAction *slowestSpeedAct;
-    KAction *stepSpeedAct;
+    QAction *fullSpeedAct;
+    QAction *slowSpeedAct;
+    QAction *slowerSpeedAct;
+    QAction *slowestSpeedAct;
+    QAction *stepSpeedAct;
     QActionGroup *runSpeedGroup;
 
 };

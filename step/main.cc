@@ -17,7 +17,7 @@
 */
 
 #include <KApplication>
-#include <KAboutData>
+#include <K4AboutData>
 #include <KCmdLineArgs>
 #include <KDebug>
 #include <KLocale>
@@ -33,8 +33,8 @@ static const char version[] = STEP_VERSION;
 
 int main(int argc, char* argv[])
 {
-    KAboutData aboutData("step", 0, ki18n("Step"), version, ki18n(description),
-                     KAboutData::License_GPL, ki18n("(C) 2007 Vladimir Kuznetsov"), KLocalizedString(), "http://edu.kde.org/step");
+    K4AboutData aboutData("step", 0, ki18n("Step"), version, ki18n(description),
+                     K4AboutData::License_GPL, ki18n("(C) 2007 Vladimir Kuznetsov"), KLocalizedString(), "http://edu.kde.org/step");
     aboutData.addAuthor(ki18n("Vladimir Kuznetsov"), ki18n("Original author"), "ks.vladimir@gmail.com");
     aboutData.addAuthor(ki18n("Carsten Niehaus"), ki18n("Code contributions"), "cniehaus@kde.org");
 
@@ -45,7 +45,7 @@ int main(int argc, char* argv[])
     KCmdLineArgs::addCmdLineOptions(options);
 
     KApplication app;
-    KGlobal::locale()->insertCatalog("step_qt");
+//     KGlobal::locale()->insertCatalog("step_qt");
 
     MainWindow* mainWindow = new MainWindow();
     mainWindow->show();

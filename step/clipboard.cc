@@ -133,7 +133,7 @@ void Clipboard::copy(const QList<StepCore::Item*>& items)
     StepCore::XmlFile xmlfile(&buffer);
     if (!xmlfile.save(world.data())) {
         // Serialization of items failed
-        kWarning() << xmlfile.errorString();
+        qWarning() << xmlfile.errorString();
         return;
     }
     
@@ -151,7 +151,7 @@ QList<StepCore::Item*> Clipboard::paste(const StepCore::Factory* factory)
     
     if (!mimedata->hasFormat("application/x-step")) {
         // No Step data available
-        kWarning() << "No Step data on the clipboard";
+        qWarning() << "No Step data on the clipboard";
         return QList<StepCore::Item*>();
     }
     
@@ -163,7 +163,7 @@ QList<StepCore::Item*> Clipboard::paste(const StepCore::Factory* factory)
     StepCore::World world;
     if (!xmlfile.load(&world, factory)) {
         // Deserialization of items failed
-        kError() << xmlfile.errorString();
+        qFatal(xmlfile.errorString().toAscii());
         return QList<StepCore::Item*>();
     }
     

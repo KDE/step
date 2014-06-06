@@ -33,15 +33,15 @@ if(STEPCORE_WITH_QT)
 
     set(QT_DONT_USE_QTGUI ON)
     set(QT_USE_QTXML ON)
-    find_package(Qt4 REQUIRED)
+    find_package(Qt5 5.2 REQUIRED NO_MODULE COMPONENTS Xml Test)
 
-    include(${QT_USE_FILE})
     include_directories(${CMAKE_CURRENT_BINARY_DIR})
-    set(stepcore_use_LIBS ${stepcore_use_LIBS} ${QT_LIBRARIES})
+    set(stepcore_use_LIBS ${stepcore_use_LIBS} Qt5::Core Qt5::Xml)
 endif(STEPCORE_WITH_QT)
 
 add_definitions(-Wall) # XXX ?
 
-kde4_add_library(stepcore STATIC ${stepcore_SRCS})
+add_library(stepcore STATIC ${stepcore_SRCS})
+
 target_link_libraries(stepcore ${stepcore_use_LIBS})
 

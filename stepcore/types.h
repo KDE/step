@@ -64,13 +64,13 @@ template<> inline Color stringToType(const QString& s, bool *ok)
 ///////////////// QByteArray
 template<> inline QString typeToString(const QByteArray& v)
 {
-    return QString::fromAscii(v.toBase64());
+    return QString::fromLatin1(v.toBase64());
 }
 
 template<> inline QByteArray stringToType(const QString& s, bool *ok)
 {
     if(ok) *ok = true;
-    return QByteArray::fromBase64(s.toAscii());
+    return QByteArray::fromBase64(s.toLatin1());
 }
 
 ///////////////// Vector2d

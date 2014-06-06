@@ -40,13 +40,7 @@
 #include <KComboBox>
 #include <KColorButton>
 
-class ChoicesModel: public QStandardItemModel
-{
-public:
-    ChoicesModel(QObject* parent = 0): QStandardItemModel(parent) {}
-};
-
-Q_DECLARE_METATYPE(ChoicesModel*)
+#include "choicesmodel.h"
 
 class PropertiesBrowserModel: public QAbstractItemModel
 {
@@ -379,7 +373,7 @@ bool PropertiesBrowserModel::setData(const QModelIndex &index, const QVariant &v
                      * {} else if(p->userTypeId() == qMetaTypeId<StepCore::Vector2dList >())
                         ve = QVariant::fromValue(StepCore::Vector2dList());*/
                     } else {
-                        kDebug() << "Unhandled property variance type" << endl;
+//                         kDebug() << "Unhandled property variance type" << endl;
                         return false;
                     }
                     if(!ok) return false;
@@ -395,7 +389,7 @@ bool PropertiesBrowserModel::setData(const QModelIndex &index, const QVariant &v
                          * } else if(p->userTypeId() == qMetaTypeId<StepCore::Vector2dList >())
                             ve = QVariant::fromValue(StepCore::Vector2dList());*/
                         } else {
-                            kDebug() << "Unhandled property variance type" << endl;
+                            qWarning("Unhandled property variance type");
                             return false;
                         }
                     }
@@ -441,7 +435,7 @@ QModelIndex PropertiesBrowserModel::index(int row, int column, const QModelIndex
 QModelIndex PropertiesBrowserModel::parent(const QModelIndex& index) const
 {
     if(index.isValid() && index.internalId() != 0)
-        return createIndex(index.internalId()-1, 0, 0);
+        return createIndex(index.internalId()-1, 0, nullptr);
     return QModelIndex();
 }
 

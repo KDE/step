@@ -63,9 +63,9 @@ void MetaObject::init() const
 
     // strings
     _classNameTr = QCoreApplication::translate("ObjectClass", _className.toUtf8().constData(),
-                                        NULL, QCoreApplication::UnicodeUTF8);
+                                       NULL, QCoreApplication::UnicodeUTF8);
     _descriptionTr = QCoreApplication::translate(NULL, _description.toUtf8().constData(),
-                                        NULL, QCoreApplication::UnicodeUTF8);
+                                       NULL, QCoreApplication::UnicodeUTF8);
 
     _initialized = true;
 }
@@ -116,11 +116,12 @@ const MetaProperty* MetaObject::property(int n) const
 void MetaProperty::init() const
 {
     _nameTr = QCoreApplication::translate("PropertyName", _name.toUtf8().constData(),
-                                                NULL, QCoreApplication::UnicodeUTF8);
+                                               NULL, QCoreApplication::UnicodeUTF8);
     _unitsTr = QCoreApplication::translate("Units", _units.toUtf8().constData(),
-                                                NULL, QCoreApplication::UnicodeUTF8);
+                                               NULL, QCoreApplication::UnicodeUTF8);
     _descriptionTr = QCoreApplication::translate(NULL, _description.toUtf8().constData(),
-                                                NULL, QCoreApplication::UnicodeUTF8);
+                                               NULL, QCoreApplication::UnicodeUTF8);
+
     _initialized = true;
 }
 

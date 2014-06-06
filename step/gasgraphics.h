@@ -21,6 +21,8 @@
 
 #include "worldgraphics.h"
 #include "stepgraphicsitem.h"
+#include "gaskdialog.h"
+
 #include <kaction.h>
 
 namespace StepCore {
@@ -82,6 +84,8 @@ namespace Ui {
 }
 
 class GasKDialog;
+
+
 class GasMenuHandler: public ItemMenuHandler
 {
     Q_OBJECT

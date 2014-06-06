@@ -25,6 +25,8 @@ set(step_SRCS
     latexformula.cc
     messageframe.cc
     main.cc
+    choicesmodel.cc
+    gaskdialog.cc
 )
 
 set(step_UIS
@@ -54,22 +56,21 @@ if(STEP_WITH_QALCULATE)
     set(qalculate_LIBS ${QALCULATE_LIBRARIES})
 endif(STEP_WITH_QALCULATE)
 
-find_package(KDE4 REQUIRED)
-include_directories( ${KDE4_INCLUDES} ${OPENGL_INCLUDE_DIR})
-add_definitions( ${KDE4_DEFINITIONS} )
-
-kde4_add_ui_files( step_SRCS ${step_UIS} )
-kde4_add_kcfg_files( step_SRCS ${step_KCFGS} )
+qt5_wrap_ui( step_SRCS ${step_UIS} )
+kconfig_add_kcfg_files( step_SRCS ${step_KCFGS} )
 
 include_directories(${CMAKE_CURRENT_BINARY_DIR})
 include_directories(${CMAKE_CURRENT_SOURCE_DIR})
 
-kde4_add_executable(step ${step_SRCS})
+add_executable(step ${step_SRCS})
+
 target_link_libraries(step
     stepcore
-    ${KDE4_KHTML_LIBS}
-    ${KDE4_KNEWSTUFF3_LIBS}
-    ${QT_QTOPENGL_LIBRARY}
+    KF5::KHtml
+    KF5::Plotting
+    KF5::NewStuff
+    KF5::KDELibs4Support
+    Qt5::OpenGL
     ${qalculate_LIBS})
 
 install(TARGETS step ${INSTALL_TARGETS_DEFAULT_ARGS})

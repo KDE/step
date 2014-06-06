@@ -49,6 +49,7 @@
 #include <KLocale>
 #include <KConfig>
 #include <KToolBarPopupAction>
+#include <KIcon>
 
 #include <KIO/NetAccess>
 #include <knewstuff3/downloaddialog.h>
@@ -58,6 +59,7 @@
 #include <QItemSelectionModel>
 #include <QHBoxLayout>
 #include <QMenu>
+#include <QKeySequence>
 
 #include <cstdlib>
 #include <ctime>
@@ -198,7 +200,7 @@ void MainWindow::setupActions()
     actionDelete = actionCollection()->add<KAction>("edit_delete", worldModel, SLOT(deleteSelectedItems()));
     actionDelete->setText(i18n("&Delete"));
     actionDelete->setIcon(KIcon("edit-delete"));
-    actionDelete->setShortcut(KShortcut(Qt::Key_Delete));
+    actionDelete->setShortcut(QKeySequence(Qt::Key_Delete));
     actionDelete->setEnabled(false);
 
     /* Simulation menu */

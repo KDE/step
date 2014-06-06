@@ -33,6 +33,7 @@
 #include <KLocale>
 #include <KToolInvocation>
 #include <KIO/Job>
+#include <KIcon>
 
 InfoBrowser::InfoBrowser(WorldModel* worldModel, QWidget* parent, Qt::WindowFlags flags)
     : QDockWidget(i18n("Context info"), parent, flags),
@@ -118,7 +119,7 @@ void InfoBrowser::syncSelection(bool checked)
 
 void InfoBrowser::updateSyncSelection()
 {
-    if(_htmlPart->url().protocol() == "objinfo") {
+    if(_htmlPart->url().scheme() == "objinfo") {
         QModelIndex current = _worldModel->selectionModel()->currentIndex();
         if(_htmlPart->url().path() == current.data(WorldModel::ClassNameRole).toString()) {
             _syncAction->setEnabled(false);
@@ -276,7 +277,7 @@ void InfoBrowser::forward()
 
 void InfoBrowser::openInBrowser()
 {
-    if(_htmlPart->url().protocol() == "http") {
+    if(_htmlPart->url().scheme() == "http") {
         KToolInvocation::invokeBrowser(_htmlPart->url().url());
     }
 }

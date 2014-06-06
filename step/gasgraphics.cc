@@ -287,29 +287,13 @@ OnHoverHandlerGraphicsItem* GasGraphicsItem::createOnHoverHandler(const QPointF&
     return 0;
 }
 
-class GasKDialog: public KDialog
-{
-public:
-    GasKDialog(GasMenuHandler* handler, QWidget *parent=0, Qt::WFlags flags=0)
-        : KDialog(parent, flags), _handler(handler) {}
-protected slots:
-    void slotButtonClicked(int button) {
-        if(button == KDialog::Ok) {
-            if(_handler->createGasParticlesApply()) accept();
-        } else {
-            KDialog::slotButtonClicked(button);
-        }
-    }
-    GasMenuHandler* _handler;
-};
-
 void GasMenuHandler::populateMenu(QMenu* menu, KActionCollection* actions)
 {
     _createGasParticlesUi = 0;
     _createGasParticlesDialog = 0;
     //_confChanged = false;
 
-    menu->addAction(KIcon("step_object_GasParticle"), i18n("Create particles..."), this, SLOT(createGasParticles()));
+    menu->addAction(QIcon::fromTheme("step_object_GasParticle"), i18n("Create particles..."), this, SLOT(createGasParticles()));
     //menu->addAction(KIcon("edit-clear"), i18n("Clear gas"), this, SLOT(clearGas()));
     menu->addSeparator();
     ItemMenuHandler::populateMenu(menu, actions);
@@ -433,5 +417,4 @@ void GasMenuHandler::clearGas()
     _worldModel->setProperty(gas(), property("points"), QVariant::fromValue(StepCore::Vector2dList()) );
 }
 */
-
 
