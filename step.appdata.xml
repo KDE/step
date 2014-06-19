@@ -1,0 +1,41 @@
+<?xml version="1.0" ?>
+<component type="desktop">
+  <id>step.desktop</id>
+  <metadata_license>CC0-1.0</metadata_license>
+  <project_license>GPL-2.0+</project_license>
+  <name>Step</name>
+  <summary>Interactive Physical Simulator</summary>
+  <description>
+    <p>Step is an interactive physical simulator. It allows you to explore the physical world through simulations. It works like this: you place some bodies on the scene, add some forces such as gravity or springs, then click Simulate and Step shows you how your scene will evolve according to the laws of physics. You can change every property of the bodies/forces in your experiment (even during simulation) and see how this will change evolution of the experiment. With Step you cannot only learn but feel how physics works!</p>
+    <p>Features:</p>
+    <ul>
+      <li>Classical mechanical simulation in two dimensions</li>
+      <li>Particles, springs with dumping, gravitational and coulomb forces</li>
+      <li>Rigid bodies</li>
+      <li>Collision detection (currently only discrete) and handling</li>
+      <li>Soft (deformable) bodies simulated as user-editable particles-springs system, sound waves</li>
+      <li>Molecular dynamics (currently using Lennard-Jones potential): gas and liquid, condensation and evaporation, calculation of macroscopic quantities and their variances</li>
+      <li>Units conversion and expression calculation: you can enter something like &quot;(2 days + 3 hours) * 80 km/h&quot; and it will be accepted as distance value (requires libqalculate)</li>
+      <li>Errors calculation and propagation: you can enter values like &quot;1.3 ± 0.2&quot; for any property and errors for all dependent properties will be calculated using statistical formulas</li>
+      <li>Solver error estimation: errors introduced by the solver is calculated and added to user-entered errors</li>
+      <li>Several different solvers: up to 8th order, explicit and implicit, with or without adaptive timestep (most of the solvers require GSL library)</li>
+      <li>Controller tool to easily control properties during simulation (even with custom keyboard shortcuts)</li>
+      <li>Tools to visualize results: graph, meter, tracer</li>
+      <li>Context information for all objects, integrated wikipedia browser</li>
+      <li>Collection of example experiments, more can be downloaded with KNewStuff</li>
+      <li>Integrated tutorials</li>
+    </ul>
+  </description>
+  <url type="homepage">http://edu.kde.org/step/</url>
+  <url type="bugtracker">https://bugs.kde.org/enter_bug.cgi?format=guided&amp;product=step</url>
+  <url type="help">http://docs.kde.org/stable/en/kdeedu/step/index.html</url>
+  <screenshots>
+    <screenshot type="default">
+      <image>http://kde.org/images/screenshots/step.png</image>
+    </screenshot>
+  </screenshots>
+  <project_group>KDE</project_group>
+  <provides>
+    <binary>step</binary>
+  </provides>
+</component>

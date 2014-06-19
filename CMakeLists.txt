@@ -34,6 +34,8 @@ if (EIGEN2_FOUND)
    endif(STEPCORE_TESTS)
 endif (EIGEN2_FOUND)
 
+install(FILES step.appdata.xml DESTINATION ${SHARE_INSTALL_PREFIX}/appdata/)
+
 if (${CMAKE_CURRENT_SOURCE_DIR} STREQUAL ${CMAKE_SOURCE_DIR})
    macro_display_feature_log()
 endif (${CMAKE_CURRENT_SOURCE_DIR} STREQUAL ${CMAKE_SOURCE_DIR})
