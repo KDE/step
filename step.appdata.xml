@@ -4,6 +4,7 @@
   <metadata_license>CC0-1.0</metadata_license>
   <project_license>GPL-2.0+</project_license>
   <name>Step</name>
+  <name xml:lang="cs">Step</name>
   <name xml:lang="es">Step</name>
   <name xml:lang="nds">Step</name>
   <name xml:lang="nl">Step</name>
@@ -14,6 +15,7 @@
   <name xml:lang="uk">Step</name>
   <name xml:lang="x-test">xxStepxx</name>
   <summary>Interactive Physical Simulator</summary>
+  <summary xml:lang="cs">Interaktivní fyzikální simulátor</summary>
   <summary xml:lang="es">Simulador físico interactivo</summary>
   <summary xml:lang="nds">Brukerstüert Physiksimuleren</summary>
   <summary xml:lang="nl">Interactieve natuurkundige simulaties</summary>
@@ -34,6 +36,7 @@
     <p xml:lang="uk">Step є інтерактивним імітатором фізичних процесів. Він надає вам змогу вивчати фізичні явища за допомогою їх імітації. Ось як він працює: ви розташовуєте у дослідній області деякі тіла, додаєте сили їх взаємодії (такі як гравітаційні сили та пружні сили у вигляді пружин), а потім натискаєте кнопку «Імітувати», — Step покаже як розвиватимуться події у побудованій вами системі з плином часу згідно до законів фізики. Ви можете змінювати всі властивості тіл або сил у вашому експерименті (навіть під час імітації), щоб побачити як такі зміни впливають на перебіг експерименту. За допомогою Step ви не просто вивчите фізику, а відчуєте як працюють фізичні закони!</p>
     <p xml:lang="x-test">xxStep is an interactive physical simulator. It allows you to explore the physical world through simulations. It works like this: you place some bodies on the scene, add some forces such as gravity or springs, then click Simulate and Step shows you how your scene will evolve according to the laws of physics. You can change every property of the bodies/forces in your experiment (even during simulation) and see how this will change evolution of the experiment. With Step you cannot only learn but feel how physics works!xx</p>
     <p>Features:</p>
+    <p xml:lang="cs">Vlastnosti:</p>
     <p xml:lang="es">Funciones:</p>
     <p xml:lang="nds">Markmalen:</p>
     <p xml:lang="nl">Mogelijkheden:</p>
