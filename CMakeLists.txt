@@ -17,7 +17,6 @@ macro_log_feature(EIGEN2_FOUND "Eigen2" "Required to build step." "http://eigen.
 macro_log_feature(QALCULATE_FOUND "Qalculate" "Unit conversion support in Step" "http://qalculate.sourceforge.net/" FALSE "0.9.5" "")
 macro_log_feature(GSL_FOUND "GSL" "Provides a GSL-powered solver for Step" "http://www.gnu.org/software/gsl/" FALSE "1.8" "")
 
-set(STEPCORE_TESTS OFF CACHE BOOL "Build StepCore tests")
 set(STEPCORE_WITH_GSL ${GSL_FOUND} CACHE BOOL "Enable GSL-powered features for StepCore")
 set(STEPCORE_WITH_QT ON) # CACHE BOOL "Enable QT-powered features for StepCore")
 set(STEP_WITH_QALCULATE ${QALCULATE_FOUND} CACHE BOOL "Enable unit conversion support using libqalculate")
@@ -29,9 +28,7 @@ if (EIGEN2_FOUND)
    add_subdirectory(stepcore)
    add_subdirectory(step)
 
-   if(STEPCORE_TESTS)
-     add_subdirectory(stepcore_tests)
-   endif(STEPCORE_TESTS)
+   add_subdirectory(stepcore_tests)
 endif (EIGEN2_FOUND)
 
 if (${CMAKE_CURRENT_SOURCE_DIR} STREQUAL ${CMAKE_SOURCE_DIR})
