@@ -61,7 +61,7 @@
 Classical mechanical simulation in two dimensions
 </para></listitem>
 <listitem><para>
-Particles, springs with dumping, gravitational and coulomb forces
+Particles, springs with damping, gravitational and coulomb forces
 </para></listitem>
 <listitem><para>
 Rigid bodies
