@@ -80,6 +80,12 @@
       <li xml:lang="uk">Імітація класичної механічної взаємодії у двох вимірах</li>
       <li xml:lang="x-test">xxClassical mechanical simulation in two dimensionsxx</li>
       <li>Particles, springs with damping, gravitational and coulomb forces</li>
+      <li xml:lang="en-GB">Particles, springs with damping, gravitational and coulomb forces</li>
+      <li xml:lang="nl">Deeltjes, veren met demping, zwaarte- en elektrische krachten</li>
+      <li xml:lang="pt">Partículas, molas com forças potenciais, gravíticas e de Coulomb</li>
+      <li xml:lang="pt-BR">Partículas, molas com forças potenciais, gravitacionais e de Coulomb</li>
+      <li xml:lang="uk">Частинки, пружини з елементами в’язкості, гравітаційні і кулонові сили</li>
+      <li xml:lang="x-test">xxParticles, springs with damping, gravitational and coulomb forcesxx</li>
       <li>Rigid bodies</li>
       <li xml:lang="en-GB">Rigid bodies</li>
       <li xml:lang="es">Cuerpos rígidos</li>
