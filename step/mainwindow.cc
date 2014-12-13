@@ -34,7 +34,7 @@
 #include <stepcore/solver.h>
 #include <stepcore/collisionsolver.h>
 
-#include <KAction>
+#include <QAction>
 #include <KActionCollection>
 #include <KStandardAction>
 #include <KRecentFilesAction>
@@ -146,27 +146,27 @@ void MainWindow::setupActions()
     actionRecentFiles->loadEntries(config->group("RecentFiles"));
     delete config;
 
-    KAction* actionOpenTutorial = actionCollection()->add<KAction>(
+    QAction * actionOpenTutorial = actionCollection()->add<QAction>(
                 "file_tutorial_open", this, SLOT(openTutorial()));
     actionOpenTutorial->setText(i18n("&Open Tutorial..."));
     actionOpenTutorial->setIcon(KIcon("document-open"));
 
-    KAction* actionOpenExample = actionCollection()->add<KAction>(
+    QAction * actionOpenExample = actionCollection()->add<QAction>(
                 "file_example_open", this, SLOT(openExample()));
     actionOpenExample->setText(i18n("&Open Example..."));
     actionOpenExample->setIcon(KIcon("document-open"));
 
-    KAction* actionOpenLocalExample = actionCollection()->add<KAction>(
+    QAction * actionOpenLocalExample = actionCollection()->add<QAction>(
                 "file_example_openlocal", this, SLOT(openLocalExample()));
     actionOpenLocalExample->setText(i18n("Open Down&loaded Example..."));
     actionOpenLocalExample->setIcon(KIcon("document-open"));
 
-    KAction* actionUploadExample = actionCollection()->add<KAction>(
+    QAction * actionUploadExample = actionCollection()->add<QAction>(
                 "file_example_upload", this, SLOT(uploadExample()));
     actionUploadExample->setText(i18n("Share C&urrent Experiment..."));
     actionUploadExample->setIcon(KIcon("get-hot-new-stuff"));
 
-    KAction* actionDownloadExamples = actionCollection()->add<KAction>(
+    QAction * actionDownloadExamples = actionCollection()->add<QAction>(
                 "file_example_download", this, SLOT(downloadExamples()));
     actionDownloadExamples->setText(i18n("&Download New Experiments..."));
     actionDownloadExamples->setIcon(KIcon("get-hot-new-stuff"));
@@ -196,7 +196,7 @@ void MainWindow::setupActions()
     connect(worldModel->clipboard(), SIGNAL(canPasteChanged(bool)),
             actionPaste, SLOT(setEnabled(bool)));
 
-    actionDelete = actionCollection()->add<KAction>("edit_delete", worldModel, SLOT(deleteSelectedItems()));
+    actionDelete = actionCollection()->add<QAction>("edit_delete", worldModel, SLOT(deleteSelectedItems()));
     actionDelete->setText(i18n("&Delete"));
     actionDelete->setIcon(KIcon("edit-delete"));
     actionDelete->setShortcut(QKeySequence(Qt::Key_Delete));
@@ -215,7 +215,7 @@ void MainWindow::setupActions()
     runSpeedActionMenu->setStatusTip(i18n("Execute the program"));
     runSpeedActionMenu->setWhatsThis(i18n("Run: Execute the program"));
 
-    fullSpeedAct = new KAction(i18nc("@option:radio", "1x Speed"), this);
+    fullSpeedAct = new QAction(i18nc("@option:radio", "1x Speed"), this);
     actionCollection()->addAction("full_speed", fullSpeedAct );
     fullSpeedAct->setCheckable(true);
     fullSpeedAct->setChecked(true);
@@ -223,28 +223,28 @@ void MainWindow::setupActions()
     runSpeedGroup->addAction(fullSpeedAct);
     runSpeedActionMenu->addAction(fullSpeedAct);
 	
-    slowSpeedAct = new KAction(i18nc("@option:radio choose the slow speed", "2x Speed"), this);
+    slowSpeedAct = new QAction(i18nc("@option:radio choose the slow speed", "2x Speed"), this);
     actionCollection()->addAction("slow_speed", slowSpeedAct );
     slowSpeedAct->setCheckable(true);
     connect(slowSpeedAct, SIGNAL(triggered()), this, SLOT(setSlowSpeed()));
     runSpeedGroup->addAction(slowSpeedAct);
     runSpeedActionMenu->addAction(slowSpeedAct);
 
-    slowerSpeedAct = new KAction(i18nc("@option:radio", "4x Speed"), this);
+    slowerSpeedAct = new QAction(i18nc("@option:radio", "4x Speed"), this);
     actionCollection()->addAction("slower_speed", slowerSpeedAct );
     slowerSpeedAct->setCheckable(true);
     connect(slowerSpeedAct, SIGNAL(triggered()), this, SLOT(setSlowerSpeed()));
     runSpeedGroup->addAction(slowerSpeedAct);
     runSpeedActionMenu->addAction(slowerSpeedAct);
 
-    slowestSpeedAct = new KAction(i18nc("@option:radio", "8x Speed"), this);
+    slowestSpeedAct = new QAction(i18nc("@option:radio", "8x Speed"), this);
     actionCollection()->addAction("slowest_speed", slowestSpeedAct );
     slowestSpeedAct->setCheckable(true);
     connect(slowestSpeedAct, SIGNAL(triggered()), this, SLOT(setSlowestSpeed()));
     runSpeedGroup->addAction(slowestSpeedAct);
     runSpeedActionMenu->addAction(slowestSpeedAct);
 
-    stepSpeedAct = new KAction(i18nc("@option:radio", "16x Speed"), this);
+    stepSpeedAct = new QAction(i18nc("@option:radio", "16x Speed"), this);
     actionCollection()->addAction("step_speed", stepSpeedAct );
     stepSpeedAct->setCheckable(true);
     connect(stepSpeedAct, SIGNAL(triggered()), this, SLOT(setStepSpeed()));

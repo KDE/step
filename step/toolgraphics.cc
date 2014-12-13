@@ -54,7 +54,7 @@
 #include <KDialog>
 #include <KFileDialog>
 #include <KProgressDialog>
-#include <KAction>
+#include <QAction>
 #include <KToggleAction>
 #include <KFontAction>
 #include <KFontSizeAction>
@@ -380,7 +380,7 @@ NoteGraphicsItem::NoteGraphicsItem(StepCore::Item* item, WorldModel* worldModel)
     if(_toolBar->layout()) _toolBar->layout()->setSpacing(0);
     //_toolBar->setStyleSheet(".KToolBar {margin: 0px; border-width: 0px; padding: 0px; }");
 
-    _actionColor = new KAction(QIcon(), i18n("&Color"), _toolBar);
+    _actionColor = new QAction(QIcon(), i18n("&Color"), _toolBar);
 
     _actionBold = new KToggleAction(QIcon::fromTheme("format-text-bold"), i18n("&Bold"), _toolBar);
     _actionBold->setShortcut(Qt::CTRL + Qt::Key_B);
@@ -410,11 +410,11 @@ NoteGraphicsItem::NoteGraphicsItem(StepCore::Item* item, WorldModel* worldModel)
     _actionFont = new KFontAction(i18n("&Font"), _toolBar);
     _actionFontSize = new KFontSizeAction(i18n("Font &Size"), _toolBar);
 
-    _actionInsertImage = new KAction(QIcon::fromTheme("insert-image"), i18n("Insert &Image"), _toolBar);
+    _actionInsertImage = new QAction(QIcon::fromTheme("insert-image"), i18n("Insert &Image"), _toolBar);
 #ifdef __GNUC__
 #warning Select right icon here
 #endif
-    _actionInsertFormula = new KAction(QIcon::fromTheme("application-vnd.oasis.opendocument.formula"),
+    _actionInsertFormula = new QAction(QIcon::fromTheme("application-vnd.oasis.opendocument.formula"),
                                     i18n("Insert &Formula"), _toolBar);
 
     connect(_actionColor, SIGNAL(triggered(bool)), this, SLOT(formatColor()));
@@ -1390,8 +1390,8 @@ ControllerGraphicsItem::ControllerGraphicsItem(StepCore::Item* item, WorldModel*
     layout->addWidget(_labelMax, 0, 2, 1, 1);
     layout->addWidget(_labelSource, 1, 0, 1, 3);
 
-    _incAction = new KAction(i18n("Increase value"), _widget);
-    _decAction = new KAction(i18n("Decrease value"), _widget);
+    _incAction = new QAction(i18n("Increase value"), _widget);
+    _decAction = new QAction(i18n("Decrease value"), _widget);
 
     connect(_incAction, SIGNAL(triggered(bool)), this, SLOT(incTriggered()));
     connect(_decAction, SIGNAL(triggered(bool)), this, SLOT(decTriggered()));

@@ -23,7 +23,8 @@
 #include "stepgraphicsitem.h"
 #include "gaskdialog.h"
 
-#include <kaction.h>
+#include <QAction>
+
 
 namespace StepCore {
     class Gas;

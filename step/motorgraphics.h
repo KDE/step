@@ -28,7 +28,7 @@
 
 class KPlotWidget;
 class KPlotObject;
-class KAction;
+class QAction;
 class KDialog;
 class QSlider;
 class QLabel;

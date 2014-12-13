@@ -34,7 +34,7 @@
 class KPlotWidget;
 class KPlotObject;
 class KToggleAction;
-class KAction;
+class QAction;
 class KDialog;
 class QSlider;
 class QLabel;
@@ -157,7 +157,7 @@ protected:
     NoteTextEdit*   _textEdit;
     KToolBar*       _toolBar;
 
-    KAction*       _actionColor;
+    QAction *       _actionColor;
     KToggleAction* _actionBold;
     KToggleAction* _actionItalic;
     KToggleAction* _actionUnderline;
@@ -171,8 +171,8 @@ protected:
     KFontAction*        _actionFont;
     KFontSizeAction*    _actionFontSize;
 
-    KAction* _actionInsertImage;
-    KAction* _actionInsertFormula;
+    QAction * _actionInsertImage;
+    QAction * _actionInsertFormula;
 
     friend class NoteTextEdit;
 };
@@ -297,7 +297,7 @@ protected slots:
 
 protected:
     StepCore::Meter* meter() const;
-    KAction* _configureAction;
+    QAction * _configureAction;
     Ui::WidgetConfigureMeter* _confUi;
     KDialog* _confDialog;
     bool     _confChanged;
@@ -331,8 +331,8 @@ protected:
     QLabel*  _labelMax;
     QLabel*  _labelSource;
 
-    KAction* _incAction;
-    KAction* _decAction;
+    QAction * _incAction;
+    QAction * _decAction;
     QString  _incShortcut;
     QString  _decShortcut;
 
@@ -359,7 +359,7 @@ protected slots:
 
 protected:
     StepCore::Controller* controller() const;
-    KAction* _configureAction;
+    QAction * _configureAction;
     Ui::WidgetConfigureController* _confUi;
     KDialog* _confDialog;
     bool     _confChanged;
