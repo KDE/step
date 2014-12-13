@@ -26,9 +26,10 @@
 
 #include "messageframe.h"
 
-class KUrl;
 class WorldModel;
 //class ItemCreator;
+
+class QUrl;
 class QModelIndex;
 class QGraphicsItem;
 class QItemSelection;
@@ -148,7 +149,7 @@ signals:
     /** This signal is emitted when item creation is finished or canceled */
     void endAddItem(const QString& name, bool success);
     /** This signal is emitted when a link in the message is activated */
-    void linkActivated(const KUrl& url);
+    void linkActivated(const QUrl& url);
 
 protected slots:
     void worldModelReset();

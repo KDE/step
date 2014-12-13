@@ -51,8 +51,9 @@
 #include <QGLWidget>
 #include <QWheelEvent>
 #include <QCoreApplication>
+#include <QUrl>
+
 #include <KIcon>
-#include <KUrl>
 #include <KLocale>
 #include <KDebug>
 
@@ -432,7 +433,7 @@ QRectF WorldScene::calcItemsBoundingRect()
 
 void WorldScene::messageLinkActivated(const QString& link)
 {
-    emit linkActivated(link);
+    emit linkActivated(QUrl::fromUserInput(link));
 }
 
 void WorldScene::settingsChanged()

@@ -19,8 +19,9 @@
 #ifndef STEP_MAINWINDOW_H
 #define STEP_MAINWINDOW_H
 
+#include <QUrl>
+
 #include <KXmlGuiWindow>
-#include <KUrl>
 
 class WorldModel;
 class WorldBrowser;
@@ -32,10 +33,10 @@ class UndoBrowser;
 class ItemPalette;
 
 class KConfig;
-class QAction;
 class KToolBarPopupAction;
 class KRecentFilesAction;
 
+class QAction;
 class QItemSelection;
 class QActionGroup;
 
@@ -49,8 +50,8 @@ public:
 
 public slots:
     bool newFile();
-    bool openFile(const KUrl& url = KUrl(), const KUrl& startUrl = KUrl());
-    bool saveFileAs(const KUrl& url = KUrl(), const KUrl& startUrl = KUrl());
+    bool openFile(const QUrl& url = QUrl(), const QUrl& startUrl = QUrl());
+    bool saveFileAs(const QUrl& url = QUrl(), const QUrl& startUrl = QUrl());
     bool saveFile();
 
     void openTutorial();
@@ -120,7 +121,7 @@ protected:
 
     KRecentFilesAction* actionRecentFiles;
 
-    KUrl currentFileUrl;
+    QUrl currentFileUrl;
 
     //The following members are needed for the setting of the timeScale
     int runSpeed;

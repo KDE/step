@@ -24,7 +24,6 @@
 #include <QToolButton>
 #include <QLabel>
 #include <QTimer>
-#include <KUrl>
 #include <KIcon>
 #include <KDebug>
 

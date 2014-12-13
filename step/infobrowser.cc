@@ -79,8 +79,8 @@ InfoBrowser::InfoBrowser(WorldModel* worldModel, QWidget* parent, Qt::WindowFlag
     _htmlPart->setDNDEnabled(false);
 
     connect(_htmlPart->browserExtension(),
-                SIGNAL(openUrlRequest(const KUrl&, const KParts::OpenUrlArguments&, const KParts::BrowserArguments&)),
-                this, SLOT(openUrl(const KUrl&)));
+	    SIGNAL(openUrlRequest(const QUrl&, const KParts::OpenUrlArguments&, const KParts::BrowserArguments&)),
+	    this, SLOT(openUrl(const QUrl&)));
 
     connect(_worldModel->selectionModel(), SIGNAL(currentChanged(const QModelIndex&, const QModelIndex&)),
                                            this, SLOT(worldCurrentChanged(const QModelIndex&, const QModelIndex&)));
@@ -128,7 +128,7 @@ void InfoBrowser::updateSyncSelection()
     _syncAction->setEnabled(true);
 }
 
-void InfoBrowser::openUrl(const KUrl& url, bool clearHistory, bool fromHistory)
+void InfoBrowser::openUrl(const QUrl& url, bool clearHistory, bool fromHistory)
 {
     // Cancel the old job
     if(_wikiJob) _wikiJob->kill();
@@ -142,7 +142,7 @@ void InfoBrowser::openUrl(const KUrl& url, bool clearHistory, bool fromHistory)
         fromHistory = true;
     }
 
-    if(url.protocol() == "objinfo") {
+    if(url.scheme() == "objinfo") {
         QString className = url.path();
         if(className.isEmpty()) {
             setHtml("<html><head><meta http-equiv=\"Content-Type\" content=\"text/html; charset=utf-8\" />"
@@ -166,7 +166,7 @@ void InfoBrowser::openUrl(const KUrl& url, bool clearHistory, bool fromHistory)
         if(!fileName.isEmpty()) {
             QFile file(fileName);
             if(file.open(QIODevice::ReadOnly | QIODevice::Text)) {
-                setHtml(QString::fromUtf8(file.readAll()), fromHistory, url /*KUrl(fileName)*/);
+                setHtml(QString::fromUtf8(file.readAll()), fromHistory, url /*QUrl::fromLocalFile(fileName)*/);
                 return;
             }
         }
@@ -187,7 +187,7 @@ void InfoBrowser::openUrl(const KUrl& url, bool clearHistory, bool fromHistory)
                 "</div>\n"
                 "</body></html>", fromHistory, url );
         return;
-    } else if(url.protocol() == "http") {
+    } else if(url.scheme() == "http") {
         if(!Settings::wikiExternal() &&
                         QRegExp("[a-zA-Z-]+\\.wikipedia\\.org").exactMatch(url.host())) {
             setHtml(
@@ -217,7 +217,7 @@ void InfoBrowser::openUrl(const KUrl& url, bool clearHistory, bool fromHistory)
     show();
 }
 
-void InfoBrowser::setHtml(const QString& data, bool fromHistory, const KUrl& url)
+void InfoBrowser::setHtml(const QString& data, bool fromHistory, const QUrl& url)
 {
     if(!fromHistory) {
         _forwardAction->setEnabled(false);
@@ -230,7 +230,7 @@ void InfoBrowser::setHtml(const QString& data, bool fromHistory, const KUrl& url
         }
     }
 
-    if(url.protocol() == "http") _execAction->setEnabled(true);
+    if(url.scheme() == "http") _execAction->setEnabled(true);
     else _execAction->setEnabled(false);
 
     _htmlPart->begin(url);

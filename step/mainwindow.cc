@@ -109,13 +109,13 @@ MainWindow::MainWindow()
     connect(worldModel->selectionModel(), SIGNAL(selectionChanged(const QItemSelection&, const QItemSelection&)),
                                  this, SLOT(worldSelectionChanged()));
     connect(itemPalette, SIGNAL(beginAddItem(const QString&)),
-                                 worldScene, SLOT(beginAddItem(const QString&)));
-    connect(worldScene, SIGNAL(endAddItem(const QString&, bool)),
-                                 itemPalette, SLOT(endAddItem(const QString&, bool)));
-    connect(worldScene, SIGNAL(linkActivated(const KUrl&)),
-                                 infoBrowser, SLOT(openUrl(const KUrl&)));
-    connect(worldScene, SIGNAL(endAddItem(QString, bool)),
-            this, SLOT(worldSelectionChanged()));
+	    worldScene,  SLOT(beginAddItem(const QString&)));
+    connect(worldScene,  SIGNAL(endAddItem(const QString&, bool)),
+	    itemPalette, SLOT(endAddItem(const QString&, bool)));
+    connect(worldScene,  SIGNAL(linkActivated(const QUrl&)),
+	    infoBrowser, SLOT(openUrl(const QUrl&)));
+    connect(worldScene,  SIGNAL(endAddItem(QString, bool)),
+            this,        SLOT(worldSelectionChanged()));
     
 
     setupActions();
@@ -273,8 +273,10 @@ void MainWindow::setupActions()
 void MainWindow::updateCaption()
 {
     QString shownName;
-    if(currentFileUrl.isEmpty()) shownName = i18nc("filename", "untitled.step"); //Fixme if needed
-    else shownName = currentFileUrl.pathOrUrl(); //QFileInfo(currentFileName).fileName();
+    if (currentFileUrl.isEmpty())
+	shownName = i18nc("filename", "untitled.step"); //Fixme if needed
+    else
+	shownName = currentFileUrl.url(QUrl::PreferLocalFile); //QFileInfo(currentFileName).fileName();
     setCaption(shownName, !worldModel->undoStack()->isClean());
 }
 
@@ -296,7 +298,7 @@ bool MainWindow::newFile()
     worldModel->clearWorld();
     worldGraphicsView->actualSize();
     worldGraphicsView->centerOn(0,0);
-    currentFileUrl = KUrl();
+    currentFileUrl = QUrl();
     updateCaption();
     undoBrowser->setEmptyLabel(i18n("<new file>"));
     undoBrowser->setCurrentFileUrl(currentFileUrl);
@@ -305,12 +307,12 @@ bool MainWindow::newFile()
     return true;
 }
 
-bool MainWindow::openFile(const KUrl& url, const KUrl& startUrl)
+bool MainWindow::openFile(const QUrl& url, const QUrl& startUrl)
 {
     if(worldModel->isSimulationActive()) simulationStop();
     if(!maybeSave()) return false;
 
-    KUrl fileUrl = url;
+    QUrl fileUrl = url;
     if(fileUrl.isEmpty()) {
         fileUrl = KFileDialog::getOpenUrl(startUrl, i18n("*.step|Step files (*.step)"), this); //is this i18n legal?
         if(fileUrl.isEmpty()) return false;
@@ -333,7 +335,7 @@ bool MainWindow::openFile(const KUrl& url, const KUrl& startUrl)
     }
     
     if(!worldModel->loadXml(&file)) {
-        KMessageBox::sorry(this, i18n("Cannot parse file '%1': %2", fileUrl.pathOrUrl(),
+        KMessageBox::sorry(this, i18n("Cannot parse file '%1': %2", fileUrl.url(QUrl::PreferLocalFile),
                                                     worldModel->errorString()));
         KIO::NetAccess::removeTempFile(tmpFileName);
         return false;
@@ -351,17 +353,18 @@ bool MainWindow::openFile(const KUrl& url, const KUrl& startUrl)
     return true;
 }
 
-bool MainWindow::saveFileAs(const KUrl& url, const KUrl& startUrl)
+bool MainWindow::saveFileAs(const QUrl& url, const QUrl& startUrl)
 {
     if(worldModel->isSimulationActive()) simulationStop();
-    KUrl fileUrl = url;
+    QUrl fileUrl = url;
     if(fileUrl.isEmpty()) {
         fileUrl = KFileDialog::getSaveUrl(startUrl.isEmpty() ? currentFileUrl : startUrl,
                                              i18n("*.step|Step files (*.step)"), this);
         if(fileUrl.isEmpty()) return false;
         else if(KIO::NetAccess::exists(fileUrl, KIO::NetAccess::DestinationSide, this)) {
             int ret = KMessageBox::warningContinueCancel(this,
-                        i18n( "The file \"%1\" already exists. Do you wish to overwrite it?", fileUrl.pathOrUrl()),
+                        i18n("The file \"%1\" already exists. Do you wish to overwrite it?",
+			     fileUrl.url(QUrl::PreferLocalFile)),
                         i18n("Warning - Step"), KStandardGuiItem::overwrite());
             if(ret != KMessageBox::Continue) return false;
         }
@@ -384,8 +387,9 @@ bool MainWindow::saveFileAs(const KUrl& url, const KUrl& startUrl)
     }
     
     if(!worldModel->saveXml(file)) {
-        KMessageBox::sorry(this, i18n("Cannot save file '%1': %2", fileUrl.pathOrUrl(),
-                                        worldModel->errorString()));
+        KMessageBox::sorry(this, i18n("Cannot save file '%1': %2",
+				      fileUrl.url(QUrl::PreferLocalFile),
+				      worldModel->errorString()));
         delete file;
         return false;
     }
@@ -430,9 +434,9 @@ void MainWindow::openTutorial()
     // XXX: need to be redone
     QStringList dirs = KGlobal::dirs()->findDirs("appdata", "tutorials");
     QString localDir = KStandardDirs::locateLocal("appdata", "");
-    foreach(const QString &dir, dirs) {
-        if(!dir.startsWith(localDir)) {
-            openFile(KUrl(), dir);
+    foreach(const QString &dirName, dirs) {
+        if(!dirName.startsWith(localDir)) {
+	    openFile(QUrl(), QUrl::fromLocalFile(dirName));
             return;
         }
     }
@@ -443,9 +447,9 @@ void MainWindow::openExample()
     // XXX: need to be redone
     QStringList dirs = KGlobal::dirs()->findDirs("appdata", "examples");
     QString localDir = KStandardDirs::locateLocal("appdata", "");
-    foreach(const QString &dir, dirs) {
-        if(!dir.startsWith(localDir)) {
-            openFile(KUrl(), dir);
+    foreach(const QString &dirName, dirs) {
+        if(!dirName.startsWith(localDir)) {
+            openFile(QUrl(), QUrl::fromLocalFile(dirName));
             return;
         }
     }
@@ -457,7 +461,7 @@ void MainWindow::openLocalExample()
     QString dir = KStandardDirs::locateLocal("appdata", "examples");
     if(dir.isEmpty()) return;
     KStandardDirs::makeDir(dir);
-    openFile(KUrl(), dir);
+    openFile(QUrl(), QUrl::fromLocalFile(dir));
 }
 
 void MainWindow::uploadExample()

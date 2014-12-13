@@ -23,7 +23,7 @@
 
 class QVBoxLayout;
 class QSignalMapper;
-class KUrl;
+
 
 class MessageFrame: public QFrame
 {

@@ -20,7 +20,7 @@
 
 #include "worldmodel.h"
 #include <QUndoView>
-#include <KUrl>
+#include <QUrl>
 #include <KIcon>
 #include <KLocale>
 
@@ -36,10 +36,12 @@ void UndoBrowser::setEmptyLabel(const QString& label)
     _undoView->setEmptyLabel(label);
 }
 
-void UndoBrowser::setCurrentFileUrl(const KUrl& url)
+void UndoBrowser::setCurrentFileUrl(const QUrl& url)
 {
-    if(url.isEmpty()) _undoView->setCleanIcon(QIcon());
-    else _undoView->setCleanIcon(KIcon("document-save"));
+    if (url.isEmpty())
+        _undoView->setCleanIcon(QIcon());
+    else
+        _undoView->setCleanIcon(KIcon("document-save"));
 }
 
 void UndoBrowser::setUndoEnabled(bool enabled)

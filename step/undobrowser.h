@@ -23,7 +23,7 @@
 
 class WorldModel;
 class QUndoView;
-class KUrl;
+class QUrl;
 
 class UndoBrowser: public QDockWidget
 {
@@ -34,7 +34,7 @@ public:
 
 public slots:
     void setEmptyLabel(const QString& label);
-    void setCurrentFileUrl(const KUrl& url);
+    void setCurrentFileUrl(const QUrl& url);
     void setUndoEnabled(bool enabled);
 
 protected:

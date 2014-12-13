@@ -21,16 +21,17 @@
 
 #include <QDockWidget>
 #include <QList>
-#include <KUrl>
+#include <QUrl>
 
 class WorldModel;
 class QModelIndex;
 class QShowEvent;
 class QAction;
+class QUrl;
+
 class KToolBar;
 class KHTMLPart;
 class KJob;
-class KUrl;
 
 class InfoBrowser: public QDockWidget
 {
@@ -40,11 +41,11 @@ public:
     explicit InfoBrowser(WorldModel* worldModel, QWidget* parent = 0, Qt::WindowFlags flags = 0);
 
 public slots:
-    void openUrl(const KUrl& url, bool clearHistory = false, bool fromHistory = false);
+    void openUrl(const QUrl& url, bool clearHistory = false, bool fromHistory = false);
 
 protected slots:
     void worldCurrentChanged(const QModelIndex& current, const QModelIndex& previous);
-    void setHtml(const QString& data, bool fromHistory = false, const KUrl& url = KUrl());
+    void setHtml(const QString& data, bool fromHistory = false, const QUrl& url = QUrl());
     void wikiResult(KJob* job);
 
     void back();
@@ -62,7 +63,7 @@ protected:
     KHTMLPart*  _htmlPart;
 
     KJob*       _wikiJob;
-    KUrl        _wikiUrl;
+    QUrl        _wikiUrl;
     bool        _wikiFromHistory;
 
     QAction*    _followAction;

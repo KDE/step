@@ -46,6 +46,9 @@
 #include <QLCDNumber>
 #include <QFocusEvent>
 #include <QApplication>
+#include <QAction>
+#include <QUrl>
+
 #include <KToolBar>
 #include <KPlotWidget>
 #include <KPlotObject>
@@ -54,7 +57,6 @@
 #include <KDialog>
 #include <KFileDialog>
 #include <KProgressDialog>
-#include <QAction>
 #include <KToggleAction>
 #include <KFontAction>
 #include <KFontSizeAction>
@@ -64,7 +66,6 @@
 #include <KInputDialog>
 #include <KIO/NetAccess>
 #include <KDebug>
-#include <KUrl>
 
 #include <float.h>
 
@@ -631,7 +632,7 @@ void NoteGraphicsItem::cursorPositionChanged()
 
 void NoteGraphicsItem::insertImage()
 {
-    KUrl url = KFileDialog::getOpenUrl(KUrl(), "image/png image/jpeg", _widget);
+    QUrl url = KFileDialog::getOpenUrl(QUrl(), "image/png image/jpeg", _widget);
     if(url.isEmpty()) return;
 
     QString tmpFileName;
