@@ -35,7 +35,7 @@
 #include <QItemSelectionModel>
 #include <QTimer>
 #include <QUndoStack>
-#include <KMenu>
+#include <QMenu>
 #include <KIcon>
 #include <KLocale>
 
@@ -811,8 +811,8 @@ QMenu* WorldModel::createContextMenu(const QModelIndex& index)
 {
     //Q_ASSERT(object != NULL);
     Q_ASSERT(index.isValid());
-    KMenu* menu = new KMenu();
-    menu->addTitle(index.data(Qt::DisplayRole).toString());
+    QMenu* menu = new QMenu();
+    menu->addSection(index.data(Qt::DisplayRole).toString());
     ItemMenuHandler* handler = _worldFactory->newItemMenuHandler(object(index), this, menu);
     handler->populateMenu(menu, _actions);
     return menu;
