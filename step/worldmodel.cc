@@ -34,6 +34,7 @@
 #include <QApplication>
 #include <QItemSelectionModel>
 #include <QTimer>
+#include <QUndoStack>
 #include <KMenu>
 #include <KIcon>
 #include <KLocale>
@@ -309,7 +310,7 @@ WorldModel::WorldModel(QObject* parent)
     : QAbstractItemModel(parent), _actions(0)
 {
     _selectionModel = new QItemSelectionModel(this, this);
-    _undoStack = new KUndoStack(this);
+    _undoStack = new QUndoStack(this);
     _clipboard = new Clipboard(this);
     _worldFactory = new WorldFactory();
     _world = new StepCore::World();

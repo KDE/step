@@ -40,6 +40,7 @@ namespace StepCore {
 class QItemSelectionModel;
 class QTimer;
 class QMenu;
+class QUndoStack;
 
 class Clipboard;
 class WorldFactory;
@@ -124,7 +125,7 @@ public:
     StepCore::Solver* newSolver(const QString& name);
 
     // Undo/redo helpers
-    KUndoStack* undoStack() { return _undoStack; } ///< Get associated KUndoStack
+    QUndoStack* undoStack() { return _undoStack; } ///< Get associated QUndoStack
     void pushCommand(QUndoCommand* command); ///< Push new undo command
     void beginMacro(const QString& text); ///< Begin undo macro
     void endMacro(); ///< End undo macro
@@ -248,7 +249,7 @@ protected:
 protected:
     StepCore::World* _world;
     QItemSelectionModel* _selectionModel;
-    KUndoStack* _undoStack;
+    QUndoStack* _undoStack;
     Clipboard* _clipboard;
     const WorldFactory* _worldFactory;
     QString _errorString;
