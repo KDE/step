@@ -22,8 +22,6 @@
 
 #include "worldscene.h"
 
-#include "worldscene.moc"
-
 #include "settings.h"
 
 #include "arrow.h"

@@ -17,7 +17,6 @@
 */
 
 #include "mainwindow.h"
-#include "mainwindow.moc"
 
 #include "ui_configure_step_general.h"
 

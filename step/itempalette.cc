@@ -38,7 +38,6 @@
 #include <KLocale>
 #include <KIcon>
 
-#include "itempalette.moc"
 
 class QPaintEvent;
 

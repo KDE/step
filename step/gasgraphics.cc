@@ -17,7 +17,6 @@
 */
 
 #include "gasgraphics.h"
-#include "gasgraphics.moc"
 
 #include <stepcore/gas.h>
 

@@ -17,7 +17,6 @@
 */
 
 #include "softbodygraphics.h"
-#include "softbodygraphics.moc"
 
 #include <stepcore/softbody.h>
 #include <stepcore/types.h>

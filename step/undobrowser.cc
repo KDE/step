@@ -17,7 +17,6 @@
 */
 
 #include "undobrowser.h"
-#include "undobrowser.moc"
 
 #include "worldmodel.h"
 #include <QUndoView>

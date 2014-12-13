@@ -17,7 +17,6 @@
 */
 
 #include "infobrowser.h"
-#include "infobrowser.moc"
 
 #include "worldmodel.h"
 #include "settings.h"

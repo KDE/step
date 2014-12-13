@@ -68,5 +68,3 @@ SimulationThread::~SimulationThread()
     _waitCondition.wakeOne();
     wait();
 }
-
-#include "simulationthread.moc"

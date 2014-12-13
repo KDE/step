@@ -17,7 +17,6 @@
 */
 
 #include "toolgraphics.h"
-#include "toolgraphics.moc"
 
 #include "ui_configure_graph.h"
 #include "ui_configure_meter.h"

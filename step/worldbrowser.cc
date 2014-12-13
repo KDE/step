@@ -17,7 +17,6 @@
 */
 
 #include "worldbrowser.h"
-#include "worldbrowser.moc"
 
 #include "worldmodel.h"
 #include <stepcore/world.h>

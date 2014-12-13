@@ -17,7 +17,6 @@
 */
 
 #include "propertiesbrowser.h"
-#include "propertiesbrowser.moc"
 
 #include "settings.h"
 

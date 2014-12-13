@@ -21,7 +21,6 @@
 #include "clipboard.h"
 #include "simulationthread.h"
 #include "worldgraphics.h"
-#include "worldmodel.moc"
 
 #include "settings.h"
 
