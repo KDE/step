@@ -1,5 +1,6 @@
 /* This file is part of Step.
    Copyright (C) 2007 Vladimir Kuznetsov <ks.vladimir@gmail.com>
+   Copyright (C) 2014 Inge Wallin        <inge@lysator.liu.se>
 
    Step is free software; you can redistribute it and/or modify
    it under the terms of the GNU General Public License as published by
@@ -289,7 +290,7 @@ OnHoverHandlerGraphicsItem* GasGraphicsItem::createOnHoverHandler(const QPointF&
 void GasMenuHandler::populateMenu(QMenu* menu, KActionCollection* actions)
 {
     _createGasParticlesUi = 0;
-    _createGasParticlesDialog = 0;
+    _creationDialog = 0;
     //_confChanged = false;
 
     menu->addAction(QIcon::fromTheme("step_object_GasParticle"), i18n("Create particles..."), this, SLOT(createGasParticles()));
@@ -314,29 +315,11 @@ void GasMenuHandler::createGasParticles()
     if(_worldModel->isSimulationActive())
         _worldModel->simulationStop();
 
-    _createGasParticlesDialog = new GasKDialog(this); // XXX: parent?
-    
-    _createGasParticlesDialog->setCaption(i18n("Create gas particles"));
-    _createGasParticlesDialog->setButtons(KDialog::Ok | KDialog::Cancel);
+    _creationDialog = new GasCreationDialog(this, gas()); // XXX: parent?
+        // FIXME: Remove this member variable.
+    _createGasParticlesUi = _creationDialog->ui();
 
-    _createGasParticlesUi = new Ui::WidgetCreateGasParticles;
-    _createGasParticlesUi->setupUi(_createGasParticlesDialog->mainWidget());
-
-    _createGasParticlesUi->lineEditMass->setValidator(
-                new QDoubleValidator(0, HUGE_VAL, DBL_DIG, _createGasParticlesUi->lineEditMass));
-    _createGasParticlesUi->lineEditCount->setValidator(
-                new QIntValidator(0, INT_MAX, _createGasParticlesUi->lineEditCount));
-    _createGasParticlesUi->lineEditConcentration->setValidator(
-                new QDoubleValidator(0, HUGE_VAL, DBL_DIG, _createGasParticlesUi->lineEditConcentration));
-    _createGasParticlesUi->lineEditTemperature->setValidator(
-                new QDoubleValidator(0, HUGE_VAL, DBL_DIG, _createGasParticlesUi->lineEditTemperature));
-    _createGasParticlesUi->lineEditMeanVelocity->setValidator(
-                new QRegExpValidator(QRegExp("^\\([+-]?\\d+(\\.\\d*)?([eE]\\d*)?,[+-]?\\d+(\\.\\d*)?([eE]\\d*)?\\)$"),
-                        _createGasParticlesUi->lineEditMeanVelocity));
-
-    _createGasParticlesUi->lineEditVolume->setText(QString::number(gas()->rectVolume()));
     createGasParticlesCountChanged();
-
     _createGasParticlesUi->labelVolume->setText(gas()->metaObject()->property("rectVolume")->units());
     _createGasParticlesUi->labelCount->setText(gas()->metaObject()->property("rectParticleCount")->units());
     _createGasParticlesUi->labelConcentration->setText(gas()->metaObject()->property("rectConcentration")->units());
@@ -349,11 +332,11 @@ void GasMenuHandler::createGasParticles()
     connect(_createGasParticlesUi->lineEditConcentration, SIGNAL(textEdited(const QString&)),
                 this, SLOT(createGasParticlesConcentrationChanged()));
 
-    connect(_createGasParticlesDialog, SIGNAL(okClicked()), this, SLOT(createGasParticlesApply()));
+    connect(_creationDialog, SIGNAL(okClicked()), this, SLOT(createGasParticlesApply()));
 
-    _createGasParticlesDialog->exec();
+    _creationDialog->exec();
 
-    delete _createGasParticlesDialog; _createGasParticlesDialog = 0;
+    delete _creationDialog; _creationDialog = 0;
     delete _createGasParticlesUi; _createGasParticlesUi = 0;
 }
 
@@ -373,7 +356,7 @@ void GasMenuHandler::createGasParticlesConcentrationChanged()
 
 bool GasMenuHandler::createGasParticlesApply()
 {
-    Q_ASSERT(_createGasParticlesUi && _createGasParticlesDialog);
+    Q_ASSERT(_createGasParticlesUi && _creationDialog);
 
     int count = _createGasParticlesUi->lineEditCount->text().toInt();
 

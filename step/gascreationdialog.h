@@ -1,5 +1,6 @@
 /* This file is part of Step.
    Copyright (C) 2007 Vladimir Kuznetsov <ks.vladimir@gmail.com>
+   Copyright (C) 2014 Inge Wallin        <inge@lysator.liu.se>
 
    Step is free software; you can redistribute it and/or modify
    it under the terms of the GNU General Public License as published by
@@ -15,27 +16,40 @@
    along with Step; if not, write to the Free Software
    Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
 */
-#ifndef STEP_GASKDIALOG_H
-#define STEP_GASKDIALOG_H
+#ifndef STEP_GASCREATIONDIALOG_H
+#define STEP_GASCREATIONDIALOG_H
 
 #include <KDialog>
 #include "gasgraphics.h"
 
+
+namespace StepCore {
+    class Gas;
+}
+namespace Ui {
+    class WidgetCreateGasParticles;
+}
 class GasMenuHandler;
 
-class GasKDialog: public KDialog
+
+class GasCreationDialog: public KDialog
 {
-  Q_OBJECT
+    Q_OBJECT
     
 public:
-    GasKDialog(GasMenuHandler* handler, QWidget *parent=0, Qt::WFlags flags=0)
-        : KDialog(parent, flags), _handler(handler) {}
+    GasCreationDialog(GasMenuHandler* handler, StepCore::Gas *gas,
+		      QWidget *parent=0, Qt::WFlags flags=0);
+
+    Ui::WidgetCreateGasParticles *ui();
 
 protected slots:
     void slotButtonClicked(int button);
 
 protected:
-    GasMenuHandler* _handler;
+    Ui::WidgetCreateGasParticles *_ui;
+
+    StepCore::Gas                *_gas;
+    GasMenuHandler               *_handler;
 };
 
 #endif
