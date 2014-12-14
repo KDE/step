@@ -51,7 +51,7 @@ bool SoftBodyCreator::sceneEvent(QEvent* event)
     if (event->type() == QEvent::GraphicsSceneMousePress &&
         mouseEvent->button() == Qt::LeftButton) {
         QPointF pos = mouseEvent->scenePos();
-        StepCore::Vector2d position = WorldGraphicsItem::pointToVector(pos);
+        StepCore::Vector2d position = StepGraphicsItem::pointToVector(pos);
         
         _worldModel->simulationPause();
         _worldModel->beginMacro(i18n("Create %1",
@@ -189,7 +189,7 @@ void SoftBodyMenuHandler::createSoftBodyItemsApply()
 /////////////////////////////////////////////////
 
 SoftBodyGraphicsItem::SoftBodyGraphicsItem(StepCore::Item* item, WorldModel* worldModel)
-    : WorldGraphicsItem(item, worldModel)
+    : StepGraphicsItem(item, worldModel)
 {
     Q_ASSERT(dynamic_cast<StepCore::SoftBody*>(_item) != NULL);
     setFlag(QGraphicsItem::ItemIsSelectable);

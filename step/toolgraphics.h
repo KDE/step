@@ -20,6 +20,7 @@
 #define STEP_TOOLGRAPHICS_H
 
 #include "worldgraphics.h"
+#include "stepgraphicsitem.h"
 #include <QGraphicsTextItem>
 #include <QAbstractItemModel>
 #include <QWidget>
@@ -69,7 +70,7 @@ protected:
     StepCore::Vector2d value();
 };
 
-class WidgetGraphicsItem: public QObject, public WorldGraphicsItem
+class WidgetGraphicsItem: public QObject, public StepGraphicsItem
 {
     Q_OBJECT
 
@@ -375,7 +376,7 @@ public:
                             WorldScene::SnapSetLocalPosition, 0) {}
 };
 
-class TracerGraphicsItem: public WorldGraphicsItem
+class TracerGraphicsItem: public StepGraphicsItem
 {
 public:
     TracerGraphicsItem(StepCore::Item* item, WorldModel* worldModel);

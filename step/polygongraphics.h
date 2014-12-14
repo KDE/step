@@ -24,6 +24,8 @@
  */
 
 #include "worldgraphics.h"
+#include "stepgraphicsitem.h"
+
 #include <QPainterPath>
 #include <QPointer>
 
@@ -37,7 +39,7 @@ namespace StepCore {
 
 /////////////////////////////////////////////////////////////////////////////////////////
 
-class RigidBodyGraphicsItem: public WorldGraphicsItem
+class RigidBodyGraphicsItem : public StepGraphicsItem
 {
 public:
     RigidBodyGraphicsItem(StepCore::Item* item, WorldModel* worldModel);

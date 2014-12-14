@@ -19,6 +19,7 @@
 #define STEP_MOTORGRAPHICS_H
 
 #include "worldgraphics.h"
+#include "stepgraphicsitem.h"
 #include <QGraphicsTextItem>
 #include <QAbstractItemModel>
 #include <QWidget>
@@ -48,7 +49,7 @@ protected:
     void tryAttach(const QPointF& pos);
 };
 
-class LinearMotorGraphicsItem: public WorldGraphicsItem
+class LinearMotorGraphicsItem: public StepGraphicsItem
 {
 public:
     LinearMotorGraphicsItem(StepCore::Item* item, WorldModel* worldModel);
@@ -83,7 +84,7 @@ protected:
     void tryAttach(const QPointF& pos);
 };
 
-class CircularMotorGraphicsItem: public WorldGraphicsItem
+class CircularMotorGraphicsItem: public StepGraphicsItem
 {
 public:
     CircularMotorGraphicsItem(StepCore::Item* item, WorldModel* worldModel);

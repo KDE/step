@@ -121,7 +121,7 @@ void WidgetVertexHandlerGraphicsItem::setValue(const StepCore::Vector2d& value)
 }
 
 WidgetGraphicsItem::WidgetGraphicsItem(StepCore::Item* item, WorldModel* worldModel)
-    : WorldGraphicsItem(item, worldModel), _centralWidget(0)
+    : StepGraphicsItem(item, worldModel), _centralWidget(0)
 {
     setFlag(QGraphicsItem::ItemIsSelectable);
     setFlag(QGraphicsItem::ItemIsMovable);
@@ -1717,7 +1717,7 @@ void ControllerMenuHandler::incTriggered()
 ////////////////////////////////////////////////////
 
 TracerGraphicsItem::TracerGraphicsItem(StepCore::Item* item, WorldModel* worldModel)
-    : WorldGraphicsItem(item, worldModel), _moving(false), _movingDelta(0,0)
+    : StepGraphicsItem(item, worldModel), _moving(false), _movingDelta(0,0)
 {
     Q_ASSERT(dynamic_cast<StepCore::Tracer*>(_item) != NULL);
     setFlag(QGraphicsItem::ItemIsSelectable);

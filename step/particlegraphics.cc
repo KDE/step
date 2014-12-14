@@ -29,7 +29,7 @@
 #include <KLocale>
 
 ParticleGraphicsItem::ParticleGraphicsItem(StepCore::Item* item, WorldModel* worldModel)
-    : WorldGraphicsItem(item, worldModel)
+    : StepGraphicsItem(item, worldModel)
 {
     Q_ASSERT(dynamic_cast<StepCore::Particle*>(_item) != NULL);
     setFlag(QGraphicsItem::ItemIsSelectable);

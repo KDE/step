@@ -20,6 +20,7 @@
 #define STEP_GASGRAPHICS_H
 
 #include "worldgraphics.h"
+#include "stepgraphicsitem.h"
 #include <kaction.h>
 
 namespace StepCore {
@@ -57,7 +58,7 @@ protected:
     void setValue(const StepCore::Vector2d& value);
 };
 
-class GasGraphicsItem: public WorldGraphicsItem {
+class GasGraphicsItem: public StepGraphicsItem {
 public:
     GasGraphicsItem(StepCore::Item* item, WorldModel* worldModel);
 

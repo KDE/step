@@ -35,7 +35,7 @@
 #include <KDebug>
 
 RigidBodyGraphicsItem::RigidBodyGraphicsItem(StepCore::Item* item, WorldModel* worldModel)
-    : WorldGraphicsItem(item, worldModel)
+    : StepGraphicsItem(item, worldModel)
 {
     Q_ASSERT(dynamic_cast<StepCore::RigidBody*>(_item) != NULL);
     setFlag(QGraphicsItem::ItemIsSelectable);
@@ -156,7 +156,7 @@ bool DiskCreator::sceneEvent(QEvent* event)
 
     if(event->type() == QEvent::GraphicsSceneMousePress && mouseEvent->button() == Qt::LeftButton) {
         QPointF pos = mouseEvent->scenePos();
-        QVariant vpos = QVariant::fromValue(WorldGraphicsItem::pointToVector(pos));
+        QVariant vpos = QVariant::fromValue(StepGraphicsItem::pointToVector(pos));
 
         _worldModel->simulationPause();
         _worldModel->beginMacro(i18n("Create %1", _worldModel->newItemName(_className)));
@@ -175,7 +175,7 @@ bool DiskCreator::sceneEvent(QEvent* event)
                     mouseEvent->buttons() & Qt::LeftButton) {
         
         _worldModel->simulationPause();
-        StepCore::Vector2d pos = WorldGraphicsItem::pointToVector(mouseEvent->scenePos());
+        StepCore::Vector2d pos = StepGraphicsItem::pointToVector(mouseEvent->scenePos());
         double radius = (pos - static_cast<StepCore::Disk*>(_item)->position()).norm();
         _worldModel->setProperty(_item, "radius", QVariant::fromValue(radius));
         return true;
@@ -184,7 +184,7 @@ bool DiskCreator::sceneEvent(QEvent* event)
                     mouseEvent->button() == Qt::LeftButton) {
 
         _worldModel->simulationPause();
-        StepCore::Vector2d pos = WorldGraphicsItem::pointToVector(mouseEvent->scenePos());
+        StepCore::Vector2d pos = StepGraphicsItem::pointToVector(mouseEvent->scenePos());
         StepCore::Disk* disk = static_cast<StepCore::Disk*>(_item);
         double radius = (pos - disk->position()).norm();
         if(radius == 0) radius = 0.5;
@@ -281,7 +281,7 @@ bool BoxCreator::sceneEvent(QEvent* event)
 
     if(event->type() == QEvent::GraphicsSceneMousePress && mouseEvent->button() == Qt::LeftButton) {
         QPointF pos = mouseEvent->scenePos();
-        QVariant vpos = QVariant::fromValue(WorldGraphicsItem::pointToVector(pos));
+        QVariant vpos = QVariant::fromValue(StepGraphicsItem::pointToVector(pos));
 
         _worldModel->simulationPause();
         _worldModel->beginMacro(i18n("Create %1", _worldModel->newItemName(_className)));
@@ -291,7 +291,7 @@ bool BoxCreator::sceneEvent(QEvent* event)
         _worldModel->addItem(_item);
         _worldModel->selectionModel()->setCurrentIndex(_worldModel->objectIndex(_item),
                                                     QItemSelectionModel::ClearAndSelect);
-        _topLeft = WorldGraphicsItem::pointToVector(pos);
+        _topLeft = StepGraphicsItem::pointToVector(pos);
 
         showMessage(MessageFrame::Information,
             i18n("Move mouse and release left mouse button to position\nbottom right corner of the %1", classNameTr()));
@@ -301,7 +301,7 @@ bool BoxCreator::sceneEvent(QEvent* event)
                     mouseEvent->buttons() & Qt::LeftButton) {
         
         _worldModel->simulationPause();
-        StepCore::Vector2d pos = WorldGraphicsItem::pointToVector(mouseEvent->scenePos());
+        StepCore::Vector2d pos = StepGraphicsItem::pointToVector(mouseEvent->scenePos());
         StepCore::Vector2d position = (_topLeft + pos) / 2.0;
         StepCore::Vector2d size = _topLeft - pos;
         _worldModel->setProperty(_item, "position", QVariant::fromValue(position));
@@ -312,7 +312,7 @@ bool BoxCreator::sceneEvent(QEvent* event)
                     mouseEvent->button() == Qt::LeftButton) {
 
         _worldModel->simulationPause();
-        StepCore::Vector2d pos = WorldGraphicsItem::pointToVector(mouseEvent->scenePos());
+        StepCore::Vector2d pos = StepGraphicsItem::pointToVector(mouseEvent->scenePos());
         StepCore::Box* box = static_cast<StepCore::Box*>(_item);
         StepCore::Vector2d position = (_topLeft + pos) / 2.0;
         StepCore::Vector2d size = _topLeft - pos;
@@ -426,7 +426,7 @@ bool PolygonCreator::sceneEvent(QEvent* event)
 
     if(!_item && event->type() == QEvent::GraphicsSceneMousePress && mouseEvent->button() == Qt::LeftButton) {
         QPointF pos = mouseEvent->scenePos();
-        QVariant vpos = QVariant::fromValue(WorldGraphicsItem::pointToVector(pos));
+        QVariant vpos = QVariant::fromValue(StepGraphicsItem::pointToVector(pos));
 
         _worldModel->simulationPause();
         _worldModel->beginMacro(i18n("Create %1", _worldModel->newItemName(_className)));
@@ -447,7 +447,7 @@ bool PolygonCreator::sceneEvent(QEvent* event)
                          mouseEvent->button() == Qt::LeftButton))) {
 
         QPointF pos = mouseEvent->scenePos();
-        StepCore::Vector2d v = WorldGraphicsItem::pointToVector(pos);
+        StepCore::Vector2d v = StepGraphicsItem::pointToVector(pos);
 
         _worldModel->simulationPause();
         // XXX: don't use strings !

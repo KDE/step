@@ -51,7 +51,7 @@ bool GasCreator::sceneEvent(QEvent* event)
 
     if(event->type() == QEvent::GraphicsSceneMousePress && mouseEvent->button() == Qt::LeftButton) {
         QPointF pos = mouseEvent->scenePos();
-        QVariant vpos = QVariant::fromValue(WorldGraphicsItem::pointToVector(pos));
+        QVariant vpos = QVariant::fromValue(StepGraphicsItem::pointToVector(pos));
 
         _worldModel->simulationPause();
         _worldModel->beginMacro(i18n("Create %1", _worldModel->newItemName(_className)));
@@ -67,7 +67,7 @@ bool GasCreator::sceneEvent(QEvent* event)
         _worldModel->setProperty(ljforce, "depth", 0.1);
         _worldModel->setProperty(ljforce, "rmin", 0.1);
 
-        _topLeft = WorldGraphicsItem::pointToVector(pos);
+        _topLeft = StepGraphicsItem::pointToVector(pos);
 
         showMessage(MessageFrame::Information,
             i18n("Move mouse and release left mouse button to position\nbottom right corner of the region for %1", classNameTr()));
@@ -77,7 +77,7 @@ bool GasCreator::sceneEvent(QEvent* event)
                     mouseEvent->buttons() & Qt::LeftButton) {
         
         _worldModel->simulationPause();
-        StepCore::Vector2d pos = WorldGraphicsItem::pointToVector(mouseEvent->scenePos());
+        StepCore::Vector2d pos = StepGraphicsItem::pointToVector(mouseEvent->scenePos());
         StepCore::Vector2d position = (_topLeft + pos) / 2.0;
         StepCore::Vector2d size = _topLeft - pos;
         _worldModel->setProperty(_item, "measureRectCenter", QVariant::fromValue(position));
@@ -88,7 +88,7 @@ bool GasCreator::sceneEvent(QEvent* event)
                     mouseEvent->button() == Qt::LeftButton) {
 
         _worldModel->simulationPause();
-        StepCore::Vector2d pos = WorldGraphicsItem::pointToVector(mouseEvent->scenePos());
+        StepCore::Vector2d pos = StepGraphicsItem::pointToVector(mouseEvent->scenePos());
         StepCore::Vector2d position = (_topLeft + pos) / 2.0;
         StepCore::Vector2d size = _topLeft - pos;
         if(size[0] == 0 && size[1] == 0) { size[0] = size[1] = 1; }
@@ -176,7 +176,7 @@ void GasVertexHandlerGraphicsItem::setValue(const StepCore::Vector2d& value)
 }
 
 GasGraphicsItem::GasGraphicsItem(StepCore::Item* item, WorldModel* worldModel)
-    : WorldGraphicsItem(item, worldModel)
+    : StepGraphicsItem(item, worldModel)
 {
     Q_ASSERT(dynamic_cast<StepCore::Gas*>(_item) != NULL);
     setFlag(QGraphicsItem::ItemIsSelectable);

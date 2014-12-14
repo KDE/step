@@ -20,9 +20,11 @@
 #define STEP_PARTICLEGRAPHICS_H
 
 #include "worldgraphics.h"
+#include "stepgraphicsitem.h"
+
 #include <stepcore/particle.h>
 
-class ParticleGraphicsItem: public WorldGraphicsItem {
+class ParticleGraphicsItem: public StepGraphicsItem {
 public:
     ParticleGraphicsItem(StepCore::Item* item, WorldModel* worldModel);
 
