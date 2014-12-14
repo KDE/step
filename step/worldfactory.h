@@ -25,7 +25,7 @@ class QGraphicsItem;
 class QGraphicsScene;
 class WorldModel;
 class WorldScene;
-class WorldGraphicsItem;
+class StepGraphicsItem;
 class ItemCreator;
 class ItemMenuHandler;
 class KIcon;
@@ -38,7 +38,7 @@ struct ExtMetaObject
 {
     ItemCreator* (*newItemCreator)(const QString& className,
                         WorldModel* worldModel, WorldScene* worldScene);
-    WorldGraphicsItem* (*newGraphicsItem)(StepCore::Item*, WorldModel*);
+    StepGraphicsItem* (*newGraphicsItem)(StepCore::Item*, WorldModel*);
     ItemMenuHandler* (*newItemMenuHandler)(StepCore::Object*, WorldModel*, QObject*);
 
     bool hasIcon;
@@ -65,8 +65,8 @@ public:
     ItemCreator* newItemCreator(const QString& className,
                         WorldModel* worldModel, WorldScene* worldScene) const;
                                 
-    /** Create WorldGraphicsItem for given item */
-    WorldGraphicsItem* newGraphicsItem(StepCore::Item* item, WorldModel* worldModel) const;
+    /** Create StepGraphicsItem for given item */
+    StepGraphicsItem *newGraphicsItem(StepCore::Item* item, WorldModel* worldModel) const;
 
     /** Create ItemMenuHandler for given object */
     ItemMenuHandler* newItemMenuHandler(StepCore::Object* object,

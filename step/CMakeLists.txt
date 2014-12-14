@@ -11,6 +11,7 @@ set(step_SRCS
     undobrowser.cc
     itempalette.cc
     worldfactory.cc
+    stepgraphicsitem.cc
     particlegraphics.cc
     polygongraphics.cc
     gasgraphics.cc

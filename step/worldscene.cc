@@ -21,6 +21,7 @@
 #endif
 
 #include "worldscene.h"
+
 #include "worldscene.moc"
 
 #include "settings.h"
@@ -28,6 +29,7 @@
 #include "arrow.h"
 #include "worldmodel.h"
 #include "worldfactory.h"
+#include "stepgraphicsitem.h"
 #include "worldgraphics.h"
 
 #include <stepcore/world.h>
@@ -177,13 +179,13 @@ WorldScene::~WorldScene()
 
 StepCore::Item* WorldScene::itemFromGraphics(const QGraphicsItem* graphicsItem) const
 {
-    const WorldGraphicsItem* worldGraphicsItem =
-            dynamic_cast<const WorldGraphicsItem*>(graphicsItem);
+    const StepGraphicsItem* worldGraphicsItem =
+            dynamic_cast<const StepGraphicsItem*>(graphicsItem);
     if(worldGraphicsItem != NULL) return worldGraphicsItem->item();
     else return NULL;
 }
 
-WorldGraphicsItem* WorldScene::graphicsFromItem(const StepCore::Item* item) const
+StepGraphicsItem* WorldScene::graphicsFromItem(const StepCore::Item* item) const
 {
     return _itemsHash.value(item, NULL);
 }
@@ -323,7 +325,7 @@ void WorldScene::worldRowsInserted(const QModelIndex& parent, int start, int end
 
         StepCore::Item* item = _worldModel->item(index);
         if(!item) continue;
-        WorldGraphicsItem* graphicsItem =
+        StepGraphicsItem* graphicsItem =
             _worldModel->worldFactory()->newGraphicsItem(item, _worldModel);
         if(!graphicsItem) continue;
 
@@ -333,7 +335,7 @@ void WorldScene::worldRowsInserted(const QModelIndex& parent, int start, int end
         graphicsItem->worldDataChanged(false);
         foreach(QGraphicsItem *item, items()) {
             if(graphicsItem->isAncestorOf(item)) {
-                WorldGraphicsItem* gItem = dynamic_cast<WorldGraphicsItem*>(item);
+                StepGraphicsItem* gItem = dynamic_cast<StepGraphicsItem*>(item);
                 if(gItem) gItem->viewScaleChanged();
             }
         }
@@ -392,7 +394,7 @@ void WorldScene::worldDataChanged(bool dynamicOnly)
     }
 
     foreach (QGraphicsItem *item, items()) {
-        WorldGraphicsItem* gItem = dynamic_cast<WorldGraphicsItem*>(item);
+        StepGraphicsItem* gItem = dynamic_cast<StepGraphicsItem*>(item);
         if(gItem) {
             gItem->worldDataChanged(dynamicOnly);
         }
@@ -408,7 +410,7 @@ void WorldScene::updateViewScale()
         _currentViewScale = _worldView->matrix().m11();
         _worldModel->simulationPause();
         foreach (QGraphicsItem *item, items()) {
-            WorldGraphicsItem* gItem = dynamic_cast<WorldGraphicsItem*>(item);
+            StepGraphicsItem* gItem = dynamic_cast<StepGraphicsItem*>(item);
             if(gItem) gItem->viewScaleChanged();
         }
         if(_sceneAxes) _sceneAxes->viewScaleChanged();
@@ -419,7 +421,7 @@ QRectF WorldScene::calcItemsBoundingRect()
 {
     QRectF boundingRect;
     foreach(QGraphicsItem* item, items()) {
-        WorldGraphicsItem* wItem = dynamic_cast<WorldGraphicsItem*>(item);
+        StepGraphicsItem* wItem = dynamic_cast<StepGraphicsItem*>(item);
         if(wItem) {
             boundingRect |= wItem->sceneBoundingRect();
             //kDebug() << itemFromGraphics(wItem)->name() << ": " << wItem->sceneBoundingRect() << endl;
@@ -475,7 +477,7 @@ StepCore::Item* WorldScene::snapHighlight(QPointF pos, SnapFlags flags, const Sn
     if(item) {
         if(_snapItem != gItem) {
             snapClear();
-            _snapItem = static_cast<WorldGraphicsItem*>(gItem);
+            _snapItem = static_cast<StepGraphicsItem*>(gItem);
             _snapItem->setItemHighlighted(true);
         }
         _snapPos = pos;
@@ -498,24 +500,24 @@ StepCore::Item* WorldScene::snapItem(QPointF pos, SnapFlags flags, const SnapLis
     _worldModel->simulationPause();
     StepCore::Item* sItem = snapHighlight(pos, flags, moreTypes);
 
-    if(movingState == WorldGraphicsItem::Started || movingState == WorldGraphicsItem::Moving) {
-        if(movingState == WorldGraphicsItem::Started)
+    if(movingState == StepGraphicsItem::Started || movingState == StepGraphicsItem::Moving) {
+        if(movingState == StepGraphicsItem::Started)
             _worldModel->setProperty(item, "body"+n,
                     QVariant::fromValue<StepCore::Object*>(NULL), WorldModel::UndoNoMerge);
 
         if(flags.testFlag(SnapSetPosition))
             _worldModel->setProperty(item, "position"+n,
-                                QVariant::fromValue(WorldGraphicsItem::pointToVector(pos)));
+                                QVariant::fromValue(StepGraphicsItem::pointToVector(pos)));
 
         if(flags.testFlag(SnapSetLocalPosition))
             _worldModel->setProperty(item, "localPosition"+n,
-                                QVariant::fromValue(WorldGraphicsItem::pointToVector(pos)));
+                                QVariant::fromValue(StepGraphicsItem::pointToVector(pos)));
 
-        if(flags.testFlag(SnapSetAngle) && movingState == WorldGraphicsItem::Started)
+        if(flags.testFlag(SnapSetAngle) && movingState == StepGraphicsItem::Started)
             _worldModel->setProperty(item, "angle"+n, QVariant::fromValue(0.0));
 
-    } else if(movingState == WorldGraphicsItem::Finished) {
-        StepCore::Vector2d wPos(WorldGraphicsItem::pointToVector(pos));
+    } else if(movingState == StepGraphicsItem::Finished) {
+        StepCore::Vector2d wPos(StepGraphicsItem::pointToVector(pos));
         StepCore::Vector2d lPos(0,0);
         double angle = 0.0;
 

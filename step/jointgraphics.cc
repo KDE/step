@@ -29,7 +29,7 @@
 #include <KLocale>
 
 AnchorGraphicsItem::AnchorGraphicsItem(StepCore::Item* item, WorldModel* worldModel)
-    : WorldGraphicsItem(item, worldModel)
+    : StepGraphicsItem(item, worldModel)
 {
     Q_ASSERT(dynamic_cast<StepCore::Anchor*>(_item) != NULL);
     setFlag(QGraphicsItem::ItemIsSelectable);
@@ -96,7 +96,7 @@ void AnchorGraphicsItem::worldDataChanged(bool dynamicOnly)
 //////////////////////////////////////////////////////////////////////////
 
 PinGraphicsItem::PinGraphicsItem(StepCore::Item* item, WorldModel* worldModel)
-    : WorldGraphicsItem(item, worldModel)
+    : StepGraphicsItem(item, worldModel)
 {
     Q_ASSERT(dynamic_cast<StepCore::Pin*>(_item) != NULL);
     setFlag(QGraphicsItem::ItemIsSelectable);
@@ -163,7 +163,7 @@ void PinGraphicsItem::worldDataChanged(bool dynamicOnly)
 
 StickHandlerGraphicsItem::StickHandlerGraphicsItem(StepCore::Item* item, WorldModel* worldModel, 
                                 QGraphicsItem* parent, int num)
-    : WorldGraphicsItem(item, worldModel, parent), _num(num)
+    : StepGraphicsItem(item, worldModel, parent), _num(num)
 {
     Q_ASSERT(_num == 1 || _num == 2);
     setFlag(QGraphicsItem::ItemIsMovable);
@@ -200,7 +200,7 @@ void StickHandlerGraphicsItem::mouseSetPos(const QPointF& pos, const QPointF&, M
 }
 
 StickGraphicsItem::StickGraphicsItem(StepCore::Item* item, WorldModel* worldModel)
-    : WorldGraphicsItem(item, worldModel)
+    : StepGraphicsItem(item, worldModel)
 {
     Q_ASSERT(dynamic_cast<StepCore::Stick*>(_item) != NULL);
     setFlag(QGraphicsItem::ItemIsSelectable);
@@ -331,7 +331,7 @@ void StickGraphicsItem::mouseSetPos(const QPointF& /*pos*/, const QPointF& diff,
 
     if(stick()->body1()) {
         Q_ASSERT(stick()->body1()->metaObject()->inherits<StepCore::Item>());
-        WorldGraphicsItem* gItem = static_cast<WorldScene*>(
+        StepGraphicsItem* gItem = static_cast<WorldScene*>(
             scene())->graphicsFromItem(static_cast<StepCore::Item*>(stick()->body1()));
         Q_ASSERT(gItem != NULL);
         if(!gItem->isSelected()) {
@@ -347,7 +347,7 @@ void StickGraphicsItem::mouseSetPos(const QPointF& /*pos*/, const QPointF& diff,
 
     if(stick()->body2()) {
         Q_ASSERT(stick()->body2()->metaObject()->inherits<StepCore::Item>());
-        WorldGraphicsItem* gItem = static_cast<WorldScene*>(
+        StepGraphicsItem* gItem = static_cast<WorldScene*>(
             scene())->graphicsFromItem(static_cast<StepCore::Item*>(stick()->body2()));
         Q_ASSERT(gItem != NULL);
         if(!gItem->isSelected()) {

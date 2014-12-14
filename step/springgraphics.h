@@ -20,6 +20,7 @@
 #define STEP_SPRINGGRAPHICS_H
 
 #include "worldgraphics.h"
+#include "stepgraphicsitem.h"
 #include <stepcore/spring.h>
 
 class SpringCreator: public AttachableItemCreator
@@ -31,7 +32,7 @@ public:
                         WorldScene::SnapSetLocalPosition, 0, true) {}
 };
 
-class SpringHandlerGraphicsItem: public WorldGraphicsItem {
+class SpringHandlerGraphicsItem : public StepGraphicsItem {
 public:
     SpringHandlerGraphicsItem(StepCore::Item* item, WorldModel* worldModel,
                                 QGraphicsItem* parent, int num);
@@ -44,7 +45,7 @@ protected:
     int _num;
 };
 
-class SpringGraphicsItem: public WorldGraphicsItem {
+class SpringGraphicsItem: public StepGraphicsItem {
 public:
     SpringGraphicsItem(StepCore::Item* item, WorldModel* worldModel);
 

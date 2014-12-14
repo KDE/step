@@ -34,7 +34,7 @@ class QGraphicsItem;
 class QItemSelection;
 class QVBoxLayout;
 class QSignalMapper;
-class WorldGraphicsItem;
+class StepGraphicsItem;
 class WorldGraphicsView;
 class ItemCreator;
 class WorldSceneAxes;
@@ -69,8 +69,8 @@ public:
 
     /** Get StepCore::Item by QGraphicsItem */
     StepCore::Item* itemFromGraphics(const QGraphicsItem* graphicsItem) const;
-    /** Get WorldGraphicsItem for given StepCore::Item */
-    WorldGraphicsItem* graphicsFromItem(const StepCore::Item* item) const;
+    /** Get StepGraphicsItem for given StepCore::Item */
+    StepGraphicsItem* graphicsFromItem(const StepCore::Item* item) const;
 
     /** Called by WorldView when view scale is updated */
     void updateViewScale(); // Qt4.3 can help here
@@ -174,14 +174,14 @@ protected:
 protected:
     WorldModel* _worldModel;
     WorldGraphicsView* _worldView;
-    QHash<const StepCore::Item*, WorldGraphicsItem*> _itemsHash;
+    QHash<const StepCore::Item*, StepGraphicsItem*> _itemsHash;
     double _currentViewScale;
     ItemCreator* _itemCreator;
     QRgb         _bgColor;
 
-    MessageFrame*  _messageFrame;
-    WorldSceneAxes* _sceneAxes;
-    WorldGraphicsItem* _snapItem;
+    MessageFrame      *_messageFrame;
+    WorldSceneAxes    *_sceneAxes;
+    StepGraphicsItem  *_snapItem;
     QPointF            _snapPos;
     QString            _snapToolTip;
     QTimer*            _snapTimer;

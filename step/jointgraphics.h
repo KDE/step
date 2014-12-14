@@ -20,6 +20,7 @@
 #define STEP_JOINTGRAPHICS_H
 
 #include "worldgraphics.h"
+#include "stepgraphicsitem.h"
 #include <stepcore/joint.h>
 
 class AnchorCreator: public AttachableItemCreator
@@ -31,7 +32,7 @@ public:
                         WorldScene::SnapSetPosition | WorldScene::SnapSetAngle, 0) {}
 };
 
-class AnchorGraphicsItem: public WorldGraphicsItem
+class AnchorGraphicsItem : public StepGraphicsItem
 {
 public:
     AnchorGraphicsItem(StepCore::Item* item, WorldModel* worldModel);
@@ -57,7 +58,7 @@ public:
                             WorldScene::SnapSetPosition | WorldScene::SnapSetLocalPosition, 0) {}
 };
 
-class PinGraphicsItem: public WorldGraphicsItem
+class PinGraphicsItem: public StepGraphicsItem
 {
 public:
     PinGraphicsItem(StepCore::Item* item, WorldModel* worldModel);
@@ -84,7 +85,7 @@ public:
                         WorldScene::SnapSetLocalPosition, 0, true) {}
 };
 
-class StickHandlerGraphicsItem: public WorldGraphicsItem
+class StickHandlerGraphicsItem: public StepGraphicsItem
 {
 public:
     StickHandlerGraphicsItem(StepCore::Item* item, WorldModel* worldModel,
@@ -97,7 +98,7 @@ protected:
     int  _num;
 };
 
-class StickGraphicsItem: public WorldGraphicsItem
+class StickGraphicsItem: public StepGraphicsItem
 {
 public:
     StickGraphicsItem(StepCore::Item* item, WorldModel* worldModel);

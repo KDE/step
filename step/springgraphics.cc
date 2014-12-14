@@ -33,7 +33,7 @@
 
 SpringHandlerGraphicsItem::SpringHandlerGraphicsItem(StepCore::Item* item, WorldModel* worldModel, 
                                 QGraphicsItem* parent, int num)
-    : WorldGraphicsItem(item, worldModel, parent), _num(num)
+    : StepGraphicsItem(item, worldModel, parent), _num(num)
 {
     Q_ASSERT(_num == 1 || _num == 2);
     setFlag(QGraphicsItem::ItemIsMovable);
@@ -66,7 +66,7 @@ void SpringHandlerGraphicsItem::mouseSetPos(const QPointF& pos, const QPointF&, 
 }
 
 SpringGraphicsItem::SpringGraphicsItem(StepCore::Item* item, WorldModel* worldModel)
-    : WorldGraphicsItem(item, worldModel)
+    : StepGraphicsItem(item, worldModel)
 {
     Q_ASSERT(dynamic_cast<StepCore::Spring*>(_item) != NULL);
     setFlag(QGraphicsItem::ItemIsSelectable);
@@ -205,7 +205,7 @@ void SpringGraphicsItem::mouseSetPos(const QPointF& /*pos*/, const QPointF& diff
 
     if(spring()->body1()) {
         Q_ASSERT(spring()->body1()->metaObject()->inherits<StepCore::Item>());
-        WorldGraphicsItem* gItem = static_cast<WorldScene*>(
+        StepGraphicsItem* gItem = static_cast<WorldScene*>(
             scene())->graphicsFromItem(static_cast<StepCore::Item*>(spring()->body1()));
         Q_ASSERT(gItem != NULL);
         if(!gItem->isSelected()) {
@@ -221,7 +221,7 @@ void SpringGraphicsItem::mouseSetPos(const QPointF& /*pos*/, const QPointF& diff
 
     if(spring()->body2()) {
         Q_ASSERT(spring()->body2()->metaObject()->inherits<StepCore::Item>());
-        WorldGraphicsItem* gItem = static_cast<WorldScene*>(
+        StepGraphicsItem* gItem = static_cast<WorldScene*>(
             scene())->graphicsFromItem(static_cast<StepCore::Item*>(spring()->body2()));
         Q_ASSERT(gItem != NULL);
         if(!gItem->isSelected()) {

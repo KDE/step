@@ -72,7 +72,7 @@ protected:
 //    bool                      _confChanged;
 };
 
-class SoftBodyGraphicsItem: public WorldGraphicsItem
+class SoftBodyGraphicsItem: public StepGraphicsItem
 {
 public:
     SoftBodyGraphicsItem(StepCore::Item* item, WorldModel* worldModel);
