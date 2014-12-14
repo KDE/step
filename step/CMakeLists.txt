@@ -1,3 +1,7 @@
+# This setting is forced by Eigen2 creating many many warnings without it.
+set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -Wno-unused-local-typedefs")
+
+
 set(step_SRCS
     arrow.cc
     clipboard.cc
@@ -15,6 +19,7 @@ set(step_SRCS
     particlegraphics.cc
     polygongraphics.cc
     gasgraphics.cc
+    gascreationdialog.cc
     softbodygraphics.cc
     springgraphics.cc
     motorgraphics.cc
@@ -26,7 +31,6 @@ set(step_SRCS
     messageframe.cc
     main.cc
     choicesmodel.cc
-    gaskdialog.cc
 )
 
 set(step_UIS
