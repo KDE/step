@@ -140,7 +140,8 @@ void MainWindow::setupActions()
     KStandardAction::save(this, SLOT(saveFile()), actionCollection());
     KStandardAction::saveAs(this, SLOT(saveFileAs()), actionCollection());
     KStandardAction::quit(this, SLOT(close()), actionCollection());
-    actionRecentFiles = KStandardAction::openRecent(this, SLOT(openFile(const KUrl&)), actionCollection());
+    actionRecentFiles = KStandardAction::openRecent(this, SLOT(openFile(const QUrl&)),
+						    actionCollection());
 
     KConfig* config = new KConfig("steprc");
     actionRecentFiles->loadEntries(config->group("RecentFiles"));
