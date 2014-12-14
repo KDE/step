@@ -3,16 +3,36 @@ project(step)
 cmake_minimum_required(VERSION 2.6.0)
 
 find_package(ECM 0.0.9 REQUIRED NO_MODULE)
-set(CMAKE_MODULE_PATH ${ECM_MODULE_PATH})
+find_package(KF5DocTools)
+set(CMAKE_MODULE_PATH ${CMAKE_MODULE_PATH} ${ECM_MODULE_PATH} ${ECM_KDE_MODULE_DIR})
 set(CMAKE_MODULE_PATH "${CMAKE_CURRENT_SOURCE_DIR}/cmake/modules" ${CMAKE_MODULE_PATH})
 
-find_package(Qt5 5.2 REQUIRED NO_MODULE COMPONENTS Qml Quick Xml Svg OpenGL PrintSupport Test)
-find_package(KF5 REQUIRED COMPONENTS KHtml Config KDELibs4Support NewStuff Plotting)
 include(KDEInstallDirs)
+include(ECMAddTests)
 include(KDECompilerSettings)
 include(KDECMakeSettings)
 include(ECMInstallIcons)
+include(ECMOptionalAddSubdirectory)
+include(ECMSetupVersion)
 include(FeatureSummary)
+
+find_package(Qt5 5.2 REQUIRED NO_MODULE COMPONENTS
+    Qml
+    Quick
+    Xml
+    Svg
+    OpenGL
+    PrintSupport
+    Test
+)
+
+find_package(KF5 REQUIRED COMPONENTS
+    KHtml
+    Config
+    KDELibs4Support
+    NewStuff
+    Plotting
+)
 
 find_package(Eigen2 2.0.3 REQUIRED)
 find_package(GSL)
@@ -51,12 +71,14 @@ if (EIGEN2_FOUND)
    include_directories(${CMAKE_CURRENT_SOURCE_DIR} ${EIGEN2_INCLUDE_DIR})
 
    find_package(KF5DocTools REQUIRED)
-   
+
    add_subdirectory(doc)
    add_subdirectory(stepcore)
    add_subdirectory(step)
 
-   add_subdirectory(stepcore_tests)
+   if(STEPCORE_TESTS)
+        add_subdirectory(stepcore_tests)
+   endif(STEPCORE_TESTS)
 endif (EIGEN2_FOUND)
 
 install(FILES step.appdata.xml DESTINATION ${SHARE_INSTALL_PREFIX}/appdata/)
