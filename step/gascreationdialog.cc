@@ -22,26 +22,42 @@
 #include <float.h>
 
 #include <QValidator>
+#include <QDialogButtonBox>
+#include <QPushButton>
+#include <QVBoxLayout>
+#include <QDebug>
 
 #include <KLocale>
 
 #include <stepcore/gas.h>
 
+#include "gasgraphics.h"
 #include "ui_create_gas_particles.h"
 
 
 GasCreationDialog::GasCreationDialog(GasMenuHandler* handler, StepCore::Gas *gas,
 				     QWidget *parent, Qt::WFlags flags)
-    : KDialog(parent, flags)
+    : QDialog(parent, flags)
     , _gas(gas)
     , _handler(handler)
 {
-    setCaption(i18n("Create gas particles"));
-    setButtons(KDialog::Ok | KDialog::Cancel);
+    setWindowTitle(i18n("Create gas particles"));
+    QDialogButtonBox *buttonBox = new QDialogButtonBox(QDialogButtonBox::Ok|QDialogButtonBox::Cancel);
+    QWidget *mainWidget = new QWidget(this);
+    QVBoxLayout *mainLayout = new QVBoxLayout;
+    setLayout(mainLayout);
+    mainLayout->addWidget(mainWidget);
+    QPushButton *okButton = buttonBox->button(QDialogButtonBox::Ok);
+    okButton->setDefault(true);
+    okButton->setShortcut(Qt::CTRL | Qt::Key_Return);
+    connect(buttonBox, SIGNAL(accepted()), this, SLOT(accept()));
+    connect(buttonBox, SIGNAL(rejected()), this, SLOT(reject()));
+    //PORTING SCRIPT: WARNING mainLayout->addWidget(buttonBox) must be last item in layout. Please move it.
+    mainLayout->addWidget(buttonBox);
 
     // Create the actual UI.
     _ui = new Ui::WidgetCreateGasParticles;
-    _ui->setupUi(mainWidget());
+    _ui->setupUi(mainWidget);
 
     // Create validators for all input fields.
     _ui->lineEditMass->setValidator(
@@ -70,13 +86,15 @@ Ui::WidgetCreateGasParticles *GasCreationDialog::ui()
 }
 
 
+// FIXME: Is this ever called??
+//        There is no slotButtonClicked in QDialog...
 
 void GasCreationDialog::slotButtonClicked(int button)
 {
-   if(button == KDialog::Ok) {
+   if (button == QDialogButtonBox::Ok) {
        if(_handler->createGasParticlesApply())
 	   accept();
    } else {
-       KDialog::slotButtonClicked(button);
+       reject();
    }
 }

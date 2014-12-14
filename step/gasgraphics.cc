@@ -32,7 +32,7 @@
 #include <QPainter>
 #include <QValidator>
 #include <QApplication>
-#include <KDialog>
+#include <QDebug>
 #include <KMessageBox>
 #include <KLocale>
 #include <KDebug>
@@ -332,9 +332,10 @@ void GasMenuHandler::createGasParticles()
     connect(_createGasParticlesUi->lineEditConcentration, SIGNAL(textEdited(const QString&)),
                 this, SLOT(createGasParticlesConcentrationChanged()));
 
-    connect(_creationDialog, SIGNAL(okClicked()), this, SLOT(createGasParticlesApply()));
-
-    _creationDialog->exec();
+    int retval = _creationDialog->exec();
+    if (retval == QDialog::Accepted) {
+	createGasParticlesApply();
+    }
 
     delete _creationDialog; _creationDialog = 0;
     delete _createGasParticlesUi; _createGasParticlesUi = 0;

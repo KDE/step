@@ -19,8 +19,8 @@
 #ifndef STEP_GASCREATIONDIALOG_H
 #define STEP_GASCREATIONDIALOG_H
 
-#include <KDialog>
-#include "gasgraphics.h"
+#include <QDialog>
+//#include "gasgraphics.h"
 
 
 namespace StepCore {
@@ -32,7 +32,7 @@ namespace Ui {
 class GasMenuHandler;
 
 
-class GasCreationDialog: public KDialog
+class GasCreationDialog: public QDialog
 {
     Q_OBJECT
     
