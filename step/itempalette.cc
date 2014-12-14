@@ -36,7 +36,7 @@
 #include <QtAlgorithms>
 
 #include <KLocale>
-#include <KIcon>
+#include <QIcon>
 
 
 class QPaintEvent;
@@ -209,7 +209,7 @@ ItemPalette::ItemPalette(WorldModel* worldModel, QWidget* parent, Qt::WindowFlag
 
     _pointerAction = new QAction(i18n("Pointer"), this);
     _pointerAction->setToolTip(i18n("Selection pointer"));
-    _pointerAction->setIcon(KIcon("pointer"));
+    _pointerAction->setIcon(QIcon::fromTheme("pointer"));
     _pointerAction->setCheckable(true);
     _pointerAction->setChecked(true);
     _pointerAction->setProperty("step_object", "Pointer");

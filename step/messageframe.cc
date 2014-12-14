@@ -24,7 +24,7 @@
 #include <QToolButton>
 #include <QLabel>
 #include <QTimer>
-#include <KIcon>
+#include <QIcon>
 #include <KDebug>
 
 MessageFrame::MessageFrame(QWidget* parent, Qt::WindowFlags f)
@@ -69,9 +69,9 @@ int MessageFrame::showMessage(Type type, const QString& text, Flags flags)
 
     QLabel* iconLabel = new QLabel(widget);
     iconLabel->setObjectName("iconLabel");
-    if(type == Error) iconLabel->setPixmap(KIcon("dialog-error").pixmap(16,16));
-    else if(type == Warning) iconLabel->setPixmap(KIcon("dialog-warning").pixmap(16,16));
-    else iconLabel->setPixmap(KIcon("dialog-information").pixmap(16,16));
+    if(type == Error) iconLabel->setPixmap(QIcon::fromTheme("dialog-error").pixmap(16,16));
+    else if(type == Warning) iconLabel->setPixmap(QIcon::fromTheme("dialog-warning").pixmap(16,16));
+    else iconLabel->setPixmap(QIcon::fromTheme("dialog-information").pixmap(16,16));
     layout->addWidget(iconLabel);
 
     QLabel* textLabel = new QLabel(widget);
@@ -86,7 +86,7 @@ int MessageFrame::showMessage(Type type, const QString& text, Flags flags)
     if(flags.testFlag(CloseButton)) {
         QToolButton* button = new QToolButton(widget);
         button->setObjectName("closeButton");
-        button->setIcon(KIcon("window-close"));
+        button->setIcon(QIcon::fromTheme("window-close"));
         button->setIconSize(QSize(16,16));
         button->setAutoRaise(true);
         layout->addWidget(button);

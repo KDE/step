@@ -46,7 +46,8 @@
 #include "jointgraphics.h"
 #include "toolgraphics.h"
 
-#include <KIcon>
+#include <QIcon>
+
 #include <KIconLoader>
 #include <KDebug>
 
@@ -72,7 +73,7 @@ ItemMenuHandler* newItemMenuHandlerHelper(StepCore::Object* object, WorldModel* 
 
 WorldFactory::WorldFactory()
 {
-    _nullIcon = new KIcon();
+    _nullIcon = new QIcon();
 
     #define ___REGISTER_EXT(Class, newGraphicsCreator, newGraphicsItem, newItemMenuHandler) \
         static ExtMetaObject extMetaObject ## Class = \
@@ -248,10 +249,11 @@ bool WorldFactory::hasObjectIcon(const StepCore::MetaObject* mObject) const
     else return false;
 }
 
-const KIcon& WorldFactory::objectIcon(const StepCore::MetaObject* mObject) const
+const QIcon& WorldFactory::objectIcon(const StepCore::MetaObject* mObject) const
 {
     const ExtMetaObject *extMetaObject = _extMetaObjects.value(mObject, NULL);
-    if(extMetaObject && extMetaObject->icon) return *(extMetaObject->icon);
+    if (extMetaObject && extMetaObject->icon)
+	return *(extMetaObject->icon);
     else {
         qWarning("Trying to load icon for unregistered metaObject\n");
         return *_nullIcon;
@@ -261,7 +263,7 @@ const KIcon& WorldFactory::objectIcon(const StepCore::MetaObject* mObject) const
 void WorldFactory::loadIcon(const StepCore::MetaObject* metaObject, ExtMetaObject* extMetaObject)
 {
     QString iconName = QString("step_object_") + metaObject->className();
-    extMetaObject->icon = new KIcon(iconName);
+    extMetaObject->icon = new QIcon(QIcon::fromTheme(iconName));
     QString iconPath = KIconLoader::global()->iconPath(iconName, KIconLoader::Small, true);
     extMetaObject->hasIcon = !iconPath.isEmpty();
 }

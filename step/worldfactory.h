@@ -23,12 +23,12 @@
 
 class QGraphicsItem;
 class QGraphicsScene;
+class QIcon;
 class WorldModel;
 class WorldScene;
 class StepGraphicsItem;
 class ItemCreator;
 class ItemMenuHandler;
-class KIcon;
 
 namespace StepCore {
     class Item;
@@ -42,7 +42,7 @@ struct ExtMetaObject
     ItemMenuHandler* (*newItemMenuHandler)(StepCore::Object*, WorldModel*, QObject*);
 
     bool hasIcon;
-    KIcon* icon;
+    QIcon* icon;
 };
 
 
@@ -75,7 +75,7 @@ public:
     /** Returns true if the object has associated icon */
     bool hasObjectIcon(const StepCore::MetaObject* mObject) const;
     /** Get associated icon for given object */
-    const KIcon& objectIcon(const StepCore::MetaObject* mObject) const;
+    const QIcon& objectIcon(const StepCore::MetaObject* mObject) const;
 
     /** Get class names of the objects on ItemPalette */
     QList<QString> paletteMetaObjects() const { return _paletteMetaObjects; }
@@ -89,7 +89,7 @@ private:
     QList<QString> _paletteMetaObjects;
     QList<QString> _orderedMetaObjects;
 
-    KIcon* _nullIcon;
+    QIcon* _nullIcon;
 };
 
 #endif

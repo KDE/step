@@ -33,7 +33,7 @@
 #include <QTimer>
 #include <QMenu>
 #include <KActionCollection>
-#include <KIcon>
+#include <QIcon>
 #include <KLocale>
 
 #include <cmath>

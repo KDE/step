@@ -32,7 +32,7 @@
 #include <KLocale>
 #include <KToolInvocation>
 #include <KIO/Job>
-#include <KIcon>
+#include <QIcon>
 
 InfoBrowser::InfoBrowser(WorldModel* worldModel, QWidget* parent, Qt::WindowFlags flags)
     : QDockWidget(i18n("Context info"), parent, flags),
@@ -53,20 +53,20 @@ InfoBrowser::InfoBrowser(WorldModel* worldModel, QWidget* parent, Qt::WindowFlag
     _toolBar->setContextMenuPolicy(Qt::NoContextMenu);
     _toolBar->setToolButtonStyle(Qt::ToolButtonIconOnly);
 
-    _backAction = _toolBar->addAction(KIcon("go-previous"), i18n("Back"), this, SLOT(back()));
+    _backAction = _toolBar->addAction(QIcon::fromTheme("go-previous"), i18n("Back"), this, SLOT(back()));
     _backAction->setEnabled(false);
-    _forwardAction = _toolBar->addAction(KIcon("go-next"), i18n("Forward"), this, SLOT(forward()));
+    _forwardAction = _toolBar->addAction(QIcon::fromTheme("go-next"), i18n("Forward"), this, SLOT(forward()));
     _forwardAction->setEnabled(false);
 
     _toolBar->addSeparator();
-    _syncAction = _toolBar->addAction(KIcon("goto-page"), i18n("Sync selection"), this, SLOT(syncSelection())); // XXX: icon
+    _syncAction = _toolBar->addAction(QIcon::fromTheme("goto-page"), i18n("Sync selection"), this, SLOT(syncSelection())); // XXX: icon
     _syncAction->setEnabled(false);
-    _followAction = _toolBar->addAction(KIcon("note2"), i18n("Follow selection")/*, this, SLOT(syncSelection(bool))*/); // XXX: icon
+    _followAction = _toolBar->addAction(QIcon::fromTheme("note2"), i18n("Follow selection")/*, this, SLOT(syncSelection(bool))*/); // XXX: icon
     _followAction->setCheckable(true);
     _followAction->setChecked(true);
 
     _toolBar->addSeparator();
-    _execAction = _toolBar->addAction(KIcon("system-run"), i18n("Open in browser"), this, SLOT(openInBrowser()));
+    _execAction = _toolBar->addAction(QIcon::fromTheme("system-run"), i18n("Open in browser"), this, SLOT(openInBrowser()));
     _execAction->setEnabled(false);
 
     _htmlPart = new KHTMLPart(widget);

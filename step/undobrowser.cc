@@ -21,7 +21,7 @@
 #include "worldmodel.h"
 #include <QUndoView>
 #include <QUrl>
-#include <KIcon>
+#include <QIcon>
 #include <KLocale>
 
 UndoBrowser::UndoBrowser(WorldModel* worldModel, QWidget* parent, Qt::WindowFlags flags)
@@ -41,7 +41,7 @@ void UndoBrowser::setCurrentFileUrl(const QUrl& url)
     if (url.isEmpty())
         _undoView->setCleanIcon(QIcon());
     else
-        _undoView->setCleanIcon(KIcon("document-save"));
+        _undoView->setCleanIcon(QIcon::fromTheme("document-save"));
 }
 
 void UndoBrowser::setUndoEnabled(bool enabled)

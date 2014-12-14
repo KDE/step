@@ -53,7 +53,7 @@
 #include <QCoreApplication>
 #include <QUrl>
 
-#include <KIcon>
+#include <QIcon>
 #include <KLocale>
 #include <KDebug>
 

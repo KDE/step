@@ -48,7 +48,7 @@
 #include <KLocale>
 #include <KConfig>
 #include <KToolBarPopupAction>
-#include <KIcon>
+#include <QIcon>
 
 #include <KIO/NetAccess>
 #include <knewstuff3/downloaddialog.h>
@@ -150,27 +150,27 @@ void MainWindow::setupActions()
     QAction * actionOpenTutorial = actionCollection()->add<QAction>(
                 "file_tutorial_open", this, SLOT(openTutorial()));
     actionOpenTutorial->setText(i18n("&Open Tutorial..."));
-    actionOpenTutorial->setIcon(KIcon("document-open"));
+    actionOpenTutorial->setIcon(QIcon::fromTheme("document-open"));
 
     QAction * actionOpenExample = actionCollection()->add<QAction>(
                 "file_example_open", this, SLOT(openExample()));
     actionOpenExample->setText(i18n("&Open Example..."));
-    actionOpenExample->setIcon(KIcon("document-open"));
+    actionOpenExample->setIcon(QIcon::fromTheme("document-open"));
 
     QAction * actionOpenLocalExample = actionCollection()->add<QAction>(
                 "file_example_openlocal", this, SLOT(openLocalExample()));
     actionOpenLocalExample->setText(i18n("Open Down&loaded Example..."));
-    actionOpenLocalExample->setIcon(KIcon("document-open"));
+    actionOpenLocalExample->setIcon(QIcon::fromTheme("document-open"));
 
     QAction * actionUploadExample = actionCollection()->add<QAction>(
                 "file_example_upload", this, SLOT(uploadExample()));
     actionUploadExample->setText(i18n("Share C&urrent Experiment..."));
-    actionUploadExample->setIcon(KIcon("get-hot-new-stuff"));
+    actionUploadExample->setIcon(QIcon::fromTheme("get-hot-new-stuff"));
 
     QAction * actionDownloadExamples = actionCollection()->add<QAction>(
                 "file_example_download", this, SLOT(downloadExamples()));
     actionDownloadExamples->setText(i18n("&Download New Experiments..."));
-    actionDownloadExamples->setIcon(KIcon("get-hot-new-stuff"));
+    actionDownloadExamples->setIcon(QIcon::fromTheme("get-hot-new-stuff"));
 
     /* Edit menu */
     actionRedo = KStandardAction::redo(worldModel->undoStack(), SLOT(redo()), actionCollection());
@@ -199,7 +199,7 @@ void MainWindow::setupActions()
 
     actionDelete = actionCollection()->add<QAction>("edit_delete", worldModel, SLOT(deleteSelectedItems()));
     actionDelete->setText(i18n("&Delete"));
-    actionDelete->setIcon(KIcon("edit-delete"));
+    actionDelete->setIcon(QIcon::fromTheme("edit-delete"));
     actionDelete->setShortcut(QKeySequence(Qt::Key_Delete));
     actionDelete->setEnabled(false);
 
@@ -208,7 +208,7 @@ void MainWindow::setupActions()
     QActionGroup* runSpeedGroup = new QActionGroup(this);
 
     // The run action collection, this is used in the toolbar to create a dropdown menu on the run button
-    runSpeedAction = new KToolBarPopupAction(KIcon("media-playback-start"), i18n("&Run"), this);
+    runSpeedAction = new KToolBarPopupAction(QIcon::fromTheme("media-playback-start"), i18n("&Run"), this);
     connect(runSpeedAction, SIGNAL(triggered()), 
             this, SLOT(simulationStartStop()));
     QMenu* runSpeedActionMenu = runSpeedAction->menu();
@@ -502,7 +502,7 @@ void MainWindow::simulationStartStop()
 void MainWindow::simulationStart()
 {
     runSpeedAction->setIconText(i18n("&Stop"));
-    runSpeedAction->setIcon(KIcon("media-playback-stop"));
+    runSpeedAction->setIcon(QIcon::fromTheme("media-playback-stop"));
 
     undoBrowser->setUndoEnabled(false);
     actionUndo->setEnabled(false);
@@ -512,7 +512,7 @@ void MainWindow::simulationStart()
 void MainWindow::simulationStopped(int result)
 {
     runSpeedAction->setIconText(i18n("&Simulate"));
-    runSpeedAction->setIcon(KIcon("media-playback-start"));
+    runSpeedAction->setIcon(QIcon::fromTheme("media-playback-start"));
 
     undoBrowser->setUndoEnabled(true);
     if(result == StepCore::Solver::ToleranceError) {
