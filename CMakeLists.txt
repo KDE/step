@@ -43,6 +43,10 @@ set(STEPCORE_WITH_GSL ${GSL_FOUND} CACHE BOOL "Enable GSL-powered features for S
 set(STEPCORE_WITH_QT ON) # CACHE BOOL "Enable QT-powered features for StepCore")
 set(STEP_WITH_QALCULATE ${QALCULATE_FOUND} CACHE BOOL "Enable unit conversion support using libqalculate")
 
+# This setting is forced by Eigen2 creating many many warnings without it.
+set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -Wno-unused-local-typedefs")
+
+
 if (EIGEN2_FOUND)
    include_directories(${CMAKE_CURRENT_SOURCE_DIR} ${EIGEN2_INCLUDE_DIR})
 

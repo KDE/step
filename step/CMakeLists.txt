@@ -1,7 +1,3 @@
-# This setting is forced by Eigen2 creating many many warnings without it.
-set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -Wno-unused-local-typedefs")
-
-
 set(step_SRCS
     arrow.cc
     clipboard.cc
