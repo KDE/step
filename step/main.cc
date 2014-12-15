@@ -29,12 +29,14 @@
 #define STEP_VERSION "0.1.0"
 
 static const char description[] =
-	I18N_NOOP("Interactive physical simulator");
+    I18N_NOOP("Interactive physical simulator");
 
 static const char version[] = STEP_VERSION;
 
 int main(int argc, char* argv[])
 {
+    KLocalizedString::setApplicationDomain("step");
+
     QApplication::setApplicationName("step");
     QApplication::setApplicationVersion(version);
     QApplication::setOrganizationDomain("kde.org");
@@ -43,9 +45,9 @@ int main(int argc, char* argv[])
 
     QApplication app(argc, argv);
 
-    KAboutData aboutData(I18N_NOOP("step"), 
+    KAboutData aboutData(i18n("step"),
                          i18n("Step"),
-                         I18N_NOOP(version),
+                         i18n(version),
                          i18n(description),
                          KAboutLicense::GPL,
                          i18n("(C) 2007 Vladimir Kuznetsov"),
