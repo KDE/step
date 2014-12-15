@@ -23,7 +23,7 @@
 #include <QFile>
 #include <QRegExp>
 #include <QApplication>
-#include <KTempDir>
+#include <QTemporaryDir>
 #include <KGlobal>
 #include <KStandardDirs>
 #include <KLocale>
@@ -56,7 +56,7 @@ bool executeCommand(const QString& cmd, const QStringList& args,
         *error = i18n("%1 reported an error (exit status %2):\n%3",
                     cmd, proc.exitCode(), QString::fromLocal8Bit(proc.readAll())); return false;
     }
-    
+
     if(!QFile::exists(resultFile)) {
         *error = i18n("%1 did not create output file", cmd); return false;
     }
@@ -76,12 +76,22 @@ bool LatexFormula::isLatexInstalled()
 
 bool LatexFormula::compileFormula(const QString& formula, QByteArray* result, QString* error)
 {
-    KTempDir tempDir;
-    QString baseFileName = tempDir.name() + "formula";
+    QTemporaryDir tempDir;
+    if (!tempDir.isValid()) {
+        // tempDir could not be created
+        qDebug() << "tempDir.isValid() = false";
+        return false;
+    }
+    qDebug() << "tempDir.path() = " << tempDir.path();
+    QString baseFileName = tempDir.path() + "/formula";
+    qDebug() << "baseFileName = " << baseFileName;
 
     QFile latexFile(baseFileName + ".tex");
+    qDebug() << "latexFile filename = " << (baseFileName + ".tex");
+
     if(!latexFile.open(QIODevice::WriteOnly)) {
         *error = i18n("can not open temporary file");
+        qDebug() << "cannot open latexFile:\n" << &error;
         return false;
     }
 
@@ -101,16 +111,16 @@ bool LatexFormula::compileFormula(const QString& formula, QByteArray* result, QS
     latexFile.close();
 
     if(!executeCommand("latex", QStringList() << "--interaction=nonstopmode" << baseFileName + ".tex",
-                            tempDir.name(), baseFileName+".tex", error)) return false;
+                            tempDir.path(), baseFileName+".tex", error)) return false;
 
     if(!executeCommand("dvips", QStringList() << "-E" << baseFileName+".dvi" << "-o" << baseFileName+".eps",
-                            tempDir.name(), baseFileName+".eps", error)) return false;
+                            tempDir.path(), baseFileName+".eps", error)) return false;
 
     QStringList gsArgs;
     gsArgs << "-dNOPAUSE" << "-dSAFER" << "-dEPSCrop" << "-r100"
            << "-dTextAlphaBits=4" << "-dGraphicsAlphaBits=4" << "-sDEVICE=pngalpha"
            << "-sOutputFile="+baseFileName+".png" << "-q" << "-dBATCH" << baseFileName+".eps";
-    if(!executeCommand("gs", gsArgs, tempDir.name(), baseFileName+".png", error)) return false;
+    if(!executeCommand("gs", gsArgs, tempDir.path(), baseFileName+".png", error)) return false;
 
     QFile pngFile(baseFileName + ".png");
     if(!pngFile.open(QIODevice::ReadOnly)) {
