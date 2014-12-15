@@ -23,19 +23,25 @@
 
 #include "ui_create_softbody_items.h"
 
+#include <float.h>
+
 #include "worldmodel.h"
 #include "worldfactory.h"
+
 #include <QItemSelectionModel>
 #include <QGraphicsSceneMouseEvent>
 #include <QGraphicsScene>
 #include <QEvent>
 #include <QPainter>
 #include <QValidator>
+#include <QDialog>
+#include <QDialogButtonBox>
+#include <QPushButton>
+#include <QVBoxLayout>
+
 #include <KDebug>
-#include <KDialog>
 #include <KLocale>
 
-#include <float.h>
 
 void SoftBodyCreator::start()
 {
@@ -115,13 +121,25 @@ void SoftBodyMenuHandler::createSoftBodyItems(const StepCore::Vector2d& pos)
     if(_worldModel->isSimulationActive())
         _worldModel->simulationStop();
 
-    _createSoftBodyItemsDialog = new KDialog(); // XXX: parent?
+    _createSoftBodyItemsDialog = new QDialog(); // XXX: parent?
     
-    _createSoftBodyItemsDialog->setCaption(i18n("Create soft body items"));
-    _createSoftBodyItemsDialog->setButtons(KDialog::Ok | KDialog::Cancel);
+    _createSoftBodyItemsDialog->setWindowTitle(i18n("Create soft body items"));
+    QDialogButtonBox *buttonBox = new QDialogButtonBox(QDialogButtonBox::Ok|QDialogButtonBox::Cancel);
+    QWidget *mainWidget = new QWidget();
+    QVBoxLayout *mainLayout = new QVBoxLayout;
+    _createSoftBodyItemsDialog->setLayout(mainLayout);
+    mainLayout->addWidget(mainWidget);
+    QPushButton *okButton = buttonBox->button(QDialogButtonBox::Ok);
+    okButton->setDefault(true);
+    okButton->setShortcut(Qt::CTRL | Qt::Key_Return);
+    _createSoftBodyItemsDialog->connect(buttonBox, SIGNAL(accepted()),
+					_createSoftBodyItemsDialog, SLOT(accept()));
+    _createSoftBodyItemsDialog->connect(buttonBox, SIGNAL(rejected()),
+					_createSoftBodyItemsDialog, SLOT(reject()));
+    mainLayout->addWidget(buttonBox);
 
     _createSoftBodyItemsUi = new Ui::WidgetCreateSoftBodyItems;
-    _createSoftBodyItemsUi->setupUi(_createSoftBodyItemsDialog->mainWidget());
+    _createSoftBodyItemsUi->setupUi(mainWidget);
 
     _createSoftBodyItemsUi->lineEditPosition->setValidator(
                 new QRegExpValidator(QRegExp("^\\([+-]?\\d+(\\.\\d*)?([eE]\\d*)?,[+-]?\\d+(\\.\\d*)?([eE]\\d*)?\\)$"),
@@ -140,9 +158,10 @@ void SoftBodyMenuHandler::createSoftBodyItems(const StepCore::Vector2d& pos)
     _createSoftBodyItemsUi->lineEditYoungModulus->setValidator(
                 new QDoubleValidator(0, HUGE_VAL, DBL_DIG, _createSoftBodyItemsUi->lineEditYoungModulus));
 
-    connect(_createSoftBodyItemsDialog, SIGNAL(okClicked()), this, SLOT(createSoftBodyItemsApply()));
-
-    _createSoftBodyItemsDialog->exec();
+    int retval = _createSoftBodyItemsDialog->exec();
+    if (retval == QDialog::Accepted) {
+	createSoftBodyItemsApply();
+    }
 
     delete _createSoftBodyItemsDialog; _createSoftBodyItemsDialog = 0;
     delete _createSoftBodyItemsUi; _createSoftBodyItemsUi = 0;

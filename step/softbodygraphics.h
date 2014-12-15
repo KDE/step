@@ -44,7 +44,7 @@ public:
     EIGEN_MAKE_ALIGNED_OPERATOR_NEW
 };
 
-class KDialog;
+class QDialog;
 class SoftBodyMenuHandler: public ItemMenuHandler
 {
     Q_OBJECT
@@ -67,7 +67,7 @@ protected slots:
 protected:
     StepCore::SoftBody* softBody() const;
     Ui::WidgetCreateSoftBodyItems* _createSoftBodyItemsUi;
-    KDialog*                       _createSoftBodyItemsDialog;
+    QDialog*                       _createSoftBodyItemsDialog;
     bool                           _applied;
 //    bool                      _confChanged;
 };
