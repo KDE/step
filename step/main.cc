@@ -16,11 +16,13 @@
    Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
 */
 
-#include <KApplication>
-#include <K4AboutData>
-#include <KCmdLineArgs>
-#include <KDebug>
-#include <KLocale>
+#include <QApplication>
+#include <KAboutData>
+#include <QCommandLineParser>
+#include <QDebug>
+#include <KLocalizedString>
+#include <QUrl>
+#include <QDir>
 
 #include "mainwindow.h"
 
@@ -33,29 +35,60 @@ static const char version[] = STEP_VERSION;
 
 int main(int argc, char* argv[])
 {
-    K4AboutData aboutData("step", 0, ki18n("Step"), version, ki18n(description),
-                     K4AboutData::License_GPL, ki18n("(C) 2007 Vladimir Kuznetsov"), KLocalizedString(), "http://edu.kde.org/step");
-    aboutData.addAuthor(ki18n("Vladimir Kuznetsov"), ki18n("Original author"), "ks.vladimir@gmail.com");
-    aboutData.addAuthor(ki18n("Carsten Niehaus"), ki18n("Code contributions"), "cniehaus@kde.org");
+    QApplication::setApplicationName("step");
+    QApplication::setApplicationVersion(version);
+    QApplication::setOrganizationDomain("kde.org");
+    QApplication::setApplicationDisplayName(i18n("Step"));
+    QApplication::setWindowIcon(QIcon::fromTheme("step"));
 
-    KCmdLineArgs::init(argc, argv, &aboutData);
+    QApplication app(argc, argv);
 
-    KCmdLineOptions options;
-    options.add("+[url]", ki18n( "Document to open" ));
-    KCmdLineArgs::addCmdLineOptions(options);
+    KAboutData aboutData(I18N_NOOP("step"), 
+                         i18n("Step"),
+                         I18N_NOOP(version),
+                         i18n(description),
+                         KAboutLicense::GPL,
+                         i18n("(C) 2007 Vladimir Kuznetsov"),
+                         i18n("http://edu.kde.org/step")
+    );
 
-    KApplication app;
-//     KGlobal::locale()->insertCatalog("step_qt");
+    aboutData.addAuthor(
+        "Vladimir Kuznetsov",
+        i18n("Original author"),
+        i18n("ks.vladimir@gmail.com")
+    );
+
+    aboutData.addAuthor(
+        "Carsten Niehaus",
+        i18n("Code contributions"),
+        i18n("cniehaus@kde.org")
+    );
+
+    KAboutData::setApplicationData(aboutData);
+
+    QCommandLineParser parser;
+    parser.addHelpOption();
+    parser.addVersionOption();
+
+    QCommandLineOption option(QStringList() << "+[url]" << i18n( "Document to open" ));
+    parser.addOption(option);
+
+    parser.process(app);
 
     MainWindow* mainWindow = new MainWindow();
     mainWindow->show();
 
-    KCmdLineArgs* args = KCmdLineArgs::parsedArgs();
-    if(args->count() > 0) {
-        //kDebug() << args->url(0) << endl;
-        mainWindow->openFile(args->url(0));
+    const QStringList args = parser.positionalArguments();
+
+    if(args.count() > 0) {
+        //qDebug() << args[0] << endl;
+        // open the step files passed as arguments as relative or absolute paths
+        mainWindow->openFile(
+            (QUrl(args[0], QUrl::TolerantMode).isRelative() && !QDir::isAbsolutePath(args[0]))
+            ? QUrl::fromLocalFile(QDir::current().absoluteFilePath(args[0]))
+            : QUrl::fromUserInput(args[0])
+        );
     }
 
     return app.exec();
 }
-
