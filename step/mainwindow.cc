@@ -63,6 +63,7 @@
 
 #include <cstdlib>
 #include <ctime>
+#include <QStandardPaths>
 
 MainWindow::MainWindow()
 {
@@ -435,9 +436,11 @@ bool MainWindow::maybeSave()
 void MainWindow::openTutorial()
 {
     // XXX: need to be redone
-    QStringList dirs = KGlobal::dirs()->findDirs("appdata", "tutorials");
-    QString localDir = KStandardDirs::locateLocal("appdata", "");
+    //qDebug() << "inside MainWindow::openTutorial()";
+    QStringList dirs = QStandardPaths::locateAll(QStandardPaths::DataLocation, "tutorials", QStandardPaths::LocateDirectory);
+    QString localDir = QStandardPaths::writableLocation(QStandardPaths::DataLocation) + QLatin1Char('/');
     foreach(const QString &dirName, dirs) {
+        //qDebug() << "dirName: " << dirName;
         if(!dirName.startsWith(localDir)) {
 	    openFile(QUrl(), QUrl::fromLocalFile(dirName));
             return;
@@ -447,9 +450,10 @@ void MainWindow::openTutorial()
 
 void MainWindow::openExample()
 {
+    //qDebug() << "inside MainWindow::openExample()";
     // XXX: need to be redone
-    QStringList dirs = KGlobal::dirs()->findDirs("appdata", "examples");
-    QString localDir = KStandardDirs::locateLocal("appdata", "");
+    QStringList dirs = QStandardPaths::locateAll(QStandardPaths::DataLocation, "examples", QStandardPaths::LocateDirectory);
+    QString localDir = QStandardPaths::writableLocation(QStandardPaths::DataLocation) + QLatin1Char('/');
     foreach(const QString &dirName, dirs) {
         if(!dirName.startsWith(localDir)) {
             openFile(QUrl(), QUrl::fromLocalFile(dirName));
@@ -461,7 +465,7 @@ void MainWindow::openExample()
 void MainWindow::openLocalExample()
 {
     // XXX: need to be redone
-    QString dir = KStandardDirs::locateLocal("appdata", "examples");
+    QString dir = QStandardPaths::writableLocation(QStandardPaths::DataLocation) + "/examples";
     if(dir.isEmpty()) return;
     KStandardDirs::makeDir(dir);
     openFile(QUrl(), QUrl::fromLocalFile(dir));
@@ -491,6 +495,7 @@ void MainWindow::uploadExample()
 
 void MainWindow::downloadExamples()
 {
+    //qDebug() << "inside MainWindow::downloadExamples()";
     KNS3::DownloadDialog dialog("step.knsrc", this);
     dialog.exec();
 }

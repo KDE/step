@@ -28,11 +28,12 @@
 #include <QCoreApplication>
 #include <KToolBar>
 #include <KHTMLPart>
-#include <KStandardDirs>
+
 #include <KLocale>
 #include <KToolInvocation>
 #include <KIO/Job>
 #include <QIcon>
+#include <QStandardPaths>
 
 InfoBrowser::InfoBrowser(WorldModel* worldModel, QWidget* parent, Qt::WindowFlags flags)
     : QDockWidget(i18n("Context info"), parent, flags),
@@ -162,7 +163,7 @@ void InfoBrowser::openUrl(const QUrl& url, bool clearHistory, bool fromHistory)
                     "</body></html>", fromHistory, url );
             return;
         }
-        QString fileName = KStandardDirs::locate("appdata", QString("objinfo/%1.html").arg(className));
+        QString fileName = QStandardPaths::locate(QStandardPaths::DataLocation, QString("objinfo/%1.html").arg(className));
         if(!fileName.isEmpty()) {
             QFile file(fileName);
             if(file.open(QIODevice::ReadOnly | QIODevice::Text)) {

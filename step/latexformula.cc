@@ -25,8 +25,9 @@
 #include <QApplication>
 #include <QTemporaryDir>
 #include <KGlobal>
-#include <KStandardDirs>
+
 #include <KLocale>
+#include <QStandardPaths>
 
 namespace {
 
@@ -68,9 +69,9 @@ bool executeCommand(const QString& cmd, const QStringList& args,
 
 bool LatexFormula::isLatexInstalled()
 {
-    if(KStandardDirs::findExe("latex").isEmpty()) return false;
-    if(KStandardDirs::findExe("dvips").isEmpty()) return false;
-    if(KStandardDirs::findExe("gs").isEmpty()) return false;
+    if(QStandardPaths::findExecutable("latex").isEmpty()) return false;
+    if(QStandardPaths::findExecutable("dvips").isEmpty()) return false;
+    if(QStandardPaths::findExecutable("gs").isEmpty()) return false;
     return true;
 }
 
