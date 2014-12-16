@@ -34,25 +34,26 @@
 #include <stepcore/solver.h>
 #include <stepcore/collisionsolver.h>
 
-#include <QAction>
+#include <KGlobal>
 #include <KActionCollection>
 #include <KStandardAction>
 #include <KRecentFilesAction>
 #include <KApplication>
 #include <KMessageBox>
 #include <KFileDialog>
-#include <KTemporaryFile>
 #include <KConfigDialog>
 #include <KStandardDirs>
 #include <KStatusBar>
 #include <KLocale>
 #include <KConfig>
 #include <KToolBarPopupAction>
-#include <QIcon>
 
 #include <KIO/NetAccess>
 #include <knewstuff3/downloaddialog.h>
 
+#include <QAction>
+#include <QTemporaryFile>
+#include <QIcon>
 #include <QFile>
 #include <QGraphicsView>
 #include <QItemSelectionModel>
@@ -375,8 +376,9 @@ bool MainWindow::saveFileAs(const QUrl& url, const QUrl& startUrl)
     QFile* file;
 
     if(!local) {
-        file = new KTemporaryFile();
-        static_cast<KTemporaryFile*>(file)->setAutoRemove(true);
+        QTemporaryFile *tempFile = new QTemporaryFile();
+        tempFile->setAutoRemove(true);
+	file = tempFile;
     } else {
         file = new QFile(fileUrl.path());
     }
