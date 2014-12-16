@@ -1,5 +1,6 @@
 /* This file is part of Step.
    Copyright (C) 2007 Vladimir Kuznetsov <ks.vladimir@gmail.com>
+   Copyright (C) 2014 Inge Wallin        <inge@lysator.liu.se>
 
    Step is free software; you can redistribute it and/or modify
    it under the terms of the GNU General Public License as published by
