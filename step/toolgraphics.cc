@@ -1,5 +1,6 @@
 /* This file is part of Step.
    Copyright (C) 2007 Vladimir Kuznetsov <ks.vladimir@gmail.com>
+   Copyright (C) 2014 Inge Wallin        <inge@lysator.liu.se>
 
    Step is free software; you can redistribute it and/or modify
    it under the terms of the GNU General Public License as published by
@@ -48,13 +49,17 @@
 #include <QApplication>
 #include <QAction>
 #include <QUrl>
+#include <QDialog>
+#include <QDialogButtonBox>
+#include <QAbstractButton>
+#include <QPushButton>
+#include <QVBoxLayout>
 
 #include <KToolBar>
 #include <KPlotWidget>
 #include <KPlotObject>
 #include <KPlotPoint>
 #include <KPlotAxis>
-#include <KDialog>
 #include <KFileDialog>
 #include <KProgressDialog>
 #include <KToggleAction>
@@ -68,6 +73,7 @@
 #include <KDebug>
 
 #include <float.h>
+
 
 StepCore::Vector2d WidgetVertexHandlerGraphicsItem::value()
 {
@@ -1099,13 +1105,26 @@ void GraphMenuHandler::configureGraph()
         _worldModel->simulationStop();
 
     _confChanged = false;
-    _confDialog = new KDialog(); // XXX: parent?
+    _confDialog = new QDialog(); // XXX: parent?
     
-    _confDialog->setCaption(i18n("Configure graph"));
-    _confDialog->setButtons(KDialog::Ok | KDialog::Cancel | KDialog::Apply);
+    _confDialog->setWindowTitle(i18n("Configure graph"));
+    _buttonBox = new QDialogButtonBox(QDialogButtonBox::Ok
+				      | QDialogButtonBox::Cancel
+				      | QDialogButtonBox::Apply);
+    QWidget *mainWidget = new QWidget();
+    QVBoxLayout *mainLayout = new QVBoxLayout;
+    _confDialog->setLayout(mainLayout);
+    mainLayout->addWidget(mainWidget);
+
+    QPushButton *okButton = _buttonBox->button(QDialogButtonBox::Ok);
+    okButton->setDefault(true);
+    okButton->setShortcut(Qt::CTRL | Qt::Key_Return);
+    _confDialog->connect(_buttonBox, SIGNAL(accepted()), _confDialog, SLOT(accept()));
+    _confDialog->connect(_buttonBox, SIGNAL(rejected()), _confDialog, SLOT(reject()));
+    mainLayout->addWidget(_buttonBox);
 
     _confUi = new Ui::WidgetConfigureGraph;
-    _confUi->setupUi(_confDialog->mainWidget());
+    _confUi->setupUi(mainWidget);
 
     _confUi->dataSourceX->setDataSource(_worldModel,
                     graph()->objectX(), graph()->propertyX(), graph()->indexX());
@@ -1132,10 +1151,9 @@ void GraphMenuHandler::configureGraph()
     _confUi->checkBoxShowLines->setChecked(graph()->showLines());
     _confUi->checkBoxShowPoints->setChecked(graph()->showPoints());
 
-    _confDialog->enableButtonApply(false);
+    _buttonBox->button(QDialogButtonBox::Apply)->setEnabled(false);
 
-    connect(_confDialog, SIGNAL(applyClicked()), this, SLOT(confApply()));
-    connect(_confDialog, SIGNAL(okClicked()), this, SLOT(confApply()));
+    connect(_buttonBox, SIGNAL(clicked(QAbstractButton*)), this, SLOT(confApply(QAbstractButton*)));
 
     connect(_confUi->dataSourceX, SIGNAL(dataSourceChanged()), this, SLOT(confChanged()));
     connect(_confUi->dataSourceY, SIGNAL(dataSourceChanged()), this, SLOT(confChanged()));
@@ -1154,8 +1172,13 @@ void GraphMenuHandler::configureGraph()
     delete _confUi; _confUi = 0;
 }
 
-void GraphMenuHandler::confApply()
+void GraphMenuHandler::confApply(QAbstractButton *button)
 {
+    if (_buttonBox->button(QDialogButtonBox::Apply) != button
+	&& _buttonBox->button(QDialogButtonBox::Ok) != button) {
+	return;
+    }
+
     Q_ASSERT(_confUi && _confDialog);
 
     // XXX: check for actual change ?
@@ -1205,7 +1228,7 @@ void GraphMenuHandler::confChanged()
 {
     Q_ASSERT(_confUi && _confDialog);
     _confChanged = true;
-    _confDialog->enableButtonApply(true);
+    _buttonBox->button(QDialogButtonBox::Apply)->setEnabled(true);
 }
 
 void GraphMenuHandler::clearGraph()
@@ -1309,13 +1332,26 @@ void MeterMenuHandler::configureMeter()
         _worldModel->simulationStop();
 
     _confChanged = false;
-    _confDialog = new KDialog(); // XXX
-    
-    _confDialog->setCaption(i18n("Configure meter"));
-    _confDialog->setButtons(KDialog::Ok | KDialog::Cancel | KDialog::Apply);
+
+    _confDialog = new QDialog(); // XXX
+    _confDialog->setWindowTitle(i18n("Configure meter"));
+    _buttonBox = new QDialogButtonBox(QDialogButtonBox::Ok
+				      | QDialogButtonBox::Cancel
+				      | QDialogButtonBox::Apply);
+    QWidget *mainWidget = new QWidget();
+    QVBoxLayout *mainLayout = new QVBoxLayout;
+    _confDialog->setLayout(mainLayout);
+    mainLayout->addWidget(mainWidget);
+
+    QPushButton *okButton = _buttonBox->button(QDialogButtonBox::Ok);
+    okButton->setDefault(true);
+    okButton->setShortcut(Qt::CTRL | Qt::Key_Return);
+    _confDialog->connect(_buttonBox, SIGNAL(accepted()), _confDialog, SLOT(accept()));
+    _confDialog->connect(_buttonBox, SIGNAL(rejected()), _confDialog, SLOT(reject()));
+    mainLayout->addWidget(_buttonBox);
 
     _confUi = new Ui::WidgetConfigureMeter;
-    _confUi->setupUi(_confDialog->mainWidget());
+    _confUi->setupUi(mainWidget);
 
     _confUi->dataSource->setDataSource(_worldModel,
                 meter()->object(), meter()->property(), meter()->index());
@@ -1324,8 +1360,7 @@ void MeterMenuHandler::configureMeter()
                 new QIntValidator(0, 100, _confUi->lineEditDigits));
     _confUi->lineEditDigits->setText(QString::number(meter()->digits()));
 
-    connect(_confDialog, SIGNAL(applyClicked()), this, SLOT(confApply()));
-    connect(_confDialog, SIGNAL(okClicked()), this, SLOT(confApply()));
+    connect(_buttonBox, SIGNAL(clicked(QAbstractButton*)), this, SLOT(confApply(QAbstractButton*)));
 
     connect(_confUi->dataSource, SIGNAL(dataSourceChanged()), this, SLOT(confChanged()));
     connect(_confUi->lineEditDigits, SIGNAL(textEdited(const QString&)), this, SLOT(confChanged()));
@@ -1336,8 +1371,13 @@ void MeterMenuHandler::configureMeter()
     delete _confUi; _confUi = 0;
 }
 
-void MeterMenuHandler::confApply()
+void MeterMenuHandler::confApply(QAbstractButton *button)
 {
+    if (_buttonBox->button(QDialogButtonBox::Apply) != button
+	&& _buttonBox->button(QDialogButtonBox::Ok) != button) {
+	return;
+    }
+
     Q_ASSERT(_confUi && _confDialog);
 
     // XXX: check for actual change ?
@@ -1361,7 +1401,7 @@ void MeterMenuHandler::confChanged()
 {
     Q_ASSERT(_confUi && _confDialog);
     _confChanged = true;
-    _confDialog->enableButtonApply(true);
+    _buttonBox->button(QDialogButtonBox::Apply)->setEnabled(true);
 }
 
 ////////////////////////////////////////////////////
@@ -1607,13 +1647,26 @@ void ControllerMenuHandler::configureController()
         _worldModel->simulationStop();
 
     _confChanged = false;
-    _confDialog = new KDialog(); // XXX
+    _confDialog = new QDialog(); // XXX
     
-    _confDialog->setCaption(i18n("Configure controller"));
-    _confDialog->setButtons(KDialog::Ok | KDialog::Cancel | KDialog::Apply);
+    _confDialog->setWindowTitle(i18n("Configure controller"));
+    _buttonBox = new QDialogButtonBox(QDialogButtonBox::Ok
+				      | QDialogButtonBox::Cancel
+				      | QDialogButtonBox::Apply);
+    QWidget *mainWidget = new QWidget();
+    QVBoxLayout *mainLayout = new QVBoxLayout;
+    _confDialog->setLayout(mainLayout);
+    mainLayout->addWidget(mainWidget);
+
+    QPushButton *okButton = _buttonBox->button(QDialogButtonBox::Ok);
+    okButton->setDefault(true);
+    okButton->setShortcut(Qt::CTRL | Qt::Key_Return);
+    _confDialog->connect(_buttonBox, SIGNAL(accepted()), _confDialog, SLOT(accept()));
+    _confDialog->connect(_buttonBox, SIGNAL(rejected()), _confDialog, SLOT(reject()));
+    mainLayout->addWidget(_buttonBox);
 
     _confUi = new Ui::WidgetConfigureController;
-    _confUi->setupUi(_confDialog->mainWidget());
+    _confUi->setupUi(mainWidget);
 
     _confUi->dataSource->setSkipReadOnly(true);
     _confUi->dataSource->setDataSource(_worldModel, controller()->object(),
@@ -1639,10 +1692,9 @@ void ControllerMenuHandler::configureController()
                 new QDoubleValidator(-HUGE_VAL, HUGE_VAL, DBL_DIG, _confUi->lineEditIncrement));
     _confUi->lineEditIncrement->setText(QString::number(controller()->increment()));
 
-    _confDialog->enableButtonApply(false);
+    _buttonBox->button(QDialogButtonBox::Apply)->setEnabled(false);
 
-    connect(_confDialog, SIGNAL(applyClicked()), this, SLOT(confApply()));
-    connect(_confDialog, SIGNAL(okClicked()), this, SLOT(confApply()));
+    connect(_buttonBox, SIGNAL(clicked(QAbstractButton*)), this, SLOT(confApply(QAbstractButton*)));
 
     connect(_confUi->dataSource, SIGNAL(dataSourceChanged()), this, SLOT(confChanged()));
     connect(_confUi->lineEditMin, SIGNAL(textEdited(const QString&)), this, SLOT(confChanged()));
@@ -1657,8 +1709,13 @@ void ControllerMenuHandler::configureController()
     delete _confUi; _confUi = 0;
 }
 
-void ControllerMenuHandler::confApply()
+void ControllerMenuHandler::confApply(QAbstractButton *button)
 {
+    if (_buttonBox->button(QDialogButtonBox::Apply) != button
+	&& _buttonBox->button(QDialogButtonBox::Ok) != button) {
+	return;
+    }
+
     Q_ASSERT(_confUi && _confDialog);
 
     // XXX: check for actual change ?
@@ -1694,7 +1751,7 @@ void ControllerMenuHandler::confChanged()
 {
     Q_ASSERT(_confUi && _confDialog);
     _confChanged = true;
-    _confDialog->enableButtonApply(true);
+    _buttonBox->button(QDialogButtonBox::Apply)->setEnabled(true);
 }
 
 void ControllerMenuHandler::decTriggered()

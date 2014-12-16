@@ -1,5 +1,6 @@
 /* This file is part of Step.
    Copyright (C) 2007 Vladimir Kuznetsov <ks.vladimir@gmail.com>
+   Copyright (C) 2014 Inge Wallin        <inge@lysator.liu.se>
 
    Step is free software; you can redistribute it and/or modify
    it under the terms of the GNU General Public License as published by
@@ -35,7 +36,9 @@ class KPlotWidget;
 class KPlotObject;
 class KToggleAction;
 class QAction;
-class KDialog;
+class QDialog;
+class QDialogButtonBox;
+class QAbstractButton;
 class QSlider;
 class QLabel;
 
@@ -246,13 +249,14 @@ public:
 protected slots:
     void clearGraph();
     void configureGraph();
-    void confApply();
+    void confApply(QAbstractButton *button);
     void confChanged();
 
 protected:
     StepCore::Graph* graph() const;
     Ui::WidgetConfigureGraph* _confUi;
-    KDialog*                  _confDialog;
+    QDialog*                  _confDialog;
+    QDialogButtonBox         *_buttonBox;
     bool                      _confChanged;
 };
 
@@ -292,15 +296,16 @@ public:
 
 protected slots:
     void configureMeter();
-    void confApply();
+    void confApply(QAbstractButton *button);
     void confChanged();
 
 protected:
     StepCore::Meter* meter() const;
     QAction * _configureAction;
-    Ui::WidgetConfigureMeter* _confUi;
-    KDialog* _confDialog;
-    bool     _confChanged;
+    Ui::WidgetConfigureMeter *_confUi;
+    QDialog                  *_confDialog;
+    QDialogButtonBox         *_buttonBox;
+    bool                      _confChanged;
 };
 
 /////////////////////////////////////////////////////////////////////////////////////////
@@ -354,15 +359,16 @@ protected slots:
     void incTriggered();
     void decTriggered();
     void configureController();
-    void confApply();
+    void confApply(QAbstractButton *button);
     void confChanged();
 
 protected:
     StepCore::Controller* controller() const;
     QAction * _configureAction;
-    Ui::WidgetConfigureController* _confUi;
-    KDialog* _confDialog;
-    bool     _confChanged;
+    Ui::WidgetConfigureController *_confUi;
+    QDialog                       *_confDialog;
+    QDialogButtonBox              *_buttonBox;
+    bool                           _confChanged;
 };
 
 /////////////////////////////////////////////////////////////////////////////////////////
