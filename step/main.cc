@@ -45,9 +45,9 @@ int main(int argc, char* argv[])
 
     QApplication app(argc, argv);
 
-    KAboutData aboutData(i18n("step"),
+    KAboutData aboutData("step",
                          i18n("Step"),
-                         i18n(version),
+                         version,
                          i18n(description),
                          KAboutLicense::GPL,
                          i18n("(C) 2007 Vladimir Kuznetsov"),
