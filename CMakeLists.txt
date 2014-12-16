@@ -63,8 +63,10 @@ set(STEPCORE_WITH_GSL ${GSL_FOUND} CACHE BOOL "Enable GSL-powered features for S
 set(STEPCORE_WITH_QT ON) # CACHE BOOL "Enable QT-powered features for StepCore")
 set(STEP_WITH_QALCULATE ${QALCULATE_FOUND} CACHE BOOL "Enable unit conversion support using libqalculate")
 
-# This setting is forced by Eigen2 creating many many warnings without it.
+# These settings are forced by Eigen2 creating many many warnings without them.
+# FIXME: How can we make Eigen behave and not need them?
 set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -Wno-unused-local-typedefs")
+set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -Wno-unused-parameter")
 
 
 if (EIGEN2_FOUND)
