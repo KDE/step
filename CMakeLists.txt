@@ -1,6 +1,6 @@
 project(step)
 
-cmake_minimum_required(VERSION 2.6.0)
+cmake_minimum_required(VERSION 2.8.12)
 
 find_package(ECM 0.0.9 REQUIRED NO_MODULE)
 find_package(KF5DocTools)
