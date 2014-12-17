@@ -1,0 +1,94 @@
+This is a short overview over the classes in Stepcore. Most of the classes are
+here, but not the ...Error classes that contain the variance for the various
+values in the other classes.
+
+Legend
+
+ * ClassName{filename}		Short explanation
+   [=0] 			This class contains pure virtual member functions.
+
+    * subclass
+      [important members]
+
+* Object	      		Root of the StepCore class hierarchy
+  [name]
+
+   * CollisionSolver		Generic interface for collision solvers
+      * GJKCollisionSolver	
+      	[contacts]
+   * ConstraintSolver		Generic interface for constraint solvers
+     [=0]
+      * CGConstraintSolver
+      	[]
+   * Solver		Generic Solver interface
+      * GenericEulerSolver	Solver of ordinary diff equations
+         * EulerSolver
+         * AdaptiveEulerSolver
+      * GslGenericSolver	Solver of ordinary diff equations using GSL
+         * GslSolver
+         * GslAdaptiveSolver
+
+   * Item{world.h}		Root class for world items (bodies, forces)
+     [world, group, objectErrors, color]
+
+      * NoteImage		Image embedded in a Note
+         * NoteFormula		LaTeX formula embedded in a Note
+      * ItemGroup
+      	[items]
+         * Gas			Group of GasParticle and a Force
+         * SoftBody		Group of SoftBodyParticles and SoftBodySprings
+	 * World		The root object for everything visible
+	   [time, timeScale, bodies, forces, joints, solvers...]
+
+* Body{body.h}			Anything that has dynamic variables that 
+				require ODE integration
+   * Particle(Item, Body)
+      * ChargedParticle
+      * GasParticle
+   * RigidBody(Item, Body)
+      * Disk
+      * BasePolygon
+         * Box
+         * Polygon
+   * Plane(Item, Body)		Unmovable rigid plane
+
+* Force{world.h}		Anything that acts upon bodies changing 
+				derivatives of dynamic variables
+   * ColoumbForce(Item, Force) 	Force for charged particles.
+   * GasLJForce(Item, Force) 	Force within gasses
+   * GravitationForce(Item, Force) Force between particles
+   * WeightForce(Item, Force)   Force between massive bodies (particles)
+   * LinearMotor(Item, Force)   Applies a force on a position of a body
+   * CircularMotor(Item, Force) Applies a torque to a body
+   * Spring(Item, Force)
+      * SoftBodySpring
+
+
+* Joint{world.h}
+  []
+   * Anchor(Item, Joint)	Fixes the position of a body
+   * Pin(Item, Joint)		Fixes the position of a a given point of a body
+   * Stick(Item, Joint)		Fixed distance between two points on particles or rigid bodies
+
+* Tool  			Utilities for control or information retrieval
+   * Note(ItemGroup, Tool) 	Textual Note
+   * Graph(Item, Tool)
+   * Meter(Item, Tool)
+   * Controller(Item, Tool)
+   * Tracer(Item, Tool)
+
+
+Auxiliary classes
+-----------------
+
+* Contact	  		defines contact between two bodies
+  				Used by CollisionSolver.
+
+* ConstraintsInfo{world.h}	defines ...
+  				Used by ConstraintSolver
+  [...]
+
+* Factory	  		Creates new objects from name
+
+* MetaProperty 			Meta information about a property
+* MetaObject			Meta information about a class
