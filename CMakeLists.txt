@@ -70,7 +70,7 @@ set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -Wno-unused-parameter")
 
 if (EIGEN3_FOUND)
    include_directories(${CMAKE_CURRENT_SOURCE_DIR} ${EIGEN3_INCLUDE_DIR})
-   add_definitions(-DEIGEN2_SUPPORT) #TODO port away from Eigen2-compatability mode
+   add_definitions(-DEIGEN2_SUPPORT_STAGE30_FULL_EIGEN3_API) #TODO port away from Eigen2-compatability mode
 
    find_package(KF5DocTools REQUIRED)
 

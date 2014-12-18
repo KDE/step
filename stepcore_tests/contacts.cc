@@ -211,26 +211,26 @@ void MainTest::testCollisionDetection()
 
         if(pointsCount == 1) {
             QFETCH(StepCore::Vector2d, point0);
-            //qDebug("l: %e",  line.dot(contact.points[0] - point0));
-            //qDebug("n: %e",  normal.dot(contact.points[0] - point0));
+            //qDebug("l: %e",  (contact.points[0] - point0).dot(line));
+            //qDebug("n: %e",  (contact.points[0] - point0).dot(normal));
             //qDebug("%e %e", contact.points[0][0], contact.points[0][1]);
 
-            QVERIFY( fabs(line.dot(contact.points[0] - point0)) < 1e-10 );
-            QVERIFY( fabs(normal.dot(contact.points[0] - point0)) < 0.02 );
+            QVERIFY( fabs((contact.points[0] - point0).dot(line)) < 1e-10 );
+            QVERIFY( fabs((contact.points[0] - point0).dot(normal)) < 0.02 );
 
         } else if(pointsCount == 2) {
             QFETCH(StepCore::Vector2d, point0);
             QFETCH(StepCore::Vector2d, point1);
 
-            QVERIFY( (fabs(line.dot(contact.points[0] - point0)) < 1e-10 &&
-                      fabs(line.dot(contact.points[1] - point1)) < 1e-10) ||
-                     (fabs(line.dot(contact.points[0] - point1)) < 1e-10 &&
-                      fabs(line.dot(contact.points[1] - point0)) < 1e-10) );
+            QVERIFY( (fabs((contact.points[0] - point0).dot(line)) < 1e-10 &&
+                      fabs((contact.points[1] - point1).dot(line)) < 1e-10) ||
+                     (fabs((contact.points[0] - point1).dot(line)) < 1e-10 &&
+                      fabs((contact.points[1] - point0).dot(line)) < 1e-10) );
 
-            QVERIFY( (fabs(normal.dot(contact.points[0] - point0)) < 0.02 &&
-                      fabs(normal.dot(contact.points[1] - point1)) < 0.02) ||
-                     (fabs(normal.dot(contact.points[0] - point1)) < 0.02 &&
-                      fabs(normal.dot(contact.points[1] - point0)) < 0.02) );
+            QVERIFY( (fabs((contact.points[0] - point0).dot(normal)) < 0.02 &&
+                      fabs((contact.points[1] - point1).dot(normal)) < 0.02) ||
+                     (fabs((contact.points[0] - point1).dot(normal)) < 0.02 &&
+                      fabs((contact.points[1] - point0).dot(normal)) < 0.02) );
         }
     }
 

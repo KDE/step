@@ -389,11 +389,11 @@ void PolygonCreator::fixInertia()
         if(v.size() > 2) {
             for(i=0; i+1<v.size(); ++i) {
                 area_i = (v[i][0]*v[i+1][1] - v[i][1]*v[i+1][0]) / 2;
-                inertia += (v[i].squaredNorm() + v[i].dot(v[i+1]) + v[i+1].squaredNorm())*(area_i/6);
+                inertia += (v[i].squaredNorm() + v[i+1].dot(v[i]) + v[i+1].squaredNorm())*(area_i/6);
                 area += area_i;
             }
             area_i = (v[i][0]*v[0][1] - v[i][1]*v[0][0]) / 2;
-            inertia += (v[i].squaredNorm() + v[i].dot(v[0]) + v[0].squaredNorm())*(area_i/6);
+            inertia += (v[i].squaredNorm() + v[0].dot(v[i]) + v[0].squaredNorm())*(area_i/6);
             area += area_i;
         }
     }

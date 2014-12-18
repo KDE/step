@@ -291,7 +291,7 @@ void Stick::getConstraintsInfo(ConstraintsInfo* info, int offset)
     //qDebug("_restLength=%f", _restLength);
     if(_restLength != 0) {
         info->value[offset] = (p.squaredNorm() - _restLength*_restLength)*0.5;
-        info->derivative[offset] = p.dot(v); 
+        info->derivative[offset] = v.dot(p);
 
         if(p[0] == 0 && p[1] == 0) p[0] = 0.1; //XXX: add epsilon
 
@@ -312,7 +312,7 @@ void Stick::getConstraintsInfo(ConstraintsInfo* info, int offset)
             info->jacobianDerivative.coeffRef(offset, _r1->variablesOffset() + RigidBody::PositionOffset) =(   -v[0]);
             info->jacobianDerivative.coeffRef(offset, _r1->variablesOffset() + RigidBody::PositionOffset+1) =( -v[1]);
             info->jacobianDerivative.coeffRef(offset, _r1->variablesOffset() + RigidBody::AngleOffset) =(
-                                + v[0]*r1[1] - v[1]*r1[0] + _r1->angularVelocity()*p.dot(r1));
+                                + v[0]*r1[1] - v[1]*r1[0] + _r1->angularVelocity()*r1.dot(p));
         }
 
         if(_p2) {
@@ -332,7 +332,7 @@ void Stick::getConstraintsInfo(ConstraintsInfo* info, int offset)
             info->jacobianDerivative.coeffRef(offset, _r2->variablesOffset() + RigidBody::PositionOffset) =(   v[0]);
             info->jacobianDerivative.coeffRef(offset, _r2->variablesOffset() + RigidBody::PositionOffset+1) =( v[1]);
             info->jacobianDerivative.coeffRef(offset, _r2->variablesOffset() + RigidBody::AngleOffset) =(
-                                - v[0]*r2[1] + v[1]*r2[0] - _r2->angularVelocity()*p.dot(r2));
+                                - v[0]*r2[1] + v[1]*r2[0] - _r2->angularVelocity()*r2.dot(p));
         }
 
     } else {

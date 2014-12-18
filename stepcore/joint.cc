@@ -70,5 +70,4 @@ void ConstraintsInfo::clear()
     collisionFlag = false;
 }
 
-
 } // namespace StepCore

@@ -269,7 +269,7 @@ void SoftBody::setAngularVelocity(double angularVelocity)
         SoftBodyParticle* p1 = static_cast<SoftBodyParticle*>(*i1);
         Vector2d r = p1->position() - pos;
         Vector2d n(-r[1], r[0]);
-        double vn = (p1->velocity() - vel).dot(n);
+        double vn = n.dot(p1->velocity() - vel);
         p1->setVelocity(p1->velocity() + (angularVelocity - vn/r.squaredNorm())*n);
     }
 }

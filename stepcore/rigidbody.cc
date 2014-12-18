@@ -141,7 +141,7 @@ void RigidBodyErrors::setAngularMomentumVariance(double angularMomentumVariance)
 
 double RigidBodyErrors::kineticEnergyVariance() const
 {
-    return _velocityVariance.dot(rigidBody()->velocity().cwise().square()) * square(rigidBody()->mass()) +
+    return (rigidBody()->velocity().cwise().square()).dot(_velocityVariance) * square(rigidBody()->mass()) +
            square(rigidBody()->velocity().squaredNorm()/2) * _massVariance +
            _angularVelocityVariance * square(rigidBody()->angularVelocity() * rigidBody()->inertia()) +
            square(square(rigidBody()->angularVelocity())/2) * _inertiaVariance;
@@ -150,7 +150,7 @@ double RigidBodyErrors::kineticEnergyVariance() const
 void RigidBodyErrors::setKineticEnergyVariance(double kineticEnergyVariance)
 {
     double t = kineticEnergyVariance - this->kineticEnergyVariance() +
-              _velocityVariance.dot(rigidBody()->velocity().cwise().square()) * square(rigidBody()->mass());
+              (rigidBody()->velocity().cwise().square()).dot(_velocityVariance) * square(rigidBody()->mass());
     _velocityVariance = t / square(rigidBody()->mass()) / 2 *
                         (rigidBody()->velocity().cwise().square().cwise().inverse());
     if(!std::isfinite(_velocityVariance[0]) || _velocityVariance[0] < 0 ||

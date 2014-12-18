@@ -422,8 +422,7 @@ double GasErrors::rectMeanKineticEnergyVariance() const
         if(pe1) {
             energyVariance +=
                 pe1->massVariance() * square(p1->velocity().squaredNorm()) +
-                pe1->velocityVariance().dot(
-                    (2*p1->mass()*p1->velocity()).cwise().square() );
+                ((2*p1->mass()*p1->velocity()).cwise().square()).dot(pe1->velocityVariance());
         }
 
         ++count;
@@ -482,8 +481,7 @@ double GasErrors::rectTemperatureVariance() const
         if(pe1) {
             temperatureVariance +=
                 pe1->massVariance() * square((p1->velocity() - meanVelocity).squaredNorm()) +
-                pe1->velocityVariance().dot(
-                    (p1->mass()*(p1->velocity() - meanVelocity)).cwise().square() );
+                ((p1->mass()*(p1->velocity() - meanVelocity)).cwise().square()).dot(pe1->velocityVariance());
         }
 
         ++count;
@@ -542,8 +540,7 @@ double GasErrors::rectPressureVariance() const
         if(pe1) {
             pressureVariance +=
                 pe1->massVariance() * square((p1->velocity() - meanVelocity).squaredNorm()) +
-                pe1->velocityVariance().dot(
-                    (p1->mass()*(p1->velocity() - meanVelocity)).cwise().square() );
+                ((p1->mass()*(p1->velocity() - meanVelocity)).cwise().square()).dot(pe1->velocityVariance());
         }
     }
 

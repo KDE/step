@@ -87,7 +87,7 @@ void ParticleErrors::setMomentumVariance(const Vector2d& momentumVariance)
 
 double ParticleErrors::kineticEnergyVariance() const
 {
-    return _velocityVariance.dot(particle()->velocity().cwise().square()) * square(particle()->mass()) +
+    return particle()->velocity().cwise().square().dot(_velocityVariance) * square(particle()->mass()) +
            square(particle()->velocity().squaredNorm()/2) * _massVariance;
 }
 
