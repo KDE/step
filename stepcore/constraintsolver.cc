@@ -96,7 +96,7 @@ int CGConstraintSolver::solve(ConstraintsInfo* info)
             ++fmaxIndex;
         }
     }    
-    ei_constrained_cg(a, c, x, b, f, iter);
+    internal::constrained_cg(a, c, x, b, f, iter);
 
     info->force = info->jacobian.transpose() * x;
 

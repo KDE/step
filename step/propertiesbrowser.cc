@@ -382,7 +382,7 @@ bool PropertiesBrowserModel::setData(const QModelIndex &index, const QVariant &v
                         if(p->userTypeId() == QMetaType::Double) {
                             vv = 0;
                         } else if(p->userTypeId() == qMetaTypeId<StepCore::Vector2d>()) {
-                            StepCore::Vector2d svv(0);
+                            StepCore::Vector2d svv = StepCore::Vector2d::Zero();
                             vv = QVariant::fromValue(svv);
                         /* XXX
                          * } else if(p->userTypeId() == qMetaTypeId<StepCore::Vector2dList >())

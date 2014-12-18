@@ -34,13 +34,12 @@ find_package(KF5 REQUIRED COMPONENTS
     Plotting
 )
 
-find_package(Eigen2 2.0.3 REQUIRED)
+find_package(Eigen3 REQUIRED)
 find_package(GSL)
 find_package(Qalculate)
 
-set_package_properties(EIGEN2 PROPERTIES
-# 		       REQUIRED_VERSION "2.0.3"
-		       DESCRIPTION "Eigen2"
+set_package_properties(EIGEN3 PROPERTIES
+		       DESCRIPTION "Eigen3"
                        URL "http://eigen.tuxfamily.org"
                        TYPE OPTIONAL
                        PURPOSE "Required to build step")
@@ -69,8 +68,9 @@ set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -Wno-unused-local-typedefs")
 set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -Wno-unused-parameter")
 
 
-if (EIGEN2_FOUND)
-   include_directories(${CMAKE_CURRENT_SOURCE_DIR} ${EIGEN2_INCLUDE_DIR})
+if (EIGEN3_FOUND)
+   include_directories(${CMAKE_CURRENT_SOURCE_DIR} ${EIGEN3_INCLUDE_DIR})
+   add_definitions(-DEIGEN2_SUPPORT) #TODO port away from Eigen2-compatability mode
 
    find_package(KF5DocTools REQUIRED)
 
@@ -82,7 +82,7 @@ if (EIGEN2_FOUND)
    # 	   and Force.  And both of these are now inheriting Item, which
    # 	   creates an error. This needs to be sorted out.
    # add_subdirectory(stepcore_tests)
-endif (EIGEN2_FOUND)
+endif (EIGEN3_FOUND)
 
 install(FILES step.appdata.xml DESTINATION ${SHARE_INSTALL_PREFIX}/appdata/)
 
