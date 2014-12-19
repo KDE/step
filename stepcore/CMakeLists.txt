@@ -2,6 +2,7 @@
 set(stepcore_SRCS
     object.cc
     constants.cc
+    body.cc
     world.cc
     solver.cc
     collisionsolver.cc

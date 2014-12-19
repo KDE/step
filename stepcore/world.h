@@ -26,6 +26,7 @@
 #include "types.h"
 #include "util.h"
 #include "object.h"
+#include "body.h"
 #include "vector.h"
 
 #include <vector> // XXX: replace if QT is enabled
@@ -128,67 +129,6 @@ private:
     ItemGroup*    _group;
     ObjectErrors* _objectErrors;
     Color         _color;
-};
-
-/** \ingroup bodies
- *  \brief Interface for bodies
- *
- *  Body is anything that has dynamic variables that require ODE integration
- */
-class Body
-{
-    STEPCORE_OBJECT(Body)
-
-public:
-    Body(): _variablesOffset(0) {}
-    virtual ~Body() {}
-
-    /** Get count of dynamic variables (not including velocities) */
-    virtual int  variablesCount() = 0;
-
-    /** Set positions, velocities and (possibly) its variances using values in arrays and
-     *  also reset accelerations and its variances. Variances should only be copied
-     *  and reseted if positionVariance != NULL. */
-    virtual void setVariables(const double* position, const double* velocity,
-               const double* positionVariance, const double* velocityVariance) = 0;
-
-    /** Copy positions, velocities and (possibly) its variances to arrays.
-     *  Variances should only be copied if positionVariance != NULL. */
-    virtual void getVariables(double* position, double* velocity,
-                     double* positionVariance, double* velocityVariance) = 0;
-
-    /** Add force and (possibly) its variance to force accomulator.
-     *  \note This function is used only by generic constraints handling code,
-     *        force objects should use body-specific functions. */
-    virtual void addForce(const double* force, const double* forceVariance) = 0;
-
-    /** Reset force accomulator and (possibly) its variance to zero.
-     *  Variance should only be reseted if resetVariance == true. */
-    virtual void resetForce(bool resetVariance) = 0;
-
-    /** Copy acceleration (forces left-multiplied by inverse mass)
-     *  and (possibly) its variances to arrays.
-     *  Variances should only be copied if accelerationVariance != NULL. */
-    virtual void getAccelerations(double* acceleration, double* accelerationVariance) = 0;
-
-    /** Get inverse mass and (possibly) its variance matrixes.
-     *  Variance should only be copied of variance != NULL. */
-    virtual void getInverseMass(VectorXd* inverseMass,
-                                DynSparseRowMatrix* variance, int offset) = 0;
-    
-    /** Offset of body's variables in global arrays
-     *  (meaningless if the body is not a part of the world) */
-    int variablesOffset() const { return _variablesOffset; }
-
-private:
-    friend class World;
-
-    /** \internal Set offset of body's variables in global arrays */
-    void setVariablesOffset(int variablesOffset) {
-        _variablesOffset = variablesOffset;
-    }
-
-    int _variablesOffset;
 };
 
 /** \ingroup forces
@@ -296,8 +236,6 @@ public:
 
 /** List of pointers to Item */
 typedef std::vector<Item*>  ItemList;
-/** List of pointers to Body */
-typedef std::vector<Body*>  BodyList;
 /** List of pointers to Force */
 typedef std::vector<Force*> ForceList;
 /** List of pointers to Joint */
