@@ -10,6 +10,8 @@ Legend
     * subclass
       [important members]
 
+----------------------------------------------------------------
+
 * Object	      		Root of the StepCore class hierarchy
   [name]
 
@@ -40,7 +42,7 @@ Legend
 	 * World		The root object for everything visible
 	   [time, timeScale, bodies, forces, joints, solvers...]
 
-* Body{body.h}			Anything that has dynamic variables that 
+* Body{world.h}			Anything that has dynamic variables that 
 				require ODE integration
    * Particle(Item, Body)
       * ChargedParticle
