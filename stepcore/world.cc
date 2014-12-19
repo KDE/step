@@ -27,13 +27,9 @@
 namespace StepCore
 {
 
-STEPCORE_META_OBJECT(Item, QT_TRANSLATE_NOOP("ObjectClass", "Item"), QT_TR_NOOP("Item"), MetaObject::ABSTRACT, STEPCORE_SUPER_CLASS(Object),
-        STEPCORE_PROPERTY_RW(StepCore::Color, color, QT_TRANSLATE_NOOP("PropertyName", "color"), STEPCORE_UNITS_NULL, QT_TR_NOOP("Item color"), color, setColor))
 STEPCORE_META_OBJECT(Force, QT_TRANSLATE_NOOP("ObjectClass", "Force"), QT_TR_NOOP("Force"), MetaObject::ABSTRACT,,)
 STEPCORE_META_OBJECT(Joint, QT_TRANSLATE_NOOP("ObjectClass", "Joint"), QT_TR_NOOP("Joint"), MetaObject::ABSTRACT,,)
 STEPCORE_META_OBJECT(Tool, QT_TRANSLATE_NOOP("ObjectClass", "Tool"), QT_TR_NOOP("Tool"), MetaObject::ABSTRACT,,)
-
-STEPCORE_META_OBJECT(ObjectErrors, QT_TRANSLATE_NOOP("ObjectClass", "ObjectErrors"), QT_TR_NOOP("ObjectErrors"), MetaObject::ABSTRACT, STEPCORE_SUPER_CLASS(Object),)
 
 STEPCORE_META_OBJECT(ItemGroup, QT_TRANSLATE_NOOP("ObjectClass", "ItemGroup"), QT_TR_NOOP("ItemGroup"), 0, STEPCORE_SUPER_CLASS(Item),)
 
@@ -42,32 +38,6 @@ STEPCORE_META_OBJECT(World, QT_TRANSLATE_NOOP("ObjectClass", "World"), QT_TR_NOO
         STEPCORE_PROPERTY_RW  (double, timeScale, QT_TR_NOOP("timeScale"), STEPCORE_UNITS_1, QT_TR_NOOP("Simulation speed scale"), timeScale, setTimeScale)
         STEPCORE_PROPERTY_RW  (bool, errorsCalculation, QT_TR_NOOP("errorsCalculation"), STEPCORE_UNITS_NULL,
                         QT_TR_NOOP("Enable global error calculation"), errorsCalculation, setErrorsCalculation))
-
-Item& Item::operator=(const Item& item)
-{
-    Object::operator=(item);
-
-    _world = item._world;
-    _group = item._group;
-
-    if(item._objectErrors) {
-        _objectErrors = static_cast<ObjectErrors*>(
-            item._objectErrors->metaObject()->cloneObject(*item._objectErrors) );
-        _objectErrors->setOwner(this);
-    } else {
-        _objectErrors = NULL;
-    }
-
-    _color = item._color;
-
-    return *this;
-}
-
-ObjectErrors* Item::objectErrors()
-{
-    if(!_objectErrors) _objectErrors = createObjectErrors();
-    return _objectErrors;
-}
 
 ItemGroup::ItemGroup(const ItemGroup& group)
     : Item()

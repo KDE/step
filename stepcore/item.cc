@@ -17,14 +17,45 @@
    Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
 */
 
-#include "body.h"
+
+#include "objecterrors.h"
+#include "item.h"
 
 
 namespace StepCore
 {
 
-STEPCORE_META_OBJECT(Body, QT_TRANSLATE_NOOP("ObjectClass", "Body"), QT_TR_NOOP("Body"),
-		     MetaObject::ABSTRACT,,)
+STEPCORE_META_OBJECT(Item, QT_TRANSLATE_NOOP("ObjectClass", "Item"), QT_TR_NOOP("Item"),
+		     MetaObject::ABSTRACT, STEPCORE_SUPER_CLASS(Object),
+        STEPCORE_PROPERTY_RW(StepCore::Color, color, QT_TRANSLATE_NOOP("PropertyName", "color"),
+			     STEPCORE_UNITS_NULL, QT_TR_NOOP("Item color"), color, setColor))
+
+Item& Item::operator=(const Item& item)
+{
+    Object::operator=(item);
+
+    _world = item._world;
+    _group = item._group;
+
+    if(item._objectErrors) {
+        _objectErrors = static_cast<ObjectErrors*>(
+            item._objectErrors->metaObject()->cloneObject(*item._objectErrors) );
+        _objectErrors->setOwner(this);
+    } else {
+        _objectErrors = NULL;
+    }
+
+    _color = item._color;
+
+    return *this;
+}
+
+ObjectErrors* Item::objectErrors()
+{
+    if(!_objectErrors) _objectErrors = createObjectErrors();
+    return _objectErrors;
+}
+
 
 
 } // namespace StepCore

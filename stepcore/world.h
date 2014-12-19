@@ -26,7 +26,9 @@
 #include "types.h"
 #include "util.h"
 #include "object.h"
+#include "item.h"
 #include "body.h"
+
 #include "vector.h"
 
 #include <vector> // XXX: replace if QT is enabled
@@ -43,93 +45,6 @@ class Item;
 class ItemGroup;
 class CollisionSolver;
 class ConstraintSolver;
-
-/** \ingroup errors
- *  \brief Base class for all errors objects
- */
-class ObjectErrors: public Object
-{
-    STEPCORE_OBJECT(ObjectErrors)
-
-public:
-    /** Constructs ObjectErrors */
-    ObjectErrors(Item* owner = NULL): _owner(owner) {}
-
-    /** Get the owner of ObjectErrors */
-    Item* owner() const { return _owner; }
-    /** Set the owner of ObjectErrors */
-    void setOwner(Item* owner) { _owner = owner; }
-
-private:
-    Item* _owner;
-};
-
-/** \ingroup world
- *  \brief The root class for any world items (bodies and forces)
- */
-class Item : public Object
-{
-    /*Q_OBJECT*/
-    STEPCORE_OBJECT(Item)
-
-public:
-    /** Constructs Item */
-    Item(const QString& name = QString())
-        : Object(name), _world(NULL), _group(NULL),
-          _objectErrors(NULL), _color(0xff000000) {}
-    /** Constructs a copy of item */
-    Item(const Item& item) : Object() { *this = item; }
-    /** Destroys Item */
-    virtual ~Item() { delete _objectErrors; }
-
-    /** Assignment operator (copies objectErrors if necessary) */
-    Item& operator=(const Item& item);
-
-    /** Set/change pointer to World in which this object lives */
-    virtual void setWorld(World* world) { _world = world; }
-
-    /** Get pointer to World in which this object lives */
-    World* world() const { return _world; }
-
-    /** Set/change pointer to ItemGroup in which this object lives */
-    virtual void setGroup(ItemGroup* group) { _group = group; }
-
-    /** Get pointer to ItemGroup in which this object lives */
-    ItemGroup* group() const { return _group; }
-
-    /** Get ObjectErrors only if it already exists */
-    ObjectErrors* tryGetObjectErrors() const { return _objectErrors; }
-
-    /** Get existing ObjectErrors or try to create it */
-    ObjectErrors* objectErrors();
-
-    /** Delete objectErrors */
-    void deleteObjectErrors() { delete _objectErrors; _objectErrors = NULL; }
-
-    /** Get item color (for use in GUI) */
-    Color color() const { return _color; }
-
-    /** Set item color (for use in GUI) */
-    void setColor(Color color) { _color = color; }
-
-    /** Called by the World when any item is about to be removed
-     *  from the world
-     *  \param item Pointer to item about to be removed
-     *  \todo XXX rename
-     */
-    virtual void worldItemRemoved(Item* item STEPCORE_UNUSED) {}
-
-protected:
-    /** \internal Creates specific ObjectErrors-derived class
-     *  (to be reimplemented in derived classes) */
-    virtual ObjectErrors* createObjectErrors() { return NULL; } // XXX: rename to createObjectVariances
-
-private:
-    World*        _world;
-    ItemGroup*    _group;
-    ObjectErrors* _objectErrors;
-    Color         _color;
-};
 
 /** \ingroup forces
  *  \brief Interface for forces
@@ -234,8 +149,6 @@ public:
     virtual ~Tool() {}
 };
 
-/** List of pointers to Item */
-typedef std::vector<Item*>  ItemList;
 /** List of pointers to Force */
 typedef std::vector<Force*> ForceList;
 /** List of pointers to Joint */

@@ -17,14 +17,15 @@
    Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
 */
 
-#include "body.h"
+#include "objecterrors.h"
 
 
 namespace StepCore
 {
 
-STEPCORE_META_OBJECT(Body, QT_TRANSLATE_NOOP("ObjectClass", "Body"), QT_TR_NOOP("Body"),
-		     MetaObject::ABSTRACT,,)
+STEPCORE_META_OBJECT(ObjectErrors, QT_TRANSLATE_NOOP("ObjectClass", "ObjectErrors"), QT_TR_NOOP("ObjectErrors"),
+		     MetaObject::ABSTRACT, STEPCORE_SUPER_CLASS(Object),)
+
 
 
 } // namespace StepCore
