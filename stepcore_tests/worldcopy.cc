@@ -21,8 +21,7 @@
 #include <stepcore/solver.h>
 #include <stepcore/types.h>
 
-class WorldCopyTestItem: public StepCore::Item,
-                         public StepCore::Body,
+class WorldCopyTestItem: public StepCore::Body,
                          public StepCore::Force
 {
     STEPCORE_OBJECT(WorldCopyTestItem)

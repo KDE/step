@@ -30,7 +30,7 @@ Legend
          * GslSolver
          * GslAdaptiveSolver
 
-   * Item{world.h}		Root class for world items (bodies, forces)
+   * Item{item.h}		Root class for world items (bodies, forces)
      [world, group, objectErrors, color]
 
       * NoteImage		Image embedded in a Note
@@ -42,17 +42,18 @@ Legend
 	 * World		The root object for everything visible
 	   [time, timeScale, bodies, forces, joints, solvers...]
 
-* Body{world.h}			Anything that has dynamic variables that 
+      * Body{body.h}			Anything that has dynamic variables that 
 				require ODE integration
-   * Particle(Item, Body)
-      * ChargedParticle
-      * GasParticle
-   * RigidBody(Item, Body)
-      * Disk
-      * BasePolygon
-         * Box
-         * Polygon
-   * Plane(Item, Body)		Unmovable rigid plane
+         * Particle(Item, Body)
+            * ChargedParticle
+            * GasParticle
+         * RigidBody(Item, Body)
+            * Disk
+            * BasePolygon
+               * Box
+               * Polygon
+         * Plane(Item, Body)		Unmovable rigid plane
+
 
 * Force{world.h}		Anything that acts upon bodies changing 
 				derivatives of dynamic variables

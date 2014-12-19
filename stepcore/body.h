@@ -28,18 +28,11 @@
 #include <vector> // XXX: Replace if Qt is enabled.
 
 #include "types.h"
-#include "object.h"
+#include "item.h"
 
 
 namespace StepCore
 {
-
-//class World;
-//class Solver;
-//class Item;
-//class ItemGroup;
-//class CollisionSolver;
-//class ConstraintSolver;
 
 
 /** \ingroup bodies
@@ -47,12 +40,15 @@ namespace StepCore
  *
  *  Body is anything that has dynamic variables that require ODE integration
  */
-class Body
+class Body : public Item
 {
     STEPCORE_OBJECT(Body)
 
 public:
-    Body(): _variablesOffset(0) {}
+    Body(const QString& name = QString())
+        : Item(name)
+	, _variablesOffset(0)
+    {}
     virtual ~Body() {}
 
     /** Get count of dynamic variables (not including velocities) */
