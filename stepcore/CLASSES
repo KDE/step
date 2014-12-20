@@ -55,16 +55,16 @@ Legend
          * Plane(Item, Body)	Unmovable rigid plane
 
 
-* Force{world.h}		Anything that acts upon bodies changing 
+      * Force{world.h}		Anything that acts upon bodies changing 
 				derivatives of dynamic variables
-   * ColoumbForce(Item, Force) 	Force for charged particles.
-   * GasLJForce(Item, Force) 	Force within gasses
-   * GravitationForce(Item, Force) Force between particles
-   * WeightForce(Item, Force)   Force between massive bodies (particles)
-   * LinearMotor(Item, Force)   Applies a force on a position of a body
-   * CircularMotor(Item, Force) Applies a torque to a body
-   * Spring(Item, Force)
-      * SoftBodySpring
+         * CoulombForce(Item, Force) 	Force for charged particles.
+         * GasLJForce(Item, Force) 	Force within gasses
+         * GravitationForce(Item, 	Force) Force between particles
+         * WeightForce(Item, Force)   	Force between massive bodies (particles)
+         * LinearMotor(Item, Force)   	Applies a force on a position of a body
+         * CircularMotor(Item, Force) 	Applies a torque to a body
+         * Spring(Item, Force)
+            * SoftBodySpring
 
 
 * Joint{world.h}

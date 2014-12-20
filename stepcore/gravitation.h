@@ -77,7 +77,7 @@ protected:
  *  \todo Add interface for massive bodies, support bodies with
  *        distributed mass
  */
-class GravitationForce: public Item, public Force
+class GravitationForce : public Force
 {
     STEPCORE_OBJECT(GravitationForce)
 
@@ -142,7 +142,7 @@ protected:
  *
  *  \todo Add interface for massive bodies, support bodies with distributed mass
  */
-class WeightForce: public Item, public Force
+class WeightForce : public Force
 {
     STEPCORE_OBJECT(WeightForce)
 

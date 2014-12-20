@@ -96,7 +96,7 @@ protected:
  *  \f$\mbox{cutoff}\f$ is a cut-off distance (can be set to infinity)
  *
  */
-class GasLJForce: public Item, public Force
+class GasLJForce : public Force
 {
     STEPCORE_OBJECT(GasLJForce)
 

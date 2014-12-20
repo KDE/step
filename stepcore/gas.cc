@@ -88,7 +88,10 @@ GasLJForce* GasLJForceErrors::gasLJForce() const
 }
 
 GasLJForce::GasLJForce(double depth, double rmin, double cutoff)
-    : _depth(depth), _rmin(rmin), _cutoff(cutoff)
+    : Force()
+    , _depth(depth)
+    , _rmin(rmin)
+    , _cutoff(cutoff)
 {
     calcABC();
 }

@@ -70,9 +70,10 @@ Spring* SpringErrors::spring() const
 }
 
 Spring::Spring(double restLength, double stiffness, double damping, Item* body1, Item* body2)
-    : _restLength(restLength),
-      _stiffness(stiffness), _damping(damping),
-      _localPosition1(0,0), _localPosition2(0,0)
+    : Force()
+    , _restLength(restLength)
+    , _stiffness(stiffness), _damping(damping)
+    , _localPosition1(0,0), _localPosition2(0,0)
 {
     setColor(0xff00ff00);
     setBody1(body1);

@@ -40,11 +40,14 @@ namespace StepCore
  *
  *  Force is anything that acts upon bodies changing derivatives of dynamic variables
  */
-class Force
+class Force : public Item
 {
     STEPCORE_OBJECT(Force)
 
 public:
+    Force(const QString& name = QString())
+        : Item(name)
+    {}
     virtual ~Force() {}
 
     /** Calculate force. Bodies can be accessed through

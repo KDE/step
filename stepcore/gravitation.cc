@@ -56,7 +56,8 @@ WeightForce* WeightForceErrors::weightForce() const
 }
 
 GravitationForce::GravitationForce(double gravitationConst)
-    : _gravitationConst(gravitationConst)
+    : Force()
+    , _gravitationConst(gravitationConst)
 {
     gravitationForceErrors()->setGravitationConstVariance(
         square(Constants::GravitationalError));
@@ -98,7 +99,8 @@ void GravitationForce::calcForce(bool calcVariances)
 }
 
 WeightForce::WeightForce(double weightConst)
-    : _weightConst(weightConst)
+    : Force()
+    , _weightConst(weightConst)
 {
     weightForceErrors()->setWeightConstVariance(
         square(Constants::WeightAccelError));

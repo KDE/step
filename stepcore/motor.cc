@@ -39,7 +39,9 @@ STEPCORE_META_OBJECT(CircularMotor, QT_TRANSLATE_NOOP("ObjectClass", "CircularMo
 
 
 LinearMotor::LinearMotor(Object* body, const Vector2d& localPosition, Vector2d forceValue)
-    : _localPosition(localPosition), _forceValue(forceValue)
+    : Force()
+    , _localPosition(localPosition)
+    , _forceValue(forceValue)
 {
     setBody(body);
     setColor(0xff0000ff);
@@ -100,7 +102,9 @@ void LinearMotor::setWorld(World* world)
 
 //////////////////////////////////////////////////////////////////////////
 CircularMotor::CircularMotor(Object* body, const Vector2d& localPosition, double torqueValue)
-    : _localPosition(localPosition), _torqueValue(torqueValue)
+    : Force()
+    , _localPosition(localPosition)
+    , _torqueValue(torqueValue)
 {
     setBody(body);
     setColor(0xff0000ff);
