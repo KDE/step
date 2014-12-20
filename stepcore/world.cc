@@ -37,49 +37,6 @@ STEPCORE_META_OBJECT(World, QT_TRANSLATE_NOOP("ObjectClass", "World"), QT_TR_NOO
         STEPCORE_PROPERTY_RW  (bool, errorsCalculation, QT_TR_NOOP("errorsCalculation"), STEPCORE_UNITS_NULL,
                         QT_TR_NOOP("Enable global error calculation"), errorsCalculation, setErrorsCalculation))
 
-void ConstraintsInfo::setDimension(int newVariablesCount, int newConstraintsCount, int newContactsCount)
-{
-//     std::cerr << "   ConstraintsInfo::setDimension("
-//       << newVariablesCount <<","<< newConstraintsCount <<"," << newContactsCount << ")\n";
-    
-    int totalConstraintsCount = newConstraintsCount+newContactsCount;
-
-    jacobian.resize(totalConstraintsCount, newVariablesCount);
-    jacobianDerivative.resize(totalConstraintsCount, newVariablesCount);
-    inverseMass.resize(newVariablesCount);
-    force.resize(newVariablesCount);
-    value.resize(totalConstraintsCount);
-    derivative.resize(totalConstraintsCount);
-    if (totalConstraintsCount>0)
-    {
-      derivative.setZero();
-      value.setZero();
-    }
-    forceMin.resize(totalConstraintsCount);
-    forceMax.resize(totalConstraintsCount);
-    
-    contactsCount = newContactsCount;
-    constraintsCount = newConstraintsCount;
-    variablesCount = newVariablesCount;
-}
-
-void ConstraintsInfo::clear()
-{
-    jacobian.setZero();
-    jacobianDerivative.setZero();
-    if(inverseMass.size()>0)
-    {
-      inverseMass.setZero();
-    }
-    if(forceMin.size()>0)
-    {
-      forceMin.fill(-HUGE_VAL);
-      forceMax.fill(HUGE_VAL);
-    }
-
-    collisionFlag = false;
-}
-
 World::World()
     : _time(0), _timeScale(1), _errorsCalculation(false),
       _solver(NULL), _collisionSolver(NULL), _constraintSolver(NULL),
