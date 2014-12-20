@@ -2,15 +2,19 @@
 set(stepcore_SRCS
     object.cc
     constants.cc
+
+    # Base objects
     item.cc
     body.cc
     objecterrors.cc
+    force.cc
+
+    # Storage objects
     world.cc
     solver.cc
     collisionsolver.cc
     constraintsolver.cc
     factory.cc
-    xmlfile.cc
     particle.cc
     rigidbody.cc
     gas.cc
@@ -22,6 +26,7 @@ set(stepcore_SRCS
     joint.cc
     eulersolver.cc
     tool.cc
+    xmlfile.cc
 )
 
 if(STEPCORE_WITH_GSL)

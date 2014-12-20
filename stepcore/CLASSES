@@ -22,7 +22,7 @@ Legend
      [=0]
       * CGConstraintSolver
       	[]
-   * Solver		Generic Solver interface
+   * Solver			Generic Solver interface
       * GenericEulerSolver	Solver of ordinary diff equations
          * EulerSolver
          * AdaptiveEulerSolver
@@ -42,7 +42,7 @@ Legend
 	 * World		The root object for everything visible
 	   [time, timeScale, bodies, forces, joints, solvers...]
 
-      * Body{body.h}			Anything that has dynamic variables that 
+      * Body{body.h}		Anything that has dynamic variables that 
 				require ODE integration
          * Particle(Item, Body)
             * ChargedParticle
@@ -52,7 +52,7 @@ Legend
             * BasePolygon
                * Box
                * Polygon
-         * Plane(Item, Body)		Unmovable rigid plane
+         * Plane(Item, Body)	Unmovable rigid plane
 
 
 * Force{world.h}		Anything that acts upon bodies changing 

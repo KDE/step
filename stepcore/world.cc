@@ -20,6 +20,7 @@
 #include "solver.h"
 #include "collisionsolver.h"
 #include "constraintsolver.h"
+
 #include <algorithm>
 #include <cmath>
 #include <QtGlobal>
@@ -27,7 +28,7 @@
 namespace StepCore
 {
 
-STEPCORE_META_OBJECT(Force, QT_TRANSLATE_NOOP("ObjectClass", "Force"), QT_TR_NOOP("Force"), MetaObject::ABSTRACT,,)
+
 STEPCORE_META_OBJECT(Joint, QT_TRANSLATE_NOOP("ObjectClass", "Joint"), QT_TR_NOOP("Joint"), MetaObject::ABSTRACT,,)
 STEPCORE_META_OBJECT(Tool, QT_TRANSLATE_NOOP("ObjectClass", "Tool"), QT_TR_NOOP("Tool"), MetaObject::ABSTRACT,,)
 

@@ -28,6 +28,7 @@
 #include "object.h"
 #include "item.h"
 #include "body.h"
+#include "force.h"
 
 #include "vector.h"
 
@@ -46,23 +47,6 @@ class ItemGroup;
 class CollisionSolver;
 class ConstraintSolver;
 
-/** \ingroup forces
- *  \brief Interface for forces
- *
- *  Force is anything that acts upon bodies changing derivatives of dynamic variables
- */
-class Force
-{
-    STEPCORE_OBJECT(Force)
-
-public:
-    virtual ~Force() {}
-
-    /** Calculate force. Bodies can be accessed through
-     * this->world()->bodies()
-     */
-    virtual void calcForce(bool calcVariances) = 0;
-};
 
 /** \ingroup joints
  *  Constraints information structure
@@ -149,8 +133,6 @@ public:
     virtual ~Tool() {}
 };
 
-/** List of pointers to Force */
-typedef std::vector<Force*> ForceList;
 /** List of pointers to Joint */
 typedef std::vector<Joint*> JointList;
 
