@@ -57,13 +57,13 @@ Legend
 
       * Force{world.h}		Anything that acts upon bodies changing 
 				derivatives of dynamic variables
-         * CoulombForce(Item, Force) 	Force for charged particles.
-         * GasLJForce(Item, Force) 	Force within gasses
-         * GravitationForce(Item, 	Force) Force between particles
-         * WeightForce(Item, Force)   	Force between massive bodies (particles)
-         * LinearMotor(Item, Force)   	Applies a force on a position of a body
-         * CircularMotor(Item, Force) 	Applies a torque to a body
-         * Spring(Item, Force)
+         * CoulombForce 	Force for charged particles.
+         * GasLJForce 		Force within gasses
+         * GravitationForce 	Force between particles
+         * WeightForce   	Force between massive bodies (particles)
+         * LinearMotor   	Applies a force on a position of a body
+         * CircularMotor 	Applies a torque to a body
+         * Spring
             * SoftBodySpring
 
 
