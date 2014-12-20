@@ -9,6 +9,7 @@ set(stepcore_SRCS
     objecterrors.cc
     force.cc
     joint.cc
+    itemgroup.cc
 
     # Storage objects
     world.cc

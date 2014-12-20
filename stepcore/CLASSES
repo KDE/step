@@ -5,7 +5,7 @@ values in the other classes.
 Legend
 
  * ClassName{filename}		Short explanation
-   [=0] 			This class contains pure virtual member functions.
+   [=0] 			This class has pure virtual member functions.
 
     * subclass
       [important members]
@@ -23,6 +23,7 @@ Legend
       * CGConstraintSolver
       	[]
    * Solver			Generic Solver interface
+     [=0]
       * GenericEulerSolver	Solver of ordinary diff equations
          * EulerSolver
          * AdaptiveEulerSolver
@@ -33,9 +34,10 @@ Legend
    * Item{item.h}		Root class for world items (bodies, forces)
      [world, group, objectErrors, color]
 
-      * NoteImage		Image embedded in a Note
+      * NoteImage{tool.h}	Image embedded in a Note
          * NoteFormula		LaTeX formula embedded in a Note
-      * ItemGroup
+
+      * ItemGroup{itemgroup.h}
       	[items]
          * Gas			Group of GasParticle and a Force
          * SoftBody		Group of SoftBodyParticles and SoftBodySprings
@@ -56,7 +58,7 @@ Legend
 
 
       * Force			Anything that acts upon bodies changing 
-				derivatives of dynamic variables
+	[=0]			derivatives of dynamic variables
          * CoulombForce 	Force for charged particles.
          * GasLJForce 		Force within gasses
          * GravitationForce 	Force between particles
@@ -68,7 +70,7 @@ Legend
 
 
       * Joint
-        []
+        [=0]
          * Anchor		Fixes the position of a body
          * Pin			Fixes the position of a a given point of a body to another body
          * Stick		Fixed distance between two points on particles or rigid bodies
@@ -88,7 +90,7 @@ Auxiliary classes
 * Contact	  		defines contact between two bodies
   				Used by CollisionSolver.
 
-* ConstraintsInfo{world.h}	defines ...
+* ConstraintsInfo{world.h}	defines constraints between objects
   				Used by ConstraintSolver
   [...]
 
