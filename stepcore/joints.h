@@ -35,7 +35,7 @@ class RigidBody;
 /** \ingroup joints
  *  \brief Fixes position of the body
  */
-class Anchor: public Item, public Joint
+class Anchor : public Joint
 {
     STEPCORE_OBJECT(Anchor)
         
@@ -76,7 +76,7 @@ protected:
 /** \ingroup joints
  *  \brief Fixes position of a given point on the body
  */
-class Pin: public Item, public Joint
+class Pin : public Joint
 {
     STEPCORE_OBJECT(Pin)
 
@@ -118,7 +118,7 @@ protected:
 /** \ingroup joints
  *  \brief Massless stick: fixed distance between two points on particles or rigid bodies
  */
-class Stick: public Item, public Joint
+class Stick : public Joint
 {
     STEPCORE_OBJECT(Stick)
 

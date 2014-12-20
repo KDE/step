@@ -25,8 +25,10 @@
 #define STEPCORE_JOINT_H
 
 
+// stdc++
 #include <vector> // XXX: Replace if Qt is enabled.
 
+// Stepcore
 #include "types.h"
 #include "item.h"
 
@@ -82,7 +84,7 @@ private:
 /** \ingroup joints
  *  \brief Interface for joints
  */
-class Joint
+class Joint : public Item
 {
     STEPCORE_OBJECT(Joint)
 

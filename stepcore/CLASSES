@@ -67,11 +67,12 @@ Legend
             * SoftBodySpring
 
 
-* Joint{world.h}
-  []
-   * Anchor(Item, Joint)	Fixes the position of a body
-   * Pin(Item, Joint)		Fixes the position of a a given point of a body
-   * Stick(Item, Joint)		Fixed distance between two points on particles or rigid bodies
+      * Joint
+        []
+         * Anchor		Fixes the position of a body
+         * Pin			Fixes the position of a a given point of a body to another body
+         * Stick		Fixed distance between two points on particles or rigid bodies
+            * Rope	 	Maximum distance between two points on particles or rigid bodies
 
 * Tool  			Utilities for control or information retrieval
    * Note(ItemGroup, Tool) 	Textual Note
