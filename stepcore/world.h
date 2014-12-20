@@ -23,17 +23,23 @@
 #ifndef STEPCORE_WORLD_H
 #define STEPCORE_WORLD_H
 
+
+// stdc++
+#include <vector> // XXX: replace if QT is enabled
+
+// Qt
+#include <QHash>
+
+// Stepcore
 #include "types.h"
 #include "util.h"
+#include "vector.h"
 #include "object.h"
 #include "item.h"
 #include "body.h"
 #include "force.h"
+#include "joint.h"
 
-#include "vector.h"
-
-#include <vector> // XXX: replace if QT is enabled
-#include <QHash>
 
 // TODO: split this file
 
@@ -48,78 +54,6 @@ class CollisionSolver;
 class ConstraintSolver;
 
 
-/** \ingroup joints
- *  Constraints information structure
- *  XXX: Move it to constraintsolver.h
- */
-struct ConstraintsInfo
-{
-    int                variablesCount;      ///< Number of dynamic variables
-    int                constraintsCount;    ///< Number of constraints equations
-    int                contactsCount;       ///< Number of additional constrains 
-                                            ///< equations due to contacts
-
-    VectorXd           value;               ///< Current constarints values (amount of brokenness)
-    VectorXd           derivative;          ///< Time-derivative of constraints values
-    DynSparseRowMatrix jacobian;            ///< Position-derivative of constraints values
-    DynSparseRowMatrix jacobianDerivative;  ///< Time-derivative of constraintsJacobian
-    VectorXd           inverseMass;         ///< Diagonal coefficients of the inverse mass matrix of the system
-
-    MappedVector       position;            ///< Positions of the bodies
-    MappedVector       velocity;            ///< Velocities of the bodies
-    MappedVector       acceleration;        ///< Accelerations of the bodies before applying constraints
-
-    VectorXd           forceMin;            ///< Constraints force lower limit
-    VectorXd           forceMax;            ///< Constraints force upper limit
-
-    VectorXd           force;               ///< Resulting constraints force
-
-    bool               collisionFlag;       ///< True if there is a collision to be resolved
-
-    ConstraintsInfo(): variablesCount(0), constraintsCount(0), contactsCount(0),
-                       position(0,0), velocity(0,0), acceleration(0,0) {}
-
-    /** Set variablesCount, constraintsCount and reset contactsCount,
-     *  resize all arrays appropriately */
-    void setDimension(int newVariablesCount, int newConstraintsCount, int newContactsCount = 0);
-
-    /** Clear the structure */
-    void clear();
-
-private:
-    ConstraintsInfo(const ConstraintsInfo&);
-    ConstraintsInfo& operator=(const ConstraintsInfo&);
-};
-
-/** \ingroup joints
- *  \brief Interface for joints
- */
-class Joint
-{
-    STEPCORE_OBJECT(Joint)
-
-public:
-    virtual ~Joint() {}
-
-    /** Get count of constraints */
-    virtual int constraintsCount() = 0;
-
-    /** Fill the part of constraints information structure starting at offset */
-    virtual void getConstraintsInfo(ConstraintsInfo* info, int offset) = 0;
-
-#if 0
-    /** Get current constraints value (amaunt of brokenness) and its derivative */
-    virtual void getConstraints(double* value, double* derivative) = 0;
-
-    /** Get force limits, default is no limits at all */
-    virtual void getForceLimits(double* forceMin STEPCORE_UNUSED, double* forceMax STEPCORE_UNUSED) {}
-
-    /** Get constraints jacobian (space-derivatives of constraint value),
-     *  its derivative and product of inverse mass matrix by transposed jacobian (wjt) */
-    virtual void getJacobian(GmmSparseRowMatrix* value, GmmSparseRowMatrix* derivative, int offset) = 0;
-#endif
-};
-
 /** \ingroup tools
  *  \brief Interface for tools
  *
@@ -132,9 +66,6 @@ class Tool
 public:
     virtual ~Tool() {}
 };
-
-/** List of pointers to Joint */
-typedef std::vector<Joint*> JointList;
 
 /** \ingroup world
  *  \brief Groups several items together

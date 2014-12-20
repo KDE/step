@@ -44,18 +44,18 @@ Legend
 
       * Body{body.h}		Anything that has dynamic variables that 
 				require ODE integration
-         * Particle(Item, Body)
+         * Particle
             * ChargedParticle
             * GasParticle
-         * RigidBody(Item, Body)
+         * RigidBody
             * Disk
             * BasePolygon
                * Box
                * Polygon
-         * Plane(Item, Body)	Unmovable rigid plane
+         * Plane		Unmovable rigid plane
 
 
-      * Force{world.h}		Anything that acts upon bodies changing 
+      * Force			Anything that acts upon bodies changing 
 				derivatives of dynamic variables
          * CoulombForce 	Force for charged particles.
          * GasLJForce 		Force within gasses

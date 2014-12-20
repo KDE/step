@@ -33,7 +33,7 @@
 #include <stepcore/eulersolver.h>
 #include <stepcore/collisionsolver.h>
 #include <stepcore/constraintsolver.h>
-#include <stepcore/joint.h>
+#include <stepcore/joints.h>
 #include <stepcore/tool.h>
 #include <stepcore/types.h>
 
