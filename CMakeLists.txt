@@ -33,7 +33,7 @@ find_package(KF5 REQUIRED COMPONENTS
     NewStuff
     Plotting
 )
-
+find_package(KF5DocTools REQUIRED)
 find_package(Eigen3 REQUIRED)
 find_package(GSL)
 find_package(Qalculate)
@@ -67,22 +67,16 @@ set(STEP_WITH_QALCULATE ${QALCULATE_FOUND} CACHE BOOL "Enable unit conversion su
 set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -Wno-unused-local-typedefs")
 set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -Wno-unused-parameter")
 
+include_directories(${CMAKE_CURRENT_SOURCE_DIR} ${EIGEN3_INCLUDE_DIR})
+add_definitions(-DEIGEN2_SUPPORT_STAGE30_FULL_EIGEN3_API) #TODO port away from Eigen2-compatability mode
 
-if (EIGEN3_FOUND)
-   include_directories(${CMAKE_CURRENT_SOURCE_DIR} ${EIGEN3_INCLUDE_DIR})
-   add_definitions(-DEIGEN2_SUPPORT_STAGE30_FULL_EIGEN3_API) #TODO port away from Eigen2-compatability mode
-
-   find_package(KF5DocTools REQUIRED)
-
-   add_subdirectory(doc)
-   add_subdirectory(stepcore)
-   add_subdirectory(step)
-
-   # Note: Disabled temporarily because WorldCopyTestSolver inherits both Body
-   # 	   and Force.  And both of these are now inheriting Item, which
-   # 	   creates an error. This needs to be sorted out.
-   # add_subdirectory(stepcore_tests)
-endif (EIGEN3_FOUND)
+add_subdirectory(doc)
+add_subdirectory(stepcore)
+add_subdirectory(step)
+# Note: Disabled temporarily because WorldCopyTestSolver inherits both Body
+# 	   and Force.  And both of these are now inheriting Item, which
+# 	   creates an error. This needs to be sorted out.
+# add_subdirectory(stepcore_tests)
 
 install(FILES step.appdata.xml DESTINATION ${SHARE_INSTALL_PREFIX}/appdata/)
 
