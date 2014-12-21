@@ -19,7 +19,7 @@
 #ifndef STEPCORE_VECTOR_H
 #define STEPCORE_VECTOR_H
 
-#include <Eigen/Array>
+#include <Eigen/Core>
 #include <QMetaType>
 
 namespace StepCore
