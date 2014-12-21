@@ -23,7 +23,7 @@
 #ifndef STEPCORE_SPRING_H
 #define STEPCORE_SPRING_H
 
-#include "world.h"
+#include "force.h"
 #include "object.h"
 #include "particle.h"
 #include "rigidbody.h"
@@ -126,7 +126,7 @@ protected:
  *  
  *  \todo how to move setBody1() and setBody2() to PairForce ?
  */
-class Spring: public Item, public Force
+class Spring : public Force
 {
     STEPCORE_OBJECT(Spring)
 

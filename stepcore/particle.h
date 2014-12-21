@@ -100,7 +100,7 @@ protected:
 /** \ingroup bodies
  *  \brief Particle with mass
  */
-class Particle: public Item, public Body
+class Particle: public Body
 {
     STEPCORE_OBJECT(Particle)
 

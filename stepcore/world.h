@@ -23,13 +23,24 @@
 #ifndef STEPCORE_WORLD_H
 #define STEPCORE_WORLD_H
 
+
+// stdc++
+#include <vector> // XXX: replace if QT is enabled
+
+// Qt
+#include <QHash>
+
+// Stepcore
 #include "types.h"
 #include "util.h"
-#include "object.h"
 #include "vector.h"
+#include "object.h"
+#include "item.h"
+#include "body.h"
+#include "force.h"
+#include "joint.h"
+#include "itemgroup.h"
 
-#include <vector> // XXX: replace if QT is enabled
-#include <QHash>
 
 // TODO: split this file
 
@@ -39,247 +50,9 @@ namespace StepCore
 class World;
 class Solver;
 class Item;
-class ItemGroup;
 class CollisionSolver;
 class ConstraintSolver;
 
-/** \ingroup errors
- *  \brief Base class for all errors objects
- */
-class ObjectErrors: public Object
-{
-    STEPCORE_OBJECT(ObjectErrors)
-
-public:
-    /** Constructs ObjectErrors */
-    ObjectErrors(Item* owner = NULL): _owner(owner) {}
-
-    /** Get the owner of ObjectErrors */
-    Item* owner() const { return _owner; }
-    /** Set the owner of ObjectErrors */
-    void setOwner(Item* owner) { _owner = owner; }
-
-private:
-    Item* _owner;
-};
-
-/** \ingroup world
- *  \brief The root class for any world items (bodies and forces)
- */
-class Item : public Object
-{
-    /*Q_OBJECT*/
-    STEPCORE_OBJECT(Item)
-
-public:
-    /** Constructs Item */
-    Item(const QString& name = QString())
-        : Object(name), _world(NULL), _group(NULL),
-          _objectErrors(NULL), _color(0xff000000) {}
-    /** Constructs a copy of item */
-    Item(const Item& item) : Object() { *this = item; }
-    /** Destroys Item */
-    virtual ~Item() { delete _objectErrors; }
-
-    /** Assignment operator (copies objectErrors if necessary) */
-    Item& operator=(const Item& item);
-
-    /** Set/change pointer to World in which this object lives */
-    virtual void setWorld(World* world) { _world = world; }
-
-    /** Get pointer to World in which this object lives */
-    World* world() const { return _world; }
-
-    /** Set/change pointer to ItemGroup in which this object lives */
-    virtual void setGroup(ItemGroup* group) { _group = group; }
-
-    /** Get pointer to ItemGroup in which this object lives */
-    ItemGroup* group() const { return _group; }
-
-    /** Get ObjectErrors only if it already exists */
-    ObjectErrors* tryGetObjectErrors() const { return _objectErrors; }
-
-    /** Get existing ObjectErrors or try to create it */
-    ObjectErrors* objectErrors();
-
-    /** Delete objectErrors */
-    void deleteObjectErrors() { delete _objectErrors; _objectErrors = NULL; }
-
-    /** Get item color (for use in GUI) */
-    Color color() const { return _color; }
-
-    /** Set item color (for use in GUI) */
-    void setColor(Color color) { _color = color; }
-
-    /** Called by the World when any item is about to be removed
-     *  from the world
-     *  \param item Pointer to item about to be removed
-     *  \todo XXX rename
-     */
-    virtual void worldItemRemoved(Item* item STEPCORE_UNUSED) {}
-
-protected:
-    /** \internal Creates specific ObjectErrors-derived class
-     *  (to be reimplemented in derived classes) */
-    virtual ObjectErrors* createObjectErrors() { return NULL; } // XXX: rename to createObjectVariances
-
-private:
-    World*        _world;
-    ItemGroup*    _group;
-    ObjectErrors* _objectErrors;
-    Color         _color;
-};
-
-/** \ingroup bodies
- *  \brief Interface for bodies
- *
- *  Body is anything that has dynamic variables that require ODE integration
- */
-class Body
-{
-    STEPCORE_OBJECT(Body)
-
-public:
-    Body(): _variablesOffset(0) {}
-    virtual ~Body() {}
-
-    /** Get count of dynamic variables (not including velocities) */
-    virtual int  variablesCount() = 0;
-
-    /** Set positions, velocities and (possibly) its variances using values in arrays and
-     *  also reset accelerations and its variances. Variances should only be copied
-     *  and reseted if positionVariance != NULL. */
-    virtual void setVariables(const double* position, const double* velocity,
-               const double* positionVariance, const double* velocityVariance) = 0;
-
-    /** Copy positions, velocities and (possibly) its variances to arrays.
-     *  Variances should only be copied if positionVariance != NULL. */
-    virtual void getVariables(double* position, double* velocity,
-                     double* positionVariance, double* velocityVariance) = 0;
-
-    /** Add force and (possibly) its variance to force accomulator.
-     *  \note This function is used only by generic constraints handling code,
-     *        force objects should use body-specific functions. */
-    virtual void addForce(const double* force, const double* forceVariance) = 0;
-
-    /** Reset force accomulator and (possibly) its variance to zero.
-     *  Variance should only be reseted if resetVariance == true. */
-    virtual void resetForce(bool resetVariance) = 0;
-
-    /** Copy acceleration (forces left-multiplied by inverse mass)
-     *  and (possibly) its variances to arrays.
-     *  Variances should only be copied if accelerationVariance != NULL. */
-    virtual void getAccelerations(double* acceleration, double* accelerationVariance) = 0;
-
-    /** Get inverse mass and (possibly) its variance matrixes.
-     *  Variance should only be copied of variance != NULL. */
-    virtual void getInverseMass(VectorXd* inverseMass,
-                                DynSparseRowMatrix* variance, int offset) = 0;
-    
-    /** Offset of body's variables in global arrays
-     *  (meaningless if the body is not a part of the world) */
-    int variablesOffset() const { return _variablesOffset; }
-
-private:
-    friend class World;
-
-    /** \internal Set offset of body's variables in global arrays */
-    void setVariablesOffset(int variablesOffset) {
-        _variablesOffset = variablesOffset;
-    }
-
-    int _variablesOffset;
-};
-
-/** \ingroup forces
- *  \brief Interface for forces
- *
- *  Force is anything that acts upon bodies changing derivatives of dynamic variables
- */
-class Force
-{
-    STEPCORE_OBJECT(Force)
-
-public:
-    virtual ~Force() {}
-
-    /** Calculate force. Bodies can be accessed through
-     * this->world()->bodies()
-     */
-    virtual void calcForce(bool calcVariances) = 0;
-};
-
-/** \ingroup joints
- *  Constraints information structure
- *  XXX: Move it to constraintsolver.h
- */
-struct ConstraintsInfo
-{
-    int                variablesCount;      ///< Number of dynamic variables
-    int                constraintsCount;    ///< Number of constraints equations
-    int                contactsCount;       ///< Number of additional constrains 
-                                            ///< equations due to contacts
-
-    VectorXd           value;               ///< Current constarints values (amount of brokenness)
-    VectorXd           derivative;          ///< Time-derivative of constraints values
-    DynSparseRowMatrix jacobian;            ///< Position-derivative of constraints values
-    DynSparseRowMatrix jacobianDerivative;  ///< Time-derivative of constraintsJacobian
-    VectorXd           inverseMass;         ///< Diagonal coefficients of the inverse mass matrix of the system
-
-    MappedVector       position;            ///< Positions of the bodies
-    MappedVector       velocity;            ///< Velocities of the bodies
-    MappedVector       acceleration;        ///< Accelerations of the bodies before applying constraints
-
-    VectorXd           forceMin;            ///< Constraints force lower limit
-    VectorXd           forceMax;            ///< Constraints force upper limit
-
-    VectorXd           force;               ///< Resulting constraints force
-
-    bool               collisionFlag;       ///< True if there is a collision to be resolved
-
-    ConstraintsInfo(): variablesCount(0), constraintsCount(0), contactsCount(0),
-                       position(0,0), velocity(0,0), acceleration(0,0) {}
-
-    /** Set variablesCount, constraintsCount and reset contactsCount,
-     *  resize all arrays appropriately */
-    void setDimension(int newVariablesCount, int newConstraintsCount, int newContactsCount = 0);
-
-    /** Clear the structure */
-    void clear();
-
-private:
-    ConstraintsInfo(const ConstraintsInfo&);
-    ConstraintsInfo& operator=(const ConstraintsInfo&);
-};
-
-/** \ingroup joints
- *  \brief Interface for joints
- */
-class Joint
-{
-    STEPCORE_OBJECT(Joint)
-
-public:
-    virtual ~Joint() {}
-
-    /** Get count of constraints */
-    virtual int constraintsCount() = 0;
-
-    /** Fill the part of constraints information structure starting at offset */
-    virtual void getConstraintsInfo(ConstraintsInfo* info, int offset) = 0;
-
-#if 0
-    /** Get current constraints value (amaunt of brokenness) and its derivative */
-    virtual void getConstraints(double* value, double* derivative) = 0;
-
-    /** Get force limits, default is no limits at all */
-    virtual void getForceLimits(double* forceMin STEPCORE_UNUSED, double* forceMax STEPCORE_UNUSED) {}
-
-    /** Get constraints jacobian (space-derivatives of constraint value),
-     *  its derivative and product of inverse mass matrix by transposed jacobian (wjt) */
-    virtual void getJacobian(GmmSparseRowMatrix* value, GmmSparseRowMatrix* derivative, int offset) = 0;
-#endif
-};
 
 /** \ingroup tools
  *  \brief Interface for tools
@@ -292,77 +65,6 @@ class Tool
     STEPCORE_OBJECT(Tool)
 public:
     virtual ~Tool() {}
-};
-
-/** List of pointers to Item */
-typedef std::vector<Item*>  ItemList;
-/** List of pointers to Body */
-typedef std::vector<Body*>  BodyList;
-/** List of pointers to Force */
-typedef std::vector<Force*> ForceList;
-/** List of pointers to Joint */
-typedef std::vector<Joint*> JointList;
-
-/** \ingroup world
- *  \brief Groups several items together
- */
-class ItemGroup : public Item
-{
-    STEPCORE_OBJECT(ItemGroup)
-
-public:
-    /** Constructs empty group */
-    ItemGroup(const QString& name = QString()) : Item(name) {}
-    /** Constructs a copy of the group (deep copy) */
-    ItemGroup(const ItemGroup& group);
-    /** Destroys the group and all its subitems */
-    ~ItemGroup();
-
-    /** Assignment operator (deep copy)
-     *  \warning Do not call this on groups already attached to the world */
-    ItemGroup& operator=(const ItemGroup& group);
-
-    /** Get list of all direct child items in the ItemGroup */
-    const ItemList& items() const  { return _items; }
-
-    /** Get list of all items in the ItemGroup
-     *  \note This operation takes long time since it
-     *        recursively traverses all child groups */
-    ItemList allItems() const { ItemList l; allItems(&l); return l; }
-    /** Get list of all items in the ItemGroup
-     *  \param items Array to store items
-     *  \note This operation takes long time since it
-     *        recursively traverses all child groups */
-    void allItems(ItemList* items) const;
-
-    /** Add new item to the group */
-    virtual void addItem(Item* item);
-    /** Remove item from the group (you should delete item youself) */
-    virtual void removeItem(Item* item);
-    /** Delete item from the group (it actually deletes item) */
-    virtual void deleteItem(Item* item) { removeItem(item); delete item; }
-
-    /** Deletes all items */
-    void clear();
-
-    /** Finds direct child item in items() */
-    int  childItemIndex(const Item* item) const;
-    /** Get direct child count */
-    int  childItemCount() const { return _items.size(); }
-    /** Get direct child item by its index */
-    Item* childItem(int index) const { return _items[index]; }
-    /** Get direct child item by its name */
-    Item* childItem(const QString& name) const;
-    /** Get any descendant item by its name */
-    Item* item(const QString& name) const;
-
-    /** Recursively call setWorld for all children objects */
-    void setWorld(World* world);
-    /** Recursively call worldItemRemoved for all children objects */
-    void worldItemRemoved(Item* item);
-    
-private:
-    ItemList  _items;
 };
 
 /** \ingroup world

@@ -23,8 +23,9 @@
 #ifndef STEPCORE_COULOMBFORCE_H
 #define STEPCORE_COULOMBFORCE_H
 
-#include "world.h"
+#include "force.h"
 #include "object.h"
+#include "objecterrors.h"
 #include "constants.h"
 
 namespace StepCore
@@ -79,7 +80,7 @@ protected:
  *  \todo Add interface for charged bodies, support bodies with
  *        distributed charge
  */
-class CoulombForce: public Item, public Force
+class CoulombForce : public Force
 {
     STEPCORE_OBJECT(CoulombForce)
 

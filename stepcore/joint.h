@@ -1,5 +1,6 @@
 /* This file is part of StepCore library.
    Copyright (C) 2007 Vladimir Kuznetsov <ks.vladimir@gmail.com>
+   Copyright (C) 2014 Inge Wallin        <inge@lysator.liu.se>
 
    StepCore library is free software; you can redistribute it and/or modify
    it under the terms of the GNU General Public License as published by
@@ -17,192 +18,104 @@
 */
 
 /** \file joint.h
- *  \brief Joint classes
+ *  \brief Contains the Joint object.
  */
 
 #ifndef STEPCORE_JOINT_H
 #define STEPCORE_JOINT_H
 
-#include "world.h"
+
+// stdc++
+#include <vector> // XXX: Replace if Qt is enabled.
+
+// Stepcore
+#include "types.h"
+#include "item.h"
+
 
 namespace StepCore
 {
 
-class Particle;
-class RigidBody;
 
 /** \ingroup joints
- *  \brief Fixes position of the body
+ *  Constraints information structure
+ *  XXX: Move it to constraintsolver.h
  */
-class Anchor: public Item, public Joint
+struct ConstraintsInfo
 {
-    STEPCORE_OBJECT(Anchor)
-        
-public:
-    /** Constructs Anchor */
-    explicit Anchor(Object* body = 0, const Vector2d& position = Vector2d::Zero(), double angle = 0);
+    int                variablesCount;      ///< Number of dynamic variables
+    int                constraintsCount;    ///< Number of constraints equations
+    int                contactsCount;       ///< Number of additional constrains 
+                                            ///< equations due to contacts
 
-    /** Get pointer to the body */
-    Object* body() const { return _body; }
-    /** Set pointer to the body */
-    void setBody(Object* body);
+    VectorXd           value;               ///< Current constarints values (amount of brokenness)
+    VectorXd           derivative;          ///< Time-derivative of constraints values
+    DynSparseRowMatrix jacobian;            ///< Position-derivative of constraints values
+    DynSparseRowMatrix jacobianDerivative;  ///< Time-derivative of constraintsJacobian
+    VectorXd           inverseMass;         ///< Diagonal coefficients of the inverse mass matrix of the system
 
-    /** Get position of the anchor */
-    const Vector2d& position() const { return _position; }
-    /** Set position of the anchor */
-    void setPosition(const Vector2d& position) { _position = position; }
+    MappedVector       position;            ///< Positions of the bodies
+    MappedVector       velocity;            ///< Velocities of the bodies
+    MappedVector       acceleration;        ///< Accelerations of the bodies before applying constraints
 
-    /** Get angle of the anchor */
-    double angle() const { return _angle; }
-    /** Set angle of the anchor */
-    void setAngle(double angle) { _angle = angle; }
+    VectorXd           forceMin;            ///< Constraints force lower limit
+    VectorXd           forceMax;            ///< Constraints force upper limit
 
-    int constraintsCount();
-    void getConstraintsInfo(ConstraintsInfo* info, int offset);
+    VectorXd           force;               ///< Resulting constraints force
 
-    //void getConstraints(double* value, double* derivative);
-    //void getJacobian(GmmSparseRowMatrix* value, GmmSparseRowMatrix* derivative, int offset);
+    bool               collisionFlag;       ///< True if there is a collision to be resolved
 
-protected:
-    Object*  _body;
-    Vector2d _position;
-    double   _angle;
+    ConstraintsInfo(): variablesCount(0), constraintsCount(0), contactsCount(0),
+                       position(0,0), velocity(0,0), acceleration(0,0) {}
 
-    Particle*  _p;
-    RigidBody* _r;
+    /** Set variablesCount, constraintsCount and reset contactsCount,
+     *  resize all arrays appropriately */
+    void setDimension(int newVariablesCount, int newConstraintsCount, int newContactsCount = 0);
+
+    /** Clear the structure */
+    void clear();
+
+private:
+    ConstraintsInfo(const ConstraintsInfo&);
+    ConstraintsInfo& operator=(const ConstraintsInfo&);
 };
+
 
 /** \ingroup joints
- *  \brief Fixes position of a given point on the body
+ *  \brief Interface for joints
  */
-class Pin: public Item, public Joint
+class Joint : public Item
 {
-    STEPCORE_OBJECT(Pin)
+    STEPCORE_OBJECT(Joint)
 
 public:
-    /** Constructs Pin */
-    explicit Pin(Object* body = 0, const Vector2d& localPosition = Vector2d::Zero(),
-                        const Vector2d& position = Vector2d::Zero());
+    virtual ~Joint() {}
 
-    /** Get pointer to the body */
-    Object* body() const { return _body; }
-    /** Set pointer to the body */
-    void setBody(Object* body);
+    /** Get count of constraints */
+    virtual int constraintsCount() = 0;
 
-    /** Local position of the pin on the body */
-    const Vector2d& localPosition() const { return _localPosition; }
-    /** Set local position of the pin on the body */
-    void setLocalPosition(const Vector2d& localPosition) { _localPosition = localPosition; }
+    /** Fill the part of constraints information structure starting at offset */
+    virtual void getConstraintsInfo(ConstraintsInfo* info, int offset) = 0;
 
-    /** Get global position of the pin */
-    const Vector2d& position() const { return _position; }
-    /** Set global position of the pin */
-    void setPosition(const Vector2d& position) { _position = position; }
+#if 0
+    /** Get current constraints value (amaunt of brokenness) and its derivative */
+    virtual void getConstraints(double* value, double* derivative) = 0;
 
-    int constraintsCount();
-    void getConstraintsInfo(ConstraintsInfo* info, int offset);
+    /** Get force limits, default is no limits at all */
+    virtual void getForceLimits(double* forceMin STEPCORE_UNUSED, double* forceMax STEPCORE_UNUSED) {}
 
-    //void getConstraints(double* value, double* derivative);
-    //void getJacobian(GmmSparseRowMatrix* value, GmmSparseRowMatrix* derivative, int offset);
-
-protected:
-    Object*  _body;
-    Vector2d _localPosition;
-    Vector2d _position;
-
-    Particle*  _p;
-    RigidBody* _r;
+    /** Get constraints jacobian (space-derivatives of constraint value),
+     *  its derivative and product of inverse mass matrix by transposed jacobian (wjt) */
+    virtual void getJacobian(GmmSparseRowMatrix* value, GmmSparseRowMatrix* derivative, int offset) = 0;
+#endif
 };
 
-/** \ingroup joints
- *  \brief Massless stick: fixed distance between two points on particles or rigid bodies
- */
-class Stick: public Item, public Joint
-{
-    STEPCORE_OBJECT(Stick)
 
-public:
-    /** Constructs Stick */
-    explicit Stick(double restLength = 1, 
-               Object* body1 = 0, Object* body2 = 0,
-               const Vector2d& localPosition1 = Vector2d::Zero(),
-               const Vector2d& localPosition2 = Vector2d::Zero());
+/** List of pointers to Joint */
+typedef std::vector<Joint*> JointList;
 
-    /** Get the restLength of the stick */
-    double restLength() const { return _restLength; }
-    /** Set the restLength of the stick */
-    void   setRestLength(double restLength) { _restLength = restLength; }
-
-    /** Get pointer to the first connected body */
-    Object* body1() const { return _body1; }
-    /** Set pointer to the first connected body */
-    void setBody1(Object* body1);
-
-    /** Get pointer to the second connected body */
-    Object* body2() const { return _body2; }
-    /** Set pointer to the second connected body */
-    void setBody2(Object* body2);
-
-    /** Local position of the first end of the stick on the body
-     *  or in the world (if the end is not connected) */
-    Vector2d localPosition1() const { return _localPosition1; }
-    /** Set local position of the first end of the stick on the body
-     *  or in the world (if the end is not connected) */
-    void setLocalPosition1(const Vector2d& localPosition1) { _localPosition1 = localPosition1; }
-
-    /** Local position of the second end of the stick on the body
-     *  or in the world (if the end is not connected) */
-    Vector2d localPosition2() const { return _localPosition2; }
-    /** Set local position of the second end of the stick on the body
-     *  or in the world (if the end is not connected) */
-    void setLocalPosition2(const Vector2d& localPosition2) { _localPosition2 = localPosition2; }
-
-    /** Position of the first end of the stick */
-    Vector2d position1() const;
-    /** Position of the second end of the stick */
-    Vector2d position2() const;
-
-    /** Velocity of the first end of the stick */
-    Vector2d velocity1() const;
-    /** Velocity of the second end of the stick */
-    Vector2d velocity2() const;
-
-    /** Get first connected Particle */
-    Particle* particle1() const { return _p1; }
-    /** Get second connected Particle */
-    Particle* particle2() const { return _p2; }
-    /** Get first connected RigidBody */
-    RigidBody* rigidBody1() const { return _r1; }
-    /** Get second connected RigidBody */
-    RigidBody* rigidBody2() const { return _r2; }
-
-    int constraintsCount();
-    void getConstraintsInfo(ConstraintsInfo* info, int offset);
-
-protected:
-    double   _restLength;
-    Object*  _body1;
-    Object*  _body2;
-    Vector2d _localPosition1;
-    Vector2d _localPosition2;
-
-    Particle*  _p1;
-    Particle*  _p2;
-    RigidBody* _r1;
-    RigidBody* _r2;
-};
-
-/** \ingroup joints
- *  \brief Massless rope: maximal distance between two points on particles or rigid bodies
- */
-class Rope: public Stick
-{
-    STEPCORE_OBJECT(Rope)
-
-public:
-    void getConstraintsInfo(ConstraintsInfo* info, int offset);
-};
 
 } // namespace StepCore
+
 
 #endif

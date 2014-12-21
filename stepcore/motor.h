@@ -38,7 +38,7 @@ class RigidBody;
 /** \ingroup forces
  *  \brief Linear motor: applies a force at given position on the body
  */
-class LinearMotor: public Item, public Force
+class LinearMotor : public Force
 {
     STEPCORE_OBJECT(LinearMotor)
 
@@ -84,7 +84,7 @@ protected:
 /** \ingroup forces
  *  \brief Circular motor: applies a torque to the body
  */
-class CircularMotor: public Item, public Force
+class CircularMotor : public Force
 {
     STEPCORE_OBJECT(CircularMotor)
 

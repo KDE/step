@@ -141,7 +141,7 @@ protected:
 /** \ingroup bodies
  *  \brief Rigid body
  */
-class RigidBody: public Item, public Body
+class RigidBody: public Body
 {
     STEPCORE_OBJECT(RigidBody)
 
@@ -358,7 +358,7 @@ public:
 /** \ingroup bodies
  *  \brief Unmovable rigid plane
  */
-class Plane: public Item, public Body
+class Plane: public Body
 {
     STEPCORE_OBJECT(Plane)
 

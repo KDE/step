@@ -40,10 +40,10 @@ CoulombForce* CoulombForceErrors::coulombForce() const
 }
 
 CoulombForce::CoulombForce(double coulombConst)
-    : _coulombConst(coulombConst)
+    : Force()
+    , _coulombConst(coulombConst)
 {
-    coulombForceErrors()->setCoulombConstVariance(
-        square(Constants::CoulombError));
+    coulombForceErrors()->setCoulombConstVariance(square(Constants::CoulombError));
 }
 
 void CoulombForce::calcForce(bool calcVariances)

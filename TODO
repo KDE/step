@@ -1,3 +1,10 @@
+0. Urgent / Important
+
+* Go through all the STEPCORE_META_OBJECT calls and see how they need to be
+  changed after the big refactor. 
+   - This means actually understanding STEPCORE_META_OBJECT, which seems to be
+     undocumented...
+
 1. StepCore.
 
 * implement compile flags:

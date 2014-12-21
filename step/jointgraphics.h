@@ -21,7 +21,7 @@
 
 #include "worldgraphics.h"
 #include "stepgraphicsitem.h"
-#include <stepcore/joint.h>
+#include <stepcore/joints.h>
 
 class AnchorCreator: public AttachableItemCreator
 {
