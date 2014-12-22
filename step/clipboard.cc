@@ -22,7 +22,7 @@
 #include <QBuffer>
 #include <QClipboard>
 #include <QMimeData>
-
+#include <QDebug>
 #include <KDebug>
 
 #include <stepcore/factory.h>
@@ -163,7 +163,7 @@ QList<StepCore::Item*> Clipboard::paste(const StepCore::Factory* factory)
     StepCore::World world;
     if (!xmlfile.load(&world, factory)) {
         // Deserialization of items failed
-        qFatal(xmlfile.errorString().toAscii());
+        qCritical() << xmlfile.errorString();
         return QList<StepCore::Item*>();
     }
     
