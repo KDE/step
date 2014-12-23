@@ -34,7 +34,7 @@ find_package(KF5 REQUIRED COMPONENTS
     Plotting
 )
 find_package(KF5DocTools REQUIRED)
-find_package(Eigen3 REQUIRED)
+find_package(Eigen3 3.2.2 REQUIRED)
 find_package(GSL)
 find_package(Qalculate)
 
