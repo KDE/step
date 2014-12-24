@@ -15,12 +15,13 @@
    along with StepCore; if not, write to the Free Software
    Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
 */
-#include "maintest.h"
 
-#include <stepcore/collisionsolver.h>
-#include <stepcore/rigidbody.h>
-#include <stepcore/types.h>
+#include "test_contacts.h"
+#include "stepcore/collisionsolver.h"
+#include "stepcore/rigidbody.h"
+#include "stepcore/types.h"
 #include <cmath>
+#include <QTest>
 
 class CollisionSolver: public StepCore::GJKCollisionSolver
 {
@@ -31,7 +32,7 @@ public:
     }
 };
 
-void MainTest::testCollisionDetection_data()
+void TestContacts::testCollisionDetection_data()
 {
     QTest::addColumn<StepCore::Vector2dList>("vertexes0");
     QTest::addColumn<StepCore::Vector2d>("position0");
@@ -143,7 +144,7 @@ void MainTest::testCollisionDetection_data()
             << int(StepCore::Contact::Intersected);
 }
 
-void MainTest::testCollisionDetection()
+void TestContacts::testCollisionDetection()
 {
     QFETCH(StepCore::Vector2dList, vertexes0);
     QFETCH(StepCore::Vector2d, position0);
@@ -240,3 +241,4 @@ void MainTest::testCollisionDetection()
     */
 }
 
+QTEST_MAIN(TestContacts)

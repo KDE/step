@@ -15,11 +15,12 @@
    along with StepCore; if not, write to the Free Software
    Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
 */
-#include "maintest.h"
 
-#include <stepcore/world.h>
-#include <stepcore/solver.h>
-#include <stepcore/types.h>
+#include "test_worldcopy.h"
+#include "stepcore/world.h"
+#include "stepcore/solver.h"
+#include "stepcore/types.h"
+#include <QTest>
 
 class WorldCopyTestItem: public StepCore::Body,
                          public StepCore::Force
@@ -139,3 +140,4 @@ void MainTest::testWorldCopy()
     //QVERIFY(dynamic_cast<WorldCopyTestItem*>(world1->items()[0])->link() == NULL);
 }
 
+QTEST_MAIN(TestWorldCopy)

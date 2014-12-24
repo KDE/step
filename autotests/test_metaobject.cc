@@ -15,12 +15,12 @@
    along with StepCore; if not, write to the Free Software
    Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
 */
-#include "maintest.h"
 
-#include <stepcore/object.h>
-
+#include "test_metaobject.h"
+#include "stepcore/object.h"
 #include <QString>
 #include <QMetaType>
+#include <QTest>
 
 struct MetaObjectTestType
 {
@@ -97,7 +97,7 @@ STEPCORE_META_OBJECT(MetaObjectTestObject, "MetaObjectTestObject", "TestObject",
         STEPCORE_PROPERTY_RW(MetaObjectTestType, property4, "property4", STEPCORE_UNITS_NULL, "Property4", property4, setProperty4)
         )
 
-void MainTest::testMetaObject()
+void TestMetaobject::testMetaObject()
 {
     /* Abstract class: can't create */
     QVERIFY( MetaObjectTestInterface::staticMetaObject()->isAbstract() );
@@ -216,3 +216,4 @@ void MainTest::testMetaObject()
     delete object;
 }
 
+QTEST_MAIN(TestMetaobject)

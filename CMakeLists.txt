@@ -73,10 +73,7 @@ add_definitions(-DEIGEN2_SUPPORT_STAGE30_FULL_EIGEN3_API) #TODO port away from E
 add_subdirectory(doc)
 add_subdirectory(stepcore)
 add_subdirectory(step)
-# Note: Disabled temporarily because WorldCopyTestSolver inherits both Body
-# 	   and Force.  And both of these are now inheriting Item, which
-# 	   creates an error. This needs to be sorted out.
-# add_subdirectory(stepcore_tests)
+add_subdirectory(autotests)
 
 install(FILES step.appdata.xml DESTINATION ${SHARE_INSTALL_PREFIX}/appdata/)
 
