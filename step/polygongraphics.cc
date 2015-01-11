@@ -32,7 +32,7 @@
 #include <QKeyEvent>
 #include <QPainter>
 #include <KLocale>
-#include <KDebug>
+#include <QDebug>
 
 RigidBodyGraphicsItem::RigidBodyGraphicsItem(StepCore::Item* item, WorldModel* worldModel)
     : StepGraphicsItem(item, worldModel)
@@ -76,6 +76,12 @@ void RigidBodyGraphicsItem::paint(QPainter* painter, const QStyleOptionGraphicsI
     painter->setBrush(QBrush(color));
 
     painter->drawPath(_painterPath);
+
+    if (!_markPath.isEmpty()) {
+        painter->setPen(QPen(Qt::white));
+        painter->setBrush(QColor(0, 0, 255, 127));
+        painter->drawPath(_markPath);
+    }
 
     if(_isSelected) {
         double s = currentViewScale();
@@ -235,15 +241,22 @@ void DiskGraphicsItem::viewScaleChanged()
     _painterPath = QPainterPath();
     _painterPath.setFillRule(Qt::WindingFill);
 
+    _markPath = QPainterPath();
+    _painterPath.setFillRule(Qt::WindingFill);
+
     double s = currentViewScale();
     double radius = disk()->radius();
     if(radius > 1/s) {
         _painterPath.addEllipse(-radius, -radius, 2*radius, 2*radius);
-        //_painterPath = QMatrix().rotate(disk()->angle() * 180 / StepCore::Constants::Pi).map(_painterPath);
+        _markPath.moveTo(-radius, radius);
+        _markPath.lineTo(radius, -radius);
+        _markPath.moveTo(radius, -radius);
+        _markPath.lineTo(-radius, radius);
     } else {
         _painterPath.addEllipse(-1/s, -1/s, 2/s, 2/s);
     }
 
+    _markPath = QMatrix().rotate(disk()->angle() * 180 / StepCore::Constants::Pi).map(_markPath);
     RigidBodyGraphicsItem::viewScaleChanged();
 }
 
@@ -467,7 +480,7 @@ bool PolygonCreator::sceneEvent(QEvent* event)
             showMessage(MessageFrame::Information,
                 i18n("Click on the scene to add new vertex or press Enter to finish"));
         }
-        
+
         //fixCenterOfMass();
         //fixInertia();
         return true;
