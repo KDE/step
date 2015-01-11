@@ -1,22 +1,25 @@
 0. Urgent / Important
 
-* Go through all the STEPCORE_META_OBJECT calls and see how they need to be
-  changed after the big refactor. 
-   - This means actually understanding STEPCORE_META_OBJECT, which seems to be
+* Go through all the STEPCORE_META_OBJECT calls and see how they need
+  to be changed after the big refactor. 
+   + This means actually understanding STEPCORE_META_OBJECT, which seems to be
      undocumented...
 
 1. Bugs / Issues
 
-* Soft bodies lose their structure if they get crushed by something heavy.
+ * Crashes
+    * Crash when adding weightforce in tutorial 4			[arkro]
+      https://bugs.kde.org/show_bug.cgi?id=331473
+ * Soft bodies lose their internal structure if they get crushed.	----
 
 
 2. StepCore.
 
 * implement compile flags:
-  - STEPCORE_WITH_QT
-  - STEPCORE_WITH_ERRORS
-  - STEPCORE_WITH_NAMEPROP
-  - STEPCORE_WITH_GUIPROPS
+  + STEPCORE_WITH_QT
+  + STEPCORE_WITH_ERRORS
+  + STEPCORE_WITH_NAMEPROP
+  + STEPCORE_WITH_GUIPROPS
 * unit tests
 * movement restrictions (IN PROGRESS)
 * collision detection with friction (IN PROGRESS)
@@ -24,7 +27,6 @@
 * correctly handle stiff ODE
 * separate position and coordinate (PARTLY DONE)
   (for independent tolerance settings, symplectic solvers)
-* global error estimation (requires jacobian ?) (DONE)
 * multistep solvers
 * symplectic and other nice solvers
 * implicit solvers (!)
@@ -39,17 +41,11 @@ code (marked as TODO or XXX).
 
 3. Step.
 * SVG theming
-* do calculations in separate thread (DONE)
-* use statusbar or small graphicsitem to notify
-  user when creating items (DONE)
 * saving animation (navigation through time)
-* units for all quantitis, units conversion (DONE)
 * custom scene background (PARTLY DONE)
-* nice-looking descriptions for all bodies and parameters
-  (with references to wikipedia or wikibooks ?) (DONE)
-* configurable simulation-time controllers (DONE)
-* configurable plots and summaries (DONE)
-* KHotNewStuff for sharing experiments (Downloading: DONE)
+* KHotNewStuff for sharing experiments
+   + Downloading							DONE
+   + Upload								----
 * Tutorials (series of experiments with explanations)
 * define multiple coordinate system and provide an ability
   to translate vector coordinates between them
@@ -93,7 +89,7 @@ Overall goal: To make Step a better teaching tool
 For details, see the list above.
 
  * Add missing object types
-    + half plane (ground)
+    + half plane (ground)					taken: rahulch
     + rope(?)
  * Add missing physics concepts
     + coefficient of restitution
