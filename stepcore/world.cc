@@ -632,9 +632,9 @@ inline int World::solverFunction(double t, const double* y,
 
       if(_variablesCount>0)
       {
-        ::new (&_constraintsInfo.position) MappedVector(y, _variablesCount);
-        ::new (&_constraintsInfo.velocity) MappedVector(y+_variablesCount, _variablesCount);
-        ::new (&_constraintsInfo.acceleration) MappedVector(f+_variablesCount, _variablesCount);
+        ::new (&_constraintsInfo.position) Eigen::Map<const Eigen::VectorXd>(y, _variablesCount);
+        ::new (&_constraintsInfo.velocity) Eigen::Map<const Eigen::VectorXd>(y+_variablesCount, _variablesCount);
+        ::new (&_constraintsInfo.acceleration) Eigen::Map<Eigen::VectorXd>(f+_variablesCount, _variablesCount);
       }
 
       // end sparse matrix assembly
