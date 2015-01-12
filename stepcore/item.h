@@ -49,8 +49,11 @@ class Item : public Object
 public:
     /** Constructs Item */
     Item(const QString& name = QString())
-        : Object(name), _world(NULL), _group(NULL),
-          _objectErrors(NULL), _color(0xff000000) {}
+        : Object(name)
+        , _world(NULL)
+        , _group(NULL)
+        , _objectErrors(NULL)
+        , _color(0xff000000) {}
     /** Constructs a copy of item */
     Item(const Item& item) : Object() { *this = item; }
     /** Destroys Item */

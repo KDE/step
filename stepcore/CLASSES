@@ -45,7 +45,7 @@ Legend
 	   [time, timeScale, bodies, forces, joints, solvers...]
 
       * Body{body.h}		Anything that has dynamic variables that 
-				require ODE integration
+        [material, =0]		require ODE integration
          * Particle
             * ChargedParticle
             * GasParticle
@@ -93,6 +93,8 @@ Auxiliary classes
 * ConstraintsInfo{world.h}	defines constraints between objects
   				Used by ConstraintSolver
   [...]
+
+* Material			stores material properties
 
 * Factory	  		Creates new objects from name
 
