@@ -31,7 +31,7 @@ if (EIGEN2_FOUND)
    # Note: Disabled temporarily because WorldCopyTestSolver inherits both Body
    # 	   and Force.  And both of these are now inheriting Item, which
    # 	   creates an error. This needs to be sorted out.
-   # add_subdirectory(stepcore_tests)
+   add_subdirectory(stepcore_tests)
 endif (EIGEN2_FOUND)
 
 install(FILES step.appdata.xml DESTINATION ${SHARE_INSTALL_PREFIX}/appdata/)
