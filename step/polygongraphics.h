@@ -54,6 +54,7 @@ public:
 protected:
     StepCore::RigidBody* rigidBody() const;
     QPainterPath _painterPath;
+    QPainterPath _markPath;
 
     ArrowHandlerGraphicsItem*         _velocityHandler;
     CircularArrowHandlerGraphicsItem* _angularVelocityHandler;

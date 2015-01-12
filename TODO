@@ -1,36 +1,37 @@
 0. Urgent / Important
 
-* Go through all the STEPCORE_META_OBJECT calls and see how they need to be
-  changed after the big refactor. 
-   - This means actually understanding STEPCORE_META_OBJECT, which seems to be
+* Go through all the STEPCORE_META_OBJECT calls and see how they need
+  to be changed after the big refactor. 
+   + This means actually understanding STEPCORE_META_OBJECT, which seems to be
      undocumented...
 
-1. StepCore.
+1. Bugs / Issues
+
+ * Crashes
+    * Crash when adding weightforce in tutorial 4			[arkro]
+      https://bugs.kde.org/show_bug.cgi?id=331473
+ * Soft bodies lose their internal structure if they get crushed.	----
+
+
+2. StepCore.
 
 * implement compile flags:
-  - STEPCORE_WITH_QT
-  - STEPCORE_WITH_ERRORS
-  - STEPCORE_WITH_NAMEPROP
-  - STEPCORE_WITH_GUIPROPS
+  + STEPCORE_WITH_QT
+  + STEPCORE_WITH_ERRORS
+  + STEPCORE_WITH_NAMEPROP
+  + STEPCORE_WITH_GUIPROPS
 * unit tests
 * movement restrictions (IN PROGRESS)
-* rigid bodies (DONE)
 * collision detection with friction (IN PROGRESS)
 * custom properties for bodies, make charge custom property (?)
-* adaptive timestep solvers (DONE)
 * correctly handle stiff ODE
 * separate position and coordinate (PARTLY DONE)
   (for independent tolerance settings, symplectic solvers)
-* global error estimation (requires jacobian ?) (DONE)
 * multistep solvers
 * symplectic and other nice solvers
 * implicit solvers (!)
 * more collision and constraints solvers
 * NullCollisionSolver and NullConstraintsSolver
-* molecular dynamics (potentials etc.) (DONE)
-* massive springs (DONE)
-* soft bodies (DONE)
-* fluid and gas simulation (DONE)
 * create common class for connectiong something to rigid body
 * think about 3d
 
@@ -38,21 +39,13 @@ More TODO items for StepCore can be found in
 Doxygen-generated documentation and in the source
 code (marked as TODO or XXX).
 
-2. Step.
+3. Step.
 * SVG theming
-* do calculations in separate thread (DONE)
-* use statusbar or small graphicsitem to notify
-  user when creating items (DONE)
 * saving animation (navigation through time)
-* units for all quantitis, units conversion (DONE)
-* user-editable notes (DONE)
-* formulas in notes (DONE)
 * custom scene background (PARTLY DONE)
-* nice-looking descriptions for all bodies and parameters
-  (with references to wikipedia or wikibooks ?) (DONE)
-* configurable simulation-time controllers (DONE)
-* configurable plots and summaries (DONE)
-* KHotNewStuff for sharing experiments (Downloading: DONE)
+* KHotNewStuff for sharing experiments
+   + Downloading							DONE
+   + Upload								----
 * Tutorials (series of experiments with explanations)
 * define multiple coordinate system and provide an ability
   to translate vector coordinates between them
@@ -75,15 +68,33 @@ code (marked as TODO or XXX).
 More TODO items for Step can be found in the source code
 (marked as TODO or XXX).
 
-3. Future ideas
+
+4. Future ideas
 
 * Create a game based on Step. Original idea by Jason Harris:
-On each level, you were given a goal and a list of equipment that 
-you could use to build a machine to achieve the goal.  The equipment could 
-include lots of different stuff: balls of various types (tennis, bowling, 
-baseball), springs, trampolines, guns, ropes, pulleys, belts, gears, conveyor 
-belts, cats, mice, light bulbs, elecric fans, model rockets, TNT, etc.  You 
-would place all this stuff on the playing field, press "Go", and see if the 
-level's goal was achieved by your machine.  If not, you would modify the 
-machine and try again.  It was a lot of fun for a young proto-physicist :)
 
+  On each level, you were given a goal and a list of equipment that you could
+  use to build a machine to achieve the goal.  The equipment could include
+  lots of different stuff: balls of various types (tennis, bowling, baseball),
+  springs, trampolines, guns, ropes, pulleys, belts, gears, conveyor belts,
+  cats, mice, light bulbs, elecric fans, model rockets, TNT, etc.  You would
+  place all this stuff on the playing field, press "Go", and see if the
+  level's goal was achieved by your machine.  If not, you would modify the
+  machine and try again.  It was a lot of fun for a young proto-physicist :)
+
+----------------------------------------------------------------
+
+Overall goal: To make Step a better teaching tool
+
+For details, see the list above.
+
+ * Add missing object types
+    + half plane (ground)					taken: rahulch
+    + rope(?)
+ * Add missing physics concepts
+    + coefficient of restitution
+    + friction
+ * Improve user interaction
+    + Add timeline
+    + Improve selection, moving and resizing of objects.
+    + 

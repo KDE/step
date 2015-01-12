@@ -1036,7 +1036,7 @@ int GJKCollisionSolver::solvePolygonDisk(Contact* contact)
 
     double vrel = contact->vrel[0];
     STEPCORE_ASSERT_NOABORT( vrel < 0 );
-    
+
     Vector2d r0 = contact->points[0] - body0->position();
     double r0n = r0[0]*contact->normal[1] - r0[1]*contact->normal[0];
     double term0 = (Vector2d( -r0n*r0[1], r0n*r0[0])).dot(contact->normal) / body0->inertia();
@@ -1148,7 +1148,7 @@ int GJKCollisionSolver::solveDiskParticle(Contact* contact)
     double b = 1; // coefficient of bounceness
     double vrel = contact->vrel[0];
     STEPCORE_ASSERT_NOABORT( vrel < 0 );
-    
+
     Vector2d j = contact->normal * ( -(1+b)*vrel / (1/disk0->mass() + 1/particle1->mass()) );
     disk0->setVelocity(disk0->velocity() - j / disk0->mass());
     particle1->setVelocity(particle1->velocity() + j / particle1->mass());

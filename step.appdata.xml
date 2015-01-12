@@ -22,6 +22,7 @@
   <name xml:lang="sk">Step</name>
   <name xml:lang="sl">Step</name>
   <name xml:lang="sv">Step</name>
+  <name xml:lang="tr">Step</name>
   <name xml:lang="uk">Step</name>
   <name xml:lang="x-test">xxStepxx</name>
   <name xml:lang="zh-TW">物理_Step</name>
@@ -43,6 +44,7 @@
   <summary xml:lang="sk">Interaktívny fyzikálny simulátor</summary>
   <summary xml:lang="sl">Interaktivni fizikalni simulator</summary>
   <summary xml:lang="sv">Interaktiv fysiksimulator</summary>
+  <summary xml:lang="tr">Etkileşimli Fizik Simülatörü</summary>
   <summary xml:lang="uk">Інтерактивний фізичний імітатор</summary>
   <summary xml:lang="x-test">xxInteractive Physical Simulatorxx</summary>
   <summary xml:lang="zh-TW">互動式物理模擬器</summary>
@@ -85,6 +87,7 @@
     <p xml:lang="sk">Funkcie:</p>
     <p xml:lang="sl">Zmožnosti:</p>
     <p xml:lang="sv">Funktioner:</p>
+    <p xml:lang="tr">Özellikler:</p>
     <p xml:lang="uk">Можливості:</p>
     <p xml:lang="x-test">xxFeatures:xx</p>
     <p xml:lang="zh-TW">功能：</p>
@@ -106,6 +109,7 @@
       <li xml:lang="sk">Simulácie klasickej mechaniky v dvoch rozmeroch</li>
       <li xml:lang="sl">Klasične mehanske simulacije v dveh dimenzijah</li>
       <li xml:lang="sv">Simulering av klassisk mekanik i två dimensioner</li>
+      <li xml:lang="tr">İki boyutlu klasik mekanik simülasyonu</li>
       <li xml:lang="uk">Імітація класичної механічної взаємодії у двох вимірах</li>
       <li xml:lang="x-test">xxClassical mechanical simulation in two dimensionsxx</li>
       <li xml:lang="zh-TW">傳統的二維機械模擬</li>
@@ -145,6 +149,7 @@
       <li xml:lang="sk">Tuhé telesá</li>
       <li xml:lang="sl">Toga telesa</li>
       <li xml:lang="sv">Stela kroppar</li>
+      <li xml:lang="tr">Katı cisimler</li>
       <li xml:lang="uk">Тверді тіла</li>
       <li xml:lang="x-test">xxRigid bodiesxx</li>
       <li xml:lang="zh-TW">堅固主體</li>
@@ -165,6 +170,7 @@
       <li xml:lang="sk">Detekcia kolízií (aktuálne iba oddelené) a ich spracovanie</li>
       <li xml:lang="sl">Zaznavanje trkov (trenutno samo diskretnih) in njihovo obravnavanje</li>
       <li xml:lang="sv">Detektering och hantering av kollisioner (för närvarande bara diskreta)</li>
+      <li xml:lang="tr">Çarpışma algılama (şu anda sadece ayrık) ve idaresi</li>
       <li xml:lang="uk">Виявлення (у цій версії лише дискретне) і керування зіткненнями</li>
       <li xml:lang="x-test">xxCollision detection (currently only discrete) and handlingxx</li>
       <li xml:lang="zh-TW">碰撞偵測（目前只有不連接的）與處理</li>
@@ -325,6 +331,7 @@
       <li xml:lang="sk">Nástroje na vizualizáciu výsledkov: graf, meter, stopár</li>
       <li xml:lang="sl">Orodja za prikaz rezultatov: graf, merilnik, sledilnik</li>
       <li xml:lang="sv">Verktyg för att åskådliggöra resultat: grafer, mätare, spår</li>
+      <li xml:lang="tr">Sonuçları görselleştirmek için araçlar: grafik, metre, izleyici</li>
       <li xml:lang="uk">Інструменти для візуалізації результатів: графік, вимірювач, траєкторія</li>
       <li xml:lang="x-test">xxTools to visualize results: graph, meter, tracerxx</li>
       <li xml:lang="zh-TW">視覺化結果的工具：圖形、尺、追蹤器</li>
@@ -345,6 +352,7 @@
       <li xml:lang="sk">Kontextové informácie pre všetky objekty, integrovaný prehliadač Wikipédia</li>
       <li xml:lang="sl">Vsebinske podrobnosti za vse predmete, vgrajen brskalnik po Wikipediji</li>
       <li xml:lang="sv">Sammanhangsberoende information för alla objekt, inbyggd Wikipedia-bläddrare</li>
+      <li xml:lang="tr">Tüm nesneler için bağlam bilgileri, tümleşik wikipedia tarayıcı</li>
       <li xml:lang="uk">Контекстна інформація щодо всіх об’єктів, інтегрований переглядач вікіпедії</li>
       <li xml:lang="x-test">xxContext information for all objects, integrated wikipedia browserxx</li>
       <li xml:lang="zh-TW">所有物件的內文資訊，整合的維基瀏覽器</li>
@@ -365,6 +373,7 @@
       <li xml:lang="sk">Kolekcia ukážkových experimentov, viac je možné stiahnuť z KNewStuff</li>
       <li xml:lang="sl">Zbirka primerov poskusov, več jih lahko prejmete z "Dobi vroče novosti"</li>
       <li xml:lang="sv">En samling exempel på experiment, och fler kan laddas ner via Hämta heta nyheter</li>
+      <li xml:lang="tr">Örnek deney koleksiyonu, daha çoğu KNewStuff ile indirilebilir</li>
       <li xml:lang="uk">Збірка зразкових експериментів, додаткові експерименти можна звантажити за допомогою KNewStuff</li>
       <li xml:lang="x-test">xxCollection of example experiments, more can be downloaded with KNewStuffxx</li>
       <li xml:lang="zh-TW">範例實驗的收藏。可以透過 KNewStuff 下載更多</li>
@@ -385,6 +394,7 @@
       <li xml:lang="sk">Integrované kurzy</li>
       <li xml:lang="sl">Vgrajeni vodniki</li>
       <li xml:lang="sv">Integrerade handledningar</li>
+      <li xml:lang="tr">Bütünleşik öğreticiler</li>
       <li xml:lang="uk">Вбудовані підручники</li>
       <li xml:lang="x-test">xxIntegrated tutorialsxx</li>
       <li xml:lang="zh-TW">整合教學</li>
