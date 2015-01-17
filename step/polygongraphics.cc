@@ -246,14 +246,13 @@ void DiskGraphicsItem::viewScaleChanged()
 
     double s = currentViewScale();
     double radius = disk()->radius();
-    if(radius > 1/s) {
+    if (radius > 1/s) {
         _painterPath.addEllipse(-radius, -radius, 2*radius, 2*radius);
-        _markPath.moveTo(-radius, radius);
-        _markPath.lineTo(radius, -radius);
-        _markPath.moveTo(radius, -radius);
-        _markPath.lineTo(-radius, radius);
+        _markPath.moveTo(0, 0);
+        _markPath.lineTo(radius, 0);
     } else {
         _painterPath.addEllipse(-1/s, -1/s, 2/s, 2/s);
+	// Don't need a marker when the disk is too small to see in detail.
     }
 
     _markPath = QMatrix().rotate(disk()->angle() * 180 / StepCore::Constants::Pi).map(_markPath);
