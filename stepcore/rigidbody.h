@@ -370,7 +370,7 @@ public:
     /** Get first point */
     const Vector2d& point1() const { return _point1; }
     /** Set first point */
-    void setPoint2(const Vector2d& point1) { _point1 = point1; }
+    void setPoint1(const Vector2d& point1) { _point1 = point1; }
 
     /** Get second point */
     const Vector2d& point2() const { return _point2; }

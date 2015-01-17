@@ -89,7 +89,7 @@ Overall goal: To make Step a better teaching tool
 For details, see the list above.
 
  * Add missing object types
-    + half plane (ground)					taken: rahulch
+    + half plane (ground)						[rahulch]
     + rope(?)
  * Add missing physics concepts
     + coefficient of restitution
@@ -98,3 +98,10 @@ For details, see the list above.
     + Add timeline
     + Improve selection, moving and resizing of objects.
     + 
+ * New concepts
+    + Add materials							[ingwa]
+
+ * Step file format version 2.0
+    + refactor
+       - Item::Color -->  Material
+    + Materials

@@ -2,6 +2,8 @@
 set(stepcore_SRCS
     constants.cc
 
+    material.cc
+
     # Base objects
     object.cc
     item.cc

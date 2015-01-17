@@ -28,6 +28,7 @@
 #include <vector> // XXX: Replace if Qt is enabled.
 
 #include "types.h"
+#include "material.h"
 #include "item.h"
 
 
@@ -35,6 +36,7 @@ namespace StepCore
 {
 
 
+class Material;
 /** \ingroup bodies
  *  \brief Interface for bodies
  *
@@ -47,9 +49,16 @@ class Body : public Item
 public:
     Body(const QString& name = QString())
         : Item(name)
+        , _material(&GenericMaterial)
 	, _variablesOffset(0)
     {}
     virtual ~Body() {}
+
+    /** Get the material of the body. */
+    Material *material() const { return _material; }
+
+    /** Set material of the  body (FIXME: Must be enhanced with META_PROPERTY later) */
+    void setMaterial(Material *mtrl) { _material = mtrl; }
 
     /** Get count of dynamic variables (not including velocities) */
     virtual int  variablesCount() = 0;
@@ -90,6 +99,8 @@ public:
 
 private:
     friend class World;
+
+    Material  *_material;
 
     /** \internal Set offset of body's variables in global arrays */
     void setVariablesOffset(int variablesOffset)
