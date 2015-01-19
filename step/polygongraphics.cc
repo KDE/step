@@ -65,21 +65,26 @@ QPainterPath RigidBodyGraphicsItem::shape() const
     return _painterPath;
 }
 
-void RigidBodyGraphicsItem::paint(QPainter* painter, const QStyleOptionGraphicsItem* /*option*/, QWidget* /*widget*/)
+void RigidBodyGraphicsItem::paint(QPainter* painter, const QStyleOptionGraphicsItem* /*option*/,
+				  QWidget* /*widget*/)
 {
     //int renderHints = painter->renderHints();
     painter->setRenderHint(QPainter::Antialiasing, true);
 
     QColor color = QColor::fromRgba(rigidBody()->color());
-    if(isItemHighlighted()) color = highlightColor(color);
+    if (isItemHighlighted()) {
+	color = highlightColor(color);
+    }
     painter->setPen(Qt::NoPen);
     painter->setBrush(QBrush(color));
 
     painter->drawPath(_painterPath);
 
     if (!_markPath.isEmpty()) {
-        painter->setPen(QPen(Qt::white));
-        painter->setBrush(QColor(0, 0, 255, 127));
+	QPen pen(color);
+	pen.setWidth(0);
+	painter->setPen(pen);
+	painter->setBrush(QColor(Qt::white));
         painter->drawPath(_markPath);
     }
 
@@ -248,8 +253,11 @@ void DiskGraphicsItem::viewScaleChanged()
     double radius = disk()->radius();
     if (radius > 1/s) {
         _painterPath.addEllipse(-radius, -radius, 2*radius, 2*radius);
+
         _markPath.moveTo(0, 0);
-        _markPath.lineTo(radius, 0);
+        _markPath.arcTo(QRectF(-radius, -radius, 2 * radius, 2 * radius),
+                        -15.0, 30.0);
+	_markPath.closeSubpath();
     } else {
         _painterPath.addEllipse(-1/s, -1/s, 2/s, 2/s);
 	// Don't need a marker when the disk is too small to see in detail.
