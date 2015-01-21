@@ -354,23 +354,22 @@ public:
     void setVertexes(const Vector2dList& vertexes) { _vertexes = vertexes; }
 };
 
-#if 0
 /** \ingroup bodies
  *  \brief Unmovable rigid plane
  */
-class Plane: public Item, public Body
+class HalfPlane: public Item, public Body
 {
-    STEPCORE_OBJECT(Plane)
+    STEPCORE_OBJECT(HalfPlane)
 
 public:
     /** Constructs a plane defined by two points */
-    explicit Plane(Vector2d point1 = Vector2d::Zero(), Vector2d point2 = Vector2d(1,0))
+    explicit HalfPlane(Vector2d point1 = Vector2d::Zero(), Vector2d point2 = Vector2d(1,0))
         : _point1(point1), _point2(point2) {}
 
     /** Get first point */
     const Vector2d& point1() const { return _point1; }
     /** Set first point */
-    void setPoint2(const Vector2d& point1) { _point1 = point1; }
+    void setPoint1(const Vector2d& point1) { _point1 = point1; }
 
     /** Get second point */
     const Vector2d& point2() const { return _point2; }
@@ -381,7 +380,6 @@ protected:
     Vector2d _point1;
     Vector2d _point2;
 };
-#endif
 
 } // namespace StepCore
 

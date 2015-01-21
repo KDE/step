@@ -18,6 +18,7 @@
 
 #include "rigidbody.h"
 #include "types.h"
+#include "object.h"
 #include <cstring>
 #include <cmath>
 
@@ -91,11 +92,9 @@ STEPCORE_META_OBJECT(Box, QT_TRANSLATE_NOOP("ObjectClass", "Box"), QT_TR_NOOP("R
 STEPCORE_META_OBJECT(Polygon, QT_TRANSLATE_NOOP("ObjectClass", "Polygon"), QT_TR_NOOP("Rigid polygon body"), 0, STEPCORE_SUPER_CLASS(BasePolygon),
         STEPCORE_PROPERTY_RW(Vector2dList, vertexes, QT_TRANSLATE_NOOP("PropertyName", "vertices"), QT_TRANSLATE_NOOP("Units", "m"), QT_TR_NOOP("Vertex list"), vertexes, setVertexes))
 
-#if 0
-STEPCORE_META_OBJECT(Plane, QT_TRANSLATE_NOOP("ObjectClass", "Plane"), QT_TR_NOOP("Unmovable rigid plane"), 0, STEPCORE_SUPER_CLASS(Item) STEPCORE_SUPER_CLASS(Body),
+STEPCORE_META_OBJECT(HalfPlane, QT_TRANSLATE_NOOP("ObjectClass", "HalfPlane"), QT_TR_NOOP("Unmovable rigid plane"), 0, STEPCORE_SUPER_CLASS(Item) STEPCORE_SUPER_CLASS(Body),
         STEPCORE_PROPERTY_RW_D(StepCore::Vector2d, point1, QT_TRANSLATE_NOOP("PropertyName", "point1"), QT_TRANSLATE_NOOP("Units", "m"), QT_TR_NOOP("First point which defines the plane"), point1, setPoint1),
         STEPCORE_PROPERTY_RW_D(StepCore::Vector2d, point2, QT_TRANSLATE_NOOP("PropertyName", "point2"), QT_TRANSLATE_NOOP("Units", "m"), QT_TR_NOOP("Second point which defines the plane"), point2, setPoint2))
-#endif
 
 RigidBody* RigidBodyErrors::rigidBody() const
 {
