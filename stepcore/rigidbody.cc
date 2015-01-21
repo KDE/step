@@ -17,6 +17,7 @@
 */
 
 #include "rigidbody.h"
+
 #include "types.h"
 #include "object.h"
 #include <cstring>
@@ -25,13 +26,28 @@
 namespace StepCore
 {
 
-STEPCORE_META_OBJECT(RigidBody, QT_TRANSLATE_NOOP("ObjectClass", "RigidBody"), QT_TR_NOOP("Generic rigid body"), 0, STEPCORE_SUPER_CLASS(Item) STEPCORE_SUPER_CLASS(Body),
-        STEPCORE_PROPERTY_RW_D(StepCore::Vector2d, position, QT_TRANSLATE_NOOP("PropertyName", "position"), QT_TRANSLATE_NOOP("Units", "m"), QT_TR_NOOP("Position of the center of mass"), position, setPosition)
-        STEPCORE_PROPERTY_RW_D(double, angle, QT_TRANSLATE_NOOP("PropertyName", "angle"), QT_TRANSLATE_NOOP("Units", "rad"), QT_TR_NOOP("Rotation angle"), angle, setAngle)
-
-        STEPCORE_PROPERTY_RW_D(StepCore::Vector2d, velocity, QT_TRANSLATE_NOOP("PropertyName", "velocity"), QT_TRANSLATE_NOOP("Units", "m/s"), QT_TR_NOOP("Velocity of the center of mass"), velocity, setVelocity)
-        STEPCORE_PROPERTY_RW_D(double, angularVelocity, QT_TRANSLATE_NOOP("PropertyName", "angularVelocity"), QT_TRANSLATE_NOOP("Units", "rad/s"), QT_TR_NOOP("Angular velocity of the body"), angularVelocity, setAngularVelocity)
-
+STEPCORE_META_OBJECT(RigidBody, QT_TRANSLATE_NOOP("ObjectClass", "RigidBody"),
+		     QT_TR_NOOP("Generic rigid body"), 0,
+		     STEPCORE_SUPER_CLASS(Item) STEPCORE_SUPER_CLASS(Body),
+        STEPCORE_PROPERTY_RW_D(StepCore::Vector2d, position,
+			       QT_TRANSLATE_NOOP("PropertyName", "position"),
+			       QT_TRANSLATE_NOOP("Units", "m"),
+			       QT_TR_NOOP("Position of the center of mass"),
+			       position, setPosition)
+        STEPCORE_PROPERTY_RW_D(double, angle, QT_TRANSLATE_NOOP("PropertyName", "angle"),
+			       QT_TRANSLATE_NOOP("Units", "rad"),
+			       QT_TR_NOOP("Rotation angle"),
+			       angle, setAngle)
+        STEPCORE_PROPERTY_RW_D(StepCore::Vector2d, velocity,
+			       QT_TRANSLATE_NOOP("PropertyName", "velocity"),
+			       QT_TRANSLATE_NOOP("Units", "m/s"),
+			       QT_TR_NOOP("Velocity of the center of mass"),
+			       velocity, setVelocity)
+        STEPCORE_PROPERTY_RW_D(double, angularVelocity,
+			       QT_TRANSLATE_NOOP("PropertyName", "angularVelocity"),
+			       QT_TRANSLATE_NOOP("Units", "rad/s"),
+			       QT_TR_NOOP("Angular velocity of the body"),
+			       angularVelocity, setAngularVelocity)
         STEPCORE_PROPERTY_R_D(StepCore::Vector2d, acceleration, QT_TRANSLATE_NOOP("PropertyName", "acceleration"), STEPCORE_FROM_UTF8(QT_TRANSLATE_NOOP("Units", "m/s²")),
                                             QT_TR_NOOP("Acceleration of the center of mass"), acceleration)
         STEPCORE_PROPERTY_R_D(double, angularAcceleration, QT_TRANSLATE_NOOP("PropertyName", "angularAcceleration"), STEPCORE_FROM_UTF8(QT_TRANSLATE_NOOP("Units", "rad/s²")),
@@ -89,12 +105,27 @@ STEPCORE_META_OBJECT(BasePolygon, QT_TRANSLATE_NOOP("ObjectClass", "BasePolygon"
 STEPCORE_META_OBJECT(Box, QT_TRANSLATE_NOOP("ObjectClass", "Box"), QT_TR_NOOP("Rigid box"), 0, STEPCORE_SUPER_CLASS(BasePolygon),
         STEPCORE_PROPERTY_RW(StepCore::Vector2d, size, QT_TRANSLATE_NOOP("PropertyName", "size"), QT_TRANSLATE_NOOP("Units", "m"), QT_TR_NOOP("Size of the box"), size, setSize))
 
-STEPCORE_META_OBJECT(Polygon, QT_TRANSLATE_NOOP("ObjectClass", "Polygon"), QT_TR_NOOP("Rigid polygon body"), 0, STEPCORE_SUPER_CLASS(BasePolygon),
-        STEPCORE_PROPERTY_RW(Vector2dList, vertexes, QT_TRANSLATE_NOOP("PropertyName", "vertices"), QT_TRANSLATE_NOOP("Units", "m"), QT_TR_NOOP("Vertex list"), vertexes, setVertexes))
+STEPCORE_META_OBJECT(Polygon, QT_TRANSLATE_NOOP("ObjectClass", "Polygon"),
+		     QT_TR_NOOP("Rigid polygon body"), 0, STEPCORE_SUPER_CLASS(BasePolygon),
+        STEPCORE_PROPERTY_RW(Vector2dList, vertexes,
+			     QT_TRANSLATE_NOOP("PropertyName", "vertices"),
+			     QT_TRANSLATE_NOOP("Units", "m"),
+			     QT_TR_NOOP("Vertex list"),
+			     vertexes, setVertexes))
 
-STEPCORE_META_OBJECT(HalfPlane, QT_TRANSLATE_NOOP("ObjectClass", "HalfPlane"), QT_TR_NOOP("Unmovable rigid plane"), 0, STEPCORE_SUPER_CLASS(Item) STEPCORE_SUPER_CLASS(Body),
-        STEPCORE_PROPERTY_RW_D(StepCore::Vector2d, point1, QT_TRANSLATE_NOOP("PropertyName", "point1"), QT_TRANSLATE_NOOP("Units", "m"), QT_TR_NOOP("First point which defines the plane"), point1, setPoint1),
-        STEPCORE_PROPERTY_RW_D(StepCore::Vector2d, point2, QT_TRANSLATE_NOOP("PropertyName", "point2"), QT_TRANSLATE_NOOP("Units", "m"), QT_TR_NOOP("Second point which defines the plane"), point2, setPoint2))
+STEPCORE_META_OBJECT(HalfPlane, QT_TRANSLATE_NOOP("ObjectClass", "HalfPlane"),
+		     QT_TR_NOOP("Unmovable rigid plane"), 0,
+		     STEPCORE_SUPER_CLASS(Item) STEPCORE_SUPER_CLASS(Body),
+	STEPCORE_PROPERTY_RW_D(StepCore::Vector2d, point1,
+			       QT_TRANSLATE_NOOP("PropertyName", "point1"),
+			       QT_TRANSLATE_NOOP("Units", "m"),
+			       QT_TR_NOOP("First point which defines the plane"),
+			       point1, setPoint1)
+        STEPCORE_PROPERTY_RW_D(StepCore::Vector2d, point2,
+			       QT_TRANSLATE_NOOP("PropertyName", "point2"),
+			       QT_TRANSLATE_NOOP("Units", "m"),
+			       QT_TR_NOOP("Second point which defines the plane"),
+			       point2, setPoint2))
 
 RigidBody* RigidBodyErrors::rigidBody() const
 {
