@@ -25,6 +25,7 @@
   <name xml:lang="sv">Step</name>
   <name xml:lang="uk">Step</name>
   <name xml:lang="x-test">xxStepxx</name>
+  <name xml:lang="zh-CN">Step</name>
   <name xml:lang="zh-TW">物理_Step</name>
   <summary>Interactive Physical Simulator</summary>
   <summary xml:lang="ca">Simulador interactiu de física</summary>
@@ -47,6 +48,7 @@
   <summary xml:lang="sv">Interaktiv fysiksimulator</summary>
   <summary xml:lang="uk">Інтерактивний фізичний імітатор</summary>
   <summary xml:lang="x-test">xxInteractive Physical Simulatorxx</summary>
+  <summary xml:lang="zh-CN">交互式物理模拟器</summary>
   <summary xml:lang="zh-TW">互動式物理模擬器</summary>
   <description>
     <p>Step is an interactive physical simulator. It allows you to explore the physical world through simulations. It works like this: you place some bodies on the scene, add some forces such as gravity or springs, then click Simulate and Step shows you how your scene will evolve according to the laws of physics. You can change every property of the bodies/forces in your experiment (even during simulation) and see how this will change evolution of the experiment. With Step you cannot only learn but feel how physics works!</p>
@@ -90,6 +92,7 @@
     <p xml:lang="sv">Funktioner:</p>
     <p xml:lang="uk">Можливості:</p>
     <p xml:lang="x-test">xxFeatures:xx</p>
+    <p xml:lang="zh-CN">功能：</p>
     <p xml:lang="zh-TW">功能：</p>
     <ul>
       <li>Classical mechanical simulation in two dimensions</li>
