@@ -73,7 +73,7 @@ target_link_libraries(step
     Qt5::OpenGL
     ${qalculate_LIBS})
 
-install(TARGETS step ${INSTALL_TARGETS_DEFAULT_ARGS})
+install(TARGETS org.kde.step.desktop ${INSTALL_TARGETS_DEFAULT_ARGS})
 install(FILES step.kcfg DESTINATION  ${KCFG_INSTALL_DIR})
 install(FILES stepui.rc DESTINATION  ${DATA_INSTALL_DIR}/step)
 install(FILES step.knsrc DESTINATION  ${CONFIG_INSTALL_DIR})
