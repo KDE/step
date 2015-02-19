@@ -56,7 +56,7 @@ if(STEP_WITH_QALCULATE)
     set(qalculate_LIBS ${QALCULATE_LIBRARIES})
 endif(STEP_WITH_QALCULATE)
 
-qt5_wrap_ui( step_SRCS ${step_UIS} )
+ki18n_wrap_ui( step_SRCS ${step_UIS} )
 kconfig_add_kcfg_files( step_SRCS ${step_KCFGS} )
 
 include_directories(${CMAKE_CURRENT_BINARY_DIR})
