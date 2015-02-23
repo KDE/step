@@ -4,6 +4,7 @@
   <metadata_license>CC0-1.0</metadata_license>
   <project_license>GPL-2.0+</project_license>
   <name>Step</name>
+  <name xml:lang="bs">Korak</name>
   <name xml:lang="ca">Step</name>
   <name xml:lang="cs">Step</name>
   <name xml:lang="da">Step</name>
@@ -28,6 +29,7 @@
   <name xml:lang="zh-CN">Step</name>
   <name xml:lang="zh-TW">物理_Step</name>
   <summary>Interactive Physical Simulator</summary>
+  <summary xml:lang="bs">Interaktivni fizički simulator</summary>
   <summary xml:lang="ca">Simulador interactiu de física</summary>
   <summary xml:lang="cs">Interaktivní fyzikální simulátor</summary>
   <summary xml:lang="de">Interaktive Physiksimulation</summary>
@@ -52,6 +54,7 @@
   <summary xml:lang="zh-TW">互動式物理模擬器</summary>
   <description>
     <p>Step is an interactive physical simulator. It allows you to explore the physical world through simulations. It works like this: you place some bodies on the scene, add some forces such as gravity or springs, then click Simulate and Step shows you how your scene will evolve according to the laws of physics. You can change every property of the bodies/forces in your experiment (even during simulation) and see how this will change evolution of the experiment. With Step you cannot only learn but feel how physics works!</p>
+    <p xml:lang="bs">Korak je interaktivni fizički simulator. Omogućava da se istraži fizički svijet kroz simulacije.Radi na sljedeći način: Postaviš nekoliko tijela na scenu, dodaš silu kao što je gravitacija ili opruge, onda klikneš Simuliraj i Korak ti pokaže kako će prema zakonima fizike evoluirati tvoja scena.Možeš promijeniti svaku osobinu tijela/sila  u eksperimentu (čak i tokom simulacije) i vidjeti kako će ovo promjeniti evoluciju eksperimenta.Sa Korakom ne samo da učiš nego i osjećaš kako fizika radi.</p>
     <p xml:lang="ca">Step és un simulador interactiu de física. Us permet explorar el món físic a través de simulacions. Funciona així: col·loqueu alguns cossos a l'escena, afegiu algunes forces com ara molles o la gravetat, cliqueu Simula i l'Step us mostra com evolucionarà l'escena segons les lleis de la física. Podeu canviar cadascuna de les propietats dels cossos o forces del vostre experiment (fins i tot durant la simulació) i veure com això afectarà a l'evolució de l'experiment. Amb Step no només podeu aprendre sinó també podeu sentir com funciona la física!</p>
     <p xml:lang="de">Step ist ein interaktiver Physiksimulator, mit dem Sie die Welt der Physik durch Simulationen erforschen können. Dazu platzieren Sie einige Körper im Versuchsfenster und fügen Kräfte wie die Gravitation oder Federn hinzu. Klicken Sie dann auf den Knopf „Simulation starten“ und beobachten Sie, wie sich Ihr Experiment nach den Gesetzen der Physik verändert. Jede Eigenschaft von Körpern oder Kräften lässt sich sogar in der laufenden Simulation ändern. Mit Step können Sie erfahren, wie die Physik in der Welt funktioniert.</p>
     <p xml:lang="en-GB">Step is an interactive physical simulator. It allows you to explore the physical world through simulations. It works like this: you place some bodies on the scene, add some forces such as gravity or springs, then click Simulate and Step shows you how your scene will evolve according to the laws of physics. You can change every property of the bodies/forces in your experiment (even during simulation) and see how this will change evolution of the experiment. With Step you cannot only learn but feel how physics works!</p>
@@ -72,6 +75,7 @@
     <p xml:lang="x-test">xxStep is an interactive physical simulator. It allows you to explore the physical world through simulations. It works like this: you place some bodies on the scene, add some forces such as gravity or springs, then click Simulate and Step shows you how your scene will evolve according to the laws of physics. You can change every property of the bodies/forces in your experiment (even during simulation) and see how this will change evolution of the experiment. With Step you cannot only learn but feel how physics works!xx</p>
     <p xml:lang="zh-TW">Step 是一套互動式的物理模擬器。它可以讓您透過模擬探索物理的世界。它的運作方式是這樣的：您在場景中放入一些主體，加上一些力，如重力或彈力等，然後按下模擬鍵，Step 就會顯示出在您的場景中，根據物理定律產生的結果。您可以改變每個主體與力的屬性（甚至實驗中也可比改變），並看看它所造成的變化。有了 Step 您不只可以學習，更可以直接感受物理！</p>
     <p>Features:</p>
+    <p xml:lang="bs">Osobine:</p>
     <p xml:lang="ca">Característiques:</p>
     <p xml:lang="cs">Vlastnosti:</p>
     <p xml:lang="de">Funktionen:</p>
@@ -96,6 +100,7 @@
     <p xml:lang="zh-TW">功能：</p>
     <ul>
       <li>Classical mechanical simulation in two dimensions</li>
+      <li xml:lang="bs">Klasična mehanička simulacije u dvije dimenzije</li>
       <li xml:lang="ca">Simulador de mecànica clàssica en dues dimensions</li>
       <li xml:lang="de">Simulation klassischer Mechanik in zwei Dimensionen</li>
       <li xml:lang="en-GB">Classical mechanical simulation in two dimensions</li>
@@ -116,6 +121,7 @@
       <li xml:lang="x-test">xxClassical mechanical simulation in two dimensionsxx</li>
       <li xml:lang="zh-TW">傳統的二維機械模擬</li>
       <li>Particles, springs with damping, gravitational and coulomb forces</li>
+      <li xml:lang="bs">Čestice, opruge s prigušenjem,gravitacijska i kulonova sila</li>
       <li xml:lang="ca">Partícules, molles amb amortiment, forces gravitacionals i de Coulomb</li>
       <li xml:lang="de">Teilchen, Federn mit Dämpfung, Gravitations- und Coulombkräfte</li>
       <li xml:lang="en-GB">Particles, springs with damping, gravitational and coulomb forces</li>
@@ -136,6 +142,7 @@
       <li xml:lang="x-test">xxParticles, springs with damping, gravitational and coulomb forcesxx</li>
       <li xml:lang="zh-TW">粒子，有阻力的彈力，重力與庫倫力等</li>
       <li>Rigid bodies</li>
+      <li xml:lang="bs">Kruta tijela</li>
       <li xml:lang="ca">Cossos rígids</li>
       <li xml:lang="de">Starre Körper</li>
       <li xml:lang="en-GB">Rigid bodies</li>
@@ -156,6 +163,7 @@
       <li xml:lang="x-test">xxRigid bodiesxx</li>
       <li xml:lang="zh-TW">堅固主體</li>
       <li>Collision detection (currently only discrete) and handling</li>
+      <li xml:lang="bs">Detekcija sudara (trenutno samo diskretna) i rukovanje</li>
       <li xml:lang="ca">Detecció de col·lisions (ara per ara només discretes) i el seu maneig</li>
       <li xml:lang="de">Kollisionserkennung (zurzeit nur diskret) und -bearbeitung</li>
       <li xml:lang="en-GB">Collision detection (currently only discrete) and handling</li>
@@ -176,6 +184,7 @@
       <li xml:lang="x-test">xxCollision detection (currently only discrete) and handlingxx</li>
       <li xml:lang="zh-TW">碰撞偵測（目前只有不連接的）與處理</li>
       <li>Soft (deformable) bodies simulated as user-editable particles-springs system, sound waves</li>
+      <li xml:lang="bs">Mehka(deformabilna) tijela su simulirana kao korisnički uređen ​​čestice-opruge sistem, zvučni valovi</li>
       <li xml:lang="ca">Cossos tous (deformables) simulats com a sistemes partícula-molla editables per l'usuari, ones de so</li>
       <li xml:lang="de">Elastische verformbare Körper als editierbare Systeme aus Teilchen und Federn, Schallwellen</li>
       <li xml:lang="en-GB">Soft (deformable) bodies simulated as user-editable particles-springs system, sound waves</li>
@@ -196,6 +205,7 @@
       <li xml:lang="x-test">xxSoft (deformable) bodies simulated as user-editable particles-springs system, sound wavesxx</li>
       <li xml:lang="zh-TW">軟性（可變形）主體，模擬成使用者可編輯的粒子彈性系統，聲波</li>
       <li>Molecular dynamics (currently using Lennard-Jones potential): gas and liquid, condensation and evaporation, calculation of macroscopic quantities and their variances</li>
+      <li xml:lang="bs">Molekularna dinamika (trenutno koristi Lennard-Jones potencijal): plin i tekućinu, kondenzacije i isparavanja, izračunavanje makroskopskih količina i njihovih varijancija</li>
       <li xml:lang="ca">Dinàmica molecular (usant ara per ara el potencial de Lennard-Jones): gas i líquid, condensació i evaporació, càlcul de quantitats macroscòpiques i les seves variances</li>
       <li xml:lang="de">Molekulare Dynamik mithilfe des Lennard-Jones-Potentials: Gase und Flüssigkeiten, Kondensation und Verdunstung, Berechnung der makroskopischen Werte und ihrer Abweichungen</li>
       <li xml:lang="en-GB">Molecular dynamics (currently using Lennard-Jones potential): gas and liquid, condensation and evaporation, calculation of macroscopic quantities and their variances</li>
@@ -216,6 +226,7 @@
       <li xml:lang="x-test">xxMolecular dynamics (currently using Lennard-Jones potential): gas and liquid, condensation and evaporation, calculation of macroscopic quantities and their variancesxx</li>
       <li xml:lang="zh-TW">分子動態（目前使用雷納德-瓊斯勢能，Lennard-Jones potential）：氣體與液體，濃縮與蒸發，可見質量與變異的計算</li>
       <li>Units conversion and expression calculation: you can enter something like "(2 days + 3 hours) * 80 km/h" and it will be accepted as distance value (requires libqalculate)</li>
+      <li xml:lang="bs">Jedinice konverzije i proračun izraza: možete unijeti nešto poput "(2 dana + 3 sata) * 80 km / h", a ona će biti prihvaćena kao vrijednost udaljenosti (zahtijeva libqalculate)</li>
       <li xml:lang="ca">Conversió d'unitats i càlcul d'expressions: podeu introduir quelcom del tipus "(2 dies + 3 hores) * 80 km/h" i serà acceptat com un valor de distància (necessita la libqalculate)</li>
       <li xml:lang="de">Umwandlung von Einheiten und Berechnung von Ausdrücken: Sie können zum Beispiel „(2 days + 3 hours) * 80 km/h“ eingeben, daraus wird der Wert der Entfernung berechnet. Dazu ist die Bibliothek libqalculate erforderlich.</li>
       <li xml:lang="en-GB">Units conversion and expression calculation: you can enter something like "(2 days + 3 hours) * 80 km/h" and it will be accepted as distance value (requires libqalculate)</li>
@@ -236,6 +247,7 @@
       <li xml:lang="x-test">xxUnits conversion and expression calculation: you can enter something like "(2 days + 3 hours) * 80 km/h" and it will be accepted as distance value (requires libqalculate)xx</li>
       <li xml:lang="zh-TW">單位轉換與表示式計算：您可以輸入像是 "(2 days + 3 hours) * 80 km/h" 它會接受並做距離計算（需要 libqalculate）</li>
       <li>Errors calculation and propagation: you can enter values like "1.3 ± 0.2" for any property and errors for all dependent properties will be calculated using statistical formulas</li>
+      <li xml:lang="bs">Obračun i propagacija greške: možete unijeti vrijednosti kao što su "1.3 ± 0.2" za bilo koje vlasništvo i grešake za sve zavisne osobine će se izračunati pomoću statističkih formula</li>
       <li xml:lang="ca">Càlcul i propagació d'errors: podeu introduir valors del tipus "1.3 ± 0.2" a qualsevol propietat i els errors de totes les propietats que en depenguin es calcularan utilitzant fórmules estadístiques</li>
       <li xml:lang="de">Fehlerberechnung und -weiterleitung: Sie können Werte wie „1,3± 0,2“ für jede beliebige Eigenschaft eingeben. Dann werden die sich daraus ergebenden Fehler für alle abhängigen Eigenschaften mit statistischen Formeln berechnet.</li>
       <li xml:lang="en-GB">Errors calculation and propagation: you can enter values like "1.3 ± 0.2" for any property and errors for all dependent properties will be calculated using statistical formulas</li>
@@ -256,6 +268,7 @@
       <li xml:lang="x-test">xxErrors calculation and propagation: you can enter values like "1.3 ± 0.2" for any property and errors for all dependent properties will be calculated using statistical formulasxx</li>
       <li xml:lang="zh-TW">計算與增殖誤差：您可以對每個屬性輸入像是 "1.3 ± 0.2" 允許誤差值，它會使用統計公式來計算</li>
       <li>Solver error estimation: errors introduced by the solver is calculated and added to user-entered errors</li>
+      <li xml:lang="bs">Rješavač greške procjenjuje: greške koje su uvedene od strane rješavača su izračunate i  dodane korisničkim greškama</li>
       <li xml:lang="ca">Estimació dels errors del solucionador: Els errors introduïts pel solucionador es calculen i s'afegeixen als errors introduïts per l'usuari</li>
       <li xml:lang="de">Abschätzung der Fehler der Gleichungslösungssysteme: Die daraus entstehenden Fehler werden berechnet und zu den vom Benutzer eingegeben Fehlern addiert</li>
       <li xml:lang="en-GB">Solver error estimation: errors introduced by the solver is calculated and added to user-entered errors</li>
@@ -276,6 +289,7 @@
       <li xml:lang="x-test">xxSolver error estimation: errors introduced by the solver is calculated and added to user-entered errorsxx</li>
       <li xml:lang="zh-TW">計算器誤差估計：由計算器造成的誤差會被計算，並加入使用者輸入的誤差</li>
       <li>Several different solvers: up to 8th order, explicit and implicit, with or without adaptive timestep (most of the solvers require GSL library)</li>
+      <li xml:lang="bs">Nekoliko različitih rješavača: do osmog poretka, eksplicitno i implicitno, sa ili bez prilagodljivog vremesnog koraka(većina rješavača zahtjeva GSL biblioteku)</li>
       <li xml:lang="ca">Diversos solucionadors diferents: fins a ordre 8è, explícit o implícit, amb o sense pas temporal adaptatiu (la majoria de solucionadors necessiten la biblioteca GSL)</li>
       <li xml:lang="de">Mehrere verschiedene Gleichungslösungssysteme: bis zur achten Ordnung, explizit und implizit, mit oder ohne angepassten Zeitschritten. Die meisten Gleichungslösungssysteme benötigen die GSL-Bibliothek.</li>
       <li xml:lang="en-GB">Several different solvers: up to 8th order, explicit and implicit, with or without adaptive timestep (most of the solvers require GSL library)</li>
@@ -296,6 +310,7 @@
       <li xml:lang="x-test">xxSeveral different solvers: up to 8th order, explicit and implicit, with or without adaptive timestep (most of the solvers require GSL library)xx</li>
       <li xml:lang="zh-TW">數種不同的計算器：最高到八階，外顯與內含的，包含與不包含時間（大部份的計算器都需要 GSL 函式庫）</li>
       <li>Controller tool to easily control properties during simulation (even with custom keyboard shortcuts)</li>
+      <li xml:lang="bs">Upravljački alat za jednostavno upravljanje svojstvima tokom simulacije (čak i uz prilagođene prečice na tastaturi)</li>
       <li xml:lang="ca">Eina controladora per controlar fàcilment les propietats durant la simulació (àdhuc amb dreceres de teclat personalitzades)</li>
       <li xml:lang="de">Werkzeuge zur Kontrolle der Objekteigenschaften während der Simulation, auch mit benutzerdefinierten Kurzbefehlen.</li>
       <li xml:lang="en-GB">Controller tool to easily control properties during simulation (even with custom keyboard shortcuts)</li>
@@ -316,6 +331,7 @@
       <li xml:lang="x-test">xxController tool to easily control properties during simulation (even with custom keyboard shortcuts)xx</li>
       <li xml:lang="zh-TW">用於在模擬實驗時控制變因的控制工具（還有鍵盤捷徑）</li>
       <li>Tools to visualize results: graph, meter, tracer</li>
+      <li xml:lang="bs">Alati za vizualizaciju rezultata: graf, metar,tragač</li>
       <li xml:lang="ca">Eines per visualitzar resultats: gràfics, aparells de mesura, traçadors</li>
       <li xml:lang="de">Grafische Darstellung der Ergebnisse durch Diagramme, Messwertanzeigen und Spuren von Bewegungen</li>
       <li xml:lang="en-GB">Tools to visualise results: graph, meter, tracer</li>
@@ -336,6 +352,7 @@
       <li xml:lang="x-test">xxTools to visualize results: graph, meter, tracerxx</li>
       <li xml:lang="zh-TW">視覺化結果的工具：圖形、尺、追蹤器</li>
       <li>Context information for all objects, integrated wikipedia browser</li>
+      <li xml:lang="bs">Informacije konteksta za sve objekte, integrisani wikipedia preglednik</li>
       <li xml:lang="ca">Informació de context per tots els objectes, fullejador de la viquipèdia integrat</li>
       <li xml:lang="de">Kontextinformationen für alle Objekte, eingebauter Wikipedia-Browser</li>
       <li xml:lang="en-GB">Context information for all objects, integrated wikipedia browser</li>
@@ -356,6 +373,7 @@
       <li xml:lang="x-test">xxContext information for all objects, integrated wikipedia browserxx</li>
       <li xml:lang="zh-TW">所有物件的內文資訊，整合的維基瀏覽器</li>
       <li>Collection of example experiments, more can be downloaded with KNewStuff</li>
+      <li xml:lang="bs">Zbirka pokaznih eksperimenata, više se može preuzeti sa KNewStuff</li>
       <li xml:lang="ca">Col·lecció d'experiments d'exemple. Se'n poden baixar més amb KNewStuff</li>
       <li xml:lang="de">Sammlung von Beispielexperimenten, weitere Experimente können zusätzlich heruntergeladen werden</li>
       <li xml:lang="en-GB">Collection of example experiments, more can be downloaded with KNewStuff</li>
@@ -376,6 +394,7 @@
       <li xml:lang="x-test">xxCollection of example experiments, more can be downloaded with KNewStuffxx</li>
       <li xml:lang="zh-TW">範例實驗的收藏。可以透過 KNewStuff 下載更多</li>
       <li>Integrated tutorials</li>
+      <li xml:lang="bs">Integrirani tutoriali</li>
       <li xml:lang="ca">Guies d'aprenentatge integrades</li>
       <li xml:lang="de">Integrierte Anleitungen</li>
       <li xml:lang="en-GB">Integrated tutorials</li>
