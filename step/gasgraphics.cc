@@ -30,11 +30,8 @@
 #include <QGraphicsScene>
 #include <QEvent>
 #include <QPainter>
-#include <QValidator>
-#include <QApplication>
-#include <QDebug>
 #include <KMessageBox>
-#include <KLocale>
+#include <KLocalizedString>
 #include <KDebug>
 
 #include <float.h>

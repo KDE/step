@@ -35,7 +35,7 @@
 #include <QPainter>
 #include <QtAlgorithms>
 
-#include <KLocale>
+#include <KLocalizedString>
 #include <QIcon>
 
 

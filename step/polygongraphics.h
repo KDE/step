@@ -27,7 +27,6 @@
 #include "stepgraphicsitem.h"
 
 #include <QPainterPath>
-#include <QPointer>
 
 namespace StepCore {
     class RigidBody;

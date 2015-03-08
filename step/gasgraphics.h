@@ -23,7 +23,6 @@
 #include "worldgraphics.h"
 #include "stepgraphicsitem.h"
 #include "gascreationdialog.h"
-#include <QAction>
 
 
 namespace StepCore {

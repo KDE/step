@@ -34,14 +34,13 @@
 #include <QGraphicsScene>
 #include <QEvent>
 #include <QPainter>
-#include <QValidator>
 #include <QDialog>
 #include <QDialogButtonBox>
 #include <QPushButton>
 #include <QVBoxLayout>
 
 #include <KDebug>
-#include <KLocale>
+#include <KLocalizedString>
 
 
 void SoftBodyCreator::start()

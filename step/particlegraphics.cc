@@ -22,11 +22,8 @@
 
 #include "worldmodel.h"
 #include "worldfactory.h"
-#include <QItemSelectionModel>
 #include <QGraphicsSceneMouseEvent>
-#include <QEvent>
 #include <QPainter>
-#include <KLocale>
 
 ParticleGraphicsItem::ParticleGraphicsItem(StepCore::Item* item, WorldModel* worldModel)
     : StepGraphicsItem(item, worldModel)

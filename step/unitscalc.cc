@@ -17,7 +17,6 @@
 */
 
 #include "unitscalc.h"
-#include <KGlobal>
 
 #ifdef STEP_WITH_QALCULATE
 #include <libqalculate/qalculate.h>
@@ -31,7 +30,7 @@ public:
     UnitsCalc* q;
 };
 
-K_GLOBAL_STATIC(UnitsCalcHelper, s_unitsCalcHelper)
+Q_GLOBAL_STATIC(UnitsCalcHelper, s_unitsCalcHelper)
 
 UnitsCalc* UnitsCalc::self()
 {

@@ -29,18 +29,14 @@
 #include <QItemSelectionModel>
 #include <QGraphicsScene>
 #include <QGraphicsSceneMouseEvent>
-#include <QPainter>
-#include <QTimer>
 #include <QMenu>
 #include <KActionCollection>
-#include <QIcon>
-#include <KLocale>
+#include <KLocalizedString>
 
 #include <cmath>
 
 // XXX
 #include "worldscene.h"
-#include <QDebug>
 
 void ItemCreator::showMessage(MessageFrame::Type type, const QString& text, MessageFrame::Flags flags)
 {

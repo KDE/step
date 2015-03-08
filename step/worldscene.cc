@@ -36,25 +36,17 @@
 
 #include <QGraphicsItem>
 #include <QGraphicsSceneMouseEvent>
-#include <QKeyEvent>
 #include <QItemSelectionModel>
 #include <QPainter>
-#include <QAction>
 #include <QToolTip>
-#include <QLabel>
 #include <QTimer>
 #include <QScrollBar>
-#include <QSignalMapper>
-#include <QToolButton>
-#include <QHBoxLayout>
-#include <QVBoxLayout>
 #include <QGLWidget>
 #include <QWheelEvent>
 #include <QCoreApplication>
 #include <QUrl>
 
-#include <QIcon>
-#include <KLocale>
+#include <KLocalizedString>
 #include <KDebug>
 
 class WorldSceneAxes: public QGraphicsItem

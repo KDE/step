@@ -21,13 +21,11 @@
 
 #include <float.h>
 
-#include <QValidator>
 #include <QDialogButtonBox>
 #include <QPushButton>
 #include <QVBoxLayout>
-#include <QDebug>
 
-#include <KLocale>
+#include <KLocalizedString>
 
 #include <stepcore/gas.h>
 

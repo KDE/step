@@ -19,14 +19,11 @@
 #include "latexformula.h"
 #include <QTextStream>
 #include <QProcess>
-#include <QColor>
 #include <QFile>
-#include <QRegExp>
 #include <QApplication>
 #include <QTemporaryDir>
-#include <KGlobal>
-
-#include <KLocale>
+#include <QDebug>
+#include <KLocalizedString>
 #include <QStandardPaths>
 
 namespace {

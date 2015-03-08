@@ -23,11 +23,9 @@
 #include "worldmodel.h"
 #include "worldscene.h"
 #include "worldfactory.h"
-#include <QItemSelectionModel>
 #include <QGraphicsSceneMouseEvent>
-#include <QEvent>
 #include <QPainter>
-#include <KLocale>
+#include <KLocalizedString>
 
 #include <cmath>
 

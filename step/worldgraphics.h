@@ -22,10 +22,7 @@
 #include "worldscene.h"
 
 #include <stepcore/vector.h>
-#include <QPointer>
 #include <QGraphicsItem>
-#include <QRectF>
-#include <QColor>
 #include <QMenu>
 
 namespace StepCore {

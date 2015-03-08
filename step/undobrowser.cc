@@ -22,7 +22,7 @@
 #include <QUndoView>
 #include <QUrl>
 #include <QIcon>
-#include <KLocale>
+#include <KLocalizedString>
 
 UndoBrowser::UndoBrowser(WorldModel* worldModel, QWidget* parent, Qt::WindowFlags flags)
     : QDockWidget(i18n("Undo history"), parent, flags), _worldModel(worldModel)

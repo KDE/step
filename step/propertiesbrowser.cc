@@ -28,14 +28,13 @@
 #include <stepcore/solver.h>
 #include <stepcore/types.h>
 #include <QAbstractItemModel>
-#include <QStandardItemModel>
 #include <QItemEditorFactory>
 #include <QTreeView>
 #include <QMouseEvent>
 #include <KLineEdit>
 #include <QHBoxLayout>
 #include <QApplication>
-#include <KLocale>
+#include <KLocalizedString>
 #include <KComboBox>
 #include <KColorButton>
 

@@ -20,7 +20,6 @@
 #define STEP_INFOBROWSER_H
 
 #include <QDockWidget>
-#include <QList>
 #include <QUrl>
 
 class WorldModel;

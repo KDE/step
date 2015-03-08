@@ -34,17 +34,15 @@
 #include <stepcore/solver.h>
 #include <stepcore/collisionsolver.h>
 
-#include <KGlobal>
 #include <KActionCollection>
 #include <KStandardAction>
 #include <KRecentFilesAction>
-#include <KApplication>
 #include <KMessageBox>
 #include <KFileDialog>
 #include <KConfigDialog>
 #include <KStandardDirs>
 #include <KStatusBar>
-#include <KLocale>
+#include <KLocalizedString>
 #include <KConfig>
 #include <KToolBarPopupAction>
 
@@ -56,8 +54,6 @@
 #include <QIcon>
 #include <QFile>
 #include <QGraphicsView>
-#include <QItemSelectionModel>
-#include <QHBoxLayout>
 #include <QMenu>
 #include <QKeySequence>
 

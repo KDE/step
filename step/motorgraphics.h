@@ -21,9 +21,7 @@
 #include "worldgraphics.h"
 #include "stepgraphicsitem.h"
 #include <QGraphicsTextItem>
-#include <QAbstractItemModel>
 #include <QWidget>
-#include <KComboBox>
 #include <limits.h>
 
 class KPlotWidget;

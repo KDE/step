@@ -66,7 +66,7 @@
 #include <KFontAction>
 #include <KFontSizeAction>
 #include <KColorDialog>
-#include <KLocale>
+#include <KLocalizedString>
 #include <KMessageBox>
 #include <KInputDialog>
 #include <KIO/NetAccess>
