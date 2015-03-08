@@ -23,7 +23,6 @@
 #include "worldgraphics.h"
 #include "stepgraphicsitem.h"
 #include <QGraphicsTextItem>
-#include <QAbstractItemModel>
 #include <QWidget>
 #include <QPointer>
 #include <KTextEdit>

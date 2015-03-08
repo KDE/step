@@ -23,9 +23,7 @@
 #include <stepcore/particle.h>
 #include <stepcore/rigidbody.h>
 
-#include <QEvent>
 #include <QGraphicsSceneMouseEvent>
-#include <QItemSelectionModel>
 #include <KLocale>
 
 AnchorGraphicsItem::AnchorGraphicsItem(StepCore::Item* item, WorldModel* worldModel)

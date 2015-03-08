@@ -21,7 +21,6 @@
 
 #include <QList>
 #include <QObject>
-#include <QVector>
 
 namespace StepCore
 {

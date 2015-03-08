@@ -31,15 +31,12 @@
 #include <QPainter>
 #include <QTimer>
 #include <QMenu>
-#include <KActionCollection>
-#include <KIcon>
 #include <KLocale>
 
 #include <cmath>
 
 // XXX
 #include "worldscene.h"
-#include <QDebug>
 
 //XXX
 const QColor StepGraphicsItem::SELECTION_COLOR = QColor(0xff, 0x70, 0x70);

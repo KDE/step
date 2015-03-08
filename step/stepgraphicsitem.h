@@ -27,7 +27,6 @@
 #include <QGraphicsItem>
 #include <QRectF>
 #include <QColor>
-#include <QMenu>
 
 namespace StepCore {
     class Object;

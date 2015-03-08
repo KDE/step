@@ -19,7 +19,6 @@
 #ifndef STEP_UNITSCALC_H
 #define STEP_UNITSCALC_H
 
-#include <QVariant>
 #include <QString>
 
 class UnitsCalcPrivate;

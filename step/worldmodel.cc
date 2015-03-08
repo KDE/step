@@ -36,7 +36,6 @@
 #include <QTimer>
 #include <QUndoStack>
 #include <QMenu>
-#include <QIcon>
 #include <KLocale>
 
 class CommandEditProperty: public QUndoCommand

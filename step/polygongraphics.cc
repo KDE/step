@@ -27,12 +27,10 @@
 #include "worldfactory.h"
 #include <QItemSelectionModel>
 #include <QEvent>
-#include <QTimer>
 #include <QGraphicsSceneMouseEvent>
 #include <QKeyEvent>
 #include <QPainter>
 #include <KLocale>
-#include <QDebug>
 
 RigidBodyGraphicsItem::RigidBodyGraphicsItem(StepCore::Item* item, WorldModel* worldModel)
     : StepGraphicsItem(item, worldModel)

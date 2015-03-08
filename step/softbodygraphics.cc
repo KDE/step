@@ -34,7 +34,6 @@
 #include <QGraphicsScene>
 #include <QEvent>
 #include <QPainter>
-#include <QValidator>
 #include <QDialog>
 #include <QDialogButtonBox>
 #include <QPushButton>
