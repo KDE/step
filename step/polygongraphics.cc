@@ -30,7 +30,7 @@
 #include <QGraphicsSceneMouseEvent>
 #include <QKeyEvent>
 #include <QPainter>
-#include <KLocale>
+#include <KLocalizedString>
 
 RigidBodyGraphicsItem::RigidBodyGraphicsItem(StepCore::Item* item, WorldModel* worldModel)
     : StepGraphicsItem(item, worldModel)

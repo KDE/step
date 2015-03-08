@@ -42,7 +42,7 @@
 #include <KConfigDialog>
 #include <KStandardDirs>
 #include <KStatusBar>
-#include <KLocale>
+#include <KLocalizedString>
 #include <KConfig>
 #include <KToolBarPopupAction>
 

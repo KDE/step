@@ -29,7 +29,7 @@
 #include <KToolBar>
 #include <KHTMLPart>
 
-#include <KLocale>
+#include <KLocalizedString>
 #include <KToolInvocation>
 #include <KIO/Job>
 #include <QIcon>

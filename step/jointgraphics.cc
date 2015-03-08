@@ -24,7 +24,7 @@
 #include <stepcore/rigidbody.h>
 
 #include <QGraphicsSceneMouseEvent>
-#include <KLocale>
+#include <KLocalizedString>
 
 AnchorGraphicsItem::AnchorGraphicsItem(StepCore::Item* item, WorldModel* worldModel)
     : StepGraphicsItem(item, worldModel)

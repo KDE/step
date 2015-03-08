@@ -34,7 +34,7 @@
 #include <KLineEdit>
 #include <QHBoxLayout>
 #include <QApplication>
-#include <KLocale>
+#include <KLocalizedString>
 #include <KComboBox>
 #include <KColorButton>
 

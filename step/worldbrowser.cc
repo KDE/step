@@ -26,7 +26,7 @@
 #include <QContextMenuEvent>
 #include <QApplication>
 #include <QMenu>
-#include <KLocale>
+#include <KLocalizedString>
 
 class WorldBrowserView: public QTreeView
 {

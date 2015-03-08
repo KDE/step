@@ -46,7 +46,7 @@
 #include <QCoreApplication>
 #include <QUrl>
 
-#include <KLocale>
+#include <KLocalizedString>
 #include <KDebug>
 
 class WorldSceneAxes: public QGraphicsItem

@@ -40,7 +40,7 @@
 #include <QVBoxLayout>
 
 #include <KDebug>
-#include <KLocale>
+#include <KLocalizedString>
 
 
 void SoftBodyCreator::start()

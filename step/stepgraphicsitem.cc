@@ -31,7 +31,7 @@
 #include <QPainter>
 #include <QTimer>
 #include <QMenu>
-#include <KLocale>
+#include <KLocalizedString>
 
 #include <cmath>
 

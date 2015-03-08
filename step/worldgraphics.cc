@@ -31,7 +31,7 @@
 #include <QGraphicsSceneMouseEvent>
 #include <QMenu>
 #include <KActionCollection>
-#include <KLocale>
+#include <KLocalizedString>
 
 #include <cmath>
 

@@ -28,7 +28,7 @@
 #include <QEvent>
 #include <QGraphicsSceneMouseEvent>
 #include <QItemSelectionModel>
-#include <KLocale>
+#include <KLocalizedString>
 
 bool LinearMotorCreator::sceneEvent(QEvent* event)
 {

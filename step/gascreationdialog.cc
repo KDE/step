@@ -25,7 +25,7 @@
 #include <QPushButton>
 #include <QVBoxLayout>
 
-#include <KLocale>
+#include <KLocalizedString>
 
 #include <stepcore/gas.h>
 

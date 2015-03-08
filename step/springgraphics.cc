@@ -25,7 +25,7 @@
 #include "worldfactory.h"
 #include <QGraphicsSceneMouseEvent>
 #include <QPainter>
-#include <KLocale>
+#include <KLocalizedString>
 
 #include <cmath>
 
