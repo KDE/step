@@ -5,12 +5,11 @@ add_subdirectory(actions)
 ecm_install_icons(
     ICONS
         hi128-apps-step.png
-        hi16-apps-step.png
-        hi22-apps-step.png
-        hi32-apps-step.png
-        hi48-apps-step.png
-        hi64-apps-step.png
+        16-apps-step.png
+        22-apps-step.png
+        32-apps-step.png
+        48-apps-step.png
+        64-apps-step.png
 
-    DESTINATION ${ICON_INSTALL_DIR}
-    THEME hicolor
+    DESTINATION ${KDE_INSTALL_ICONDIR} THEME hicolor
 )

@@ -73,11 +73,11 @@ target_link_libraries(step
     Qt5::OpenGL
     ${qalculate_LIBS})
 
-install(TARGETS step ${INSTALL_TARGETS_DEFAULT_ARGS})
-install(FILES step.kcfg DESTINATION  ${KCFG_INSTALL_DIR})
-install(FILES stepui.rc DESTINATION  ${DATA_INSTALL_DIR}/step)
-install(FILES step.knsrc DESTINATION  ${CONFIG_INSTALL_DIR})
-install( PROGRAMS org.kde.step.desktop DESTINATION ${XDG_APPS_INSTALL_DIR} )
+install(TARGETS step ${KDE_INSTALL_TARGETS_DEFAULT_ARGS})
+install(FILES step.kcfg DESTINATION  ${KDE_INSTALL_KCFGDIR})
+install(FILES stepui.rc DESTINATION  ${KDE_INSTALL_DATADIR}/step)
+install(FILES step.knsrc DESTINATION  ${KDE_INSTALL_CONFDIR})
+install( PROGRAMS org.kde.step.desktop DESTINATION ${KDE_INSTALL_APPDIR} )
 
 add_subdirectory(icons)
 add_subdirectory(data)

@@ -2,31 +2,30 @@ include(ECMInstallIcons)
 
 ecm_install_icons(
     ICONS
-        hi22-actions-pointer.png
-        hi22-actions-step_object_Anchor.png
-        hi22-actions-step_object_Box.png
-        hi22-actions-step_object_ChargedParticle.png
-        hi22-actions-step_object_CircularMotor.png
-        hi22-actions-step_object_Controller.png
-        hi22-actions-step_object_CoulombForce.png
-        hi22-actions-step_object_Disk.png
-        hi22-actions-step_object_Gas.png
-        hi22-actions-step_object_GasParticle.png
-        hi22-actions-step_object_Graph.png
-        hi22-actions-step_object_GravitationForce.png
-        hi22-actions-step_object_LinearMotor.png
-        hi22-actions-step_object_Meter.png
-        hi22-actions-step_object_Note.png
-        hi22-actions-step_object_Particle.png
-        hi22-actions-step_object_Pin.png
-        hi22-actions-step_object_Polygon.png
-        hi22-actions-step_object_Rope.png
-        hi22-actions-step_object_SoftBody.png
-        hi22-actions-step_object_Spring.png
-        hi22-actions-step_object_Stick.png
-        hi22-actions-step_object_Tracer.png
-        hi22-actions-step_object_WeightForce.png
+        22-actions-pointer.png
+        22-actions-step_object_Anchor.png
+        22-actions-step_object_Box.png
+        22-actions-step_object_ChargedParticle.png
+        22-actions-step_object_CircularMotor.png
+        22-actions-step_object_Controller.png
+        22-actions-step_object_CoulombForce.png
+        22-actions-step_object_Disk.png
+        22-actions-step_object_Gas.png
+        22-actions-step_object_GasParticle.png
+        22-actions-step_object_Graph.png
+        22-actions-step_object_GravitationForce.png
+        22-actions-step_object_LinearMotor.png
+        22-actions-step_object_Meter.png
+        22-actions-step_object_Note.png
+        22-actions-step_object_Particle.png
+        22-actions-step_object_Pin.png
+        22-actions-step_object_Polygon.png
+        22-actions-step_object_Rope.png
+        22-actions-step_object_SoftBody.png
+        22-actions-step_object_Spring.png
+        22-actions-step_object_Stick.png
+        22-actions-step_object_Tracer.png
+        22-actions-step_object_WeightForce.png
 
-    DESTINATION ${ICON_INSTALL_DIR}
-    THEME hicolor
+    DESTINATION ${KDE_INSTALL_ICONDIR} THEME hicolor
 )
