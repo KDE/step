@@ -4,7 +4,7 @@ add_subdirectory(actions)
 
 ecm_install_icons(
     ICONS
-        hi128-apps-step.png
+        128-apps-step.png
         16-apps-step.png
         22-apps-step.png
         32-apps-step.png
