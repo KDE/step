@@ -15,6 +15,7 @@
   <name xml:lang="fi">Step</name>
   <name xml:lang="fr">Step</name>
   <name xml:lang="it">Step</name>
+  <name xml:lang="ko">Step</name>
   <name xml:lang="lt">Step</name>
   <name xml:lang="nds">Step</name>
   <name xml:lang="nl">Step</name>
@@ -40,6 +41,7 @@
   <summary xml:lang="fi">Vuorovaikutteinen fysiikkasimulaattori</summary>
   <summary xml:lang="fr">Simulateur physique interactif</summary>
   <summary xml:lang="it">Simulatore interattivo di fisica</summary>
+  <summary xml:lang="ko">인터랙티브 물리학 시뮬레이터</summary>
   <summary xml:lang="lt">Interaktyvus fizikos modeliatorius</summary>
   <summary xml:lang="nds">Brukerstüert Physiksimuleren</summary>
   <summary xml:lang="nl">Interactieve natuurkundige simulaties</summary>
@@ -88,6 +90,7 @@
     <p xml:lang="fi">Ominaisuudet:</p>
     <p xml:lang="fr">Fonctionnalités :</p>
     <p xml:lang="it">Caratteristiche:</p>
+    <p xml:lang="ko">기능:</p>
     <p xml:lang="lt">Ypatybės:</p>
     <p xml:lang="nds">Markmalen:</p>
     <p xml:lang="nl">Mogelijkheden:</p>
