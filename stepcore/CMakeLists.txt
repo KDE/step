@@ -36,7 +36,7 @@ set(stepcore_SRCS
 if(STEPCORE_WITH_GSL)
     add_definitions(-DSTEPCORE_WITH_GSL)
     include_directories(${GSL_INCLUDE_DIR})
-    set(stepcore_use_LIBS ${stepcore_use_LIBS} ${GSL_LIBRARIES})
+    set(stepcore_use_LIBS ${stepcore_use_LIBS} ${GSL_LIBRARIES} ${GSL_CBLAS_LIBRARIES})
     set(stepcore_SRCS ${stepcore_SRCS} gslsolver.cc)
 endif(STEPCORE_WITH_GSL)
 

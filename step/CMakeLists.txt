@@ -53,7 +53,7 @@ if(STEP_WITH_QALCULATE)
     add_definitions(-DSTEP_WITH_UNITSCALC)
     add_definitions(${QALCULATE_CFLAGS})
     set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} ${KDE4_ENABLE_EXCEPTIONS}")
-    set(qalculate_LIBS ${QALCULATE_LIBRARIES})
+    set(qalculate_LIBS ${QALCULATE_LIBRARIES} ${CLN_LIBRARIES})
 endif(STEP_WITH_QALCULATE)
 
 ki18n_wrap_ui( step_SRCS ${step_UIS} )
