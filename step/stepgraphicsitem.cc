@@ -419,7 +419,7 @@ void ArrowHandlerGraphicsItem::viewScaleChanged()
 void ArrowHandlerGraphicsItem::worldDataChanged(bool)
 {
     if(isVisible()) {
-        //kDebug() << "ArrowHandlerGraphicsItem::worldDataChanged()" << endl;
+        //qDebug() << "ArrowHandlerGraphicsItem::worldDataChanged()" << endl;
         setPos(vectorToPoint(value()));
     }
 }

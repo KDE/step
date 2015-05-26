@@ -190,7 +190,7 @@ QVariant PropertiesBrowserModel::data(const QModelIndex &index, int role) const
                     // default type
                     // XXX: add error information
                     //if(pe) error = QString::fromUtf8(" ± ").append(pe->readString(_objectErrors)).append(units);
-                    //if(pv) kDebug() << "Unhandled property variance type" << endl;
+                    //if(pv) qDebug() << "Unhandled property variance type" << endl;
                     Q_ASSERT( !_objectErrors || !_objectErrors->metaObject()->property(p->name() + "Variance") );
                     Q_ASSERT( p->units().isEmpty() );
                     if(role == Qt::EditRole) return _worldModel->formatProperty(_object, _objectErrors, p,
@@ -371,7 +371,7 @@ bool PropertiesBrowserModel::setData(const QModelIndex &index, const QVariant &v
                      * {} else if(p->userTypeId() == qMetaTypeId<StepCore::Vector2dList >())
                         ve = QVariant::fromValue(StepCore::Vector2dList());*/
                     } else {
-//                         kDebug() << "Unhandled property variance type" << endl;
+//                         qDebug() << "Unhandled property variance type" << endl;
                         return false;
                     }
                     if(!ok) return false;
@@ -764,9 +764,9 @@ void PropertiesBrowser::rowsRemoved(const QModelIndex& parent, int start, int en
 /*
 void PropertiesBrowser::doubleClicked(const QModelIndex& index)
 {
-    kDebug() << "doubleClicked" << endl;
+    qDebug() << "doubleClicked" << endl;
     if(_propertiesBrowserModel->rowCount(index) > 0) {
-        kDebug() << "   doubleClicked!!!" << endl;
+        qDebug() << "   doubleClicked!!!" << endl;
         _treeView->setExpanded(index, !_treeView->isExpanded(index));
     }
 }

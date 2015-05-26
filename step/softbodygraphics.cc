@@ -39,7 +39,6 @@
 #include <QPushButton>
 #include <QVBoxLayout>
 
-#include <KDebug>
 #include <KLocalizedString>
 
 

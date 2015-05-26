@@ -25,7 +25,6 @@
 #include <QLabel>
 #include <QTimer>
 #include <QIcon>
-#include <KDebug>
 
 MessageFrame::MessageFrame(QWidget* parent, Qt::WindowFlags f)
     : QFrame(parent, f), _lastId(0)

@@ -70,7 +70,6 @@
 #include <KMessageBox>
 #include <KInputDialog>
 #include <KIO/NetAccess>
-#include <KDebug>
 
 #include <float.h>
 
@@ -283,8 +282,8 @@ void NoteTextEdit::focusInEvent(QFocusEvent *event)
 
 void NoteTextEdit::focusOutEvent(QFocusEvent *event)
 {
-    kDebug() << event->reason() << endl;
-    kDebug() << QApplication::focusWidget()->metaObject()->className() << endl;
+    qDebug() << event->reason() << endl;
+    qDebug() << QApplication::focusWidget()->metaObject()->className() << endl;
 
     QObject* f = QApplication::focusWidget();
     if(f == this) f = NULL;

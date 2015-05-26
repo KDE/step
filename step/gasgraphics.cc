@@ -32,7 +32,6 @@
 #include <QPainter>
 #include <KMessageBox>
 #include <KLocalizedString>
-#include <KDebug>
 
 #include <float.h>
 

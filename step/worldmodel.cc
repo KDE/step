@@ -70,7 +70,7 @@ CommandEditProperty::CommandEditProperty(WorldModel* worldModel, StepCore::Objec
             const StepCore::MetaProperty* property, const QVariant& newValue, bool merge)
         : _merge(merge), _worldModel(worldModel)
 {
-    //kDebug() << "CommandEditProperty: " << object->name() << " " << property->name() << " " << newValue.toString() << endl;
+    //qDebug() << "CommandEditProperty: " << object->name() << " " << property->name() << " " << newValue.toString() << endl;
     EditProperty p = { object, property, property->readVariant(object), newValue };
     _commands << p;// _objects << object;
 }
@@ -387,7 +387,7 @@ void WorldModel::resetWorld()
 
 void WorldModel::emitChanged(bool fullUpdate, bool recalcFn)
 {
-    //kDebug() << "emitChanged(): " << world()->time() << endl;
+    //qDebug() << "emitChanged(): " << world()->time() << endl;
     if(fullUpdate) _updatingFullUpdate = true;
     if(recalcFn) _updatingRecalcFn = true;
     if(!_updatingTimer->isActive()) _updatingTimer->start(0);
@@ -740,7 +740,7 @@ QString WorldModel::formatProperty(const StepCore::Object* object,
         return QString("(%1,%2)").arg(v[0], 0, 'g', pr).arg(v[1], 0, 'g', pr).append(units).append(error);
     } else if(property->userTypeId() == qMetaTypeId<StepCore::Vector2dList >() ) {
         // XXX: add error information
-//         if(pv) kDebug() << "Unhandled property variance type" << endl;
+//         if(pv) qDebug() << "Unhandled property variance type" << endl;
         StepCore::Vector2dList list =
                 property->readVariant(object).value<StepCore::Vector2dList >();
         QString string;
@@ -757,7 +757,7 @@ QString WorldModel::formatProperty(const StepCore::Object* object,
         // default type
         // XXX: add error information
         //if(pe) error = QString::fromUtf8(" ± ").append(pe->readString(_objectErrors)).append(units);
-        //if(pv) kDebug() << "Unhandled property variance type" << endl;
+        //if(pv) qDebug() << "Unhandled property variance type" << endl;
         Q_ASSERT(!pv);
         QString str = property->readString(object);
         if(!flags.testFlag(FormatEditable) && str.length() > 50)
@@ -873,7 +873,7 @@ void WorldModel::simulationPause()
         // _simulationThread->doWorldEvolve() could be called before
         _world->setEvolveAbort(true);
     } else {
-        //kDebug() << "simulationPause: simulation aborted" << endl;
+        //qDebug() << "simulationPause: simulation aborted" << endl;
         Q_ASSERT(isSimulationActive());
         Q_ASSERT(_simulationCommand);
         Q_ASSERT(_simulationFrameWaiting);
@@ -889,7 +889,7 @@ void WorldModel::simulationPause()
     _simulationThread->mutex()->unlock();
     _simulationPaused = true;
 
-    //kDebug() << "simulationPause!" << endl;
+    //qDebug() << "simulationPause!" << endl;
     // XXX: do we need to reset evolveAbort here (and add threadAbort var) ?
     // XXX: do we need to call emitChanged here ?
 }
@@ -943,7 +943,7 @@ void WorldModel::simulationFrameBegin()
     Q_ASSERT(_simulationCommand);
     Q_ASSERT(!_simulationStopping);
 
-    //kDebug() << "simulationFrameBegin(): " << world()->time() << endl;
+    //qDebug() << "simulationFrameBegin(): " << world()->time() << endl;
 
     if(_simulationFrameWaiting) { // TODO: warn user
         _simulationFrameSkipped = true;
@@ -957,7 +957,7 @@ void WorldModel::simulationFrameBegin()
     }
 
     //qDebug("emit simulationDoFrame() t=%#x", int(QThread::currentThread()));
-    //kDebug() << "simulationFrameBegin" << endl;
+    //qDebug() << "simulationFrameBegin" << endl;
     _simulationFrameWaiting = true;
     _simulationPaused = false;
     _simulationThread->doWorldEvolve(1.0/_simulationFps);
@@ -978,7 +978,7 @@ void WorldModel::simulationFrameEnd(int result)
         _simulationFrames = 0;
     }
 
-    //kDebug() << "simulationFrameEnd" << endl;
+    //qDebug() << "simulationFrameEnd" << endl;
 
     // It's OK to be aborted
     if(result == StepCore::Solver::Aborted) {

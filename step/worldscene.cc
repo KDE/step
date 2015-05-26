@@ -47,7 +47,6 @@
 #include <QUrl>
 
 #include <KLocalizedString>
-#include <KDebug>
 
 class WorldSceneAxes: public QGraphicsItem
 {
@@ -417,7 +416,7 @@ QRectF WorldScene::calcItemsBoundingRect()
         StepGraphicsItem* wItem = dynamic_cast<StepGraphicsItem*>(item);
         if(wItem) {
             boundingRect |= wItem->sceneBoundingRect();
-            //kDebug() << itemFromGraphics(wItem)->name() << ": " << wItem->sceneBoundingRect() << endl;
+            //qDebug() << itemFromGraphics(wItem)->name() << ": " << wItem->sceneBoundingRect() << endl;
         }
     }
     return boundingRect;
@@ -612,7 +611,7 @@ void WorldGraphicsView::fitToPage()
     QRectF br = static_cast<WorldScene*>(scene())->calcItemsBoundingRect();
     if(br.isNull())
         return;
-    //kDebug() << br << " " << (br | QRectF(0,0,0,0)) << endl;
+    //qDebug() << br << " " << (br | QRectF(0,0,0,0)) << endl;
     QRect  ws = viewport()->rect();
 
     double currentViewScale = matrix().m11();
@@ -652,10 +651,10 @@ void WorldGraphicsView::settingsChanged()
         if(!Settings::enableOpenGL()) setViewport(new QWidget(this));
     } else {
         if(Settings::enableOpenGL() && QGLFormat::hasOpenGL()) {
-            //kDebug() << "enable OpenGL" << endl;
+            //qDebug() << "enable OpenGL" << endl;
             setViewport(new QGLWidget(QGLFormat(QGL::SampleBuffers), this));
             if(!qobject_cast<QGLWidget*>(viewport())) {
-                kDebug() << "can't create QGLWidget!" << endl;
+                qDebug() << "can't create QGLWidget!" << endl;
             }
         }
     }

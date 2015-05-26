@@ -23,7 +23,6 @@
 #include <QClipboard>
 #include <QMimeData>
 #include <QDebug>
-#include <KDebug>
 
 #include <stepcore/factory.h>
 #include <stepcore/world.h>

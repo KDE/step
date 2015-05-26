@@ -49,7 +49,6 @@
 #include <QIcon>
 
 #include <KIconLoader>
-#include <KDebug>
 
 template<typename T>
 ItemCreator* newItemCreatorHelper(const QString& className,
