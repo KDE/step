@@ -82,17 +82,3 @@ Ui::WidgetCreateGasParticles *GasCreationDialog::ui()
 {
     return _ui;
 }
-
-
-// FIXME: Is this ever called??
-//        There is no slotButtonClicked in QDialog...
-
-void GasCreationDialog::slotButtonClicked(int button)
-{
-   if (button == QDialogButtonBox::Ok) {
-       if(_handler->createGasParticlesApply())
-	   accept();
-   } else {
-       reject();
-   }
-}

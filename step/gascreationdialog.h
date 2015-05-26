@@ -42,9 +42,6 @@ public:
 
     Ui::WidgetCreateGasParticles *ui();
 
-protected slots:
-    void slotButtonClicked(int button);
-
 protected:
     Ui::WidgetCreateGasParticles *_ui;
 
