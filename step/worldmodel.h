@@ -37,6 +37,7 @@ namespace StepCore {
     class MetaProperty;
 }
 
+class QIODevice;
 class QItemSelectionModel;
 class QTimer;
 class QMenu;
