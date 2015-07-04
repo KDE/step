@@ -14,6 +14,7 @@
   <name xml:lang="et">Step</name>
   <name xml:lang="fi">Step</name>
   <name xml:lang="fr">Step</name>
+  <name xml:lang="gl">Paso</name>
   <name xml:lang="it">Step</name>
   <name xml:lang="ko">Step</name>
   <name xml:lang="lt">Step</name>
@@ -41,6 +42,7 @@
   <summary xml:lang="et">Interaktiivne füüsikasimulaator</summary>
   <summary xml:lang="fi">Vuorovaikutteinen fysiikkasimulaattori</summary>
   <summary xml:lang="fr">Simulateur physique interactif</summary>
+  <summary xml:lang="gl">Simulador físico interactivo</summary>
   <summary xml:lang="it">Simulatore interattivo di fisica</summary>
   <summary xml:lang="ko">인터랙티브 물리학 시뮬레이터</summary>
   <summary xml:lang="lt">Interaktyvus fizikos modeliatorius</summary>
@@ -67,6 +69,7 @@
     <p xml:lang="et">Step on interaktiivne füüsikasimulaator. See võimaldab uurida füüsikamaailma reaalsust matkides. Asi käib nii: sina sead stseenile mõned kehad, määrad kindlaks teatud jõud, näiteks gravitatsiooni või vedrud, seejärel klõpsad nupule Simuleeri ning Step näitab, mis vastavalt füüsikaseadustele stseenil juhtuma hakkab. Katses võib muuta kõigi kehade jõudude kõiki omadusi (isegi simulatsiooni ajal), et uurida, kuidas miski täpselt katset mõjutab. Stepiga ei saa ainult füüsikat õppida, vaid ka ise otse läbi elada!</p>
     <p xml:lang="fi">Step on vuorovaikutteinen fysiikkasimulaattori. Sen avulla voit tutkia fyysistä maailmaa simuloinnein. Se toimii näin: asetat joitakin kappaleita näkymään, lisäät voimia kuten painovoiman tai jousia ja painat Simuloi. Step näyttää sinulle, miten näkymä muuttuu fysiikan lakien mukaan. Voit muuttaa kaikkien kokeesi kappaleiden ja voimien ominaisuuksia jopa simuloinnin aikana ja nähdä, miten tämä vaikuttaa kokeesi etenemiseen. Stepillä et vain opi vaan tunnet, miten fysiikka toimii!</p>
     <p xml:lang="fr">Step est un simulateur physique interactif. Il vous permet d'explorer le monde physique au travers de simulations. Il fonctionne comme ceci : vous placez quelques corps sur l'espace de travail, vous ajoutez quelques forces tels que la gravité ou des ressorts, puis vous cliquez sur Simuler et Step vous montre comme votre espace de travail évolue en suivant les lois de la physique. Vous pouvez modifier chaque propriétés des corps/forces dans votre expérience (même durant la simulation) et voir comment cela modifiera l'évolution de l'expérience. Avec Step vous ne ferez pas qu'apprendre mais vous ressentirez comment la physique fonctionne !</p>
+    <p xml:lang="gl">Step é un simulador interactivo de física. Permite explorar o mundo físico mediante simulacións. Funciona deste xeito: sitúanse algúns corpos na escena, engádense forzas como a gravidade ou molas, logo prémese en Simular e Step móstrase a evolución da escena segundo as leis da física. Pódese modificar cada propiedade dos corpos/forzas no experimento (mesmo durante a simulación) e ver como isto modificará a evolución do experimento. Con Step non só aprenderás, senón que sentirás como funciona a física!</p>
     <p xml:lang="it">Step è un simulatore interattivo di fisica. Ti consente di esplorare il mondo fisico tramite simulazioni. Funziona in questo modo: posizioni alcuni corpi nella scena, aggiungi delle forze come quella gravitazionale o la forza elastica, quindi fai clic su Simula e Step mostrerà l'evoluzione della scena secondo le leggi della fisica. Puoi cambiare ogni proprietà dei corpi e delle forze nel tuo esperimento (anche durante la simulazione) e vedere come questo ne influenza l'evoluzione. Con Step puoi non solo imparare ma anche "toccare con mano" il funzionamento della fisica!</p>
     <p xml:lang="nds">Step is en brukerstüert Physik-Simulater. Du kannst dor de physikaalsche Welt mit över Simuleren bekieken. Dat geiht so: Du leggst en poor Körpers hen, föögst en poor Kräft to, so as de Swoorkraft oder en Fedder, denn klickst Du op „Simuleren“ un Step wiest Di, wodennig sik dat na de physikaalschen Gesetten utwickeln deit. Du kannst all Egenschappen vun Dien Körpers un Kräft ännern (ok bides de Simuleren löppt) un Di ankieken wodennig dat den Afloop vun't Experiment ännert. Mit Step kannst Du nich bloots lehren, man meist föhlen, wodennig Physik funkscheneert.</p>
     <p xml:lang="nl">Step is een interactief natuurkundig simulatieprogramma. U kunt ermee natuurkundige experimenten doen door middel van simulaties. Het werkt zo: u neemt enige lichamen, voegt er wat krachten aan toe zoals de zwaartekracht en wat veren, en klikt daarna op de knop Simuleren, waarna Step u laat zien hoe dit stelsel evolueert volgens de natuurkundige wetten. U kunt elke eigenschap van de lichamen en krachten in uw experiment wijzigen (zelfs tijdens de simulatie), en zien wat daarvan de gevolgen zijn. Met Step leert u niet alleen natuurkunde, maar krijgt u er ook gevoel voor!</p>
@@ -90,6 +93,7 @@
     <p xml:lang="et">Omadused:</p>
     <p xml:lang="fi">Ominaisuudet:</p>
     <p xml:lang="fr">Fonctionnalités :</p>
+    <p xml:lang="gl">Funcionalidades:</p>
     <p xml:lang="it">Caratteristiche:</p>
     <p xml:lang="ko">기능:</p>
     <p xml:lang="lt">Ypatybės:</p>
@@ -116,6 +120,7 @@
       <li xml:lang="et">Klassikaline mehaaniline kahemõõtmeline simulatsioon</li>
       <li xml:lang="fi">Klassinen mekaaninen simulaatio kahdessa ulottuvuudessa</li>
       <li xml:lang="fr">Simulation de la mécanique classique en deux dimensions</li>
+      <li xml:lang="gl">Simulación de mecánica clásica en dúas dimensións</li>
       <li xml:lang="it">Simulazioni di meccanica classica in due dimensioni</li>
       <li xml:lang="nds">Klass'sch mechaansch Simuleren in twee Dimenschonen</li>
       <li xml:lang="nl">Simulatie in twee dimensies volgens de klassieke mechanica</li>
@@ -138,6 +143,7 @@
       <li xml:lang="et">Osakesed, vedrud, mis arvestavad sumbuvusega, gravitatsiooni- ja Coulomb'i jõuga</li>
       <li xml:lang="fi">Hiukkaset, jouset vaimennuksella, painovoima ja Coulombin voima</li>
       <li xml:lang="fr">Particules, ressorts avec amortissement, forces gravitationnelle et coulombienne</li>
+      <li xml:lang="gl">Partículas, resortes con forzas de amortecemento, gravidade e Coulomb.</li>
       <li xml:lang="it">Particelle, molle smorzate, forze gravitazionali e coulombiane</li>
       <li xml:lang="nds">Deeltjes, Feddern mit Dämpen, Swoor- un Coulomb-Kräft</li>
       <li xml:lang="nl">Deeltjes, veren met demping, zwaarte- en elektrische krachten</li>
@@ -160,6 +166,7 @@
       <li xml:lang="et">Mitteelastsed kehad</li>
       <li xml:lang="fi">Jäykät kappaleet</li>
       <li xml:lang="fr">Corps rigides</li>
+      <li xml:lang="gl">Corpos ríxidos</li>
       <li xml:lang="it">Corpi rigidi</li>
       <li xml:lang="nds">Fast Körpers</li>
       <li xml:lang="nl">Stijve lichamen</li>
@@ -182,6 +189,7 @@
       <li xml:lang="et">Kokkupõrgete tuvastamine (praegu ainult diskreetne) ja käitlemine</li>
       <li xml:lang="fi">Törmäysten tarkastelu (tällä hetkellä vain diskreetti) sekä käsittely</li>
       <li xml:lang="fr">Détection et traitement de collisions (actuellement seulement discrète)</li>
+      <li xml:lang="gl">Detección e xestión de colisións (por agora só discreta)</li>
       <li xml:lang="it">Rilevamento e gestione delle collisioni (al momento solo discrete)</li>
       <li xml:lang="nds">Tosamenstoot-Opdecken (opstunns bloots schrittwies) un -Behanneln</li>
       <li xml:lang="nl">Botsingdetectie (nu nog alleen discreet) en afhandeling</li>
@@ -204,6 +212,7 @@
       <li xml:lang="et">Elastsed (deformeeritavad) kehad kasutaja muudetava osakeste-vedrude süsteemina, helilained</li>
       <li xml:lang="fi">Pehmeät (deformoituvat) kappaleet simuloidaan käyttäjän muokattavissa olevina hiukkas-jousisysteemeinä (englanniksi particle-spring system), ääniaaltoina</li>
       <li xml:lang="fr">Corps mous (déformables) simulés comme un système modifiable par l'utilisateur de particles-ressorts, ondes sonores</li>
+      <li xml:lang="gl">Simulación de corpos brandos (deformábeis) como sistemas de partículas e molas editábeis polo usuario, ondas de son</li>
       <li xml:lang="it">Corpi morbidi (deformabili) simulati come sistemi di particelle elastiche modificabili dall'utente, onde sonore</li>
       <li xml:lang="nds">Week (verformbor) Körpers simuleert as för den Bruker bewerkbor Deeltjes-Feddern-Systeem, Klangbülgen</li>
       <li xml:lang="nl">Zachte (vervormbare) lichamen gesimuleerd als een deeltjes-verensysteem dat door de gebruiker kan worden bewerkt, geluidsgolven</li>
@@ -226,6 +235,7 @@
       <li xml:lang="et">Molekulaardünaamika (praegu Lenard-Jonesi potentsiaali abil): gaas ja vedelik, kondenseerimine ja aurustumine, makroskoopiliste koguste ja nende variatsioonide arvutamine</li>
       <li xml:lang="fi">Molekyylidynamiikka (käyttää nykyisellään Lennard-Jones-potentiaalia): kaasu ja neste, tiivistyminen ja höyrystyminen, makroskooppisten määrien sekä niiden varianssin laskenta</li>
       <li xml:lang="fr">Dynamique moléculaire (utilisant actuellement un potentiel de Lennard-Jones) : gaz, liquide, condensation et évaporation, calcul de quantités macroscopiques et de leur variance.</li>
+      <li xml:lang="gl">Dinámica molecular (por agora empregando o potencial de Lennard e Jones): gases e líquidos, condensación e evaporación, calculo de cantidades macroscópicas e as súas varianzas</li>
       <li xml:lang="it">Dinamica molecolare (al momento con l'utilizzo del potenziale di Lennard-Jones): gas e liquidi, condensazione ed evaporazione, calcolo delle grandezze macroscopiche e loro variazione</li>
       <li xml:lang="nds">Molekööldünamik  (opstunns mit Lennard-Jones-Potenschaal): Gas un Flaat, kondenseren un verdampen, utreken vun makroskoopsch Mengden un ehr Varianten</li>
       <li xml:lang="nl">Moleculaire dynamica (thans wordt de Lennard-Jones potentiaal gebruikt): gas en vloeistof, condensatie en verdamping, berekening van macroscopische hoeveelheden met hun variaties</li>
@@ -248,6 +258,7 @@
       <li xml:lang="et">Ühikute teisendamine ja avaldiste arvutamine: võid sisestada näiteks "(2 päeva + 3 tundi) * 80 km/h" ning seda arvestatakse vahemaana (selleks on vajalik libqalculate)</li>
       <li xml:lang="fi">Yksikkömuunnokset ja lausekkeiden laskenta: voit kirjoittaa esimerkiksi ”(2 days + 3 hours) * 80 km/h” ja se hyväksytään etäisyysarvoksi (tarvitsee libqalculate-kirjaston)</li>
       <li xml:lang="fr">Conversion d'unités et calcul d'expression : vous pouvez saisir quelque chose comme "(2 jours + 3 heures) * 80 km/h" et ce sera considéré comme une distance (nécessite libqalculate)</li>
+      <li xml:lang="gl">Conversión de unidades e cálculo de expresións: pode introducir algo como "(2 día + 3 horas) * 80 km/h" e aceitarase como un valor de distancia (require de libqalculate)</li>
       <li xml:lang="it">Conversione di unità e calcolo di espressioni: puoi inserire ad esempio "(2 days + 3 hours) * 80 km/h" e sarà accettato come valore di distanza (richiede libqalculate)</li>
       <li xml:lang="nds">Eenheiten ümreken un Utdrück utreken: Di giffst wat in as „(2 Daag + 3 Stünnen) * 80 km/h“ un dat gellt denn as Längdenweert (bruukt „libqalculate“)</li>
       <li xml:lang="nl">Conversie van eenheden en berekening van expressies zoals "(2 dagen + 3 uren) * 80 km/h", waarna dit zal worden beschouwd als een afstand (vereist libqalculate)</li>
@@ -270,6 +281,7 @@
       <li xml:lang="et">Vigade arvutamine ja kasutamine: võid sisestada mis tahes omadusele näiteks väärtuse "1.3 ± 0.2" ning statistilisi valemeid kasutades arvestatakse välja kõigi sõltuvate omaduste viga</li>
       <li xml:lang="fi">Virheiden laskenta ja leviäminen: voit kirjoittaa arvoja kuten ”1.3 ± 0.2” mille tahansa ominaisuudelle, ja kaikkien siitä riippuvien ominaisuuksien virheet lasketaan käyttäen tilastollisia malleja</li>
       <li xml:lang="fr">Calcul d'erreurs et propagation : you pouvez saisir des valeurs comme "1.3 ± 0.2" pour n'importe quelle propriété et les erreurs pour toutes les propriétés indépendantes seront calculées suivant des formules statistiques</li>
+      <li xml:lang="gl">Calculo e propagación de erros: pode indicar valores como "1,3 ± 0,2" en calquera propiedade e erro de calquera propiedade dependente será calculada mediante fórmulas estatísticas</li>
       <li xml:lang="it">Calcolo e propagazione degli errori: puoi inserire valori come "1.3 ± 0.2" per ogni proprietà e gli errori per le proprietà dipendenti saranno calcolati tramite formule statistiche</li>
       <li xml:lang="nds">Fehlerreken: Du kannst wat as „1,3 ± 0,2“ för jichtenseen Egenschap ingeven, denn reekt Step för all afhangen Weerten över statistische Formeln de Fehlers ut.</li>
       <li xml:lang="nl">Foutenberekening en -voortplanting: u kunt voor elke eigenschap zoiets invullen als "1,3 ± 0,2", waarna voor elke daarvan afhankelijke eigenschap de fouten zullen worden berekend met gebruik van statistische formules</li>
@@ -292,6 +304,7 @@
       <li xml:lang="et">Lahendaja veahinnang: lahendaja lisatud vead arvutatakse välja ja lisatakse kasutaja sisestatud vigadele</li>
       <li xml:lang="fi">Ratkaisinvirheiden arviointi: ratkaisimen aiheuttamat virheet lasketaan ja lisätään käyttäjän syöttämiin virheisiin</li>
       <li xml:lang="fr">Estimation des erreurs du solveur : les erreurs introduites par le solveur sont calculées et ajoutées aux erreurs saisies par l'utilisateur</li>
+      <li xml:lang="gl">Estimación do erro da solución: os erros introducidos polo resolvedor son calculados e engadidos aos erros introducidos polo usuario</li>
       <li xml:lang="it">Stima degli errori del solutore: gli errori introdotti dal solutore sono calcolati e aggiunti al valore dell'errore inserito dall'utente</li>
       <li xml:lang="nds">Löserfehler-Estemeren: Vun den Löser inbuut Fehlers warrt estemeert un de vun den Bruker ingeven Fehlers toföögt</li>
       <li xml:lang="nl">Het afschatten van fouten veroorzaakt door de oplossingsmethode: fouten die bij het oplossen zijn ontstaan worden berekend en opgeteld bij de fouten die door de gebruiker zijn ingevoerd</li>
@@ -314,6 +327,7 @@
       <li xml:lang="et">Mitu erinevat lahendajat: kuni 8. astmeni, eksplitsiitsed ja implitsiitsed, adaptiivse ajasammuga või ilma selleta (enamik lahendajaid vajab GSL teeki)</li>
       <li xml:lang="fi">Useita eri ratkaisimia: kahdeksanteen asteeseen asti, eksplisiittisiä sekä implisiittisiä, adaptive timestep -menetelmällä tai ilman sitä (useimmat ratkaisimet tarvitsevat GSL-kirjaston)</li>
       <li xml:lang="fr">Plusieurs solveurs différents :jusqu'à l'ordre 8, explicite et implicite, avec ou sans pas adaptatif (la plupart des solveurs nécessite la bibliothèque GSL)</li>
+      <li xml:lang="gl">Varios tipos diferentes de resolvedores: até a 8ª orden, explícitos e implícitos, con ou sen paso adaptativo de tempo (a maioría dos resolvedores requiren da biblioteca GSL)</li>
       <li xml:lang="it">Diversi tipi di solutori: fino all'ottavo ordine, espliciti ed impliciti, con o senza un passo temporale adattivo (la maggior parte dei solutori richiedono la libreria GSL)</li>
       <li xml:lang="nds">En Reeg verscheden Lösers: bet to de 8. Orden, ex- un implizit, mit un ahn topassen Tietschreed (de mehrsten Lösers bruukt de GSL-Bibliotheek)</li>
       <li xml:lang="nl">Er zijn diverse oplossingsmethoden: tot aan de 8e orde, expliciet en impliciet, met of zonder een adaptieve tijdstap (voor de meesten is de GSL-bibliotheek nodig)</li>
@@ -336,6 +350,7 @@
       <li xml:lang="et">Kontroller omaduste juhtimiseks simulatsiooni ajal (sealhulgas enda määratud kiirklahvidega)</li>
       <li xml:lang="fi">Säädintyökalu ominaisuuksien helppoon säätämiseen simulaation aikana (tukee jopa itse valittuja pikanäppäimiä)</li>
       <li xml:lang="fr">Un régulateur pour contrôler facilement les propriétés pendant la simulation (même avec des raccourcis claviers prédéfinis)</li>
+      <li xml:lang="gl">Ferramenta de control para controlar facilmente as propiedades durante a simulación (mesmo con atallos de teclado personalizado)</li>
       <li xml:lang="it">Strumenti per controllare facilmente le proprietà durante la simulazione (anche con scorciatoie di tastiera personalizzate)</li>
       <li xml:lang="nds">Kuntrullwarktüüch för't Bekieken vun Egenschappen binnen de Simuleren (ok mit topasst Tastkombinatschoon)</li>
       <li xml:lang="nl">Hulpmiddel voor het eenvoudig beheersen van eigenschappen tijdens een simulatie (zelfs met aangepaste sneltoetsen)</li>
@@ -358,6 +373,7 @@
       <li xml:lang="et">Tööriistad tulemuste visualiseerimiseks: graafik, mõõdik, jäljekütt</li>
       <li xml:lang="fi">Työkalut tulosten visualisointiin: kuvaaja, mittari ja jäljitin</li>
       <li xml:lang="fr">Outils pour visualiser les résultats : graphe, capteur, traceur</li>
+      <li xml:lang="gl">Ferramentas para visualizar os resultados: gráfico, metro, trazador</li>
       <li xml:lang="it">Strumenti per visualizzare i risultati: grafici, misuratori, traccianti</li>
       <li xml:lang="nds">Warktüüch, mit de sik de Resultaten ankieken laat: Diagramm, Meter, Spoor</li>
       <li xml:lang="nl">Hulpmiddelen voor het visualiseren van de resultaten: grafiek, meter, spoor</li>
@@ -380,6 +396,7 @@
       <li xml:lang="et">Kõigi objektide kontekstiteave, põimitud Wikipedia brauser</li>
       <li xml:lang="fi">Kontekstitietoa kaikille kohteille sekä integroitu Wikipedia-selain</li>
       <li xml:lang="fr">Informations contextuelles pour tous les objets, accès à Wikipédia</li>
+      <li xml:lang="gl">Información de contexto para todos os obxectos, con navegador da Wikipedia integrado</li>
       <li xml:lang="it">Informazioni di contesto per tutti gli oggetti, browser per wikipedia integrato</li>
       <li xml:lang="nds">Kontextinformatschonen för all Objekten, inbuut Wikipedia-Kieker</li>
       <li xml:lang="nl">Contextinformatie voor alle objecten, geïntegreerde wikipedia-browser</li>
@@ -402,6 +419,7 @@
       <li xml:lang="et">Valik näidiskatseid, rohkem saab alla laadida KNewStuffi vahendusel</li>
       <li xml:lang="fi">Kokoelma esimerkkikokeita, ja lisää on ladattavissa verkosta KNewStuffin välityksellä</li>
       <li xml:lang="fr">Collection d'exemples d'expérience, davantage peuvent être téléchargé avec KNewStuff</li>
+      <li xml:lang="gl">Colección de experimentos de exemplo; pódense obter máis con KNewStuff.</li>
       <li xml:lang="it">Collezione di esperimenti di esempio, altri possono essere scaricati con KNewStuff2</li>
       <li xml:lang="nds">Sammeln vun Bispill-Experimenten, mehr laat sik vun KNewStuff daalladen</li>
       <li xml:lang="nl">Verzameling van voorbeeldexperimenten, meer kunnen er worden opgehaald met KNewStuff</li>
@@ -424,6 +442,7 @@
       <li xml:lang="et">Põimitud õppematerjalid</li>
       <li xml:lang="fi">Sisäänrakennetut tutoriaalit</li>
       <li xml:lang="fr">Tutoriels intégrés</li>
+      <li xml:lang="gl">Titoriais integrados</li>
       <li xml:lang="it">Tutorial integrati</li>
       <li xml:lang="nds">Inbuut Anleden</li>
       <li xml:lang="nl">Geïntegreerd lesmateriaal</li>
