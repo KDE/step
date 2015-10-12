@@ -23,6 +23,7 @@
 #include <KLocalizedString>
 #include <QUrl>
 #include <QDir>
+#include <QIcon>
 
 #include "mainwindow.h"
 
@@ -37,13 +38,12 @@ int main(int argc, char* argv[])
 {
     KLocalizedString::setApplicationDomain("step");
 
+    QApplication app(argc, argv);
     QApplication::setApplicationName("step");
     QApplication::setApplicationVersion(version);
     QApplication::setOrganizationDomain("kde.org");
     QApplication::setApplicationDisplayName(i18n("Step"));
     QApplication::setWindowIcon(QIcon::fromTheme("step"));
-
-    QApplication app(argc, argv);
 
     KAboutData aboutData("step",
                          i18n("Step"),
