@@ -1,4 +1,4 @@
-# Copyright 2014  Andreas Cord-Landwehr <cordlandwehr@kde.org>
+# Copyright 2014-2015  Andreas Cord-Landwehr <cordlandwehr@kde.org>
 #
 # Redistribution and use in source and binary forms, with or without
 # modification, are permitted provided that the following conditions
@@ -50,5 +50,6 @@ endmacro()
 stepcore_unit_tests(
     test_contacts
     test_metaobject
+    test_forces
 #     test_worldcopy #FIXME must be reenabled after sorting out derivation issues
 )
