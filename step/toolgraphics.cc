@@ -79,7 +79,7 @@ StepCore::Vector2d WidgetVertexHandlerGraphicsItem::value()
     double s = currentViewScale();
     StepCore::Vector2d size = _item->metaObject()->property("size")->
                             readVariant(_item).value<StepCore::Vector2d>()/s;
-    return size.cwise()* corners[_vertexNum];
+    return (size.array()* corners[_vertexNum].array()).matrix();
 }
 
 void WidgetVertexHandlerGraphicsItem::setValue(const StepCore::Vector2d& value)
@@ -94,7 +94,7 @@ void WidgetVertexHandlerGraphicsItem::setValue(const StepCore::Vector2d& value)
     StepCore::Vector2d position = _item->metaObject()->property("position")->
                             readVariant(_item).value<StepCore::Vector2d>();
 
-    StepCore::Vector2d oCorner = position - size.cwise()*(corners[_vertexNum]);
+    StepCore::Vector2d oCorner = position - (size.array()*((corners[_vertexNum]).array())).matrix();
 
     oCorner = pointToVector( viewportTransform.inverted().map(
                 QPointF(viewportTransform.map(vectorToPoint(oCorner)).toPoint()) ));
@@ -105,7 +105,7 @@ void WidgetVertexHandlerGraphicsItem::setValue(const StepCore::Vector2d& value)
                 QPointF(viewportTransform.map(vectorToPoint(newPos)).toPoint()) ));
     StepCore::Vector2d newSize = (newPos - oCorner)*2.0;
 
-    StepCore::Vector2d sign = delta.cwise()*(corners[_vertexNum]);
+    StepCore::Vector2d sign = (delta.array()*(corners[_vertexNum].array())).matrix();
     double d = -0.1/s;
     if(sign[0] < d || sign[1] < d) {
         if(sign[0] < d) {
@@ -157,7 +157,7 @@ OnHoverHandlerGraphicsItem* WidgetGraphicsItem::createOnHoverHandler(const QPoin
 
     int num = -1; double minDist2 = HANDLER_SNAP_SIZE*HANDLER_SNAP_SIZE/s/s;
     for(unsigned int i=0; i<4; ++i) {
-        double dist2 = (l - size.cwise()*(WidgetVertexHandlerGraphicsItem::corners[i])).squaredNorm();
+        double dist2 = (l - (size.array()*(WidgetVertexHandlerGraphicsItem::corners[i]).array()).matrix()).squaredNorm();
         if(dist2 < minDist2) { num = i; minDist2 = dist2; }
     }
 

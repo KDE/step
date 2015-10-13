@@ -103,7 +103,7 @@ public:
     /** Get size of the note */
     const Vector2d& size() const { return _size; }
     /** Set size of the note */
-    void setSize(const Vector2d& size) { _size = size.cwise().abs(); }
+    void setSize(const Vector2d& size) { _size = size.array().abs(); }
 
     /** Get note text */
     const QString& text() const { return _text; }
@@ -138,7 +138,7 @@ public:
     /** Get size of the graph */
     const Vector2d& size() const { return _size; }
     /** Set size of the graph */
-    void setSize(const Vector2d& size) { _size = size.cwise().abs(); }
+    void setSize(const Vector2d& size) { _size = size.array().abs(); }
 
     /** Get pointer to the objects for X axis */
     Object* objectX() const { return _objectX; }
@@ -291,7 +291,7 @@ public:
     /** Get size of the meter */
     const Vector2d& size() const { return _size; }
     /** Set size of the meter */
-    void setSize(const Vector2d& size) { _size = size.cwise().abs(); }
+    void setSize(const Vector2d& size) { _size = size.array().abs(); }
 
     /** Get pointer to the observed object */
     Object* object() const { return _object; }
@@ -370,7 +370,7 @@ public:
     /** Get size of the Controller */
     const Vector2d& size() const { return _size; }
     /** Set size of the Controller */
-    void setSize(const Vector2d& size) { _size = size.cwise().abs(); }
+    void setSize(const Vector2d& size) { _size = size.array().abs(); }
 
     /** Get pointer to the controlled object */
     Object* object() const { return _object; }

@@ -112,8 +112,8 @@ void Spring::calcForce(bool calcVariances)
         Vector2d forceV = (se->_restLengthVariance * square(_stiffness) +
                            se->_stiffnessVariance * square(dl) +
                            se->_dampingVariance * square(vr/l) +
-                           ( (_damping/l*r).cwise().square() ).dot(vV)
-                           )/square(l)*r.cwise().square();
+                           ( (_damping/l*r).array().square() ).matrix().dot(vV)
+                           )/square(l)*r.array().square();
 
         forceV[0] += rV[0] * square(_stiffness*( 1 - _restLength/l*(1 - square(r[0]/l)) ) +
                                     _damping/(l*l)*( v[0]*r[0] + vr - 2*vr*square(r[0]/l) )) +
@@ -276,9 +276,9 @@ double SpringErrors::forceVariance() const
     return square(dl) * _stiffnessVariance +
            square(s->stiffness()) * _restLengthVariance +
            square(r.dot(v)/l) * _dampingVariance +
-           vV.dot((s->damping()/l*r).cwise().square()) +
+           vV.dot((s->damping()/l*r).array().square().matrix()) +
            rV.dot((( s->stiffness() - s->damping()*r.dot(v) / (l*l) ) / l * r +
-              s->damping() / l * v).cwise().square());
+              s->damping() / l * v).array().square().matrix());
 }
 
 /*

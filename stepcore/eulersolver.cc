@@ -69,7 +69,7 @@ int GenericEulerSolver::doStep(double t, double stepSize, VectorXd* y, VectorXd*
     _ytemp = *y + (stepSize/2)*_ydiff;
         
     if(yvar) { // error calculation
-        *ytempvar = (yvar->cwise().sqrt()+(stepSize/2)*(*ydiffvar)).cwise().square();
+        *ytempvar = (yvar->array().sqrt().matrix()+(stepSize/2)*(*ydiffvar)).array().square().matrix();
     }
 
     int ret = _function(t + stepSize/2, _ytemp.data(), ytempvar?ytempvar->data():0,
@@ -105,8 +105,8 @@ int GenericEulerSolver::doStep(double t, double stepSize, VectorXd* y, VectorXd*
         // For now we are using the following formula which
         // assumes that yerr are equal and correlated on adjacent steps
         // TODO: improve this formula
-        *yvar = (ytempvar->cwise().sqrt()+(stepSize/2)*(*ydiffvar)).cwise().square()
-              + 3*_yerr.cwise().square();
+        *yvar = (ytempvar->array().sqrt().matrix()+(stepSize/2)*(*ydiffvar)).array().square().matrix()
+              + 3*_yerr.array().square().matrix();
     }
 
     return OK;

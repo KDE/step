@@ -70,24 +70,24 @@ Particle* ParticleErrors::particle() const
 Vector2d ParticleErrors::accelerationVariance() const
 {
     return _forceVariance/square(particle()->mass()) +
-        _massVariance*(particle()->force()/square(particle()->mass())).cwise().square();
+        _massVariance*(particle()->force()/square(particle()->mass())).array().square().matrix();
 }
 
 Vector2d ParticleErrors::momentumVariance() const
 {
     return _velocityVariance * square(particle()->mass()) +
-           particle()->velocity().cwise().square() * _massVariance;
+           (particle()->velocity().array().square()).matrix() * _massVariance;
 }
 
 void ParticleErrors::setMomentumVariance(const Vector2d& momentumVariance)
 {
-    _velocityVariance = (momentumVariance - particle()->velocity().cwise().square() * _massVariance) /
+    _velocityVariance = (momentumVariance - (particle()->velocity().array().square()).matrix() * _massVariance) /
                         square(particle()->mass());
 }
 
 double ParticleErrors::kineticEnergyVariance() const
 {
-    return particle()->velocity().cwise().square().dot(_velocityVariance) * square(particle()->mass()) +
+    return ((particle()->velocity().array().square()).matrix()).dot(_velocityVariance) * square(particle()->mass()) +
            square(particle()->velocity().squaredNorm()/2) * _massVariance;
 }
 
@@ -95,7 +95,7 @@ void ParticleErrors::setKineticEnergyVariance(double kineticEnergyVariance)
 {
     _velocityVariance = (kineticEnergyVariance - square(particle()->velocity().squaredNorm()/2) * _massVariance) /
                         square(particle()->mass()) / 2 *
-                        (particle()->velocity().cwise().square().cwise().inverse());
+                        (particle()->velocity().array().square().array().inverse());
     if(!std::isfinite(_velocityVariance[0]) || _velocityVariance[0] < 0 ||
        !std::isfinite(_velocityVariance[1]) || _velocityVariance[1]) {
         _velocityVariance.setZero();

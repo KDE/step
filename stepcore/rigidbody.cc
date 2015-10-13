@@ -105,7 +105,7 @@ RigidBody* RigidBodyErrors::rigidBody() const
 Vector2d RigidBodyErrors::accelerationVariance() const
 {
     return _forceVariance/square(rigidBody()->mass()) +
-        _massVariance*(rigidBody()->force()/square(rigidBody()->mass())).cwise().square();
+        _massVariance*(rigidBody()->force()/square(rigidBody()->mass())).array().square().matrix();
 }
 
 double RigidBodyErrors::angularAccelerationVariance() const
@@ -117,12 +117,12 @@ double RigidBodyErrors::angularAccelerationVariance() const
 Vector2d RigidBodyErrors::momentumVariance() const
 {
     return _velocityVariance * square(rigidBody()->mass()) +
-           rigidBody()->velocity().cwise().square() * _massVariance;
+           rigidBody()->velocity().array().square().matrix() * _massVariance;
 }
 
 void RigidBodyErrors::setMomentumVariance(const Vector2d& momentumVariance)
 {
-    _velocityVariance = (momentumVariance - rigidBody()->velocity().cwise().square() * _massVariance) /
+    _velocityVariance = (momentumVariance - rigidBody()->velocity().array().square().matrix() * _massVariance) /
                         square(rigidBody()->mass());
 }
 
@@ -141,7 +141,7 @@ void RigidBodyErrors::setAngularMomentumVariance(double angularMomentumVariance)
 
 double RigidBodyErrors::kineticEnergyVariance() const
 {
-    return (rigidBody()->velocity().cwise().square()).dot(_velocityVariance) * square(rigidBody()->mass()) +
+    return (rigidBody()->velocity().array().square().matrix()).dot(_velocityVariance) * square(rigidBody()->mass()) +
            square(rigidBody()->velocity().squaredNorm()/2) * _massVariance +
            _angularVelocityVariance * square(rigidBody()->angularVelocity() * rigidBody()->inertia()) +
            square(square(rigidBody()->angularVelocity())/2) * _inertiaVariance;
@@ -150,9 +150,9 @@ double RigidBodyErrors::kineticEnergyVariance() const
 void RigidBodyErrors::setKineticEnergyVariance(double kineticEnergyVariance)
 {
     double t = kineticEnergyVariance - this->kineticEnergyVariance() +
-              (rigidBody()->velocity().cwise().square()).dot(_velocityVariance) * square(rigidBody()->mass());
+              (rigidBody()->velocity().array().square().matrix()).dot(_velocityVariance) * square(rigidBody()->mass());
     _velocityVariance = t / square(rigidBody()->mass()) / 2 *
-                        (rigidBody()->velocity().cwise().square().cwise().inverse());
+                        (rigidBody()->velocity().array().square().inverse().matrix());
     if(!std::isfinite(_velocityVariance[0]) || _velocityVariance[0] < 0 ||
        !std::isfinite(_velocityVariance[1]) || _velocityVariance[1]) {
         _velocityVariance.setZero();
@@ -349,7 +349,7 @@ Box::Box(Vector2d position, double angle,
 
 void Box::setSize(const Vector2d& size)
 {
-    Vector2d s(size.cwise().abs()/2.0);
+    Vector2d s(size.array().abs().matrix()/2.0);
 
     _vertexes[0] << -s[0], -s[1];
     _vertexes[1] <<  s[0], -s[1];

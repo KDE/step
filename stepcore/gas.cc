@@ -134,7 +134,7 @@ void GasLJForce::calcForce(bool calcVariances)
                     Vector2d rV = pe2->positionVariance() + pe1->positionVariance();
 
                     GasLJForceErrors* ge = gasLJForceErrors();
-                    Vector2d forceV = r.cwise().square() * (
+                    Vector2d forceV = r.array().square().matrix() * (
                         ge->_rminVariance * square( (12*_a/_rmin/rnorm6 - 6*_b/_rmin)/rnorm8 ) +
                         ge->_depthVariance * square( 12*(_rmin12/rnorm6 - _rmin6)/rnorm8 ) );
 
@@ -364,7 +364,7 @@ Vector2d GasErrors::rectMeanVelocityVariance() const
         if(p1->position()[0] < r0[0] || p1->position()[0] > r1[0] ||
             p1->position()[1] < r0[1] || p1->position()[1] > r1[1]) continue;
 
-        velocityVariance += (p1->velocity() - velocity).cwise().square(); 
+        velocityVariance += (p1->velocity() - velocity).array().square().matrix();
 
         ParticleErrors* pe1 = static_cast<ParticleErrors*>(p1->tryGetObjectErrors());
         if(pe1) velocityVariance += pe1->velocityVariance();
@@ -422,7 +422,7 @@ double GasErrors::rectMeanKineticEnergyVariance() const
         if(pe1) {
             energyVariance +=
                 pe1->massVariance() * square(p1->velocity().squaredNorm()) +
-                ((2*p1->mass()*p1->velocity()).cwise().square()).dot(pe1->velocityVariance());
+                ((2*p1->mass()*p1->velocity()).array().square().matrix()).dot(pe1->velocityVariance());
         }
 
         ++count;
@@ -481,7 +481,7 @@ double GasErrors::rectTemperatureVariance() const
         if(pe1) {
             temperatureVariance +=
                 pe1->massVariance() * square((p1->velocity() - meanVelocity).squaredNorm()) +
-                ((p1->mass()*(p1->velocity() - meanVelocity)).cwise().square()).dot(pe1->velocityVariance());
+                ((p1->mass()*(p1->velocity() - meanVelocity)).array().square().matrix()).dot(pe1->velocityVariance());
         }
 
         ++count;
@@ -540,7 +540,7 @@ double GasErrors::rectPressureVariance() const
         if(pe1) {
             pressureVariance +=
                 pe1->massVariance() * square((p1->velocity() - meanVelocity).squaredNorm()) +
-                ((p1->mass()*(p1->velocity() - meanVelocity)).cwise().square()).dot(pe1->velocityVariance());
+                ((p1->mass()*(p1->velocity() - meanVelocity)).array().square().matrix()).dot(pe1->velocityVariance());
         }
     }
 

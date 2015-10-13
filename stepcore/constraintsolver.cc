@@ -20,6 +20,7 @@
 #include "rigidbody.h"
 #include "particle.h"
 #include "types.h"
+#include <iostream>
 #include <unsupported/Eigen/IterativeSolvers>
 #include <cmath>
 

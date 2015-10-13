@@ -85,12 +85,9 @@ void GravitationForce::calcForce(bool calcVariances)
                 ParticleErrors* pe1 = p1->particleErrors();
                 ParticleErrors* pe2 = p2->particleErrors();
                 Vector2d rV = pe2->positionVariance() + pe1->positionVariance();
-                Vector2d forceV = force.cwise().square() .cwise()* (
-                        Vector2d(gravitationForceErrors()->_gravitationConstVariance / square(_gravitationConst) +
-                                 pe1->massVariance() / square(p1->mass()) +
-                                 pe2->massVariance() / square(p2->mass())) +
-                        Vector2d(rV[0] * square(1/r[0] - 3*r[0]/rnorm2) + rV[1] * square(3*r[1]/rnorm2),
-                                 rV[1] * square(1/r[1] - 3*r[1]/rnorm2) + rV[0] * square(3*r[0]/rnorm2)));
+                Vector2d forceV = force.array().square()* (
+                    Vector2d(rV[0] * square(1/r[0] - 3*r[0]/rnorm2) + rV[1] * square(3*r[1]/rnorm2),
+                    rV[1] * square(1/r[1] - 3*r[1]/rnorm2) + rV[0] * square(3*r[0]/rnorm2))).array();
                 pe1->applyForceVariance(forceV);
                 pe2->applyForceVariance(forceV);
             }

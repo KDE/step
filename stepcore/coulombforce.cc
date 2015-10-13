@@ -68,12 +68,13 @@ void CoulombForce::calcForce(bool calcVariances)
                 ChargedParticleErrors* pe1 = p1->chargedParticleErrors();
                 ChargedParticleErrors* pe2 = p2->chargedParticleErrors();
                 Vector2d rV = pe2->positionVariance() + pe1->positionVariance();
-                Vector2d forceV = force.cwise().square().cwise()* (
-                        Vector2d(coulombForceErrors()->_coulombConstVariance / square(_coulombConst) +
-                                 pe1->chargeVariance() / square(p1->charge()) +
-                                 pe2->chargeVariance() / square(p2->charge())) +
+                double chargeVariance = coulombForceErrors()->_coulombConstVariance / square(_coulombConst) +
+                                        pe1->chargeVariance() / square(p1->charge()) +
+                                        pe2->chargeVariance() / square(p2->charge());
+                Vector2d forceV = force.array().square()* (
+                        Vector2d(chargeVariance, chargeVariance) +
                         Vector2d(rV[0] * square(1/r[0] - 3*r[0]/rnorm2) + rV[1] * square(3*r[1]/rnorm2),
-                                 rV[1] * square(1/r[1] - 3*r[1]/rnorm2) + rV[0] * square(3*r[0]/rnorm2)));
+                                 rV[1] * square(1/r[1] - 3*r[1]/rnorm2) + rV[0] * square(3*r[0]/rnorm2))).array();
                 pe1->applyForceVariance(forceV);
                 pe2->applyForceVariance(forceV);
             }

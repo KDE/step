@@ -198,7 +198,7 @@ public:
     void setMeasureRectCenter(const Vector2d& measureRectCenter) { _measureRectCenter = measureRectCenter; }
 
     const Vector2d& measureRectSize() const { return _measureRectSize; }
-    void setMeasureRectSize(const Vector2d& measureRectSize) { _measureRectSize = measureRectSize.cwise().abs(); }
+    void setMeasureRectSize(const Vector2d& measureRectSize) { _measureRectSize = measureRectSize.array().abs().matrix(); }
 
     /** Get (and possibly create) GasErrors object */
     GasErrors* gasErrors() {
