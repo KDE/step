@@ -7,6 +7,7 @@
   <name xml:lang="ast">Step</name>
   <name xml:lang="bs">Korak</name>
   <name xml:lang="ca">Step</name>
+  <name xml:lang="ca-valencia">Step</name>
   <name xml:lang="cs">Step</name>
   <name xml:lang="da">Step</name>
   <name xml:lang="de">Step</name>
@@ -35,6 +36,7 @@
   <summary>Interactive Physical Simulator</summary>
   <summary xml:lang="bs">Interaktivni fizički simulator</summary>
   <summary xml:lang="ca">Simulador interactiu de física</summary>
+  <summary xml:lang="ca-valencia">Simulador interactiu de física</summary>
   <summary xml:lang="cs">Interaktivní fyzikální simulátor</summary>
   <summary xml:lang="de">Interaktiver Physiksimulator</summary>
   <summary xml:lang="en-GB">Interactive Physical Simulator</summary>
@@ -63,6 +65,7 @@
     <p>Step is an interactive physical simulator. It allows you to explore the physical world through simulations. It works like this: you place some bodies on the scene, add some forces such as gravity or springs, then click Simulate and Step shows you how your scene will evolve according to the laws of physics. You can change every property of the bodies/forces in your experiment (even during simulation) and see how this will change evolution of the experiment. With Step you cannot only learn but feel how physics works!</p>
     <p xml:lang="bs">Korak je interaktivni fizički simulator. Omogućava da se istraži fizički svijet kroz simulacije.Radi na sljedeći način: Postaviš nekoliko tijela na scenu, dodaš silu kao što je gravitacija ili opruge, onda klikneš Simuliraj i Korak ti pokaže kako će prema zakonima fizike evoluirati tvoja scena.Možeš promijeniti svaku osobinu tijela/sila  u eksperimentu (čak i tokom simulacije) i vidjeti kako će ovo promjeniti evoluciju eksperimenta.Sa Korakom ne samo da učiš nego i osjećaš kako fizika radi.</p>
     <p xml:lang="ca">Step és un simulador interactiu de física. Us permet explorar el món físic a través de simulacions. Funciona així: col·loqueu alguns cossos a l'escena, afegiu algunes forces com ara molles o la gravetat, cliqueu Simula i l'Step us mostra com evolucionarà l'escena segons les lleis de la física. Podeu canviar cadascuna de les propietats dels cossos o forces del vostre experiment (fins i tot durant la simulació) i veure com això afectarà l'evolució de l'experiment. Amb l'Step no només podeu aprendre sinó també podeu sentir com funciona la física!</p>
+    <p xml:lang="ca-valencia">Step és un simulador interactiu de física. Vos permet explorar el món físic a través de simulacions. Funciona així: col·loqueu alguns cossos a l'escena, afegiu algunes forces com ara molles o la gravetat, cliqueu Simula i l'Step vos mostra com evolucionarà l'escena segons les lleis de la física. Podeu canviar cadascuna de les propietats dels cossos o forces del vostre experiment (fins i tot durant la simulació) i veure com això afectarà l'evolució de l'experiment. Amb l'Step no només podeu aprendre sinó també podeu sentir com funciona la física!</p>
     <p xml:lang="de">Step ist ein interaktiver Physiksimulator, mit dem Sie die Welt der Physik durch Simulationen erforschen können. Dazu platzieren Sie einige Körper im Versuchsfenster und fügen Kräfte wie die Gravitation oder Federn hinzu. Klicken Sie dann auf den Knopf „Simulation starten“ und beobachten Sie, wie sich Ihr Experiment nach den Gesetzen der Physik verändert. Jede Eigenschaft von Körpern oder Kräften lässt sich sogar in der laufenden Simulation ändern. Mit Step können Sie erfahren, wie die Physik in der Welt funktioniert.</p>
     <p xml:lang="en-GB">Step is an interactive physical simulator. It allows you to explore the physical world through simulations. It works like this: you place some bodies on the scene, add some forces such as gravity or springs, then click Simulate and Step shows you how your scene will evolve according to the laws of physics. You can change every property of the bodies/forces in your experiment (even during simulation) and see how this will change evolution of the experiment. With Step you cannot only learn but feel how physics works!</p>
     <p xml:lang="es">Step es un simulador físico interactivo. Le permite explorar el mundo físico mediante simulaciones. Su funcionamiento es sencillo: sitúe algunos cuerpos en la escena, añada fuerzas (como la gravedad) o muelles, y luego pulse el botón «Simular» para que Step le muestre la evolución de la escena según las leyes físicas. Puede cambiar cualquier propiedad de los cuerpos o de las fuerzas del experimento (incluso durante la simulación) para observar cómo se modifica la evolución del experimento. Con Step no solo aprenderá, sino que podrá sentir cómo funciona la Física.</p>
@@ -86,6 +89,7 @@
     <p>Features:</p>
     <p xml:lang="bs">Osobine:</p>
     <p xml:lang="ca">Característiques:</p>
+    <p xml:lang="ca-valencia">Característiques:</p>
     <p xml:lang="cs">Vlastnosti:</p>
     <p xml:lang="de">Funktionen:</p>
     <p xml:lang="en-GB">Features:</p>
@@ -114,6 +118,7 @@
       <li>Classical mechanical simulation in two dimensions</li>
       <li xml:lang="bs">Klasična mehanička simulacije u dvije dimenzije</li>
       <li xml:lang="ca">Simulador de mecànica clàssica en dues dimensions</li>
+      <li xml:lang="ca-valencia">Simulador de mecànica clàssica en dues dimensions</li>
       <li xml:lang="de">Simulation klassischer Mechanik in zwei Dimensionen</li>
       <li xml:lang="en-GB">Classical mechanical simulation in two dimensions</li>
       <li xml:lang="es">Simulación mecánica clásica en dos dimensiones</li>
@@ -137,6 +142,7 @@
       <li>Particles, springs with damping, gravitational and coulomb forces</li>
       <li xml:lang="bs">Čestice, opruge s prigušenjem,gravitacijska i kulonova sila</li>
       <li xml:lang="ca">Partícules, molles amb amortiment, forces gravitacionals i de Coulomb</li>
+      <li xml:lang="ca-valencia">Partícules, molles amb amortiment, forces gravitacionals i de Coulomb</li>
       <li xml:lang="de">Teilchen, Federn mit Dämpfung, Gravitations- und Coulombkräfte</li>
       <li xml:lang="en-GB">Particles, springs with damping, gravitational and coulomb forces</li>
       <li xml:lang="es">Partículas, muelles con amortiguación, fuerzas gravitatorias y de Coulomb</li>
@@ -160,6 +166,7 @@
       <li>Rigid bodies</li>
       <li xml:lang="bs">Kruta tijela</li>
       <li xml:lang="ca">Cossos rígids</li>
+      <li xml:lang="ca-valencia">Cossos rígids</li>
       <li xml:lang="de">Starre Körper</li>
       <li xml:lang="en-GB">Rigid bodies</li>
       <li xml:lang="es">Cuerpos rígidos</li>
@@ -183,6 +190,7 @@
       <li>Collision detection (currently only discrete) and handling</li>
       <li xml:lang="bs">Detekcija sudara (trenutno samo diskretna) i rukovanje</li>
       <li xml:lang="ca">Detecció de col·lisions (ara per ara només discretes) i el seu maneig</li>
+      <li xml:lang="ca-valencia">Detecció de col·lisions (ara per ara només discretes) i el seu maneig</li>
       <li xml:lang="de">Kollisionserkennung (zurzeit nur diskret) und -bearbeitung</li>
       <li xml:lang="en-GB">Collision detection (currently only discrete) and handling</li>
       <li xml:lang="es">Detección de colisiones (solo discretas en la actualidad) y su manejo</li>
@@ -206,6 +214,7 @@
       <li>Soft (deformable) bodies simulated as user-editable particles-springs system, sound waves</li>
       <li xml:lang="bs">Mehka(deformabilna) tijela su simulirana kao korisnički uređen ​​čestice-opruge sistem, zvučni valovi</li>
       <li xml:lang="ca">Cossos tous (deformables) simulats com a sistemes partícula-molla editables per l'usuari, ones de so</li>
+      <li xml:lang="ca-valencia">Cossos tous (deformables) simulats com a sistemes partícula-molla editables per l'usuari, ones de so</li>
       <li xml:lang="de">Elastische verformbare Körper als editierbare Systeme aus Teilchen und Federn, Schallwellen</li>
       <li xml:lang="en-GB">Soft (deformable) bodies simulated as user-editable particles-springs system, sound waves</li>
       <li xml:lang="es">Cuerpos blandos (deformables) simulados como sistemas de partículas y muelles, ondas de sonido, que el usuario puede editar</li>
@@ -229,6 +238,7 @@
       <li>Molecular dynamics (currently using Lennard-Jones potential): gas and liquid, condensation and evaporation, calculation of macroscopic quantities and their variances</li>
       <li xml:lang="bs">Molekularna dinamika (trenutno koristi Lennard-Jones potencijal): plin i tekućinu, kondenzacije i isparavanja, izračunavanje makroskopskih količina i njihovih varijancija</li>
       <li xml:lang="ca">Dinàmica molecular (actualment utilitzant el potencial de Lennard-Jones): gas i líquid, la condensació i l'evaporació, el càlcul de quantitats macroscòpiques i les seves variàncies</li>
+      <li xml:lang="ca-valencia">Dinàmica molecular (actualment utilitzant el potencial de Lennard-Jones): gas i líquid, la condensació i l'evaporació, el càlcul de quantitats macroscòpiques i les seues variàncies</li>
       <li xml:lang="de">Molekulare Dynamik mithilfe des Lennard-Jones-Potentials: Gase und Flüssigkeiten, Kondensation und Verdunstung, Berechnung der makroskopischen Werte und ihrer Abweichungen</li>
       <li xml:lang="en-GB">Molecular dynamics (currently using Lennard-Jones potential): gas and liquid, condensation and evaporation, calculation of macroscopic quantities and their variances</li>
       <li xml:lang="es">Dinámica molecular (en la actualidad, usando el potencial de Lennard-Jones): gases y líquidos, condensación y evaporación, cálculo de cantidades macroscópicas y sus varianzas</li>
@@ -252,6 +262,7 @@
       <li>Units conversion and expression calculation: you can enter something like "(2 days + 3 hours) * 80 km/h" and it will be accepted as distance value (requires libqalculate)</li>
       <li xml:lang="bs">Jedinice konverzije i proračun izraza: možete unijeti nešto poput "(2 dana + 3 sata) * 80 km / h", a ona će biti prihvaćena kao vrijednost udaljenosti (zahtijeva libqalculate)</li>
       <li xml:lang="ca">Conversió d'unitats i càlcul d'expressions: podeu introduir quelcom del tipus "(2 dies + 3 hores) * 80 km/h" i serà acceptat com un valor de distància (necessita la libqalculate)</li>
+      <li xml:lang="ca-valencia">Conversió d'unitats i càlcul d'expressions: podeu introduir quelcom del tipus "(2 dies + 3 hores) * 80 km/h" i serà acceptat com un valor de distància (necessita la libqalculate)</li>
       <li xml:lang="de">Umwandlung von Einheiten und Berechnung von Ausdrücken: Sie können zum Beispiel „(2 days + 3 hours) * 80 km/h“ eingeben, daraus wird der Wert der Entfernung berechnet. Dazu ist die Bibliothek libqalculate erforderlich.</li>
       <li xml:lang="en-GB">Units conversion and expression calculation: you can enter something like "(2 days + 3 hours) * 80 km/h" and it will be accepted as distance value (requires libqalculate)</li>
       <li xml:lang="es">Conversión de unidades y cálculo de expresiones: puede introducir algo como «(2 días + 3 horas) * 80 km/h» y se aceptará como un valor de distancia (necesita «libqalculate»)</li>
@@ -275,6 +286,7 @@
       <li>Errors calculation and propagation: you can enter values like "1.3 ± 0.2" for any property and errors for all dependent properties will be calculated using statistical formulas</li>
       <li xml:lang="bs">Obračun i propagacija greške: možete unijeti vrijednosti kao što su "1.3 ± 0.2" za bilo koje vlasništvo i grešake za sve zavisne osobine će se izračunati pomoću statističkih formula</li>
       <li xml:lang="ca">Càlcul i propagació d'errors: podeu introduir valors del tipus "1.3 ± 0.2" a qualsevol propietat i els errors de totes les propietats que en depenguin es calcularan utilitzant fórmules estadístiques</li>
+      <li xml:lang="ca-valencia">Càlcul i propagació d'errors: podeu introduir valors del tipus "1.3 ± 0.2" a qualsevol propietat i els errors de totes les propietats que en depenguin es calcularan utilitzant fórmules estadístiques</li>
       <li xml:lang="de">Fehlerberechnung und -weiterleitung: Sie können Werte wie „1,3± 0,2“ für jede beliebige Eigenschaft eingeben. Dann werden die sich daraus ergebenden Fehler für alle abhängigen Eigenschaften mit statistischen Formeln berechnet.</li>
       <li xml:lang="en-GB">Errors calculation and propagation: you can enter values like "1.3 ± 0.2" for any property and errors for all dependent properties will be calculated using statistical formulas</li>
       <li xml:lang="es">Cálculo y propagación de errores: puede introducir valores como «1,3 ± 0,2» para cualquier propiedad y se calcularán los errores para todas las propiedades dependientes usando fórmulas estadísticas</li>
@@ -298,6 +310,7 @@
       <li>Solver error estimation: errors introduced by the solver is calculated and added to user-entered errors</li>
       <li xml:lang="bs">Rješavač greške procjenjuje: greške koje su uvedene od strane rješavača su izračunate i  dodane korisničkim greškama</li>
       <li xml:lang="ca">Estimació dels errors del solucionador: Els errors introduïts pel solucionador es calculen i s'afegeixen als errors introduïts per l'usuari</li>
+      <li xml:lang="ca-valencia">Estimació dels errors del solucionador: Els errors introduïts pel solucionador es calculen i s'afigen als errors introduïts per l'usuari</li>
       <li xml:lang="de">Abschätzung der Fehler der Gleichungslösungssysteme: Die daraus entstehenden Fehler werden berechnet und zu den vom Benutzer eingegeben Fehlern addiert</li>
       <li xml:lang="en-GB">Solver error estimation: errors introduced by the solver is calculated and added to user-entered errors</li>
       <li xml:lang="es">Estimación de errores de cálculo: los errores introducidos por la resolución se calculan y se añaden a los introducidos por el usuario</li>
@@ -321,6 +334,7 @@
       <li>Several different solvers: up to 8th order, explicit and implicit, with or without adaptive timestep (most of the solvers require GSL library)</li>
       <li xml:lang="bs">Nekoliko različitih rješavača: do osmog poretka, eksplicitno i implicitno, sa ili bez prilagodljivog vremesnog koraka(većina rješavača zahtjeva GSL biblioteku)</li>
       <li xml:lang="ca">Diversos solucionadors diferents: fins a ordre 8è, explícit o implícit, amb pas temporal adaptatiu o sense (la majoria de solucionadors necessiten la biblioteca GSL)</li>
+      <li xml:lang="ca-valencia">Diversos solucionadors diferents: fins a orde 8è, explícit o implícit, amb pas temporal adaptatiu o sense (la majoria de solucionadors necessiten la biblioteca GSL)</li>
       <li xml:lang="de">Mehrere verschiedene Gleichungslösungssysteme: bis zur achten Ordnung, explizit und implizit, mit oder ohne angepassten Zeitschritten. Die meisten Gleichungslösungssysteme benötigen die GSL-Bibliothek.</li>
       <li xml:lang="en-GB">Several different solvers: up to 8th order, explicit and implicit, with or without adaptive timestep (most of the solvers require GSL library)</li>
       <li xml:lang="es">Diversas calculadoras: hasta el octavo orden, explícita e implícita, con o sin pasos de tiempo adaptativos (la mayoría necesitan la biblioteca GSL)</li>
@@ -344,6 +358,7 @@
       <li>Controller tool to easily control properties during simulation (even with custom keyboard shortcuts)</li>
       <li xml:lang="bs">Upravljački alat za jednostavno upravljanje svojstvima tokom simulacije (čak i uz prilagođene prečice na tastaturi)</li>
       <li xml:lang="ca">Eina controladora per controlar fàcilment les propietats durant la simulació (àdhuc amb dreceres de teclat personalitzades)</li>
+      <li xml:lang="ca-valencia">Eina controladora per controlar fàcilment les propietats durant la simulació (àdhuc amb dreceres de teclat personalitzades)</li>
       <li xml:lang="de">Werkzeuge zur Kontrolle der Objekteigenschaften während der Simulation, auch mit benutzerdefinierten Kurzbefehlen.</li>
       <li xml:lang="en-GB">Controller tool to easily control properties during simulation (even with custom keyboard shortcuts)</li>
       <li xml:lang="es">Herramienta de control para supervisar fácilmente las propiedades durante la simulación (incluso con accesos rápidos de teclado personalizados)</li>
@@ -367,6 +382,7 @@
       <li>Tools to visualize results: graph, meter, tracer</li>
       <li xml:lang="bs">Alati za vizualizaciju rezultata: graf, metar,tragač</li>
       <li xml:lang="ca">Eines per visualitzar resultats: gràfics, aparells de mesura, traçadors</li>
+      <li xml:lang="ca-valencia">Eines per visualitzar resultats: gràfics, aparells de mesura, traçadors</li>
       <li xml:lang="de">Grafische Darstellung der Ergebnisse durch Diagramme, Messwertanzeigen und Spuren von Bewegungen</li>
       <li xml:lang="en-GB">Tools to visualise results: graph, meter, tracer</li>
       <li xml:lang="es">Herramientas para visualizar resultados: gráficas, medidores, seguimiento</li>
@@ -390,6 +406,7 @@
       <li>Context information for all objects, integrated wikipedia browser</li>
       <li xml:lang="bs">Informacije konteksta za sve objekte, integrisani wikipedia preglednik</li>
       <li xml:lang="ca">Informació contextual per a tots els objectes, integrant la Viquipèdia en el navegador</li>
+      <li xml:lang="ca-valencia">Informació contextual per a tots els objectes, integrant la Viquipèdia en el navegador</li>
       <li xml:lang="de">Kontextinformationen für alle Objekte, eingebauter Wikipedia-Browser</li>
       <li xml:lang="en-GB">Context information for all objects, integrated wikipedia browser</li>
       <li xml:lang="es">Información de contexto para todos los objetos, con explorador integrado para la Wikipedia</li>
@@ -413,6 +430,7 @@
       <li>Collection of example experiments, more can be downloaded with KNewStuff</li>
       <li xml:lang="bs">Zbirka pokaznih eksperimenata, više se može preuzeti sa KNewStuff</li>
       <li xml:lang="ca">Col·lecció d'experiments d'exemple. Se'n poden baixar més amb KNewStuff</li>
+      <li xml:lang="ca-valencia">Col·lecció d'experiments d'exemple. Se'n poden baixar més amb KNewStuff</li>
       <li xml:lang="de">Sammlung von Beispielexperimenten, weitere Experimente können zusätzlich heruntergeladen werden</li>
       <li xml:lang="en-GB">Collection of example experiments, more can be downloaded with KNewStuff</li>
       <li xml:lang="es">Colección de experimentos de ejemplo; puede descargar más con KNewStuff</li>
@@ -436,6 +454,7 @@
       <li>Integrated tutorials</li>
       <li xml:lang="bs">Integrirani tutoriali</li>
       <li xml:lang="ca">Guies d'aprenentatge integrades</li>
+      <li xml:lang="ca-valencia">Guies d'aprenentatge integrades</li>
       <li xml:lang="de">Integrierte Anleitungen</li>
       <li xml:lang="en-GB">Integrated tutorials</li>
       <li xml:lang="es">Tutoriales integrados</li>
