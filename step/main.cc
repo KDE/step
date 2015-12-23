@@ -45,6 +45,8 @@ int main(int argc, char* argv[])
     QApplication::setApplicationDisplayName(i18n("Step"));
     QApplication::setWindowIcon(QIcon::fromTheme("step"));
 
+    app.setAttribute(Qt::AA_UseHighDpiPixmaps, true);
+
     KAboutData aboutData("step",
                          i18n("Step"),
                          version,
