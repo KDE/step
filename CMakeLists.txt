@@ -33,7 +33,6 @@ find_package(KF5 REQUIRED COMPONENTS
     NewStuff
     Plotting
 )
-find_package(KF5DocTools REQUIRED)
 find_package(Eigen3 3.2.2 REQUIRED)
 find_package(GSL)
 find_package(Qalculate)
@@ -69,7 +68,9 @@ set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -Wno-unused-parameter")
 
 include_directories(${CMAKE_CURRENT_SOURCE_DIR} ${EIGEN3_INCLUDE_DIR})
 
-add_subdirectory(doc)
+if(KF5DocTools_FOUND)
+    ecm_optional_add_subdirectory(doc)
+endif()
 add_subdirectory(stepcore)
 add_subdirectory(step)
 add_subdirectory(autotests)
