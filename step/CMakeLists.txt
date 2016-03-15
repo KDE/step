@@ -66,6 +66,7 @@ add_executable(step ${step_SRCS})
 
 target_link_libraries(step
     stepcore
+    KF5::Crash
     KF5::KHtml
     KF5::Plotting
     KF5::NewStuff

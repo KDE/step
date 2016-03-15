@@ -21,6 +21,7 @@
 #include <QCommandLineParser>
 #include <QDebug>
 #include <KLocalizedString>
+#include <KCrash>
 #include <QUrl>
 #include <QDir>
 #include <QIcon>
@@ -46,6 +47,8 @@ int main(int argc, char* argv[])
     QApplication::setWindowIcon(QIcon::fromTheme("step"));
 
     app.setAttribute(Qt::AA_UseHighDpiPixmaps, true);
+
+    KCrash::initialize();
 
     KAboutData aboutData("step",
                          i18n("Step"),
