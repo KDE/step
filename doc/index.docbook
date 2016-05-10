@@ -1,7 +1,6 @@
 <?xml version="1.0" ?>
 <!DOCTYPE book PUBLIC "-//KDE//DTD DocBook XML V4.5-Based Variant V1.1//EN" "dtd/kdedbx45.dtd" [
   <!ENTITY kappname "&step;">
-  <!ENTITY package "kdeedu">
   <!ENTITY tutorials SYSTEM "tutorials.docbook">
   <!ENTITY examples SYSTEM "examples.docbook">
   <!ENTITY % addindex "IGNORE">
@@ -31,8 +30,8 @@
 
 <legalnotice>&FDLNotice;</legalnotice>
 
-<date>2007-12-06</date>
-<releaseinfo>0.0.3</releaseinfo>
+<date>2016-05-07</date>
+<releaseinfo>0.1.0 (Applications 16.04)</releaseinfo>
 
 <abstract>
 <para>
@@ -253,27 +252,6 @@ Documentation copyright 2007 &Anne-Marie.Mahfouf; &Anne-Marie.Mahfouf.mail;
 &underGPL;                 <!-- GPL License -->
 
 </chapter>
-
-
-
-<appendix id="installation">
-<title>Installation</title>
-
-<sect1 id="getting-step">
-<title>How to obtain &step;</title>
-
-&install.intro.documentation;
-
-</sect1>
-
-<sect1 id="compilation">
-<title>Compilation and Installation</title>
-
-&install.compile.documentation;
-
-</sect1>
-
-</appendix>
 
 &documentation.index;
 </book>
