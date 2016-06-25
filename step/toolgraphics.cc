@@ -733,7 +733,7 @@ bool NoteGraphicsItem::editFormula(StepCore::NoteFormula* formula)
     formula->setImage(image);
 
     _textEdit->document()->addResource(QTextDocument::ImageResource,
-                                            formula->name(), pixmap);
+                                            QUrl(formula->name()), pixmap);
     return true;
 }
 
@@ -748,7 +748,7 @@ void NoteGraphicsItem::worldDataChanged(bool dynamicOnly)
                 if((*it)->metaObject()->inherits<StepCore::NoteImage>()) {
                     QPixmap pix;
                     pix.loadFromData(static_cast<StepCore::NoteImage*>(*it)->image());
-                    _textEdit->document()->addResource(QTextDocument::ImageResource, (*it)->name(), pix);
+                    _textEdit->document()->addResource(QTextDocument::ImageResource, QUrl((*it)->name()), pix);
                 }
             }
 

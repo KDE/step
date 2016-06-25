@@ -30,8 +30,8 @@
 #include <KHTMLPart>
 
 #include <KLocalizedString>
-#include <KToolInvocation>
 #include <KIO/Job>
+#include <QDesktopServices>
 #include <QIcon>
 #include <QStandardPaths>
 
@@ -112,8 +112,9 @@ void InfoBrowser::worldCurrentChanged(const QModelIndex& /*current*/, const QMod
 void InfoBrowser::syncSelection(bool checked)
 {
     if(checked) {
-        QModelIndex current = _worldModel->selectionModel()->currentIndex();
-        openUrl(QString("objinfo:").append(current.data(WorldModel::ClassNameRole).toString()), true);
+        const QModelIndex current = _worldModel->selectionModel()->currentIndex();
+        const QUrl url(QString("objinfo:").append(current.data(WorldModel::ClassNameRole).toString()));
+        openUrl(url, true);
     }
 }
 
@@ -211,7 +212,7 @@ void InfoBrowser::openUrl(const QUrl& url, bool clearHistory, bool fromHistory)
             _wikiJob = KIO::storedGet(url, KIO::NoReload, KIO::HideProgressInfo);
             connect(_wikiJob, SIGNAL(result(KJob*)), this, SLOT( wikiResult(KJob*)));
         } else {
-            KToolInvocation::invokeBrowser(url.url());
+            QDesktopServices::openUrl(url);
         }
     }
 
@@ -255,7 +256,7 @@ void InfoBrowser::back()
         _forwardAction->setEnabled(true);
     }
 
-    openUrl(url, false, true);
+    openUrl(QUrl(url), false, true);
 }
 
 void InfoBrowser::forward()
@@ -272,13 +273,13 @@ void InfoBrowser::forward()
         _backAction->setEnabled(true);
     }
 
-    openUrl(url, false, true);
+    openUrl(QUrl(url), false, true);
 }
 
 void InfoBrowser::openInBrowser()
 {
     if(_htmlPart->url().scheme() == "http") {
-        KToolInvocation::invokeBrowser(_htmlPart->url().url());
+        QDesktopServices::openUrl(_htmlPart->url());
     }
 }
 
