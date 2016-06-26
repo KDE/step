@@ -33,6 +33,8 @@ set(stepcore_SRCS
     xmlfile.cc
 )
 
+ecm_create_qm_loader(stepcore_SRCS step_qt)
+
 if(STEPCORE_WITH_GSL)
     add_definitions(-DSTEPCORE_WITH_GSL)
     include_directories(${GSL_INCLUDE_DIR})
