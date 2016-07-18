@@ -79,6 +79,6 @@ add_subdirectory(stepcore)
 add_subdirectory(step)
 add_subdirectory(autotests)
 
-install(FILES org.kde.step.appdata.xml DESTINATION ${KDE_INSTALL_DATAROOTDIR}/appdata/)
+install(FILES org.kde.step.appdata.xml DESTINATION ${KDE_INSTALL_METAINFO})
 
 feature_summary(WHAT ALL FATAL_ON_MISSING_REQUIRED_PACKAGES)
