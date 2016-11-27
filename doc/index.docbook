@@ -121,106 +121,11 @@ Integrated tutorials
 </screenshot>
 
 <para>To help you get started, &step; integrates a series of tutorials which easily teach you how to build an experiment. Please see step by step to start with the first tutorial.</para>
-<!--
-<sect1 id="board">
-<title>The board</title>
-<para>
--
-</para>
-</sect1>
-
-<sect1 id="menubar">
-<title>The menubar</title>
-<para>
--
-</para>
-</sect1>
--->			
 </chapter>
 
 &tutorials;  
 &examples;
-<!--
-<chapter id="commands">
-<title>Command Reference</title>
 
-<sect1  id="step-file-menu">
-<title>The <guimenu>File</guimenu> Menu</title>
-<para>
-<variablelist>
-<varlistentry>
-<term><menuchoice>
-<shortcut>
-<keycombo>&Ctrl;<keycap>Q</keycap></keycombo>
-</shortcut>
-<guimenu>File</guimenu>
-<guimenuitem>Quit</guimenuitem>
-</menuchoice></term>
-<listitem><para><action>Quit</action> &step;.</para></listitem>
-</varlistentry>
-
-</variablelist>
-</para>
-</sect1>
-
-<sect1  id="step-settings-menu">
-<title>The <guimenu>Settings</guimenu> Menu</title>
-<para>
-<variablelist>
-<varlistentry>
-<term><menuchoice>
-<guimenu>Settings</guimenu>
-<guimenuitem>Show Toolbar</guimenuitem>
-</menuchoice></term>
-<listitem><para><action>Toggle</action> (hide or show) the toolbar.</para></listitem>
-</varlistentry>
-<varlistentry>
-<term><menuchoice>
-<guimenu>Settings</guimenu>
-<guimenuitem>Show Statusbar</guimenuitem>
-</menuchoice></term>
-<listitem><para><action>Toggle</action>(hide or show) the statusbar.</para></listitem>
-</varlistentry>
-<varlistentry>
-<term><menuchoice>
-<guimenu>Settings</guimenu>
-<guimenuitem>Configure Shortcuts...</guimenuitem>
-</menuchoice></term>
-<listitem><para><action>Configure</action> the shortcuts, i.e the keyboard keys.</para></listitem>
-</varlistentry>
-<varlistentry>
-<term><menuchoice>
-<guimenu>Settings</guimenu>
-<guimenuitem>Configure &step;..</guimenuitem>
-</menuchoice></term>
-<listitem><para><action>Open</action> a dialog which allows you to configure &step;.</para></listitem>
-</varlistentry>
-</variablelist>
-</para>
-</sect1>
-
-<sect1  id="step-help-menu">
-<title>The <guimenu>Help</guimenu> Menu</title>
-
-&help.menu.documentation;
-
-</sect1>
-
-</chapter>
-
-<chapter id="developers">
-<title>Developer's Guide to &step;</title>
-
-<para>
-
-Not yet written
-</para>
-<para>
-
-Not yet written
-</para>
-</chapter>
--->
 <chapter id="credits">
 
 <title>Credits and License</title>
