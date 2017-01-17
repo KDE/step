@@ -24,15 +24,15 @@
 
 namespace StepCore {
 
-STEPCORE_META_OBJECT(CoulombForce, QT_TRANSLATE_NOOP("ObjectClass", "CoulombForce"), QT_TR_NOOP("Coulomb force"), 0,
+STEPCORE_META_OBJECT(CoulombForce, QT_TRANSLATE_NOOP("ObjectClass", "CoulombForce"), QT_TRANSLATE_NOOP("ObjectDescription", "Coulomb force"), 0,
     STEPCORE_SUPER_CLASS(Item) STEPCORE_SUPER_CLASS(Force),
     STEPCORE_PROPERTY_RW(double, coulombConst, QT_TRANSLATE_NOOP("PropertyName", "coulombConst"), STEPCORE_FROM_UTF8(QT_TRANSLATE_NOOP("Units", "N m²/C²")),
-                QT_TR_NOOP("Coulomb constant"), coulombConst, setCoulombConst))
+                QT_TRANSLATE_NOOP("PropertyDescription", "Coulomb constant"), coulombConst, setCoulombConst))
 
-STEPCORE_META_OBJECT(CoulombForceErrors, QT_TRANSLATE_NOOP("ObjectClass", "CoulombForceErrors"), QT_TR_NOOP("Errors class for CoulombForce"), 0,
+STEPCORE_META_OBJECT(CoulombForceErrors, QT_TRANSLATE_NOOP("ObjectClass", "CoulombForceErrors"), QT_TRANSLATE_NOOP("ObjectDescription", "Errors class for CoulombForce"), 0,
     STEPCORE_SUPER_CLASS(ObjectErrors),
     STEPCORE_PROPERTY_RW(double, coulombConstVariance, QT_TRANSLATE_NOOP("PropertyName", "coulombConstVariance"), STEPCORE_FROM_UTF8(QT_TRANSLATE_NOOP("Units", "N m²/C²")),
-                QT_TR_NOOP("Coulomb constant variance"), coulombConstVariance, setCoulombConstVariance))
+                QT_TRANSLATE_NOOP("PropertyDescription", "Coulomb constant variance"), coulombConstVariance, setCoulombConstVariance))
 
 CoulombForce* CoulombForceErrors::coulombForce() const
 {

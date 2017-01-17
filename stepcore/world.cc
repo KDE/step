@@ -29,13 +29,13 @@ namespace StepCore
 {
 
 
-STEPCORE_META_OBJECT(Tool, QT_TRANSLATE_NOOP("ObjectClass", "Tool"), QT_TR_NOOP("Tool"), MetaObject::ABSTRACT,,)
+STEPCORE_META_OBJECT(Tool, QT_TRANSLATE_NOOP("ObjectClass", "Tool"), QT_TRANSLATE_NOOP("ObjectDescription", "Tool"), MetaObject::ABSTRACT,,)
 
-STEPCORE_META_OBJECT(World, QT_TRANSLATE_NOOP("ObjectClass", "World"), QT_TR_NOOP("World"), 0, STEPCORE_SUPER_CLASS(ItemGroup),
-        STEPCORE_PROPERTY_RW_D(double, time, QT_TRANSLATE_NOOP("PropertyName", "time"), QT_TRANSLATE_NOOP("Units", "s"), QT_TR_NOOP("Current time"), time, setTime)
-        STEPCORE_PROPERTY_RW  (double, timeScale, QT_TR_NOOP("timeScale"), STEPCORE_UNITS_1, QT_TR_NOOP("Simulation speed scale"), timeScale, setTimeScale)
-        STEPCORE_PROPERTY_RW  (bool, errorsCalculation, QT_TR_NOOP("errorsCalculation"), STEPCORE_UNITS_NULL,
-                        QT_TR_NOOP("Enable global error calculation"), errorsCalculation, setErrorsCalculation))
+STEPCORE_META_OBJECT(World, QT_TRANSLATE_NOOP("ObjectClass", "World"), QT_TRANSLATE_NOOP("ObjectDescription", "World"), 0, STEPCORE_SUPER_CLASS(ItemGroup),
+        STEPCORE_PROPERTY_RW_D(double, time, QT_TRANSLATE_NOOP("PropertyName", "time"), QT_TRANSLATE_NOOP("Units", "s"), QT_TRANSLATE_NOOP("PropertyDescription", "Current time"), time, setTime)
+        STEPCORE_PROPERTY_RW  (double, timeScale, QT_TRANSLATE_NOOP("PropertyName", "timeScale"), STEPCORE_UNITS_1, QT_TRANSLATE_NOOP("PropertyDescription", "Simulation speed scale"), timeScale, setTimeScale)
+        STEPCORE_PROPERTY_RW  (bool, errorsCalculation, QT_TRANSLATE_NOOP("PropertyName", "errorsCalculation"), STEPCORE_UNITS_NULL,
+                        QT_TRANSLATE_NOOP("PropertyDescription", "Enable global error calculation"), errorsCalculation, setErrorsCalculation))
 
 World::World()
     : _time(0), _timeScale(1), _errorsCalculation(false),

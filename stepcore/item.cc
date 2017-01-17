@@ -25,10 +25,10 @@
 namespace StepCore
 {
 
-STEPCORE_META_OBJECT(Item, QT_TRANSLATE_NOOP("ObjectClass", "Item"), QT_TR_NOOP("Item"),
+STEPCORE_META_OBJECT(Item, QT_TRANSLATE_NOOP("ObjectClass", "Item"), QT_TRANSLATE_NOOP("ObjectDescription", "Item"),
 		     MetaObject::ABSTRACT, STEPCORE_SUPER_CLASS(Object),
         STEPCORE_PROPERTY_RW(StepCore::Color, color, QT_TRANSLATE_NOOP("PropertyName", "color"),
-			     STEPCORE_UNITS_NULL, QT_TR_NOOP("Item color"), color, setColor))
+			     STEPCORE_UNITS_NULL, QT_TRANSLATE_NOOP("PropertyDescription", "Item color"), color, setColor))
 
 Item& Item::operator=(const Item& item)
 {

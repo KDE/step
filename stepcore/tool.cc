@@ -23,82 +23,82 @@
 
 namespace StepCore {
 
-STEPCORE_META_OBJECT(NoteImage, QT_TRANSLATE_NOOP("ObjectClass", "NoteImage"), QT_TR_NOOP("NoteImage: an image embedded in Note"), 0,
+STEPCORE_META_OBJECT(NoteImage, QT_TRANSLATE_NOOP("ObjectClass", "NoteImage"), QT_TRANSLATE_NOOP("ObjectDescription", "NoteImage: an image embedded in Note"), 0,
     STEPCORE_SUPER_CLASS(Item),
-    STEPCORE_PROPERTY_RW(QByteArray, image, QT_TRANSLATE_NOOP("PropertyName", "image"), STEPCORE_UNITS_NULL, QT_TR_NOOP("Image data"), image, setImage)
+    STEPCORE_PROPERTY_RW(QByteArray, image, QT_TRANSLATE_NOOP("PropertyName", "image"), STEPCORE_UNITS_NULL, QT_TRANSLATE_NOOP("PropertyDescription", "Image data"), image, setImage)
     )
 
-STEPCORE_META_OBJECT(NoteFormula, QT_TRANSLATE_NOOP("ObjectClass", "NoteFormula"), QT_TR_NOOP("NoteFormula: a formula embedded in Note"), 0,
+STEPCORE_META_OBJECT(NoteFormula, QT_TRANSLATE_NOOP("ObjectClass", "NoteFormula"), QT_TRANSLATE_NOOP("ObjectDescription", "NoteFormula: a formula embedded in Note"), 0,
     STEPCORE_SUPER_CLASS(NoteImage),
-    STEPCORE_PROPERTY_RW(QString, code, QT_TRANSLATE_NOOP("PropertyName", "code"), STEPCORE_UNITS_NULL, QT_TR_NOOP("Formula code"), code, setCode)
+    STEPCORE_PROPERTY_RW(QString, code, QT_TRANSLATE_NOOP("PropertyName", "code"), STEPCORE_UNITS_NULL, QT_TRANSLATE_NOOP("PropertyDescription", "Formula code"), code, setCode)
     )
 
-STEPCORE_META_OBJECT(Note, QT_TRANSLATE_NOOP("ObjectClass", "Note"), QT_TR_NOOP("Note: displays a textual note on the scene"), 0,
+STEPCORE_META_OBJECT(Note, QT_TRANSLATE_NOOP("ObjectClass", "Note"), QT_TRANSLATE_NOOP("ObjectDescription", "Note: displays a textual note on the scene"), 0,
     STEPCORE_SUPER_CLASS(ItemGroup) STEPCORE_SUPER_CLASS(Tool),
-    STEPCORE_PROPERTY_RW(StepCore::Vector2d, position, QT_TRANSLATE_NOOP("PropertyName", "position"), QT_TRANSLATE_NOOP("Units", "m"), QT_TR_NOOP("Note position on the scene"), position, setPosition)
-    STEPCORE_PROPERTY_RW(StepCore::Vector2d, size, QT_TRANSLATE_NOOP("PropertyName", "size"), QT_TRANSLATE_NOOP("Units", "m"), QT_TR_NOOP("Note size on the scene"), size, setSize)
-    STEPCORE_PROPERTY_RW(QString, text, QT_TRANSLATE_NOOP("PropertyName", "text"), STEPCORE_UNITS_NULL, QT_TR_NOOP("Text"), text, setText)
+    STEPCORE_PROPERTY_RW(StepCore::Vector2d, position, QT_TRANSLATE_NOOP("PropertyName", "position"), QT_TRANSLATE_NOOP("Units", "m"), QT_TRANSLATE_NOOP("PropertyDescription", "Note position on the scene"), position, setPosition)
+    STEPCORE_PROPERTY_RW(StepCore::Vector2d, size, QT_TRANSLATE_NOOP("PropertyName", "size"), QT_TRANSLATE_NOOP("Units", "m"), QT_TRANSLATE_NOOP("PropertyDescription", "Note size on the scene"), size, setSize)
+    STEPCORE_PROPERTY_RW(QString, text, QT_TRANSLATE_NOOP("PropertyName", "text"), STEPCORE_UNITS_NULL, QT_TRANSLATE_NOOP("PropertyDescription", "Text"), text, setText)
     )
 
-STEPCORE_META_OBJECT(Graph, QT_TRANSLATE_NOOP("ObjectClass", "Graph"), QT_TR_NOOP("Graph: plots a graph of any properties"), 0,
+STEPCORE_META_OBJECT(Graph, QT_TRANSLATE_NOOP("ObjectClass", "Graph"), QT_TRANSLATE_NOOP("ObjectDescription", "Graph: plots a graph of any properties"), 0,
     STEPCORE_SUPER_CLASS(Item) STEPCORE_SUPER_CLASS(Tool),
-    STEPCORE_PROPERTY_RW(StepCore::Vector2d, position, QT_TRANSLATE_NOOP("PropertyName", "position"), QT_TRANSLATE_NOOP("Units", "m"), QT_TR_NOOP("Graph position on the scene"), position, setPosition)
-    STEPCORE_PROPERTY_RW(StepCore::Vector2d, size, QT_TRANSLATE_NOOP("PropertyName", "size"), QT_TRANSLATE_NOOP("Units", "m"), QT_TR_NOOP("Graph size on the scene"), size, setSize)
-    STEPCORE_PROPERTY_RW(Object*, objectX, QT_TRANSLATE_NOOP("PropertyName", "objectX"), STEPCORE_UNITS_NULL, QT_TR_NOOP("X axis: object"), objectX, setObjectX)
-    STEPCORE_PROPERTY_RW(QString, propertyX, QT_TRANSLATE_NOOP("PropertyName", "propertyX"), STEPCORE_UNITS_NULL, QT_TR_NOOP("X axis: object property"), propertyX, setPropertyX)
-    STEPCORE_PROPERTY_RW(int, indexX, QT_TRANSLATE_NOOP("PropertyName", "indexX"), STEPCORE_UNITS_NULL, QT_TR_NOOP("X axis: vector index"), indexX, setIndexX)
-    STEPCORE_PROPERTY_RW(Object*, objectY, QT_TRANSLATE_NOOP("PropertyName", "objectY"), STEPCORE_UNITS_NULL, QT_TR_NOOP("Y axis: object"), objectY, setObjectY)
-    STEPCORE_PROPERTY_RW(QString, propertyY, QT_TRANSLATE_NOOP("PropertyName", "propertyY"), STEPCORE_UNITS_NULL, QT_TR_NOOP("Y axis: property"), propertyY, setPropertyY)
-    STEPCORE_PROPERTY_RW(int, indexY, QT_TRANSLATE_NOOP("PropertyName", "indexY"), STEPCORE_UNITS_NULL, QT_TR_NOOP("Y axis: vector index"), indexY, setIndexY)
-    STEPCORE_PROPERTY_RW(bool, autoLimitsX, QT_TRANSLATE_NOOP("PropertyName", "autoLimitsX"), STEPCORE_UNITS_NULL, QT_TR_NOOP("Auto-limits along X axis"), autoLimitsX, setAutoLimitsX)
-    STEPCORE_PROPERTY_RW(bool, autoLimitsY, QT_TRANSLATE_NOOP("PropertyName", "autoLimitsY"), STEPCORE_UNITS_NULL, QT_TR_NOOP("Auto-limits along Y axis"), autoLimitsY, setAutoLimitsY)
-    STEPCORE_PROPERTY_RW(StepCore::Vector2d, limitsX, QT_TRANSLATE_NOOP("PropertyName", "limitsX"), STEPCORE_UNITS_NULL, QT_TR_NOOP("Limits along X axis"), limitsX, setLimitsX)
-    STEPCORE_PROPERTY_RW(StepCore::Vector2d, limitsY, QT_TRANSLATE_NOOP("PropertyName", "limitsY"), STEPCORE_UNITS_NULL, QT_TR_NOOP("Limits along Y axis"), limitsY, setLimitsY)
-    STEPCORE_PROPERTY_RW(bool, showPoints, QT_TRANSLATE_NOOP("PropertyName", "showPoints"), STEPCORE_UNITS_NULL, QT_TR_NOOP("Show points on the graph"), showPoints, setShowPoints)
-    STEPCORE_PROPERTY_RW(bool, showLines, QT_TRANSLATE_NOOP("PropertyName", "showLines"), STEPCORE_UNITS_NULL, QT_TR_NOOP("Show lines on the graph"), showLines, setShowLines)
-    STEPCORE_PROPERTY_R (StepCore::Vector2d, currentValue, QT_TR_NOOP("currentValue"), STEPCORE_UNITS_NULL, QT_TR_NOOP("Current value"), currentValue)
-    STEPCORE_PROPERTY_RW_D(StepCore::Vector2dList, points, QT_TRANSLATE_NOOP("PropertyName", "points"), STEPCORE_UNITS_NULL, QT_TR_NOOP("points"), points, setPoints)
-    STEPCORE_PROPERTY_R (QString, unitsX, QT_TR_NOOP("unitsX"), STEPCORE_UNITS_NULL, QT_TR_NOOP("Units along X axis"), unitsX)
-    STEPCORE_PROPERTY_R (QString, unitsY, QT_TR_NOOP("unitsY"), STEPCORE_UNITS_NULL, QT_TR_NOOP("Units along Y axis"), unitsY)
+    STEPCORE_PROPERTY_RW(StepCore::Vector2d, position, QT_TRANSLATE_NOOP("PropertyName", "position"), QT_TRANSLATE_NOOP("Units", "m"), QT_TRANSLATE_NOOP("PropertyDescription", "Graph position on the scene"), position, setPosition)
+    STEPCORE_PROPERTY_RW(StepCore::Vector2d, size, QT_TRANSLATE_NOOP("PropertyName", "size"), QT_TRANSLATE_NOOP("Units", "m"), QT_TRANSLATE_NOOP("PropertyDescription", "Graph size on the scene"), size, setSize)
+    STEPCORE_PROPERTY_RW(Object*, objectX, QT_TRANSLATE_NOOP("PropertyName", "objectX"), STEPCORE_UNITS_NULL, QT_TRANSLATE_NOOP("PropertyDescription", "X axis: object"), objectX, setObjectX)
+    STEPCORE_PROPERTY_RW(QString, propertyX, QT_TRANSLATE_NOOP("PropertyName", "propertyX"), STEPCORE_UNITS_NULL, QT_TRANSLATE_NOOP("PropertyDescription", "X axis: object property"), propertyX, setPropertyX)
+    STEPCORE_PROPERTY_RW(int, indexX, QT_TRANSLATE_NOOP("PropertyName", "indexX"), STEPCORE_UNITS_NULL, QT_TRANSLATE_NOOP("PropertyDescription", "X axis: vector index"), indexX, setIndexX)
+    STEPCORE_PROPERTY_RW(Object*, objectY, QT_TRANSLATE_NOOP("PropertyName", "objectY"), STEPCORE_UNITS_NULL, QT_TRANSLATE_NOOP("PropertyDescription", "Y axis: object"), objectY, setObjectY)
+    STEPCORE_PROPERTY_RW(QString, propertyY, QT_TRANSLATE_NOOP("PropertyName", "propertyY"), STEPCORE_UNITS_NULL, QT_TRANSLATE_NOOP("PropertyDescription", "Y axis: property"), propertyY, setPropertyY)
+    STEPCORE_PROPERTY_RW(int, indexY, QT_TRANSLATE_NOOP("PropertyName", "indexY"), STEPCORE_UNITS_NULL, QT_TRANSLATE_NOOP("PropertyDescription", "Y axis: vector index"), indexY, setIndexY)
+    STEPCORE_PROPERTY_RW(bool, autoLimitsX, QT_TRANSLATE_NOOP("PropertyName", "autoLimitsX"), STEPCORE_UNITS_NULL, QT_TRANSLATE_NOOP("PropertyDescription", "Auto-limits along X axis"), autoLimitsX, setAutoLimitsX)
+    STEPCORE_PROPERTY_RW(bool, autoLimitsY, QT_TRANSLATE_NOOP("PropertyName", "autoLimitsY"), STEPCORE_UNITS_NULL, QT_TRANSLATE_NOOP("PropertyDescription", "Auto-limits along Y axis"), autoLimitsY, setAutoLimitsY)
+    STEPCORE_PROPERTY_RW(StepCore::Vector2d, limitsX, QT_TRANSLATE_NOOP("PropertyName", "limitsX"), STEPCORE_UNITS_NULL, QT_TRANSLATE_NOOP("PropertyDescription", "Limits along X axis"), limitsX, setLimitsX)
+    STEPCORE_PROPERTY_RW(StepCore::Vector2d, limitsY, QT_TRANSLATE_NOOP("PropertyName", "limitsY"), STEPCORE_UNITS_NULL, QT_TRANSLATE_NOOP("PropertyDescription", "Limits along Y axis"), limitsY, setLimitsY)
+    STEPCORE_PROPERTY_RW(bool, showPoints, QT_TRANSLATE_NOOP("PropertyName", "showPoints"), STEPCORE_UNITS_NULL, QT_TRANSLATE_NOOP("PropertyDescription", "Show points on the graph"), showPoints, setShowPoints)
+    STEPCORE_PROPERTY_RW(bool, showLines, QT_TRANSLATE_NOOP("PropertyName", "showLines"), STEPCORE_UNITS_NULL, QT_TRANSLATE_NOOP("PropertyDescription", "Show lines on the graph"), showLines, setShowLines)
+    STEPCORE_PROPERTY_R (StepCore::Vector2d, currentValue, QT_TRANSLATE_NOOP("PropertyName", "currentValue"), STEPCORE_UNITS_NULL, QT_TRANSLATE_NOOP("PropertyDescription", "Current value"), currentValue)
+    STEPCORE_PROPERTY_RW_D(StepCore::Vector2dList, points, QT_TRANSLATE_NOOP("PropertyName", "points"), STEPCORE_UNITS_NULL, QT_TRANSLATE_NOOP("PropertyDescription", "points"), points, setPoints)
+    STEPCORE_PROPERTY_R (QString, unitsX, QT_TRANSLATE_NOOP("PropertyName", "unitsX"), STEPCORE_UNITS_NULL, QT_TRANSLATE_NOOP("PropertyName", "Units along X axis"), unitsX)
+    STEPCORE_PROPERTY_R (QString, unitsY, QT_TRANSLATE_NOOP("PropertyName", "unitsY"), STEPCORE_UNITS_NULL, QT_TRANSLATE_NOOP("PropertyName", "Units along Y axis"), unitsY)
     )
 
-STEPCORE_META_OBJECT(Meter, QT_TRANSLATE_NOOP("ObjectClass", "Meter"), QT_TR_NOOP("Meter: displays any property on the scene"), 0,
+STEPCORE_META_OBJECT(Meter, QT_TRANSLATE_NOOP("ObjectClass", "Meter"), QT_TRANSLATE_NOOP("ObjectDescription", "Meter: displays any property on the scene"), 0,
     STEPCORE_SUPER_CLASS(Item) STEPCORE_SUPER_CLASS(Tool),
-    STEPCORE_PROPERTY_RW(StepCore::Vector2d, position, QT_TRANSLATE_NOOP("PropertyName", "position"), QT_TRANSLATE_NOOP("Units", "m"), QT_TR_NOOP("Meter position on the scene"), position, setPosition)
-    STEPCORE_PROPERTY_RW(StepCore::Vector2d, size, QT_TRANSLATE_NOOP("PropertyName", "size"), QT_TRANSLATE_NOOP("Units", "m"), QT_TR_NOOP("Meter size on the scene"), size, setSize)
-    STEPCORE_PROPERTY_RW(Object*, object, QT_TRANSLATE_NOOP("PropertyName", "object"), STEPCORE_UNITS_NULL, QT_TR_NOOP("Observed object"), object, setObject)
-    STEPCORE_PROPERTY_RW(QString, property, QT_TRANSLATE_NOOP("PropertyName", "property"), STEPCORE_UNITS_NULL, QT_TR_NOOP("Observed property"), property, setProperty)
-    STEPCORE_PROPERTY_RW(int, index, QT_TRANSLATE_NOOP("PropertyName", "index"), STEPCORE_UNITS_NULL, QT_TR_NOOP("Vector index"), index, setIndex)
-    STEPCORE_PROPERTY_RW(int, digits, QT_TRANSLATE_NOOP("PropertyName", "digits"), STEPCORE_UNITS_NULL, QT_TR_NOOP("Display digits"), digits, setDigits)
-    STEPCORE_PROPERTY_R (double, value, QT_TR_NOOP("value"), STEPCORE_UNITS_NULL, QT_TR_NOOP("Value"), value)
-    STEPCORE_PROPERTY_R (QString, units, QT_TR_NOOP("units"), STEPCORE_UNITS_NULL, QT_TR_NOOP("Units of measured property"), units)
+    STEPCORE_PROPERTY_RW(StepCore::Vector2d, position, QT_TRANSLATE_NOOP("PropertyName", "position"), QT_TRANSLATE_NOOP("Units", "m"), QT_TRANSLATE_NOOP("PropertyDescription", "Meter position on the scene"), position, setPosition)
+    STEPCORE_PROPERTY_RW(StepCore::Vector2d, size, QT_TRANSLATE_NOOP("PropertyName", "size"), QT_TRANSLATE_NOOP("Units", "m"), QT_TRANSLATE_NOOP("PropertyDescription", "Meter size on the scene"), size, setSize)
+    STEPCORE_PROPERTY_RW(Object*, object, QT_TRANSLATE_NOOP("PropertyName", "object"), STEPCORE_UNITS_NULL, QT_TRANSLATE_NOOP("PropertyDescription", "Observed object"), object, setObject)
+    STEPCORE_PROPERTY_RW(QString, property, QT_TRANSLATE_NOOP("PropertyName", "property"), STEPCORE_UNITS_NULL, QT_TRANSLATE_NOOP("PropertyDescription", "Observed property"), property, setProperty)
+    STEPCORE_PROPERTY_RW(int, index, QT_TRANSLATE_NOOP("PropertyName", "index"), STEPCORE_UNITS_NULL, QT_TRANSLATE_NOOP("PropertyDescription", "Vector index"), index, setIndex)
+    STEPCORE_PROPERTY_RW(int, digits, QT_TRANSLATE_NOOP("PropertyName", "digits"), STEPCORE_UNITS_NULL, QT_TRANSLATE_NOOP("PropertyDescription", "Display digits"), digits, setDigits)
+    STEPCORE_PROPERTY_R (double, value, QT_TRANSLATE_NOOP("PropertyName", "value"), STEPCORE_UNITS_NULL, QT_TRANSLATE_NOOP("PropertyDescription", "Value"), value)
+    STEPCORE_PROPERTY_R (QString, units, QT_TRANSLATE_NOOP("PropertyName", "units"), STEPCORE_UNITS_NULL, QT_TRANSLATE_NOOP("PropertyDescription", "Units of measured property"), units)
     )
 
-STEPCORE_META_OBJECT(Controller, QT_TRANSLATE_NOOP("ObjectClass", "Controller"), QT_TR_NOOP("Controller: allows to easily control any property"), 0,
+STEPCORE_META_OBJECT(Controller, QT_TRANSLATE_NOOP("ObjectClass", "Controller"), QT_TRANSLATE_NOOP("ObjectDescription", "Controller: allows to easily control any property"), 0,
     STEPCORE_SUPER_CLASS(Item) STEPCORE_SUPER_CLASS(Tool),
-    STEPCORE_PROPERTY_RW(StepCore::Vector2d, position, QT_TRANSLATE_NOOP("PropertyName", "position"), QT_TRANSLATE_NOOP("Units", "m"), QT_TR_NOOP("Controller position on the scene"), position, setPosition)
-    STEPCORE_PROPERTY_RW(StepCore::Vector2d, size, QT_TRANSLATE_NOOP("PropertyName", "size"), QT_TRANSLATE_NOOP("Units", "m"), QT_TR_NOOP("Controller size on the scene"), size, setSize)
-    STEPCORE_PROPERTY_RW(Object*, object, QT_TRANSLATE_NOOP("PropertyName", "object"), STEPCORE_UNITS_NULL, QT_TR_NOOP("Controlled object"), object, setObject)
-    STEPCORE_PROPERTY_RW(QString, property, QT_TRANSLATE_NOOP("PropertyName", "property"), STEPCORE_UNITS_NULL, QT_TR_NOOP("Controlled property"), property, setProperty)
-    STEPCORE_PROPERTY_RW(int, index, QT_TRANSLATE_NOOP("PropertyName", "index"), STEPCORE_UNITS_NULL, QT_TR_NOOP("Vector index"), index, setIndex)
-    STEPCORE_PROPERTY_RW(StepCore::Vector2d, limits, QT_TRANSLATE_NOOP("PropertyName", "limits"), STEPCORE_UNITS_NULL, QT_TR_NOOP("Limits"), limits, setLimits)
+    STEPCORE_PROPERTY_RW(StepCore::Vector2d, position, QT_TRANSLATE_NOOP("PropertyName", "position"), QT_TRANSLATE_NOOP("Units", "m"), QT_TRANSLATE_NOOP("PropertyDescription", "Controller position on the scene"), position, setPosition)
+    STEPCORE_PROPERTY_RW(StepCore::Vector2d, size, QT_TRANSLATE_NOOP("PropertyName", "size"), QT_TRANSLATE_NOOP("Units", "m"), QT_TRANSLATE_NOOP("PropertyDescription", "Controller size on the scene"), size, setSize)
+    STEPCORE_PROPERTY_RW(Object*, object, QT_TRANSLATE_NOOP("PropertyName", "object"), STEPCORE_UNITS_NULL, QT_TRANSLATE_NOOP("PropertyDescription", "Controlled object"), object, setObject)
+    STEPCORE_PROPERTY_RW(QString, property, QT_TRANSLATE_NOOP("PropertyName", "property"), STEPCORE_UNITS_NULL, QT_TRANSLATE_NOOP("PropertyDescription", "Controlled property"), property, setProperty)
+    STEPCORE_PROPERTY_RW(int, index, QT_TRANSLATE_NOOP("PropertyName", "index"), STEPCORE_UNITS_NULL, QT_TRANSLATE_NOOP("PropertyDescription", "Vector index"), index, setIndex)
+    STEPCORE_PROPERTY_RW(StepCore::Vector2d, limits, QT_TRANSLATE_NOOP("PropertyName", "limits"), STEPCORE_UNITS_NULL, QT_TRANSLATE_NOOP("PropertyDescription", "Limits"), limits, setLimits)
     STEPCORE_PROPERTY_RW(QString, increaseShortcut, QT_TRANSLATE_NOOP("PropertyName", "increaseShortcut"), STEPCORE_UNITS_NULL,
-                            QT_TR_NOOP("Shortcut to increase the value"), increaseShortcut, setIncreaseShortcut)
+                            QT_TRANSLATE_NOOP("PropertyDescription", "Shortcut to increase the value"), increaseShortcut, setIncreaseShortcut)
     STEPCORE_PROPERTY_RW(QString, decreaseShortcut, QT_TRANSLATE_NOOP("PropertyName", "decreaseShortcut"), STEPCORE_UNITS_NULL,
-                            QT_TR_NOOP("Shortcut to decrease the value"), decreaseShortcut, setDecreaseShortcut)
-    STEPCORE_PROPERTY_RW(double, increment, QT_TRANSLATE_NOOP("PropertyName", "increment"), STEPCORE_UNITS_NULL, QT_TR_NOOP("Increment value"), increment, setIncrement)
-    STEPCORE_PROPERTY_RWF(double, value, QT_TRANSLATE_NOOP("PropertyName", "value"), STEPCORE_UNITS_NULL, QT_TR_NOOP("Value"),
+                            QT_TRANSLATE_NOOP("PropertyDescription", "Shortcut to decrease the value"), decreaseShortcut, setDecreaseShortcut)
+    STEPCORE_PROPERTY_RW(double, increment, QT_TRANSLATE_NOOP("PropertyName", "increment"), STEPCORE_UNITS_NULL, QT_TRANSLATE_NOOP("PropertyDescription", "Increment value"), increment, setIncrement)
+    STEPCORE_PROPERTY_RWF(double, value, QT_TRANSLATE_NOOP("PropertyName", "value"), STEPCORE_UNITS_NULL, QT_TRANSLATE_NOOP("PropertyDescription", "Value"),
                             MetaProperty::DYNAMIC | MetaProperty::SIDEEFFECTS, value, setValue)
-    STEPCORE_PROPERTY_R (QString, units, QT_TR_NOOP("units"), STEPCORE_UNITS_NULL, QT_TR_NOOP("Units of controlled property"), units)
+    STEPCORE_PROPERTY_R (QString, units, QT_TRANSLATE_NOOP("PropertyName", "units"), STEPCORE_UNITS_NULL, QT_TRANSLATE_NOOP("PropertyDescription", "Units of controlled property"), units)
     )
 
-STEPCORE_META_OBJECT(Tracer, QT_TRANSLATE_NOOP("ObjectClass", "Tracer"), QT_TR_NOOP("Tracer: traces trajectory of a point on a body"), 0,
+STEPCORE_META_OBJECT(Tracer, QT_TRANSLATE_NOOP("ObjectClass", "Tracer"), QT_TRANSLATE_NOOP("ObjectDescription", "Tracer: traces trajectory of a point on a body"), 0,
     STEPCORE_SUPER_CLASS(Item) STEPCORE_SUPER_CLASS(Tool),
-    STEPCORE_PROPERTY_RW(Object*, body, QT_TRANSLATE_NOOP("PropertyName", "body"), STEPCORE_UNITS_NULL, QT_TR_NOOP("Traced body"), body, setBody)
+    STEPCORE_PROPERTY_RW(Object*, body, QT_TRANSLATE_NOOP("PropertyName", "body"), STEPCORE_UNITS_NULL, QT_TRANSLATE_NOOP("PropertyDescription", "Traced body"), body, setBody)
     STEPCORE_PROPERTY_RW(StepCore::Vector2d, localPosition, QT_TRANSLATE_NOOP("PropertyName", "localPosition"), QT_TRANSLATE_NOOP("Units", "m"),
-                    QT_TR_NOOP("Local position"), localPosition, setLocalPosition)
-    STEPCORE_PROPERTY_R_D(StepCore::Vector2d, position, QT_TRANSLATE_NOOP("PropertyName", "position"), QT_TRANSLATE_NOOP("Units", "m"), QT_TR_NOOP("Position"), position)
-    STEPCORE_PROPERTY_RW_D(StepCore::Vector2dList, points, QT_TRANSLATE_NOOP("PropertyName", "points"), QT_TRANSLATE_NOOP("Units", "m"), QT_TR_NOOP("points"), points, setPoints)
+                    QT_TRANSLATE_NOOP("PropertyDescription", "Local position"), localPosition, setLocalPosition)
+    STEPCORE_PROPERTY_R_D(StepCore::Vector2d, position, QT_TRANSLATE_NOOP("PropertyName", "position"), QT_TRANSLATE_NOOP("Units", "m"), QT_TRANSLATE_NOOP("PropertyDescription", "Position"), position)
+    STEPCORE_PROPERTY_RW_D(StepCore::Vector2dList, points, QT_TRANSLATE_NOOP("PropertyName", "points"), QT_TRANSLATE_NOOP("Units", "m"), QT_TRANSLATE_NOOP("PropertyDescription", "points"), points, setPoints)
     )
 
 namespace {

@@ -24,7 +24,7 @@ namespace StepCore
 {
 
 
-STEPCORE_META_OBJECT(Force, QT_TRANSLATE_NOOP("ObjectClass", "Force"), QT_TR_NOOP("Force"),
+STEPCORE_META_OBJECT(Force, QT_TRANSLATE_NOOP("ObjectClass", "Force"), QT_TRANSLATE_NOOP("ObjectDescription", "Force"),
 		     MetaObject::ABSTRACT,,)
 
 
