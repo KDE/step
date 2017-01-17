@@ -25,7 +25,7 @@ namespace StepCore
 {
 
 
-STEPCORE_META_OBJECT(ItemGroup, QT_TRANSLATE_NOOP("ObjectClass", "ItemGroup"), QT_TR_NOOP("ItemGroup"), 
+STEPCORE_META_OBJECT(ItemGroup, QT_TRANSLATE_NOOP("ObjectClass", "ItemGroup"), QT_TRANSLATE_NOOP("ObjectDescription", "ItemGroup"), 
 		     0, STEPCORE_SUPER_CLASS(Item),)
 
 

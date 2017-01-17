@@ -23,7 +23,7 @@
 namespace StepCore
 {
 
-STEPCORE_META_OBJECT(ObjectErrors, QT_TRANSLATE_NOOP("ObjectClass", "ObjectErrors"), QT_TR_NOOP("ObjectErrors"),
+STEPCORE_META_OBJECT(ObjectErrors, QT_TRANSLATE_NOOP("ObjectClass", "ObjectErrors"), QT_TRANSLATE_NOOP("ObjectDescription", "ObjectErrors"),
 		     MetaObject::ABSTRACT, STEPCORE_SUPER_CLASS(Object),)
 
 

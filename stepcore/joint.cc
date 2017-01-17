@@ -23,7 +23,7 @@
 namespace StepCore
 {
 
-STEPCORE_META_OBJECT(Joint, QT_TRANSLATE_NOOP("ObjectClass", "Joint"), QT_TR_NOOP("Joint"),
+STEPCORE_META_OBJECT(Joint, QT_TRANSLATE_NOOP("ObjectClass", "Joint"), QT_TRANSLATE_NOOP("ObjectDescription", "Joint"),
 		     MetaObject::ABSTRACT,,)
 
 
