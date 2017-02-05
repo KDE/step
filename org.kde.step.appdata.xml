@@ -354,7 +354,7 @@
       <li xml:lang="et">Mitu erinevat lahendajat: kuni 8. astmeni, eksplitsiitsed ja implitsiitsed, adaptiivse ajasammuga või ilma selleta (enamik lahendajaid vajab GSL teeki)</li>
       <li xml:lang="fi">Useita eri ratkaisimia: kahdeksanteen asteeseen asti, eksplisiittisiä sekä implisiittisiä, adaptive timestep -menetelmällä tai ilman sitä (useimmat ratkaisimet tarvitsevat GSL-kirjaston)</li>
       <li xml:lang="fr">Plusieurs solveurs différents :jusqu'à l'ordre 8, explicite et implicite, avec ou sans pas adaptatif (la plupart des solveurs nécessite la bibliothèque GSL)</li>
-      <li xml:lang="gl">Varios tipos diferentes de resolvedores: ata a 8ª orden, explícitos e implícitos, con ou sen paso adaptábel de tempo (a maioría dos resolvedores requiren da biblioteca GSL).</li>
+      <li xml:lang="gl">Varios tipos diferentes de resolvedores: ata a 8ª orde, explícitos e implícitos, con ou sen paso adaptábel de tempo (a maioría dos resolvedores requiren da biblioteca GSL).</li>
       <li xml:lang="it">Diversi tipi di solutori: fino all'ottavo ordine, espliciti ed impliciti, con o senza un passo temporale adattivo (la maggior parte dei solutori richiedono la libreria GSL)</li>
       <li xml:lang="nds">En Reeg verscheden Lösers: bet to de 8. Orden, ex- un implizit, mit un ahn topassen Tietschreed (de mehrsten Lösers bruukt de GSL-Bibliotheek)</li>
       <li xml:lang="nl">Er zijn diverse oplossingsmethoden: tot aan de 8e orde, expliciet en impliciet, met of zonder een adaptieve tijdstap (voor de meesten is de GSL-bibliotheek nodig)</li>
