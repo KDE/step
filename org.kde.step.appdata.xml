@@ -272,7 +272,7 @@
       <li>Units conversion and expression calculation: you can enter something like "(2 days + 3 hours) * 80 km/h" and it will be accepted as distance value (requires libqalculate)</li>
       <li xml:lang="bs">Jedinice konverzije i proračun izraza: možete unijeti nešto poput "(2 dana + 3 sata) * 80 km / h", a ona će biti prihvaćena kao vrijednost udaljenosti (zahtijeva libqalculate)</li>
       <li xml:lang="ca">Conversió d'unitats i càlcul d'expressions: podeu introduir quelcom del tipus "(2 dies + 3 hores) * 80 km/h" i serà acceptat com un valor de distància (necessita la libqalculate)</li>
-      <li xml:lang="ca-valencia">Conversió d'unitats i càlcul d'expressions: podeu introduir quelcom del tipus "(2 dies + 3 hores) * 80 km/h" i serà acceptat com un valor de distància (necessita la libqalculate)</li>
+      <li xml:lang="ca-valencia">Conversió d'unitats i càlcul d'expressions: podeu introduir alguna cosa del tipus "(2 dies + 3 hores) * 80 km/h" i serà acceptat com un valor de distància (necessita la libqalculate)</li>
       <li xml:lang="de">Umwandlung von Einheiten und Berechnung von Ausdrücken: Sie können zum Beispiel „(2 days + 3 hours) * 80 km/h“ eingeben, daraus wird der Wert der Entfernung berechnet. Dazu ist die Bibliothek libqalculate erforderlich.</li>
       <li xml:lang="en-GB">Units conversion and expression calculation: you can enter something like "(2 days + 3 hours) * 80 km/h" and it will be accepted as distance value (requires libqalculate)</li>
       <li xml:lang="es">Conversión de unidades y cálculo de expresiones: puede introducir algo como «(2 días + 3 horas) * 80 km/h» y se aceptará como un valor de distancia (necesita «libqalculate»)</li>
