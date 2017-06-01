@@ -135,7 +135,7 @@ public:
     explicit Spring(double restLength = 0, double stiffness = 1, double damping = 0,
                 Item* body1 = 0, Item* body2 = 0);
 
-    void calcForce(bool calcVariances);
+    void calcForce(bool calcVariances) Q_DECL_OVERRIDE;
 
     /** Get rest length of the spring */
     double restLength() const { return _restLength; }
@@ -214,7 +214,7 @@ public:
     SpringErrors* springErrors() { return static_cast<SpringErrors*>(objectErrors()); }
 
 protected:
-    ObjectErrors* createObjectErrors() { return new SpringErrors(this); }
+    ObjectErrors* createObjectErrors() Q_DECL_OVERRIDE { return new SpringErrors(this); }
 
     Object* _body1;
     Object* _body2;

@@ -135,8 +135,8 @@ public:
     QString borderParticleNames() const;
     void setBorderParticleNames(const QString& borderParticleNames);
 
-    void worldItemRemoved(Item* item);
-    void setWorld(World* world);
+    void worldItemRemoved(Item* item) Q_DECL_OVERRIDE;
+    void setWorld(World* world) Q_DECL_OVERRIDE;
 
 protected:
     SoftBodyParticleList _borderParticles;

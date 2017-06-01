@@ -50,13 +50,13 @@ public:
         setProperty("isSeparator", true);
     }
 
-    QSize sizeHint() const {
+    QSize sizeHint() const Q_DECL_OVERRIDE {
         QStyleOption opt; opt.initFrom(this);
         const int extent = style()->pixelMetric(QStyle::PM_ToolBarSeparatorExtent, &opt, parentWidget());
         return QSize(extent, extent);
     }
 
-    void paintEvent(QPaintEvent *) {
+    void paintEvent(QPaintEvent *) Q_DECL_OVERRIDE {
         QPainter p(this); QStyleOption opt; opt.initFrom(this);
         style()->drawPrimitive(QStyle::PE_IndicatorToolBarSeparator, &opt, &p, parentWidget());
     }
@@ -70,19 +70,19 @@ public:
     PaletteLayout(int spacing = -1) { setSpacing(spacing); resetCache(); }
     ~PaletteLayout() { QLayoutItem *item; while ((item = takeAt(0))) delete item; }
 
-    void addItem(QLayoutItem *item) { itemList.append(item); resetCache(); }
-    int count() const { return itemList.size(); }
-    QLayoutItem* itemAt(int index) const { return itemList.value(index); }
-    QLayoutItem* takeAt(int index) {
+    void addItem(QLayoutItem *item) Q_DECL_OVERRIDE { itemList.append(item); resetCache(); }
+    int count() const Q_DECL_OVERRIDE { return itemList.size(); }
+    QLayoutItem* itemAt(int index) const Q_DECL_OVERRIDE { return itemList.value(index); }
+    QLayoutItem* takeAt(int index) Q_DECL_OVERRIDE {
         resetCache();
         if (index >= 0 && index < itemList.size()) return itemList.takeAt(index);
         else return 0;
     }
 
-    Qt::Orientations expandingDirections() const { return Qt::Vertical; }
-    bool hasHeightForWidth() const { return true; }
+    Qt::Orientations expandingDirections() const Q_DECL_OVERRIDE { return Qt::Vertical; }
+    bool hasHeightForWidth() const Q_DECL_OVERRIDE { return true; }
 
-    int heightForWidth(int width) const {
+    int heightForWidth(int width) const Q_DECL_OVERRIDE {
         if(isCachedHeightForWidth && cachedHeightForWidth.width() == width) {
             return cachedHeightForWidth.height();
         } else {
@@ -93,13 +93,13 @@ public:
         }
     }
     
-    void setGeometry(const QRect &rect) {
+    void setGeometry(const QRect &rect) Q_DECL_OVERRIDE {
         resetCache(); QLayout::setGeometry(rect); doLayout(rect, false);
     }
 
-    QSize sizeHint() const { return minimumSize(); }
+    QSize sizeHint() const Q_DECL_OVERRIDE { return minimumSize(); }
 
-    QSize minimumSize() const {
+    QSize minimumSize() const Q_DECL_OVERRIDE {
         if(isCachedMinimumSize) return cachedMinimumSize;
         cachedMinimumSize = QSize();
         QLayoutItem *item;
@@ -112,7 +112,7 @@ public:
     void setOneLine(bool b) { oneLine = b; invalidate(); }
     bool isOneLine() const { return oneLine; }
 
-    void invalidate() { resetCache(); QLayout::invalidate(); }
+    void invalidate() Q_DECL_OVERRIDE { resetCache(); QLayout::invalidate(); }
 
 protected:
     void resetCache() { isCachedMinimumSize = false; isCachedHeightForWidth = false; }
@@ -171,7 +171,7 @@ public:
     PaletteScrollArea(QWidget* parent): QScrollArea(parent) {}
 
 protected:
-    void resizeEvent(QResizeEvent* event) {
+    void resizeEvent(QResizeEvent* event) Q_DECL_OVERRIDE {
         if(widget() && widget()->layout()) {
             QSize size(maximumViewportSize().width(),
                     widget()->layout()->heightForWidth(maximumViewportSize().width()));

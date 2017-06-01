@@ -53,7 +53,7 @@ protected slots:
     void syncSelection(bool checked = true);
 
 protected:
-    void showEvent(QShowEvent* event);
+    void showEvent(QShowEvent* event) Q_DECL_OVERRIDE;
     void updateSyncSelection();
 
     WorldModel* _worldModel;

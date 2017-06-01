@@ -99,7 +99,7 @@ protected slots:
 
 protected:
     void setupActions();
-    bool queryClose();
+    bool queryClose() Q_DECL_OVERRIDE;
     bool maybeSave();
 
 protected:

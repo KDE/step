@@ -35,8 +35,8 @@ public:
     GasCreator(const QString& className, WorldModel* worldModel, WorldScene* worldScene)
            : ItemCreator(className, worldModel, worldScene) {}
 
-    bool sceneEvent(QEvent* event);
-    void start();
+    bool sceneEvent(QEvent* event) Q_DECL_OVERRIDE;
+    void start() Q_DECL_OVERRIDE;
 
 protected:
     StepCore::Vector2d _topLeft;
@@ -56,24 +56,24 @@ public:
 
 protected:
     StepCore::Gas* gas() const;
-    StepCore::Vector2d value();
-    void setValue(const StepCore::Vector2d& value);
+    StepCore::Vector2d value() Q_DECL_OVERRIDE;
+    void setValue(const StepCore::Vector2d& value) Q_DECL_OVERRIDE;
 };
 
 class GasGraphicsItem: public StepGraphicsItem {
 public:
     GasGraphicsItem(StepCore::Item* item, WorldModel* worldModel);
 
-    QPainterPath shape() const;
-    void paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget);
+    QPainterPath shape() const Q_DECL_OVERRIDE;
+    void paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget) Q_DECL_OVERRIDE;
 
-    void viewScaleChanged();
-    void stateChanged();
-    void worldDataChanged(bool);
+    void viewScaleChanged() Q_DECL_OVERRIDE;
+    void stateChanged() Q_DECL_OVERRIDE;
+    void worldDataChanged(bool) Q_DECL_OVERRIDE;
 
 protected:
-    void mouseSetPos(const QPointF& pos, const QPointF&, MovingState);
-    OnHoverHandlerGraphicsItem* createOnHoverHandler(const QPointF& pos);
+    void mouseSetPos(const QPointF& pos, const QPointF&, MovingState) Q_DECL_OVERRIDE;
+    OnHoverHandlerGraphicsItem* createOnHoverHandler(const QPointF& pos) Q_DECL_OVERRIDE;
     StepCore::Gas* gas() const;
 
     //ArrowHandlerGraphicsItem *_centerHandler;
@@ -94,7 +94,7 @@ public:
     GasMenuHandler(StepCore::Object* object, WorldModel* worldModel, QObject* parent)
         : ItemMenuHandler(object, worldModel, parent) {}
 
-    void populateMenu(QMenu* menu, KActionCollection* actions);
+    void populateMenu(QMenu* menu, KActionCollection* actions) Q_DECL_OVERRIDE;
 
 public slots:
     void createGasParticles();

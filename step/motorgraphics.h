@@ -40,7 +40,7 @@ class LinearMotorCreator: public ItemCreator
 public:
     LinearMotorCreator(const QString& className, WorldModel* worldModel, WorldScene* worldScene)
                         : ItemCreator(className, worldModel, worldScene) {}
-    bool sceneEvent(QEvent* event);
+    bool sceneEvent(QEvent* event) Q_DECL_OVERRIDE;
 
 protected:
     void tryAttach(const QPointF& pos);
@@ -51,16 +51,16 @@ class LinearMotorGraphicsItem: public StepGraphicsItem
 public:
     LinearMotorGraphicsItem(StepCore::Item* item, WorldModel* worldModel);
 
-    void paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget);
-    QPainterPath shape() const;
+    void paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget) Q_DECL_OVERRIDE;
+    QPainterPath shape() const Q_DECL_OVERRIDE;
 
-    void viewScaleChanged();
-    void worldDataChanged(bool dynamicOnly);
-    void stateChanged();
+    void viewScaleChanged() Q_DECL_OVERRIDE;
+    void worldDataChanged(bool dynamicOnly) Q_DECL_OVERRIDE;
+    void stateChanged() Q_DECL_OVERRIDE;
 
 protected:
-    void mouseMoveEvent(QGraphicsSceneMouseEvent *event);
-    void mouseReleaseEvent(QGraphicsSceneMouseEvent *event);
+    void mouseMoveEvent(QGraphicsSceneMouseEvent *event) Q_DECL_OVERRIDE;
+    void mouseReleaseEvent(QGraphicsSceneMouseEvent *event) Q_DECL_OVERRIDE;
     StepCore::LinearMotor* motor() const;
     QPainterPath _path;
     ArrowHandlerGraphicsItem* _forceHandler;
@@ -75,7 +75,7 @@ class CircularMotorCreator: public ItemCreator
 public:
     CircularMotorCreator(const QString& className, WorldModel* worldModel, WorldScene* worldScene)
                         : ItemCreator(className, worldModel, worldScene) {}
-    bool sceneEvent(QEvent* event);
+    bool sceneEvent(QEvent* event) Q_DECL_OVERRIDE;
 
 protected:
     void tryAttach(const QPointF& pos);
@@ -86,16 +86,16 @@ class CircularMotorGraphicsItem: public StepGraphicsItem
 public:
     CircularMotorGraphicsItem(StepCore::Item* item, WorldModel* worldModel);
 
-    void paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget);
-    QPainterPath shape() const;
+    void paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget) Q_DECL_OVERRIDE;
+    QPainterPath shape() const Q_DECL_OVERRIDE;
 
-    void viewScaleChanged();
-    void worldDataChanged(bool dynamicOnly);
-    void stateChanged();
+    void viewScaleChanged() Q_DECL_OVERRIDE;
+    void worldDataChanged(bool dynamicOnly) Q_DECL_OVERRIDE;
+    void stateChanged() Q_DECL_OVERRIDE;
 
 protected:
-    void mouseMoveEvent(QGraphicsSceneMouseEvent *event);
-    void mouseReleaseEvent(QGraphicsSceneMouseEvent *event);
+    void mouseMoveEvent(QGraphicsSceneMouseEvent *event) Q_DECL_OVERRIDE;
+    void mouseReleaseEvent(QGraphicsSceneMouseEvent *event) Q_DECL_OVERRIDE;
     StepCore::CircularMotor* motor() const;
     QPainterPath _path;
     CircularArrowHandlerGraphicsItem* _torqueHandler;

@@ -28,12 +28,12 @@ class ParticleGraphicsItem: public StepGraphicsItem {
 public:
     ParticleGraphicsItem(StepCore::Item* item, WorldModel* worldModel);
 
-    QPainterPath shape() const;
-    void paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget);
+    QPainterPath shape() const Q_DECL_OVERRIDE;
+    void paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget) Q_DECL_OVERRIDE;
 
-    void viewScaleChanged();
-    void stateChanged();
-    void worldDataChanged(bool);
+    void viewScaleChanged() Q_DECL_OVERRIDE;
+    void stateChanged() Q_DECL_OVERRIDE;
+    void worldDataChanged(bool) Q_DECL_OVERRIDE;
 
 protected:
     StepCore::Particle* particle() const {

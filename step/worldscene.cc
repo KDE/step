@@ -52,9 +52,9 @@ class WorldSceneAxes: public QGraphicsItem
 {
 public:
     WorldSceneAxes(QGraphicsItem* parent = 0, QGraphicsScene* scene = 0);
-    QRectF boundingRect() const;
-    QPainterPath shape() const;
-    void paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget);
+    QRectF boundingRect() const Q_DECL_OVERRIDE;
+    QPainterPath shape() const Q_DECL_OVERRIDE;
+    void paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget) Q_DECL_OVERRIDE;
     void viewScaleChanged();
 
 protected:

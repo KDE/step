@@ -38,8 +38,8 @@ public:
     SoftBodyCreator(const QString& className, WorldModel* worldModel, WorldScene* worldScene)
            : ItemCreator(className, worldModel, worldScene) {}
 
-    bool sceneEvent(QEvent* event);
-    void start();
+    bool sceneEvent(QEvent* event) Q_DECL_OVERRIDE;
+    void start() Q_DECL_OVERRIDE;
     
 public:
     EIGEN_MAKE_ALIGNED_OPERATOR_NEW
@@ -54,7 +54,7 @@ public:
     SoftBodyMenuHandler(StepCore::Object* object, WorldModel* worldModel, QObject* parent)
         : ItemMenuHandler(object, worldModel, parent), _applied(false) {}
 
-    void populateMenu(QMenu* menu, KActionCollection* actions);
+    void populateMenu(QMenu* menu, KActionCollection* actions) Q_DECL_OVERRIDE;
 
     bool applied() const { return _applied; }
 
@@ -78,15 +78,15 @@ class SoftBodyGraphicsItem: public StepGraphicsItem
 public:
     SoftBodyGraphicsItem(StepCore::Item* item, WorldModel* worldModel);
 
-    QPainterPath shape() const;
-    void paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget);
+    QPainterPath shape() const Q_DECL_OVERRIDE;
+    void paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget) Q_DECL_OVERRIDE;
 
-    void viewScaleChanged();
-    void stateChanged();
-    void worldDataChanged(bool dynamicOnly);
+    void viewScaleChanged() Q_DECL_OVERRIDE;
+    void stateChanged() Q_DECL_OVERRIDE;
+    void worldDataChanged(bool dynamicOnly) Q_DECL_OVERRIDE;
 
 protected:
-    void mouseSetPos(const QPointF& pos, const QPointF& diff, MovingState);
+    void mouseSetPos(const QPointF& pos, const QPointF& diff, MovingState) Q_DECL_OVERRIDE;
     StepCore::SoftBody* softBody() const;
     QPainterPath _painterPath;
 
@@ -101,7 +101,7 @@ public:
     SoftBodyParticleGraphicsItem(StepCore::Item* item, WorldModel* worldModel)
         : ParticleGraphicsItem(item, worldModel) {}
 
-    void worldDataChanged(bool dynamicOnly);
+    void worldDataChanged(bool dynamicOnly) Q_DECL_OVERRIDE;
 };
 
 class SoftBodySpringGraphicsItem: public SpringGraphicsItem
@@ -110,7 +110,7 @@ public:
     SoftBodySpringGraphicsItem(StepCore::Item* item, WorldModel* worldModel)
         : SpringGraphicsItem(item, worldModel) {}
 
-    void worldDataChanged(bool dynamicOnly);
+    void worldDataChanged(bool dynamicOnly) Q_DECL_OVERRIDE;
 };
 
 #endif

@@ -55,7 +55,7 @@ class CGConstraintSolver: public ConstraintSolver
     STEPCORE_OBJECT(CGConstraintSolver)
 
 public:
-    int solve(ConstraintsInfo* info);
+    int solve(ConstraintsInfo* info) Q_DECL_OVERRIDE;
 };
 
 } // namespace StepCore

@@ -54,7 +54,7 @@ protected:
     void createToolButton(QAction* action);
     void createObjectAction(const StepCore::MetaObject* metaObject);
 
-    bool event(QEvent* event);
+    bool event(QEvent* event) Q_DECL_OVERRIDE;
 
     WorldModel*     _worldModel;
     QScrollArea*    _scrollArea;

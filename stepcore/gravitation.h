@@ -85,7 +85,7 @@ public:
     /** Constructs GravitationForce */
     GravitationForce(double gravitationConst = Constants::Gravitational);
 
-    void calcForce(bool calcVariances);
+    void calcForce(bool calcVariances) Q_DECL_OVERRIDE;
 
     /** Get gravitational constant */
     double gravitationConst() const { return _gravitationConst; }
@@ -97,7 +97,7 @@ public:
         return static_cast<GravitationForceErrors*>(objectErrors()); }
 
 protected:
-    ObjectErrors* createObjectErrors() { return new GravitationForceErrors(this); }
+    ObjectErrors* createObjectErrors() Q_DECL_OVERRIDE { return new GravitationForceErrors(this); }
 
     double _gravitationConst;
 };
@@ -150,7 +150,7 @@ public:
     /** Constructs WeightForce */
     WeightForce(double weightConst = Constants::WeightAccel);
 
-    void calcForce(bool calcVariances);
+    void calcForce(bool calcVariances) Q_DECL_OVERRIDE;
 
     /** Get weight constant */
     double weightConst() const { return _weightConst; }
@@ -162,7 +162,7 @@ public:
         return static_cast<WeightForceErrors*>(objectErrors()); }
 
 protected:
-    ObjectErrors* createObjectErrors() { return new WeightForceErrors(this); }
+    ObjectErrors* createObjectErrors() Q_DECL_OVERRIDE { return new WeightForceErrors(this); }
 
     double _weightConst;
 };

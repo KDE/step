@@ -37,10 +37,10 @@ public:
     PropertiesBrowserDelegate(QObject* parent = 0):
             QItemDelegate(parent), _editor(NULL), _updating(false) {}
     QWidget* createEditor(QWidget* parent, const QStyleOptionViewItem& option,
-                           const QModelIndex& index) const;
-    void setEditorData(QWidget* editor, const QModelIndex& index) const;
+                           const QModelIndex& index) const Q_DECL_OVERRIDE;
+    void setEditorData(QWidget* editor, const QModelIndex& index) const Q_DECL_OVERRIDE;
     void setModelData(QWidget* editor, QAbstractItemModel* model,
-                       const QModelIndex& index) const;
+                       const QModelIndex& index) const Q_DECL_OVERRIDE;
 protected slots:
     void editorActivated();
 
@@ -76,7 +76,7 @@ protected slots:
     void rowsRemoved(const QModelIndex& parent, int start, int end);
 
 protected:
-    bool eventFilter(QObject* object, QEvent* event);
+    bool eventFilter(QObject* object, QEvent* event) Q_DECL_OVERRIDE;
 
     WorldModel* _worldModel;
     PropertiesBrowserModel* _propertiesBrowserModel;

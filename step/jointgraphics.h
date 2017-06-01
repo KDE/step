@@ -37,14 +37,14 @@ class AnchorGraphicsItem : public StepGraphicsItem
 public:
     AnchorGraphicsItem(StepCore::Item* item, WorldModel* worldModel);
 
-    void paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget);
-    QPainterPath shape() const;
+    void paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget) Q_DECL_OVERRIDE;
+    QPainterPath shape() const Q_DECL_OVERRIDE;
 
-    void viewScaleChanged();
-    void worldDataChanged(bool dynamicOnly);
+    void viewScaleChanged() Q_DECL_OVERRIDE;
+    void worldDataChanged(bool dynamicOnly) Q_DECL_OVERRIDE;
 
 protected:
-    void mouseSetPos(const QPointF& pos, const QPointF&, MovingState movingState);
+    void mouseSetPos(const QPointF& pos, const QPointF&, MovingState movingState) Q_DECL_OVERRIDE;
     StepCore::Anchor* anchor() const;
 };
 
@@ -63,14 +63,14 @@ class PinGraphicsItem: public StepGraphicsItem
 public:
     PinGraphicsItem(StepCore::Item* item, WorldModel* worldModel);
 
-    void paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget);
-    QPainterPath shape() const;
+    void paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget) Q_DECL_OVERRIDE;
+    QPainterPath shape() const Q_DECL_OVERRIDE;
 
-    void viewScaleChanged();
-    void worldDataChanged(bool dynamicOnly);
+    void viewScaleChanged() Q_DECL_OVERRIDE;
+    void worldDataChanged(bool dynamicOnly) Q_DECL_OVERRIDE;
 
 protected:
-    void mouseSetPos(const QPointF& pos, const QPointF&, MovingState movingState);
+    void mouseSetPos(const QPointF& pos, const QPointF&, MovingState movingState) Q_DECL_OVERRIDE;
     StepCore::Pin* pin() const;
 };
 
@@ -90,11 +90,11 @@ class StickHandlerGraphicsItem: public StepGraphicsItem
 public:
     StickHandlerGraphicsItem(StepCore::Item* item, WorldModel* worldModel,
                                 QGraphicsItem* parent, int num);
-    void viewScaleChanged();
-    void worldDataChanged(bool);
+    void viewScaleChanged() Q_DECL_OVERRIDE;
+    void worldDataChanged(bool) Q_DECL_OVERRIDE;
 
 protected:
-    void mouseSetPos(const QPointF& pos, const QPointF& diff, MovingState movingState);
+    void mouseSetPos(const QPointF& pos, const QPointF& diff, MovingState movingState) Q_DECL_OVERRIDE;
     int  _num;
 };
 
@@ -103,15 +103,15 @@ class StickGraphicsItem: public StepGraphicsItem
 public:
     StickGraphicsItem(StepCore::Item* item, WorldModel* worldModel);
 
-    void paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget);
-    QPainterPath shape() const;
+    void paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget) Q_DECL_OVERRIDE;
+    QPainterPath shape() const Q_DECL_OVERRIDE;
 
-    void viewScaleChanged();
-    void stateChanged();
-    void worldDataChanged(bool dynamicOnly);
+    void viewScaleChanged() Q_DECL_OVERRIDE;
+    void stateChanged() Q_DECL_OVERRIDE;
+    void worldDataChanged(bool dynamicOnly) Q_DECL_OVERRIDE;
 
 protected:
-    void mouseSetPos(const QPointF& pos, const QPointF& diff, MovingState);
+    void mouseSetPos(const QPointF& pos, const QPointF& diff, MovingState) Q_DECL_OVERRIDE;
 
     StepCore::Stick* stick() const { return static_cast<StepCore::Stick*>(_item); }
 

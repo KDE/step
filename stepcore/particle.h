@@ -149,23 +149,23 @@ public:
     /** Set kinetic energy of the particle (will modify only velocity) */
     void setKineticEnergy(double kineticEnergy);
 
-    int  variablesCount() { return 2; }
+    int  variablesCount() Q_DECL_OVERRIDE { return 2; }
     void getVariables(double* position, double* velocity,
-                          double* positionVariance, double* velocityVariance);
+                          double* positionVariance, double* velocityVariance) Q_DECL_OVERRIDE;
     void setVariables(const double* position, const double* velocity,
-              const double* positionVariance, const double* velocityVariance);
-    void addForce(const double* force, const double* forceVariance);
-    void resetForce(bool resetVariance);
-    void getAccelerations(double* acceleration, double* accelerationVariance);
+              const double* positionVariance, const double* velocityVariance) Q_DECL_OVERRIDE;
+    void addForce(const double* force, const double* forceVariance) Q_DECL_OVERRIDE;
+    void resetForce(bool resetVariance) Q_DECL_OVERRIDE;
+    void getAccelerations(double* acceleration, double* accelerationVariance) Q_DECL_OVERRIDE;
     void getInverseMass(VectorXd* inverseMass,
-                        DynSparseRowMatrix* variance, int offset);
+                        DynSparseRowMatrix* variance, int offset) Q_DECL_OVERRIDE;
 
     /** Get (and possibly create) ParticleErrors object */
     ParticleErrors* particleErrors() {
         return static_cast<ParticleErrors*>(objectErrors()); }
 
 protected:
-    ObjectErrors* createObjectErrors() { return new ParticleErrors(this); }
+    ObjectErrors* createObjectErrors() Q_DECL_OVERRIDE { return new ParticleErrors(this); }
 
     Vector2d _position;
     Vector2d _velocity;
@@ -223,7 +223,7 @@ public:
         return static_cast<ChargedParticleErrors*>(objectErrors()); }
 
 protected:
-    ObjectErrors* createObjectErrors() { return new ChargedParticleErrors(this); }
+    ObjectErrors* createObjectErrors() Q_DECL_OVERRIDE { return new ChargedParticleErrors(this); }
 
     double _charge;
 };

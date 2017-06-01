@@ -88,7 +88,7 @@ public:
     /** Constructs CoulombForce */
     CoulombForce(double coulombConst = Constants::Coulomb);
 
-    void calcForce(bool calcVariances);
+    void calcForce(bool calcVariances) Q_DECL_OVERRIDE;
 
     /** Get coulomb const */
     double coulombConst() const { return _coulombConst; }
@@ -100,7 +100,7 @@ public:
         return static_cast<CoulombForceErrors*>(objectErrors()); }
 
 protected:
-    ObjectErrors* createObjectErrors() { return new CoulombForceErrors(this); }
+    ObjectErrors* createObjectErrors() Q_DECL_OVERRIDE { return new CoulombForceErrors(this); }
 
     double _coulombConst;
 };

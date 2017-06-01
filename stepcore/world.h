@@ -187,7 +187,7 @@ private:
     /** \internal Recursively remove item and all its children from
      *  bodies, forces and joints arrays. Called by ItemGroup::removeItem()
      *  and ItemGroup::clear() */
-    void worldItemRemoved(Item* item);
+    void worldItemRemoved(Item* item) Q_DECL_OVERRIDE;
 
     /** \internal This function iterates over all bodies, assigns indexes
      *  for them in the global array (_variables), calculates total

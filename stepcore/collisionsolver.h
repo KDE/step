@@ -171,16 +171,16 @@ public:
         PenetrationDetected = 4097
     };*/
 
-    int checkContacts(BodyList& bodies, bool collisions = false, int* count = NULL);
-    void getContactsInfo(ConstraintsInfo& info, bool collisions = false);
+    int checkContacts(BodyList& bodies, bool collisions = false, int* count = NULL) Q_DECL_OVERRIDE;
+    void getContactsInfo(ConstraintsInfo& info, bool collisions = false) Q_DECL_OVERRIDE;
     //int findClosestPoints(const BasePolygon* polygon1, const BasePolygon* polygon2);
 
-    int solveCollisions(BodyList& bodies);
+    int solveCollisions(BodyList& bodies) Q_DECL_OVERRIDE;
     //int solveConstraints(BodyList& bodies);
 
-    void resetCaches();
-    void bodyAdded(BodyList& bodies, Body* body);
-    void bodyRemoved(BodyList& bodies, Body* body);
+    void resetCaches() Q_DECL_OVERRIDE;
+    void bodyAdded(BodyList& bodies, Body* body) Q_DECL_OVERRIDE;
+    void bodyRemoved(BodyList& bodies, Body* body) Q_DECL_OVERRIDE;
 
 protected:
     int checkContact(Contact* contact);

@@ -100,15 +100,15 @@ public:
     int childItemCount() const { return _world->items().size(); }
 
     /** QAbstractItemModel::data() function */
-    QVariant data(const QModelIndex &index, int role) const;
+    QVariant data(const QModelIndex &index, int role) const Q_DECL_OVERRIDE;
     /** QAbstractItemModel::index() function */
-    QModelIndex index(int row, int column, const QModelIndex &parent = QModelIndex()) const;
+    QModelIndex index(int row, int column, const QModelIndex &parent = QModelIndex()) const Q_DECL_OVERRIDE;
     /** QAbstractItemModel::parent() function */
-    QModelIndex parent(const QModelIndex &index) const;
+    QModelIndex parent(const QModelIndex &index) const Q_DECL_OVERRIDE;
     /** QAbstractItemModel::rowCount() function */
-    int rowCount(const QModelIndex &parent = QModelIndex()) const;
+    int rowCount(const QModelIndex &parent = QModelIndex()) const Q_DECL_OVERRIDE;
     /** QAbstractItemModel::columnCount() function */
-    int columnCount(const QModelIndex &parent = QModelIndex()) const;
+    int columnCount(const QModelIndex &parent = QModelIndex()) const Q_DECL_OVERRIDE;
 
     // Add/remove/set functions
     /** Generates new unique item name */

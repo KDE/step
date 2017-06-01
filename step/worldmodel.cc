@@ -44,11 +44,11 @@ public:
     CommandEditProperty(WorldModel* worldModel, StepCore::Object* object,
                 const StepCore::MetaProperty* property, const QVariant& newValue, bool merge);
 
-    int id() const { return _merge ? 1 : -1; }
-    bool mergeWith(const QUndoCommand* command);
+    int id() const Q_DECL_OVERRIDE { return _merge ? 1 : -1; }
+    bool mergeWith(const QUndoCommand* command) Q_DECL_OVERRIDE;
 
-    void redo();
-    void undo();
+    void redo() Q_DECL_OVERRIDE;
+    void undo() Q_DECL_OVERRIDE;
 
 protected:
     /* It's important to properly compress commands
@@ -128,8 +128,8 @@ public:
     }
     ~CommandNewItem() { if(_shouldDelete) delete _item; }
 
-    void redo();
-    void undo();
+    void redo() Q_DECL_OVERRIDE;
+    void undo() Q_DECL_OVERRIDE;
 
 protected:
     void findLinks(StepCore::ItemGroup* group);
@@ -197,8 +197,8 @@ public:
     CommandSetSolver(WorldModel* worldModel, StepCore::Solver* solver)
             : _worldModel(worldModel), _solver(solver) {}
     ~CommandSetSolver() { delete _solver; }
-    void redo() { _solver = _worldModel->swapSolver(_solver); }
-    void undo() { _solver = _worldModel->swapSolver(_solver); }
+    void redo() Q_DECL_OVERRIDE { _solver = _worldModel->swapSolver(_solver); }
+    void undo() Q_DECL_OVERRIDE { _solver = _worldModel->swapSolver(_solver); }
 
 protected:
     WorldModel* _worldModel;
@@ -213,8 +213,8 @@ public:
 
     void done();
 
-    void redo();
-    void undo();
+    void redo() Q_DECL_OVERRIDE;
+    void undo() Q_DECL_OVERRIDE;
 
     const QString& startTime() const { return _startTime; }
     const QString& endTime() const { return _endTime; }

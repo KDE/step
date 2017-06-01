@@ -45,16 +45,16 @@ class PropertiesBrowserModel: public QAbstractItemModel
 public:
     PropertiesBrowserModel(WorldModel* worldModel, QObject* parent = 0);
 
-    QVariant data(const QModelIndex &index, int role) const;
-    QModelIndex index(int row, int column, const QModelIndex &parent = QModelIndex()) const;
-    QModelIndex parent(const QModelIndex &index) const;
-    int rowCount(const QModelIndex &parent = QModelIndex()) const;
-    int columnCount(const QModelIndex &parent = QModelIndex()) const;
+    QVariant data(const QModelIndex &index, int role) const Q_DECL_OVERRIDE;
+    QModelIndex index(int row, int column, const QModelIndex &parent = QModelIndex()) const Q_DECL_OVERRIDE;
+    QModelIndex parent(const QModelIndex &index) const Q_DECL_OVERRIDE;
+    int rowCount(const QModelIndex &parent = QModelIndex()) const Q_DECL_OVERRIDE;
+    int columnCount(const QModelIndex &parent = QModelIndex()) const Q_DECL_OVERRIDE;
     QVariant headerData(int section, Qt::Orientation orientation,
-                         int role = Qt::DisplayRole) const;
+                         int role = Qt::DisplayRole) const Q_DECL_OVERRIDE;
 
-    Qt::ItemFlags flags(const QModelIndex &index) const;
-    bool setData(const QModelIndex &index, const QVariant &value, int role);
+    Qt::ItemFlags flags(const QModelIndex &index) const Q_DECL_OVERRIDE;
+    bool setData(const QModelIndex &index, const QVariant &value, int role) Q_DECL_OVERRIDE;
 
     void setObject(StepCore::Object* object);
     StepCore::Object* object() { return _object; }
@@ -590,10 +590,10 @@ class PropertiesBrowserView: public QTreeView
 public:
     PropertiesBrowserView(QWidget* parent = 0);
 protected:
-    void changeEvent(QEvent* event);
-    void mousePressEvent(QMouseEvent* event);
-    void drawBranches(QPainter *painter, const QRect &rect, const QModelIndex &index) const;
-    QStyleOptionViewItem viewOptions() const;
+    void changeEvent(QEvent* event) Q_DECL_OVERRIDE;
+    void mousePressEvent(QMouseEvent* event) Q_DECL_OVERRIDE;
+    void drawBranches(QPainter *painter, const QRect &rect, const QModelIndex &index) const Q_DECL_OVERRIDE;
+    QStyleOptionViewItem viewOptions() const Q_DECL_OVERRIDE;
     const int _windowsDecoSize;
     bool _macStyle;
 };
