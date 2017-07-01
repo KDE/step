@@ -78,7 +78,7 @@ target_link_libraries(step
 
 install(TARGETS step ${KDE_INSTALL_TARGETS_DEFAULT_ARGS})
 install(FILES step.kcfg DESTINATION  ${KDE_INSTALL_KCFGDIR})
-install(FILES stepui.rc DESTINATION  ${KDE_INSTALL_DATADIR}/step)
+install(FILES stepui.rc DESTINATION  ${KDE_INSTALL_KXMLGUI5DIR}/step)
 install(FILES step.knsrc DESTINATION  ${KDE_INSTALL_CONFDIR})
 install( PROGRAMS org.kde.step.desktop DESTINATION ${KDE_INSTALL_APPDIR} )
 
