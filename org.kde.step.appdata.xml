@@ -279,7 +279,7 @@
       <li xml:lang="et">Ühikute teisendamine ja avaldiste arvutamine: võid sisestada näiteks "(2 päeva + 3 tundi) * 80 km/h" ning seda arvestatakse vahemaana (selleks on vajalik libqalculate)</li>
       <li xml:lang="fi">Yksikkömuunnokset ja lausekkeiden laskenta: voit kirjoittaa esimerkiksi ”(2 days + 3 hours) * 80 km/h” ja se hyväksytään etäisyysarvoksi (tarvitsee libqalculate-kirjaston)</li>
       <li xml:lang="fr">Conversion d'unités et calcul d'expression : vous pouvez saisir quelque chose comme "(2 jours + 3 heures) * 80 km/h" et ce sera considéré comme une distance (nécessite libqalculate)</li>
-      <li xml:lang="gl">Conversión de unidades e cálculo de expresións: pode introducir algo como «(2 día + 3 horas) * 80 km/h» e aceitarase como un valor de distancia (require de libqalculate).</li>
+      <li xml:lang="gl">Conversión de unidades e cálculo de expresións: pode inserir algo como «(2 día + 3 horas) * 80 km/h» e aceitarase como un valor de distancia (require de libqalculate).</li>
       <li xml:lang="it">Conversione di unità e calcolo di espressioni: puoi inserire ad esempio "(2 days + 3 hours) * 80 km/h" e sarà accettato come valore di distanza (richiede libqalculate)</li>
       <li xml:lang="nds">Eenheiten ümreken un Utdrück utreken: Di giffst wat in as „(2 Daag + 3 Stünnen) * 80 km/h“ un dat gellt denn as Längdenweert (bruukt „libqalculate“)</li>
       <li xml:lang="nl">Conversie van eenheden en berekening van expressies zoals "(2 dagen + 3 uren) * 80 km/h", waarna dit zal worden beschouwd als een afstand (vereist libqalculate)</li>
@@ -304,7 +304,7 @@
       <li xml:lang="et">Vigade arvutamine ja kasutamine: võid sisestada mis tahes omadusele näiteks väärtuse "1.3 ± 0.2" ning statistilisi valemeid kasutades arvestatakse välja kõigi sõltuvate omaduste viga</li>
       <li xml:lang="fi">Virheiden laskenta ja leviäminen: voit kirjoittaa arvoja kuten ”1.3 ± 0.2” mille tahansa ominaisuudelle, ja kaikkien siitä riippuvien ominaisuuksien virheet lasketaan käyttäen tilastollisia malleja</li>
       <li xml:lang="fr">Calcul d'erreurs et propagation : you pouvez saisir des valeurs comme "1.3 ± 0.2" pour n'importe quelle propriété et les erreurs pour toutes les propriétés indépendantes seront calculées suivant des formules statistiques</li>
-      <li xml:lang="gl">Cálculo e propagación de erros: pode indicar valores como "1,3 ± 0,2" en calquera propiedade e erro de calquera propiedade dependente será calculada mediante fórmulas estatísticas.</li>
+      <li xml:lang="gl">Cálculo e propagación de erros: pode inserir valores como "1,3 ± 0,2" en calquera propiedade e erro de calquera propiedade dependente será calculada mediante fórmulas estatísticas.</li>
       <li xml:lang="it">Calcolo e propagazione degli errori: puoi inserire valori come "1.3 ± 0.2" per ogni proprietà e gli errori per le proprietà dipendenti saranno calcolati tramite formule statistiche</li>
       <li xml:lang="nds">Fehlerreken: Du kannst wat as „1,3 ± 0,2“ för jichtenseen Egenschap ingeven, denn reekt Step för all afhangen Weerten över statistische Formeln de Fehlers ut.</li>
       <li xml:lang="nl">Foutenberekening en -voortplanting: u kunt voor elke eigenschap zoiets invullen als "1,3 ± 0,2", waarna voor elke daarvan afhankelijke eigenschap de fouten zullen worden berekend met gebruik van statistische formules</li>
@@ -329,7 +329,7 @@
       <li xml:lang="et">Lahendaja veahinnang: lahendaja lisatud vead arvutatakse välja ja lisatakse kasutaja sisestatud vigadele</li>
       <li xml:lang="fi">Ratkaisinvirheiden arviointi: ratkaisimen aiheuttamat virheet lasketaan ja lisätään käyttäjän syöttämiin virheisiin</li>
       <li xml:lang="fr">Estimation des erreurs du solveur : les erreurs introduites par le solveur sont calculées et ajoutées aux erreurs saisies par l'utilisateur</li>
-      <li xml:lang="gl">Estimación do erro da solución: os erros introducidos polo resolvedor son calculados e engadidos aos erros introducidos polo usuario.</li>
+      <li xml:lang="gl">Estimación do erro da solución: os erros inseridos polo resolvedor son calculados e engadidos aos erros inseridos polo usuario.</li>
       <li xml:lang="it">Stima degli errori del solutore: gli errori introdotti dal solutore sono calcolati e aggiunti al valore dell'errore inserito dall'utente</li>
       <li xml:lang="nds">Löserfehler-Estemeren: Vun den Löser inbuut Fehlers warrt estemeert un de vun den Bruker ingeven Fehlers toföögt</li>
       <li xml:lang="nl">Het afschatten van fouten veroorzaakt door de oplossingsmethode: fouten die bij het oplossen zijn ontstaan worden berekend en opgeteld bij de fouten die door de gebruiker zijn ingevoerd</li>
