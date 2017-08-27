@@ -198,8 +198,8 @@ void MainWindow::setupActions()
     actionDelete = actionCollection()->add<QAction>("edit_delete", worldModel, SLOT(deleteSelectedItems()));
     actionDelete->setText(i18n("&Delete"));
     actionDelete->setIcon(QIcon::fromTheme("edit-delete"));
-    actionDelete->setShortcut(QKeySequence(Qt::Key_Delete));
     actionDelete->setEnabled(false);
+    actionCollection()->setDefaultShortcut(actionDelete, QKeySequence(Qt::Key_Delete));
 
     /* Simulation menu */
     // The run speed action group
