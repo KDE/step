@@ -360,7 +360,7 @@
       <li>Several different solvers: up to 8th order, explicit and implicit, with or without adaptive timestep (most of the solvers require GSL library)</li>
       <li xml:lang="bs">Nekoliko različitih rješavača: do osmog poretka, eksplicitno i implicitno, sa ili bez prilagodljivog vremesnog koraka(većina rješavača zahtjeva GSL biblioteku)</li>
       <li xml:lang="ca">Diversos solucionadors diferents: fins a ordre 8è, explícit o implícit, amb pas temporal adaptatiu o sense (la majoria de solucionadors necessiten la biblioteca GSL)</li>
-      <li xml:lang="ca-valencia">Diversos solucionadors diferents: fins a orde 8è, explícit o implícit, amb pas temporal adaptatiu o sense (la majoria de solucionadors necessiten la biblioteca GSL)</li>
+      <li xml:lang="ca-valencia">Diversos solucionadors diferents: fins a ordre 8è, explícit o implícit, amb pas temporal adaptatiu o sense (la majoria de solucionadors necessiten la biblioteca GSL)</li>
       <li xml:lang="de">Mehrere verschiedene Gleichungslösungssysteme: bis zur achten Ordnung, explizit und implizit, mit oder ohne angepassten Zeitschritten. Die meisten Gleichungslösungssysteme benötigen die GSL-Bibliothek.</li>
       <li xml:lang="el">Διάφοροι διαλύτες: μέχρι 8ης τάξης, εξωτερικοί και εσωτερικοί, με ή χωρίς προσαρμοσμένο χρονικό βήμα (οι περισσότεροι διαλύτες απαιτούν τη βιβλιοθήκη GSL)</li>
       <li xml:lang="en-GB">Several different solvers: up to 8th order, explicit and implicit, with or without adaptive timestep (most of the solvers require GSL library)</li>
