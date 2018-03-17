@@ -52,6 +52,7 @@
 #include <QAction>
 #include <QTemporaryFile>
 #include <QIcon>
+#include <QItemSelectionModel>
 #include <QFile>
 #include <QGraphicsView>
 #include <QMenu>

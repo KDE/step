@@ -23,6 +23,7 @@
 
 #include <QDialogButtonBox>
 #include <QPushButton>
+#include <QRegExpValidator>
 #include <QVBoxLayout>
 
 #include <KLocalizedString>
