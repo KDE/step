@@ -21,7 +21,6 @@ find_package(Qt5 5.2 REQUIRED NO_MODULE COMPONENTS
     Xml
     Svg
     OpenGL
-    PrintSupport
     Test
 )
 
