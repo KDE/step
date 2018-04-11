@@ -18,8 +18,6 @@ include(FeatureSummary)
 include(ECMPoQmTools)
 
 find_package(Qt5 5.2 REQUIRED NO_MODULE COMPONENTS
-    Qml
-    Quick
     Xml
     Svg
     OpenGL
