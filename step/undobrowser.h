@@ -30,7 +30,7 @@ class UndoBrowser: public QDockWidget
     Q_OBJECT
 
 public:
-    explicit UndoBrowser(WorldModel* worldModel, QWidget* parent = 0, Qt::WindowFlags flags = 0);
+    explicit UndoBrowser(WorldModel* worldModel, QWidget* parent = 0, Qt::WindowFlags flags = {});
 
 public slots:
     void setEmptyLabel(const QString& label);

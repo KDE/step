@@ -37,7 +37,7 @@ class ItemPalette: public QDockWidget
     Q_OBJECT
 
 public:
-    explicit ItemPalette(WorldModel* worldModel, QWidget* parent = 0, Qt::WindowFlags flags = 0);
+    explicit ItemPalette(WorldModel* worldModel, QWidget* parent = 0, Qt::WindowFlags flags = {});
 
 signals:
     void beginAddItem(const QString& name);
