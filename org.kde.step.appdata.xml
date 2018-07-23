@@ -23,6 +23,7 @@
   <name xml:lang="lt">Step</name>
   <name xml:lang="nds">Step</name>
   <name xml:lang="nl">Stap</name>
+  <name xml:lang="nn">Steg</name>
   <name xml:lang="pl">Krok</name>
   <name xml:lang="pt">Step</name>
   <name xml:lang="pt-BR">Step</name>
@@ -53,6 +54,7 @@
   <summary xml:lang="lt">Interaktyvus fizikos modeliatorius</summary>
   <summary xml:lang="nds">Brukerstüert Physiksimuleren</summary>
   <summary xml:lang="nl">Interactieve natuurkundige simulaties</summary>
+  <summary xml:lang="nn">Interaktiv fysikksimulator</summary>
   <summary xml:lang="pl">Interaktywny symulator fizyczny</summary>
   <summary xml:lang="pt">Simulador de Física Interactivo</summary>
   <summary xml:lang="pt-BR">Simulador de Física Interativo</summary>
@@ -110,6 +112,7 @@
     <p xml:lang="lt">Ypatybės:</p>
     <p xml:lang="nds">Markmalen:</p>
     <p xml:lang="nl">Kenmerken:</p>
+    <p xml:lang="nn">Funksjonar:</p>
     <p xml:lang="pl">Możliwości:</p>
     <p xml:lang="pt">Funcionalidades:</p>
     <p xml:lang="pt-BR">Funcionalidades:</p>
