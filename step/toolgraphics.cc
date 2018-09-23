@@ -54,6 +54,7 @@
 #include <QAbstractButton>
 #include <QPushButton>
 #include <QVBoxLayout>
+#include <QInputDialog>
 
 #include <KToolBar>
 #include <KPlotWidget>
@@ -68,7 +69,6 @@
 #include <KColorDialog>
 #include <KLocalizedString>
 #include <KMessageBox>
-#include <KInputDialog>
 #include <KIO/NetAccess>
 
 #include <float.h>
@@ -428,13 +428,13 @@ NoteGraphicsItem::NoteGraphicsItem(StepCore::Item* item, WorldModel* worldModel)
     connect(_actionItalic, SIGNAL(triggered(bool)), _textEdit, SLOT(setFontItalic(bool)));
     connect(_actionUnderline, SIGNAL(triggered(bool)), _textEdit, SLOT(setFontUnderline(bool)));
     connect(_actionAlign, SIGNAL(triggered(QAction*)), this, SLOT(formatAlign(QAction*)));
-    connect(_actionFont, SIGNAL(triggered(const QString&)), this, SLOT(formatFontFamily(const QString&)));
+    connect(_actionFont, SIGNAL(triggered(QString)), this, SLOT(formatFontFamily(QString)));
     connect(_actionFontSize, SIGNAL(fontSizeChanged(int)), this, SLOT(formatFontSize(int)));
     connect(_actionInsertImage, SIGNAL(triggered(bool)), this, SLOT(insertImage()));
     connect(_actionInsertFormula, SIGNAL(triggered(bool)), this, SLOT(insertFormula()));
     
-    connect(_textEdit, SIGNAL(currentCharFormatChanged(const QTextCharFormat&)),
-                            this, SLOT(currentCharFormatChanged(const QTextCharFormat&)));
+    connect(_textEdit, SIGNAL(currentCharFormatChanged(QTextCharFormat)),
+                            this, SLOT(currentCharFormatChanged(QTextCharFormat)));
     connect(_textEdit, SIGNAL(cursorPositionChanged()), this, SLOT(cursorPositionChanged()));
 
 
@@ -709,8 +709,8 @@ bool NoteGraphicsItem::editFormula(StepCore::NoteFormula* formula)
     }
 
     bool ok;
-    QString code = KInputDialog::getMultiLineText(i18n("LaTex Formula - Step"),
-                i18n("Enter LaTeX formula string"), QString(formula->code()), &ok, _widget);
+    QString code = QInputDialog::getMultiLineText(_widget, i18n("LaTex Formula - Step"),
+                i18n("Enter LaTeX formula string"), QString(formula->code()), &ok);
     if(!ok) return false;
 
     QByteArray image;
@@ -1158,10 +1158,10 @@ void GraphMenuHandler::configureGraph()
     connect(_confUi->dataSourceY, SIGNAL(dataSourceChanged()), this, SLOT(confChanged()));
     connect(_confUi->checkBoxAutoX, SIGNAL(stateChanged(int)), this, SLOT(confChanged()));
     connect(_confUi->checkBoxAutoY, SIGNAL(stateChanged(int)), this, SLOT(confChanged()));
-    connect(_confUi->lineEditMinX, SIGNAL(textEdited(const QString&)), this, SLOT(confChanged()));
-    connect(_confUi->lineEditMaxX, SIGNAL(textEdited(const QString&)), this, SLOT(confChanged()));
-    connect(_confUi->lineEditMinY, SIGNAL(textEdited(const QString&)), this, SLOT(confChanged()));
-    connect(_confUi->lineEditMaxY, SIGNAL(textEdited(const QString&)), this, SLOT(confChanged()));
+    connect(_confUi->lineEditMinX, SIGNAL(textEdited(QString)), this, SLOT(confChanged()));
+    connect(_confUi->lineEditMaxX, SIGNAL(textEdited(QString)), this, SLOT(confChanged()));
+    connect(_confUi->lineEditMinY, SIGNAL(textEdited(QString)), this, SLOT(confChanged()));
+    connect(_confUi->lineEditMaxY, SIGNAL(textEdited(QString)), this, SLOT(confChanged()));
     connect(_confUi->checkBoxShowLines, SIGNAL(stateChanged(int)), this, SLOT(confChanged()));
     connect(_confUi->checkBoxShowPoints, SIGNAL(stateChanged(int)), this, SLOT(confChanged()));
 
@@ -1362,7 +1362,7 @@ void MeterMenuHandler::configureMeter()
     connect(_buttonBox, SIGNAL(clicked(QAbstractButton*)), this, SLOT(confApply(QAbstractButton*)));
 
     connect(_confUi->dataSource, SIGNAL(dataSourceChanged()), this, SLOT(confChanged()));
-    connect(_confUi->lineEditDigits, SIGNAL(textEdited(const QString&)), this, SLOT(confChanged()));
+    connect(_confUi->lineEditDigits, SIGNAL(textEdited(QString)), this, SLOT(confChanged()));
 
     _confDialog->exec();
 
@@ -1696,11 +1696,11 @@ void ControllerMenuHandler::configureController()
     connect(_buttonBox, SIGNAL(clicked(QAbstractButton*)), this, SLOT(confApply(QAbstractButton*)));
 
     connect(_confUi->dataSource, SIGNAL(dataSourceChanged()), this, SLOT(confChanged()));
-    connect(_confUi->lineEditMin, SIGNAL(textEdited(const QString&)), this, SLOT(confChanged()));
-    connect(_confUi->lineEditMax, SIGNAL(textEdited(const QString&)), this, SLOT(confChanged()));
-    connect(_confUi->keyIncrease, SIGNAL(keySequenceChanged(const QKeySequence&)), this, SLOT(confChanged()));
-    connect(_confUi->keyDecrease, SIGNAL(keySequenceChanged(const QKeySequence&)), this, SLOT(confChanged()));
-    connect(_confUi->lineEditIncrement, SIGNAL(textEdited(const QString&)), this, SLOT(confChanged()));
+    connect(_confUi->lineEditMin, SIGNAL(textEdited(QString)), this, SLOT(confChanged()));
+    connect(_confUi->lineEditMax, SIGNAL(textEdited(QString)), this, SLOT(confChanged()));
+    connect(_confUi->keyIncrease, SIGNAL(keySequenceChanged(QKeySequence)), this, SLOT(confChanged()));
+    connect(_confUi->keyDecrease, SIGNAL(keySequenceChanged(QKeySequence)), this, SLOT(confChanged()));
+    connect(_confUi->lineEditIncrement, SIGNAL(textEdited(QString)), this, SLOT(confChanged()));
 
     _confDialog->exec();
 

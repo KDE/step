@@ -80,11 +80,11 @@ InfoBrowser::InfoBrowser(WorldModel* worldModel, QWidget* parent, Qt::WindowFlag
     _htmlPart->setDNDEnabled(false);
 
     connect(_htmlPart->browserExtension(),
-	    SIGNAL(openUrlRequest(const QUrl&, const KParts::OpenUrlArguments&, const KParts::BrowserArguments&)),
-	    this, SLOT(openUrl(const QUrl&)));
+	    SIGNAL(openUrlRequest(QUrl,KParts::OpenUrlArguments,KParts::BrowserArguments)),
+	    this, SLOT(openUrl(QUrl)));
 
-    connect(_worldModel->selectionModel(), SIGNAL(currentChanged(const QModelIndex&, const QModelIndex&)),
-                                           this, SLOT(worldCurrentChanged(const QModelIndex&, const QModelIndex&)));
+    connect(_worldModel->selectionModel(), SIGNAL(currentChanged(QModelIndex,QModelIndex)),
+                                           this, SLOT(worldCurrentChanged(QModelIndex,QModelIndex)));
 
     syncSelection();
 }
@@ -210,7 +210,7 @@ void InfoBrowser::openUrl(const QUrl& url, bool clearHistory, bool fromHistory)
             _wikiUrl = url;
             _wikiFromHistory = fromHistory;
             _wikiJob = KIO::storedGet(url, KIO::NoReload, KIO::HideProgressInfo);
-            connect(_wikiJob, SIGNAL(result(KJob*)), this, SLOT( wikiResult(KJob*)));
+            connect(_wikiJob, SIGNAL(result(KJob*)), this, SLOT(wikiResult(KJob*)));
         } else {
             QDesktopServices::openUrl(url);
         }

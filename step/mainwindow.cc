@@ -40,7 +40,6 @@
 #include <KMessageBox>
 #include <KFileDialog>
 #include <KConfigDialog>
-#include <KStandardDirs>
 #include <KStatusBar>
 #include <KLocalizedString>
 #include <KConfig>
@@ -50,6 +49,7 @@
 #include <knewstuff3/downloaddialog.h>
 
 #include <QAction>
+#include <QDir>
 #include <QTemporaryFile>
 #include <QIcon>
 #include <QItemSelectionModel>
@@ -105,15 +105,15 @@ MainWindow::MainWindow()
     setCentralWidget(worldGraphicsView);
 
     connect(worldModel, SIGNAL(simulationStopped(int)), this, SLOT(simulationStopped(int)));
-    connect(worldModel->selectionModel(), SIGNAL(selectionChanged(const QItemSelection&, const QItemSelection&)),
+    connect(worldModel->selectionModel(), SIGNAL(selectionChanged(QItemSelection,QItemSelection)),
                                  this, SLOT(worldSelectionChanged()));
-    connect(itemPalette, SIGNAL(beginAddItem(const QString&)),
-	    worldScene,  SLOT(beginAddItem(const QString&)));
-    connect(worldScene,  SIGNAL(endAddItem(const QString&, bool)),
-	    itemPalette, SLOT(endAddItem(const QString&, bool)));
-    connect(worldScene,  SIGNAL(linkActivated(const QUrl&)),
-	    infoBrowser, SLOT(openUrl(const QUrl&)));
-    connect(worldScene,  SIGNAL(endAddItem(QString, bool)),
+    connect(itemPalette, SIGNAL(beginAddItem(QString)),
+	    worldScene,  SLOT(beginAddItem(QString)));
+    connect(worldScene,  SIGNAL(endAddItem(QString,bool)),
+	    itemPalette, SLOT(endAddItem(QString,bool)));
+    connect(worldScene,  SIGNAL(linkActivated(QUrl)),
+	    infoBrowser, SLOT(openUrl(QUrl)));
+    connect(worldScene,  SIGNAL(endAddItem(QString,bool)),
             this,        SLOT(worldSelectionChanged()));
     
 
@@ -139,7 +139,7 @@ void MainWindow::setupActions()
     KStandardAction::save(this, SLOT(saveFile()), actionCollection());
     KStandardAction::saveAs(this, SLOT(saveFileAs()), actionCollection());
     KStandardAction::quit(this, SLOT(close()), actionCollection());
-    actionRecentFiles = KStandardAction::openRecent(this, SLOT(openFile(const QUrl&)),
+    actionRecentFiles = KStandardAction::openRecent(this, SLOT(openFile(QUrl)),
 						    actionCollection());
 
     KConfig* config = new KConfig("steprc");
@@ -179,10 +179,10 @@ void MainWindow::setupActions()
     connect(worldModel->undoStack(), SIGNAL(canRedoChanged(bool)), actionRedo, SLOT(setEnabled(bool)));
     connect(worldModel->undoStack(), SIGNAL(canUndoChanged(bool)), actionUndo, SLOT(setEnabled(bool)));
     connect(worldModel->undoStack(), SIGNAL(cleanChanged(bool)), this, SLOT(updateCaption()));
-    connect(worldModel->undoStack(), SIGNAL(undoTextChanged(const QString&)),
-                                 this, SLOT(undoTextChanged(const QString&)));
-    connect(worldModel->undoStack(), SIGNAL(redoTextChanged(const QString&)),
-                                 this, SLOT(redoTextChanged(const QString&)));
+    connect(worldModel->undoStack(), SIGNAL(undoTextChanged(QString)),
+                                 this, SLOT(undoTextChanged(QString)));
+    connect(worldModel->undoStack(), SIGNAL(redoTextChanged(QString)),
+                                 this, SLOT(redoTextChanged(QString)));
     
     actionCut = KStandardAction::cut(worldModel, SLOT(cutSelectedItems()),
                                      actionCollection());
@@ -464,7 +464,7 @@ void MainWindow::openLocalExample()
     // XXX: need to be redone
     QString dir = QStandardPaths::writableLocation(QStandardPaths::DataLocation) + "/examples";
     if(dir.isEmpty()) return;
-    KStandardDirs::makeDir(dir);
+    QDir::root().mkpath(dir);
     openFile(QUrl(), QUrl::fromLocalFile(dir));
 }
 
@@ -602,9 +602,9 @@ void MainWindow::configureStep()
     generalUi.setupUi(generalWidget);
     dialog->addPage(generalWidget, i18n("General"), "step"); //shows the "step" icon, the "general" icon doesn't exist
 
-    connect(dialog, SIGNAL(settingsChanged(const QString&)),
+    connect(dialog, SIGNAL(settingsChanged(QString)),
                 worldGraphicsView, SLOT(settingsChanged())); 
-    connect(dialog, SIGNAL(settingsChanged(const QString&)),
+    connect(dialog, SIGNAL(settingsChanged(QString)),
                 propertiesBrowser, SLOT(settingsChanged())); 
 
     dialog->show();

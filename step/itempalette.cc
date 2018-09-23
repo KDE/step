@@ -277,7 +277,7 @@ void ItemPalette::createObjectAction(const StepCore::MetaObject* metaObject)
 void ItemPalette::showButtonTextToggled(bool b)
 {
     Settings::setShowButtonText(b);
-    Settings::self()->writeConfig();
+    Settings::self()->save();
     foreach(QToolButton* button, _toolButtons) {
         button->setToolButtonStyle(b ? Qt::ToolButtonTextBesideIcon :
                                        Qt::ToolButtonIconOnly);

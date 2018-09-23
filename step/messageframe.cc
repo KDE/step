@@ -79,8 +79,8 @@ int MessageFrame::showMessage(Type type, const QString& text, Flags flags)
     textLabel->setText(text);
     layout->addWidget(textLabel, 1);
 
-    connect(textLabel, SIGNAL(linkActivated(const QString&)),
-                this, SLOT(messageLinkActivated(const QString&)));
+    connect(textLabel, SIGNAL(linkActivated(QString)),
+                this, SLOT(messageLinkActivated(QString)));
 
     if(flags.testFlag(CloseButton)) {
         QToolButton* button = new QToolButton(widget);

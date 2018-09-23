@@ -16,11 +16,11 @@
    Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
 */
 
+#include "worldscene.h"
+
 #ifdef _WIN32
 #include <windows.h>
 #endif
-
-#include "worldscene.h"
 
 #include "settings.h"
 
@@ -151,17 +151,17 @@ WorldScene::WorldScene(WorldModel* worldModel, QObject* parent)
 
     connect(_worldModel, SIGNAL(modelReset()), this, SLOT(worldModelReset()));
     connect(_worldModel, SIGNAL(worldDataChanged(bool)), this, SLOT(worldDataChanged(bool)));
-    connect(_worldModel->selectionModel(), SIGNAL(currentChanged(const QModelIndex&, const QModelIndex&)),
-                                  this, SLOT(worldCurrentChanged(const QModelIndex&, const QModelIndex&)));
-    connect(_worldModel->selectionModel(), SIGNAL(selectionChanged(const QItemSelection&, const QItemSelection&)),
-                                  this, SLOT(worldSelectionChanged(const QItemSelection&, const QItemSelection&)));
-    connect(_worldModel, SIGNAL(rowsInserted(const QModelIndex&, int, int)),
-                this, SLOT(worldRowsInserted(const QModelIndex&, int, int)));
-    connect(_worldModel, SIGNAL(rowsAboutToBeRemoved(const QModelIndex&, int, int)),
-                         this, SLOT(worldRowsAboutToBeRemoved(const QModelIndex&, int, int)));
+    connect(_worldModel->selectionModel(), SIGNAL(currentChanged(QModelIndex,QModelIndex)),
+                                  this, SLOT(worldCurrentChanged(QModelIndex,QModelIndex)));
+    connect(_worldModel->selectionModel(), SIGNAL(selectionChanged(QItemSelection,QItemSelection)),
+                                  this, SLOT(worldSelectionChanged(QItemSelection,QItemSelection)));
+    connect(_worldModel, SIGNAL(rowsInserted(QModelIndex,int,int)),
+                this, SLOT(worldRowsInserted(QModelIndex,int,int)));
+    connect(_worldModel, SIGNAL(rowsAboutToBeRemoved(QModelIndex,int,int)),
+                         this, SLOT(worldRowsAboutToBeRemoved(QModelIndex,int,int)));
 
-    connect(_messageFrame, SIGNAL(linkActivated(const QString&)),
-                this, SLOT(messageLinkActivated(const QString&)));
+    connect(_messageFrame, SIGNAL(linkActivated(QString)),
+                this, SLOT(messageLinkActivated(QString)));
     connect(_snapTimer, SIGNAL(timeout()), this, SLOT(snapUpdateToolTip()));
 }
 
@@ -573,8 +573,8 @@ WorldGraphicsView::WorldGraphicsView(WorldScene* worldScene, QWidget* parent)
     
     _sceneRect = worldScene->sceneRect();
     updateSceneRect();
-    connect(worldScene, SIGNAL(sceneRectChanged(const QRectF&)),
-            this, SLOT(sceneRectChanged(const QRectF&)));
+    connect(worldScene, SIGNAL(sceneRectChanged(QRectF)),
+            this, SLOT(sceneRectChanged(QRectF)));
     
     //worldGraphicsView->setRenderHints(QPainter::Antialiasing);
     setDragMode(QGraphicsView::RubberBandDrag);

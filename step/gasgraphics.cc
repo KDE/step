@@ -323,9 +323,9 @@ void GasMenuHandler::createGasParticles()
     _createGasParticlesUi->labelTemperature->setText(gas()->metaObject()->property("rectTemperature")->units());
     _createGasParticlesUi->labelMeanVelocity->setText(gas()->metaObject()->property("rectMeanVelocity")->units());
 
-    connect(_createGasParticlesUi->lineEditCount, SIGNAL(textEdited(const QString&)),
+    connect(_createGasParticlesUi->lineEditCount, SIGNAL(textEdited(QString)),
                 this, SLOT(createGasParticlesCountChanged()));
-    connect(_createGasParticlesUi->lineEditConcentration, SIGNAL(textEdited(const QString&)),
+    connect(_createGasParticlesUi->lineEditConcentration, SIGNAL(textEdited(QString)),
                 this, SLOT(createGasParticlesConcentrationChanged()));
 
     int retval = _creationDialog->exec();

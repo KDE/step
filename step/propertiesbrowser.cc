@@ -504,7 +504,7 @@ QWidget* PropertiesBrowserDelegate::createEditor(QWidget* parent,
         // XXX: do not use hard-coded pixel sizes
         colorButton->setMinimumWidth(15);
         colorButton->setMaximumWidth(15);
-        connect(colorButton, SIGNAL(changed(const QColor&)), this, SLOT(editorActivated()));
+        connect(colorButton, SIGNAL(changed(QColor)), this, SLOT(editorActivated()));
 
         QHBoxLayout* layout = new QHBoxLayout(editor);
         layout->setContentsMargins(0,0,0,0);
@@ -689,22 +689,22 @@ PropertiesBrowser::PropertiesBrowser(WorldModel* worldModel, QWidget* parent, Qt
 
     connect(_worldModel, SIGNAL(modelReset()), this, SLOT(worldModelReset()));
     connect(_worldModel, SIGNAL(worldDataChanged(bool)), this, SLOT(worldDataChanged(bool)));
-    connect(_worldModel, SIGNAL(rowsRemoved(const QModelIndex&, int, int)),
-                                this, SLOT(worldRowsRemoved(const QModelIndex&, int, int)));
+    connect(_worldModel, SIGNAL(rowsRemoved(QModelIndex,int,int)),
+                                this, SLOT(worldRowsRemoved(QModelIndex,int,int)));
 
-    connect(_worldModel->selectionModel(), SIGNAL(currentChanged(const QModelIndex&, const QModelIndex&)),
-                                           this, SLOT(worldCurrentChanged(const QModelIndex&, const QModelIndex&)));
+    connect(_worldModel->selectionModel(), SIGNAL(currentChanged(QModelIndex,QModelIndex)),
+                                           this, SLOT(worldCurrentChanged(QModelIndex,QModelIndex)));
 
-    connect(_treeView->selectionModel(), SIGNAL(currentChanged(const QModelIndex&, const QModelIndex&)),
-                                           this, SLOT(currentChanged(const QModelIndex&, const QModelIndex&)));
+    connect(_treeView->selectionModel(), SIGNAL(currentChanged(QModelIndex,QModelIndex)),
+                                           this, SLOT(currentChanged(QModelIndex,QModelIndex)));
 
-    //connect(_treeView, SIGNAL(doubleClicked(const QModelIndex&)),
-    //                                       this, SLOT(doubleClicked(const QModelIndex&)));
+    //connect(_treeView, SIGNAL(doubleClicked(QModelIndex)),
+    //                                       this, SLOT(doubleClicked(QModelIndex)));
 
-    connect(_propertiesBrowserModel, SIGNAL(rowsInserted(const QModelIndex&, int, int)),
-                                           this, SLOT(rowsInserted(const QModelIndex&, int, int)));
-    connect(_propertiesBrowserModel, SIGNAL(rowsRemoved(const QModelIndex&, int, int)),
-                                           this, SLOT(rowsRemoved(const QModelIndex&, int, int)));
+    connect(_propertiesBrowserModel, SIGNAL(rowsInserted(QModelIndex,int,int)),
+                                           this, SLOT(rowsInserted(QModelIndex,int,int)));
+    connect(_propertiesBrowserModel, SIGNAL(rowsRemoved(QModelIndex,int,int)),
+                                           this, SLOT(rowsRemoved(QModelIndex,int,int)));
 
     _treeView->viewport()->installEventFilter(this);
     //_treeView->setMouseTracking(true);
