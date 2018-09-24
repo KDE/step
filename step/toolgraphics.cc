@@ -49,6 +49,7 @@
 #include <QApplication>
 #include <QAction>
 #include <QUrl>
+#include <QFileDialog>
 #include <QDialog>
 #include <QDialogButtonBox>
 #include <QAbstractButton>
@@ -61,7 +62,6 @@
 #include <KPlotObject>
 #include <KPlotPoint>
 #include <KPlotAxis>
-#include <KFileDialog>
 #include <KProgressDialog>
 #include <KToggleAction>
 #include <KFontAction>
@@ -637,7 +637,7 @@ void NoteGraphicsItem::cursorPositionChanged()
 
 void NoteGraphicsItem::insertImage()
 {
-    QUrl url = KFileDialog::getOpenUrl(QUrl(), "image/png image/jpeg", _widget);
+    QUrl url = QFileDialog::getOpenFileUrl(_widget, i18n("Open Image File"), QUrl(), i18n("Images (*.png *.jpg *.jpeg)"));
     if(url.isEmpty()) return;
 
     QString tmpFileName;

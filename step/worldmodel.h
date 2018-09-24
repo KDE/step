@@ -61,7 +61,7 @@ public:
     Q_DECLARE_FLAGS(UndoFlags, UndoFlag)
 
 public:
-    WorldModel(QObject* parent = 0);
+    explicit WorldModel(QObject* parent = 0);
     ~WorldModel();
 
     /** Get QItemSelectionModel associated with this WorldModel */

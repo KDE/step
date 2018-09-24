@@ -38,7 +38,6 @@
 #include <KStandardAction>
 #include <KRecentFilesAction>
 #include <KMessageBox>
-#include <KFileDialog>
 #include <KConfigDialog>
 #include <KStatusBar>
 #include <KLocalizedString>
@@ -54,6 +53,7 @@
 #include <QIcon>
 #include <QItemSelectionModel>
 #include <QFile>
+#include <QFileDialog>
 #include <QGraphicsView>
 #include <QMenu>
 #include <QKeySequence>
@@ -314,7 +314,7 @@ bool MainWindow::openFile(const QUrl& url, const QUrl& startUrl)
 
     QUrl fileUrl = url;
     if(fileUrl.isEmpty()) {
-        fileUrl = KFileDialog::getOpenUrl(startUrl, i18n("*.step|Step files (*.step)"), this); //is this i18n legal?
+        fileUrl = QFileDialog::getOpenFileUrl(this, i18n("Open Step File"), startUrl, i18n("Step files (*.step)"));
         if(fileUrl.isEmpty()) return false;
     }
 
@@ -358,8 +358,7 @@ bool MainWindow::saveFileAs(const QUrl& url, const QUrl& startUrl)
     if(worldModel->isSimulationActive()) simulationStop();
     QUrl fileUrl = url;
     if(fileUrl.isEmpty()) {
-        fileUrl = KFileDialog::getSaveUrl(startUrl.isEmpty() ? currentFileUrl : startUrl,
-                                             i18n("*.step|Step files (*.step)"), this);
+        fileUrl = QFileDialog::getOpenFileUrl(this, i18n("Save Step File"), startUrl.isEmpty() ? currentFileUrl : startUrl, i18n("Step files (*.step)"));
         if(fileUrl.isEmpty()) return false;
         else if(KIO::NetAccess::exists(fileUrl, KIO::NetAccess::DestinationSide, this)) {
             int ret = KMessageBox::warningContinueCancel(this,
