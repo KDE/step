@@ -66,7 +66,7 @@
 #include <KToggleAction>
 #include <KFontAction>
 #include <KFontSizeAction>
-#include <KColorDialog>
+#include <QColorDialog>
 #include <KLocalizedString>
 #include <KMessageBox>
 #include <KIO/NetAccess>
@@ -565,8 +565,8 @@ bool NoteGraphicsItem::eventFilter(QObject* obj, QEvent* event)
 void NoteGraphicsItem::formatColor()
 {
     QColor color = _textEdit->textColor();
-    int result = KColorDialog::getColor(color, _widget);
-    if(result == KColorDialog::Accepted) {
+    color = QColorDialog::getColor(color, _widget);
+    if(QColorDialog::Accepted && color.isValid()) {
         _textEdit->setTextColor(color);
     }
 }
