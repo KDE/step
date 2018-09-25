@@ -44,7 +44,9 @@
 #include <KConfig>
 #include <KToolBarPopupAction>
 
-#include <KIO/NetAccess>
+#include <KIO/CopyJob>
+#include <KIO/Job>
+#include <KJobWidgets>
 #include <knewstuff3/downloaddialog.h>
 
 #include <QAction>
@@ -321,27 +323,21 @@ bool MainWindow::openFile(const QUrl& url, const QUrl& startUrl)
     worldModel->clearWorld();
     newFile();
 
-    QString tmpFileName;
-    if(! KIO::NetAccess::download(fileUrl, tmpFileName, this) ) {
-        KMessageBox::error(this, KIO::NetAccess::lastErrorString());
-        return false;
-    }
-
-    QFile file(tmpFileName);
-    if(!file.open(QIODevice::ReadOnly | QIODevice::Text)) {
-        KMessageBox::sorry(this, i18n("Cannot open file '%1'", tmpFileName));
-        KIO::NetAccess::removeTempFile(tmpFileName);
+    QTemporaryFile tempFile;
+    tempFile.open();
+    KIO::FileCopyJob *job = KIO::file_copy(url, QUrl::fromLocalFile(tempFile.fileName()), -1, KIO::Overwrite);
+    KJobWidgets::setWindow(job, this);
+    job->exec();
+    if (job->error()) {
+        KMessageBox::error(this, job->errorString());
         return false;
     }
     
-    if(!worldModel->loadXml(&file)) {
+    if(!worldModel->loadXml(&tempFile)) {
         KMessageBox::sorry(this, i18n("Cannot parse file '%1': %2", fileUrl.url(QUrl::PreferLocalFile),
                                                     worldModel->errorString()));
-        KIO::NetAccess::removeTempFile(tmpFileName);
         return false;
     }
-
-    KIO::NetAccess::removeTempFile(tmpFileName);
 
     worldGraphicsView->fitToPage();
     currentFileUrl = fileUrl;
@@ -360,12 +356,16 @@ bool MainWindow::saveFileAs(const QUrl& url, const QUrl& startUrl)
     if(fileUrl.isEmpty()) {
         fileUrl = QFileDialog::getOpenFileUrl(this, i18n("Save Step File"), startUrl.isEmpty() ? currentFileUrl : startUrl, i18n("Step files (*.step)"));
         if(fileUrl.isEmpty()) return false;
-        else if(KIO::NetAccess::exists(fileUrl, KIO::NetAccess::DestinationSide, this)) {
+        else {
+            KIO::StatJob* statJob = KIO::stat(fileUrl, KIO::StatJob::DestinationSide, 0);
+            KJobWidgets::setWindow(statJob, this);
+            if (statJob->exec()) {
             int ret = KMessageBox::warningContinueCancel(this,
                         i18n("The file \"%1\" already exists. Do you wish to overwrite it?",
 			     fileUrl.url(QUrl::PreferLocalFile)),
                         i18n("Warning - Step"), KStandardGuiItem::overwrite());
             if(ret != KMessageBox::Continue) return false;
+            }
         }
     }
 
@@ -395,8 +395,11 @@ bool MainWindow::saveFileAs(const QUrl& url, const QUrl& startUrl)
     }
 
     if(!local) {
-        if(!KIO::NetAccess::upload(file->fileName(), fileUrl, this)) {
-            KMessageBox::error(this, KIO::NetAccess::lastErrorString());
+        KIO::FileCopyJob *job = KIO::file_copy(QUrl::fromLocalFile(file->fileName()), fileUrl, -1, KIO::Overwrite);
+        KJobWidgets::setWindow(job, this);
+        job->exec();
+        if (job->error()) {
+            KMessageBox::error(this, job->errorString());
             delete file;
             return false;
         }

@@ -56,6 +56,7 @@
 #include <QPushButton>
 #include <QVBoxLayout>
 #include <QInputDialog>
+#include <QTemporaryFile>
 
 #include <KToolBar>
 #include <KPlotWidget>
@@ -69,7 +70,9 @@
 #include <QColorDialog>
 #include <KLocalizedString>
 #include <KMessageBox>
-#include <KIO/NetAccess>
+#include <KIO/CopyJob>
+#include <KIO/Job>
+#include <KJobWidgets>
 
 #include <float.h>
 
@@ -640,26 +643,22 @@ void NoteGraphicsItem::insertImage()
     QUrl url = QFileDialog::getOpenFileUrl(_widget, i18n("Open Image File"), QUrl(), i18n("Images (*.png *.jpg *.jpeg)"));
     if(url.isEmpty()) return;
 
-    QString tmpFileName;
-    if(! KIO::NetAccess::download(url, tmpFileName, _widget) ) {
-        KMessageBox::error(_widget, KIO::NetAccess::lastErrorString());
+    QTemporaryFile tempFile;
+    tempFile.open();
+    KIO::FileCopyJob *job = KIO::file_copy(url, QUrl::fromLocalFile(tempFile.fileName()), -1, KIO::Overwrite);
+    KJobWidgets::setWindow(job, _widget);
+    job->exec();
+    if (job->error()) {
+        KMessageBox::error(_widget, job->errorString());
         return;
     }
 
-    QFile file(tmpFileName);
-    if(!file.open(QIODevice::ReadOnly)) {
-        KMessageBox::error(_widget, i18n("Cannot open file '%1'", tmpFileName));
-        KIO::NetAccess::removeTempFile(tmpFileName);
-        return;
-    }
-
-    QByteArray data = file.readAll();
-    file.close();
-    KIO::NetAccess::removeTempFile(tmpFileName);
+    QByteArray data = tempFile.readAll();
+    tempFile.close();
 
     QPixmap pixmap;
     if(!pixmap.loadFromData(data)) {
-        KMessageBox::error(_widget, i18n("Cannot parse file '%1'", tmpFileName));
+        KMessageBox::error(_widget, i18n("Cannot parse file '%1'", tempFile.fileName()));
         return;
     }
 
