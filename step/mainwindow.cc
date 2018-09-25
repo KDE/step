@@ -35,34 +35,34 @@
 #include <stepcore/collisionsolver.h>
 
 #include <KActionCollection>
-#include <KStandardAction>
-#include <KRecentFilesAction>
-#include <KMessageBox>
-#include <KConfigDialog>
-#include <KStatusBar>
-#include <KLocalizedString>
 #include <KConfig>
-#include <KToolBarPopupAction>
-
+#include <KConfigDialog>
 #include <KIO/CopyJob>
 #include <KIO/Job>
 #include <KJobWidgets>
+#include <KLocalizedString>
+#include <KMessageBox>
+#include <KRecentFilesAction>
+#include <KStandardAction>
+#include <KStatusBar>
+#include <KToolBarPopupAction>
+
 #include <knewstuff3/downloaddialog.h>
 
 #include <QAction>
 #include <QDir>
-#include <QTemporaryFile>
-#include <QIcon>
-#include <QItemSelectionModel>
 #include <QFile>
 #include <QFileDialog>
 #include <QGraphicsView>
-#include <QMenu>
+#include <QIcon>
+#include <QItemSelectionModel>
 #include <QKeySequence>
+#include <QMenu>
+#include <QStandardPaths>
+#include <QTemporaryFile>
 
 #include <cstdlib>
 #include <ctime>
-#include <QStandardPaths>
 
 MainWindow::MainWindow()
 {
