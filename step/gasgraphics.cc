@@ -179,12 +179,12 @@ GasGraphicsItem::GasGraphicsItem(StepCore::Item* item, WorldModel* worldModel)
     setFlag(QGraphicsItem::ItemIsMovable);
     //setExclusiveMoving(true);
     //setFlag(QGraphicsItem::ItemIsMovable);
-    //setAcceptsHoverEvents(true);
+    //setAcceptHoverEvents(true);
     //_centerHandler = new ArrowHandlerGraphicsItem(item, worldModel, this,
     //                        _item->metaObject()->property("measureRectCenter"));
     //_centerHandler->setVisible(false);
     setZValue(REGION_ZVALUE);
-    setAcceptsHoverEvents(true);
+    setAcceptHoverEvents(true);
     setOnHoverHandlerEnabled(true);
 }
 

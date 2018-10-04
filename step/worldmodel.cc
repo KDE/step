@@ -262,8 +262,9 @@ CommandSimulate::CommandSimulate(WorldModel* worldModel)
     PairInt current = indexToPair(_worldModel->_selectionModel->currentIndex());
     */
 
+    _worldModel->beginResetModel();
     _newWorld = _worldModel->_world = new StepCore::World(*_oldWorld);
-    _worldModel->reset();
+    _worldModel->endResetModel();
 
     _startTime = _worldModel->formatProperty(_worldModel->_world, NULL,
                             _worldModel->_world->metaObject()->property("time"),
@@ -286,10 +287,11 @@ void CommandSimulate::done()
 void CommandSimulate::redo()
 {
     if(_newWorld != _worldModel->_world) {
+        _worldModel->beginResetModel();
         _worldModel->_world = _newWorld;
         _worldCopy = _oldWorld;
 
-        _worldModel->reset();
+        _worldModel->endResetModel();
         _worldModel->_selectionModel->setCurrentIndex(
                 _worldModel->worldIndex(), QItemSelectionModel::SelectCurrent);
     }
@@ -297,10 +299,11 @@ void CommandSimulate::redo()
 
 void CommandSimulate::undo()
 {
+    _worldModel->beginResetModel();
     _worldModel->_world = _oldWorld;
     _worldCopy = _newWorld;
 
-    _worldModel->reset();
+    _worldModel->endResetModel();
     _worldModel->_selectionModel->setCurrentIndex(
             _worldModel->worldIndex(), QItemSelectionModel::SelectCurrent);
 }
@@ -359,6 +362,7 @@ WorldModel::~WorldModel()
 void WorldModel::resetWorld()
 {
     Q_ASSERT(!isSimulationActive());
+    beginResetModel();
     if(_world->name().isEmpty()) {
         // XXX: check that loaded items has unique names !
         _world->setName(getUniqueName("world"));
@@ -378,7 +382,7 @@ void WorldModel::resetWorld()
     _undoStack->clear();
 
     _world->doCalcFn();
-    reset();
+    endResetModel();
 
     _selectionModel->setCurrentIndex(worldIndex(), QItemSelectionModel::SelectCurrent);
 

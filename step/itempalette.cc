@@ -187,8 +187,8 @@ protected:
     }
 };
 
-ItemPalette::ItemPalette(WorldModel* worldModel, QWidget* parent, Qt::WindowFlags flags)
-    : QDockWidget(i18n("Palette"), parent, flags), _worldModel(worldModel), _widget(0)
+ItemPalette::ItemPalette(WorldModel* worldModel, QWidget* parent)
+    : QDockWidget(i18n("Palette"), parent), _worldModel(worldModel), _widget(0)
 {
     setAllowedAreas(Qt::LeftDockWidgetArea | Qt::RightDockWidgetArea);
     //setFeatures(QDockWidget::DockWidgetMovable | QDockWidget::DockWidgetFloatable);

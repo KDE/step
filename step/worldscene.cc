@@ -125,8 +125,7 @@ void WorldSceneAxes::viewScaleChanged()
 {
     prepareGeometryChange();
     _viewScale = static_cast<WorldScene*>(scene())->currentViewScale();
-    resetMatrix();
-    scale(1/_viewScale, -1/_viewScale);
+    setTransform(QTransform::fromScale(1/_viewScale, -1/_viewScale), false);
 }
 
 WorldScene::WorldScene(WorldModel* worldModel, QObject* parent)
@@ -230,7 +229,7 @@ bool WorldScene::event(QEvent* event)
 
 void WorldScene::mousePressEvent(QGraphicsSceneMouseEvent* mouseEvent)
 {
-    if(itemAt(mouseEvent->scenePos()) == NULL) {
+    if(itemAt(mouseEvent->scenePos(), QTransform()) == NULL) {
         // XXX: how to easily select World ?
         //_worldModel->selectionModel()->clearSelection();
         _worldModel->selectionModel()->setCurrentIndex(_worldModel->worldIndex(), QItemSelectionModel::Clear);

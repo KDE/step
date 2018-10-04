@@ -35,8 +35,8 @@
 
 
 GasCreationDialog::GasCreationDialog(GasMenuHandler* handler, StepCore::Gas *gas,
-				     QWidget *parent, Qt::WFlags flags)
-    : QDialog(parent, flags)
+				     QWidget *parent)
+    : QDialog(parent)
     , _gas(gas)
     , _handler(handler)
 {

@@ -56,8 +56,8 @@ void WorldBrowserView::changeEvent(QEvent* event)
         _macStyle = QApplication::style()->inherits("QMacStyle");
 }
 
-WorldBrowser::WorldBrowser(WorldModel* worldModel, QWidget* parent, Qt::WindowFlags flags)
-    : QDockWidget(i18nc("Object list", "World"), parent, flags)
+WorldBrowser::WorldBrowser(WorldModel* worldModel, QWidget* parent)
+    : QDockWidget(i18nc("Object list", "World"), parent)
 {
     _worldBrowserView = new WorldBrowserView(this);
     _worldBrowserView->header()->hide();

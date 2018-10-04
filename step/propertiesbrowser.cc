@@ -89,6 +89,7 @@ PropertiesBrowserModel::PropertiesBrowserModel(WorldModel* worldModel, QObject* 
 
 void PropertiesBrowserModel::setObject(StepCore::Object* object)
 {
+    beginResetModel();
     _object = object;
 
     _subRows.clear();
@@ -111,7 +112,7 @@ void PropertiesBrowserModel::setObject(StepCore::Object* object)
         }
     }
 
-    reset();
+    endResetModel();
 }
 
 void PropertiesBrowserModel::emitDataChanged(bool dynamicOnly)
@@ -272,11 +273,12 @@ bool PropertiesBrowserModel::setData(const QModelIndex &index, const QVariant &v
             }
             if(index.row() == 1 && dynamic_cast<StepCore::Solver*>(_object)) {
                 if(value.toString() != _object->metaObject()->className()) {
+                    beginResetModel();
                     _worldModel->beginMacro(i18n("Change solver type"));
                     _object = _worldModel->newSolver(value.toString() + "Solver");
                     Q_ASSERT(_object != NULL);
                     _worldModel->endMacro();
-                    reset();
+                    endResetModel();
                 }
             } else {
                 const StepCore::MetaProperty* p = _object->metaObject()->property(index.row());
@@ -667,8 +669,8 @@ QStyleOptionViewItem PropertiesBrowserView::viewOptions() const
     return option;
 }
 
-PropertiesBrowser::PropertiesBrowser(WorldModel* worldModel, QWidget* parent, Qt::WindowFlags flags)
-    : QDockWidget(i18n("Properties"), parent, flags)
+PropertiesBrowser::PropertiesBrowser(WorldModel* worldModel, QWidget* parent)
+    : QDockWidget(i18n("Properties"), parent)
 {
     _worldModel = worldModel;
     _propertiesBrowserModel = new PropertiesBrowserModel(worldModel, this);

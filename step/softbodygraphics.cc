@@ -212,7 +212,7 @@ SoftBodyGraphicsItem::SoftBodyGraphicsItem(StepCore::Item* item, WorldModel* wor
     Q_ASSERT(dynamic_cast<StepCore::SoftBody*>(_item) != NULL);
     setFlag(QGraphicsItem::ItemIsSelectable);
     setFlag(QGraphicsItem::ItemIsMovable);
-    setAcceptsHoverEvents(true);
+    setAcceptHoverEvents(true);
     setZValue(BODY_ZVALUE-1);
     _velocityHandler = new ArrowHandlerGraphicsItem(item, worldModel, this,
                    _item->metaObject()->property("velocity"),

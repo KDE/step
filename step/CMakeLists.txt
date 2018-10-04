@@ -54,6 +54,9 @@ if(STEP_WITH_QALCULATE)
     add_definitions(${QALCULATE_CFLAGS})
     set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} ${KDE4_ENABLE_EXCEPTIONS}")
     set(qalculate_LIBS ${QALCULATE_LIBRARIES} ${CLN_LIBRARIES})
+    # To compile with libcln
+    string (REPLACE "-fno-exceptions" "" CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS}")
+    add_definitions (-fexceptions)
 endif(STEP_WITH_QALCULATE)
 
 ki18n_wrap_ui( step_SRCS ${step_UIS} )
@@ -69,11 +72,12 @@ add_executable(step ${step_SRCS})
 target_link_libraries(step
     stepcore
     KF5::Crash
+    KF5::IconThemes
     KF5::KHtml
     KF5::Plotting
     KF5::NewStuff
-    KF5::KDELibs4Support
     Qt5::OpenGL
+    Qt5::Widgets
     ${qalculate_LIBS})
 
 install(TARGETS step ${KDE_INSTALL_TARGETS_DEFAULT_ARGS})

@@ -70,7 +70,6 @@
 #include <KPlotObject>
 #include <KPlotPoint>
 #include <KPlotWidget>
-#include <KProgressDialog>
 #include <KToggleAction>
 #include <KToolBar>
 
@@ -134,7 +133,7 @@ WidgetGraphicsItem::WidgetGraphicsItem(StepCore::Item* item, WorldModel* worldMo
 {
     setFlag(QGraphicsItem::ItemIsSelectable);
     setFlag(QGraphicsItem::ItemIsMovable);
-    setAcceptsHoverEvents(true);
+    setAcceptHoverEvents(true);
 
     _backgroundBrush = Qt::NoBrush;
 
@@ -370,7 +369,7 @@ NoteGraphicsItem::NoteGraphicsItem(StepCore::Item* item, WorldModel* worldModel)
     Q_ASSERT(dynamic_cast<StepCore::Note*>(_item) != NULL);
     setFlag(QGraphicsItem::ItemIsSelectable);
     setFlag(QGraphicsItem::ItemIsMovable);
-    setAcceptsHoverEvents(true);
+    setAcceptHoverEvents(true);
 
     _widget = new QWidget();
     _widget->setPalette(QPalette(Qt::lightGray));
@@ -900,7 +899,7 @@ GraphGraphicsItem::GraphGraphicsItem(StepCore::Item* item, WorldModel* worldMode
     Q_ASSERT(dynamic_cast<StepCore::Graph*>(_item) != NULL);
     setFlag(QGraphicsItem::ItemIsSelectable);
     setFlag(QGraphicsItem::ItemIsMovable);
-    setAcceptsHoverEvents(true);
+    setAcceptHoverEvents(true);
 
     _plotWidget = new KPlotWidget();
     _plotWidget->setPalette(QPalette(Qt::lightGray));
@@ -1246,7 +1245,7 @@ MeterGraphicsItem::MeterGraphicsItem(StepCore::Item* item, WorldModel* worldMode
     Q_ASSERT(dynamic_cast<StepCore::Meter*>(_item) != NULL);
     setFlag(QGraphicsItem::ItemIsSelectable);
     setFlag(QGraphicsItem::ItemIsMovable);
-    setAcceptsHoverEvents(true);
+    setAcceptHoverEvents(true);
     setBackgroundBrush(QBrush(Qt::white));
 
     _widget = new QFrame();
@@ -1409,7 +1408,7 @@ ControllerGraphicsItem::ControllerGraphicsItem(StepCore::Item* item, WorldModel*
     Q_ASSERT(dynamic_cast<StepCore::Controller*>(_item) != NULL);
     setFlag(QGraphicsItem::ItemIsSelectable);
     setFlag(QGraphicsItem::ItemIsMovable);
-    setAcceptsHoverEvents(true);
+    setAcceptHoverEvents(true);
     setBackgroundBrush(QBrush(Qt::white));
 
     _widget = new QWidget();

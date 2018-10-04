@@ -164,7 +164,7 @@ void StepGraphicsItem::mouseSetPos(const QPointF& pos, const QPointF&, MovingSta
 void StepGraphicsItem::mousePressEvent(QGraphicsSceneMouseEvent *event)
 {
     // Workaround for bug in Qt
-    if (scene()->itemAt(event->scenePos()) != this) {
+    if (scene()->itemAt(event->scenePos(), QTransform()) != this) {
         event->ignore();
         return;
     }
@@ -185,7 +185,7 @@ void StepGraphicsItem::mouseMoveEvent(QGraphicsSceneMouseEvent *event)
 {
     // Workaround for bug in Qt
     if (scene()->mouseGrabberItem() != this &&
-        scene()->itemAt(event->scenePos()) != this) {
+        scene()->itemAt(event->scenePos(), QTransform()) != this) {
         event->ignore();
         return;
     }
@@ -242,7 +242,7 @@ void StepGraphicsItem::mouseMoveEvent(QGraphicsSceneMouseEvent *event)
 void StepGraphicsItem::mouseReleaseEvent(QGraphicsSceneMouseEvent *event)
 {
     // Workaround for bug in Qt
-    if (scene()->itemAt(event->scenePos()) != this) {
+    if (scene()->itemAt(event->scenePos(), QTransform()) != this) {
         event->ignore();
         return;
     }
@@ -606,7 +606,7 @@ OnHoverHandlerGraphicsItem::OnHoverHandlerGraphicsItem(StepCore::Item* item, Wor
     _deleteTimer->setInterval(500);
     _deleteTimer->setSingleShot(true);
     _deleteTimerEnabled = false;
-    setAcceptsHoverEvents(true);
+    setAcceptHoverEvents(true);
     connect(_deleteTimer, SIGNAL(timeout()), this, SLOT(deleteLater()));
 }
 

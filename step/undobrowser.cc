@@ -24,8 +24,8 @@
 #include <QIcon>
 #include <KLocalizedString>
 
-UndoBrowser::UndoBrowser(WorldModel* worldModel, QWidget* parent, Qt::WindowFlags flags)
-    : QDockWidget(i18n("Undo history"), parent, flags), _worldModel(worldModel)
+UndoBrowser::UndoBrowser(WorldModel* worldModel, QWidget* parent)
+    : QDockWidget(i18n("Undo history"), parent), _worldModel(worldModel)
 {
     _undoView = new QUndoView(_worldModel->undoStack(), this);
     setWidget(_undoView);

@@ -38,7 +38,7 @@ RigidBodyGraphicsItem::RigidBodyGraphicsItem(StepCore::Item* item, WorldModel* w
     Q_ASSERT(dynamic_cast<StepCore::RigidBody*>(_item) != NULL);
     setFlag(QGraphicsItem::ItemIsSelectable);
     setFlag(QGraphicsItem::ItemIsMovable);
-    setAcceptsHoverEvents(true);
+    setAcceptHoverEvents(true);
     _velocityHandler = new ArrowHandlerGraphicsItem(item, worldModel, this,
                    _item->metaObject()->property("velocity"));
     _velocityHandler->setVisible(false);

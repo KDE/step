@@ -35,8 +35,8 @@
 #include <QIcon>
 #include <QStandardPaths>
 
-InfoBrowser::InfoBrowser(WorldModel* worldModel, QWidget* parent, Qt::WindowFlags flags)
-    : QDockWidget(i18n("Context info"), parent, flags),
+InfoBrowser::InfoBrowser(WorldModel* worldModel, QWidget* parent)
+    : QDockWidget(i18n("Context info"), parent),
       _worldModel(worldModel), _wikiJob(NULL), _wikiFromHistory(false), _selectionChanged(false)
 {
     QWidget* widget = new QWidget(this);

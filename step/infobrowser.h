@@ -37,7 +37,7 @@ class InfoBrowser: public QDockWidget
     Q_OBJECT
 
 public:
-    explicit InfoBrowser(WorldModel* worldModel, QWidget* parent = 0, Qt::WindowFlags flags = {});
+    explicit InfoBrowser(WorldModel* worldModel, QWidget* parent = 0);
 
 public slots:
     void openUrl(const QUrl& url, bool clearHistory = false, bool fromHistory = false);

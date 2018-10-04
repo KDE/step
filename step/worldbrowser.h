@@ -29,7 +29,7 @@ class WorldBrowser: public QDockWidget
     Q_OBJECT
 
 public:
-    explicit WorldBrowser(WorldModel* worldModel, QWidget* parent = 0, Qt::WindowFlags flags = {});
+    explicit WorldBrowser(WorldModel* worldModel, QWidget* parent = 0);
 
 protected:
     WorldBrowserView* _worldBrowserView;

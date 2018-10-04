@@ -28,7 +28,7 @@ find_package(KF5 REQUIRED COMPONENTS
     Crash
     KHtml
     Config
-    KDELibs4Support
+    IconThemes
     NewStuff
     Plotting
 )

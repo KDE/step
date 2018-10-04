@@ -152,7 +152,7 @@ protected:
     bool isOnHoverHandlerEnabled() const { return _onHoverHandlerEnabled; }
 
     /** Set to true in order to enable on-hover handler.
-     *  \note You should also call setAcceptsHoverEvents(true) in order
+     *  \note You should also call setAcceptHoverEvents(true) in order
      *  for on-hover handler to work */
     void setOnHoverHandlerEnabled(bool enabled);
 

@@ -44,10 +44,8 @@
 #include <KMessageBox>
 #include <KRecentFilesAction>
 #include <KStandardAction>
-#include <KStatusBar>
 #include <KToolBarPopupAction>
-
-#include <knewstuff3/downloaddialog.h>
+#include <KNS3/DownloadDialog>
 
 #include <QAction>
 #include <QDir>
@@ -59,6 +57,7 @@
 #include <QKeySequence>
 #include <QMenu>
 #include <QStandardPaths>
+#include <QStatusBar>
 #include <QTemporaryFile>
 
 #include <cstdlib>

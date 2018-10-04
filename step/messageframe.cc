@@ -26,8 +26,8 @@
 #include <QTimer>
 #include <QIcon>
 
-MessageFrame::MessageFrame(QWidget* parent, Qt::WindowFlags f)
-    : QFrame(parent, f), _lastId(0)
+MessageFrame::MessageFrame(QWidget* parent)
+    : QFrame(parent), _lastId(0)
 {
     hide();
 
