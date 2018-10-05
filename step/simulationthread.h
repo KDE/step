@@ -39,7 +39,7 @@ class SimulationThread: public QThread
     Q_OBJECT
 
 public:
-    SimulationThread(StepCore::World** world)
+    explicit SimulationThread(StepCore::World** world)
         : _world(world), _stopThread(0), _delta(0) {}
     ~SimulationThread();
 

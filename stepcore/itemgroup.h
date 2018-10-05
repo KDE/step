@@ -44,7 +44,7 @@ class ItemGroup : public Item
 
 public:
     /** Constructs empty group */
-    ItemGroup(const QString& name = QString()) : Item(name) {}
+    explicit ItemGroup(const QString& name = QString()) : Item(name) {}
     /** Constructs a copy of the group (deep copy) */
     ItemGroup(const ItemGroup& group);
     /** Destroys the group and all its subitems */

@@ -55,7 +55,7 @@ class GasLJForceErrors: public ObjectErrors
 
 public:
     /** Constructs GasLJForceErrors */
-    GasLJForceErrors(Item* owner = 0)
+    explicit GasLJForceErrors(Item* owner = 0)
         : ObjectErrors(owner), _depthVariance(0), _rminVariance(0) {}
 
     /** Get owner as GasLJForce */
@@ -147,7 +147,7 @@ class GasErrors: public ObjectErrors
 
 public:
     /** Constructs GasErrors */
-    GasErrors(Item* owner = 0)
+    explicit GasErrors(Item* owner = 0)
         : ObjectErrors(owner) {}
 
     /** Get owner as Gas */

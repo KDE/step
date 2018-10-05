@@ -45,7 +45,7 @@ class Material
   //STEPCORE_OBJECT(Material)
 
 public:
-    Material(const QString& name = QString())
+    explicit Material(const QString& name = QString())
         : _name(name)
         , _color(0xff000000)
         , _density(1.0)

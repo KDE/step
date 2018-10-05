@@ -45,7 +45,7 @@ class Force : public Item
     STEPCORE_OBJECT(Force)
 
 public:
-    Force(const QString& name = QString())
+    explicit Force(const QString& name = QString())
         : Item(name)
     {}
     virtual ~Force() {}

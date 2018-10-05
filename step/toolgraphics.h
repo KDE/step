@@ -186,7 +186,7 @@ class DataSourceWidget: public QWidget
     Q_OBJECT
 
 public:
-    DataSourceWidget(QWidget* parent = 0);
+    explicit DataSourceWidget(QWidget* parent = 0);
 
     void setSkipReadOnly(bool skipReadOnly) { _skipReadOnly = skipReadOnly; }
     void setDataSource(WorldModel* worldModel, StepCore::Object* object = NULL,

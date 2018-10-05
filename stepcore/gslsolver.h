@@ -113,7 +113,7 @@ class GslAdaptiveSolver: public GslGenericSolver
 {
     STEPCORE_OBJECT(GslAdaptiveSolver)
 public:
-    GslAdaptiveSolver(const gsl_odeiv_step_type* gslStepType):
+    explicit GslAdaptiveSolver(const gsl_odeiv_step_type* gslStepType):
                             GslGenericSolver(1, true, gslStepType) {}
     GslAdaptiveSolver(int dimension, Function function, void* params,
                             const gsl_odeiv_step_type* gslStepType)

@@ -42,7 +42,7 @@ class GravitationForceErrors: public ObjectErrors
 
 public:
     /** Constructs GravitationForceErrors */
-    GravitationForceErrors(Item* owner = NULL)
+    explicit GravitationForceErrors(Item* owner = NULL)
         : ObjectErrors(owner), _gravitationConstVariance(0) {}
 
     /** Get owner as GravitationForce */
@@ -83,7 +83,7 @@ class GravitationForce : public Force
 
 public:
     /** Constructs GravitationForce */
-    GravitationForce(double gravitationConst = Constants::Gravitational);
+    explicit GravitationForce(double gravitationConst = Constants::Gravitational);
 
     void calcForce(bool calcVariances) Q_DECL_OVERRIDE;
 
@@ -111,7 +111,7 @@ class WeightForceErrors: public ObjectErrors
 
 public:
     /** Constructs WeightForceErrors */
-    WeightForceErrors(Item* owner = NULL)
+    explicit WeightForceErrors(Item* owner = NULL)
         : ObjectErrors(owner), _weightConstVariance(0) {}
 
     /** Get owner as WeightForce */
@@ -148,7 +148,7 @@ class WeightForce : public Force
 
 public:
     /** Constructs WeightForce */
-    WeightForce(double weightConst = Constants::WeightAccel);
+    explicit WeightForce(double weightConst = Constants::WeightAccel);
 
     void calcForce(bool calcVariances) Q_DECL_OVERRIDE;
 

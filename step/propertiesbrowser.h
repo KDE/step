@@ -34,7 +34,7 @@ class PropertiesBrowserDelegate: public QItemDelegate
 {
     Q_OBJECT
 public:
-    PropertiesBrowserDelegate(QObject* parent = 0):
+    explicit PropertiesBrowserDelegate(QObject* parent = 0):
             QItemDelegate(parent), _editor(NULL), _updating(false) {}
     QWidget* createEditor(QWidget* parent, const QStyleOptionViewItem& option,
                            const QModelIndex& index) const Q_DECL_OVERRIDE;

@@ -47,7 +47,7 @@ class Body : public Item
     STEPCORE_OBJECT(Body)
 
 public:
-    Body(const QString& name = QString())
+    explicit Body(const QString& name = QString())
         : Item(name)
         , _material(&GenericMaterial)
 	, _variablesOffset(0)

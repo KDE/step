@@ -40,7 +40,7 @@ public:
      *  \param device QIODevice to save or load file
      *  \todo TODO don't pass factory here !
      */
-    XmlFile(QIODevice* device): _device(device) {}
+    explicit XmlFile(QIODevice* device): _device(device) {}
 
     /** Save world to XML file
      *  \param world World to save

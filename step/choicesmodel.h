@@ -26,7 +26,7 @@ class ChoicesModel: public QStandardItemModel
   Q_OBJECT
   
 public:
-    ChoicesModel(QObject* parent = 0): QStandardItemModel(parent) {}
+    explicit ChoicesModel(QObject* parent = 0): QStandardItemModel(parent) {}
 };
 
 Q_DECLARE_METATYPE(ChoicesModel*)

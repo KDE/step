@@ -41,7 +41,7 @@ class ParticleErrors: public ObjectErrors
 
 public:
     /** Constructs ParticleErrors */
-    ParticleErrors(Item* owner = 0)
+    explicit ParticleErrors(Item* owner = 0)
         : ObjectErrors(owner), _positionVariance(0,0), _velocityVariance(0,0),
           _forceVariance(0,0), _massVariance(0) {}
 
@@ -182,7 +182,7 @@ class ChargedParticleErrors: public ParticleErrors
 
 public:
     /** Constructs ChargedParticleErrors */
-    ChargedParticleErrors(Item* owner = 0)
+    explicit ChargedParticleErrors(Item* owner = 0)
         : ParticleErrors(owner), _chargeVariance(0) {}
 
     /** Get owner as ChargedParticle */

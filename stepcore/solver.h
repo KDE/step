@@ -81,7 +81,7 @@ public:
     explicit Solver(int dimension = 0, Function function = NULL,
                 void* params = NULL, double stepSize = 0.001);
     /** Cunstructs a solver */
-    Solver(double stepSize);
+    explicit Solver(double stepSize);
 
     virtual ~Solver() {}
 

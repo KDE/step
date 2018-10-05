@@ -48,7 +48,7 @@ class Item : public Object
 
 public:
     /** Constructs Item */
-    Item(const QString& name = QString())
+    explicit Item(const QString& name = QString())
         : Object(name)
         , _world(NULL)
         , _group(NULL)

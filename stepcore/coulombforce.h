@@ -42,7 +42,7 @@ class CoulombForceErrors: public ObjectErrors
 
 public:
     /** Constructs CoulombForceErrors */
-    CoulombForceErrors(Item* owner = NULL)
+    explicit CoulombForceErrors(Item* owner = NULL)
         : ObjectErrors(owner), _coulombConstVariance(0) {}
 
     /** Get owner as CoulombForce */
@@ -86,7 +86,7 @@ class CoulombForce : public Force
 
 public:
     /** Constructs CoulombForce */
-    CoulombForce(double coulombConst = Constants::Coulomb);
+    explicit CoulombForce(double coulombConst = Constants::Coulomb);
 
     void calcForce(bool calcVariances) Q_DECL_OVERRIDE;
 

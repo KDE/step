@@ -46,7 +46,7 @@ class SpringErrors: public ObjectErrors
 
 public:
     /** Constructs SpringErrors */
-    SpringErrors(Item* owner = NULL)
+    explicit SpringErrors(Item* owner = NULL)
         : ObjectErrors(owner), _restLengthVariance(0), _stiffnessVariance(0),
           _dampingVariance(0), _localPosition1Variance(0,0), _localPosition2Variance(0,0) {}
 
