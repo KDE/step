@@ -25,7 +25,7 @@
 #include <QTime>
 
 #include <stepcore/world.h>
-#include <kundostack.h>
+#include <KActionCollection>
 
 namespace StepCore {
     class Object;
