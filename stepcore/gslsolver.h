@@ -35,7 +35,7 @@ namespace StepCore
 {
 
 /** \ingroup solvers
- *  \brief Adaprive and non-adaptive solvers from GSL library
+ *  \brief Adaptive and non-adaptive solvers from GSL library
  *  
  *  See http://www.gnu.org/software/gsl/manual/html_node/Ordinary-Differential-Equations.html#Ordinary-Differential-Equations
  *  and http://en.wikipedia.org/wiki/Numerical_ordinary_differential_equations

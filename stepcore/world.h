@@ -109,7 +109,7 @@ public:
 
     /** Add new item to the world */
     //void addItem(Item* item);
-    /** Remove item from the world (you should delete item youself) */
+    /** Remove item from the world (you should delete item yourself) */
     //void removeItem(Item* item);
     /** Delete item from the world (it actually deletes item) */
     //void deleteItem(Item* item) { removeItem(item); delete item; }
@@ -120,7 +120,7 @@ public:
     //Item* item(int index) const { return _items[index]; }
     /** Get item by its name */
     //Item* item(const QString& name) const;
-    /** Get object (item, solver, *Solver or worls itself) by its name */
+    /** Get object (item, solver, *Solver or world itself) by its name */
     Object* object(const QString& name);
 
     /** Get list of all items (not including sub-items) in the World */

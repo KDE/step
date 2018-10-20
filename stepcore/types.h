@@ -17,7 +17,7 @@
 */
 
 /** \file types.h
- *  \brief Type to and from string convertion helpers
+ *  \brief Type to and from string conversion helpers
  */
 
 #ifndef STEPCORE_TYPES_H

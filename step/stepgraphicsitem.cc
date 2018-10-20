@@ -59,7 +59,7 @@ StepGraphicsItem::StepGraphicsItem(StepCore::Item* item, WorldModel* worldModel,
     , _onHoverHandler(0)
     , _onHoverHandlerTimer(false)
 {
-    // XXX: use persistant indexes here and in propertiesbrowser
+    // XXX: use persistent indexes here and in propertiesbrowser
     setZValue(BODY_ZVALUE);
 }
 

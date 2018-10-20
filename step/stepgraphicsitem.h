@@ -142,7 +142,7 @@ protected:
     /** Set to true if the item should be moved alone (without other selected items) */
     void setExclusiveMoving(bool value) { _exclusiveMoving = value; }
 
-    /** Set custum test for undo command for moving item. Works only if exclusiveMoving is true */
+    /** Set custom test for undo command for moving item. Works only if exclusiveMoving is true */
     void setExclusiveMovingMessage(const QString& message) { _exclusiveMovingMessage = message; }
 
     /** Called when graphicsitem is changed */
@@ -207,7 +207,7 @@ protected:
     static const int JOINT_ZVALUE = 400;    ///< Default ZValue for joints
     static const int HANDLER_ZVALUE = 800;  ///< Default ZValue for handlers
 
-    static const int COLOR_HIGHLIGHT_AMOUNT = 30; ///< Highligh amount (in percent for value component)
+    static const int COLOR_HIGHLIGHT_AMOUNT = 30; ///< Highlight amount (in percent for value component)
 };
 
 /////////////////////////////////////////////////////////////////////////////////////////

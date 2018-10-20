@@ -70,7 +70,7 @@ public:
     /** Constructs a SoftBody */
     SoftBody(): _showInternalItems(true) { setColor(0xffa9a9a9); }
 
-    /** Creates paricles and springs inside soft body
+    /** Creates particles and springs inside soft body
      *  \param position Position of the center of the body
      *  \param size Size of the edge of the body
      *  \param split Split count of the edge of the body
@@ -95,9 +95,9 @@ public:
     /** Set the velocity of the center of mass */
     void setVelocity(const Vector2d velocity);
 
-    /** Get the angular velicity of the body */
+    /** Get the angular velocity of the body */
     double angularVelocity() const;
-    /** Set the angular velicity of the body */
+    /** Set the angular velocity of the body */
     void setAngularVelocity(double angularVelocity);
 
     /** Get the angular momentum of the body */
@@ -120,7 +120,7 @@ public:
     /** Get total body mass */
     double mass() const;
 
-    /** Get the inrtia of the body */
+    /** Get the inertia of the body */
     double inertia() const;
 
     /** Get status of drawing of internal items */

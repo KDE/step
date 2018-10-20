@@ -92,7 +92,7 @@ public:
                             const Vector2d& forceVariance,
                             const Vector2d& positionVariance);
 
-    /** Apply torque (but no force) variancee to the body */
+    /** Apply torque (but no force) variance to the body */
     void applyTorqueVariance(double torqueVariance) { _torqueVariance += torqueVariance; }
 
     /** Get mass variance */

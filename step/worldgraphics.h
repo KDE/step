@@ -42,7 +42,7 @@ class KActionCollection;
  *
  * Item creator handles the process of creating new item by the user. As long as it exists it
  * acts as a filer for all scene events. When creation is finished subclass should call
- * setFinished(true) to nofify the scene. */
+ * setFinished(true) to notify the scene. */
 class ItemCreator
 {
 public:
@@ -78,10 +78,10 @@ public:
 
 protected:
     /** Show creation status message. If flags do not contains CloseButton and CloseTimer than it is
-     *  treated as persistant status message (and will replace previous status message, if any).
+     *  treated as persistent status message (and will replace previous status message, if any).
      *  In flags contains CloseButton or CloseTimer than it is treated as additional message */
     void showMessage(MessageFrame::Type type, const QString& text, MessageFrame::Flags flags = 0);
-    /** Close last persistant status message */
+    /** Close last persistent status message */
     void closeMessage();
 
     /** Set creation finished state */

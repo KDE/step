@@ -32,7 +32,7 @@ namespace StepCore
 /** \ingroup solvers
  *  \brief Generic Solver interface
  *  
- *  Provides generic interface suitable for large variety of ordinaty
+ *  Provides generic interface suitable for large variety of ordinary
  *  differential equations integration algorithms.
  *
  *  It solves system of the first order differential equations:
@@ -77,10 +77,10 @@ public:
     typedef int (*Function)(double t, const double* y, const double* yvar,
                              double* f, double* fvar, void* params);
 
-    /** Cunstructs a solver */
+    /** Constructs a solver */
     explicit Solver(int dimension = 0, Function function = NULL,
                 void* params = NULL, double stepSize = 0.001);
-    /** Cunstructs a solver */
+    /** Constructs a solver */
     explicit Solver(double stepSize);
 
     virtual ~Solver() {}

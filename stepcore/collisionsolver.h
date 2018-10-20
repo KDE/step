@@ -49,7 +49,7 @@ struct Contact {
         Separated,      /**< Bodies are far away */
         Separating,     /**< Bodies are contacted but moving apart */
         Contacted,      /**< Bodies are contacted but resting */
-        Colliding,      /**< Bodies are collising */
+        Colliding,      /**< Bodies are colliding */
         Intersected     /**< Bodies are interpenetrating */
     };
     enum {
@@ -105,6 +105,7 @@ public:
 
     /** Check and count contacts between several bodies
      *  \param bodies list of bodies to check
+     *  \param collisions defines whether body collisions are taken into account
      *  \param count number of contacts
      *  \return maximum contact state (i.e. maximum value of Contact::state)
      */
@@ -112,6 +113,7 @@ public:
     
     /** Fill the constraint info structure with the contacts computed by checkContacts()
      *  \param info ConstraintsInfo structure to fill
+     *  \param collisions defines whether body collisions are taken into account
      */
     virtual void getContactsInfo(ConstraintsInfo& info, bool collisions = false) = 0;
 
@@ -171,7 +173,13 @@ public:
         PenetrationDetected = 4097
     };*/
 
+    /**
+     * \param collisions defines whether body collisions are taken into account
+     */
     int checkContacts(BodyList& bodies, bool collisions = false, int* count = NULL) Q_DECL_OVERRIDE;
+    /**
+     * \param collisions defines whether body collisions are taken into account
+     */
     void getContactsInfo(ConstraintsInfo& info, bool collisions = false) Q_DECL_OVERRIDE;
     //int findClosestPoints(const BasePolygon* polygon1, const BasePolygon* polygon2);
 

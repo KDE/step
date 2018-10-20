@@ -65,7 +65,7 @@ public:
 
     /** Set positions, velocities and (possibly) its variances using values in arrays and
      *  also reset accelerations and its variances. Variances should only be copied
-     *  and reseted if positionVariance != NULL. */
+     *  and reset if positionVariance != NULL. */
     virtual void setVariables(const double* position, const double* velocity,
                const double* positionVariance, const double* velocityVariance) = 0;
 
@@ -74,13 +74,13 @@ public:
     virtual void getVariables(double* position, double* velocity,
                      double* positionVariance, double* velocityVariance) = 0;
 
-    /** Add force and (possibly) its variance to force accomulator.
+    /** Add force and (possibly) its variance to force accumulator.
      *  \note This function is used only by generic constraints handling code,
      *        force objects should use body-specific functions. */
     virtual void addForce(const double* force, const double* forceVariance) = 0;
 
-    /** Reset force accomulator and (possibly) its variance to zero.
-     *  Variance should only be reseted if resetVariance == true. */
+    /** Reset force accumulator and (possibly) its variance to zero.
+     *  Variance should only be reset if resetVariance == true. */
     virtual void resetForce(bool resetVariance) = 0;
 
     /** Copy acceleration (forces left-multiplied by inverse mass)
@@ -88,7 +88,7 @@ public:
      *  Variances should only be copied if accelerationVariance != NULL. */
     virtual void getAccelerations(double* acceleration, double* accelerationVariance) = 0;
 
-    /** Get inverse mass and (possibly) its variance matrixes.
+    /** Get inverse mass and (possibly) its variance matrices.
      *  Variance should only be copied of variance != NULL. */
     virtual void getInverseMass(VectorXd* inverseMass,
                                 DynSparseRowMatrix* variance, int offset) = 0;

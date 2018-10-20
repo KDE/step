@@ -69,7 +69,7 @@ public:
 
     /** Add new item to the group */
     virtual void addItem(Item* item);
-    /** Remove item from the group (you should delete item youself) */
+    /** Remove item from the group (you should delete item yourself) */
     virtual void removeItem(Item* item);
     /** Delete item from the group (it actually deletes item) */
     virtual void deleteItem(Item* item) { removeItem(item); delete item; }

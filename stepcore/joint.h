@@ -48,7 +48,7 @@ struct ConstraintsInfo
     int                contactsCount;       ///< Number of additional constrains 
                                             ///< equations due to contacts
 
-    VectorXd           value;               ///< Current constarints values (amount of brokenness)
+    VectorXd           value;               ///< Current constraints values (amount of brokenness)
     VectorXd           derivative;          ///< Time-derivative of constraints values
     DynSparseRowMatrix jacobian;            ///< Position-derivative of constraints values
     DynSparseRowMatrix jacobianDerivative;  ///< Time-derivative of constraintsJacobian
@@ -98,7 +98,7 @@ public:
     virtual void getConstraintsInfo(ConstraintsInfo* info, int offset) = 0;
 
 #if 0
-    /** Get current constraints value (amaunt of brokenness) and its derivative */
+    /** Get current constraints value (amount of brokenness) and its derivative */
     virtual void getConstraints(double* value, double* derivative) = 0;
 
     /** Get force limits, default is no limits at all */
