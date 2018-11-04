@@ -522,6 +522,7 @@
   <url type="help">http://docs.kde.org/stable/en/kdeedu/step/index.html</url>
   <screenshots>
     <screenshot type="default">
+      <caption>Physical simulation in Step</caption>
       <image>http://kde.org/images/screenshots/step.png</image>
     </screenshot>
   </screenshots>
