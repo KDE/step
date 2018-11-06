@@ -21,7 +21,7 @@
   <name xml:lang="ko">Step</name>
   <name xml:lang="lt">Step</name>
   <name xml:lang="nds">Step</name>
-  <name xml:lang="nl">Stap</name>
+  <name xml:lang="nl">Step</name>
   <name xml:lang="nn">Steg</name>
   <name xml:lang="pl">Krok</name>
   <name xml:lang="pt">Step</name>
@@ -523,6 +523,11 @@
   <screenshots>
     <screenshot type="default">
       <caption>Physical simulation in Step</caption>
+      <caption xml:lang="ca">Simulació física amb l'Step</caption>
+      <caption xml:lang="nl">Fysieke simulatie in Step</caption>
+      <caption xml:lang="pt">Simulação de física no Step</caption>
+      <caption xml:lang="uk">Фізичний експеримент у Step</caption>
+      <caption xml:lang="x-test">xxPhysical simulation in Stepxx</caption>
       <image>http://kde.org/images/screenshots/step.png</image>
     </screenshot>
   </screenshots>
