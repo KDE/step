@@ -525,6 +525,9 @@
     <screenshot type="default">
       <caption>Physical simulation in Step</caption>
       <caption xml:lang="ca">Simulació física amb l'Step</caption>
+      <caption xml:lang="ca-valencia">Simulació física amb l'Step</caption>
+      <caption xml:lang="es">Simulación física en Step</caption>
+      <caption xml:lang="gl">Simulación física en Step</caption>
       <caption xml:lang="nl">Fysieke simulatie in Step</caption>
       <caption xml:lang="pt">Simulação de física no Step</caption>
       <caption xml:lang="sv">Fysiksimulering i Step</caption>
