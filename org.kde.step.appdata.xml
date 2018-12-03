@@ -527,6 +527,7 @@
       <caption xml:lang="ca">Simulació física amb l'Step</caption>
       <caption xml:lang="ca-valencia">Simulació física amb l'Step</caption>
       <caption xml:lang="de">Physiksimulation mit Step</caption>
+      <caption xml:lang="en-GB">Physical simulation in Step</caption>
       <caption xml:lang="es">Simulación física en Step</caption>
       <caption xml:lang="gl">Simulación física en Step</caption>
       <caption xml:lang="it">Simulazione di fisica in Step</caption>
@@ -536,6 +537,7 @@
       <caption xml:lang="sv">Fysiksimulering i Step</caption>
       <caption xml:lang="uk">Фізичний експеримент у Step</caption>
       <caption xml:lang="x-test">xxPhysical simulation in Stepxx</caption>
+      <caption xml:lang="zh-TW">在 Step 中模擬物理</caption>
       <image>http://kde.org/images/screenshots/step.png</image>
     </screenshot>
   </screenshots>
