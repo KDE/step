@@ -101,7 +101,7 @@ MainWindow::MainWindow()
     undoBrowser->setObjectName("undoBrowser");
     addDockWidget(Qt::RightDockWidgetArea, undoBrowser);
 
-    worldScene = new WorldScene(worldModel);
+    worldScene = new WorldScene(worldModel, this);
     worldGraphicsView = new WorldGraphicsView(worldScene, this);
     setCentralWidget(worldGraphicsView);
 
