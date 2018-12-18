@@ -52,7 +52,6 @@ if(STEP_WITH_QALCULATE)
     add_definitions(-DSTEP_WITH_QALCULATE)
     add_definitions(-DSTEP_WITH_UNITSCALC)
     add_definitions(${QALCULATE_CFLAGS})
-    set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} ${KDE4_ENABLE_EXCEPTIONS}")
     set(qalculate_LIBS ${QALCULATE_LIBRARIES} ${CLN_LIBRARIES})
     # To compile with libcln
     string (REPLACE "-fno-exceptions" "" CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS}")
