@@ -18,7 +18,7 @@
 */
 
 /** \file item.h
- *  \brief Contains the Ítem object.
+ *  \brief Contains the Item object.
  */
 
 #ifndef STEPCORE_ITEM_H

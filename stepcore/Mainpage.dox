@@ -60,10 +60,10 @@ information about StepCore design.
 
 \section download Download
 
-You can checkout the development tree of StepCore by anonymous svn, by doing:
-<pre>svn co svn://anonsvn.kde.org/home/kde/trunk/playground/edu/step/stepcore</pre>
+You can checkout the development tree of StepCore from git, by doing:
+<pre>git clone git://anongit.kde.org/step.git</pre>
 or view it online at this address:
-<a href="http://websvn.kde.org/trunk/playground/edu/step/stepcore/">http://websvn.kde.org/trunk/playground/edu/step/stepcore/</a>
+<a href="https://cgit.kde.org/step.git/">https://cgit.kde.org/step.git/</a>
 
 \section authors Authors
 

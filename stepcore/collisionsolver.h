@@ -174,10 +174,13 @@ public:
     };*/
 
     /**
+     * \param bodies list of bodies to check
      * \param collisions defines whether body collisions are taken into account
+     * \param count number of contacts
      */
     int checkContacts(BodyList& bodies, bool collisions = false, int* count = NULL) Q_DECL_OVERRIDE;
     /**
+     * \param info ConstraintsInfo structure to fill
      * \param collisions defines whether body collisions are taken into account
      */
     void getContactsInfo(ConstraintsInfo& info, bool collisions = false) Q_DECL_OVERRIDE;
