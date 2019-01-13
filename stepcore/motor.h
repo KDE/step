@@ -45,7 +45,7 @@ class LinearMotor : public Force
 public:
     /** Constructs LinearMotor */
     explicit LinearMotor(Object* body = 0, const Vector2d& localPosition = Vector2d::Zero(),
-                        Vector2d forceValue = Vector2d::Zero());
+                        const Vector2d &forceValue = Vector2d::Zero());
 
     void calcForce(bool calcVariances) Q_DECL_OVERRIDE;
 

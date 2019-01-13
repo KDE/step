@@ -40,17 +40,17 @@ int main(int argc, char* argv[])
     KLocalizedString::setApplicationDomain("step");
 
     QApplication app(argc, argv);
-    QApplication::setApplicationName("step");
+    QApplication::setApplicationName(QStringLiteral("step"));
     QApplication::setApplicationVersion(version);
-    QApplication::setOrganizationDomain("kde.org");
+    QApplication::setOrganizationDomain(QStringLiteral("kde.org"));
     QApplication::setApplicationDisplayName(i18n("Step"));
-    QApplication::setWindowIcon(QIcon::fromTheme("step"));
+    QApplication::setWindowIcon(QIcon::fromTheme(QStringLiteral("step")));
 
     app.setAttribute(Qt::AA_UseHighDpiPixmaps, true);
 
     KCrash::initialize();
 
-    KAboutData aboutData("step",
+    KAboutData aboutData(QStringLiteral("step"),
                          i18n("Step"),
                          version,
                          i18n(description),
@@ -60,13 +60,13 @@ int main(int argc, char* argv[])
     );
 
     aboutData.addAuthor(
-        "Vladimir Kuznetsov",
+        QStringLiteral("Vladimir Kuznetsov"),
         i18n("Original author"),
         i18n("ks.vladimir@gmail.com")
     );
 
     aboutData.addAuthor(
-        "Carsten Niehaus",
+        QStringLiteral("Carsten Niehaus"),
         i18n("Code contributions"),
         i18n("cniehaus@kde.org")
     );
@@ -77,7 +77,7 @@ int main(int argc, char* argv[])
     parser.addHelpOption();
     parser.addVersionOption();
 
-    QCommandLineOption option(QStringList() << "+[url]" << i18n( "Document to open" ));
+    QCommandLineOption option(QStringList() << QStringLiteral("+[url]") << i18n( "Document to open" ));
     parser.addOption(option);
 
     parser.process(app);

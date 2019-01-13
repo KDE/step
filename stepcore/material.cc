@@ -37,7 +37,7 @@ Material& Material::operator=(const Material& mtrl)
 }
 
 
-Material GenericMaterial("Bloontonium");
+Material GenericMaterial(QStringLiteral("Bloontonium"));
 
 
 } // namespace StepCore

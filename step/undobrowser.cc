@@ -41,7 +41,7 @@ void UndoBrowser::setCurrentFileUrl(const QUrl& url)
     if (url.isEmpty())
         _undoView->setCleanIcon(QIcon());
     else
-        _undoView->setCleanIcon(QIcon::fromTheme("document-save"));
+        _undoView->setCleanIcon(QIcon::fromTheme(QStringLiteral("document-save")));
 }
 
 void UndoBrowser::setUndoEnabled(bool enabled)

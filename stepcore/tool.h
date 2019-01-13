@@ -92,8 +92,8 @@ class Note: public ItemGroup, public Tool
 
 public:
     /** Constructs Note */
-    explicit Note(Vector2d position = Vector2d::Zero(),
-            Vector2d size = Vector2d(250,100), QString text = QString());
+    explicit Note(const Vector2d &position = Vector2d::Zero(),
+            const Vector2d &size = Vector2d(250,100), const QString &text = QString());
 
     /** Get position of the note */
     const Vector2d& position() const { return _position; }
@@ -128,7 +128,7 @@ class Graph: public Item, public Tool
 
 public:
     /** Constructs Graph */
-    explicit Graph(Vector2d position = Vector2d::Zero(), Vector2d size = Vector2d(400,300));
+    explicit Graph(const Vector2d &position = Vector2d::Zero(), const Vector2d &size = Vector2d(400,300));
 
     /** Get position of the graph */
     const Vector2d& position() const { return _position; }
@@ -281,7 +281,7 @@ class Meter: public Item, public Tool
 
 public:
     /** Constructs Meter */
-    explicit Meter(Vector2d position = Vector2d::Zero(), Vector2d size = Vector2d(70,24));
+    explicit Meter(const Vector2d &position = Vector2d::Zero(), const Vector2d &size = Vector2d(70,24));
 
     /** Get position of the meter */
     const Vector2d& position() const { return _position; }
@@ -360,7 +360,7 @@ class Controller: public Item, public Tool
 
 public:
     /** Constructs Controller */
-    explicit Controller(Vector2d position = Vector2d::Zero(), Vector2d size = Vector2d(200,60));
+    explicit Controller(const Vector2d &position = Vector2d::Zero(), const Vector2d &size = Vector2d(200,60));
 
     /** Get position of the Controller */
     const Vector2d& position() const { return _position; }

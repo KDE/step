@@ -151,7 +151,7 @@ void StepGraphicsItem::drawCircularArrow(QPainter* painter, double angle, double
 
 void StepGraphicsItem::mouseSetPos(const QPointF& pos, const QPointF&, MovingState)
 {
-    const StepCore::MetaProperty* property = _item->metaObject()->property("position");
+    const StepCore::MetaProperty* property = _item->metaObject()->property(QStringLiteral("position"));
     if(property != NULL) {
         _worldModel->simulationPause();
         _worldModel->setProperty(_item, property,
@@ -607,7 +607,7 @@ OnHoverHandlerGraphicsItem::OnHoverHandlerGraphicsItem(StepCore::Item* item, Wor
     _deleteTimer->setSingleShot(true);
     _deleteTimerEnabled = false;
     setAcceptHoverEvents(true);
-    connect(_deleteTimer, SIGNAL(timeout()), this, SLOT(deleteLater()));
+    connect(_deleteTimer, &QTimer::timeout, this, &QObject::deleteLater);
 }
 
 void OnHoverHandlerGraphicsItem::setDeleteTimerEnabled(bool enabled)

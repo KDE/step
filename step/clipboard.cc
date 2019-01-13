@@ -112,8 +112,8 @@ void CopyHelper::fixItemLinks(StepCore::Item* item)
 
 Clipboard::Clipboard(QObject* parent) : QObject(parent), _canPaste(hasData())
 {
-    connect(QApplication::clipboard(), SIGNAL(dataChanged()),
-            this, SLOT(dataChanged()));
+    connect(QApplication::clipboard(), &QClipboard::dataChanged,
+            this, &Clipboard::dataChanged);
 }
 
 
@@ -137,7 +137,7 @@ void Clipboard::copy(const QList<StepCore::Item*>& items)
     }
     
     QMimeData *mimedata = new QMimeData;
-    mimedata->setData("application/x-step", buffer.data());
+    mimedata->setData(QStringLiteral("application/x-step"), buffer.data());
     
     QClipboard *clipboard = QApplication::clipboard();
     clipboard->setMimeData(mimedata);
@@ -148,13 +148,13 @@ QList<StepCore::Item*> Clipboard::paste(const StepCore::Factory* factory)
     QClipboard *clipboard = QApplication::clipboard();
     const QMimeData *mimedata = clipboard->mimeData();
     
-    if (!mimedata->hasFormat("application/x-step")) {
+    if (!mimedata->hasFormat(QStringLiteral("application/x-step"))) {
         // No Step data available
         qWarning() << "No Step data on the clipboard";
         return QList<StepCore::Item*>();
     }
     
-    QByteArray data(mimedata->data("application/x-step"));
+    QByteArray data(mimedata->data(QStringLiteral("application/x-step")));
     QBuffer buffer(&data);
     buffer.open(QBuffer::ReadOnly);
     StepCore::XmlFile xmlfile(&buffer);
@@ -190,5 +190,5 @@ bool Clipboard::hasData() const
     QClipboard *clipboard = QApplication::clipboard();
     const QMimeData *mimedata = clipboard->mimeData();
     
-    return mimedata->hasFormat("application/x-step");
+    return mimedata->hasFormat(QStringLiteral("application/x-step"));
 }

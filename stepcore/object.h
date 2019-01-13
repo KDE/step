@@ -89,7 +89,7 @@ public:
 
 public:
     MetaProperty():
-        _name(""), _units(QString()), _description(""),
+        _name(QLatin1String("")), _units(QString()), _description(QLatin1String("")),
         _flags(0), _userTypeId(0), _readVariant(0), _writeVariant(0),
         _readString(0), _writeString(0), _initialized(false) {}
 

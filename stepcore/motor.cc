@@ -38,7 +38,7 @@ STEPCORE_META_OBJECT(CircularMotor, QT_TRANSLATE_NOOP("ObjectClass", "CircularMo
     STEPCORE_PROPERTY_RW(double, torqueValue, QT_TRANSLATE_NOOP("PropertyName", "torqueValue"), QT_TRANSLATE_NOOP("Units", "N m"), QT_TRANSLATE_NOOP("PropertyDescription", "Value of the torque, acting on the body"), torqueValue, setTorqueValue))
 
 
-LinearMotor::LinearMotor(Object* body, const Vector2d& localPosition, Vector2d forceValue)
+LinearMotor::LinearMotor(Object* body, const Vector2d& localPosition, const Vector2d &forceValue)
     : Force()
     , _localPosition(localPosition)
     , _forceValue(forceValue)

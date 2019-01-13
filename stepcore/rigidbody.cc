@@ -154,8 +154,8 @@ void RigidBodyErrors::setKineticEnergyVariance(double kineticEnergyVariance)
     // XXX: change angularVelocity here as well
 }
 
-RigidBody::RigidBody(Vector2d position, double angle,
-        Vector2d velocity, double angularVelocity, double mass, double inertia)
+RigidBody::RigidBody(const Vector2d &position, double angle,
+        const Vector2d &velocity, double angularVelocity, double mass, double inertia)
     : _position(position), _angle(angle), _velocity(velocity), _angularVelocity(angularVelocity),
       _force(Vector2d::Zero()), _torque(0), _mass(mass), _inertia(inertia)
 {
@@ -332,9 +332,9 @@ void RigidBody::setKineticEnergy(double kineticEnergy)
     }
 }
 
-Box::Box(Vector2d position, double angle,
-              Vector2d velocity, double angularVelocity,
-              double mass, double inertia, Vector2d size)
+Box::Box(const Vector2d &position, double angle,
+              const Vector2d &velocity, double angularVelocity,
+              double mass, double inertia, const Vector2d &size)
     : BasePolygon(position, angle, velocity, angularVelocity, mass, inertia)
 {
     _vertexes.resize(4);

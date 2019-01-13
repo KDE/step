@@ -182,7 +182,7 @@ Vector2d SoftBody::position() const
     return cmPosition;
 }
 
-void SoftBody::setPosition(const Vector2d position)
+void SoftBody::setPosition(const Vector2d &position)
 {
     Vector2d delta = position - this->position();
 
@@ -209,7 +209,7 @@ Vector2d SoftBody::velocity() const
     return cmVelocity;
 }
 
-void SoftBody::setVelocity(const Vector2d velocity)
+void SoftBody::setVelocity(const Vector2d &velocity)
 {
     Vector2d delta = velocity - this->velocity();
 

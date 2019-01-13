@@ -67,7 +67,7 @@ bool ItemCreator::sceneEvent(QEvent* event)
 
         _worldModel->beginMacro(i18n("Create %1", _worldModel->newItemName(_className)));
         _item = _worldModel->createItem(_className); Q_ASSERT(_item != NULL);
-        const StepCore::MetaProperty* property = _item->metaObject()->property("position");
+        const StepCore::MetaProperty* property = _item->metaObject()->property(QStringLiteral("position"));
         if(property != NULL) {
             QGraphicsSceneMouseEvent* mouseEvent = static_cast<QGraphicsSceneMouseEvent*>(event);
             QPointF pos = mouseEvent->scenePos();
@@ -120,9 +120,9 @@ bool AttachableItemCreator::sceneEvent(QEvent* event)
 
         if(_twoEnds) {
             _worldScene->snapItem(pos, _snapFlags, _snapTypes, StepGraphicsItem::Finished, _item, 1);
-            _worldModel->setProperty(_item, "localPosition2",
+            _worldModel->setProperty(_item, QStringLiteral("localPosition2"),
                             QVariant::fromValue(StepGraphicsItem::pointToVector(pos)));
-            _worldModel->setProperty(_item, "restLength", 0);
+            _worldModel->setProperty(_item, QStringLiteral("restLength"), 0);
 
             showMessage(MessageFrame::Information,
                 i18n("Release left mouse button to position second end of the %1", classNameTr()));
@@ -146,9 +146,9 @@ bool AttachableItemCreator::sceneEvent(QEvent* event)
         _worldScene->snapItem(pos, _snapFlags, _snapTypes, StepGraphicsItem::Moving, _item, 2);
 
         double length =
-            (_item->metaObject()->property("position2")->readVariant(_item).value<StepCore::Vector2d>() -
-             _item->metaObject()->property("position1")->readVariant(_item).value<StepCore::Vector2d>()).norm();
-        _worldModel->setProperty(_item, "restLength", length);
+            (_item->metaObject()->property(QStringLiteral("position2"))->readVariant(_item).value<StepCore::Vector2d>() -
+             _item->metaObject()->property(QStringLiteral("position1"))->readVariant(_item).value<StepCore::Vector2d>()).norm();
+        _worldModel->setProperty(_item, QStringLiteral("restLength"), length);
         return true;
 
     } else if(event->type() == QEvent::GraphicsSceneMouseRelease &&
@@ -158,9 +158,9 @@ bool AttachableItemCreator::sceneEvent(QEvent* event)
         _worldScene->snapItem(pos, _snapFlags, _snapTypes, StepGraphicsItem::Finished, _item, 2);
 
         double length =
-            (_item->metaObject()->property("position2")->readVariant(_item).value<StepCore::Vector2d>() -
-             _item->metaObject()->property("position1")->readVariant(_item).value<StepCore::Vector2d>()).norm();
-        _worldModel->setProperty(_item, "restLength", length);
+            (_item->metaObject()->property(QStringLiteral("position2"))->readVariant(_item).value<StepCore::Vector2d>() -
+             _item->metaObject()->property(QStringLiteral("position1"))->readVariant(_item).value<StepCore::Vector2d>()).norm();
+        _worldModel->setProperty(_item, QStringLiteral("restLength"), length);
         _worldModel->endMacro();
 
         showMessage(MessageFrame::Information,
@@ -193,8 +193,8 @@ void ItemMenuHandler::populateMenu(QMenu* menu, KActionCollection* actions)
     StepCore::Item* item = dynamic_cast<StepCore::Item*>(_object);
     
     if (item && item->world() != item) {
-        menu->addAction(actions->action("edit_cut"));
-        menu->addAction(actions->action("edit_copy"));
-        menu->addAction(actions->action("edit_delete"));
+        menu->addAction(actions->action(QStringLiteral("edit_cut")));
+        menu->addAction(actions->action(QStringLiteral("edit_copy")));
+        menu->addAction(actions->action(QStringLiteral("edit_delete")));
     }
 }

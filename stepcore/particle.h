@@ -110,8 +110,8 @@ public:
     };
 
     /** Constructs a particle */
-    explicit Particle(Vector2d position = Vector2d::Zero(),
-            Vector2d velocity = Vector2d::Zero(), double mass = 1);
+    explicit Particle(const Vector2d &position = Vector2d::Zero(),
+            const Vector2d &velocity = Vector2d::Zero(), double mass = 1);
 
     /** Get position of the particle */
     const Vector2d& position() const { return _position; }
@@ -209,8 +209,8 @@ class ChargedParticle: public Particle
 
 public:
     /** Constructs a charged particle */
-    explicit ChargedParticle(Vector2d position = Vector2d::Zero(),
-            Vector2d velocity = Vector2d::Zero(), double mass = 1, double charge = 0)
+    explicit ChargedParticle(const Vector2d &position = Vector2d::Zero(),
+            const Vector2d &velocity = Vector2d::Zero(), double mass = 1, double charge = 0)
                 : Particle(position, velocity, mass), _charge(charge) {}
 
     /** Charge of the particle */

@@ -66,9 +66,9 @@ bool executeCommand(const QString& cmd, const QStringList& args,
 
 bool LatexFormula::isLatexInstalled()
 {
-    if(QStandardPaths::findExecutable("latex").isEmpty()) return false;
-    if(QStandardPaths::findExecutable("dvips").isEmpty()) return false;
-    if(QStandardPaths::findExecutable("gs").isEmpty()) return false;
+    if(QStandardPaths::findExecutable(QStringLiteral("latex")).isEmpty()) return false;
+    if(QStandardPaths::findExecutable(QStringLiteral("dvips")).isEmpty()) return false;
+    if(QStandardPaths::findExecutable(QStringLiteral("gs")).isEmpty()) return false;
     return true;
 }
 
@@ -108,17 +108,17 @@ bool LatexFormula::compileFormula(const QString& formula, QByteArray* result, QS
 
     latexFile.close();
 
-    if(!executeCommand("latex", QStringList() << "--interaction=nonstopmode" << baseFileName + ".tex",
+    if(!executeCommand(QStringLiteral("latex"), QStringList() << QStringLiteral("--interaction=nonstopmode") << baseFileName + ".tex",
                             tempDir.path(), baseFileName+".tex", error)) return false;
 
-    if(!executeCommand("dvips", QStringList() << "-E" << baseFileName+".dvi" << "-o" << baseFileName+".eps",
+    if(!executeCommand(QStringLiteral("dvips"), QStringList() << QStringLiteral("-E") << baseFileName+".dvi" << QStringLiteral("-o") << baseFileName+".eps",
                             tempDir.path(), baseFileName+".eps", error)) return false;
 
     QStringList gsArgs;
-    gsArgs << "-dNOPAUSE" << "-dSAFER" << "-dEPSCrop" << "-r100"
-           << "-dTextAlphaBits=4" << "-dGraphicsAlphaBits=4" << "-sDEVICE=pngalpha"
-           << "-sOutputFile="+baseFileName+".png" << "-q" << "-dBATCH" << baseFileName+".eps";
-    if(!executeCommand("gs", gsArgs, tempDir.path(), baseFileName+".png", error)) return false;
+    gsArgs << QStringLiteral("-dNOPAUSE") << QStringLiteral("-dSAFER") << QStringLiteral("-dEPSCrop") << QStringLiteral("-r100")
+           << QStringLiteral("-dTextAlphaBits=4") << QStringLiteral("-dGraphicsAlphaBits=4") << QStringLiteral("-sDEVICE=pngalpha")
+           << "-sOutputFile="+baseFileName+".png" << QStringLiteral("-q") << QStringLiteral("-dBATCH") << baseFileName+".eps";
+    if(!executeCommand(QStringLiteral("gs"), gsArgs, tempDir.path(), baseFileName+".png", error)) return false;
 
     QFile pngFile(baseFileName + ".png");
     if(!pngFile.open(QIODevice::ReadOnly)) {

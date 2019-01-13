@@ -80,7 +80,7 @@ PropertiesBrowserModel::PropertiesBrowserModel(WorldModel* worldModel, QObject* 
         const StepCore::MetaObject* metaObject = _worldModel->worldFactory()->metaObject(name);
         if(metaObject->isAbstract()) continue;
         if(!metaObject->inherits(StepCore::Solver::staticMetaObject())) continue;
-        QString solverName = QString(metaObject->className()).remove("Solver");
+        QString solverName = QString(metaObject->className()).remove(QStringLiteral("Solver"));
         QStandardItem* item = new QStandardItem(solverName);
         item->setToolTip(QString(metaObject->descriptionTr()));
         _solverChoices->appendRow(item);
@@ -165,7 +165,7 @@ QVariant PropertiesBrowserModel::data(const QModelIndex &index, int role) const
 
                 // Solver type combobox ?
                 if(index.row() == 1 && dynamic_cast<StepCore::Solver*>(_object)) {
-                    if(role == Qt::DisplayRole) return p->readString(_object).remove("Solver");
+                    if(role == Qt::DisplayRole) return p->readString(_object).remove(QStringLiteral("Solver"));
                     else return QVariant::fromValue(_solverChoices);
                 }
 
@@ -230,7 +230,7 @@ QVariant PropertiesBrowserModel::data(const QModelIndex &index, int role) const
     } else { // index.internalId() != 0
         const StepCore::MetaProperty* p = _object->metaObject()->property(index.internalId()-1);
         if(role == Qt::DisplayRole || role == Qt::EditRole) {
-            if(index.column() == 0) return QString("%1[%2]").arg(p->nameTr()).arg(index.row());
+            if(index.column() == 0) return QStringLiteral("%1[%2]").arg(p->nameTr()).arg(index.row());
             else if(index.column() == 1) {
 #ifdef __GNUC__
 #warning XXX: add error information for lists
@@ -247,7 +247,7 @@ QVariant PropertiesBrowserModel::data(const QModelIndex &index, int role) const
                 _worldModel->simulationPause();
                 StepCore::Vector2d v =
                         p->readVariant(_object).value<StepCore::Vector2dList >()[index.row()];
-                return QString("(%1,%2)%3").arg(v[0], 0, 'g', pr).arg(v[1], 0, 'g', pr).arg(units);
+                return QStringLiteral("(%1,%2)%3").arg(v[0], 0, 'g', pr).arg(v[1], 0, 'g', pr).arg(units);
             }
         } else if(role == Qt::ForegroundRole && index.column() == 1) {
             if(!p->isWritable()) {
@@ -323,7 +323,7 @@ bool PropertiesBrowserModel::setData(const QModelIndex &index, const QVariant &v
                 // Try to find ± sign
                 if(v.canConvert(QVariant::String)) {
                     QString str = v.toString();
-                    int idx = str.indexOf(QString::fromUtf8("±"));
+                    int idx = str.indexOf(QStringLiteral("±"));
                     if(idx >= 0) {
                         v = str.left(idx);
                         vv = str.mid(idx+1);
@@ -506,7 +506,7 @@ QWidget* PropertiesBrowserDelegate::createEditor(QWidget* parent,
         // XXX: do not use hard-coded pixel sizes
         colorButton->setMinimumWidth(15);
         colorButton->setMaximumWidth(15);
-        connect(colorButton, SIGNAL(changed(QColor)), this, SLOT(editorActivated()));
+        connect(colorButton, &KColorButton::changed, this, &PropertiesBrowserDelegate::editorActivated);
 
         QHBoxLayout* layout = new QHBoxLayout(editor);
         layout->setContentsMargins(0,0,0,0);
@@ -689,24 +689,24 @@ PropertiesBrowser::PropertiesBrowser(WorldModel* worldModel, QWidget* parent)
     _treeView->setModel(_propertiesBrowserModel);
     worldCurrentChanged(_worldModel->worldIndex(), QModelIndex());
 
-    connect(_worldModel, SIGNAL(modelReset()), this, SLOT(worldModelReset()));
-    connect(_worldModel, SIGNAL(worldDataChanged(bool)), this, SLOT(worldDataChanged(bool)));
-    connect(_worldModel, SIGNAL(rowsRemoved(QModelIndex,int,int)),
-                                this, SLOT(worldRowsRemoved(QModelIndex,int,int)));
+    connect(_worldModel, &QAbstractItemModel::modelReset, this, &PropertiesBrowser::worldModelReset);
+    connect(_worldModel, &WorldModel::worldDataChanged, this, &PropertiesBrowser::worldDataChanged);
+    connect(_worldModel, &QAbstractItemModel::rowsRemoved,
+                                this, &PropertiesBrowser::worldRowsRemoved);
 
-    connect(_worldModel->selectionModel(), SIGNAL(currentChanged(QModelIndex,QModelIndex)),
-                                           this, SLOT(worldCurrentChanged(QModelIndex,QModelIndex)));
+    connect(_worldModel->selectionModel(), &QItemSelectionModel::currentChanged,
+                                           this, &PropertiesBrowser::worldCurrentChanged);
 
-    connect(_treeView->selectionModel(), SIGNAL(currentChanged(QModelIndex,QModelIndex)),
-                                           this, SLOT(currentChanged(QModelIndex,QModelIndex)));
+    connect(_treeView->selectionModel(), &QItemSelectionModel::currentChanged,
+                                           this, &PropertiesBrowser::currentChanged);
 
     //connect(_treeView, SIGNAL(doubleClicked(QModelIndex)),
     //                                       this, SLOT(doubleClicked(QModelIndex)));
 
-    connect(_propertiesBrowserModel, SIGNAL(rowsInserted(QModelIndex,int,int)),
-                                           this, SLOT(rowsInserted(QModelIndex,int,int)));
-    connect(_propertiesBrowserModel, SIGNAL(rowsRemoved(QModelIndex,int,int)),
-                                           this, SLOT(rowsRemoved(QModelIndex,int,int)));
+    connect(_propertiesBrowserModel, &QAbstractItemModel::rowsInserted,
+                                           this, &PropertiesBrowser::rowsInserted);
+    connect(_propertiesBrowserModel, &QAbstractItemModel::rowsRemoved,
+                                           this, &PropertiesBrowser::rowsRemoved);
 
     _treeView->viewport()->installEventFilter(this);
     //_treeView->setMouseTracking(true);

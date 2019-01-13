@@ -71,7 +71,7 @@ MainWindow::MainWindow()
     // Load UnitCalc at startup
     UnitsCalc::self();
 
-    setObjectName("MainWindow");
+    setObjectName(QStringLiteral("MainWindow"));
 
     setCorner(Qt::TopLeftCorner, Qt::LeftDockWidgetArea);
     setCorner(Qt::BottomLeftCorner, Qt::LeftDockWidgetArea);
@@ -82,40 +82,40 @@ MainWindow::MainWindow()
     worldModel->setActions(actionCollection());
 
     itemPalette = new ItemPalette(worldModel, this);
-    itemPalette->setObjectName("itemPalette");
+    itemPalette->setObjectName(QStringLiteral("itemPalette"));
     addDockWidget(Qt::LeftDockWidgetArea, itemPalette);
 
     worldBrowser = new WorldBrowser(worldModel, this);
-    worldBrowser->setObjectName("worldBrowser");
+    worldBrowser->setObjectName(QStringLiteral("worldBrowser"));
     addDockWidget(Qt::RightDockWidgetArea, worldBrowser);
 
     propertiesBrowser = new PropertiesBrowser(worldModel, this);
-    propertiesBrowser->setObjectName("propertiesBrowser");
+    propertiesBrowser->setObjectName(QStringLiteral("propertiesBrowser"));
     addDockWidget(Qt::RightDockWidgetArea, propertiesBrowser);
 
     infoBrowser = new InfoBrowser(worldModel, this);
-    infoBrowser->setObjectName("infoBrowser");
+    infoBrowser->setObjectName(QStringLiteral("infoBrowser"));
     addDockWidget(Qt::RightDockWidgetArea, infoBrowser);
 
     undoBrowser = new UndoBrowser(worldModel, this);
-    undoBrowser->setObjectName("undoBrowser");
+    undoBrowser->setObjectName(QStringLiteral("undoBrowser"));
     addDockWidget(Qt::RightDockWidgetArea, undoBrowser);
 
     worldScene = new WorldScene(worldModel, this);
     worldGraphicsView = new WorldGraphicsView(worldScene, this);
     setCentralWidget(worldGraphicsView);
 
-    connect(worldModel, SIGNAL(simulationStopped(int)), this, SLOT(simulationStopped(int)));
-    connect(worldModel->selectionModel(), SIGNAL(selectionChanged(QItemSelection,QItemSelection)),
-                                 this, SLOT(worldSelectionChanged()));
-    connect(itemPalette, SIGNAL(beginAddItem(QString)),
-	    worldScene,  SLOT(beginAddItem(QString)));
-    connect(worldScene,  SIGNAL(endAddItem(QString,bool)),
-	    itemPalette, SLOT(endAddItem(QString,bool)));
+    connect(worldModel, &WorldModel::simulationStopped, this, &MainWindow::simulationStopped);
+    connect(worldModel->selectionModel(), &QItemSelectionModel::selectionChanged,
+                                 this, &MainWindow::worldSelectionChanged);
+    connect(itemPalette, &ItemPalette::beginAddItem,
+	    worldScene,  &WorldScene::beginAddItem);
+    connect(worldScene,  &WorldScene::endAddItem,
+	    itemPalette, &ItemPalette::endAddItem);
     connect(worldScene,  SIGNAL(linkActivated(QUrl)),
 	    infoBrowser, SLOT(openUrl(QUrl)));
-    connect(worldScene,  SIGNAL(endAddItem(QString,bool)),
-            this,        SLOT(worldSelectionChanged()));
+    connect(worldScene,  &WorldScene::endAddItem,
+            this,        &MainWindow::worldSelectionChanged);
     
 
     setupActions();
@@ -127,7 +127,7 @@ MainWindow::MainWindow()
 
 MainWindow::~MainWindow()
 {
-    KConfig* config = new KConfig("steprc");
+    KConfig* config = new KConfig(QStringLiteral("steprc"));
     actionRecentFiles->saveEntries(config->group("RecentFiles"));
     delete config;
 }
@@ -143,47 +143,47 @@ void MainWindow::setupActions()
     actionRecentFiles = KStandardAction::openRecent(this, SLOT(openFile(QUrl)),
 						    actionCollection());
 
-    KConfig* config = new KConfig("steprc");
+    KConfig* config = new KConfig(QStringLiteral("steprc"));
     actionRecentFiles->loadEntries(config->group("RecentFiles"));
     delete config;
 
     QAction * actionOpenTutorial = actionCollection()->add<QAction>(
-                "file_tutorial_open", this, SLOT(openTutorial()));
+                QStringLiteral("file_tutorial_open"), this, SLOT(openTutorial()));
     actionOpenTutorial->setText(i18n("&Open Tutorial..."));
-    actionOpenTutorial->setIcon(QIcon::fromTheme("document-open"));
+    actionOpenTutorial->setIcon(QIcon::fromTheme(QStringLiteral("document-open")));
 
     QAction * actionOpenExample = actionCollection()->add<QAction>(
-                "file_example_open", this, SLOT(openExample()));
+                QStringLiteral("file_example_open"), this, SLOT(openExample()));
     actionOpenExample->setText(i18n("&Open Example..."));
-    actionOpenExample->setIcon(QIcon::fromTheme("document-open"));
+    actionOpenExample->setIcon(QIcon::fromTheme(QStringLiteral("document-open")));
 
     QAction * actionOpenLocalExample = actionCollection()->add<QAction>(
-                "file_example_openlocal", this, SLOT(openLocalExample()));
+                QStringLiteral("file_example_openlocal"), this, SLOT(openLocalExample()));
     actionOpenLocalExample->setText(i18n("Open Down&loaded Example..."));
-    actionOpenLocalExample->setIcon(QIcon::fromTheme("document-open"));
+    actionOpenLocalExample->setIcon(QIcon::fromTheme(QStringLiteral("document-open")));
 
     QAction * actionUploadExample = actionCollection()->add<QAction>(
-                "file_example_upload", this, SLOT(uploadExample()));
+                QStringLiteral("file_example_upload"), this, SLOT(uploadExample()));
     actionUploadExample->setText(i18n("Share C&urrent Experiment..."));
-    actionUploadExample->setIcon(QIcon::fromTheme("get-hot-new-stuff"));
+    actionUploadExample->setIcon(QIcon::fromTheme(QStringLiteral("get-hot-new-stuff")));
 
     QAction * actionDownloadExamples = actionCollection()->add<QAction>(
-                "file_example_download", this, SLOT(downloadExamples()));
+                QStringLiteral("file_example_download"), this, SLOT(downloadExamples()));
     actionDownloadExamples->setText(i18n("&Download New Experiments..."));
-    actionDownloadExamples->setIcon(QIcon::fromTheme("get-hot-new-stuff"));
+    actionDownloadExamples->setIcon(QIcon::fromTheme(QStringLiteral("get-hot-new-stuff")));
 
     /* Edit menu */
     actionRedo = KStandardAction::redo(worldModel->undoStack(), SLOT(redo()), actionCollection());
     actionUndo = KStandardAction::undo(worldModel->undoStack(), SLOT(undo()), actionCollection());
     actionRedo->setEnabled(false); actionUndo->setEnabled(false);
     actionRedo->setIconText(i18n("Redo")); actionUndo->setIconText(i18n("Undo"));
-    connect(worldModel->undoStack(), SIGNAL(canRedoChanged(bool)), actionRedo, SLOT(setEnabled(bool)));
-    connect(worldModel->undoStack(), SIGNAL(canUndoChanged(bool)), actionUndo, SLOT(setEnabled(bool)));
-    connect(worldModel->undoStack(), SIGNAL(cleanChanged(bool)), this, SLOT(updateCaption()));
-    connect(worldModel->undoStack(), SIGNAL(undoTextChanged(QString)),
-                                 this, SLOT(undoTextChanged(QString)));
-    connect(worldModel->undoStack(), SIGNAL(redoTextChanged(QString)),
-                                 this, SLOT(redoTextChanged(QString)));
+    connect(worldModel->undoStack(), &QUndoStack::canRedoChanged, actionRedo, &QAction::setEnabled);
+    connect(worldModel->undoStack(), &QUndoStack::canUndoChanged, actionUndo, &QAction::setEnabled);
+    connect(worldModel->undoStack(), &QUndoStack::cleanChanged, this, &MainWindow::updateCaption);
+    connect(worldModel->undoStack(), &QUndoStack::undoTextChanged,
+                                 this, &MainWindow::undoTextChanged);
+    connect(worldModel->undoStack(), &QUndoStack::redoTextChanged,
+                                 this, &MainWindow::redoTextChanged);
     
     actionCut = KStandardAction::cut(worldModel, SLOT(cutSelectedItems()),
                                      actionCollection());
@@ -194,12 +194,12 @@ void MainWindow::setupActions()
     actionCut->setEnabled(false);
     actionCopy->setEnabled(false);
     actionPaste->setEnabled(worldModel->clipboard()->canPaste());
-    connect(worldModel->clipboard(), SIGNAL(canPasteChanged(bool)),
-            actionPaste, SLOT(setEnabled(bool)));
+    connect(worldModel->clipboard(), &Clipboard::canPasteChanged,
+            actionPaste, &QAction::setEnabled);
 
-    actionDelete = actionCollection()->add<QAction>("edit_delete", worldModel, SLOT(deleteSelectedItems()));
+    actionDelete = actionCollection()->add<QAction>(QStringLiteral("edit_delete"), worldModel, SLOT(deleteSelectedItems()));
     actionDelete->setText(i18n("&Delete"));
-    actionDelete->setIcon(QIcon::fromTheme("edit-delete"));
+    actionDelete->setIcon(QIcon::fromTheme(QStringLiteral("edit-delete")));
     actionDelete->setEnabled(false);
     actionCollection()->setDefaultShortcut(actionDelete, QKeySequence(Qt::Key_Delete));
 
@@ -208,47 +208,47 @@ void MainWindow::setupActions()
     QActionGroup* runSpeedGroup = new QActionGroup(this);
 
     // The run action collection, this is used in the toolbar to create a dropdown menu on the run button
-    runSpeedAction = new KToolBarPopupAction(QIcon::fromTheme("media-playback-start"), i18n("&Run"), this);
-    connect(runSpeedAction, SIGNAL(triggered()), 
-            this, SLOT(simulationStartStop()));
+    runSpeedAction = new KToolBarPopupAction(QIcon::fromTheme(QStringLiteral("media-playback-start")), i18n("&Run"), this);
+    connect(runSpeedAction, &QAction::triggered, 
+            this, &MainWindow::simulationStartStop);
     QMenu* runSpeedActionMenu = runSpeedAction->menu();
-    actionCollection()->addAction("run_speed", runSpeedAction);
+    actionCollection()->addAction(QStringLiteral("run_speed"), runSpeedAction);
     runSpeedActionMenu->setStatusTip(i18n("Execute the program"));
     runSpeedActionMenu->setWhatsThis(i18n("Run: Execute the program"));
 
     fullSpeedAct = new QAction(i18nc("@option:radio", "1x Speed"), this);
-    actionCollection()->addAction("full_speed", fullSpeedAct );
+    actionCollection()->addAction(QStringLiteral("full_speed"), fullSpeedAct );
     fullSpeedAct->setCheckable(true);
     fullSpeedAct->setChecked(true);
-    connect(fullSpeedAct, SIGNAL(triggered()), this, SLOT(setFullSpeed()));
+    connect(fullSpeedAct, &QAction::triggered, this, &MainWindow::setFullSpeed);
     runSpeedGroup->addAction(fullSpeedAct);
     runSpeedActionMenu->addAction(fullSpeedAct);
 	
     slowSpeedAct = new QAction(i18nc("@option:radio choose the slow speed", "2x Speed"), this);
-    actionCollection()->addAction("slow_speed", slowSpeedAct );
+    actionCollection()->addAction(QStringLiteral("slow_speed"), slowSpeedAct );
     slowSpeedAct->setCheckable(true);
-    connect(slowSpeedAct, SIGNAL(triggered()), this, SLOT(setSlowSpeed()));
+    connect(slowSpeedAct, &QAction::triggered, this, &MainWindow::setSlowSpeed);
     runSpeedGroup->addAction(slowSpeedAct);
     runSpeedActionMenu->addAction(slowSpeedAct);
 
     slowerSpeedAct = new QAction(i18nc("@option:radio", "4x Speed"), this);
-    actionCollection()->addAction("slower_speed", slowerSpeedAct );
+    actionCollection()->addAction(QStringLiteral("slower_speed"), slowerSpeedAct );
     slowerSpeedAct->setCheckable(true);
-    connect(slowerSpeedAct, SIGNAL(triggered()), this, SLOT(setSlowerSpeed()));
+    connect(slowerSpeedAct, &QAction::triggered, this, &MainWindow::setSlowerSpeed);
     runSpeedGroup->addAction(slowerSpeedAct);
     runSpeedActionMenu->addAction(slowerSpeedAct);
 
     slowestSpeedAct = new QAction(i18nc("@option:radio", "8x Speed"), this);
-    actionCollection()->addAction("slowest_speed", slowestSpeedAct );
+    actionCollection()->addAction(QStringLiteral("slowest_speed"), slowestSpeedAct );
     slowestSpeedAct->setCheckable(true);
-    connect(slowestSpeedAct, SIGNAL(triggered()), this, SLOT(setSlowestSpeed()));
+    connect(slowestSpeedAct, &QAction::triggered, this, &MainWindow::setSlowestSpeed);
     runSpeedGroup->addAction(slowestSpeedAct);
     runSpeedActionMenu->addAction(slowestSpeedAct);
 
     stepSpeedAct = new QAction(i18nc("@option:radio", "16x Speed"), this);
-    actionCollection()->addAction("step_speed", stepSpeedAct );
+    actionCollection()->addAction(QStringLiteral("step_speed"), stepSpeedAct );
     stepSpeedAct->setCheckable(true);
-    connect(stepSpeedAct, SIGNAL(triggered()), this, SLOT(setStepSpeed()));
+    connect(stepSpeedAct, &QAction::triggered, this, &MainWindow::setStepSpeed);
     runSpeedGroup->addAction(stepSpeedAct);
     runSpeedActionMenu->addAction(stepSpeedAct);
 
@@ -264,11 +264,11 @@ void MainWindow::setupActions()
     KStandardAction::preferences(this, SLOT(configureStep()), actionCollection());
 
     /* Dock widgets */
-    actionCollection()->addAction("toggle_palette_dock", itemPalette->toggleViewAction());
-    actionCollection()->addAction("toggle_world_dock", worldBrowser->toggleViewAction());
-    actionCollection()->addAction("toggle_properties_dock", propertiesBrowser->toggleViewAction());
-    actionCollection()->addAction("toggle_info_dock", infoBrowser->toggleViewAction());
-    actionCollection()->addAction("toggle_undo_dock", undoBrowser->toggleViewAction());
+    actionCollection()->addAction(QStringLiteral("toggle_palette_dock"), itemPalette->toggleViewAction());
+    actionCollection()->addAction(QStringLiteral("toggle_world_dock"), worldBrowser->toggleViewAction());
+    actionCollection()->addAction(QStringLiteral("toggle_properties_dock"), propertiesBrowser->toggleViewAction());
+    actionCollection()->addAction(QStringLiteral("toggle_info_dock"), infoBrowser->toggleViewAction());
+    actionCollection()->addAction(QStringLiteral("toggle_undo_dock"), undoBrowser->toggleViewAction());
 }
 
 void MainWindow::updateCaption()
@@ -435,7 +435,7 @@ void MainWindow::openTutorial()
 {
     // XXX: need to be redone
     //qDebug() << "inside MainWindow::openTutorial()";
-    QStringList dirs = QStandardPaths::locateAll(QStandardPaths::DataLocation, "tutorials", QStandardPaths::LocateDirectory);
+    QStringList dirs = QStandardPaths::locateAll(QStandardPaths::DataLocation, QStringLiteral("tutorials"), QStandardPaths::LocateDirectory);
     QString localDir = QStandardPaths::writableLocation(QStandardPaths::DataLocation) + QLatin1Char('/');
     foreach(const QString &dirName, dirs) {
         //qDebug() << "dirName: " << dirName;
@@ -450,7 +450,7 @@ void MainWindow::openExample()
 {
     //qDebug() << "inside MainWindow::openExample()";
     // XXX: need to be redone
-    QStringList dirs = QStandardPaths::locateAll(QStandardPaths::DataLocation, "examples", QStandardPaths::LocateDirectory);
+    QStringList dirs = QStandardPaths::locateAll(QStandardPaths::DataLocation, QStringLiteral("examples"), QStandardPaths::LocateDirectory);
     QString localDir = QStandardPaths::writableLocation(QStandardPaths::DataLocation) + QLatin1Char('/');
     foreach(const QString &dirName, dirs) {
         if(!dirName.startsWith(localDir)) {
@@ -494,7 +494,7 @@ void MainWindow::uploadExample()
 void MainWindow::downloadExamples()
 {
     //qDebug() << "inside MainWindow::downloadExamples()";
-    KNS3::DownloadDialog dialog("step.knsrc", this);
+    KNS3::DownloadDialog dialog(QStringLiteral("step.knsrc"), this);
     dialog.exec();
 }
 
@@ -507,7 +507,7 @@ void MainWindow::simulationStartStop()
 void MainWindow::simulationStart()
 {
     runSpeedAction->setIconText(i18n("&Stop"));
-    runSpeedAction->setIcon(QIcon::fromTheme("media-playback-stop"));
+    runSpeedAction->setIcon(QIcon::fromTheme(QStringLiteral("media-playback-stop")));
 
     undoBrowser->setUndoEnabled(false);
     actionUndo->setEnabled(false);
@@ -517,7 +517,7 @@ void MainWindow::simulationStart()
 void MainWindow::simulationStopped(int result)
 {
     runSpeedAction->setIconText(i18n("&Simulate"));
-    runSpeedAction->setIcon(QIcon::fromTheme("media-playback-start"));
+    runSpeedAction->setIcon(QIcon::fromTheme(QStringLiteral("media-playback-start")));
 
     undoBrowser->setUndoEnabled(true);
     if(result == StepCore::Solver::ToleranceError) {
@@ -593,20 +593,20 @@ void MainWindow::worldSelectionChanged()
 
 void MainWindow::configureStep()
 {
-    if(KConfigDialog::showDialog( "settings" )) return; 
+    if(KConfigDialog::showDialog( QStringLiteral("settings") )) return; 
 
-    KConfigDialog* dialog = new KConfigDialog(this, "settings", Settings::self());
+    KConfigDialog* dialog = new KConfigDialog(this, QStringLiteral("settings"), Settings::self());
 
     Ui::ConfigureStepGeneralWidget generalUi;
     QWidget* generalWidget = new QWidget(0);
-    generalWidget->setObjectName("general");
+    generalWidget->setObjectName(QStringLiteral("general"));
     generalUi.setupUi(generalWidget);
-    dialog->addPage(generalWidget, i18n("General"), "step"); //shows the "step" icon, the "general" icon doesn't exist
+    dialog->addPage(generalWidget, i18n("General"), QStringLiteral("step")); //shows the "step" icon, the "general" icon doesn't exist
 
-    connect(dialog, SIGNAL(settingsChanged(QString)),
-                worldGraphicsView, SLOT(settingsChanged())); 
-    connect(dialog, SIGNAL(settingsChanged(QString)),
-                propertiesBrowser, SLOT(settingsChanged())); 
+    connect(dialog, &KConfigDialog::settingsChanged,
+                worldGraphicsView, &WorldGraphicsView::settingsChanged); 
+    connect(dialog, &KConfigDialog::settingsChanged,
+                propertiesBrowser, &PropertiesBrowser::settingsChanged); 
 
     dialog->show();
 }

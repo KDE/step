@@ -79,7 +79,7 @@
 StepCore::Vector2d WidgetVertexHandlerGraphicsItem::value()
 {
     double s = currentViewScale();
-    StepCore::Vector2d size = _item->metaObject()->property("size")->
+    StepCore::Vector2d size = _item->metaObject()->property(QStringLiteral("size"))->
                             readVariant(_item).value<StepCore::Vector2d>()/s;
     return (size.array()* corners[_vertexNum].array()).matrix();
 }
@@ -91,9 +91,9 @@ void WidgetVertexHandlerGraphicsItem::setValue(const StepCore::Vector2d& value)
     QGraphicsView* activeView = scene()->views().first();
     QTransform viewportTransform = activeView->viewportTransform();
 
-    StepCore::Vector2d size = _item->metaObject()->property("size")->
+    StepCore::Vector2d size = _item->metaObject()->property(QStringLiteral("size"))->
                         readVariant(_item).value<StepCore::Vector2d>()/s;
-    StepCore::Vector2d position = _item->metaObject()->property("position")->
+    StepCore::Vector2d position = _item->metaObject()->property(QStringLiteral("position"))->
                             readVariant(_item).value<StepCore::Vector2d>();
 
     StepCore::Vector2d oCorner = position - (size.array()*((corners[_vertexNum]).array())).matrix();
@@ -118,14 +118,14 @@ void WidgetVertexHandlerGraphicsItem::setValue(const StepCore::Vector2d& value)
             newPos[1] = oCorner[1]; newSize[1] = 0;
             _vertexNum ^= 2;
         }
-        _worldModel->setProperty(_item, "position", QVariant::fromValue(newPos));
-        _worldModel->setProperty(_item, "size", QVariant::fromValue((newSize*s).eval()));
+        _worldModel->setProperty(_item, QStringLiteral("position"), QVariant::fromValue(newPos));
+        _worldModel->setProperty(_item, QStringLiteral("size"), QVariant::fromValue((newSize*s).eval()));
         setValue(value);
         return;
     }
 
-    _worldModel->setProperty(_item, "position", QVariant::fromValue(newPos));
-    _worldModel->setProperty(_item, "size", QVariant::fromValue((newSize*s).eval()));
+    _worldModel->setProperty(_item, QStringLiteral("position"), QVariant::fromValue(newPos));
+    _worldModel->setProperty(_item, QStringLiteral("size"), QVariant::fromValue((newSize*s).eval()));
 }
 
 WidgetGraphicsItem::WidgetGraphicsItem(StepCore::Item* item, WorldModel* worldModel)
@@ -151,9 +151,9 @@ WidgetGraphicsItem::~WidgetGraphicsItem()
 OnHoverHandlerGraphicsItem* WidgetGraphicsItem::createOnHoverHandler(const QPointF& pos)
 {
     double s = currentViewScale();
-    StepCore::Vector2d size = _item->metaObject()->property("size")->
+    StepCore::Vector2d size = _item->metaObject()->property(QStringLiteral("size"))->
                             readVariant(_item).value<StepCore::Vector2d>()/s;
-    StepCore::Vector2d position = _item->metaObject()->property("position")->
+    StepCore::Vector2d position = _item->metaObject()->property(QStringLiteral("position"))->
                             readVariant(_item).value<StepCore::Vector2d>();
     StepCore::Vector2d l = pointToVector(pos) - position;
 
@@ -179,7 +179,7 @@ void WidgetGraphicsItem::mouseSetPos(const QPointF& pos, const QPointF&, MovingS
     QTransform itemTransform = activeView->transform() * deviceTransform(activeView->viewportTransform());
     StepCore::Vector2d newPos = pointToVector( itemTransform.inverted().map(
                 QPointF(itemTransform.map(pos/*/50.0*/).toPoint()) ))/**50.0*/;
-    _worldModel->setProperty(_item, "position", QVariant::fromValue(newPos));
+    _worldModel->setProperty(_item, QStringLiteral("position"), QVariant::fromValue(newPos));
 }
 
 void WidgetGraphicsItem::paint(QPainter* painter, const QStyleOptionGraphicsItem* /*option*/, QWidget* /*widget*/)
@@ -206,14 +206,14 @@ void WidgetGraphicsItem::viewScaleChanged()
     if(!scene() || scene()->views().isEmpty()) return;
     QGraphicsView* activeView = scene()->views().first();
 
-    QPointF position = vectorToPoint(_item->metaObject()->property("position")->
+    QPointF position = vectorToPoint(_item->metaObject()->property(QStringLiteral("position"))->
                     readVariant(_item).value<StepCore::Vector2d>());
     
     // Move item to the closest pixel position
     QPoint viewPosition = activeView->mapFromScene(position);
     setPos(activeView->mapToScene(viewPosition));
 
-    StepCore::Vector2d size = _item->metaObject()->property("size")->
+    StepCore::Vector2d size = _item->metaObject()->property(QStringLiteral("size"))->
                     readVariant(_item).value<StepCore::Vector2d>();
 
     QSize viewSize(qRound(size[0]), qRound(size[1]));
@@ -390,20 +390,20 @@ NoteGraphicsItem::NoteGraphicsItem(StepCore::Item* item, WorldModel* worldModel)
 
     _actionColor = new QAction(QIcon(), i18n("&Color"), _toolBar);
 
-    _actionBold = new KToggleAction(QIcon::fromTheme("format-text-bold"), i18n("&Bold"), _toolBar);
+    _actionBold = new KToggleAction(QIcon::fromTheme(QStringLiteral("format-text-bold")), i18n("&Bold"), _toolBar);
     _actionBold->setShortcut(Qt::CTRL + Qt::Key_B);
-    _actionItalic = new KToggleAction(QIcon::fromTheme("format-text-italic"), i18n("&Italic"), _toolBar);
+    _actionItalic = new KToggleAction(QIcon::fromTheme(QStringLiteral("format-text-italic")), i18n("&Italic"), _toolBar);
     _actionItalic->setShortcut(Qt::CTRL + Qt::Key_I);
-    _actionUnderline = new KToggleAction(QIcon::fromTheme("format-text-underline"), i18n("&Underline"), _toolBar);
+    _actionUnderline = new KToggleAction(QIcon::fromTheme(QStringLiteral("format-text-underline")), i18n("&Underline"), _toolBar);
     _actionUnderline->setShortcut(Qt::CTRL + Qt::Key_U);
 
-    _actionAlignLeft = new KToggleAction(QIcon::fromTheme("format-justify-left"), i18n("Align &Left"), _toolBar);
+    _actionAlignLeft = new KToggleAction(QIcon::fromTheme(QStringLiteral("format-justify-left")), i18n("Align &Left"), _toolBar);
     _actionAlignLeft->setShortcut(Qt::CTRL + Qt::Key_L);
-    _actionAlignCenter = new KToggleAction(QIcon::fromTheme("format-justify-center"), i18n("Align C&enter"), _toolBar);
+    _actionAlignCenter = new KToggleAction(QIcon::fromTheme(QStringLiteral("format-justify-center")), i18n("Align C&enter"), _toolBar);
     _actionAlignCenter->setShortcut(Qt::CTRL + Qt::Key_E);
-    _actionAlignRight = new KToggleAction(QIcon::fromTheme("format-justify-right"), i18n("Align &Right"), _toolBar);
+    _actionAlignRight = new KToggleAction(QIcon::fromTheme(QStringLiteral("format-justify-right")), i18n("Align &Right"), _toolBar);
     _actionAlignRight->setShortcut(Qt::CTRL + Qt::Key_R);
-    _actionAlignJustify = new KToggleAction(QIcon::fromTheme("format-justify-fill"), i18n("Align &Justify"), _toolBar);
+    _actionAlignJustify = new KToggleAction(QIcon::fromTheme(QStringLiteral("format-justify-fill")), i18n("Align &Justify"), _toolBar);
     _actionAlignJustify->setShortcut(Qt::CTRL + Qt::Key_J);
 
     _actionAlign = new KSelectAction(i18n("&Align"), _toolBar);
@@ -418,26 +418,26 @@ NoteGraphicsItem::NoteGraphicsItem(StepCore::Item* item, WorldModel* worldModel)
     _actionFont = new KFontAction(i18n("&Font"), _toolBar);
     _actionFontSize = new KFontSizeAction(i18n("Font &Size"), _toolBar);
 
-    _actionInsertImage = new QAction(QIcon::fromTheme("insert-image"), i18n("Insert &Image"), _toolBar);
+    _actionInsertImage = new QAction(QIcon::fromTheme(QStringLiteral("insert-image")), i18n("Insert &Image"), _toolBar);
 #ifdef __GNUC__
 #warning Select right icon here
 #endif
-    _actionInsertFormula = new QAction(QIcon::fromTheme("application-vnd.oasis.opendocument.formula"),
+    _actionInsertFormula = new QAction(QIcon::fromTheme(QStringLiteral("application-vnd.oasis.opendocument.formula")),
                                     i18n("Insert &Formula"), _toolBar);
 
-    connect(_actionColor, SIGNAL(triggered(bool)), this, SLOT(formatColor()));
-    connect(_actionBold, SIGNAL(triggered(bool)), this, SLOT(formatBold(bool)));
-    connect(_actionItalic, SIGNAL(triggered(bool)), _textEdit, SLOT(setFontItalic(bool)));
-    connect(_actionUnderline, SIGNAL(triggered(bool)), _textEdit, SLOT(setFontUnderline(bool)));
+    connect(_actionColor, &QAction::triggered, this, &NoteGraphicsItem::formatColor);
+    connect(_actionBold, &QAction::triggered, this, &NoteGraphicsItem::formatBold);
+    connect(_actionItalic, &QAction::triggered, _textEdit, &QTextEdit::setFontItalic);
+    connect(_actionUnderline, &QAction::triggered, _textEdit, &QTextEdit::setFontUnderline);
     connect(_actionAlign, SIGNAL(triggered(QAction*)), this, SLOT(formatAlign(QAction*)));
     connect(_actionFont, SIGNAL(triggered(QString)), this, SLOT(formatFontFamily(QString)));
-    connect(_actionFontSize, SIGNAL(fontSizeChanged(int)), this, SLOT(formatFontSize(int)));
-    connect(_actionInsertImage, SIGNAL(triggered(bool)), this, SLOT(insertImage()));
-    connect(_actionInsertFormula, SIGNAL(triggered(bool)), this, SLOT(insertFormula()));
+    connect(_actionFontSize, &KFontSizeAction::fontSizeChanged, this, &NoteGraphicsItem::formatFontSize);
+    connect(_actionInsertImage, &QAction::triggered, this, &NoteGraphicsItem::insertImage);
+    connect(_actionInsertFormula, &QAction::triggered, this, &NoteGraphicsItem::insertFormula);
     
-    connect(_textEdit, SIGNAL(currentCharFormatChanged(QTextCharFormat)),
-                            this, SLOT(currentCharFormatChanged(QTextCharFormat)));
-    connect(_textEdit, SIGNAL(cursorPositionChanged()), this, SLOT(cursorPositionChanged()));
+    connect(_textEdit, &QTextEdit::currentCharFormatChanged,
+                            this, &NoteGraphicsItem::currentCharFormatChanged);
+    connect(_textEdit, &QTextEdit::cursorPositionChanged, this, &NoteGraphicsItem::cursorPositionChanged);
 
 
     connect(_toolBar, SIGNAL(actionTriggered(QAction*)), _textEdit, SLOT(setFocus()));
@@ -508,7 +508,7 @@ bool NoteGraphicsItem::eventFilter(QObject* obj, QEvent* event)
             _hasFocus = true;
             if(note()->text().isEmpty()) {
                 //++_updating;
-                _textEdit->setPlainText("");
+                _textEdit->setPlainText(QLatin1String(""));
                 worldDataChanged(false);
                 //--_updating;
             }
@@ -547,7 +547,7 @@ bool NoteGraphicsItem::eventFilter(QObject* obj, QEvent* event)
 
                 _newItems.clear();
 
-                _worldModel->setProperty(_item, "text", newText);
+                _worldModel->setProperty(_item, QStringLiteral("text"), newText);
 
                 _worldModel->endMacro();
                 //--_updating;
@@ -663,7 +663,7 @@ void NoteGraphicsItem::insertImage()
 
     QString imgName;
     for(int n=0;; ++n) {
-        imgName = QString("img:%1").arg(n);
+        imgName = QStringLiteral("img:%1").arg(n);
         if(note()->childItem(imgName) != NULL) continue;
         bool found = false;
         foreach(StepCore::Item* item, _newItems)
@@ -673,14 +673,14 @@ void NoteGraphicsItem::insertImage()
     
     _newItems << new StepCore::NoteImage(imgName, data);
     //_textEdit->document()->addResource(QTextDocument::ImageResource, imgName, pixmap);
-    _textEdit->insertHtml(QString("<img src=\"%1\" />").arg(imgName));
+    _textEdit->insertHtml(QStringLiteral("<img src=\"%1\" />").arg(imgName));
 }
 
 void NoteGraphicsItem::insertFormula()
 {
     QString imgName;
     for(int n=0;; ++n) {
-        imgName = QString("fml:%1").arg(n);
+        imgName = QStringLiteral("fml:%1").arg(n);
         if(note()->childItem(imgName) != NULL) continue;
         bool found = false;
         foreach(StepCore::Item* item, _newItems)
@@ -695,7 +695,7 @@ void NoteGraphicsItem::insertFormula()
     }
 
     _newItems << formula;
-    _textEdit->insertHtml(QString("<img src=\"%1\" />").arg(imgName));
+    _textEdit->insertHtml(QStringLiteral("<img src=\"%1\" />").arg(imgName));
 }
 
 bool NoteGraphicsItem::editFormula(StepCore::NoteFormula* formula)
@@ -837,7 +837,7 @@ void DataSourceWidget::setDataSource(WorldModel* worldModel,
 
     _object->clear();
 
-    addObjects(QModelIndex(), "");
+    addObjects(QModelIndex(), QLatin1String(""));
 
     int objIndex = _object->findData(QVariant::fromValue(object));
     _object->setCurrentIndex( objIndex );
@@ -885,8 +885,8 @@ void DataSourceWidget::propertySelected(int index)
     _index->clear();
     if(pr != 0 && pr->userTypeId() == qMetaTypeId<StepCore::Vector2d>()) {
         _index->setEnabled(true);
-        _index->addItem("0");
-        _index->addItem("1");
+        _index->addItem(QStringLiteral("0"));
+        _index->addItem(QStringLiteral("1"));
     } else {
         _index->setEnabled(false);
     }
@@ -1085,8 +1085,8 @@ void GraphMenuHandler::populateMenu(QMenu* menu, KActionCollection* actions)
     _confDialog = 0;
     _confChanged = false;
 
-    menu->addAction(QIcon::fromTheme("edit-clear"), i18n("Clear graph"), this, SLOT(clearGraph()));
-    menu->addAction(QIcon::fromTheme("configure"), i18n("Configure graph..."), this, SLOT(configureGraph()));
+    menu->addAction(QIcon::fromTheme(QStringLiteral("edit-clear")), i18n("Clear graph"), this, &GraphMenuHandler::clearGraph);
+    menu->addAction(QIcon::fromTheme(QStringLiteral("configure")), i18n("Configure graph..."), this, &GraphMenuHandler::configureGraph);
     menu->addSeparator();
     ItemMenuHandler::populateMenu(menu, actions);
 }
@@ -1116,8 +1116,8 @@ void GraphMenuHandler::configureGraph()
     QPushButton *okButton = _buttonBox->button(QDialogButtonBox::Ok);
     okButton->setDefault(true);
     okButton->setShortcut(Qt::CTRL | Qt::Key_Return);
-    _confDialog->connect(_buttonBox, SIGNAL(accepted()), _confDialog, SLOT(accept()));
-    _confDialog->connect(_buttonBox, SIGNAL(rejected()), _confDialog, SLOT(reject()));
+    _confDialog->connect(_buttonBox, &QDialogButtonBox::accepted, _confDialog, &QDialog::accept);
+    _confDialog->connect(_buttonBox, &QDialogButtonBox::rejected, _confDialog, &QDialog::reject);
     mainLayout->addWidget(_buttonBox);
 
     _confUi = new Ui::WidgetConfigureGraph;
@@ -1150,18 +1150,18 @@ void GraphMenuHandler::configureGraph()
 
     _buttonBox->button(QDialogButtonBox::Apply)->setEnabled(false);
 
-    connect(_buttonBox, SIGNAL(clicked(QAbstractButton*)), this, SLOT(confApply(QAbstractButton*)));
+    connect(_buttonBox, &QDialogButtonBox::clicked, this, &GraphMenuHandler::confApply);
 
-    connect(_confUi->dataSourceX, SIGNAL(dataSourceChanged()), this, SLOT(confChanged()));
-    connect(_confUi->dataSourceY, SIGNAL(dataSourceChanged()), this, SLOT(confChanged()));
-    connect(_confUi->checkBoxAutoX, SIGNAL(stateChanged(int)), this, SLOT(confChanged()));
-    connect(_confUi->checkBoxAutoY, SIGNAL(stateChanged(int)), this, SLOT(confChanged()));
-    connect(_confUi->lineEditMinX, SIGNAL(textEdited(QString)), this, SLOT(confChanged()));
-    connect(_confUi->lineEditMaxX, SIGNAL(textEdited(QString)), this, SLOT(confChanged()));
-    connect(_confUi->lineEditMinY, SIGNAL(textEdited(QString)), this, SLOT(confChanged()));
-    connect(_confUi->lineEditMaxY, SIGNAL(textEdited(QString)), this, SLOT(confChanged()));
-    connect(_confUi->checkBoxShowLines, SIGNAL(stateChanged(int)), this, SLOT(confChanged()));
-    connect(_confUi->checkBoxShowPoints, SIGNAL(stateChanged(int)), this, SLOT(confChanged()));
+    connect(_confUi->dataSourceX, &DataSourceWidget::dataSourceChanged, this, &GraphMenuHandler::confChanged);
+    connect(_confUi->dataSourceY, &DataSourceWidget::dataSourceChanged, this, &GraphMenuHandler::confChanged);
+    connect(_confUi->checkBoxAutoX, &QCheckBox::stateChanged, this, &GraphMenuHandler::confChanged);
+    connect(_confUi->checkBoxAutoY, &QCheckBox::stateChanged, this, &GraphMenuHandler::confChanged);
+    connect(_confUi->lineEditMinX, &QLineEdit::textEdited, this, &GraphMenuHandler::confChanged);
+    connect(_confUi->lineEditMaxX, &QLineEdit::textEdited, this, &GraphMenuHandler::confChanged);
+    connect(_confUi->lineEditMinY, &QLineEdit::textEdited, this, &GraphMenuHandler::confChanged);
+    connect(_confUi->lineEditMaxY, &QLineEdit::textEdited, this, &GraphMenuHandler::confChanged);
+    connect(_confUi->checkBoxShowLines, &QCheckBox::stateChanged, this, &GraphMenuHandler::confChanged);
+    connect(_confUi->checkBoxShowPoints, &QCheckBox::stateChanged, this, &GraphMenuHandler::confChanged);
 
     _confDialog->exec();
 
@@ -1186,21 +1186,21 @@ void GraphMenuHandler::confApply(QAbstractButton *button)
 
     QVariant objY = QVariant::fromValue(_confUi->dataSourceY->dataObject());
 
-    _worldModel->setProperty(graph(), "objectX", objX);
-    _worldModel->setProperty(graph(), "propertyX",
+    _worldModel->setProperty(graph(), QStringLiteral("objectX"), objX);
+    _worldModel->setProperty(graph(), QStringLiteral("propertyX"),
                         _confUi->dataSourceX->dataProperty());
-    _worldModel->setProperty(graph(), "indexX",
+    _worldModel->setProperty(graph(), QStringLiteral("indexX"),
                         _confUi->dataSourceX->dataIndex());
 
-    _worldModel->setProperty(graph(), "objectY", objY);
-    _worldModel->setProperty(graph(), "propertyY",
+    _worldModel->setProperty(graph(), QStringLiteral("objectY"), objY);
+    _worldModel->setProperty(graph(), QStringLiteral("propertyY"),
                         _confUi->dataSourceY->dataProperty());
-    _worldModel->setProperty(graph(), "indexY",
+    _worldModel->setProperty(graph(), QStringLiteral("indexY"),
                         _confUi->dataSourceY->dataIndex());
 
-    _worldModel->setProperty(graph(), "autoLimitsX",
+    _worldModel->setProperty(graph(), QStringLiteral("autoLimitsX"),
                         _confUi->checkBoxAutoX->isChecked());
-    _worldModel->setProperty(graph(), "autoLimitsY",
+    _worldModel->setProperty(graph(), QStringLiteral("autoLimitsY"),
                         _confUi->checkBoxAutoY->isChecked());
 
     StepCore::Vector2d limitsX(_confUi->lineEditMinX->text().toDouble(),
@@ -1208,14 +1208,14 @@ void GraphMenuHandler::confApply(QAbstractButton *button)
     StepCore::Vector2d limitsY(_confUi->lineEditMinY->text().toDouble(),
                                _confUi->lineEditMaxY->text().toDouble());
 
-    _worldModel->setProperty(graph(), "limitsX",
+    _worldModel->setProperty(graph(), QStringLiteral("limitsX"),
                         QVariant::fromValue(limitsX));
-    _worldModel->setProperty(graph(), "limitsY",
+    _worldModel->setProperty(graph(), QStringLiteral("limitsY"),
                         QVariant::fromValue(limitsY));
 
-    _worldModel->setProperty(graph(), "showLines",
+    _worldModel->setProperty(graph(), QStringLiteral("showLines"),
                         _confUi->checkBoxShowLines->isChecked());
-    _worldModel->setProperty(graph(), "showPoints",
+    _worldModel->setProperty(graph(), QStringLiteral("showPoints"),
                         _confUi->checkBoxShowPoints->isChecked());
 
     _worldModel->endMacro();
@@ -1233,7 +1233,7 @@ void GraphMenuHandler::clearGraph()
     _worldModel->simulationPause();
     //_lastPointTime = -HUGE_VAL; // XXX
     _worldModel->beginMacro(i18n("Clear graph %1", _object->name()));
-    _worldModel->setProperty(graph(), "points",
+    _worldModel->setProperty(graph(), QStringLiteral("points"),
                    QVariant::fromValue(StepCore::Vector2dList()) );
     _worldModel->endMacro();
 }
@@ -1313,7 +1313,7 @@ void MeterMenuHandler::populateMenu(QMenu* menu, KActionCollection* actions)
     _confDialog = 0;
     _confChanged = false;
 
-    menu->addAction(QIcon::fromTheme("configure"), i18n("Configure meter..."), this, SLOT(configureMeter()));
+    menu->addAction(QIcon::fromTheme(QStringLiteral("configure")), i18n("Configure meter..."), this, &MeterMenuHandler::configureMeter);
     menu->addSeparator();
     ItemMenuHandler::populateMenu(menu, actions);
 }
@@ -1343,8 +1343,8 @@ void MeterMenuHandler::configureMeter()
     QPushButton *okButton = _buttonBox->button(QDialogButtonBox::Ok);
     okButton->setDefault(true);
     okButton->setShortcut(Qt::CTRL | Qt::Key_Return);
-    _confDialog->connect(_buttonBox, SIGNAL(accepted()), _confDialog, SLOT(accept()));
-    _confDialog->connect(_buttonBox, SIGNAL(rejected()), _confDialog, SLOT(reject()));
+    _confDialog->connect(_buttonBox, &QDialogButtonBox::accepted, _confDialog, &QDialog::accept);
+    _confDialog->connect(_buttonBox, &QDialogButtonBox::rejected, _confDialog, &QDialog::reject);
     mainLayout->addWidget(_buttonBox);
 
     _confUi = new Ui::WidgetConfigureMeter;
@@ -1357,10 +1357,10 @@ void MeterMenuHandler::configureMeter()
                 new QIntValidator(0, 100, _confUi->lineEditDigits));
     _confUi->lineEditDigits->setText(QString::number(meter()->digits()));
 
-    connect(_buttonBox, SIGNAL(clicked(QAbstractButton*)), this, SLOT(confApply(QAbstractButton*)));
+    connect(_buttonBox, &QDialogButtonBox::clicked, this, &MeterMenuHandler::confApply);
 
-    connect(_confUi->dataSource, SIGNAL(dataSourceChanged()), this, SLOT(confChanged()));
-    connect(_confUi->lineEditDigits, SIGNAL(textEdited(QString)), this, SLOT(confChanged()));
+    connect(_confUi->dataSource, &DataSourceWidget::dataSourceChanged, this, &MeterMenuHandler::confChanged);
+    connect(_confUi->lineEditDigits, &QLineEdit::textEdited, this, &MeterMenuHandler::confChanged);
 
     _confDialog->exec();
 
@@ -1381,14 +1381,14 @@ void MeterMenuHandler::confApply(QAbstractButton *button)
     if(!_confChanged) return;
     _worldModel->beginMacro(i18n("Edit properties of %1", meter()->name()));
 
-    _worldModel->setProperty(meter(), "object",
+    _worldModel->setProperty(meter(), QStringLiteral("object"),
                         QVariant::fromValue(_confUi->dataSource->dataObject()));
-    _worldModel->setProperty(meter(), "property",
+    _worldModel->setProperty(meter(), QStringLiteral("property"),
                         _confUi->dataSource->dataProperty());
-    _worldModel->setProperty(meter(), "index",
+    _worldModel->setProperty(meter(), QStringLiteral("index"),
                         _confUi->dataSource->dataIndex());
 
-    _worldModel->setProperty(meter(), "digits",
+    _worldModel->setProperty(meter(), QStringLiteral("digits"),
                         _confUi->lineEditDigits->text().toInt());
 
     _worldModel->endMacro();
@@ -1420,8 +1420,8 @@ ControllerGraphicsItem::ControllerGraphicsItem(StepCore::Item* item, WorldModel*
     _labelSource = new QLabel(_widget); _labelSource->setAlignment(Qt::AlignHCenter | Qt::AlignTop);
     _slider = new QSlider(Qt::Horizontal, _widget);
     _slider->setRange(SLIDER_MIN, SLIDER_MAX);
-    connect(_slider, SIGNAL(sliderMoved(int)), this, SLOT(sliderChanged(int)));
-    connect(_slider, SIGNAL(sliderReleased()), this, SLOT(sliderReleased()));
+    connect(_slider, &QAbstractSlider::sliderMoved, this, &ControllerGraphicsItem::sliderChanged);
+    connect(_slider, &QAbstractSlider::sliderReleased, this, &ControllerGraphicsItem::sliderReleased);
 
     layout->addWidget(_labelMin, 0, 0, 1, 1);
     layout->addWidget(_slider, 0, 1, 1, 1);
@@ -1431,8 +1431,8 @@ ControllerGraphicsItem::ControllerGraphicsItem(StepCore::Item* item, WorldModel*
     _incAction = new QAction(i18n("Increase value"), _widget);
     _decAction = new QAction(i18n("Decrease value"), _widget);
 
-    connect(_incAction, SIGNAL(triggered(bool)), this, SLOT(incTriggered()));
-    connect(_decAction, SIGNAL(triggered(bool)), this, SLOT(decTriggered()));
+    connect(_incAction, &QAction::triggered, this, &ControllerGraphicsItem::incTriggered);
+    connect(_decAction, &QAction::triggered, this, &ControllerGraphicsItem::decTriggered);
 
     _widget->addAction(_incAction);
     _widget->addAction(_decAction);
@@ -1460,7 +1460,7 @@ void ControllerGraphicsItem::decTriggered()
 {
     _worldModel->simulationPause();
     _worldModel->beginMacro(i18n("Decrease controller %1", _item->name()));
-    _worldModel->setProperty(controller(), "value",
+    _worldModel->setProperty(controller(), QStringLiteral("value"),
                     controller()->value() - controller()->increment());
     _worldModel->endMacro();
 }
@@ -1469,7 +1469,7 @@ void ControllerGraphicsItem::incTriggered()
 {
     _worldModel->simulationPause();
     _worldModel->beginMacro(i18n("Increase controller %1", _item->name()));
-    _worldModel->setProperty(controller(), "value",
+    _worldModel->setProperty(controller(), QStringLiteral("value"),
                     controller()->value() + controller()->increment());
     _worldModel->endMacro();
 }
@@ -1607,7 +1607,7 @@ void ControllerGraphicsItem::sliderChanged(int value)
         }
         double v = controller()->limits()[0] + (value - SLIDER_MIN) *
                 (controller()->limits()[1] - controller()->limits()[0]) / (SLIDER_MAX - SLIDER_MIN);
-        _worldModel->setProperty(controller(), "value", v);
+        _worldModel->setProperty(controller(), QStringLiteral("value"), v);
     //}
 }
 
@@ -1625,10 +1625,10 @@ void ControllerMenuHandler::populateMenu(QMenu* menu, KActionCollection* actions
     _confDialog = 0;
     _confChanged = false;
 
-    menu->addAction(QIcon::fromTheme("arrow-up"), i18n("Increase value"), this, SLOT(incTriggered()));
-    menu->addAction(QIcon::fromTheme("arrow-down"), i18n("Decrease value"), this, SLOT(decTriggered()));
+    menu->addAction(QIcon::fromTheme(QStringLiteral("arrow-up")), i18n("Increase value"), this, &ControllerMenuHandler::incTriggered);
+    menu->addAction(QIcon::fromTheme(QStringLiteral("arrow-down")), i18n("Decrease value"), this, &ControllerMenuHandler::decTriggered);
     menu->addSeparator();
-    menu->addAction(QIcon::fromTheme("configure"), i18n("Configure controller..."), this, SLOT(configureController()));
+    menu->addAction(QIcon::fromTheme(QStringLiteral("configure")), i18n("Configure controller..."), this, &ControllerMenuHandler::configureController);
     menu->addSeparator();
     ItemMenuHandler::populateMenu(menu, actions);
 }
@@ -1658,8 +1658,8 @@ void ControllerMenuHandler::configureController()
     QPushButton *okButton = _buttonBox->button(QDialogButtonBox::Ok);
     okButton->setDefault(true);
     okButton->setShortcut(Qt::CTRL | Qt::Key_Return);
-    _confDialog->connect(_buttonBox, SIGNAL(accepted()), _confDialog, SLOT(accept()));
-    _confDialog->connect(_buttonBox, SIGNAL(rejected()), _confDialog, SLOT(reject()));
+    _confDialog->connect(_buttonBox, &QDialogButtonBox::accepted, _confDialog, &QDialog::accept);
+    _confDialog->connect(_buttonBox, &QDialogButtonBox::rejected, _confDialog, &QDialog::reject);
     mainLayout->addWidget(_buttonBox);
 
     _confUi = new Ui::WidgetConfigureController;
@@ -1691,14 +1691,14 @@ void ControllerMenuHandler::configureController()
 
     _buttonBox->button(QDialogButtonBox::Apply)->setEnabled(false);
 
-    connect(_buttonBox, SIGNAL(clicked(QAbstractButton*)), this, SLOT(confApply(QAbstractButton*)));
+    connect(_buttonBox, &QDialogButtonBox::clicked, this, &ControllerMenuHandler::confApply);
 
-    connect(_confUi->dataSource, SIGNAL(dataSourceChanged()), this, SLOT(confChanged()));
-    connect(_confUi->lineEditMin, SIGNAL(textEdited(QString)), this, SLOT(confChanged()));
-    connect(_confUi->lineEditMax, SIGNAL(textEdited(QString)), this, SLOT(confChanged()));
-    connect(_confUi->keyIncrease, SIGNAL(keySequenceChanged(QKeySequence)), this, SLOT(confChanged()));
-    connect(_confUi->keyDecrease, SIGNAL(keySequenceChanged(QKeySequence)), this, SLOT(confChanged()));
-    connect(_confUi->lineEditIncrement, SIGNAL(textEdited(QString)), this, SLOT(confChanged()));
+    connect(_confUi->dataSource, &DataSourceWidget::dataSourceChanged, this, &ControllerMenuHandler::confChanged);
+    connect(_confUi->lineEditMin, &QLineEdit::textEdited, this, &ControllerMenuHandler::confChanged);
+    connect(_confUi->lineEditMax, &QLineEdit::textEdited, this, &ControllerMenuHandler::confChanged);
+    connect(_confUi->keyIncrease, &KKeySequenceWidget::keySequenceChanged, this, &ControllerMenuHandler::confChanged);
+    connect(_confUi->keyDecrease, &KKeySequenceWidget::keySequenceChanged, this, &ControllerMenuHandler::confChanged);
+    connect(_confUi->lineEditIncrement, &QLineEdit::textEdited, this, &ControllerMenuHandler::confChanged);
 
     _confDialog->exec();
 
@@ -1719,26 +1719,26 @@ void ControllerMenuHandler::confApply(QAbstractButton *button)
     if(!_confChanged) return;
     _worldModel->beginMacro(i18n("Edit properties of %1", controller()->name()));
 
-    _worldModel->setProperty(controller(), "object",
+    _worldModel->setProperty(controller(), QStringLiteral("object"),
                     QVariant::fromValue(_confUi->dataSource->dataObject()));
-    _worldModel->setProperty(controller(), "property",
+    _worldModel->setProperty(controller(), QStringLiteral("property"),
                     _confUi->dataSource->dataProperty());
-    _worldModel->setProperty(controller(), "index",
+    _worldModel->setProperty(controller(), QStringLiteral("index"),
                     _confUi->dataSource->dataIndex());
 
     StepCore::Vector2d limits(_confUi->lineEditMin->text().toDouble(),
                               _confUi->lineEditMax->text().toDouble());
 
-    _worldModel->setProperty(controller(), "limits",
+    _worldModel->setProperty(controller(), QStringLiteral("limits"),
                             QVariant::fromValue(limits));
 
-    _worldModel->setProperty(controller(), "increaseShortcut",
+    _worldModel->setProperty(controller(), QStringLiteral("increaseShortcut"),
                             QVariant::fromValue(_confUi->keyIncrease->keySequence().toString()));
 
-    _worldModel->setProperty(controller(), "decreaseShortcut",
+    _worldModel->setProperty(controller(), QStringLiteral("decreaseShortcut"),
                             QVariant::fromValue(_confUi->keyDecrease->keySequence().toString()));
 
-    _worldModel->setProperty(controller(), "increment",
+    _worldModel->setProperty(controller(), QStringLiteral("increment"),
                             QVariant::fromValue(_confUi->lineEditIncrement->text().toDouble()));
 
     _worldModel->endMacro();
@@ -1755,7 +1755,7 @@ void ControllerMenuHandler::decTriggered()
 {
     _worldModel->simulationPause();
     _worldModel->beginMacro(i18n("Decrease controller %1", _object->name()));
-    _worldModel->setProperty(controller(), "value",
+    _worldModel->setProperty(controller(), QStringLiteral("value"),
                     controller()->value() - controller()->increment());
     _worldModel->endMacro();
 }
@@ -1764,7 +1764,7 @@ void ControllerMenuHandler::incTriggered()
 {
     _worldModel->simulationPause();
     _worldModel->beginMacro(i18n("Increase controller %1", _object->name()));
-    _worldModel->setProperty(controller(), "value",
+    _worldModel->setProperty(controller(), QStringLiteral("value"),
                     controller()->value() + controller()->increment());
     _worldModel->endMacro();
 }
@@ -1907,7 +1907,7 @@ void TracerGraphicsItem::mouseSetPos(const QPointF&, const QPointF& diff, Moving
 
 void TracerMenuHandler::populateMenu(QMenu* menu, KActionCollection* actions)
 {
-    menu->addAction(QIcon::fromTheme("edit-clear"), i18n("Clear trace"), this, SLOT(clearTracer()));
+    menu->addAction(QIcon::fromTheme(QStringLiteral("edit-clear")), i18n("Clear trace"), this, &TracerMenuHandler::clearTracer);
     menu->addSeparator();
     ItemMenuHandler::populateMenu(menu, actions);
 }
@@ -1917,7 +1917,7 @@ void TracerMenuHandler::clearTracer()
     _worldModel->simulationPause();
     //_lastPointTime = -HUGE_VAL; // XX
     _worldModel->beginMacro(i18n("Clear tracer %1", _object->name()));
-    _worldModel->setProperty(_object, "points",
+    _worldModel->setProperty(_object, QStringLiteral("points"),
                    QVariant::fromValue(StepCore::Vector2dList()) );
     _worldModel->endMacro();
 }

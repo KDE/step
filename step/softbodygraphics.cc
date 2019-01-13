@@ -132,10 +132,10 @@ void SoftBodyMenuHandler::createSoftBodyItems(const StepCore::Vector2d& pos)
     QPushButton *okButton = buttonBox->button(QDialogButtonBox::Ok);
     okButton->setDefault(true);
     okButton->setShortcut(Qt::CTRL | Qt::Key_Return);
-    _createSoftBodyItemsDialog->connect(buttonBox, SIGNAL(accepted()),
-					_createSoftBodyItemsDialog, SLOT(accept()));
-    _createSoftBodyItemsDialog->connect(buttonBox, SIGNAL(rejected()),
-					_createSoftBodyItemsDialog, SLOT(reject()));
+    _createSoftBodyItemsDialog->connect(buttonBox, &QDialogButtonBox::accepted,
+					_createSoftBodyItemsDialog, &QDialog::accept);
+    _createSoftBodyItemsDialog->connect(buttonBox, &QDialogButtonBox::rejected,
+					_createSoftBodyItemsDialog, &QDialog::reject);
     mainLayout->addWidget(buttonBox);
 
     _createSoftBodyItemsUi = new Ui::WidgetCreateSoftBodyItems;
@@ -215,8 +215,8 @@ SoftBodyGraphicsItem::SoftBodyGraphicsItem(StepCore::Item* item, WorldModel* wor
     setAcceptHoverEvents(true);
     setZValue(BODY_ZVALUE-1);
     _velocityHandler = new ArrowHandlerGraphicsItem(item, worldModel, this,
-                   _item->metaObject()->property("velocity"),
-                   _item->metaObject()->property("position"));
+                   _item->metaObject()->property(QStringLiteral("velocity")),
+                   _item->metaObject()->property(QStringLiteral("position")));
     _velocityHandler->setVisible(false);
 }
 
@@ -308,7 +308,7 @@ void SoftBodyGraphicsItem::stateChanged()
 void SoftBodyGraphicsItem::mouseSetPos(const QPointF& /*pos*/, const QPointF& diff, MovingState)
 {
     _worldModel->simulationPause();
-    _worldModel->setProperty(_item, "position",
+    _worldModel->setProperty(_item, QStringLiteral("position"),
                 QVariant::fromValue((softBody()->position() + pointToVector(diff)).eval()));
 }
 

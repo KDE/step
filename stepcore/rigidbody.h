@@ -152,8 +152,8 @@ public:
     };
 
     /** Constructs RigidBody */
-    explicit RigidBody(Vector2d position = Vector2d::Zero(), double angle = 0,
-              Vector2d velocity = Vector2d::Zero(), double angularVelocity = 0,
+    explicit RigidBody(const Vector2d &position = Vector2d::Zero(), double angle = 0,
+              const Vector2d &velocity = Vector2d::Zero(), double angularVelocity = 0,
               double mass = 1, double inertia = 1);
 
     /** Get position of the center of mass of the body  */
@@ -287,8 +287,8 @@ class Disk: public RigidBody
     STEPCORE_OBJECT(Disk)
 public:
     /** Constructs Disk */
-    explicit Disk(Vector2d position = Vector2d::Zero(), double angle = 0,
-              Vector2d velocity = Vector2d::Zero(), double angularVelocity = 0,
+    explicit Disk(const Vector2d &position = Vector2d::Zero(), double angle = 0,
+              const Vector2d &velocity = Vector2d::Zero(), double angularVelocity = 0,
               double mass = 1, double inertia = 1, double radius = 0.5)
         : RigidBody(position, angle, velocity, angularVelocity, mass, inertia),
           _radius(radius) {}
@@ -310,8 +310,8 @@ class BasePolygon: public RigidBody
     STEPCORE_OBJECT(BasePolygon)
 public:
     /** Constructs BasePolygon */
-    explicit BasePolygon(Vector2d position = Vector2d::Zero(), double angle = 0,
-              Vector2d velocity = Vector2d::Zero(), double angularVelocity = 0,
+    explicit BasePolygon(const Vector2d &position = Vector2d::Zero(), double angle = 0,
+              const Vector2d &velocity = Vector2d::Zero(), double angularVelocity = 0,
               double mass = 1, double inertia = 1)
         : RigidBody(position, angle, velocity, angularVelocity, mass, inertia) {}
 
@@ -327,9 +327,9 @@ class Box: public BasePolygon
     STEPCORE_OBJECT(Box)
 public:
     /** Constructs Box */
-    explicit Box(Vector2d position = Vector2d::Zero(), double angle = 0,
-              Vector2d velocity = Vector2d::Zero(), double angularVelocity = 0,
-              double mass = 1, double inertia = 1, Vector2d size = Vector2d(1,1));
+    explicit Box(const Vector2d &position = Vector2d::Zero(), double angle = 0,
+              const Vector2d &velocity = Vector2d::Zero(), double angularVelocity = 0,
+              double mass = 1, double inertia = 1, const Vector2d &size = Vector2d(1,1));
 
     /** Get box size */
     Vector2d size() const { return Vector2d(_vertexes[1][0] - _vertexes[0][0],

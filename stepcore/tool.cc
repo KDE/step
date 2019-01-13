@@ -140,12 +140,12 @@ static QVariant doubleToVariant(const QVariant& v, int index, double newV, bool 
 
 }
 
-Note::Note(Vector2d position, Vector2d size, QString text)
+Note::Note(const Vector2d &position, const Vector2d &size, const QString &text)
     : _position(position), _size(size), _text(text)
 {
 }
 
-Graph::Graph(Vector2d position, Vector2d size)
+Graph::Graph(const Vector2d &position, const Vector2d &size)
     : _position(position), _size(size),
       _objectX(0), _propertyX(), _indexX(-1),
       _objectY(0), _propertyY(), _indexY(-1),
@@ -241,7 +241,7 @@ QString Graph::unitsY() const
     return pr->units();
 }
 
-Meter::Meter(Vector2d position, Vector2d size)
+Meter::Meter(const Vector2d &position, const Vector2d &size)
     : _position(position), _size(size),
       _object(0), _property(), _index(-1),
       _digits(7)
@@ -299,7 +299,7 @@ void Meter::setWorld(World* world)
 }
 */
 
-Controller::Controller(Vector2d position, Vector2d size)
+Controller::Controller(const Vector2d &position, const Vector2d &size)
     : _position(position), _size(size),
       _object(0), _property(), _index(-1),
       _limits(-1,1), _increment(0.1)

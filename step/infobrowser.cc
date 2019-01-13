@@ -54,20 +54,20 @@ InfoBrowser::InfoBrowser(WorldModel* worldModel, QWidget* parent)
     _toolBar->setContextMenuPolicy(Qt::NoContextMenu);
     _toolBar->setToolButtonStyle(Qt::ToolButtonIconOnly);
 
-    _backAction = _toolBar->addAction(QIcon::fromTheme("go-previous"), i18n("Back"), this, SLOT(back()));
+    _backAction = _toolBar->addAction(QIcon::fromTheme(QStringLiteral("go-previous")), i18n("Back"), this, SLOT(back()));
     _backAction->setEnabled(false);
-    _forwardAction = _toolBar->addAction(QIcon::fromTheme("go-next"), i18n("Forward"), this, SLOT(forward()));
+    _forwardAction = _toolBar->addAction(QIcon::fromTheme(QStringLiteral("go-next")), i18n("Forward"), this, SLOT(forward()));
     _forwardAction->setEnabled(false);
 
     _toolBar->addSeparator();
-    _syncAction = _toolBar->addAction(QIcon::fromTheme("goto-page"), i18n("Sync selection"), this, SLOT(syncSelection())); // XXX: icon
+    _syncAction = _toolBar->addAction(QIcon::fromTheme(QStringLiteral("goto-page")), i18n("Sync selection"), this, SLOT(syncSelection())); // XXX: icon
     _syncAction->setEnabled(false);
-    _followAction = _toolBar->addAction(QIcon::fromTheme("note2"), i18n("Follow selection")/*, this, SLOT(syncSelection(bool))*/); // XXX: icon
+    _followAction = _toolBar->addAction(QIcon::fromTheme(QStringLiteral("note2")), i18n("Follow selection")/*, this, SLOT(syncSelection(bool))*/); // XXX: icon
     _followAction->setCheckable(true);
     _followAction->setChecked(true);
 
     _toolBar->addSeparator();
-    _execAction = _toolBar->addAction(QIcon::fromTheme("system-run"), i18n("Open in browser"), this, SLOT(openInBrowser()));
+    _execAction = _toolBar->addAction(QIcon::fromTheme(QStringLiteral("system-run")), i18n("Open in browser"), this, SLOT(openInBrowser()));
     _execAction->setEnabled(false);
 
     _htmlPart = new KHTMLPart(widget);
@@ -83,8 +83,8 @@ InfoBrowser::InfoBrowser(WorldModel* worldModel, QWidget* parent)
 	    SIGNAL(openUrlRequest(QUrl,KParts::OpenUrlArguments,KParts::BrowserArguments)),
 	    this, SLOT(openUrl(QUrl)));
 
-    connect(_worldModel->selectionModel(), SIGNAL(currentChanged(QModelIndex,QModelIndex)),
-                                           this, SLOT(worldCurrentChanged(QModelIndex,QModelIndex)));
+    connect(_worldModel->selectionModel(), &QItemSelectionModel::currentChanged,
+                                           this, &InfoBrowser::worldCurrentChanged);
 
     syncSelection();
 }
@@ -113,14 +113,14 @@ void InfoBrowser::syncSelection(bool checked)
 {
     if(checked) {
         const QModelIndex current = _worldModel->selectionModel()->currentIndex();
-        const QUrl url(QString("objinfo:").append(current.data(WorldModel::ClassNameRole).toString()));
+        const QUrl url(QStringLiteral("objinfo:").append(current.data(WorldModel::ClassNameRole).toString()));
         openUrl(url, true);
     }
 }
 
 void InfoBrowser::updateSyncSelection()
 {
-    if(_htmlPart->url().scheme() == "objinfo") {
+    if(_htmlPart->url().scheme() == QLatin1String("objinfo")) {
         QModelIndex current = _worldModel->selectionModel()->currentIndex();
         if(_htmlPart->url().path() == current.data(WorldModel::ClassNameRole).toString()) {
             _syncAction->setEnabled(false);
@@ -144,7 +144,7 @@ void InfoBrowser::openUrl(const QUrl& url, bool clearHistory, bool fromHistory)
         fromHistory = true;
     }
 
-    if(url.scheme() == "objinfo") {
+    if(url.scheme() == QLatin1String("objinfo")) {
         QString className = url.path();
         if(className.isEmpty()) {
             setHtml("<html><head><meta http-equiv=\"Content-Type\" content=\"text/html; charset=utf-8\" />"
@@ -164,7 +164,7 @@ void InfoBrowser::openUrl(const QUrl& url, bool clearHistory, bool fromHistory)
                     "</body></html>", fromHistory, url );
             return;
         }
-        QString fileName = QStandardPaths::locate(QStandardPaths::DataLocation, QString("objinfo/%1.html").arg(className));
+        QString fileName = QStandardPaths::locate(QStandardPaths::DataLocation, QStringLiteral("objinfo/%1.html").arg(className));
         if(!fileName.isEmpty()) {
             QFile file(fileName);
             if(file.open(QIODevice::ReadOnly | QIODevice::Text)) {
@@ -189,7 +189,7 @@ void InfoBrowser::openUrl(const QUrl& url, bool clearHistory, bool fromHistory)
                 "</div>\n"
                 "</body></html>", fromHistory, url );
         return;
-    } else if(url.scheme() == "http") {
+    } else if(url.scheme() == QLatin1String("http")) {
         if(!Settings::wikiExternal() &&
                         QRegExp("[a-zA-Z-]+\\.wikipedia\\.org").exactMatch(url.host())) {
             setHtml(
@@ -210,7 +210,7 @@ void InfoBrowser::openUrl(const QUrl& url, bool clearHistory, bool fromHistory)
             _wikiUrl = url;
             _wikiFromHistory = fromHistory;
             _wikiJob = KIO::storedGet(url, KIO::NoReload, KIO::HideProgressInfo);
-            connect(_wikiJob, SIGNAL(result(KJob*)), this, SLOT(wikiResult(KJob*)));
+            connect(_wikiJob, &KJob::result, this, &InfoBrowser::wikiResult);
         } else {
             QDesktopServices::openUrl(url);
         }
@@ -232,7 +232,7 @@ void InfoBrowser::setHtml(const QString& data, bool fromHistory, const QUrl& url
         }
     }
 
-    if(url.scheme() == "http") _execAction->setEnabled(true);
+    if(url.scheme() == QLatin1String("http")) _execAction->setEnabled(true);
     else _execAction->setEnabled(false);
 
     _htmlPart->begin(url);
@@ -278,7 +278,7 @@ void InfoBrowser::forward()
 
 void InfoBrowser::openInBrowser()
 {
-    if(_htmlPart->url().scheme() == "http") {
+    if(_htmlPart->url().scheme() == QLatin1String("http")) {
         QDesktopServices::openUrl(_htmlPart->url());
     }
 }
@@ -324,27 +324,27 @@ void InfoBrowser::wikiResult(KJob* job)
 
     QString wikiLanguages;
     // Get the available language list
-    if ( data.indexOf("<div id=\"p-lang\" class=\"portlet\">") != -1 )
+    if ( data.indexOf(QLatin1String("<div id=\"p-lang\" class=\"portlet\">")) != -1 )
     {
-        wikiLanguages = data.mid( data.indexOf("<div id=\"p-lang\" class=\"portlet\">") );
-        wikiLanguages = wikiLanguages.mid( wikiLanguages.indexOf("<ul>") );
-        wikiLanguages = wikiLanguages.mid( 0, wikiLanguages.indexOf( "</div>" ) );
+        wikiLanguages = data.mid( data.indexOf(QLatin1String("<div id=\"p-lang\" class=\"portlet\">")) );
+        wikiLanguages = wikiLanguages.mid( wikiLanguages.indexOf(QLatin1String("<ul>")) );
+        wikiLanguages = wikiLanguages.mid( 0, wikiLanguages.indexOf( QLatin1String("</div>") ) );
     }
 
     QString copyright;
-    QString copyrightMark = "<li id=\"f-copyright\">";
+    QString copyrightMark = QStringLiteral("<li id=\"f-copyright\">");
     if ( data.indexOf( copyrightMark ) != -1 )
     {
         copyright = data.mid( data.indexOf(copyrightMark) + copyrightMark.length() );
-        copyright = copyright.mid( 0, copyright.indexOf( "</li>" ) );
-        copyright.remove( "<br />" );
+        copyright = copyright.mid( 0, copyright.indexOf( QLatin1String("</li>") ) );
+        copyright.remove( QStringLiteral("<br />") );
         //only one br at the beginning
         copyright.prepend( "<br />" );
     }
 
     // Ok lets remove the top and bottom parts of the page
-    data = data.mid( data.indexOf( "<h1 class=\"firstHeading\">" ) );
-    data = data.mid( 0, data.indexOf( "<div class=\"printfooter\">" ) );
+    data = data.mid( data.indexOf( QLatin1String("<h1 class=\"firstHeading\">") ) );
+    data = data.mid( 0, data.indexOf( QLatin1String("<div class=\"printfooter\">") ) );
 
     // Adding back license information
     data += copyright;
@@ -377,11 +377,11 @@ void InfoBrowser::wikiResult(KJob* job)
     // let's remove the form elements, we don't want them.
     data.remove( QRegExp( "<input[^>]*>" ) );
     data.remove( QRegExp( "<select[^>]*>" ) );
-    data.remove( "</select>\n" );
+    data.remove( QStringLiteral("</select>\n") );
     data.remove( QRegExp( "<option[^>]*>" ) );
-    data.remove( "</option>\n" );
+    data.remove( QStringLiteral("</option>\n") );
     data.remove( QRegExp( "<textarea[^>]*>" ) );
-    data.remove( "</textarea>" );
+    data.remove( QStringLiteral("</textarea>") );
 
     //first we convert all the links with protocol to external, as they should all be External Links.
     //data.replace( QRegExp( "href= *\"http:" ), "href=\"externalurl:" );

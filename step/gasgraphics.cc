@@ -52,16 +52,16 @@ bool GasCreator::sceneEvent(QEvent* event)
         _worldModel->simulationPause();
         _worldModel->beginMacro(i18n("Create %1", _worldModel->newItemName(_className)));
         _item = _worldModel->newItem(_className); Q_ASSERT(_item != NULL);
-        _worldModel->setProperty(_item, "measureRectCenter", vpos);
-        _worldModel->setProperty(_item, "measureRectSize", QVariant::fromValue(StepCore::Vector2d::Zero().eval()));
+        _worldModel->setProperty(_item, QStringLiteral("measureRectCenter"), vpos);
+        _worldModel->setProperty(_item, QStringLiteral("measureRectSize"), QVariant::fromValue(StepCore::Vector2d::Zero().eval()));
         _worldModel->selectionModel()->setCurrentIndex(_worldModel->objectIndex(_item),
                                                     QItemSelectionModel::ClearAndSelect);
 
         StepCore::Gas* gas = static_cast<StepCore::Gas*>(_item);
-        _worldModel->newItem("GasLJForce", gas);
+        _worldModel->newItem(QStringLiteral("GasLJForce"), gas);
         StepCore::Object* ljforce = gas->items()[0];
-        _worldModel->setProperty(ljforce, "depth", 0.1);
-        _worldModel->setProperty(ljforce, "rmin", 0.1);
+        _worldModel->setProperty(ljforce, QStringLiteral("depth"), 0.1);
+        _worldModel->setProperty(ljforce, QStringLiteral("rmin"), 0.1);
 
         _topLeft = StepGraphicsItem::pointToVector(pos);
 
@@ -76,8 +76,8 @@ bool GasCreator::sceneEvent(QEvent* event)
         StepCore::Vector2d pos = StepGraphicsItem::pointToVector(mouseEvent->scenePos());
         StepCore::Vector2d position = (_topLeft + pos) / 2.0;
         StepCore::Vector2d size = _topLeft - pos;
-        _worldModel->setProperty(_item, "measureRectCenter", QVariant::fromValue(position));
-        _worldModel->setProperty(_item, "measureRectSize", QVariant::fromValue(size));
+        _worldModel->setProperty(_item, QStringLiteral("measureRectCenter"), QVariant::fromValue(position));
+        _worldModel->setProperty(_item, QStringLiteral("measureRectSize"), QVariant::fromValue(size));
         return true;
 
     } else if(event->type() == QEvent::GraphicsSceneMouseRelease &&
@@ -88,8 +88,8 @@ bool GasCreator::sceneEvent(QEvent* event)
         StepCore::Vector2d position = (_topLeft + pos) / 2.0;
         StepCore::Vector2d size = _topLeft - pos;
         if(size[0] == 0 && size[1] == 0) { size[0] = size[1] = 1; }
-        _worldModel->setProperty(_item, "measureRectCenter", QVariant::fromValue(position));
-        _worldModel->setProperty(_item, "measureRectSize", QVariant::fromValue(size));
+        _worldModel->setProperty(_item, QStringLiteral("measureRectCenter"), QVariant::fromValue(position));
+        _worldModel->setProperty(_item, QStringLiteral("measureRectSize"), QVariant::fromValue(size));
 
         showMessage(MessageFrame::Information,
             i18n("Please fill in the parameters for the gas particles."));
@@ -161,14 +161,14 @@ void GasVertexHandlerGraphicsItem::setValue(const StepCore::Vector2d& value)
             newPos[1] = oCorner[1]; newSize[1] = 0;
             _vertexNum ^= 2;
         }
-        _worldModel->setProperty(_item, "measureRectCenter", QVariant::fromValue(newPos));
-        _worldModel->setProperty(_item, "measureRectSize", QVariant::fromValue(newSize));
+        _worldModel->setProperty(_item, QStringLiteral("measureRectCenter"), QVariant::fromValue(newPos));
+        _worldModel->setProperty(_item, QStringLiteral("measureRectSize"), QVariant::fromValue(newSize));
         setValue(value);
         return;
     }
 
-    _worldModel->setProperty(_item, "measureRectCenter", QVariant::fromValue(newPos));
-    _worldModel->setProperty(_item, "measureRectSize", QVariant::fromValue(newSize));
+    _worldModel->setProperty(_item, QStringLiteral("measureRectCenter"), QVariant::fromValue(newPos));
+    _worldModel->setProperty(_item, QStringLiteral("measureRectSize"), QVariant::fromValue(newSize));
 }
 
 GasGraphicsItem::GasGraphicsItem(StepCore::Item* item, WorldModel* worldModel)
@@ -198,7 +198,7 @@ void GasGraphicsItem::mouseSetPos(const QPointF& pos, const QPointF&, MovingStat
 #ifdef __GNUC__
 #warning Consider renaming measureRectCenter to position
 #endif
-    const StepCore::MetaProperty* property = _item->metaObject()->property("measureRectCenter");
+    const StepCore::MetaProperty* property = _item->metaObject()->property(QStringLiteral("measureRectCenter"));
     _worldModel->simulationPause();
     _worldModel->setProperty(_item, property, QVariant::fromValue( pointToVector(pos) ));
 }
@@ -289,7 +289,7 @@ void GasMenuHandler::populateMenu(QMenu* menu, KActionCollection* actions)
     _creationDialog = 0;
     //_confChanged = false;
 
-    menu->addAction(QIcon::fromTheme("step_object_GasParticle"), i18n("Create particles..."), this, SLOT(createGasParticles()));
+    menu->addAction(QIcon::fromTheme(QStringLiteral("step_object_GasParticle")), i18n("Create particles..."), this, &GasMenuHandler::createGasParticles);
     //menu->addAction(QIcon::fromTheme("edit-clear"), i18n("Clear gas"), this, SLOT(clearGas()));
     menu->addSeparator();
     ItemMenuHandler::populateMenu(menu, actions);
@@ -316,17 +316,17 @@ void GasMenuHandler::createGasParticles()
     _createGasParticlesUi = _creationDialog->ui();
 
     createGasParticlesCountChanged();
-    _createGasParticlesUi->labelVolume->setText(gas()->metaObject()->property("rectVolume")->units());
-    _createGasParticlesUi->labelCount->setText(gas()->metaObject()->property("rectParticleCount")->units());
-    _createGasParticlesUi->labelConcentration->setText(gas()->metaObject()->property("rectConcentration")->units());
-    _createGasParticlesUi->labelMass->setText(gas()->metaObject()->property("rectMeanParticleMass")->units());
-    _createGasParticlesUi->labelTemperature->setText(gas()->metaObject()->property("rectTemperature")->units());
-    _createGasParticlesUi->labelMeanVelocity->setText(gas()->metaObject()->property("rectMeanVelocity")->units());
+    _createGasParticlesUi->labelVolume->setText(gas()->metaObject()->property(QStringLiteral("rectVolume"))->units());
+    _createGasParticlesUi->labelCount->setText(gas()->metaObject()->property(QStringLiteral("rectParticleCount"))->units());
+    _createGasParticlesUi->labelConcentration->setText(gas()->metaObject()->property(QStringLiteral("rectConcentration"))->units());
+    _createGasParticlesUi->labelMass->setText(gas()->metaObject()->property(QStringLiteral("rectMeanParticleMass"))->units());
+    _createGasParticlesUi->labelTemperature->setText(gas()->metaObject()->property(QStringLiteral("rectTemperature"))->units());
+    _createGasParticlesUi->labelMeanVelocity->setText(gas()->metaObject()->property(QStringLiteral("rectMeanVelocity"))->units());
 
-    connect(_createGasParticlesUi->lineEditCount, SIGNAL(textEdited(QString)),
-                this, SLOT(createGasParticlesCountChanged()));
-    connect(_createGasParticlesUi->lineEditConcentration, SIGNAL(textEdited(QString)),
-                this, SLOT(createGasParticlesConcentrationChanged()));
+    connect(_createGasParticlesUi->lineEditCount, &QLineEdit::textEdited,
+                this, &GasMenuHandler::createGasParticlesCountChanged);
+    connect(_createGasParticlesUi->lineEditConcentration, &QLineEdit::textEdited,
+                this, &GasMenuHandler::createGasParticlesConcentrationChanged);
 
     int retval = _creationDialog->exec();
     if (retval == QDialog::Accepted) {

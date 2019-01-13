@@ -49,7 +49,7 @@ struct Color
 
 template<> inline QString typeToString(const Color& v)
 {
-    return QString("#%1").arg(v, 8, 16, QLatin1Char('0'));
+    return QStringLiteral("#%1").arg(v, 8, 16, QLatin1Char('0'));
 }
 
 template<> inline Color stringToType(const QString& s, bool *ok)
@@ -76,7 +76,7 @@ template<> inline QByteArray stringToType(const QString& s, bool *ok)
 ///////////////// Vector2d
 template<> inline QString typeToString(const Vector2d& v)
 {
-    return QString("(%1,%2)").arg(v[0]).arg(v[1]);
+    return QStringLiteral("(%1,%2)").arg(v[0]).arg(v[1]);
 }
 
 template<> inline Vector2d stringToType(const QString& s, bool *ok)
@@ -96,7 +96,7 @@ template<> inline Vector2d stringToType(const QString& s, bool *ok)
 ///////////////// Vector2i
 template<> inline QString typeToString(const Vector2i& v)
 {
-    return QString("(%1,%2)").arg(v[0]).arg(v[1]);
+    return QStringLiteral("(%1,%2)").arg(v[0]).arg(v[1]);
 }
 
 template<> inline Vector2i stringToType(const QString& s, bool *ok)
@@ -120,8 +120,8 @@ template<> inline QString typeToString(const Vector2dList& v)
 {
     QString ret;
     for(Vector2dList::const_iterator it = v.begin(); it != v.end(); ++it) {
-        if(!ret.isEmpty()) ret += ",";
-        ret += QString("(%1,%2)").arg((*it)[0]).arg((*it)[1]);
+        if(!ret.isEmpty()) ret += QLatin1String(",");
+        ret += QStringLiteral("(%1,%2)").arg((*it)[0]).arg((*it)[1]);
     }
     return ret;
 }

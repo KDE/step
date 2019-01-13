@@ -81,8 +81,8 @@ void StepStreamWriter::saveObject(const QString& tag, const Object* obj)
     Q_ASSERT(obj != NULL);
     
     _writer.writeStartElement(tag);
-    _writer.writeAttribute("class", obj->metaObject()->className());
-    _writer.writeAttribute("id", QString::number(_ids.value(obj, -1)));
+    _writer.writeAttribute(QStringLiteral("class"), obj->metaObject()->className());
+    _writer.writeAttribute(QStringLiteral("id"), QString::number(_ids.value(obj, -1)));
 
     saveProperties(obj, 0);
 
@@ -95,7 +95,7 @@ void StepStreamWriter::saveObject(const QString& tag, const Object* obj)
         const ItemGroup* group = static_cast<const ItemGroup*>(obj);
         ItemList::const_iterator end = group->items().end();
         for(ItemList::const_iterator it = group->items().begin(); it != end; ++it) {
-            saveObject("item", *it);
+            saveObject(QStringLiteral("item"), *it);
         }
     }
     
@@ -122,28 +122,28 @@ bool StepStreamWriter::writeWorld(const World* world)
 
     _writer.writeStartDocument();
     _writer.writeDTD(XmlFile::DOCTYPE);
-    _writer.writeStartElement("world");
-    _writer.writeAttribute("xmlns", XmlFile::NAMESPACE_URI);
-    _writer.writeAttribute("version", XmlFile::VERSION);
-    _writer.writeAttribute("id", "1");
+    _writer.writeStartElement(QStringLiteral("world"));
+    _writer.writeAttribute(QStringLiteral("xmlns"), XmlFile::NAMESPACE_URI);
+    _writer.writeAttribute(QStringLiteral("version"), XmlFile::VERSION);
+    _writer.writeAttribute(QStringLiteral("id"), QStringLiteral("1"));
 
     saveProperties(world, 0);
 
     ItemList::const_iterator end = world->items().end();
     for(ItemList::const_iterator it = world->items().begin(); it != end; ++it) {
-        saveObject("item", *it);
+        saveObject(QStringLiteral("item"), *it);
     }
 
     if(world->solver()) {
-        saveObject("solver", world->solver());
+        saveObject(QStringLiteral("solver"), world->solver());
     }
 
     if(world->collisionSolver()) {
-        saveObject("collisionSolver", world->collisionSolver());
+        saveObject(QStringLiteral("collisionSolver"), world->collisionSolver());
     }
 
     if(world->constraintSolver()) {
-        saveObject("constraintSolver", world->constraintSolver());
+        saveObject(QStringLiteral("constraintSolver"), world->constraintSolver());
     }
     
     _writer.writeEndElement();
@@ -196,7 +196,7 @@ bool StepDomDocument::parse(QIODevice* device)
         return false;
     }
     
-    QDomElement worldElement = _document.firstChildElement("world");
+    QDomElement worldElement = _document.firstChildElement(QStringLiteral("world"));
     if (worldElement.isNull()) {
         _errorMsg = QObject::tr("The file is not a StepCoreXML file.");
         return false;
@@ -207,12 +207,12 @@ bool StepDomDocument::parse(QIODevice* device)
 
 bool StepDomDocument::parseWorld(const QDomElement& world)
 {
-    _version = world.attribute("version", "1.0");
+    _version = world.attribute(QStringLiteral("version"), QStringLiteral("1.0"));
     
     if (!parseObject(_world, world)) return false;
     if (!parseItems(_world, world)) return false;
     
-    QDomElement solverElement = world.firstChildElement("solver");
+    QDomElement solverElement = world.firstChildElement(QStringLiteral("solver"));
     if (!solverElement.isNull()) {
         Solver *solver = createSolver(solverElement);
         if (!solver) return false;
@@ -220,7 +220,7 @@ bool StepDomDocument::parseWorld(const QDomElement& world)
         _world->setSolver(solver);
     }
     
-    QDomElement collisionSolverElement = world.firstChildElement("collisionSolver");
+    QDomElement collisionSolverElement = world.firstChildElement(QStringLiteral("collisionSolver"));
     if (!collisionSolverElement.isNull()) {
         CollisionSolver *solver = createCollisionSolver(collisionSolverElement);
         if (!solver) return false;
@@ -228,7 +228,7 @@ bool StepDomDocument::parseWorld(const QDomElement& world)
         _world->setCollisionSolver(solver);
     }
     
-    QDomElement constraintSolverElement = world.firstChildElement("constraintSolver");
+    QDomElement constraintSolverElement = world.firstChildElement(QStringLiteral("constraintSolver"));
     if (!constraintSolverElement.isNull()) {
         ConstraintSolver *solver = createConstraintSolver(constraintSolverElement);
         if (!solver) return false;
@@ -241,7 +241,7 @@ bool StepDomDocument::parseWorld(const QDomElement& world)
 
 Item* StepDomDocument::createItem(const QDomElement& element)
 {
-    QString className = element.attribute("class");
+    QString className = element.attribute(QStringLiteral("class"));
     QScopedPointer<Item> item(_factory->newItem(className));
     if (!item) {
         _errorMsg = QObject::tr("Unknown item type \"%1\"").arg(className);
@@ -262,7 +262,7 @@ Item* StepDomDocument::createItem(const QDomElement& element)
 
 Solver* StepDomDocument::createSolver(const QDomElement& element)
 {
-    QString className = element.attribute("class");
+    QString className = element.attribute(QStringLiteral("class"));
     QScopedPointer<Solver> solver(_factory->newSolver(className));
     if (!solver) {
         _errorMsg = QObject::tr("Unknown solver type \"%1\"").arg(className);
@@ -276,7 +276,7 @@ Solver* StepDomDocument::createSolver(const QDomElement& element)
 
 CollisionSolver* StepDomDocument::createCollisionSolver(const QDomElement& element)
 {
-    QString className = element.attribute("class");
+    QString className = element.attribute(QStringLiteral("class"));
     QScopedPointer<CollisionSolver> solver(_factory->newCollisionSolver(className));
     if (!solver) {
         _errorMsg = QObject::tr("Unknown collisionSolver type \"%1\"").arg(className);
@@ -290,7 +290,7 @@ CollisionSolver* StepDomDocument::createCollisionSolver(const QDomElement& eleme
 
 ConstraintSolver* StepDomDocument::createConstraintSolver(const QDomElement& element)
 {
-    QString className = element.attribute("class");
+    QString className = element.attribute(QStringLiteral("class"));
     QScopedPointer<ConstraintSolver> solver(_factory->newConstraintSolver(className));
     if (!solver) {
         _errorMsg = QObject::tr("Unknown constraint solver type \"%1\"").arg(className);
@@ -304,13 +304,13 @@ ConstraintSolver* StepDomDocument::createConstraintSolver(const QDomElement& ele
 
 bool StepDomDocument::parseItems(ItemGroup* parent, const QDomElement& element)
 {
-    QDomElement itemElement = element.firstChildElement("item");
+    QDomElement itemElement = element.firstChildElement(QStringLiteral("item"));
     while (!itemElement.isNull()) {
         Item *item = createItem(itemElement);
         if (!item) return false;
         
         parent->addItem(item);
-        itemElement = itemElement.nextSiblingElement("item");
+        itemElement = itemElement.nextSiblingElement(QStringLiteral("item"));
     }
     
     return true;
@@ -318,7 +318,7 @@ bool StepDomDocument::parseItems(ItemGroup* parent, const QDomElement& element)
 
 bool StepDomDocument::parseObject(Object* object, const QDomElement& element)
 {
-    int n = element.attribute("id").trimmed().toInt();
+    int n = element.attribute(QStringLiteral("id")).trimmed().toInt();
     
     if (!n) {
         _errorMsg = QObject::tr("Wrong ID attribute value for %1")

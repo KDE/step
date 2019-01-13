@@ -261,7 +261,7 @@ const QIcon& WorldFactory::objectIcon(const StepCore::MetaObject* mObject) const
 
 void WorldFactory::loadIcon(const StepCore::MetaObject* metaObject, ExtMetaObject* extMetaObject)
 {
-    QString iconName = QString("step_object_") + metaObject->className();
+    QString iconName = QStringLiteral("step_object_") + metaObject->className();
     extMetaObject->icon = new QIcon(QIcon::fromTheme(iconName));
     QString iconPath = KIconLoader::global()->iconPath(iconName, KIconLoader::Small, true);
     extMetaObject->hasIcon = !iconPath.isEmpty();

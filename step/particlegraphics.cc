@@ -34,7 +34,7 @@ ParticleGraphicsItem::ParticleGraphicsItem(StepCore::Item* item, WorldModel* wor
     setAcceptHoverEvents(true);
     _lastArrowRadius = -1;
     _velocityHandler = new ArrowHandlerGraphicsItem(item, worldModel, this,
-                   _item->metaObject()->property("velocity"));
+                   _item->metaObject()->property(QStringLiteral("velocity")));
     _velocityHandler->setVisible(false);
     //scene()->addItem(_velocityHandler);
 }

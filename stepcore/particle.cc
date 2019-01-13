@@ -107,7 +107,7 @@ ChargedParticle* ChargedParticleErrors::chargedParticle() const
     return static_cast<ChargedParticle*>(owner());
 }
 
-Particle::Particle(Vector2d position, Vector2d velocity, double mass)
+Particle::Particle(const Vector2d &position, const Vector2d &velocity, double mass)
     : _position(position), _velocity(velocity), _force(Vector2d::Zero()), _mass(mass)
 {
 }

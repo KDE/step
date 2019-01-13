@@ -42,7 +42,7 @@ class GasParticle: public Particle
 
 public:
     /** Constructs a GasParticle */
-    explicit GasParticle(Vector2d position = Vector2d::Zero(), Vector2d velocity = Vector2d::Zero(), double mass = 1)
+    explicit GasParticle(const Vector2d &position = Vector2d::Zero(), const Vector2d &velocity = Vector2d::Zero(), double mass = 1)
         : Particle(position, velocity, mass) {}
 };
 

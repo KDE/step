@@ -39,7 +39,7 @@ class SoftBodyParticle: public Particle
 
 public:
     /** Constructs a SoftBadyParticle */
-    explicit SoftBodyParticle(Vector2d position = Vector2d::Zero(), Vector2d velocity = Vector2d::Zero(), double mass = 1)
+    explicit SoftBodyParticle(const Vector2d &position = Vector2d::Zero(), const Vector2d &velocity = Vector2d::Zero(), double mass = 1)
         : Particle(position, velocity, mass) {}
 };
 
@@ -88,12 +88,12 @@ public:
     /** Get the position of the center of mass */
     Vector2d position() const;
     /** Set the position of the center of mass */
-    void setPosition(const Vector2d position); 
+    void setPosition(const Vector2d &position); 
 
     /** Get the velocity of the center of mass */
     Vector2d velocity() const;
     /** Set the velocity of the center of mass */
-    void setVelocity(const Vector2d velocity);
+    void setVelocity(const Vector2d &velocity);
 
     /** Get the angular velocity of the body */
     double angularVelocity() const;

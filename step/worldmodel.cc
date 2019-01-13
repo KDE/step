@@ -267,7 +267,7 @@ CommandSimulate::CommandSimulate(WorldModel* worldModel)
     _worldModel->endResetModel();
 
     _startTime = _worldModel->formatProperty(_worldModel->_world, NULL,
-                            _worldModel->_world->metaObject()->property("time"),
+                            _worldModel->_world->metaObject()->property(QStringLiteral("time")),
                             WorldModel::FormatEditable);
 
     /*
@@ -280,7 +280,7 @@ CommandSimulate::CommandSimulate(WorldModel* worldModel)
 void CommandSimulate::done()
 {
     _endTime = _worldModel->formatProperty(_worldModel->_world, NULL,
-                            _worldModel->_world->metaObject()->property("time"),
+                            _worldModel->_world->metaObject()->property(QStringLiteral("time")),
                             WorldModel::FormatEditable);
 }
 
@@ -327,12 +327,12 @@ WorldModel::WorldModel(QObject* parent)
     _simulationThread = new SimulationThread(&_world);
     _simulationThread->start();
 
-    connect(_simulationTimer, SIGNAL(timeout()),
-                this, SLOT(simulationFrameBegin()));
-    connect(_simulationTimer0, SIGNAL(timeout()),
-                this, SLOT(simulationFrameBegin()));
-    connect(_simulationThread, SIGNAL(worldEvolveDone(int)),
-                this, SLOT(simulationFrameEnd(int)), Qt::QueuedConnection);
+    connect(_simulationTimer, &QTimer::timeout,
+                this, &WorldModel::simulationFrameBegin);
+    connect(_simulationTimer0, &QTimer::timeout,
+                this, &WorldModel::simulationFrameBegin);
+    connect(_simulationThread, &SimulationThread::worldEvolveDone,
+                this, &WorldModel::simulationFrameEnd, Qt::QueuedConnection);
 
     _updatingTimer = new QTimer(this);
     _updatingTimer->setSingleShot(true);
@@ -340,8 +340,8 @@ WorldModel::WorldModel(QObject* parent)
     _updatingFullUpdate = false;
     _updatingRecalcFn = false;
 
-    connect(_updatingTimer, SIGNAL(timeout()),
-                this, SLOT(doEmitChanged()));
+    connect(_updatingTimer, &QTimer::timeout,
+                this, &WorldModel::doEmitChanged);
 
     resetWorld();
 
@@ -365,19 +365,19 @@ void WorldModel::resetWorld()
     beginResetModel();
     if(_world->name().isEmpty()) {
         // XXX: check that loaded items has unique names !
-        _world->setName(getUniqueName("world"));
+        _world->setName(getUniqueName(QStringLiteral("world")));
     }
     if(NULL == _world->solver()) {
         _world->setSolver(new StepCore::AdaptiveEulerSolver());
-        _world->solver()->setName(getUniqueName("solver"));
+        _world->solver()->setName(getUniqueName(QStringLiteral("solver")));
     }
     if(NULL == _world->collisionSolver()) {
         _world->setCollisionSolver(new StepCore::GJKCollisionSolver());
-        _world->collisionSolver()->setName(getUniqueName("collisionSolver"));
+        _world->collisionSolver()->setName(getUniqueName(QStringLiteral("collisionSolver")));
     }
     if(NULL == _world->constraintSolver()) {
         _world->setConstraintSolver(new StepCore::CGConstraintSolver());
-        _world->constraintSolver()->setName(getUniqueName("constraintSolver"));
+        _world->constraintSolver()->setName(getUniqueName(QStringLiteral("constraintSolver")));
     }
     _undoStack->clear();
 
@@ -729,7 +729,7 @@ QString WorldModel::formatProperty(const StepCore::Object* object,
     // Common property types
     if(property->userTypeId() == QMetaType::Double) {
         QString error;
-        if(pv) error = QString::fromUtf8(" ± %1")
+        if(pv) error = QStringLiteral(" ± %1")
                         .arg(sqrt(pv->readVariant(objectErrors).toDouble()), 0, 'g', pr)
                         .append(units);
         return QString::number(property->readVariant(object).toDouble(), 'g', pr).append(units).append(error);
@@ -737,11 +737,11 @@ QString WorldModel::formatProperty(const StepCore::Object* object,
         QString error;
         if(pv) {
             StepCore::Vector2d vv = pv->readVariant(objectErrors).value<StepCore::Vector2d>();
-            error = QString::fromUtf8(" ± (%1,%2)")
+            error = QStringLiteral(" ± (%1,%2)")
                         .arg(sqrt(vv[0]), 0, 'g', pr).arg(sqrt(vv[1]), 0, 'g', pr).append(units);
         }
         StepCore::Vector2d v = property->readVariant(object).value<StepCore::Vector2d>();
-        return QString("(%1,%2)").arg(v[0], 0, 'g', pr).arg(v[1], 0, 'g', pr).append(units).append(error);
+        return QStringLiteral("(%1,%2)").arg(v[0], 0, 'g', pr).arg(v[1], 0, 'g', pr).append(units).append(error);
     } else if(property->userTypeId() == qMetaTypeId<StepCore::Vector2dList >() ) {
         // XXX: add error information
 //         if(pv) qDebug() << "Unhandled property variance type" << endl;
@@ -751,10 +751,10 @@ QString WorldModel::formatProperty(const StepCore::Object* object,
         unsigned int end = flags.testFlag(FormatEditable) ? list.size() : qMin<unsigned int>(10, list.size());
         for(unsigned int i=0; i<end; ++i) {
             if(!string.isEmpty()) string += ',';
-            string += QString("(%1,%2)").arg(list[i][0], 0, 'g', pr)
+            string += QStringLiteral("(%1,%2)").arg(list[i][0], 0, 'g', pr)
                                             .arg(list[i][1], 0, 'g', pr);
         }
-        if(!flags.testFlag(FormatEditable) && end != 0 && end < list.size()) string += ",...";
+        if(!flags.testFlag(FormatEditable) && end != 0 && end < list.size()) string += QLatin1String(",...");
         string.append(units);
         return string;
     } else {
@@ -775,7 +775,7 @@ QString WorldModel::createToolTip(const QModelIndex& index) const
     //Q_ASSERT(object != NULL);
     Q_ASSERT(index.isValid());
     QString toolTip = i18n("<nobr><h4><u>%1</u></h4></nobr>", index.data(Qt::DisplayRole).toString());
-    toolTip += "<table>";
+    toolTip += QLatin1String("<table>");
 
     StepCore::Object* object = this->object(index);
     StepCore::Item* item = dynamic_cast<StepCore::Item*>(object);
@@ -805,7 +805,7 @@ QString WorldModel::createToolTip(const QModelIndex& index) const
         toolTip += i18n("<tr><td>%1&nbsp;&nbsp;</td><td>%2</td></tr>", p->nameTr(),
                             formatProperty(object, objectErrors, p));
     }
-    toolTip += "</table>";
+    toolTip += QLatin1String("</table>");
     //qDebug("%s", toolTip.toAscii().constData());
     return toolTip;
 }

@@ -109,7 +109,7 @@ void WorldSceneAxes::paint(QPainter* painter, const QStyleOptionGraphicsItem* /*
 
     painter->drawText(QRectF(-LENGTH - 6, 6, LENGTH, LENGTH),
                         Qt::AlignRight | Qt::AlignTop,
-                        QString("%1,%2").arg( pos().x(), 0, 'g', 3 ).arg( pos().y(), 0, 'g', 3 ));
+                        QStringLiteral("%1,%2").arg( pos().x(), 0, 'g', 3 ).arg( pos().y(), 0, 'g', 3 ));
     painter->drawText(QRectF(6, -LENGTH, LENGTH - 6, LENGTH - 6),
             Qt::AlignLeft | Qt::AlignTop, QString::number( pos().y() + LENGTH/_viewScale, 'g', 3 ));
     painter->drawText(QRectF(6, -LENGTH, LENGTH - 6, LENGTH - 6),
@@ -148,20 +148,20 @@ WorldScene::WorldScene(WorldModel* worldModel, QObject* parent)
 
     worldModelReset();
 
-    connect(_worldModel, SIGNAL(modelReset()), this, SLOT(worldModelReset()));
-    connect(_worldModel, SIGNAL(worldDataChanged(bool)), this, SLOT(worldDataChanged(bool)));
-    connect(_worldModel->selectionModel(), SIGNAL(currentChanged(QModelIndex,QModelIndex)),
-                                  this, SLOT(worldCurrentChanged(QModelIndex,QModelIndex)));
-    connect(_worldModel->selectionModel(), SIGNAL(selectionChanged(QItemSelection,QItemSelection)),
-                                  this, SLOT(worldSelectionChanged(QItemSelection,QItemSelection)));
-    connect(_worldModel, SIGNAL(rowsInserted(QModelIndex,int,int)),
-                this, SLOT(worldRowsInserted(QModelIndex,int,int)));
-    connect(_worldModel, SIGNAL(rowsAboutToBeRemoved(QModelIndex,int,int)),
-                         this, SLOT(worldRowsAboutToBeRemoved(QModelIndex,int,int)));
+    connect(_worldModel, &QAbstractItemModel::modelReset, this, &WorldScene::worldModelReset);
+    connect(_worldModel, &WorldModel::worldDataChanged, this, &WorldScene::worldDataChanged);
+    connect(_worldModel->selectionModel(), &QItemSelectionModel::currentChanged,
+                                  this, &WorldScene::worldCurrentChanged);
+    connect(_worldModel->selectionModel(), &QItemSelectionModel::selectionChanged,
+                                  this, &WorldScene::worldSelectionChanged);
+    connect(_worldModel, &QAbstractItemModel::rowsInserted,
+                this, &WorldScene::worldRowsInserted);
+    connect(_worldModel, &QAbstractItemModel::rowsAboutToBeRemoved,
+                         this, &WorldScene::worldRowsAboutToBeRemoved);
 
-    connect(_messageFrame, SIGNAL(linkActivated(QString)),
-                this, SLOT(messageLinkActivated(QString)));
-    connect(_snapTimer, SIGNAL(timeout()), this, SLOT(snapUpdateToolTip()));
+    connect(_messageFrame, &MessageFrame::linkActivated,
+                this, &WorldScene::messageLinkActivated);
+    connect(_snapTimer, &QTimer::timeout, this, &WorldScene::snapUpdateToolTip);
 }
 
 WorldScene::~WorldScene()
@@ -189,7 +189,7 @@ void WorldScene::beginAddItem(const QString& name)
         emit endAddItem(_itemCreator->className(), _itemCreator->item() != NULL);
         delete _itemCreator;
     }
-    if(name == "Pointer") {
+    if(name == QLatin1String("Pointer")) {
         _itemCreator = NULL;
     } else {
         _itemCreator = _worldModel->worldFactory()->newItemCreator(name, _worldModel, this);
@@ -255,12 +255,12 @@ void WorldScene::helpEvent(QGraphicsSceneHelpEvent *helpEvent)
 
     int count = activeItems.count();
     if(count > 1) { //XXX
-        text = QString("<nobr><h4><u>%1</u></h4></nobr>").arg(i18n("Objects under mouse:"));
+        text = QStringLiteral("<nobr><h4><u>%1</u></h4></nobr>").arg(i18n("Objects under mouse:"));
         for(int i=0; i<qMin<int>(count,10); ++i)
-            text += QString("<br /><nobr>%1</nobr>")
+            text += QStringLiteral("<br /><nobr>%1</nobr>")
                         .arg(_worldModel->objectIndex(activeItems[i]).data(Qt::DisplayRole).toString());
         if(count > 10)
-            text += QString("<br /><nobr>%1</nobr>").arg(i18np("... (1 more item)", "... (%1 more items)", count - 10));
+            text += QStringLiteral("<br /><nobr>%1</nobr>").arg(i18np("... (1 more item)", "... (%1 more items)", count - 10));
     } else {
         for(int i=0; i<count; ++i)
             text += _worldModel->objectIndex(activeItems[i]).data(Qt::ToolTipRole).toString();
@@ -572,8 +572,8 @@ WorldGraphicsView::WorldGraphicsView(WorldScene* worldScene, QWidget* parent)
     
     _sceneRect = worldScene->sceneRect();
     updateSceneRect();
-    connect(worldScene, SIGNAL(sceneRectChanged(QRectF)),
-            this, SLOT(sceneRectChanged(QRectF)));
+    connect(worldScene, &QGraphicsScene::sceneRectChanged,
+            this, &WorldGraphicsView::sceneRectChanged);
     
     //worldGraphicsView->setRenderHints(QPainter::Antialiasing);
     setDragMode(QGraphicsView::RubberBandDrag);

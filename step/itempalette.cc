@@ -209,7 +209,7 @@ ItemPalette::ItemPalette(WorldModel* worldModel, QWidget* parent)
 
     _pointerAction = new QAction(i18n("Pointer"), this);
     _pointerAction->setToolTip(i18n("Selection pointer"));
-    _pointerAction->setIcon(QIcon::fromTheme("pointer"));
+    _pointerAction->setIcon(QIcon::fromTheme(QStringLiteral("pointer")));
     _pointerAction->setCheckable(true);
     _pointerAction->setChecked(true);
     _pointerAction->setProperty("step_object", "Pointer");
@@ -229,12 +229,12 @@ ItemPalette::ItemPalette(WorldModel* worldModel, QWidget* parent)
     topLayout->addWidget(_scrollArea);
     setWidget(topWidget);
 
-    QObject::connect(_actionGroup, SIGNAL(triggered(QAction*)), this, SLOT(actionTriggered(QAction*)));
+    QObject::connect(_actionGroup, &QActionGroup::triggered, this, &ItemPalette::actionTriggered);
 
     QAction* showText = new QAction(i18n("Show text"), this);
     showText->setCheckable(true);
     showText->setChecked(Settings::showButtonText());
-    QObject::connect(showText, SIGNAL(toggled(bool)), this, SLOT(showButtonTextToggled(bool)));
+    QObject::connect(showText, &QAction::toggled, this, &ItemPalette::showButtonTextToggled);
 
     _widget->addAction(showText);
     _widget->setContextMenuPolicy(Qt::ActionsContextMenu);

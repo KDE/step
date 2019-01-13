@@ -56,7 +56,7 @@ int MessageFrame::showMessage(Type type, const QString& text, Flags flags)
         _layout->addWidget(line);
     }
 
-    QString widgetName("message");
+    QString widgetName(QStringLiteral("message"));
     widgetName.append(QString::number(_lastId));
 
     QWidget* widget = new QWidget(this);
@@ -67,25 +67,25 @@ int MessageFrame::showMessage(Type type, const QString& text, Flags flags)
     layout->setContentsMargins(0,2,0,2);
 
     QLabel* iconLabel = new QLabel(widget);
-    iconLabel->setObjectName("iconLabel");
-    if(type == Error) iconLabel->setPixmap(QIcon::fromTheme("dialog-error").pixmap(16,16));
-    else if(type == Warning) iconLabel->setPixmap(QIcon::fromTheme("dialog-warning").pixmap(16,16));
-    else iconLabel->setPixmap(QIcon::fromTheme("dialog-information").pixmap(16,16));
+    iconLabel->setObjectName(QStringLiteral("iconLabel"));
+    if(type == Error) iconLabel->setPixmap(QIcon::fromTheme(QStringLiteral("dialog-error")).pixmap(16,16));
+    else if(type == Warning) iconLabel->setPixmap(QIcon::fromTheme(QStringLiteral("dialog-warning")).pixmap(16,16));
+    else iconLabel->setPixmap(QIcon::fromTheme(QStringLiteral("dialog-information")).pixmap(16,16));
     layout->addWidget(iconLabel);
 
     QLabel* textLabel = new QLabel(widget);
-    textLabel->setObjectName("textLabel");
+    textLabel->setObjectName(QStringLiteral("textLabel"));
     //textLabel->setWordWrap(true);
     textLabel->setText(text);
     layout->addWidget(textLabel, 1);
 
-    connect(textLabel, SIGNAL(linkActivated(QString)),
-                this, SLOT(messageLinkActivated(QString)));
+    connect(textLabel, &QLabel::linkActivated,
+                this, &MessageFrame::messageLinkActivated);
 
     if(flags.testFlag(CloseButton)) {
         QToolButton* button = new QToolButton(widget);
-        button->setObjectName("closeButton");
-        button->setIcon(QIcon::fromTheme("window-close"));
+        button->setObjectName(QStringLiteral("closeButton"));
+        button->setIcon(QIcon::fromTheme(QStringLiteral("window-close")));
         button->setIconSize(QSize(16,16));
         button->setAutoRaise(true);
         layout->addWidget(button);
@@ -96,7 +96,7 @@ int MessageFrame::showMessage(Type type, const QString& text, Flags flags)
 
     if(flags.testFlag(CloseTimer)) {
         QTimer* timer = new QTimer(widget);
-        timer->setObjectName("closeTimer");
+        timer->setObjectName(QStringLiteral("closeTimer"));
         timer->setSingleShot(true);
         timer->setInterval(2000);
 
@@ -113,7 +113,7 @@ int MessageFrame::showMessage(Type type, const QString& text, Flags flags)
 
 int MessageFrame::changeMessage(int id, Type type, const QString& text, Flags flags)
 {
-    QString widgetName("message");
+    QString widgetName(QStringLiteral("message"));
     widgetName.append(QString::number(id));
     QWidget* widget = findChild<QWidget*>(widgetName);
     if(widget) messageCloseClicked(widget);
@@ -122,7 +122,7 @@ int MessageFrame::changeMessage(int id, Type type, const QString& text, Flags fl
 
 void MessageFrame::closeMessage(int id)
 {
-    QString widgetName("message");
+    QString widgetName(QStringLiteral("message"));
     widgetName.append(QString::number(id));
     QWidget* widget = findChild<QWidget*>(widgetName);
     if(widget) messageCloseClicked(widget);
