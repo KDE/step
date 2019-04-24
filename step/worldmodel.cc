@@ -221,7 +221,7 @@ public:
 
 protected:
     typedef QPair<int, int> PairInt;
-    PairInt indexToPair(QModelIndex index);
+    PairInt indexToPair(const QModelIndex &index);
     QModelIndex pairToIndex(PairInt pair);
 
     WorldModel* _worldModel;
@@ -233,7 +233,7 @@ protected:
     QString _endTime;
 };
 
-CommandSimulate::PairInt CommandSimulate::indexToPair(QModelIndex index)
+CommandSimulate::PairInt CommandSimulate::indexToPair(const QModelIndex &index)
 {
     if(index.parent().isValid()) return PairInt(1, index.row());
     else return PairInt(0, index.row());
