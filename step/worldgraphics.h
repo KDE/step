@@ -29,13 +29,10 @@ namespace StepCore {
     class Object;
     class Item;
     class Particle;
-    class Spring;
-    class MetaProperty;
 }
 class WorldModel;
 class WorldScene;
 class QEvent;
-class QTimer;
 class KActionCollection;
 
 /** \brief Base class for item creators.

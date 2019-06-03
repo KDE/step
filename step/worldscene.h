@@ -33,8 +33,6 @@ class QUrl;
 class QModelIndex;
 class QGraphicsItem;
 class QItemSelection;
-class QVBoxLayout;
-class QSignalMapper;
 class StepGraphicsItem;
 class WorldGraphicsView;
 class ItemCreator;

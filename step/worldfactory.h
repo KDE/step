@@ -21,8 +21,6 @@
 
 #include <stepcore/factory.h>
 
-class QGraphicsItem;
-class QGraphicsScene;
 class QIcon;
 class WorldModel;
 class WorldScene;

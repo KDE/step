@@ -23,7 +23,6 @@
 #include <QItemDelegate>
 class PropertiesBrowserModel;
 class WorldModel;
-class QTreeView;
 class QModelIndex;
 class QAbstractItemModel;
 class KComboBox;

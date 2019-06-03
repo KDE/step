@@ -32,12 +32,10 @@ class InfoBrowser;
 class UndoBrowser;
 class ItemPalette;
 
-class KConfig;
 class KToolBarPopupAction;
 class KRecentFilesAction;
 
 class QAction;
-class QItemSelection;
 class QActionGroup;
 
 class MainWindow : public KXmlGuiWindow

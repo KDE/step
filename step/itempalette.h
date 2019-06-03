@@ -23,7 +23,6 @@
 #include <QList>
 
 class WorldModel;
-class QVBoxLayout;
 class QToolButton;
 class QScrollArea;
 class QAction;

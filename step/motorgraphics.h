@@ -24,11 +24,6 @@
 #include <QWidget>
 #include <limits.h>
 
-class KPlotWidget;
-class KPlotObject;
-class QAction;
-class QSlider;
-class QLabel;
 
 namespace StepCore {
     class LinearMotor;
