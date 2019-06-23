@@ -28,12 +28,10 @@
 
 #include "mainwindow.h"
 
-#define STEP_VERSION "0.1.0"
+#include "step_version.h"
 
 static const char description[] =
     I18N_NOOP("Interactive physical simulator");
-
-static const char version[] = STEP_VERSION;
 
 int main(int argc, char* argv[])
 {
@@ -41,7 +39,7 @@ int main(int argc, char* argv[])
 
     QApplication app(argc, argv);
     QApplication::setApplicationName(QStringLiteral("step"));
-    QApplication::setApplicationVersion(version);
+    QApplication::setApplicationVersion(STEP_VERSION_STRING);
     QApplication::setOrganizationDomain(QStringLiteral("kde.org"));
     QApplication::setApplicationDisplayName(i18n("Step"));
     QApplication::setWindowIcon(QIcon::fromTheme(QStringLiteral("step")));
@@ -52,7 +50,7 @@ int main(int argc, char* argv[])
 
     KAboutData aboutData(QStringLiteral("step"),
                          i18n("Step"),
-                         version,
+                         STEP_VERSION_STRING,
                          i18n(description),
                          KAboutLicense::GPL,
                          i18n("(C) 2007 Vladimir Kuznetsov"),
