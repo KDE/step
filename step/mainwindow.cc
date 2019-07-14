@@ -355,18 +355,7 @@ bool MainWindow::saveFileAs(const QUrl& url, const QUrl& startUrl)
     if(fileUrl.isEmpty()) {
         fileUrl = QFileDialog::getSaveFileUrl(this, i18n("Save Step File"), startUrl.isEmpty() ? currentFileUrl : startUrl, i18n("Step files (*.step)"));
         if(fileUrl.isEmpty()) return false;
-        else {
-            KIO::StatJob* statJob = KIO::stat(fileUrl, KIO::StatJob::DestinationSide, 0);
-            KJobWidgets::setWindow(statJob, this);
-            if (statJob->exec()) {
-            int ret = KMessageBox::warningContinueCancel(this,
-                        i18n("The file \"%1\" already exists. Do you wish to overwrite it?",
-			     fileUrl.url(QUrl::PreferLocalFile)),
-                        i18n("Warning - Step"), KStandardGuiItem::overwrite());
-            if(ret != KMessageBox::Continue) return false;
-            }
         }
-    }
 
     bool local = fileUrl.isLocalFile();
     QFile* file;
