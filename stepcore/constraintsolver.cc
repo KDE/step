@@ -76,8 +76,8 @@ int CGConstraintSolver::solve(ConstraintsInfo* info)
     int fminCount = 0;
     int fmaxCount = 0;
     for(int i=0; i<nc; ++i) {
-        if(std::isinf(info->forceMin[i]) != -1) ++fminCount;
-        if(std::isinf(info->forceMax[i]) != +1) ++fmaxCount;
+        if(std::isfinite(info->forceMin[i])) ++fminCount;
+        if(std::isfinite(info->forceMax[i])) ++fmaxCount;
     }
 
     DynSparseRowMatrix c(fminCount + fmaxCount, nc);
@@ -86,12 +86,12 @@ int CGConstraintSolver::solve(ConstraintsInfo* info)
     int fminIndex = 0;
     int fmaxIndex = fminCount;
     for(int i=0; i<nc; ++i) {
-        if(std::isinf(info->forceMin[i]) != -1) {
+        if(std::isfinite(info->forceMin[i])) {
             c.coeffRef(fminIndex,i) = -1;
             f[fminIndex] = -info->forceMin[i];
             ++fminIndex;
         }
-        if(std::isinf(info->forceMax[i]) != +1) {
+        if(std::isfinite(info->forceMax[i])) {
             c.coeffRef(fmaxIndex, i) = 1;
             f[fmaxIndex] = info->forceMax[i];
             ++fmaxIndex;
