@@ -324,7 +324,7 @@ bool MainWindow::openFile(const QUrl& url, const QUrl& startUrl)
 
     QTemporaryFile tempFile;
     tempFile.open();
-    KIO::FileCopyJob *job = KIO::file_copy(url, QUrl::fromLocalFile(tempFile.fileName()), -1, KIO::Overwrite);
+    KIO::FileCopyJob *job = KIO::file_copy(fileUrl, QUrl::fromLocalFile(tempFile.fileName()), -1, KIO::Overwrite);
     KJobWidgets::setWindow(job, this);
     job->exec();
     if (job->error()) {
