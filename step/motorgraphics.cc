@@ -102,7 +102,7 @@ QPainterPath LinearMotorGraphicsItem::shape() const
 void LinearMotorGraphicsItem::mouseMoveEvent(QGraphicsSceneMouseEvent *event)
 {
     if ((event->buttons() & Qt::LeftButton) && (flags() & ItemIsMovable)) {
-        QPointF newPos(mapToParent(event->pos()) - matrix().map(event->buttonDownPos(Qt::LeftButton)));
+        QPointF newPos(mapToParent(event->pos()) - transform().map(event->buttonDownPos(Qt::LeftButton)));
         QVariant vpos = QVariant::fromValue(pointToVector(newPos));
 
         _worldModel->simulationPause();
@@ -280,7 +280,7 @@ QPainterPath CircularMotorGraphicsItem::shape() const
 void CircularMotorGraphicsItem::mouseMoveEvent(QGraphicsSceneMouseEvent *event)
 {
     if ((event->buttons() & Qt::LeftButton) && (flags() & ItemIsMovable)) {
-        QPointF newPos(mapToParent(event->pos()) - matrix().map(event->buttonDownPos(Qt::LeftButton)));
+        QPointF newPos(mapToParent(event->pos()) - transform().map(event->buttonDownPos(Qt::LeftButton)));
         QVariant vpos = QVariant::fromValue(pointToVector(newPos));
 
         _worldModel->simulationPause();

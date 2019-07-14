@@ -192,7 +192,7 @@ void StepGraphicsItem::mouseMoveEvent(QGraphicsSceneMouseEvent *event)
     
     if((event->buttons() & Qt::LeftButton) && (flags() & ItemIsMovable)) {
         QPointF pdiff(mapToParent(event->pos()) - mapToParent(event->lastPos()));
-        QPointF newPos(mapToParent(event->pos()) - matrix().map(event->buttonDownPos(Qt::LeftButton)));
+        QPointF newPos(mapToParent(event->pos()) - transform().map(event->buttonDownPos(Qt::LeftButton)));
 
         QPointF diff = newPos - pos();
         if(diff == QPointF(0, 0)) return;
@@ -249,7 +249,7 @@ void StepGraphicsItem::mouseReleaseEvent(QGraphicsSceneMouseEvent *event)
     
     if(_isMoving && event->button() == Qt::LeftButton) {
         QPointF pdiff(mapToParent(event->pos()) - mapToParent(event->lastPos()));
-        QPointF newPos(mapToParent(event->pos()) - matrix().map(event->buttonDownPos(Qt::LeftButton)));
+        QPointF newPos(mapToParent(event->pos()) - transform().map(event->buttonDownPos(Qt::LeftButton)));
         QPointF diff = newPos - pos();
 
         if(_exclusiveMoving) {
@@ -547,7 +547,7 @@ void CircularArrowHandlerGraphicsItem::mouseMoveEvent(QGraphicsSceneMouseEvent *
             _isMoving = true;
         }
 
-        QPointF newPos(mapToParent(event->pos()) - matrix().map(event->buttonDownPos(Qt::LeftButton)));
+        QPointF newPos(mapToParent(event->pos()) - transform().map(event->buttonDownPos(Qt::LeftButton)));
         double newValue = atan2(newPos.y(),newPos.x());
         if(newValue < 0) newValue += 2*M_PI;
 

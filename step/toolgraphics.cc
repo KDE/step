@@ -1294,7 +1294,7 @@ void MeterGraphicsItem::worldDataChanged(bool dynamicOnly)
             for(; pixelSize > 0; --pixelSize) {
                 font.setPixelSize(pixelSize);
                 QFontMetrics fm(font);
-                if(fm.width(units) < int(meter()->size()[0]/3)) break;
+                if(fm.boundingRect(units).width() < int(meter()->size()[0]/3)) break;
             }
             _labelUnits->setFont(font);
             _labelUnits->setText(units);
