@@ -322,17 +322,9 @@ bool MainWindow::openFile(const QUrl& url, const QUrl& startUrl)
     worldModel->clearWorld();
     newFile();
 
-    QTemporaryFile tempFile;
-    tempFile.open();
-    KIO::FileCopyJob *job = KIO::file_copy(fileUrl, QUrl::fromLocalFile(tempFile.fileName()), -1, KIO::Overwrite);
-    KJobWidgets::setWindow(job, this);
-    job->exec();
-    if (job->error()) {
-        KMessageBox::error(this, job->errorString());
-        return false;
-    }
+    QFile file(fileUrl.path());
     
-    if(!worldModel->loadXml(&tempFile)) {
+    if(!worldModel->loadXml(&file)) {
         KMessageBox::sorry(this, i18n("Cannot parse file '%1': %2", fileUrl.url(QUrl::PreferLocalFile),
                                                     worldModel->errorString()));
         return false;
