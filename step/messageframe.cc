@@ -41,10 +41,6 @@ MessageFrame::MessageFrame(QWidget* parent)
     _layout->setContentsMargins(9,0,9,0);
     _layout->setSpacing(0);
     _layout->setSizeConstraint(QLayout::SetFixedSize);
-
-    _signalMapper = new QSignalMapper(this);
-    connect(_signalMapper, SIGNAL(mapped(QWidget*)),
-                this, SLOT(messageCloseClicked(QWidget*)));
 }
 
 int MessageFrame::showMessage(Type type, const QString& text, Flags flags)
@@ -90,8 +86,7 @@ int MessageFrame::showMessage(Type type, const QString& text, Flags flags)
         button->setAutoRaise(true);
         layout->addWidget(button);
 
-        _signalMapper->setMapping(button, widget);
-        connect(button, SIGNAL(clicked()), _signalMapper, SLOT(map()));
+        connect(button, &QToolButton::clicked, this, [this, widget](){ messageCloseClicked(widget); });
     }
 
     if(flags.testFlag(CloseTimer)) {
@@ -100,8 +95,7 @@ int MessageFrame::showMessage(Type type, const QString& text, Flags flags)
         timer->setSingleShot(true);
         timer->setInterval(2000);
 
-        _signalMapper->setMapping(timer, widget);
-        connect(timer, SIGNAL(timeout()), _signalMapper, SLOT(map()));
+        connect(timer, &QTimer::timeout, this, [this, widget](){ messageCloseClicked(widget); });
         timer->start();
     }
 
