@@ -62,7 +62,7 @@ void AnchorGraphicsItem::paint(QPainter* painter, const QStyleOptionGraphicsItem
     double radius = HANDLER_SIZE/s;
 
     painter->setRenderHint(QPainter::Antialiasing, true);
-    painter->setPen(QPen(QColor::fromRgba(anchor()->color())));
+    painter->setPen(QPen(QColor::fromRgba(anchor()->color()), 0, Qt::SolidLine));
     painter->drawEllipse(QRectF(-radius,-radius,radius*2,radius*2));
     painter->drawLine(QLineF(-radius, -radius, radius, radius));
     painter->drawLine(QLineF(-radius, radius, radius, -radius));
@@ -129,7 +129,7 @@ void PinGraphicsItem::paint(QPainter* painter, const QStyleOptionGraphicsItem* /
     double radius = HANDLER_SIZE/s;
 
     painter->setRenderHint(QPainter::Antialiasing, true);
-    painter->setPen(QPen(QColor::fromRgba(pin()->color())));
+    painter->setPen(QPen(QColor::fromRgba(pin()->color()), 0, Qt::SolidLine));
     painter->drawEllipse(QRectF(-radius,-radius,radius*2,radius*2));
     painter->drawPoint(0,0);//Rect(QRectF(-0.5/s,-0.5/s, 1/s, 1/s));
 
