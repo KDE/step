@@ -3,6 +3,7 @@
 Type=Application
 Exec=step -qwindowtitle %c -qwindowicon step
 Icon=step
+MimeType=application/x-step;
 X-DocPath=step/index.html
 Terminal=false
 Name=Step

@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<mime-info xmlns="http://www.freedesktop.org/standards/shared-mime-info">
+  <mime-type type="application/x-step">
+    <comment>Step Physical Simulator files</comment>
+    <icon name="step"/>
+    <magic priority="80">
+      <match offset="49" type="string" value="StepCoreXML" />
+    </magic>
+    <glob pattern="*.step"/>
+  </mime-type>
+</mime-info>

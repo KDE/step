@@ -84,4 +84,8 @@ add_subdirectory(autotests)
 
 install(FILES org.kde.step.appdata.xml DESTINATION ${KDE_INSTALL_METAINFODIR})
 
+find_package(SharedMimeInfo REQUIRED)
+install(FILES org.kde.step.xml DESTINATION ${XDG_MIME_INSTALL_DIR})
+update_xdg_mimetypes(${XDG_MIME_INSTALL_DIR})
+
 feature_summary(WHAT ALL FATAL_ON_MISSING_REQUIRED_PACKAGES)
