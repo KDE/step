@@ -2,6 +2,12 @@
 <mime-info xmlns="http://www.freedesktop.org/standards/shared-mime-info">
   <mime-type type="application/x-step">
     <comment>Step Physical Simulator files</comment>
+    <comment xml:lang="ca">Fitxers del simulador de física Step</comment>
+    <comment xml:lang="en_GB">Step Physical Simulator files</comment>
+    <comment xml:lang="pl">Pliki symulatora fizyki Step</comment>
+    <comment xml:lang="pt">Ficheiros do Simulador de Física Step</comment>
+    <comment xml:lang="sv">Step fysiksimulatorfiler</comment>
+    <comment xml:lang="uk">файли імітатора фізичних процесів Step</comment>
     <icon name="step"/>
     <magic priority="80">
       <match offset="49" type="string" value="StepCoreXML" />
