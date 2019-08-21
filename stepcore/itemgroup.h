@@ -57,6 +57,8 @@ public:
     /** Get list of all direct child items in the ItemGroup */
     const ItemList& items() const  { return _items; }
 
+    bool contains(const Item* item) const { return std::find(_items.begin(), _items.end(), item) != _items.end(); }
+
     /** Get list of all items in the ItemGroup
      *  \note This operation takes long time since it
      *        recursively traverses all child groups */
