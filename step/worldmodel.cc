@@ -124,7 +124,7 @@ class CommandNewItem: public QUndoCommand
 public:
     CommandNewItem(WorldModel* worldModel, StepCore::Item* item, StepCore::ItemGroup* parent, bool create)
             : _worldModel(worldModel), _item(item), _parent(parent), _create(create), _shouldDelete(create) {
-        if(!create) findLinks(static_cast<StepCore::ItemGroup*>(_worldModel->world()));
+        if(!create) findLinks(item, static_cast<StepCore::ItemGroup*>(_worldModel->world()));
     }
     ~CommandNewItem() { if(_shouldDelete) delete _item; }
 
@@ -132,7 +132,7 @@ public:
     void undo() Q_DECL_OVERRIDE;
 
 protected:
-    void findLinks(StepCore::ItemGroup* group);
+    void findLinks(StepCore::Item* itemToMatch, StepCore::ItemGroup* groupToSearch);
     void removeItem();
     void readdItem();
 
@@ -146,18 +146,31 @@ protected:
     QList<Link> _links;
 };
 
-void CommandNewItem::findLinks(StepCore::ItemGroup* group)
+void CommandNewItem::findLinks(StepCore::Item* itemToMatch, StepCore::ItemGroup* groupToSearch)
 {
-    StepCore::ItemList::const_iterator end = group->items().end();
-    for(StepCore::ItemList::const_iterator it = group->items().begin(); it != end; ++it) {
-        const StepCore::MetaObject* mobj = (*it)->metaObject();
+    StepCore::ItemGroup* itemToDeleteGroup = dynamic_cast<StepCore::ItemGroup*>(_item);
+
+    for (StepCore::Item *item : groupToSearch->items()) {
+        if (item == itemToMatch) // no need to find links in itself
+            continue;
+        if (itemToDeleteGroup && itemToDeleteGroup->contains(item)) // no need to find links if the item is a child of the item that is being deleted
+            continue;
+        const StepCore::MetaObject* mobj = item->metaObject();
         for(int i=0; i<mobj->propertyCount(); ++i) {
             if(mobj->property(i)->userTypeId() != qMetaTypeId<StepCore::Object*>()) continue;
-            if(_item == mobj->property(i)->readVariant(*it).value<StepCore::Object*>())
-                _links << qMakePair(static_cast<StepCore::Object*>(*it), mobj->property(i));
+            if(itemToMatch == mobj->property(i)->readVariant(item).value<StepCore::Object*>())
+                _links << qMakePair(static_cast<StepCore::Object*>(item), mobj->property(i));
         }
         if(mobj->inherits<StepCore::ItemGroup>())
-            findLinks(static_cast<StepCore::ItemGroup*>(*it));
+            findLinks(itemToMatch, static_cast<StepCore::ItemGroup*>(item));
+    }
+
+    // If the item being deleted is a group, be sure we also find links for all its children
+    StepCore::ItemGroup* itemToMatchGroup = dynamic_cast<StepCore::ItemGroup*>(itemToMatch);
+    if (itemToMatchGroup) {
+        for (StepCore::Item *child : itemToMatchGroup->items()) {
+            findLinks(child, groupToSearch);
+        }
     }
 }
 

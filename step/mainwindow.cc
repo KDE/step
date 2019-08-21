@@ -127,6 +127,8 @@ MainWindow::MainWindow()
 
 MainWindow::~MainWindow()
 {
+    disconnect(worldModel->undoStack(), &QUndoStack::cleanChanged, this, &MainWindow::updateCaption);
+
     KConfig* config = new KConfig(QStringLiteral("steprc"));
     actionRecentFiles->saveEntries(config->group("RecentFiles"));
     delete config;
