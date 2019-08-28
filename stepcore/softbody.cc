@@ -128,7 +128,7 @@ ItemList SoftBody::createSoftBodyItems(const Vector2d& position, const Vector2d&
         }
     }
 
-    // dioganal springs
+    // diagonal springs
     h = std::sqrt(h0*h0 + h1*h1);
     stiffnes /= M_SQRT2;//XXX
     damping /= M_SQRT2;

@@ -51,7 +51,7 @@ class WorldScene: public QGraphicsScene
 public:
     typedef QList<const StepCore::MetaObject*> SnapList;
 
-    /** Flags for controlling item snapping behaviour */
+    /** Flags for controlling item snapping behavior */
     enum SnapFlag {
         SnapOnCenter = 1,         ///< Snap to the center of the body
         SnapSetPosition = 2,      ///< Set position property

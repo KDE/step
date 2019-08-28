@@ -124,7 +124,7 @@ void Spring::calcForce(bool calcVariances)
                      rV[0] * square(_stiffness*_restLength*r[0]*r[1]/(l*l*l) +
                                     _damping/(l*l)*( v[0]*r[1] - 2*vr*r[0]*r[1]/(l*l) ));
 
-        // TODO: position1() and force is corelated, we should take it into account
+        // TODO: position1() and force is correlated, we should take it into account
         if(_p1) _p1->particleErrors()->applyForceVariance(forceV);
         else if(_r1) _r1->rigidBodyErrors()->applyForceVariance(force, position1,
                                                 forceV, se->position1Variance() );

@@ -350,7 +350,7 @@ void InfoBrowser::wikiResult(KJob* job)
     data += copyright;
     data.append( "</div>" );
 
-    // Remove unnessesary sections (do it with style?)
+    // Remove unnecessary sections (do it with style?)
     data.remove( QRegExp("<h3 *id=\"siteSub\">[^<]*</h3>") );
 
     data.remove( QRegExp( "<span class=\"editsection\"[^>]*>[^<]*<[^>]*>[^<]*<[^>]*>[^<]*</span>" ) );
@@ -362,7 +362,7 @@ void InfoBrowser::wikiResult(KJob* job)
 
     // Remove hidden table rows as well
     QRegExp hidden( "<tr *class= *[\"\']hiddenStructure[\"\']>.*</tr>", Qt::CaseInsensitive );
-    hidden.setMinimal( true ); //greedy behaviour wouldn't be any good!
+    hidden.setMinimal( true ); //greedy behavior wouldn't be any good!
     data.remove( hidden );
 
     // Remove jump-to-nav

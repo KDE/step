@@ -72,7 +72,7 @@ Legend
       * Joint
         [=0]
          * Anchor		Fixes the position of a body
-         * Pin			Fixes the position of a a given point of a body to another body
+         * Pin			Fixes the position of a given point of a body to another body
          * Stick		Fixed distance between two points on particles or rigid bodies
             * Rope	 	Maximum distance between two points on particles or rigid bodies
 

@@ -592,7 +592,7 @@ StepCore::Solver* WorldModel::newSolver(const QString& className)
     StepCore::Solver* solver = _worldFactory->newSolver(className);
     if(solver == NULL) return NULL;
 
-    // Copy similary named properties
+    // Copy similarly named properties
     // XXX: is it right ?
     StepCore::Solver* oldSolver = _world->solver();
     for(int i=0; i<oldSolver->metaObject()->propertyCount(); ++i) {

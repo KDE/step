@@ -619,7 +619,7 @@ void MainWindow::on_actionStep_triggered(bool checked)
 {
     if(!worldModel->doWorldEvolve(0.1))
         QMessageBox::warning(this, i18n("Step"), // XXX: retrieve error message from solver !
-            i18n("Cannot finish this step becouse local error is bigger than local tolerance.<br />"
+            i18n("Cannot finish this step because local error is bigger than local tolerance.<br />"
                "Please check solver settings and try again."));
 }
 
