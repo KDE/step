@@ -68,7 +68,7 @@ STEPCORE_META_OBJECT(GslAdaptiveRK2IMPSolver, QT_TRANSLATE_NOOP("ObjectClass", "
 
 STEPCORE_META_OBJECT(GslRK4IMPSolver, QT_TRANSLATE_NOOP("ObjectClass", "GslRK4IMPSolver"), QT_TRANSLATE_NOOP("ObjectDescription", "Runge-Kutta implicit fourth-order solver from GSL library"),
                         0, STEPCORE_SUPER_CLASS(GslSolver),)
-STEPCORE_META_OBJECT(GslAdaptiveRK4IMPSolver, QT_TRANSLATE_NOOP("ObjectClass", "GslAdaptiveRK4IMPSolver"), QT_TRANSLATE_NOOP("ObjectDescription", "Adaptive Runge-Kutta implicit fource-order solver from GSL library"),
+STEPCORE_META_OBJECT(GslAdaptiveRK4IMPSolver, QT_TRANSLATE_NOOP("ObjectClass", "GslAdaptiveRK4IMPSolver"), QT_TRANSLATE_NOOP("ObjectDescription", "Adaptive Runge-Kutta implicit fourth-order solver from GSL library"),
                         0, STEPCORE_SUPER_CLASS(GslAdaptiveSolver),)
 
 

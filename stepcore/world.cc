@@ -512,7 +512,7 @@ int World::doEvolve(double delta)
            ret == Solver::IntersectionDetected) {
             // If we have stopped on collision
             // 1. Decrease timestep to stop before collision
-            // 2. Proceed with decresed timestep until
+            // 2. Proceed with decreased timestep until
             //    - we have meet collision again: go to 1
             //    - we pass collision point: it means that we have come close enough
             //      to collision point and CollisionSolver have resolved collision

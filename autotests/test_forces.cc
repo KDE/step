@@ -48,7 +48,7 @@ void TestForces::testGravitationalForce()
     fakeWorld.addItem(particleB);
 
     // test gravitational force
-    GravitationForce force(9.8); // use this constant to make varification easier
+    GravitationForce force(9.8); // use this constant to make verification easier
     force.setWorld(&fakeWorld);
     force.calcForce(true); // test variance errors in same run
 
@@ -81,7 +81,7 @@ void TestForces::testWeightForce()
     body->setPosition(Vector2d::Zero());
     fakeWorld.addItem(body);
 
-    WeightForce force(9.8); // use this constant to make varification easier
+    WeightForce force(9.8); // use this constant to make verification easier
     force.setWorld(&fakeWorld);
     force.calcForce(true); // test variance errors in same run
 
