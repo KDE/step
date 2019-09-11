@@ -21,7 +21,7 @@ if(STEP_BUILD_TRANSLATIONS)
                 set(_addToAll ALL)
                 list(REMOVE_AT _args 0)
             endif("${_tmp}" STREQUAL "ALL")
-           
+
             list(GET _args 0 _tmp)
             if("${_tmp}" STREQUAL "INSTALL_DESTINATION")
                 list(GET _args 1 _installDest )
@@ -65,7 +65,7 @@ if(STEP_BUILD_TRANSLATIONS)
 
 endif(STEP_BUILD_TRANSLATIONS)
 
-add_subdirectory(objinfo)
+add_subdirectory(objectinfo)
 add_subdirectory(examples)
 add_subdirectory(tutorials)
 

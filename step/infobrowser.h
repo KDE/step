@@ -20,6 +20,7 @@
 #define STEP_INFOBROWSER_H
 
 #include <QDockWidget>
+#include <QTextBrowser>
 #include <QUrl>
 
 class WorldModel;
@@ -37,7 +38,7 @@ class InfoBrowser: public QDockWidget
     Q_OBJECT
 
 public:
-    explicit InfoBrowser(WorldModel* worldModel, QWidget* parent = 0);
+    explicit InfoBrowser(WorldModel* worldModel, QWidget* parent = nullptr);
 
 public slots:
     void openUrl(const QUrl& url, bool clearHistory = false, bool fromHistory = false);
@@ -45,7 +46,6 @@ public slots:
 protected slots:
     void worldCurrentChanged(const QModelIndex& current, const QModelIndex& previous);
     void setHtml(const QString& data, bool fromHistory = false, const QUrl& url = QUrl());
-    void wikiResult(KJob* job);
 
     void back();
     void forward();
@@ -59,11 +59,7 @@ protected:
     WorldModel* _worldModel;
 
     KToolBar*   _toolBar;
-    KHTMLPart*  _htmlPart;
-
-    KJob*       _wikiJob;
-    QUrl        _wikiUrl;
-    bool        _wikiFromHistory;
+    QTextBrowser* _htmlBrowser;
 
     QAction*    _followAction;
     QAction*    _syncAction;

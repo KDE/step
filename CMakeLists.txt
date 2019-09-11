@@ -32,32 +32,34 @@ find_package(Qt5 5.2 REQUIRED NO_MODULE COMPONENTS
 
 find_package(KF5 REQUIRED COMPONENTS
     Crash
-    KHtml
     Config
+    I18n
     IconThemes
+    KIO
     NewStuff
     Plotting
+    TextWidgets
 )
 find_package(Eigen3 3.2.2 REQUIRED)
 find_package(GSL)
 find_package(Qalculate)
 
 set_package_properties(EIGEN3 PROPERTIES
-		       DESCRIPTION "Eigen3"
+                       DESCRIPTION "Eigen3"
                        URL "http://eigen.tuxfamily.org"
                        TYPE OPTIONAL
                        PURPOSE "Required to build step")
 
 set_package_properties(QALCULATE PROPERTIES
 # 		       REQUIRED_VERSION "0.9.5"
-		       DESCRIPTION "Qalculate"
+                       DESCRIPTION "Qalculate"
                        URL "http://qalculate.sourceforge.net/"
                        TYPE OPTIONAL
                        PURPOSE "Unit conversion support in Step")
 
 set_package_properties(GSL PROPERTIES
 # 		       REQUIRED_VERSION "1.8"
-		       DESCRIPTION "GSL"
+                       DESCRIPTION "GSL"
                        URL "http://eigen.tuxfamily.org"
                        TYPE OPTIONAL
                        PURPOSE "Provides a GSL-powered solver for Step")

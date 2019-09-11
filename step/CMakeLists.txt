@@ -60,8 +60,9 @@ if(STEP_WITH_QALCULATE)
     add_definitions (-fexceptions)
 endif(STEP_WITH_QALCULATE)
 
-ki18n_wrap_ui( step_SRCS ${step_UIS} )
-kconfig_add_kcfg_files( step_SRCS ${step_KCFGS} )
+qt5_add_resources(step_SRCS data/resources.qrc)
+ki18n_wrap_ui(step_SRCS ${step_UIS})
+kconfig_add_kcfg_files(step_SRCS ${step_KCFGS})
 
 include_directories(${CMAKE_CURRENT_BINARY_DIR})
 include_directories(${CMAKE_CURRENT_SOURCE_DIR})
@@ -73,8 +74,11 @@ add_executable(step ${step_SRCS})
 target_link_libraries(step
     stepcore
     KF5::Crash
+    KF5::I18n
     KF5::IconThemes
-    KF5::KHtml
+    KF5::KIOCore
+    KF5::KIOWidgets
+    KF5::TextWidgets
     KF5::Plotting
     KF5::NewStuff
     Qt5::OpenGL

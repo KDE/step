@@ -7,11 +7,4 @@ if(STEP_BUILD_TRANSLATIONS)
             "--context='%(filename)s:%(tag)s' --tag-regex='^(?:title|body|p|h[1-6])$$' --recursive --strip"
             ALL INSTALL_DESTINATION ${KDE_INSTALL_DATADIR}/step/objinfo
             ${INFO_HTML_FILES})
-
-else(STEP_BUILD_TRANSLATIONS)
-
-    install(FILES 
-       ${INFO_HTML_FILES}
-       DESTINATION  ${KDE_INSTALL_DATADIR}/step/objinfo)
-
 endif(STEP_BUILD_TRANSLATIONS)
