@@ -4,7 +4,7 @@ EXTRACTXML="./extractxml"
 
 $EXTRACTXML --extract \
         --context='%(filename)s:%(tag)s' --tag-regex='^(?:title|body|p|h[1-6])$' --recursive --strip \
-        ./objinfo/*.html --output=objinfo.cpp
+        ./objectinfo/*.html --output=objinfo.cpp
 $EXTRACTXML --extract \
         --context='%(tag)s' --tag=name --tag=text --unquote \
         --parse-unquoted='--context=HTML:%(tag)s --tag-regex=^(?:title|body|p|h[1-6])$ --recursive --strip' \
