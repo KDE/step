@@ -29,15 +29,15 @@
 #include "worldmodel.h"
 #include "worldfactory.h"
 
-#include <QItemSelectionModel>
-#include <QGraphicsSceneMouseEvent>
-#include <QGraphicsScene>
-#include <QEvent>
-#include <QPainter>
 #include <QDialog>
 #include <QDialogButtonBox>
+#include <QEvent>
+#include <QGraphicsScene>
+#include <QGraphicsSceneMouseEvent>
+#include <QItemSelectionModel>
+#include <QPainter>
 #include <QPushButton>
-#include <QRegExpValidator>
+#include <QRegularExpressionValidator>
 #include <QVBoxLayout>
 
 #include <KLocalizedString>
@@ -142,14 +142,14 @@ void SoftBodyMenuHandler::createSoftBodyItems(const StepCore::Vector2d& pos)
     _createSoftBodyItemsUi->setupUi(mainWidget);
 
     _createSoftBodyItemsUi->lineEditPosition->setValidator(
-                new QRegExpValidator(QRegExp("^\\([+-]?\\d+(\\.\\d*)?([eE]\\d*)?,[+-]?\\d+(\\.\\d*)?([eE]\\d*)?\\)$"),
+                new QRegularExpressionValidator(QRegularExpression("^\\([+-]?\\d+(\\.\\d*)?([eE]\\d*)?,[+-]?\\d+(\\.\\d*)?([eE]\\d*)?\\)$"),
                         _createSoftBodyItemsUi->lineEditPosition));
     _createSoftBodyItemsUi->lineEditPosition->setText(StepCore::typeToString(pos));
     _createSoftBodyItemsUi->lineEditSize->setValidator(
-                new QRegExpValidator(QRegExp("^\\([+-]?\\d+(\\.\\d*)?([eE]\\d*)?,[+-]?\\d+(\\.\\d*)?([eE]\\d*)?\\)$"),
+                new QRegularExpressionValidator(QRegularExpression("^\\([+-]?\\d+(\\.\\d*)?([eE]\\d*)?,[+-]?\\d+(\\.\\d*)?([eE]\\d*)?\\)$"),
                         _createSoftBodyItemsUi->lineEditSize));
     _createSoftBodyItemsUi->lineEditSplit->setValidator(
-                new QRegExpValidator(QRegExp("^\\(\\d+,\\d+\\)$"),
+                new QRegularExpressionValidator(QRegularExpression("^\\(\\d+,\\d+\\)$"),
                         _createSoftBodyItemsUi->lineEditSplit));
     _createSoftBodyItemsUi->lineEditBodyMass->setValidator(
                 new QDoubleValidator(0, HUGE_VAL, DBL_DIG, _createSoftBodyItemsUi->lineEditBodyMass));

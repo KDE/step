@@ -23,7 +23,7 @@
 
 #include <QDialogButtonBox>
 #include <QPushButton>
-#include <QRegExpValidator>
+#include <QRegularExpressionValidator>
 #include <QVBoxLayout>
 
 #include <KLocalizedString>
@@ -72,7 +72,7 @@ GasCreationDialog::GasCreationDialog(GasMenuHandler* handler, StepCore::Gas *gas
 	     new QDoubleValidator(0, HUGE_VAL, DBL_DIG,
 				  _ui->lineEditTemperature));
     _ui->lineEditMeanVelocity->setValidator(
-	     new QRegExpValidator(QRegExp("^\\([+-]?\\d+(\\.\\d*)?([eE]\\d*)?,[+-]?\\d+(\\.\\d*)?([eE]\\d*)?\\)$"),
+	     new QRegularExpressionValidator(QRegularExpression("^\\([+-]?\\d+(\\.\\d*)?([eE]\\d*)?,[+-]?\\d+(\\.\\d*)?([eE]\\d*)?\\)$"),
 				  _ui->lineEditMeanVelocity));
 
     _ui->lineEditVolume->setText(QString::number(_gas->rectVolume()));
