@@ -18,13 +18,13 @@
 
 #include "messageframe.h"
 
-#include <QVBoxLayout>
 #include <QHBoxLayout>
-#include <QSignalMapper>
-#include <QToolButton>
-#include <QLabel>
-#include <QTimer>
 #include <QIcon>
+#include <QLabel>
+#include <QSignalMapper>
+#include <QTimer>
+#include <QToolButton>
+#include <QVBoxLayout>
 
 MessageFrame::MessageFrame(QWidget* parent)
     : QFrame(parent), _lastId(0)

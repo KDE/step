@@ -34,17 +34,17 @@
 #include <stepcore/particle.h>
 #include <stepcore/rigidbody.h>
 
+#include <QCoreApplication>
+#include <QGLWidget>
 #include <QGraphicsItem>
 #include <QGraphicsSceneMouseEvent>
 #include <QItemSelectionModel>
 #include <QPainter>
-#include <QToolTip>
-#include <QTimer>
 #include <QScrollBar>
-#include <QGLWidget>
-#include <QWheelEvent>
-#include <QCoreApplication>
+#include <QTimer>
+#include <QToolTip>
 #include <QUrl>
+#include <QWheelEvent>
 
 #include <KLocalizedString>
 

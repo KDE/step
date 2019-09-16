@@ -27,8 +27,9 @@
 
 #include "world.h"
 #include "types.h"
-#include <QHash>
+
 #include <QByteArray>
+#include <QHash>
 #include <QStringList>
 
 namespace StepCore

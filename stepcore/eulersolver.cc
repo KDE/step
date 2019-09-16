@@ -21,7 +21,6 @@
 
 #include <cmath>
 #include <cstring>
-#include <QtGlobal>
 
 namespace StepCore {
 

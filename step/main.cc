@@ -17,14 +17,15 @@
 */
 
 #include <QApplication>
-#include <KAboutData>
 #include <QCommandLineParser>
 #include <QDebug>
-#include <KLocalizedString>
-#include <KCrash>
-#include <QUrl>
 #include <QDir>
 #include <QIcon>
+#include <QUrl>
+
+#include <KAboutData>
+#include <KCrash>
+#include <KLocalizedString>
 
 #include "mainwindow.h"
 

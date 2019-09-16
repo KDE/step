@@ -25,13 +25,15 @@
 
 #include "worldmodel.h"
 #include "worldfactory.h"
-#include <QItemSelectionModel>
-#include <QGraphicsSceneMouseEvent>
-#include <QGraphicsScene>
+
 #include <QEvent>
+#include <QGraphicsScene>
+#include <QGraphicsSceneMouseEvent>
+#include <QItemSelectionModel>
 #include <QPainter>
-#include <KMessageBox>
+
 #include <KLocalizedString>
+#include <KMessageBox>
 
 #include <float.h>
 

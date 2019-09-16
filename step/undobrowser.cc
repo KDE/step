@@ -19,9 +19,11 @@
 #include "undobrowser.h"
 
 #include "worldmodel.h"
+
+#include <QIcon>
 #include <QUndoView>
 #include <QUrl>
-#include <QIcon>
+
 #include <KLocalizedString>
 
 UndoBrowser::UndoBrowser(WorldModel* worldModel, QWidget* parent)

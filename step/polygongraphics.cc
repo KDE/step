@@ -25,11 +25,13 @@
 #include "worldmodel.h"
 #include "worldscene.h"
 #include "worldfactory.h"
-#include <QItemSelectionModel>
+
 #include <QEvent>
 #include <QGraphicsSceneMouseEvent>
+#include <QItemSelectionModel>
 #include <QKeyEvent>
 #include <QPainter>
+
 #include <KLocalizedString>
 
 RigidBodyGraphicsItem::RigidBodyGraphicsItem(StepCore::Item* item, WorldModel* worldModel)

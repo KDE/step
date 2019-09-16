@@ -33,6 +33,7 @@
 #include "worldscene.h"
 #include "worldfactory.h"
 #include "latexformula.h"
+
 #include <QAbstractButton>
 #include <QAbstractTextDocumentLayout>
 #include <QAction>

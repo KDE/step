@@ -17,14 +17,16 @@
 */
 
 #include "latexformula.h"
-#include <QTextStream>
-#include <QProcess>
-#include <QFile>
+
 #include <QApplication>
-#include <QTemporaryDir>
 #include <QDebug>
-#include <KLocalizedString>
+#include <QFile>
+#include <QProcess>
 #include <QStandardPaths>
+#include <QTemporaryDir>
+#include <QTextStream>
+
+#include <KLocalizedString>
 
 namespace {
 

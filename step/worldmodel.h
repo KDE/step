@@ -20,12 +20,13 @@
 #define STEP_WORLDMODEL_H
 
 #include <QAbstractItemModel>
+#include <QTime>
 #include <QUndoCommand>
 #include <QVariant>
-#include <QTime>
+
+#include <KActionCollection>
 
 #include <stepcore/world.h>
-#include <KActionCollection>
 
 namespace StepCore {
     class Object;

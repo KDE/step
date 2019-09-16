@@ -34,19 +34,6 @@
 #include <stepcore/solver.h>
 #include <stepcore/collisionsolver.h>
 
-#include <KActionCollection>
-#include <KConfig>
-#include <KConfigDialog>
-#include <KIO/CopyJob>
-#include <KIO/Job>
-#include <KJobWidgets>
-#include <KLocalizedString>
-#include <KMessageBox>
-#include <KRecentFilesAction>
-#include <KStandardAction>
-#include <KToolBarPopupAction>
-#include <KNS3/DownloadDialog>
-
 #include <QAction>
 #include <QDir>
 #include <QFile>
@@ -59,6 +46,19 @@
 #include <QStandardPaths>
 #include <QStatusBar>
 #include <QTemporaryFile>
+
+#include <KActionCollection>
+#include <KConfig>
+#include <KConfigDialog>
+#include <KIO/CopyJob>
+#include <KIO/Job>
+#include <KJobWidgets>
+#include <KLocalizedString>
+#include <KMessageBox>
+#include <KNS3/DownloadDialog>
+#include <KRecentFilesAction>
+#include <KStandardAction>
+#include <KToolBarPopupAction>
 
 #include <cstdlib>
 #include <ctime>

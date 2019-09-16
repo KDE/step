@@ -27,16 +27,18 @@
 #include <stepcore/object.h>
 #include <stepcore/solver.h>
 #include <stepcore/types.h>
+
 #include <QAbstractItemModel>
-#include <QItemEditorFactory>
-#include <QTreeView>
-#include <QMouseEvent>
-#include <KLineEdit>
-#include <QHBoxLayout>
 #include <QApplication>
-#include <KLocalizedString>
-#include <KComboBox>
+#include <QHBoxLayout>
+#include <QItemEditorFactory>
+#include <QMouseEvent>
+#include <QTreeView>
+
 #include <KColorButton>
+#include <KComboBox>
+#include <KLineEdit>
+#include <KLocalizedString>
 
 #include "choicesmodel.h"
 

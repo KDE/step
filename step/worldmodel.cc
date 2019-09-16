@@ -31,11 +31,13 @@
 #include <stepcore/collisionsolver.h>
 #include <stepcore/constraintsolver.h>
 #include <stepcore/types.h>
+
 #include <QApplication>
 #include <QItemSelectionModel>
+#include <QMenu>
 #include <QTimer>
 #include <QUndoStack>
-#include <QMenu>
+
 #include <KLocalizedString>
 
 class CommandEditProperty: public QUndoCommand

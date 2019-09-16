@@ -21,8 +21,8 @@
 #include <QApplication>
 #include <QBuffer>
 #include <QClipboard>
-#include <QMimeData>
 #include <QDebug>
+#include <QMimeData>
 
 #include <stepcore/factory.h>
 #include <stepcore/world.h>

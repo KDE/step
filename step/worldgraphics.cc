@@ -26,10 +26,12 @@
 #include <stepcore/object.h>
 #include <stepcore/world.h>
 #include <stepcore/particle.h>
-#include <QItemSelectionModel>
+
 #include <QGraphicsScene>
 #include <QGraphicsSceneMouseEvent>
+#include <QItemSelectionModel>
 #include <QMenu>
+
 #include <KActionCollection>
 #include <KLocalizedString>
 

@@ -20,12 +20,14 @@
 
 #include "worldmodel.h"
 #include <stepcore/world.h>
-#include <QTreeView>
+
+#include <QApplication>
+#include <QContextMenuEvent>
 #include <QHeaderView>
 #include <QKeyEvent>
-#include <QContextMenuEvent>
-#include <QApplication>
 #include <QMenu>
+#include <QTreeView>
+
 #include <KLocalizedString>
 
 class WorldBrowserView: public QTreeView

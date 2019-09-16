@@ -21,18 +21,18 @@
 #include "worldmodel.h"
 #include "settings.h"
 
-#include <QItemSelectionModel>
-#include <QVBoxLayout>
 #include <QAction>
-#include <QFile>
 #include <QCoreApplication>
-#include <KToolBar>
-
-#include <KLocalizedString>
-#include <KIO/Job>
 #include <QDesktopServices>
+#include <QFile>
 #include <QIcon>
+#include <QItemSelectionModel>
 #include <QStandardPaths>
+#include <QVBoxLayout>
+
+#include <KIO/Job>
+#include <KLocalizedString>
+#include <KToolBar>
 
 InfoBrowser::InfoBrowser(WorldModel* worldModel, QWidget* parent)
     : QDockWidget(i18n("Context info"), parent),

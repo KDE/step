@@ -27,8 +27,9 @@
 #include "vector.h"
 #define EIGEN_USE_NEW_STDVECTOR
 #include <Eigen/StdVector>
-#include <QByteArray>
 #include <Eigen/Sparse>
+
+#include <QByteArray>
 
 namespace StepCore {
 

@@ -21,7 +21,6 @@
 #include "particle.h"
 
 #include <algorithm>
-#include <QtGlobal>
 
 #define EIGEN_USE_NEW_STDVECTOR
 #include <Eigen/StdVector>

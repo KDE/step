@@ -22,11 +22,14 @@
 
 #include "worldgraphics.h"
 #include "stepgraphicsitem.h"
+
 #include <QGraphicsTextItem>
-#include <QWidget>
 #include <QPointer>
-#include <KTextEdit>
+#include <QWidget>
+
 #include <KComboBox>
+#include <KTextEdit>
+
 #include <limits.h>
 
 #include <stepcore/tool.h>

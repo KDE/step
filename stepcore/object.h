@@ -23,9 +23,10 @@
 #ifndef STEPCORE_OBJECT_H
 #define STEPCORE_OBJECT_H
 
+#include <QBitArray>
 #include <QString>
 #include <QVariant>
-#include <QBitArray>
+
 #include <Eigen/Core> // for EIGEN_MAKE_ALIGNED_OPERATOR_NEW
 
 #include "util.h"

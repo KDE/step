@@ -20,7 +20,6 @@
 #include "particle.h"
 #include "rigidbody.h"
 #include <cstring>
-#include <QtGlobal>
 
 namespace StepCore {
 

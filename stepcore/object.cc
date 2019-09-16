@@ -18,7 +18,6 @@
 
 #include "object.h"
 #include <cstring>
-#include <QtGlobal>
 #include <QCoreApplication>
 
 namespace StepCore {

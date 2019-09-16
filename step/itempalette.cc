@@ -25,19 +25,17 @@
 #include "settings.h"
 
 #include <QAction>
-#include <QEvent>
-#include <QToolButton>
-#include <QVBoxLayout>
 #include <QActionGroup>
-#include <QStyleOption>
+#include <QEvent>
+#include <QIcon>
+#include <QPainter>
 #include <QScrollArea>
 #include <QScrollBar>
-#include <QPainter>
-#include <QtAlgorithms>
+#include <QStyleOption>
+#include <QToolButton>
+#include <QVBoxLayout>
 
 #include <KLocalizedString>
-#include <QIcon>
-
 
 class QPaintEvent;
 

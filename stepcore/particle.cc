@@ -20,7 +20,6 @@
 #include "types.h"
 #include <cstring>
 #include <cmath>
-#include <QtGlobal>
 
 namespace StepCore
 {

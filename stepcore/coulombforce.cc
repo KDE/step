@@ -20,7 +20,6 @@
 #include "particle.h"
 
 #include <cmath>
-#include <QtGlobal>
 
 namespace StepCore {
 

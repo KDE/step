@@ -23,8 +23,6 @@
 #ifndef STEPCORE_UTIL_H
 #define STEPCORE_UTIL_H
 
-#include <QtGlobal>
-
 namespace StepCore {
 
 template<typename T> inline T square(T v) { return v*v; }

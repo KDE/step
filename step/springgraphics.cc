@@ -23,8 +23,10 @@
 #include "worldmodel.h"
 #include "worldscene.h"
 #include "worldfactory.h"
+
 #include <QGraphicsSceneMouseEvent>
 #include <QPainter>
+
 #include <KLocalizedString>
 
 #include <cmath>
