@@ -46,21 +46,21 @@ find_package(Qalculate)
 
 set_package_properties(EIGEN3 PROPERTIES
                        DESCRIPTION "Eigen3"
-                       URL "http://eigen.tuxfamily.org"
+                       URL "https://eigen.tuxfamily.org"
                        TYPE OPTIONAL
                        PURPOSE "Required to build step")
 
 set_package_properties(QALCULATE PROPERTIES
 # 		       REQUIRED_VERSION "0.9.5"
                        DESCRIPTION "Qalculate"
-                       URL "http://qalculate.sourceforge.net/"
+                       URL "https://qalculate.github.io/"
                        TYPE OPTIONAL
                        PURPOSE "Unit conversion support in Step")
 
 set_package_properties(GSL PROPERTIES
 # 		       REQUIRED_VERSION "1.8"
                        DESCRIPTION "GSL"
-                       URL "http://eigen.tuxfamily.org"
+                       URL "https://www.gnu.org/software/gsl/"
                        TYPE OPTIONAL
                        PURPOSE "Provides a GSL-powered solver for Step")
 

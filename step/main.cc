@@ -55,7 +55,7 @@ int main(int argc, char* argv[])
                          i18n(description),
                          KAboutLicense::GPL,
                          i18n("(C) 2007 Vladimir Kuznetsov"),
-                         i18n("http://edu.kde.org/step")
+                         i18n("https://edu.kde.org/step")
     );
 
     aboutData.addAuthor(

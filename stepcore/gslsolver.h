@@ -37,8 +37,8 @@ namespace StepCore
 /** \ingroup solvers
  *  \brief Adaptive and non-adaptive solvers from GSL library
  *  
- *  See http://www.gnu.org/software/gsl/manual/html_node/Ordinary-Differential-Equations.html#Ordinary-Differential-Equations
- *  and http://en.wikipedia.org/wiki/Numerical_ordinary_differential_equations
+ *  See https://www.gnu.org/software/gsl/manual/html_node/Ordinary-Differential-Equations.html#Ordinary-Differential-Equations
+ *  and https://en.wikipedia.org/wiki/Numerical_ordinary_differential_equations
  *
  */
 class GslGenericSolver: public Solver

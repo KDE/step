@@ -31,8 +31,8 @@ namespace StepCore {
 /** \ingroup solvers
  *  \brief Adaptive and non-adaptive Euler solver with error estimation
  *  
- *  See http://en.wikipedia.org/wiki/Numerical_ordinary_differential_equations#The_Euler_method
- *  and http://en.wikipedia.org/wiki/Adaptive_step_size
+ *  See https://en.wikipedia.org/wiki/Numerical_ordinary_differential_equations#The_Euler_method
+ *  and https://en.wikipedia.org/wiki/Adaptive_step_size
  *
  *  \todo tests
  */

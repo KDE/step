@@ -32,7 +32,7 @@
 namespace StepCore {
 
 const char* XmlFile::DOCTYPE = "<!DOCTYPE StepCoreXML>";
-const char* XmlFile::NAMESPACE_URI = "http://edu.kde.org/step/StepCoreXML";
+const char* XmlFile::NAMESPACE_URI = "https://edu.kde.org/step/StepCoreXML";
 const char* XmlFile::VERSION = "1.0";
 
 namespace {

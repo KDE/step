@@ -28,7 +28,7 @@ namespace StepCore {
 /** \ingroup constants
  *  \brief Common physical constants
  *
- *  Values taken from http://en.wikipedia.org/wiki/Physical_constants
+ *  Values taken from https://en.wikipedia.org/wiki/Physical_constants
  */
 class Constants {
 public:
