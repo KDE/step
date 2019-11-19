@@ -60,7 +60,6 @@ if(STEP_WITH_QALCULATE)
     add_definitions (-fexceptions)
 endif(STEP_WITH_QALCULATE)
 
-qt5_add_resources(step_SRCS data/resources.qrc)
 ki18n_wrap_ui(step_SRCS ${step_UIS})
 kconfig_add_kcfg_files(step_SRCS ${step_KCFGS})
 
