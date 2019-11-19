@@ -76,7 +76,7 @@ p, li { white-space: pre-wrap; }
 p, li { white-space: pre-wrap; }
 &lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:'Sans Serif'; font-size:10pt; font-weight:400; font-style:normal;&quot;&gt;
 &lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-weight:600;&quot;&gt;Angle and angular velocity&lt;/span&gt;&lt;/p&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;- When the rigid body is selected you see three grey handlers on it. Using them you can change velocity, angle and angular velocity of the body.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</text>
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;- When the rigid body is selected you see three gray handlers on it. Using them you can change velocity, angle and angular velocity of the body.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</text>
 
     </item>
 
