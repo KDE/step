@@ -1,4 +1,4 @@
-#!/usr/bin/env python
+#!/usr/bin/env python3
 #
 # This file is part of Step.
 # Copyright (C) 2009 Vladimir Kuznetsov <ks.vladimir@gmail.com>
@@ -19,7 +19,7 @@
 
 import xml.parsers.expat
 import xml.sax.saxutils
-import StringIO
+from io import BytesIO
 import optparse
 import tempfile
 import gettext
@@ -43,7 +43,7 @@ class GNUTranslations(gettext.GNUTranslations):
         if tmsg is missing:
             if self._fallback:
                 return self._fallback.upgettext(context, message)
-            return unicode(message)
+            return str(message)
         return tmsg
 
 class XmlFileTranslator(object):
@@ -63,7 +63,7 @@ class XmlFileTranslator(object):
     def parse(self, infile):
         try:
             self.parser.ParseFile(infile)
-        except xml.parsers.expat.ExpatError, e:
+        except xml.parsers.expat.ExpatError as e:
             raise
 
     def translate(self, infile_name, infile, outfile,
@@ -97,16 +97,16 @@ class XmlFileTranslator(object):
         self.parse(infile)
 
     def parse_unquoted_substring(self, string):
-        infile = StringIO.StringIO(string.encode('UTF-8'))
+        infile = BytesIO(string.encode('UTF-8'))
         translator1 = XmlFileTranslator(self.opt.parse_unquoted)
         if self.opt.extract:
             translator1.extract(self.i18n_file, infile,
                     self.outfile, self.i18n_stack, self.i18n_stack[-1]['line'])
         else:
-            outfile = StringIO.StringIO()
+            outfile = BytesIO()
             translator1.translate(self.i18n_file, infile,
                 outfile, self.translation, self.i18n_stack, self.i18n_stack[-1]['line'])
-            string = outfile.getvalue()
+            string = outfile.getvalue().decode()
             if self.opt.unquote:
                 string = self.quote_str(string)
             self.outfile.write(self.encode_utf8(string))
@@ -124,8 +124,8 @@ class XmlFileTranslator(object):
                       .replace('\r', '\\r').replace('\n', '\\n"\n"') + '"'
 
     def encode_utf8(self, s):
-        if isinstance(s, unicode):
-            return s.encode('UTF-8')
+        if isinstance(s, str):
+            return s.encode()
         else:
             return s
 
@@ -166,7 +166,7 @@ class XmlFileTranslator(object):
 
             info = {'file': self.i18n_file, \
                     'filename': os.path.basename(self.i18n_file)}
-            for n in xrange(2):
+            for n in range(2):
                 try:
                     d = self.i18n_stack[-1-n]
                 except IndexError:
@@ -174,7 +174,7 @@ class XmlFileTranslator(object):
                 p = '../'*n
                 info[p+'tag'] = d['name']
                 info[p+'line'] = d['line']
-                for aname, avalue in d['attr'].iteritems():
+                for aname, avalue in d['attr'].items():
                     info[p+'attr/'+aname] = avalue
 
             ectx = self.select_context(self.opt.ectx, info)
@@ -191,30 +191,30 @@ class XmlFileTranslator(object):
                 self.outfile.write(self.encode_utf8(begin_string + string + end_string))
 
             else:
-                self.outfile.write(self.encode_utf8(u'%s i18n: file: %s:%d\n' % \
+                self.outfile.write(self.encode_utf8('%s i18n: file: %s:%d\n' % \
                          (self.opt.cstart, self.i18n_file, info['line'])))
 
                 if ectx:
-                    self.outfile.write(self.encode_utf8(u'%s i18n: ectx: %s\n' % \
+                    self.outfile.write(self.encode_utf8('%s i18n: ectx: %s\n' % \
                          (self.opt.cstart, ectx)))
 
                 if context:
-                    self.outfile.write(self.encode_utf8(u'i18nc(%s, %s)\n' % \
+                    self.outfile.write(self.encode_utf8('i18nc(%s, %s)\n' % \
                          (self.encode_str(context), self.encode_str(string))))
                 else:
-                    self.outfile.write(self.encode_utf8(u'i18n(%s)\n' % \
+                    self.outfile.write(self.encode_utf8('i18n(%s)\n' % \
                         (self.encode_str(string),)))
 
     def default_handler(self, data):
         self.write_data(data)
 
     def start_element_handler(self, name, attr):
-        data = u'<' + name
+        data = '<' + name
         attr_dict = {}
-        for n in xrange(0, len(attr), 2):
+        for n in range(0, len(attr), 2):
             attr_dict[attr[n]] = attr[n+1]
-            data += u' %s=%s' % (attr[n], xml.sax.saxutils.quoteattr(attr[n+1]))
-        data += u'>'
+            data += ' %s=%s' % (attr[n], xml.sax.saxutils.quoteattr(attr[n+1]))
+        data += '>'
 
         match = False
         if name in self.opt.tag:
@@ -246,7 +246,7 @@ class XmlFileTranslator(object):
                 self.i18n_save = False
             self.i18n_stack.pop()
 
-        self.write_data(u'</%s>' % (name,))
+        self.write_data('</%s>' % (name,))
 
         if self.i18n_stack:
             self.i18n_stack[-1]['line'] = self.i18n_line_base + \
@@ -261,9 +261,9 @@ def safe_remove(fname):
 
 def open_mo_file(opt, mo_file_name, remove=False):
     try:
-        mo_file = file(mo_file_name, 'r')
-    except IOError, e:
-        sys.stderr.write('Can not open .mo file: %s\n' % (str(e),))
+        mo_file = open(mo_file_name, 'rb')
+    except IOError as e:
+        sys.stderr.write('Cannot open .mo file: %s\n' % (str(e),))
         mo_file.close()
         if remove:
             safe_remove(mo_file_name)
@@ -271,8 +271,8 @@ def open_mo_file(opt, mo_file_name, remove=False):
 
     try:
         translation = GNUTranslations(mo_file)
-    except IOError, e:
-        sys.stderr.write('Can not parse .mo file: %s\n' % (str(e),))
+    except IOError as e:
+        sys.stderr.write('Cannot parse .mo file: %s\n' % (str(e),))
         mo_file.close()
         if remove:
             safe_remove(mo_file_name)
@@ -300,19 +300,19 @@ def decode_options(options, str_options):
     for name in str_options:
         opt = getattr(options, name)
         if isinstance(opt, str):
-            opt = opt.decode(enc)
+            opt = opt
         elif isinstance(opt, list):
-            opt = [x.decode(enc) for x in opt]
+            opt = [x for x in opt]
         setattr(options, name, opt)
 
 def main():
     format_options = [
         optparse.make_option('-n', '--tag', action='append', default=[],
-                help='Extract TAG contants as i18n string. ' + \
-                     'Repeate this option to specify multiple tags'),
+                help='Extract TAG constants as i18n string. ' + \
+                     'Repeat this option to specify multiple tags'),
         optparse.make_option('-x', '--tag-regex', action='append', default=[],
                 help='Extract contents of all tags matching TAG_REGEX as i18n string. ' + \
-                     'Repeate this option to specify multiple regex'),
+                     'Repeat this option to specify multiple regex'),
         optparse.make_option('-r', '--recursive', action='store_true', default=False,
                 help='Recursively pass i18n tags. This means that children tags ' + \
                      'will be extracted separately even if parent is also i18n-enabled'),
@@ -323,7 +323,7 @@ def main():
                      'and quote them back when translating'),
         optparse.make_option('--parse-unquoted', default=None, metavar='PARSE_UNQUOTED_OPTIONS',
                 help='Parse unquoted strings using PARSE_UNQUOTED_OPTIONS as options. '
-                     'This option is usefull when XML file contains quoted HTML fragments')
+                     'This option is useful when XML file contains quoted HTML fragments')
     ]
     context_options = [
         optparse.make_option('--context', action='append', default=[],
@@ -344,8 +344,8 @@ def main():
                 help='Translate i18n strings in xml files')
 
     optgroup_format = optparse.OptionGroup(optparser, 'Formatting options')
-    map(optgroup_format.add_option, copy.deepcopy(format_options))
-    map(optgroup_format.add_option, copy.deepcopy(context_options))
+    list(map(optgroup_format.add_option, copy.deepcopy(format_options)))
+    list(map(optgroup_format.add_option, copy.deepcopy(context_options)))
     optparser.add_option_group(optgroup_format)
 
     optgroup_extract = optparse.OptionGroup(optparser, 'Options for extracting messages')
@@ -357,7 +357,7 @@ def main():
                 default='-ki18n -ki18nc:1c,2 -ci18n --no-location --from-code=UTF-8',
                 help='Arguments for xgettext (overrides the defaults)')
     optgroup_extract.add_option('--xgettext-extra-args', default='',
-                help='Additional arguments for xgettext (appenends to the defaults)')
+                help='Additional arguments for xgettext (appends to the defaults)')
     optparser.add_option_group(optgroup_extract)
 
     optgroup_translate = optparse.OptionGroup(optparser, 'Options for translating messages')
@@ -382,7 +382,7 @@ def main():
     if opt.parse_unquoted is not None:
         optparser1 = optparse.OptionParser(usage='%prog --parse-unquoted="[options]"')
         options = copy.deepcopy(format_options+context_options)
-        map(optparser1.add_option, options)
+        list(map(optparser1.add_option, options))
         opt1, args1 = optparser1.parse_args(opt.parse_unquoted.split(' '))
         decode_options(opt1, ('tag', 'tag_regex', 'context', 'ectx'))
         if args1:
@@ -397,12 +397,12 @@ def main():
         if opt.xgettext:
             (tmp_id, tmp_fname) = tempfile.mkstemp(suffix='.cc')
             os.close(tmp_id)
-            outfile = file(tmp_fname, 'w')
+            outfile = open(tmp_fname, 'wb')
         else:
             if opt.output:
                 try:
-                    outfile = file(opt.output, 'w')
-                except IOError, e:
+                    outfile = open(opt.output, 'wb')
+                except IOError as e:
                     optparser.error('can not open output file: ' + str(e))
             else:
                 outfile = sys.stdout
@@ -418,36 +418,36 @@ def main():
         if not os.path.isdir(opt.output_dir):
             try:
                 os.mkdir(opt.output_dir)
-            except IOError, e:
-                sys.stderr.write('Can not create output directory: %s\n' % (str(e),))
+            except IOError as e:
+                sys.stderr.write('Cannot create output directory: %s\n' % (str(e),))
                 sys.exit(1)
 
     translator = XmlFileTranslator(opt)
     for fname in args:
         try:
-            infile = file(fname, 'r')
-        except IOError, e:
+            infile = open(fname, 'rb')
+        except IOError as e:
             sys.stderr.write('can not open input file: %s\n' % (str(e),))
             sys.exit(1)
 
         if opt.extract:
             try:
                 translator.extract(fname, infile, outfile)
-            except xml.parsers.expat.ExpatError, e:
-                sys.stderr.write('can not parse file %s: %s\n' % (fname, str(e)))
+            except xml.parsers.expat.ExpatError as e:
+                sys.stderr.write('cannot parse file %s: %s\n' % (fname, str(e)))
                 sys.exit(1)
 
         else:
             outfile_name = os.path.join(opt.output_dir, os.path.basename(fname))
             try:
-                outfile = file(outfile_name, 'w')
-            except IOError, e:
-                sys.stderr.write('can not open output file: %s\n' % (str(e),))
+                outfile = open(outfile_name, 'wb')
+            except IOError as e:
+                sys.stderr.write('cannot open output file: %s\n' % (str(e),))
                 sys.exit(1)
 
             try:
                 translator.translate(fname, infile, outfile, gnutranslation)
-            except xml.parsers.expat.ExpatError, e:
+            except xml.parsers.expat.ExpatError as e:
                 sys.stderr.write('can not parse file %s: %s\n' % (fname, str(e)))
                 sys.exit(1)
 
