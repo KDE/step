@@ -24,7 +24,7 @@ if(PYTHON_EXECUTABLE)
 
     if(EXISTS ${_po_file})
         get_filename_component(_po_file_we ${_po_file} NAME_WE)
-        set(_mo_file ${CMAKE_CURRENT_BINARY_DIR}/${_po_file_we}.mo)
+        set(_mo_file ${CMAKE_CURRENT_BINARY_DIR}/${_lang}/${_po_file_we}.mo)
         add_custom_command(OUTPUT ${_mo_file}
         COMMAND ${GETTEXT_MSGFMT_EXECUTABLE} -o ${_mo_file} ${_po_file}
         WORKING_DIRECTORY "${CMAKE_CURRENT_SOURCE_DIR}"
@@ -33,11 +33,12 @@ if(PYTHON_EXECUTABLE)
 
         foreach(_xmlfile ${_args})
         get_filename_component(_xmlfile_basename ${_xmlfile} NAME)
-        set(_xmlfile_tr ${CMAKE_CURRENT_BINARY_DIR}/${_xmlfile_basename})
+        set(_xmlfile_tr ${CMAKE_CURRENT_BINARY_DIR}/${_lang}/${_xmlfile_basename})
         set(_extractxml_args_copy ${_extractxml_args})
         separate_arguments(_extractxml_args_copy)
+        file(MAKE_DIRECTORY ${CMAKE_CURRENT_BINARY_DIR}/${_lang})
         add_custom_command(OUTPUT ${_xmlfile_tr}
-            COMMAND ${EXTRACTXML_EXECUTABLE} --translate --mo-file=${_mo_file} --output-dir=${CMAKE_CURRENT_BINARY_DIR} ${_extractxml_args_copy} ${_xmlfile}
+            COMMAND ${EXTRACTXML_EXECUTABLE} --translate --mo-file=${_mo_file} --output-dir=${CMAKE_CURRENT_BINARY_DIR}/${_lang} ${_extractxml_args_copy} ${_xmlfile}
             WORKING_DIRECTORY "${CMAKE_CURRENT_SOURCE_DIR}"
             DEPENDS ${_xmlfile} ${_mo_file}
         )
@@ -48,7 +49,7 @@ if(PYTHON_EXECUTABLE)
         endforeach(_xmlfile)
 
         get_filename_component(DirId ${CMAKE_CURRENT_SOURCE_DIR} NAME)
-        add_custom_target(${DirId}_${_po_file_we}_xmlfiles_tr ${_addToAll} DEPENDS ${_xmlfiles_tr})
+        add_custom_target(${DirId}_${_po_file_we}_${_lang}_xmlfiles_tr ${_addToAll} DEPENDS ${_xmlfiles_tr})
     endif(EXISTS ${_po_file})
     endmacro(STEP_PROCESS_XML_TRANSLATION)
 
