@@ -144,7 +144,7 @@ public:
      *  \note Set flags to UndoNoMerge in order to disable merging this
      *        command with previous on undo history and avoid changing of command order */
     void setProperty(StepCore::Object* object, const StepCore::MetaProperty* property,
-                            const QVariant& value, UndoFlags flags = 0);
+                        const QVariant& value, UndoFlags flags = {});
 
     /** Modify object property.
      *  \param object object to modify
@@ -155,7 +155,7 @@ public:
      *  \note Set flags to UndoNoMerge in order to disable merging this
      *        command with previous on undo history and avoid changing of command order */
     void setProperty(StepCore::Object* object, const QString& propertyName,
-                            const QVariant& value, UndoFlags flags = 0) {
+                     const QVariant& value, UndoFlags flags = {}) {
         setProperty(object, object->metaObject()->property(propertyName), value, flags);
     }
 
@@ -172,7 +172,7 @@ public:
     QString formatProperty(const StepCore::Object* object,
                            const StepCore::Object* objectErrors,
                            const StepCore::MetaProperty* property,
-                           FormatFlags flags = 0) const;
+                           FormatFlags flags = {}) const;
 
     // Tooltip
     /** Generate standard tooltip for object given by index */

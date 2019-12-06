@@ -579,7 +579,6 @@ WorldGraphicsView::WorldGraphicsView(WorldScene* worldScene, QWidget* parent)
     setDragMode(QGraphicsView::RubberBandDrag);
     //setDragMode(QGraphicsView::ScrollHandDrag);
     setResizeAnchor(QGraphicsView::AnchorViewCenter);
-    setOptimizationFlags(QGraphicsView::DontClipPainter/* | QGraphicsView::DontSavePainterState*/);
     #ifdef __GNUC__
     #warning Check paint() for all items to preserve painter state
     #warning Use NoViewportUpdate and manual updating here !
@@ -683,14 +682,14 @@ void WorldGraphicsView::mouseReleaseEvent(QMouseEvent* e)
 void WorldGraphicsView::wheelEvent(QWheelEvent* e)
 {
     if (e->modifiers() == Qt::ControlModifier) {
-        if (e->orientation() != Qt::Vertical) {
+        if (e->angleDelta().y() == 0) {
             e->ignore();
             return;
         }
         
         QGraphicsView::ViewportAnchor anchor = transformationAnchor();
         setTransformationAnchor(QGraphicsView::AnchorUnderMouse);
-        if (e->delta() > 0) {
+        if (e->angleDelta().y() > 0) {
             zoomIn();
         }
         else {

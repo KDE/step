@@ -124,7 +124,7 @@ public slots:
      *  \param text message text
      *  \param flags message flags
      *  \return message id of the created message */
-    int showMessage(MessageFrame::Type type, const QString& text, MessageFrame::Flags flags = 0) {
+    int showMessage(MessageFrame::Type type, const QString& text, MessageFrame::Flags flags = {}) {
         return _messageFrame->showMessage(type, text, flags);
     }
     /** Changed existing message
@@ -133,7 +133,7 @@ public slots:
      *  \param text message text
      *  \param flags message flags
      *  \return new message id */
-    int changeMessage(int id, MessageFrame::Type type, const QString& text, MessageFrame::Flags flags = 0) {
+    int changeMessage(int id, MessageFrame::Type type, const QString& text, MessageFrame::Flags flags = {}) {
         return _messageFrame->changeMessage(id, type, text, flags);
     }
     /** Close message

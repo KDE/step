@@ -77,7 +77,7 @@ protected:
     /** Show creation status message. If flags do not contains CloseButton and CloseTimer than it is
      *  treated as persistent status message (and will replace previous status message, if any).
      *  In flags contains CloseButton or CloseTimer than it is treated as additional message */
-    void showMessage(MessageFrame::Type type, const QString& text, MessageFrame::Flags flags = 0);
+    void showMessage(MessageFrame::Type type, const QString& text, MessageFrame::Flags flags = {});
     /** Close last persistent status message */
     void closeMessage();
 

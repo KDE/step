@@ -64,7 +64,7 @@ class PaletteLayout: public QLayout
 {
 public:
     PaletteLayout(QWidget *parent, int margin = 0, int spacing = -1)
-        : QLayout(parent) { setMargin(margin); setSpacing(spacing); resetCache(); }
+        : QLayout(parent) { setContentsMargins(margin, margin, margin, margin); setSpacing(spacing); resetCache(); }
     PaletteLayout(int spacing = -1) { setSpacing(spacing); resetCache(); }
     ~PaletteLayout() { QLayoutItem *item; while ((item = takeAt(0))) delete item; }
 
