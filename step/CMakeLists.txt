@@ -1,4 +1,4 @@
-ecm_setup_version(${KDE_APPLICATIONS_VERSION} VARIABLE_PREFIX STEP VERSION_HEADER step_version.h)
+ecm_setup_version(${RELEASE_SERVICE_VERSION} VARIABLE_PREFIX STEP VERSION_HEADER step_version.h)
 
 set(step_SRCS
     arrow.cc
