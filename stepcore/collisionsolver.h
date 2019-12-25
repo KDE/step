@@ -97,9 +97,9 @@ public:
     /** Get error estimation from last step */
     double localError() const { return _localError; }
 
-    /** Check (and update) state of the contact
+    /** <!--Check (and update) state of the contact
      *  \param contact contact to check (only body0 and body1 fields must be set)
-     *  \return state of the contact (equals to contact->state)
+     *  \return state of the contact (equals to contact->state)-->
      */
     //virtual int checkContact(Contact* contact) = 0;
 
