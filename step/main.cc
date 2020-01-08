@@ -73,8 +73,6 @@ int main(int argc, char* argv[])
     KAboutData::setApplicationData(aboutData);
 
     QCommandLineParser parser;
-    parser.addHelpOption();
-    parser.addVersionOption();
 
     QCommandLineOption option(QStringList() << QStringLiteral("+[url]") << i18n( "Document to open" ));
     parser.addOption(option);
