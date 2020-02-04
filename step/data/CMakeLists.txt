@@ -3,7 +3,6 @@ set(EXTRACTXML_EXECUTABLE ${CMAKE_CURRENT_SOURCE_DIR}/extractxml)
 
 if(PYTHON_EXECUTABLE)
 
-    # STEP_PROCESS_XML_TRANSLATION(<lang> <extractxml_args> [ALL] [INSTALL_DESTINATION <dir>] <xml1> <xml2> ...)
     macro(STEP_PROCESS_XML_TRANSLATION _lang _po_file _extractxml_args)
     set(_xmlfiles_tr)
     set(_args ${ARGN})
@@ -49,7 +48,8 @@ if(PYTHON_EXECUTABLE)
         endforeach(_xmlfile)
 
         get_filename_component(DirId ${CMAKE_CURRENT_SOURCE_DIR} NAME)
-        add_custom_target(${DirId}_${_po_file_we}_${_lang}_xmlfiles_tr ${_addToAll} DEPENDS ${_xmlfiles_tr})
+        string(REPLACE "@" "_" stripped_lang ${_lang})
+        add_custom_target(${DirId}_${_po_file_we}_${stripped_lang}_xmlfiles_tr ${_addToAll} DEPENDS ${_xmlfiles_tr})
     endif(EXISTS ${_po_file})
     endmacro(STEP_PROCESS_XML_TRANSLATION)
 
