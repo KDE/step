@@ -536,9 +536,9 @@
       <li xml:lang="zh-TW">整合教學</li>
     </ul>
   </description>
-  <url type="homepage">http://edu.kde.org/step/</url>
+  <url type="homepage">https://edu.kde.org/step/</url>
   <url type="bugtracker">https://bugs.kde.org/enter_bug.cgi?format=guided&amp;product=step</url>
-  <url type="help">http://docs.kde.org/stable/en/kdeedu/step/index.html</url>
+  <url type="help">https://docs.kde.org/?application=step</url>
   <url type="donation">https://www.kde.org/community/donations/?app=step&amp;source=appdata</url>
   <screenshots>
     <screenshot type="default">
@@ -563,7 +563,7 @@
       <caption xml:lang="x-test">xxPhysical simulation in Stepxx</caption>
       <caption xml:lang="zh-CN">在 Step 进行物理学模拟</caption>
       <caption xml:lang="zh-TW">在 Step 中模擬物理</caption>
-      <image>http://kde.org/images/screenshots/step.png</image>
+      <image>https://cdn.kde.org/screenshots/step/step.png</image>
     </screenshot>
   </screenshots>
   <project_group>KDE</project_group>
