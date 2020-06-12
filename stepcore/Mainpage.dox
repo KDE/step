@@ -63,7 +63,7 @@ information about StepCore design.
 You can checkout the development tree of StepCore from git, by doing:
 <pre>git clone git://anongit.kde.org/step.git</pre>
 or view it online at this address:
-<a href="https://cgit.kde.org/step.git/">https://cgit.kde.org/step.git/</a>
+<a href="https://invent.kde.org/education/step">https://invent.kde.org/education/step</a>
 
 \section authors Authors
 
