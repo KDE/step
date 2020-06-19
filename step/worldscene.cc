@@ -136,6 +136,8 @@ WorldScene::WorldScene(WorldModel* worldModel, QObject* parent)
     #ifdef __GNUC__
     #warning TODO: measure what index method is faster
     #endif
+
+    // Alternative index method is BspTreeIndex
     setItemIndexMethod(NoIndex);
     //XXX
     //setct(-200,-200,400,400);

@@ -68,12 +68,19 @@ set(STEPCORE_WITH_GSL ${GSL_FOUND} CACHE BOOL "Enable GSL-powered features for S
 set(STEPCORE_WITH_QT ON) # CACHE BOOL "Enable QT-powered features for StepCore")
 set(STEP_WITH_QALCULATE ${QALCULATE_FOUND} CACHE BOOL "Enable unit conversion support using libqalculate")
 
-# These settings are forced by Eigen2 creating many many warnings without them.
-# FIXME: How can we make Eigen behave and not need them?
-set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -Wno-unused-local-typedefs")
-set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -Wno-unused-parameter")
+# Compiler specific options
+if ("${CMAKE_CXX_COMPILER_ID}" STREQUAL "Clang")
+    # Clang specific options
+    include(${CMAKE_CURRENT_SOURCE_DIR}/Clang.cmake)
+elseif("${CMAKE_CXX_COMPILER_ID}" STREQUAL "GNU")
+    # GCC specific options
+    include(${CMAKE_CURRENT_SOURCE_DIR}/GCC.cmake)
+else()
+    # Some other compiler
+endif()
 
-include_directories(${CMAKE_CURRENT_SOURCE_DIR} ${EIGEN3_INCLUDE_DIR})
+# Eigen3 generates a lot of warnings. Suppress them by including as system headers (-isystem /PATH/TO/EIGEN3_INCLUDE_DIR)
+include_directories(${CMAKE_CURRENT_SOURCE_DIR} SYSTEM ${EIGEN3_INCLUDE_DIR})
 
 add_definitions(-DQT_NO_URL_CAST_FROM_STRING)
 

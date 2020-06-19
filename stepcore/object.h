@@ -341,8 +341,8 @@ struct MetaPropertyHelper {
         return (dynamic_cast<C*>(obj)->*_write)(tv);
     }
 
-    static QVariant readNull(const Object* obj) { return QVariant(); }
-    static QString readStringNull(const Object* obj) { return QString(); }
+    static QVariant readNull(const Object* obj) { Q_UNUSED(obj) return QVariant(); }
+    static QString readStringNull(const Object* obj) { Q_UNUSED(obj) return QString(); }
     static bool writeNull(Object* obj, const QVariant& v) { Q_UNUSED(obj) Q_UNUSED(v) return false; }
     static bool writeStringNull(Object* obj, const QString& s) { Q_UNUSED(obj) Q_UNUSED(s) return false; }
 };

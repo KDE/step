@@ -568,6 +568,7 @@ QString WorldModel::newItemName(const QString& className)
 
 StepCore::Item* WorldModel::createItem(const QString& className, StepCore::ItemGroup* parent)
 {
+    Q_UNUSED(parent)
     StepCore::Item* item = _worldFactory->newItem(className);
     if(item == NULL) return NULL;
     item->setName(getUniqueName(className));

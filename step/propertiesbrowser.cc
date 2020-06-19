@@ -739,6 +739,9 @@ void PropertiesBrowser::worldDataChanged(bool dynamicOnly)
 
 void PropertiesBrowser::worldRowsRemoved(const QModelIndex& parent, int start, int end)
 {
+    Q_UNUSED(parent)
+    Q_UNUSED(start)
+    Q_UNUSED(end)
     if(!_worldModel->objectIndex(_propertiesBrowserModel->object()).isValid())
         _propertiesBrowserModel->setObject(NULL);
 }

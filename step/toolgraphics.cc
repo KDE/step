@@ -1031,7 +1031,7 @@ void GraphGraphicsItem::worldDataChanged(bool dynamicOnly)
     if(_worldModel->isSimulationActive()) {
         if(_worldModel->world()->time() > _lastPointTime
                     + 1.0/_worldModel->simulationFps() - 1e-2/_worldModel->simulationFps()) {
-            StepCore::Vector2d point = graph()->recordPoint();
+            graph()->recordPoint();
             _lastPointTime = _worldModel->world()->time();
         }
     }
