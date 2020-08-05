@@ -71,8 +71,8 @@
   <description>
     <p>Step is an interactive physical simulator. It allows you to explore the physical world through simulations. It works like this: you place some bodies on the scene, add some forces such as gravity or springs, then click Simulate and Step shows you how your scene will evolve according to the laws of physics. You can change every property of the bodies/forces in your experiment (even during simulation) and see how this will change evolution of the experiment. With Step you cannot only learn but feel how physics works!</p>
     <p xml:lang="bs">Korak je interaktivni fizički simulator. Omogućava da se istraži fizički svijet kroz simulacije.Radi na sljedeći način: Postaviš nekoliko tijela na scenu, dodaš silu kao što je gravitacija ili opruge, onda klikneš Simuliraj i Korak ti pokaže kako će prema zakonima fizike evoluirati tvoja scena.Možeš promijeniti svaku osobinu tijela/sila  u eksperimentu (čak i tokom simulacije) i vidjeti kako će ovo promjeniti evoluciju eksperimenta.Sa Korakom ne samo da učiš nego i osjećaš kako fizika radi.</p>
-    <p xml:lang="ca">Step és un simulador interactiu de física. Us permet explorar el món físic a través de simulacions. Funciona així: col·loqueu alguns cossos a l'escena, afegiu algunes forces com ara molles o la gravetat, cliqueu Simula i l'Step us mostra com evolucionarà l'escena segons les lleis de la física. Podeu canviar cadascuna de les propietats dels cossos o forces del vostre experiment (fins i tot durant la simulació) i veure com això afectarà l'evolució de l'experiment. Amb l'Step no només podeu aprendre sinó també podeu sentir com funciona la física!</p>
-    <p xml:lang="ca-valencia">Step és un simulador interactiu de física. Vos permet explorar el món físic a través de simulacions. Funciona així: col·loqueu alguns cossos a l'escena, afegiu algunes forces com ara molles o la gravetat, cliqueu Simula i l'Step vos mostra com evolucionarà l'escena segons les lleis de la física. Podeu canviar cadascuna de les propietats dels cossos o forces del vostre experiment (fins i tot durant la simulació) i veure com això afectarà l'evolució de l'experiment. Amb l'Step no només podeu aprendre sinó també podeu sentir com funciona la física!</p>
+    <p xml:lang="ca">L'Step és un simulador interactiu de física. Permet explorar el món físic a través de simulacions. Funciona així: col·loqueu alguns cossos a l'escena, afegiu algunes forces com ara molles o la gravetat, cliqueu Simula i l'Step us mostra com evolucionarà l'escena segons les lleis de la física. Podeu canviar cadascuna de les propietats dels cossos o forces del vostre experiment (fins i tot durant la simulació) i veure com afectarà això a l'evolució de l'experiment. Amb l'Step no només podeu aprendre sinó també podeu sentir com funciona la física!</p>
+    <p xml:lang="ca-valencia">L'Step és un simulador interactiu de física. Permet explorar el món físic a través de simulacions. Funciona així: col·loqueu alguns cossos a l'escena, afegiu algunes forces com ara molles o la gravetat, cliqueu Simula i l'Step vos mostra com evolucionarà l'escena segons les lleis de la física. Podeu canviar cadascuna de les propietats dels cossos o forces del vostre experiment (fins i tot durant la simulació) i veure com afectarà això a l'evolució de l'experiment. Amb l'Step no només podeu aprendre sinó també podeu sentir com funciona la física!</p>
     <p xml:lang="de">Step ist ein interaktiver Physiksimulator, mit dem Sie die Welt der Physik durch Simulationen erforschen können. Dazu platzieren Sie einige Körper im Versuchsfenster und fügen Kräfte wie die Gravitation oder Federn hinzu. Klicken Sie dann auf den Knopf „Simulation starten“ und beobachten Sie, wie sich Ihr Experiment nach den Gesetzen der Physik verändert. Jede Eigenschaft von Körpern oder Kräften lässt sich sogar in der laufenden Simulation ändern. Mit Step können Sie erfahren, wie die Physik in der Welt funktioniert.</p>
     <p xml:lang="el">Το step είναι ένας διαδραστικός προσομοιωτής της φύσης. Με αυτόν εξερευνάτε το φυσικό κόσμο μέσα από προσομοιώσεις. Λειτουργεί ως εξής: τοποθετείτε κάποια σώματα στο σκηνικό και ορισμένες δυνάμεις όπως η βαρύτητα τα ελατήρια, και με κλικ στο Προσομοίωσε με το Step παρατηρείτε πώς το σκηνικό σσς θα εξελιχθεί σύμφωνα με τους φυσικούς νόμους. Μπορείτε να αλλάξετε κάθε ιδιότητα των σωμάτων ή δυνάμεων στο πείραμά σας (ακόμη και κατά τη διάρκεια της προσομοίωσης) για να δείτε πώς μεταβάλλεται η πορεία του πειράματος. Με το step δεν μαθαίνετε μόνο αλλά έχετε και την αίσθηση πώς λειτουργεί η φύση!</p>
     <p xml:lang="en-GB">Step is an interactive physical simulator. It allows you to explore the physical world through simulations. It works like this: you place some bodies on the scene, add some forces such as gravity or springs, then click Simulate and Step shows you how your scene will evolve according to the laws of physics. You can change every property of the bodies/forces in your experiment (even during simulation) and see how this will change evolution of the experiment. With Step you cannot only learn but feel how physics works!</p>
@@ -158,8 +158,8 @@
       <li xml:lang="zh-TW">傳統的二維機械模擬</li>
       <li>Particles, springs with damping, gravitational and coulomb forces</li>
       <li xml:lang="bs">Čestice, opruge s prigušenjem,gravitacijska i kulonova sila</li>
-      <li xml:lang="ca">Partícules, molles amb amortiment, forces gravitacionals i de Coulomb</li>
-      <li xml:lang="ca-valencia">Partícules, molles amb amortiment, forces gravitacionals i de Coulomb</li>
+      <li xml:lang="ca">Partícules, elasticitats amb forces de descàrrega, gravitacionals i de Coulomb</li>
+      <li xml:lang="ca-valencia">Partícules, elasticitats amb forces de descàrrega, gravitacionals i de Coulomb</li>
       <li xml:lang="de">Teilchen, Federn mit Dämpfung, Gravitations- und Coulombkräfte</li>
       <li xml:lang="el">Σωματίδια, ελάσματα με απόσβεση, βαρυτικές και δυνάμεις coulomb</li>
       <li xml:lang="en-GB">Particles, springs with damping, gravitational and coulomb forces</li>
@@ -212,8 +212,8 @@
       <li xml:lang="zh-TW">堅固主體</li>
       <li>Collision detection (currently only discrete) and handling</li>
       <li xml:lang="bs">Detekcija sudara (trenutno samo diskretna) i rukovanje</li>
-      <li xml:lang="ca">Detecció de col·lisions (ara per ara només discretes) i el seu maneig</li>
-      <li xml:lang="ca-valencia">Detecció de col·lisions (ara per ara només discretes) i el seu maneig</li>
+      <li xml:lang="ca">Detecció de col·lisions (ara per ara, només discretes) i el seu maneig</li>
+      <li xml:lang="ca-valencia">Detecció de col·lisions (ara per ara, només discretes) i el seu maneig</li>
       <li xml:lang="de">Kollisionserkennung (zurzeit nur diskret) und -bearbeitung</li>
       <li xml:lang="el">Ανίχνευση σύγκρουσης (προς το παρόν μόνο διακριτή) και χειρισμός</li>
       <li xml:lang="en-GB">Collision detection (currently only discrete) and handling</li>
@@ -239,8 +239,8 @@
       <li xml:lang="zh-TW">碰撞偵測（目前只有不連接的）與處理</li>
       <li>Soft (deformable) bodies simulated as user-editable particles-springs system, sound waves</li>
       <li xml:lang="bs">Mehka(deformabilna) tijela su simulirana kao korisnički uređen ​​čestice-opruge sistem, zvučni valovi</li>
-      <li xml:lang="ca">Cossos tous (deformables) simulats com a sistemes partícula-molla editables per l'usuari, ones de so</li>
-      <li xml:lang="ca-valencia">Cossos tous (deformables) simulats com a sistemes partícula-molla editables per l'usuari, ones de so</li>
+      <li xml:lang="ca">Simulació de cosos tous (deformables) com a sistemes partícula-molla editables per l'usuari, ones de so</li>
+      <li xml:lang="ca-valencia">Simulació de cosos tous (deformables) com a sistemes partícula-molla editables per l'usuari, ones de so</li>
       <li xml:lang="de">Elastische verformbare Körper als editierbare Systeme aus Teilchen und Federn, Schallwellen</li>
       <li xml:lang="el">Μαλακά (παραμορφώσιμα) σώματα σε προσομοίωση ως επεξεργάσιμο από το χρήστη σύστημα σωματιδίων-ελασμάτων, ηχητικά κύματα</li>
       <li xml:lang="en-GB">Soft (deformable) bodies simulated as user-editable particles-springs system, sound waves</li>
@@ -401,8 +401,8 @@
       <li xml:lang="zh-TW">數種不同的計算器：最高到八階，外顯與內含的，包含與不包含時間（大部份的計算器都需要 GSL 函式庫）</li>
       <li>Controller tool to easily control properties during simulation (even with custom keyboard shortcuts)</li>
       <li xml:lang="bs">Upravljački alat za jednostavno upravljanje svojstvima tokom simulacije (čak i uz prilagođene prečice na tastaturi)</li>
-      <li xml:lang="ca">Eina controladora per controlar fàcilment les propietats durant la simulació (àdhuc amb dreceres de teclat personalitzades)</li>
-      <li xml:lang="ca-valencia">Eina controladora per controlar fàcilment les propietats durant la simulació (àdhuc amb dreceres de teclat personalitzades)</li>
+      <li xml:lang="ca">Eina de controlador per a controlar amb facilitat les propietats durant la simulació (fins i tot amb dreceres de teclat personalitzades)</li>
+      <li xml:lang="ca-valencia">Eina de controlador per a controlar amb facilitat les propietats durant la simulació (fins i tot amb dreceres de teclat personalitzades)</li>
       <li xml:lang="de">Werkzeuge zur Kontrolle der Objekteigenschaften während der Simulation, auch mit benutzerdefinierten Kurzbefehlen.</li>
       <li xml:lang="el">Ελεγκτής για χειροκίνητο έλεγχο ιδιοτήτων στην προσομοίωση (ακόμη και με προσαρμοσμένες συντομεύσεις πληκτρολογίου)</li>
       <li xml:lang="en-GB">Controller tool to easily control properties during simulation (even with custom keyboard shortcuts)</li>
@@ -428,8 +428,8 @@
       <li xml:lang="zh-TW">用於在模擬實驗時控制變因的控制工具（還有鍵盤捷徑）</li>
       <li>Tools to visualize results: graph, meter, tracer</li>
       <li xml:lang="bs">Alati za vizualizaciju rezultata: graf, metar,tragač</li>
-      <li xml:lang="ca">Eines per visualitzar resultats: gràfics, aparells de mesura, traçadors</li>
-      <li xml:lang="ca-valencia">Eines per visualitzar resultats: gràfics, aparells de mesura, traçadors</li>
+      <li xml:lang="ca">Eines per a visualitzar resultats: gràfics, aparells de mesura, traçadors</li>
+      <li xml:lang="ca-valencia">Eines per a visualitzar resultats: gràfics, aparells de mesura, traçadors</li>
       <li xml:lang="de">Grafische Darstellung der Ergebnisse durch Diagramme, Messwertanzeigen und Spuren von Bewegungen</li>
       <li xml:lang="el">Εργαλεία οπτικοποίησης αποτελεσμάτων: γράφος, μέτρητής, ιχνηλάτης</li>
       <li xml:lang="en-GB">Tools to visualise results: graph, meter, tracer</li>
@@ -482,8 +482,8 @@
       <li xml:lang="zh-TW">所有物件的內文資訊，整合的維基瀏覽器</li>
       <li>Collection of example experiments, more can be downloaded with KNewStuff</li>
       <li xml:lang="bs">Zbirka pokaznih eksperimenata, više se može preuzeti sa KNewStuff</li>
-      <li xml:lang="ca">Col·lecció d'experiments d'exemple. Se'n poden baixar més amb KNewStuff</li>
-      <li xml:lang="ca-valencia">Col·lecció d'experiments d'exemple. Se'n poden baixar més amb KNewStuff</li>
+      <li xml:lang="ca">Col·lecció d'experiments d'exemple. Se'n poden baixar més amb el KNewStuff</li>
+      <li xml:lang="ca-valencia">Col·lecció d'experiments d'exemple. Se'n poden baixar més amb el KNewStuff</li>
       <li xml:lang="de">Sammlung von Beispielexperimenten, weitere Experimente können zusätzlich heruntergeladen werden</li>
       <li xml:lang="el">Συλλογή δειγματικών πειραμάτων, λήψη περισσότερων με το KNewStuff</li>
       <li xml:lang="en-GB">Collection of example experiments, more can be downloaded with KNewStuff</li>
