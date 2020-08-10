@@ -240,7 +240,7 @@
       <li>Soft (deformable) bodies simulated as user-editable particles-springs system, sound waves</li>
       <li xml:lang="bs">Mehka(deformabilna) tijela su simulirana kao korisnički uređen ​​čestice-opruge sistem, zvučni valovi</li>
       <li xml:lang="ca">Simulació de cossos flexibles (deformables) com el sistema de partícules elàstiques editable per l'usuari, ones de so</li>
-      <li xml:lang="ca-valencia">Simulació de cosos tous (deformables) com a sistemes partícula-molla editables per l'usuari, ones de so</li>
+      <li xml:lang="ca-valencia">Simulació de cossos flexibles (deformables) com el sistema de partícules elàstiques editable per l'usuari, ones de so</li>
       <li xml:lang="de">Elastische verformbare Körper als editierbare Systeme aus Teilchen und Federn, Schallwellen</li>
       <li xml:lang="el">Μαλακά (παραμορφώσιμα) σώματα σε προσομοίωση ως επεξεργάσιμο από το χρήστη σύστημα σωματιδίων-ελασμάτων, ηχητικά κύματα</li>
       <li xml:lang="en-GB">Soft (deformable) bodies simulated as user-editable particles-springs system, sound waves</li>
@@ -267,7 +267,7 @@
       <li>Molecular dynamics (currently using Lennard-Jones potential): gas and liquid, condensation and evaporation, calculation of macroscopic quantities and their variances</li>
       <li xml:lang="bs">Molekularna dinamika (trenutno koristi Lennard-Jones potencijal): plin i tekućinu, kondenzacije i isparavanja, izračunavanje makroskopskih količina i njihovih varijancija</li>
       <li xml:lang="ca">Dinàmica molecular (actualment utilitzant el potencial de Lennard-Jones): gas i líquid, condensació i evaporació, càlcul de quantitats macroscòpiques i les seves variacions</li>
-      <li xml:lang="ca-valencia">Dinàmica molecular (actualment utilitzant el potencial de Lennard-Jones): gas i líquid, la condensació i l'evaporació, el càlcul de quantitats macroscòpiques i les seues variàncies</li>
+      <li xml:lang="ca-valencia">Dinàmica molecular (actualment utilitzant el potencial de Lennard-Jones): gas i líquid, condensació i evaporació, càlcul de quantitats macroscòpiques i les seues variacions</li>
       <li xml:lang="de">Molekulare Dynamik mithilfe des Lennard-Jones-Potentials: Gase und Flüssigkeiten, Kondensation und Verdunstung, Berechnung der makroskopischen Werte und ihrer Abweichungen</li>
       <li xml:lang="el">Μοριακές δυνάμεις (προς το παρόν με χρήση δυναμικού Lennard-Jones): αέριο και υγρό, συμπύκνωση και εξάτμιση, υπολογισμός των μακροσκοπικών ποσοτήτων και των διακυμάνσεών τους</li>
       <li xml:lang="en-GB">Molecular dynamics (currently using Lennard-Jones potential): gas and liquid, condensation and evaporation, calculation of macroscopic quantities and their variances</li>
@@ -294,7 +294,7 @@
       <li>Units conversion and expression calculation: you can enter something like "(2 days + 3 hours) * 80 km/h" and it will be accepted as distance value (requires libqalculate)</li>
       <li xml:lang="bs">Jedinice konverzije i proračun izraza: možete unijeti nešto poput "(2 dana + 3 sata) * 80 km / h", a ona će biti prihvaćena kao vrijednost udaljenosti (zahtijeva libqalculate)</li>
       <li xml:lang="ca">Conversió d'unitats i càlcul d'expressions: podeu introduir quelcom del tipus «(2 dies + 3 hores) * 80 km/h» i serà acceptat com un valor de distància (requereix la «libqalculate»)</li>
-      <li xml:lang="ca-valencia">Conversió d'unitats i càlcul d'expressions: podeu introduir alguna cosa del tipus "(2 dies + 3 hores) * 80 km/h" i serà acceptat com un valor de distància (necessita la libqalculate)</li>
+      <li xml:lang="ca-valencia">Conversió d'unitats i càlcul d'expressions: podeu introduir alguna cosa del tipus «(2 dies + 3 hores) * 80 km/h» i serà acceptat com un valor de distància (requereix la «libqalculate»)</li>
       <li xml:lang="de">Umwandlung von Einheiten und Berechnung von Ausdrücken: Sie können zum Beispiel „(2 days + 3 hours) * 80 km/h“ eingeben, daraus wird der Wert der Entfernung berechnet. Dazu ist die Bibliothek libqalculate erforderlich.</li>
       <li xml:lang="el">Μετατροπή μονάδων και υπολογισμός εκφράσεων: μπορείτε να δώσετε π.χ. "(2 ημέρες + 3 ώρες) * 80 km/h" και θα γίνει δεκτό ως τιμή απόστασης (απαιτεί το libqalculate)</li>
       <li xml:lang="en-GB">Units conversion and expression calculation: you can enter something like "(2 days + 3 hours) * 80 km/h" and it will be accepted as distance value (requires libqalculate)</li>
@@ -321,7 +321,7 @@
       <li>Errors calculation and propagation: you can enter values like "1.3 ± 0.2" for any property and errors for all dependent properties will be calculated using statistical formulas</li>
       <li xml:lang="bs">Obračun i propagacija greške: možete unijeti vrijednosti kao što su "1.3 ± 0.2" za bilo koje vlasništvo i grešake za sve zavisne osobine će se izračunati pomoću statističkih formula</li>
       <li xml:lang="ca">Errors de càlcul i propagació: podeu introduir valors com «1,3 ± 0,2» per a qualsevol propietat i error per a totes les propietats dependents que es calculin utilitzant fórmules estadístiques</li>
-      <li xml:lang="ca-valencia">Càlcul i propagació d'errors: podeu introduir valors del tipus "1,3 ± 0,2" a qualsevol propietat i els errors de totes les propietats que en depenguin es calcularan utilitzant fórmules estadístiques</li>
+      <li xml:lang="ca-valencia">Errors de càlcul i propagació: podeu introduir valors com «1,3 ± 0,2» per a qualsevol propietat i error per a totes les propietats dependents que es calculin utilitzant fórmules estadístiques</li>
       <li xml:lang="de">Fehlerberechnung und -weiterleitung: Sie können Werte wie „1,3± 0,2“ für jede beliebige Eigenschaft eingeben. Dann werden die sich daraus ergebenden Fehler für alle abhängigen Eigenschaften mit statistischen Formeln berechnet.</li>
       <li xml:lang="el">Υπολογισμός και διάδοση σφαλμάτων: μπορείτε να δώσετε τιμές όπως "1.3 ± 0.2" για κάθε ιδιότητα και τα σφάλματα για όλες τις εξαρτημένες ιδιότητες θα υπολογιστούν με στατιστικούς τύπους</li>
       <li xml:lang="en-GB">Errors calculation and propagation: you can enter values like "1.3 ± 0.2" for any property and errors for all dependent properties will be calculated using statistical formulas</li>
@@ -348,7 +348,7 @@
       <li>Solver error estimation: errors introduced by the solver is calculated and added to user-entered errors</li>
       <li xml:lang="bs">Rješavač greške procjenjuje: greške koje su uvedene od strane rješavača su izračunate i  dodane korisničkim greškama</li>
       <li xml:lang="ca">Estimació dels errors del solucionador: es calculen els errors introduïts pel solucionador i s'afegeixen als errors introduïts per l'usuari</li>
-      <li xml:lang="ca-valencia">Estimació dels errors del solucionador: Els errors introduïts pel solucionador es calculen i s'afigen als errors introduïts per l'usuari</li>
+      <li xml:lang="ca-valencia">Estimació dels errors del solucionador: es calculen els errors introduïts pel solucionador i s'afigen als errors introduïts per l'usuari</li>
       <li xml:lang="de">Abschätzung der Fehler der Gleichungslösungssysteme: Die daraus entstehenden Fehler werden berechnet und zu den vom Benutzer eingegeben Fehlern addiert</li>
       <li xml:lang="el">Εκτίμηση σφάλματος επίλυσης: τα σφάλματα που εισήχθησαν από την επίλυση υπολογίζονται και προστίθενται στα σφάλματα του χρήστη</li>
       <li xml:lang="en-GB">Solver error estimation: errors introduced by the solver is calculated and added to user-entered errors</li>
@@ -375,7 +375,7 @@
       <li>Several different solvers: up to 8th order, explicit and implicit, with or without adaptive timestep (most of the solvers require GSL library)</li>
       <li xml:lang="bs">Nekoliko različitih rješavača: do osmog poretka, eksplicitno i implicitno, sa ili bez prilagodljivog vremesnog koraka(većina rješavača zahtjeva GSL biblioteku)</li>
       <li xml:lang="ca">Diversos solucionadors diferents: fins al vuitè ordre, explícits i implícits, amb adaptació o sense de pas de temps (la majoria dels solucionadors requereixen la biblioteca «GSL»)</li>
-      <li xml:lang="ca-valencia">Diversos solucionadors diferents: fins a ordre 8è, explícit o implícit, amb pas temporal adaptatiu o sense (la majoria de solucionadors necessiten la biblioteca GSL)</li>
+      <li xml:lang="ca-valencia">Diversos solucionadors diferents: fins al vuitè ordre, explícits i implícits, amb adaptació o sense de pas de temps (la majoria dels solucionadors requereixen la biblioteca «GSL»)</li>
       <li xml:lang="de">Mehrere verschiedene Gleichungslösungssysteme: bis zur achten Ordnung, explizit und implizit, mit oder ohne angepassten Zeitschritten. Die meisten Gleichungslösungssysteme benötigen die GSL-Bibliothek.</li>
       <li xml:lang="el">Διάφοροι διαλύτες: μέχρι 8ης τάξης, εξωτερικοί και εσωτερικοί, με ή χωρίς προσαρμοσμένο χρονικό βήμα (οι περισσότεροι διαλύτες απαιτούν τη βιβλιοθήκη GSL)</li>
       <li xml:lang="en-GB">Several different solvers: up to 8th order, explicit and implicit, with or without adaptive timestep (most of the solvers require GSL library)</li>
