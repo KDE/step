@@ -663,7 +663,7 @@ void WorldGraphicsView::settingsChanged()
 
 void WorldGraphicsView::mousePressEvent(QMouseEvent* e)
 {
-    if(e->button() == Qt::MidButton) {
+    if(e->button() == Qt::MiddleButton) {
         setDragMode(QGraphicsView::ScrollHandDrag);
         QMouseEvent e1(e->type(), e->pos(), e->globalPos(), Qt::LeftButton,
                         e->buttons(), e->modifiers());
@@ -676,7 +676,7 @@ void WorldGraphicsView::mousePressEvent(QMouseEvent* e)
 void WorldGraphicsView::mouseReleaseEvent(QMouseEvent* e)
 {
     QGraphicsView::mouseReleaseEvent(e);
-    if(e->button() == Qt::MidButton) {
+    if(e->button() == Qt::MiddleButton) {
         setDragMode(QGraphicsView::RubberBandDrag);
     }
 }
