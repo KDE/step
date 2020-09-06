@@ -91,6 +91,7 @@ add_subdirectory(stepcore)
 add_subdirectory(step)
 add_subdirectory(autotests)
 
+ki18n_install(po)
 install(FILES org.kde.step.appdata.xml DESTINATION ${KDE_INSTALL_METAINFODIR})
 
 find_package(SharedMimeInfo REQUIRED)
