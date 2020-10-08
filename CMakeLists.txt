@@ -92,6 +92,9 @@ add_subdirectory(step)
 add_subdirectory(autotests)
 
 ki18n_install(po)
+if (KF5DocTools_FOUND)
+    kdoctools_install(po)
+endif()
 install(FILES org.kde.step.appdata.xml DESTINATION ${KDE_INSTALL_METAINFODIR})
 
 find_package(SharedMimeInfo REQUIRED)
