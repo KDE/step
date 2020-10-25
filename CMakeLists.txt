@@ -27,7 +27,6 @@ find_package(Qt5 5.2 REQUIRED NO_MODULE COMPONENTS
     Xml
     Svg
     OpenGL
-    Test
 )
 
 find_package(KF5 REQUIRED COMPONENTS

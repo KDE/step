@@ -45,7 +45,7 @@ if(STEPCORE_WITH_QT)
 
     set(QT_DONT_USE_QTGUI ON)
     set(QT_USE_QTXML ON)
-    find_package(Qt5 5.2 REQUIRED NO_MODULE COMPONENTS Xml Test)
+    find_package(Qt5 5.2 REQUIRED NO_MODULE COMPONENTS Xml)
 
     include_directories(${CMAKE_CURRENT_BINARY_DIR})
     set(stepcore_use_LIBS ${stepcore_use_LIBS} Qt5::Core Qt5::Xml)
