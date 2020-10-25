@@ -23,7 +23,7 @@
 
 include(ECMMarkAsTest)
 
-find_package(Qt5Test ${REQUIRED_QT_VERSION} CONFIG QUIET)
+find_package(Qt5Test ${QT_MIN_VERSION} CONFIG QUIET)
 
 if(STEPCORE_WITH_QT)
     add_definitions(-DSTEPCORE_WITH_QT)
