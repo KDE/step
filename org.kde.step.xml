@@ -5,9 +5,12 @@
     <comment xml:lang="ca">Fitxers del simulador de física Step</comment>
     <comment xml:lang="ca@valencia">Fitxers del simulador de física Step</comment>
     <comment xml:lang="el">Step αρχεία προσομοίωσης του φυσικού κόσμου</comment>
+    <comment xml:lang="es">Archivos del simulador físico Step</comment>
+    <comment xml:lang="eu">Step fisika simulatzailearen fitxategiak</comment>
     <comment xml:lang="it">File del simulatore di fisica Step</comment>
     <comment xml:lang="nl">Fysieke simulatiebestanden Step</comment>
     <comment xml:lang="pt">Ficheiros do Simulador de Física Step</comment>
+    <comment xml:lang="sl">Datoteke za fizikalni simulator Step</comment>
     <comment xml:lang="sv">Step fysiksimulatorfiler</comment>
     <comment xml:lang="uk">файли імітатора фізичних процесів Step</comment>
     <icon name="step"/>
