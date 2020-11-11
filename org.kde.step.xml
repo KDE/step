@@ -17,6 +17,7 @@
     <comment xml:lang="sl">Datoteke za fizikalni simulator Step</comment>
     <comment xml:lang="sv">Step fysiksimulatorfiler</comment>
     <comment xml:lang="uk">файли імітатора фізичних процесів Step</comment>
+    <comment xml:lang="zh_CN">Step 物理模拟器文件</comment>
     <icon name="step"/>
     <magic priority="80">
       <match offset="49" type="string" value="StepCoreXML" />
