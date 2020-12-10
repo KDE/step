@@ -392,20 +392,20 @@ NoteGraphicsItem::NoteGraphicsItem(StepCore::Item* item, WorldModel* worldModel)
     _actionColor = new QAction(QIcon(), i18n("&Color"), _toolBar);
 
     _actionBold = new KToggleAction(QIcon::fromTheme(QStringLiteral("format-text-bold")), i18n("&Bold"), _toolBar);
-    _actionBold->setShortcut(Qt::CTRL + Qt::Key_B);
+    _actionBold->setShortcut(Qt::CTRL | Qt::Key_B);
     _actionItalic = new KToggleAction(QIcon::fromTheme(QStringLiteral("format-text-italic")), i18n("&Italic"), _toolBar);
-    _actionItalic->setShortcut(Qt::CTRL + Qt::Key_I);
+    _actionItalic->setShortcut(Qt::CTRL | Qt::Key_I);
     _actionUnderline = new KToggleAction(QIcon::fromTheme(QStringLiteral("format-text-underline")), i18n("&Underline"), _toolBar);
-    _actionUnderline->setShortcut(Qt::CTRL + Qt::Key_U);
+    _actionUnderline->setShortcut(Qt::CTRL | Qt::Key_U);
 
     _actionAlignLeft = new KToggleAction(QIcon::fromTheme(QStringLiteral("format-justify-left")), i18n("Align &Left"), _toolBar);
-    _actionAlignLeft->setShortcut(Qt::CTRL + Qt::Key_L);
+    _actionAlignLeft->setShortcut(Qt::CTRL | Qt::Key_L);
     _actionAlignCenter = new KToggleAction(QIcon::fromTheme(QStringLiteral("format-justify-center")), i18n("Align C&enter"), _toolBar);
-    _actionAlignCenter->setShortcut(Qt::CTRL + Qt::Key_E);
+    _actionAlignCenter->setShortcut(Qt::CTRL | Qt::Key_E);
     _actionAlignRight = new KToggleAction(QIcon::fromTheme(QStringLiteral("format-justify-right")), i18n("Align &Right"), _toolBar);
-    _actionAlignRight->setShortcut(Qt::CTRL + Qt::Key_R);
+    _actionAlignRight->setShortcut(Qt::CTRL | Qt::Key_R);
     _actionAlignJustify = new KToggleAction(QIcon::fromTheme(QStringLiteral("format-justify-fill")), i18n("Align &Justify"), _toolBar);
-    _actionAlignJustify->setShortcut(Qt::CTRL + Qt::Key_J);
+    _actionAlignJustify->setShortcut(Qt::CTRL | Qt::Key_J);
 
     _actionAlign = new KSelectAction(i18n("&Align"), _toolBar);
     _actionAlign->setToolBarMode(KSelectAction::MenuMode);
