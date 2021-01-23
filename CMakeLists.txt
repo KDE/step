@@ -100,7 +100,7 @@ endif()
 install(FILES org.kde.step.appdata.xml DESTINATION ${KDE_INSTALL_METAINFODIR})
 
 find_package(SharedMimeInfo REQUIRED)
-install(FILES org.kde.step.xml DESTINATION ${XDG_MIME_INSTALL_DIR})
-update_xdg_mimetypes(${XDG_MIME_INSTALL_DIR})
+install(FILES org.kde.step.xml DESTINATION ${KDE_INSTALL_MIMEDIR})
+update_xdg_mimetypes(${KDE_INSTALL_MIMEDIR})
 
 feature_summary(WHAT ALL FATAL_ON_MISSING_REQUIRED_PACKAGES)
