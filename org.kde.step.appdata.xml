@@ -18,6 +18,7 @@
   <name xml:lang="fi">Step</name>
   <name xml:lang="fr">Step</name>
   <name xml:lang="gl">Paso</name>
+  <name xml:lang="ia">Step (Passo)</name>
   <name xml:lang="id">Step</name>
   <name xml:lang="it">Step</name>
   <name xml:lang="ko">Step</name>
@@ -112,6 +113,7 @@
     <p xml:lang="fi">Ominaisuudet:</p>
     <p xml:lang="fr">Fonctionnalités :</p>
     <p xml:lang="gl">Funcionalidades:</p>
+    <p xml:lang="ia">Characteristicas:</p>
     <p xml:lang="id">Fitur:</p>
     <p xml:lang="it">Caratteristiche:</p>
     <p xml:lang="ko">기능:</p>
