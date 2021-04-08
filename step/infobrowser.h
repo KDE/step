@@ -27,7 +27,6 @@ class WorldModel;
 class QModelIndex;
 class QShowEvent;
 class QAction;
-class QUrl;
 
 class KToolBar;
 class KHTMLPart;
