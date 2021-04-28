@@ -235,10 +235,10 @@ void TestContacts::testCollisionDetection()
         }
     }
 
+    */
     delete collisionSolver;
     delete polygon1;
     delete polygon0;
-    */
 }
 
 QTEST_MAIN(TestContacts)

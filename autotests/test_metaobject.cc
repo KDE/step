@@ -214,6 +214,7 @@ void TestMetaobject::testMetaObject()
               dynamic_cast<MetaObjectTestObject*>(object)->property4().value);
 
     delete object;
+    delete clone;
 }
 
 QTEST_MAIN(TestMetaobject)
