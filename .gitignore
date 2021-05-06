@@ -4,3 +4,9 @@ build/
 # Ignore IDE project files
 .kdev4/
 step.kdev4
+/.clang-format
+/compile_commands.json
+.clangd
+.cache
+.idea
+/cmake-build*
