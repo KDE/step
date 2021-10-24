@@ -291,7 +291,7 @@ void GasMenuHandler::populateMenu(QMenu* menu, KActionCollection* actions)
     _creationDialog = 0;
     //_confChanged = false;
 
-    menu->addAction(QIcon::fromTheme(QStringLiteral("step_object_GasParticle")), i18n("Create particles..."), this, &GasMenuHandler::createGasParticles);
+    menu->addAction(QIcon::fromTheme(QStringLiteral("step_object_GasParticle")), i18n("Create Particles..."), this, &GasMenuHandler::createGasParticles);
     //menu->addAction(QIcon::fromTheme("edit-clear"), i18n("Clear gas"), this, SLOT(clearGas()));
     menu->addSeparator();
     ItemMenuHandler::populateMenu(menu, actions);

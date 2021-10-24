@@ -80,7 +80,7 @@
          </sizepolicy>
         </property>
         <property name="text" >
-         <string>min:</string>
+         <string>Min:</string>
         </property>
         <property name="alignment" >
          <set>Qt::AlignCenter</set>
@@ -96,7 +96,7 @@
          </sizepolicy>
         </property>
         <property name="text" >
-         <string>max:</string>
+         <string>Max:</string>
         </property>
         <property name="alignment" >
          <set>Qt::AlignCenter</set>

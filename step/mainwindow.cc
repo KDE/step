@@ -317,7 +317,7 @@ bool MainWindow::openFile(const QUrl& url, const QUrl& startUrl)
 
     QUrl fileUrl = url;
     if(fileUrl.isEmpty()) {
-        fileUrl = QFileDialog::getOpenFileUrl(this, i18n("Open Step File"), startUrl, i18n("Step files (*.step)"));
+        fileUrl = QFileDialog::getOpenFileUrl(this, i18nc("@title:window", "Open Step File"), startUrl, i18n("Step files (*.step)"));
         if(fileUrl.isEmpty()) return false;
     }
 
@@ -347,7 +347,7 @@ bool MainWindow::saveFileAs(const QUrl& url, const QUrl& startUrl)
     if(worldModel->isSimulationActive()) simulationStop();
     QUrl fileUrl = url;
     if(fileUrl.isEmpty()) {
-        fileUrl = QFileDialog::getSaveFileUrl(this, i18n("Save Step File"), startUrl.isEmpty() ? currentFileUrl : startUrl, i18n("Step files (*.step)"));
+        fileUrl = QFileDialog::getSaveFileUrl(this, i18nc("@title:window", "Save Step File"), startUrl.isEmpty() ? currentFileUrl : startUrl, i18n("Step files (*.step)"));
         if(fileUrl.isEmpty()) return false;
         }
 

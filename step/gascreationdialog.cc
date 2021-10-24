@@ -40,7 +40,7 @@ GasCreationDialog::GasCreationDialog(GasMenuHandler* handler, StepCore::Gas *gas
     , _gas(gas)
     , _handler(handler)
 {
-    setWindowTitle(i18n("Create gas particles"));
+    setWindowTitle(i18nc("@title:window", "Create Gas Particles"));
     QDialogButtonBox *buttonBox = new QDialogButtonBox(QDialogButtonBox::Ok|QDialogButtonBox::Cancel);
     QWidget *mainWidget = new QWidget(this);
     QVBoxLayout *mainLayout = new QVBoxLayout;

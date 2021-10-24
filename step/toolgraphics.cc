@@ -419,12 +419,12 @@ NoteGraphicsItem::NoteGraphicsItem(StepCore::Item* item, WorldModel* worldModel)
     _actionFont = new KFontAction(i18n("&Font"), _toolBar);
     _actionFontSize = new KFontSizeAction(i18n("Font &Size"), _toolBar);
 
-    _actionInsertImage = new QAction(QIcon::fromTheme(QStringLiteral("insert-image")), i18n("Insert &Image"), _toolBar);
+    _actionInsertImage = new QAction(QIcon::fromTheme(QStringLiteral("insert-image")), i18n("Insert &Image..."), _toolBar);
 #ifdef __GNUC__
 #warning Select right icon here
 #endif
     _actionInsertFormula = new QAction(QIcon::fromTheme(QStringLiteral("application-vnd.oasis.opendocument.formula")),
-                                    i18n("Insert &Formula"), _toolBar);
+                                    i18n("Insert &Formula..."), _toolBar);
 
     connect(_actionColor, &QAction::triggered, this, &NoteGraphicsItem::formatColor);
     connect(_actionBold, &QAction::triggered, this, &NoteGraphicsItem::formatBold);
@@ -640,7 +640,7 @@ void NoteGraphicsItem::cursorPositionChanged()
 
 void NoteGraphicsItem::insertImage()
 {
-    QUrl url = QFileDialog::getOpenFileUrl(_widget, i18n("Open Image File"), QUrl(), i18n("Images (*.png *.jpg *.jpeg)"));
+    QUrl url = QFileDialog::getOpenFileUrl(_widget, i18nc("@title:window", "Open Image File"), QUrl(), i18n("Images (*.png *.jpg *.jpeg)"));
     if(url.isEmpty()) return;
 
     QTemporaryFile tempFile;
@@ -708,8 +708,8 @@ bool NoteGraphicsItem::editFormula(StepCore::NoteFormula* formula)
     }
 
     bool ok;
-    QString code = QInputDialog::getMultiLineText(_widget, i18n("LaTex Formula - Step"),
-                i18n("Enter LaTeX formula string"), QString(formula->code()), &ok);
+    QString code = QInputDialog::getMultiLineText(_widget, i18nc("@title:window", "LaTex Formula - Step"),
+                i18n("Enter LaTeX formula string:"), QString(formula->code()), &ok);
     if(!ok) return false;
 
     QByteArray image;
@@ -1086,8 +1086,8 @@ void GraphMenuHandler::populateMenu(QMenu* menu, KActionCollection* actions)
     _confDialog = 0;
     _confChanged = false;
 
-    menu->addAction(QIcon::fromTheme(QStringLiteral("edit-clear")), i18n("Clear graph"), this, &GraphMenuHandler::clearGraph);
-    menu->addAction(QIcon::fromTheme(QStringLiteral("configure")), i18n("Configure graph..."), this, &GraphMenuHandler::configureGraph);
+    menu->addAction(QIcon::fromTheme(QStringLiteral("edit-clear")), i18n("Clear Graph"), this, &GraphMenuHandler::clearGraph);
+    menu->addAction(QIcon::fromTheme(QStringLiteral("configure")), i18n("Configure Graph..."), this, &GraphMenuHandler::configureGraph);
     menu->addSeparator();
     ItemMenuHandler::populateMenu(menu, actions);
 }
@@ -1105,7 +1105,7 @@ void GraphMenuHandler::configureGraph()
     _confChanged = false;
     _confDialog = new QDialog(); // XXX: parent?
     
-    _confDialog->setWindowTitle(i18n("Configure graph"));
+    _confDialog->setWindowTitle(i18nc("@title:window", "Configure Graph"));
     _buttonBox = new QDialogButtonBox(QDialogButtonBox::Ok
 				      | QDialogButtonBox::Cancel
 				      | QDialogButtonBox::Apply);
@@ -1314,7 +1314,7 @@ void MeterMenuHandler::populateMenu(QMenu* menu, KActionCollection* actions)
     _confDialog = 0;
     _confChanged = false;
 
-    menu->addAction(QIcon::fromTheme(QStringLiteral("configure")), i18n("Configure meter..."), this, &MeterMenuHandler::configureMeter);
+    menu->addAction(QIcon::fromTheme(QStringLiteral("configure")), i18n("Configure Meter..."), this, &MeterMenuHandler::configureMeter);
     menu->addSeparator();
     ItemMenuHandler::populateMenu(menu, actions);
 }
@@ -1332,7 +1332,7 @@ void MeterMenuHandler::configureMeter()
     _confChanged = false;
 
     _confDialog = new QDialog(); // XXX
-    _confDialog->setWindowTitle(i18n("Configure meter"));
+    _confDialog->setWindowTitle(i18nc("@title:window", "Configure Meter"));
     _buttonBox = new QDialogButtonBox(QDialogButtonBox::Ok
 				      | QDialogButtonBox::Cancel
 				      | QDialogButtonBox::Apply);
@@ -1429,8 +1429,8 @@ ControllerGraphicsItem::ControllerGraphicsItem(StepCore::Item* item, WorldModel*
     layout->addWidget(_labelMax, 0, 2, 1, 1);
     layout->addWidget(_labelSource, 1, 0, 1, 3);
 
-    _incAction = new QAction(i18n("Increase value"), _widget);
-    _decAction = new QAction(i18n("Decrease value"), _widget);
+    _incAction = new QAction(i18n("Increase Value"), _widget);
+    _decAction = new QAction(i18n("Decrease Value"), _widget);
 
     connect(_incAction, &QAction::triggered, this, &ControllerGraphicsItem::incTriggered);
     connect(_decAction, &QAction::triggered, this, &ControllerGraphicsItem::decTriggered);
@@ -1626,10 +1626,10 @@ void ControllerMenuHandler::populateMenu(QMenu* menu, KActionCollection* actions
     _confDialog = 0;
     _confChanged = false;
 
-    menu->addAction(QIcon::fromTheme(QStringLiteral("arrow-up")), i18n("Increase value"), this, &ControllerMenuHandler::incTriggered);
-    menu->addAction(QIcon::fromTheme(QStringLiteral("arrow-down")), i18n("Decrease value"), this, &ControllerMenuHandler::decTriggered);
+    menu->addAction(QIcon::fromTheme(QStringLiteral("arrow-up")), i18n("Increase Value"), this, &ControllerMenuHandler::incTriggered);
+    menu->addAction(QIcon::fromTheme(QStringLiteral("arrow-down")), i18n("Decrease Value"), this, &ControllerMenuHandler::decTriggered);
     menu->addSeparator();
-    menu->addAction(QIcon::fromTheme(QStringLiteral("configure")), i18n("Configure controller..."), this, &ControllerMenuHandler::configureController);
+    menu->addAction(QIcon::fromTheme(QStringLiteral("configure")), i18n("Configure Controller..."), this, &ControllerMenuHandler::configureController);
     menu->addSeparator();
     ItemMenuHandler::populateMenu(menu, actions);
 }
@@ -1647,7 +1647,7 @@ void ControllerMenuHandler::configureController()
     _confChanged = false;
     _confDialog = new QDialog(); // XXX
     
-    _confDialog->setWindowTitle(i18n("Configure controller"));
+    _confDialog->setWindowTitle(i18nc("@title:window", "Configure Controller"));
     _buttonBox = new QDialogButtonBox(QDialogButtonBox::Ok
 				      | QDialogButtonBox::Cancel
 				      | QDialogButtonBox::Apply);
@@ -1908,7 +1908,7 @@ void TracerGraphicsItem::mouseSetPos(const QPointF&, const QPointF& diff, Moving
 
 void TracerMenuHandler::populateMenu(QMenu* menu, KActionCollection* actions)
 {
-    menu->addAction(QIcon::fromTheme(QStringLiteral("edit-clear")), i18n("Clear trace"), this, &TracerMenuHandler::clearTracer);
+    menu->addAction(QIcon::fromTheme(QStringLiteral("edit-clear")), i18n("Clear Trace"), this, &TracerMenuHandler::clearTracer);
     menu->addSeparator();
     ItemMenuHandler::populateMenu(menu, actions);
 }

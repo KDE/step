@@ -123,7 +123,7 @@ void SoftBodyMenuHandler::createSoftBodyItems(const StepCore::Vector2d& pos)
 
     _createSoftBodyItemsDialog = new QDialog(); // XXX: parent?
     
-    _createSoftBodyItemsDialog->setWindowTitle(i18n("Create soft body items"));
+    _createSoftBodyItemsDialog->setWindowTitle(i18nc("@title:window", "Create Soft Body Items"));
     QDialogButtonBox *buttonBox = new QDialogButtonBox(QDialogButtonBox::Ok|QDialogButtonBox::Cancel);
     QWidget *mainWidget = new QWidget();
     QVBoxLayout *mainLayout = new QVBoxLayout;

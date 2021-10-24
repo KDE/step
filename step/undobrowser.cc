@@ -27,7 +27,7 @@
 #include <KLocalizedString>
 
 UndoBrowser::UndoBrowser(WorldModel* worldModel, QWidget* parent)
-    : QDockWidget(i18n("Undo history"), parent), _worldModel(worldModel)
+    : QDockWidget(i18n("Undo History"), parent), _worldModel(worldModel)
 {
     _undoView = new QUndoView(_worldModel->undoStack(), this);
     setWidget(_undoView);

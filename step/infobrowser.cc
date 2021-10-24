@@ -35,7 +35,7 @@
 #include <KToolBar>
 
 InfoBrowser::InfoBrowser(WorldModel* worldModel, QWidget* parent)
-    : QDockWidget(i18n("Context info"), parent),
+    : QDockWidget(i18n("Context Info"), parent),
       _worldModel(worldModel), _selectionChanged(false)
 {
     QWidget* widget = new QWidget(this);
@@ -66,7 +66,7 @@ InfoBrowser::InfoBrowser(WorldModel* worldModel, QWidget* parent)
     _followAction->setChecked(true);
 
     _toolBar->addSeparator();
-    _execAction = _toolBar->addAction(QIcon::fromTheme(QStringLiteral("system-run")), i18n("Open in browser"), this, SLOT(openInBrowser()));
+    _execAction = _toolBar->addAction(QIcon::fromTheme(QStringLiteral("system-run")), i18n("Open in Browser"), this, SLOT(openInBrowser()));
     _execAction->setEnabled(false);
 
     _htmlBrowser = new QTextBrowser(widget);
