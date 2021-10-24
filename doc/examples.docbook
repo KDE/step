@@ -1,145 +1,145 @@
 <chapter id="examples">
-<title>&step; examples</title> 
-<para>
-  &step; package contains several instructive examples to help you understand the principles of the application work. To open an example from the default set choose <menuchoice><guimenu>File</guimenu> <guisubmenu>Examples</guisubmenu> <guimenuitem>Open Example...</guimenuitem></menuchoice> from the main window menu.
-</para>
+<title>&step; examples</title>
 
-<para>
-   You can share your own examples with <menuchoice><guimenu>File</guimenu> <guisubmenu>Examples</guisubmenu> <guimenuitem>Share Current Experiment...</guimenuitem></menuchoice> or download examples shared by other users with <menuchoice><guimenu>File</guimenu> <guisubmenu>Examples</guisubmenu> <guimenuitem>Download New Experiments...</guimenuitem></menuchoice>. Downloaded examples can be opened using <menuchoice><guimenu>File</guimenu> <guisubmenu>Examples</guisubmenu> <guimenuitem>Open Downloaded Example...</guimenuitem></menuchoice> menu item.
-</para>
-
-<para>
-  You can find the descriptions of the default example files below.
+<para>&step; package contains several instructive examples to help you understand the principles of the application work:
 </para>
 
 <variablelist>
-<varlistentry id="brownian">
-<term>brownian.step</term>
-<listitem><para>Plots trajectory of the rigid disk interacting with 40 particles that randomly drifting in a box. This example simulates <ulink url="http://en.wikipedia.org/wiki/Brownian_motion">Brownian motion</ulink> of ideal gas particles.</para></listitem>
-</varlistentry>
-
-<varlistentry id="pendulum">
-<term>doublependulum.step</term>
-<listitem><para>This example simulates <ulink url="http://en.wikipedia.org/wiki/Double_pendulum">double pendulum motion</ulink> using 2 massive particles and two sticks.</para></listitem>
-</varlistentry>
-
-<varlistentry id="eightpendulum">
-<term>eightpendulum.step</term>
-<listitem><para>This example is a simple demonstration of the famous <ulink url="http://en.wikipedia.org/wiki/Newton%27s_cradle">Newton's cradle</ulink>. It is done in &step; using sticks, 8 discs and a box. The six balls in the middle are not moving because they just transfer momentum and energy, not a motion.</para></listitem>
-</varlistentry>
-
-<varlistentry id="first">
-<term>first.step: First example</term>
-<listitem><para>This example has two parts. The first part contains two particles connected 
-by a spring and the second part contains two charged particles.</para>
-
-<variablelist>
-<varlistentry id="first-two-particles">
-<term>Two particles connected by a spring</term>
-<listitem>
-  <para>
-    In this example two particles are added to the scene and spring is connected 
-    between them. The properties of both the particles such as velocity, momentum, 
-    position &etc; has been set in the properties browser. The properties of the 
-    spring such as stiffness, restLength, damping &etc; also has been set in the 
-    properties browser.
-  </para>
- <para>
-   <emphasis>Explanation of the simulation:</emphasis>
- </para>
- <para>
-   This is good example of a simple harmonic motion. Here the acceleration of the 
-   one particle is set in direction of positive x-axis and the acceleration of 
-   the other particle is set along negative x-axis. As a result both the particles 
-   pulls the spring in opposite directions, where as spring tries to bring the 
-   two particles back to their original positions. Thus the system executes 
-   simple harmonic motion. The simulation of the particles and spring under these 
-   conditions can be seen on the scene.
- </para>
-</listitem>
-</varlistentry>
-
-<varlistentry id="first-two-charged">
-<term>Two charged particles</term>
-<listitem>
-  <para>
-    Velocity of the each charged particle is set in some direction so, the charged 
-    particles moves in respective direction of their velocity but each particle 
-    has been given a equal and opposite charge so the particles try to attract 
-    each other. As a result the simulation of the charged particles under these 
-    conditions can be seen on the scene.
-  </para>
-</listitem>
-</varlistentry>
+  <varlistentry>
+    <term><menuchoice>
+    <guimenu>File</guimenu>
+    <guisubmenu>Examples</guisubmenu></menuchoice></term>
+    <listitem><para><action>Opens a submenu</action> with different action items.</para>
+    <variablelist>
+      <varlistentry>
+        <term><guimenuitem>Open Example...</guimenuitem></term>
+        <listitem><para><action>Opens an example</action> from the default set</para></listitem>
+      </varlistentry>
+      <varlistentry>
+        <term><guimenuitem>Open Downloaded Example...</guimenuitem></term>
+        <listitem><para><action>Opens the downloaded examples.</action></para></listitem>
+      </varlistentry>
+      <varlistentry>
+        <term><guimenuitem>Download New Experiments...</guimenuitem></term>
+        <listitem><para><action>Download examples</action> shared by other users.</para></listitem>
+      </varlistentry>
+      <varlistentry>
+        <term><guimenuitem>Share Current Experiment...</guimenuitem></term>
+        <listitem><para><action>You can share your own examples.</action></para></listitem>
+      </varlistentry>
+    </variablelist>
+    </listitem>
+  </varlistentry>
 </variablelist>
-</listitem>
-</varlistentry>
 
-<varlistentry id="fourpendula">
-<term>fourpendula.step</term>
-<listitem><para>This example is a correct demonstration of the <ulink url="http://en.wikipedia.org/wiki/Newton%27s_cradle">Newton's cradle</ulink>. As the system is imperfect two disks in the middle get visual movement with time.</para></listitem>
-</varlistentry>
+<para>You can find the descriptions of the default example files below.
+</para>
 
-<varlistentry id="gas">
-<term>gas.step</term>
-<listitem><para>This example simulates ideal gas pressure caused by <ulink url="http://en.wikipedia.org/wiki/Brownian_motion">Brownian motion</ulink>.</para></listitem>
-</varlistentry>
+<variablelist>
+  <varlistentry id="brownian">
+    <term><filename>brownian.step</filename></term>
+    <listitem><para>Plots trajectory of the rigid disk interacting with 40 particles that randomly drifting in a box. This example simulates <ulink url="https://en.wikipedia.org/wiki/Brownian_motion">Brownian motion</ulink> of ideal gas particles.</para></listitem>
+  </varlistentry>
 
-<varlistentry id="graph">
-<term>graph.step</term>
-<listitem><para>Plots velocity vs. position graph for particle1 in the system of two particles connected with a spring.</para></listitem>
-</varlistentry>
+  <varlistentry id="pendulum">
+    <term><filename>doublependulum.step</filename></term>
+    <listitem><para>This example simulates <ulink url="https://en.wikipedia.org/wiki/Double_pendulum">double pendulum motion</ulink> using 2 massive particles and two sticks.</para></listitem>
+  </varlistentry>
 
-<varlistentry id="liquid">
-<term>liquid.step</term>
-<listitem><para>This example simulates monoatomic liquid.</para></listitem>
-</varlistentry>
+  <varlistentry id="eightpendulum">
+    <term><filename>eightpendulum.step</filename></term>
+    <listitem><para>This example is a simple demonstration of the famous <ulink url="https://en.wikipedia.org/wiki/Newton%27s_cradle">Newton's cradle</ulink>. It is done in &step; using sticks, 8 discs and a box. The six balls in the middle are not moving because they just transfer momentum and energy, not a motion.</para></listitem>
+  </varlistentry>
 
-<varlistentry id="lissajous">
-<term>lissajous.step</term>
-<listitem><para>This example simulates <ulink url="http://en.wikipedia.org/wiki/Lissajous_curve">Lissajous curve</ulink> using two-particle model. The parameters on the model can be changed using the controller at the center of the world.</para></listitem>
-</varlistentry>
+  <varlistentry id="first">
+    <term><filename>first.step</filename>: First example</term>
+    <listitem><para>This example has two parts. The first part contains two particles connected by a spring and the second part contains two charged particles.
+    </para>
+    <variablelist>
+      <varlistentry id="first-two-particles">
+        <term>Two particles connected by a spring</term>
+        <listitem><para>In this example two particles are added to the scene and spring is connected between them. The properties of both the particles such as velocity, momentum, position &etc; has been set in the properties browser. The properties of the spring such as stiffness, restLength, damping &etc; also has been set in the properties browser.
+        </para>
 
-<varlistentry id="motor1">
-<term>motor1.step</term>
-<listitem><para>Simulates triangular rigid body under the loading of the three linear motors.</para></listitem>
-</varlistentry>
+        <para><emphasis>Explanation of the simulation:</emphasis>
+        </para>
 
-<varlistentry id="motor-example">
-<term>motor.step</term>
-<listitem><para>Simulates interaction of the linear motor with a rigid rectangular body on a spring.</para></listitem>
-</varlistentry>
+        <para>This is good example of a simple harmonic motion. Here the acceleration of the one particle is set in direction of positive x-axis and the acceleration of the other particle is set along negative x-axis. As a result both the particles pulls the spring in opposite directions, where as spring tries to bring the two particles back to their original positions. Thus the system executes simple harmonic motion. The simulation of the particles and spring under these conditions can be seen on the scene.
+        </para></listitem>
+      </varlistentry>
 
-<varlistentry id="note-example">
-<term>note.step</term>
-<listitem><para>Example with LaTeX formula (<ulink url="http://en.wikipedia.org/wiki/Divergence_theorem">divergence theorem</ulink>) and embedded image.</para></listitem>
-</varlistentry>
+      <varlistentry id="first-two-charged">
+        <term>Two charged particles</term>
+        <listitem><para>Velocity of the each charged particle is set in some direction so, the charged particles moves in respective direction of their velocity but each particle has been given a equal and opposite charge so the particles try to attract each other. As a result the simulation of the charged particles under these conditions can be seen on the scene.</para></listitem>
+      </varlistentry>
+    </variablelist>
+    </listitem>
+  </varlistentry>
 
-<varlistentry id="resonance">
-<term>resonance.step</term>
-<listitem><para>This example simulates resonance in the system with angular motor.</para></listitem>
-</varlistentry>
+  <varlistentry id="fourpendula">
+    <term><filename>fourpendula.step</filename></term>
+    <listitem><para>This example is a correct demonstration of the <ulink url="https://en.wikipedia.org/wiki/Newton%27s_cradle">Newton's cradle</ulink>. As the system is imperfect two disks in the middle get visual movement with time.</para></listitem>
+  </varlistentry>
 
-<varlistentry id="softbody">
-<term>softbody.step</term>
-<listitem><para>This example simulates interaction of two rigid bodies with a soft body between them.</para></listitem>
-</varlistentry>
+  <varlistentry id="gas">
+    <term><filename>gas.step</filename></term>
+    <listitem><para>This example simulates ideal gas pressure caused by <ulink url="https://en.wikipedia.org/wiki/Brownian_motion">Brownian motion</ulink>.</para></listitem>
+  </varlistentry>
 
-<varlistentry id="solar">
-<term>solar.step</term>
-<listitem><para>This example simulates the motion of Solar system major bodies (Sun and the planets).</para></listitem>
-</varlistentry>
+  <varlistentry id="graph">
+    <term><filename>graph.step</filename></term>
+    <listitem><para>Plots velocity vs. position graph for particle1 in the system of two particles connected with a spring.</para></listitem>
+  </varlistentry>
 
-<varlistentry id="springs">
-<term>springs.step</term>
-<listitem><para>This example simulates the motion of the planar system of five particles connected with four springs.</para></listitem>
-</varlistentry>
+  <varlistentry id="liquid">
+    <term><filename>liquid.step</filename></term>
+    <listitem><para>This example simulates monoatomic liquid.</para></listitem>
+  </varlistentry>
 
-<varlistentry id="wave">
-<term>wave.step</term>
-<listitem><para>The graph on the scene shows oscillations of the green particle. When you start simulation the wave starts to travel from the red particle. The blue particle will reflect the wave and it will travel in reverse direction until the red particle reflects in again. After some time the wave will vanish because springs have damping.</para></listitem>
-</varlistentry>
+  <varlistentry id="lissajous">
+    <term><filename>lissajous.step</filename></term>
+    <listitem><para>This example simulates <ulink url="https://en.wikipedia.org/wiki/Lissajous_curve">Lissajous curve</ulink> using two-particle model. The parameters on the model can be changed using the controller at the center of the world.</para></listitem>
+  </varlistentry>
 
+  <varlistentry id="motor1">
+    <term><filename>motor1.step</filename></term>
+    <listitem><para>Simulates triangular rigid body under the loading of the three linear motors.</para></listitem>
+  </varlistentry>
+
+  <varlistentry id="motor-example">
+    <term><filename>motor.step</filename></term>
+    <listitem><para>Simulates interaction of the linear motor with a rigid rectangular body on a spring.</para></listitem>
+  </varlistentry>
+
+  <varlistentry id="note-example">
+    <term><filename>note.step</filename></term>
+    <listitem><para>Example with &latex; formula (<ulink url="https://en.wikipedia.org/wiki/Divergence_theorem">divergence theorem</ulink>) and embedded image.</para></listitem>
+  </varlistentry>
+
+  <varlistentry id="resonance">
+    <term><filename>resonance.step</filename></term>
+    <listitem><para>This example simulates resonance in the system with angular motor.</para></listitem>
+  </varlistentry>
+
+  <varlistentry id="softbody">
+    <term><filename>softbody.step</filename></term>
+    <listitem><para>This example simulates interaction of two rigid bodies with a soft body between them.</para></listitem>
+  </varlistentry>
+
+  <varlistentry id="solar">
+    <term><filename>solar.step</filename></term>
+    <listitem><para>This example simulates the motion of Solar system major bodies (Sun and the planets).</para></listitem>
+  </varlistentry>
+
+  <varlistentry id="springs">
+    <term><filename>springs.step</filename></term>
+    <listitem><para>This example simulates the motion of the planar system of five particles connected with four springs.</para></listitem>
+  </varlistentry>
+
+  <varlistentry id="wave">
+    <term><filename>wave.step</filename></term>
+    <listitem><para>The graph on the scene shows oscillations of the green particle. When you start simulation the wave starts to travel from the red particle. The blue particle will reflect the wave and it will travel in reverse direction until the red particle reflects in again. After some time the wave will vanish because springs have damping.</para></listitem>
+  </varlistentry>
 </variablelist>
 
 </chapter>

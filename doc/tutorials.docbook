@@ -1,130 +1,156 @@
 <chapter id="tutorials">
-<title>Getting familiar with &step;: the tutorials</title> 
-<para>The <menuchoice><guimenu>File</guimenu><guimenuitem>Open Tutorial...</guimenuitem></menuchoice> menu action brings you a file dialog where you can load &step; built-in tutorials. There are five tutorials and you will progressively learn how to interact with each of &step; element. The best is to start with the first tutorial by clicking on the file <filename>tutorial1.step</filename>. This will display Tutorial 1 in &step;.</para>
+<title>Getting familiar with &step;: the tutorials</title>
+
+<para>The <menuchoice><guimenu>File</guimenu><guimenuitem>Open Tutorial...</guimenuitem></menuchoice> menu item brings you a file dialog where you can load &step; built-in tutorials. There are five tutorials and you will progressively learn how to interact with each of &step; element. The best is to start with the first tutorial by clicking on the file <filename>tutorial1.step</filename>. This will display Tutorial 1 in &step;.
+</para>
+
 <note><para>If you do not see the tutorial properly you can try to zoom in to display it better.</para></note>
 
-<para>The <guilabel>World</guilabel> panel on the right lists all the objects you have on your scene. By clicking on an object here, the <guilabel>Properties</guilabel> panel below displays this object properties. You can change the properties here by clicking on the one you want to modify.</para>
+<para>The <guilabel>World</guilabel> panel on the right lists all the objects you have on your scene. By clicking on an object here, the <guilabel>Properties</guilabel> panel below displays this object properties. You can change the properties here by clicking on the one you want to modify.
+</para>
 
-<para>Each tutorial consists in some text presenting the new elements and explaining their properties. Then you are asked to change some properties of the elements in order to achieve a new result of the experiment. </para>
+<para>Each tutorial consists in some text presenting the new elements and explaining their properties. Then you are asked to change some properties of the elements in order to achieve a new result of the experiment.
+</para>
 
 <sect1 id="tutorial1">
 <title>Tutorial 1: Bodies and springs</title>
-<para>This tutorial presents you bodies and springs and how to start your first simulation.</para>
-<para>A physical body or body for short is an object which can be described by the theories of classical mechanics, or quantum mechanics, and experimented upon with physical instruments. This includes the determination of position, and in some cases the orientation in space, as well as means to change these, by exerting forces.</para>
-<para>A spring is a flexible elastic object used to store mechanical energy.</para>
+
+<para>This tutorial presents you bodies and springs and how to start your first simulation.
+</para>
+
+<para>A physical body or body for short is an object which can be described by the theories of classical mechanics, or quantum mechanics, and experimented upon with physical instruments. This includes the determination of position, and in some cases the orientation in space, as well as means to change these, by exerting forces.
+</para>
+
+<para>A spring is a flexible elastic object used to store mechanical energy.
+</para>
+
 <screenshot>
-     <screeninfo>Tutorial 1 experiment</screeninfo>
-	<mediaobject>
-	  <imageobject>
-	    <imagedata fileref="tutorial1.png" format="PNG"/>
-	  </imageobject>
-	    <textobject>
-	    <phrase>Tutorial 1 experiment</phrase>
-	  </textobject>
-	</mediaobject>
+  <screeninfo>Tutorial 1 experiment</screeninfo>
+  <mediaobject>
+    <imageobject><imagedata fileref="tutorial1.png" format="PNG"/></imageobject>
+    <textobject><phrase>Tutorial 1 experiment</phrase></textobject>
+  </mediaobject>
 </screenshot>
-<para>The physical experiment in this tutorial represents two disks linked by a spring. Disks have an initial velocity in a tangential direction (the little blue arrow)  and an acceleration (the red arrow) and springs have a stiffness and the length can be changed. Running the experiment you can see the disks being pulled and pushed by the spring. The tutorial invites you to modify the spring stiffness and also to try to change the system experiment.</para>
-<para>At the end of this tutorial you should be more familiar with &step; interface and you should also be able to easily change bodies properties.</para>
+
+<para>The physical experiment in this tutorial represents two disks linked by a spring. Disks have an initial velocity in a tangential direction (the little blue arrow)  and an acceleration (the red arrow) and springs have a stiffness and the length can be changed. Running the experiment you can see the disks being pulled and pushed by the spring. The tutorial invites you to modify the spring stiffness and also to try to change the system experiment.
+</para>
+
+<para>At the end of this tutorial you should be more familiar with &step; interface and you should also be able to easily change bodies properties.
+</para>
 </sect1>
 
 <sect1 id="tutorial2">
 <title>Tutorial 2: Controllers and graphs</title>
-<para>You will learn more about controllers and graphs in this tutorial.</para>
-<para>A controller is a device which allows you to graphically modify a property of a body or a spring. In the tutorial, the controller allows you to change the stiffness of the spring "spring1". By moving the slider to the right or using the W key you can increase spring1 stiffness value and by moving the slider to the left or using the Q key you can decrease it. Right-clicking on the controller brings you several context actions and the <guilabel>Configure Controller...</guilabel> dialog allows you to change each property of the controller.</para>
+
+<para>You will learn more about controllers and graphs in this tutorial.
+</para>
+
+<para>A controller is a device which allows you to graphically modify a property of a body or a spring. In the tutorial, the controller allows you to change the stiffness of the spring <quote>spring1</quote>. By moving the slider to the right or using the <keycap>W</keycap> key you can increase spring1 stiffness value and by moving the slider to the left or using the <keycap>Q</keycap> key you can decrease it. Right-clicking on the controller brings you several context actions and the <guimenuitem>Configure Controller...</guimenuitem> item shows a dialog allows you to change each property of the controller.
+</para>
+
 <screenshot>
-     <screeninfo>Tutorial 2 experiment</screeninfo>
-	<mediaobject>
-	  <imageobject>
-	    <imagedata fileref="tutorial2.png" format="PNG"/>
-	  </imageobject>
-	    <textobject>
-	    <phrase>Tutorial 2 experiment</phrase>
-	  </textobject>
-	</mediaobject>
+  <screeninfo>Tutorial 2 experiment</screeninfo>
+  <mediaobject>
+    <imageobject><imagedata fileref="tutorial2.png" format="PNG"/></imageobject>
+    <textobject><phrase>Tutorial 2 experiment</phrase></textobject>
+  </mediaobject>
 </screenshot>
-<para>Graphs allow you to graphically visualize the relationship between two variables. The example in the tutorial prints the evolution of the position of particle1 while time advances in world1. With a right click on a graph you can clear or delete the graph as well as edit the configuration dialog and change here all the properties for this graph.</para>
-<para>At the end of this tutorial you are able to use controllers to act on your bodies properties and graphs to monitor specific properties in your experiment.</para>
+
+<para>Graphs allow you to graphically visualize the relationship between two variables. The example in the tutorial prints the evolution of the position of particle1 while time advances in world1. With a right click on a graph you can clear or delete the graph as well as edit the configuration dialog and change here all the properties for this graph.
+</para>
+
+<para>At the end of this tutorial you are able to use controllers to act on your bodies properties and graphs to monitor specific properties in your experiment.
+</para>
 </sect1>
 
 <sect1 id="tutorial3">
 <title>Tutorial 3: Rigid bodies and tracers</title>
-<para>Tutorial 3 presents you rigid bodies and tracers.</para>
-<para>A rigid body is an idealization of a solid body of finite size in which deformation is neglected. In other words, the distance between any two given points of a rigid body remains constant in time regardless of external forces exerted on it.</para>
-<para>A tracer is a tool which shows the trajectory of a given point on a rigid body.</para>
+
+<para>Tutorial 3 presents you rigid bodies and tracers.
+</para>
+
+<para>A rigid body is an idealization of a solid body of finite size in which deformation is neglected. In other words, the distance between any two given points of a rigid body remains constant in time regardless of external forces exerted on it.
+</para>
+
+<para>A tracer is a tool which shows the trajectory of a given point on a rigid body.
+</para>
+
 <screenshot>
-     <screeninfo>Disk properties</screeninfo>
-	<mediaobject>
-	  <imageobject>
-	    <imagedata fileref="disk-properties.png" format="PNG"/>
-	  </imageobject>
-	    <textobject>
-	    <phrase>Disk properties</phrase>
-	  </textobject>
-	</mediaobject>
+  <screeninfo>Disk properties</screeninfo>
+  <mediaobject>
+    <imageobject><imagedata fileref="disk-properties.png" format="PNG"/></imageobject>
+    <textobject><phrase>Disk properties</phrase></textobject>
+  </mediaobject>
 </screenshot>
-<para>When a rigid body (here a disk) is selected you see three grey handlers on it. Using them by clicking on them and moving them, you can change the velocity, the angle and the angular velocity of the body.</para>
+
+<para>When a rigid body (here a disk) is selected you see three grey handlers on it. Using them by clicking on them and moving them, you can change the velocity, the angle and the angular velocity of the body.
+</para>
+
 <screenshot>
-     <screeninfo>Tutorial 3: 2 tracers</screeninfo>
-	<mediaobject>
-	  <imageobject>
-	    <imagedata fileref="tutorial3.png" format="PNG"/>
-	  </imageobject>
-	    <textobject>
-	    <phrase>Tutorial 3: 2 tracers</phrase>
-	  </textobject>
-	</mediaobject>
+  <screeninfo>Tutorial 3: 2 tracers</screeninfo>
+  <mediaobject>
+    <imageobject><imagedata fileref="tutorial3.png" format="PNG"/></imageobject>
+    <textobject><phrase>Tutorial 3: 2 tracers</phrase></textobject>
+  </mediaobject>
 </screenshot>
-<para>The experiment in Tutorial 3 shows a disk and a box linked by a spring. A tracer (the blue one) is already on the box. You can add a second one: select <guilabel>Tracer</guilabel> in the <guilabel>Palette</guilabel> panel then click on the box on the point where you want the tracer to be. In the <guilabel>Properties</guilabel> panel, click on the <guilabel>color</guilabel> line and on the right of this line you can click on the blue square and a color palette appears: you can choose a new color for the tracer. The screenshot above shows two tracers after the simulation is run for a few seconds.</para>
+
+<para>The experiment in Tutorial 3 shows a disk and a box linked by a spring. A tracer (the blue one) is already on the box. You can add a second one: select the <guibutton>Tracer</guibutton> button in the <guilabel>Palette</guilabel> panel then click on the box on the point where you want the tracer to be. In the <guilabel>Properties</guilabel> panel, click on the <guilabel>color</guilabel> line and on the right of this line you can click on the blue square and a color palette appears: you can choose a new color for the tracer. The screenshot above shows two tracers after the simulation is run for a few seconds.
+</para>
 </sect1>
 
 <sect1 id="tutorial4">
 <title>Tutorial 4: Motors and forces</title>
-<para>You have two sorts of motors available in &step;: linear motors and circular motors. A linear motor applies a constant force to a given point on a body while a circular motor applies a constant angular momentum to a body.</para>
-<para>Three different forces can be added to bodies: the weight force, the gravitation force and the Coulomb force. By default all forces are turned off in &step;. Coulomb force is a force which existed intrinsically between two charges.</para>
+
+<para>You have two sorts of motors available in &step;: linear motors and circular motors. A linear motor applies a constant force to a given point on a body while a circular motor applies a constant angular momentum to a body.
+</para>
+
+<para>Three different forces can be added to bodies: the weight force, the gravitation force and the Coulomb force. By default all forces are turned off in &step;. Coulomb force is a force which existed intrinsically between two charges.
+</para>
+
 <screenshot>
-     <screeninfo>Tutorial 4: Motors</screeninfo>
-	<mediaobject>
-	  <imageobject>
-	    <imagedata fileref="tutorial4.png" format="PNG"/>
-	  </imageobject>
-	    <textobject>
-	    <phrase>Tutorial 4: Motors</phrase>
-	  </textobject>
-	</mediaobject>
+  <screeninfo>Tutorial 4: Motors</screeninfo>
+  <mediaobject>
+    <imageobject><imagedata fileref="tutorial4.png" format="PNG"/></imageobject>
+    <textobject><phrase>Tutorial 4: Motors</phrase></textobject>
+  </mediaobject>
 </screenshot>
-<para>In the experiment you have a disk and a box linked by a spring. A flat box at the bottom will make a boundary. The disk and the box both have a linear motor applied to them. Two controllers allow you to change the force value of each motor. Start the simulation and play with the controllers. Then stop the simulation and add a weight force in the world (forces are global and apply to the whole world). Restart the simulation and analyze the difference.</para>
-<para>You can also remove the linear motor on the box and add a circular motor instead. Click on <guilabel>CircularMotor</guilabel> in the <guilabel>Palette</guilabel> panel and then click on the box. The circular motor is applied to the box. You then need to set the torque value by clicking and moving the grey handler of the motor.</para>
+
+<para>In the experiment you have a disk and a box linked by a spring. A flat box at the bottom will make a boundary. The disk and the box both have a linear motor applied to them. Two controllers allow you to change the force value of each motor. Start the simulation and play with the controllers. Then stop the simulation and add a weight force in the world (forces are global and apply to the whole world). Restart the simulation and analyze the difference.
+</para>
+
+<para>You can also remove the linear motor on the box and add a circular motor instead. Press on the <inlinemediaobject><imageobject><imagedata fileref="step_object_CircularMotor.png" format="PNG"/></imageobject></inlinemediaobject> <guibutton>CircularMotor</guibutton> button in the <guilabel>Palette</guilabel> panel and then click on the box. The circular motor is applied to the box. You then need to set the torque value by clicking and moving the grey handler of the motor.
+</para>
+
 <screenshot>
-     <screeninfo>Circular motor</screeninfo>
-	<mediaobject>
-	  <imageobject>
-	    <imagedata fileref="circular-motor.png" format="PNG"/>
-	  </imageobject>
-	    <textobject>
-	    <phrase>Circular motor</phrase>
-	  </textobject>
-	</mediaobject>
+  <screeninfo>Circular motor</screeninfo>
+  <mediaobject>
+    <imageobject><imagedata fileref="circular-motor.png" format="PNG"/></imageobject>
+    <textobject><phrase>Circular motor</phrase></textobject>
+  </mediaobject>
 </screenshot>
+
 <para>This tutorial introduced you with motors and forces and you should now be able to add those to bodies.</para>
 </sect1>
 
 <sect1 id="tutorial5">
 <title>Tutorial 5: Joints</title>
-<para>Joints are objects that attaches bodies to each other or to the background. You have a the following joints in &step;: anchors, pins and sticks. An anchor is a joint that 
-fixes position of the body. The body cannot move when it has an anchor. A pin is a joint that fixes one point of the body, the body can still move around the pin. A stick is a joint that fixes the distance between two points on two bodies.</para>
+
+<para>Joints are objects that attaches bodies to each other or to the background. You have a the following joints in &step;: anchors, pins and sticks. An anchor is a joint that fixes position of the body. The body cannot move when it has an anchor. A pin is a joint that fixes one point of the body, the body can still move around the pin. A stick is a joint that fixes the distance between two points on two bodies.
+</para>
+
 <screenshot>
-     <screeninfo>Tutorial 5: double pendulum</screeninfo>
-	<mediaobject>
-	  <imageobject>
-	    <imagedata fileref="tutorial5.png" format="PNG"/>
-	  </imageobject>
-	    <textobject>
-	    <phrase>Tutorial 5: double pendulum</phrase>
-	  </textobject>
-	</mediaobject>
+  <screeninfo>Tutorial 5: double pendulum</screeninfo>
+  <mediaobject>
+    <imageobject><imagedata fileref="tutorial5.png" format="PNG"/></imageobject>
+    <textobject><phrase>Tutorial 5: double pendulum</phrase></textobject>
+  </mediaobject>
 </screenshot>
-<para>Tutorial 5 describes a double pendulum.</para>
-<para>Add a <guilabel>Particle</guilabel> to the scene then join this particle to Particle2 with a stick. Click on Stick on the <guilabel>Palette</guilabel> panel. You then need to select the first object attached to the stick (particle2) with the left mouse button then drag the mouse to the second object (particle3) and release the mouse button on particle3. You now have a triple pendulum!</para>
+
+<para>Tutorial 5 describes a double pendulum.
+</para>
+
+<para>Add a <inlinemediaobject><imageobject><imagedata fileref="step_object_Particle.png" format="PNG"/></imageobject></inlinemediaobject> <guibutton>Particle</guibutton> to the scene then join this particle to Particle2 with a stick. Press the <inlinemediaobject><imageobject><imagedata fileref="step_object_Stick.png" format="PNG"/></imageobject></inlinemediaobject> <guibutton>Stick</guibutton> button on the <guilabel>Palette</guilabel> panel. You then need to select the first object attached to the stick (particle2) with the left mouse button then drag the mouse to the second object (particle3) and release the mouse button on particle3. You now have a triple pendulum!
+</para>
 </sect1>
 
 </chapter>
