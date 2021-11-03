@@ -178,20 +178,20 @@ public:
      * \param collisions defines whether body collisions are taken into account
      * \param count number of contacts
      */
-    int checkContacts(BodyList& bodies, bool collisions = false, int* count = NULL) Q_DECL_OVERRIDE;
+    int checkContacts(BodyList& bodies, bool collisions = false, int* count = NULL) override;
     /**
      * \param info ConstraintsInfo structure to fill
      * \param collisions defines whether body collisions are taken into account
      */
-    void getContactsInfo(ConstraintsInfo& info, bool collisions = false) Q_DECL_OVERRIDE;
+    void getContactsInfo(ConstraintsInfo& info, bool collisions = false) override;
     //int findClosestPoints(const BasePolygon* polygon1, const BasePolygon* polygon2);
 
-    int solveCollisions(BodyList& bodies) Q_DECL_OVERRIDE;
+    int solveCollisions(BodyList& bodies) override;
     //int solveConstraints(BodyList& bodies);
 
-    void resetCaches() Q_DECL_OVERRIDE;
-    void bodyAdded(BodyList& bodies, Body* body) Q_DECL_OVERRIDE;
-    void bodyRemoved(BodyList& bodies, Body* body) Q_DECL_OVERRIDE;
+    void resetCaches() override;
+    void bodyAdded(BodyList& bodies, Body* body) override;
+    void bodyRemoved(BodyList& bodies, Body* body) override;
 
 protected:
     int checkContact(Contact* contact);

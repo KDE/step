@@ -104,7 +104,7 @@ public:
     /** Constructs GasLJForce */
     explicit GasLJForce(double depth = 1, double rmin = 1, double cutoff = HUGE_VAL);
 
-    void calcForce(bool calcVariances) Q_DECL_OVERRIDE;
+    void calcForce(bool calcVariances) override;
 
     /** Get depth of the potential */
     double depth() const { return _depth; }
@@ -126,7 +126,7 @@ public:
         return static_cast<GasLJForceErrors*>(objectErrors()); }
 
 protected:
-    ObjectErrors* createObjectErrors() Q_DECL_OVERRIDE { return new GasLJForceErrors(this); }
+    ObjectErrors* createObjectErrors() override { return new GasLJForceErrors(this); }
     void calcABC();
 
     double _depth;
@@ -205,7 +205,7 @@ public:
         return static_cast<GasErrors*>(objectErrors()); }
 
 protected:
-    ObjectErrors* createObjectErrors() Q_DECL_OVERRIDE { return new GasErrors(this); }
+    ObjectErrors* createObjectErrors() override { return new GasErrors(this); }
 
     double randomUniform(double min=0, double max=1);
     double randomGauss(double mean=0, double deviation=1);

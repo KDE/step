@@ -61,7 +61,7 @@ public:
 
     /** Get item bounding rect. Default implementation returns
      *  value set by setBoundingRect function */
-    QRectF boundingRect() const Q_DECL_OVERRIDE { return _boundingRect; }
+    QRectF boundingRect() const override { return _boundingRect; }
 
     /** Set current bounding rect. Should be called by subclass. */
     void setBoundingRect(const QRectF& rect) { _boundingRect = rect; }
@@ -84,7 +84,7 @@ public:
 
     /** Virtual function to paint the item. Default implementation
      *  draws boundingRect() in grey color */
-    void paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget) Q_DECL_OVERRIDE;
+    void paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget) override;
 
     /** Get item highlight state */
     bool isItemHighlighted() { return _isHighlighted; }
@@ -142,7 +142,7 @@ protected:
     void setExclusiveMovingMessage(const QString& message) { _exclusiveMovingMessage = message; }
 
     /** Called when graphicsitem is changed */
-    QVariant itemChange(GraphicsItemChange change, const QVariant& value) Q_DECL_OVERRIDE;
+    QVariant itemChange(GraphicsItemChange change, const QVariant& value) override;
 
     /** Get vertex handler enabled status */
     bool isOnHoverHandlerEnabled() const { return _onHoverHandlerEnabled; }
@@ -174,15 +174,15 @@ protected:
     QPointer<OnHoverHandlerGraphicsItem> _onHoverHandler;
     bool _onHoverHandlerTimer;
 
-    void mousePressEvent(QGraphicsSceneMouseEvent* event) Q_DECL_OVERRIDE;
-    void mouseMoveEvent(QGraphicsSceneMouseEvent* event) Q_DECL_OVERRIDE;
-    void mouseReleaseEvent(QGraphicsSceneMouseEvent* event) Q_DECL_OVERRIDE;
+    void mousePressEvent(QGraphicsSceneMouseEvent* event) override;
+    void mouseMoveEvent(QGraphicsSceneMouseEvent* event) override;
+    void mouseReleaseEvent(QGraphicsSceneMouseEvent* event) override;
 
-    void hoverEnterEvent(QGraphicsSceneHoverEvent* event) Q_DECL_OVERRIDE;
-    void hoverMoveEvent(QGraphicsSceneHoverEvent* event) Q_DECL_OVERRIDE;
-    void hoverLeaveEvent(QGraphicsSceneHoverEvent* event) Q_DECL_OVERRIDE;
+    void hoverEnterEvent(QGraphicsSceneHoverEvent* event) override;
+    void hoverMoveEvent(QGraphicsSceneHoverEvent* event) override;
+    void hoverLeaveEvent(QGraphicsSceneHoverEvent* event) override;
 
-    void contextMenuEvent(QGraphicsSceneContextMenuEvent* event) Q_DECL_OVERRIDE;
+    void contextMenuEvent(QGraphicsSceneContextMenuEvent* event) override;
 
 protected:
     static const QColor SELECTION_COLOR;     ///< Default color for selection rectangle
@@ -224,10 +224,10 @@ public:
                         QGraphicsItem* parent, const StepCore::MetaProperty* property,
                         const StepCore::MetaProperty* positionProperty = NULL);
 
-    void paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget) Q_DECL_OVERRIDE;
+    void paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget) override;
 
-    void viewScaleChanged() Q_DECL_OVERRIDE;
-    void worldDataChanged(bool) Q_DECL_OVERRIDE;
+    void viewScaleChanged() override;
+    void worldDataChanged(bool) override;
 
 protected:
     /** Virtual function which is called to get current vector value.
@@ -237,8 +237,8 @@ protected:
      *  Default implementation sets property = value - positionProperty */
     virtual void setValue(const StepCore::Vector2d& value);
 
-    void mouseSetPos(const QPointF& pos, const QPointF& diff, MovingState movingState) Q_DECL_OVERRIDE;
-    QVariant itemChange(GraphicsItemChange change, const QVariant& value) Q_DECL_OVERRIDE;
+    void mouseSetPos(const QPointF& pos, const QPointF& diff, MovingState movingState) override;
+    QVariant itemChange(GraphicsItemChange change, const QVariant& value) override;
     const StepCore::MetaProperty* _property;
     const StepCore::MetaProperty* _positionProperty;
 };
@@ -262,10 +262,10 @@ public:
                         QGraphicsItem* parent, double radius, const StepCore::MetaProperty* property,
                         const StepCore::MetaProperty* positionProperty = NULL);
 
-    void paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget) Q_DECL_OVERRIDE;
+    void paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget) override;
 
-    void viewScaleChanged() Q_DECL_OVERRIDE;
-    void worldDataChanged(bool) Q_DECL_OVERRIDE;
+    void viewScaleChanged() override;
+    void worldDataChanged(bool) override;
 
 protected:
     /** Virtual function which is called to get current vector value.
@@ -275,9 +275,9 @@ protected:
      *  Default implementation sets the value pointed by property */
     virtual void setValue(double value);
 
-    QVariant itemChange(GraphicsItemChange change, const QVariant& value) Q_DECL_OVERRIDE;
-    void mouseMoveEvent(QGraphicsSceneMouseEvent *event) Q_DECL_OVERRIDE;
-    void mouseReleaseEvent(QGraphicsSceneMouseEvent *event) Q_DECL_OVERRIDE;
+    QVariant itemChange(GraphicsItemChange change, const QVariant& value) override;
+    void mouseMoveEvent(QGraphicsSceneMouseEvent *event) override;
+    void mouseReleaseEvent(QGraphicsSceneMouseEvent *event) override;
     const StepCore::MetaProperty* _property;
     const StepCore::MetaProperty* _positionProperty;
     double _radius;
@@ -306,8 +306,8 @@ public:
     static const StepCore::Vector2d scorners[4];
 
 protected:
-    void hoverEnterEvent(QGraphicsSceneHoverEvent* event) Q_DECL_OVERRIDE;
-    void hoverLeaveEvent(QGraphicsSceneHoverEvent* event) Q_DECL_OVERRIDE;
+    void hoverEnterEvent(QGraphicsSceneHoverEvent* event) override;
+    void hoverLeaveEvent(QGraphicsSceneHoverEvent* event) override;
 
     int _vertexNum;
     QTimer* _deleteTimer;

@@ -97,7 +97,7 @@ protected slots:
 
 protected:
     void setupActions();
-    bool queryClose() Q_DECL_OVERRIDE;
+    bool queryClose() override;
     bool maybeSave();
 
 protected:

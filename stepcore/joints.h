@@ -58,8 +58,8 @@ public:
     /** Set angle of the anchor */
     void setAngle(double angle) { _angle = angle; }
 
-    int constraintsCount() Q_DECL_OVERRIDE;
-    void getConstraintsInfo(ConstraintsInfo* info, int offset) Q_DECL_OVERRIDE;
+    int constraintsCount() override;
+    void getConstraintsInfo(ConstraintsInfo* info, int offset) override;
 
     //void getConstraints(double* value, double* derivative);
     //void getJacobian(GmmSparseRowMatrix* value, GmmSparseRowMatrix* derivative, int offset);
@@ -100,8 +100,8 @@ public:
     /** Set global position of the pin */
     void setPosition(const Vector2d& position) { _position = position; }
 
-    int constraintsCount() Q_DECL_OVERRIDE;
-    void getConstraintsInfo(ConstraintsInfo* info, int offset) Q_DECL_OVERRIDE;
+    int constraintsCount() override;
+    void getConstraintsInfo(ConstraintsInfo* info, int offset) override;
 
     //void getConstraints(double* value, double* derivative);
     //void getJacobian(GmmSparseRowMatrix* value, GmmSparseRowMatrix* derivative, int offset);
@@ -177,8 +177,8 @@ public:
     /** Get second connected RigidBody */
     RigidBody* rigidBody2() const { return _r2; }
 
-    int constraintsCount() Q_DECL_OVERRIDE;
-    void getConstraintsInfo(ConstraintsInfo* info, int offset) Q_DECL_OVERRIDE;
+    int constraintsCount() override;
+    void getConstraintsInfo(ConstraintsInfo* info, int offset) override;
 
 protected:
     double   _restLength;
@@ -201,7 +201,7 @@ class Rope: public Stick
     STEPCORE_OBJECT(Rope)
 
 public:
-    void getConstraintsInfo(ConstraintsInfo* info, int offset) Q_DECL_OVERRIDE;
+    void getConstraintsInfo(ConstraintsInfo* info, int offset) override;
 };
 
 } // namespace StepCore

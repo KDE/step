@@ -247,22 +247,22 @@ public:
     // XXX
     //const Vector2dList& vertexes() const;
 
-    int  variablesCount() Q_DECL_OVERRIDE { return 3; }
+    int  variablesCount() override { return 3; }
     void getVariables(double* position, double* velocity,
-                          double* positionVariance, double* velocityVariance) Q_DECL_OVERRIDE;
+                          double* positionVariance, double* velocityVariance) override;
     void setVariables(const double* position, const double* velocity,
-              const double* positionVariance, const double* velocityVariance) Q_DECL_OVERRIDE;
-    void addForce(const double* force, const double* forceVariance) Q_DECL_OVERRIDE;
-    void resetForce(bool resetVariance) Q_DECL_OVERRIDE;
-    void getAccelerations(double* acceleration, double* accelerationVariance) Q_DECL_OVERRIDE;
+              const double* positionVariance, const double* velocityVariance) override;
+    void addForce(const double* force, const double* forceVariance) override;
+    void resetForce(bool resetVariance) override;
+    void getAccelerations(double* acceleration, double* accelerationVariance) override;
     void getInverseMass(VectorXd* inverseMass,
-                        DynSparseRowMatrix* variance, int offset) Q_DECL_OVERRIDE;
+                        DynSparseRowMatrix* variance, int offset) override;
     /** Get (and possibly create) RigidBodyErrors object */
     RigidBodyErrors* rigidBodyErrors() {
         return static_cast<RigidBodyErrors*>(objectErrors()); }
 
 protected:
-    ObjectErrors* createObjectErrors() Q_DECL_OVERRIDE { return new RigidBodyErrors(this); }
+    ObjectErrors* createObjectErrors() override { return new RigidBodyErrors(this); }
 
     Vector2d _position;
     double   _angle;

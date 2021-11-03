@@ -37,11 +37,11 @@ public:
     SpringHandlerGraphicsItem(StepCore::Item* item, WorldModel* worldModel,
                                 QGraphicsItem* parent, int num);
 
-    void viewScaleChanged() Q_DECL_OVERRIDE;
-    void worldDataChanged(bool) Q_DECL_OVERRIDE;
+    void viewScaleChanged() override;
+    void worldDataChanged(bool) override;
 
 protected:
-    void mouseSetPos(const QPointF& pos, const QPointF& diff, MovingState movingState) Q_DECL_OVERRIDE;
+    void mouseSetPos(const QPointF& pos, const QPointF& diff, MovingState movingState) override;
     int _num;
 };
 
@@ -49,17 +49,17 @@ class SpringGraphicsItem: public StepGraphicsItem {
 public:
     SpringGraphicsItem(StepCore::Item* item, WorldModel* worldModel);
 
-    QPainterPath shape() const Q_DECL_OVERRIDE;
-    void paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget) Q_DECL_OVERRIDE;
+    QPainterPath shape() const override;
+    void paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget) override;
 
-    void viewScaleChanged() Q_DECL_OVERRIDE;
-    void stateChanged() Q_DECL_OVERRIDE;
-    void worldDataChanged(bool) Q_DECL_OVERRIDE;
+    void viewScaleChanged() override;
+    void stateChanged() override;
+    void worldDataChanged(bool) override;
 
 protected:
     static void tryAttach(StepCore::Item* item, WorldScene* worldScene, const QPointF& pos, int num);
 
-    void mouseSetPos(const QPointF& pos, const QPointF& diff, MovingState) Q_DECL_OVERRIDE;
+    void mouseSetPos(const QPointF& pos, const QPointF& diff, MovingState) override;
     StepCore::Spring* spring() const {
         return static_cast<StepCore::Spring*>(_item); }
 

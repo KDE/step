@@ -55,11 +55,11 @@ public:
 
     ~GenericEulerSolver() { fini(); }
 
-    void setDimension(int dimension) Q_DECL_OVERRIDE { fini(); _dimension = dimension; init(); }
+    void setDimension(int dimension) override { fini(); _dimension = dimension; init(); }
 
     int doCalcFn(double* t, const VectorXd* y, const VectorXd* yvar = 0,
-                        VectorXd* f = 0, VectorXd* fvar = 0) Q_DECL_OVERRIDE;
-    int doEvolve(double* t, double t1, VectorXd* y, VectorXd* yvar) Q_DECL_OVERRIDE;
+                        VectorXd* f = 0, VectorXd* fvar = 0) override;
+    int doEvolve(double* t, double t1, VectorXd* y, VectorXd* yvar) override;
 
 protected:
     int doStep(double t, double stepSize, VectorXd* y, VectorXd* yvar);

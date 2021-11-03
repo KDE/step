@@ -46,11 +46,11 @@ public:
     CommandEditProperty(WorldModel* worldModel, StepCore::Object* object,
                 const StepCore::MetaProperty* property, const QVariant& newValue, bool merge);
 
-    int id() const Q_DECL_OVERRIDE { return _merge ? 1 : -1; }
-    bool mergeWith(const QUndoCommand* command) Q_DECL_OVERRIDE;
+    int id() const override { return _merge ? 1 : -1; }
+    bool mergeWith(const QUndoCommand* command) override;
 
-    void redo() Q_DECL_OVERRIDE;
-    void undo() Q_DECL_OVERRIDE;
+    void redo() override;
+    void undo() override;
 
 protected:
     /* It's important to properly compress commands
@@ -130,8 +130,8 @@ public:
     }
     ~CommandNewItem() { if(_shouldDelete) delete _item; }
 
-    void redo() Q_DECL_OVERRIDE;
-    void undo() Q_DECL_OVERRIDE;
+    void redo() override;
+    void undo() override;
 
 protected:
     void findLinks(StepCore::Item* itemToMatch, StepCore::ItemGroup* groupToSearch);
@@ -212,8 +212,8 @@ public:
     CommandSetSolver(WorldModel* worldModel, StepCore::Solver* solver)
             : _worldModel(worldModel), _solver(solver) {}
     ~CommandSetSolver() { delete _solver; }
-    void redo() Q_DECL_OVERRIDE { _solver = _worldModel->swapSolver(_solver); }
-    void undo() Q_DECL_OVERRIDE { _solver = _worldModel->swapSolver(_solver); }
+    void redo() override { _solver = _worldModel->swapSolver(_solver); }
+    void undo() override { _solver = _worldModel->swapSolver(_solver); }
 
 protected:
     WorldModel* _worldModel;
@@ -228,8 +228,8 @@ public:
 
     void done();
 
-    void redo() Q_DECL_OVERRIDE;
-    void undo() Q_DECL_OVERRIDE;
+    void redo() override;
+    void undo() override;
 
     const QString& startTime() const { return _startTime; }
     const QString& endTime() const { return _endTime; }

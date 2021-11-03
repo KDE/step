@@ -127,9 +127,9 @@ public:
                         : ItemCreator(className, worldModel, worldScene),
                           _snapFlags(snapFlags), _snapTypes(snapTypes), _twoEnds(twoEnds) {}
 
-    bool sceneEvent(QEvent* event) Q_DECL_OVERRIDE;
-    void start() Q_DECL_OVERRIDE;
-    void abort() Q_DECL_OVERRIDE;
+    bool sceneEvent(QEvent* event) override;
+    void start() override;
+    void abort() override;
 
 protected:
     WorldScene::SnapFlags _snapFlags;

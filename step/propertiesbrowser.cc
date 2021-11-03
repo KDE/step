@@ -47,16 +47,16 @@ class PropertiesBrowserModel: public QAbstractItemModel
 public:
     PropertiesBrowserModel(WorldModel* worldModel, QObject* parent = 0);
 
-    QVariant data(const QModelIndex &index, int role) const Q_DECL_OVERRIDE;
-    QModelIndex index(int row, int column, const QModelIndex &parent = QModelIndex()) const Q_DECL_OVERRIDE;
-    QModelIndex parent(const QModelIndex &index) const Q_DECL_OVERRIDE;
-    int rowCount(const QModelIndex &parent = QModelIndex()) const Q_DECL_OVERRIDE;
-    int columnCount(const QModelIndex &parent = QModelIndex()) const Q_DECL_OVERRIDE;
+    QVariant data(const QModelIndex &index, int role) const override;
+    QModelIndex index(int row, int column, const QModelIndex &parent = QModelIndex()) const override;
+    QModelIndex parent(const QModelIndex &index) const override;
+    int rowCount(const QModelIndex &parent = QModelIndex()) const override;
+    int columnCount(const QModelIndex &parent = QModelIndex()) const override;
     QVariant headerData(int section, Qt::Orientation orientation,
-                         int role = Qt::DisplayRole) const Q_DECL_OVERRIDE;
+                         int role = Qt::DisplayRole) const override;
 
-    Qt::ItemFlags flags(const QModelIndex &index) const Q_DECL_OVERRIDE;
-    bool setData(const QModelIndex &index, const QVariant &value, int role) Q_DECL_OVERRIDE;
+    Qt::ItemFlags flags(const QModelIndex &index) const override;
+    bool setData(const QModelIndex &index, const QVariant &value, int role) override;
 
     void setObject(StepCore::Object* object);
     StepCore::Object* object() { return _object; }
@@ -594,10 +594,10 @@ class PropertiesBrowserView: public QTreeView
 public:
     PropertiesBrowserView(QWidget* parent = 0);
 protected:
-    void changeEvent(QEvent* event) Q_DECL_OVERRIDE;
-    void mousePressEvent(QMouseEvent* event) Q_DECL_OVERRIDE;
-    void drawBranches(QPainter *painter, const QRect &rect, const QModelIndex &index) const Q_DECL_OVERRIDE;
-    QStyleOptionViewItem viewOptions() const Q_DECL_OVERRIDE;
+    void changeEvent(QEvent* event) override;
+    void mousePressEvent(QMouseEvent* event) override;
+    void drawBranches(QPainter *painter, const QRect &rect, const QModelIndex &index) const override;
+    QStyleOptionViewItem viewOptions() const override;
     const int _windowsDecoSize;
     bool _macStyle;
 };

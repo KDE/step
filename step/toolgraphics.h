@@ -71,8 +71,8 @@ public:
 
 
 protected:
-    void setValue(const StepCore::Vector2d& value) Q_DECL_OVERRIDE;
-    StepCore::Vector2d value() Q_DECL_OVERRIDE;
+    void setValue(const StepCore::Vector2d& value) override;
+    StepCore::Vector2d value() override;
 };
 
 class WidgetGraphicsItem: public QObject, public StepGraphicsItem
@@ -83,11 +83,11 @@ public:
     WidgetGraphicsItem(StepCore::Item* item, WorldModel* worldModel);
     ~WidgetGraphicsItem();
 
-    void paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget) Q_DECL_OVERRIDE;
+    void paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget) override;
 
-    void stateChanged() Q_DECL_OVERRIDE;
-    void viewScaleChanged() Q_DECL_OVERRIDE;
-    void worldDataChanged(bool dynamicOnly) Q_DECL_OVERRIDE;
+    void stateChanged() override;
+    void viewScaleChanged() override;
+    void worldDataChanged(bool dynamicOnly) override;
 
 protected:
     void setCenteralWidget(QWidget* widget);
@@ -96,8 +96,8 @@ protected:
     const QBrush& backgroundBrush() const { return _backgroundBrush; }
     void setBackgroundBrush(const QBrush& brush) { _backgroundBrush = brush; }
 
-    void mouseSetPos(const QPointF& pos, const QPointF&, MovingState movingState) Q_DECL_OVERRIDE;
-    OnHoverHandlerGraphicsItem* createOnHoverHandler(const QPointF& pos) Q_DECL_OVERRIDE;
+    void mouseSetPos(const QPointF& pos, const QPointF&, MovingState movingState) override;
+    OnHoverHandlerGraphicsItem* createOnHoverHandler(const QPointF& pos) override;
 
     QPointer<QWidget> _centralWidget;
     QBrush   _backgroundBrush;
@@ -117,9 +117,9 @@ public:
 
 protected:
     StepCore::NoteFormula* formulaAt(const QPoint& pos);
-    void mouseMoveEvent(QMouseEvent *e) Q_DECL_OVERRIDE;
-    void mousePressEvent(QMouseEvent *e) Q_DECL_OVERRIDE;
-    void mouseReleaseEvent(QMouseEvent *e) Q_DECL_OVERRIDE;
+    void mouseMoveEvent(QMouseEvent *e) override;
+    void mousePressEvent(QMouseEvent *e) override;
+    void mouseReleaseEvent(QMouseEvent *e) override;
 
     NoteGraphicsItem* _noteItem;
     QPoint _mousePressPoint;
@@ -135,7 +135,7 @@ class NoteGraphicsItem: public WidgetGraphicsItem
 
 public:
     NoteGraphicsItem(StepCore::Item* item, WorldModel* worldModel);
-    void worldDataChanged(bool dynamicOnly) Q_DECL_OVERRIDE;
+    void worldDataChanged(bool dynamicOnly) override;
 
 protected slots:
     void formatColor();
@@ -151,7 +151,7 @@ protected slots:
 protected:
     bool checkLatex();
     bool editFormula(StepCore::NoteFormula* formula);
-    bool eventFilter(QObject* obj, QEvent* event) Q_DECL_OVERRIDE;
+    bool eventFilter(QObject* obj, QEvent* event) override;
 
     StepCore::Note* note() const;
     bool            _hasFocus;
@@ -224,7 +224,7 @@ class GraphGraphicsItem: public WidgetGraphicsItem
 {
 public:
     GraphGraphicsItem(StepCore::Item* item, WorldModel* worldModel);
-    void worldDataChanged(bool) Q_DECL_OVERRIDE;
+    void worldDataChanged(bool) override;
 
 protected:
     StepCore::Graph* graph() const;
@@ -246,7 +246,7 @@ public:
     GraphMenuHandler(StepCore::Object* object, WorldModel* worldModel, QObject* parent)
         : ItemMenuHandler(object, worldModel, parent) {}
 
-    void populateMenu(QMenu* menu, KActionCollection* actions) Q_DECL_OVERRIDE;
+    void populateMenu(QMenu* menu, KActionCollection* actions) override;
 
 protected slots:
     void clearGraph();
@@ -270,7 +270,7 @@ class MeterGraphicsItem: public WidgetGraphicsItem
 {
 public:
     MeterGraphicsItem(StepCore::Item* item, WorldModel* worldModel);
-    void worldDataChanged(bool) Q_DECL_OVERRIDE;
+    void worldDataChanged(bool) override;
 
 protected:
     StepCore::Meter* meter() const;
@@ -294,7 +294,7 @@ public:
     MeterMenuHandler(StepCore::Object* object, WorldModel* worldModel, QObject* parent)
         : ItemMenuHandler(object, worldModel, parent) {}
 
-    void populateMenu(QMenu* menu, KActionCollection* actions) Q_DECL_OVERRIDE;
+    void populateMenu(QMenu* menu, KActionCollection* actions) override;
 
 protected slots:
     void configureMeter();
@@ -318,7 +318,7 @@ class ControllerGraphicsItem: public WidgetGraphicsItem
 
 public:
     ControllerGraphicsItem(StepCore::Item* item, WorldModel* worldModel);
-    void worldDataChanged(bool) Q_DECL_OVERRIDE;
+    void worldDataChanged(bool) override;
 
 protected slots:
     void incTriggered();
@@ -355,7 +355,7 @@ public:
     ControllerMenuHandler(StepCore::Object* object, WorldModel* worldModel, QObject* parent)
         : ItemMenuHandler(object, worldModel, parent) {}
 
-    void populateMenu(QMenu* menu, KActionCollection* actions) Q_DECL_OVERRIDE;
+    void populateMenu(QMenu* menu, KActionCollection* actions) override;
 
 protected slots:
     void incTriggered();
@@ -389,14 +389,14 @@ class TracerGraphicsItem: public StepGraphicsItem
 public:
     TracerGraphicsItem(StepCore::Item* item, WorldModel* worldModel);
 
-    void paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget) Q_DECL_OVERRIDE;
-    QPainterPath shape() const Q_DECL_OVERRIDE;
+    void paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget) override;
+    QPainterPath shape() const override;
 
-    void viewScaleChanged() Q_DECL_OVERRIDE;
-    void worldDataChanged(bool dynamicOnly) Q_DECL_OVERRIDE;
+    void viewScaleChanged() override;
+    void worldDataChanged(bool dynamicOnly) override;
 
 protected:
-    void mouseSetPos(const QPointF& pos, const QPointF&, MovingState movingState) Q_DECL_OVERRIDE;
+    void mouseSetPos(const QPointF& pos, const QPointF&, MovingState movingState) override;
     StepCore::Tracer* tracer() const;
     QPolygonF _points;
     QPointF   _lastPos;
@@ -413,7 +413,7 @@ public:
     TracerMenuHandler(StepCore::Object* object, WorldModel* worldModel, QObject* parent)
         : ItemMenuHandler(object, worldModel, parent) {}
 
-    void populateMenu(QMenu* menu, KActionCollection* actions) Q_DECL_OVERRIDE;
+    void populateMenu(QMenu* menu, KActionCollection* actions) override;
 
 protected slots:
     void clearTracer();

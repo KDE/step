@@ -149,23 +149,23 @@ public:
     /** Set kinetic energy of the particle (will modify only velocity) */
     void setKineticEnergy(double kineticEnergy);
 
-    int  variablesCount() Q_DECL_OVERRIDE { return 2; }
+    int  variablesCount() override { return 2; }
     void getVariables(double* position, double* velocity,
-                          double* positionVariance, double* velocityVariance) Q_DECL_OVERRIDE;
+                          double* positionVariance, double* velocityVariance) override;
     void setVariables(const double* position, const double* velocity,
-              const double* positionVariance, const double* velocityVariance) Q_DECL_OVERRIDE;
-    void addForce(const double* force, const double* forceVariance) Q_DECL_OVERRIDE;
-    void resetForce(bool resetVariance) Q_DECL_OVERRIDE;
-    void getAccelerations(double* acceleration, double* accelerationVariance) Q_DECL_OVERRIDE;
+              const double* positionVariance, const double* velocityVariance) override;
+    void addForce(const double* force, const double* forceVariance) override;
+    void resetForce(bool resetVariance) override;
+    void getAccelerations(double* acceleration, double* accelerationVariance) override;
     void getInverseMass(VectorXd* inverseMass,
-                        DynSparseRowMatrix* variance, int offset) Q_DECL_OVERRIDE;
+                        DynSparseRowMatrix* variance, int offset) override;
 
     /** Get (and possibly create) ParticleErrors object */
     ParticleErrors* particleErrors() {
         return static_cast<ParticleErrors*>(objectErrors()); }
 
 protected:
-    ObjectErrors* createObjectErrors() Q_DECL_OVERRIDE { return new ParticleErrors(this); }
+    ObjectErrors* createObjectErrors() override { return new ParticleErrors(this); }
 
     Vector2d _position;
     Vector2d _velocity;
@@ -223,7 +223,7 @@ public:
         return static_cast<ChargedParticleErrors*>(objectErrors()); }
 
 protected:
-    ObjectErrors* createObjectErrors() Q_DECL_OVERRIDE { return new ChargedParticleErrors(this); }
+    ObjectErrors* createObjectErrors() override { return new ChargedParticleErrors(this); }
 
     double _charge;
 };

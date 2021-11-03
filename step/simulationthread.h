@@ -43,7 +43,7 @@ public:
         : _world(world), _stopThread(0), _delta(0) {}
     ~SimulationThread();
 
-    void run() Q_DECL_OVERRIDE;
+    void run() override;
     void doWorldEvolve(double delta);
     QMutex* mutex() { return &_mutex; }
 

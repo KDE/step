@@ -43,12 +43,12 @@ class RigidBodyGraphicsItem : public StepGraphicsItem
 public:
     RigidBodyGraphicsItem(StepCore::Item* item, WorldModel* worldModel);
 
-    QPainterPath shape() const Q_DECL_OVERRIDE;
-    void paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget) Q_DECL_OVERRIDE;
+    QPainterPath shape() const override;
+    void paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget) override;
 
-    void viewScaleChanged() Q_DECL_OVERRIDE;
-    void stateChanged() Q_DECL_OVERRIDE;
-    void worldDataChanged(bool dynamicOnly) Q_DECL_OVERRIDE;
+    void viewScaleChanged() override;
+    void stateChanged() override;
+    void worldDataChanged(bool dynamicOnly) override;
 
 protected:
     StepCore::RigidBody* rigidBody() const;
@@ -67,8 +67,8 @@ class DiskCreator: public ItemCreator
 public:
     DiskCreator(const QString& className, WorldModel* worldModel, WorldScene* worldScene)
                         : ItemCreator(className, worldModel, worldScene) {}
-    bool sceneEvent(QEvent* event) Q_DECL_OVERRIDE;
-    void start() Q_DECL_OVERRIDE;
+    bool sceneEvent(QEvent* event) override;
+    void start() override;
 };
 
 class DiskVertexHandlerGraphicsItem: public OnHoverHandlerGraphicsItem
@@ -82,18 +82,18 @@ public:
 
 protected:
     StepCore::Disk* disk() const;
-    StepCore::Vector2d value() Q_DECL_OVERRIDE;
-    void setValue(const StepCore::Vector2d& value) Q_DECL_OVERRIDE;
+    StepCore::Vector2d value() override;
+    void setValue(const StepCore::Vector2d& value) override;
 };
 
 class DiskGraphicsItem: public RigidBodyGraphicsItem
 {
 public:
     DiskGraphicsItem(StepCore::Item* item, WorldModel* worldModel);
-    void viewScaleChanged() Q_DECL_OVERRIDE;
+    void viewScaleChanged() override;
 
 protected:
-    OnHoverHandlerGraphicsItem* createOnHoverHandler(const QPointF& pos) Q_DECL_OVERRIDE;
+    OnHoverHandlerGraphicsItem* createOnHoverHandler(const QPointF& pos) override;
     StepCore::Disk* disk() const;
 };
 
@@ -103,7 +103,7 @@ class BasePolygonGraphicsItem: public RigidBodyGraphicsItem
 {
 public:
     BasePolygonGraphicsItem(StepCore::Item* item, WorldModel* worldModel);
-    void viewScaleChanged() Q_DECL_OVERRIDE;
+    void viewScaleChanged() override;
 
 protected:
     StepCore::BasePolygon* basePolygon() const;
@@ -116,8 +116,8 @@ class BoxCreator: public ItemCreator
 public:
     BoxCreator(const QString& className, WorldModel* worldModel, WorldScene* worldScene)
                         : ItemCreator(className, worldModel, worldScene) {}
-    bool sceneEvent(QEvent* event) Q_DECL_OVERRIDE;
-    void start() Q_DECL_OVERRIDE;
+    bool sceneEvent(QEvent* event) override;
+    void start() override;
 
 protected:
     StepCore::Vector2d _topLeft;
@@ -137,8 +137,8 @@ public:
 
 protected:
     StepCore::Box* box() const;
-    StepCore::Vector2d value() Q_DECL_OVERRIDE;
-    void setValue(const StepCore::Vector2d& value) Q_DECL_OVERRIDE;
+    StepCore::Vector2d value() override;
+    void setValue(const StepCore::Vector2d& value) override;
 };
 
 class BoxGraphicsItem: public BasePolygonGraphicsItem
@@ -148,7 +148,7 @@ public:
         : BasePolygonGraphicsItem(item, worldModel) {}
 
 protected:
-    OnHoverHandlerGraphicsItem* createOnHoverHandler(const QPointF& pos) Q_DECL_OVERRIDE;
+    OnHoverHandlerGraphicsItem* createOnHoverHandler(const QPointF& pos) override;
 };
 
 /////////////////////////////////////////////////////////////////////////////////////////
@@ -158,8 +158,8 @@ class PolygonCreator: public ItemCreator
 public:
     PolygonCreator(const QString& className, WorldModel* worldModel, WorldScene* worldScene)
                         : ItemCreator(className, worldModel, worldScene) {}
-    bool sceneEvent(QEvent* event) Q_DECL_OVERRIDE;
-    void start() Q_DECL_OVERRIDE;
+    bool sceneEvent(QEvent* event) override;
+    void start() override;
 
 protected:
     void fixCenterOfMass();
@@ -177,8 +177,8 @@ public:
 
 protected:
     StepCore::Polygon* polygon() const;
-    StepCore::Vector2d value() Q_DECL_OVERRIDE;
-    void setValue(const StepCore::Vector2d& value) Q_DECL_OVERRIDE;
+    StepCore::Vector2d value() override;
+    void setValue(const StepCore::Vector2d& value) override;
 };
 
 class PolygonGraphicsItem: public BasePolygonGraphicsItem
@@ -191,7 +191,7 @@ public:
                                 int vertexNum, const StepCore::Vector2d& value);
 
 protected:
-    OnHoverHandlerGraphicsItem* createOnHoverHandler(const QPointF& pos) Q_DECL_OVERRIDE;
+    OnHoverHandlerGraphicsItem* createOnHoverHandler(const QPointF& pos) override;
     StepCore::Polygon* polygon() const;
 };
 

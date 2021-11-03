@@ -47,7 +47,7 @@ public:
     explicit LinearMotor(Object* body = 0, const Vector2d& localPosition = Vector2d::Zero(),
                         const Vector2d &forceValue = Vector2d::Zero());
 
-    void calcForce(bool calcVariances) Q_DECL_OVERRIDE;
+    void calcForce(bool calcVariances) override;
 
     /** Get pointer to the body */
     Object* body() const { return _body; }
@@ -93,7 +93,7 @@ public:
     explicit CircularMotor(Object* body = 0, const Vector2d& localPosition = Vector2d::Zero(),
                                             double torqueValue = 0);
 
-    void calcForce(bool calcVariances) Q_DECL_OVERRIDE;
+    void calcForce(bool calcVariances) override;
 
     /** Get pointer to the body */
     Object* body() const { return _body; }

@@ -34,13 +34,13 @@ class WorldBrowserView: public QTreeView
 {
 public:
     WorldBrowserView(QWidget* parent = 0);
-    void reset() Q_DECL_OVERRIDE;
+    void reset() override;
 
 protected:
-    void changeEvent(QEvent* event) Q_DECL_OVERRIDE;
-    void drawBranches(QPainter *painter, const QRect &rect, const QModelIndex &index) const Q_DECL_OVERRIDE;
-    void keyPressEvent(QKeyEvent* e) Q_DECL_OVERRIDE;
-    void contextMenuEvent(QContextMenuEvent* event) Q_DECL_OVERRIDE;
+    void changeEvent(QEvent* event) override;
+    void drawBranches(QPainter *painter, const QRect &rect, const QModelIndex &index) const override;
+    void keyPressEvent(QKeyEvent* e) override;
+    void contextMenuEvent(QContextMenuEvent* event) override;
     WorldModel* worldModel() { return static_cast<WorldModel*>(model()); }
     const int _windowsDecoSize;
     bool _macStyle;

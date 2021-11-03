@@ -91,9 +91,9 @@ public:
     Item* item(const QString& name) const;
 
     /** Recursively call setWorld for all children objects */
-    void setWorld(World* world) Q_DECL_OVERRIDE;
+    void setWorld(World* world) override;
     /** Recursively call worldItemRemoved for all children objects */
-    void worldItemRemoved(Item* item) Q_DECL_OVERRIDE;
+    void worldItemRemoved(Item* item) override;
     
 private:
     ItemList  _items;

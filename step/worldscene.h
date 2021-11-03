@@ -163,9 +163,9 @@ protected slots:
     void snapUpdateToolTip();
 
 protected:
-    bool event(QEvent* event) Q_DECL_OVERRIDE;
-    void mousePressEvent(QGraphicsSceneMouseEvent* mouseEvent) Q_DECL_OVERRIDE;
-    void helpEvent(QGraphicsSceneHelpEvent *helpEvent) Q_DECL_OVERRIDE;
+    bool event(QEvent* event) override;
+    void mousePressEvent(QGraphicsSceneMouseEvent* mouseEvent) override;
+    void helpEvent(QGraphicsSceneHelpEvent *helpEvent) override;
     //void contextMenuEvent(QGraphicsSceneContextMenuEvent* contextMenuEvent);
 
     void worldGetItemsRecursive(const QModelIndex& parent);
@@ -209,10 +209,10 @@ protected slots:
     void sceneRectChanged(const QRectF& rect);
     
 protected:
-    void mousePressEvent(QMouseEvent* e) Q_DECL_OVERRIDE;
-    void mouseReleaseEvent(QMouseEvent* e) Q_DECL_OVERRIDE;
-    void wheelEvent(QWheelEvent* e) Q_DECL_OVERRIDE;
-    void scrollContentsBy(int dx, int dy) Q_DECL_OVERRIDE;
+    void mousePressEvent(QMouseEvent* e) override;
+    void mouseReleaseEvent(QMouseEvent* e) override;
+    void wheelEvent(QWheelEvent* e) override;
+    void scrollContentsBy(int dx, int dy) override;
     void updateSceneRect();
 
     static const int SCENE_LENGTH = 2000;
