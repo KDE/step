@@ -56,7 +56,6 @@ public slots:
     void openExample();
     void openLocalExample();
     void uploadExample();
-    void downloadExamples();
 
     void configureStep();
 

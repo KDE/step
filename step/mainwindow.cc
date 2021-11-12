@@ -55,7 +55,7 @@
 #include <KJobWidgets>
 #include <KLocalizedString>
 #include <KMessageBox>
-#include <KNS3/DownloadDialog>
+#include <KNSWidgets/Action>
 #include <KRecentFilesAction>
 #include <KStandardAction>
 #include <KToolBarPopupAction>
@@ -169,10 +169,8 @@ void MainWindow::setupActions()
     actionUploadExample->setText(i18n("Share C&urrent Experiment..."));
     actionUploadExample->setIcon(QIcon::fromTheme(QStringLiteral("get-hot-new-stuff")));
 
-    QAction * actionDownloadExamples = actionCollection()->add<QAction>(
-                QStringLiteral("file_example_download"), this, SLOT(downloadExamples()));
-    actionDownloadExamples->setText(i18n("&Download New Experiments..."));
-    actionDownloadExamples->setIcon(QIcon::fromTheme(QStringLiteral("get-hot-new-stuff")));
+    KNSWidgets::Action *actionDownloadExamples = new KNSWidgets::Action(i18n("&Download New Experiments..."), QStringLiteral("step.knsrc"), actionCollection());
+    actionCollection()->addAction(QStringLiteral("file_example_download"), actionDownloadExamples);
 
     /* Edit menu */
     actionRedo = KStandardAction::redo(worldModel->undoStack(), SLOT(redo()), actionCollection());
@@ -472,13 +470,6 @@ void MainWindow::uploadExample()
 
     KNS::Engine::upload( currentFileUrl.url() );
     */
-}
-
-void MainWindow::downloadExamples()
-{
-    //qDebug() << "inside MainWindow::downloadExamples()";
-    KNS3::DownloadDialog dialog(QStringLiteral("step.knsrc"), this);
-    dialog.exec();
 }
 
 void MainWindow::simulationStartStop()
