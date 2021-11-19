@@ -31,9 +31,6 @@
 
 #include "step_version.h"
 
-static const char description[] =
-    I18N_NOOP("Interactive physical simulator");
-
 int main(int argc, char* argv[])
 {
     KLocalizedString::setApplicationDomain("step");
@@ -52,7 +49,7 @@ int main(int argc, char* argv[])
     KAboutData aboutData(QStringLiteral("step"),
                          i18n("Step"),
                          STEP_VERSION_STRING,
-                         i18n(description),
+                         i18n("Interactive physical simulator"),
                          KAboutLicense::GPL,
                          i18n("(C) 2007 Vladimir Kuznetsov"),
                          i18n("https://edu.kde.org/step")
