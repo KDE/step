@@ -2,6 +2,7 @@
 <mime-info xmlns="http://www.freedesktop.org/standards/shared-mime-info">
   <mime-type type="application/x-step">
     <comment>Step Physical Simulator files</comment>
+    <comment xml:lang="ar">ملفات محاكي فيزياء تفاعلي</comment>
     <comment xml:lang="ca">Fitxers del simulador de física Step</comment>
     <comment xml:lang="ca@valencia">Fitxers del simulador de física Step</comment>
     <comment xml:lang="cs">Soubory fyzikálního simulátoru Step</comment>
