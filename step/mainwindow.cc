@@ -418,8 +418,8 @@ void MainWindow::openTutorial()
 {
     // XXX: need to be redone
     //qDebug() << "inside MainWindow::openTutorial()";
-    QStringList dirs = QStandardPaths::locateAll(QStandardPaths::DataLocation, QStringLiteral("tutorials"), QStandardPaths::LocateDirectory);
-    QString localDir = QStandardPaths::writableLocation(QStandardPaths::DataLocation) + QLatin1Char('/');
+    QStringList dirs = QStandardPaths::locateAll(QStandardPaths::AppLocalDataLocation, QStringLiteral("tutorials"), QStandardPaths::LocateDirectory);
+    QString localDir = QStandardPaths::writableLocation(QStandardPaths::AppLocalDataLocation) + QLatin1Char('/');
     foreach(const QString &dirName, dirs) {
         //qDebug() << "dirName: " << dirName;
         if(!dirName.startsWith(localDir)) {
@@ -433,8 +433,8 @@ void MainWindow::openExample()
 {
     //qDebug() << "inside MainWindow::openExample()";
     // XXX: need to be redone
-    QStringList dirs = QStandardPaths::locateAll(QStandardPaths::DataLocation, QStringLiteral("examples"), QStandardPaths::LocateDirectory);
-    QString localDir = QStandardPaths::writableLocation(QStandardPaths::DataLocation) + QLatin1Char('/');
+    QStringList dirs = QStandardPaths::locateAll(QStandardPaths::AppLocalDataLocation, QStringLiteral("examples"), QStandardPaths::LocateDirectory);
+    QString localDir = QStandardPaths::writableLocation(QStandardPaths::AppLocalDataLocation) + QLatin1Char('/');
     foreach(const QString &dirName, dirs) {
         if(!dirName.startsWith(localDir)) {
             openFile(QUrl(), QUrl::fromLocalFile(dirName));
@@ -446,7 +446,7 @@ void MainWindow::openExample()
 void MainWindow::openLocalExample()
 {
     // XXX: need to be redone
-    QString dir = QStandardPaths::writableLocation(QStandardPaths::DataLocation) + "/examples";
+    QString dir = QStandardPaths::writableLocation(QStandardPaths::AppLocalDataLocation) + "/examples";
     if(dir.isEmpty()) return;
     QDir::root().mkpath(dir);
     openFile(QUrl(), QUrl::fromLocalFile(dir));

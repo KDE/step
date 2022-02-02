@@ -153,7 +153,7 @@ void InfoBrowser::openUrl(const QUrl& url, bool clearHistory, bool fromHistory)
                     "</body></html>", fromHistory, url );
             return;
         }
-        QString fileName = KLocalizedString::localizedFilePath(QStandardPaths::locate(QStandardPaths::DataLocation, QStringLiteral("objinfo/%1.html").arg(className.toLower())));
+        QString fileName = KLocalizedString::localizedFilePath(QStandardPaths::locate(QStandardPaths::AppLocalDataLocation, QStringLiteral("objinfo/%1.html").arg(className.toLower())));
         if(!fileName.isEmpty()) {
             QFile file(fileName);
             if(file.open(QIODevice::ReadOnly | QIODevice::Text)) {
