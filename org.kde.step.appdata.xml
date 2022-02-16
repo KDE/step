@@ -96,7 +96,7 @@
     <p xml:lang="pl">Krok jest interaktywnym symulatorem fizyki. Umożliwia poznawanie świata fizycznego poprzez symulacje. Działa w następujący sposób: umieszczasz jakieś bryły na scenie, dodajesz jakieś siły jako grawitacja lub sprężyny, a następnie naciskasz na Symulacja i Krok pokaże jak scena się zmieni według praw fizyki. Można zmienić każdą właściwość brył/sił w eksperymencie (nawet podczas symulacji) i zobaczyć jak zmieni się przebieg eksperymentu. Dzięki Krokowi nie tylko można się nauczyć, ale także poczuć jak działa fizyka!</p>
     <p xml:lang="pt">O Step é um simulador de física interactiva. Permite-lhe explorar o mundo da física através de simulações. Funciona da seguinte forma: poderá colocar alguns corpos na cena, adicionar algumas forças, como a gravidade ou algumas molas, e depois carregar em Simular ou Passo, que lhe mostra como a sua cena irá evoluir de acordo com as leis da física. Poderá mudar todas as propriedades dos corpos/forças da sua experiência (mesmo durante a simulação) e ver como isto irá mudar a evolução da experiência. Com o Passo, poderá não só aprender como também sentir como funciona a física!</p>
     <p xml:lang="pt-BR">Step é um simulador de física interativo. Permite-lhe explorar o mundo da física através de simulações. Funciona da seguinte forma: Você coloca alguns corpos no cenário, adiciona algumas forças como a gravidade ou molas e então clica em Simular, para que o Step lhe mostre como o seu cenário irá evoluir de acordo com as leis da física. Você poderá alterar qualquer propriedade dos corpos/forças da sua experiência (inclusive durante a simulação) para ver como isso irá mudar a evolução da experiência. Com o Step você poderá não só aprender, mas também sentir como funciona a física!</p>
-    <p xml:lang="ru">Step — интерактивный симулятор физических процессов. Позволяет познавать мир физики через виртуальные эксперименты. Вы помещаете тела на сцену, добавляете действующие на них силы, и после нажатия кнопки запуска симуляции программа показывает, что будет происходить с построенной вами системой согласно законам физики. Можно менять параметры тел и сил (даже во время работы симулятора) и смотреть, как при это меняется результат эксперимента.</p>
+    <p xml:lang="ru">Step — это интерактивный симулятор физических процессов. Он позволяет изучать физические явления с помощью их имитации. Пользователь располагает в исследовательской области (сцене) некоторые тела, включает силы (гравитационные силы и силы натяжения от пружин), а потом нажимает кнопку «Симулировать», — Step покажет, как согласно законам физики будут развиваться события в построенной пользователем системе. Возможно менять все свойства тел или сил в эксперименте (даже во время симуляции), чтобы увидеть, как такие изменения влияют на ход эксперимента. Step поможет не просто изучить физику, а прочувствовать, как работают физические законы.</p>
     <p xml:lang="sk">Step je interaktívny fyzikálny simulátor. Umožňuje vám objaviť fyzikálny svet cez simulácie. Funguje takto: umiestnite nejaké telesá na scénu, pridáte nejaké sily ako gravitáciu alebo pružiny, potom kliknete na Simulácia a Step vám ukáže, ako sa vaša scéna bude vyvíjať podľa zákonov fyziky. Môžete zmeniť každú vlastnosť telies/síl vo vašom experimente (aj  počas simulácie) a vidieť, ako to zmení vývoj experimentu. S programom Step sa nielen učíte, ale aj cítite, ako fyzika funguje!</p>
     <p xml:lang="sl">Step je interaktivni fizikalni simulator. Omogoča vam raziskovati svet fizike preko simulacij. Deluje pa na naslednji način: v sceno postavite nekaj teles ter dodate sile kot npr. težnost ali vzmeti. Nato kliknete na Simuliraj in Step vam pokaže, kako bi se scena odvila glede na fizikalne zakone. V poskusu lahko spremenite katerokoli lastnost teles/sil (celo med simulacijo) in si ogledate, kako bi to vplivalo na razvoj poskusa. S programom Step se ne le naučite, ampak tudi občutite kako fizikalni zakoni delujejo!</p>
     <p xml:lang="sv">Step är en interaktiv fysiksimulator. Den låter dig utforska den fysiska värden genom simuleringar. Den fungerar så här: Du placerar några kroppar i diagrammet, lägger till några krafter som gravitation eller fjädrar, och klickar därefter på Simulera så visar Step dig hur diagrammet förändras enligt fysikens lagar. Du kan ändra alla egenskaper hos kropparna och krafterna i experimentet (till och med under simuleringen) och se hur det påverkar experimentets förlopp. Med Step kan du inte bara lära dig hur fysiken fungerar, utan också få en känsla för det.</p>
@@ -162,7 +162,7 @@
       <li xml:lang="pl">Klasyczna symulacja mechaniczna w dwóch wymiarach</li>
       <li xml:lang="pt">Simulação mecânica clássica a duas dimensões</li>
       <li xml:lang="pt-BR">Simulação mecânica clássica em duas dimensões</li>
-      <li xml:lang="ru">Двумерная симуляция классической механики</li>
+      <li xml:lang="ru">Имитация классического механического взаимодействия в двух  измерениях</li>
       <li xml:lang="sk">Simulácie klasickej mechaniky v dvoch rozmeroch</li>
       <li xml:lang="sl">Klasične mehanske simulacije v dveh dimenzijah</li>
       <li xml:lang="sv">Simulering av klassisk mekanik i två dimensioner</li>
@@ -222,7 +222,7 @@
       <li xml:lang="pl">Bryły sztywne</li>
       <li xml:lang="pt">Corpos rígidos</li>
       <li xml:lang="pt-BR">Corpos rígidos</li>
-      <li xml:lang="ru">Твёрдые (жёсткие) тела</li>
+      <li xml:lang="ru">Твёрдые тела</li>
       <li xml:lang="sk">Tuhé telesá</li>
       <li xml:lang="sl">Toga telesa</li>
       <li xml:lang="sv">Stela kroppar</li>
@@ -251,7 +251,7 @@
       <li xml:lang="pl">Wykrywanie i obsługa kolizji (obecnie tylko dyskretnie)</li>
       <li xml:lang="pt">Detecção e tratamento de colisões (somente discretas de momento)</li>
       <li xml:lang="pt-BR">Detecção e tratamento de colisões (atualmente somente discretas)</li>
-      <li xml:lang="ru">Обработка столкновений (на данный момент есть только дискретная реализация)</li>
+      <li xml:lang="ru">Определение столкновений (на данный момент есть только дискретная реализация) и их обработка</li>
       <li xml:lang="sk">Detekcia kolízií (aktuálne iba oddelené) a ich spracovanie</li>
       <li xml:lang="sl">Zaznavanje trkov (trenutno samo diskretnih) in njihovo obravnavanje</li>
       <li xml:lang="sv">Detektering och hantering av kollisioner (för närvarande bara diskreta)</li>
@@ -280,7 +280,7 @@
       <li xml:lang="pl">Miękkie (odkształcalne) bryły symulowane jako systemy cząsteczek-sprężyn edytowanych przez użytkownika, fale dźwiękowe</li>
       <li xml:lang="pt">Corpos suaves (deformáveis) simulados como um sistema de partículas-ondas editáveis pelo utilizador, ondas sonoras</li>
       <li xml:lang="pt-BR">Corpos suaves (deformáveis) simulados como um sistema de partículas-ondas editáveis pelo usuário, ondas sonoras</li>
-      <li xml:lang="ru">Мягкие (деформируемые) тела, моделируемые как системы частиц, задаваемые пользователем; звуковые волны</li>
+      <li xml:lang="ru">Мягкие (деформируемые) тела, моделируемые как системы частиц, задаваемые пользователем, звуковые волны</li>
       <li xml:lang="sk">Mäkké (deformovateľné) telesá simulované ako používateľom upraviteľné systémy častíc-pružín, zvukové vlny</li>
       <li xml:lang="sl">Simulacija mehkih teles kot sistem delcev/vzmeti, ki jih lahko uredi uporabnik; zvočni valovi</li>
       <li xml:lang="sv">Mjuka (deformerbara) kroppar simulerade som system med partiklar och fjädrar redigerbara av användaren, ljudvågor</li>
@@ -309,7 +309,7 @@
       <li xml:lang="pl">Dynamika molekularna (obecnie przy użyciu potencjału Lennard-Jones): gaz i ciecz, kondensacja i parowanie, obliczanie wielkości makroskopowych i ich wariancji</li>
       <li xml:lang="pt">Dinâmica molecular (usando o potencial de Lennard-Jones de momento): gases e líquidos, condensação e evaporação, cálculo de quantidades macroscópicas e as suas variâncias</li>
       <li xml:lang="pt-BR">Dinâmica molecular (usando o potencial de Lennard-Jones atualmente): gases e líquidos, condensação e evaporação, cálculo de quantidades macroscópicas e as suas variâncias</li>
-      <li xml:lang="ru">Молекулярная динамика (на данный момент используется потенциал Леннард-Джонса 6-12): газы и жидкости, конденсация и испарение, вычисление значений термодинамических величин и их изменения</li>
+      <li xml:lang="ru">Молекулярная динамика (на данный момент используется потенциал Леннард-Джонса, также известный как потенциал 6-12): газы и жидкости, конденсация и испарение, вычисление значений термодинамических величин и их изменений</li>
       <li xml:lang="sk">Molekulárna dynamika (aktuálne používa Lennardov-Jonesov potenciál): plyn a kvapalina, kondenzácia a vyparovanie, výpočet makroskopických kvantít a ich odchýliek</li>
       <li xml:lang="sl">Molekulska dinamika (trenutno uporablja Lennard-Jonesov potencial): plini in tekočine, kondenzacija in izparevanje, izračun makroskopskih količin in njihovih varianc</li>
       <li xml:lang="sv">Molekyldynamik (för närvarande med användning av Lennard-Jones potentialen): gaser och vätskor, kondensering och avdunstning, beräkning av makroskopiska kvantiteter och deras varians</li>
@@ -339,7 +339,7 @@
       <li xml:lang="pl">Przekształcanie jednostek i obliczanie wyrażeń: możesz  wpisać coś takiego"(2 dni + 3 godziny) * 80 km/h" i zostanie to potraktowane jako wartość odległości (wymaga libqalculate)</li>
       <li xml:lang="pt">Conversão de unidades e cálculo de expressões; poderá indicar algo do tipo "(2 dias + 3 horas) * 80 km/h", para que seja aceite como um valor de distância (necessita da 'libqalculate')</li>
       <li xml:lang="pt-BR">Conversão de unidades e cálculo de expressões; você poderá indicar algo do tipo "(2 dias + 3 horas) * 80 km/h", e isto será aceito como um valor de distância (necessita da 'libqalculate')</li>
-      <li xml:lang="ru">Калькулятор выражений и преобразование единиц измерения: вместо расстояния можно ввести формулу вида «(2 days + 3 hours) * 80 km/h» (для этого требуется libqalculate)</li>
+      <li xml:lang="ru">Калькулятор выражений и преобразование единиц измерения: возможно ввести формулу вида «(2 дня + 3 часа) * 80 км/ч», и она будет распознаваться как расстояние (для этого потребуется установить пакет libqalculate)</li>
       <li xml:lang="sk">Konverzie jednotiek a výpočet výrazov: môžete zadať niečo ako "(2 dni + 3 hodiny) * 80 km/h" a bude to prijaté ako hodnota vzdialenosti (vyžaduje libqalculate)</li>
       <li xml:lang="sl">Pretvorbe enot in izračuni izrazov: če vnesete npr. "(2 dni + 3 ure) * 80 km/h", bo to obravnavano kot dolžinska vrednost (zahteva libqalculate)</li>
       <li xml:lang="sv">Enhetskonvertering och uttrycksberäkning: Du kan skriva in någonting i stil med "(2 dagar + 3 timmar) * 80 km/h", vilket accepteras som ett avståndsvärde (kräver libqalculate)</li>
@@ -368,7 +368,7 @@
       <li xml:lang="pl">Obliczanie i propagacja błędów: możesz wpisać wartości takie jak "1.3 ± 0.2" dla każdej własności, a błędy dla wszystkich zależnych własności zostaną obliczone używając równań statystycznych</li>
       <li xml:lang="pt">Cálculo e propagação de erros: poderá indicar valores do tipo "1.3 ± 0.2" para qualquer propriedade, para que sejam calculados os erros de todas as propriedades dependentes com fórmulas estatísticas</li>
       <li xml:lang="pt-BR">Cálculo e propagação de erros: você poderá indicar valores do tipo "1.3 ± 0.2" para qualquer propriedade, para que sejam calculados os erros de todas as propriedades dependentes com fórmulas estatísticas</li>
-      <li xml:lang="ru">Расчёт ошибок с учётом их распространения: вы можете ввести значение вида «1.3 ± 0.2» для любого свойства, — и все зависящие от него значения будут рассчитаны по статистическим формулам</li>
+      <li xml:lang="ru">Расчёт погрешностей с учётом их распространения: для любого свойства возможно ввести значение вида «1.3 ± 0.2», и все зависящие от него значения будут рассчитаны по статистическим формулам</li>
       <li xml:lang="sk">Výpočet a šírenie chýb: môžete zadať hodnoty ako "1,3 ± 0,2" pre ľubovoľnú vlastnosť a chyby pre všetky závislé vlastnosti sa prepočítajú pomocou štatistických vzorcov</li>
       <li xml:lang="sl">Izračun napak in njihov prenos: vnesete lahko npr. "1.3 ± 0.2" za katerokoli vrednost in napake za vse odvisne lastnosti bodo izračunane s pomočjo statističnih enačb</li>
       <li xml:lang="sv">Felberäkning och felpropagering: Du kan skriva in värden som "1,3 ± 0,2" för alla egenskaper, och fel för alla beroende egenskaper beräknas med statistiska formler</li>
@@ -397,7 +397,7 @@
       <li xml:lang="pl">Oszacowanie błędu solvera: błędy wprowadzone przez solver są obliczane i dodawane do błędów podanych przez użytkownika</li>
       <li xml:lang="pt">Estimativa do erro da resolução: os erros introduzidos pela resolução são calculados e adicionados aos erros introduzidos pelo utilizador</li>
       <li xml:lang="pt-BR">Estimativa do erro da resolução: os erros introduzidos pela resolução são calculados e adicionados aos erros adicionados pelo usuário</li>
-      <li xml:lang="ru">Оценка ошибок при решении систем уравнений: программа рассчитывает погрешности вычислений и складывает их с погрешностями, введёнными пользователем</li>
+      <li xml:lang="ru">Вычислитель погрешностей при решении уравнений: программа рассчитывает погрешности вычислений и складывает их с погрешностями, введёнными пользователем</li>
       <li xml:lang="sk">Odhad chýb riešiteľa: chyby spôsobené riešiteľom sa počítajú a pridávajú do používateľom zadaných chýb</li>
       <li xml:lang="sl">Ocena napake reševalnika: napake, ki so posledica računanja reševalnika, se izračunajo in dodajo k uporabniško vnesenim napakam</li>
       <li xml:lang="sv">Feluppskattning av evalueringsenheten: fel som införs av evalueringsenheten beräknas och läggs till användarinmatade fel</li>
@@ -426,7 +426,7 @@
       <li xml:lang="pl">Kilka różnych solwerów: aż do 8-mego rzędu, uwikłane i nieuwikłane, z lub bez adaptowanego kroku czasowego (większość z solwerów wymaga biblioteki GSL)</li>
       <li xml:lang="pt">Diversos métodos de resolução diferentes: até à 8a ordem, explícitos e implícitos, com ou sem passos temporais adaptativos (a maioria destes métodos necessitam da biblioteca GSL)</li>
       <li xml:lang="pt-BR">Diversos métodos de resolução diferentes: até à 8ª ordem, explícitos e implícitos, com ou sem passos temporais adaptativos (a maioria destes métodos necessitam da biblioteca GSL)</li>
-      <li xml:lang="ru">Различные численные методы: до 8 порядка, явные и неявные, с переменным или постоянным шагом во времени (для большинства методов требуется библиотека GSL)</li>
+      <li xml:lang="ru">Различные вычислители: до 8 порядка, явные и неявные, с переменным или постоянным шагом во времени (для большинства вычислителей требуется библиотека GSL)</li>
       <li xml:lang="sk">Niekoľko rôznych riešiteľov: do 8. úrovne, explicitné a implicitné, s alebo bez adaptívnej časovej pečiatky (väčšina riešiteľov vyžaduje knižnicu GSL)</li>
       <li xml:lang="sl">Različni reševalniki: do osmega reda, eksplicitni in implicitni, brez ali z prilagodljivim časovnim korakom (večina reševalnikov zahteva knjižnico GSL)</li>
       <li xml:lang="sv">Flera olika evalueringsenheter: Upp till 8:e ordningens, explicit eller implicit, med eller utan adaptivt tidssteg (de flesta evalueringsenheter kräver GSL-biblioteket)</li>
@@ -486,7 +486,7 @@
       <li xml:lang="pl">Narzędzia do wizualizacji wyników: wykres, miara, wskaźnik</li>
       <li xml:lang="pt">Ferramentas para visualização dos resultados: gráficos, medidores, impressão</li>
       <li xml:lang="pt-BR">Ferramentas para visualização dos resultados: gráficos, medidores, impressão</li>
-      <li xml:lang="ru">Средства визуализации результатов: графики, счётчики, траектории</li>
+      <li xml:lang="ru">Средства визуализации результатов: графики, измерители, траектории</li>
       <li xml:lang="sk">Nástroje na vizualizáciu výsledkov: graf, meter, stopár</li>
       <li xml:lang="sl">Orodja za prikaz rezultatov: graf, merilnik, sledilnik</li>
       <li xml:lang="sv">Verktyg för att åskådliggöra resultat: grafer, mätare, spår</li>
@@ -546,7 +546,7 @@
       <li xml:lang="pl">Zbiór przykładowych eksperymentów, można pobrać więcej z KNewStuff</li>
       <li xml:lang="pt">Uma colecção de experiências de exemplo, podendo obter mais com o KNewStuff</li>
       <li xml:lang="pt-BR">Coleção de experiências de exemplo, podendo obter mais com o KNewStuff</li>
-      <li xml:lang="ru">Коллекция примеров экспериментов и возможность загрузить другие эксперименты из KNewStuff</li>
+      <li xml:lang="ru">Сборник примеров экспериментов и возможность загрузить другие эксперименты с помощью KNewStuff</li>
       <li xml:lang="sk">Kolekcia ukážkových experimentov, viac je možné stiahnuť z KNewStuff</li>
       <li xml:lang="sl">Zbirka primerov poskusov, več jih lahko prejmete z "Dobi vroče novosti"</li>
       <li xml:lang="sv">En samling exempel på experiment, och fler kan laddas ner via Hämta heta nyheter</li>
@@ -576,7 +576,7 @@
       <li xml:lang="pl">Zintegrowane samouczki</li>
       <li xml:lang="pt">Tutoriais integrados</li>
       <li xml:lang="pt-BR">Tutoriais integrados</li>
-      <li xml:lang="ru">Встроенные обучающие примеры использования</li>
+      <li xml:lang="ru">Встроенные уроки</li>
       <li xml:lang="sk">Integrované kurzy</li>
       <li xml:lang="sl">Vgrajeni vodniki</li>
       <li xml:lang="sv">Integrerade handledningar</li>
@@ -612,6 +612,7 @@
       <caption xml:lang="pl">Symulacja fizyczna w Step</caption>
       <caption xml:lang="pt">Simulação de física no Step</caption>
       <caption xml:lang="pt-BR">Simulação de física no Step</caption>
+      <caption xml:lang="ru">Моделирование физических процессов в Step</caption>
       <caption xml:lang="sk">Fyzikálna simulácia v Step</caption>
       <caption xml:lang="sl">Fizikalni simulator Step</caption>
       <caption xml:lang="sv">Fysiksimulering i Step</caption>
