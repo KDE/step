@@ -81,8 +81,7 @@ else()
     # Some other compiler
 endif()
 
-# Eigen3 generates a lot of warnings. Suppress them by including as system headers (-isystem /PATH/TO/EIGEN3_INCLUDE_DIR)
-include_directories(${CMAKE_CURRENT_SOURCE_DIR} SYSTEM ${EIGEN3_INCLUDE_DIR})
+include_directories(${CMAKE_CURRENT_SOURCE_DIR})
 
 add_definitions(-DQT_NO_URL_CAST_FROM_STRING)
 

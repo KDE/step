@@ -55,5 +55,5 @@ add_definitions(-Wall) # XXX ?
 
 add_library(stepcore STATIC ${stepcore_SRCS})
 
-target_link_libraries(stepcore ${stepcore_use_LIBS})
+target_link_libraries(stepcore ${stepcore_use_LIBS} Eigen3::Eigen)
 
