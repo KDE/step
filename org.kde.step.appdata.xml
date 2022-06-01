@@ -292,7 +292,7 @@
       <li xml:lang="ar">الديناميات الجزيئية (حاليًا باستخدام إمكانات لينارد جونز): الغاز والسائل، والتكثيف والتبخر، وحساب الكميات العيانية وتبايناتها</li>
       <li xml:lang="bs">Molekularna dinamika (trenutno koristi Lennard-Jones potencijal): plin i tekućinu, kondenzacije i isparavanja, izračunavanje makroskopskih količina i njihovih varijancija</li>
       <li xml:lang="ca">Dinàmica molecular (actualment utilitzant el potencial de Lennard-Jones): gas i líquid, condensació i evaporació, càlcul de quantitats macroscòpiques i les seves variacions</li>
-      <li xml:lang="ca-valencia">Dinàmica molecular (actualment utilisant el potencial de Lennard-Jones): gas i líquid, condensació i evaporació, càlcul de cantitats macroscòpiques i les seues variacions</li>
+      <li xml:lang="ca-valencia">Dinàmica molecular (actualment utilisant el potencial de Lennard-Jones): gas i líquid, condensació i evaporació, càlcul de quantitats macroscòpiques i les seues variacions</li>
       <li xml:lang="de">Molekulare Dynamik mithilfe des Lennard-Jones-Potentials: Gase und Flüssigkeiten, Kondensation und Verdunstung, Berechnung der makroskopischen Werte und ihrer Abweichungen</li>
       <li xml:lang="el">Μοριακές δυνάμεις (προς το παρόν με χρήση δυναμικού Lennard-Jones): αέριο και υγρό, συμπύκνωση και εξάτμιση, υπολογισμός των μακροσκοπικών ποσοτήτων και των διακυμάνσεών τους</li>
       <li xml:lang="en-GB">Molecular dynamics (currently using Lennard-Jones potential): gas and liquid, condensation and evaporation, calculation of macroscopic quantities and their variances</li>
@@ -528,7 +528,7 @@
       <li xml:lang="ar">مجموعة من أمثلة التجارب ، يمكن تنزيل المزيد باستخدام KNewStuff</li>
       <li xml:lang="bs">Zbirka pokaznih eksperimenata, više se može preuzeti sa KNewStuff</li>
       <li xml:lang="ca">Col·lecció d'experiments d'exemple. Se'n poden baixar més amb el KNewStuff</li>
-      <li xml:lang="ca-valencia">Colecció d'experiments d'exemple. Se'n poden baixar més amb el KNewStuff</li>
+      <li xml:lang="ca-valencia">Colecció d'experiments d'exemple. Se'n poden baixar més amb KNewStuff</li>
       <li xml:lang="de">Sammlung von Beispielexperimenten, weitere Experimente können zusätzlich heruntergeladen werden</li>
       <li xml:lang="el">Συλλογή δειγματικών πειραμάτων, λήψη περισσότερων με το KNewStuff</li>
       <li xml:lang="en-GB">Collection of example experiments, more can be downloaded with KNewStuff</li>
