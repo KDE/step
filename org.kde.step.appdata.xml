@@ -321,7 +321,7 @@
       <li xml:lang="ar">تحويل الوحدات وحساب التعبير: يمكنك إدخال شيء مثل "(يومان + 3 ساعات) * 80 كم/ساعة" وسيتم قبوله كقيمة للمسافة (يتطلب libqalculate)</li>
       <li xml:lang="bs">Jedinice konverzije i proračun izraza: možete unijeti nešto poput "(2 dana + 3 sata) * 80 km / h", a ona će biti prihvaćena kao vrijednost udaljenosti (zahtijeva libqalculate)</li>
       <li xml:lang="ca">Conversió d'unitats i càlcul d'expressions: podeu introduir quelcom del tipus «(2 dies + 3 hores) * 80 km/h» i serà acceptat com un valor de distància (requereix la «libqalculate»)</li>
-      <li xml:lang="ca-valencia">Conversió d'unitats i càlcul d'expressions: podeu introduir alguna cosa del tipus «(2 dies + 3 hores) * 80 km/h» i serà acceptat com un valor de distància (requereix la «libqalculate»)</li>
+      <li xml:lang="ca-valencia">Conversió d'unitats i càlcul d'expressions: podeu introduir alguna cosa del tipus «(2 dies + 3 hores) * 80 km/h» i serà acceptat com un valor de distància (requerix la «libqalculate»)</li>
       <li xml:lang="de">Umwandlung von Einheiten und Berechnung von Ausdrücken: Sie können zum Beispiel „(2 days + 3 hours) * 80 km/h“ eingeben, daraus wird der Wert der Entfernung berechnet. Dazu ist die Bibliothek libqalculate erforderlich.</li>
       <li xml:lang="el">Μετατροπή μονάδων και υπολογισμός εκφράσεων: μπορείτε να δώσετε π.χ. "(2 ημέρες + 3 ώρες) * 80 km/h" και θα γίνει δεκτό ως τιμή απόστασης (απαιτεί το libqalculate)</li>
       <li xml:lang="en-GB">Units conversion and expression calculation: you can enter something like "(2 days + 3 hours) * 80 km/h" and it will be accepted as distance value (requires libqalculate)</li>
@@ -409,7 +409,7 @@
       <li xml:lang="ar">عدة أدوات حل مختلفة: حتى الترتيب الثامن، صريحًا وضمنيًا، مع أو بدون خطوة زمنية قابلة للتكيف (تتطلب معظم أدوات الحل مكتبة GSL)</li>
       <li xml:lang="bs">Nekoliko različitih rješavača: do osmog poretka, eksplicitno i implicitno, sa ili bez prilagodljivog vremesnog koraka(većina rješavača zahtjeva GSL biblioteku)</li>
       <li xml:lang="ca">Diversos solucionadors diferents: fins al vuitè ordre, explícits i implícits, amb adaptació o sense de pas de temps (la majoria dels solucionadors requereixen la biblioteca «GSL»)</li>
-      <li xml:lang="ca-valencia">Diversos solucionadors diferents: fins al vuitè ordre, explícits i implícits, amb adaptació o sense de pas de temps (la majoria dels solucionadors requereixen la biblioteca «GSL»)</li>
+      <li xml:lang="ca-valencia">Diversos solucionadors diferents: fins al vuitè ordre, explícits i implícits, amb adaptació o sense de pas de temps (la majoria dels solucionadors requerixen la biblioteca «GSL»)</li>
       <li xml:lang="de">Mehrere verschiedene Gleichungslösungssysteme: bis zur achten Ordnung, explizit und implizit, mit oder ohne angepassten Zeitschritten. Die meisten Gleichungslösungssysteme benötigen die GSL-Bibliothek.</li>
       <li xml:lang="el">Διάφοροι διαλύτες: μέχρι 8ης τάξης, εξωτερικοί και εσωτερικοί, με ή χωρίς προσαρμοσμένο χρονικό βήμα (οι περισσότεροι διαλύτες απαιτούν τη βιβλιοθήκη GSL)</li>
       <li xml:lang="en-GB">Several different solvers: up to 8th order, explicit and implicit, with or without adaptive timestep (most of the solvers require GSL library)</li>
