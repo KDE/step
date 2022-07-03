@@ -60,6 +60,7 @@
 #include <KStandardAction>
 #include <KToolBarPopupAction>
 
+#include <QActionGroup>
 #include <cstdlib>
 #include <ctime>
 
