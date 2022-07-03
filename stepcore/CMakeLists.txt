@@ -48,7 +48,7 @@ if(STEPCORE_WITH_QT)
     find_package(Qt5 5.2 REQUIRED NO_MODULE COMPONENTS Xml)
 
     include_directories(${CMAKE_CURRENT_BINARY_DIR})
-    set(stepcore_use_LIBS ${stepcore_use_LIBS} Qt5::Core Qt5::Xml)
+    set(stepcore_use_LIBS ${stepcore_use_LIBS} Qt::Core Qt::Xml)
 endif(STEPCORE_WITH_QT)
 
 add_definitions(-Wall) # XXX ?

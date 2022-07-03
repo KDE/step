@@ -80,8 +80,8 @@ target_link_libraries(step
     KF5::TextWidgets
     KF5::Plotting
     KF5::NewStuffWidgets
-    Qt5::OpenGL
-    Qt5::Widgets
+    Qt::OpenGL
+    Qt::Widgets
     ${qalculate_LIBS})
 
 install(TARGETS step ${KDE_INSTALL_TARGETS_DEFAULT_ARGS})

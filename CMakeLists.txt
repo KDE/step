@@ -9,7 +9,7 @@ set(RELEASE_SERVICE_VERSION "${RELEASE_SERVICE_VERSION_MAJOR}.${RELEASE_SERVICE_
 project(step VERSION ${RELEASE_SERVICE_VERSION})
 
 set(KDE_COMPILERSETTINGS_LEVEL "5.84")
-set(QT_MIN_VERSION "5.2.0")
+set(QT_MIN_VERSION "5.15.0")
 set(KF5_MIN_VERSION "5.90.0")
 
 find_package(ECM ${KF5_MIN_VERSION} REQUIRED NO_MODULE)
@@ -26,7 +26,7 @@ include(ECMSetupVersion)
 include(FeatureSummary)
 include(ECMPoQmTools)
 
-find_package(Qt5 ${QT_MIN_VERSION} REQUIRED NO_MODULE COMPONENTS
+find_package(Qt${QT_MAJOR_VERSION} ${QT_MIN_VERSION} REQUIRED NO_MODULE COMPONENTS
     Xml
     Svg
     OpenGL
@@ -70,6 +70,10 @@ set_package_properties(GSL PROPERTIES
 set(STEPCORE_WITH_GSL ${GSL_FOUND} CACHE BOOL "Enable GSL-powered features for StepCore")
 set(STEPCORE_WITH_QT ON) # CACHE BOOL "Enable QT-powered features for StepCore")
 set(STEP_WITH_QALCULATE ${QALCULATE_FOUND} CACHE BOOL "Enable unit conversion support using libqalculate")
+if (QT_MAJOR_VERSION STREQUAL "6")
+    MESSAGE(STATUS "QALCULATE was not ported to QT6 yet")
+    set(STEP_WITH_QALCULATE false)
+endif()
 
 # Compiler specific options
 if ("${CMAKE_CXX_COMPILER_ID}" STREQUAL "Clang")
