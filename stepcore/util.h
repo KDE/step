@@ -53,6 +53,10 @@ protected:
 #define STEPCORE_ASSERT_NOABORT(expr)
 #else // NDEBUG
 
+#ifdef _MSC_VER
+#define __PRETTY_FUNCTION__ __FUNCSIG__
+#endif
+
 #define STEPCORE_ASSERT_NOABORT(expr) \
     if( ! (expr) ) \
         StepCore::_step_assert_noabort_helper<int> \
