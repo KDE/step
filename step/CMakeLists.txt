@@ -48,6 +48,7 @@ endif(STEPCORE_WITH_QT)
 
 if(STEPCORE_WITH_GSL)
     add_definitions(-DSTEPCORE_WITH_GSL)
+    include_directories(${GSL_INCLUDE_DIR})
 endif(STEPCORE_WITH_GSL)
 
 if(STEP_WITH_QALCULATE)
