@@ -326,7 +326,7 @@ bool MainWindow::openFile(const QUrl& url, const QUrl& startUrl)
     QFile file(fileUrl.path());
     
     if(!worldModel->loadXml(&file)) {
-        KMessageBox::sorry(this, i18n("Cannot parse file '%1': %2", fileUrl.url(QUrl::PreferLocalFile),
+        KMessageBox::error(this, i18n("Cannot parse file '%1': %2", fileUrl.url(QUrl::PreferLocalFile),
                                                     worldModel->errorString()));
         return false;
     }
@@ -362,13 +362,13 @@ bool MainWindow::saveFileAs(const QUrl& url, const QUrl& startUrl)
     }
 
     if(!file->open(QIODevice::WriteOnly | QIODevice::Text)) {
-        KMessageBox::sorry(this, i18n("Cannot open file '%1'", file->fileName()));
+        KMessageBox::error(this, i18n("Cannot open file '%1'", file->fileName()));
         delete file;
         return false;
     }
     
     if(!worldModel->saveXml(file)) {
-        KMessageBox::sorry(this, i18n("Cannot save file '%1': %2",
+        KMessageBox::error(this, i18n("Cannot save file '%1': %2",
 				      fileUrl.url(QUrl::PreferLocalFile),
 				      worldModel->errorString()));
         delete file;
@@ -453,7 +453,7 @@ void MainWindow::openLocalExample()
 
 void MainWindow::uploadExample()
 {
-    KMessageBox::sorry(this, i18n("Uploading is still not implemented in kdelibs."),
+    KMessageBox::error(this, i18n("Uploading is still not implemented in kdelibs."),
                         i18n("Sorry - Step"));
     /*
     int ret = KMessageBox::questionYesNo(this,
@@ -496,16 +496,16 @@ void MainWindow::simulationStopped(int result)
 
     undoBrowser->setUndoEnabled(true);
     if(result == StepCore::Solver::ToleranceError) {
-        KMessageBox::sorry(this, i18n("Cannot finish this step because local error "
+        KMessageBox::error(this, i18n("Cannot finish this step because local error "
                "is greater than local tolerance.\n"
                "Please check solver settings and try again."));
     } else if(result == StepCore::Solver::IntersectionDetected || 
               result == StepCore::Solver::CollisionDetected) {
-        KMessageBox::sorry(this, i18n("Cannot finish this step because there are collisions "
+        KMessageBox::error(this, i18n("Cannot finish this step because there are collisions "
                "which cannot be resolved automatically.\n"
                "Please move colliding objects apart and try again."));
     } else if(result != StepCore::Solver::OK) {
-        KMessageBox::sorry(this, i18n("Cannot finish this step because of an unknown error."));
+        KMessageBox::error(this, i18n("Cannot finish this step because of an unknown error."));
     }
 }
 

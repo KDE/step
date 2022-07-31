@@ -702,7 +702,7 @@ void NoteGraphicsItem::insertFormula()
 bool NoteGraphicsItem::editFormula(StepCore::NoteFormula* formula)
 {
     if(!LatexFormula::isLatexInstalled()) {
-        KMessageBox::sorry(_widget, i18n("Cannot find latex installation. "
+        KMessageBox::error(_widget, i18n("Cannot find latex installation. "
                     "You need 'latex', 'dvips' and 'gs' executables installed and accessible from $PATH"));
         return false;
     }
