@@ -22,6 +22,7 @@
   <name xml:lang="ia">Passo</name>
   <name xml:lang="id">Step</name>
   <name xml:lang="it">Step</name>
+  <name xml:lang="ka">ბიჯი</name>
   <name xml:lang="ko">Step</name>
   <name xml:lang="lt">Step</name>
   <name xml:lang="nds">Step</name>
@@ -57,6 +58,7 @@
   <summary xml:lang="ia">Simulator Physic Interactive</summary>
   <summary xml:lang="id">Simulator Fisik Interaktif</summary>
   <summary xml:lang="it">Simulatore interattivo di fisica</summary>
+  <summary xml:lang="ka">ინტერაქტიური ფიზიკური სიმულატორი</summary>
   <summary xml:lang="ko">인터랙티브 물리학 시뮬레이터</summary>
   <summary xml:lang="lt">Interaktyvus fizikos modeliatorius</summary>
   <summary xml:lang="nds">Brukerstüert Physiksimuleren</summary>
@@ -122,6 +124,7 @@
     <p xml:lang="ia">Characteristicas:</p>
     <p xml:lang="id">Fitur:</p>
     <p xml:lang="it">Caratteristiche:</p>
+    <p xml:lang="ka">თვისებები:</p>
     <p xml:lang="ko">기능:</p>
     <p xml:lang="lt">Ypatybės:</p>
     <p xml:lang="nds">Markmalen:</p>
@@ -570,6 +573,7 @@
       <li xml:lang="gl">Titoriais integrados.</li>
       <li xml:lang="id">Tutorial terintegrasi</li>
       <li xml:lang="it">Tutorial integrati</li>
+      <li xml:lang="ka">ჩაშენებული სახელმძღვანელოები</li>
       <li xml:lang="ko">통합된 자습서</li>
       <li xml:lang="nds">Inbuut Anleden</li>
       <li xml:lang="nl">Geïntegreerd lesmateriaal</li>
