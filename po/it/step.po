@@ -1,0 +1,2121 @@
+# translation of step.po to Italian
+# Copyright (C) 2008 This_file_is_part_of_KDE
+# This file is distributed under the same license as the step package.
+# Luigi Toscano <luigi.toscano@tiscali.it>, 2008, 2009, 2011, 2015, 2018, 2019, 2021.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: step\n"
+"Report-Msgid-Bugs-To: https://bugs.kde.org\n"
+"POT-Creation-Date: 2022-07-04 00:41+0000\n"
+"PO-Revision-Date: 2021-11-23 23:35+0100\n"
+"Last-Translator: Luigi Toscano <luigi.toscano@tiscali.it>\n"
+"Language-Team: Italian <kde-i18n-it@kde.org>\n"
+"Language: it\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"X-Generator: Lokalize 21.08.0\n"
+
+#, kde-format
+msgctxt "NAME OF TRANSLATORS"
+msgid "Your names"
+msgstr "Luigi Toscano"
+
+#, kde-format
+msgctxt "EMAIL OF TRANSLATORS"
+msgid "Your emails"
+msgstr "luigi.toscano@tiscali.it"
+
+#. i18n: ectx: property (title), widget (QGroupBox, groupBox)
+#: step/configure_controller.ui:28 step/configure_graph.ui:28
+#: step/configure_meter.ui:28
+#, kde-format
+msgid "Data Source"
+msgstr "Sorgenti dati"
+
+#. i18n: ectx: property (title), widget (QGroupBox, groupBox_2)
+#: step/configure_controller.ui:47
+#, kde-format
+msgid "Range"
+msgstr "Intervallo"
+
+#. i18n: ectx: property (text), widget (QLabel, label_5)
+#: step/configure_controller.ui:59
+#, kde-format
+msgid "min:"
+msgstr "min:"
+
+#. i18n: ectx: property (text), widget (QLabel, label_6)
+#: step/configure_controller.ui:75
+#, kde-format
+msgid "max:"
+msgstr "max:"
+
+#. i18n: ectx: property (text), widget (QLineEdit, lineEditMinX)
+#. i18n: ectx: property (text), widget (QLineEdit, lineEditMinY)
+#. i18n: ectx: property (text), widget (QLineEdit, lineEditMin)
+#: step/configure_controller.ui:97 step/configure_graph.ui:135
+#: step/configure_graph.ui:187
+#, kde-format
+msgid "0"
+msgstr "0"
+
+#. i18n: ectx: property (text), widget (QLineEdit, lineEditMass)
+#. i18n: ectx: property (text), widget (QLineEdit, lineEditBodyMass)
+#. i18n: ectx: property (text), widget (QLineEdit, lineEditMaxX)
+#. i18n: ectx: property (text), widget (QLineEdit, lineEditMaxY)
+#. i18n: ectx: property (text), widget (QLineEdit, lineEditMax)
+#: step/configure_controller.ui:119 step/configure_graph.ui:151
+#: step/configure_graph.ui:203 step/create_gas_particles.ui:125
+#: step/create_softbody_items.ui:78
+#, kde-format
+msgid "1"
+msgstr "1"
+
+#. i18n: ectx: property (title), widget (QGroupBox, groupBox_3)
+#: step/configure_controller.ui:132
+#, kde-format
+msgid "Shortcuts"
+msgstr "Scorciatoie"
+
+#. i18n: ectx: property (text), widget (QLabel, label)
+#: step/configure_controller.ui:138
+#, kde-format
+msgid "Decrease:"
+msgstr "Diminuisci:"
+
+#. i18n: ectx: property (text), widget (QLabel, label_2)
+#: step/configure_controller.ui:148
+#, kde-format
+msgid "Increase:"
+msgstr "Aumenta:"
+
+#. i18n: ectx: property (text), widget (QLabel, label_3)
+#: step/configure_controller.ui:179
+#, kde-format
+msgid "Increment:"
+msgstr "Incremento:"
+
+#. i18n: ectx: property (text), widget (QLineEdit, lineEditIncrement)
+#: step/configure_controller.ui:192
+#, kde-format
+msgid "0.1"
+msgstr "0.1"
+
+#. i18n: ectx: property (text), widget (QLabel, label)
+#. i18n: ectx: property (text), widget (QLabel, label_3)
+#: step/configure_graph.ui:34 step/configure_graph.ui:109
+#, kde-format
+msgid "X :"
+msgstr "X :"
+
+#. i18n: ectx: property (text), widget (QLabel, label_2)
+#. i18n: ectx: property (text), widget (QLabel, label_4)
+#: step/configure_graph.ui:51 step/configure_graph.ui:161
+#, kde-format
+msgid "Y :"
+msgstr "Y :"
+
+#. i18n: ectx: property (title), widget (QGroupBox, groupBox_2)
+#: step/configure_graph.ui:71
+#, kde-format
+msgid "Ranges"
+msgstr "Intervalli"
+
+#. i18n: ectx: property (text), widget (QLabel, label_5)
+#: step/configure_graph.ui:83
+#, kde-format
+msgid "Min:"
+msgstr "Min:"
+
+#. i18n: ectx: property (text), widget (QLabel, label_6)
+#: step/configure_graph.ui:99
+#, kde-format
+msgid "Max:"
+msgstr "Max:"
+
+#. i18n: ectx: property (text), widget (QCheckBox, checkBoxAutoX)
+#. i18n: ectx: property (text), widget (QCheckBox, checkBoxAutoY)
+#: step/configure_graph.ui:122 step/configure_graph.ui:174
+#, kde-format
+msgid "auto"
+msgstr "auto"
+
+#. i18n: ectx: property (title), widget (QGroupBox, groupBox_2)
+#. i18n: ectx: property (title), widget (QGroupBox, groupBox)
+#. i18n: ectx: property (title), widget (QGroupBox, groupBox_3)
+#: step/configure_graph.ui:216 step/configure_meter.ui:47
+#: step/create_gas_particles.ui:28 step/create_softbody_items.ui:28
+#, kde-format
+msgid "Options"
+msgstr "Opzioni"
+
+#. i18n: ectx: property (text), widget (QCheckBox, checkBoxShowLines)
+#: step/configure_graph.ui:222
+#, kde-format
+msgid "Show lines"
+msgstr "Mostra linee"
+
+#. i18n: ectx: property (text), widget (QCheckBox, checkBoxShowPoints)
+#: step/configure_graph.ui:229
+#, kde-format
+msgid "Show points"
+msgstr "Mostra punti"
+
+#. i18n: ectx: property (text), widget (QLabel, label)
+#: step/configure_meter.ui:53
+#, kde-format
+msgid "Number of digits:"
+msgstr "Numero cifre:"
+
+#. i18n: ectx: property (text), widget (QLabel, label)
+#: step/configure_step_general.ui:16
+#, kde-format
+msgid "Display precision:"
+msgstr "Precisione visualizzazione:"
+
+#. i18n: ectx: property (text), widget (QCheckBox, kcfg_showAxes)
+#: step/configure_step_general.ui:52
+#, kde-format
+msgid "Show scene axes"
+msgstr "Mostra assi della scena"
+
+#. i18n: ectx: property (text), widget (QCheckBox, kcfg_showCreationTips)
+#: step/configure_step_general.ui:59
+#, kde-format
+msgid "Show tips when creating objects"
+msgstr "Mostra suggerimenti durante la creazione di oggetti"
+
+#. i18n: ectx: property (text), widget (QCheckBox, kcfg_enableOpenGL)
+#: step/configure_step_general.ui:66
+#, kde-format
+msgid "Enable OpenGL (EXPERIMENTAL)"
+msgstr "Abilita OpenGL (SPERIMENTALE)"
+
+#. i18n: ectx: property (text), widget (QCheckBox, kcfg_wikiExternal)
+#: step/configure_step_general.ui:73
+#, kde-format
+msgid "Open wikipedia in external browser"
+msgstr "Apri wikipedia in un browser esterno"
+
+#. i18n: ectx: property (text), widget (QLabel, label_5)
+#: step/create_gas_particles.ui:34
+#, kde-format
+msgid "Area:"
+msgstr "Area:"
+
+#. i18n: ectx: property (toolTip), widget (QLineEdit, lineEditVolume)
+#: step/create_gas_particles.ui:41
+#, kde-format
+msgid "The area the gas takes"
+msgstr "L'area occupata dal gas"
+
+#. i18n: ectx: property (text), widget (QLabel, label)
+#: step/create_gas_particles.ui:61
+#, kde-format
+msgid "Particle count:"
+msgstr "Totale particelle:"
+
+#. i18n: ectx: property (toolTip), widget (QLineEdit, lineEditCount)
+#. i18n: ectx: property (whatsThis), widget (QLineEdit, lineEditCount)
+#: step/create_gas_particles.ui:68 step/create_gas_particles.ui:71
+#, kde-format
+msgid "The number of particles of this gas."
+msgstr "Il totale delle particelle di questo gas."
+
+#. i18n: ectx: property (text), widget (QLineEdit, lineEditCount)
+#: step/create_gas_particles.ui:74
+#, kde-format
+msgid "20"
+msgstr "20"
+
+#. i18n: ectx: property (text), widget (QLabel, label_6)
+#: step/create_gas_particles.ui:91
+#, kde-format
+msgid "Concentration:"
+msgstr "Concentrazione:"
+
+#. i18n: ectx: property (text), widget (QLabel, label_2)
+#: step/create_gas_particles.ui:112
+#, kde-format
+msgid "Particle mass:"
+msgstr "Massa particelle:"
+
+#. i18n: ectx: property (toolTip), widget (QLineEdit, lineEditMass)
+#. i18n: ectx: property (whatsThis), widget (QLineEdit, lineEditMass)
+#: step/create_gas_particles.ui:119 step/create_gas_particles.ui:122
+#, kde-format
+msgid "The mass of one particle"
+msgstr "La massa di una particella"
+
+#. i18n: ectx: property (text), widget (QLabel, label_3)
+#: step/create_gas_particles.ui:142
+#, kde-format
+msgid "Temperature:"
+msgstr "Temperatura:"
+
+#. i18n: ectx: property (text), widget (QLineEdit, lineEditTemperature)
+#: step/create_gas_particles.ui:149
+#, kde-format
+msgid "1e21"
+msgstr "1e21"
+
+#. i18n: ectx: property (text), widget (QLabel, label_4)
+#: step/create_gas_particles.ui:166
+#, kde-format
+msgid "Mean velocity:"
+msgstr "Velocità media:"
+
+#. i18n: ectx: property (text), widget (QLineEdit, lineEditMeanVelocity)
+#. i18n: ectx: property (text), widget (QLineEdit, lineEditPosition)
+#: step/create_gas_particles.ui:173 step/create_softbody_items.ui:44
+#, kde-format
+msgid "(0,0)"
+msgstr "(0,0)"
+
+#. i18n: ectx: property (text), widget (QLabel, label_4)
+#: step/create_softbody_items.ui:37
+#, kde-format
+msgid "Position:"
+msgstr "Posizione:"
+
+#. i18n: ectx: property (text), widget (QLabel, label_3)
+#: step/create_softbody_items.ui:54
+#, kde-format
+msgid "Body size:"
+msgstr "Dimensione corpo:"
+
+#. i18n: ectx: property (text), widget (QLineEdit, lineEditSize)
+#: step/create_softbody_items.ui:61
+#, kde-format
+msgid "(1,1)"
+msgstr "(1,1)"
+
+#. i18n: ectx: property (text), widget (QLabel, label_2)
+#: step/create_softbody_items.ui:71
+#, kde-format
+msgid "Body mass:"
+msgstr "Massa corpo:"
+
+#. i18n: ectx: property (text), widget (QLabel, label)
+#: step/create_softbody_items.ui:88
+#, kde-format
+msgid "Young's modulus:"
+msgstr "Modulo di Young:"
+
+#. i18n: ectx: property (text), widget (QLineEdit, lineEditYoungModulus)
+#: step/create_softbody_items.ui:95
+#, kde-format
+msgid "15"
+msgstr "15"
+
+#. i18n: ectx: property (text), widget (QLabel, label1)
+#: step/create_softbody_items.ui:105
+#, kde-format
+msgid "Body damping:"
+msgstr "Smorzamento corpo:"
+
+#. i18n: ectx: property (text), widget (QLineEdit, lineEditBodyDamping)
+#: step/create_softbody_items.ui:112
+#, kde-format
+msgid "0.3"
+msgstr "0.3"
+
+#. i18n: ectx: property (text), widget (QLabel, label2)
+#: step/create_softbody_items.ui:122
+#, kde-format
+msgid "Body split counts:"
+msgstr "Parametri suddivisione corpo:"
+
+#. i18n: ectx: property (text), widget (QLineEdit, lineEditSplit)
+#: step/create_softbody_items.ui:129
+#, kde-format
+msgid "(4,4)"
+msgstr "(4,4)"
+
+#: step/gascreationdialog.cc:43
+#, kde-format
+msgctxt "@title:window"
+msgid "Create Gas Particles"
+msgstr "Crea particelle di gas"
+
+#: step/gasgraphics.cc:43
+#, kde-format
+msgid ""
+"Press left mouse button to position\n"
+"top left corner of a region for %1"
+msgstr ""
+"Premi il pulsante sinistro del mouse per posizionare\n"
+"l'angolo superiore sinistro della regione che contiene %1"
+
+#: step/gasgraphics.cc:55 step/motorgraphics.cc:42 step/motorgraphics.cc:223
+#: step/polygongraphics.cc:173 step/polygongraphics.cc:307
+#: step/polygongraphics.cc:452 step/softbodygraphics.cc:62
+#: step/worldgraphics.cc:70 step/worldgraphics.cc:120
+#, kde-format
+msgid "Create %1"
+msgstr "Crea %1"
+
+#: step/gasgraphics.cc:71
+#, kde-format
+msgid ""
+"Move mouse and release left mouse button to position\n"
+"bottom right corner of the region for %1"
+msgstr ""
+"Sposta il mouse e rilasciane il pulsante sinistro per posizionare\n"
+"l'angolo inferiore destro della regione che contiene %1"
+
+#: step/gasgraphics.cc:97
+#, kde-format
+msgid "Please fill in the parameters for the gas particles."
+msgstr "Inserisci i parametri per le particelle del gas."
+
+#: step/gasgraphics.cc:106 step/polygongraphics.cc:208
+#: step/polygongraphics.cc:347 step/polygongraphics.cc:502
+#: step/softbodygraphics.cc:79 step/worldgraphics.cc:87
+#: step/worldgraphics.cc:134 step/worldgraphics.cc:169
+#, kde-format
+msgid "%1 named '%2' created"
+msgstr "Creato %1 con nome «%2»"
+
+#: step/gasgraphics.cc:294
+#, kde-format
+msgid "Create Particles..."
+msgstr "Crea particelle..."
+
+#: step/gasgraphics.cc:364
+#, kde-format
+msgid ""
+"You are trying to create a very large number of particles. This will make "
+"simulation very slow. Do you want to continue?"
+msgstr ""
+"Stai tentando di creare una notevole quantità di particelle. Questo "
+"rallenterà molto la simulazione. Vuoi continuare?"
+
+#: step/gasgraphics.cc:366 step/mainwindow.cc:409
+#, kde-format
+msgid "Warning - Step"
+msgstr "Avvertimento - Step"
+
+#: step/gasgraphics.cc:377
+#, kde-format
+msgid "Create particles for %1"
+msgstr "Crea particelle per %1"
+
+#: step/infobrowser.cc:38
+#, kde-format
+msgid "Context Info"
+msgstr "Informazioni contestuali"
+
+#: step/infobrowser.cc:56
+#, kde-format
+msgid "Back"
+msgstr "Indietro"
+
+#: step/infobrowser.cc:58
+#, kde-format
+msgid "Forward"
+msgstr "Avanti"
+
+#: step/infobrowser.cc:62
+#, kde-format
+msgid "Sync selection"
+msgstr "Sincronizza selezione"
+
+#: step/infobrowser.cc:64
+#, kde-format
+msgid "Follow selection"
+msgstr "Segui selezione"
+
+#: step/infobrowser.cc:69
+#, kde-format
+msgid "Open in Browser"
+msgstr "Apri in un browser"
+
+#: step/infobrowser.cc:144
+#, kde-format
+msgid "Documentation"
+msgstr "Documentazione"
+
+#: step/infobrowser.cc:149
+#, kde-format
+msgid "No current object."
+msgstr "Nessun oggetto corrente."
+
+#: step/infobrowser.cc:171
+#, kde-format
+msgid "Documentation error"
+msgstr "Errore documentazione"
+
+#: step/infobrowser.cc:176
+#, kde-format
+msgid "Documentation for %1 not available. "
+msgstr "La documentazione per «%1» non è disponibile. "
+
+#: step/infobrowser.cc:177
+#, kde-format
+msgid ""
+"You can help <a href=\"https://edu.kde.org/step\">Step</a> by writing it!"
+msgstr ""
+"Puoi aiutare <a href=\"https://edu.kde.org/step\">Step</a> scrivendola!"
+
+#: step/itempalette.cc:189
+#, kde-format
+msgid "Palette"
+msgstr "Tavolozza"
+
+#: step/itempalette.cc:208
+#, kde-format
+msgid "Pointer"
+msgstr "Puntatore"
+
+#: step/itempalette.cc:209
+#, kde-format
+msgid "Selection pointer"
+msgstr "Puntatore per selezione"
+
+#: step/itempalette.cc:232
+#, kde-format
+msgid "Show text"
+msgstr "Mostra testo"
+
+#: step/jointgraphics.cc:170 step/springgraphics.cc:42
+#, kde-format
+msgid "Move end of %1"
+msgstr "Sposta estremo di %1"
+
+#: step/latexformula.cc:42
+#, kde-format
+msgid "can not launch %1"
+msgstr "impossibile eseguire %1"
+
+#: step/latexformula.cc:52
+#, kde-format
+msgid "error running %1"
+msgstr "errore durante l'esecuzione di %1"
+
+#: step/latexformula.cc:56
+#, kde-format
+msgid ""
+"%1 reported an error (exit status %2):\n"
+"%3"
+msgstr ""
+"%1 ha restituito un errore (codice di errore %2):\n"
+"%3"
+
+#: step/latexformula.cc:61
+#, kde-format
+msgid "%1 did not create output file"
+msgstr "%1 non ha creato il file di output"
+
+#: step/latexformula.cc:93
+#, kde-format
+msgid "can not open temporary file"
+msgstr "impossibile aprire il file temporaneo"
+
+#: step/latexformula.cc:127
+#, kde-format
+msgid "can not open result file"
+msgstr "impossibile aprire il file generato"
+
+#: step/main.cc:42 step/main.cc:50
+#, kde-format
+msgid "Step"
+msgstr "Step"
+
+#: step/main.cc:52
+#, kde-format
+msgid "Interactive physical simulator"
+msgstr "Simulatore interattivo di fisica"
+
+#: step/main.cc:54
+#, kde-format
+msgid "(C) 2007 Vladimir Kuznetsov"
+msgstr "(C) 2007 Vladimir Kuznetsov"
+
+#: step/main.cc:55
+#, kde-format
+msgid "https://edu.kde.org/step"
+msgstr "https://edu.kde.org/step"
+
+#: step/main.cc:60
+#, kde-format
+msgid "Original author"
+msgstr "Autore originale"
+
+#: step/main.cc:61
+#, kde-format
+msgid "ks.vladimir@gmail.com"
+msgstr "ks.vladimir@gmail.com"
+
+#: step/main.cc:66
+#, kde-format
+msgid "Code contributions"
+msgstr "Contributi al codice"
+
+#: step/main.cc:67
+#, kde-format
+msgid "cniehaus@kde.org"
+msgstr "cniehaus@kde.org"
+
+#: step/main.cc:74
+#, kde-format
+msgid "Document to open"
+msgstr "Documento da aprire"
+
+#: step/mainwindow.cc:155
+#, kde-format
+msgid "&Open Tutorial..."
+msgstr "&Apri esercitazione..."
+
+#: step/mainwindow.cc:160
+#, kde-format
+msgid "&Open Example..."
+msgstr "&Apri esempi..."
+
+#: step/mainwindow.cc:165
+#, kde-format
+msgid "Open Down&loaded Example..."
+msgstr "Apri esempi scar&icati..."
+
+#: step/mainwindow.cc:170
+#, kde-format
+msgid "Share C&urrent Experiment..."
+msgstr "Condividi l'&esperimento corrente..."
+
+#: step/mainwindow.cc:173
+#, kde-format
+msgid "&Download New Experiments..."
+msgstr "&Scarica nuovi esperimenti..."
+
+#: step/mainwindow.cc:180
+#, kde-format
+msgid "Redo"
+msgstr "Rifai"
+
+#: step/mainwindow.cc:180
+#, kde-format
+msgid "Undo"
+msgstr "Annulla"
+
+#: step/mainwindow.cc:202
+#, kde-format
+msgid "&Delete"
+msgstr "&Elimina"
+
+#: step/mainwindow.cc:212
+#, kde-format
+msgid "&Run"
+msgstr "&Esegui"
+
+#: step/mainwindow.cc:217
+#, kde-format
+msgid "Execute the program"
+msgstr "Avvia il programma"
+
+#: step/mainwindow.cc:218
+#, kde-format
+msgid "Run: Execute the program"
+msgstr "Esegui: avvia il programma"
+
+#: step/mainwindow.cc:220
+#, kde-format
+msgctxt "@option:radio"
+msgid "1x Speed"
+msgstr "Velocità 1x"
+
+#: step/mainwindow.cc:228
+#, kde-format
+msgctxt "@option:radio choose the slow speed"
+msgid "2x Speed"
+msgstr "Velocità 2x"
+
+#: step/mainwindow.cc:235
+#, kde-format
+msgctxt "@option:radio"
+msgid "4x Speed"
+msgstr "Velocità 4x"
+
+#: step/mainwindow.cc:242
+#, kde-format
+msgctxt "@option:radio"
+msgid "8x Speed"
+msgstr "Velocità 8x"
+
+#: step/mainwindow.cc:249
+#, kde-format
+msgctxt "@option:radio"
+msgid "16x Speed"
+msgstr "Velocità 16x"
+
+#: step/mainwindow.cc:279
+#, kde-format
+msgctxt "filename"
+msgid "untitled.step"
+msgstr "senzanome.step"
+
+#: step/mainwindow.cc:305
+#, kde-format
+msgid "<new file>"
+msgstr "<nuovo file>"
+
+#: step/mainwindow.cc:319
+#, kde-format
+msgctxt "@title:window"
+msgid "Open Step File"
+msgstr "Apri file di Step"
+
+#: step/mainwindow.cc:319 step/mainwindow.cc:349
+#, kde-format
+msgid "Step files (*.step)"
+msgstr "File Step (*.step)"
+
+#: step/mainwindow.cc:329
+#, kde-format
+msgid "Cannot parse file '%1': %2"
+msgstr "Impossibile analizzare il file «%1»: %2"
+
+#: step/mainwindow.cc:338
+#, kde-format
+msgid "<open file: %1>"
+msgstr "<apri file: %1>"
+
+#: step/mainwindow.cc:349
+#, kde-format
+msgctxt "@title:window"
+msgid "Save Step File"
+msgstr "Salva file di Step"
+
+#: step/mainwindow.cc:365
+#, kde-format
+msgid "Cannot open file '%1'"
+msgstr "Impossibile aprire il file «%1»"
+
+#: step/mainwindow.cc:371
+#, kde-format
+msgid "Cannot save file '%1': %2"
+msgstr "Impossibile salvare il file «%1»: %2"
+
+#: step/mainwindow.cc:408
+#, kde-format
+msgid ""
+"The experiment has been modified.\n"
+"Do you want to save your changes?"
+msgstr ""
+"L'esperimento è stato modificato.\n"
+"Vuoi salvare le modifiche?"
+
+#: step/mainwindow.cc:456
+#, kde-format
+msgid "Uploading is still not implemented in kdelibs."
+msgstr "L'invio dei dati non è ancora implementato in kdelibs."
+
+#: step/mainwindow.cc:457
+#, kde-format
+msgid "Sorry - Step"
+msgstr "Spiacente - Step"
+
+#: step/mainwindow.cc:484
+#, kde-format
+msgid "&Stop"
+msgstr "&Ferma"
+
+#: step/mainwindow.cc:494
+#, kde-format
+msgid "&Simulate"
+msgstr "&Simula"
+
+#: step/mainwindow.cc:499
+#, kde-format
+msgid ""
+"Cannot finish this step because local error is greater than local "
+"tolerance.\n"
+"Please check solver settings and try again."
+msgstr ""
+"Impossibile terminare questo passo perché l'errore locale è maggiore della "
+"tolleranza locale.\n"
+"Controlla le impostazioni del solutore e riprova."
+
+#: step/mainwindow.cc:504
+#, kde-format
+msgid ""
+"Cannot finish this step because there are collisions which cannot be "
+"resolved automatically.\n"
+"Please move colliding objects apart and try again."
+msgstr ""
+"Impossibile terminare questo passo per la presenza di collisioni che non "
+"possono essere risolte automaticamente.\n"
+"Sposta gli oggetti che collidono e riprova."
+
+#: step/mainwindow.cc:508
+#, kde-format
+msgid "Cannot finish this step because of an unknown error."
+msgstr "Impossibile terminare questo passo a causa di un errore sconosciuto."
+
+#: step/mainwindow.cc:541
+#, kde-format
+msgid "&Undo"
+msgstr "&Annulla"
+
+#: step/mainwindow.cc:542
+#, kde-format
+msgid "&Undo: %1"
+msgstr "&Annulla: %1"
+
+#: step/mainwindow.cc:547
+#, kde-format
+msgid "Re&do"
+msgstr "Ri&fai"
+
+#: step/mainwindow.cc:548
+#, kde-format
+msgid "Re&do: %1"
+msgstr "Ri&fai: %1"
+
+#: step/mainwindow.cc:579
+#, kde-format
+msgid "General"
+msgstr "Generale"
+
+#: step/motorgraphics.cc:112 step/motorgraphics.cc:290
+#: step/stepgraphicsitem.cc:206 step/stepgraphicsitem.cc:218
+#, kde-format
+msgid "Move %1"
+msgstr "Sposta %1"
+
+#: step/polygongraphics.cc:161
+#, kde-format
+msgid "Press left mouse button to position a center of a %1"
+msgstr "Premi il pulsante sinistro del mouse per posizionare il centro di %1"
+
+#: step/polygongraphics.cc:182
+#, kde-format
+msgid "Move mouse and release left mouse button to define a radius of the %1"
+msgstr ""
+"Sposta il mouse e rilasciane il pulsante sinistro per definire il raggio di "
+"%1"
+
+#: step/polygongraphics.cc:295
+#, kde-format
+msgid ""
+"Press left mouse button to position\n"
+"top left corner of a %1"
+msgstr ""
+"Premi il pulsante sinistro del mouse per posizionare\n"
+"l'angolo superiore sinistro di %1"
+
+#: step/polygongraphics.cc:317
+#, kde-format
+msgid ""
+"Move mouse and release left mouse button to position\n"
+"bottom right corner of the %1"
+msgstr ""
+"Sposta il mouse e rilasciane il pulsante sinistro per posizionare\n"
+"l'angolo inferiore destro di %1"
+
+#: step/polygongraphics.cc:440
+#, kde-format
+msgid "Click on the scene to create a first vertex of %1"
+msgstr "Fai clic sulla scena per creare il primo vertice di %1"
+
+#: step/polygongraphics.cc:488
+#, kde-format
+msgid "Click on the scene to add new vertex or press Enter to finish"
+msgstr ""
+"Fai clic sulla scena per inserire un nuovo vertice o premi Invio per "
+"terminare"
+
+#: step/propertiesbrowser.cc:279
+#, kde-format
+msgid "Change solver type"
+msgstr "Modifica tipo solutore"
+
+#: step/propertiesbrowser.cc:294 step/propertiesbrowser.cc:300
+#: step/propertiesbrowser.cc:307 step/propertiesbrowser.cc:316
+#: step/propertiesbrowser.cc:400 step/propertiesbrowser.cc:417
+#: step/stepgraphicsitem.cc:401 step/stepgraphicsitem.cc:546
+#, kde-format
+msgid "Change %1.%2"
+msgstr "Modifica %1.%2"
+
+#: step/propertiesbrowser.cc:314
+#, kde-format
+msgid "Rename %1 to %2"
+msgstr "Rinomina %1 come %2"
+
+#: step/propertiesbrowser.cc:464
+#, kde-format
+msgid "Property"
+msgstr "Proprietà"
+
+#: step/propertiesbrowser.cc:465
+#, kde-format
+msgid "Value"
+msgstr "Valore"
+
+#: step/propertiesbrowser.cc:530
+#, kde-format
+msgid "false"
+msgstr "falso"
+
+#: step/propertiesbrowser.cc:531
+#, kde-format
+msgid "true"
+msgstr "vero"
+
+#: step/propertiesbrowser.cc:675
+#, kde-format
+msgid "Properties"
+msgstr "Proprietà"
+
+#: step/softbodygraphics.cc:49 step/worldgraphics.cc:62
+#: step/worldgraphics.cc:106
+#, kde-format
+msgid "Click on the scene to create a %1"
+msgstr "Fai clic sulla scena per creare un oggetto di tipo %1"
+
+#: step/softbodygraphics.cc:66
+#, kde-format
+msgid "Please fill in the parameters for %1"
+msgstr "Inserisci i parametri per %1"
+
+#: step/softbodygraphics.cc:126
+#, kde-format
+msgctxt "@title:window"
+msgid "Create Soft Body Items"
+msgstr "Crea elementi del corpo morbido"
+
+#: step/softbodygraphics.cc:187
+#, kde-format
+msgid "Create items for %1"
+msgstr "Crea elementi per %1"
+
+#. i18n: ectx: label, entry (showCreationTips), group (General)
+#. i18n: ectx: whatsthis, entry (showCreationTips), group (General)
+#: step/step.kcfg:9 step/step.kcfg:10
+#, kde-format
+msgid "Show tips when creating items"
+msgstr "Mostra suggerimenti durante la creazione di elementi"
+
+#. i18n: ectx: label, entry (showAxes), group (General)
+#. i18n: ectx: whatsthis, entry (showAxes), group (General)
+#: step/step.kcfg:14 step/step.kcfg:15
+#, kde-format
+msgid "Show axes on the scene"
+msgstr "Mostra gli assi sulla scena"
+
+#. i18n: ectx: label, entry (floatDisplayPrecision), group (General)
+#. i18n: ectx: whatsthis, entry (floatDisplayPrecision), group (General)
+#: step/step.kcfg:19 step/step.kcfg:20
+#, kde-format
+msgid "Display precision of double numbers"
+msgstr "Mostra la precisione dei numeri in virgola mobile"
+
+#. i18n: ectx: label, entry (enableOpenGL), group (General)
+#. i18n: ectx: whatsthis, entry (enableOpenGL), group (General)
+#: step/step.kcfg:26 step/step.kcfg:27
+#, kde-format
+msgid "Use OpenGL to accelerate drawing whenever possible"
+msgstr "Usa OpenGL, se disponibile, per accelerare la fase di disegno"
+
+#. i18n: ectx: label, entry (wikiExternal), group (InfoBrowser)
+#. i18n: ectx: whatsthis, entry (wikiExternal), group (InfoBrowser)
+#: step/step.kcfg:33 step/step.kcfg:34
+#, kde-format
+msgid "Browse wikipedia in external browser"
+msgstr "Accedi a wikipedia in un browser esterno"
+
+#. i18n: ectx: label, entry (showButtonText), group (ItemPalette)
+#. i18n: ectx: whatsthis, entry (showButtonText), group (ItemPalette)
+#: step/step.kcfg:40 step/step.kcfg:41
+#, kde-format
+msgid "Show text beside icon"
+msgstr "Mostra il testo accanto alle icone"
+
+#: step/stepgraphicsitem.cc:218
+#, kde-format
+msgid "several objects"
+msgstr "alcuni oggetti"
+
+#: step/stepgraphicsitem.cc:402 step/stepgraphicsitem.cc:548
+#, kde-format
+msgid "Change %1"
+msgstr "Modifica %1"
+
+#. i18n: ectx: ToolBar (mainToolBar)
+#: step/stepui.rc:7
+#, kde-format
+msgid "Main Toolbar"
+msgstr "Barra degli strumenti principale"
+
+#. i18n: ectx: ToolBar (simulationToolBar)
+#: step/stepui.rc:12
+#, kde-format
+msgid "Simulation Toolbar"
+msgstr "Barra degli strumenti di simulazione"
+
+#. i18n: ectx: Menu (examples)
+#: step/stepui.rc:21
+#, kde-format
+msgid "&Examples"
+msgstr "&Esempi"
+
+#. i18n: ectx: Menu (simulation)
+#: step/stepui.rc:32
+#, kde-format
+msgid "&Simulation"
+msgstr "&Simulazione"
+
+#. i18n: ectx: Menu (speed)
+#: step/stepui.rc:35
+#, kde-format
+msgid "&Run Speed"
+msgstr "&Velocità di esecuzione"
+
+#. i18n: ectx: Menu (panels)
+#: step/stepui.rc:45
+#, kde-format
+msgid "&Panels"
+msgstr "&Pannelli"
+
+#: step/toolgraphics.cc:267
+#, kde-format
+msgid "Click to enter text"
+msgstr "Fai clic per inserire del testo"
+
+#: step/toolgraphics.cc:392
+#, kde-format
+msgid "&Color"
+msgstr "&Colore"
+
+#: step/toolgraphics.cc:394
+#, kde-format
+msgid "&Bold"
+msgstr "&Grassetto"
+
+#: step/toolgraphics.cc:396
+#, kde-format
+msgid "&Italic"
+msgstr "&Corsivo"
+
+#: step/toolgraphics.cc:398
+#, kde-format
+msgid "&Underline"
+msgstr "&Sottolineato"
+
+#: step/toolgraphics.cc:401
+#, kde-format
+msgid "Align &Left"
+msgstr "A&llinea a sinistra"
+
+#: step/toolgraphics.cc:403
+#, kde-format
+msgid "Align C&enter"
+msgstr "Allinea al c&entro"
+
+#: step/toolgraphics.cc:405
+#, kde-format
+msgid "Align &Right"
+msgstr "Allinea a dest&ra"
+
+#: step/toolgraphics.cc:407
+#, kde-format
+msgid "Align &Justify"
+msgstr "&Giustifica"
+
+#: step/toolgraphics.cc:410
+#, kde-format
+msgid "&Align"
+msgstr "&Allinea"
+
+#: step/toolgraphics.cc:419
+#, kde-format
+msgid "&Font"
+msgstr "&Carattere"
+
+#: step/toolgraphics.cc:420
+#, kde-format
+msgid "Font &Size"
+msgstr "&Dimensione carattere"
+
+#: step/toolgraphics.cc:422
+#, kde-format
+msgid "Insert &Image..."
+msgstr "Inserisci &immagine..."
+
+#: step/toolgraphics.cc:427
+#, kde-format
+msgid "Insert &Formula..."
+msgstr "Inserisci &formula..."
+
+#: step/toolgraphics.cc:538
+#, kde-format
+msgid "Edit %1"
+msgstr "Modifica %1"
+
+#: step/toolgraphics.cc:643
+#, kde-format
+msgctxt "@title:window"
+msgid "Open Image File"
+msgstr "Apri immagine"
+
+#: step/toolgraphics.cc:643
+#, kde-format
+msgid "Images (*.png *.jpg *.jpeg)"
+msgstr "Immagini (*.png *.jpg *.jpeg)"
+
+#: step/toolgraphics.cc:661
+#, kde-format
+msgid "Cannot parse file '%1'"
+msgstr "Impossibile analizzare il file «%1»"
+
+#: step/toolgraphics.cc:705
+#, kde-format
+msgid ""
+"Cannot find latex installation. You need 'latex', 'dvips' and 'gs' "
+"executables installed and accessible from $PATH"
+msgstr ""
+"Impossibile trovare un'installazione di latex. È necessario che gli "
+"eseguibili «latex», «dvips» e «gs» siano installati ed accessibili tramite "
+"$PATH"
+
+#: step/toolgraphics.cc:711
+#, kde-format
+msgctxt "@title:window"
+msgid "LaTex Formula - Step"
+msgstr "Formula LaTex - Step"
+
+#: step/toolgraphics.cc:712
+#, kde-format
+msgid "Enter LaTeX formula string:"
+msgstr "Inserisci la formula LaTeX:"
+
+#: step/toolgraphics.cc:721
+#, kde-format
+msgid "Cannot compile LaTeX formula: %1"
+msgstr "Impossibile compilare la formula LaTeX: %1"
+
+#: step/toolgraphics.cc:727
+#, kde-format
+msgid "Cannot parse result image"
+msgstr "Impossibile analizzare l'immagine prodotta"
+
+#: step/toolgraphics.cc:788
+#, kde-format
+msgid "Object name"
+msgstr "Nome oggetto"
+
+#: step/toolgraphics.cc:793
+#, kde-format
+msgid "Property name"
+msgstr "Nome proprietà"
+
+#: step/toolgraphics.cc:799
+#, kde-format
+msgid "Vector index"
+msgstr "Indice vettore"
+
+#: step/toolgraphics.cc:988 step/toolgraphics.cc:996 step/toolgraphics.cc:1489
+#, kde-format
+msgid "%1.%2"
+msgstr "%1.%2"
+
+#: step/toolgraphics.cc:989 step/toolgraphics.cc:997 step/toolgraphics.cc:1490
+#, kde-format
+msgid "[%1]"
+msgstr "[%1]"
+
+#: step/toolgraphics.cc:993 step/toolgraphics.cc:1001 step/toolgraphics.cc:1494
+#, kde-format
+msgid "[not configured]"
+msgstr "[non configurato]"
+
+#: step/toolgraphics.cc:1089
+#, kde-format
+msgid "Clear Graph"
+msgstr "Pulisci grafico"
+
+#: step/toolgraphics.cc:1090
+#, kde-format
+msgid "Configure Graph..."
+msgstr "Configura grafico..."
+
+#: step/toolgraphics.cc:1108
+#, kde-format
+msgctxt "@title:window"
+msgid "Configure Graph"
+msgstr "Configura grafico..."
+
+#: step/toolgraphics.cc:1184 step/toolgraphics.cc:1383
+#: step/toolgraphics.cc:1721
+#, kde-format
+msgid "Edit properties of %1"
+msgstr "Modifica proprietà di %1"
+
+#: step/toolgraphics.cc:1236
+#, kde-format
+msgid "Clear graph %1"
+msgstr "Pulisci grafico %1"
+
+#: step/toolgraphics.cc:1317
+#, kde-format
+msgid "Configure Meter..."
+msgstr "Configura misuratore..."
+
+#: step/toolgraphics.cc:1335
+#, kde-format
+msgctxt "@title:window"
+msgid "Configure Meter"
+msgstr "Configura misuratore"
+
+#: step/toolgraphics.cc:1432 step/toolgraphics.cc:1629
+#, kde-format
+msgid "Increase Value"
+msgstr "Aumenta valore"
+
+#: step/toolgraphics.cc:1433 step/toolgraphics.cc:1630
+#, kde-format
+msgid "Decrease Value"
+msgstr "Diminuisci valore"
+
+#: step/toolgraphics.cc:1463 step/toolgraphics.cc:1758
+#, kde-format
+msgid "Decrease controller %1"
+msgstr "Diminuisci controllore %1"
+
+#: step/toolgraphics.cc:1472 step/toolgraphics.cc:1767
+#, kde-format
+msgid "Increase controller %1"
+msgstr "Aumenta controllore %1"
+
+#: step/toolgraphics.cc:1606
+#, kde-format
+msgid "Change controller %1"
+msgstr "Modifica controllore %1"
+
+#: step/toolgraphics.cc:1632
+#, kde-format
+msgid "Configure Controller..."
+msgstr "Configura controllore..."
+
+#: step/toolgraphics.cc:1650
+#, kde-format
+msgctxt "@title:window"
+msgid "Configure Controller"
+msgstr "Configura controllore"
+
+#: step/toolgraphics.cc:1911
+#, kde-format
+msgid "Clear Trace"
+msgstr "Pulisci traccia"
+
+#: step/toolgraphics.cc:1920
+#, kde-format
+msgid "Clear tracer %1"
+msgstr "Pulisci tracciante %1"
+
+#: step/undobrowser.cc:30
+#, kde-format
+msgid "Undo History"
+msgstr "Cronologia annullamenti"
+
+#: step/worldbrowser.cc:62
+#, kde-format
+msgctxt "Object list"
+msgid "World"
+msgstr "Mondo"
+
+#: step/worldgraphics.cc:102
+#, kde-format
+msgid ""
+"Press left mouse button to position first end of a %1\n"
+"then drag and release it to position the second end"
+msgstr ""
+"Premi il pulsante sinistro per posizionare il primo estremo di %1,\n"
+"quindi trascinalo e rilascialo per impostare il secondo estremo"
+
+#: step/worldgraphics.cc:130
+#, kde-format
+msgid "Release left mouse button to position second end of the %1"
+msgstr ""
+"Rilascia il pulsante sinistro del mouse per impostare il secondo estremo di "
+"%1"
+
+#: step/worldmodel.cc:641
+#, kde-format
+msgid "Delete %1"
+msgstr "Elimina %1"
+
+#: step/worldmodel.cc:642
+#, kde-format
+msgid "Delete several items"
+msgstr "Elimina alcuni oggetti"
+
+#: step/worldmodel.cc:713 step/worldmodel.cc:720
+#, kde-format
+msgid "<no object>"
+msgstr "<nessun oggetto>"
+
+#: step/worldmodel.cc:715
+#, kde-format
+msgid "<unnamed>"
+msgstr "<senza nome>"
+
+#: step/worldmodel.cc:721
+#, kde-format
+msgid "%1: %2"
+msgstr "%1: %2"
+
+#: step/worldmodel.cc:793
+#, kde-format
+msgid "<nobr><h4><u>%1</u></h4></nobr>"
+msgstr "<nobr><h4><u>%1</u></h4></nobr>"
+
+#: step/worldmodel.cc:821
+#, kde-format
+msgid "<tr><td>%1&nbsp;&nbsp;</td><td>%2</td></tr>"
+msgstr "<tr><td>%1&nbsp;&nbsp;</td><td>%2</td></tr>"
+
+#: step/worldmodel.cc:1019
+#, kde-format
+msgid "Simulate %1 → %2"
+msgstr "Simula %1 → %2"
+
+#: step/worldmodel.cc:1072
+#, kde-format
+msgid "Cut %1"
+msgstr "Taglia %1"
+
+#: step/worldmodel.cc:1073
+#, kde-format
+msgid "Cut several items"
+msgstr "Taglia alcuni oggetti"
+
+#: step/worldmodel.cc:1095
+#, kde-format
+msgid "Pasted %1"
+msgstr "Incollato %1"
+
+#: step/worldmodel.cc:1096
+#, kde-format
+msgid "Pasted several items"
+msgstr "Incollati alcuni oggetti"
+
+#: step/worldscene.cc:260
+#, kde-format
+msgid "Objects under mouse:"
+msgstr "Oggetti sotto il puntatore del mouse:"
+
+#: step/worldscene.cc:265
+#, kde-format
+msgid "... (1 more item)"
+msgid_plural "... (%1 more items)"
+msgstr[0] "... (un altro oggetto)"
+msgstr[1] "... (altri %1 oggetti)"
+
+#~ msgid "Wikipedia"
+#~ msgstr "Wikipedia"
+
+#~ msgid "Fetching Wikipedia Information..."
+#~ msgstr "Recupero informazioni da Wikipedia..."
+
+#~ msgid "Wikipedia error"
+#~ msgstr "Errore Wikipedia"
+
+#~ msgid ""
+#~ "Information could not be retrieved because the server was not reachable."
+#~ msgstr ""
+#~ "Impossibile recuperare le informazioni a causa dell'irraggiungibilità del "
+#~ "server."
+
+#~ msgid "Wikipedia Information"
+#~ msgstr "Informazioni da Wikipedia"
+
+#~ msgid "Wikipedia Other Languages"
+#~ msgstr "Wikipedia - altre lingue"
+
+#~ msgid "The file \"%1\" already exists. Do you wish to overwrite it?"
+#~ msgstr "Il file \"%1\" esiste già. Vuoi sovrascriverlo?"
+
+#~ msgid "Vladimir Kuznetsov"
+#~ msgstr "Vladimir Kuznetsov"
+
+#~ msgid "Carsten Niehaus"
+#~ msgstr "Carsten Niehaus"
+
+#~ msgid "Create items..."
+#~ msgstr "Crea elementi..."
+
+#, fuzzy
+#~ msgctxt "ObjectClass"
+#~ msgid "RigidBody"
+#~ msgstr "CorpoRigido"
+
+#, fuzzy
+#~ msgid "Generic rigid body"
+#~ msgstr "Corpo rigido generico"
+
+#~ msgctxt "PropertyName"
+#~ msgid "position"
+#~ msgstr "posizione"
+
+#~ msgctxt "Units"
+#~ msgid "m"
+#~ msgstr "m"
+
+#~ msgid "Position of the center of mass"
+#~ msgstr "Posizione del centro di massa"
+
+#~ msgctxt "PropertyName"
+#~ msgid "angle"
+#~ msgstr "angolo"
+
+#~ msgctxt "Units"
+#~ msgid "rad"
+#~ msgstr "rad"
+
+#~ msgid "Rotation angle"
+#~ msgstr "Angolo di rotazione"
+
+#~ msgctxt "PropertyName"
+#~ msgid "velocity"
+#~ msgstr "velocità"
+
+#~ msgctxt "Units"
+#~ msgid "m/s"
+#~ msgstr "m/s"
+
+#~ msgid "Velocity of the center of mass"
+#~ msgstr "Velocità del centro di massa"
+
+#~ msgctxt "PropertyName"
+#~ msgid "angularVelocity"
+#~ msgstr "velocitàAngolare"
+
+#~ msgctxt "Units"
+#~ msgid "rad/s"
+#~ msgstr "rad/s"
+
+#~ msgid "Angular velocity of the body"
+#~ msgstr "Velocità angolare del corpo"
+
+#~ msgctxt "PropertyName"
+#~ msgid "acceleration"
+#~ msgstr "accelerazione"
+
+#~ msgctxt "Units"
+#~ msgid "m/s²"
+#~ msgstr "m/s²"
+
+#~ msgid "Acceleration of the center of mass"
+#~ msgstr "Accelerazione del centro di massa"
+
+#, fuzzy
+#~ msgctxt "PropertyName"
+#~ msgid "angularAcceleration"
+#~ msgstr "accelerazioneAngolare"
+
+#~ msgctxt "Units"
+#~ msgid "rad/s²"
+#~ msgstr "rad/s²"
+
+#~ msgid "Angular acceleration of the body"
+#~ msgstr "Accelerazione angolare del corpo"
+
+#~ msgctxt "PropertyName"
+#~ msgid "force"
+#~ msgstr "forza"
+
+#~ msgctxt "Units"
+#~ msgid "N"
+#~ msgstr "N"
+
+#, fuzzy
+#~ msgid "Force that acts upon the body"
+#~ msgstr "Forza che agisce sul corpo"
+
+#, fuzzy
+#~ msgctxt "PropertyName"
+#~ msgid "torque"
+#~ msgstr "rotazione"
+
+#~ msgctxt "Units"
+#~ msgid "N m"
+#~ msgstr "N m"
+
+#, fuzzy
+#~ msgid "Torque that acts upon the body"
+#~ msgstr "Forza di rotazione che agisce sul corpo"
+
+#~ msgctxt "PropertyName"
+#~ msgid "mass"
+#~ msgstr "massa"
+
+#~ msgctxt "Units"
+#~ msgid "kg"
+#~ msgstr "kg"
+
+#~ msgid "Total mass of the body"
+#~ msgstr "Massa totale del corpo"
+
+#~ msgctxt "Units"
+#~ msgid "kg m²"
+#~ msgstr "kg m²"
+
+#, fuzzy
+#~ msgctxt "PropertyName"
+#~ msgid "momentum"
+#~ msgstr "momento"
+
+#, fuzzy
+#~ msgctxt "Units"
+#~ msgid "kg m/s"
+#~ msgstr "kg m/s"
+
+#, fuzzy
+#~ msgid "momentum"
+#~ msgstr "momento"
+
+#, fuzzy
+#~ msgctxt "PropertyName"
+#~ msgid "angularMomentum"
+#~ msgstr "momentoAngolare"
+
+#~ msgctxt "Units"
+#~ msgid "kg m² rad/s"
+#~ msgstr "kg m² rad/s"
+
+#, fuzzy
+#~ msgid "angular momentum"
+#~ msgstr "momento angolare"
+
+#, fuzzy
+#~ msgctxt "PropertyName"
+#~ msgid "kineticEnergy"
+#~ msgstr "energiaCinetica"
+
+#~ msgctxt "Units"
+#~ msgid "J"
+#~ msgstr "J"
+
+#~ msgid "kinetic energy"
+#~ msgstr "energia cinetica"
+
+#, fuzzy
+#~ msgctxt "ObjectClass"
+#~ msgid "Disk"
+#~ msgstr "Disco"
+
+#, fuzzy
+#~ msgid "Rigid disk"
+#~ msgstr "Disco rigido"
+
+#~ msgctxt "PropertyName"
+#~ msgid "radius"
+#~ msgstr "raggio"
+
+#~ msgid "Radius of the disk"
+#~ msgstr "Raggio del disco"
+
+#~ msgctxt "PropertyName"
+#~ msgid "size"
+#~ msgstr "dimensione"
+
+#, fuzzy
+#~ msgid "Size of the box"
+#~ msgstr "Dimensione della scatola"
+
+#, fuzzy
+#~ msgctxt "ObjectClass"
+#~ msgid "Polygon"
+#~ msgstr "Poligono"
+
+#, fuzzy
+#~ msgctxt "PropertyName"
+#~ msgid "vertexes"
+#~ msgstr "vertici"
+
+#, fuzzy
+#~ msgid "Vertex list"
+#~ msgstr "Lista vertici"
+
+#, fuzzy
+#~| msgid "&Panels"
+#~ msgctxt "ObjectClass"
+#~ msgid "Plane"
+#~ msgstr "Piano"
+
+#~ msgid "Unmovable rigid plane"
+#~ msgstr "Piano rigido inamovibile"
+
+#, fuzzy
+#~| msgid "Pointer"
+#~ msgctxt "PropertyName"
+#~ msgid "point1"
+#~ msgstr "punto1"
+
+#~ msgid "First point which defines the plane"
+#~ msgstr "Primo punto che definisce il piano"
+
+#, fuzzy
+#~| msgid "Pointer"
+#~ msgctxt "PropertyName"
+#~ msgid "point2"
+#~ msgstr "punto2"
+
+#~ msgid "Second point which defines the plane"
+#~ msgstr "Secondo punto che definisce il piano"
+
+#, fuzzy
+#~| msgid "Show lines"
+#~ msgid "Show internal items"
+#~ msgstr "Mostra elementi interni"
+
+#~ msgctxt "Units"
+#~ msgid "kg m²/s"
+#~ msgstr "kg m²/s"
+
+#, fuzzy
+#~ msgid "Angular momentum of the body"
+#~ msgstr "Momento angolare del corpo"
+
+#, fuzzy
+#~ msgctxt "ObjectClass"
+#~ msgid "Solver"
+#~ msgstr "Solutore"
+
+#, fuzzy
+#~ msgid "Solver"
+#~ msgstr "Solutore"
+
+#, fuzzy
+#~| msgid "Change solver type"
+#~ msgctxt "PropertyName"
+#~ msgid "solverType"
+#~ msgstr "tipoSolutore"
+
+#~ msgid "Solver type"
+#~ msgstr "Tipo solutore"
+
+#~ msgctxt "Units"
+#~ msgid "s"
+#~ msgstr "s"
+
+#, fuzzy
+#~ msgctxt "PropertyName"
+#~ msgid "toleranceAbs"
+#~ msgstr "tolleranzaAss"
+
+#, fuzzy
+#~ msgid "Allowed absolute tolerance"
+#~ msgstr "Tolleranza assoluta ammessa"
+
+#, fuzzy
+#~ msgctxt "PropertyName"
+#~ msgid "toleranceRel"
+#~ msgstr "tolleranzaRel"
+
+#, fuzzy
+#~ msgid "Allowed relative tolerance"
+#~ msgstr "Tolleranza relativa ammessa"
+
+#, fuzzy
+#~ msgctxt "PropertyName"
+#~ msgid "dimension"
+#~ msgstr "dimensione"
+
+#, fuzzy
+#~ msgctxt "PropertyName"
+#~ msgid "localError"
+#~ msgstr "erroreLocale"
+
+#, fuzzy
+#~ msgid "Maximal local error during last step"
+#~ msgstr "Massimo errore locale durante l'ultimo passo"
+
+#, fuzzy
+#~ msgctxt "PropertyName"
+#~ msgid "localErrorRatio"
+#~ msgstr "tassoErroreLocale"
+
+#, fuzzy
+#~ msgid "Maximal local error ratio during last step"
+#~ msgstr "Massimo tasso di errore locale durante l'ultimo passo"
+
+#, fuzzy
+#~| msgid "Particles mass:"
+#~ msgctxt "ObjectClass"
+#~ msgid "Particle"
+#~ msgstr "Particella"
+
+#, fuzzy
+#~ msgid "Simple zero-size particle"
+#~ msgstr "Particella puntiforme semplice"
+
+#~ msgid "position"
+#~ msgstr "posizione"
+
+#~ msgid "velocity"
+#~ msgstr "velocità"
+
+#~ msgid "acceleration"
+#~ msgstr "accelerazione"
+
+#, fuzzy
+#~| msgid "Particles mass:"
+#~ msgctxt "ObjectClass"
+#~ msgid "ParticleErrors"
+#~ msgstr "ErroriParticelle"
+
+#, fuzzy
+#~| msgid "The mass of one particle"
+#~ msgid "Errors class for Particle"
+#~ msgstr "Classe errori per Particella"
+
+#, fuzzy
+#~ msgctxt "ObjectClass"
+#~ msgid "ChargedParticle"
+#~ msgstr "ParticellaCarica"
+
+#, fuzzy
+#~| msgid "Create gas particles"
+#~ msgid "Charged zero-size particle"
+#~ msgstr "Particella puntiforme carica"
+
+#, fuzzy
+#~ msgctxt "PropertyName"
+#~ msgid "charge"
+#~ msgstr "carica"
+
+#~ msgctxt "Units"
+#~ msgid "C"
+#~ msgstr "C"
+
+#, fuzzy
+#~ msgid "charge"
+#~ msgstr "carica"
+
+#~ msgid "Wrong ID attribute value for %1"
+#~ msgstr "Valore errato dell'attributo ID per %1"
+
+#~ msgid "Non-unique ID attribute value for %1"
+#~ msgstr "Valore non univoco dell'attributo ID per %1"
+
+#~ msgid "The file is not a StepCoreXML file."
+#~ msgstr "Il file non è di tipo StepCoreXML."
+
+#~ msgid "Unknown item type \"%1\""
+#~ msgstr "Tipo oggetto «%1» sconosciuto"
+
+#~ msgid "Unknown solver type \"%1\""
+#~ msgstr "Tipo solutore «%1» sconosciuto"
+
+#~ msgid "Unknown collisionSolver type \"%1\""
+#~ msgstr "Tipo di collisionSolver «%1» sconosciuto"
+
+#~ msgid "Unknown constraintSolver type \"%1\""
+#~ msgstr "Tipo di constraintSolver «%1» sconosciuto"
+
+#~ msgid "Item \"%1\" has no stored property named \"%2\""
+#~ msgstr "L'oggetto «%1» non ha associata la proprietà «%2»"
+
+#~ msgid "Unexpected tag \"%1\""
+#~ msgstr "Tag «%1» non previsto"
+
+#~ msgid "Property \"%1\" of \"%2\" has illegal value"
+#~ msgstr "La proprietà «%1» di «%2» ha un valore non consentito"
+
+#~ msgid "\"world\" tag not found"
+#~ msgstr "tag «world» non trovato"
+
+#~ msgid "Error parsing file at line %1: %2"
+#~ msgstr "Errore nell'analisi del file alla riga %1: %2"
+
+#~ msgid "File is not writable."
+#~ msgstr "File non scrivibile."
+
+#, fuzzy
+#~| msgid "Unknown constraintSolver type \"%1\""
+#~ msgctxt "ObjectClass"
+#~ msgid "ConstraintSolver"
+#~ msgstr "ConstraintSolver"
+
+#, fuzzy
+#~| msgid "Particles mass:"
+#~ msgctxt "ObjectClass"
+#~ msgid "GasParticle"
+#~ msgstr "ParticellaGas"
+
+#, fuzzy
+#~| msgid "Create gas particles"
+#~ msgid "Gas particle"
+#~ msgstr "Particella di gas"
+
+#, fuzzy
+#~ msgid "Lennard-Jones force"
+#~ msgstr "Forza di Lennard-Jones"
+
+#, fuzzy
+#~| msgid "min:"
+#~ msgctxt "PropertyName"
+#~ msgid "rmin"
+#~ msgstr "rmin"
+
+#~ msgctxt "Units"
+#~ msgid "m²"
+#~ msgstr "m²"
+
+#~ msgctxt "Units"
+#~ msgid "1/m²"
+#~ msgstr "1/m²"
+
+#~ msgctxt "Units"
+#~ msgid "Pa"
+#~ msgstr "Pa"
+
+#~ msgctxt "Units"
+#~ msgid "K"
+#~ msgstr "K"
+
+#, fuzzy
+#~| msgid "The number of partcles of this gas."
+#~ msgid "Temperature of particles in the measureRect"
+#~ msgstr "Temperature delle particelle nel rettangoloMisurato"
+
+#, fuzzy
+#~ msgctxt "ObjectClass"
+#~ msgid "NoteImage"
+#~ msgstr "NotaImmagine"
+
+#, fuzzy
+#~ msgid "NoteImage: an image embedded in Note"
+#~ msgstr "NotaImmagina: un'immagine integrata in una nota"
+
+#, fuzzy
+#~| msgid "Range"
+#~ msgctxt "PropertyName"
+#~ msgid "image"
+#~ msgstr "immagine"
+
+#, fuzzy
+#~ msgid "Image data"
+#~ msgstr "Dati immagine"
+
+#, fuzzy
+#~| msgid "Insert &Formula"
+#~ msgctxt "ObjectClass"
+#~ msgid "NoteFormula"
+#~ msgstr "NotaFormula"
+
+#, fuzzy
+#~ msgid "NoteFormula: a formula embedded in Note"
+#~ msgstr "NotaFormula: una formula integrata in una nota"
+
+#, fuzzy
+#~ msgctxt "PropertyName"
+#~ msgid "code"
+#~ msgstr "codice"
+
+#, fuzzy
+#~ msgid "Formula code"
+#~ msgstr "Codice della formula"
+
+#~ msgctxt "ObjectClass"
+#~ msgid "Note"
+#~ msgstr "Nota"
+
+#~ msgid "Note: displays a textual note on the scene"
+#~ msgstr "Nota: mostra una nota di testo sulla scena"
+
+#~ msgid "Note position on the scene"
+#~ msgstr "Posizione della nota sulla scena"
+
+#~ msgctxt "PropertyName"
+#~ msgid "text"
+#~ msgstr "testo"
+
+#~ msgid "Text"
+#~ msgstr "Testo"
+
+#~ msgctxt "ObjectClass"
+#~ msgid "Graph"
+#~ msgstr "Grafico"
+
+#, fuzzy
+#~ msgid "Graph: plots a graph of any properties"
+#~ msgstr "Grafico: traccia il grafico per ogni proprietà"
+
+#~ msgid "Graph position on the scene"
+#~ msgstr "Posizione del grafico sulla scena"
+
+#~ msgid "Graph size on the scene"
+#~ msgstr "Dimensione del grafico sulla scena"
+
+#~ msgid "X axis: vector index"
+#~ msgstr "asse X: indice vettore"
+
+#, fuzzy
+#~| msgid "Vector index"
+#~ msgid "Y axis: vector index"
+#~ msgstr "asse Y: indice vettore"
+
+#, fuzzy
+#~| msgid "Show points"
+#~ msgctxt "PropertyName"
+#~ msgid "showPoints"
+#~ msgstr "mostraPunti"
+
+#, fuzzy
+#~| msgid "Show points"
+#~ msgid "Show points on the graph"
+#~ msgstr "Mostra i punti sul grafico"
+
+#, fuzzy
+#~| msgid "Show lines"
+#~ msgctxt "PropertyName"
+#~ msgid "showLines"
+#~ msgstr "mostraLinee"
+
+#, fuzzy
+#~| msgid "Show lines"
+#~ msgid "Show lines on the graph"
+#~ msgstr "Mostra linee sul grafico"
+
+#, fuzzy
+#~| msgid "Show points"
+#~ msgctxt "PropertyName"
+#~ msgid "points"
+#~ msgstr "punti"
+
+#, fuzzy
+#~| msgid "Show points"
+#~ msgid "points"
+#~ msgstr "punti"
+
+#, fuzzy
+#~| msgid "<no object>"
+#~ msgctxt "PropertyName"
+#~ msgid "object"
+#~ msgstr "oggetto"
+
+#, fuzzy
+#~| msgid "several objects"
+#~ msgid "Observed object"
+#~ msgstr "Oggetto osservato"
+
+#, fuzzy
+#~| msgid "Property"
+#~ msgctxt "PropertyName"
+#~ msgid "property"
+#~ msgstr "proprietà"
+
+#, fuzzy
+#~ msgctxt "PropertyName"
+#~ msgid "index"
+#~ msgstr "indice"
+
+#~ msgctxt "PropertyName"
+#~ msgid "digits"
+#~ msgstr "cifre"
+
+#, fuzzy
+#~| msgid "Display precision:"
+#~ msgid "Display digits"
+#~ msgstr "Cifre visualizzazione"
+
+#~ msgid "value"
+#~ msgstr "valore"
+
+#, fuzzy
+#~ msgid "units"
+#~ msgstr "unità"
+
+#, fuzzy
+#~ msgid "Units of measured property"
+#~ msgstr "Unità della proprietà misurata"
+
+#, fuzzy
+#~| msgid "Change controller %1"
+#~ msgctxt "ObjectClass"
+#~ msgid "Controller"
+#~ msgstr "Controllore"
+
+#, fuzzy
+#~ msgid "Controller: allows to easily control any property"
+#~ msgstr "Controllore: permette di controllare facilmente ogni proprietà"
+
+#, fuzzy
+#~ msgid "Controller position on the scene"
+#~ msgstr "Posizione del controllore sulla scena"
+
+#~ msgid "Controller size on the scene"
+#~ msgstr "Dimensione del controllore sulla scena"
+
+#, fuzzy
+#~| msgid "<no object>"
+#~ msgid "Controlled object"
+#~ msgstr "Oggetto controllato"
+
+#, fuzzy
+#~| msgid "Increment:"
+#~ msgctxt "PropertyName"
+#~ msgid "increment"
+#~ msgstr "incremento"
+
+#, fuzzy
+#~| msgid "Increase value"
+#~ msgid "Increment value"
+#~ msgstr "Aumenta valore"
+
+#~ msgctxt "PropertyName"
+#~ msgid "value"
+#~ msgstr "valore"
+
+#, fuzzy
+#~| msgid "Position:"
+#~ msgctxt "PropertyName"
+#~ msgid "localPosition"
+#~ msgstr "posizioneLocale"
+
+#~ msgid "Local position"
+#~ msgstr "Posizione locale"
+
+#~ msgid "Position"
+#~ msgstr "Posizione"
+
+#, fuzzy
+#~| msgid "&Bold"
+#~ msgid "Body"
+#~ msgstr "Corpo"
+
+#, fuzzy
+#~| msgid "Value"
+#~ msgctxt "PropertyName"
+#~ msgid "forceValue"
+#~ msgstr "valoreForza"
+
+#~ msgctxt "PropertyName"
+#~ msgid "color"
+#~ msgstr "colore"
+
+#, fuzzy
+#~ msgctxt "ObjectClass"
+#~ msgid "Body"
+#~ msgstr "Corpo"
+
+#, fuzzy
+#~ msgctxt "ObjectClass"
+#~ msgid "Force"
+#~ msgstr "Forza"
+
+#, fuzzy
+#~ msgid "Force"
+#~ msgstr "Forza"
+
+#~ msgctxt "ObjectClass"
+#~ msgid "World"
+#~ msgstr "Mondo"
+
+#~ msgid "World"
+#~ msgstr "Mondo"
+
+#, fuzzy
+#~| msgid "&Simulation"
+#~ msgid "Simulation speed scale"
+#~ msgstr "Scala velocità della simulazione"
+
+#~ msgid "Angle"
+#~ msgstr "Angolo"
+
+#, fuzzy
+#~| msgid "Note position on the scene"
+#~ msgid "Position on the body"
+#~ msgstr "Posizione della nota sulla scena"
+
+#, fuzzy
+#~| msgid "&Bold"
+#~ msgid "Body1"
+#~ msgstr "Corpo1"
+
+#, fuzzy
+#~| msgid "&Bold"
+#~ msgid "Body2"
+#~ msgstr "Corpo2"
+
+#, fuzzy
+#~| msgid "Position:"
+#~ msgctxt "PropertyName"
+#~ msgid "localPosition1"
+#~ msgstr "posizioneLocale1"
+
+#, fuzzy
+#~| msgid "Position:"
+#~ msgctxt "PropertyName"
+#~ msgid "localPosition2"
+#~ msgstr "posizioneLocale2"
+
+#, fuzzy
+#~| msgid "Position:"
+#~ msgctxt "PropertyName"
+#~ msgid "position1"
+#~ msgstr "posizione1"
+
+#, fuzzy
+#~| msgid "Position:"
+#~ msgid "Position1"
+#~ msgstr "Posizione1"
+
+#, fuzzy
+#~| msgid "Position:"
+#~ msgctxt "PropertyName"
+#~ msgid "position2"
+#~ msgstr "posizione2"
+
+#, fuzzy
+#~| msgid "Position:"
+#~ msgid "Position2"
+#~ msgstr "Posizione2"
+
+#, fuzzy
+#~| msgid "Object name"
+#~ msgctxt "ObjectClass"
+#~ msgid "Object"
+#~ msgstr "Oggetto"
+
+#, fuzzy
+#~| msgid "Object name"
+#~ msgid "Object"
+#~ msgstr "Oggetto"
+
+#~ msgctxt "PropertyName"
+#~ msgid "name"
+#~ msgstr "nome"
+
+#~ msgctxt "PropertyName"
+#~ msgid "damping"
+#~ msgstr "smorzamento"
+
+#~ msgid "Damping"
+#~ msgstr "Smorzamento"
+
+#, fuzzy
+#~ msgctxt "ObjectClass"
+#~ msgid "CoulombForce"
+#~ msgstr "ForzaDiCoulomb"
+
+#~ msgid "Coulomb force"
+#~ msgstr "Forza di Coulomb"
+
+#~ msgctxt "Units"
+#~ msgid "N m²/C²"
+#~ msgstr "N m²/C²"
+
+#, fuzzy
+#~ msgid "&Start"
+#~ msgstr "&Avvia"
+
+#, fuzzy
+#~ msgid "S&top"
+#~ msgstr "&Ferma"

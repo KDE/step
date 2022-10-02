@@ -1,0 +1,2985 @@
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+#
+# A S Alam <aalam@users.sf.net>, 2010, 2011.
+msgid ""
+msgstr ""
+"Project-Id-Version: \n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2016-06-22 08:50+0000\n"
+"PO-Revision-Date: 2011-06-30 07:41+0530\n"
+"Last-Translator: A S Alam <aalam@users.sf.net>\n"
+"Language-Team: Punjabi/Panjabi <punjabi-users@lists.sf.net>\n"
+"Language: pa\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Lokalize 1.2\n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Qt-Contexts: true\n"
+
+#: body.cc:26
+#, fuzzy
+#| msgid "Body"
+msgctxt "ObjectClass|"
+msgid "Body"
+msgstr "ਮੁੱਖਭਾਗ"
+
+#: body.cc:26
+#, fuzzy
+#| msgid "Body"
+msgctxt "ObjectDescription|"
+msgid "Body"
+msgstr "ਮੁੱਖਭਾਗ"
+
+#: collisionsolver.cc:31
+msgctxt "ObjectClass|"
+msgid "CollisionSolver"
+msgstr ""
+
+#: collisionsolver.cc:32 solver.cc:28
+msgctxt "PropertyDescription|"
+msgid "Allowed absolute tolerance"
+msgstr ""
+
+#: collisionsolver.cc:32 solver.cc:28
+msgctxt "PropertyName|"
+msgid "toleranceAbs"
+msgstr ""
+
+#: collisionsolver.cc:33 solver.cc:31
+msgctxt "PropertyDescription|"
+msgid "Maximal local error during last step"
+msgstr ""
+
+#: collisionsolver.cc:33 solver.cc:31
+msgctxt "PropertyName|"
+msgid "localError"
+msgstr ""
+
+#: collisionsolver.cc:35
+msgctxt "ObjectClass|"
+msgid "GJKCollisionSolver"
+msgstr ""
+
+#: constraintsolver.cc:31
+msgctxt "ObjectClass|"
+msgid "ConstraintSolver"
+msgstr ""
+
+#: constraintsolver.cc:35
+msgctxt "ObjectClass|"
+msgid "CGConstraintSolver"
+msgstr ""
+
+#: coulombforce.cc:26
+#, fuzzy
+#| msgid "Coulomb force"
+msgctxt "ObjectClass|"
+msgid "CoulombForce"
+msgstr "ਕੰਲੋਬਸ ਬਲ"
+
+#: coulombforce.cc:26
+#, fuzzy
+#| msgid "Coulomb force"
+msgctxt "ObjectDescription|"
+msgid "Coulomb force"
+msgstr "ਕੰਲੋਬਸ ਬਲ"
+
+#: coulombforce.cc:28
+msgctxt "PropertyName|"
+msgid "coulombConst"
+msgstr ""
+
+#: coulombforce.cc:28 coulombforce.cc:33
+#, fuzzy
+#| msgctxt "Units"
+#| msgid "N m²/C²"
+msgctxt "Units|"
+msgid "N m²/C²"
+msgstr "N m²/C²"
+
+#: coulombforce.cc:29
+#, fuzzy
+#| msgid "Coulomb force"
+msgctxt "PropertyDescription|"
+msgid "Coulomb constant"
+msgstr "ਕੰਲੋਬਸ ਬਲ"
+
+#: coulombforce.cc:31
+#, fuzzy
+#| msgid "Coulomb force"
+msgctxt "ObjectClass|"
+msgid "CoulombForceErrors"
+msgstr "ਕੰਲੋਬਸ ਬਲ"
+
+#: coulombforce.cc:31
+msgctxt "ObjectDescription|"
+msgid "Errors class for CoulombForce"
+msgstr ""
+
+#: coulombforce.cc:33
+#, fuzzy
+#| msgid "Coulomb force"
+msgctxt "PropertyName|"
+msgid "coulombConstVariance"
+msgstr "ਕੰਲੋਬਸ ਬਲ"
+
+#: coulombforce.cc:34
+#, fuzzy
+#| msgid "Coulomb force"
+msgctxt "PropertyDescription|"
+msgid "Coulomb constant variance"
+msgstr "ਕੰਲੋਬਸ ਬਲ"
+
+#: eulersolver.cc:27
+msgctxt "ObjectClass|"
+msgid "GenericEulerSolver"
+msgstr ""
+
+#: eulersolver.cc:27
+msgctxt "ObjectDescription|"
+msgid "Generic Euler solver"
+msgstr ""
+
+#: eulersolver.cc:28
+msgctxt "ObjectClass|"
+msgid "EulerSolver"
+msgstr ""
+
+#: eulersolver.cc:28
+msgctxt "ObjectDescription|"
+msgid "Non-adaptive Euler solver"
+msgstr ""
+
+#: eulersolver.cc:29
+msgctxt "ObjectClass|"
+msgid "AdaptiveEulerSolver"
+msgstr ""
+
+#: eulersolver.cc:29
+msgctxt "ObjectDescription|"
+msgid "Adaptive Euler solver"
+msgstr ""
+
+#: force.cc:27
+#, fuzzy
+#| msgid "Force"
+msgctxt "ObjectClass|"
+msgid "Force"
+msgstr "ਬਲ"
+
+#: force.cc:27
+#, fuzzy
+#| msgid "Force"
+msgctxt "ObjectDescription|"
+msgid "Force"
+msgstr "ਬਲ"
+
+#: gas.cc:27
+#, fuzzy
+#| msgid "Gas particle"
+msgctxt "ObjectClass|"
+msgid "GasParticle"
+msgstr "ਗੈਸੀ ਤੱਤ"
+
+#: gas.cc:27
+#, fuzzy
+#| msgid "Gas particle"
+msgctxt "ObjectDescription|"
+msgid "Gas particle"
+msgstr "ਗੈਸੀ ਤੱਤ"
+
+#: gas.cc:29
+#, fuzzy
+#| msgid "Force"
+msgctxt "ObjectClass|"
+msgid "GasLJForce"
+msgstr "ਬਲ"
+
+#: gas.cc:29
+msgctxt "ObjectDescription|"
+msgid "Lennard-Jones force"
+msgstr ""
+
+#: gas.cc:31
+msgctxt "PropertyDescription|"
+msgid "Potential depth"
+msgstr ""
+
+#: gas.cc:31
+#, fuzzy
+msgctxt "PropertyName|"
+msgid "depth"
+msgstr "ਡੂੰਘਾਈ:"
+
+#: gas.cc:31 gas.cc:37 gas.cc:59 gas.cc:74 particle.cc:37 particle.cc:53
+#: rigidbody.cc:49 rigidbody.cc:80
+#, fuzzy
+#| msgctxt "Units"
+#| msgid "J"
+msgctxt "Units|"
+msgid "J"
+msgstr "J"
+
+#: gas.cc:32
+msgctxt "PropertyDescription|"
+msgid "Distance at which the force is zero"
+msgstr ""
+
+#: gas.cc:32
+msgctxt "PropertyName|"
+msgid "rmin"
+msgstr ""
+
+#: gas.cc:32 gas.cc:33 gas.cc:39 gas.cc:45 gas.cc:47 joints.cc:29 joints.cc:35
+#: joints.cc:36 joints.cc:40 joints.cc:43 joints.cc:45 joints.cc:47
+#: joints.cc:48 motor.cc:30 motor.cc:36 particle.cc:29 particle.cc:41
+#: rigidbody.cc:28 rigidbody.cc:53 rigidbody.cc:84 rigidbody.cc:89
+#: rigidbody.cc:92 softbody.cc:36 spring.cc:30 spring.cc:31 spring.cc:36
+#: spring.cc:38 spring.cc:40 spring.cc:41 spring.cc:47 spring.cc:49
+#: spring.cc:55 spring.cc:57 spring.cc:59 spring.cc:61 tool.cc:38 tool.cc:39
+#: tool.cc:45 tool.cc:46 tool.cc:67 tool.cc:68 tool.cc:79 tool.cc:80 tool.cc:98
+#: tool.cc:100 tool.cc:101
+#, fuzzy
+#| msgctxt "Units"
+#| msgid "m"
+msgctxt "Units|"
+msgid "m"
+msgstr "m"
+
+#: gas.cc:33
+msgctxt "PropertyDescription|"
+msgid "Cut-off distance"
+msgstr ""
+
+#: gas.cc:33
+msgctxt "PropertyName|"
+msgid "cutoff"
+msgstr ""
+
+#: gas.cc:35
+msgctxt "ObjectClass|"
+msgid "GasLJForceErrors"
+msgstr ""
+
+#: gas.cc:35
+msgctxt "ObjectDescription|"
+msgid "Errors class for GasLJForce"
+msgstr ""
+
+#: gas.cc:37
+msgctxt "PropertyName|"
+msgid "depthVariance"
+msgstr ""
+
+#: gas.cc:38
+#, fuzzy
+#| msgid "Current length"
+msgctxt "PropertyDescription|"
+msgid "Potential depth variance"
+msgstr "ਮੌਜੂਦਾ ਲੰਬਾਈ"
+
+#: gas.cc:39
+msgctxt "PropertyName|"
+msgid "rminVariance"
+msgstr ""
+
+#: gas.cc:40
+msgctxt "PropertyDescription|"
+msgid "Variance of the distance at which the force is zero"
+msgstr ""
+
+#: gas.cc:44
+#, fuzzy
+#| msgctxt "ObjectClass"
+#| msgid "Gas"
+msgctxt "ObjectClass|"
+msgid "Gas"
+msgstr "ਗੈਸ"
+
+#: gas.cc:44
+#, fuzzy
+#| msgctxt "ObjectClass"
+#| msgid "Particle"
+msgctxt "ObjectDescription|"
+msgid "Particle gas"
+msgstr "ਤੱਤ"
+
+#: gas.cc:45
+msgctxt "PropertyName|"
+msgid "measureRectCenter"
+msgstr ""
+
+#: gas.cc:46
+msgctxt "PropertyDescription|"
+msgid "Center of the rect for measurements"
+msgstr ""
+
+#: gas.cc:47
+msgctxt "PropertyName|"
+msgid "measureRectSize"
+msgstr ""
+
+#: gas.cc:48
+msgctxt "PropertyDescription|"
+msgid "Size of the rect for measurements"
+msgstr ""
+
+#: gas.cc:49
+msgctxt "PropertyName|"
+msgid "rectVolume"
+msgstr ""
+
+#: gas.cc:49
+#, fuzzy
+#| msgctxt "Units"
+#| msgid "m²"
+msgctxt "Units|"
+msgid "m²"
+msgstr "m²"
+
+#: gas.cc:50
+msgctxt "PropertyDescription|"
+msgid "Volume of the measureRect"
+msgstr ""
+
+#: gas.cc:51
+#, fuzzy
+#| msgctxt "ObjectClass"
+#| msgid "Particle"
+msgctxt "PropertyName|"
+msgid "rectParticleCount"
+msgstr "ਤੱਤ"
+
+#: gas.cc:52
+msgctxt "PropertyDescription|"
+msgid "Count of particles in the measureRect"
+msgstr ""
+
+#: gas.cc:53
+#, fuzzy
+#| msgid "acceleration"
+msgctxt "PropertyName|"
+msgid "rectConcentration"
+msgstr "ਪਰਵੇਗ"
+
+#: gas.cc:53
+#, fuzzy
+#| msgctxt "Units"
+#| msgid "1/m²"
+msgctxt "Units|"
+msgid "1/m²"
+msgstr "1/m²"
+
+#: gas.cc:54
+msgctxt "PropertyDescription|"
+msgid "Concentration of particles in the measureRect"
+msgstr ""
+
+#: gas.cc:55
+msgctxt "PropertyName|"
+msgid "rectPressure"
+msgstr ""
+
+#: gas.cc:55 gas.cc:70
+#, fuzzy
+#| msgctxt "Units"
+#| msgid "Pa"
+msgctxt "Units|"
+msgid "Pa"
+msgstr "Pa"
+
+#: gas.cc:56
+msgctxt "PropertyDescription|"
+msgid "Pressure of particles in the measureRect"
+msgstr ""
+
+#: gas.cc:57
+msgctxt "PropertyName|"
+msgid "rectTemperature"
+msgstr ""
+
+#: gas.cc:57 gas.cc:72
+#, fuzzy
+#| msgctxt "Units"
+#| msgid "K"
+msgctxt "Units|"
+msgid "K"
+msgstr "K"
+
+#: gas.cc:58
+msgctxt "PropertyDescription|"
+msgid "Temperature of particles in the measureRect"
+msgstr ""
+
+#: gas.cc:59
+msgctxt "PropertyName|"
+msgid "rectMeanKineticEnergy"
+msgstr ""
+
+#: gas.cc:60
+msgctxt "PropertyDescription|"
+msgid "Mean kinetic energy of particles in the measureRect"
+msgstr ""
+
+#: gas.cc:61
+msgctxt "PropertyName|"
+msgid "rectMeanVelocity"
+msgstr ""
+
+#: gas.cc:61 gas.cc:76 particle.cc:30 particle.cc:43 rigidbody.cc:31
+#: rigidbody.cc:58 softbody.cc:38
+#, fuzzy
+#| msgctxt "Units"
+#| msgid "m/s"
+msgctxt "Units|"
+msgid "m/s"
+msgstr "m/s"
+
+#: gas.cc:62
+msgctxt "PropertyDescription|"
+msgid "Mean velocity of particles in the measureRect"
+msgstr ""
+
+#: gas.cc:63
+msgctxt "PropertyName|"
+msgid "rectMeanParticleMass"
+msgstr ""
+
+#: gas.cc:63 gas.cc:65 gas.cc:78 gas.cc:80 particle.cc:34 particle.cc:49
+#: particle.cc:61 rigidbody.cc:42 rigidbody.cc:71 softbody.cc:50
+#, fuzzy
+#| msgctxt "Units"
+#| msgid "kg"
+msgctxt "Units|"
+msgid "kg"
+msgstr "kg"
+
+#: gas.cc:64
+msgctxt "PropertyDescription|"
+msgid "Mean mass of particles in the measureRect"
+msgstr ""
+
+#: gas.cc:65
+msgctxt "PropertyName|"
+msgid "rectMass"
+msgstr ""
+
+#: gas.cc:66
+msgctxt "PropertyDescription|"
+msgid "Total mass of particles in the measureRect"
+msgstr ""
+
+#: gas.cc:69
+msgctxt "ObjectClass|"
+msgid "GasErrors"
+msgstr ""
+
+#: gas.cc:69
+msgctxt "ObjectDescription|"
+msgid "Errors class for Gas"
+msgstr ""
+
+#: gas.cc:70
+msgctxt "PropertyName|"
+msgid "rectPressureVariance"
+msgstr ""
+
+#: gas.cc:71
+msgctxt "PropertyDescription|"
+msgid "Variance of pressure of particles in the measureRect"
+msgstr ""
+
+#: gas.cc:72
+msgctxt "PropertyName|"
+msgid "rectTemperatureVariance"
+msgstr ""
+
+#: gas.cc:73
+msgctxt "PropertyDescription|"
+msgid "Variance of temperature of particles in the measureRect"
+msgstr ""
+
+#: gas.cc:74
+msgctxt "PropertyName|"
+msgid "rectMeanKineticEnergyVariance"
+msgstr ""
+
+#: gas.cc:75
+msgctxt "PropertyDescription|"
+msgid "Variance of mean kinetic energy of particles in the measureRect"
+msgstr ""
+
+#: gas.cc:76
+msgctxt "PropertyName|"
+msgid "rectMeanVelocityVariance"
+msgstr ""
+
+#: gas.cc:77
+msgctxt "PropertyDescription|"
+msgid "Variance of mean velocity of particles in the measureRect"
+msgstr ""
+
+#: gas.cc:78
+msgctxt "PropertyName|"
+msgid "rectMeanParticleMassVariance"
+msgstr ""
+
+#: gas.cc:79
+msgctxt "PropertyDescription|"
+msgid "Variance of mean mass of particles in the measureRect"
+msgstr ""
+
+#: gas.cc:80
+msgctxt "PropertyName|"
+msgid "rectMassVariance"
+msgstr ""
+
+#: gas.cc:81
+msgctxt "PropertyDescription|"
+msgid "Variance of total mass of particles in the measureRect"
+msgstr ""
+
+#: gravitation.cc:27
+#, fuzzy
+#| msgid "Gravitation constant"
+msgctxt "ObjectClass|"
+msgid "GravitationForce"
+msgstr "ਗੁਰੂਤਾ ਸਥਿਰ"
+
+#: gravitation.cc:27
+#, fuzzy
+#| msgid "Gravitation constant"
+msgctxt "ObjectDescription|"
+msgid "Gravitation force"
+msgstr "ਗੁਰੂਤਾ ਸਥਿਰ"
+
+#: gravitation.cc:29
+#, fuzzy
+#| msgid "Gravitation constant"
+msgctxt "PropertyName|"
+msgid "gravitationConst"
+msgstr "ਗੁਰੂਤਾ ਸਥਿਰ"
+
+#: gravitation.cc:29 gravitation.cc:34
+#, fuzzy
+#| msgctxt "Units"
+#| msgid "N m²/kg²"
+msgctxt "Units|"
+msgid "N m²/kg²"
+msgstr "N m²/kg²"
+
+#: gravitation.cc:30
+#, fuzzy
+#| msgid "Gravitation constant"
+msgctxt "PropertyDescription|"
+msgid "Gravitation constant"
+msgstr "ਗੁਰੂਤਾ ਸਥਿਰ"
+
+#: gravitation.cc:32
+#, fuzzy
+#| msgid "Gravitation constant"
+msgctxt "ObjectClass|"
+msgid "GravitationForceErrors"
+msgstr "ਗੁਰੂਤਾ ਸਥਿਰ"
+
+#: gravitation.cc:32
+#, fuzzy
+#| msgid "Gravitation constant"
+msgctxt "ObjectDescription|"
+msgid "Errors class for GravitationForce"
+msgstr "ਗੁਰੂਤਾ ਸਥਿਰ"
+
+#: gravitation.cc:34
+#, fuzzy
+#| msgid "Gravitation constant"
+msgctxt "PropertyName|"
+msgid "gravitationConstVariance"
+msgstr "ਗੁਰੂਤਾ ਸਥਿਰ"
+
+#: gravitation.cc:35
+#, fuzzy
+#| msgid "Gravitation constant"
+msgctxt "PropertyDescription|"
+msgid "Gravitation constant variance"
+msgstr "ਗੁਰੂਤਾ ਸਥਿਰ"
+
+#: gravitation.cc:37
+#, fuzzy
+#| msgid "Force"
+msgctxt "ObjectClass|"
+msgid "WeightForce"
+msgstr "ਬਲ"
+
+#: gravitation.cc:37
+#, fuzzy
+#| msgid "Force"
+msgctxt "ObjectDescription|"
+msgid "Weight force"
+msgstr "ਬਲ"
+
+#: gravitation.cc:39
+#, fuzzy
+#| msgid "Gravitation constant"
+msgctxt "PropertyDescription|"
+msgid "Weight constant"
+msgstr "ਗੁਰੂਤਾ ਸਥਿਰ"
+
+#: gravitation.cc:39
+msgctxt "PropertyName|"
+msgid "weightConst"
+msgstr ""
+
+#: gravitation.cc:39 gravitation.cc:44 particle.cc:31 particle.cc:45
+#: rigidbody.cc:34 rigidbody.cc:63 softbody.cc:43
+#, fuzzy
+#| msgctxt "Units"
+#| msgid "m/s²"
+msgctxt "Units|"
+msgid "m/s²"
+msgstr "m/s²"
+
+#: gravitation.cc:42
+msgctxt "ObjectClass|"
+msgid "WeightForceErrors"
+msgstr ""
+
+#: gravitation.cc:42
+msgctxt "ObjectDescription|"
+msgid "Errors class for WeightForce"
+msgstr ""
+
+#: gravitation.cc:44
+msgctxt "PropertyName|"
+msgid "weightConstVariance"
+msgstr ""
+
+#: gravitation.cc:45
+#, fuzzy
+#| msgid "Gravitation constant"
+msgctxt "PropertyDescription|"
+msgid "Weight constant variance"
+msgstr "ਗੁਰੂਤਾ ਸਥਿਰ"
+
+#: gslsolver.cc:30
+msgctxt "ObjectClass|"
+msgid "GslGenericSolver"
+msgstr ""
+
+#: gslsolver.cc:30
+msgctxt "ObjectDescription|"
+msgid "GSL generic solver"
+msgstr ""
+
+#: gslsolver.cc:32
+msgctxt "ObjectClass|"
+msgid "GslSolver"
+msgstr ""
+
+#: gslsolver.cc:32
+msgctxt "ObjectDescription|"
+msgid "GSL non-adaptive solver"
+msgstr ""
+
+#: gslsolver.cc:35
+msgctxt "ObjectClass|"
+msgid "GslAdaptiveSolver"
+msgstr ""
+
+#: gslsolver.cc:35
+msgctxt "ObjectDescription|"
+msgid "GSL adaptive solver"
+msgstr ""
+
+#: gslsolver.cc:38
+msgctxt "ObjectClass|"
+msgid "GslRK2Solver"
+msgstr ""
+
+#: gslsolver.cc:38
+msgctxt "ObjectDescription|"
+msgid "Runge-Kutta second-order solver from GSL library"
+msgstr ""
+
+#: gslsolver.cc:40
+msgctxt "ObjectClass|"
+msgid "GslAdaptiveRK2Solver"
+msgstr ""
+
+#: gslsolver.cc:40
+msgctxt "ObjectDescription|"
+msgid "Adaptive Runge-Kutta second-order solver from GSL library"
+msgstr ""
+
+#: gslsolver.cc:43
+msgctxt "ObjectClass|"
+msgid "GslRK4Solver"
+msgstr ""
+
+#: gslsolver.cc:43
+msgctxt "ObjectDescription|"
+msgid "Runge-Kutta classical fourth-order solver from GSL library"
+msgstr ""
+
+#: gslsolver.cc:45
+msgctxt "ObjectClass|"
+msgid "GslAdaptiveRK4Solver"
+msgstr ""
+
+#: gslsolver.cc:45
+msgctxt "ObjectDescription|"
+msgid "Adaptive Runge-Kutta classical fourth-order solver from GSL library"
+msgstr ""
+
+#: gslsolver.cc:48
+msgctxt "ObjectClass|"
+msgid "GslRKF45Solver"
+msgstr ""
+
+#: gslsolver.cc:48
+msgctxt "ObjectDescription|"
+msgid "Runge-Kutta-Fehlberg (4,5) solver from GSL library"
+msgstr ""
+
+#: gslsolver.cc:50
+msgctxt "ObjectClass|"
+msgid "GslAdaptiveRKF45Solver"
+msgstr ""
+
+#: gslsolver.cc:50
+msgctxt "ObjectDescription|"
+msgid "Adaptive Runge-Kutta-Fehlberg (4,5) solver from GSL library"
+msgstr ""
+
+#: gslsolver.cc:53
+msgctxt "ObjectClass|"
+msgid "GslRKCKSolver"
+msgstr ""
+
+#: gslsolver.cc:53
+msgctxt "ObjectDescription|"
+msgid "Runge-Kutta Cash-Karp (4,5) solver from GSL library"
+msgstr ""
+
+#: gslsolver.cc:55
+msgctxt "ObjectClass|"
+msgid "GslAdaptiveRKCKSolver"
+msgstr ""
+
+#: gslsolver.cc:55
+msgctxt "ObjectDescription|"
+msgid "Adaptive Runge-Kutta Cash-Karp (4,5) solver from GSL library"
+msgstr ""
+
+#: gslsolver.cc:58
+msgctxt "ObjectClass|"
+msgid "GslRK8PDSolver"
+msgstr ""
+
+#: gslsolver.cc:58
+msgctxt "ObjectDescription|"
+msgid "Runge-Kutta Prince-Dormand (8,9) solver from GSL library"
+msgstr ""
+
+#: gslsolver.cc:60
+msgctxt "ObjectClass|"
+msgid "GslAdaptiveRK8PDSolver"
+msgstr ""
+
+#: gslsolver.cc:60
+msgctxt "ObjectDescription|"
+msgid "Adaptive Runge-Kutta Prince-Dormand (8,9) solver from GSL library"
+msgstr ""
+
+#: gslsolver.cc:63
+msgctxt "ObjectClass|"
+msgid "GslRK2IMPSolver"
+msgstr ""
+
+#: gslsolver.cc:63
+msgctxt "ObjectDescription|"
+msgid "Runge-Kutta implicit second-order solver from GSL library"
+msgstr ""
+
+#: gslsolver.cc:65
+msgctxt "ObjectClass|"
+msgid "GslAdaptiveRK2IMPSolver"
+msgstr ""
+
+#: gslsolver.cc:65
+msgctxt "ObjectDescription|"
+msgid "Adaptive Runge-Kutta implicit second-order solver from GSL library"
+msgstr ""
+
+#: gslsolver.cc:68
+msgctxt "ObjectClass|"
+msgid "GslRK4IMPSolver"
+msgstr ""
+
+#: gslsolver.cc:68
+msgctxt "ObjectDescription|"
+msgid "Runge-Kutta implicit fourth-order solver from GSL library"
+msgstr ""
+
+#: gslsolver.cc:70
+msgctxt "ObjectClass|"
+msgid "GslAdaptiveRK4IMPSolver"
+msgstr ""
+
+#: gslsolver.cc:70
+msgctxt "ObjectDescription|"
+msgid "Adaptive Runge-Kutta implicit fourth-order solver from GSL library"
+msgstr ""
+
+#: item.cc:28
+#, fuzzy
+#| msgid "Item"
+msgctxt "ObjectClass|"
+msgid "Item"
+msgstr "ਆਈਟਮ"
+
+#: item.cc:28
+#, fuzzy
+#| msgid "Item"
+msgctxt "ObjectDescription|"
+msgid "Item"
+msgstr "ਆਈਟਮ"
+
+#: item.cc:30
+#, fuzzy
+msgctxt "PropertyName|"
+msgid "color"
+msgstr "ਰੰਗ"
+
+#: item.cc:31
+#, fuzzy
+msgctxt "PropertyDescription|"
+msgid "Item color"
+msgstr "ਰੰਗ"
+
+#: itemgroup.cc:28
+#, fuzzy
+#| msgid "Item"
+msgctxt "ObjectClass|"
+msgid "ItemGroup"
+msgstr "ਆਈਟਮ"
+
+#: itemgroup.cc:28
+#, fuzzy
+#| msgid "Item"
+msgctxt "ObjectDescription|"
+msgid "ItemGroup"
+msgstr "ਆਈਟਮ"
+
+#: joint.cc:26
+#, fuzzy
+#| msgid "Joint"
+msgctxt "ObjectClass|"
+msgid "Joint"
+msgstr "ਜੁਆਇੰਟ"
+
+#: joint.cc:26
+#, fuzzy
+#| msgid "Joint"
+msgctxt "ObjectDescription|"
+msgid "Joint"
+msgstr "ਜੁਆਇੰਟ"
+
+#: joints.cc:26
+#, fuzzy
+msgctxt "ObjectClass|"
+msgid "Anchor"
+msgstr "ਅੰਕਰ"
+
+#: joints.cc:26
+msgctxt "ObjectDescription|"
+msgid "Anchor: fixes position of the body"
+msgstr ""
+
+#: joints.cc:28 joints.cc:34 motor.cc:29 motor.cc:35
+#, fuzzy
+#| msgid "Body"
+msgctxt "PropertyDescription|"
+msgid "Body"
+msgstr "ਮੁੱਖਭਾਗ"
+
+#: joints.cc:28 joints.cc:34 motor.cc:29 motor.cc:35 tool.cc:97
+#, fuzzy
+msgctxt "PropertyName|"
+msgid "body"
+msgstr "ਮੁੱਖਭਾਗ"
+
+#: joints.cc:29 tool.cc:100
+#, fuzzy
+msgctxt "PropertyDescription|"
+msgid "Position"
+msgstr "ਸਥਿਤੀ"
+
+#: joints.cc:29 joints.cc:36 particle.cc:29 rigidbody.cc:28 softbody.cc:36
+#: tool.cc:38 tool.cc:45 tool.cc:67 tool.cc:79 tool.cc:100
+#, fuzzy
+#| msgid "position"
+msgctxt "PropertyName|"
+msgid "position"
+msgstr "ਸਥਿਤੀ"
+
+#: joints.cc:30
+#, fuzzy
+#| msgid "Angle"
+msgctxt "PropertyDescription|"
+msgid "Angle"
+msgstr "ਕੋਣ"
+
+#: joints.cc:30 rigidbody.cc:29
+#, fuzzy
+#| msgctxt "PropertyName"
+#| msgid "angle"
+msgctxt "PropertyName|"
+msgid "angle"
+msgstr "ਕੋਣ"
+
+#: joints.cc:30 rigidbody.cc:29 rigidbody.cc:55
+#, fuzzy
+#| msgctxt "Units"
+#| msgid "rad"
+msgctxt "Units|"
+msgid "rad"
+msgstr "ਰੇਡੀ"
+
+#: joints.cc:32
+#, fuzzy
+#| msgctxt "ObjectClass"
+#| msgid "Pin"
+msgctxt "ObjectClass|"
+msgid "Pin"
+msgstr "ਪਿੰਨ"
+
+#: joints.cc:32
+msgctxt "ObjectDescription|"
+msgid "Pin: fixes position of a given point on the body"
+msgstr ""
+
+#: joints.cc:35
+msgctxt "PropertyDescription|"
+msgid "Position on the body"
+msgstr ""
+
+#: joints.cc:35 motor.cc:30 motor.cc:36 tool.cc:98
+#, fuzzy
+#| msgctxt "PropertyName"
+#| msgid "localPosition1"
+msgctxt "PropertyName|"
+msgid "localPosition"
+msgstr "ਲੋਕਲਸਥਿਤੀ1"
+
+#: joints.cc:36
+#, fuzzy
+#| msgid "Position1"
+msgctxt "PropertyDescription|"
+msgid "Position in the world"
+msgstr "ਸਥਿਤੀ1"
+
+#: joints.cc:38
+#, fuzzy
+#| msgctxt "ObjectClass"
+#| msgid "Stick"
+msgctxt "ObjectClass|"
+msgid "Stick"
+msgstr "ਚਿਪਕਿਆ"
+
+#: joints.cc:38
+msgctxt "ObjectDescription|"
+msgid "Massless stick which can be connected to bodies"
+msgstr ""
+
+#: joints.cc:40
+#, fuzzy
+#| msgid "Current length"
+msgctxt "PropertyDescription|"
+msgid "Rest length of the stick"
+msgstr "ਮੌਜੂਦਾ ਲੰਬਾਈ"
+
+#: joints.cc:40 spring.cc:30
+#, fuzzy
+#| msgid "Current length"
+msgctxt "PropertyName|"
+msgid "restLength"
+msgstr "ਮੌਜੂਦਾ ਲੰਬਾਈ"
+
+#: joints.cc:41 spring.cc:34
+#, fuzzy
+msgctxt "PropertyDescription|"
+msgid "Body1"
+msgstr "ਮੁੱਖਭਾਗ"
+
+#: joints.cc:41 spring.cc:34
+#, fuzzy
+msgctxt "PropertyName|"
+msgid "body1"
+msgstr "ਮੁੱਖਭਾਗ"
+
+#: joints.cc:42 spring.cc:35
+#, fuzzy
+msgctxt "PropertyDescription|"
+msgid "Body2"
+msgstr "ਮੁੱਖਭਾਗ"
+
+#: joints.cc:42 spring.cc:35
+#, fuzzy
+msgctxt "PropertyName|"
+msgid "body2"
+msgstr "ਮੁੱਖਭਾਗ"
+
+#: joints.cc:43 spring.cc:36
+#, fuzzy
+#| msgctxt "PropertyName"
+#| msgid "localPosition1"
+msgctxt "PropertyName|"
+msgid "localPosition1"
+msgstr "ਲੋਕਲਸਥਿਤੀ1"
+
+#: joints.cc:44 spring.cc:37
+#, fuzzy
+#| msgid "Local position 1"
+msgctxt "PropertyDescription|"
+msgid "Local position 1"
+msgstr "ਲੋਕਲ ਸਥਿਤੀ 1"
+
+#: joints.cc:45 spring.cc:38
+#, fuzzy
+#| msgctxt "PropertyName"
+#| msgid "localPosition2"
+msgctxt "PropertyName|"
+msgid "localPosition2"
+msgstr "ਲੋਕਲਸਥਿਤੀ2"
+
+#: joints.cc:46 spring.cc:39
+#, fuzzy
+#| msgid "Local position 2"
+msgctxt "PropertyDescription|"
+msgid "Local position 2"
+msgstr "ਲੋਕਲ ਸਥਿਤੀ 2"
+
+#: joints.cc:47 spring.cc:40
+#, fuzzy
+#| msgid "Position1"
+msgctxt "PropertyDescription|"
+msgid "Position1"
+msgstr "ਸਥਿਤੀ1"
+
+#: joints.cc:47 spring.cc:40
+#, fuzzy
+#| msgctxt "PropertyName"
+#| msgid "position1"
+msgctxt "PropertyName|"
+msgid "position1"
+msgstr "ਸਥਿਤੀ1"
+
+#: joints.cc:48 spring.cc:41
+#, fuzzy
+#| msgid "Position2"
+msgctxt "PropertyDescription|"
+msgid "Position2"
+msgstr "ਸਥਿਤੀ2"
+
+#: joints.cc:48 spring.cc:41
+#, fuzzy
+#| msgctxt "PropertyName"
+#| msgid "position2"
+msgctxt "PropertyName|"
+msgid "position2"
+msgstr "ਸਥਿਤੀ2"
+
+#: joints.cc:51
+#, fuzzy
+#| msgctxt "ObjectClass"
+#| msgid "Rope"
+msgctxt "ObjectClass|"
+msgid "Rope"
+msgstr "ਰੱਸੀ"
+
+#: joints.cc:51
+msgctxt "ObjectDescription|"
+msgid "Massless rope which can be connected to bodies"
+msgstr ""
+
+#: motor.cc:27
+msgctxt "ObjectClass|"
+msgid "LinearMotor"
+msgstr ""
+
+#: motor.cc:27
+msgctxt "ObjectDescription|"
+msgid "Linear motor: applies a constant force to a given position of the body"
+msgstr ""
+
+#: motor.cc:30 motor.cc:36
+msgctxt "PropertyDescription|"
+msgid "Position of the motor on a body"
+msgstr ""
+
+#: motor.cc:31
+msgctxt "PropertyDescription|"
+msgid "Value of the force, acting on the body"
+msgstr ""
+
+#: motor.cc:31
+#, fuzzy
+#| msgid "force"
+msgctxt "PropertyName|"
+msgid "forceValue"
+msgstr "ਬਲ"
+
+#: motor.cc:31 particle.cc:33 particle.cc:47 rigidbody.cc:39 rigidbody.cc:68
+#: softbody.cc:48 spring.cc:42 spring.cc:63
+#, fuzzy
+#| msgctxt "Units"
+#| msgid "N"
+msgctxt "Units|"
+msgid "N"
+msgstr "N"
+
+#: motor.cc:33
+msgctxt "ObjectClass|"
+msgid "CircularMotor"
+msgstr ""
+
+#: motor.cc:33
+msgctxt "ObjectDescription|"
+msgid "Circular motor: applies a constant torque to the body"
+msgstr ""
+
+#: motor.cc:37
+msgctxt "PropertyDescription|"
+msgid "Value of the torque, acting on the body"
+msgstr ""
+
+#: motor.cc:37
+#, fuzzy
+#| msgid "Value"
+msgctxt "PropertyName|"
+msgid "torqueValue"
+msgstr "ਮੁੱਲ"
+
+#: motor.cc:37 rigidbody.cc:40 rigidbody.cc:69 softbody.cc:49
+#, fuzzy
+#| msgctxt "Units"
+#| msgid "N m"
+msgctxt "Units|"
+msgid "N m"
+msgstr "N m"
+
+#: object.cc:25
+#, fuzzy
+#| msgid "Object"
+msgctxt "ObjectClass|"
+msgid "Object"
+msgstr "ਆਬਜੈਕਟ"
+
+#: object.cc:25
+#, fuzzy
+#| msgid "Object"
+msgctxt "ObjectDescription|"
+msgid "Object"
+msgstr "ਆਬਜੈਕਟ"
+
+#: object.cc:26
+#, fuzzy
+#| msgid "Object name"
+msgctxt "PropertyDescription|"
+msgid "Object name"
+msgstr "ਆਬਜੈਕਟ ਨਾਂ"
+
+#: object.cc:26
+#, fuzzy
+#| msgctxt "PropertyName"
+#| msgid "name"
+msgctxt "PropertyName|"
+msgid "name"
+msgstr "ਨਾਂ"
+
+#: objecterrors.cc:26
+#, fuzzy
+#| msgid "Object"
+msgctxt "ObjectClass|"
+msgid "ObjectErrors"
+msgstr "ਆਬਜੈਕਟ"
+
+#: objecterrors.cc:26
+#, fuzzy
+#| msgid "Object"
+msgctxt "ObjectDescription|"
+msgid "ObjectErrors"
+msgstr "ਆਬਜੈਕਟ"
+
+#: particle.cc:27
+#, fuzzy
+#| msgctxt "ObjectClass"
+#| msgid "Particle"
+msgctxt "ObjectClass|"
+msgid "Particle"
+msgstr "ਤੱਤ"
+
+#: particle.cc:27
+msgctxt "ObjectDescription|"
+msgid "Simple zero-size particle"
+msgstr ""
+
+#: particle.cc:29
+#, fuzzy
+#| msgid "position"
+msgctxt "PropertyDescription|"
+msgid "position"
+msgstr "ਸਥਿਤੀ"
+
+#: particle.cc:30
+#, fuzzy
+#| msgid "velocity"
+msgctxt "PropertyDescription|"
+msgid "velocity"
+msgstr "ਵੇਗ"
+
+#: particle.cc:30 rigidbody.cc:31 softbody.cc:38
+#, fuzzy
+#| msgid "velocity"
+msgctxt "PropertyName|"
+msgid "velocity"
+msgstr "ਵੇਗ"
+
+#: particle.cc:31 rigidbody.cc:34 softbody.cc:43
+#, fuzzy
+#| msgid "acceleration"
+msgctxt "PropertyName|"
+msgid "acceleration"
+msgstr "ਪਰਵੇਗ"
+
+#: particle.cc:32
+#, fuzzy
+#| msgid "acceleration"
+msgctxt "PropertyDescription|"
+msgid "acceleration"
+msgstr "ਪਰਵੇਗ"
+
+#: particle.cc:33
+#, fuzzy
+#| msgid "force"
+msgctxt "PropertyDescription|"
+msgid "force"
+msgstr "ਬਲ"
+
+#: particle.cc:33 rigidbody.cc:39 softbody.cc:48 spring.cc:42
+#, fuzzy
+#| msgid "force"
+msgctxt "PropertyName|"
+msgid "force"
+msgstr "ਬਲ"
+
+#: particle.cc:34
+#, fuzzy
+#| msgid "mass"
+msgctxt "PropertyDescription|"
+msgid "mass"
+msgstr "ਪੁੰਜ"
+
+#: particle.cc:34 rigidbody.cc:42 softbody.cc:50
+#, fuzzy
+#| msgid "mass"
+msgctxt "PropertyName|"
+msgid "mass"
+msgstr "ਪੁੰਜ"
+
+#: particle.cc:35 rigidbody.cc:45
+msgctxt "PropertyDescription|"
+msgid "momentum"
+msgstr ""
+
+#: particle.cc:35 rigidbody.cc:45
+msgctxt "PropertyName|"
+msgid "momentum"
+msgstr ""
+
+#: particle.cc:35 particle.cc:51 rigidbody.cc:45 rigidbody.cc:75
+#, fuzzy
+#| msgctxt "Units"
+#| msgid "kg m/s"
+msgctxt "Units|"
+msgid "kg m/s"
+msgstr "kg m/s"
+
+#: particle.cc:37 rigidbody.cc:49
+msgctxt "PropertyDescription|"
+msgid "kinetic energy"
+msgstr ""
+
+#: particle.cc:37 rigidbody.cc:49
+msgctxt "PropertyName|"
+msgid "kineticEnergy"
+msgstr ""
+
+#: particle.cc:40
+#, fuzzy
+#| msgctxt "ObjectClass"
+#| msgid "Particle"
+msgctxt "ObjectClass|"
+msgid "ParticleErrors"
+msgstr "ਤੱਤ"
+
+#: particle.cc:40
+msgctxt "ObjectDescription|"
+msgid "Errors class for Particle"
+msgstr ""
+
+#: particle.cc:41 rigidbody.cc:53
+#, fuzzy
+#| msgid "position"
+msgctxt "PropertyName|"
+msgid "positionVariance"
+msgstr "ਸਥਿਤੀ"
+
+#: particle.cc:42 rigidbody.cc:54
+#, fuzzy
+#| msgid "position"
+msgctxt "PropertyDescription|"
+msgid "position variance"
+msgstr "ਸਥਿਤੀ"
+
+#: particle.cc:43 rigidbody.cc:58
+#, fuzzy
+#| msgid "velocity"
+msgctxt "PropertyName|"
+msgid "velocityVariance"
+msgstr "ਵੇਗ"
+
+#: particle.cc:44 rigidbody.cc:59
+#, fuzzy
+#| msgid "velocity"
+msgctxt "PropertyDescription|"
+msgid "velocity variance"
+msgstr "ਵੇਗ"
+
+#: particle.cc:45 rigidbody.cc:63
+#, fuzzy
+#| msgid "acceleration"
+msgctxt "PropertyName|"
+msgid "accelerationVariance"
+msgstr "ਪਰਵੇਗ"
+
+#: particle.cc:46 rigidbody.cc:64
+#, fuzzy
+#| msgid "acceleration"
+msgctxt "PropertyDescription|"
+msgid "acceleration variance"
+msgstr "ਪਰਵੇਗ"
+
+#: particle.cc:47 rigidbody.cc:68 spring.cc:63
+msgctxt "PropertyName|"
+msgid "forceVariance"
+msgstr ""
+
+#: particle.cc:48 rigidbody.cc:68
+#, fuzzy
+#| msgid "velocity"
+msgctxt "PropertyDescription|"
+msgid "force variance"
+msgstr "ਵੇਗ"
+
+#: particle.cc:49 rigidbody.cc:71
+msgctxt "PropertyName|"
+msgid "massVariance"
+msgstr ""
+
+#: particle.cc:50 rigidbody.cc:72
+#, fuzzy
+#| msgid "position"
+msgctxt "PropertyDescription|"
+msgid "mass variance"
+msgstr "ਸਥਿਤੀ"
+
+#: particle.cc:51 rigidbody.cc:75
+msgctxt "PropertyName|"
+msgid "momentumVariance"
+msgstr ""
+
+#: particle.cc:52 rigidbody.cc:76
+#, fuzzy
+#| msgid "position"
+msgctxt "PropertyDescription|"
+msgid "momentum variance"
+msgstr "ਸਥਿਤੀ"
+
+#: particle.cc:53 rigidbody.cc:80
+msgctxt "PropertyName|"
+msgid "kineticEnergyVariance"
+msgstr ""
+
+#: particle.cc:54 rigidbody.cc:81
+#, fuzzy
+#| msgid "Current length"
+msgctxt "PropertyDescription|"
+msgid "kinetic energy variance"
+msgstr "ਮੌਜੂਦਾ ਲੰਬਾਈ"
+
+#: particle.cc:56
+#, fuzzy
+#| msgctxt "ObjectClass"
+#| msgid "Particle"
+msgctxt "ObjectClass|"
+msgid "ChargedParticle"
+msgstr "ਤੱਤ"
+
+#: particle.cc:56
+#, fuzzy
+#| msgctxt "ObjectClass"
+#| msgid "Particle"
+msgctxt "ObjectDescription|"
+msgid "Charged zero-size particle"
+msgstr "ਤੱਤ"
+
+#: particle.cc:57
+#, fuzzy
+#| msgid "charge"
+msgctxt "PropertyDescription|"
+msgid "charge"
+msgstr "ਚਾਰਜ"
+
+#: particle.cc:57
+#, fuzzy
+#| msgid "charge"
+msgctxt "PropertyName|"
+msgid "charge"
+msgstr "ਚਾਰਜ"
+
+#: particle.cc:57
+#, fuzzy
+#| msgctxt "Units"
+#| msgid "C"
+msgctxt "Units|"
+msgid "C"
+msgstr "C"
+
+#: particle.cc:59
+msgctxt "ObjectClass|"
+msgid "ChargedParticleErrors"
+msgstr ""
+
+#: particle.cc:59
+#, fuzzy
+#| msgctxt "ObjectClass"
+#| msgid "Particle"
+msgctxt "ObjectDescription|"
+msgid "Errors class for ChargedParticle"
+msgstr "ਤੱਤ"
+
+#: particle.cc:61
+#, fuzzy
+#| msgid "charge"
+msgctxt "PropertyName|"
+msgid "chargeVariance"
+msgstr "ਚਾਰਜ"
+
+#: particle.cc:62
+#, fuzzy
+#| msgid "charge"
+msgctxt "PropertyDescription|"
+msgid "charge variance"
+msgstr "ਚਾਰਜ"
+
+#: rigidbody.cc:27
+#, fuzzy
+#| msgid "Body"
+msgctxt "ObjectClass|"
+msgid "RigidBody"
+msgstr "ਮੁੱਖਭਾਗ"
+
+#: rigidbody.cc:27
+msgctxt "ObjectDescription|"
+msgid "Generic rigid body"
+msgstr ""
+
+#: rigidbody.cc:28 softbody.cc:36
+msgctxt "PropertyDescription|"
+msgid "Position of the center of mass"
+msgstr ""
+
+#: rigidbody.cc:29
+#, fuzzy
+#| msgid "Rotation angle"
+msgctxt "PropertyDescription|"
+msgid "Rotation angle"
+msgstr "ਘੁੰਮਾਉਣ ਕੋਣ"
+
+#: rigidbody.cc:31 softbody.cc:38
+msgctxt "PropertyDescription|"
+msgid "Velocity of the center of mass"
+msgstr ""
+
+#: rigidbody.cc:32 softbody.cc:39
+#, fuzzy
+#| msgid "velocity"
+msgctxt "PropertyDescription|"
+msgid "Angular velocity of the body"
+msgstr "ਵੇਗ"
+
+#: rigidbody.cc:32 softbody.cc:39
+#, fuzzy
+#| msgid "velocity"
+msgctxt "PropertyName|"
+msgid "angularVelocity"
+msgstr "ਵੇਗ"
+
+#: rigidbody.cc:32 rigidbody.cc:60 softbody.cc:39
+#, fuzzy
+#| msgctxt "Units"
+#| msgid "rad/s"
+msgctxt "Units|"
+msgid "rad/s"
+msgstr "rad/s"
+
+#: rigidbody.cc:35 softbody.cc:44
+msgctxt "PropertyDescription|"
+msgid "Acceleration of the center of mass"
+msgstr ""
+
+#: rigidbody.cc:36 softbody.cc:45
+#, fuzzy
+#| msgid "acceleration"
+msgctxt "PropertyName|"
+msgid "angularAcceleration"
+msgstr "ਪਰਵੇਗ"
+
+#: rigidbody.cc:36 rigidbody.cc:65 softbody.cc:45
+#, fuzzy
+#| msgctxt "Units"
+#| msgid "rad/s²"
+msgctxt "Units|"
+msgid "rad/s²"
+msgstr "rad/s²"
+
+#: rigidbody.cc:37 softbody.cc:46
+#, fuzzy
+#| msgid "acceleration"
+msgctxt "PropertyDescription|"
+msgid "Angular acceleration of the body"
+msgstr "ਪਰਵੇਗ"
+
+#: rigidbody.cc:39 softbody.cc:48
+msgctxt "PropertyDescription|"
+msgid "Force that acts upon the body"
+msgstr ""
+
+#: rigidbody.cc:40 softbody.cc:49
+msgctxt "PropertyDescription|"
+msgid "Torque that acts upon the body"
+msgstr ""
+
+#: rigidbody.cc:40 softbody.cc:49
+msgctxt "PropertyName|"
+msgid "torque"
+msgstr ""
+
+#: rigidbody.cc:42 softbody.cc:50
+msgctxt "PropertyDescription|"
+msgid "Total mass of the body"
+msgstr ""
+
+#: rigidbody.cc:43 softbody.cc:51
+msgctxt "PropertyName|"
+msgid "inertia"
+msgstr ""
+
+#: rigidbody.cc:43 rigidbody.cc:73 softbody.cc:51
+#, fuzzy
+#| msgctxt "Units"
+#| msgid "kg m²"
+msgctxt "Units|"
+msgid "kg m²"
+msgstr "kg m²"
+
+#: rigidbody.cc:44 softbody.cc:52
+msgctxt "PropertyDescription|"
+msgid "Inertia \"tensor\" of the body"
+msgstr ""
+
+#: rigidbody.cc:47
+msgctxt "PropertyDescription|"
+msgid "angular momentum"
+msgstr ""
+
+#: rigidbody.cc:47 softbody.cc:40
+msgctxt "PropertyName|"
+msgid "angularMomentum"
+msgstr ""
+
+#: rigidbody.cc:47 rigidbody.cc:77
+#, fuzzy
+#| msgctxt "Units"
+#| msgid "kg m² rad/s"
+msgctxt "Units|"
+msgid "kg m² rad/s"
+msgstr "kg m² rad/s"
+
+#: rigidbody.cc:52
+msgctxt "ObjectClass|"
+msgid "RigidBodyErrors"
+msgstr ""
+
+#: rigidbody.cc:52
+msgctxt "ObjectDescription|"
+msgid "Errors class for RigidBody"
+msgstr ""
+
+#: rigidbody.cc:55
+msgctxt "PropertyName|"
+msgid "angleVariance"
+msgstr ""
+
+#: rigidbody.cc:56
+#, fuzzy
+#| msgid "charge"
+msgctxt "PropertyDescription|"
+msgid "angle variance"
+msgstr "ਚਾਰਜ"
+
+#: rigidbody.cc:60
+msgctxt "PropertyName|"
+msgid "angularVelocityVariance"
+msgstr ""
+
+#: rigidbody.cc:61
+#, fuzzy
+#| msgid "velocity"
+msgctxt "PropertyDescription|"
+msgid "angularVelocity variance"
+msgstr "ਵੇਗ"
+
+#: rigidbody.cc:65
+#, fuzzy
+#| msgid "acceleration"
+msgctxt "PropertyName|"
+msgid "angularAccelerationVariance"
+msgstr "ਪਰਵੇਗ"
+
+#: rigidbody.cc:66
+#, fuzzy
+#| msgid "acceleration"
+msgctxt "PropertyDescription|"
+msgid "angularAcceleration variance"
+msgstr "ਪਰਵੇਗ"
+
+#: rigidbody.cc:69
+#, fuzzy
+#| msgid "position"
+msgctxt "PropertyDescription|"
+msgid "torque variance"
+msgstr "ਸਥਿਤੀ"
+
+#: rigidbody.cc:69
+msgctxt "PropertyName|"
+msgid "torqueVariance"
+msgstr ""
+
+#: rigidbody.cc:73
+msgctxt "PropertyName|"
+msgid "inertiaVariance"
+msgstr ""
+
+#: rigidbody.cc:74
+#, fuzzy
+#| msgid "position"
+msgctxt "PropertyDescription|"
+msgid "inertia variance"
+msgstr "ਸਥਿਤੀ"
+
+#: rigidbody.cc:77
+msgctxt "PropertyName|"
+msgid "angularMomentumVariance"
+msgstr ""
+
+#: rigidbody.cc:78
+#, fuzzy
+#| msgid "acceleration"
+msgctxt "PropertyDescription|"
+msgid "angular momentum variance"
+msgstr "ਪਰਵੇਗ"
+
+#: rigidbody.cc:83
+#, fuzzy
+#| msgctxt "ObjectClass"
+#| msgid "Disk"
+msgctxt "ObjectClass|"
+msgid "Disk"
+msgstr "ਚੱਕਰੀ"
+
+#: rigidbody.cc:83
+#, fuzzy
+#| msgid "Body"
+msgctxt "ObjectDescription|"
+msgid "Rigid disk"
+msgstr "ਮੁੱਖਭਾਗ"
+
+#: rigidbody.cc:84
+msgctxt "PropertyDescription|"
+msgid "Radius of the disk"
+msgstr ""
+
+#: rigidbody.cc:84
+#, fuzzy
+#| msgctxt "PropertyName"
+#| msgid "radius"
+msgctxt "PropertyName|"
+msgid "radius"
+msgstr "ਰੇਡੀਅਸ"
+
+#: rigidbody.cc:86
+#, fuzzy
+#| msgctxt "ObjectClass"
+#| msgid "Polygon"
+msgctxt "ObjectClass|"
+msgid "BasePolygon"
+msgstr "ਬਹੁਭੁਜ"
+
+#: rigidbody.cc:86
+#, fuzzy
+#| msgctxt "ObjectClass"
+#| msgid "Polygon"
+msgctxt "ObjectDescription|"
+msgid "Base polygon body"
+msgstr "ਬਹੁਭੁਜ"
+
+#: rigidbody.cc:88
+#, fuzzy
+#| msgctxt "ObjectClass"
+#| msgid "Box"
+msgctxt "ObjectClass|"
+msgid "Box"
+msgstr "ਬਾਕਸ"
+
+#: rigidbody.cc:88
+#, fuzzy
+#| msgid "Body"
+msgctxt "ObjectDescription|"
+msgid "Rigid box"
+msgstr "ਮੁੱਖਭਾਗ"
+
+#: rigidbody.cc:89
+#, fuzzy
+#| msgid "Size of the box"
+msgctxt "PropertyDescription|"
+msgid "Size of the box"
+msgstr "ਬਕਸੇ ਦਾ ਆਕਾਰ"
+
+#: rigidbody.cc:89 tool.cc:39 tool.cc:46 tool.cc:68 tool.cc:80
+#, fuzzy
+#| msgctxt "PropertyName"
+#| msgid "size"
+msgctxt "PropertyName|"
+msgid "size"
+msgstr "ਆਕਾਰ"
+
+#: rigidbody.cc:91
+#, fuzzy
+#| msgctxt "ObjectClass"
+#| msgid "Polygon"
+msgctxt "ObjectClass|"
+msgid "Polygon"
+msgstr "ਬਹੁਭੁਜ"
+
+#: rigidbody.cc:91
+msgctxt "ObjectDescription|"
+msgid "Rigid polygon body"
+msgstr ""
+
+#: rigidbody.cc:92
+#, fuzzy
+#| msgid "Vertex list"
+msgctxt "PropertyDescription|"
+msgid "Vertex list"
+msgstr "ਭੁਜਾ ਲਿਸਟ"
+
+#: rigidbody.cc:92
+#, fuzzy
+#| msgctxt "PropertyName"
+#| msgid "vertices"
+msgctxt "PropertyName|"
+msgid "vertices"
+msgstr "ਭੁਜਾਵਾਂ"
+
+#: softbody.cc:31
+#, fuzzy
+#| msgctxt "ObjectClass"
+#| msgid "Particle"
+msgctxt "ObjectClass|"
+msgid "SoftBodyParticle"
+msgstr "ਤੱਤ"
+
+#: softbody.cc:31
+#, fuzzy
+#| msgid "Gas particle"
+msgctxt "ObjectDescription|"
+msgid "SoftBody particle"
+msgstr "ਗੈਸੀ ਤੱਤ"
+
+#: softbody.cc:32
+msgctxt "ObjectClass|"
+msgid "SoftBodySpring"
+msgstr ""
+
+#: softbody.cc:32
+#, fuzzy
+#| msgid "Gas particle"
+msgctxt "ObjectDescription|"
+msgid "SoftBody spring"
+msgstr "ਗੈਸੀ ਤੱਤ"
+
+#: softbody.cc:33
+#, fuzzy
+#| msgid "Body"
+msgctxt "ObjectClass|"
+msgid "SoftBody"
+msgstr "ਮੁੱਖਭਾਗ"
+
+#: softbody.cc:33
+msgctxt "ObjectDescription|"
+msgid "Deformable SoftBody"
+msgstr ""
+
+#: softbody.cc:34
+#, fuzzy
+#| msgid "Show internal items"
+msgctxt "PropertyDescription|"
+msgid "Show internal items"
+msgstr "ਅੰਦਰੂਨੀ ਆਈਟਮਾਂ ਵੇਖੋ"
+
+#: softbody.cc:34
+#, fuzzy
+#| msgid "Show internal items"
+msgctxt "PropertyName|"
+msgid "showInternalItems"
+msgstr "ਅੰਦਰੂਨੀ ਆਈਟਮਾਂ ਵੇਖੋ"
+
+#: softbody.cc:40
+#, fuzzy
+#| msgctxt "Units"
+#| msgid "kg m²/s"
+msgctxt "Units|"
+msgid "kg m²/s"
+msgstr "kg m²/s"
+
+#: softbody.cc:41
+msgctxt "PropertyDescription|"
+msgid "Angular momentum of the body"
+msgstr ""
+
+#: softbody.cc:53
+msgctxt "PropertyName|"
+msgid "borderParticleNames"
+msgstr ""
+
+#: softbody.cc:54
+msgctxt "PropertyDescription|"
+msgid "Border particle names (temporal property)"
+msgstr ""
+
+#: solver.cc:25
+msgctxt "ObjectClass|"
+msgid "Solver"
+msgstr ""
+
+#: solver.cc:25
+msgctxt "ObjectDescription|"
+msgid "Solver"
+msgstr ""
+
+#: solver.cc:26
+msgctxt "PropertyDescription|"
+msgid "Solver type"
+msgstr ""
+
+#: solver.cc:26
+msgctxt "PropertyName|"
+msgid "solverType"
+msgstr ""
+
+#: solver.cc:27
+#, fuzzy
+#| msgctxt "PropertyName"
+#| msgid "size"
+msgctxt "PropertyDescription|"
+msgid "Step size"
+msgstr "ਆਕਾਰ"
+
+#: solver.cc:27
+msgctxt "PropertyName|"
+msgid "stepSize"
+msgstr ""
+
+#: solver.cc:27 world.cc:35
+#, fuzzy
+msgctxt "Units|"
+msgid "s"
+msgstr "%1/s"
+
+#: solver.cc:29
+msgctxt "PropertyDescription|"
+msgid "Allowed relative tolerance"
+msgstr ""
+
+#: solver.cc:29
+msgctxt "PropertyName|"
+msgid "toleranceRel"
+msgstr ""
+
+#: solver.cc:30
+msgctxt "PropertyDescription|"
+msgid "Count of dynamic variables"
+msgstr ""
+
+#: solver.cc:30
+#, fuzzy
+msgctxt "PropertyName|"
+msgid "dimension"
+msgstr "ਮਾਪ"
+
+#: solver.cc:32
+msgctxt "PropertyDescription|"
+msgid "Maximal local error ratio during last step"
+msgstr ""
+
+#: solver.cc:32
+#, fuzzy
+#| msgctxt "PropertyName"
+#| msgid "localPosition1"
+msgctxt "PropertyName|"
+msgid "localErrorRatio"
+msgstr "ਲੋਕਲਸਥਿਤੀ1"
+
+#: spring.cc:28
+msgctxt "ObjectClass|"
+msgid "Spring"
+msgstr ""
+
+#: spring.cc:28
+msgctxt "ObjectDescription|"
+msgid "Massless spring which can be connected to bodies"
+msgstr ""
+
+#: spring.cc:30
+#, fuzzy
+#| msgid "Current length"
+msgctxt "PropertyDescription|"
+msgid "Rest length"
+msgstr "ਮੌਜੂਦਾ ਲੰਬਾਈ"
+
+#: spring.cc:31
+#, fuzzy
+#| msgid "Current length"
+msgctxt "PropertyDescription|"
+msgid "Current length"
+msgstr "ਮੌਜੂਦਾ ਲੰਬਾਈ"
+
+#: spring.cc:31
+#, fuzzy
+#| msgctxt "PropertyName"
+#| msgid "length"
+msgctxt "PropertyName|"
+msgid "length"
+msgstr "ਲੰਬਾਈ"
+
+#: spring.cc:32
+msgctxt "PropertyDescription|"
+msgid "Stiffness"
+msgstr ""
+
+#: spring.cc:32
+msgctxt "PropertyName|"
+msgid "stiffness"
+msgstr ""
+
+#: spring.cc:32 spring.cc:51 spring.cc:53
+#, fuzzy
+#| msgctxt "Units"
+#| msgid "N/m"
+msgctxt "Units|"
+msgid "N/m"
+msgstr "N/m"
+
+#: spring.cc:33
+msgctxt "PropertyDescription|"
+msgid "Damping"
+msgstr ""
+
+#: spring.cc:33
+msgctxt "PropertyName|"
+msgid "damping"
+msgstr ""
+
+#: spring.cc:33
+#, fuzzy
+#| msgctxt "Units"
+#| msgid "N s/m"
+msgctxt "Units|"
+msgid "N s/m"
+msgstr "N s/m"
+
+#: spring.cc:42
+#, fuzzy
+#| msgid "Gravitation constant"
+msgctxt "PropertyDescription|"
+msgid "Spring tension force"
+msgstr "ਗੁਰੂਤਾ ਸਥਿਰ"
+
+#: spring.cc:45
+msgctxt "ObjectClass|"
+msgid "SpringErrors"
+msgstr ""
+
+#: spring.cc:45
+msgctxt "ObjectDescription|"
+msgid "Errors class for Spring"
+msgstr ""
+
+#: spring.cc:47
+msgctxt "PropertyName|"
+msgid "restLengthVariance"
+msgstr ""
+
+#: spring.cc:48
+#, fuzzy
+#| msgid "Current length"
+msgctxt "PropertyDescription|"
+msgid "Rest length variance"
+msgstr "ਮੌਜੂਦਾ ਲੰਬਾਈ"
+
+#: spring.cc:49
+msgctxt "PropertyName|"
+msgid "lengthVariance"
+msgstr ""
+
+#: spring.cc:50
+#, fuzzy
+#| msgid "Current length"
+msgctxt "PropertyDescription|"
+msgid "Current length variance"
+msgstr "ਮੌਜੂਦਾ ਲੰਬਾਈ"
+
+#: spring.cc:51
+msgctxt "PropertyName|"
+msgid "stiffnessVariance"
+msgstr ""
+
+#: spring.cc:52
+#, fuzzy
+#| msgid "position"
+msgctxt "PropertyDescription|"
+msgid "Stiffness variance"
+msgstr "ਸਥਿਤੀ"
+
+#: spring.cc:53
+msgctxt "PropertyName|"
+msgid "dampingVariance"
+msgstr ""
+
+#: spring.cc:54
+#, fuzzy
+#| msgid "position"
+msgctxt "PropertyDescription|"
+msgid "Damping variance"
+msgstr "ਸਥਿਤੀ"
+
+#: spring.cc:55
+#, fuzzy
+#| msgctxt "PropertyName"
+#| msgid "localPosition1"
+msgctxt "PropertyName|"
+msgid "localPosition1Variance"
+msgstr "ਲੋਕਲਸਥਿਤੀ1"
+
+#: spring.cc:56
+#, fuzzy
+#| msgid "Local position 1"
+msgctxt "PropertyDescription|"
+msgid "Local position 1 variance"
+msgstr "ਲੋਕਲ ਸਥਿਤੀ 1"
+
+#: spring.cc:57
+#, fuzzy
+#| msgctxt "PropertyName"
+#| msgid "localPosition2"
+msgctxt "PropertyName|"
+msgid "localPosition2Variance"
+msgstr "ਲੋਕਲਸਥਿਤੀ2"
+
+#: spring.cc:58
+#, fuzzy
+#| msgid "Local position 2"
+msgctxt "PropertyDescription|"
+msgid "Local position 2 variance"
+msgstr "ਲੋਕਲ ਸਥਿਤੀ 2"
+
+#: spring.cc:59
+#, fuzzy
+#| msgctxt "PropertyName"
+#| msgid "position1"
+msgctxt "PropertyName|"
+msgid "position1Variance"
+msgstr "ਸਥਿਤੀ1"
+
+#: spring.cc:60
+#, fuzzy
+#| msgid "Position1"
+msgctxt "PropertyDescription|"
+msgid "Position1 variance"
+msgstr "ਸਥਿਤੀ1"
+
+#: spring.cc:61
+#, fuzzy
+#| msgctxt "PropertyName"
+#| msgid "position2"
+msgctxt "PropertyName|"
+msgid "position2Variance"
+msgstr "ਸਥਿਤੀ2"
+
+#: spring.cc:62
+#, fuzzy
+#| msgid "Position2"
+msgctxt "PropertyDescription|"
+msgid "Position2 variance"
+msgstr "ਸਥਿਤੀ2"
+
+#: spring.cc:64
+#, fuzzy
+#| msgid "position"
+msgctxt "PropertyDescription|"
+msgid "Spring tension force variance"
+msgstr "ਸਥਿਤੀ"
+
+#: tool.cc:26
+#, fuzzy
+msgctxt "ObjectClass|"
+msgid "NoteImage"
+msgstr "ਨੋਟ"
+
+#: tool.cc:26
+msgctxt "ObjectDescription|"
+msgid "NoteImage: an image embedded in Note"
+msgstr ""
+
+#: tool.cc:28
+#, fuzzy
+msgctxt "PropertyDescription|"
+msgid "Image data"
+msgstr "ਚਿੱਤਰ ਡਾਟਾ"
+
+#: tool.cc:28
+#, fuzzy
+msgctxt "PropertyName|"
+msgid "image"
+msgstr "ਚਿੱਤਰ"
+
+#: tool.cc:31
+msgctxt "ObjectClass|"
+msgid "NoteFormula"
+msgstr ""
+
+#: tool.cc:31
+msgctxt "ObjectDescription|"
+msgid "NoteFormula: a formula embedded in Note"
+msgstr ""
+
+#: tool.cc:33
+msgctxt "PropertyDescription|"
+msgid "Formula code"
+msgstr ""
+
+#: tool.cc:33
+#, fuzzy
+msgctxt "PropertyName|"
+msgid "code"
+msgstr "ਕੋਡ"
+
+#: tool.cc:36
+#, fuzzy
+msgctxt "ObjectClass|"
+msgid "Note"
+msgstr "ਨੋਟ"
+
+#: tool.cc:36
+msgctxt "ObjectDescription|"
+msgid "Note: displays a textual note on the scene"
+msgstr ""
+
+#: tool.cc:38
+msgctxt "PropertyDescription|"
+msgid "Note position on the scene"
+msgstr ""
+
+#: tool.cc:39
+msgctxt "PropertyDescription|"
+msgid "Note size on the scene"
+msgstr ""
+
+#: tool.cc:40
+#, fuzzy
+msgctxt "PropertyDescription|"
+msgid "Text"
+msgstr "ਟੈਕਸਟ"
+
+#: tool.cc:40
+#, fuzzy
+#| msgctxt "PropertyName"
+#| msgid "text"
+msgctxt "PropertyName|"
+msgid "text"
+msgstr "ਟੈਕਸਟ"
+
+#: tool.cc:43
+#, fuzzy
+#| msgctxt "ObjectClass"
+#| msgid "Graph"
+msgctxt "ObjectClass|"
+msgid "Graph"
+msgstr "ਗਰਾਫ਼"
+
+#: tool.cc:43
+msgctxt "ObjectDescription|"
+msgid "Graph: plots a graph of any properties"
+msgstr ""
+
+#: tool.cc:45
+msgctxt "PropertyDescription|"
+msgid "Graph position on the scene"
+msgstr ""
+
+#: tool.cc:46
+msgctxt "PropertyDescription|"
+msgid "Graph size on the scene"
+msgstr ""
+
+#: tool.cc:47
+#, fuzzy
+msgctxt "PropertyDescription|"
+msgid "X axis: object"
+msgstr "ਵਿਸ਼ੇਸ਼ਤਾ"
+
+#: tool.cc:47
+#, fuzzy
+#| msgctxt "PropertyName"
+#| msgid "object"
+msgctxt "PropertyName|"
+msgid "objectX"
+msgstr "ਆਬਜੈਕਟ"
+
+#: tool.cc:48
+#, fuzzy
+msgctxt "PropertyDescription|"
+msgid "X axis: object property"
+msgstr "ਵਿਸ਼ੇਸ਼ਤਾ"
+
+#: tool.cc:48
+#, fuzzy
+msgctxt "PropertyName|"
+msgid "propertyX"
+msgstr "ਵਿਸ਼ੇਸ਼ਤਾ"
+
+#: tool.cc:49
+#, fuzzy
+#| msgid "Vector index"
+msgctxt "PropertyDescription|"
+msgid "X axis: vector index"
+msgstr "ਵੈਕਟਰ ਇੰਡੈਕਸ"
+
+#: tool.cc:49
+#, fuzzy
+#| msgctxt "PropertyName"
+#| msgid "index"
+msgctxt "PropertyName|"
+msgid "indexX"
+msgstr "ਇੰਡੈਕਸ"
+
+#: tool.cc:50
+#, fuzzy
+msgctxt "PropertyDescription|"
+msgid "Y axis: object"
+msgstr "ਵਿਸ਼ੇਸ਼ਤਾ"
+
+#: tool.cc:50
+#, fuzzy
+#| msgctxt "PropertyName"
+#| msgid "object"
+msgctxt "PropertyName|"
+msgid "objectY"
+msgstr "ਆਬਜੈਕਟ"
+
+#: tool.cc:51
+#, fuzzy
+msgctxt "PropertyDescription|"
+msgid "Y axis: property"
+msgstr "ਵਿਸ਼ੇਸ਼ਤਾ"
+
+#: tool.cc:51
+#, fuzzy
+msgctxt "PropertyName|"
+msgid "propertyY"
+msgstr "ਵਿਸ਼ੇਸ਼ਤਾ"
+
+#: tool.cc:52
+#, fuzzy
+#| msgid "Vector index"
+msgctxt "PropertyDescription|"
+msgid "Y axis: vector index"
+msgstr "ਵੈਕਟਰ ਇੰਡੈਕਸ"
+
+#: tool.cc:52
+#, fuzzy
+#| msgctxt "PropertyName"
+#| msgid "index"
+msgctxt "PropertyName|"
+msgid "indexY"
+msgstr "ਇੰਡੈਕਸ"
+
+#: tool.cc:53
+msgctxt "PropertyDescription|"
+msgid "Auto-limits along X axis"
+msgstr ""
+
+#: tool.cc:53
+#, fuzzy
+msgctxt "PropertyName|"
+msgid "autoLimitsX"
+msgstr "ਲਿਮਟ"
+
+#: tool.cc:54
+msgctxt "PropertyDescription|"
+msgid "Auto-limits along Y axis"
+msgstr ""
+
+#: tool.cc:54
+#, fuzzy
+msgctxt "PropertyName|"
+msgid "autoLimitsY"
+msgstr "ਲਿਮਟ"
+
+#: tool.cc:55
+msgctxt "PropertyDescription|"
+msgid "Limits along X axis"
+msgstr ""
+
+#: tool.cc:55
+#, fuzzy
+#| msgctxt "PropertyName"
+#| msgid "limits"
+msgctxt "PropertyName|"
+msgid "limitsX"
+msgstr "ਲਿਮਟ"
+
+#: tool.cc:56
+msgctxt "PropertyDescription|"
+msgid "Limits along Y axis"
+msgstr ""
+
+#: tool.cc:56
+#, fuzzy
+#| msgctxt "PropertyName"
+#| msgid "limits"
+msgctxt "PropertyName|"
+msgid "limitsY"
+msgstr "ਲਿਮਟ"
+
+#: tool.cc:57
+#, fuzzy
+#| msgid "Show lines on the graph"
+msgctxt "PropertyDescription|"
+msgid "Show points on the graph"
+msgstr "ਗਰਾਫ਼ ਉੱਤੇ ਲਾਈਨਾਂ ਵੇਖੋ"
+
+#: tool.cc:57
+#, fuzzy
+#| msgid "points"
+msgctxt "PropertyName|"
+msgid "showPoints"
+msgstr "ਬਿੰਦੂ"
+
+#: tool.cc:58
+#, fuzzy
+#| msgid "Show lines on the graph"
+msgctxt "PropertyDescription|"
+msgid "Show lines on the graph"
+msgstr "ਗਰਾਫ਼ ਉੱਤੇ ਲਾਈਨਾਂ ਵੇਖੋ"
+
+#: tool.cc:58
+msgctxt "PropertyName|"
+msgid "showLines"
+msgstr ""
+
+#: tool.cc:59
+#, fuzzy
+#| msgid "Current value"
+msgctxt "PropertyDescription|"
+msgid "Current value"
+msgstr "ਮੌਜੂਦਾ ਮੁੱਲ"
+
+#: tool.cc:59
+#, fuzzy
+#| msgid "Current value"
+msgctxt "PropertyName|"
+msgid "currentValue"
+msgstr "ਮੌਜੂਦਾ ਮੁੱਲ"
+
+#: tool.cc:60 tool.cc:101
+#, fuzzy
+#| msgid "points"
+msgctxt "PropertyDescription|"
+msgid "points"
+msgstr "ਬਿੰਦੂ"
+
+#: tool.cc:60 tool.cc:101
+#, fuzzy
+#| msgid "points"
+msgctxt "PropertyName|"
+msgid "points"
+msgstr "ਬਿੰਦੂ"
+
+#: tool.cc:61
+#, fuzzy
+#| msgid "units"
+msgctxt "PropertyName|"
+msgid "unitsX"
+msgstr "ਇਕਾਈ"
+
+#: tool.cc:61
+msgctxt "PropertyName|"
+msgid "Units along X axis"
+msgstr ""
+
+#: tool.cc:62
+#, fuzzy
+#| msgid "units"
+msgctxt "PropertyName|"
+msgid "unitsY"
+msgstr "ਇਕਾਈ"
+
+#: tool.cc:62
+msgctxt "PropertyName|"
+msgid "Units along Y axis"
+msgstr ""
+
+#: tool.cc:65
+#, fuzzy
+msgctxt "ObjectClass|"
+msgid "Meter"
+msgstr "%1 ਮੀਟਰ"
+
+#: tool.cc:65
+msgctxt "ObjectDescription|"
+msgid "Meter: displays any property on the scene"
+msgstr ""
+
+#: tool.cc:67
+msgctxt "PropertyDescription|"
+msgid "Meter position on the scene"
+msgstr ""
+
+#: tool.cc:68
+msgctxt "PropertyDescription|"
+msgid "Meter size on the scene"
+msgstr ""
+
+#: tool.cc:69
+#, fuzzy
+msgctxt "PropertyDescription|"
+msgid "Observed object"
+msgstr "ਵਿਸ਼ੇਸ਼ਤਾ"
+
+#: tool.cc:69 tool.cc:81
+#, fuzzy
+#| msgctxt "PropertyName"
+#| msgid "object"
+msgctxt "PropertyName|"
+msgid "object"
+msgstr "ਆਬਜੈਕਟ"
+
+#: tool.cc:70
+#, fuzzy
+msgctxt "PropertyDescription|"
+msgid "Observed property"
+msgstr "ਵਿਸ਼ੇਸ਼ਤਾ"
+
+#: tool.cc:70 tool.cc:82
+#, fuzzy
+msgctxt "PropertyName|"
+msgid "property"
+msgstr "ਵਿਸ਼ੇਸ਼ਤਾ"
+
+#: tool.cc:71 tool.cc:83
+#, fuzzy
+#| msgid "Vector index"
+msgctxt "PropertyDescription|"
+msgid "Vector index"
+msgstr "ਵੈਕਟਰ ਇੰਡੈਕਸ"
+
+#: tool.cc:71 tool.cc:83
+#, fuzzy
+#| msgctxt "PropertyName"
+#| msgid "index"
+msgctxt "PropertyName|"
+msgid "index"
+msgstr "ਇੰਡੈਕਸ"
+
+#: tool.cc:72
+#, fuzzy
+#| msgid "Display digits"
+msgctxt "PropertyDescription|"
+msgid "Display digits"
+msgstr "ਅੰਕ ਵੇਖੋ"
+
+#: tool.cc:72
+#, fuzzy
+#| msgctxt "PropertyName"
+#| msgid "digits"
+msgctxt "PropertyName|"
+msgid "digits"
+msgstr "ਅੰਕ"
+
+#: tool.cc:73 tool.cc:90
+#, fuzzy
+#| msgid "Value"
+msgctxt "PropertyDescription|"
+msgid "Value"
+msgstr "ਮੁੱਲ"
+
+#: tool.cc:73 tool.cc:90
+#, fuzzy
+#| msgid "value"
+msgctxt "PropertyName|"
+msgid "value"
+msgstr "ਮੁੱਲ"
+
+#: tool.cc:74
+#, fuzzy
+msgctxt "PropertyDescription|"
+msgid "Units of measured property"
+msgstr "ਵਿਸ਼ੇਸ਼ਤਾ"
+
+#: tool.cc:74 tool.cc:92
+#, fuzzy
+#| msgid "units"
+msgctxt "PropertyName|"
+msgid "units"
+msgstr "ਇਕਾਈ"
+
+#: tool.cc:77
+#, fuzzy
+#| msgctxt "ObjectClass"
+#| msgid "Controller"
+msgctxt "ObjectClass|"
+msgid "Controller"
+msgstr "ਕੰਟਰੋਲਰ"
+
+#: tool.cc:77
+msgctxt "ObjectDescription|"
+msgid "Controller: allows to easily control any property"
+msgstr ""
+
+#: tool.cc:79
+msgctxt "PropertyDescription|"
+msgid "Controller position on the scene"
+msgstr ""
+
+#: tool.cc:80
+msgctxt "PropertyDescription|"
+msgid "Controller size on the scene"
+msgstr ""
+
+#: tool.cc:81
+#, fuzzy
+#| msgctxt "ObjectClass"
+#| msgid "Controller"
+msgctxt "PropertyDescription|"
+msgid "Controlled object"
+msgstr "ਕੰਟਰੋਲਰ"
+
+#: tool.cc:82
+#, fuzzy
+#| msgctxt "ObjectClass"
+#| msgid "Controller"
+msgctxt "PropertyDescription|"
+msgid "Controlled property"
+msgstr "ਕੰਟਰੋਲਰ"
+
+#: tool.cc:84
+#, fuzzy
+msgctxt "PropertyDescription|"
+msgid "Limits"
+msgstr "ਲਿਮਟ"
+
+#: tool.cc:84
+#, fuzzy
+#| msgctxt "PropertyName"
+#| msgid "limits"
+msgctxt "PropertyName|"
+msgid "limits"
+msgstr "ਲਿਮਟ"
+
+#: tool.cc:85
+msgctxt "PropertyName|"
+msgid "increaseShortcut"
+msgstr ""
+
+#: tool.cc:86
+msgctxt "PropertyDescription|"
+msgid "Shortcut to increase the value"
+msgstr ""
+
+#: tool.cc:87
+msgctxt "PropertyName|"
+msgid "decreaseShortcut"
+msgstr ""
+
+#: tool.cc:88
+msgctxt "PropertyDescription|"
+msgid "Shortcut to decrease the value"
+msgstr ""
+
+#: tool.cc:89
+#, fuzzy
+#| msgid "Current value"
+msgctxt "PropertyDescription|"
+msgid "Increment value"
+msgstr "ਮੌਜੂਦਾ ਮੁੱਲ"
+
+#: tool.cc:89
+msgctxt "PropertyName|"
+msgid "increment"
+msgstr ""
+
+#: tool.cc:92
+#, fuzzy
+#| msgctxt "ObjectClass"
+#| msgid "Controller"
+msgctxt "PropertyDescription|"
+msgid "Units of controlled property"
+msgstr "ਕੰਟਰੋਲਰ"
+
+#: tool.cc:95
+msgctxt "ObjectClass|"
+msgid "Tracer"
+msgstr ""
+
+#: tool.cc:95
+msgctxt "ObjectDescription|"
+msgid "Tracer: traces trajectory of a point on a body"
+msgstr ""
+
+#: tool.cc:97
+msgctxt "PropertyDescription|"
+msgid "Traced body"
+msgstr ""
+
+#: tool.cc:99
+#, fuzzy
+#| msgid "Local position 1"
+msgctxt "PropertyDescription|"
+msgid "Local position"
+msgstr "ਲੋਕਲ ਸਥਿਤੀ 1"
+
+#: world.cc:32
+#, fuzzy
+#| msgid "Tool"
+msgctxt "ObjectClass|"
+msgid "Tool"
+msgstr "ਟੂਲ"
+
+#: world.cc:32
+#, fuzzy
+#| msgid "Tool"
+msgctxt "ObjectDescription|"
+msgid "Tool"
+msgstr "ਟੂਲ"
+
+#: world.cc:34
+#, fuzzy
+#| msgid "World"
+msgctxt "ObjectClass|"
+msgid "World"
+msgstr "ਸੰਸਾਰ"
+
+#: world.cc:34
+#, fuzzy
+#| msgid "World"
+msgctxt "ObjectDescription|"
+msgid "World"
+msgstr "ਸੰਸਾਰ"
+
+#: world.cc:35
+#, fuzzy
+#| msgid "Current time"
+msgctxt "PropertyDescription|"
+msgid "Current time"
+msgstr "ਮੌਜੂਦਾ ਸਮਾਂ"
+
+#: world.cc:35
+#, fuzzy
+#| msgctxt "PropertyName"
+#| msgid "time"
+msgctxt "PropertyName|"
+msgid "time"
+msgstr "ਸਮਾਂ"
+
+#: world.cc:36
+msgctxt "PropertyDescription|"
+msgid "Simulation speed scale"
+msgstr ""
+
+#: world.cc:36
+#, fuzzy
+#| msgid "timeScale"
+msgctxt "PropertyName|"
+msgid "timeScale"
+msgstr "ਸਮਾਂ-ਸਕੇਲ"
+
+#: world.cc:37
+msgctxt "PropertyName|"
+msgid "errorsCalculation"
+msgstr ""
+
+#: world.cc:38
+msgctxt "PropertyDescription|"
+msgid "Enable global error calculation"
+msgstr ""
+
+#: xmlfile.cc:201
+msgctxt "QObject|"
+msgid "The file is not a StepCoreXML file."
+msgstr ""
+
+#: xmlfile.cc:247
+#, qt-format
+msgctxt "QObject|"
+msgid "Unknown item type \"%1\""
+msgstr ""
+
+#: xmlfile.cc:268
+#, qt-format
+msgctxt "QObject|"
+msgid "Unknown solver type \"%1\""
+msgstr ""
+
+#: xmlfile.cc:282
+#, qt-format
+msgctxt "QObject|"
+msgid "Unknown collisionSolver type \"%1\""
+msgstr ""
+
+#: xmlfile.cc:296
+#, qt-format
+msgctxt "QObject|"
+msgid "Unknown constraint solver type \"%1\""
+msgstr ""
+
+#: xmlfile.cc:324
+#, qt-format
+msgctxt "QObject|"
+msgid "Wrong ID attribute value for %1"
+msgstr ""
+
+#: xmlfile.cc:329
+#, qt-format
+msgctxt "QObject|"
+msgid "Non-unique ID attribute value for %1"
+msgstr ""
+
+#: xmlfile.cc:357 xmlfile.cc:371
+#, qt-format
+msgctxt "QObject|"
+msgid "Property \"%1\" of \"%2\" has illegal value"
+msgstr ""
+
+#: xmlfile.cc:384
+msgctxt "QObject|"
+msgid "File is not writable."
+msgstr ""
+
+#, fuzzy
+#~| msgid "Body"
+#~ msgctxt "StepCore|"
+#~ msgid "Body"
+#~ msgstr "ਮੁੱਖਭਾਗ"
+
+#, fuzzy
+#~| msgid "Force"
+#~ msgctxt "StepCore|"
+#~ msgid "Force"
+#~ msgstr "ਬਲ"
+
+#, fuzzy
+#~| msgid "Item"
+#~ msgctxt "StepCore|"
+#~ msgid "Item"
+#~ msgstr "ਆਈਟਮ"
+
+#, fuzzy
+#~| msgid "Item"
+#~ msgctxt "StepCore|"
+#~ msgid "ItemGroup"
+#~ msgstr "ਆਈਟਮ"
+
+#, fuzzy
+#~| msgid "Joint"
+#~ msgctxt "StepCore|"
+#~ msgid "Joint"
+#~ msgstr "ਜੁਆਇੰਟ"
+
+#, fuzzy
+#~| msgid "Object"
+#~ msgctxt "StepCore|"
+#~ msgid "Object"
+#~ msgstr "ਆਬਜੈਕਟ"
+
+#, fuzzy
+#~| msgid "Object"
+#~ msgctxt "StepCore|"
+#~ msgid "ObjectErrors"
+#~ msgstr "ਆਬਜੈਕਟ"
+
+#, fuzzy
+#~| msgid "position"
+#~ msgctxt "StepCore|"
+#~ msgid "position"
+#~ msgstr "ਸਥਿਤੀ"
+
+#, fuzzy
+#~| msgid "velocity"
+#~ msgctxt "StepCore|"
+#~ msgid "velocity"
+#~ msgstr "ਵੇਗ"
+
+#, fuzzy
+#~| msgid "acceleration"
+#~ msgctxt "StepCore|"
+#~ msgid "acceleration"
+#~ msgstr "ਪਰਵੇਗ"
+
+#, fuzzy
+#~| msgid "force"
+#~ msgctxt "StepCore|"
+#~ msgid "force"
+#~ msgstr "ਬਲ"
+
+#, fuzzy
+#~| msgid "mass"
+#~ msgctxt "StepCore|"
+#~ msgid "mass"
+#~ msgstr "ਪੁੰਜ"
+
+#, fuzzy
+#~| msgid "charge"
+#~ msgctxt "StepCore|"
+#~ msgid "charge"
+#~ msgstr "ਚਾਰਜ"
+
+#, fuzzy
+#~| msgctxt "ObjectClass"
+#~| msgid "Plane"
+#~ msgctxt "ObjectClass|"
+#~ msgid "Plane"
+#~ msgstr "ਤਲ"
+
+#, fuzzy
+#~| msgctxt "PropertyName"
+#~| msgid "point1"
+#~ msgctxt "PropertyName|"
+#~ msgid "point1"
+#~ msgstr "ਬਿੰਦੂ1"
+
+#, fuzzy
+#~| msgctxt "PropertyName"
+#~| msgid "point2"
+#~ msgctxt "PropertyName|"
+#~ msgid "point2"
+#~ msgstr "ਬਿੰਦੂ2"
+
+#, fuzzy
+#~| msgid "points"
+#~ msgctxt "StepCore|"
+#~ msgid "points"
+#~ msgstr "ਬਿੰਦੂ"
+
+#, fuzzy
+#~| msgid "value"
+#~ msgctxt "StepCore|"
+#~ msgid "value"
+#~ msgstr "ਮੁੱਲ"
+
+#, fuzzy
+#~| msgid "Tool"
+#~ msgctxt "StepCore|"
+#~ msgid "Tool"
+#~ msgstr "ਟੂਲ"
+
+#, fuzzy
+#~| msgid "World"
+#~ msgctxt "StepCore|"
+#~ msgid "World"
+#~ msgstr "ਸੰਸਾਰ"
+
+#~ msgctxt "ObjectClass"
+#~ msgid "Body"
+#~ msgstr "ਮੁੱਖਭਾਗ"
+
+#~ msgctxt "ObjectClass"
+#~ msgid "Force"
+#~ msgstr "ਬਲ"
+
+#~ msgctxt "ObjectClass"
+#~ msgid "Item"
+#~ msgstr "ਆਈਟਮ"
+
+#~ msgctxt "ObjectClass"
+#~ msgid "Joint"
+#~ msgstr "ਜੁਆਇੰਟ"
+
+#~ msgctxt "PropertyName"
+#~ msgid "position"
+#~ msgstr "ਸਥਿਤੀ"
+
+#~ msgctxt "ObjectClass"
+#~ msgid "Object"
+#~ msgstr "ਆਬਜੈਕਟ"
+
+#~ msgctxt "PropertyName"
+#~ msgid "velocity"
+#~ msgstr "ਗਤੀ"
+
+#~ msgctxt "PropertyName"
+#~ msgid "acceleration"
+#~ msgstr "ਪਰਵੇਗ"
+
+#~ msgctxt "PropertyName"
+#~ msgid "force"
+#~ msgstr "ਬਲ"
+
+#~ msgctxt "PropertyName"
+#~ msgid "mass"
+#~ msgstr "ਭਾਰ"
+
+#~ msgctxt "PropertyName"
+#~ msgid "charge"
+#~ msgstr "ਚਾਰਜ"
+
+#~ msgctxt "PropertyName"
+#~ msgid "points"
+#~ msgstr "ਬਿੰਦੂ"
+
+#, fuzzy
+#~ msgctxt "PropertyName"
+#~ msgid "value"
+#~ msgstr "ਮੁੱਲ"
+
+#~ msgctxt "ObjectClass"
+#~ msgid "Tool"
+#~ msgstr "ਟੂਲ"
+
+#~ msgctxt "ObjectClass"
+#~ msgid "World"
+#~ msgstr "ਸੰਸਾਰ"

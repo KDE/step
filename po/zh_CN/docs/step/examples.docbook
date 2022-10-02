@@ -1,0 +1,242 @@
+<chapter id="examples">
+<title
+>&step; 示例</title
+> 
+<para
+>&step; 包含了几个指导性的示例来帮您理解这个程序的工作原则。从默认的一组中打开一个示例从主菜单选择 <menuchoice
+><guimenu
+>文件</guimenu
+> <guisubmenu
+>示例</guisubmenu
+> <guimenuitem
+>打开示例...</guimenuitem
+></menuchoice
+>。 </para>
+
+<para
+>您可以使用<menuchoice
+><guimenu
+>文件</guimenu
+> <guisubmenu
+>示例</guisubmenu
+> <guimenuitem
+>分享当前实验方案...</guimenuitem
+> </menuchoice
+>分享您自己的示例，或使用<menuchoice
+><guimenu
+>文件</guimenu
+> <guisubmenu
+>示例</guisubmenu
+> <guimenuitem
+>下载新的实验方案...</guimenuitem
+></menuchoice
+>下载其他用户分享的示例。已下载的示例可以使用<menuchoice
+><guimenu
+>文件</guimenu
+><guisubmenu
+>示例</guisubmenu
+> <guimenuitem
+>打开已下载的示例...</guimenuitem
+></menuchoice
+>菜单项打开。 </para>
+
+<para
+>您可以在下面找到默认示例的描述。 </para>
+
+<variablelist>
+<varlistentry id="brownian">
+<term
+>brownian.step</term>
+<listitem
+><para
+>绘制出刚性圆盘与40个在盒子中随机移动的质点撞击的轨迹。这个示例模拟<ulink url="https://zh.wikipedia.org/wiki/布朗运动"
+>布朗运动</ulink
+>中的理想气体粒子。</para
+></listitem>
+</varlistentry>
+
+<varlistentry id="pendulum">
+<term
+>doublependulum.step</term>
+<listitem
+><para
+>这个示例模拟 <ulink url="http://en.wikipedia.org/wiki/Double_pendulum"
+>双摆运动(英文)</ulink
+>，使用了两个质点与两个棒。</para
+></listitem>
+</varlistentry>
+
+<varlistentry id="eightpendulum">
+<term
+>eightpendulum.step</term>
+<listitem
+><para
+>这个示例是著名的<ulink url="http://zh.wikipedia.org/wiki/%E7%89%9B%E9%A1%BF%E6%91%86"
+>牛顿摆</ulink
+>的简单示范。它在 &step; 中使用棒、8个圆盘与一个方块来实现。在中央的六个圆盘不动的原因是它们只用来传递动量与能量，而非运动。</para
+></listitem>
+</varlistentry>
+
+<varlistentry id="first">
+<term
+>first.step: 第一个示例</term>
+<listitem
+><para
+>这个示例有两个部分。第一部分包含两个被一弹簧相连的质点，第二部分包含两个带电质点。</para>
+
+<variablelist>
+<varlistentry id="first-two-particles">
+<term
+>两个被一弹簧相连的质点</term>
+<listitem>
+  <para
+>在这个示例中，在场景中加入了两个质点并且之间有弹簧相连。两个质点的属性例如速度、动量、位置之类的已经在属性浏览器中设置好。弹簧的属性例如劲度系数、平衡长度、阻尼之类的也已经在属性浏览器中设置好。 </para>
+ <para>
+   <emphasis
+>该模拟的解释：</emphasis>
+ </para>
+ <para
+>这是一个很好的简弦运动示例。在这个示例中其中一个质点的加速度方向被设置为X 正半轴方向，另一个质点的加速度方向被设置为朝向 X 负半轴方向。结果就是两个质点方向相对地拉弹簧，而弹簧尽力使两个质点返回到它们原本的位置。于是这个系统进行和谐的运动。在这情况下的质点与弹簧的模拟可以在场景中看到。 </para>
+</listitem>
+</varlistentry>
+
+<varlistentry id="first-two-charged">
+<term
+>两个带电质点</term>
+<listitem>
+  <para
+>每个带电质点都设置了速度方向，使得带电质点沿着它们相应的速度方向移动。由于每个质点带有等量相反的电荷，所以质点尽力吸引对方。在这情况下的带电质点的模拟可以在场景中看到。 </para>
+</listitem>
+</varlistentry>
+</variablelist>
+</listitem>
+</varlistentry>
+
+<varlistentry id="fourpendula">
+<term
+>fourpendula.step</term>
+<listitem
+><para
+>这个示例是 <ulink url="http://zh.wikipedia.org/wiki/%E7%89%9B%E9%A1%BF%E6%91%86"
+>牛顿摆</ulink
+> 的正确演示。系统中的中间两个圆盘随着时间有肉眼可见的移动。</para
+></listitem>
+</varlistentry>
+
+<varlistentry id="gas">
+<term
+>gas.step</term>
+<listitem
+><para
+>这个示例模拟由 <ulink url="http://zh.wikipedia.org/wiki/%E5%B8%83%E6%9C%97%E8%BF%90%E5%8A%A8"
+>布朗运动</ulink
+> 造成的理想气体压强。</para
+></listitem>
+</varlistentry>
+
+<varlistentry id="graph">
+<term
+>graph.step</term>
+<listitem
+><para
+>画出由一个弹簧相连的两个质点构成的系统中的 particle1 的 速度-位置 图像。</para
+></listitem>
+</varlistentry>
+
+<varlistentry id="liquid">
+<term
+>liquid.step</term>
+<listitem
+><para
+>这个示例模拟单原子液体。</para
+></listitem>
+</varlistentry>
+
+<varlistentry id="lissajous">
+<term
+>lissajous.step</term>
+<listitem
+><para
+>这个实验模拟<ulink url="http://zh.wikipedia.org/wiki/利萨茹曲线"
+>利萨茹曲线</ulink
+>使用双质点模型。模型的参数可以通过在中间的控制器改变。</para
+></listitem>
+</varlistentry>
+
+<varlistentry id="motor1">
+<term
+>motor1.step</term>
+<listitem
+><para
+>模拟三角刚体在受到三个线性运动的运动情况。</para
+></listitem>
+</varlistentry>
+
+<varlistentry id="motor-example">
+<term
+>motor.step</term>
+<listitem
+><para
+>模拟线性运动和连接了弹簧的方块刚体之间的互动。</para
+></listitem>
+</varlistentry>
+
+<varlistentry id="note-example">
+<term
+>note.step</term>
+<listitem
+><para
+>带有 LaTeX 公式（<ulink url="http://zh.wikipedia.org/wiki/高斯散度定理"
+>高斯散度定理</ulink
+>）与内置图像。</para
+></listitem>
+</varlistentry>
+
+<varlistentry id="resonance">
+<term
+>resonance.step</term>
+<listitem
+><para
+>这个示例模拟带有圆形运动的系统中的共振。</para
+></listitem>
+</varlistentry>
+
+<varlistentry id="softbody">
+<term
+>softbody.step</term>
+<listitem
+><para
+>这个示例模拟两个刚体中间夹着软体时的交互。</para
+></listitem>
+</varlistentry>
+
+<varlistentry id="solar">
+<term
+>solar.step</term>
+<listitem
+><para
+>这个示例模拟太阳系的主要部分的运动（太阳与行星）。</para
+></listitem>
+</varlistentry>
+
+<varlistentry id="springs">
+<term
+>springs.step</term>
+<listitem
+><para
+>这个示例模拟由四个弹簧相连的五个质点的平面系统的运动。</para
+></listitem>
+</varlistentry>
+
+<varlistentry id="wave">
+<term
+>wave.step</term>
+<listitem
+><para
+>在场景中的图形显示的是绿色质点的振动。当您开始模拟时波从红色质点开始传播。蓝色质点会反射该波并会从反方向移动直到红色质点再次反射。过一会儿波会消失，因为弹簧有阻尼。</para
+></listitem>
+</varlistentry>
+
+</variablelist>
+
+</chapter>

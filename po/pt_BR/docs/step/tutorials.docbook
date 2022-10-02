@@ -1,0 +1,208 @@
+<chapter id="tutorials">
+<title
+>Familiarizando-se com o &step;: os tutoriais</title
+> 
+<para
+>A opção do menu <menuchoice
+><guimenu
+>Arquivo</guimenu
+><guimenuitem
+>Abrir um Tutorial...</guimenuitem
+></menuchoice
+> invoca uma janela de arquivos, na qual poderá carregar os tutoriais predefinidos no &step;. Existem cinco tutoriais e você irá aprendendo como interagir com cada um dos elementos do &step;. O melhor é começar pelo primeiro tutorial, clicando no arquivo <filename
+>tutorial1.step</filename
+>. Isto irá invocar o Tutorial 1 no &step;.</para>
+<note
+><para
+>Se você não visualizar o tutorial corretamente você pode tentar ampliá-lo para exibi-lo melhor.</para
+></note>
+
+<para
+>O painel do <guilabel
+>Mundo</guilabel
+>, à direita, mostra todos os objetos que existem no seu cenário. Ao clicar num objeto, o painel de <guilabel
+>Propriedades</guilabel
+> abaixo mostra as propriedades deste objeto. Você poderá alterar aqui as propriedades, clicando na que deseja modificar.</para>
+
+<para
+>Cada tutorial consiste de algum texto que apresenta os elementos novos e que explica as suas propriedades. Então, será solicitado que se altere algumas propriedades dos elementos, de modo a obter um novo resultado da experiência. </para>
+
+<sect1 id="tutorial1">
+<title
+>Tutorial 1: Corpos e molas</title>
+<para
+>Este tutorial fala sobre os corpos e as molas, e sobre como iniciar a sua primeira simulação.</para>
+<para
+>Um corpo físico, ou corpo para abreviar, é um objeto que poderá ser descrito pelas teorias da mecânica clássica, ou mecânica quântica, e que pode ser testada com instrumentos físicos. Isto inclui a determinação da posição e, em alguns casos, a sua orientação no espaço, assim como as formas de alterar estes parâmetros, através da aplicação de forças.</para>
+<para
+>Uma mola é um objeto flexível e elástico, que é usado para guardar energia mecânica.</para>
+<screenshot>
+     <screeninfo
+>Tutorial 1 experimento</screeninfo>
+	<mediaobject>
+	  <imageobject>
+	    <imagedata fileref="tutorial1.png" format="PNG"/>
+	  </imageobject>
+	    <textobject>
+	    <phrase
+>Tutorial 1 experimento</phrase>
+	  </textobject>
+	</mediaobject>
+</screenshot>
+<para
+>A experiência física neste tutorial representa dois discos ligados por uma mola. Os discos possuem uma velocidade inicial numa direção tangente (a pequena seta azul) e uma aceleração (a seta vermelha), sendo que as molas possuem um coeficiente de elasticidade e onde o comprimento poderá ser alterado. Ao executar a experiência, você poderá ver os discos sendo puxados e empurrados pela mola. O tutorial convida-o a modificar a elasticidade da mola e também a tentar alterar a experiência do sistema.</para>
+<para
+>No fim deste tutorial, você deverá estar mais familiarizado com a interface do &step;, assim como deverá ser capaz de alterar facilmente as propriedades dos corpos.</para>
+</sect1>
+
+<sect1 id="tutorial2">
+<title
+>Tutorial 2: Controladores e gráficos</title>
+<para
+>Neste tutorial, você irá aprender mais sobre os controladores e os gráficos.</para>
+<para
+>Um controlador é um dispositivo que lhe permite modificar, de forma gráfica, uma propriedade de um corpo ou de uma mola. No tutorial, o controlador permite-lhe alterar a elasticidade da mola "mola-1". Ao mover a barra para a direita, ou usando a tecla W, você poderá aumentar o valor da elasticidade da "mola-1" e, no caso de mover a barra para a esquerda ou usar a tecla Q, poderá diminuir esse mesmo valor. Ao clicar com o botão direito no controlador, você poderá obter diversas ações de contexto e a janela <guilabel
+>Configurar o Controlador...</guilabel
+> permite-lhe alterar cada propriedade do controlador.</para>
+<screenshot>
+     <screeninfo
+>Tutorial 2 experimento</screeninfo>
+	<mediaobject>
+	  <imageobject>
+	    <imagedata fileref="tutorial2.png" format="PNG"/>
+	  </imageobject>
+	    <textobject>
+	    <phrase
+>Tutorial 2 experimento</phrase>
+	  </textobject>
+	</mediaobject>
+</screenshot>
+<para
+>Os gráficos permitem-lhe visualizar de forma gráfica a relação entre duas variáveis. O exemplo no tutorial imprime a evolução da partícula-1, à medida que o tempo avança no mundo-1. Ao clicar no botão direito, você poderá limpar ou apagar o gráfico, assim como editar, na janela de configuração, todas as propriedades deste gráfico.</para>
+<para
+>No fim deste tutorial, você poderá ser capaz de ser usar os controladores, para atuarem sobre as propriedades dos seus corpos, assim como os gráficos para vigiar propriedades específicas na sua experiência.</para>
+</sect1>
+
+<sect1 id="tutorial3">
+<title
+>Tutorial 3: Corpos rígidos e seguidores</title>
+<para
+>O tutorial 3 apresenta-lhe os corpos rígidos e os seguidores.</para>
+<para
+>Um corpo rígido é uma idealização de um corpo sólido, de tamanho finito, sobre o qual a deformação é ignorada. Em outras palavras, a distância entre dois pontos de um corpo rígido mantém-se constante no tempo, independentemente das forças externas exercidas sobre ele.</para>
+<para
+>Um seguidor é uma ferramenta que mostra a trajetória de um determinado ponto sobre um corpo rígido.</para>
+<screenshot>
+     <screeninfo
+>Propriedades do disco</screeninfo>
+	<mediaobject>
+	  <imageobject>
+	    <imagedata fileref="disk-properties.png" format="PNG"/>
+	  </imageobject>
+	    <textobject>
+	    <phrase
+>Propriedades do disco</phrase>
+	  </textobject>
+	</mediaobject>
+</screenshot>
+<para
+>Quando um corpo rígido (neste caso um disco) for selecionado, você poderá ver três pegas sobre ele. Ao usá-las, clicando sobre as mesmas e movendo-as, você poderá alterar a velocidade, o ângulo e a velocidade angular do corpo.</para>
+<screenshot>
+     <screeninfo
+>Tutorial 3: 2 seguidores</screeninfo>
+	<mediaobject>
+	  <imageobject>
+	    <imagedata fileref="tutorial3.png" format="PNG"/>
+	  </imageobject>
+	    <textobject>
+	    <phrase
+>Tutorial 3: 2 seguidores</phrase>
+	  </textobject>
+	</mediaobject>
+</screenshot>
+<para
+>A experiência no Tutorial 3 mostra um disco e uma caixa, ligados por uma mola. Um seguidor (em azul) já está na caixa. Você poderá adicionar um segundo: selecione o <guilabel
+>Seguidor</guilabel
+> no painel da <guilabel
+>Paleta</guilabel
+> e depois clique na caixa, no ponto onde desejar colocar o seguidor. No painel de <guilabel
+>Propriedades</guilabel
+>, clique na linha <guilabel
+>cor</guilabel
+> e, à direita desta linha, você poderá clicar no quadrado azul, para que apareça uma paleta de cores: poderá escolher uma nova cor para o seguidor. A imagem acima mostra dois seguidores, depois da simulação ter sido executada durante alguns segundos.</para>
+</sect1>
+
+<sect1 id="tutorial4">
+<title
+>Tutorial 4: Motores e forças</title>
+<para
+>Você tem dois tipos de motores disponíveis no &step;: motores lineares e circulares. Um motor linear aplica uma força constante a um dado ponto de um corpo, enquanto um motor circular aplica um momento angular constante a um corpo.</para>
+<para
+>Três forças diferentes podem ser adicionadas aos corpos: a força do peso, a força gravitacional e a força de Coulomb. Por padrão, todas as forças estão desativadas no &step;. A força de Coulomb é uma força que existia de forma intrínseca entre duas cargas.</para>
+<screenshot>
+     <screeninfo
+>Tutorial 4: motores</screeninfo>
+	<mediaobject>
+	  <imageobject>
+	    <imagedata fileref="tutorial4.png" format="PNG"/>
+	  </imageobject>
+	    <textobject>
+	    <phrase
+>Tutorial 4: motores</phrase>
+	  </textobject>
+	</mediaobject>
+</screenshot>
+<para
+>Na experiência, o usuário possui um disco e uma caixa ligadas por uma mola. Uma caixa plana no fundo irá criar uma barreira. O disco e a caixa possuem ambos um motor linear aplicado a eles. Dois controladores permitem-lhe alterar o valor da força de cada motor. Inicie a simulação e mexa nos controladores. Depois, pare a simulação e adicione uma força de peso no mundo (as forças são globais e aplicam-se a todo o mundo). Reinicie a simulação e analise a diferença.</para>
+<para
+>Você poderá também remover o motor linear na caixa e adicionar um motor circular em alternativa. Clique no <guilabel
+>Motor-Circular</guilabel
+> do painel da <guilabel
+>Paleta</guilabel
+> e depois clique na caixa. O motor circular será aplicado à caixa. Depois, você terá que definir o valor do torque, clicando e movendo a pega em cinza do motor.</para>
+<screenshot>
+     <screeninfo
+>Motor circular</screeninfo>
+	<mediaobject>
+	  <imageobject>
+	    <imagedata fileref="circular-motor.png" format="PNG"/>
+	  </imageobject>
+	    <textobject>
+	    <phrase
+>Motor circular</phrase>
+	  </textobject>
+	</mediaobject>
+</screenshot>
+<para
+>Este tutorial apresento-lhe os motores e as forças. Você deverá agora ser capaz de adicioná-los aos corpos.</para>
+</sect1>
+
+<sect1 id="tutorial5">
+<title
+>Tutorial 5: Juntas</title>
+<para
+>As juntas são objetos que ligam corpos entre si ou ao fundo. Você possui as seguintes juntas no &step;: âncoras, pregos, paus e cordas. Uma âncora é uma junta que fixa a posição do corpo. O corpo não poderá se mover quando tiver uma âncora. Um prego é uma junta que fixa um ponto do corpo, permitindo ainda que o corpo se mova em torno do prego. Um pau é uma junta que fixa a distância entre dois pontos de dois corpos.</para>
+<screenshot>
+     <screeninfo
+>Tutorial 5: pêndulo duplo</screeninfo>
+	<mediaobject>
+	  <imageobject>
+	    <imagedata fileref="tutorial5.png" format="PNG"/>
+	  </imageobject>
+	    <textobject>
+	    <phrase
+>Tutorial 5: pêndulo duplo</phrase>
+	  </textobject>
+	</mediaobject>
+</screenshot>
+<para
+>O tutorial 5 descreve um pêndulo duplo.</para>
+<para
+>Adicione uma <guilabel
+>Partícula</guilabel
+> ao cenário, juntando depois esta partícula à Partícula-2 com um pau. Clique no Pau no painel da <guilabel
+>Paleta</guilabel
+>. Depois, você terá que selecionar o primeiro objeto ligado ao pau (partícula-2), com o botão esquerdo, e depois arraste o mouse até ao segundo objeto (partícula-3) e solte o botão do mouse na partícula-3. Agora, você terá um pêndulo triplo!</para>
+</sect1>
+
+</chapter>

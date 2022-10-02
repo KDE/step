@@ -1,0 +1,392 @@
+<?xml version="1.0" ?>
+<!DOCTYPE book PUBLIC "-//KDE//DTD DocBook XML V4.5-Based Variant V1.1//EN" "dtd/kdedbx45.dtd" [
+  <!ENTITY kappname "&step;">
+  <!ENTITY package "kdeedu">
+  <!ENTITY tutorials SYSTEM "tutorials.docbook">
+  <!ENTITY examples SYSTEM "examples.docbook">
+  <!ENTITY % addindex "IGNORE">
+  <!ENTITY % Estonian  "INCLUDE"
+><!-- change language only here -->
+]>
+
+<book id="step" lang="&language;">
+
+<bookinfo>
+<title
+>&step;i käsiraamat</title>
+
+
+<authorgroup>
+<author
+>&Anne-Marie.Mahfouf; &Anne-Marie.Mahfouf.mail; </author>
+
+<othercredit role="translator"
+><firstname
+>Marek</firstname
+><surname
+>Laane</surname
+><affiliation
+><address
+><email
+>bald@smail.ee</email
+></address
+></affiliation
+><contrib
+>Tõlge eesti keelde</contrib
+></othercredit
+> 
+</authorgroup>
+
+
+<copyright>
+<year
+>2007</year>
+<holder
+>&Anne-Marie.Mahfouf;</holder>
+</copyright>
+
+<legalnotice
+>&FDLNotice;</legalnotice>
+
+<date
+>2007-12-06</date>
+<releaseinfo
+>0.0.3</releaseinfo>
+
+<abstract>
+<para
+>&step; on interaktiivne füüsikasimulaator. See võimaldab uurida füüsikamaailma reaalsust matkides. Asi käib nii: sina sead stseenile mõned kehad, määrad kindlaks teatud jõud, näiteks gravitatsiooni või vedrud, seejärel klõpsad nupule <guibutton
+>Simuleeri</guibutton
+> ning &step; näitab, mis vastavalt füüsikaseadustele stseenil juhtuma hakkab. Katses võib muuta kõigi kehade jõudude kõiki omadusi (isegi simulatsiooni ajal), et uurida, kuidas miski täpselt katset mõjutab. &step;iga ei saa ainult füüsikat õppida, vaid ka ise otse läbi elada! </para>
+</abstract>
+
+<keywordset>
+<keyword
+>KDE</keyword>
+<keyword
+>kdeedu</keyword>
+<keyword
+>füüsika</keyword>
+<keyword
+>simulaator</keyword>
+<keyword
+>jõud</keyword>
+</keywordset>
+
+</bookinfo>
+
+<chapter id="introduction">
+<title
+>Sissejuhatus</title>
+<para
+>&step; on interaktiivne füüsikasimulaator.</para>
+     
+<para
+>&step;i omadused: <itemizedlist>
+<listitem
+><para
+>Klassikaline mehaaniline kahemõõtmeline simulatsioon </para
+></listitem>
+<listitem
+><para
+>Osakesed, vedrud, mis arvestavad sumbuvusega, gravitatsiooni- ja Coulomb'i jõud </para
+></listitem>
+<listitem
+><para
+>Mitteelastsed kehad </para
+></listitem>
+<listitem
+><para
+>Kokkupõrgete tuvastamine (praegu ainult diskreetne) ja käitlemine </para
+></listitem>
+<listitem
+><para
+>Elastsed (deformeeritavad) kehad lasutaja muudetava osakeste-vedrude süsteemina, helilained </para
+></listitem>
+<listitem
+><para
+>Molekulaardünaamika (praegu Lenard-Jonesi potentsiaali abil): gaas ja vedelik, kondenseerimine ja aurustumine, makroskoopiliste koguste ja nende variatsioonide arvutamine </para
+></listitem>
+<listitem
+><para
+>Ühikute teisendamine ja avaldiste arvutamine: võid sisestada näiteks "(2 päeva + 3 tundi) * 80 km/h" ning seda arvestatakse vahemaana (selleks on vajalik libqalculate) </para
+></listitem>
+<listitem
+><para
+>Vigade arvutamine ja kasutamine: võid sisestada mis tahes omadusele näiteks väärtuse "1.3 ± 0.2" ning statistilisi valemeid kasutades arvestatakse välja kõigi sõltuvate omaduste viga </para
+></listitem>
+<listitem
+><para
+>Lahendaja veahinnang: lahendaja lisatud vead arvutatakse välja ja lisatakse kasutaja sisestatud vigadele </para
+></listitem>
+<listitem
+><para
+>Mitu erinevat lahendajat: kuni 8. astmeni, eksplitsiitsed ja implitsiitsed, adaptiivse ajasammuga või ilma selleta (enamik lahendajaid vajab GSL teeki) </para
+></listitem>
+<listitem
+><para
+>Kontroller omaduste juhtimiseks simulatsiooni ajal (sealhulgas enda määratud kiirklahvidega) </para
+></listitem>
+<listitem
+><para
+>Tööriistad tulemuste visualiseerimiseks: graafik, mõõdik, jäljekütt </para
+></listitem>
+<listitem
+><para
+>Kõigi objektide kontekstiteave, põimitud Wiki brauser </para
+></listitem>
+<listitem
+><para
+>Valik näidiskatseid, rohkem saab alla laadida KNewStuff2 vahendusel </para
+></listitem>
+<listitem
+><para
+>Põimitud õppematerjalid </para
+></listitem>
+</itemizedlist>
+</para>
+</chapter>
+
+<chapter id="using-step">
+<title
+>&step;i kasutamine</title>
+<para
+>&step; matkib reaalset maailma. &step; põhikomponent (1) on maailmastseen &step;i peaakna keskel, kuhu tuleb kõigepealt asetada objektid ja kus seejärel näeb simulatsiooni. Stseenist vasakul asub palett (2), kus saab valida objektid. Paleti võib viia töölaual kuhu tahes, lohistades seda tiitliribast. Stseenist paremal asub aktiivse maailma kirjeldus (3), selle omadused (4), väike abi teatavate sõnade seletustega (5) ning aktiivse maailma ajalugu (6). Ka kõiki neid paneele võib viia kuhu tahes tiitliribast lohistades.</para>
+<screenshot>
+     <screeninfo
+>&step; esmakäivitusel</screeninfo>
+	<mediaobject>
+	  <imageobject>
+	    <imagedata fileref="mainwindow.png" format="PNG"/>
+	  </imageobject>
+	    <textobject>
+	    <phrase
+>Stepi peaaken</phrase>
+	  </textobject>
+	</mediaobject>
+</screenshot>
+
+<para
+>Alustamise hõlbustamiseks pakub &step; mitut õppematerjali, mis näitavad, kuidas katse üles ehitada. Palun uuri kõike lähemalt alates esimesest õppematerjalist.</para>
+<!--
+<sect1 id="board">
+<title
+>The board</title>
+<para>
+-
+</para>
+</sect1>
+
+<sect1 id="menubar">
+<title
+>The menubar</title>
+<para>
+-
+</para>
+</sect1>
+-->			
+</chapter>
+
+&tutorials;  
+&examples;
+<!--
+<chapter id="commands">
+<title
+>Command Reference</title>
+
+<sect1  id="step-file-menu">
+<title
+>The <guimenu
+>File</guimenu
+> Menu</title>
+<para>
+<variablelist>
+<varlistentry>
+<term
+><menuchoice>
+<shortcut>
+<keycombo
+>&Ctrl;<keycap
+>Q</keycap
+></keycombo>
+</shortcut>
+<guimenu
+>File</guimenu>
+<guimenuitem
+>Quit</guimenuitem>
+</menuchoice
+></term>
+<listitem
+><para
+><action
+>Quit</action
+> &step;.</para
+></listitem>
+</varlistentry>
+
+</variablelist>
+</para>
+</sect1>
+
+<sect1  id="step-settings-menu">
+<title
+>The <guimenu
+>Settings</guimenu
+> Menu</title>
+<para>
+<variablelist>
+<varlistentry>
+<term
+><menuchoice>
+<guimenu
+>Settings</guimenu>
+<guimenuitem
+>Show Toolbar</guimenuitem>
+</menuchoice
+></term>
+<listitem
+><para
+><action
+>Toggle</action
+> (hide or show) the toolbar.</para
+></listitem>
+</varlistentry>
+<varlistentry>
+<term
+><menuchoice>
+<guimenu
+>Settings</guimenu>
+<guimenuitem
+>Show Statusbar</guimenuitem>
+</menuchoice
+></term>
+<listitem
+><para
+><action
+>Toggle</action
+>(hide or show) the statusbar.</para
+></listitem>
+</varlistentry>
+<varlistentry>
+<term
+><menuchoice>
+<guimenu
+>Settings</guimenu>
+<guimenuitem
+>Configure Shortcuts...</guimenuitem>
+</menuchoice
+></term>
+<listitem
+><para
+><action
+>Configure</action
+> the shortcuts, i.e the keyboard keys.</para
+></listitem>
+</varlistentry>
+<varlistentry>
+<term
+><menuchoice>
+<guimenu
+>Settings</guimenu>
+<guimenuitem
+>Configure &step;..</guimenuitem>
+</menuchoice
+></term>
+<listitem
+><para
+><action
+>Open</action
+> a dialog which allows you to configure &step;.</para
+></listitem>
+</varlistentry>
+</variablelist>
+</para>
+</sect1>
+
+<sect1  id="step-help-menu">
+<title
+>The <guimenu
+>Help</guimenu
+> Menu</title>
+
+&help.menu.documentation;
+
+</sect1>
+
+</chapter>
+
+<chapter id="developers">
+<title
+>Developer's Guide to &step;</title>
+
+<para>
+
+Not yet written
+</para>
+<para>
+
+Not yet written
+</para>
+</chapter>
+-->
+<chapter id="credits">
+
+<title
+>Autorid ja litsents</title>
+
+<para
+>&step; </para>
+<para
+>Rakenduse autoriõigus 2007: &Vladimir.Kuznetsov; &Vladimir.Kuznetsov.mail; </para>
+<para
+>Kaasautorid: <itemizedlist>
+<listitem
+><para
+>Autor: &Vladimir.Kuznetsov; &Vladimir.Kuznetsov.mail;</para>
+</listitem>
+<listitem
+><para
+>Kaasautor: &Carsten.Niehaus; &Carsten.Niehaus.mail;</para>
+</listitem>
+</itemizedlist>
+</para>
+
+<para
+>Dokumentatsiooni autoriõigus 2007: &Anne-Marie.Mahfouf; &Anne-Marie.Mahfouf.mail; </para>
+
+<para
+>Tõlge eesti keelde: Marek Laane <email
+>bald@smail.ee</email
+></para
+> 
+&underFDL; &underGPL; </chapter>
+
+
+
+<appendix id="installation">
+<title
+>Paigaldamine</title>
+
+<sect1 id="getting-step">
+<title
+>&step;i hankimine</title>
+&install.intro.documentation; </sect1>
+
+<sect1 id="compilation">
+<title
+>Kompileerimine ja paigaldamine</title>
+&install.compile.documentation; </sect1>
+
+</appendix>
+
+&documentation.index;
+</book>
+<!--
+Local Variables:
+mode: sgml
+sgml-minimize-attributes:nil
+sgml-general-insert-case:lower
+sgml-indent-step:0
+sgml-indent-data:nil
+End:
+-->

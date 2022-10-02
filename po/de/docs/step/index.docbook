@@ -1,0 +1,216 @@
+<?xml version="1.0" ?>
+<!DOCTYPE book PUBLIC "-//KDE//DTD DocBook XML V4.5-Based Variant V1.1//EN" "dtd/kdedbx45.dtd" [
+  <!ENTITY kappname "&step;">
+  <!ENTITY tutorials SYSTEM "tutorials.docbook">
+  <!ENTITY examples SYSTEM "examples.docbook">
+  <!ENTITY % addindex "IGNORE">
+  <!ENTITY % German "INCLUDE"
+><!-- change language only here -->
+]>
+
+<book id="step" lang="&language;">
+
+<bookinfo>
+<title
+>Das Handbuch zu &step;</title>
+
+
+<authorgroup>
+<author
+>&Anne-Marie.Mahfouf; &Anne-Marie.Mahfouf.mail; </author>
+
+<othercredit role="translator"
+><firstname
+>Burkhard</firstname
+><surname
+>Lück</surname
+><affiliation
+><address
+><email
+>lueck@hube-lueck.de</email
+></address
+></affiliation
+><contrib
+>Übersetzung</contrib
+></othercredit
+>  
+</authorgroup>
+
+
+<copyright>
+<year
+>2007</year>
+<holder
+>&Anne-Marie.Mahfouf;</holder>
+</copyright>
+
+<legalnotice
+>&FDLNotice;</legalnotice>
+
+<date
+>2016-05-07</date>
+<releaseinfo
+>0.1.0 (Anwendungen 16.04)</releaseinfo>
+
+<abstract>
+<para
+>&step; ist ein interaktiver Physiksimulator, mit dem Sie die Welt der Physik durch Simulationen erforschen können. Dazu platzieren Sie einige Körper im Versuchsfenster und fügen Kräfte wie die Gravitation oder Federn hinzu. Klicken Sie dann auf den Knopf <guibutton
+>Simulation starten</guibutton
+> und beobachten Sie, wie sich Ihr Experiment nach den Gesetzen der Physik verändert. Jede Eigenschaft von Körpern oder Kräften lässt sich sogar in der laufenden Simulation ändern. Mit &step; können Sie erfahren, wie die Physik in der Welt funktioniert. </para>
+</abstract>
+
+<keywordset>
+<keyword
+>KDE</keyword>
+<keyword
+>kdeedu</keyword>
+<keyword
+>Physik</keyword>
+<keyword
+>Simulator</keyword>
+<keyword
+>Kräfte</keyword>
+</keywordset>
+
+</bookinfo>
+
+<chapter id="introduction">
+<title
+>Einführung</title>
+<para
+>&step; ist ein interaktiver Physiksimulator.</para>
+     
+<para
+>Funktionen von &step;: <itemizedlist>
+<listitem
+><para
+>Simulation klassischer Mechanik in zwei Dimensionen </para
+></listitem>
+<listitem
+><para
+>Teilchen, Federn mit Dämpfung, Gravitations- und Coulombkräften </para
+></listitem>
+<listitem
+><para
+>Starre Körper </para
+></listitem>
+<listitem
+><para
+>Kollisionserkennung (zurzeit nur diskret) und -bearbeitung </para
+></listitem>
+<listitem
+><para
+>Elastische verformbare Körper als editierbare Systeme aus Teilchen und Federn, Schallwellen </para
+></listitem>
+<listitem
+><para
+>Molekulare Dynamik mithilfe des Lennard-Jones-Potentials: Gase und Flüssigkeiten, Kondensation und Verdunstung, Berechnung der makroskopischen Werte und ihrer Abweichungen </para
+></listitem>
+<listitem
+><para
+>Umwandlung von Einheiten und Berechnung von Ausdrücken: Sie können zum Beispiel „(2 days + 3 hours) * 80 km/h“ eingeben, daraus wird der Wert der Entfernung berechnet. Dazu ist die Bibliothek libqalculate erforderlich. </para
+></listitem>
+<listitem
+><para
+>Fehlerberechnung und -weiterleitung: Sie können Werte wie „1,3± 0,2“ für jede beliebige Eigenschaft eingeben. Dann werden die sich daraus ergebenden Fehler für alle abhängigen Eigenschaften mit statistischen Formeln berechnet. </para
+></listitem>
+<listitem
+><para
+>Abschätzung der Fehler der Gleichungslösungssysteme: Die daraus entstehenden Fehler werden berechnet und zu den vom Benutzer eingegeben Fehlern addiert </para
+></listitem>
+<listitem
+><para
+>Mehrere verschiedene Gleichungslösungssysteme: bis zur achten Ordnung, explizit und implizit, mit oder ohne angepassten Zeitschritten. Die meisten Gleichungslösungssysteme benötigen die GSL-Bibliothek. </para
+></listitem>
+<listitem
+><para
+>Werkzeuge zur Kontrolle der Objekteigenschaften während der Simulation, auch mit benutzerdefinierten Kurzbefehlen. </para
+></listitem>
+<listitem
+><para
+>Grafische Darstellung der Ergebnisse durch Diagramme, Messwertanzeigen und Spuren von Bewegungen </para
+></listitem>
+<listitem
+><para
+>Kontextinformationen für alle Objekte, eingebauter Wikipedia-Browser </para
+></listitem>
+<listitem
+><para
+>Sammlung von Beispielexperimenten, weitere Experimente können zusätzlich heruntergeladen werden </para
+></listitem>
+<listitem
+><para
+>Integrierte Anleitungen </para
+></listitem>
+</itemizedlist>
+</para>
+</chapter>
+
+<chapter id="using-step">
+<title
+>Arbeiten mit &step;</title>
+<para
+>&step; simuliert eine physikalische Welt. Der wichtigste Teil von &step; ist das Versuchsfenster (1) in der Mitte des Hauptfensters von &step;. Hier platzieren Sie zuerst physikalische Objekte und können dann den Ablauf der Simulation beobachten. Links befindet sich die Palette (2) mit einer Reihe von physikalischen Objekten. Rechts sehen Sie eine Beschreibung der Welt (3), die Eigenschaften (4) der Objekte, Hilfe (5) zu den Objekten und den Verlauf (6) des Experiments. Jedes dieser Elemente können Sie durch Ziehen mit dem Mauszeiger an der Titelleiste beliebig anordnen.</para>
+<screenshot>
+     <screeninfo
+>Hier sehen Sie ein Bildschirmfoto von &step;, wenn Sie es zum ersten Mal starten</screeninfo>
+	<mediaobject>
+	  <imageobject>
+	    <imagedata fileref="mainwindow.png" format="PNG"/>
+	  </imageobject>
+	    <textobject>
+	    <phrase
+>Hauptfenster von &step;</phrase>
+	  </textobject>
+	</mediaobject>
+</screenshot>
+
+<para
+>Als Einstiegshilfe bietet &step; eine Reihe von Anleitungen, mit denen Sie den Aufbau eines Versuchs erlernen. Weitere Informationen finden Sie im Kapitel Anleitungen.</para>
+</chapter>
+
+&tutorials;  
+&examples;
+
+<chapter id="credits">
+
+<title
+>Danksagungen und Lizenz</title>
+
+<para
+>&step; </para>
+<para
+>Programm Copyright 2007 &Vladimir.Kuznetsov; &Vladimir.Kuznetsov.mail; </para>
+<para
+>Mitwirkende: <itemizedlist>
+<listitem
+><para
+>Autor: &Vladimir.Kuznetsov; &Vladimir.Kuznetsov.mail;</para>
+</listitem>
+<listitem
+><para
+>Beiträge von: &Carsten.Niehaus; &Carsten.Niehaus.mail;</para>
+</listitem>
+</itemizedlist>
+</para>
+
+<para
+>Dokumentation Copyright 2007 &Anne-Marie.Mahfouf; &Anne-Marie.Mahfouf.mail; </para>
+
+<para
+>Übersetzung Burkhard Lück <email
+>lueck@hube-lueck.de</email
+></para
+> &underFDL; &underGPL; </chapter>
+
+&documentation.index;
+</book>
+<!--
+Local Variables:
+mode: sgml
+sgml-minimize-attributes:nil
+sgml-general-insert-case:lower
+sgml-indent-step:0
+sgml-indent-data:nil
+End:
+-->

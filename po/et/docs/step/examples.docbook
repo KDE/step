@@ -1,0 +1,242 @@
+<chapter id="examples">
+<title
+>&step;i näidised</title
+> 
+<para
+>&step; sisaldab muu hulgas mitmeid õpetlikke näiteid, mis peaksid aitama mõista rakenduse tööpõhimõtteid. Vaikimisi kaasa pandud näidise avamiseks vali menüükäsk <menuchoice
+><guimenu
+>Fail</guimenu
+> <guisubmenu
+>Näidised</guisubmenu
+> <guimenuitem
+>Ava näidis...</guimenuitem
+></menuchoice
+> </para>
+
+<para
+>Oma näidiseid saab jagada menüükäsuga <menuchoice
+><guimenu
+>Fail</guimenu
+> <guisubmenu
+>Näidised</guisubmenu
+> <guimenuitem
+>Jaga aktiivset katset......</guimenuitem
+></menuchoice
+>, teiste kasutajate jagatud näidiseid aga alla laadida menüükäsuga <menuchoice
+><guimenu
+>Fail</guimenu
+> <guisubmenu
+>Näidised</guisubmenu
+> <guimenuitem
+>Laadi alla uusi katseid...</guimenuitem
+></menuchoice
+> Allalaaditud katseid saab avada menüükäsuga <menuchoice
+><guimenu
+>Fail</guimenu
+> <guisubmenu
+>Näidised</guisubmenu
+> <guimenuitem
+>Ava allalaaditud näidis...</guimenuitem
+></menuchoice
+>  </para>
+
+<para
+>Allpool leiab vaikimisi näidisfailide kirjeldused. </para>
+
+<variablelist>
+<varlistentry id="brownian">
+<term
+>brownian.step</term>
+<listitem
+><para
+>Joonistab mitteelastse ketta trajektoori, mis põrkub juhuslikult ristkülikus liikuva 40 osakesega. See näidis matkib ideaalse gaasi osakeste <ulink url="http://en.wikipedia.org/wiki/Brownian_motion"
+>Browni liikumist</ulink
+>.</para
+></listitem>
+</varlistentry>
+
+<varlistentry id="pendulum">
+<term
+>doublependulum.step</term>
+<listitem
+><para
+>See näidis matkib <ulink url="http://en.wikipedia.org/wiki/Double_pendulum"
+>kaksikpendli liikumist</ulink
+>, kasutades kaht massiivset osakest ja kaht pulka.</para
+></listitem>
+</varlistentry>
+
+<varlistentry id="eightpendulum">
+<term
+>eightpendulum.step</term>
+<listitem
+><para
+>See näidis kujutab endast kuulsa <ulink url="http://en.wikipedia.org/wiki/Newton%27s_cradle"
+>Newtoni hälli</ulink
+> lihtsat demonstratsiooni. &step; teeb seda puklade, 8 ketta ja ristküliku abil. Kuus palli keskel ei liigu, sest nad kannavad üle ainult momenti ja energiat, mitte liikumist.</para
+></listitem>
+</varlistentry>
+
+<varlistentry id="first">
+<term
+>first.step: esimene näidis</term>
+<listitem
+><para
+>Sel näidisel on kaks osa. Esimene sisaldab kaht vedruga ühendatud osakest, teine aga kaht laenguga osakest.</para>
+
+<variablelist>
+<varlistentry id="first-two-particles">
+<term
+>Kaks vedruga ühendatud osakest</term>
+<listitem>
+  <para
+>Selles näidises lisatakse stseenile kaks osakest ja neid ühendav vedru. Mõlema osakese omadused, näiteks kiirus, moment, asukoht jne., on kindlaks määratud omaduste brauseris. Ka vedru omadused, näiteks jäikus, normaalpikkus, sumbuvus jne., on kindlaks määratud omaduste brauseris. </para>
+ <para>
+   <emphasis
+>Simulatsiooni selgitus:</emphasis>
+ </para>
+ <para
+>See on hea näide lihtsa harmoonilise liikumise kohta. Ühe osakese kiirendus on määratud positiivse X-telje suunaga, teine osakese kiirendus negatiivse X-telje suunaga. Nii tõmbuvad osakesed eri suundades, samal ajal kui vedru püüab tuua mõlemat osakest tagasi algpositsiooni. Sel moel on tegemist lihtsa harmoonilise liikumisega. Osakeste ja vedru tegutsemist sellistes tingimustes näebki stseenil. </para>
+</listitem>
+</varlistentry>
+
+<varlistentry id="first-two-charged">
+<term
+>Kaks laenguga osakest</term>
+<listitem>
+  <para
+>Mõlema laenguga osakese kiirus on määratud kindlas suunas, mistõttu osakesed liiguvad vastavas suunas, aga mõlemale osakesele on antud võrdne vastasmärgiline laeng, mis sunnib neid teineteise poole tõmbuma. Stseenil võibki näha laenguga osakeste liikumist sellistes tingimustes. </para>
+</listitem>
+</varlistentry>
+</variablelist>
+</listitem>
+</varlistentry>
+
+<varlistentry id="fourpendula">
+<term
+>fourpendula.step</term>
+<listitem
+><para
+>See näidis on korrektne <ulink url="http://en.wikipedia.org/wiki/Newton%27s_cradle"
+>Newtoni hälli</ulink
+> demonstratsioon. Et süsteem ei ole ideaalne, hakkavad kaks ketast keskel ajapikku liikuma.</para
+></listitem>
+</varlistentry>
+
+<varlistentry id="gas">
+<term
+>gas.step</term>
+<listitem
+><para
+>See näidis demonstreerib ideaalse gaasi survet, mida põhjustab <ulink url="http://en.wikipedia.org/wiki/Brownian_motion"
+>Browni liikumine</ulink
+>.</para
+></listitem>
+</varlistentry>
+
+<varlistentry id="graph">
+<term
+>graph.step</term>
+<listitem
+><para
+>See kujutab endast esimese osakese kiirust ja asukohta näitavat graafi süsteemis, kus kaks osakest on ühendatud vedruga.</para
+></listitem>
+</varlistentry>
+
+<varlistentry id="liquid">
+<term
+>liquid.step</term>
+<listitem
+><para
+>See näide demonstreerib üheaatomilist vedelikku.</para
+></listitem>
+</varlistentry>
+
+<varlistentry id="lissajous">
+<term
+>lissajous.step</term>
+<listitem
+><para
+>See näidis demonstreerib kahe osakese najal <ulink url="http://en.wikipedia.org/wiki/Lissajous_curve"
+>Lisajous' kõverat</ulink
+>. Mudeli parameetreid saab muuda maailma keskel asuvate juhistega.</para
+></listitem>
+</varlistentry>
+
+<varlistentry id="motor1">
+<term
+>motor1.step</term>
+<listitem
+><para
+>Demonstreerib kolmnurkset mitteelastset keha kolme lineaarmootori koormuse all.</para
+></listitem>
+</varlistentry>
+
+<varlistentry id="motor-example">
+<term
+>motor.step</term>
+<listitem
+><para
+>Demonstreerib lineaarmootori ja vedruga seotud mitteelastse nelinurkse keha suhteid.</para
+></listitem>
+</varlistentry>
+
+<varlistentry id="note-example">
+<term
+>note.step</term>
+<listitem
+><para
+>Näidis LaTeXi valemi (<ulink url="http://en.wikipedia.org/wiki/Divergence_theorem"
+>Gaussi teoreem</ulink
+>) ja põimitud pildiga.</para
+></listitem>
+</varlistentry>
+
+<varlistentry id="resonance">
+<term
+>resonance.step</term>
+<listitem
+><para
+>See näidis demonstreerib resonantsi nurkmootoriga süsteemis.</para
+></listitem>
+</varlistentry>
+
+<varlistentry id="softbody">
+<term
+>softbody.step</term>
+<listitem
+><para
+>See näidis demonstreerib kahe mitteelastse keha suhteid, mille vahel asub elastne keha.</para
+></listitem>
+</varlistentry>
+
+<varlistentry id="solar">
+<term
+>solar.step</term>
+<listitem
+><para
+>See näidis demonstreerib Päikesesüsteemi põhikehade (Päike ja planeedid) liikumist.</para
+></listitem>
+</varlistentry>
+
+<varlistentry id="springs">
+<term
+>springs.step</term>
+<listitem
+><para
+>See näidis demonstreerib planaarsüsteemi liikumist, milles on viis osakest, mis on ühendatud nelja vedruga.</para
+></listitem>
+</varlistentry>
+
+<varlistentry id="wave">
+<term
+>wave.step</term>
+<listitem
+><para
+>Stseeni graaf näitab rohelise osakese ostsillatsioone. Simulatsiooni alates väljub punasest osakesest laine. Sinine osake peegelda laine ja see liigub vastassuunas, kuni punane osake selle taas peegeldab. Vedrude sumbuvuse tõttu laine mõne aja pärast kaob.</para
+></listitem>
+</varlistentry>
+
+</variablelist>
+
+</chapter>

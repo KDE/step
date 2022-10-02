@@ -1,0 +1,242 @@
+<?xml version="1.0" ?>
+<!DOCTYPE book PUBLIC "-//KDE//DTD DocBook XML V4.5-Based Variant V1.1//EN" "dtd/kdedbx45.dtd" [
+  <!ENTITY tutorials SYSTEM "tutorials.docbook">
+  <!ENTITY examples SYSTEM "examples.docbook">
+  <!ENTITY % addindex "IGNORE">
+  <!ENTITY % Swedish "INCLUDE"
+><!-- change language only here -->
+]>
+
+<book id="step" lang="&language;">
+
+<bookinfo>
+<title
+>Handbok &step;</title>
+
+
+<authorgroup>
+<author
+>&Anne-Marie.Mahfouf; &Anne-Marie.Mahfouf.mail; </author>
+
+<othercredit role="translator"
+> <firstname
+>Stefan</firstname
+> <surname
+>Asserhäll</surname
+> <affiliation
+><address
+><email
+>stefan.asserhall@bredband.net</email
+></address
+></affiliation
+> <contrib
+>Översättare</contrib
+></othercredit
+> 
+</authorgroup>
+
+
+<copyright>
+<year
+>2007</year>
+<holder
+>&Anne-Marie.Mahfouf;</holder>
+</copyright>
+
+<legalnotice
+>&FDLNotice;</legalnotice>
+
+<date
+>2021-10-24</date>
+<releaseinfo
+>KDE Gear 21.08</releaseinfo>
+
+<abstract>
+<para
+>&step; är en interaktiv fysiksimulator. Den låter dig utforska den fysiska värden genom simuleringar. Den fungerar så här: Du placerar några kroppar i diagrammet, lägger till några krafter som gravitation eller fjädrar, och trycker därefter på ikonen <inlinemediaobject
+><imageobject
+><imagedata fileref="media-playback-start.png" format="PNG"/></imageobject
+></inlinemediaobject
+> <guiicon
+>Simulera</guiicon
+> så visar &step; dig hur diagrammet förändras enligt fysikens lagar. Du kan ändra alla egenskaper hos kropparna och krafterna i experimentet (till och med under simuleringen) och se hur det påverkar experimentets förlopp. Med &step; kan du inte bara lära dig hur fysiken fungerar, utan också få en känsla för det. </para>
+</abstract>
+
+<keywordset>
+  <keyword
+>KDE</keyword>
+  <keyword
+>kdeedu</keyword>
+  <keyword
+>fysik</keyword>
+  <keyword
+>simulator</keyword>
+  <keyword
+>krafter</keyword>
+  <keyword
+>Step</keyword>
+</keywordset>
+
+</bookinfo>
+
+<chapter id="introduction">
+<title
+>Inledning</title>
+<para
+>&step; är en interaktiv fysiksimulator.</para>
+
+<para
+>Funktioner i &step;: <itemizedlist>
+  <listitem
+><para
+>Simulering av klassisk mekanik i två dimensioner</para
+></listitem>
+
+  <listitem
+><para
+>Partiklar, dämpade fjädrar, gravitationskrafter och coulombkrafter</para
+></listitem>
+
+  <listitem
+><para
+>Stela kroppar</para
+></listitem>
+
+  <listitem
+><para
+>Detektering och hantering av kollisioner (för närvarande bara diskreta)</para
+></listitem>
+
+  <listitem
+><para
+>Mjuka (deformerbara) kroppar simulerade som system med partiklar och fjädrar redigerbara av användaren, ljudvågor</para
+></listitem>
+
+  <listitem
+><para
+>Molekyldynamik (för närvarande med användning av Lennard-Jones potentialen): gaser och vätskor, kondensering och avdunstning, beräkning av makroskopiska kvantiteter och deras varians</para
+></listitem>
+
+  <listitem
+><para
+>Enhetskonvertering och uttrycksberäkning: Du kan skriva in någonting i stil med <quote
+>(2 dagar + 3 timmar) * 80 km/h</quote
+>, vilket accepteras som ett avståndsvärde (kräver libqalculate)</para
+></listitem>
+
+  <listitem
+><para
+>Felberäkning och felpropagering: Du kan skriva in värden som <quote
+>1,3 ± 0,2</quote
+> för alla egenskaper, och fel för alla beroende egenskaper beräknas med statistiska formler</para
+></listitem>
+
+  <listitem
+><para
+>Feluppskattning av evalueringsenheten: fel som införs av evalueringsenheten beräknas och läggs till användarinmatade fel</para
+></listitem>
+
+  <listitem
+><para
+>Flera olika evalueringsenheter: Upp till 8:e ordningens, explicit eller implicit, med eller utan adaptivt tidssteg (de flesta evalueringsenheter kräver GSL-biblioteket)</para
+></listitem>
+
+  <listitem
+><para
+>Styrverktyg för att enkelt hantera egenskaper under simuleringen (också med egna snabbtangenter)</para
+></listitem>
+
+  <listitem
+><para
+>Verktyg för att åskådliggöra resultat: grafer, mätare, spår</para
+></listitem>
+
+  <listitem
+><para
+>Sammanhangsberoende information för alla objekt, inbyggd Wikipedia-bläddrare</para
+></listitem>
+
+  <listitem
+><para
+>En samling exempel på experiment, och fler kan laddas ner via Hämta heta nyheter</para
+></listitem>
+
+  <listitem
+><para
+>Integrerade handledningar</para
+></listitem>
+</itemizedlist>
+</para>
+</chapter>
+
+<chapter id="using-step">
+<title
+>Användning av &step;</title>
+
+<para
+>&step; simulerar den fysiska världen. Huvuddelen av &step; (1) är världsdiagrammet i mitten av &step;s huvudfönster, där du först placerar ut fysiska objekt och där du ser simuleringen. Till vänster om diagrammet finns en palett (2) som låter dig välja fysiska objekt. Du kan flytta paletten fritt vart som helst på skrivbordet genom att dra dess namnlist. Till höger om diagrammet ser du aktuell världsbeskrivning (3), dess egenskaper (4), viss hjälp för att förklara en del ord (5) och den aktuella världens historia (6). Var och en av dessa rutor kan placeras på andra ställen av skärmen genom att dra deras namnlister. </para>
+
+<screenshot>
+  <screeninfo
+>Här är en skärmbild av &step; när det startas för första gången.</screeninfo>
+  <mediaobject>
+    <imageobject
+><imagedata fileref="mainwindow.png" format="PNG"/></imageobject>
+    <textobject
+><phrase
+>Huvudfönstret i &step;</phrase
+></textobject>
+  </mediaobject>
+</screenshot>
+
+<para
+>För att hjälpa dig komma igång, integrerar &step; en serie handledningar som lär dig att enkelt bygga ett experiment. Se steg-för-steg för att starta med den första handledningen. </para>
+</chapter>
+
+&tutorials;
+&examples;
+
+<chapter id="credits">
+
+<title
+>Tack till och licens</title>
+
+<para
+>&step; </para>
+
+<para
+>Program copyright 2007 &Vladimir.Kuznetsov; &Vladimir.Kuznetsov.mail; </para>
+
+<para
+>Bidragsgivare: <itemizedlist>
+  <listitem
+><para
+>Upphovsman: &Vladimir.Kuznetsov; &Vladimir.Kuznetsov.mail;</para
+></listitem>
+  <listitem
+><para
+>Bidragsgivare: &Carsten.Niehaus; &Carsten.Niehaus.mail;</para
+></listitem>
+</itemizedlist>
+</para>
+
+<para
+>Dokumentation copyright 2007 &Anne-Marie.Mahfouf; &Anne-Marie.Mahfouf.mail; </para>
+
+<para
+>Översättning Stefan Asserhäll <email
+>stefan.asserhall@bredband.net</email
+></para
+> &underFDL; &underGPL; </chapter>
+
+&documentation.index;
+</book>
+<!--
+Local Variables:
+mode: sgml
+sgml-minimize-attributes:nil
+sgml-general-insert-case:lower
+sgml-indent-step:0
+sgml-indent-data:nil
+End:
+-->

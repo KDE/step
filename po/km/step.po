@@ -1,0 +1,1363 @@
+# translation of step.po to khmer
+# Copyright (C) YEAR This_file_is_part_of_KDE
+# This file is distributed under the same license as the PACKAGE package.
+# Khoem Sokhem <khoemsokhem@khmeros.info>, 2008.
+# Eng Vannak <evannak@khmeros.info>, 2008, 2009.
+# piseth <piseth_dv@khmeros.info>, 2009.
+# sutha <sutha@khmeros.info>, 2013.
+msgid ""
+msgstr ""
+"Project-Id-Version: step\n"
+"Report-Msgid-Bugs-To: https://bugs.kde.org\n"
+"POT-Creation-Date: 2022-07-04 00:41+0000\n"
+"PO-Revision-Date: 2013-01-08 11:33+0700\n"
+"Last-Translator: sutha <sutha@khmeros.info>\n"
+"Language-Team: Khmer <support@khmeros>\n"
+"Language: km\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+"X-Generator: WordForge 0.8 RC1\n"
+"X-Language: km-KH\n"
+
+#, kde-format
+msgctxt "NAME OF TRANSLATORS"
+msgid "Your names"
+msgstr "ខឹម សុខែម, សេង សុត្ថា, សុខ សុភា"
+
+#, kde-format
+msgctxt "EMAIL OF TRANSLATORS"
+msgid "Your emails"
+msgstr "sokhem@open.org.kh,sutha@open.org.kh,sophea@open.org.kh"
+
+#. i18n: ectx: property (title), widget (QGroupBox, groupBox)
+#: step/configure_controller.ui:28 step/configure_graph.ui:28
+#: step/configure_meter.ui:28
+#, kde-format
+msgid "Data Source"
+msgstr "ប្រភព​ទិន្នន័យ"
+
+#. i18n: ectx: property (title), widget (QGroupBox, groupBox_2)
+#: step/configure_controller.ui:47
+#, kde-format
+msgid "Range"
+msgstr "ជួរ"
+
+#. i18n: ectx: property (text), widget (QLabel, label_5)
+#: step/configure_controller.ui:59
+#, kde-format
+msgid "min:"
+msgstr "អប្ប. ៖"
+
+#. i18n: ectx: property (text), widget (QLabel, label_6)
+#: step/configure_controller.ui:75
+#, kde-format
+msgid "max:"
+msgstr "អតិ. ៖"
+
+#. i18n: ectx: property (text), widget (QLineEdit, lineEditMinX)
+#. i18n: ectx: property (text), widget (QLineEdit, lineEditMinY)
+#. i18n: ectx: property (text), widget (QLineEdit, lineEditMin)
+#: step/configure_controller.ui:97 step/configure_graph.ui:135
+#: step/configure_graph.ui:187
+#, kde-format
+msgid "0"
+msgstr "០"
+
+#. i18n: ectx: property (text), widget (QLineEdit, lineEditMass)
+#. i18n: ectx: property (text), widget (QLineEdit, lineEditBodyMass)
+#. i18n: ectx: property (text), widget (QLineEdit, lineEditMaxX)
+#. i18n: ectx: property (text), widget (QLineEdit, lineEditMaxY)
+#. i18n: ectx: property (text), widget (QLineEdit, lineEditMax)
+#: step/configure_controller.ui:119 step/configure_graph.ui:151
+#: step/configure_graph.ui:203 step/create_gas_particles.ui:125
+#: step/create_softbody_items.ui:78
+#, kde-format
+msgid "1"
+msgstr "១"
+
+#. i18n: ectx: property (title), widget (QGroupBox, groupBox_3)
+#: step/configure_controller.ui:132
+#, kde-format
+msgid "Shortcuts"
+msgstr "ផ្លូវកាត់"
+
+#. i18n: ectx: property (text), widget (QLabel, label)
+#: step/configure_controller.ui:138
+#, kde-format
+msgid "Decrease:"
+msgstr "បន្ថយ ៖"
+
+#. i18n: ectx: property (text), widget (QLabel, label_2)
+#: step/configure_controller.ui:148
+#, kde-format
+msgid "Increase:"
+msgstr "បង្កើន ៖"
+
+#. i18n: ectx: property (text), widget (QLabel, label_3)
+#: step/configure_controller.ui:179
+#, kde-format
+msgid "Increment:"
+msgstr "បង្កើន ៖"
+
+#. i18n: ectx: property (text), widget (QLineEdit, lineEditIncrement)
+#: step/configure_controller.ui:192
+#, kde-format
+msgid "0.1"
+msgstr "០.១"
+
+#. i18n: ectx: property (text), widget (QLabel, label)
+#. i18n: ectx: property (text), widget (QLabel, label_3)
+#: step/configure_graph.ui:34 step/configure_graph.ui:109
+#, kde-format
+msgid "X :"
+msgstr "X ៖"
+
+#. i18n: ectx: property (text), widget (QLabel, label_2)
+#. i18n: ectx: property (text), widget (QLabel, label_4)
+#: step/configure_graph.ui:51 step/configure_graph.ui:161
+#, kde-format
+msgid "Y :"
+msgstr "Y ៖"
+
+#. i18n: ectx: property (title), widget (QGroupBox, groupBox_2)
+#: step/configure_graph.ui:71
+#, kde-format
+msgid "Ranges"
+msgstr "ជួរ"
+
+#. i18n: ectx: property (text), widget (QLabel, label_5)
+#: step/configure_graph.ui:83
+#, kde-format
+msgid "Min:"
+msgstr ""
+
+#. i18n: ectx: property (text), widget (QLabel, label_6)
+#: step/configure_graph.ui:99
+#, kde-format
+msgid "Max:"
+msgstr ""
+
+#. i18n: ectx: property (text), widget (QCheckBox, checkBoxAutoX)
+#. i18n: ectx: property (text), widget (QCheckBox, checkBoxAutoY)
+#: step/configure_graph.ui:122 step/configure_graph.ui:174
+#, kde-format
+msgid "auto"
+msgstr "ស្វ័យប្រវត្តិ"
+
+#. i18n: ectx: property (title), widget (QGroupBox, groupBox_2)
+#. i18n: ectx: property (title), widget (QGroupBox, groupBox)
+#. i18n: ectx: property (title), widget (QGroupBox, groupBox_3)
+#: step/configure_graph.ui:216 step/configure_meter.ui:47
+#: step/create_gas_particles.ui:28 step/create_softbody_items.ui:28
+#, kde-format
+msgid "Options"
+msgstr "ជម្រើស​"
+
+#. i18n: ectx: property (text), widget (QCheckBox, checkBoxShowLines)
+#: step/configure_graph.ui:222
+#, kde-format
+msgid "Show lines"
+msgstr "បង្ហាញ​បន្ទាត់"
+
+#. i18n: ectx: property (text), widget (QCheckBox, checkBoxShowPoints)
+#: step/configure_graph.ui:229
+#, kde-format
+msgid "Show points"
+msgstr "បង្ហាញ​ចំនុច"
+
+#. i18n: ectx: property (text), widget (QLabel, label)
+#: step/configure_meter.ui:53
+#, kde-format
+msgid "Number of digits:"
+msgstr "ចំនួន​តួ​លេខ ៖"
+
+#. i18n: ectx: property (text), widget (QLabel, label)
+#: step/configure_step_general.ui:16
+#, kde-format
+msgid "Display precision:"
+msgstr "បង្ហាញ​ខ្ទង់ ៖"
+
+#. i18n: ectx: property (text), widget (QCheckBox, kcfg_showAxes)
+#: step/configure_step_general.ui:52
+#, kde-format
+msgid "Show scene axes"
+msgstr "បង្ហាញ​អ័ក្ស​រូបភាព"
+
+#. i18n: ectx: property (text), widget (QCheckBox, kcfg_showCreationTips)
+#: step/configure_step_general.ui:59
+#, kde-format
+msgid "Show tips when creating objects"
+msgstr "បង្ហាញ​ព័ត៌មាន​ជំនួយ ពេល​បង្កើត​វត្ថុ"
+
+#. i18n: ectx: property (text), widget (QCheckBox, kcfg_enableOpenGL)
+#: step/configure_step_general.ui:66
+#, kde-format
+msgid "Enable OpenGL (EXPERIMENTAL)"
+msgstr "បើក OpenGL (EXPERIMENTAL)"
+
+#. i18n: ectx: property (text), widget (QCheckBox, kcfg_wikiExternal)
+#: step/configure_step_general.ui:73
+#, kde-format
+msgid "Open wikipedia in external browser"
+msgstr "បើក​វីគីភីឌៀ​ក្នុង​កម្មវិធី​រុករក​ខាងក្រៅ"
+
+#. i18n: ectx: property (text), widget (QLabel, label_5)
+#: step/create_gas_particles.ui:34
+#, fuzzy, kde-format
+#| msgid "Area"
+msgid "Area:"
+msgstr "ផ្ទៃ"
+
+#. i18n: ectx: property (toolTip), widget (QLineEdit, lineEditVolume)
+#: step/create_gas_particles.ui:41
+#, kde-format
+msgid "The area the gas takes"
+msgstr "ផ្ទៃ​ដែល​ឧស្ម័ន​យក"
+
+#. i18n: ectx: property (text), widget (QLabel, label)
+#: step/create_gas_particles.ui:61
+#, kde-format
+msgid "Particle count:"
+msgstr "ចំនួន​តិច​តួច ៖"
+
+#. i18n: ectx: property (toolTip), widget (QLineEdit, lineEditCount)
+#. i18n: ectx: property (whatsThis), widget (QLineEdit, lineEditCount)
+#: step/create_gas_particles.ui:68 step/create_gas_particles.ui:71
+#, kde-format
+msgid "The number of particles of this gas."
+msgstr "ចំនួន​​នេះ​ gas ភាគ​ល្អិត ។"
+
+#. i18n: ectx: property (text), widget (QLineEdit, lineEditCount)
+#: step/create_gas_particles.ui:74
+#, kde-format
+msgid "20"
+msgstr "២០"
+
+#. i18n: ectx: property (text), widget (QLabel, label_6)
+#: step/create_gas_particles.ui:91
+#, kde-format
+msgid "Concentration:"
+msgstr "ការ​ប្រមូល​ផ្ដុំ ៖"
+
+#. i18n: ectx: property (text), widget (QLabel, label_2)
+#: step/create_gas_particles.ui:112
+#, kde-format
+msgid "Particle mass:"
+msgstr "ម៉ាស​​ភាគ​ល្អិត"
+
+#. i18n: ectx: property (toolTip), widget (QLineEdit, lineEditMass)
+#. i18n: ectx: property (whatsThis), widget (QLineEdit, lineEditMass)
+#: step/create_gas_particles.ui:119 step/create_gas_particles.ui:122
+#, kde-format
+msgid "The mass of one particle"
+msgstr "ម៉ាស​ភាគ​ល្អិត"
+
+#. i18n: ectx: property (text), widget (QLabel, label_3)
+#: step/create_gas_particles.ui:142
+#, kde-format
+msgid "Temperature:"
+msgstr "សីតុណ្ហភាព​ ៖"
+
+#. i18n: ectx: property (text), widget (QLineEdit, lineEditTemperature)
+#: step/create_gas_particles.ui:149
+#, kde-format
+msgid "1e21"
+msgstr "1e21"
+
+#. i18n: ectx: property (text), widget (QLabel, label_4)
+#: step/create_gas_particles.ui:166
+#, kde-format
+msgid "Mean velocity:"
+msgstr "ល្បឿន​មធ្យម ៖"
+
+#. i18n: ectx: property (text), widget (QLineEdit, lineEditMeanVelocity)
+#. i18n: ectx: property (text), widget (QLineEdit, lineEditPosition)
+#: step/create_gas_particles.ui:173 step/create_softbody_items.ui:44
+#, kde-format
+msgid "(0,0)"
+msgstr "(០,០)"
+
+#. i18n: ectx: property (text), widget (QLabel, label_4)
+#: step/create_softbody_items.ui:37
+#, kde-format
+msgid "Position:"
+msgstr "ទីតាំង ៖"
+
+#. i18n: ectx: property (text), widget (QLabel, label_3)
+#: step/create_softbody_items.ui:54
+#, kde-format
+msgid "Body size:"
+msgstr "ទំហំ​តួ ៖"
+
+#. i18n: ectx: property (text), widget (QLineEdit, lineEditSize)
+#: step/create_softbody_items.ui:61
+#, kde-format
+msgid "(1,1)"
+msgstr "(១,១)"
+
+#. i18n: ectx: property (text), widget (QLabel, label_2)
+#: step/create_softbody_items.ui:71
+#, kde-format
+msgid "Body mass:"
+msgstr "ម៉ាស​​តួ ៖"
+
+#. i18n: ectx: property (text), widget (QLabel, label)
+#: step/create_softbody_items.ui:88
+#, kde-format
+msgid "Young's modulus:"
+msgstr "Young's modulus:"
+
+#. i18n: ectx: property (text), widget (QLineEdit, lineEditYoungModulus)
+#: step/create_softbody_items.ui:95
+#, kde-format
+msgid "15"
+msgstr "១៥"
+
+#. i18n: ectx: property (text), widget (QLabel, label1)
+#: step/create_softbody_items.ui:105
+#, kde-format
+msgid "Body damping:"
+msgstr "Body damping:"
+
+#. i18n: ectx: property (text), widget (QLineEdit, lineEditBodyDamping)
+#: step/create_softbody_items.ui:112
+#, kde-format
+msgid "0.3"
+msgstr "០.៣"
+
+#. i18n: ectx: property (text), widget (QLabel, label2)
+#: step/create_softbody_items.ui:122
+#, kde-format
+msgid "Body split counts:"
+msgstr "Body split counts:"
+
+#. i18n: ectx: property (text), widget (QLineEdit, lineEditSplit)
+#: step/create_softbody_items.ui:129
+#, kde-format
+msgid "(4,4)"
+msgstr "(៤,៤)"
+
+#: step/gascreationdialog.cc:43
+#, fuzzy, kde-format
+#| msgid "Create gas particles"
+msgctxt "@title:window"
+msgid "Create Gas Particles"
+msgstr "បង្កើត​ភាគ​ល្អិត​របស់ gas"
+
+#: step/gasgraphics.cc:43
+#, kde-format
+msgid ""
+"Press left mouse button to position\n"
+"top left corner of a region for %1"
+msgstr ""
+"ចុច​ប៊ូតុង​កណ្ដុរ​ឆ្វេង​ដើម្បី​ដាក់​ទីតាំង​នៅ​ជ្រុង\n"
+"ខាង​ឆ្វេង​កំពូល​របស់​តំបន់​សម្រាប់ %1"
+
+#: step/gasgraphics.cc:55 step/motorgraphics.cc:42 step/motorgraphics.cc:223
+#: step/polygongraphics.cc:173 step/polygongraphics.cc:307
+#: step/polygongraphics.cc:452 step/softbodygraphics.cc:62
+#: step/worldgraphics.cc:70 step/worldgraphics.cc:120
+#, kde-format
+msgid "Create %1"
+msgstr "បង្កើត %1"
+
+#: step/gasgraphics.cc:71
+#, kde-format
+msgid ""
+"Move mouse and release left mouse button to position\n"
+"bottom right corner of the region for %1"
+msgstr ""
+"ផ្លាស់ទី​កណ្ដុរ ហើយ​​លែង​ប៊ូតុង​កណ្ដុរ​ខាង​ឆ្វេង​ទៅ​​កាន់​ទីតាំង​កណ្ដាល​ខាង​ស្ដាំ​ផ្នែក​ខាង​ក្រោម\n"
+"​សម្រាប់ %1"
+
+#: step/gasgraphics.cc:97
+#, kde-format
+msgid "Please fill in the parameters for the gas particles."
+msgstr "សូម​បំពេញ​នៅ​ក្នុង​ប៉ារ៉ាម៉ែត្រ​សម្រាប់​ភាគ​ល្អិត​របស់ gas ។"
+
+#: step/gasgraphics.cc:106 step/polygongraphics.cc:208
+#: step/polygongraphics.cc:347 step/polygongraphics.cc:502
+#: step/softbodygraphics.cc:79 step/worldgraphics.cc:87
+#: step/worldgraphics.cc:134 step/worldgraphics.cc:169
+#, kde-format
+msgid "%1 named '%2' created"
+msgstr "បាន​បង្កើត %1 ដោយ​មាន​ឈ្មោះ '%2'"
+
+#: step/gasgraphics.cc:294
+#, fuzzy, kde-format
+#| msgid "Create particles..."
+msgid "Create Particles..."
+msgstr "បង្កើត​ភាគ​ល្អិត..."
+
+#: step/gasgraphics.cc:364
+#, kde-format
+msgid ""
+"You are trying to create a very large number of particles. This will make "
+"simulation very slow. Do you want to continue?"
+msgstr ""
+"អ្នក​កំពុង​សាកល្បង​បង្កើត​ចំនួន​​ភាគ​ល្អិត​ជា​ច្រើន ។ វា​នឹង​ធ្វើ​ឲ្យ​ការ​ក្លែង​ធ្វើ​​យឺត ។ តើ​អ្នក​ចង់​បន្ត​ឬ ?"
+
+#: step/gasgraphics.cc:366 step/mainwindow.cc:409
+#, kde-format
+msgid "Warning - Step"
+msgstr "ព្រមាន - ជំហាន"
+
+#: step/gasgraphics.cc:377
+#, kde-format
+msgid "Create particles for %1"
+msgstr "បង្កើត​ភាគ​ល្អិត​សម្រាប់ %1"
+
+#: step/infobrowser.cc:38
+#, fuzzy, kde-format
+#| msgid "Context info"
+msgid "Context Info"
+msgstr "ព័ត៌មាន​បរិបទ"
+
+#: step/infobrowser.cc:56
+#, kde-format
+msgid "Back"
+msgstr "ថយ​​ក្រោយ"
+
+#: step/infobrowser.cc:58
+#, kde-format
+msgid "Forward"
+msgstr "ទៅ​មុខ"
+
+#: step/infobrowser.cc:62
+#, kde-format
+msgid "Sync selection"
+msgstr "ជម្រើស​សមកាលកម្ម"
+
+#: step/infobrowser.cc:64
+#, kde-format
+msgid "Follow selection"
+msgstr "តាម​ជម្រើស"
+
+#: step/infobrowser.cc:69
+#, fuzzy, kde-format
+#| msgid "Open in browser"
+msgid "Open in Browser"
+msgstr "បើក​ក្នុង​កម្មវិធី​រុករក"
+
+#: step/infobrowser.cc:144
+#, kde-format
+msgid "Documentation"
+msgstr "ឯកសារ"
+
+#: step/infobrowser.cc:149
+#, kde-format
+msgid "No current object."
+msgstr "គ្មាន​វត្ថុ​បច្ចុប្បន្ន ។"
+
+#: step/infobrowser.cc:171
+#, kde-format
+msgid "Documentation error"
+msgstr "កំហុស​​ឯកសារ"
+
+#: step/infobrowser.cc:176
+#, kde-format
+msgid "Documentation for %1 not available. "
+msgstr "ឯកសារ​សម្រាប់ %1 ដែល​មាន ។"
+
+#: step/infobrowser.cc:177
+#, fuzzy, kde-format
+#| msgid ""
+#| "You can help <a href=\"http://edu.kde.org/step\">Step</a> by writing it!"
+msgid ""
+"You can help <a href=\"https://edu.kde.org/step\">Step</a> by writing it!"
+msgstr "អ្នក​អាច​ជំនួយ <a href=\"http://edu.kde.org/step\">ជំហាន</a> ដោយ​សរសេរ !"
+
+#: step/itempalette.cc:189
+#, kde-format
+msgid "Palette"
+msgstr "ក្ដារ​លាយ"
+
+#: step/itempalette.cc:208
+#, kde-format
+msgid "Pointer"
+msgstr "ទ្រនិច"
+
+#: step/itempalette.cc:209
+#, kde-format
+msgid "Selection pointer"
+msgstr "ទ្រនិច​ជម្រើស"
+
+#: step/itempalette.cc:232
+#, kde-format
+msgid "Show text"
+msgstr "បង្ហាញ​អត្ថបទ"
+
+#: step/jointgraphics.cc:170 step/springgraphics.cc:42
+#, kde-format
+msgid "Move end of %1"
+msgstr "ផ្លាស់ទី​ចុង​នៃ %1"
+
+#: step/latexformula.cc:42
+#, kde-format
+msgid "can not launch %1"
+msgstr "មិនអាច​បើក​ដំណើរការ %1 បានទេ"
+
+#: step/latexformula.cc:52
+#, kde-format
+msgid "error running %1"
+msgstr "កំហុស​ក្នុង​ការ​រត់ %1"
+
+#: step/latexformula.cc:56
+#, kde-format
+msgid ""
+"%1 reported an error (exit status %2):\n"
+"%3"
+msgstr ""
+"%1 រាយការណ៍​កំហុស (បិទ​ស្ថានភាព %2) ៖\n"
+"%3"
+
+#: step/latexformula.cc:61
+#, kde-format
+msgid "%1 did not create output file"
+msgstr "%1 កុំ​បង្កើត​ឯកសារ​ទិន្នផល"
+
+#: step/latexformula.cc:93
+#, kde-format
+msgid "can not open temporary file"
+msgstr "មិន​អាច​បើក​ឯកសារ​បណ្ដោះ​អាសន្ន"
+
+#: step/latexformula.cc:127
+#, kde-format
+msgid "can not open result file"
+msgstr "មិន​អាច​បើក​ឯកសារ​លទ្ធផល"
+
+#: step/main.cc:42 step/main.cc:50
+#, kde-format
+msgid "Step"
+msgstr "ជំហាន"
+
+#: step/main.cc:52
+#, kde-format
+msgid "Interactive physical simulator"
+msgstr "Interactive physical simulator"
+
+#: step/main.cc:54
+#, kde-format
+msgid "(C) 2007 Vladimir Kuznetsov"
+msgstr "រក្សា​សិទ្ធិ​ឆ្នាំ ២០០៧ Vladimir Kuznetsov"
+
+#: step/main.cc:55
+#, kde-format
+msgid "https://edu.kde.org/step"
+msgstr ""
+
+#: step/main.cc:60
+#, kde-format
+msgid "Original author"
+msgstr "អ្នក​និពន្ធ​ដើម"
+
+#: step/main.cc:61
+#, kde-format
+msgid "ks.vladimir@gmail.com"
+msgstr ""
+
+#: step/main.cc:66
+#, kde-format
+msgid "Code contributions"
+msgstr "អ្នក​ចូល​រួម​ផ្ដល់​កូដ"
+
+#: step/main.cc:67
+#, kde-format
+msgid "cniehaus@kde.org"
+msgstr ""
+
+#: step/main.cc:74
+#, kde-format
+msgid "Document to open"
+msgstr "ឯកសារ​ត្រូវ​បើក"
+
+#: step/mainwindow.cc:155
+#, kde-format
+msgid "&Open Tutorial..."
+msgstr "បើក​មេរៀន..."
+
+#: step/mainwindow.cc:160
+#, kde-format
+msgid "&Open Example..."
+msgstr "បើក​ឧទាហរណ៍..."
+
+#: step/mainwindow.cc:165
+#, kde-format
+msgid "Open Down&loaded Example..."
+msgstr "បើក​ឧទាហរណ៍​ដែល​បាន​ទាញយក..."
+
+#: step/mainwindow.cc:170
+#, kde-format
+msgid "Share C&urrent Experiment..."
+msgstr "ចែក​រំលែក​ការ​ពិសោធ​បច្ចុប្បន្ន..."
+
+#: step/mainwindow.cc:173
+#, kde-format
+msgid "&Download New Experiments..."
+msgstr "ទាញយក​ការ​ពិសោធ​ថ្មី"
+
+#: step/mainwindow.cc:180
+#, kde-format
+msgid "Redo"
+msgstr "ធ្វើ​វិញ"
+
+#: step/mainwindow.cc:180
+#, kde-format
+msgid "Undo"
+msgstr "មិន​ធ្វើ​វិញ"
+
+#: step/mainwindow.cc:202
+#, kde-format
+msgid "&Delete"
+msgstr "លុប"
+
+#: step/mainwindow.cc:212
+#, kde-format
+msgid "&Run"
+msgstr "រត់"
+
+#: step/mainwindow.cc:217
+#, kde-format
+msgid "Execute the program"
+msgstr "ប្រតិបត្តិ​កម្មវិធី"
+
+#: step/mainwindow.cc:218
+#, kde-format
+msgid "Run: Execute the program"
+msgstr "រត់ ៖ ប្រតិបត្តិ​កម្មវិធី"
+
+#: step/mainwindow.cc:220
+#, kde-format
+msgctxt "@option:radio"
+msgid "1x Speed"
+msgstr "ល្បឿន 1x"
+
+#: step/mainwindow.cc:228
+#, kde-format
+msgctxt "@option:radio choose the slow speed"
+msgid "2x Speed"
+msgstr "ល្បឿន 2x"
+
+#: step/mainwindow.cc:235
+#, kde-format
+msgctxt "@option:radio"
+msgid "4x Speed"
+msgstr "ល្បឿន 4x"
+
+#: step/mainwindow.cc:242
+#, kde-format
+msgctxt "@option:radio"
+msgid "8x Speed"
+msgstr "ល្បឿន 8x"
+
+#: step/mainwindow.cc:249
+#, kde-format
+msgctxt "@option:radio"
+msgid "16x Speed"
+msgstr "ល្បឿន 16x"
+
+#: step/mainwindow.cc:279
+#, kde-format
+msgctxt "filename"
+msgid "untitled.step"
+msgstr "untitled.step"
+
+#: step/mainwindow.cc:305
+#, kde-format
+msgid "<new file>"
+msgstr "<ឯកសារ​ថ្មី>"
+
+#: step/mainwindow.cc:319
+#, kde-format
+msgctxt "@title:window"
+msgid "Open Step File"
+msgstr ""
+
+#: step/mainwindow.cc:319 step/mainwindow.cc:349
+#, fuzzy, kde-format
+#| msgid "*.step|Step files (*.step)"
+msgid "Step files (*.step)"
+msgstr "ឯកសារ *.step|Step (*.step)"
+
+#: step/mainwindow.cc:329
+#, kde-format
+msgid "Cannot parse file '%1': %2"
+msgstr "មិន​អាច​ញែក​ឯកសារ '%1' ៖ %2"
+
+#: step/mainwindow.cc:338
+#, kde-format
+msgid "<open file: %1>"
+msgstr "<បើក​ឯកសារ ៖ %1>"
+
+#: step/mainwindow.cc:349
+#, kde-format
+msgctxt "@title:window"
+msgid "Save Step File"
+msgstr ""
+
+#: step/mainwindow.cc:365
+#, kde-format
+msgid "Cannot open file '%1'"
+msgstr "មិន​អាច​បើក​ឯកសារ '%1'"
+
+#: step/mainwindow.cc:371
+#, kde-format
+msgid "Cannot save file '%1': %2"
+msgstr "មិន​អាច​រក្សា​ទុក​ឯកសារ '%1' ៖ %2"
+
+#: step/mainwindow.cc:408
+#, kde-format
+msgid ""
+"The experiment has been modified.\n"
+"Do you want to save your changes?"
+msgstr ""
+"ការ​ពិសោធ​ត្រូវបាន​កែប្រែ ។\n"
+"តើ​អ្នក​ចង់​រក្សាទុក​ការ​ផ្លាស់ប្ដូរ​របស់​អ្នក​ឬ ?"
+
+#: step/mainwindow.cc:456
+#, kde-format
+msgid "Uploading is still not implemented in kdelibs."
+msgstr "ការ​ផ្ទុកឡើង គឺ​នៅ​តែ​មិនត្រូវបាន​ប្រតិបត្តិ​នៅ​ក្នុង kdelibs ដដែល ។"
+
+#: step/mainwindow.cc:457
+#, kde-format
+msgid "Sorry - Step"
+msgstr "សូមអភ័យទោស - ជំហាន"
+
+#: step/mainwindow.cc:484
+#, kde-format
+msgid "&Stop"
+msgstr "បញ្ឈប់"
+
+#: step/mainwindow.cc:494
+#, kde-format
+msgid "&Simulate"
+msgstr "ក្លែង​ធ្វើតាម"
+
+#: step/mainwindow.cc:499
+#, kde-format
+msgid ""
+"Cannot finish this step because local error is greater than local "
+"tolerance.\n"
+"Please check solver settings and try again."
+msgstr ""
+"មិនអាច​បញ្ចប់​ជំហាន​នេះ​ទេ ព្រោះ​កំហុស​មូលដ្ឋាន​គឺ​ធំជាង​​កង្វះខាត ។\n"
+"សូម​ពិនិត្យ​មើល​ការ​កំណត់​កញ្ចប់​ដោះស្រាយ ហើយ​ព្យាយាម​ម្ដងទៀត ។"
+
+#: step/mainwindow.cc:504
+#, kde-format
+msgid ""
+"Cannot finish this step because there are collisions which cannot be "
+"resolved automatically.\n"
+"Please move colliding objects apart and try again."
+msgstr ""
+"មិន​​អាច​បញ្ជាប់​ជំហាន​នេះ​បាន​​ទេ ពី​ព្រោះ​​មាន​ការ​ប៉ះទង្គិច​ដែល​មិន​អាច​ត្រូវ​បាន​ដោះស្រាយ​ដោយ​ស្វ័យ​ប្រវត្តិ​បាន "
+"។\n"
+"សូម​ផ្លាស់​ទី​ការ​ប៉ះទង្គិច​​នេះ​ហើយ​​ព្យាយាម​ម្តងទៀត ។ "
+
+#: step/mainwindow.cc:508
+#, kde-format
+msgid "Cannot finish this step because of an unknown error."
+msgstr "មិនអាច​បញ្ចប់​ជំហាន​នេះ​បាន​ទេ ព្រោះ​កំហុស​មិនស្គាល់ ។"
+
+#: step/mainwindow.cc:541
+#, kde-format
+msgid "&Undo"
+msgstr "មិន​ធ្វើ​វិញ"
+
+#: step/mainwindow.cc:542
+#, kde-format
+msgid "&Undo: %1"
+msgstr "មិន​ធ្វើ​វិញ ៖ %1"
+
+#: step/mainwindow.cc:547
+#, kde-format
+msgid "Re&do"
+msgstr "ធ្វើ​វិញ"
+
+#: step/mainwindow.cc:548
+#, kde-format
+msgid "Re&do: %1"
+msgstr "ធ្វើ​ឡើងវិញ ៖ %1"
+
+#: step/mainwindow.cc:579
+#, kde-format
+msgid "General"
+msgstr "ទូទៅ"
+
+#: step/motorgraphics.cc:112 step/motorgraphics.cc:290
+#: step/stepgraphicsitem.cc:206 step/stepgraphicsitem.cc:218
+#, kde-format
+msgid "Move %1"
+msgstr "ផ្លាស់ទី %1"
+
+#: step/polygongraphics.cc:161
+#, kde-format
+msgid "Press left mouse button to position a center of a %1"
+msgstr "ចុច​ប៊ូតុង​កណ្ដុរ​ឆ្វេង​ដើម្បី​ដាក់​ទីតាំង​ចំកណ្ដាល​នៃ %1"
+
+#: step/polygongraphics.cc:182
+#, kde-format
+msgid "Move mouse and release left mouse button to define a radius of the %1"
+msgstr "ផ្លាស់ទី​កណ្ដុរ​ ហើយ​លែង​ប៊ូតុង​កណ្ដុរ​​ឆ្វេង ដើម្បី​កំណត់​កាំ​នៃ %1"
+
+#: step/polygongraphics.cc:295
+#, kde-format
+msgid ""
+"Press left mouse button to position\n"
+"top left corner of a %1"
+msgstr ""
+"ចុច​ប៊ូតុង​កណ្ដុរ​ខាង​ឆ្វេង​ដើម្បី​ដាក់​​ទី​តាំង​នៅ​ចំកណ្ដាល​\n"
+"​ផ្នែក​ខាង​ឆ្វេង​នៃ %1"
+
+#: step/polygongraphics.cc:317
+#, kde-format
+msgid ""
+"Move mouse and release left mouse button to position\n"
+"bottom right corner of the %1"
+msgstr ""
+"ផ្លាស់​ទី​កណ្ដុរ​ ហើយ​លែង​ប៊ូតុង​​កណ្ដុរ​ឆ្វេង​ដើម្បី​ដាក់​ទី​តាំង\n"
+"​ចំ​កណ្ដាល​ខាង​ស្ដាំ​​ផ្នែក​ខាង​​ក្រោម​នៃ %1"
+
+#: step/polygongraphics.cc:440
+#, kde-format
+msgid "Click on the scene to create a first vertex of %1"
+msgstr "ចុច​លើ​រូបភាព ដើម្បី​បង្កើត​ចំណុច​ដំបូង​នៃ %1"
+
+#: step/polygongraphics.cc:488
+#, kde-format
+msgid "Click on the scene to add new vertex or press Enter to finish"
+msgstr "ចុច​លើ​រូបភាព​ ដើម្បី​បន្ថែម​ចំណុច​ថ្មី ឬ​ចុច​ដើម្បី​បញ្ចូល ដើម្បី​បញ្ចប់"
+
+#: step/propertiesbrowser.cc:279
+#, kde-format
+msgid "Change solver type"
+msgstr "ផ្លាស់ប្ដូរ​ប្រភេទ​កញ្ចប់​ដោះស្រាយ"
+
+#: step/propertiesbrowser.cc:294 step/propertiesbrowser.cc:300
+#: step/propertiesbrowser.cc:307 step/propertiesbrowser.cc:316
+#: step/propertiesbrowser.cc:400 step/propertiesbrowser.cc:417
+#: step/stepgraphicsitem.cc:401 step/stepgraphicsitem.cc:546
+#, kde-format
+msgid "Change %1.%2"
+msgstr "ផ្លាស់ប្ដូរ %1.%2"
+
+#: step/propertiesbrowser.cc:314
+#, kde-format
+msgid "Rename %1 to %2"
+msgstr "ប្ដូរ​ឈ្មោះ %1 ទៅ %2"
+
+#: step/propertiesbrowser.cc:464
+#, kde-format
+msgid "Property"
+msgstr "លក្ខណៈ​សម្បត្តិ"
+
+#: step/propertiesbrowser.cc:465
+#, kde-format
+msgid "Value"
+msgstr "តម្លៃ"
+
+#: step/propertiesbrowser.cc:530
+#, kde-format
+msgid "false"
+msgstr "មិន​ពិត​"
+
+#: step/propertiesbrowser.cc:531
+#, kde-format
+msgid "true"
+msgstr "ពិត​"
+
+#: step/propertiesbrowser.cc:675
+#, kde-format
+msgid "Properties"
+msgstr "លក្ខណៈ​សម្បត្តិ"
+
+#: step/softbodygraphics.cc:49 step/worldgraphics.cc:62
+#: step/worldgraphics.cc:106
+#, kde-format
+msgid "Click on the scene to create a %1"
+msgstr "ចុច​លើ​រូបភាព ដើម្បី​បង្កើត %1"
+
+#: step/softbodygraphics.cc:66
+#, kde-format
+msgid "Please fill in the parameters for %1"
+msgstr "សូម​បំពេញ​នៅ​ក្នុង​ប៉ារ៉ាម៉ែត្រ​សម្រាប់ %1"
+
+#: step/softbodygraphics.cc:126
+#, fuzzy, kde-format
+#| msgid "Create soft body items"
+msgctxt "@title:window"
+msgid "Create Soft Body Items"
+msgstr "មិនអាច​បន្ទន់​ធាតុ​តួរ​បាន​ទេ"
+
+#: step/softbodygraphics.cc:187
+#, kde-format
+msgid "Create items for %1"
+msgstr "បង្កើត​ធាតុ​សម្រាប់ %1"
+
+#. i18n: ectx: label, entry (showCreationTips), group (General)
+#. i18n: ectx: whatsthis, entry (showCreationTips), group (General)
+#: step/step.kcfg:9 step/step.kcfg:10
+#, kde-format
+msgid "Show tips when creating items"
+msgstr "បង្ហាញ​ព័ត៌មាន​ជំនួយ ពេល​បង្កើត​វត្ថុ"
+
+#. i18n: ectx: label, entry (showAxes), group (General)
+#. i18n: ectx: whatsthis, entry (showAxes), group (General)
+#: step/step.kcfg:14 step/step.kcfg:15
+#, kde-format
+msgid "Show axes on the scene"
+msgstr "បង្ហាញ​អ័ក្ស​នៅ​លើ​រូបភាព"
+
+#. i18n: ectx: label, entry (floatDisplayPrecision), group (General)
+#. i18n: ectx: whatsthis, entry (floatDisplayPrecision), group (General)
+#: step/step.kcfg:19 step/step.kcfg:20
+#, kde-format
+msgid "Display precision of double numbers"
+msgstr "បង្ហាញ​ចំនួន​ខ្ទង់​ទ្វេ"
+
+#. i18n: ectx: label, entry (enableOpenGL), group (General)
+#. i18n: ectx: whatsthis, entry (enableOpenGL), group (General)
+#: step/step.kcfg:26 step/step.kcfg:27
+#, kde-format
+msgid "Use OpenGL to accelerate drawing whenever possible"
+msgstr "ប្រើ OpenGL ដើម្បី​បង្កើន​ល្បឿន​ការ​គូរ​ប្រសិនបើ​អាន​"
+
+#. i18n: ectx: label, entry (wikiExternal), group (InfoBrowser)
+#. i18n: ectx: whatsthis, entry (wikiExternal), group (InfoBrowser)
+#: step/step.kcfg:33 step/step.kcfg:34
+#, kde-format
+msgid "Browse wikipedia in external browser"
+msgstr "រក​មើល​វីគីភីឌៀ​នៅ​ក្នុង​កម្មវិធី​រុករក​ខាងក្រៅ"
+
+#. i18n: ectx: label, entry (showButtonText), group (ItemPalette)
+#. i18n: ectx: whatsthis, entry (showButtonText), group (ItemPalette)
+#: step/step.kcfg:40 step/step.kcfg:41
+#, kde-format
+msgid "Show text beside icon"
+msgstr "បង្ហាញ​អត្ថបទ​នៅ​ជិត​រូបតំណាង"
+
+#: step/stepgraphicsitem.cc:218
+#, kde-format
+msgid "several objects"
+msgstr "វត្ថុ​ច្រើន"
+
+#: step/stepgraphicsitem.cc:402 step/stepgraphicsitem.cc:548
+#, kde-format
+msgid "Change %1"
+msgstr "ផ្លាស់ប្ដូរ %1"
+
+#. i18n: ectx: ToolBar (mainToolBar)
+#: step/stepui.rc:7
+#, kde-format
+msgid "Main Toolbar"
+msgstr "របារ​ឧបករណ៍​មេ"
+
+#. i18n: ectx: ToolBar (simulationToolBar)
+#: step/stepui.rc:12
+#, kde-format
+msgid "Simulation Toolbar"
+msgstr "របារ​ឧបករណ៍​ក្លែង​ធ្វើតាម"
+
+#. i18n: ectx: Menu (examples)
+#: step/stepui.rc:21
+#, kde-format
+msgid "&Examples"
+msgstr "ឧទាហរណ៍"
+
+#. i18n: ectx: Menu (simulation)
+#: step/stepui.rc:32
+#, kde-format
+msgid "&Simulation"
+msgstr "ការ​ក្លែង​ធ្វើតាម"
+
+#. i18n: ectx: Menu (speed)
+#: step/stepui.rc:35
+#, kde-format
+msgid "&Run Speed"
+msgstr "ល្បឿន​រត់"
+
+#. i18n: ectx: Menu (panels)
+#: step/stepui.rc:45
+#, kde-format
+msgid "&Panels"
+msgstr "បន្ទះ"
+
+#: step/toolgraphics.cc:267
+#, kde-format
+msgid "Click to enter text"
+msgstr "ចុច​ដើម្បី​បញ្ចូល​អត្ថបទ"
+
+#: step/toolgraphics.cc:392
+#, kde-format
+msgid "&Color"
+msgstr "ពណ៌"
+
+#: step/toolgraphics.cc:394
+#, kde-format
+msgid "&Bold"
+msgstr "ដិត"
+
+#: step/toolgraphics.cc:396
+#, kde-format
+msgid "&Italic"
+msgstr "ទ្រេត"
+
+#: step/toolgraphics.cc:398
+#, kde-format
+msgid "&Underline"
+msgstr "គូស​បន្ទាត់​ក្រោម"
+
+#: step/toolgraphics.cc:401
+#, kde-format
+msgid "Align &Left"
+msgstr "តម្រឹម​ឆ្វេង​"
+
+#: step/toolgraphics.cc:403
+#, kde-format
+msgid "Align C&enter"
+msgstr "តម្រឹម​កណ្ដាល"
+
+#: step/toolgraphics.cc:405
+#, kde-format
+msgid "Align &Right"
+msgstr "តម្រឹម​ស្ដាំ"
+
+#: step/toolgraphics.cc:407
+#, kde-format
+msgid "Align &Justify"
+msgstr "តម្រឹម​សង​ខាង"
+
+#: step/toolgraphics.cc:410
+#, kde-format
+msgid "&Align"
+msgstr "តម្រឹម"
+
+#: step/toolgraphics.cc:419
+#, kde-format
+msgid "&Font"
+msgstr "ពុម្ព​អក្សរ"
+
+#: step/toolgraphics.cc:420
+#, kde-format
+msgid "Font &Size"
+msgstr "ទំហំ​ពុម្ពអក្សរ"
+
+#: step/toolgraphics.cc:422
+#, fuzzy, kde-format
+#| msgid "Insert &Image"
+msgid "Insert &Image..."
+msgstr "បញ្ចូល​រូបភាព"
+
+#: step/toolgraphics.cc:427
+#, fuzzy, kde-format
+#| msgid "Insert &Formula"
+msgid "Insert &Formula..."
+msgstr "បញ្ចូល​រូបមន្ត"
+
+#: step/toolgraphics.cc:538
+#, kde-format
+msgid "Edit %1"
+msgstr "កែ​សម្រួល %1"
+
+#: step/toolgraphics.cc:643
+#, kde-format
+msgctxt "@title:window"
+msgid "Open Image File"
+msgstr ""
+
+#: step/toolgraphics.cc:643
+#, kde-format
+msgid "Images (*.png *.jpg *.jpeg)"
+msgstr ""
+
+#: step/toolgraphics.cc:661
+#, kde-format
+msgid "Cannot parse file '%1'"
+msgstr "មិន​អាច​ញែក​ឯកសារ '%1'"
+
+#: step/toolgraphics.cc:705
+#, kde-format
+msgid ""
+"Cannot find latex installation. You need 'latex', 'dvips' and 'gs' "
+"executables installed and accessible from $PATH"
+msgstr ""
+"មិន​អាច​រក​​ឃើញ​ការ​ដំឡើង latex បាន​ទេ ។ អ្នក​ត្រូវ​តែ​​ដំឡើង 'latex', 'dvips' និង 'gs' ហើយ​ចូល​"
+"ដំណើរការ​​ពី $PATH"
+
+#: step/toolgraphics.cc:711
+#, fuzzy, kde-format
+#| msgid "LaTex Formula - Step"
+msgctxt "@title:window"
+msgid "LaTex Formula - Step"
+msgstr "រូបមន្ត​ LaTex"
+
+#: step/toolgraphics.cc:712
+#, fuzzy, kde-format
+#| msgid "Enter LaTeX formula string"
+msgid "Enter LaTeX formula string:"
+msgstr "បញ្ចូល​រូបមន្ត LaTeX"
+
+#: step/toolgraphics.cc:721
+#, kde-format
+msgid "Cannot compile LaTeX formula: %1"
+msgstr "មិន​អាច​ចងក្រង​រូបមន្ត LaTeX បាន​ទេ ៖ %1"
+
+#: step/toolgraphics.cc:727
+#, kde-format
+msgid "Cannot parse result image"
+msgstr "មិន​អាច​ញែក​រូបភាព​លទ្ធផល"
+
+#: step/toolgraphics.cc:788
+#, kde-format
+msgid "Object name"
+msgstr "ឈ្មោះ​វត្ថុ"
+
+#: step/toolgraphics.cc:793
+#, kde-format
+msgid "Property name"
+msgstr "លក្ខណៈ​សម្បត្តិ"
+
+#: step/toolgraphics.cc:799
+#, kde-format
+msgid "Vector index"
+msgstr "លិបិក្រម​វ៉ិចទ័រ"
+
+#: step/toolgraphics.cc:988 step/toolgraphics.cc:996 step/toolgraphics.cc:1489
+#, kde-format
+msgid "%1.%2"
+msgstr "%1.%2"
+
+#: step/toolgraphics.cc:989 step/toolgraphics.cc:997 step/toolgraphics.cc:1490
+#, kde-format
+msgid "[%1]"
+msgstr "[%1]"
+
+#: step/toolgraphics.cc:993 step/toolgraphics.cc:1001 step/toolgraphics.cc:1494
+#, kde-format
+msgid "[not configured]"
+msgstr "[មិន​បាន​កំណត់​រចនា​សម្ព័ន្ធ]"
+
+#: step/toolgraphics.cc:1089
+#, fuzzy, kde-format
+#| msgid "Clear graph"
+msgid "Clear Graph"
+msgstr "សម្អាត​​ក្រាហ្វ"
+
+#: step/toolgraphics.cc:1090
+#, fuzzy, kde-format
+#| msgid "Configure graph..."
+msgid "Configure Graph..."
+msgstr "កំណត់​រចនា​សម្ព័ន្ធ​ក្រាប"
+
+#: step/toolgraphics.cc:1108
+#, fuzzy, kde-format
+#| msgid "Configure graph"
+msgctxt "@title:window"
+msgid "Configure Graph"
+msgstr "កំណត់​រចនា​សម្ព័ន្ធ​ក្រាប"
+
+#: step/toolgraphics.cc:1184 step/toolgraphics.cc:1383
+#: step/toolgraphics.cc:1721
+#, kde-format
+msgid "Edit properties of %1"
+msgstr "កែ​សម្រួល​លក្ខណៈ​សម្បត្តិ​នៃ %1"
+
+#: step/toolgraphics.cc:1236
+#, kde-format
+msgid "Clear graph %1"
+msgstr "សម្អាត​​ក្រាប %1"
+
+#: step/toolgraphics.cc:1317
+#, fuzzy, kde-format
+#| msgid "Configure meter..."
+msgid "Configure Meter..."
+msgstr "កំណត់​រចនាសម្ព័ន្ធ​ម៉ែត្រ..."
+
+#: step/toolgraphics.cc:1335
+#, fuzzy, kde-format
+#| msgid "Configure meter"
+msgctxt "@title:window"
+msgid "Configure Meter"
+msgstr "កំណត់​រចនាសម្ព័ន្ធ​ម៉ែត្រ"
+
+#: step/toolgraphics.cc:1432 step/toolgraphics.cc:1629
+#, fuzzy, kde-format
+#| msgid "Increase value"
+msgid "Increase Value"
+msgstr "បង្កើន​តម្លៃ"
+
+#: step/toolgraphics.cc:1433 step/toolgraphics.cc:1630
+#, fuzzy, kde-format
+#| msgid "Decrease value"
+msgid "Decrease Value"
+msgstr "បន្ថយ​តម្លៃ"
+
+#: step/toolgraphics.cc:1463 step/toolgraphics.cc:1758
+#, kde-format
+msgid "Decrease controller %1"
+msgstr "បន្ថយ​ឧបករណ៍​បញ្ជា %1"
+
+#: step/toolgraphics.cc:1472 step/toolgraphics.cc:1767
+#, kde-format
+msgid "Increase controller %1"
+msgstr "បង្កើន​ឧបករណ៍​បញ្ជា %1"
+
+#: step/toolgraphics.cc:1606
+#, kde-format
+msgid "Change controller %1"
+msgstr "ប្ដូរ​ឧបករណ៍​បញ្ជា %1"
+
+#: step/toolgraphics.cc:1632
+#, fuzzy, kde-format
+#| msgid "Configure controller..."
+msgid "Configure Controller..."
+msgstr "កំណត់​រចនា​សម្ព័ន្ធ​ឧបករណ៍​បញ្ជា..."
+
+#: step/toolgraphics.cc:1650
+#, fuzzy, kde-format
+#| msgid "Configure controller"
+msgctxt "@title:window"
+msgid "Configure Controller"
+msgstr "កំណត់​រចនាសម្ព័ន្ធ​ឧបករណ៍​បញ្ជា"
+
+#: step/toolgraphics.cc:1911
+#, fuzzy, kde-format
+#| msgid "Clear trace"
+msgid "Clear Trace"
+msgstr "សម្អាត​ដាន"
+
+#: step/toolgraphics.cc:1920
+#, kde-format
+msgid "Clear tracer %1"
+msgstr "សម្អាត​កម្មវិធី​តាម​ដាន %1"
+
+#: step/undobrowser.cc:30
+#, fuzzy, kde-format
+#| msgid "Undo history"
+msgid "Undo History"
+msgstr "មិន​ធ្វើ​ប្រវត្តិ​វិញ"
+
+#: step/worldbrowser.cc:62
+#, kde-format
+msgctxt "Object list"
+msgid "World"
+msgstr "ផែនដី"
+
+#: step/worldgraphics.cc:102
+#, kde-format
+msgid ""
+"Press left mouse button to position first end of a %1\n"
+"then drag and release it to position the second end"
+msgstr ""
+"ចុច​កណ្ដុរ​ខាង​ឆ្វេង ដើម្បី​ដាក់ទីតាំង​ទីមួយ​នៅ​ចុង %1\n"
+"បន្ទាប់​មក អូស ហើយ​លែង​វា ដើម្បី​ដាក់ទីតាំង​ទីពីរ​នៅ​ចុង"
+
+#: step/worldgraphics.cc:130
+#, kde-format
+msgid "Release left mouse button to position second end of the %1"
+msgstr "លែង​ប៊ូតុង​កណ្ដុរ​ឆ្វេង ដើម្បី​ដាក់ទីតាំង​ទីពីរ នៅ​ចុង %1"
+
+#: step/worldmodel.cc:641
+#, kde-format
+msgid "Delete %1"
+msgstr "លុប %1"
+
+#: step/worldmodel.cc:642
+#, kde-format
+msgid "Delete several items"
+msgstr "លុប​ធាតុ​ច្រើន"
+
+#: step/worldmodel.cc:713 step/worldmodel.cc:720
+#, kde-format
+msgid "<no object>"
+msgstr "<គ្មាន​វត្ថុ>"
+
+#: step/worldmodel.cc:715
+#, kde-format
+msgid "<unnamed>"
+msgstr "<គ្មាន​ឈ្មោះ>"
+
+#: step/worldmodel.cc:721
+#, kde-format
+msgid "%1: %2"
+msgstr "%1 ៖ %2"
+
+#: step/worldmodel.cc:793
+#, kde-format
+msgid "<nobr><h4><u>%1</u></h4></nobr>"
+msgstr "<nobr><h4><u>%1</u></h4></nobr>"
+
+#: step/worldmodel.cc:821
+#, kde-format
+msgid "<tr><td>%1&nbsp;&nbsp;</td><td>%2</td></tr>"
+msgstr "<tr><td>%1&nbsp;&nbsp;</td><td>%2</td></tr>"
+
+#: step/worldmodel.cc:1019
+#, kde-format
+msgid "Simulate %1 → %2"
+msgstr "ក្លែង​ធ្វើ %1 → %2"
+
+#: step/worldmodel.cc:1072
+#, kde-format
+msgid "Cut %1"
+msgstr "កាត់ %1"
+
+#: step/worldmodel.cc:1073
+#, kde-format
+msgid "Cut several items"
+msgstr "កាត់​ធាតុ​មួយ​ចំនួន"
+
+#: step/worldmodel.cc:1095
+#, kde-format
+msgid "Pasted %1"
+msgstr "បាន​បិទ​ភ្ជាប់ %1"
+
+#: step/worldmodel.cc:1096
+#, kde-format
+msgid "Pasted several items"
+msgstr "បាន​បិទ​ភ្ជាប់​ធាតុ​មួយ​ចំនួន"
+
+#: step/worldscene.cc:260
+#, kde-format
+msgid "Objects under mouse:"
+msgstr "ធាតុ​នៅ​ក្រោម​កណ្ដុរ ៖"
+
+#: step/worldscene.cc:265
+#, kde-format
+msgid "... (1 more item)"
+msgid_plural "... (%1 more items)"
+msgstr[0] "... (%1 ធាតុ​បន្ថែម)"
+
+#~ msgid "Wikipedia"
+#~ msgstr "វីគីផេឌៀ"
+
+#~ msgid "Fetching Wikipedia Information..."
+#~ msgstr "ទៅ​ប្រមូល​យក​ព័ត៌មាន​វីគីភីឌៀង"
+
+#~ msgid "Wikipedia error"
+#~ msgstr "កំហុស​វីគីភីឌៀ"
+
+#~ msgid ""
+#~ "Information could not be retrieved because the server was not reachable."
+#~ msgstr "មិន​អាច​ទទួល​បាន​ព័ត៌មាន​ឡើយ​ពី​ព្រោះ​ម៉ាស៊ីន​បម្រើ​មិន​​អាច​អាន​បាន​ឡើយ ។"
+
+#~ msgid "Wikipedia Information"
+#~ msgstr "ព័ត៌មាន​វីគីភីឌៀ"
+
+#~ msgid "Wikipedia Other Languages"
+#~ msgstr "វីគីផេឌៀ​ជា​ភាសា​ផ្សេង​ទៀត"
+
+#~ msgid "The file \"%1\" already exists. Do you wish to overwrite it?"
+#~ msgstr "ឯកសារ​ \"%1\" មានរួចហើយ​ ។ តើ​អ្នក​ពិតជាចង់​សរសេរពីលើ​ឬ​?"
+
+#~ msgid "Vladimir Kuznetsov"
+#~ msgstr "Vladimir Kuznetsov"
+
+#~ msgid "Carsten Niehaus"
+#~ msgstr "Carsten Niehaus"
+
+#~ msgid "Create items..."
+#~ msgstr "បង្កើត​ធាតុ..."

@@ -1,0 +1,232 @@
+<?xml version="1.0" ?>
+<!DOCTYPE book PUBLIC "-//KDE//DTD DocBook XML V4.5-Based Variant V1.1//EN" "dtd/kdedbx45.dtd" [
+  <!ENTITY kappname "&step;">
+  <!ENTITY tutorials SYSTEM "tutorials.docbook">
+  <!ENTITY examples SYSTEM "examples.docbook">
+  <!ENTITY % addindex "IGNORE">
+  <!ENTITY % Brazilian-Portuguese "INCLUDE"
+><!-- change language only here -->
+]>
+
+<book id="step" lang="&language;">
+
+<bookinfo>
+<title
+>Manual do &step;</title>
+
+
+<authorgroup>
+<author
+>&Anne-Marie.Mahfouf; &Anne-Marie.Mahfouf.mail; </author>
+
+<othercredit role="translator"
+><firstname
+>Luiz Fernando</firstname
+><surname
+>Ranghetti</surname
+><affiliation
+><address
+><email
+>elchevive@opensuse.org</email
+></address
+></affiliation
+><contrib
+>Tradução</contrib
+></othercredit
+><othercredit role="translator"
+><firstname
+>André Marcelo</firstname
+><surname
+>Alvarenga</surname
+><affiliation
+><address
+><email
+>alvarenga@kde.org</email
+></address
+></affiliation
+><contrib
+>Tradução</contrib
+></othercredit
+> 
+</authorgroup>
+
+
+<copyright>
+<year
+>2007</year>
+<holder
+>&Anne-Marie.Mahfouf;</holder>
+</copyright>
+
+<legalnotice
+>&FDLNotice;</legalnotice>
+
+<date
+>07/05/2016</date>
+<releaseinfo
+>0.1.0 (Applications 16.04)</releaseinfo>
+
+<abstract>
+<para
+>O &step; é um simulador interativo de física. Ele permite-lhe explorar o mundo da física através de simulações.Funciona da seguinte forma: Você coloca alguns corpos no cenário, adiciona algumas forças como a gravidade ou molas e então clica em <guibutton
+>Simular</guibutton
+>, para que o &step; lhe mostre como o seu cenário irá evoluir de acordo com as leis da física. Você poderá alterar qualquer propriedade dos corpos/forças da sua experiência (inclusive durante a simulação) para ver como isso irá mudar a evolução da experiência. Com o &step;, você poderá não só aprender, mas também sentir como funciona a física! </para>
+</abstract>
+
+<keywordset>
+<keyword
+>KDE</keyword>
+<keyword
+>kdeedu</keyword>
+<keyword
+>física</keyword>
+<keyword
+>simulador</keyword>
+<keyword
+>forças</keyword>
+</keywordset>
+
+</bookinfo>
+
+<chapter id="introduction">
+<title
+>Introdução</title>
+<para
+>O &step; é um simulador de física interativo.</para>
+     
+<para
+>Recursos do &step;: <itemizedlist>
+<listitem
+><para
+>Simulação mecânica clássica em duas dimensões </para
+></listitem>
+<listitem
+><para
+>Partículas, molas com forças potenciais, gravitacionais e de Coulomb </para
+></listitem>
+<listitem
+><para
+>Corpos rígidos </para
+></listitem>
+<listitem
+><para
+>Detecção e tratamento de colisões (atualmente somente discretas) </para
+></listitem>
+<listitem
+><para
+>Corpos suaves (deformáveis) simulados como um sistema de partículas-ondas editáveis pelo usuário, ondas sonoras </para
+></listitem>
+<listitem
+><para
+>Dinâmica molecular (usando o potencial de Lennard-Jones atualmente): gases e líquidos, condensação e evaporação, cálculo de quantidades macroscópicas e as suas variâncias </para
+></listitem>
+<listitem
+><para
+>Conversão de unidades e cálculo de expressões; você poderá indicar algo do tipo "(2 dias + 3 horas) * 80 km/h", e isto será aceito como um valor de distância (necessita da 'libqalculate') </para
+></listitem>
+<listitem
+><para
+>Cálculo e propagação de erros: você poderá indicar valores do tipo "1.3 ± 0.2" para qualquer propriedade, para que sejam calculados os erros de todas as propriedades dependentes com fórmulas estatísticas </para
+></listitem>
+<listitem
+><para
+>Estimativa do erro da resolução: os erros introduzidos pela resolução são calculados e adicionados aos erros adicionados pelo usuário </para
+></listitem>
+<listitem
+><para
+>Diversos métodos de resolução diferentes: até à 8ª ordem, explícitos e implícitos, com ou sem passos temporais adaptativos (a maioria destes métodos necessitam da biblioteca GSL) </para
+></listitem>
+<listitem
+><para
+>Uma ferramenta de controle para modificar facilmente as propriedades durante a simulação (até mesmo com atalhos de teclado personalizados) </para
+></listitem>
+<listitem
+><para
+>Ferramentas para visualização dos resultados: gráficos, medidores, impressão </para
+></listitem>
+<listitem
+><para
+>Informação de contexto para todos os objetos, navegador do Wikipédia integrado </para
+></listitem>
+<listitem
+><para
+>Coleção de experiências de exemplo, podendo obter mais com o KNewStuff2 </para
+></listitem>
+<listitem
+><para
+>Tutoriais integrados </para
+></listitem>
+</itemizedlist>
+</para>
+</chapter>
+
+<chapter id="using-step">
+<title
+>Usando o &step;</title>
+<para
+>O &step; simula um mundo físico. O componente principal do &step; (1) é o cenário do mundo, no centro da janela principal do &step;, onde você deverá colocar primeiro os objetos físicos e onde poderá ver a simulação. À esquerda deste cenário, existe uma paleta (2) onde poderá escolher os seus objetos físicos. Você poderá mover livremente esta paleta pela sua tela, arrastando a barra do título. À direita do cenário, você poderá ver a descrição do mundo atual (3), as suas propriedades (4), alguma ajuda para explicar determinados conceitos (5) e o histórico do mundo atual (6). Cada um destes painéis poderá ser colocado em qualquer local da sua tela, arrastando mais uma vez a barra do título.</para>
+<screenshot>
+     <screeninfo
+>Aqui está uma captura de tela do &step; quando você o inicia pela primeira vez</screeninfo>
+	<mediaobject>
+	  <imageobject>
+	    <imagedata fileref="mainwindow.png" format="PNG"/>
+	  </imageobject>
+	    <textobject>
+	    <phrase
+>Janela principal do Step</phrase>
+	  </textobject>
+	</mediaobject>
+</screenshot>
+
+<para
+>Para auxiliá-lo a começar, o &step; integra uma série de tutoriais que o ensinam rapidamente a criar uma experiência. Veja passo-a-passo como começar o primeiro tutorial.</para>
+</chapter>
+
+&tutorials;  
+&examples;
+
+<chapter id="credits">
+
+<title
+>Créditos e licença</title>
+
+<para
+>&step; </para>
+<para
+>Direitos autorais do programa 2007 &Vladimir.Kuznetsov; &Vladimir.Kuznetsov.mail; </para>
+<para
+>Contribuidores: <itemizedlist>
+<listitem
+><para
+>Autor: &Vladimir.Kuznetsov; &Vladimir.Kuznetsov.mail;</para>
+</listitem>
+<listitem
+><para
+>Contribuidor: &Carsten.Niehaus; &Carsten.Niehaus.mail;</para>
+</listitem>
+</itemizedlist>
+</para>
+
+<para
+>Direitos autorais da documentação 2007 &Anne-Marie.Mahfouf; &Anne-Marie.Mahfouf.mail; </para>
+
+<para
+>Tradução de Luiz Fernando Ranghetti <email
+>elchevive@opensuse.org</email
+> e André Marcelo Alvarenga <email
+>alvarenga@kde.org</email
+></para
+> &underFDL; &underGPL; </chapter>
+
+&documentation.index;
+</book>
+<!--
+Local Variables:
+mode: sgml
+sgml-minimize-attributes:nil
+sgml-general-insert-case:lower
+sgml-indent-step:0
+sgml-indent-data:nil
+End:
+-->

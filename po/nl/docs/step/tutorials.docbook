@@ -1,0 +1,251 @@
+<chapter id="tutorials">
+<title
+>Met &step; leren werken: de lessen</title>
+
+<para
+>Met het menu-item <menuchoice
+><guimenu
+>Bestand</guimenu
+><guimenuitem
+>Een les openen...</guimenuitem
+></menuchoice
+> krijgt u een bestandendialoog waarin u de in &step; ingebouwde lessen kunt kiezen. Er zijn vijf lessen, waarin u met elk onderdeel van &step; leert omgaan. Het best is met de eerste les te beginnen door te klikken op het bestand <filename
+>tutorial1.step</filename
+>. U ziet nu Les 1 van &step;. </para>
+
+<note
+><para
+>Indien u de les niet goed kunt lezen kunt u die misschien beter leesbaar maken door erop in te zoomen.</para
+></note>
+
+<para
+>In het paneel <guilabel
+>Wereld</guilabel
+>, rechts, is een lijst van alle objecten die in uw werkvlak aanwezig zijn. Door hierin op een object te klikken ziet u in het paneel <guilabel
+>Eigenschappen</guilabel
+> hieronder, de eigenschappen van dat object. U kunt hier de eigenschappen aanpassen door te klikken op de eigenschap die u wilt veranderen. </para>
+
+<para
+>Elke les bevat wat tekst waarin nieuwe elementen worden gepresenteerd, en waarvan de eigenschappen worden uitgelegd. Daarna wordt u gevraagd enkele eigenschappen van de elementen te veranderen zodat uw experiment een ander resultaat geeft. </para>
+
+<sect1 id="tutorial1">
+<title
+>Les 1: lichamen en veren</title>
+
+<para
+>In deze les worden u lichamen en veren aangeboden, en leert u uw eerste simulatie uit te voeren. </para>
+
+<para
+>Een natuurkundig lichaam, of kortweg lichaam, is een object dat kan worden beschreven door de theorieën van de klassieke mechanica, of de quantummechanica, en waarmee kan worden geëxperimenteerd met behulp van natuurkundige hulpmiddelen. Dit houdt in de positiebepaling, en in sommige gevallen de oriëntatie in de ruimte, samen met de middelen om deze te veranderen door er krachten op uit te oefenen. </para>
+
+<para
+>Een veer is een flexibel en elastisch object, dat wordt gebruikt om er mechanische energie in op te slaan. </para>
+
+<screenshot>
+  <screeninfo
+>Experiment in Les 1</screeninfo>
+  <mediaobject>
+    <imageobject
+><imagedata fileref="tutorial1.png" format="PNG"/></imageobject>
+    <textobject
+><phrase
+>Experiment in Les 1</phrase
+></textobject>
+  </mediaobject>
+</screenshot>
+
+<para
+>In het natuurkundige experiment in deze les worden twee schijven met elkaar verbonden door een veer. De schijven hebben een beginsnelheid in de tangentiële richting (de kleine blauwe pijl), en een versnelling (de rode pijl). De veren hebben een zekere stijfheid, en de lengte kan worden veranderd. Gedurende het experiment ziet u dat er door de veer aan de schijven wordt geduwd en getrokken. In de les wordt u uitgenodigd de stijfheid van de veer te veranderen, en ook om in het systeem veranderingen aan te brengen. </para>
+
+<para
+>Na deze les bent u wat meer vertrouwd geraakt met het werken met &step;, en met het aanpassen van de eigenschappen van lichamen. </para>
+</sect1>
+
+<sect1 id="tutorial2">
+<title
+>Les 2: controllers en grafieken</title>
+
+<para
+>In deze les leert u iets over controllers en grafieken. </para>
+
+<para
+>Een controller is een hulpmiddel waarmee u op een grafische manier een eigenschap van een lichaam of veer kunt veranderen. In deze les kunt u met een controller de stijfheid wijzigen van <quote
+>veer 1</quote
+>. Door de schuifknop naar rechts te bewegen, of met behulp van de toets <keycap
+>W</keycap
+>, kunt u de stijfheid van de veer vergroten, en door de schuifknop naar links te bewegen, of met de toets <keycap
+>Q</keycap
+>, kunt u de stijfheid kleiner maken. Door rechts klikken op de controller kunt u uit een aantal contextacties en met het item <guimenuitem
+>Controller configureren...</guimenuitem
+> toont u een dialoog waarmee u elke eigenschap van de controller kunt veranderen. </para>
+
+<screenshot>
+  <screeninfo
+>Experiment in les 2</screeninfo>
+  <mediaobject>
+    <imageobject
+><imagedata fileref="tutorial2.png" format="PNG"/></imageobject>
+    <textobject
+><phrase
+>Experiment in les 2</phrase
+></textobject>
+  </mediaobject>
+</screenshot>
+
+<para
+>Met behulp van grafieken kunt op een grafische manier de relatie zichtbaar maken tussen twee variabelen. In het voorbeeld van deze les wordt het verloop weergegeven van de positie van deeltje1, terwijl de tijd in wereld1 voortschrijdt. Door op de grafiek te rechtsklikken kunt u de grafiek niet alleen wissen, maar ook de instellingendialoog bewerken, en alle eigenschappen voor deze grafiek wijzigen. </para>
+
+<para
+>Als u met deze les klaar bent, kunt u controllers gebruiken om de eigenschappen van lichamen te beïnvloeden, en grafieken om specifieke eigenschappen in uw experiment te volgen. </para>
+</sect1>
+
+<sect1 id="tutorial3">
+<title
+>Les 3: stijve lichamen en sporen</title>
+
+<para
+>In les 3 komen stijve lichamen en sporen aan bod. </para>
+
+<para
+>Een stijf lichaam is een geïdealiseerd massief lichaam van eindige afmetingen, waarvan vervormingen worden verwaarloosd. Met andere woorden, de afstand tussen elke twee gegeven punten van een stijf lichaam blijft steeds even groot, onafhankelijk van de uitgeoefende externe krachten. </para>
+
+<para
+>Een spoor is een hulpmiddel waarmee de baan, van een gegeven punt op een stijf lichaam, zichtbaar kan worden gemaakt. </para>
+
+<screenshot>
+  <screeninfo
+>Eigenschappen van schijf</screeninfo>
+  <mediaobject>
+    <imageobject
+><imagedata fileref="disk-properties.png" format="PNG"/></imageobject>
+    <textobject
+><phrase
+>Eigenschappen van schijf</phrase
+></textobject>
+  </mediaobject>
+</screenshot>
+
+<para
+>Wanneer een stijf lichaam (hier een schijf) wordt geselecteerd, ziet u er drie grijze handvaten aan. Door erop te klikken en ze te bewegen kunt u hiermee de snelheid, de hoek en de hoeksnelheid van het lichaam veranderen. </para>
+
+<screenshot>
+  <screeninfo
+>Les 3: 2 sporen</screeninfo>
+  <mediaobject>
+    <imageobject
+><imagedata fileref="tutorial3.png" format="PNG"/></imageobject>
+    <textobject
+><phrase
+>Les 3: 2 sporen</phrase
+></textobject>
+  </mediaobject>
+</screenshot>
+
+<para
+>In het experiment van les 3 ziet u een schijf en een doos, die door een veer met elkaar zijn verbonden. Op de doos is al een spoor aanwezig (het blauwe). U kunt hier een tweede aan toevoegen: selecteer <guibutton
+>Spoor</guibutton
+> in het paneel <guilabel
+>Palet</guilabel
+> en klik daarna op de doos op het punt waar u het spoor wilt hebben. In het paneel <guilabel
+>Eigenschappen</guilabel
+> klikt u op de regel <guilabel
+>kleur</guilabel
+> en rechts van deze regel klikt u op het blauwe vierkantje, waarna een kleurenpalet verschijnt: u kunt hier een andere kleur kiezen voor het spoor. In het schermbeeld hierboven ziet u twee sporen na de simulatie die een paar seconden duurt. </para>
+</sect1>
+
+<sect1 id="tutorial4">
+<title
+>Les 4: motoren en krachten</title>
+
+<para
+>In &step; zijn twee soorten van motoren beschikbaar: lineaire motoren en circulaire motoren. Een lineaire motor oefent een constante kracht uit op een gegeven punt van een lichaam, een circulaire motor oefent op het lichaam een constant koppel uit. </para>
+
+<para
+>Op lichamen kunnen drie verschillende krachten worden uitgeoefend: het gewicht, de zwaartekracht en de Coulombkracht. Standaard zijn in &step; alle krachten uitgeschakeld. De Coulombkracht is een intrinsieke kracht tussen twee (elektrische) ladingen. </para>
+
+<screenshot>
+  <screeninfo
+>Les 4: Motoren</screeninfo>
+  <mediaobject>
+    <imageobject
+><imagedata fileref="tutorial4.png" format="PNG"/></imageobject>
+    <textobject
+><phrase
+>Les 4: Motoren</phrase
+></textobject>
+  </mediaobject>
+</screenshot>
+
+<para
+>In dit experiment zijn er een schijf en een doos, met elkaar verbonden door een veer. Een platte doos onderaan doet dienst als begrenzing. Zowel de schijf als de doos zijn verbonden met een lineaire motor. Door middel van twee controllers kunt u de kracht veranderen die elk van de motoren levert. Start de simulatie en speel met de controllers. Daarna stopt u de simulatie, en voegt u een gewichtkracht toe aan de wereld (krachten zijn globaal en zijn van toepassing op de gehele wereld). Herstart de simulatie en analyseer het verschil. </para>
+
+<para
+>U kunt ook de lineaire motor op de doos verwijderen en deze vervangen door een circulaire motor. Druk op <inlinemediaobject
+><imageobject
+><imagedata fileref="step_object_CircularMotor.png" format="PNG"/></imageobject
+></inlinemediaobject
+> <guibutton
+>Circulaire motor</guibutton
+> in het paneel <guilabel
+>Palet</guilabel
+>, en klik daarna op de doos. De circulaire motor is dan bevestigd aan de doos. U moet dan nog het koppel instellen door op het grijze handvat van de motor te klikken en die te bewegen. </para>
+
+<screenshot>
+  <screeninfo
+>Circulaire motor</screeninfo>
+  <mediaobject>
+    <imageobject
+><imagedata fileref="circular-motor.png" format="PNG"/></imageobject>
+    <textobject
+><phrase
+>Circulaire motor</phrase
+></textobject>
+  </mediaobject>
+</screenshot>
+
+<para
+>In deze les maakte u kennis met motoren en krachten, en u bent nu in staat om die toe te passen op lichamen.</para>
+</sect1>
+
+<sect1 id="tutorial5">
+<title
+>Les 5: verbindingen</title>
+
+<para
+>Verbindingen zijn objecten die lichamen aan elkaar vastmaken, of aan de achtergrond. In &step; zijn de volgende verbindingen aanwezig: ankers, pennen en stokken. Een anker fixeert de positie van het lichaam. Met een anker kan het lichaam zich niet verplaatsen. Een pen is een verbinding die een punt van een lichaam fixeert, het lichaam kan nog wel draaien om de pen. Een stok is een verbinding die de afstand tussen twee punten op twee lichamen fixeert. </para>
+
+<screenshot>
+  <screeninfo
+>Les 5: dubbele slinger</screeninfo>
+  <mediaobject>
+    <imageobject
+><imagedata fileref="tutorial5.png" format="PNG"/></imageobject>
+    <textobject
+><phrase
+>Les 5: dubbele slinger</phrase
+></textobject>
+  </mediaobject>
+</screenshot>
+
+<para
+>In les 5 wordt een dubbele slinger beschreven. </para>
+
+<para
+>Voeg een <inlinemediaobject
+><imageobject
+><imagedata fileref="step_object_Particle.png" format="PNG"/></imageobject
+></inlinemediaobject
+> <guibutton
+>Deeltje</guibutton
+> toe aan het werkvlak en verbind dit deeltje daarna met een stok aan deeltje2. Druk op de knop <inlinemediaobject
+><imageobject
+><imagedata fileref="step_object_Stick.png" format="PNG"/></imageobject
+></inlinemediaobject
+> <guibutton
+>Stok</guibutton
+> in het paneel <guilabel
+>Palet</guilabel
+>. U moet nu met de linker muisknop het eerste object selecteren dat aan de stok vast zit (deeltje2), en daarna de muis naar het tweede object (deeltje3) slepen, waarna u de linker muisknop op deeltje3 loslaat. Nu is een dubbele slinger gemaakt! </para>
+</sect1>
+
+</chapter>

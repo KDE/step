@@ -1,0 +1,1723 @@
+# Copyright (C) YEAR This file is copyright:
+# This file is distributed under the same license as the step package.
+#
+# Marek Laane <qiilaq69@gmail.com>, 2019.
+msgid ""
+msgstr ""
+"Project-Id-Version: step\n"
+"Report-Msgid-Bugs-To: https://bugs.kde.org\n"
+"POT-Creation-Date: 2021-03-14 19:34+0000\n"
+"PO-Revision-Date: 2019-12-24 23:44+0200\n"
+"Last-Translator: Marek Laane <qiilaq69@gmail.com>\n"
+"Language-Team: Estonian <kde-et@lists.linux.ee>\n"
+"Language: et\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: Lokalize 19.08.1\n"
+
+#: examples/brownian.step:4 examples/doublependulum.step:4
+#: examples/fourpendula.step:4 examples/gas.step:4 examples/graph.step:4
+#: examples/liquid.step:4 examples/lissajous.step:4 examples/motor.step:4
+#: examples/motor1.step:4 examples/note.step:4 examples/resonance.step:4
+#: examples/softbody.step:4 examples/wave.step:4 tutorials/tutorial1.step:4
+#: tutorials/tutorial2.step:4 tutorials/tutorial3.step:4
+#: tutorials/tutorial4.step:4 tutorials/tutorial5.step:4
+#, kde-format
+msgctxt "name"
+msgid "world1"
+msgstr "maailm1"
+
+#: examples/brownian.step:11 examples/gas.step:11 examples/motor.step:11
+#: examples/motor1.step:11 examples/softbody.step:655
+#, kde-format
+msgctxt "name"
+msgid "polygon1"
+msgstr "hulknurk1"
+
+#: examples/brownian.step:23 examples/gas.step:23 examples/softbody.step:667
+#, kde-format
+msgctxt "name"
+msgid "polygon2"
+msgstr "hulknurk2"
+
+#: examples/brownian.step:35 examples/gas.step:35
+#, kde-format
+msgctxt "name"
+msgid "polygon3"
+msgstr "hulknurk3"
+
+#: examples/brownian.step:47 examples/gas.step:47
+#, kde-format
+msgctxt "name"
+msgid "polygon4"
+msgstr "hulknurk4"
+
+#: examples/brownian.step:59 examples/gas.step:59
+#, kde-format
+msgctxt "name"
+msgid "gas1"
+msgstr "gaas1"
+
+#: examples/brownian.step:387 examples/graph.step:39 examples/lissajous.step:51
+#: examples/wave.step:448 tutorials/tutorial2.step:53
+#, kde-format
+msgctxt "name"
+msgid "graph1"
+msgstr "graaf1"
+
+#: examples/brownian.step:407 examples/eightpendula.step:19
+#: examples/fourpendula.step:23 tutorials/tutorial1.step:99
+#: tutorials/tutorial3.step:11 tutorials/tutorial4.step:11
+#, kde-format
+msgctxt "name"
+msgid "disk1"
+msgstr "ketas1"
+
+#: examples/brownian.step:419 tutorials/tutorial3.step:47
+#, kde-format
+msgctxt "name"
+msgid "tracer1"
+msgstr ""
+
+#: examples/brownian.step:427 examples/doublependulum.step:66
+#: examples/eightpendula.step:203 examples/fourpendula.step:126
+#: examples/gas.step:379 examples/graph.step:105 examples/liquid.step:200
+#: examples/lissajous.step:112 examples/motor.step:65 examples/motor1.step:47
+#: examples/note.step:41 examples/resonance.step:179 examples/softbody.step:679
+#: examples/wave.step:481 tutorials/tutorial1.step:138
+#: tutorials/tutorial2.step:147 tutorials/tutorial3.step:100
+#: tutorials/tutorial4.step:173
+#, kde-format
+msgctxt "name"
+msgid "solver1"
+msgstr "lahendaja1"
+
+#: examples/brownian.step:434 examples/doublependulum.step:73
+#: examples/eightpendula.step:210 examples/first.step:71
+#: examples/fourpendula.step:133 examples/gas.step:386 examples/graph.step:112
+#: examples/liquid.step:207 examples/lissajous.step:119 examples/motor.step:72
+#: examples/motor1.step:54 examples/note.step:48 examples/resonance.step:186
+#: examples/softbody.step:686 examples/solar.step:105 examples/springs.step:106
+#: examples/wave.step:488 tutorials/tutorial1.step:145
+#: tutorials/tutorial2.step:154 tutorials/tutorial3.step:107
+#: tutorials/tutorial4.step:180
+#, kde-format
+msgctxt "name"
+msgid "collisionSolver1"
+msgstr ""
+
+#: examples/brownian.step:439 examples/doublependulum.step:78
+#: examples/eightpendula.step:215 examples/first.step:76
+#: examples/fourpendula.step:138 examples/gas.step:391 examples/graph.step:117
+#: examples/liquid.step:212 examples/lissajous.step:124 examples/motor.step:77
+#: examples/motor1.step:59 examples/note.step:53 examples/resonance.step:191
+#: examples/softbody.step:691 examples/solar.step:110 examples/springs.step:111
+#: examples/wave.step:493 tutorials/tutorial1.step:150
+#: tutorials/tutorial2.step:159 tutorials/tutorial3.step:112
+#: tutorials/tutorial4.step:185
+#, kde-format
+msgctxt "name"
+msgid "constraintSolver1"
+msgstr ""
+
+#: examples/doublependulum.step:11 examples/first.step:11
+#: examples/graph.step:11 examples/lissajous.step:11 examples/motor.step:35
+#: tutorials/tutorial2.step:11 tutorials/tutorial5.step:11
+#, kde-format
+msgctxt "name"
+msgid "particle1"
+msgstr "osake1"
+
+#: examples/doublependulum.step:19 examples/first.step:19
+#: examples/graph.step:19 examples/lissajous.step:19
+#: tutorials/tutorial2.step:19 tutorials/tutorial5.step:19
+#, kde-format
+msgctxt "name"
+msgid "particle2"
+msgstr "osake2"
+
+#: examples/doublependulum.step:27 examples/eightpendula.step:31
+#: examples/fourpendula.step:71 tutorials/tutorial5.step:27
+#, kde-format
+msgctxt "name"
+msgid "stick1"
+msgstr ""
+
+#: examples/doublependulum.step:37 examples/eightpendula.step:83
+#: examples/fourpendula.step:81 tutorials/tutorial5.step:37
+#, kde-format
+msgctxt "name"
+msgid "stick2"
+msgstr ""
+
+#: examples/doublependulum.step:47 examples/eightpendula.step:12
+#: examples/fourpendula.step:119 tutorials/tutorial5.step:47
+#, kde-format
+msgctxt "name"
+msgid "weightForce1"
+msgstr "raskusjõud1"
+
+#: examples/doublependulum.step:54 examples/gas.step:247 examples/graph.step:79
+#: examples/liquid.step:187 examples/lissajous.step:85 examples/note.step:11
+#: examples/wave.step:435 tutorials/tutorial1.step:23
+#: tutorials/tutorial2.step:73 tutorials/tutorial3.step:55
+#: tutorials/tutorial4.step:91
+#, kde-format
+msgctxt "name"
+msgid "note1"
+msgstr "märkus1"
+
+#: examples/doublependulum.step:62
+#, kde-format
+msgctxt "HTML:p"
+msgid "Double pendulum example"
+msgstr ""
+
+#: examples/eightpendula.step:4
+#, kde-format
+msgctxt "name"
+msgid ""
+"Pendule de Newton à 8 billes (http://fr.wikipedia.org/wiki/Pendule_de_Newton)"
+msgstr ""
+"Pendule de Newton à 8 billes (http://fr.wikipedia.org/wiki/Pendule_de_Newton)"
+
+#: examples/eightpendula.step:41 examples/fourpendula.step:35
+#: tutorials/tutorial1.step:111
+#, kde-format
+msgctxt "name"
+msgid "disk2"
+msgstr "ketas2"
+
+#: examples/eightpendula.step:53 examples/fourpendula.step:59
+#, kde-format
+msgctxt "name"
+msgid "disk4"
+msgstr "ketas4"
+
+#: examples/eightpendula.step:65 examples/fourpendula.step:91
+#, kde-format
+msgctxt "name"
+msgid "stick3"
+msgstr ""
+
+#: examples/eightpendula.step:75 examples/fourpendula.step:111
+#: tutorials/tutorial4.step:165 tutorials/tutorial5.step:85
+#, kde-format
+msgctxt "name"
+msgid "anchor1"
+msgstr "ankur1"
+
+#: examples/eightpendula.step:93
+#, kde-format
+msgctxt "name"
+msgid "disk5"
+msgstr "ketas5"
+
+#: examples/eightpendula.step:105 examples/fourpendula.step:101
+#, kde-format
+msgctxt "name"
+msgid "stick4"
+msgstr ""
+
+#: examples/eightpendula.step:115
+#, kde-format
+msgctxt "name"
+msgid "disk6"
+msgstr "ketas6"
+
+#: examples/eightpendula.step:127
+#, kde-format
+msgctxt "name"
+msgid "stick5"
+msgstr ""
+
+#: examples/eightpendula.step:137
+#, kde-format
+msgctxt "name"
+msgid "disk7"
+msgstr "ketas7"
+
+#: examples/eightpendula.step:149
+#, kde-format
+msgctxt "name"
+msgid "stick6"
+msgstr ""
+
+#: examples/eightpendula.step:159
+#, kde-format
+msgctxt "name"
+msgid "disk8"
+msgstr "ketas8"
+
+#: examples/eightpendula.step:171
+#, kde-format
+msgctxt "name"
+msgid "stick7"
+msgstr ""
+
+#: examples/eightpendula.step:181
+#, kde-format
+msgctxt "name"
+msgid "disk9"
+msgstr "ketas9"
+
+#: examples/eightpendula.step:193
+#, kde-format
+msgctxt "name"
+msgid "stick8"
+msgstr ""
+
+#: examples/eightpendula.step:219 examples/fourpendula.step:11
+#: tutorials/tutorial3.step:23 tutorials/tutorial4.step:23
+#: tutorials/tutorial5.step:93
+#, kde-format
+msgctxt "name"
+msgid "box1"
+msgstr "kast1"
+
+#: examples/first.step:4
+#, kde-format
+msgctxt "name"
+msgid "world"
+msgstr "maailm"
+
+#: examples/first.step:27 examples/gas.step:235 examples/graph.step:27
+#: examples/lissajous.step:27 examples/motor.step:23 examples/wave.step:411
+#: tutorials/tutorial1.step:11 tutorials/tutorial2.step:27
+#: tutorials/tutorial3.step:35 tutorials/tutorial4.step:35
+#, kde-format
+msgctxt "name"
+msgid "spring1"
+msgstr "vedru1"
+
+#: examples/first.step:39
+#, kde-format
+msgctxt "name"
+msgid "chargedParticle1"
+msgstr "laetudOsake1"
+
+#: examples/first.step:48
+#, kde-format
+msgctxt "name"
+msgid "chargedParticle2"
+msgstr "laetudOsake2"
+
+#: examples/first.step:64 examples/solar.step:98
+#, kde-format
+msgctxt "name"
+msgid "solver"
+msgstr "lahendaja"
+
+#: examples/fourpendula.step:47
+#, kde-format
+msgctxt "name"
+msgid "disk3"
+msgstr "ketas3"
+
+#: examples/gas.step:65 examples/liquid.step:17
+#, kde-format
+msgctxt "name"
+msgid "gasLJForce1"
+msgstr ""
+
+#: examples/gas.step:73 examples/liquid.step:25
+#, kde-format
+msgctxt "name"
+msgid "gasParticle1"
+msgstr "gaasiosake1"
+
+#: examples/gas.step:81 examples/liquid.step:33
+#, kde-format
+msgctxt "name"
+msgid "gasParticle2"
+msgstr "gaasiosake2"
+
+#: examples/gas.step:89 examples/liquid.step:41
+#, kde-format
+msgctxt "name"
+msgid "gasParticle3"
+msgstr "gaasiosake3"
+
+#: examples/gas.step:97 examples/liquid.step:49
+#, kde-format
+msgctxt "name"
+msgid "gasParticle4"
+msgstr "gaasiosake4"
+
+#: examples/gas.step:105 examples/liquid.step:57
+#, kde-format
+msgctxt "name"
+msgid "gasParticle5"
+msgstr "gaasiosake5"
+
+#: examples/gas.step:113 examples/liquid.step:65
+#, kde-format
+msgctxt "name"
+msgid "gasParticle6"
+msgstr "gaasiosake6"
+
+#: examples/gas.step:121 examples/liquid.step:73
+#, kde-format
+msgctxt "name"
+msgid "gasParticle7"
+msgstr "gaasiosake7"
+
+#: examples/gas.step:129 examples/liquid.step:81
+#, kde-format
+msgctxt "name"
+msgid "gasParticle8"
+msgstr "gaasiosake8"
+
+#: examples/gas.step:137 examples/liquid.step:89
+#, kde-format
+msgctxt "name"
+msgid "gasParticle9"
+msgstr "gaasiosake9"
+
+#: examples/gas.step:145 examples/liquid.step:97
+#, kde-format
+msgctxt "name"
+msgid "gasParticle10"
+msgstr "gaasiosake10"
+
+#: examples/gas.step:153 examples/liquid.step:105
+#, kde-format
+msgctxt "name"
+msgid "gasParticle11"
+msgstr "gaasiosake11"
+
+#: examples/gas.step:161 examples/liquid.step:113
+#, kde-format
+msgctxt "name"
+msgid "gasParticle12"
+msgstr "gaasiosake12"
+
+#: examples/gas.step:169 examples/liquid.step:121
+#, kde-format
+msgctxt "name"
+msgid "gasParticle13"
+msgstr "gaasiosake13"
+
+#: examples/gas.step:177 examples/liquid.step:129
+#, kde-format
+msgctxt "name"
+msgid "gasParticle14"
+msgstr "gaasiosake14"
+
+#: examples/gas.step:185 examples/liquid.step:137
+#, kde-format
+msgctxt "name"
+msgid "gasParticle15"
+msgstr "gaasiosake15"
+
+#: examples/gas.step:193 examples/liquid.step:145
+#, kde-format
+msgctxt "name"
+msgid "gasParticle16"
+msgstr "gaasiosake16"
+
+#: examples/gas.step:201 examples/liquid.step:153
+#, kde-format
+msgctxt "name"
+msgid "gasParticle17"
+msgstr "gaasiosake17"
+
+#: examples/gas.step:209 examples/liquid.step:161
+#, kde-format
+msgctxt "name"
+msgid "gasParticle18"
+msgstr "gaasiosake18"
+
+#: examples/gas.step:217 examples/liquid.step:169
+#, kde-format
+msgctxt "name"
+msgid "gasParticle19"
+msgstr "gaasiosake19"
+
+#: examples/gas.step:225 examples/liquid.step:177
+#, kde-format
+msgctxt "name"
+msgid "gasParticle20"
+msgstr "gaasiosake20"
+
+#: examples/gas.step:255
+#, kde-format
+msgctxt "HTML:p"
+msgid "<span style=\" font-size:large;\">n =</span>"
+msgstr "<span style=\" font-size:large;\">n =</span>"
+
+#: examples/gas.step:259
+#, kde-format
+msgctxt "name"
+msgid "meter1"
+msgstr "mõõdik1"
+
+#: examples/gas.step:270
+#, kde-format
+msgctxt "name"
+msgid "meter2"
+msgstr "mõõdik2"
+
+#: examples/gas.step:281 tutorials/tutorial1.step:53
+#: tutorials/tutorial2.step:102 tutorials/tutorial3.step:84
+#: tutorials/tutorial4.step:137 tutorials/tutorial5.step:69
+#, kde-format
+msgctxt "name"
+msgid "note3"
+msgstr "märkus3"
+
+#: examples/gas.step:289
+#, kde-format
+msgctxt "HTML:h3"
+msgid "T ="
+msgstr "T ="
+
+#: examples/gas.step:293
+#, kde-format
+msgctxt "name"
+msgid "meter3"
+msgstr "mõõdik3"
+
+#: examples/gas.step:304 examples/graph.step:92 examples/lissajous.step:98
+#: examples/wave.step:468 tutorials/tutorial1.step:37
+#: tutorials/tutorial2.step:87 tutorials/tutorial3.step:70
+#: tutorials/tutorial4.step:105 tutorials/tutorial5.step:54
+#, kde-format
+msgctxt "name"
+msgid "note2"
+msgstr "märkus2"
+
+#: examples/gas.step:312
+#, kde-format
+msgctxt "HTML:h3"
+msgid "p ="
+msgstr "p ="
+
+#: examples/gas.step:316 tutorials/tutorial1.step:84
+#: tutorials/tutorial2.step:134
+#, kde-format
+msgctxt "name"
+msgid "note5"
+msgstr "märkus5"
+
+#: examples/gas.step:325
+#, kde-format
+msgctxt "HTML:p"
+msgid ""
+"<span style=\" font-size:large;\">F</span><span style=\" font-size:large; "
+"vertical-align:sub;\">s</span><span style=\" font-size:large;\"> =</span>"
+msgstr ""
+"<span style=\" font-size:large;\">F</span><span style=\" font-size:large; "
+"vertical-align:sub;\">s</span><span style=\" font-size:large;\"> =</span>"
+
+#: examples/gas.step:329
+#, kde-format
+msgctxt "name"
+msgid "meter4"
+msgstr "mõõdik4"
+
+#: examples/gas.step:340 tutorials/tutorial1.step:69
+#: tutorials/tutorial2.step:119 tutorials/tutorial4.step:122
+#, kde-format
+msgctxt "name"
+msgid "note4"
+msgstr "märkus4"
+
+#: examples/gas.step:349
+#, kde-format
+msgctxt "HTML:p"
+msgid "<span style=\" font-size:medium;\">Macroscopic quantities:</span>"
+msgstr ""
+
+#: examples/gas.step:353 tutorials/tutorial1.step:123
+#: tutorials/tutorial5.step:105
+#, kde-format
+msgctxt "name"
+msgid "note6"
+msgstr "märkus6"
+
+#: examples/gas.step:362
+#, kde-format
+msgctxt "HTML:p"
+msgid "<span style=\" font-size:medium;\">Spring tension:</span>"
+msgstr ""
+
+#: examples/gas.step:366
+#, kde-format
+msgctxt "name"
+msgid "note7"
+msgstr "märkus7"
+
+#: examples/gas.step:375
+#, kde-format
+msgctxt "HTML:p"
+msgid ""
+"(run simulation for ~20 seconds and compare spring tension with pressure)"
+msgstr ""
+
+#: examples/graph.step:59
+#, kde-format
+msgctxt "name"
+msgid "graph2"
+msgstr "graaf2"
+
+#: examples/graph.step:88
+#, kde-format
+msgctxt "HTML:p"
+msgid "Phase diagram"
+msgstr ""
+
+#: examples/graph.step:101
+#, kde-format
+msgctxt "HTML:p"
+msgid "Position - time"
+msgstr "Asukoht - aeg"
+
+#: examples/liquid.step:196
+#, kde-format
+msgctxt "HTML:p"
+msgid ""
+"This small drop of liquid in free space is simulated using the same "
+"potential as gas. Notice how sometimes a particle leaves the drop - it is "
+"evaporation."
+msgstr ""
+
+#: examples/lissajous.step:39 examples/wave.step:423
+#, kde-format
+msgctxt "name"
+msgid "spring2"
+msgstr "vedru2"
+
+#: examples/lissajous.step:71 examples/motor.step:51
+#: tutorials/tutorial2.step:39 tutorials/tutorial4.step:63
+#, kde-format
+msgctxt "name"
+msgid "controller1"
+msgstr "kontroller1"
+
+#: examples/lissajous.step:94
+#, kde-format
+msgctxt "HTML:p"
+msgid "Lissajous curve"
+msgstr "Lissajous' kõver"
+
+#: examples/lissajous.step:108
+#, kde-format
+msgctxt "HTML:p"
+msgid ""
+"Please try to change the stiffness of spring1 and see \n"
+"how the curve will change. Try the following values:<br></br>1, 2.25, "
+"1.7778, 1.5625, 0.6944"
+msgstr ""
+
+#: examples/motor.step:43 examples/motor1.step:23 tutorials/tutorial4.step:47
+#, kde-format
+msgctxt "name"
+msgid "linearMotor1"
+msgstr "lineaarmootot1"
+
+#: examples/motor1.step:31 tutorials/tutorial4.step:55
+#, kde-format
+msgctxt "name"
+msgid "linearMotor2"
+msgstr "lineaarmootot2"
+
+#: examples/motor1.step:39
+#, kde-format
+msgctxt "name"
+msgid "linearMotor3"
+msgstr "lineaarmootot3"
+
+#: examples/note.step:19
+#, kde-format
+msgctxt "HTML:p"
+msgid "Example formula:"
+msgstr ""
+
+#: examples/note.step:20
+#, kde-format
+msgctxt "HTML:p"
+msgid "<img src=\"img:0\"></img>"
+msgstr "<img src=\"img:0\"></img>"
+
+#: examples/note.step:22
+#, kde-format
+msgctxt "HTML:p"
+msgid "Example image:"
+msgstr "Näidispilt:"
+
+#: examples/note.step:23
+#, kde-format
+msgctxt "HTML:p"
+msgid "<img src=\"img:1\"></img>"
+msgstr "<img src=\"img:1\"></img>"
+
+#: examples/note.step:26
+#, kde-format
+msgctxt "name"
+msgid "img:0"
+msgstr "img:0"
+
+#: examples/note.step:33
+#, kde-format
+msgctxt "name"
+msgid "img:1"
+msgstr "img:1"
+
+#: examples/resonance.step:11
+#, kde-format
+msgctxt "name"
+msgid "LeftWall"
+msgstr ""
+
+#: examples/resonance.step:23
+#, kde-format
+msgctxt "name"
+msgid "Body"
+msgstr "Keha"
+
+#: examples/resonance.step:35
+#, kde-format
+msgctxt "name"
+msgid "RightWall"
+msgstr ""
+
+#: examples/resonance.step:47
+#, kde-format
+msgctxt "name"
+msgid "Disk"
+msgstr "Ketas"
+
+#: examples/resonance.step:59
+#, kde-format
+msgctxt "name"
+msgid "PinDisk"
+msgstr ""
+
+#: examples/resonance.step:67
+#, kde-format
+msgctxt "name"
+msgid "Spring"
+msgstr "Vedru"
+
+#: examples/resonance.step:79
+#, kde-format
+msgctxt "name"
+msgid "AnchorLeftWall"
+msgstr ""
+
+#: examples/resonance.step:87
+#, kde-format
+msgctxt "name"
+msgid "AnchorRightWall"
+msgstr ""
+
+#: examples/resonance.step:95
+#, kde-format
+msgctxt "name"
+msgid "Graph"
+msgstr "Graaf"
+
+#: examples/resonance.step:115
+#, kde-format
+msgctxt "name"
+msgid "CircularMotor"
+msgstr "Ringmootor"
+
+#: examples/resonance.step:123
+#, kde-format
+msgctxt "name"
+msgid "Velocity"
+msgstr "Kiirus"
+
+#: examples/resonance.step:137
+#, kde-format
+msgctxt "name"
+msgid "Acceleration"
+msgstr "Kiirendus"
+
+#: examples/resonance.step:151
+#, kde-format
+msgctxt "name"
+msgid "Stiffness"
+msgstr ""
+
+#: examples/resonance.step:165
+#, kde-format
+msgctxt "name"
+msgid "Damping"
+msgstr ""
+
+#: examples/softbody.step:11 examples/wave.step:11
+#, kde-format
+msgctxt "name"
+msgid "softBody1"
+msgstr "elastneKeha1"
+
+#: examples/softbody.step:21 examples/wave.step:21
+#, kde-format
+msgctxt "name"
+msgid "softBodyParticle1"
+msgstr "elastseKehaOsake1"
+
+#: examples/softbody.step:29 examples/wave.step:29
+#, kde-format
+msgctxt "name"
+msgid "softBodyParticle2"
+msgstr "elastseKehaOsake2"
+
+#: examples/softbody.step:37 examples/wave.step:37
+#, kde-format
+msgctxt "name"
+msgid "softBodyParticle3"
+msgstr "elastseKehaOsake3"
+
+#: examples/softbody.step:45 examples/wave.step:45
+#, kde-format
+msgctxt "name"
+msgid "softBodyParticle4"
+msgstr "elastseKehaOsake4"
+
+#: examples/softbody.step:53 examples/wave.step:53
+#, kde-format
+msgctxt "name"
+msgid "softBodyParticle5"
+msgstr "elastseKehaOsake5"
+
+#: examples/softbody.step:61 examples/wave.step:61
+#, kde-format
+msgctxt "name"
+msgid "softBodyParticle6"
+msgstr "elastseKehaOsake6"
+
+#: examples/softbody.step:69 examples/wave.step:69
+#, kde-format
+msgctxt "name"
+msgid "softBodyParticle7"
+msgstr "elastseKehaOsake7"
+
+#: examples/softbody.step:77 examples/wave.step:77
+#, kde-format
+msgctxt "name"
+msgid "softBodyParticle8"
+msgstr "elastseKehaOsake8"
+
+#: examples/softbody.step:85 examples/wave.step:85
+#, kde-format
+msgctxt "name"
+msgid "softBodyParticle9"
+msgstr "elastseKehaOsake9"
+
+#: examples/softbody.step:93 examples/wave.step:93
+#, kde-format
+msgctxt "name"
+msgid "softBodyParticle10"
+msgstr "elastseKehaOsake10"
+
+#: examples/softbody.step:101 examples/wave.step:101
+#, kde-format
+msgctxt "name"
+msgid "softBodyParticle11"
+msgstr "elastseKehaOsake11"
+
+#: examples/softbody.step:109 examples/wave.step:109
+#, kde-format
+msgctxt "name"
+msgid "softBodyParticle12"
+msgstr "elastseKehaOsake12"
+
+#: examples/softbody.step:117 examples/wave.step:117
+#, kde-format
+msgctxt "name"
+msgid "softBodyParticle13"
+msgstr "elastseKehaOsake13"
+
+#: examples/softbody.step:125 examples/wave.step:125
+#, kde-format
+msgctxt "name"
+msgid "softBodyParticle14"
+msgstr "elastseKehaOsake14"
+
+#: examples/softbody.step:133 examples/wave.step:133
+#, kde-format
+msgctxt "name"
+msgid "softBodyParticle15"
+msgstr "elastseKehaOsake15"
+
+#: examples/softbody.step:141 examples/wave.step:141
+#, kde-format
+msgctxt "name"
+msgid "softBodyParticle16"
+msgstr "elastseKehaOsake16"
+
+#: examples/softbody.step:149 examples/wave.step:181
+#, kde-format
+msgctxt "name"
+msgid "softBodySpring1"
+msgstr "elastseKehaVedru1"
+
+#: examples/softbody.step:161 examples/wave.step:193
+#, kde-format
+msgctxt "name"
+msgid "softBodySpring2"
+msgstr "elastseKehaVedru2"
+
+#: examples/softbody.step:173 examples/wave.step:205
+#, kde-format
+msgctxt "name"
+msgid "softBodySpring3"
+msgstr "elastseKehaVedru3"
+
+#: examples/softbody.step:185 examples/wave.step:217
+#, kde-format
+msgctxt "name"
+msgid "softBodySpring4"
+msgstr "elastseKehaVedru4"
+
+#: examples/softbody.step:197 examples/wave.step:229
+#, kde-format
+msgctxt "name"
+msgid "softBodySpring5"
+msgstr "elastseKehaVedru5"
+
+#: examples/softbody.step:209 examples/wave.step:241
+#, kde-format
+msgctxt "name"
+msgid "softBodySpring6"
+msgstr "elastseKehaVedru6"
+
+#: examples/softbody.step:221 examples/wave.step:253
+#, kde-format
+msgctxt "name"
+msgid "softBodySpring7"
+msgstr "elastseKehaVedru7"
+
+#: examples/softbody.step:233 examples/wave.step:265
+#, kde-format
+msgctxt "name"
+msgid "softBodySpring8"
+msgstr "elastseKehaVedru8"
+
+#: examples/softbody.step:245 examples/wave.step:277
+#, kde-format
+msgctxt "name"
+msgid "softBodySpring9"
+msgstr "elastseKehaVedru9"
+
+#: examples/softbody.step:257 examples/wave.step:289
+#, kde-format
+msgctxt "name"
+msgid "softBodySpring10"
+msgstr "elastseKehaVedru10"
+
+#: examples/softbody.step:269 examples/wave.step:301
+#, kde-format
+msgctxt "name"
+msgid "softBodySpring11"
+msgstr "elastseKehaVedru11"
+
+#: examples/softbody.step:281 examples/wave.step:313
+#, kde-format
+msgctxt "name"
+msgid "softBodySpring12"
+msgstr "elastseKehaVedru12"
+
+#: examples/softbody.step:293 examples/wave.step:325
+#, kde-format
+msgctxt "name"
+msgid "softBodySpring13"
+msgstr "elastseKehaVedru13"
+
+#: examples/softbody.step:305 examples/wave.step:337
+#, kde-format
+msgctxt "name"
+msgid "softBodySpring14"
+msgstr "elastseKehaVedru14"
+
+#: examples/softbody.step:317 examples/wave.step:349
+#, kde-format
+msgctxt "name"
+msgid "softBodySpring15"
+msgstr "elastseKehaVedru15"
+
+#: examples/softbody.step:329 examples/wave.step:361
+#, kde-format
+msgctxt "name"
+msgid "softBodySpring16"
+msgstr "elastseKehaVedru16"
+
+#: examples/softbody.step:341 examples/wave.step:373
+#, kde-format
+msgctxt "name"
+msgid "softBodySpring17"
+msgstr "elastseKehaVedru17"
+
+#: examples/softbody.step:353 examples/wave.step:385
+#, kde-format
+msgctxt "name"
+msgid "softBodySpring18"
+msgstr "elastseKehaVedru18"
+
+#: examples/softbody.step:365 examples/wave.step:397
+#, kde-format
+msgctxt "name"
+msgid "softBodySpring19"
+msgstr "elastseKehaVedru19"
+
+#: examples/softbody.step:377
+#, kde-format
+msgctxt "name"
+msgid "softBodySpring20"
+msgstr "elastseKehaVedru20"
+
+#: examples/softbody.step:389
+#, kde-format
+msgctxt "name"
+msgid "softBodySpring21"
+msgstr "elastseKehaVedru1"
+
+#: examples/softbody.step:401
+#, kde-format
+msgctxt "name"
+msgid "softBodySpring22"
+msgstr "elastseKehaVedru22"
+
+#: examples/softbody.step:413
+#, kde-format
+msgctxt "name"
+msgid "softBodySpring23"
+msgstr "elastseKehaVedru23"
+
+#: examples/softbody.step:425
+#, kde-format
+msgctxt "name"
+msgid "softBodySpring24"
+msgstr "elastseKehaVedru24"
+
+#: examples/softbody.step:437
+#, kde-format
+msgctxt "name"
+msgid "softBodySpring25"
+msgstr "elastseKehaVedru25"
+
+#: examples/softbody.step:449
+#, kde-format
+msgctxt "name"
+msgid "softBodySpring26"
+msgstr "elastseKehaVedru26"
+
+#: examples/softbody.step:461
+#, kde-format
+msgctxt "name"
+msgid "softBodySpring27"
+msgstr "elastseKehaVedru27"
+
+#: examples/softbody.step:473
+#, kde-format
+msgctxt "name"
+msgid "softBodySpring28"
+msgstr "elastseKehaVedru28"
+
+#: examples/softbody.step:485
+#, kde-format
+msgctxt "name"
+msgid "softBodySpring29"
+msgstr "elastseKehaVedru29"
+
+#: examples/softbody.step:497
+#, kde-format
+msgctxt "name"
+msgid "softBodySpring30"
+msgstr "elastseKehaVedru30"
+
+#: examples/softbody.step:509
+#, kde-format
+msgctxt "name"
+msgid "softBodySpring31"
+msgstr "elastseKehaVedru1"
+
+#: examples/softbody.step:521
+#, kde-format
+msgctxt "name"
+msgid "softBodySpring32"
+msgstr "elastseKehaVedru32"
+
+#: examples/softbody.step:533
+#, kde-format
+msgctxt "name"
+msgid "softBodySpring33"
+msgstr "elastseKehaVedru33"
+
+#: examples/softbody.step:545
+#, kde-format
+msgctxt "name"
+msgid "softBodySpring34"
+msgstr "elastseKehaVedru34"
+
+#: examples/softbody.step:557
+#, kde-format
+msgctxt "name"
+msgid "softBodySpring35"
+msgstr "elastseKehaVedru35"
+
+#: examples/softbody.step:569
+#, kde-format
+msgctxt "name"
+msgid "softBodySpring36"
+msgstr "elastseKehaVedru36"
+
+#: examples/softbody.step:581
+#, kde-format
+msgctxt "name"
+msgid "softBodySpring37"
+msgstr "elastseKehaVedru37"
+
+#: examples/softbody.step:593
+#, kde-format
+msgctxt "name"
+msgid "softBodySpring38"
+msgstr "elastseKehaVedru38"
+
+#: examples/softbody.step:605
+#, kde-format
+msgctxt "name"
+msgid "softBodySpring39"
+msgstr "elastseKehaVedru39"
+
+#: examples/softbody.step:617
+#, kde-format
+msgctxt "name"
+msgid "softBodySpring40"
+msgstr "elastseKehaVedru40"
+
+#: examples/softbody.step:629
+#, kde-format
+msgctxt "name"
+msgid "softBodySpring41"
+msgstr "elastseKehaVedru41"
+
+#: examples/softbody.step:641
+#, kde-format
+msgctxt "name"
+msgid "softBodySpring42"
+msgstr "elastseKehaVedru2"
+
+#: examples/solar.step:4
+#, kde-format
+msgctxt "name"
+msgid "Solar System"
+msgstr "Päikesesüsteem"
+
+#: examples/solar.step:11
+#, kde-format
+msgctxt "name"
+msgid "Sun"
+msgstr "Päike"
+
+#: examples/solar.step:19
+#, kde-format
+msgctxt "name"
+msgid "Mercury"
+msgstr "Merkuur"
+
+#: examples/solar.step:27
+#, kde-format
+msgctxt "name"
+msgid "Venus"
+msgstr "Veenus"
+
+#: examples/solar.step:35
+#, kde-format
+msgctxt "name"
+msgid "Earth"
+msgstr "Maa"
+
+#: examples/solar.step:43
+#, kde-format
+msgctxt "name"
+msgid "Mars"
+msgstr "Marss"
+
+#: examples/solar.step:51
+#, kde-format
+msgctxt "name"
+msgid "Jupiter"
+msgstr "Jupiter"
+
+#: examples/solar.step:59
+#, kde-format
+msgctxt "name"
+msgid "Saturn"
+msgstr "Saturn"
+
+#: examples/solar.step:67
+#, kde-format
+msgctxt "name"
+msgid "Uranus"
+msgstr "Uraan"
+
+#: examples/solar.step:75
+#, kde-format
+msgctxt "name"
+msgid "Neptune"
+msgstr "Neptuun"
+
+#: examples/solar.step:83
+#, kde-format
+msgctxt "name"
+msgid "Pluto"
+msgstr "Pluuto"
+
+#: examples/springs.step:4
+#, kde-format
+msgctxt "name"
+msgid "World"
+msgstr "Maailm"
+
+#: examples/springs.step:11
+#, kde-format
+msgctxt "name"
+msgid "p1"
+msgstr "p1"
+
+#: examples/springs.step:19
+#, kde-format
+msgctxt "name"
+msgid "p2"
+msgstr "p2"
+
+#: examples/springs.step:27
+#, kde-format
+msgctxt "name"
+msgid "p3"
+msgstr "p3"
+
+#: examples/springs.step:35
+#, kde-format
+msgctxt "name"
+msgid "p4"
+msgstr "p4"
+
+#: examples/springs.step:43
+#, kde-format
+msgctxt "name"
+msgid "p5"
+msgstr "p5"
+
+#: examples/springs.step:51
+#, kde-format
+msgctxt "name"
+msgid "s1"
+msgstr "s1"
+
+#: examples/springs.step:63
+#, kde-format
+msgctxt "name"
+msgid "s2"
+msgstr "s2"
+
+#: examples/springs.step:75
+#, kde-format
+msgctxt "name"
+msgid "s3"
+msgstr "s3"
+
+#: examples/springs.step:87
+#, kde-format
+msgctxt "name"
+msgid "s4"
+msgstr "s4"
+
+#: examples/springs.step:99
+#, kde-format
+msgctxt "name"
+msgid "Solver"
+msgstr "Lahendaja"
+
+#: examples/wave.step:149
+#, kde-format
+msgctxt "name"
+msgid "softBodyParticle17"
+msgstr "elastseKehaOsake17"
+
+#: examples/wave.step:157
+#, kde-format
+msgctxt "name"
+msgid "softBodyParticle18"
+msgstr "elastseKehaOsake18"
+
+#: examples/wave.step:165
+#, kde-format
+msgctxt "name"
+msgid "softBodyParticle19"
+msgstr "elastseKehaOsake19"
+
+#: examples/wave.step:173
+#, kde-format
+msgctxt "name"
+msgid "softBodyParticle20"
+msgstr "elastseKehaOsake20"
+
+#: examples/wave.step:444
+#, kde-format
+msgctxt "HTML:p"
+msgid ""
+"When you start simulation the wave starts to travel from the red particle. "
+"The blue particle will reflect the wave and it will travel in reverse "
+"direction until the red particle reflects in again. After some time the wave "
+"will vanish because springs have damping."
+msgstr ""
+
+#: examples/wave.step:477
+#, kde-format
+msgctxt "HTML:p"
+msgid "The graph shows oscillations of the green particle"
+msgstr ""
+
+#: tutorials/tutorial1.step:32
+#, kde-format
+msgctxt "HTML:p"
+msgid "<span style=\" font-size:14pt; font-weight:600;\">Tutorial 1</span>"
+msgstr ""
+"<span style=\" font-size:14pt; font-weight:600;\">Õppematerjal 1</span>"
+
+#: tutorials/tutorial1.step:33
+#, kde-format
+msgctxt "HTML:p"
+msgid "<span style=\" font-size:12pt;\">Bodies and springs.</span>"
+msgstr "<span style=\" font-size:12pt;\">Kehad ja vedrud.</span>"
+
+#: tutorials/tutorial1.step:46
+#, kde-format
+msgctxt "HTML:p"
+msgid "<span style=\" font-weight:600;\">Position and velocity</span>"
+msgstr "<span style=\" font-weight:600;\">Asukoht ja kiirus</span>"
+
+#: tutorials/tutorial1.step:47
+#, kde-format
+msgctxt "HTML:p"
+msgid "- You can change position of any body simply by dragging it."
+msgstr "Keha asukohta saab muuta lihtsalt seda lohistades."
+
+#: tutorials/tutorial1.step:48
+#, kde-format
+msgctxt "HTML:p"
+msgid ""
+"- Click on one of the disks to select it. Now you can see two arrows on it: "
+"blue arrow depicts the velocity and red arrow depicts the acceleration. You "
+"can drag the little gray square at the end of the velocity arrow to change "
+"the velocity."
+msgstr ""
+
+#: tutorials/tutorial1.step:49 tutorials/tutorial1.step:63
+#, kde-format
+msgctxt "HTML:p"
+msgid ""
+"- Take a look at the Properties panel on the right. Here you can numerically "
+"set position and velocity (as well as all other properties) for the current "
+"body."
+msgstr ""
+"- Uuri paremal asuvat omadustepaneeli. Seal saab arvudena määrata aktiivse "
+"keha asukohta ja kiiruse ning veel mitmeid omadusi."
+
+#: tutorials/tutorial1.step:62
+#, kde-format
+msgctxt "HTML:p"
+msgid "<span style=\" font-weight:600;\">Properties</span>"
+msgstr "<span style=\" font-weight:600;\">Omadused</span>"
+
+#: tutorials/tutorial1.step:64
+#, kde-format
+msgctxt "HTML:p"
+msgid ""
+"- Select a spring by clicking on it. Change its stiffness and see how it is "
+"affecting the simulation."
+msgstr ""
+
+#: tutorials/tutorial1.step:78 tutorials/tutorial5.step:78
+#, kde-format
+msgctxt "HTML:p"
+msgid "<span style=\" font-weight:600;\">Quest</span>"
+msgstr ""
+
+#: tutorials/tutorial1.step:79
+#, kde-format
+msgctxt "HTML:p"
+msgid ""
+"- Try to change the system in a way to make the disks spining around the "
+"center of the system."
+msgstr ""
+
+#: tutorials/tutorial1.step:80
+#, kde-format
+msgctxt "HTML:p"
+msgid ""
+"- Now try to change the properties of the spring in order to make its length "
+"constant while the disks are spinning."
+msgstr ""
+
+#: tutorials/tutorial1.step:93
+#, kde-format
+msgctxt "HTML:p"
+msgid "<span style=\" font-weight:600;\">More bodies</span>"
+msgstr ""
+
+#: tutorials/tutorial1.step:94
+#, kde-format
+msgctxt "HTML:p"
+msgid ""
+"- In order to create a body click on its icon in the Palette panel and "
+"follow the instructions given in the information widget in the top left "
+"corner of scene"
+msgstr ""
+
+#: tutorials/tutorial1.step:95
+#, kde-format
+msgctxt "HTML:p"
+msgid ""
+"- Create one more disk and two more springs and connect all the items in the "
+"triangle. Now make them all spin around the center."
+msgstr ""
+
+#: tutorials/tutorial1.step:132
+#, kde-format
+msgctxt "HTML:p"
+msgid "<span style=\" font-weight:600;\">Simulation</span>"
+msgstr "<span style=\" font-weight:600;\">Matkimine</span>"
+
+#: tutorials/tutorial1.step:133
+#, kde-format
+msgctxt "HTML:p"
+msgid ""
+"- Click on the \"Simulate\" button in the toolbar to start simulation. Click "
+"on the same button again to stop it."
+msgstr ""
+
+#: tutorials/tutorial1.step:134
+#, kde-format
+msgctxt "HTML:p"
+msgid ""
+"- After stopping the simulation you can revert to the initial state by "
+"pressing Undo button."
+msgstr ""
+
+#: tutorials/tutorial2.step:82
+#, kde-format
+msgctxt "HTML:p"
+msgid "<span style=\" font-size:14pt; font-weight:600;\">Tutorial 2</span>"
+msgstr ""
+"<span style=\" font-size:14pt; font-weight:600;\">Õppematerjal 2</span>"
+
+#: tutorials/tutorial2.step:83
+#, kde-format
+msgctxt "HTML:p"
+msgid "<span style=\" font-size:12pt;\">Controllers and Graphs</span>"
+msgstr "<span style=\" font-size:12pt;\">Kontrollerid ja graafid</span>"
+
+#: tutorials/tutorial2.step:96
+#, kde-format
+msgctxt "HTML:p"
+msgid "<span style=\" font-weight:600;\">Try it</span>"
+msgstr "<span style=\" font-weight:600;\">Proovi seda</span>"
+
+#: tutorials/tutorial2.step:97
+#, kde-format
+msgctxt "HTML:p"
+msgid ""
+"- Change the stiffness of the spring by moving the slider just below the "
+"bodies. You can also change it by pressing \"Q\" and \"W\" keys!"
+msgstr ""
+
+#: tutorials/tutorial2.step:98
+#, kde-format
+msgctxt "HTML:p"
+msgid ""
+"- Try changing it while the simulation is active and see how the graph will "
+"change."
+msgstr ""
+
+#: tutorials/tutorial2.step:111
+#, kde-format
+msgctxt "HTML:p"
+msgid "<span style=\" font-weight:600;\">Controller</span>"
+msgstr "<span style=\" font-weight:600;\">Kontroller</span>"
+
+#: tutorials/tutorial2.step:112
+#, kde-format
+msgctxt "HTML:p"
+msgid "- Create a new controller on the scene."
+msgstr ""
+
+#: tutorials/tutorial2.step:113
+#, kde-format
+msgctxt "HTML:p"
+msgid ""
+"- Click on it with the right mouse button and choose \"Configure controller"
+"\" from the context menu."
+msgstr ""
+
+#: tutorials/tutorial2.step:114
+#, kde-format
+msgctxt "HTML:p"
+msgid ""
+"- Select mass of the particle1 as the data source, adjust the range and "
+"assign keyboard shortcuts."
+msgstr ""
+
+#: tutorials/tutorial2.step:115
+#, kde-format
+msgctxt "HTML:p"
+msgid ""
+"- Now try moving the slider and pressing the selected shortcuts while "
+"simulation is active."
+msgstr ""
+
+#: tutorials/tutorial2.step:128
+#, kde-format
+msgctxt "HTML:p"
+msgid "<span style=\" font-weight:600;\">Graph</span>"
+msgstr "<span style=\" font-weight:600;\">Graaf</span>"
+
+#: tutorials/tutorial2.step:129
+#, kde-format
+msgctxt "HTML:p"
+msgid "- Create a graph for the velocity of particle1."
+msgstr "- Osakese1 kiiruse graafi loomine"
+
+#: tutorials/tutorial2.step:130
+#, kde-format
+msgctxt "HTML:p"
+msgid ""
+"- Place it below the position graph and make the ranges along X axis the "
+"same for the both graphs. See how the graphs relates to each other."
+msgstr ""
+
+#: tutorials/tutorial3.step:64
+#, kde-format
+msgctxt "HTML:p"
+msgid "<span style=\" font-size:14pt; font-weight:600;\">Tutorial 3</span>"
+msgstr ""
+"<span style=\" font-size:14pt; font-weight:600;\">Õppematerjal 3</span>"
+
+#: tutorials/tutorial3.step:65
+#, kde-format
+msgctxt "HTML:p"
+msgid "<span style=\" font-size:12pt;\">Rigid bodies and tracers</span>"
+msgstr ""
+
+#: tutorials/tutorial3.step:79
+#, kde-format
+msgctxt "HTML:p"
+msgid "<span style=\" font-weight:600;\">Angle and angular velocity</span>"
+msgstr "<span style=\" font-weight:600;\">Nurk ja nurkkiirus</span>"
+
+#: tutorials/tutorial3.step:80
+#, kde-format
+msgctxt "HTML:p"
+msgid ""
+"- When the rigid body is selected you see three gray handlers on it. Using "
+"them you can change velocity, angle and angular velocity of the body."
+msgstr ""
+
+#: tutorials/tutorial3.step:93
+#, kde-format
+msgctxt "HTML:p"
+msgid "<span style=\" font-weight:600;\">Tracer</span>"
+msgstr ""
+
+#: tutorials/tutorial3.step:94
+#, kde-format
+msgctxt "HTML:p"
+msgid ""
+"- Tracer is a tool to show trajectory of a given point on a rigid body. Turn "
+"on the simulation to see it in action."
+msgstr ""
+
+#: tutorials/tutorial3.step:95
+#, kde-format
+msgctxt "HTML:p"
+msgid ""
+"- Change various properties like spring stiffness and see how they affect "
+"the trajectory."
+msgstr ""
+
+#: tutorials/tutorial3.step:96
+#, kde-format
+msgctxt "HTML:p"
+msgid ""
+"- Attach one more tracer to the box and compare trajectories of different "
+"points."
+msgstr ""
+
+#: tutorials/tutorial4.step:77
+#, kde-format
+msgctxt "name"
+msgid "controller2"
+msgstr "kontroller2"
+
+#: tutorials/tutorial4.step:100
+#, kde-format
+msgctxt "HTML:p"
+msgid "<span style=\" font-size:14pt; font-weight:600;\">Tutorial 4</span>"
+msgstr ""
+"<span style=\" font-size:14pt; font-weight:600;\">Õppematerjal 4</span>"
+
+#: tutorials/tutorial4.step:101
+#, kde-format
+msgctxt "HTML:p"
+msgid "<span style=\" font-size:12pt;\">Motors and forces</span>"
+msgstr "<span style=\" font-size:12pt;\">Mootorid ja jõud</span>"
+
+#: tutorials/tutorial4.step:114
+#, kde-format
+msgctxt "HTML:p"
+msgid "<span style=\" font-weight:600;\">Linear motor</span>"
+msgstr "<span style=\" font-weight:600;\">Lineaarmootor</span>"
+
+#: tutorials/tutorial4.step:115
+#, kde-format
+msgctxt "HTML:p"
+msgid "- A linear motor applies a constant force to a given point on a body."
+msgstr " :Lineaarmootor rakendab ühtlast jõudu keha määratud punktile."
+
+#: tutorials/tutorial4.step:116
+#, kde-format
+msgctxt "HTML:p"
+msgid ""
+"- You can change the force by dragging its handler \n"
+"while the motor is selected."
+msgstr ""
+
+#: tutorials/tutorial4.step:118
+#, kde-format
+msgctxt "HTML:p"
+msgid "- You can change the point of application by dragging the force"
+msgstr "- Jõu rakendamise kohta saab muuta seda lohistades"
+
+#: tutorials/tutorial4.step:131
+#, kde-format
+msgctxt "HTML:p"
+msgid "<span style=\" font-weight:600;\">Circular motor</span>"
+msgstr "<span style=\" font-weight:600;\">Ringmootor</span>"
+
+#: tutorials/tutorial4.step:132
+#, kde-format
+msgctxt "HTML:p"
+msgid "- A circular motor applies a constant angular momentum to a body."
+msgstr ""
+
+#: tutorials/tutorial4.step:133
+#, kde-format
+msgctxt "HTML:p"
+msgid "- Try to attach a circular motor to the box and start simulation."
+msgstr ""
+
+#: tutorials/tutorial4.step:146
+#, kde-format
+msgctxt "HTML:p"
+msgid "<span style=\" font-weight:600;\">Global forces</span>"
+msgstr "<span style=\" font-weight:600;\">Globaalsed jõud</span>"
+
+#: tutorials/tutorial4.step:147
+#, kde-format
+msgctxt "HTML:p"
+msgid ""
+"<span style=\" font-weight:400;\">- Global forces are forces that act on all "
+"bodies of a specific kind, for example weight force.</span>"
+msgstr ""
+
+#: tutorials/tutorial4.step:148
+#, kde-format
+msgctxt "HTML:p"
+msgid ""
+"- By default all global forces in Step are turned off. To turn them on, just "
+"add an object for appropriate force to the scene."
+msgstr ""
+
+#: tutorials/tutorial4.step:149
+#, kde-format
+msgctxt "HTML:p"
+msgid "- Try to add WeightForce to the scene and start the simulation."
+msgstr ""
+
+#: tutorials/tutorial4.step:153
+#, kde-format
+msgctxt "name"
+msgid "box2"
+msgstr "kast2"
+
+#: tutorials/tutorial5.step:63
+#, kde-format
+msgctxt "HTML:p"
+msgid "<span style=\" font-size:14pt; font-weight:600;\">Tutorial 5</span>"
+msgstr ""
+"<span style=\" font-size:14pt; font-weight:600;\">Õppematerjal 5</span>"
+
+#: tutorials/tutorial5.step:64
+#, kde-format
+msgctxt "HTML:p"
+msgid "<span style=\" font-size:12pt;\">Joints</span>"
+msgstr "<span style=\" font-size:12pt;\">Liitmikud</span>"
+
+#: tutorials/tutorial5.step:79
+#, kde-format
+msgctxt "HTML:p"
+msgid "- Create graphs to display coordinates of particles in double pendulum."
+msgstr ""
+
+#: tutorials/tutorial5.step:80
+#, kde-format
+msgctxt "HTML:p"
+msgid ""
+"- Create triple pendulum by attaching one more particle to the particle2 "
+"using the stick."
+msgstr ""
+
+#: tutorials/tutorial5.step:81
+#, kde-format
+msgctxt "HTML:p"
+msgid ""
+"- Remove anchor1 that fixes position of the box and attach a pin to the "
+"corner of the box. Try starting the simulation."
+msgstr ""
+"- Eemalda ankur1, mis fikseerib kasti asukoha, ja lisa nõel kasti nurka. "
+"Püüa matkimist alustada."
+
+#: tutorials/tutorial5.step:114
+#, kde-format
+msgctxt "HTML:p"
+msgid "<span style=\" font-weight:600;\">Joints</span>"
+msgstr "<span style=\" font-weight:600;\">Liitmikud</span>"
+
+#: tutorials/tutorial5.step:115
+#, kde-format
+msgctxt "HTML:p"
+msgid ""
+"<span style=\" font-weight:400;\">- Joints are objects that attach bodies to "
+"each other or to the background.</span>"
+msgstr ""
+"<span style=\" font-weight:400;\">- Liitmikud on objektid, mis seovad "
+"kehasid omavahel või taustaga.</span>"
+
+#: tutorials/tutorial5.step:116
+#, kde-format
+msgctxt "HTML:p"
+msgid "- An anchor is a joint that fixes the position of the body."
+msgstr "- Ankur on liitmik, mis fikseerib keha asukoha."
+
+#: tutorials/tutorial5.step:117
+#, kde-format
+msgctxt "HTML:p"
+msgid "- A pin is a joint that fixes one point of the body."
+msgstr "- Nõel on liitmik, mis fikseerib keha ühe punkti."
+
+#, fuzzy
+#~| msgctxt "HTML:p"
+#~| msgid "- A pin is a joint that fixes one point of the body."
+#~ msgctxt "HTML:p"
+#~ msgid ""
+#~ "- A stick is a joint that fixes the distance between two points on two "
+#~ "bodies."
+#~ msgstr "- Nõel on liitmik, mis fikseerib keha ühe punkti."

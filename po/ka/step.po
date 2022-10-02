@@ -1,0 +1,1284 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR This file is copyright:
+# This file is distributed under the same license as the step package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: step\n"
+"Report-Msgid-Bugs-To: https://bugs.kde.org\n"
+"POT-Creation-Date: 2022-07-04 00:41+0000\n"
+"PO-Revision-Date: 2022-09-12 20:22+0200\n"
+"Last-Translator: Temuri Doghonadze <temuri.doghonadze@gmail.com>\n"
+"Language-Team: Georgian <kde-i18n-doc@kde.org>\n"
+"Language: ka\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"X-Generator: Poedit 3.1.1\n"
+
+#, kde-format
+msgctxt "NAME OF TRANSLATORS"
+msgid "Your names"
+msgstr "Temuri Doghonadze"
+
+#, kde-format
+msgctxt "EMAIL OF TRANSLATORS"
+msgid "Your emails"
+msgstr "Temuri.doghonadze@gmail.com"
+
+#. i18n: ectx: property (title), widget (QGroupBox, groupBox)
+#: step/configure_controller.ui:28 step/configure_graph.ui:28
+#: step/configure_meter.ui:28
+#, kde-format
+msgid "Data Source"
+msgstr "მონაცემების წყარო"
+
+#. i18n: ectx: property (title), widget (QGroupBox, groupBox_2)
+#: step/configure_controller.ui:47
+#, kde-format
+msgid "Range"
+msgstr "დიაპაზონი"
+
+#. i18n: ectx: property (text), widget (QLabel, label_5)
+#: step/configure_controller.ui:59
+#, kde-format
+msgid "min:"
+msgstr "მინ:"
+
+#. i18n: ectx: property (text), widget (QLabel, label_6)
+#: step/configure_controller.ui:75
+#, kde-format
+msgid "max:"
+msgstr "მაქს:"
+
+#. i18n: ectx: property (text), widget (QLineEdit, lineEditMinX)
+#. i18n: ectx: property (text), widget (QLineEdit, lineEditMinY)
+#. i18n: ectx: property (text), widget (QLineEdit, lineEditMin)
+#: step/configure_controller.ui:97 step/configure_graph.ui:135
+#: step/configure_graph.ui:187
+#, kde-format
+msgid "0"
+msgstr "0"
+
+#. i18n: ectx: property (text), widget (QLineEdit, lineEditMass)
+#. i18n: ectx: property (text), widget (QLineEdit, lineEditBodyMass)
+#. i18n: ectx: property (text), widget (QLineEdit, lineEditMaxX)
+#. i18n: ectx: property (text), widget (QLineEdit, lineEditMaxY)
+#. i18n: ectx: property (text), widget (QLineEdit, lineEditMax)
+#: step/configure_controller.ui:119 step/configure_graph.ui:151
+#: step/configure_graph.ui:203 step/create_gas_particles.ui:125
+#: step/create_softbody_items.ui:78
+#, kde-format
+msgid "1"
+msgstr "1"
+
+#. i18n: ectx: property (title), widget (QGroupBox, groupBox_3)
+#: step/configure_controller.ui:132
+#, kde-format
+msgid "Shortcuts"
+msgstr "მალსახმობები"
+
+#. i18n: ectx: property (text), widget (QLabel, label)
+#: step/configure_controller.ui:138
+#, kde-format
+msgid "Decrease:"
+msgstr "შემცირება:"
+
+#. i18n: ectx: property (text), widget (QLabel, label_2)
+#: step/configure_controller.ui:148
+#, kde-format
+msgid "Increase:"
+msgstr "გაზრდა:"
+
+#. i18n: ectx: property (text), widget (QLabel, label_3)
+#: step/configure_controller.ui:179
+#, kde-format
+msgid "Increment:"
+msgstr "ზრდა:"
+
+#. i18n: ectx: property (text), widget (QLineEdit, lineEditIncrement)
+#: step/configure_controller.ui:192
+#, kde-format
+msgid "0.1"
+msgstr "0.1"
+
+#. i18n: ectx: property (text), widget (QLabel, label)
+#. i18n: ectx: property (text), widget (QLabel, label_3)
+#: step/configure_graph.ui:34 step/configure_graph.ui:109
+#, kde-format
+msgid "X :"
+msgstr "X :"
+
+#. i18n: ectx: property (text), widget (QLabel, label_2)
+#. i18n: ectx: property (text), widget (QLabel, label_4)
+#: step/configure_graph.ui:51 step/configure_graph.ui:161
+#, kde-format
+msgid "Y :"
+msgstr "Y :"
+
+#. i18n: ectx: property (title), widget (QGroupBox, groupBox_2)
+#: step/configure_graph.ui:71
+#, kde-format
+msgid "Ranges"
+msgstr "დიაპაზონები"
+
+#. i18n: ectx: property (text), widget (QLabel, label_5)
+#: step/configure_graph.ui:83
+#, kde-format
+msgid "Min:"
+msgstr "მინ:"
+
+#. i18n: ectx: property (text), widget (QLabel, label_6)
+#: step/configure_graph.ui:99
+#, kde-format
+msgid "Max:"
+msgstr "მაქს:"
+
+#. i18n: ectx: property (text), widget (QCheckBox, checkBoxAutoX)
+#. i18n: ectx: property (text), widget (QCheckBox, checkBoxAutoY)
+#: step/configure_graph.ui:122 step/configure_graph.ui:174
+#, kde-format
+msgid "auto"
+msgstr "ავტომატური"
+
+#. i18n: ectx: property (title), widget (QGroupBox, groupBox_2)
+#. i18n: ectx: property (title), widget (QGroupBox, groupBox)
+#. i18n: ectx: property (title), widget (QGroupBox, groupBox_3)
+#: step/configure_graph.ui:216 step/configure_meter.ui:47
+#: step/create_gas_particles.ui:28 step/create_softbody_items.ui:28
+#, kde-format
+msgid "Options"
+msgstr "მორგება"
+
+#. i18n: ectx: property (text), widget (QCheckBox, checkBoxShowLines)
+#: step/configure_graph.ui:222
+#, kde-format
+msgid "Show lines"
+msgstr "ხაზების ჩვენება"
+
+#. i18n: ectx: property (text), widget (QCheckBox, checkBoxShowPoints)
+#: step/configure_graph.ui:229
+#, kde-format
+msgid "Show points"
+msgstr "წერტილების ჩვენება"
+
+#. i18n: ectx: property (text), widget (QLabel, label)
+#: step/configure_meter.ui:53
+#, kde-format
+msgid "Number of digits:"
+msgstr "ციფრების რაოდენობა:"
+
+#. i18n: ectx: property (text), widget (QLabel, label)
+#: step/configure_step_general.ui:16
+#, kde-format
+msgid "Display precision:"
+msgstr "სიზუსტის ჩვენება:"
+
+#. i18n: ectx: property (text), widget (QCheckBox, kcfg_showAxes)
+#: step/configure_step_general.ui:52
+#, kde-format
+msgid "Show scene axes"
+msgstr "სცენის ღერძების ჩვენება"
+
+#. i18n: ectx: property (text), widget (QCheckBox, kcfg_showCreationTips)
+#: step/configure_step_general.ui:59
+#, kde-format
+msgid "Show tips when creating objects"
+msgstr "ობიექტების შექმნისას მინიშნებების ჩვენება"
+
+#. i18n: ectx: property (text), widget (QCheckBox, kcfg_enableOpenGL)
+#: step/configure_step_general.ui:66
+#, kde-format
+msgid "Enable OpenGL (EXPERIMENTAL)"
+msgstr "OpenGL-ის ჩართვა (ექსპერიმენტალური)"
+
+#. i18n: ectx: property (text), widget (QCheckBox, kcfg_wikiExternal)
+#: step/configure_step_general.ui:73
+#, kde-format
+msgid "Open wikipedia in external browser"
+msgstr "ვიკიპედიის გარე ბრაუზერში გახსნა"
+
+#. i18n: ectx: property (text), widget (QLabel, label_5)
+#: step/create_gas_particles.ui:34
+#, kde-format
+msgid "Area:"
+msgstr "ფართობი:"
+
+#. i18n: ectx: property (toolTip), widget (QLineEdit, lineEditVolume)
+#: step/create_gas_particles.ui:41
+#, kde-format
+msgid "The area the gas takes"
+msgstr "ფართობი, რომელსაც აირი იკავებს"
+
+#. i18n: ectx: property (text), widget (QLabel, label)
+#: step/create_gas_particles.ui:61
+#, kde-format
+msgid "Particle count:"
+msgstr "ნაწილაკების რაოდენობა:"
+
+#. i18n: ectx: property (toolTip), widget (QLineEdit, lineEditCount)
+#. i18n: ectx: property (whatsThis), widget (QLineEdit, lineEditCount)
+#: step/create_gas_particles.ui:68 step/create_gas_particles.ui:71
+#, kde-format
+msgid "The number of particles of this gas."
+msgstr "ამ აირში ნაწილაკების რაოდეობა."
+
+#. i18n: ectx: property (text), widget (QLineEdit, lineEditCount)
+#: step/create_gas_particles.ui:74
+#, kde-format
+msgid "20"
+msgstr "20"
+
+#. i18n: ectx: property (text), widget (QLabel, label_6)
+#: step/create_gas_particles.ui:91
+#, kde-format
+msgid "Concentration:"
+msgstr "კონცენტრაცია:"
+
+#. i18n: ectx: property (text), widget (QLabel, label_2)
+#: step/create_gas_particles.ui:112
+#, kde-format
+msgid "Particle mass:"
+msgstr "ნაწილაკის მასა:"
+
+#. i18n: ectx: property (toolTip), widget (QLineEdit, lineEditMass)
+#. i18n: ectx: property (whatsThis), widget (QLineEdit, lineEditMass)
+#: step/create_gas_particles.ui:119 step/create_gas_particles.ui:122
+#, kde-format
+msgid "The mass of one particle"
+msgstr "ერთი ნაწილაკის მასა"
+
+#. i18n: ectx: property (text), widget (QLabel, label_3)
+#: step/create_gas_particles.ui:142
+#, kde-format
+msgid "Temperature:"
+msgstr "ტემპერატურა:"
+
+#. i18n: ectx: property (text), widget (QLineEdit, lineEditTemperature)
+#: step/create_gas_particles.ui:149
+#, kde-format
+msgid "1e21"
+msgstr "1e21"
+
+#. i18n: ectx: property (text), widget (QLabel, label_4)
+#: step/create_gas_particles.ui:166
+#, kde-format
+msgid "Mean velocity:"
+msgstr "საშუალო აჩქარება:"
+
+#. i18n: ectx: property (text), widget (QLineEdit, lineEditMeanVelocity)
+#. i18n: ectx: property (text), widget (QLineEdit, lineEditPosition)
+#: step/create_gas_particles.ui:173 step/create_softbody_items.ui:44
+#, kde-format
+msgid "(0,0)"
+msgstr "(0,0)"
+
+#. i18n: ectx: property (text), widget (QLabel, label_4)
+#: step/create_softbody_items.ui:37
+#, kde-format
+msgid "Position:"
+msgstr "მდებარეობა:"
+
+#. i18n: ectx: property (text), widget (QLabel, label_3)
+#: step/create_softbody_items.ui:54
+#, kde-format
+msgid "Body size:"
+msgstr "სხეულის ზომა:"
+
+#. i18n: ectx: property (text), widget (QLineEdit, lineEditSize)
+#: step/create_softbody_items.ui:61
+#, kde-format
+msgid "(1,1)"
+msgstr "(1,1)"
+
+#. i18n: ectx: property (text), widget (QLabel, label_2)
+#: step/create_softbody_items.ui:71
+#, kde-format
+msgid "Body mass:"
+msgstr "სხეულის მასა:"
+
+#. i18n: ectx: property (text), widget (QLabel, label)
+#: step/create_softbody_items.ui:88
+#, kde-format
+msgid "Young's modulus:"
+msgstr "იუნგის მოდული:"
+
+#. i18n: ectx: property (text), widget (QLineEdit, lineEditYoungModulus)
+#: step/create_softbody_items.ui:95
+#, kde-format
+msgid "15"
+msgstr "15"
+
+#. i18n: ectx: property (text), widget (QLabel, label1)
+#: step/create_softbody_items.ui:105
+#, kde-format
+msgid "Body damping:"
+msgstr "აყირავებული ძრავი:"
+
+#. i18n: ectx: property (text), widget (QLineEdit, lineEditBodyDamping)
+#: step/create_softbody_items.ui:112
+#, kde-format
+msgid "0.3"
+msgstr "0.3"
+
+#. i18n: ectx: property (text), widget (QLabel, label2)
+#: step/create_softbody_items.ui:122
+#, kde-format
+msgid "Body split counts:"
+msgstr "სხეულის დაყოფის რაოდენობა:"
+
+#. i18n: ectx: property (text), widget (QLineEdit, lineEditSplit)
+#: step/create_softbody_items.ui:129
+#, kde-format
+msgid "(4,4)"
+msgstr "(4,4)"
+
+#: step/gascreationdialog.cc:43
+#, kde-format
+msgctxt "@title:window"
+msgid "Create Gas Particles"
+msgstr "აირის ნაწილაკების შექმნა"
+
+#: step/gasgraphics.cc:43
+#, kde-format
+msgid ""
+"Press left mouse button to position\n"
+"top left corner of a region for %1"
+msgstr ""
+
+#: step/gasgraphics.cc:55 step/motorgraphics.cc:42 step/motorgraphics.cc:223
+#: step/polygongraphics.cc:173 step/polygongraphics.cc:307
+#: step/polygongraphics.cc:452 step/softbodygraphics.cc:62
+#: step/worldgraphics.cc:70 step/worldgraphics.cc:120
+#, kde-format
+msgid "Create %1"
+msgstr "%1-ის შექნა"
+
+#: step/gasgraphics.cc:71
+#, kde-format
+msgid ""
+"Move mouse and release left mouse button to position\n"
+"bottom right corner of the region for %1"
+msgstr ""
+
+#: step/gasgraphics.cc:97
+#, kde-format
+msgid "Please fill in the parameters for the gas particles."
+msgstr ""
+
+#: step/gasgraphics.cc:106 step/polygongraphics.cc:208
+#: step/polygongraphics.cc:347 step/polygongraphics.cc:502
+#: step/softbodygraphics.cc:79 step/worldgraphics.cc:87
+#: step/worldgraphics.cc:134 step/worldgraphics.cc:169
+#, kde-format
+msgid "%1 named '%2' created"
+msgstr ""
+
+#: step/gasgraphics.cc:294
+#, kde-format
+msgid "Create Particles..."
+msgstr "ნაწილაკების შექმნა..."
+
+#: step/gasgraphics.cc:364
+#, kde-format
+msgid ""
+"You are trying to create a very large number of particles. This will make "
+"simulation very slow. Do you want to continue?"
+msgstr ""
+
+#: step/gasgraphics.cc:366 step/mainwindow.cc:409
+#, kde-format
+msgid "Warning - Step"
+msgstr "გაფრთხილება - Step"
+
+#: step/gasgraphics.cc:377
+#, kde-format
+msgid "Create particles for %1"
+msgstr "%1-სთვის ნაწილაკების შექმნა"
+
+#: step/infobrowser.cc:38
+#, kde-format
+msgid "Context Info"
+msgstr "კონტექსტის ინფორმაცია"
+
+#: step/infobrowser.cc:56
+#, kde-format
+msgid "Back"
+msgstr "უკან"
+
+#: step/infobrowser.cc:58
+#, kde-format
+msgid "Forward"
+msgstr "წინ"
+
+#: step/infobrowser.cc:62
+#, kde-format
+msgid "Sync selection"
+msgstr "მონიშნულის სინქი"
+
+#: step/infobrowser.cc:64
+#, kde-format
+msgid "Follow selection"
+msgstr "მონიშნულზე მიყოლა"
+
+#: step/infobrowser.cc:69
+#, kde-format
+msgid "Open in Browser"
+msgstr "ბრაუზერში გახსნა"
+
+#: step/infobrowser.cc:144
+#, kde-format
+msgid "Documentation"
+msgstr "დოკუმენტაცია"
+
+#: step/infobrowser.cc:149
+#, kde-format
+msgid "No current object."
+msgstr "მიმდინარე ობიექტის გარეშე."
+
+#: step/infobrowser.cc:171
+#, kde-format
+msgid "Documentation error"
+msgstr "დოკუმენტაციის შეცდომა"
+
+#: step/infobrowser.cc:176
+#, kde-format
+msgid "Documentation for %1 not available. "
+msgstr "%1-სთვის დოკუმენტაცია მიუწვდომელია. "
+
+#: step/infobrowser.cc:177
+#, kde-format
+msgid ""
+"You can help <a href=\"https://edu.kde.org/step\">Step</a> by writing it!"
+msgstr ""
+
+#: step/itempalette.cc:189
+#, kde-format
+msgid "Palette"
+msgstr "პალიტრა"
+
+#: step/itempalette.cc:208
+#, kde-format
+msgid "Pointer"
+msgstr "კურსორი"
+
+#: step/itempalette.cc:209
+#, kde-format
+msgid "Selection pointer"
+msgstr "მონიშნულის მაჩვენებებელი"
+
+#: step/itempalette.cc:232
+#, kde-format
+msgid "Show text"
+msgstr "ტექსტის ჩვენება"
+
+#: step/jointgraphics.cc:170 step/springgraphics.cc:42
+#, kde-format
+msgid "Move end of %1"
+msgstr "%1-ის ბოლოს გაწევა"
+
+#: step/latexformula.cc:42
+#, kde-format
+msgid "can not launch %1"
+msgstr "%1-ის გაშვების შეცდომა"
+
+#: step/latexformula.cc:52
+#, kde-format
+msgid "error running %1"
+msgstr "%1-ის შესრულების შეცდომა"
+
+#: step/latexformula.cc:56
+#, kde-format
+msgid ""
+"%1 reported an error (exit status %2):\n"
+"%3"
+msgstr ""
+
+#: step/latexformula.cc:61
+#, kde-format
+msgid "%1 did not create output file"
+msgstr ""
+
+#: step/latexformula.cc:93
+#, kde-format
+msgid "can not open temporary file"
+msgstr "დროებითი ფაილის გახსნის შეცდომა"
+
+#: step/latexformula.cc:127
+#, kde-format
+msgid "can not open result file"
+msgstr "შედეგების ფაილის გახსნის შეცდომა"
+
+#: step/main.cc:42 step/main.cc:50
+#, kde-format
+msgid "Step"
+msgstr "ბიჯი"
+
+#: step/main.cc:52
+#, kde-format
+msgid "Interactive physical simulator"
+msgstr "ინტერაქტიური ფიზიკური სიმულატორი"
+
+#: step/main.cc:54
+#, kde-format
+msgid "(C) 2007 Vladimir Kuznetsov"
+msgstr "(C) 2007 Vladimir Kuznetsov"
+
+#: step/main.cc:55
+#, kde-format
+msgid "https://edu.kde.org/step"
+msgstr "https://edu.kde.org/step"
+
+#: step/main.cc:60
+#, kde-format
+msgid "Original author"
+msgstr "საწყისი ავტორი"
+
+#: step/main.cc:61
+#, kde-format
+msgid "ks.vladimir@gmail.com"
+msgstr "ks.vladimir@gmail.com"
+
+#: step/main.cc:66
+#, kde-format
+msgid "Code contributions"
+msgstr "კოდის შემოწირულობები"
+
+#: step/main.cc:67
+#, kde-format
+msgid "cniehaus@kde.org"
+msgstr "cniehaus@kde.org"
+
+#: step/main.cc:74
+#, kde-format
+msgid "Document to open"
+msgstr "გასახსნელი დოკუმენტი"
+
+#: step/mainwindow.cc:155
+#, kde-format
+msgid "&Open Tutorial..."
+msgstr "&გაკვეთილის გახსნა..."
+
+#: step/mainwindow.cc:160
+#, kde-format
+msgid "&Open Example..."
+msgstr "&მაგალითის გახსნა..."
+
+#: step/mainwindow.cc:165
+#, kde-format
+msgid "Open Down&loaded Example..."
+msgstr "&გადმოწერილი მაგალიტის გახსნა..."
+
+#: step/mainwindow.cc:170
+#, kde-format
+msgid "Share C&urrent Experiment..."
+msgstr "&მიმდინარე ექსპერიმენტის გახსნა..."
+
+#: step/mainwindow.cc:173
+#, kde-format
+msgid "&Download New Experiments..."
+msgstr "ახალი ექსპერიმენტის &გადმოწერა..."
+
+#: step/mainwindow.cc:180
+#, kde-format
+msgid "Redo"
+msgstr "ბრძანების აღდგენა"
+
+#: step/mainwindow.cc:180
+#, kde-format
+msgid "Undo"
+msgstr "დაბრუნება"
+
+#: step/mainwindow.cc:202
+#, kde-format
+msgid "&Delete"
+msgstr "&წაშლა"
+
+#: step/mainwindow.cc:212
+#, kde-format
+msgid "&Run"
+msgstr "&გაშვება"
+
+#: step/mainwindow.cc:217
+#, kde-format
+msgid "Execute the program"
+msgstr "პროგრამის შესრულება"
+
+#: step/mainwindow.cc:218
+#, kde-format
+msgid "Run: Execute the program"
+msgstr "გაშვება: პროგრამის შესრულება"
+
+#: step/mainwindow.cc:220
+#, kde-format
+msgctxt "@option:radio"
+msgid "1x Speed"
+msgstr "1x სიჩქარე"
+
+#: step/mainwindow.cc:228
+#, kde-format
+msgctxt "@option:radio choose the slow speed"
+msgid "2x Speed"
+msgstr "2x სიჩქარე"
+
+#: step/mainwindow.cc:235
+#, kde-format
+msgctxt "@option:radio"
+msgid "4x Speed"
+msgstr "4x სიჩქარე"
+
+#: step/mainwindow.cc:242
+#, kde-format
+msgctxt "@option:radio"
+msgid "8x Speed"
+msgstr "8x სიჩქარე"
+
+#: step/mainwindow.cc:249
+#, kde-format
+msgctxt "@option:radio"
+msgid "16x Speed"
+msgstr "16x სიჩქარე"
+
+#: step/mainwindow.cc:279
+#, kde-format
+msgctxt "filename"
+msgid "untitled.step"
+msgstr "untitled.step"
+
+#: step/mainwindow.cc:305
+#, kde-format
+msgid "<new file>"
+msgstr "<ახალი ფაილი>"
+
+#: step/mainwindow.cc:319
+#, kde-format
+msgctxt "@title:window"
+msgid "Open Step File"
+msgstr "Step-ის ფაილის გახსნა"
+
+#: step/mainwindow.cc:319 step/mainwindow.cc:349
+#, kde-format
+msgid "Step files (*.step)"
+msgstr "Step -ის ფაილები (*.step)"
+
+#: step/mainwindow.cc:329
+#, kde-format
+msgid "Cannot parse file '%1': %2"
+msgstr "ფაილის დამუშავების შეცდომა'%1': %2"
+
+#: step/mainwindow.cc:338
+#, kde-format
+msgid "<open file: %1>"
+msgstr "<გაილის გახსნა: %1>"
+
+#: step/mainwindow.cc:349
+#, kde-format
+msgctxt "@title:window"
+msgid "Save Step File"
+msgstr "Step-ის ფაილის შენახვა"
+
+#: step/mainwindow.cc:365
+#, kde-format
+msgid "Cannot open file '%1'"
+msgstr "ფაილის (%1) გახსნის შეცდომა"
+
+#: step/mainwindow.cc:371
+#, kde-format
+msgid "Cannot save file '%1': %2"
+msgstr ""
+
+#: step/mainwindow.cc:408
+#, kde-format
+msgid ""
+"The experiment has been modified.\n"
+"Do you want to save your changes?"
+msgstr ""
+
+#: step/mainwindow.cc:456
+#, kde-format
+msgid "Uploading is still not implemented in kdelibs."
+msgstr ""
+
+#: step/mainwindow.cc:457
+#, kde-format
+msgid "Sorry - Step"
+msgstr "უკაცრავად - Step"
+
+#: step/mainwindow.cc:484
+#, kde-format
+msgid "&Stop"
+msgstr "გაჩერება"
+
+#: step/mainwindow.cc:494
+#, kde-format
+msgid "&Simulate"
+msgstr "&სიმულაცია"
+
+#: step/mainwindow.cc:499
+#, kde-format
+msgid ""
+"Cannot finish this step because local error is greater than local "
+"tolerance.\n"
+"Please check solver settings and try again."
+msgstr ""
+
+#: step/mainwindow.cc:504
+#, kde-format
+msgid ""
+"Cannot finish this step because there are collisions which cannot be "
+"resolved automatically.\n"
+"Please move colliding objects apart and try again."
+msgstr ""
+
+#: step/mainwindow.cc:508
+#, kde-format
+msgid "Cannot finish this step because of an unknown error."
+msgstr ""
+
+#: step/mainwindow.cc:541
+#, kde-format
+msgid "&Undo"
+msgstr "&დაბრუნება"
+
+#: step/mainwindow.cc:542
+#, kde-format
+msgid "&Undo: %1"
+msgstr "&დაბრუნება: %1"
+
+#: step/mainwindow.cc:547
+#, kde-format
+msgid "Re&do"
+msgstr "&გამეორება"
+
+#: step/mainwindow.cc:548
+#, kde-format
+msgid "Re&do: %1"
+msgstr "&გამეორება: %1"
+
+#: step/mainwindow.cc:579
+#, kde-format
+msgid "General"
+msgstr "ძირითადი"
+
+#: step/motorgraphics.cc:112 step/motorgraphics.cc:290
+#: step/stepgraphicsitem.cc:206 step/stepgraphicsitem.cc:218
+#, kde-format
+msgid "Move %1"
+msgstr "%1-ის გადატანა"
+
+#: step/polygongraphics.cc:161
+#, kde-format
+msgid "Press left mouse button to position a center of a %1"
+msgstr ""
+
+#: step/polygongraphics.cc:182
+#, kde-format
+msgid "Move mouse and release left mouse button to define a radius of the %1"
+msgstr ""
+
+#: step/polygongraphics.cc:295
+#, kde-format
+msgid ""
+"Press left mouse button to position\n"
+"top left corner of a %1"
+msgstr ""
+
+#: step/polygongraphics.cc:317
+#, kde-format
+msgid ""
+"Move mouse and release left mouse button to position\n"
+"bottom right corner of the %1"
+msgstr ""
+
+#: step/polygongraphics.cc:440
+#, kde-format
+msgid "Click on the scene to create a first vertex of %1"
+msgstr ""
+
+#: step/polygongraphics.cc:488
+#, kde-format
+msgid "Click on the scene to add new vertex or press Enter to finish"
+msgstr ""
+
+#: step/propertiesbrowser.cc:279
+#, kde-format
+msgid "Change solver type"
+msgstr "ამომხსნელის ტიპის შეცვლა"
+
+#: step/propertiesbrowser.cc:294 step/propertiesbrowser.cc:300
+#: step/propertiesbrowser.cc:307 step/propertiesbrowser.cc:316
+#: step/propertiesbrowser.cc:400 step/propertiesbrowser.cc:417
+#: step/stepgraphicsitem.cc:401 step/stepgraphicsitem.cc:546
+#, kde-format
+msgid "Change %1.%2"
+msgstr ""
+
+#: step/propertiesbrowser.cc:314
+#, kde-format
+msgid "Rename %1 to %2"
+msgstr ""
+
+#: step/propertiesbrowser.cc:464
+#, kde-format
+msgid "Property"
+msgstr "პარამეტრი"
+
+#: step/propertiesbrowser.cc:465
+#, kde-format
+msgid "Value"
+msgstr "მნიშვნელობა"
+
+#: step/propertiesbrowser.cc:530
+#, kde-format
+msgid "false"
+msgstr "მცდარი"
+
+#: step/propertiesbrowser.cc:531
+#, kde-format
+msgid "true"
+msgstr "ჭეშმარიტი"
+
+#: step/propertiesbrowser.cc:675
+#, kde-format
+msgid "Properties"
+msgstr "თვისებები"
+
+#: step/softbodygraphics.cc:49 step/worldgraphics.cc:62
+#: step/worldgraphics.cc:106
+#, kde-format
+msgid "Click on the scene to create a %1"
+msgstr ""
+
+#: step/softbodygraphics.cc:66
+#, kde-format
+msgid "Please fill in the parameters for %1"
+msgstr ""
+
+#: step/softbodygraphics.cc:126
+#, kde-format
+msgctxt "@title:window"
+msgid "Create Soft Body Items"
+msgstr ""
+
+#: step/softbodygraphics.cc:187
+#, kde-format
+msgid "Create items for %1"
+msgstr ""
+
+#. i18n: ectx: label, entry (showCreationTips), group (General)
+#. i18n: ectx: whatsthis, entry (showCreationTips), group (General)
+#: step/step.kcfg:9 step/step.kcfg:10
+#, kde-format
+msgid "Show tips when creating items"
+msgstr ""
+
+#. i18n: ectx: label, entry (showAxes), group (General)
+#. i18n: ectx: whatsthis, entry (showAxes), group (General)
+#: step/step.kcfg:14 step/step.kcfg:15
+#, kde-format
+msgid "Show axes on the scene"
+msgstr ""
+
+#. i18n: ectx: label, entry (floatDisplayPrecision), group (General)
+#. i18n: ectx: whatsthis, entry (floatDisplayPrecision), group (General)
+#: step/step.kcfg:19 step/step.kcfg:20
+#, kde-format
+msgid "Display precision of double numbers"
+msgstr ""
+
+#. i18n: ectx: label, entry (enableOpenGL), group (General)
+#. i18n: ectx: whatsthis, entry (enableOpenGL), group (General)
+#: step/step.kcfg:26 step/step.kcfg:27
+#, kde-format
+msgid "Use OpenGL to accelerate drawing whenever possible"
+msgstr ""
+
+#. i18n: ectx: label, entry (wikiExternal), group (InfoBrowser)
+#. i18n: ectx: whatsthis, entry (wikiExternal), group (InfoBrowser)
+#: step/step.kcfg:33 step/step.kcfg:34
+#, kde-format
+msgid "Browse wikipedia in external browser"
+msgstr ""
+
+#. i18n: ectx: label, entry (showButtonText), group (ItemPalette)
+#. i18n: ectx: whatsthis, entry (showButtonText), group (ItemPalette)
+#: step/step.kcfg:40 step/step.kcfg:41
+#, kde-format
+msgid "Show text beside icon"
+msgstr "ტექსტის ხატულის გვერდით ჩვენება"
+
+#: step/stepgraphicsitem.cc:218
+#, kde-format
+msgid "several objects"
+msgstr "რამდენიმე ობიექტი"
+
+#: step/stepgraphicsitem.cc:402 step/stepgraphicsitem.cc:548
+#, kde-format
+msgid "Change %1"
+msgstr "%1-ის შეცვლა"
+
+#. i18n: ectx: ToolBar (mainToolBar)
+#: step/stepui.rc:7
+#, kde-format
+msgid "Main Toolbar"
+msgstr "ხელსაწყოთა მთავარი ზოლი"
+
+#. i18n: ectx: ToolBar (simulationToolBar)
+#: step/stepui.rc:12
+#, kde-format
+msgid "Simulation Toolbar"
+msgstr ""
+
+#. i18n: ectx: Menu (examples)
+#: step/stepui.rc:21
+#, kde-format
+msgid "&Examples"
+msgstr "&მაგალითები"
+
+#. i18n: ectx: Menu (simulation)
+#: step/stepui.rc:32
+#, kde-format
+msgid "&Simulation"
+msgstr "&სიმულაცია"
+
+#. i18n: ectx: Menu (speed)
+#: step/stepui.rc:35
+#, kde-format
+msgid "&Run Speed"
+msgstr "&გაშვების სიჩქარე"
+
+#. i18n: ectx: Menu (panels)
+#: step/stepui.rc:45
+#, kde-format
+msgid "&Panels"
+msgstr "&პანელები"
+
+#: step/toolgraphics.cc:267
+#, kde-format
+msgid "Click to enter text"
+msgstr "ტექსტის შესაყვანად დააწკაპუნეთ"
+
+#: step/toolgraphics.cc:392
+#, kde-format
+msgid "&Color"
+msgstr "&ფერი"
+
+#: step/toolgraphics.cc:394
+#, kde-format
+msgid "&Bold"
+msgstr "&სქელი"
+
+#: step/toolgraphics.cc:396
+#, kde-format
+msgid "&Italic"
+msgstr "&დახრილი"
+
+#: step/toolgraphics.cc:398
+#, kde-format
+msgid "&Underline"
+msgstr "&ხაზგასმა"
+
+#: step/toolgraphics.cc:401
+#, kde-format
+msgid "Align &Left"
+msgstr "&მარცხნვ სწორება"
+
+#: step/toolgraphics.cc:403
+#, kde-format
+msgid "Align C&enter"
+msgstr "&ცენტრზე სწორება"
+
+#: step/toolgraphics.cc:405
+#, kde-format
+msgid "Align &Right"
+msgstr "მარ&ჯვნივ სწორება"
+
+#: step/toolgraphics.cc:407
+#, kde-format
+msgid "Align &Justify"
+msgstr ""
+
+#: step/toolgraphics.cc:410
+#, kde-format
+msgid "&Align"
+msgstr "&სწორება"
+
+#: step/toolgraphics.cc:419
+#, kde-format
+msgid "&Font"
+msgstr "&ფონტი"
+
+#: step/toolgraphics.cc:420
+#, kde-format
+msgid "Font &Size"
+msgstr "ფონტის &ზომა"
+
+#: step/toolgraphics.cc:422
+#, kde-format
+msgid "Insert &Image..."
+msgstr "&სურათის ჩასმა..."
+
+#: step/toolgraphics.cc:427
+#, kde-format
+msgid "Insert &Formula..."
+msgstr "&ფორმულის ჩასმა..."
+
+#: step/toolgraphics.cc:538
+#, kde-format
+msgid "Edit %1"
+msgstr "%1-ის ჩასწორება"
+
+#: step/toolgraphics.cc:643
+#, kde-format
+msgctxt "@title:window"
+msgid "Open Image File"
+msgstr "გამოსახულების ფაილის გახსნა"
+
+#: step/toolgraphics.cc:643
+#, kde-format
+msgid "Images (*.png *.jpg *.jpeg)"
+msgstr "გამოსახულებები (*.png *.jpg *.jpeg)"
+
+#: step/toolgraphics.cc:661
+#, kde-format
+msgid "Cannot parse file '%1'"
+msgstr "ფაილის დამუშავების შეცდომა: '%1'"
+
+#: step/toolgraphics.cc:705
+#, kde-format
+msgid ""
+"Cannot find latex installation. You need 'latex', 'dvips' and 'gs' "
+"executables installed and accessible from $PATH"
+msgstr ""
+
+#: step/toolgraphics.cc:711
+#, kde-format
+msgctxt "@title:window"
+msgid "LaTex Formula - Step"
+msgstr "LaTex-ის ფორმულა - Step"
+
+#: step/toolgraphics.cc:712
+#, kde-format
+msgid "Enter LaTeX formula string:"
+msgstr ""
+
+#: step/toolgraphics.cc:721
+#, kde-format
+msgid "Cannot compile LaTeX formula: %1"
+msgstr ""
+
+#: step/toolgraphics.cc:727
+#, kde-format
+msgid "Cannot parse result image"
+msgstr ""
+
+#: step/toolgraphics.cc:788
+#, kde-format
+msgid "Object name"
+msgstr "ობიექტის სახელი"
+
+#: step/toolgraphics.cc:793
+#, kde-format
+msgid "Property name"
+msgstr "თვისების სახელი"
+
+#: step/toolgraphics.cc:799
+#, kde-format
+msgid "Vector index"
+msgstr "ვექტორის ინდექსი"
+
+#: step/toolgraphics.cc:988 step/toolgraphics.cc:996 step/toolgraphics.cc:1489
+#, kde-format
+msgid "%1.%2"
+msgstr "%1.%2"
+
+#: step/toolgraphics.cc:989 step/toolgraphics.cc:997 step/toolgraphics.cc:1490
+#, kde-format
+msgid "[%1]"
+msgstr "[%1]"
+
+#: step/toolgraphics.cc:993 step/toolgraphics.cc:1001 step/toolgraphics.cc:1494
+#, kde-format
+msgid "[not configured]"
+msgstr ""
+
+#: step/toolgraphics.cc:1089
+#, kde-format
+msgid "Clear Graph"
+msgstr "გრაფიკის გასუფტავება"
+
+#: step/toolgraphics.cc:1090
+#, kde-format
+msgid "Configure Graph..."
+msgstr "გრაფიკის მორგება..."
+
+#: step/toolgraphics.cc:1108
+#, kde-format
+msgctxt "@title:window"
+msgid "Configure Graph"
+msgstr "გრაფიკის მორგება"
+
+#: step/toolgraphics.cc:1184 step/toolgraphics.cc:1383
+#: step/toolgraphics.cc:1721
+#, kde-format
+msgid "Edit properties of %1"
+msgstr "%1-ის თვისებების ჩასწორება"
+
+#: step/toolgraphics.cc:1236
+#, kde-format
+msgid "Clear graph %1"
+msgstr "%1-ის გრაფიკის გასუფთავება"
+
+#: step/toolgraphics.cc:1317
+#, kde-format
+msgid "Configure Meter..."
+msgstr ""
+
+#: step/toolgraphics.cc:1335
+#, kde-format
+msgctxt "@title:window"
+msgid "Configure Meter"
+msgstr ""
+
+#: step/toolgraphics.cc:1432 step/toolgraphics.cc:1629
+#, kde-format
+msgid "Increase Value"
+msgstr "მნიშვნელობის გაზრდა"
+
+#: step/toolgraphics.cc:1433 step/toolgraphics.cc:1630
+#, kde-format
+msgid "Decrease Value"
+msgstr "მნიშვნელობის შემცირება"
+
+#: step/toolgraphics.cc:1463 step/toolgraphics.cc:1758
+#, kde-format
+msgid "Decrease controller %1"
+msgstr "კონტროლერის შემცირება: %1"
+
+#: step/toolgraphics.cc:1472 step/toolgraphics.cc:1767
+#, kde-format
+msgid "Increase controller %1"
+msgstr "კონტროლერის გაზრდა: %1"
+
+#: step/toolgraphics.cc:1606
+#, kde-format
+msgid "Change controller %1"
+msgstr "კონტროლერის შეცვლა: %1"
+
+#: step/toolgraphics.cc:1632
+#, kde-format
+msgid "Configure Controller..."
+msgstr "კონტროლერის მორგება..."
+
+#: step/toolgraphics.cc:1650
+#, kde-format
+msgctxt "@title:window"
+msgid "Configure Controller"
+msgstr "კონტროლერის მორგება"
+
+#: step/toolgraphics.cc:1911
+#, kde-format
+msgid "Clear Trace"
+msgstr ""
+
+#: step/toolgraphics.cc:1920
+#, kde-format
+msgid "Clear tracer %1"
+msgstr ""
+
+#: step/undobrowser.cc:30
+#, kde-format
+msgid "Undo History"
+msgstr "დაბრუნების ისტორია"
+
+#: step/worldbrowser.cc:62
+#, kde-format
+msgctxt "Object list"
+msgid "World"
+msgstr "მსოფლიო"
+
+#: step/worldgraphics.cc:102
+#, kde-format
+msgid ""
+"Press left mouse button to position first end of a %1\n"
+"then drag and release it to position the second end"
+msgstr ""
+
+#: step/worldgraphics.cc:130
+#, kde-format
+msgid "Release left mouse button to position second end of the %1"
+msgstr ""
+
+#: step/worldmodel.cc:641
+#, kde-format
+msgid "Delete %1"
+msgstr "%1-ის წაშლა"
+
+#: step/worldmodel.cc:642
+#, kde-format
+msgid "Delete several items"
+msgstr ""
+
+#: step/worldmodel.cc:713 step/worldmodel.cc:720
+#, kde-format
+msgid "<no object>"
+msgstr ""
+
+#: step/worldmodel.cc:715
+#, kde-format
+msgid "<unnamed>"
+msgstr "<უსახელო>"
+
+#: step/worldmodel.cc:721
+#, kde-format
+msgid "%1: %2"
+msgstr "%1: %2"
+
+#: step/worldmodel.cc:793
+#, kde-format
+msgid "<nobr><h4><u>%1</u></h4></nobr>"
+msgstr "<nobr><h4><u>%1</u></h4></nobr>"
+
+#: step/worldmodel.cc:821
+#, kde-format
+msgid "<tr><td>%1&nbsp;&nbsp;</td><td>%2</td></tr>"
+msgstr "<tr><td>%1&nbsp;&nbsp;</td><td>%2</td></tr>"
+
+#: step/worldmodel.cc:1019
+#, kde-format
+msgid "Simulate %1 → %2"
+msgstr "სიმულაცია %1 → %2"
+
+#: step/worldmodel.cc:1072
+#, kde-format
+msgid "Cut %1"
+msgstr "%1-ის ამოჭრა"
+
+#: step/worldmodel.cc:1073
+#, kde-format
+msgid "Cut several items"
+msgstr "რამდენიმეჯერ ამოჭრა"
+
+#: step/worldmodel.cc:1095
+#, kde-format
+msgid "Pasted %1"
+msgstr "%1 ჩასმულია"
+
+#: step/worldmodel.cc:1096
+#, kde-format
+msgid "Pasted several items"
+msgstr "ჩასმულია რამდენიმეჯერ"
+
+#: step/worldscene.cc:260
+#, kde-format
+msgid "Objects under mouse:"
+msgstr "თაგუნას ქვეშ მყოფი ობიექტები:"
+
+#: step/worldscene.cc:265
+#, kde-format
+msgid "... (1 more item)"
+msgid_plural "... (%1 more items)"
+msgstr[0] "... (კიდევ 1 ჩანაწერი)"
+msgstr[1] "... (კიდევ %1 ჩანაწერი)"

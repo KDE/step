@@ -1,0 +1,212 @@
+<chapter id="tutorials">
+<title
+>Einführung zu &step;: Die Anleitungen</title
+> 
+<para
+>Mit dem Menüeintrag <menuchoice
+><guimenu
+>Datei</guimenu
+><guimenuitem
+>Anleitung öffnen ...</guimenuitem
+></menuchoice
+> wird ein Dialog angezeigt, in dem Sie die mit &step; mitgelieferten Anleitungen öffnen können. Es gibt fünf Anleitungen mit denen Sie Schritt für Schritt lernen, mit allen Elementen in &step; umzugehen. Starten Sie mit der ersten Anleitung, klicken Sie dazu auf die Datei <filename
+>tutorial1.step</filename
+>. Diese Anleitung wird jetzt in &step; geöffnet.</para>
+<note
+><para
+>Wird eine Anleitung nicht richtig angezeigt, drücken Sie auf <guibutton
+>Vergrößern</guibutton
+> in der Werkzeugleiste.</para
+></note>
+
+<para
+>Das Fenster <guilabel
+>Welt</guilabel
+> zeigt eine Liste aller Objekte in Ihrem Experiment. Wenn Sie in dieser Liste auf ein Objekt klicken, werden seine <guilabel
+>Eigenschaften</guilabel
+> im Fenster darunter angezeigt. Klicken Sie auf einen der Werte, um ihn zu ändern.</para>
+
+<para
+>Jede Anleitung besteht aus Texten, die die neuen Elemente vorstellen und ihre Eigenschaften erklären. Ändern Sie jetzt einige Eigenschaften der Objekte, um zu sehen, wie sich dies auf Ihr Experiment auswirkt. </para>
+
+<sect1 id="tutorial1">
+<title
+>Anleitung 1: Körper und Federn</title>
+<para
+>Diese Anleitung stellt Körper und Federn vor und zeigt, wie eine Simulation gestartet wird.</para>
+<para
+>In der Physik ist ein Körper ein Objekt, das mit den Theorien der klassischen Mechanik oder der Quantenmechanik beschrieben werden kann und das im Experiment mit Instrumenten untersucht werden kann. Dazu gehören die Bestimmung der Position und in einigen Fällen auch der Orientierung im Raum wie auch die Möglichkeit zur Änderung dieser Werte durch einwirkende Kräfte.</para>
+<para
+>Eine Feder ist ein elastischer verformbarer Körper, der mechanische Energie speichert.</para>
+<screenshot>
+     <screeninfo
+>Experiment 1</screeninfo>
+	<mediaobject>
+	  <imageobject>
+	    <imagedata fileref="tutorial1.png" format="PNG"/>
+	  </imageobject>
+	    <textobject>
+	    <phrase
+>Experiment 1</phrase>
+	  </textobject>
+	</mediaobject>
+</screenshot>
+<para
+>Das Experiment in dieser Anleitung zeigt zwei Scheiben, die durch eine Feder verbunden sind. Die Scheiben haben eine Anfangsgeschwindigkeit (ein kleiner blauer Pfeil) und eine Beschleunigung (roter Pfeil). Federn haben eine Steifigkeit und eine Länge, die verändert werden kann. Wenn sie die Simulation starten, sehen Sie, wie die Scheiben durch die Feder zusammengezogen und abgestoßen werden. Verändern Sie in diesem Experiment die Eigenschaften der Objekte wie zum Beispiel die Steifigkeit der Feder und beobachten Sie die Änderungen im Versuchsablauf.</para>
+<para
+>Am Ende dieser Anleitung sollten Sie mit der Bedienungsoberfläche von &step; vertraut und in der Lage sein, die Eigenschaften von Objekten zu ändern.</para>
+</sect1>
+
+<sect1 id="tutorial2">
+<title
+>Anleitung 2: Schieberegler und Diagramme</title>
+<para
+>In dieser Anleitung lernen Sie Schieberegler und Diagramme kennen.</para>
+<para
+>Ein Schieberegler ist ein Gerät, um die Eigenschaften von Körpern oder Federn grafisch zu verändern. In dieser Anleitung können Sie die Steifigkeit der „Feder1“ mit einem Schieberegler beeinflussen. Durch Verschieben des Reglers nach rechts oder mit der Kurzwahltaste „W“ erhöhen Sie den Wert der Steifigkeit, durch Verschieben des Reglers nach links oder mit der Kurzwahltaste „Q“ verringern Sie ihn. Klicken mit der &RMBn; auf den Schieberegler zeigt ein Kontextmenü mit diesen Aktionen an, außerdem können Sie durch Auswahl von <guilabel
+>Schieberegler einrichten ...</guilabel
+> einen Dialog zur Änderung aller Eigenschaften dieses Reglers öffnen.</para>
+<screenshot>
+     <screeninfo
+>Experiment 2</screeninfo>
+	<mediaobject>
+	  <imageobject>
+	    <imagedata fileref="tutorial2.png" format="PNG"/>
+	  </imageobject>
+	    <textobject>
+	    <phrase
+>Experiment 2</phrase>
+	  </textobject>
+	</mediaobject>
+</screenshot>
+<para
+>In Diagrammen können Sie die Beziehung zwischen zwei Variablen grafisch darstellen. Im Experiment in dieser Anleitung wird die Position von Teilchen1 während des Ablaufs des Experiments in der Welt1 dargestellt. Klicken Sie mit der &RMBn; auf das Diagramm, dann können sie es entfernen, in den Anfangszustand zurücksetzen und auch einen Einrichtungsdialog öffnen, um darin alle Eigenschaften dieses Diagramms zu bearbeiten.</para>
+<para
+>Am Ende dieser Anleitung sollten Sie in der Lage sein, mit Schiebereglern die Eigenschaften von Objekten zu verändern und mit Diagrammen bestimmte Eigenschaften im Experiment grafisch darzustellen.</para>
+</sect1>
+
+<sect1 id="tutorial3">
+<title
+>Anleitung 3: Starre Körper und Spuren</title>
+<para
+>Anleitung 3 bietet eine Einführung zu starren Körpern und Spuren ihrer Bewegung.</para>
+<para
+>Ein starrer Körper ist das idealisierte Modell eines Festkörpers mit endlicher Größe, der nicht verformt werden kann. D. h. der Abstand zwischen zwei bestimmten Punkten des Körpers bleibt im Experiment immer unverändert, unabhängig von den einwirkenden äußeren Kräften.</para>
+<para
+>Eine Spur zeigt die Bahn der Bewegung eines Punktes auf einem starren Körper an.</para>
+<screenshot>
+     <screeninfo
+>Eigenschaften der Scheibe</screeninfo>
+	<mediaobject>
+	  <imageobject>
+	    <imagedata fileref="disk-properties.png" format="PNG"/>
+	  </imageobject>
+	    <textobject>
+	    <phrase
+>Eigenschaften der Scheibe</phrase>
+	  </textobject>
+	</mediaobject>
+</screenshot>
+<para
+>Wenn Sie einen starren Körper wie die Scheibe ausgewählt haben, werden drei graue Quadrate darauf angezeigt. Klicken Sie darauf und ziehen dann den Mauszeiger, so können Sie die Geschwindigkeit, den Winkel und die Winkelgeschwindigkeit des Körpers grafisch ändern. </para>
+<screenshot>
+     <screeninfo
+>Experiment 3: Zwei Spuren</screeninfo>
+	<mediaobject>
+	  <imageobject>
+	    <imagedata fileref="tutorial3.png" format="PNG"/>
+	  </imageobject>
+	    <textobject>
+	    <phrase
+>Experiment 3: Zwei Spuren</phrase>
+	  </textobject>
+	</mediaobject>
+</screenshot>
+<para
+>Das Experiment in Anleitung 3 besteht aus einer Scheibe und einem Rechteck, die durch eine Feder verbunden sind. Auf dem Rechteck befindet sich eine Spur. das ist der blaue Kreis. Fügen sie einen weiteren hinzu: Wählen Sie dazu das Objekt <guilabel
+>Spur</guilabel
+> in der <guilabel
+>Palette</guilabel
+> und klicken Sie dann auf einen Punkt auf dem Rechteck, dessen Bewegung verfolgt werden soll. Im Fenster <guilabel
+>Eigenschaften</guilabel
+> wählen Sie dann die Zeile <guilabel
+>Farbe</guilabel
+> aus. Dann können Sie rechts auf das blaue Quadrat klicken und damit einen Dialog zur Auswahl einer Farbe öffnen. Das Bildschirmfoto oben zeigt den Verlauf der zwei Spuren, nachdem die Simulation einige Sekunden ausgeführt wurde.</para>
+</sect1>
+
+<sect1 id="tutorial4">
+<title
+>Anleitung 4: Motoren und Kräfte</title>
+<para
+>Es gibt zwei Arten von Motoren in &step;: Linearmotoren und Drehmotoren. Linearmotoren wenden eine konstante Kraft auf einen bestimmten Punkt eines Körpers an, Drehmotoren ein konstantes Drehmoment auf einen Körper.</para>
+<para
+>Drei verschieden Kräfte können auf einen Körper einwirken: die Gewichtskraft, die Gravitationskraft und die Coulomb-Kraft. In der Voreinstellung haben alle Kräfte in &step; den Wert Null. Die Coulomb-Kraft beschreibt die Kraft zwischen zwei kugelsymmetrisch verteilten elektrischen Ladungen.</para>
+<screenshot>
+     <screeninfo
+>Experiment 4: Motoren</screeninfo>
+	<mediaobject>
+	  <imageobject>
+	    <imagedata fileref="tutorial4.png" format="PNG"/>
+	  </imageobject>
+	    <textobject>
+	    <phrase
+>Experiment 4: Motoren</phrase>
+	  </textobject>
+	</mediaobject>
+</screenshot>
+<para
+>Dieses Experiment besteht aus einer Scheibe und einem Rechteck, die mit einer Feder verbunden sind. Das schmale Rechteck unten begrenzt den Versuchsaufbau. An der Scheibe und dem Rechteck sind jeweils ein Linearmotor angebracht. Mit den beiden Schiebereglern können Sie die Kräfte dieser Motoren verändern. Starten Sie die Simulation und ändern Sie die Kräfte der Motoren mit den Schiebereglern. Fügen Sie jetzt noch eine Gewichtskraft in diese Welt ein. Gewichtskräfte sind immer global und wirken auf alle Objekte im Experiment. Starten Sie die Simulation neu und beobachten Sie, wie sich jetzt der Ablauf des Experiments verändert.</para>
+<para
+>Ersetzen Sie den Linearmotor am Rechteck durch einen Drehmotor. Klicken Sie dazu in der <guilabel
+>Palette</guilabel
+> auf <guilabel
+>Drehmotor</guilabel
+> und dann auf  einen Punkt auf dem Rechteck. Geben Sie für das Moment einem Wert ein, indem Sie mit dem linken Mauszeiger am grauen Quadrat des Motors ziehen.</para>
+<screenshot>
+     <screeninfo
+>Drehmotor</screeninfo>
+	<mediaobject>
+	  <imageobject>
+	    <imagedata fileref="circular-motor.png" format="PNG"/>
+	  </imageobject>
+	    <textobject>
+	    <phrase
+>Drehmotor</phrase>
+	  </textobject>
+	</mediaobject>
+</screenshot>
+<para
+>Diese Anleitung zeigte die Anwendung von Motoren und Kräften, Sie sollten jetzt in der Lage sein, diese Objekte im Experiment zu benutzen.</para>
+</sect1>
+
+<sect1 id="tutorial5">
+<title
+>Anleitung 5: Verbindungen </title>
+<para
+>Verbindungen sind Objekte, die Körper aneinander oder an den Hintergrund anschließen. Es gibt folgende Verbindungen in &step;: Anker, Stift und Stab. Ein Anker fixiert die Position eines Körpers, sodass der Körper nicht bewegt werden kann. Ein Stift fixiert die Position eines Punktes auf dem Körper, der Körper kann sich noch um diesen Punkt drehen. Ein Stab ist eine Verbindung, die den Abstand zwischen zwei Körpern fixiert.</para>
+<screenshot>
+     <screeninfo
+>Experiment 5: Doppelpendel</screeninfo>
+	<mediaobject>
+	  <imageobject>
+	    <imagedata fileref="tutorial5.png" format="PNG"/>
+	  </imageobject>
+	    <textobject>
+	    <phrase
+>Experiment 5: Doppelpendel</phrase>
+	  </textobject>
+	</mediaobject>
+</screenshot>
+<para
+>Anleitung 5 beschreibt einen Versuch mit einem Doppelpendel.</para>
+<para
+>Fügen Sie ein <guilabel
+>Teilchen</guilabel
+> zum Versuch hinzu und verbinden Sie es mit Teilchen2 durch einen Stab. Klicken Sie dazu in der <guilabel
+>Palette</guilabel
+> auf das Objekt <guilabel
+>Stab</guilabel
+>. Nun müssen Sie mit der &LMBn; das erste Objekt auswählen, das mit dem Stab verbunden wird - Teilchen2. Ziehen Sie den Mauszeiger bei gedrückter &LMBr; zum zweiten Objekt, dem Teilchen3, und lassen Sie die &LMB; dort los. Damit haben Sie ein Dreifachpendel erstellt.</para>
+</sect1>
+
+</chapter>

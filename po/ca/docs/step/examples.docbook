@@ -1,0 +1,310 @@
+<chapter id="examples">
+<title
+>Exemples de l'&step;</title>
+
+<para
+>El paquet &step; conté diversos exemples instructius per a ajudar-vos a comprendre els principis del treball amb l'aplicació: </para>
+
+<variablelist>
+  <varlistentry>
+    <term
+><menuchoice
+><guimenu
+>Fitxer</guimenu
+> <guisubmenu
+>Exemples</guisubmenu
+></menuchoice
+></term>
+    <listitem
+><para
+><action
+>Obre un submenú</action
+> amb els diferents elements d'acció.</para>
+    <variablelist>
+      <varlistentry>
+        <term
+><guimenuitem
+>Obre un exemple...</guimenuitem
+></term>
+        <listitem
+><para
+><action
+>Obre un exemple</action
+> des del conjunt predeterminat.</para
+></listitem>
+      </varlistentry>
+      <varlistentry>
+        <term
+><guimenuitem
+>Obre un exemple descarregat...</guimenuitem
+></term>
+        <listitem
+><para
+><action
+>Obre els exemples descarregats.</action
+></para
+></listitem>
+      </varlistentry>
+      <varlistentry>
+        <term
+><guimenuitem
+>Descarrega experiments nous...</guimenuitem
+></term>
+        <listitem
+><para
+><action
+>Baixa els exemples</action
+> compartits per altres usuaris.</para
+></listitem>
+      </varlistentry>
+      <varlistentry>
+        <term
+><guimenuitem
+>Comparteix l'experiment actual...</guimenuitem
+></term>
+        <listitem
+><para
+><action
+>Podeu compartir els vostres propis exemples.</action
+></para
+></listitem>
+      </varlistentry>
+    </variablelist>
+    </listitem>
+  </varlistentry>
+</variablelist>
+
+<para
+>A sota trobareu les descripcions dels fitxers d'exemple predeterminats. </para>
+
+<variablelist>
+  <varlistentry id="brownian">
+    <term
+><filename
+>brownian.step</filename
+></term>
+    <listitem
+><para
+>Traça la trajectòria del disc rígid interactuant amb 40 partícules que es mouen a la deriva de forma aleatòria dins d'una caixa. Aquest exemple simula el <ulink url="https://en.wikipedia.org/wiki/Brownian_motion"
+>moviment brownià</ulink
+> de les partícules d'un gas ideal.</para
+></listitem>
+  </varlistentry>
+
+  <varlistentry id="pendulum">
+    <term
+><filename
+>doublependulum.step</filename
+></term>
+    <listitem
+><para
+>Aquest exemple simula el <ulink url="https://en.wikipedia.org/wiki/Double_pendulum"
+>moviment del pèndol doble</ulink
+> utilitzant dues partícules massives i dos bastons.</para
+></listitem>
+  </varlistentry>
+
+  <varlistentry id="eightpendulum">
+    <term
+><filename
+>eightpendulum.step</filename
+></term>
+    <listitem
+><para
+>Aquest exemple és una simple demostració del famós <ulink url="https://en.wikipedia.org/wiki/Newton%27s_cradle"
+>pèndol de Newton</ulink
+>. Això es fa en &step; utilitzant bastons, vuit discs i una caixa. Les sis boles centrals no es mouen perquè es limiten a transferir l'impuls i l'energia, no un moviment.</para
+></listitem>
+  </varlistentry>
+
+  <varlistentry id="first">
+    <term
+><filename
+>first.step</filename
+>: Primer exemple</term>
+    <listitem
+><para
+>Aquest exemple consisteix en dues parts. La primera part conté dues partícules connectades per una molla i la segona part conté dues partícules carregades. </para>
+    <variablelist>
+      <varlistentry id="first-two-particles">
+        <term
+>Dues partícules connectades per una molla</term>
+        <listitem
+><para
+>En aquest exemple s'afegeixen dues partícules a l'escena i una molla les connecta. Les propietats d'ambdues partícules com ara la velocitat, impuls, posició, &etc; s'han establert en el navegador de propietats. Les propietats de la molla com ara rigidesa, longitud en repòs, amortiment, &etc; també s'han establert en el navegador de propietats. </para>
+
+        <para
+><emphasis
+>Explicació de la simulació:</emphasis>
+        </para>
+
+        <para
+>Aquest és un bon exemple d'un moviment harmònic simple. Aquí, l'acceleració d'una de les partícules s'ha establert en la direcció positiva de l'eix X, mentre que l'acceleració de l'altra partícula s'estableix al llarg negatiu de l'eix X. Com a resultat, ambdues partícules estiren la molla en direccions oposades, mentre la molla tracta de portar les dues partícules a les seves posicions originals. D'aquesta manera, el sistema executa un moviment harmònic simple. A l'escena es pot veure la simulació de les partícules i la molla sota aquestes condicions. </para
+></listitem>
+      </varlistentry>
+
+      <varlistentry id="first-two-charged">
+        <term
+>Dues partícules carregades</term>
+        <listitem
+><para
+>La velocitat de cada partícula carregada s'ha establert en una direcció de manera que les partícules carregades es moguin en la direcció respectiva de la seva velocitat, tot i que, a cada partícula se li ha donat una càrrega igual i oposada de manera que es mirin d'atreure entre si. A l'escena es pot veure el resultat de la simulació de les partícules carregades sota aquestes condicions.</para
+></listitem>
+      </varlistentry>
+    </variablelist>
+    </listitem>
+  </varlistentry>
+
+  <varlistentry id="fourpendula">
+    <term
+><filename
+>fourpendula.step</filename
+></term>
+    <listitem
+><para
+>Aquest exemple és una demostració correcta del <ulink url="https://en.wikipedia.org/wiki/Newton%27s_cradle"
+>pèndol de Newton</ulink
+>. Com el sistema és imperfecte, amb el temps, els dos discs centrals arriben a obtenir moviment visual.</para
+></listitem>
+  </varlistentry>
+
+  <varlistentry id="gas">
+    <term
+><filename
+>gas.step</filename
+></term>
+    <listitem
+><para
+>Aquest exemple simula la pressió d'un gas ideal causada pel <ulink url="https://en.wikipedia.org/wiki/Brownian_motion"
+>moviment brownià</ulink
+>.</para
+></listitem>
+  </varlistentry>
+
+  <varlistentry id="graph">
+    <term
+><filename
+>graph.step</filename
+></term>
+    <listitem
+><para
+>Traça un graf de la velocitat enfront de la posició de la primera partícula d'un sistema de dues partícules connectades amb una molla.</para
+></listitem>
+  </varlistentry>
+
+  <varlistentry id="liquid">
+    <term
+><filename
+>liquid.step</filename
+></term>
+    <listitem
+><para
+>Aquest exemple simula un líquid monoatòmic.</para
+></listitem>
+  </varlistentry>
+
+  <varlistentry id="lissajous">
+    <term
+><filename
+>lissajous.step</filename
+></term>
+    <listitem
+><para
+>Aquest exemple simula la <ulink url="https://en.wikipedia.org/wiki/Lissajous_curve"
+>corba de Lissajous</ulink
+> utilitzant un model de dues partícules. Els paràmetres en el model es poden canviar utilitzant el controlador que hi ha al centre del món.</para
+></listitem>
+  </varlistentry>
+
+  <varlistentry id="motor1">
+    <term
+><filename
+>motor1.step</filename
+></term>
+    <listitem
+><para
+>Simula un cos rígid triangular sota la càrrega dels tres motors lineals.</para
+></listitem>
+  </varlistentry>
+
+  <varlistentry id="motor-example">
+    <term
+><filename
+>motor.step</filename
+></term>
+    <listitem
+><para
+>Simula la interacció del motor lineal amb un cos rígid rectangular en una molla.</para
+></listitem>
+  </varlistentry>
+
+  <varlistentry id="note-example">
+    <term
+><filename
+>note.step</filename
+></term>
+    <listitem
+><para
+>Exemple amb una fórmula &latex; (<ulink url="https://en.wikipedia.org/wiki/Divergence_theorem"
+>teorema de la divergència</ulink
+>) i la imatge incrustada.</para
+></listitem>
+  </varlistentry>
+
+  <varlistentry id="resonance">
+    <term
+><filename
+>resonance.step</filename
+></term>
+    <listitem
+><para
+>Aquest exemple simula la ressonància en el sistema amb un motor angular.</para
+></listitem>
+  </varlistentry>
+
+  <varlistentry id="softbody">
+    <term
+><filename
+>softbody.step</filename
+></term>
+    <listitem
+><para
+>Aquest exemple simula la interacció de dos cossos rígids amb un cos tou.</para
+></listitem>
+  </varlistentry>
+
+  <varlistentry id="solar">
+    <term
+><filename
+>solar.step</filename
+></term>
+    <listitem
+><para
+>Aquest exemple simula el moviment dels cossos principals del Sistema Solar (el Sol i els planetes).</para
+></listitem>
+  </varlistentry>
+
+  <varlistentry id="springs">
+    <term
+><filename
+>springs.step</filename
+></term>
+    <listitem
+><para
+>Aquest exemple simula el moviment del sistema planar de cinc partícules connectades amb quatre molles.</para
+></listitem>
+  </varlistentry>
+
+  <varlistentry id="wave">
+    <term
+><filename
+>wave.step</filename
+></term>
+    <listitem
+><para
+>El graf de l'escena mostra les oscil·lacions de la partícula de color verd. Quan inicieu la simulació, l'onada començarà a viatjar des de la partícula de color vermell. La partícula de color blau reflectirà l'onada i viatjarà en direcció contrària fins que la partícula de color vermell torni a reflectir-la. Després d'algun temps, l'onada s'esvairà per l'amortiment de les molles.</para
+></listitem>
+  </varlistentry>
+</variablelist>
+
+</chapter>

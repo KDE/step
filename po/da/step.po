@@ -1,0 +1,1899 @@
+# translation of step.po to dansk
+# Copyright (C) YEAR This_file_is_part_of_KDE
+# This file is distributed under the same license as the PACKAGE package.
+#
+# Martin Schlander <mschlander@opensuse.org>, 2008, 2009, 2011, 2012.
+# Jan Madsen <jan.madsen.pt@gmail.com>, 2008.
+# Jan Madsen <jan-portugal@opensuse.org>, 2009.
+msgid ""
+msgstr ""
+"Project-Id-Version: step\n"
+"Report-Msgid-Bugs-To: https://bugs.kde.org\n"
+"POT-Creation-Date: 2022-07-04 00:41+0000\n"
+"PO-Revision-Date: 2012-06-30 11:44+0200\n"
+"Last-Translator: Martin Schlander <mschlander@opensuse.org>\n"
+"Language-Team: Danish <dansk@dansk-gruppen.dk>\n"
+"Language: da\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Lokalize 1.2\n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+
+#, kde-format
+msgctxt "NAME OF TRANSLATORS"
+msgid "Your names"
+msgstr "Martin Schlander,Jan Madsen"
+
+#, kde-format
+msgctxt "EMAIL OF TRANSLATORS"
+msgid "Your emails"
+msgstr "mschlander@opensuse.org,jan-portugal@opensuse.org"
+
+#. i18n: ectx: property (title), widget (QGroupBox, groupBox)
+#: step/configure_controller.ui:28 step/configure_graph.ui:28
+#: step/configure_meter.ui:28
+#, kde-format
+msgid "Data Source"
+msgstr "Datakilde"
+
+#. i18n: ectx: property (title), widget (QGroupBox, groupBox_2)
+#: step/configure_controller.ui:47
+#, kde-format
+msgid "Range"
+msgstr "Område"
+
+#. i18n: ectx: property (text), widget (QLabel, label_5)
+#: step/configure_controller.ui:59
+#, kde-format
+msgid "min:"
+msgstr "min:"
+
+#. i18n: ectx: property (text), widget (QLabel, label_6)
+#: step/configure_controller.ui:75
+#, kde-format
+msgid "max:"
+msgstr "maks:"
+
+#. i18n: ectx: property (text), widget (QLineEdit, lineEditMinX)
+#. i18n: ectx: property (text), widget (QLineEdit, lineEditMinY)
+#. i18n: ectx: property (text), widget (QLineEdit, lineEditMin)
+#: step/configure_controller.ui:97 step/configure_graph.ui:135
+#: step/configure_graph.ui:187
+#, kde-format
+msgid "0"
+msgstr "0"
+
+#. i18n: ectx: property (text), widget (QLineEdit, lineEditMass)
+#. i18n: ectx: property (text), widget (QLineEdit, lineEditBodyMass)
+#. i18n: ectx: property (text), widget (QLineEdit, lineEditMaxX)
+#. i18n: ectx: property (text), widget (QLineEdit, lineEditMaxY)
+#. i18n: ectx: property (text), widget (QLineEdit, lineEditMax)
+#: step/configure_controller.ui:119 step/configure_graph.ui:151
+#: step/configure_graph.ui:203 step/create_gas_particles.ui:125
+#: step/create_softbody_items.ui:78
+#, kde-format
+msgid "1"
+msgstr "1"
+
+#. i18n: ectx: property (title), widget (QGroupBox, groupBox_3)
+#: step/configure_controller.ui:132
+#, kde-format
+msgid "Shortcuts"
+msgstr "Genveje"
+
+#. i18n: ectx: property (text), widget (QLabel, label)
+#: step/configure_controller.ui:138
+#, kde-format
+msgid "Decrease:"
+msgstr "Formindsk:"
+
+#. i18n: ectx: property (text), widget (QLabel, label_2)
+#: step/configure_controller.ui:148
+#, kde-format
+msgid "Increase:"
+msgstr "Forøg:"
+
+#. i18n: ectx: property (text), widget (QLabel, label_3)
+#: step/configure_controller.ui:179
+#, kde-format
+msgid "Increment:"
+msgstr "Formindskelse:"
+
+#. i18n: ectx: property (text), widget (QLineEdit, lineEditIncrement)
+#: step/configure_controller.ui:192
+#, kde-format
+msgid "0.1"
+msgstr "0.1"
+
+#. i18n: ectx: property (text), widget (QLabel, label)
+#. i18n: ectx: property (text), widget (QLabel, label_3)
+#: step/configure_graph.ui:34 step/configure_graph.ui:109
+#, kde-format
+msgid "X :"
+msgstr "X :"
+
+#. i18n: ectx: property (text), widget (QLabel, label_2)
+#. i18n: ectx: property (text), widget (QLabel, label_4)
+#: step/configure_graph.ui:51 step/configure_graph.ui:161
+#, kde-format
+msgid "Y :"
+msgstr "Y :"
+
+#. i18n: ectx: property (title), widget (QGroupBox, groupBox_2)
+#: step/configure_graph.ui:71
+#, kde-format
+msgid "Ranges"
+msgstr "Områder"
+
+#. i18n: ectx: property (text), widget (QLabel, label_5)
+#: step/configure_graph.ui:83
+#, kde-format
+msgid "Min:"
+msgstr ""
+
+#. i18n: ectx: property (text), widget (QLabel, label_6)
+#: step/configure_graph.ui:99
+#, kde-format
+msgid "Max:"
+msgstr ""
+
+#. i18n: ectx: property (text), widget (QCheckBox, checkBoxAutoX)
+#. i18n: ectx: property (text), widget (QCheckBox, checkBoxAutoY)
+#: step/configure_graph.ui:122 step/configure_graph.ui:174
+#, kde-format
+msgid "auto"
+msgstr "auto"
+
+#. i18n: ectx: property (title), widget (QGroupBox, groupBox_2)
+#. i18n: ectx: property (title), widget (QGroupBox, groupBox)
+#. i18n: ectx: property (title), widget (QGroupBox, groupBox_3)
+#: step/configure_graph.ui:216 step/configure_meter.ui:47
+#: step/create_gas_particles.ui:28 step/create_softbody_items.ui:28
+#, kde-format
+msgid "Options"
+msgstr "Indstillinger"
+
+#. i18n: ectx: property (text), widget (QCheckBox, checkBoxShowLines)
+#: step/configure_graph.ui:222
+#, kde-format
+msgid "Show lines"
+msgstr "Vis linjer"
+
+#. i18n: ectx: property (text), widget (QCheckBox, checkBoxShowPoints)
+#: step/configure_graph.ui:229
+#, kde-format
+msgid "Show points"
+msgstr "Vis punkter"
+
+#. i18n: ectx: property (text), widget (QLabel, label)
+#: step/configure_meter.ui:53
+#, kde-format
+msgid "Number of digits:"
+msgstr "Antal cifre:"
+
+#. i18n: ectx: property (text), widget (QLabel, label)
+#: step/configure_step_general.ui:16
+#, kde-format
+msgid "Display precision:"
+msgstr "Visningspræcision:"
+
+#. i18n: ectx: property (text), widget (QCheckBox, kcfg_showAxes)
+#: step/configure_step_general.ui:52
+#, kde-format
+msgid "Show scene axes"
+msgstr "Vis sceneakser"
+
+#. i18n: ectx: property (text), widget (QCheckBox, kcfg_showCreationTips)
+#: step/configure_step_general.ui:59
+#, kde-format
+msgid "Show tips when creating objects"
+msgstr "Vis vink under oprettelse af objekter"
+
+#. i18n: ectx: property (text), widget (QCheckBox, kcfg_enableOpenGL)
+#: step/configure_step_general.ui:66
+#, kde-format
+msgid "Enable OpenGL (EXPERIMENTAL)"
+msgstr "Aktivér OpenGL (EKSPERIMENTAL)"
+
+#. i18n: ectx: property (text), widget (QCheckBox, kcfg_wikiExternal)
+#: step/configure_step_general.ui:73
+#, kde-format
+msgid "Open wikipedia in external browser"
+msgstr "Åbn Wikipedia i ekstern browser"
+
+#. i18n: ectx: property (text), widget (QLabel, label_5)
+#: step/create_gas_particles.ui:34
+#, fuzzy, kde-format
+#| msgid "Area"
+msgid "Area:"
+msgstr "Areal"
+
+#. i18n: ectx: property (toolTip), widget (QLineEdit, lineEditVolume)
+#: step/create_gas_particles.ui:41
+#, kde-format
+msgid "The area the gas takes"
+msgstr "Arealet gassen tager"
+
+#. i18n: ectx: property (text), widget (QLabel, label)
+#: step/create_gas_particles.ui:61
+#, kde-format
+msgid "Particle count:"
+msgstr "Partikelantal:"
+
+#. i18n: ectx: property (toolTip), widget (QLineEdit, lineEditCount)
+#. i18n: ectx: property (whatsThis), widget (QLineEdit, lineEditCount)
+#: step/create_gas_particles.ui:68 step/create_gas_particles.ui:71
+#, kde-format
+msgid "The number of particles of this gas."
+msgstr "Antallet af denne gas' partikler."
+
+#. i18n: ectx: property (text), widget (QLineEdit, lineEditCount)
+#: step/create_gas_particles.ui:74
+#, kde-format
+msgid "20"
+msgstr "20"
+
+#. i18n: ectx: property (text), widget (QLabel, label_6)
+#: step/create_gas_particles.ui:91
+#, kde-format
+msgid "Concentration:"
+msgstr "Koncentration:"
+
+#. i18n: ectx: property (text), widget (QLabel, label_2)
+#: step/create_gas_particles.ui:112
+#, kde-format
+msgid "Particle mass:"
+msgstr "Partikelmasse:"
+
+#. i18n: ectx: property (toolTip), widget (QLineEdit, lineEditMass)
+#. i18n: ectx: property (whatsThis), widget (QLineEdit, lineEditMass)
+#: step/create_gas_particles.ui:119 step/create_gas_particles.ui:122
+#, kde-format
+msgid "The mass of one particle"
+msgstr "Massen af én partikel"
+
+#. i18n: ectx: property (text), widget (QLabel, label_3)
+#: step/create_gas_particles.ui:142
+#, kde-format
+msgid "Temperature:"
+msgstr "Temperatur:"
+
+#. i18n: ectx: property (text), widget (QLineEdit, lineEditTemperature)
+#: step/create_gas_particles.ui:149
+#, kde-format
+msgid "1e21"
+msgstr "1e21"
+
+#. i18n: ectx: property (text), widget (QLabel, label_4)
+#: step/create_gas_particles.ui:166
+#, kde-format
+msgid "Mean velocity:"
+msgstr "Middelhastighed:"
+
+#. i18n: ectx: property (text), widget (QLineEdit, lineEditMeanVelocity)
+#. i18n: ectx: property (text), widget (QLineEdit, lineEditPosition)
+#: step/create_gas_particles.ui:173 step/create_softbody_items.ui:44
+#, kde-format
+msgid "(0,0)"
+msgstr "(0,0)"
+
+#. i18n: ectx: property (text), widget (QLabel, label_4)
+#: step/create_softbody_items.ui:37
+#, kde-format
+msgid "Position:"
+msgstr "Position:"
+
+#. i18n: ectx: property (text), widget (QLabel, label_3)
+#: step/create_softbody_items.ui:54
+#, kde-format
+msgid "Body size:"
+msgstr "Legemsstørrelse:"
+
+#. i18n: ectx: property (text), widget (QLineEdit, lineEditSize)
+#: step/create_softbody_items.ui:61
+#, kde-format
+msgid "(1,1)"
+msgstr "(1,1)"
+
+#. i18n: ectx: property (text), widget (QLabel, label_2)
+#: step/create_softbody_items.ui:71
+#, kde-format
+msgid "Body mass:"
+msgstr "Legemsmasse:"
+
+#. i18n: ectx: property (text), widget (QLabel, label)
+#: step/create_softbody_items.ui:88
+#, kde-format
+msgid "Young's modulus:"
+msgstr "Youngs modul:"
+
+#. i18n: ectx: property (text), widget (QLineEdit, lineEditYoungModulus)
+#: step/create_softbody_items.ui:95
+#, kde-format
+msgid "15"
+msgstr "15"
+
+#. i18n: ectx: property (text), widget (QLabel, label1)
+#: step/create_softbody_items.ui:105
+#, kde-format
+msgid "Body damping:"
+msgstr "Legemsdæmpning:"
+
+#. i18n: ectx: property (text), widget (QLineEdit, lineEditBodyDamping)
+#: step/create_softbody_items.ui:112
+#, kde-format
+msgid "0.3"
+msgstr "0.3"
+
+#. i18n: ectx: property (text), widget (QLabel, label2)
+#: step/create_softbody_items.ui:122
+#, kde-format
+msgid "Body split counts:"
+msgstr "Antal legemsdelinger:"
+
+#. i18n: ectx: property (text), widget (QLineEdit, lineEditSplit)
+#: step/create_softbody_items.ui:129
+#, kde-format
+msgid "(4,4)"
+msgstr "(4,4)"
+
+#: step/gascreationdialog.cc:43
+#, fuzzy, kde-format
+#| msgid "Create gas particles"
+msgctxt "@title:window"
+msgid "Create Gas Particles"
+msgstr "Opret gaspartikler"
+
+#: step/gasgraphics.cc:43
+#, kde-format
+msgid ""
+"Press left mouse button to position\n"
+"top left corner of a region for %1"
+msgstr ""
+"Tryk venstre museknap for at placere områdets\n"
+"øverste venstre hjørne for %1"
+
+#: step/gasgraphics.cc:55 step/motorgraphics.cc:42 step/motorgraphics.cc:223
+#: step/polygongraphics.cc:173 step/polygongraphics.cc:307
+#: step/polygongraphics.cc:452 step/softbodygraphics.cc:62
+#: step/worldgraphics.cc:70 step/worldgraphics.cc:120
+#, kde-format
+msgid "Create %1"
+msgstr "Opret %1"
+
+#: step/gasgraphics.cc:71
+#, kde-format
+msgid ""
+"Move mouse and release left mouse button to position\n"
+"bottom right corner of the region for %1"
+msgstr ""
+"Flyt musen og slip venstre museknap for at placere\n"
+"områdets nederste højre hjørne for %1"
+
+#: step/gasgraphics.cc:97
+#, kde-format
+msgid "Please fill in the parameters for the gas particles."
+msgstr "Før gaspartiklernes parametre ind."
+
+#: step/gasgraphics.cc:106 step/polygongraphics.cc:208
+#: step/polygongraphics.cc:347 step/polygongraphics.cc:502
+#: step/softbodygraphics.cc:79 step/worldgraphics.cc:87
+#: step/worldgraphics.cc:134 step/worldgraphics.cc:169
+#, kde-format
+msgid "%1 named '%2' created"
+msgstr "%1 ved navn \"%2\" blev oprettet"
+
+#: step/gasgraphics.cc:294
+#, fuzzy, kde-format
+#| msgid "Create particles..."
+msgid "Create Particles..."
+msgstr "Opret partikler..."
+
+#: step/gasgraphics.cc:364
+#, kde-format
+msgid ""
+"You are trying to create a very large number of particles. This will make "
+"simulation very slow. Do you want to continue?"
+msgstr ""
+"Du prøver at oprette et stort antal partikler. Det vil gøre simulationen "
+"meget langsom. Vil du fortsætte?"
+
+#: step/gasgraphics.cc:366 step/mainwindow.cc:409
+#, kde-format
+msgid "Warning - Step"
+msgstr "Advarsel - Step"
+
+#: step/gasgraphics.cc:377
+#, kde-format
+msgid "Create particles for %1"
+msgstr "Opret partikler for %1"
+
+#: step/infobrowser.cc:38
+#, fuzzy, kde-format
+#| msgid "Context info"
+msgid "Context Info"
+msgstr "Kontekst-info"
+
+#: step/infobrowser.cc:56
+#, kde-format
+msgid "Back"
+msgstr "Tilbage"
+
+#: step/infobrowser.cc:58
+#, kde-format
+msgid "Forward"
+msgstr "Frem"
+
+#: step/infobrowser.cc:62
+#, kde-format
+msgid "Sync selection"
+msgstr "Synk. udvalg"
+
+#: step/infobrowser.cc:64
+#, kde-format
+msgid "Follow selection"
+msgstr "Følg udvalg"
+
+#: step/infobrowser.cc:69
+#, fuzzy, kde-format
+#| msgid "Open in browser"
+msgid "Open in Browser"
+msgstr "Åbn i browser"
+
+#: step/infobrowser.cc:144
+#, kde-format
+msgid "Documentation"
+msgstr "Dokumentation"
+
+#: step/infobrowser.cc:149
+#, kde-format
+msgid "No current object."
+msgstr "Intet nuværende objekt"
+
+#: step/infobrowser.cc:171
+#, kde-format
+msgid "Documentation error"
+msgstr "Dokumentationsfejl"
+
+#: step/infobrowser.cc:176
+#, kde-format
+msgid "Documentation for %1 not available. "
+msgstr "Dokumentation for %1 er ikke tilgængelig. "
+
+#: step/infobrowser.cc:177
+#, fuzzy, kde-format
+#| msgid ""
+#| "You can help <a href=\"http://edu.kde.org/step\">Step</a> by writing it!"
+msgid ""
+"You can help <a href=\"https://edu.kde.org/step\">Step</a> by writing it!"
+msgstr ""
+"Du kan hjælpe <a href=\"http://edu.kde.org/step\">Step</a> ved at skrive det!"
+
+#: step/itempalette.cc:189
+#, kde-format
+msgid "Palette"
+msgstr "Palet"
+
+#: step/itempalette.cc:208
+#, kde-format
+msgid "Pointer"
+msgstr "Peger"
+
+#: step/itempalette.cc:209
+#, kde-format
+msgid "Selection pointer"
+msgstr "Udvalgspeger"
+
+#: step/itempalette.cc:232
+#, kde-format
+msgid "Show text"
+msgstr "Vis tekst"
+
+#: step/jointgraphics.cc:170 step/springgraphics.cc:42
+#, kde-format
+msgid "Move end of %1"
+msgstr "Flyt enden af %1"
+
+#: step/latexformula.cc:42
+#, kde-format
+msgid "can not launch %1"
+msgstr "kan ikke starte %1"
+
+#: step/latexformula.cc:52
+#, kde-format
+msgid "error running %1"
+msgstr "fejl under kørsel af %1"
+
+#: step/latexformula.cc:56
+#, kde-format
+msgid ""
+"%1 reported an error (exit status %2):\n"
+"%3"
+msgstr ""
+"%1 rapporterede en fejl (afslutningsstatus %2):\n"
+"%3"
+
+#: step/latexformula.cc:61
+#, kde-format
+msgid "%1 did not create output file"
+msgstr "%1 oprettede ikke output-fil"
+
+#: step/latexformula.cc:93
+#, kde-format
+msgid "can not open temporary file"
+msgstr "kan ikke åbne midlertidig fil"
+
+#: step/latexformula.cc:127
+#, kde-format
+msgid "can not open result file"
+msgstr "kan ikke åbne resultatfil"
+
+#: step/main.cc:42 step/main.cc:50
+#, kde-format
+msgid "Step"
+msgstr "Step"
+
+#: step/main.cc:52
+#, kde-format
+msgid "Interactive physical simulator"
+msgstr "Interaktiv fysisk simulator"
+
+#: step/main.cc:54
+#, kde-format
+msgid "(C) 2007 Vladimir Kuznetsov"
+msgstr "(C) 2007 Vladimir Kuznetsov"
+
+#: step/main.cc:55
+#, kde-format
+msgid "https://edu.kde.org/step"
+msgstr ""
+
+#: step/main.cc:60
+#, kde-format
+msgid "Original author"
+msgstr "Oprindelig udvikler"
+
+#: step/main.cc:61
+#, kde-format
+msgid "ks.vladimir@gmail.com"
+msgstr ""
+
+#: step/main.cc:66
+#, kde-format
+msgid "Code contributions"
+msgstr "Kodebidrag"
+
+#: step/main.cc:67
+#, kde-format
+msgid "cniehaus@kde.org"
+msgstr ""
+
+#: step/main.cc:74
+#, kde-format
+msgid "Document to open"
+msgstr "Dokument der skal åbnes"
+
+#: step/mainwindow.cc:155
+#, kde-format
+msgid "&Open Tutorial..."
+msgstr "Å&bn vejledning..."
+
+#: step/mainwindow.cc:160
+#, kde-format
+msgid "&Open Example..."
+msgstr "Å&bn eksempel..."
+
+#: step/mainwindow.cc:165
+#, kde-format
+msgid "Open Down&loaded Example..."
+msgstr "Åbn down&loadet eksempel..."
+
+#: step/mainwindow.cc:170
+#, kde-format
+msgid "Share C&urrent Experiment..."
+msgstr "Del n&uværende eksperiment..."
+
+#: step/mainwindow.cc:173
+#, kde-format
+msgid "&Download New Experiments..."
+msgstr "&Download nye eksperimenter..."
+
+#: step/mainwindow.cc:180
+#, kde-format
+msgid "Redo"
+msgstr "Omgør"
+
+#: step/mainwindow.cc:180
+#, kde-format
+msgid "Undo"
+msgstr "Fortryd"
+
+#: step/mainwindow.cc:202
+#, kde-format
+msgid "&Delete"
+msgstr "&Slet"
+
+#: step/mainwindow.cc:212
+#, kde-format
+msgid "&Run"
+msgstr "&Kør"
+
+#: step/mainwindow.cc:217
+#, kde-format
+msgid "Execute the program"
+msgstr "Eksekvér programmet"
+
+#: step/mainwindow.cc:218
+#, kde-format
+msgid "Run: Execute the program"
+msgstr "Kør: Eksekvér programmet"
+
+#: step/mainwindow.cc:220
+#, kde-format
+msgctxt "@option:radio"
+msgid "1x Speed"
+msgstr "1 x hastighed"
+
+#: step/mainwindow.cc:228
+#, kde-format
+msgctxt "@option:radio choose the slow speed"
+msgid "2x Speed"
+msgstr "2 x hastighed"
+
+#: step/mainwindow.cc:235
+#, kde-format
+msgctxt "@option:radio"
+msgid "4x Speed"
+msgstr "4 x hastighed"
+
+#: step/mainwindow.cc:242
+#, kde-format
+msgctxt "@option:radio"
+msgid "8x Speed"
+msgstr "8 x hastighed"
+
+#: step/mainwindow.cc:249
+#, kde-format
+msgctxt "@option:radio"
+msgid "16x Speed"
+msgstr "16 x hastighed"
+
+#: step/mainwindow.cc:279
+#, kde-format
+msgctxt "filename"
+msgid "untitled.step"
+msgstr "unavngivet.step"
+
+#: step/mainwindow.cc:305
+#, kde-format
+msgid "<new file>"
+msgstr "<ny fil>"
+
+#: step/mainwindow.cc:319
+#, fuzzy, kde-format
+#| msgid "Step"
+msgctxt "@title:window"
+msgid "Open Step File"
+msgstr "Step"
+
+#: step/mainwindow.cc:319 step/mainwindow.cc:349
+#, fuzzy, kde-format
+#| msgid "*.step|Step files (*.step)"
+msgid "Step files (*.step)"
+msgstr "*.step|Step-filer (*.step)"
+
+#: step/mainwindow.cc:329
+#, kde-format
+msgid "Cannot parse file '%1': %2"
+msgstr "Kan ikke fortolke filen '%1': %2"
+
+#: step/mainwindow.cc:338
+#, kde-format
+msgid "<open file: %1>"
+msgstr "<åbn filen: %1>"
+
+#: step/mainwindow.cc:349
+#, fuzzy, kde-format
+#| msgid "Step"
+msgctxt "@title:window"
+msgid "Save Step File"
+msgstr "Step"
+
+#: step/mainwindow.cc:365
+#, kde-format
+msgid "Cannot open file '%1'"
+msgstr "Kan ikke åbne filen '%1'"
+
+#: step/mainwindow.cc:371
+#, kde-format
+msgid "Cannot save file '%1': %2"
+msgstr "Kan ikke gemme filen '%1': %2"
+
+#: step/mainwindow.cc:408
+#, kde-format
+msgid ""
+"The experiment has been modified.\n"
+"Do you want to save your changes?"
+msgstr ""
+"Eksperimentet er blevet ændret.\n"
+"Vil du gemme dine ændringer?"
+
+#: step/mainwindow.cc:456
+#, kde-format
+msgid "Uploading is still not implemented in kdelibs."
+msgstr "Uploading er stadig ikke implementeret i kdelibs."
+
+#: step/mainwindow.cc:457
+#, kde-format
+msgid "Sorry - Step"
+msgstr "Desværre - Step"
+
+#: step/mainwindow.cc:484
+#, kde-format
+msgid "&Stop"
+msgstr "&Stop"
+
+#: step/mainwindow.cc:494
+#, kde-format
+msgid "&Simulate"
+msgstr "&Simulér"
+
+#: step/mainwindow.cc:499
+#, kde-format
+msgid ""
+"Cannot finish this step because local error is greater than local "
+"tolerance.\n"
+"Please check solver settings and try again."
+msgstr ""
+"Kan ikke færdiggøre dette trin, da den lokale fejl er større end den lokale "
+"tolerance.\n"
+"Tjek løsers indstillinger og prøv igen."
+
+#: step/mainwindow.cc:504
+#, kde-format
+msgid ""
+"Cannot finish this step because there are collisions which cannot be "
+"resolved automatically.\n"
+"Please move colliding objects apart and try again."
+msgstr ""
+"Kan ikke færdiggøre dette trin, da der er kollisioner, som ikke kan løses "
+"automatisk.\n"
+"Fjern kolliderende objekter fra hinanden og prøv igen."
+
+#: step/mainwindow.cc:508
+#, kde-format
+msgid "Cannot finish this step because of an unknown error."
+msgstr "Kan ikke færdiggøre dette trin pga. en ukendt fejl."
+
+#: step/mainwindow.cc:541
+#, kde-format
+msgid "&Undo"
+msgstr "&Fortryd"
+
+#: step/mainwindow.cc:542
+#, kde-format
+msgid "&Undo: %1"
+msgstr "&Omgør: %1"
+
+#: step/mainwindow.cc:547
+#, kde-format
+msgid "Re&do"
+msgstr "&Omgør"
+
+#: step/mainwindow.cc:548
+#, kde-format
+msgid "Re&do: %1"
+msgstr "&Omgør: %1"
+
+#: step/mainwindow.cc:579
+#, kde-format
+msgid "General"
+msgstr "Generelt"
+
+#: step/motorgraphics.cc:112 step/motorgraphics.cc:290
+#: step/stepgraphicsitem.cc:206 step/stepgraphicsitem.cc:218
+#, kde-format
+msgid "Move %1"
+msgstr "Flyt %1"
+
+#: step/polygongraphics.cc:161
+#, kde-format
+msgid "Press left mouse button to position a center of a %1"
+msgstr "Tryk venstre museknap for at placere centret af %1"
+
+#: step/polygongraphics.cc:182
+#, kde-format
+msgid "Move mouse and release left mouse button to define a radius of the %1"
+msgstr "Flyt musen og slip venstre museknap for at angive radius af %1"
+
+#: step/polygongraphics.cc:295
+#, kde-format
+msgid ""
+"Press left mouse button to position\n"
+"top left corner of a %1"
+msgstr ""
+"Tryk venstre museknap for at placere\n"
+"øverste venstre hjørne af %1"
+
+#: step/polygongraphics.cc:317
+#, kde-format
+msgid ""
+"Move mouse and release left mouse button to position\n"
+"bottom right corner of the %1"
+msgstr ""
+"Flyt musen og slip venstre museknap for at placere det\n"
+"nederste højre hjørne af %1"
+
+#: step/polygongraphics.cc:440
+#, kde-format
+msgid "Click on the scene to create a first vertex of %1"
+msgstr "Klik på scenen for at oprette et første hjørne af %1"
+
+#: step/polygongraphics.cc:488
+#, kde-format
+msgid "Click on the scene to add new vertex or press Enter to finish"
+msgstr ""
+"Klik på scenen for at tilføje et hyt hjørne eller tryk 'Enter' for at "
+"færdiggøre"
+
+#: step/propertiesbrowser.cc:279
+#, kde-format
+msgid "Change solver type"
+msgstr "Ændr løsertype"
+
+#: step/propertiesbrowser.cc:294 step/propertiesbrowser.cc:300
+#: step/propertiesbrowser.cc:307 step/propertiesbrowser.cc:316
+#: step/propertiesbrowser.cc:400 step/propertiesbrowser.cc:417
+#: step/stepgraphicsitem.cc:401 step/stepgraphicsitem.cc:546
+#, kde-format
+msgid "Change %1.%2"
+msgstr "Ændr %1.%2"
+
+#: step/propertiesbrowser.cc:314
+#, kde-format
+msgid "Rename %1 to %2"
+msgstr "Omdøb %1 til %2"
+
+#: step/propertiesbrowser.cc:464
+#, kde-format
+msgid "Property"
+msgstr "Egenskab"
+
+#: step/propertiesbrowser.cc:465
+#, kde-format
+msgid "Value"
+msgstr "Værdi"
+
+#: step/propertiesbrowser.cc:530
+#, kde-format
+msgid "false"
+msgstr "falsk"
+
+#: step/propertiesbrowser.cc:531
+#, kde-format
+msgid "true"
+msgstr "sand"
+
+#: step/propertiesbrowser.cc:675
+#, kde-format
+msgid "Properties"
+msgstr "Egenskaber"
+
+#: step/softbodygraphics.cc:49 step/worldgraphics.cc:62
+#: step/worldgraphics.cc:106
+#, kde-format
+msgid "Click on the scene to create a %1"
+msgstr "Klik på sceneriet for at oprette en %1"
+
+#: step/softbodygraphics.cc:66
+#, kde-format
+msgid "Please fill in the parameters for %1"
+msgstr "Udfyld parametrene for %1"
+
+#: step/softbodygraphics.cc:126
+#, fuzzy, kde-format
+#| msgid "Create soft body items"
+msgctxt "@title:window"
+msgid "Create Soft Body Items"
+msgstr "Opret bløde emner"
+
+#: step/softbodygraphics.cc:187
+#, kde-format
+msgid "Create items for %1"
+msgstr "Opret emner for %1"
+
+#. i18n: ectx: label, entry (showCreationTips), group (General)
+#. i18n: ectx: whatsthis, entry (showCreationTips), group (General)
+#: step/step.kcfg:9 step/step.kcfg:10
+#, kde-format
+msgid "Show tips when creating items"
+msgstr "Vis tips under oprettelse af emner"
+
+#. i18n: ectx: label, entry (showAxes), group (General)
+#. i18n: ectx: whatsthis, entry (showAxes), group (General)
+#: step/step.kcfg:14 step/step.kcfg:15
+#, kde-format
+msgid "Show axes on the scene"
+msgstr "Vis akser på scenen"
+
+#. i18n: ectx: label, entry (floatDisplayPrecision), group (General)
+#. i18n: ectx: whatsthis, entry (floatDisplayPrecision), group (General)
+#: step/step.kcfg:19 step/step.kcfg:20
+#, kde-format
+msgid "Display precision of double numbers"
+msgstr "Visningspræcision af dobbelttal"
+
+#. i18n: ectx: label, entry (enableOpenGL), group (General)
+#. i18n: ectx: whatsthis, entry (enableOpenGL), group (General)
+#: step/step.kcfg:26 step/step.kcfg:27
+#, kde-format
+msgid "Use OpenGL to accelerate drawing whenever possible"
+msgstr "Brug OpenGL til at accelerere tegning når det er muligt"
+
+#. i18n: ectx: label, entry (wikiExternal), group (InfoBrowser)
+#. i18n: ectx: whatsthis, entry (wikiExternal), group (InfoBrowser)
+#: step/step.kcfg:33 step/step.kcfg:34
+#, kde-format
+msgid "Browse wikipedia in external browser"
+msgstr "Gennemse Wikipedia i ekstern browser"
+
+#. i18n: ectx: label, entry (showButtonText), group (ItemPalette)
+#. i18n: ectx: whatsthis, entry (showButtonText), group (ItemPalette)
+#: step/step.kcfg:40 step/step.kcfg:41
+#, kde-format
+msgid "Show text beside icon"
+msgstr "Vis tekst ved siden af ikon"
+
+#: step/stepgraphicsitem.cc:218
+#, kde-format
+msgid "several objects"
+msgstr "flere objekter"
+
+#: step/stepgraphicsitem.cc:402 step/stepgraphicsitem.cc:548
+#, kde-format
+msgid "Change %1"
+msgstr "Ændr %1"
+
+#. i18n: ectx: ToolBar (mainToolBar)
+#: step/stepui.rc:7
+#, kde-format
+msgid "Main Toolbar"
+msgstr "Hovedværktøjslinje"
+
+#. i18n: ectx: ToolBar (simulationToolBar)
+#: step/stepui.rc:12
+#, kde-format
+msgid "Simulation Toolbar"
+msgstr "Simulationsværktøjslinje"
+
+#. i18n: ectx: Menu (examples)
+#: step/stepui.rc:21
+#, kde-format
+msgid "&Examples"
+msgstr "&Eksempler"
+
+#. i18n: ectx: Menu (simulation)
+#: step/stepui.rc:32
+#, kde-format
+msgid "&Simulation"
+msgstr "&Simulation"
+
+#. i18n: ectx: Menu (speed)
+#: step/stepui.rc:35
+#, kde-format
+msgid "&Run Speed"
+msgstr "&Kørselshastighed"
+
+#. i18n: ectx: Menu (panels)
+#: step/stepui.rc:45
+#, kde-format
+msgid "&Panels"
+msgstr "&Paneler"
+
+#: step/toolgraphics.cc:267
+#, kde-format
+msgid "Click to enter text"
+msgstr "Klik for at angive en tekst"
+
+#: step/toolgraphics.cc:392
+#, kde-format
+msgid "&Color"
+msgstr "F&arve"
+
+#: step/toolgraphics.cc:394
+#, kde-format
+msgid "&Bold"
+msgstr "&Fed"
+
+#: step/toolgraphics.cc:396
+#, kde-format
+msgid "&Italic"
+msgstr "&Kursiv"
+
+#: step/toolgraphics.cc:398
+#, kde-format
+msgid "&Underline"
+msgstr "&Understreget"
+
+#: step/toolgraphics.cc:401
+#, kde-format
+msgid "Align &Left"
+msgstr "&Venstrejusteret"
+
+#: step/toolgraphics.cc:403
+#, kde-format
+msgid "Align C&enter"
+msgstr "&Centreret"
+
+#: step/toolgraphics.cc:405
+#, kde-format
+msgid "Align &Right"
+msgstr "&Højrejusteret"
+
+#: step/toolgraphics.cc:407
+#, kde-format
+msgid "Align &Justify"
+msgstr "&Lige margener"
+
+#: step/toolgraphics.cc:410
+#, kde-format
+msgid "&Align"
+msgstr "&Ret ind"
+
+#: step/toolgraphics.cc:419
+#, kde-format
+msgid "&Font"
+msgstr "&Font"
+
+#: step/toolgraphics.cc:420
+#, kde-format
+msgid "Font &Size"
+msgstr "&Størrelse på font"
+
+#: step/toolgraphics.cc:422
+#, fuzzy, kde-format
+#| msgid "Insert &Image"
+msgid "Insert &Image..."
+msgstr "Indsæt &billede"
+
+#: step/toolgraphics.cc:427
+#, fuzzy, kde-format
+#| msgid "Insert &Formula"
+msgid "Insert &Formula..."
+msgstr "Indsæt f&ormel"
+
+#: step/toolgraphics.cc:538
+#, kde-format
+msgid "Edit %1"
+msgstr "Redigér %1"
+
+#: step/toolgraphics.cc:643
+#, fuzzy, kde-format
+#| msgid "Step"
+msgctxt "@title:window"
+msgid "Open Image File"
+msgstr "Step"
+
+#: step/toolgraphics.cc:643
+#, kde-format
+msgid "Images (*.png *.jpg *.jpeg)"
+msgstr ""
+
+#: step/toolgraphics.cc:661
+#, kde-format
+msgid "Cannot parse file '%1'"
+msgstr "Kan ikke fortolke filen '%1'"
+
+#: step/toolgraphics.cc:705
+#, kde-format
+msgid ""
+"Cannot find latex installation. You need 'latex', 'dvips' and 'gs' "
+"executables installed and accessible from $PATH"
+msgstr ""
+"Kan ikke finde latex-installation. Du skal have 'latex'-, 'dvips'- og 'gs'-"
+"eksekverbare installerede og tilgængelige fra $PATH"
+
+#: step/toolgraphics.cc:711
+#, fuzzy, kde-format
+#| msgid "LaTex Formula - Step"
+msgctxt "@title:window"
+msgid "LaTex Formula - Step"
+msgstr "Latex-formel - Step"
+
+#: step/toolgraphics.cc:712
+#, fuzzy, kde-format
+#| msgid "Enter LaTeX formula string"
+msgid "Enter LaTeX formula string:"
+msgstr "Angiv Latex formelstreng"
+
+#: step/toolgraphics.cc:721
+#, kde-format
+msgid "Cannot compile LaTeX formula: %1"
+msgstr "Kan ikke oversætte Latex-formel: %1"
+
+#: step/toolgraphics.cc:727
+#, kde-format
+msgid "Cannot parse result image"
+msgstr "Kan ikke fortolke resultatbillede"
+
+#: step/toolgraphics.cc:788
+#, kde-format
+msgid "Object name"
+msgstr "Objektnavn"
+
+#: step/toolgraphics.cc:793
+#, kde-format
+msgid "Property name"
+msgstr "Egenskabsnavn"
+
+#: step/toolgraphics.cc:799
+#, kde-format
+msgid "Vector index"
+msgstr "Vektorindeks"
+
+#: step/toolgraphics.cc:988 step/toolgraphics.cc:996 step/toolgraphics.cc:1489
+#, kde-format
+msgid "%1.%2"
+msgstr "%1.%2"
+
+#: step/toolgraphics.cc:989 step/toolgraphics.cc:997 step/toolgraphics.cc:1490
+#, kde-format
+msgid "[%1]"
+msgstr "[%1]"
+
+#: step/toolgraphics.cc:993 step/toolgraphics.cc:1001 step/toolgraphics.cc:1494
+#, kde-format
+msgid "[not configured]"
+msgstr "[ikke indstillet]"
+
+#: step/toolgraphics.cc:1089
+#, fuzzy, kde-format
+#| msgid "Clear graph"
+msgid "Clear Graph"
+msgstr "Ryd graf"
+
+#: step/toolgraphics.cc:1090
+#, fuzzy, kde-format
+#| msgid "Configure graph..."
+msgid "Configure Graph..."
+msgstr "Indstil graf..."
+
+#: step/toolgraphics.cc:1108
+#, fuzzy, kde-format
+#| msgid "Configure graph"
+msgctxt "@title:window"
+msgid "Configure Graph"
+msgstr "Indstil graf"
+
+#: step/toolgraphics.cc:1184 step/toolgraphics.cc:1383
+#: step/toolgraphics.cc:1721
+#, kde-format
+msgid "Edit properties of %1"
+msgstr "Redigér egenskaber for %1"
+
+#: step/toolgraphics.cc:1236
+#, kde-format
+msgid "Clear graph %1"
+msgstr "Ryd grafen %1"
+
+#: step/toolgraphics.cc:1317
+#, fuzzy, kde-format
+#| msgid "Configure meter..."
+msgid "Configure Meter..."
+msgstr "Indstil meter..."
+
+#: step/toolgraphics.cc:1335
+#, fuzzy, kde-format
+#| msgid "Configure meter"
+msgctxt "@title:window"
+msgid "Configure Meter"
+msgstr "Indstil meter"
+
+#: step/toolgraphics.cc:1432 step/toolgraphics.cc:1629
+#, fuzzy, kde-format
+#| msgid "Increase value"
+msgid "Increase Value"
+msgstr "Forøg værdi"
+
+#: step/toolgraphics.cc:1433 step/toolgraphics.cc:1630
+#, fuzzy, kde-format
+#| msgid "Decrease value"
+msgid "Decrease Value"
+msgstr "Formindsk værdi"
+
+#: step/toolgraphics.cc:1463 step/toolgraphics.cc:1758
+#, kde-format
+msgid "Decrease controller %1"
+msgstr "Formindsk styreenhed %1"
+
+#: step/toolgraphics.cc:1472 step/toolgraphics.cc:1767
+#, kde-format
+msgid "Increase controller %1"
+msgstr "Forøg styreenhed %1"
+
+#: step/toolgraphics.cc:1606
+#, kde-format
+msgid "Change controller %1"
+msgstr "Ændr styreenhed %1"
+
+#: step/toolgraphics.cc:1632
+#, fuzzy, kde-format
+#| msgid "Configure controller..."
+msgid "Configure Controller..."
+msgstr "Indstil styreenhed..."
+
+#: step/toolgraphics.cc:1650
+#, fuzzy, kde-format
+#| msgid "Configure controller"
+msgctxt "@title:window"
+msgid "Configure Controller"
+msgstr "Indstil styreenhed"
+
+#: step/toolgraphics.cc:1911
+#, fuzzy, kde-format
+#| msgid "Clear trace"
+msgid "Clear Trace"
+msgstr "Ryd spor"
+
+#: step/toolgraphics.cc:1920
+#, kde-format
+msgid "Clear tracer %1"
+msgstr "Ryd sporer %1"
+
+#: step/undobrowser.cc:30
+#, fuzzy, kde-format
+#| msgid "Undo history"
+msgid "Undo History"
+msgstr "Fortryd historik"
+
+#: step/worldbrowser.cc:62
+#, kde-format
+msgctxt "Object list"
+msgid "World"
+msgstr "Verden"
+
+#: step/worldgraphics.cc:102
+#, kde-format
+msgid ""
+"Press left mouse button to position first end of a %1\n"
+"then drag and release it to position the second end"
+msgstr ""
+"Tryk venstre museknap for at placere enden af %1,\n"
+"og træk og slip den så til placeringen i den anden ende"
+
+#: step/worldgraphics.cc:130
+#, kde-format
+msgid "Release left mouse button to position second end of the %1"
+msgstr "Slip venstre museknap for at placere den anden ende af %1"
+
+#: step/worldmodel.cc:641
+#, kde-format
+msgid "Delete %1"
+msgstr "Slet %1"
+
+#: step/worldmodel.cc:642
+#, kde-format
+msgid "Delete several items"
+msgstr "Slet flere emner"
+
+#: step/worldmodel.cc:713 step/worldmodel.cc:720
+#, kde-format
+msgid "<no object>"
+msgstr "<intet objekt>"
+
+#: step/worldmodel.cc:715
+#, kde-format
+msgid "<unnamed>"
+msgstr "<uden navn>"
+
+#: step/worldmodel.cc:721
+#, kde-format
+msgid "%1: %2"
+msgstr "%1: %2"
+
+#: step/worldmodel.cc:793
+#, kde-format
+msgid "<nobr><h4><u>%1</u></h4></nobr>"
+msgstr "<nobr><h4><u>%1</u></h4></nobr>"
+
+#: step/worldmodel.cc:821
+#, kde-format
+msgid "<tr><td>%1&nbsp;&nbsp;</td><td>%2</td></tr>"
+msgstr "<tr><td>%1&nbsp;&nbsp;</td><td>%2</td></tr>"
+
+#: step/worldmodel.cc:1019
+#, kde-format
+msgid "Simulate %1 → %2"
+msgstr "Simulér %1 → %2"
+
+#: step/worldmodel.cc:1072
+#, kde-format
+msgid "Cut %1"
+msgstr "Klip %1"
+
+#: step/worldmodel.cc:1073
+#, kde-format
+msgid "Cut several items"
+msgstr "Klip flere emner"
+
+#: step/worldmodel.cc:1095
+#, kde-format
+msgid "Pasted %1"
+msgstr "Indsatte %1"
+
+#: step/worldmodel.cc:1096
+#, kde-format
+msgid "Pasted several items"
+msgstr "Indsatte flere emner"
+
+#: step/worldscene.cc:260
+#, kde-format
+msgid "Objects under mouse:"
+msgstr "Objekter under mus:"
+
+#: step/worldscene.cc:265
+#, kde-format
+msgid "... (1 more item)"
+msgid_plural "... (%1 more items)"
+msgstr[0] "... (1 emne mere)"
+msgstr[1] "... (%1 flere emner)"
+
+#~ msgid "Wikipedia"
+#~ msgstr "Wikipedia"
+
+#~ msgid "Fetching Wikipedia Information..."
+#~ msgstr "Henter Wikipedia-information..."
+
+#~ msgid "Wikipedia error"
+#~ msgstr "Wikipedia-fejl"
+
+#~ msgid ""
+#~ "Information could not be retrieved because the server was not reachable."
+#~ msgstr "Information kunne ikke hentes, da serveren ikke kunne nås."
+
+#~ msgid "Wikipedia Information"
+#~ msgstr "Wikipedia-information"
+
+#~ msgid "Wikipedia Other Languages"
+#~ msgstr "Wikipedia - andre sprog"
+
+#~ msgid "The file \"%1\" already exists. Do you wish to overwrite it?"
+#~ msgstr "Filen \"%1\" eksisterer allerede. Vil du overskrive den?"
+
+#~ msgid "Vladimir Kuznetsov"
+#~ msgstr "Vladimir Kuznetsov"
+
+#~ msgid "Carsten Niehaus"
+#~ msgstr "Carsten Niehaus"
+
+#~ msgid "Create items..."
+#~ msgstr "Opret emner..."
+
+#, fuzzy
+#~| msgid "Position:"
+#~ msgctxt "PropertyName"
+#~ msgid "position"
+#~ msgstr "Position:"
+
+#, fuzzy
+#~| msgid "Range"
+#~ msgctxt "PropertyName"
+#~ msgid "angle"
+#~ msgstr "Område"
+
+#, fuzzy
+#~| msgid "Forward"
+#~ msgctxt "Units"
+#~ msgid "rad"
+#~ msgstr "Frem"
+
+#, fuzzy
+#~| msgid "Mean velocity:"
+#~ msgctxt "PropertyName"
+#~ msgid "velocity"
+#~ msgstr "Middelhastighed:"
+
+#, fuzzy
+#~| msgid "Mean velocity:"
+#~ msgctxt "PropertyName"
+#~ msgid "angularVelocity"
+#~ msgstr "Middelhastighed:"
+
+#, fuzzy
+#~| msgid "Concentration:"
+#~ msgctxt "PropertyName"
+#~ msgid "acceleration"
+#~ msgstr "Koncentration:"
+
+#, fuzzy
+#~| msgid "true"
+#~ msgctxt "PropertyName"
+#~ msgid "torque"
+#~ msgstr "sand"
+
+#, fuzzy
+#~| msgid "&Panels"
+#~ msgctxt "ObjectClass"
+#~ msgid "Plane"
+#~ msgstr "&Paneler"
+
+#, fuzzy
+#~| msgid "Pointer"
+#~ msgctxt "PropertyName"
+#~ msgid "point1"
+#~ msgstr "Peger"
+
+#, fuzzy
+#~| msgid "Pointer"
+#~ msgctxt "PropertyName"
+#~ msgid "point2"
+#~ msgstr "Peger"
+
+#, fuzzy
+#~| msgid "Body damping:"
+#~ msgid "SoftBody spring"
+#~ msgstr "Legemsdæmpning:"
+
+#, fuzzy
+#~| msgid "Show lines"
+#~ msgid "Show internal items"
+#~ msgstr "Vis linjer"
+
+#, fuzzy
+#~| msgid "Change solver type"
+#~ msgctxt "PropertyName"
+#~ msgid "solverType"
+#~ msgstr "Ændr løsertype"
+
+#, fuzzy
+#~| msgid "Change solver type"
+#~ msgid "Solver type"
+#~ msgstr "Ændr løsertype"
+
+#, fuzzy
+#~| msgid "Particles mass:"
+#~ msgctxt "ObjectClass"
+#~ msgid "Particle"
+#~ msgstr "Partiklers masse:"
+
+#, fuzzy
+#~| msgid "Position:"
+#~ msgid "position"
+#~ msgstr "Position:"
+
+#, fuzzy
+#~| msgid "Mean velocity:"
+#~ msgid "velocity"
+#~ msgstr "Middelhastighed:"
+
+#, fuzzy
+#~| msgid "Concentration:"
+#~ msgid "acceleration"
+#~ msgstr "Koncentration:"
+
+#, fuzzy
+#~| msgid "Particles mass:"
+#~ msgctxt "ObjectClass"
+#~ msgid "ParticleErrors"
+#~ msgstr "Partiklers masse:"
+
+#, fuzzy
+#~| msgid "The mass of one particle"
+#~ msgid "Errors class for Particle"
+#~ msgstr "Massen af én partikel"
+
+#, fuzzy
+#~| msgid "Create gas particles"
+#~ msgid "Charged zero-size particle"
+#~ msgstr "Opret gaspartikler"
+
+#~ msgid "Wrong ID attribute value for %1"
+#~ msgstr "Forkert ID-attributværdi for %1"
+
+#~ msgid "Non-unique ID attribute value for %1"
+#~ msgstr "Ikke-unik ID-attributværdi for %1"
+
+#~ msgid "The file is not a StepCoreXML file."
+#~ msgstr "Filen er ikke en StepCoreXML-fil."
+
+#~ msgid "Unknown item type \"%1\""
+#~ msgstr "Ukendt emnetype \"%1\""
+
+#~ msgid "Unknown solver type \"%1\""
+#~ msgstr "Ukendt løsertype \"%1\""
+
+#~ msgid "Unknown collisionSolver type \"%1\""
+#~ msgstr "Ukendt cillisionSolver-type \"%1\""
+
+#~ msgid "Unknown constraintSolver type \"%1\""
+#~ msgstr "Ukendt constraintSolver-type \"%1\""
+
+#~ msgid "Item \"%1\" has no stored property named \"%2\""
+#~ msgstr "Emnet \"%1\" har ingen lagret egenskab ved navn \"%2\""
+
+#~ msgid "Unexpected tag \"%1\""
+#~ msgstr "Uventet mærke \"%1\""
+
+#~ msgid "Property \"%1\" of \"%2\" has illegal value"
+#~ msgstr "Egenskaben \"%1\" for \"%2\" har ulovlig værdi"
+
+#~ msgid "\"world\" tag not found"
+#~ msgstr "\"verden\"-mærke ikke fundet"
+
+#~ msgid "Error parsing file at line %1: %2"
+#~ msgstr "Fejl under fortolkning af fil på linje %1: %2"
+
+#, fuzzy
+#~| msgid "File is not writeble."
+#~ msgid "File is not writable."
+#~ msgstr "Fil er ikke skrivbar."
+
+#, fuzzy
+#~| msgid "Unknown constraintSolver type \"%1\""
+#~ msgctxt "ObjectClass"
+#~ msgid "ConstraintSolver"
+#~ msgstr "Ukendt constraintSolver-type \"%1\""
+
+#, fuzzy
+#~| msgid "Particles mass:"
+#~ msgctxt "ObjectClass"
+#~ msgid "GasParticle"
+#~ msgstr "Partiklers masse:"
+
+#, fuzzy
+#~| msgid "Create gas particles"
+#~ msgid "Gas particle"
+#~ msgstr "Opret gaspartikler"
+
+#, fuzzy
+#~| msgid "min:"
+#~ msgctxt "PropertyName"
+#~ msgid "rmin"
+#~ msgstr "min:"
+
+#, fuzzy
+#~| msgid "auto"
+#~ msgctxt "PropertyName"
+#~ msgid "cutoff"
+#~ msgstr "auto"
+
+#, fuzzy
+#~| msgid "Particles mass:"
+#~ msgid "Particle gas"
+#~ msgstr "Partiklers masse:"
+
+#, fuzzy
+#~| msgid "Particles count:"
+#~ msgctxt "PropertyName"
+#~ msgid "rectParticleCount"
+#~ msgstr "Partikelantal:"
+
+#, fuzzy
+#~| msgid "Concentration:"
+#~ msgctxt "PropertyName"
+#~ msgid "rectConcentration"
+#~ msgstr "Koncentration:"
+
+#, fuzzy
+#~| msgid "Temperature:"
+#~ msgctxt "PropertyName"
+#~ msgid "rectTemperature"
+#~ msgstr "Temperatur:"
+
+#, fuzzy
+#~| msgid "The number of partcles of this gas."
+#~ msgid "Temperature of particles in the measureRect"
+#~ msgstr "Antallet af denne gas' partikler."
+
+#, fuzzy
+#~| msgid "Mean velocity:"
+#~ msgctxt "PropertyName"
+#~ msgid "rectMeanVelocity"
+#~ msgstr "Middelhastighed:"
+
+#, fuzzy
+#~| msgid "Create gas particles"
+#~ msgctxt "PropertyName"
+#~ msgid "rectMeanParticleMass"
+#~ msgstr "Opret gaspartikler"
+
+#, fuzzy
+#~| msgid "Temperature:"
+#~ msgctxt "PropertyName"
+#~ msgid "rectTemperatureVariance"
+#~ msgstr "Temperatur:"
+
+#, fuzzy
+#~| msgid "Range"
+#~ msgctxt "PropertyName"
+#~ msgid "image"
+#~ msgstr "Område"
+
+#, fuzzy
+#~| msgid "Insert &Formula"
+#~ msgctxt "ObjectClass"
+#~ msgid "NoteFormula"
+#~ msgstr "Indsæt f&ormel"
+
+#, fuzzy
+#~| msgid "Show text"
+#~ msgctxt "PropertyName"
+#~ msgid "text"
+#~ msgstr "Vis tekst"
+
+#, fuzzy
+#~| msgid "<no object>"
+#~ msgctxt "PropertyName"
+#~ msgid "objectX"
+#~ msgstr "<intet objekt>"
+
+#, fuzzy
+#~| msgid "Property"
+#~ msgctxt "PropertyName"
+#~ msgid "propertyX"
+#~ msgstr "Egenskab"
+
+#, fuzzy
+#~| msgid "<no object>"
+#~ msgctxt "PropertyName"
+#~ msgid "objectY"
+#~ msgstr "<intet objekt>"
+
+#, fuzzy
+#~| msgid "Property"
+#~ msgctxt "PropertyName"
+#~ msgid "propertyY"
+#~ msgstr "Egenskab"
+
+#, fuzzy
+#~| msgid "Show points"
+#~ msgctxt "PropertyName"
+#~ msgid "showPoints"
+#~ msgstr "Vis punkter"
+
+#, fuzzy
+#~| msgid "Show points"
+#~ msgid "Show points on the graph"
+#~ msgstr "Vis punkter"
+
+#, fuzzy
+#~| msgid "Show lines"
+#~ msgctxt "PropertyName"
+#~ msgid "showLines"
+#~ msgstr "Vis linjer"
+
+#, fuzzy
+#~| msgid "Show points"
+#~ msgctxt "PropertyName"
+#~ msgid "points"
+#~ msgstr "Vis punkter"
+
+#, fuzzy
+#~| msgid "Show points"
+#~ msgid "points"
+#~ msgstr "Vis punkter"
+
+#, fuzzy
+#~| msgid "<no object>"
+#~ msgctxt "PropertyName"
+#~ msgid "object"
+#~ msgstr "<intet objekt>"
+
+#, fuzzy
+#~| msgid "several objects"
+#~ msgid "Observed object"
+#~ msgstr "flere objekter"
+
+#, fuzzy
+#~| msgid "Property"
+#~ msgctxt "PropertyName"
+#~ msgid "property"
+#~ msgstr "Egenskab"
+
+#, fuzzy
+#~| msgid "Display precision:"
+#~ msgid "Display digits"
+#~ msgstr "Visningspræcision:"
+
+#, fuzzy
+#~| msgid "Value"
+#~ msgid "value"
+#~ msgstr "Værdi"
+
+#, fuzzy
+#~| msgid "Change controller %1"
+#~ msgctxt "ObjectClass"
+#~ msgid "Controller"
+#~ msgstr "Ændr styreenhed %1"
+
+#, fuzzy
+#~| msgid "<no object>"
+#~ msgid "Controlled object"
+#~ msgstr "<intet objekt>"
+
+#, fuzzy
+#~| msgid "Shortcuts"
+#~ msgctxt "PropertyName"
+#~ msgid "increaseShortcut"
+#~ msgstr "Genveje"
+
+#, fuzzy
+#~| msgid "Shortcuts"
+#~ msgctxt "PropertyName"
+#~ msgid "decreaseShortcut"
+#~ msgstr "Genveje"
+
+#, fuzzy
+#~| msgid "Increment:"
+#~ msgctxt "PropertyName"
+#~ msgid "increment"
+#~ msgstr "Formindskelse:"
+
+#, fuzzy
+#~| msgid "Increase value"
+#~ msgid "Increment value"
+#~ msgstr "Forøg værdi"
+
+#, fuzzy
+#~| msgid "Value"
+#~ msgctxt "PropertyName"
+#~ msgid "value"
+#~ msgstr "Værdi"
+
+#, fuzzy
+#~| msgid "Position:"
+#~ msgctxt "PropertyName"
+#~ msgid "localPosition"
+#~ msgstr "Position:"
+
+#, fuzzy
+#~| msgid "Position:"
+#~ msgid "Local position"
+#~ msgstr "Position:"
+
+#, fuzzy
+#~| msgid "Position:"
+#~ msgid "Position"
+#~ msgstr "Position:"
+
+#, fuzzy
+#~| msgid "&Bold"
+#~ msgid "Body"
+#~ msgstr "&Fed"
+
+#, fuzzy
+#~| msgid "Value"
+#~ msgctxt "PropertyName"
+#~ msgid "forceValue"
+#~ msgstr "Værdi"
+
+#, fuzzy
+#~| msgid "Value"
+#~ msgctxt "PropertyName"
+#~ msgid "torqueValue"
+#~ msgstr "Værdi"
+
+#, fuzzy
+#~| msgid "&Color"
+#~ msgctxt "PropertyName"
+#~ msgid "color"
+#~ msgstr "F&arve"
+
+#, fuzzy
+#~| msgid "&Bold"
+#~ msgctxt "ObjectClass"
+#~ msgid "Body"
+#~ msgstr "&Fed"
+
+#, fuzzy
+#~| msgid "Pointer"
+#~ msgctxt "ObjectClass"
+#~ msgid "Joint"
+#~ msgstr "Peger"
+
+#, fuzzy
+#~| msgid "Pointer"
+#~ msgid "Joint"
+#~ msgstr "Peger"
+
+#, fuzzy
+#~| msgctxt "Object list"
+#~| msgid "World"
+#~ msgctxt "ObjectClass"
+#~ msgid "World"
+#~ msgstr "Verden"
+
+#, fuzzy
+#~| msgctxt "Object list"
+#~| msgid "World"
+#~ msgid "World"
+#~ msgstr "Verden"
+
+#, fuzzy
+#~| msgid "&Simulation"
+#~ msgid "Simulation speed scale"
+#~ msgstr "&Simulation"
+
+#, fuzzy
+#~| msgid "Range"
+#~ msgid "Angle"
+#~ msgstr "Område"
+
+#, fuzzy
+#~| msgid "Pointer"
+#~ msgctxt "ObjectClass"
+#~ msgid "Pin"
+#~ msgstr "Peger"
+
+#, fuzzy
+#~| msgid "&Bold"
+#~ msgid "Body1"
+#~ msgstr "&Fed"
+
+#, fuzzy
+#~| msgid "&Bold"
+#~ msgid "Body2"
+#~ msgstr "&Fed"
+
+#, fuzzy
+#~| msgid "Position:"
+#~ msgctxt "PropertyName"
+#~ msgid "localPosition1"
+#~ msgstr "Position:"
+
+#, fuzzy
+#~| msgid "Position:"
+#~ msgctxt "PropertyName"
+#~ msgid "localPosition2"
+#~ msgstr "Position:"
+
+#, fuzzy
+#~| msgid "Position:"
+#~ msgctxt "PropertyName"
+#~ msgid "position1"
+#~ msgstr "Position:"
+
+#, fuzzy
+#~| msgid "Position:"
+#~ msgid "Position1"
+#~ msgstr "Position:"
+
+#, fuzzy
+#~| msgid "Position:"
+#~ msgctxt "PropertyName"
+#~ msgid "position2"
+#~ msgstr "Position:"
+
+#, fuzzy
+#~| msgid "Position:"
+#~ msgid "Position2"
+#~ msgstr "Position:"
+
+#, fuzzy
+#~| msgid "Objects under mouse:"
+#~ msgctxt "ObjectClass"
+#~ msgid "Object"
+#~ msgstr "Objekter under mus:"
+
+#, fuzzy
+#~| msgid "Objects under mouse:"
+#~ msgid "Object"
+#~ msgstr "Objekter under mus:"
+
+#, fuzzy
+#~| msgid "<unnamed>"
+#~ msgctxt "PropertyName"
+#~ msgid "name"
+#~ msgstr "<uden navn>"
+
+#, fuzzy
+#~| msgid "Body damping:"
+#~ msgctxt "PropertyName"
+#~ msgid "damping"
+#~ msgstr "Legemsdæmpning:"
+
+#, fuzzy
+#~| msgid "Body damping:"
+#~ msgid "Damping"
+#~ msgstr "Legemsdæmpning:"

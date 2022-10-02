@@ -1,0 +1,310 @@
+<chapter id="examples">
+<title
+>Примеры &step;</title>
+
+<para
+>Пакет &step; содержит несколько обучающих примеров, которые помогут пользователю понять принципы работы приложения: </para>
+
+<variablelist>
+  <varlistentry>
+    <term
+><menuchoice
+><guimenu
+>Файл</guimenu
+> <guisubmenu
+>Примеры</guisubmenu
+></menuchoice
+></term>
+    <listitem
+><para
+><action
+>Открывает вложенное меню</action
+> с пунктами различных действий.</para>
+    <variablelist>
+      <varlistentry>
+        <term
+><guimenuitem
+>Открыть пример…</guimenuitem
+></term>
+        <listitem
+><para
+><action
+>Открывает пример</action
+> из стандартного набора.</para
+></listitem>
+      </varlistentry>
+      <varlistentry>
+        <term
+><guimenuitem
+>Открыть загруженный пример…</guimenuitem
+></term>
+        <listitem
+><para
+><action
+>Открывает загруженные примеры.</action
+></para
+></listitem>
+      </varlistentry>
+      <varlistentry>
+        <term
+><guimenuitem
+>Загрузить новые эксперименты…</guimenuitem
+></term>
+        <listitem
+><para
+><action
+>Загружает примеры</action
+>, опубликованные другими пользователями.</para
+></listitem>
+      </varlistentry>
+      <varlistentry>
+        <term
+><guimenuitem
+>Опубликовать текущий эксперимент…</guimenuitem
+></term>
+        <listitem
+><para
+><action
+>Возможно публиковать собственные примеры.</action
+></para
+></listitem>
+      </varlistentry>
+    </variablelist>
+    </listitem>
+  </varlistentry>
+</variablelist>
+
+<para
+>Описания файлов со стандартными примерами представлены ниже. </para>
+
+<variablelist>
+  <varlistentry id="brownian">
+    <term
+><filename
+>brownian.step</filename
+></term>
+    <listitem
+><para
+>Строит траекторию взаимодействия жёсткого диска с 40 частицами, беспорядочно двигающимися внутри ящика. Этот пример моделирует <ulink url="https://ru.wikipedia.org/wiki/Броуновское_движение"
+>броуновское движение</ulink
+> частиц идеального газа.</para
+></listitem>
+  </varlistentry>
+
+  <varlistentry id="pendulum">
+    <term
+><filename
+>doublependulum.step</filename
+></term>
+    <listitem
+><para
+>Этот пример моделирует <ulink url="https://ru.wikipedia.org/wiki/Двойной_маятник"
+>движение двойного маятника</ulink
+> с помощью двух массивных частиц и двух стержней.</para
+></listitem>
+  </varlistentry>
+
+  <varlistentry id="eightpendulum">
+    <term
+><filename
+>eightpendulum.step</filename
+></term>
+    <listitem
+><para
+>Этот пример — это простая демонстрация знаменитой <ulink url="https://ru.wikipedia.org/wiki/Колыбель_Ньютона"
+>колыбели Ньютона</ulink
+>. Она смоделирована в &step; с помощью стержней, 8 дисков и блока. Шесть шаров в середине не движутся, потому что они передают импульс и энергию, а не движение.</para
+></listitem>
+  </varlistentry>
+
+  <varlistentry id="first">
+    <term
+><filename
+>first.step</filename
+>: Первый пример</term>
+    <listitem
+><para
+>Этот пример состоит из двух частей. Первая часть отображает две частицы, соединённые пружиной, а вторая часть отображает две заряженные частицы. </para>
+    <variablelist>
+      <varlistentry id="first-two-particles">
+        <term
+>Две частицы, соединённые пружиной</term>
+        <listitem
+><para
+>В этом примере на сцену добавлены две частицы, соединённые пружиной. Свойства обеих частиц, например, скорость, импульс и положение, указаны на панели свойств. Здесь же указаны свойства пружины: жёсткость, длина в состоянии покоя, затухание и так далее. </para>
+
+        <para
+><emphasis
+>Объяснение симуляции:</emphasis>
+        </para>
+
+        <para
+>Это хороший пример простого гармонического движения. Здесь ускорение одной частицы задаётся в направлении положительной оси x, а ускорение другой частицы задаётся вдоль отрицательной оси x. В результате обе частицы тянут пружину в противоположных направлениях, а пружина пытается вернуть две частицы в исходное положение. Таким образом, система совершает простое гармоническое движение. На сцене смоделировано поведение частиц и пружины в этих условиях. </para
+></listitem>
+      </varlistentry>
+
+      <varlistentry id="first-two-charged">
+        <term
+>Две заряженные частицы</term>
+        <listitem
+><para
+>Скорость каждой заряженной частицы задаётся в определённом направлении, поэтому заряженные частицы движутся в направлении, соответствующем их скорости, но каждая частица получает равный и противоположный заряд, поэтому частицы пытаются притягивать друг друга. На сцене смоделировано поведение заряженных частиц в этих условиях.</para
+></listitem>
+      </varlistentry>
+    </variablelist>
+    </listitem>
+  </varlistentry>
+
+  <varlistentry id="fourpendula">
+    <term
+><filename
+>fourpendula.step</filename
+></term>
+    <listitem
+><para
+>Этот пример — это правильная демонстрация <ulink url="https://ru.wikipedia.org/wiki/Колыбель_Ньютона"
+>колыбели Ньютона</ulink
+>. Так как система не идеальна, со временем два диска посередине будут визуально перемещаться.</para
+></listitem>
+  </varlistentry>
+
+  <varlistentry id="gas">
+    <term
+><filename
+>gas.step</filename
+></term>
+    <listitem
+><para
+>Этот пример имитирует давление идеального газа, вызванное <ulink url="https://ru.wikipedia.org/wiki/Броуновское_движение"
+>броуновским движением</ulink
+>.</para
+></listitem>
+  </varlistentry>
+
+  <varlistentry id="graph">
+    <term
+><filename
+>graph.step</filename
+></term>
+    <listitem
+><para
+>Строит график зависимости скорости от положения для частицы1 в системе двух частиц, соединённых пружиной.</para
+></listitem>
+  </varlistentry>
+
+  <varlistentry id="liquid">
+    <term
+><filename
+>liquid.step</filename
+></term>
+    <listitem
+><para
+>В этом примере моделируется моноатомная жидкость.</para
+></listitem>
+  </varlistentry>
+
+  <varlistentry id="lissajous">
+    <term
+><filename
+>lissajous.step</filename
+></term>
+    <listitem
+><para
+>В этом примере <ulink url="https://ru.wikipedia.org/wiki/Фигуры_Лиссажу"
+>фигуры Лиссажу</ulink
+> имитируются с помощью модели, состоящей из двух частиц. Параметры этой модели возможно изменить с помощью регулятора в центре мира.</para
+></listitem>
+  </varlistentry>
+
+  <varlistentry id="motor1">
+    <term
+><filename
+>motor1.step</filename
+></term>
+    <listitem
+><para
+>Имитирует твёрдое треугольное тело под нагрузкой трёх линейных двигателей.</para
+></listitem>
+  </varlistentry>
+
+  <varlistentry id="motor-example">
+    <term
+><filename
+>motor.step</filename
+></term>
+    <listitem
+><para
+>Имитирует взаимодействие линейного двигателя с твёрдым прямоугольным телом на пружине.</para
+></listitem>
+  </varlistentry>
+
+  <varlistentry id="note-example">
+    <term
+><filename
+>note.step</filename
+></term>
+    <listitem
+><para
+>Пример с формулой &latex; (<ulink url="https://ru.wikipedia.org/wiki/Формула_Гаусса_—_Остроградского"
+>формула Гаусса — Остроградского</ulink
+>) и встроенным изображением.</para
+></listitem>
+  </varlistentry>
+
+  <varlistentry id="resonance">
+    <term
+><filename
+>resonance.step</filename
+></term>
+    <listitem
+><para
+>В этом примере моделируется резонанс в системе с вращательным двигателем.</para
+></listitem>
+  </varlistentry>
+
+  <varlistentry id="softbody">
+    <term
+><filename
+>softbody.step</filename
+></term>
+    <listitem
+><para
+>В этом примере моделируется взаимодействие двух жёстких тел с одним мягким телом между ними.</para
+></listitem>
+  </varlistentry>
+
+  <varlistentry id="solar">
+    <term
+><filename
+>solar.step</filename
+></term>
+    <listitem
+><para
+>В этом примере моделируется движение главных тел Солнечной системы (Солнца и планет).</para
+></listitem>
+  </varlistentry>
+
+  <varlistentry id="springs">
+    <term
+><filename
+>springs.step</filename
+></term>
+    <listitem
+><para
+>В этом примере моделируется движение плоской системы из пяти частиц, связанных четырьмя пружинами.</para
+></listitem>
+  </varlistentry>
+
+  <varlistentry id="wave">
+    <term
+><filename
+>wave.step</filename
+></term>
+    <listitem
+><para
+>График на сцене показывает колебания зелёной частицы. При запуске симуляции волна начинает распространяться от красной частицы. Синяя частица отразит волну, и она будет двигаться в обратном направлении, пока вновь не отразится от красной частицы. Со временем волна исчезнет из-за рассеяния энергии пружинами.</para
+></listitem>
+  </varlistentry>
+</variablelist>
+
+</chapter>

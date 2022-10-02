@@ -1,0 +1,255 @@
+<chapter id="tutorials">
+<title
+>Familiaritzar-se amb l'&step;: les guies d'aprenentatge</title>
+
+<para
+>L'element de menú <menuchoice
+><guimenu
+>Fitxer</guimenu
+> <guimenuitem
+>Obre la guia d'aprenentatge...</guimenuitem
+></menuchoice
+> ofereix un diàleg de fitxers des d'on podreu carregar les guies d'aprenentatge incloses amb l'&step;. Hi ha cinc guies d'aprenentatge amb les que aprendreu progressivament a interactuar amb cada element de l'&step;. El més aconsellable és començar per la primera guia d'aprenentatge fent clic sobre el fitxer <filename
+>tutorial1.step</filename
+>. Això mostrarà la «Guia d'aprenentatge 1» a l'&step;. </para>
+
+<note
+><para
+>Si no veieu correctament la guia d'aprenentatge, podeu intentar ampliant la vista per a veure-la millor.</para
+></note>
+
+<para
+>El plafó <guilabel
+>Món</guilabel
+> de la dreta mostra tots els objectes que teniu a la vostra escena. En fer clic sobre un objecte, el plafó <guilabel
+>Propietats</guilabel
+> mostrarà les propietats d'aquest. Podeu canviar les propietats fent clic sobre la que voleu modificar. </para>
+
+<para
+>Cada guia d'aprenentatge consisteix en un text que presenta els nous elements i n'explica les propietats. Llavors se us demanarà que canvieu algunes propietats dels elements per tal d'aconseguir un nou resultat de l'experiment. </para>
+
+<sect1 id="tutorial1">
+<title
+>Guia d'aprenentatge 1: cossos i molles</title>
+
+<para
+>Aquesta guia d'aprenentatge presenta els cossos i molles, a més de com iniciar la vostra primera simulació. </para>
+
+<para
+>Un cos físic (o per abreujar, un cos) és un objecte que es pot descriure per les teories de la mecànica clàssica, o de la mecànica quàntica, i sobre el que es pot experimentar amb instruments físics. Això inclou la determinació de la seva posició, i en alguns casos, la seva orientació en l'espai, així com els mitjans per a modificar aquests paràmetres exercint forces. </para>
+
+<para
+>Una molla és un objecte elàstic i flexible utilitzat per a emmagatzemar energia mecànica. </para>
+
+<screenshot>
+  <screeninfo
+>Guia d'aprenentatge 1: experiment</screeninfo>
+  <mediaobject>
+    <imageobject
+><imagedata fileref="tutorial1.png" format="PNG"/></imageobject>
+    <textobject
+><phrase
+>Guia d'aprenentatge 1: experiment</phrase
+></textobject>
+  </mediaobject>
+</screenshot>
+
+<para
+>L'experiment físic en aquesta guia d'aprenentatge representa dos discos units per una molla. Els discs tenen una velocitat inicial en una direcció tangencial (la petita fletxa blava) i una acceleració (la fletxa vermella) i les molles tenen una rigidesa i longitud que es pot canviar. En executar l'experiment podreu veure com els discs són estirats i empesos per la molla. La guia d'aprenentatge us convida a modificar la rigidesa de la molla i també a intentar canviar l'experiment del sistema. </para>
+
+<para
+>Al final d'aquesta guia d'aprenentatge hauríeu d'estar més familiaritzat amb la interfície de l'&step; i també ser capaç de canviar amb facilitat les propietats dels cossos. </para>
+</sect1>
+
+<sect1 id="tutorial2">
+<title
+>Guia d'aprenentatge 2: controladors i grafs</title>
+
+<para
+>En aquesta guia d'aprenentatge aprendreu més sobre els controladors i els grafs. </para>
+
+<para
+>Un controlador és un dispositiu que permet modificar gràficament una propietat d'un cos o d'una molla. A la guia d'aprenentatge, el controlador us permet canviar la rigidesa de la molla <quote
+>spring1</quote
+>. En moure el control lliscant cap a la dreta o utilitzant la tecla <keycap
+>W</keycap
+> podreu augmentar el valor de la rigidesa de la molla <quote
+>spring1</quote
+> i movent el botó lliscant cap a l'esquerra o utilitzant la tecla <keycap
+>Q</keycap
+> podreu fer-lo disminuir. Fent clic dret sobre el controlador obtindreu diverses accions de contextuals i l'element <guilabel
+>Configura el controlador...</guilabel
+> mostra un diàleg que permet canviar cada propietat del controlador. </para>
+
+<screenshot>
+  <screeninfo
+>Guia d'aprenentatge 2: experiment</screeninfo>
+  <mediaobject>
+    <imageobject
+><imagedata fileref="tutorial2.png" format="PNG"/></imageobject>
+    <textobject
+><phrase
+>Guia d'aprenentatge 2: experiment</phrase
+></textobject>
+  </mediaobject>
+</screenshot>
+
+<para
+>Els grafs permeten visualitzar gràficament la relació entre dues variables. L'exemple a la guia d'aprenentatge mostra l'evolució de la posició de la primera partícula «particle1» mentre avança el temps en el primer món «world1». Amb un clic dret sobre un graf podreu netejar o eliminar el graf, així com editar el diàleg de configuració i canviar totes les propietats d'aquest graf. </para>
+
+<para
+>Al final d'aquesta guia d'aprenentatge sereu capaç d'utilitzar els controladors per a actuar sobre les propietats dels cossos i grafs per a controlar propietats específiques en el vostre experiment. </para>
+</sect1>
+
+<sect1 id="tutorial3">
+<title
+>Guia d'aprenentatge 3: cossos rígids i traçadors</title>
+
+<para
+>La guia d'aprenentatge 3 presenta cossos rígids i traçadors. </para>
+
+<para
+>Un cos rígid és una idealització d'un cos sòlid de grandària finita en el qual la deformació és ignorada. En altres paraules, la distància entre dos punts qualsevol d'un cos rígid es manté constant en el temps independentment de les forces externes exercides sobre el mateix. </para>
+
+<para
+>Un traçador és una eina que mostra la trajectòria d'un punt donat sobre un cos rígid. </para>
+
+<screenshot>
+  <screeninfo
+>Propietats del disc</screeninfo>
+  <mediaobject>
+    <imageobject
+><imagedata fileref="disk-properties.png" format="PNG"/></imageobject>
+    <textobject
+><phrase
+>Propietats del disc</phrase
+></textobject>
+  </mediaobject>
+</screenshot>
+
+<para
+>Quan se selecciona un cos rígid (en aquest cas, un disc), veureu sobre seu tres controladors grisos. Utilitzeu-los fent clic sobre seu i movent-los, podeu canviar la velocitat, l'angle i la velocitat angular del cos. </para>
+
+<screenshot>
+  <screeninfo
+>Guia d'aprenentatge 3: dos traçadors</screeninfo>
+  <mediaobject>
+    <imageobject
+><imagedata fileref="tutorial3.png" format="PNG"/></imageobject>
+    <textobject
+><phrase
+>Guia d'aprenentatge 3: dos traçadors</phrase
+></textobject>
+  </mediaobject>
+</screenshot>
+
+<para
+>L'experiment a la guia d'aprenentatge 3 mostra un disc i una caixa units per una molla. A la caixa ja hi ha un traçador (el blau). N'hi podeu afegir un segon: seleccioneu el botó <guibutton
+>Traçador</guibutton
+> al plafó <guilabel
+>Paleta</guilabel
+> i després feu clic sobre la caixa en el punt on voleu posar el traçador. Al plafó <guilabel
+>Propietats</guilabel
+>, feu clic sobre la línia <guilabel
+>color</guilabel
+>, i a la dreta d'aquesta línia podeu fer clic sobre el quadrat blau i apareixerà una paleta de colors amb la que podreu triar un nou color per al traçador. La captura de pantalla de dalt mostra dos traçadors després d'executar la simulació durant uns segons. </para>
+</sect1>
+
+<sect1 id="tutorial4">
+<title
+>Guia d'aprenentatge 4: motors i forces</title>
+
+<para
+>Hi ha dos tipus de motors disponibles a l'&step;: motors lineals i motors circular. Un motor lineal aplica una força constant a un punt donat sobre un cos, mentre que un motor circular aplica un impuls angular constant a un cos. </para>
+
+<para
+>Es poden afegir tres forces diferents en els cossos: la força del pes, la força gravitatòria i la força de Coulomb. De manera predeterminada, a l'&step; totes les forces estan desactivades. La força de Coulomb és una força intrínseca que hi ha entre dues càrregues. </para>
+
+<screenshot>
+  <screeninfo
+>Guia d'aprenentatge 4: Motors</screeninfo>
+  <mediaobject>
+    <imageobject
+><imagedata fileref="tutorial4.png" format="PNG"/></imageobject>
+    <textobject
+><phrase
+>Guia d'aprenentatge 4: Motors</phrase
+></textobject>
+  </mediaobject>
+</screenshot>
+
+<para
+>A l'experiment teniu un disc i una caixa units per una molla. Una caixa allargada a la part inferior farà de límit. El disc i la caixa tenen un motor lineal aplicat. Dos controladors permeten canviar el valor de la força de cada motor. Inicieu la simulació i jugueu amb els controladors. Després atureu la simulació i afegiu una força de pes al món (les forces són globals i s'apliquen a tot el món). Torneu a iniciar la simulació i analitzeu la diferència. </para>
+
+<para
+>També podeu treure el motor lineal que actua sobre la caixa i afegir un motor circular al seu lloc. Premeu el botó <inlinemediaobject
+><imageobject
+><imagedata fileref="step_object_CircularMotor.png" format="PNG"/></imageobject
+></inlinemediaobject
+> <guibutton
+>MotorCircular</guibutton
+> en el plafó <guilabel
+>Paleta</guilabel
+> i després feu clic sobre la caixa. El motor circular serà aplicat a la caixa. A continuació, haureu d'establir el valor de parell fent clic i movent el controlador gris del motor. </para>
+
+<screenshot>
+  <screeninfo
+>Motor circular</screeninfo>
+  <mediaobject>
+    <imageobject
+><imagedata fileref="circular-motor.png" format="PNG"/></imageobject>
+    <textobject
+><phrase
+>Motor circular</phrase
+></textobject>
+  </mediaobject>
+</screenshot>
+
+<para
+>Aquesta guia d'aprenentatge ha estat una introducció als motors i forces, i ara podreu afegir-los als cossos.</para>
+</sect1>
+
+<sect1 id="tutorial5">
+<title
+>Guia d'aprenentatge 5: unions</title>
+
+<para
+>Les unions són objectes que connecten cossos entre si o amb el fons. A l'&step; disposeu de les següents unions: àncores, xinxetes i bastons. Una àncora és una unió que fixa la posició del cos. El cos no es podrà moure quan tingui una àncora. Una xinxeta és una unió que fixa un punt del cos, el cos encara es podrà moure al voltant de la xinxeta. Un bastó és una unió que fixa la distància entre dos punts de dos cossos. </para>
+
+<screenshot>
+  <screeninfo
+>Guia d'aprenentatge 5: pèndol doble</screeninfo>
+  <mediaobject>
+    <imageobject
+><imagedata fileref="tutorial5.png" format="PNG"/></imageobject>
+    <textobject
+><phrase
+>Guia d'aprenentatge 5: pèndol doble</phrase
+></textobject>
+  </mediaobject>
+</screenshot>
+
+<para
+>La guia d'aprenentatge 5 descriu un pèndol doble. </para>
+
+<para
+>Afegiu una <inlinemediaobject
+><imageobject
+><imagedata fileref="step_object_Particle.png" format="PNG"/></imageobject
+></inlinemediaobject
+> <guibutton
+>Partícula</guibutton
+> a l'escena i després uniu aquesta partícula a <quote
+>Particle2</quote
+> amb un bastó. Premeu el botó <inlinemediaobject
+><imageobject
+><imagedata fileref="step_object_Stick.png" format="PNG"/></imageobject
+></inlinemediaobject
+> <guibutton
+>Bastó</guibutton
+> en el plafó <guilabel
+>Paleta</guilabel
+>. A continuació, haureu de seleccionar el primer objecte a què va unit el bastó (particle2) amb el &BER;, arrossegueu el ratolí fins al segon objecte (particle3) i deixeu anar el botó del ratolí sobre «particle3». Ara teniu un pèndol triple! </para>
+</sect1>
+
+</chapter>

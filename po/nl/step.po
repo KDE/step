@@ -1,0 +1,2974 @@
+# translation of step.po to Nederlands
+# Copyright (C) 2008 This_file_is_part_of_KDE
+# This file is distributed under the same license as the Step package.
+#
+# Kristof Bal <kristof.bal@gmail.com>, 2008, 2009.
+# Jaap Woldringh <jjh punt woldringh op planet punt nl>, 2008.
+# Freek de Kruijf <f.de.kruijf@hetnet.nl>, 2009.
+# Freek de Kruijf <freekdekruijf@kde.nl>, 2011.
+# Jaap Woldringh <jjh.woldringh@planet.nl>, 2011, 2014, 2018.
+# jaap <jjhwoldringh@kde.nl>, 2019, 2021.
+msgid ""
+msgstr ""
+"Project-Id-Version: step\n"
+"Report-Msgid-Bugs-To: https://bugs.kde.org\n"
+"POT-Creation-Date: 2022-07-04 00:41+0000\n"
+"PO-Revision-Date: 2021-10-26 16:51+0200\n"
+"Last-Translator: jaap <jjhwoldringh@kde.nl>\n"
+"Language-Team: Dutch <kde-i18n-nl@kde.org>\n"
+"Language: nl\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: Lokalize 19.12.3\n"
+
+#, kde-format
+msgctxt "NAME OF TRANSLATORS"
+msgid "Your names"
+msgstr "Kristof Bal,Jaap Woldringh"
+
+#, kde-format
+msgctxt "EMAIL OF TRANSLATORS"
+msgid "Your emails"
+msgstr "kristof.bal@gmail.com,jjhwoldringh@kde.nl"
+
+#. i18n: ectx: property (title), widget (QGroupBox, groupBox)
+#: step/configure_controller.ui:28 step/configure_graph.ui:28
+#: step/configure_meter.ui:28
+#, kde-format
+msgid "Data Source"
+msgstr "Gegevensbron"
+
+#. i18n: ectx: property (title), widget (QGroupBox, groupBox_2)
+#: step/configure_controller.ui:47
+#, kde-format
+msgid "Range"
+msgstr "Bereik"
+
+#. i18n: ectx: property (text), widget (QLabel, label_5)
+#: step/configure_controller.ui:59
+#, kde-format
+msgid "min:"
+msgstr "min:"
+
+#. i18n: ectx: property (text), widget (QLabel, label_6)
+#: step/configure_controller.ui:75
+#, kde-format
+msgid "max:"
+msgstr "max:"
+
+#. i18n: ectx: property (text), widget (QLineEdit, lineEditMinX)
+#. i18n: ectx: property (text), widget (QLineEdit, lineEditMinY)
+#. i18n: ectx: property (text), widget (QLineEdit, lineEditMin)
+#: step/configure_controller.ui:97 step/configure_graph.ui:135
+#: step/configure_graph.ui:187
+#, kde-format
+msgid "0"
+msgstr "0"
+
+#. i18n: ectx: property (text), widget (QLineEdit, lineEditMass)
+#. i18n: ectx: property (text), widget (QLineEdit, lineEditBodyMass)
+#. i18n: ectx: property (text), widget (QLineEdit, lineEditMaxX)
+#. i18n: ectx: property (text), widget (QLineEdit, lineEditMaxY)
+#. i18n: ectx: property (text), widget (QLineEdit, lineEditMax)
+#: step/configure_controller.ui:119 step/configure_graph.ui:151
+#: step/configure_graph.ui:203 step/create_gas_particles.ui:125
+#: step/create_softbody_items.ui:78
+#, kde-format
+msgid "1"
+msgstr "1"
+
+#. i18n: ectx: property (title), widget (QGroupBox, groupBox_3)
+#: step/configure_controller.ui:132
+#, kde-format
+msgid "Shortcuts"
+msgstr "Sneltoetsen"
+
+#. i18n: ectx: property (text), widget (QLabel, label)
+#: step/configure_controller.ui:138
+#, kde-format
+msgid "Decrease:"
+msgstr "Vermindering:"
+
+#. i18n: ectx: property (text), widget (QLabel, label_2)
+#: step/configure_controller.ui:148
+#, kde-format
+msgid "Increase:"
+msgstr "Vermeerdering:"
+
+#. i18n: ectx: property (text), widget (QLabel, label_3)
+#: step/configure_controller.ui:179
+#, kde-format
+msgid "Increment:"
+msgstr "Toename:"
+
+#. i18n: ectx: property (text), widget (QLineEdit, lineEditIncrement)
+#: step/configure_controller.ui:192
+#, kde-format
+msgid "0.1"
+msgstr "0,1"
+
+#. i18n: ectx: property (text), widget (QLabel, label)
+#. i18n: ectx: property (text), widget (QLabel, label_3)
+#: step/configure_graph.ui:34 step/configure_graph.ui:109
+#, kde-format
+msgid "X :"
+msgstr "X :"
+
+#. i18n: ectx: property (text), widget (QLabel, label_2)
+#. i18n: ectx: property (text), widget (QLabel, label_4)
+#: step/configure_graph.ui:51 step/configure_graph.ui:161
+#, kde-format
+msgid "Y :"
+msgstr "Y :"
+
+#. i18n: ectx: property (title), widget (QGroupBox, groupBox_2)
+#: step/configure_graph.ui:71
+#, kde-format
+msgid "Ranges"
+msgstr "Bereiken"
+
+#. i18n: ectx: property (text), widget (QLabel, label_5)
+#: step/configure_graph.ui:83
+#, kde-format
+msgid "Min:"
+msgstr "Min:"
+
+#. i18n: ectx: property (text), widget (QLabel, label_6)
+#: step/configure_graph.ui:99
+#, kde-format
+msgid "Max:"
+msgstr "Max:"
+
+#. i18n: ectx: property (text), widget (QCheckBox, checkBoxAutoX)
+#. i18n: ectx: property (text), widget (QCheckBox, checkBoxAutoY)
+#: step/configure_graph.ui:122 step/configure_graph.ui:174
+#, kde-format
+msgid "auto"
+msgstr "auto"
+
+#. i18n: ectx: property (title), widget (QGroupBox, groupBox_2)
+#. i18n: ectx: property (title), widget (QGroupBox, groupBox)
+#. i18n: ectx: property (title), widget (QGroupBox, groupBox_3)
+#: step/configure_graph.ui:216 step/configure_meter.ui:47
+#: step/create_gas_particles.ui:28 step/create_softbody_items.ui:28
+#, kde-format
+msgid "Options"
+msgstr "Opties"
+
+#. i18n: ectx: property (text), widget (QCheckBox, checkBoxShowLines)
+#: step/configure_graph.ui:222
+#, kde-format
+msgid "Show lines"
+msgstr "Lijnen tonen"
+
+#. i18n: ectx: property (text), widget (QCheckBox, checkBoxShowPoints)
+#: step/configure_graph.ui:229
+#, kde-format
+msgid "Show points"
+msgstr "Punten tonen"
+
+#. i18n: ectx: property (text), widget (QLabel, label)
+#: step/configure_meter.ui:53
+#, kde-format
+msgid "Number of digits:"
+msgstr "Aantal cijfers:"
+
+#. i18n: ectx: property (text), widget (QLabel, label)
+#: step/configure_step_general.ui:16
+#, kde-format
+msgid "Display precision:"
+msgstr "Weergaveprecisie:"
+
+#. i18n: ectx: property (text), widget (QCheckBox, kcfg_showAxes)
+#: step/configure_step_general.ui:52
+#, kde-format
+msgid "Show scene axes"
+msgstr "Assen tonen"
+
+#. i18n: ectx: property (text), widget (QCheckBox, kcfg_showCreationTips)
+#: step/configure_step_general.ui:59
+#, kde-format
+msgid "Show tips when creating objects"
+msgstr "Tips tonen bij het aanmaken van objecten"
+
+#. i18n: ectx: property (text), widget (QCheckBox, kcfg_enableOpenGL)
+#: step/configure_step_general.ui:66
+#, kde-format
+msgid "Enable OpenGL (EXPERIMENTAL)"
+msgstr "OpenGL inschakelen (EXPERIMENTEEL)"
+
+#. i18n: ectx: property (text), widget (QCheckBox, kcfg_wikiExternal)
+#: step/configure_step_general.ui:73
+#, kde-format
+msgid "Open wikipedia in external browser"
+msgstr "Wikipedia openen in een externe browser"
+
+#. i18n: ectx: property (text), widget (QLabel, label_5)
+#: step/create_gas_particles.ui:34
+#, kde-format
+msgid "Area:"
+msgstr "Oppervlak:"
+
+#. i18n: ectx: property (toolTip), widget (QLineEdit, lineEditVolume)
+#: step/create_gas_particles.ui:41
+#, kde-format
+msgid "The area the gas takes"
+msgstr "De ruimte ingenomen door het gas"
+
+#. i18n: ectx: property (text), widget (QLabel, label)
+#: step/create_gas_particles.ui:61
+#, kde-format
+msgid "Particle count:"
+msgstr "Aantal deeltjes:"
+
+#. i18n: ectx: property (toolTip), widget (QLineEdit, lineEditCount)
+#. i18n: ectx: property (whatsThis), widget (QLineEdit, lineEditCount)
+#: step/create_gas_particles.ui:68 step/create_gas_particles.ui:71
+#, kde-format
+msgid "The number of particles of this gas."
+msgstr "Het aantal deeltjes in dit gas."
+
+#. i18n: ectx: property (text), widget (QLineEdit, lineEditCount)
+#: step/create_gas_particles.ui:74
+#, kde-format
+msgid "20"
+msgstr "20"
+
+#. i18n: ectx: property (text), widget (QLabel, label_6)
+#: step/create_gas_particles.ui:91
+#, kde-format
+msgid "Concentration:"
+msgstr "Concentratie:"
+
+#. i18n: ectx: property (text), widget (QLabel, label_2)
+#: step/create_gas_particles.ui:112
+#, kde-format
+msgid "Particle mass:"
+msgstr "Massa van de deeltjes:"
+
+#. i18n: ectx: property (toolTip), widget (QLineEdit, lineEditMass)
+#. i18n: ectx: property (whatsThis), widget (QLineEdit, lineEditMass)
+#: step/create_gas_particles.ui:119 step/create_gas_particles.ui:122
+#, kde-format
+msgid "The mass of one particle"
+msgstr "De massa van één deeltje"
+
+#. i18n: ectx: property (text), widget (QLabel, label_3)
+#: step/create_gas_particles.ui:142
+#, kde-format
+msgid "Temperature:"
+msgstr "Temperatuur:"
+
+#. i18n: ectx: property (text), widget (QLineEdit, lineEditTemperature)
+#: step/create_gas_particles.ui:149
+#, kde-format
+msgid "1e21"
+msgstr "1e21"
+
+#. i18n: ectx: property (text), widget (QLabel, label_4)
+#: step/create_gas_particles.ui:166
+#, kde-format
+msgid "Mean velocity:"
+msgstr "Gemiddelde snelheid:"
+
+#. i18n: ectx: property (text), widget (QLineEdit, lineEditMeanVelocity)
+#. i18n: ectx: property (text), widget (QLineEdit, lineEditPosition)
+#: step/create_gas_particles.ui:173 step/create_softbody_items.ui:44
+#, kde-format
+msgid "(0,0)"
+msgstr "(0,0)"
+
+#. i18n: ectx: property (text), widget (QLabel, label_4)
+#: step/create_softbody_items.ui:37
+#, kde-format
+msgid "Position:"
+msgstr "Positie:"
+
+#. i18n: ectx: property (text), widget (QLabel, label_3)
+#: step/create_softbody_items.ui:54
+#, kde-format
+msgid "Body size:"
+msgstr "Grootte van het lichaam:"
+
+#. i18n: ectx: property (text), widget (QLineEdit, lineEditSize)
+#: step/create_softbody_items.ui:61
+#, kde-format
+msgid "(1,1)"
+msgstr "(1,1)"
+
+#. i18n: ectx: property (text), widget (QLabel, label_2)
+#: step/create_softbody_items.ui:71
+#, kde-format
+msgid "Body mass:"
+msgstr "Massa van het lichaam:"
+
+#. i18n: ectx: property (text), widget (QLabel, label)
+#: step/create_softbody_items.ui:88
+#, kde-format
+msgid "Young's modulus:"
+msgstr "Elasticiteitsmodulus:"
+
+#. i18n: ectx: property (text), widget (QLineEdit, lineEditYoungModulus)
+#: step/create_softbody_items.ui:95
+#, kde-format
+msgid "15"
+msgstr "15"
+
+#. i18n: ectx: property (text), widget (QLabel, label1)
+#: step/create_softbody_items.ui:105
+#, kde-format
+msgid "Body damping:"
+msgstr "Trillingsdemping van het lichaam:"
+
+#. i18n: ectx: property (text), widget (QLineEdit, lineEditBodyDamping)
+#: step/create_softbody_items.ui:112
+#, kde-format
+msgid "0.3"
+msgstr "0,3"
+
+#. i18n: ectx: property (text), widget (QLabel, label2)
+#: step/create_softbody_items.ui:122
+#, kde-format
+msgid "Body split counts:"
+msgstr "Precisie van de berekening van de vormverandering van het lichaam:"
+
+#. i18n: ectx: property (text), widget (QLineEdit, lineEditSplit)
+#: step/create_softbody_items.ui:129
+#, kde-format
+msgid "(4,4)"
+msgstr "(4,4)"
+
+#: step/gascreationdialog.cc:43
+#, kde-format
+msgctxt "@title:window"
+msgid "Create Gas Particles"
+msgstr "Gasdeeltjes aanmaken"
+
+#: step/gasgraphics.cc:43
+#, kde-format
+msgid ""
+"Press left mouse button to position\n"
+"top left corner of a region for %1"
+msgstr ""
+"Druk de linkermuisknop in om\n"
+"de linkerbovenhoek van het gebied voor %1 te positioneren"
+
+#: step/gasgraphics.cc:55 step/motorgraphics.cc:42 step/motorgraphics.cc:223
+#: step/polygongraphics.cc:173 step/polygongraphics.cc:307
+#: step/polygongraphics.cc:452 step/softbodygraphics.cc:62
+#: step/worldgraphics.cc:70 step/worldgraphics.cc:120
+#, kde-format
+msgid "Create %1"
+msgstr "%1 aanmaken"
+
+#: step/gasgraphics.cc:71
+#, kde-format
+msgid ""
+"Move mouse and release left mouse button to position\n"
+"bottom right corner of the region for %1"
+msgstr ""
+"Beweeg de muis een laat de linkermuisknop los om\n"
+"de rechterbenedenhoek van het gebied voor %1 te positioneren"
+
+#: step/gasgraphics.cc:97
+#, kde-format
+msgid "Please fill in the parameters for the gas particles."
+msgstr "Voer a.u.b. de parameters voor de gasdeeltjes in."
+
+#: step/gasgraphics.cc:106 step/polygongraphics.cc:208
+#: step/polygongraphics.cc:347 step/polygongraphics.cc:502
+#: step/softbodygraphics.cc:79 step/worldgraphics.cc:87
+#: step/worldgraphics.cc:134 step/worldgraphics.cc:169
+#, kde-format
+msgid "%1 named '%2' created"
+msgstr "%1 met naam '%2' aangemaakt"
+
+#: step/gasgraphics.cc:294
+#, kde-format
+msgid "Create Particles..."
+msgstr "Deeltjes aanmaken..."
+
+#: step/gasgraphics.cc:364
+#, kde-format
+msgid ""
+"You are trying to create a very large number of particles. This will make "
+"simulation very slow. Do you want to continue?"
+msgstr ""
+"U probeert een groot aantal deeltjes aan te maken. Dit zal de simulatie zeer "
+"traag maken. Wilt u toch doorgaan?"
+
+#: step/gasgraphics.cc:366 step/mainwindow.cc:409
+#, kde-format
+msgid "Warning - Step"
+msgstr "Waarschuwing - Step"
+
+#: step/gasgraphics.cc:377
+#, kde-format
+msgid "Create particles for %1"
+msgstr "Deeltjes aanmaken voor %1"
+
+#: step/infobrowser.cc:38
+#, kde-format
+msgid "Context Info"
+msgstr "Contextinformatie"
+
+#: step/infobrowser.cc:56
+#, kde-format
+msgid "Back"
+msgstr "Terug"
+
+#: step/infobrowser.cc:58
+#, kde-format
+msgid "Forward"
+msgstr "Verder"
+
+#: step/infobrowser.cc:62
+#, kde-format
+msgid "Sync selection"
+msgstr "Selectie synchroniseren"
+
+#: step/infobrowser.cc:64
+#, kde-format
+msgid "Follow selection"
+msgstr "Selectie volgen"
+
+#: step/infobrowser.cc:69
+#, kde-format
+msgid "Open in Browser"
+msgstr "In browser openen"
+
+#: step/infobrowser.cc:144
+#, kde-format
+msgid "Documentation"
+msgstr "Documentatie"
+
+#: step/infobrowser.cc:149
+#, kde-format
+msgid "No current object."
+msgstr "Geen huidig object."
+
+#: step/infobrowser.cc:171
+#, kde-format
+msgid "Documentation error"
+msgstr "Documentatiefout"
+
+#: step/infobrowser.cc:176
+#, kde-format
+msgid "Documentation for %1 not available. "
+msgstr "Er is geen documentatie voor %1 beschikbaar. "
+
+#: step/infobrowser.cc:177
+#, kde-format
+msgid ""
+"You can help <a href=\"https://edu.kde.org/step\">Step</a> by writing it!"
+msgstr ""
+"U kunt <a href=\"https://edu.kde.org/step\">Step</a> helpen door het te "
+"schrijven!!"
+
+#: step/itempalette.cc:189
+#, kde-format
+msgid "Palette"
+msgstr "Palet"
+
+#: step/itempalette.cc:208
+#, kde-format
+msgid "Pointer"
+msgstr "Aanwijzer"
+
+#: step/itempalette.cc:209
+#, kde-format
+msgid "Selection pointer"
+msgstr "Selectieaanwijzer"
+
+#: step/itempalette.cc:232
+#, kde-format
+msgid "Show text"
+msgstr "Tekst tonen"
+
+#: step/jointgraphics.cc:170 step/springgraphics.cc:42
+#, kde-format
+msgid "Move end of %1"
+msgstr "Verplaats het einde van %1"
+
+#: step/latexformula.cc:42
+#, kde-format
+msgid "can not launch %1"
+msgstr "kan %1 niet opstarten"
+
+#: step/latexformula.cc:52
+#, kde-format
+msgid "error running %1"
+msgstr "fout bij het uitvoeren van %1"
+
+#: step/latexformula.cc:56
+#, kde-format
+msgid ""
+"%1 reported an error (exit status %2):\n"
+"%3"
+msgstr ""
+"%1 gaf een fout aan (exit status %2):\n"
+"%3"
+
+#: step/latexformula.cc:61
+#, kde-format
+msgid "%1 did not create output file"
+msgstr "%1 kon geen uitvoerbestand aanmaken"
+
+#: step/latexformula.cc:93
+#, kde-format
+msgid "can not open temporary file"
+msgstr "kan tijdelijk bestand niet openen"
+
+#: step/latexformula.cc:127
+#, kde-format
+msgid "can not open result file"
+msgstr "kan het resultatenbestand niet openen"
+
+#: step/main.cc:42 step/main.cc:50
+#, kde-format
+msgid "Step"
+msgstr "Step"
+
+#: step/main.cc:52
+#, kde-format
+msgid "Interactive physical simulator"
+msgstr "Interactieve natuurkundige simulaties"
+
+#: step/main.cc:54
+#, kde-format
+msgid "(C) 2007 Vladimir Kuznetsov"
+msgstr "(C) 2007 Vladimir Kuznetsov"
+
+#: step/main.cc:55
+#, kde-format
+msgid "https://edu.kde.org/step"
+msgstr "https://edu.kde.org/step"
+
+#: step/main.cc:60
+#, kde-format
+msgid "Original author"
+msgstr "Oorspronkelijke auteur"
+
+#: step/main.cc:61
+#, kde-format
+msgid "ks.vladimir@gmail.com"
+msgstr "ks.vladimir@gmail.com"
+
+#: step/main.cc:66
+#, kde-format
+msgid "Code contributions"
+msgstr "Codebijdragen"
+
+#: step/main.cc:67
+#, kde-format
+msgid "cniehaus@kde.org"
+msgstr "cniehaus@kde.org"
+
+#: step/main.cc:74
+#, kde-format
+msgid "Document to open"
+msgstr "Te openen document"
+
+#: step/mainwindow.cc:155
+#, kde-format
+msgid "&Open Tutorial..."
+msgstr "Een les &openen..."
+
+#: step/mainwindow.cc:160
+#, kde-format
+msgid "&Open Example..."
+msgstr "Voorbeeld &openen..."
+
+#: step/mainwindow.cc:165
+#, kde-format
+msgid "Open Down&loaded Example..."
+msgstr "Gedown&load voorbeeld openen..."
+
+#: step/mainwindow.cc:170
+#, kde-format
+msgid "Share C&urrent Experiment..."
+msgstr "H&uidig experiment delen..."
+
+#: step/mainwindow.cc:173
+#, kde-format
+msgid "&Download New Experiments..."
+msgstr "Nieuwe experimenten &downloaden..."
+
+#: step/mainwindow.cc:180
+#, kde-format
+msgid "Redo"
+msgstr "Opnieuw doen"
+
+#: step/mainwindow.cc:180
+#, kde-format
+msgid "Undo"
+msgstr "Ongedaan maken"
+
+#: step/mainwindow.cc:202
+#, kde-format
+msgid "&Delete"
+msgstr "Verwij&deren"
+
+#: step/mainwindow.cc:212
+#, kde-format
+msgid "&Run"
+msgstr "Uitvoe&ren"
+
+#: step/mainwindow.cc:217
+#, kde-format
+msgid "Execute the program"
+msgstr "Het programma uitvoeren"
+
+#: step/mainwindow.cc:218
+#, kde-format
+msgid "Run: Execute the program"
+msgstr "Uitvoeren: Voer dit programma uit"
+
+#: step/mainwindow.cc:220
+#, kde-format
+msgctxt "@option:radio"
+msgid "1x Speed"
+msgstr "Snelheid: 1x"
+
+#: step/mainwindow.cc:228
+#, kde-format
+msgctxt "@option:radio choose the slow speed"
+msgid "2x Speed"
+msgstr "Snelheid: 2x"
+
+#: step/mainwindow.cc:235
+#, kde-format
+msgctxt "@option:radio"
+msgid "4x Speed"
+msgstr "Snelheid: 4x"
+
+#: step/mainwindow.cc:242
+#, kde-format
+msgctxt "@option:radio"
+msgid "8x Speed"
+msgstr "Snelheid: 8x"
+
+#: step/mainwindow.cc:249
+#, kde-format
+msgctxt "@option:radio"
+msgid "16x Speed"
+msgstr "Snelheid: 16x"
+
+#: step/mainwindow.cc:279
+#, kde-format
+msgctxt "filename"
+msgid "untitled.step"
+msgstr "naamloos.step"
+
+#: step/mainwindow.cc:305
+#, kde-format
+msgid "<new file>"
+msgstr "<nieuw bestand>"
+
+#: step/mainwindow.cc:319
+#, kde-format
+msgctxt "@title:window"
+msgid "Open Step File"
+msgstr "Step-bestand openen"
+
+#: step/mainwindow.cc:319 step/mainwindow.cc:349
+#, kde-format
+msgid "Step files (*.step)"
+msgstr "Step-bestanden (*.step)"
+
+#: step/mainwindow.cc:329
+#, kde-format
+msgid "Cannot parse file '%1': %2"
+msgstr "Kan het bestand '%1' niet laden: %2"
+
+#: step/mainwindow.cc:338
+#, kde-format
+msgid "<open file: %1>"
+msgstr "<open bestand: %1>"
+
+#: step/mainwindow.cc:349
+#, kde-format
+msgctxt "@title:window"
+msgid "Save Step File"
+msgstr "Step-bestand opslaan"
+
+#: step/mainwindow.cc:365
+#, kde-format
+msgid "Cannot open file '%1'"
+msgstr "Kan het bestand '%1' niet openen"
+
+#: step/mainwindow.cc:371
+#, kde-format
+msgid "Cannot save file '%1': %2"
+msgstr "Het bestand '%1' kon niet worden opgeslagen: %2"
+
+#: step/mainwindow.cc:408
+#, kde-format
+msgid ""
+"The experiment has been modified.\n"
+"Do you want to save your changes?"
+msgstr ""
+"Het experiment is gewijzigd.\n"
+"Wilt u uw wijzigingen opslaan?"
+
+#: step/mainwindow.cc:456
+#, kde-format
+msgid "Uploading is still not implemented in kdelibs."
+msgstr "Uploaden is nog niet geïmplementeerd in kdelibs."
+
+#: step/mainwindow.cc:457
+#, kde-format
+msgid "Sorry - Step"
+msgstr "Sorry - Step"
+
+#: step/mainwindow.cc:484
+#, kde-format
+msgid "&Stop"
+msgstr "&Stoppen"
+
+#: step/mainwindow.cc:494
+#, kde-format
+msgid "&Simulate"
+msgstr "&Simuleren"
+
+#: step/mainwindow.cc:499
+#, kde-format
+msgid ""
+"Cannot finish this step because local error is greater than local "
+"tolerance.\n"
+"Please check solver settings and try again."
+msgstr ""
+"Deze stap kon niet worden beëindigd vanwege een een te grote locale fout.\n"
+"Controleer de oplossingsinstellingen en probeer opnieuw."
+
+#: step/mainwindow.cc:504
+#, kde-format
+msgid ""
+"Cannot finish this step because there are collisions which cannot be "
+"resolved automatically.\n"
+"Please move colliding objects apart and try again."
+msgstr ""
+"Deze stap kan niet worden beëindigd omdat enkele botsingen niet automatisch "
+"kunnen worden opgelost.\n"
+"Haal de botsende objecten uit elkaar en probeer opnieuw."
+
+#: step/mainwindow.cc:508
+#, kde-format
+msgid "Cannot finish this step because of an unknown error."
+msgstr "Deze stap kon niet worden beëindigd vanwege een onbekende fout."
+
+#: step/mainwindow.cc:541
+#, kde-format
+msgid "&Undo"
+msgstr "O&ngedaan maken"
+
+#: step/mainwindow.cc:542
+#, kde-format
+msgid "&Undo: %1"
+msgstr "%1 o&ngedaan maken"
+
+#: step/mainwindow.cc:547
+#, kde-format
+msgid "Re&do"
+msgstr "Opnieuw &doen"
+
+#: step/mainwindow.cc:548
+#, kde-format
+msgid "Re&do: %1"
+msgstr "%1 opnieuw &doen"
+
+#: step/mainwindow.cc:579
+#, kde-format
+msgid "General"
+msgstr "Algemeen"
+
+#: step/motorgraphics.cc:112 step/motorgraphics.cc:290
+#: step/stepgraphicsitem.cc:206 step/stepgraphicsitem.cc:218
+#, kde-format
+msgid "Move %1"
+msgstr "%1 verplaatsen"
+
+#: step/polygongraphics.cc:161
+#, kde-format
+msgid "Press left mouse button to position a center of a %1"
+msgstr "Druk de linkermuisknop in om het midden van een %1 te positioneren."
+
+#: step/polygongraphics.cc:182
+#, kde-format
+msgid "Move mouse and release left mouse button to define a radius of the %1"
+msgstr ""
+"Beweeg de muis en laat de linkermuisknop vrij om de straal van een %1 in te "
+"stellen"
+
+#: step/polygongraphics.cc:295
+#, kde-format
+msgid ""
+"Press left mouse button to position\n"
+"top left corner of a %1"
+msgstr ""
+"Druk de linkermuisknop in om\n"
+"de linkerbovenhoek van een %1 te positioneren"
+
+#: step/polygongraphics.cc:317
+#, kde-format
+msgid ""
+"Move mouse and release left mouse button to position\n"
+"bottom right corner of the %1"
+msgstr ""
+"Beweeg de muis en laat de linkermuisknop los om\n"
+"de rechterbenedenhoek van de %1 te positioneren"
+
+#: step/polygongraphics.cc:440
+#, kde-format
+msgid "Click on the scene to create a first vertex of %1"
+msgstr "Klik op het werkvlak om het eerste hoekpunt van %1 aan te maken"
+
+#: step/polygongraphics.cc:488
+#, kde-format
+msgid "Click on the scene to add new vertex or press Enter to finish"
+msgstr ""
+"Klik op het werkvlak om een nieuw hoekpunt toe te voegen en druk op enter om "
+"te bevestigen."
+
+#: step/propertiesbrowser.cc:279
+#, kde-format
+msgid "Change solver type"
+msgstr "Oplossingsmethode wijzigen"
+
+#: step/propertiesbrowser.cc:294 step/propertiesbrowser.cc:300
+#: step/propertiesbrowser.cc:307 step/propertiesbrowser.cc:316
+#: step/propertiesbrowser.cc:400 step/propertiesbrowser.cc:417
+#: step/stepgraphicsitem.cc:401 step/stepgraphicsitem.cc:546
+#, kde-format
+msgid "Change %1.%2"
+msgstr "%1.%2 wijzigen"
+
+#: step/propertiesbrowser.cc:314
+#, kde-format
+msgid "Rename %1 to %2"
+msgstr "%1 naar %2 hernoemen"
+
+#: step/propertiesbrowser.cc:464
+#, kde-format
+msgid "Property"
+msgstr "Eigenschap"
+
+#: step/propertiesbrowser.cc:465
+#, kde-format
+msgid "Value"
+msgstr "Waarde"
+
+#: step/propertiesbrowser.cc:530
+#, kde-format
+msgid "false"
+msgstr "onwaar"
+
+#: step/propertiesbrowser.cc:531
+#, kde-format
+msgid "true"
+msgstr "waar"
+
+#: step/propertiesbrowser.cc:675
+#, kde-format
+msgid "Properties"
+msgstr "Eigenschappen"
+
+#: step/softbodygraphics.cc:49 step/worldgraphics.cc:62
+#: step/worldgraphics.cc:106
+#, kde-format
+msgid "Click on the scene to create a %1"
+msgstr "Klik op het werkvlak om een %1 aan te maken"
+
+#: step/softbodygraphics.cc:66
+#, kde-format
+msgid "Please fill in the parameters for %1"
+msgstr "Voer a.u.b. de parameters voor %1 in"
+
+#: step/softbodygraphics.cc:126
+#, kde-format
+msgctxt "@title:window"
+msgid "Create Soft Body Items"
+msgstr "Zachte lichamen aanmaken"
+
+#: step/softbodygraphics.cc:187
+#, kde-format
+msgid "Create items for %1"
+msgstr "Items aanmaken voor %1"
+
+#. i18n: ectx: label, entry (showCreationTips), group (General)
+#. i18n: ectx: whatsthis, entry (showCreationTips), group (General)
+#: step/step.kcfg:9 step/step.kcfg:10
+#, kde-format
+msgid "Show tips when creating items"
+msgstr "Tips tonen bij het aanmaken van objecten"
+
+#. i18n: ectx: label, entry (showAxes), group (General)
+#. i18n: ectx: whatsthis, entry (showAxes), group (General)
+#: step/step.kcfg:14 step/step.kcfg:15
+#, kde-format
+msgid "Show axes on the scene"
+msgstr "Assen op het werkvlak tonen"
+
+#. i18n: ectx: label, entry (floatDisplayPrecision), group (General)
+#. i18n: ectx: whatsthis, entry (floatDisplayPrecision), group (General)
+#: step/step.kcfg:19 step/step.kcfg:20
+#, kde-format
+msgid "Display precision of double numbers"
+msgstr "Weergaveprecisie van kommagetallen"
+
+#. i18n: ectx: label, entry (enableOpenGL), group (General)
+#. i18n: ectx: whatsthis, entry (enableOpenGL), group (General)
+#: step/step.kcfg:26 step/step.kcfg:27
+#, kde-format
+msgid "Use OpenGL to accelerate drawing whenever possible"
+msgstr "OpenGL gebruiken om weergave te versnellen waar mogelijk"
+
+#. i18n: ectx: label, entry (wikiExternal), group (InfoBrowser)
+#. i18n: ectx: whatsthis, entry (wikiExternal), group (InfoBrowser)
+#: step/step.kcfg:33 step/step.kcfg:34
+#, kde-format
+msgid "Browse wikipedia in external browser"
+msgstr "Wikipedia bekijken in een externe browser"
+
+#. i18n: ectx: label, entry (showButtonText), group (ItemPalette)
+#. i18n: ectx: whatsthis, entry (showButtonText), group (ItemPalette)
+#: step/step.kcfg:40 step/step.kcfg:41
+#, kde-format
+msgid "Show text beside icon"
+msgstr "Tekst naast pictogram tonen"
+
+#: step/stepgraphicsitem.cc:218
+#, kde-format
+msgid "several objects"
+msgstr "verschillende objecten"
+
+#: step/stepgraphicsitem.cc:402 step/stepgraphicsitem.cc:548
+#, kde-format
+msgid "Change %1"
+msgstr "%1 wijzigen"
+
+#. i18n: ectx: ToolBar (mainToolBar)
+#: step/stepui.rc:7
+#, kde-format
+msgid "Main Toolbar"
+msgstr "Hoofdwerkbalk"
+
+#. i18n: ectx: ToolBar (simulationToolBar)
+#: step/stepui.rc:12
+#, kde-format
+msgid "Simulation Toolbar"
+msgstr "Simulatiewerkbalk"
+
+#. i18n: ectx: Menu (examples)
+#: step/stepui.rc:21
+#, kde-format
+msgid "&Examples"
+msgstr "&Voorbeelden"
+
+#. i18n: ectx: Menu (simulation)
+#: step/stepui.rc:32
+#, kde-format
+msgid "&Simulation"
+msgstr "&Simulatie"
+
+#. i18n: ectx: Menu (speed)
+#: step/stepui.rc:35
+#, kde-format
+msgid "&Run Speed"
+msgstr "&Uitvoersnelheid"
+
+#. i18n: ectx: Menu (panels)
+#: step/stepui.rc:45
+#, kde-format
+msgid "&Panels"
+msgstr "&Panelen"
+
+#: step/toolgraphics.cc:267
+#, kde-format
+msgid "Click to enter text"
+msgstr "Klik om tekst in te voeren"
+
+#: step/toolgraphics.cc:392
+#, kde-format
+msgid "&Color"
+msgstr "&Kleur"
+
+#: step/toolgraphics.cc:394
+#, kde-format
+msgid "&Bold"
+msgstr "&Vet"
+
+#: step/toolgraphics.cc:396
+#, kde-format
+msgid "&Italic"
+msgstr "&Cursief"
+
+#: step/toolgraphics.cc:398
+#, kde-format
+msgid "&Underline"
+msgstr "Onderli&jnen"
+
+#: step/toolgraphics.cc:401
+#, kde-format
+msgid "Align &Left"
+msgstr "&Links uitlijnen"
+
+#: step/toolgraphics.cc:403
+#, kde-format
+msgid "Align C&enter"
+msgstr "C&entreren"
+
+#: step/toolgraphics.cc:405
+#, kde-format
+msgid "Align &Right"
+msgstr "&Rechts uitlijnen"
+
+#: step/toolgraphics.cc:407
+#, kde-format
+msgid "Align &Justify"
+msgstr "Uit&vullen"
+
+#: step/toolgraphics.cc:410
+#, kde-format
+msgid "&Align"
+msgstr "Ui&tlijnen"
+
+#: step/toolgraphics.cc:419
+#, kde-format
+msgid "&Font"
+msgstr "Lettert&ype"
+
+#: step/toolgraphics.cc:420
+#, kde-format
+msgid "Font &Size"
+msgstr "Teken&grootte"
+
+#: step/toolgraphics.cc:422
+#, kde-format
+msgid "Insert &Image..."
+msgstr "Afbeelding &invoegen..."
+
+#: step/toolgraphics.cc:427
+#, kde-format
+msgid "Insert &Formula..."
+msgstr "&Formule invoegen..."
+
+#: step/toolgraphics.cc:538
+#, kde-format
+msgid "Edit %1"
+msgstr "%1 bewerken"
+
+#: step/toolgraphics.cc:643
+#, kde-format
+msgctxt "@title:window"
+msgid "Open Image File"
+msgstr "Afbeeldingsbestand openen"
+
+#: step/toolgraphics.cc:643
+#, kde-format
+msgid "Images (*.png *.jpg *.jpeg)"
+msgstr "Afbeeldingen (*.png *.jpg *.jpeg)"
+
+#: step/toolgraphics.cc:661
+#, kde-format
+msgid "Cannot parse file '%1'"
+msgstr "Kan het bestand '%1' niet laden"
+
+#: step/toolgraphics.cc:705
+#, kde-format
+msgid ""
+"Cannot find latex installation. You need 'latex', 'dvips' and 'gs' "
+"executables installed and accessible from $PATH"
+msgstr ""
+"Er werd geen latex-installatie gevonden. U moet de uitvoerbare bestanden "
+"'latex', 'dvips' en 'gs' geïnstalleerd hebben, bereikbaar vanaf $PATH"
+
+#: step/toolgraphics.cc:711
+#, kde-format
+msgctxt "@title:window"
+msgid "LaTex Formula - Step"
+msgstr "LaTex-formule - Step"
+
+#: step/toolgraphics.cc:712
+#, kde-format
+msgid "Enter LaTeX formula string:"
+msgstr "Voer een LaTeX-formulestring in:"
+
+#: step/toolgraphics.cc:721
+#, kde-format
+msgid "Cannot compile LaTeX formula: %1"
+msgstr "De LaTeX-formule %1 kon niet worden gecompileerd"
+
+#: step/toolgraphics.cc:727
+#, kde-format
+msgid "Cannot parse result image"
+msgstr "De resultaatafbeelding kon niet worden gelezen"
+
+#: step/toolgraphics.cc:788
+#, kde-format
+msgid "Object name"
+msgstr "Objectnaam"
+
+#: step/toolgraphics.cc:793
+#, kde-format
+msgid "Property name"
+msgstr "Eigenschapnaam"
+
+#: step/toolgraphics.cc:799
+#, kde-format
+msgid "Vector index"
+msgstr "Vectorindex"
+
+#: step/toolgraphics.cc:988 step/toolgraphics.cc:996 step/toolgraphics.cc:1489
+#, kde-format
+msgid "%1.%2"
+msgstr "%1.%2"
+
+#: step/toolgraphics.cc:989 step/toolgraphics.cc:997 step/toolgraphics.cc:1490
+#, kde-format
+msgid "[%1]"
+msgstr "[%1]"
+
+#: step/toolgraphics.cc:993 step/toolgraphics.cc:1001 step/toolgraphics.cc:1494
+#, kde-format
+msgid "[not configured]"
+msgstr "[niet ingesteld]"
+
+#: step/toolgraphics.cc:1089
+#, kde-format
+msgid "Clear Graph"
+msgstr "Grafiek wissen"
+
+#: step/toolgraphics.cc:1090
+#, kde-format
+msgid "Configure Graph..."
+msgstr "Grafiek instellen..."
+
+#: step/toolgraphics.cc:1108
+#, kde-format
+msgctxt "@title:window"
+msgid "Configure Graph"
+msgstr "Grafiek instellen"
+
+#: step/toolgraphics.cc:1184 step/toolgraphics.cc:1383
+#: step/toolgraphics.cc:1721
+#, kde-format
+msgid "Edit properties of %1"
+msgstr "Bewerk de eigenschappen van %1"
+
+#: step/toolgraphics.cc:1236
+#, kde-format
+msgid "Clear graph %1"
+msgstr "Grafiek %1 wissen"
+
+#: step/toolgraphics.cc:1317
+#, kde-format
+msgid "Configure Meter..."
+msgstr "Meter instellen..."
+
+#: step/toolgraphics.cc:1335
+#, kde-format
+msgctxt "@title:window"
+msgid "Configure Meter"
+msgstr "Meter instellen"
+
+#: step/toolgraphics.cc:1432 step/toolgraphics.cc:1629
+#, kde-format
+msgid "Increase Value"
+msgstr "Waarde vergroten"
+
+#: step/toolgraphics.cc:1433 step/toolgraphics.cc:1630
+#, kde-format
+msgid "Decrease Value"
+msgstr "Waarde verminderen"
+
+#: step/toolgraphics.cc:1463 step/toolgraphics.cc:1758
+#, kde-format
+msgid "Decrease controller %1"
+msgstr "Regeling %1 verminderen"
+
+#: step/toolgraphics.cc:1472 step/toolgraphics.cc:1767
+#, kde-format
+msgid "Increase controller %1"
+msgstr "Regeling %1 vermeerderen"
+
+#: step/toolgraphics.cc:1606
+#, kde-format
+msgid "Change controller %1"
+msgstr "Regeling %1 wijzigen"
+
+#: step/toolgraphics.cc:1632
+#, kde-format
+msgid "Configure Controller..."
+msgstr "Regeling instellen..."
+
+#: step/toolgraphics.cc:1650
+#, kde-format
+msgctxt "@title:window"
+msgid "Configure Controller"
+msgstr "Regeling instellen"
+
+#: step/toolgraphics.cc:1911
+#, kde-format
+msgid "Clear Trace"
+msgstr "Spoor wissen"
+
+#: step/toolgraphics.cc:1920
+#, kde-format
+msgid "Clear tracer %1"
+msgstr "Spoor %1 wissen"
+
+#: step/undobrowser.cc:30
+#, kde-format
+msgid "Undo History"
+msgstr "Geschiedenis wissen"
+
+#: step/worldbrowser.cc:62
+#, kde-format
+msgctxt "Object list"
+msgid "World"
+msgstr "Wereld"
+
+#: step/worldgraphics.cc:102
+#, kde-format
+msgid ""
+"Press left mouse button to position first end of a %1\n"
+"then drag and release it to position the second end"
+msgstr ""
+"Klik met de linker muisknop om het eerste uiteinde van een %1 te "
+"positioneren\n"
+"u kunt daarna het tweede uiteinde positioneren door slepen en neerzetten"
+
+#: step/worldgraphics.cc:130
+#, kde-format
+msgid "Release left mouse button to position second end of the %1"
+msgstr ""
+"Laat de linkermuisknop los om het tweede einde van de %1 te positioneren"
+
+#: step/worldmodel.cc:641
+#, kde-format
+msgid "Delete %1"
+msgstr "%1 verwijderen"
+
+#: step/worldmodel.cc:642
+#, kde-format
+msgid "Delete several items"
+msgstr "Meerdere items verwijderen"
+
+#: step/worldmodel.cc:713 step/worldmodel.cc:720
+#, kde-format
+msgid "<no object>"
+msgstr "<geen object>"
+
+#: step/worldmodel.cc:715
+#, kde-format
+msgid "<unnamed>"
+msgstr "<onbenoemd>"
+
+#: step/worldmodel.cc:721
+#, kde-format
+msgid "%1: %2"
+msgstr "%1: %2"
+
+#: step/worldmodel.cc:793
+#, kde-format
+msgid "<nobr><h4><u>%1</u></h4></nobr>"
+msgstr "<nobr><h4><u>%1</u></h4></nobr>"
+
+#: step/worldmodel.cc:821
+#, kde-format
+msgid "<tr><td>%1&nbsp;&nbsp;</td><td>%2</td></tr>"
+msgstr "<tr><td>%1&nbsp;&nbsp;</td><td>%2</td></tr>"
+
+#: step/worldmodel.cc:1019
+#, kde-format
+msgid "Simulate %1 → %2"
+msgstr "%1 → %2 simuleren"
+
+#: step/worldmodel.cc:1072
+#, kde-format
+msgid "Cut %1"
+msgstr "%1 knippen"
+
+#: step/worldmodel.cc:1073
+#, kde-format
+msgid "Cut several items"
+msgstr "Meerdere items knippen"
+
+#: step/worldmodel.cc:1095
+#, kde-format
+msgid "Pasted %1"
+msgstr "%1 geplakt"
+
+#: step/worldmodel.cc:1096
+#, kde-format
+msgid "Pasted several items"
+msgstr "Meerdere items geplakt"
+
+#: step/worldscene.cc:260
+#, kde-format
+msgid "Objects under mouse:"
+msgstr "Objecten onder de muis:"
+
+#: step/worldscene.cc:265
+#, kde-format
+msgid "... (1 more item)"
+msgid_plural "... (%1 more items)"
+msgstr[0] "... (1 extra item)"
+msgstr[1] "... (%1 extra items)"
+
+#~ msgid "Wikipedia"
+#~ msgstr "Wikipedia"
+
+#~ msgid "Fetching Wikipedia Information..."
+#~ msgstr "Wikipedia-informatie ophalen..."
+
+#~ msgid "Wikipedia error"
+#~ msgstr "Wikipedia-fout"
+
+#~ msgid ""
+#~ "Information could not be retrieved because the server was not reachable."
+#~ msgstr ""
+#~ "De informatie kon niet worden opgehaald omdat de server niet bereikbaar "
+#~ "was."
+
+#~ msgid "Wikipedia Information"
+#~ msgstr "Wikipedia-informatie"
+
+#~ msgid "Wikipedia Other Languages"
+#~ msgstr "Wikipedia in andere talen"
+
+#~ msgid "The file \"%1\" already exists. Do you wish to overwrite it?"
+#~ msgstr "Het bestand \"%1\" bestaat al. Wilt u het overschrijven?"
+
+#~ msgid "Vladimir Kuznetsov"
+#~ msgstr "Vladimir Kuznetsov"
+
+#~ msgid "Carsten Niehaus"
+#~ msgstr "Carsten Niehaus"
+
+#~ msgid "Create items..."
+#~ msgstr "Items aanmaken..."
+
+#~ msgid "Wrong ID attribute value for %1"
+#~ msgstr "Foute ID-attribuutwaarde voor %1"
+
+#~ msgid "Non-unique ID attribute value for %1"
+#~ msgstr "Geen unieke ID-attribuutwaarde voor %1"
+
+#~ msgid "The file is not a StepCoreXML file."
+#~ msgstr "Het bestand is geen StepCoreXML-bestand."
+
+#~ msgid "Unknown item type \"%1\""
+#~ msgstr "Onbekend itemtype \"%1\""
+
+#~ msgid "Unknown solver type \"%1\""
+#~ msgstr "Onbekende oplossingsmethode \"%1\""
+
+#~ msgid "Unknown collisionSolver type \"%1\""
+#~ msgstr "Onbekende oplossingsmethode voor botsingen \"%1\""
+
+#~ msgid "Unknown constraintSolver type \"%1\""
+#~ msgstr "Onbekende oplossingsmethode voor randvoorwaarden \"%1\""
+
+#~ msgid "Item \"%1\" has no stored property named \"%2\""
+#~ msgstr "Het item \"%1\" heeft geen opgeslagen eigenschap met de naam \"%2\""
+
+#~ msgid "Unexpected tag \"%1\""
+#~ msgstr "Onverwachte tag \"%1\""
+
+#~ msgid "Property \"%1\" of \"%2\" has illegal value"
+#~ msgstr "De eigenschap \"%1\" van \"%2\" heeft een ongeldige waarde"
+
+#~ msgid "\"world\" tag not found"
+#~ msgstr "De tag \"world\" werd niet gevonden"
+
+#~ msgid "Error parsing file at line %1: %2"
+#~ msgstr "Fout bij het laden van het bestand op regel %1: %2"
+
+#, fuzzy
+#~| msgid "File is not writable."
+#~ msgid "File is not writeble."
+#~ msgstr "Het bestand is niet beschrijfbaar."
+
+#~ msgctxt "ObjectClass"
+#~ msgid "RigidBody"
+#~ msgstr "StarLichaam"
+
+#~ msgid "Generic rigid body"
+#~ msgstr "Generiek star lichaam"
+
+#~ msgctxt "PropertyName"
+#~ msgid "position"
+#~ msgstr "positie"
+
+#~ msgctxt "Units"
+#~ msgid "m"
+#~ msgstr "m"
+
+#~ msgid "Position of the center of mass"
+#~ msgstr "Positie van het massamiddelpunt"
+
+#~ msgctxt "PropertyName"
+#~ msgid "angle"
+#~ msgstr "hoek"
+
+#~ msgctxt "Units"
+#~ msgid "rad"
+#~ msgstr "rad"
+
+#~ msgid "Rotation angle"
+#~ msgstr "Draaihoek"
+
+#~ msgctxt "PropertyName"
+#~ msgid "velocity"
+#~ msgstr "snelheid"
+
+#~ msgctxt "Units"
+#~ msgid "m/s"
+#~ msgstr "m/s"
+
+#~ msgid "Velocity of the center of mass"
+#~ msgstr "Snelheid van het massamiddelpunt"
+
+#~ msgctxt "PropertyName"
+#~ msgid "angularVelocity"
+#~ msgstr "hoekSnelheid"
+
+#~ msgctxt "Units"
+#~ msgid "rad/s"
+#~ msgstr "rad/s"
+
+#~ msgid "Angular velocity of the body"
+#~ msgstr "Hoeksnelheid van het lichaam"
+
+#~ msgctxt "PropertyName"
+#~ msgid "acceleration"
+#~ msgstr "versnelling"
+
+#~ msgctxt "Units"
+#~ msgid "m/s²"
+#~ msgstr "m/s²"
+
+#~ msgid "Acceleration of the center of mass"
+#~ msgstr "Versnelling van het massamiddelpunt"
+
+#~ msgctxt "PropertyName"
+#~ msgid "angularAcceleration"
+#~ msgstr "hoekVersnelling"
+
+#~ msgctxt "Units"
+#~ msgid "rad/s²"
+#~ msgstr "rad/s²"
+
+#~ msgid "Angular acceleration of the body"
+#~ msgstr "Hoekversnelling van het lichaam"
+
+#~ msgctxt "PropertyName"
+#~ msgid "force"
+#~ msgstr "kracht"
+
+#~ msgctxt "Units"
+#~ msgid "N"
+#~ msgstr "N"
+
+#~ msgid "Force that acts upon the body"
+#~ msgstr "Kracht die op het lichaam wordt uitgeoefend"
+
+#~ msgctxt "PropertyName"
+#~ msgid "torque"
+#~ msgstr "koppel"
+
+#~ msgctxt "Units"
+#~ msgid "N m"
+#~ msgstr "N m"
+
+#~ msgid "Torque that acts upon the body"
+#~ msgstr "Koppel die op het lichaam aangrijpt"
+
+#~ msgctxt "PropertyName"
+#~ msgid "mass"
+#~ msgstr "massa"
+
+#~ msgctxt "Units"
+#~ msgid "kg"
+#~ msgstr "kg"
+
+#~ msgid "Total mass of the body"
+#~ msgstr "Totale massa van het lichaam"
+
+#~ msgctxt "PropertyName"
+#~ msgid "inertia"
+#~ msgstr "traagheid"
+
+#~ msgctxt "Units"
+#~ msgid "kg m²"
+#~ msgstr "kg m²"
+
+#~ msgid "Inertia \"tensor\" of the body"
+#~ msgstr "Traagheids\"tensor\" van het lichaam"
+
+#~ msgctxt "PropertyName"
+#~ msgid "momentum"
+#~ msgstr "impuls"
+
+#~ msgctxt "Units"
+#~ msgid "kg m/s"
+#~ msgstr "kg m/s"
+
+#~ msgid "momentum"
+#~ msgstr "impuls"
+
+#~ msgctxt "PropertyName"
+#~ msgid "angularMomentum"
+#~ msgstr "impulsMoment"
+
+#~ msgctxt "Units"
+#~ msgid "kg m² rad/s"
+#~ msgstr "kg m² rad/s"
+
+#~ msgid "angular momentum"
+#~ msgstr "impulsmoment"
+
+#~ msgctxt "PropertyName"
+#~ msgid "kineticEnergy"
+#~ msgstr "kinetischeEnergie"
+
+#~ msgctxt "Units"
+#~ msgid "J"
+#~ msgstr "J"
+
+#~ msgid "kinetic energy"
+#~ msgstr "kinetische energie"
+
+#~ msgctxt "ObjectClass"
+#~ msgid "RigidBodyErrors"
+#~ msgstr "StarLichaamFouten"
+
+#~ msgid "Errors class for RigidBody"
+#~ msgstr "Foutklasse voor het star lichaam"
+
+#~ msgctxt "PropertyName"
+#~ msgid "positionVariance"
+#~ msgstr "positieVariantie"
+
+#~ msgid "position variance"
+#~ msgstr "positievariantie"
+
+#~ msgctxt "PropertyName"
+#~ msgid "angleVariance"
+#~ msgstr "hoekVariantie"
+
+#~ msgid "angle variance"
+#~ msgstr "hoekvariantie"
+
+#~ msgctxt "PropertyName"
+#~ msgid "velocityVariance"
+#~ msgstr "snelheidsVariantie"
+
+#~ msgid "velocity variance"
+#~ msgstr "snelheidsvariantie"
+
+#~ msgctxt "PropertyName"
+#~ msgid "angularVelocityVariance"
+#~ msgstr "hoekSnelheidVariantie"
+
+#~ msgid "angularVelocity variance"
+#~ msgstr "hoekSnelheidvariantie"
+
+#~ msgctxt "PropertyName"
+#~ msgid "accelerationVariance"
+#~ msgstr "versnellingsVariantie"
+
+#~ msgid "acceleration variance"
+#~ msgstr "versnellingsvariantie"
+
+#~ msgctxt "PropertyName"
+#~ msgid "angularAccelerationVariance"
+#~ msgstr "hoekVersnellingsVariantie"
+
+#~ msgid "angularAcceleration variance"
+#~ msgstr "variantie van hoekVersnelling"
+
+#~ msgctxt "PropertyName"
+#~ msgid "forceVariance"
+#~ msgstr "krachtVariantie"
+
+#~ msgid "force variance"
+#~ msgstr "krachtvariantie"
+
+#~ msgctxt "PropertyName"
+#~ msgid "torqueVariance"
+#~ msgstr "koppelVariantie"
+
+#~ msgid "torque variance"
+#~ msgstr "koppelvariantie"
+
+#~ msgctxt "PropertyName"
+#~ msgid "massVariance"
+#~ msgstr "massaVariantie"
+
+#~ msgid "mass variance"
+#~ msgstr "massavariantie"
+
+#~ msgctxt "PropertyName"
+#~ msgid "inertiaVariance"
+#~ msgstr "traagheidsVariantie"
+
+#~ msgid "inertia variance"
+#~ msgstr "traagheidsvariantie"
+
+#~ msgctxt "PropertyName"
+#~ msgid "momentumVariance"
+#~ msgstr "impulsVariantie"
+
+#~ msgid "momentum variance"
+#~ msgstr "impulsvariantie"
+
+#~ msgctxt "PropertyName"
+#~ msgid "angularMomentumVariance"
+#~ msgstr "hoekImpulsVariantie"
+
+#~ msgid "angular momentum variance"
+#~ msgstr "variantie van hoekimpuls"
+
+#~ msgctxt "PropertyName"
+#~ msgid "kineticEnergyVariance"
+#~ msgstr "kinetischeEnergieVariantie"
+
+#~ msgid "kinetic energy variance"
+#~ msgstr "variantie van kinetische energie"
+
+#~ msgctxt "ObjectClass"
+#~ msgid "Disk"
+#~ msgstr "Schijf"
+
+#~ msgid "Rigid disk"
+#~ msgstr "Stijve schijf"
+
+#~ msgctxt "PropertyName"
+#~ msgid "radius"
+#~ msgstr "straal"
+
+#~ msgid "Radius of the disk"
+#~ msgstr "Straal van de schijf"
+
+#~ msgctxt "ObjectClass"
+#~ msgid "BasePolygon"
+#~ msgstr "BasaleVeelhoek"
+
+#~ msgid "Base polygon body"
+#~ msgstr "Basaal veelhoekig lichaam"
+
+#~ msgctxt "ObjectClass"
+#~ msgid "Box"
+#~ msgstr "Vak"
+
+#~ msgid "Rigid box"
+#~ msgstr "Stijve doos"
+
+#~ msgctxt "PropertyName"
+#~ msgid "size"
+#~ msgstr "grootte"
+
+#~ msgid "Size of the box"
+#~ msgstr "Grootte van het vak"
+
+#~ msgctxt "ObjectClass"
+#~ msgid "Polygon"
+#~ msgstr "Veelhoek"
+
+#~ msgid "Rigid polygon body"
+#~ msgstr "Stijf veelhoekig lichaam"
+
+#~ msgctxt "PropertyName"
+#~ msgid "vertexes"
+#~ msgstr "hoekpunten"
+
+#~ msgid "Vertex list"
+#~ msgstr "Lijst van hoekpunten"
+
+#~ msgctxt "ObjectClass"
+#~ msgid "Plane"
+#~ msgstr "Vlak"
+
+#~ msgid "Unmovable rigid plane"
+#~ msgstr "Niet beweegbaar stijf vlak"
+
+#~ msgctxt "PropertyName"
+#~ msgid "point1"
+#~ msgstr "punt1"
+
+#~ msgid "First point which defines the plane"
+#~ msgstr "Eerste punt dat het vlak definieert"
+
+#~ msgctxt "PropertyName"
+#~ msgid "point2"
+#~ msgstr "punt2"
+
+#~ msgid "Second point which defines the plane"
+#~ msgstr "Tweede punt dat het vlak definieert"
+
+#~ msgctxt "ObjectClass"
+#~ msgid "SoftBodyParticle"
+#~ msgstr "VervormbaarDeeltje"
+
+#~ msgid "SoftBody particle"
+#~ msgstr "Vervormbaar deeltje"
+
+#~ msgctxt "ObjectClass"
+#~ msgid "SoftBodySpring"
+#~ msgstr "VervormbareVeer"
+
+#~ msgid "SoftBody spring"
+#~ msgstr "Vervormbare veer"
+
+#~ msgctxt "ObjectClass"
+#~ msgid "SoftBody"
+#~ msgstr "Vervormbaar"
+
+#~ msgid "Deformable SoftBody"
+#~ msgstr "Vervormbaar deeltje"
+
+#~ msgctxt "PropertyName"
+#~ msgid "showInternalItems"
+#~ msgstr "interneItemsTonen"
+
+#~ msgid "Show internal items"
+#~ msgstr "Interne items tonen"
+
+#~ msgctxt "Units"
+#~ msgid "kg m²/s"
+#~ msgstr "kg m²/s"
+
+#~ msgid "Angular momentum of the body"
+#~ msgstr "Impulsmoment van het lichaam"
+
+#~ msgctxt "PropertyName"
+#~ msgid "borderParticleNames"
+#~ msgstr "grensDeeltjeNamen"
+
+#~ msgid "Border particle names (temporal property)"
+#~ msgstr "Namen van grensdeeltjes (tijdelijke eigenschap)"
+
+#~ msgctxt "ObjectClass"
+#~ msgid "Solver"
+#~ msgstr "Oplosser"
+
+#~ msgid "Solver"
+#~ msgstr "Oplosser"
+
+#~ msgctxt "PropertyName"
+#~ msgid "solverType"
+#~ msgstr "oplossingsMethode"
+
+#~ msgid "Solver type"
+#~ msgstr "Oplossingsmethode"
+
+#~ msgctxt "PropertyName"
+#~ msgid "stepSize"
+#~ msgstr "stapGrootte"
+
+#~ msgctxt "Units"
+#~ msgid "s"
+#~ msgstr "s"
+
+#~ msgctxt "PropertyName"
+#~ msgid "toleranceAbs"
+#~ msgstr "tolerantieAbs"
+
+#~ msgid "Allowed absolute tolerance"
+#~ msgstr "Toegestane absolute tolerantie"
+
+#~ msgctxt "PropertyName"
+#~ msgid "toleranceRel"
+#~ msgstr "tolerantieRel"
+
+#~ msgid "Allowed relative tolerance"
+#~ msgstr "Toegestane relative tolerantie"
+
+#~ msgctxt "PropertyName"
+#~ msgid "dimension"
+#~ msgstr "dimensie"
+
+#~ msgid "Count of dynamic variables"
+#~ msgstr "Aantal dynamische variabelen"
+
+#~ msgctxt "PropertyName"
+#~ msgid "localError"
+#~ msgstr "lokaleFout"
+
+#~ msgid "Maximal local error during last step"
+#~ msgstr "Maximale lokale fout tijdens laatste stap"
+
+#~ msgctxt "PropertyName"
+#~ msgid "localErrorRatio"
+#~ msgstr "lokaleFoutRatio"
+
+#~ msgid "Maximal local error ratio during last step"
+#~ msgstr "Maximale lokale fout tijdens de laatste stap"
+
+#~ msgctxt "ObjectClass"
+#~ msgid "CollisionSolver"
+#~ msgstr "BotsingOplosser"
+
+#~ msgctxt "ObjectClass"
+#~ msgid "GJKCollisionSolver"
+#~ msgstr "GJKBotsingOplosser"
+
+#~ msgctxt "ObjectClass"
+#~ msgid "Particle"
+#~ msgstr "Deeltje"
+
+#~ msgid "Simple zero-size particle"
+#~ msgstr "Eenvoudig deeltje met grootte nul"
+
+#~ msgid "position"
+#~ msgstr "positie"
+
+#~ msgid "velocity"
+#~ msgstr "snelheid"
+
+#~ msgid "acceleration"
+#~ msgstr "versnelling"
+
+#~ msgid "force"
+#~ msgstr "kracht"
+
+#~ msgid "mass"
+#~ msgstr "massa"
+
+#~ msgctxt "ObjectClass"
+#~ msgid "ParticleErrors"
+#~ msgstr "DeeltjesFouten"
+
+#~ msgid "Errors class for Particle"
+#~ msgstr "Foutenklasse voor Deeltje"
+
+#~ msgctxt "ObjectClass"
+#~ msgid "ChargedParticle"
+#~ msgstr "GeladenDeeltje"
+
+#~ msgid "Charged zero-size particle"
+#~ msgstr "Geladen deeltje met grootte nul"
+
+#~ msgctxt "PropertyName"
+#~ msgid "charge"
+#~ msgstr "lading"
+
+#~ msgctxt "Units"
+#~ msgid "C"
+#~ msgstr "C"
+
+#~ msgid "charge"
+#~ msgstr "lading"
+
+#~ msgctxt "ObjectClass"
+#~ msgid "ChargedParticleErrors"
+#~ msgstr "GeladenDeeltjeFouten"
+
+#~ msgid "Errors class for ChargedParticle"
+#~ msgstr "Foutenklasse voor GeladenDeeltje"
+
+#~ msgctxt "PropertyName"
+#~ msgid "chargeVariance"
+#~ msgstr "ladingVariantie"
+
+#~ msgid "charge variance"
+#~ msgstr "variantie van de lading"
+
+#~ msgctxt "ObjectClass"
+#~ msgid "ConstraintSolver"
+#~ msgstr "OplossingsmethodeVoorRandvoorwaarden"
+
+#~ msgctxt "ObjectClass"
+#~ msgid "CGConstraintSolver"
+#~ msgstr "CGOplossingsmethodeVoorRandvoorwaarden"
+
+#~ msgctxt "ObjectClass"
+#~ msgid "GasParticle"
+#~ msgstr "GasDeeltje"
+
+#~ msgid "Gas particle"
+#~ msgstr "Gasdeeltje"
+
+#~ msgctxt "ObjectClass"
+#~ msgid "GasLJForce"
+#~ msgstr "GasLJKracht"
+
+#~ msgid "Lennard-Jones force"
+#~ msgstr "Potentieel van Lennard-Jones"
+
+#~ msgctxt "PropertyName"
+#~ msgid "depth"
+#~ msgstr "diepte"
+
+#~ msgid "Potential depth"
+#~ msgstr "Potentiële diepte"
+
+#~ msgctxt "PropertyName"
+#~ msgid "rmin"
+#~ msgstr "rmin"
+
+#~ msgid "Distance at which the force is zero"
+#~ msgstr "Afstand waarop de kracht nul is"
+
+#~ msgctxt "PropertyName"
+#~ msgid "cutoff"
+#~ msgstr "afsnijden"
+
+#~ msgid "Cut-off distance"
+#~ msgstr "Afsnijafstand"
+
+#~ msgctxt "ObjectClass"
+#~ msgid "GasLJForceErrors"
+#~ msgstr "GasLJKrachtFouten"
+
+#~ msgid "Errors class for GasLJForce"
+#~ msgstr "Foutenklasse voor GasLJKracht"
+
+#~ msgctxt "PropertyName"
+#~ msgid "depthVariance"
+#~ msgstr "diepteVariantie"
+
+#~ msgid "Potential depth variance"
+#~ msgstr "Potentiële dieptevariantie"
+
+#~ msgctxt "PropertyName"
+#~ msgid "rminVariance"
+#~ msgstr "rminVariantie"
+
+#~ msgid "Variance of the distance at which the force is zero"
+#~ msgstr "Variantie van de afstand waarop de kracht nul is"
+
+#~ msgctxt "ObjectClass"
+#~ msgid "Gas"
+#~ msgstr "Gas"
+
+#~| msgid "Particles mass:"
+#~ msgid "Particle gas"
+#~ msgstr "Deeltjesgas"
+
+#~ msgctxt "PropertyName"
+#~ msgid "measureRectCenter"
+#~ msgstr "meetRechthoekCentrum"
+
+#~ msgid "Center of the rect for measurements"
+#~ msgstr "Centrum van de rechthoek voor metingen"
+
+#~ msgctxt "PropertyName"
+#~ msgid "measureRectSize"
+#~ msgstr "meetRechthoekGrootte"
+
+#~ msgid "Size of the rect for measurements"
+#~ msgstr "Grootte van de rechthoek voor metingen"
+
+#~ msgctxt "PropertyName"
+#~ msgid "rectVolume"
+#~ msgstr "rechthoekVolume"
+
+#~ msgctxt "Units"
+#~ msgid "m²"
+#~ msgstr "m²"
+
+#~ msgid "Volume of the measureRect"
+#~ msgstr "Volume van de meetRechthoek"
+
+#~ msgctxt "PropertyName"
+#~ msgid "rectParticleCount"
+#~ msgstr "rechthoekAantalDeeltjes"
+
+#~ msgid "Count of particles in the measureRect"
+#~ msgstr "Aantal deeltjes in de meetRechthoek"
+
+#~| msgid "Concentration:"
+#~ msgctxt "PropertyName"
+#~ msgid "rectConcentration"
+#~ msgstr "rechthoekConcentratie"
+
+#~ msgctxt "Units"
+#~ msgid "1/m²"
+#~ msgstr "1/m²"
+
+#~ msgid "Concentration of particles in the measureRect"
+#~ msgstr "Concentration van de deeltjes in de meetRechthoek"
+
+#~ msgctxt "PropertyName"
+#~ msgid "rectPressure"
+#~ msgstr "rechthoekDruk"
+
+#~ msgctxt "Units"
+#~ msgid "Pa"
+#~ msgstr "Pa"
+
+#~ msgid "Pressure of particles in the measureRect"
+#~ msgstr "Druk van de deeltjes in de meetRechthoek"
+
+#~| msgid "Temperature:"
+#~ msgctxt "PropertyName"
+#~ msgid "rectTemperature"
+#~ msgstr "rechthoekTemperatuur"
+
+#~ msgctxt "Units"
+#~ msgid "K"
+#~ msgstr "K"
+
+#~| msgid "The number of partcles of this gas."
+#~ msgid "Temperature of particles in the measureRect"
+#~ msgstr "Temperatuur van de deeltjes in de meetRechthoek"
+
+#~ msgctxt "PropertyName"
+#~ msgid "rectMeanKineticEnergy"
+#~ msgstr "rechthoekGemiddeldeKinetischeEnergie"
+
+#~ msgid "Mean kinetic energy of particles in the measureRect"
+#~ msgstr "Gemiddelde kinetische energie van de deeltjes in de meetRechthoek"
+
+#~| msgid "Mean velocity:"
+#~ msgctxt "PropertyName"
+#~ msgid "rectMeanVelocity"
+#~ msgstr "rechthoekGemiddeldeSnelheid"
+
+#~ msgid "Mean velocity of particles in the measureRect"
+#~ msgstr "Gemiddelde snelheid van de deeltjes in de meetRechthoek"
+
+#~| msgid "Create gas particles"
+#~ msgctxt "PropertyName"
+#~ msgid "rectMeanParticleMass"
+#~ msgstr "rechthoekGemiddeldeDeeltjesMassa"
+
+#~ msgid "Mean mass of particles in the measureRect"
+#~ msgstr "Gemiddelde massa van de deeltjes in de meetRechthoek"
+
+#~ msgctxt "PropertyName"
+#~ msgid "rectMass"
+#~ msgstr "rechthoekMassa"
+
+#~ msgid "Total mass of particles in the measureRect"
+#~ msgstr "Totale massa van de deeltjes in de meetRechthoek"
+
+#~ msgctxt "ObjectClass"
+#~ msgid "GasErrors"
+#~ msgstr "GasFouten"
+
+#~ msgid "Errors class for Gas"
+#~ msgstr "Foutenklasse voor Gas"
+
+#~ msgctxt "PropertyName"
+#~ msgid "rectPressureVariance"
+#~ msgstr "rechthoekDrukVariantie"
+
+#~ msgid "Variance of pressure of particles in the measureRect"
+#~ msgstr "Variantie van de druk van de deeltjes in de meetRechthoek"
+
+#~| msgid "Temperature:"
+#~ msgctxt "PropertyName"
+#~ msgid "rectTemperatureVariance"
+#~ msgstr "rechthoekTemperatuurVariantie"
+
+#~ msgid "Variance of temperature of particles in the measureRect"
+#~ msgstr "Variantie van de temperatuur van de deeltjes in de meetRechthoek"
+
+#~ msgctxt "PropertyName"
+#~ msgid "rectMeanKineticEnergyVariance"
+#~ msgstr "rechthoekGemiddeldeKinetischeEnergieVariantie"
+
+#~ msgid "Variance of mean kinetic energy of particles in the measureRect"
+#~ msgstr ""
+#~ "Variantie van de gemiddelde kinetische energie van de deeltjes in de "
+#~ "meetRechthoek"
+
+#~ msgctxt "PropertyName"
+#~ msgid "rectMeanVelocityVariance"
+#~ msgstr "rechthoekGemiddeldeSnelheidsVariantie"
+
+#~ msgid "Variance of mean velocity of particles in the measureRect"
+#~ msgstr ""
+#~ "Variantie van de gemiddelde snelheid van de deeltjes in de meetRechthoek"
+
+#~ msgctxt "PropertyName"
+#~ msgid "rectMeanParticleMassVariance"
+#~ msgstr "rechthoekGemiddeldeDeeltjesMassaVariantie"
+
+#~ msgid "Variance of mean mass of particles in the measureRect"
+#~ msgstr ""
+#~ "Variantie van de gemiddelde massa van de deeltjes in de meetRechthoek"
+
+#~ msgctxt "PropertyName"
+#~ msgid "rectMassVariance"
+#~ msgstr "rechthoekMassaVariantie"
+
+#~ msgid "Variance of total mass of particles in the measureRect"
+#~ msgstr "Variantie van de totale massa van de deeltjes in de meetRechthoek"
+
+#~ msgctxt "ObjectClass"
+#~ msgid "NoteImage"
+#~ msgstr "NotitieAfbeelding"
+
+#~ msgid "NoteImage: an image embedded in Note"
+#~ msgstr "NotitieAfbeelding: een afbeelding ingebed in een notitie"
+
+#~ msgctxt "PropertyName"
+#~ msgid "image"
+#~ msgstr "afbeelding"
+
+#~ msgid "Image data"
+#~ msgstr "Afbeeldingsgegevens"
+
+#~ msgctxt "ObjectClass"
+#~ msgid "NoteFormula"
+#~ msgstr "NotitieFormule"
+
+#~ msgid "NoteFormula: a formula embedded in Note"
+#~ msgstr "NotitieFormule: een formule ingebed in een notitie"
+
+#~ msgctxt "PropertyName"
+#~ msgid "code"
+#~ msgstr "code"
+
+#~ msgid "Formula code"
+#~ msgstr "Code van de formule"
+
+#~ msgctxt "ObjectClass"
+#~ msgid "Note"
+#~ msgstr "Notitie"
+
+#~ msgid "Note: displays a textual note on the scene"
+#~ msgstr "Notitie: toont tekst op een virtuele notitie op het werkvlak"
+
+#~ msgid "Note position on the scene"
+#~ msgstr "Positie van de notitie op het werkvlak"
+
+#~ msgctxt "PropertyName"
+#~ msgid "text"
+#~ msgstr "tekst"
+
+#~ msgid "Text"
+#~ msgstr "Tekst"
+
+#~ msgctxt "ObjectClass"
+#~ msgid "Graph"
+#~ msgstr "Grafiek"
+
+#~ msgid "Graph: plots a graph of any properties"
+#~ msgstr "Grafiek: tekent een grafiek van eender welke eigenschappen"
+
+#~ msgid "Graph position on the scene"
+#~ msgstr "Positie van de grafiek op het werkvlak"
+
+#~ msgid "Graph size on the scene"
+#~ msgstr "Grootte van de grafiek op het werkvlak"
+
+#~ msgctxt "PropertyName"
+#~ msgid "objectX"
+#~ msgstr "objectX"
+
+#~ msgid "X axis: object"
+#~ msgstr "X-as: object"
+
+#~ msgctxt "PropertyName"
+#~ msgid "propertyX"
+#~ msgstr "eigenschapX"
+
+#~ msgid "X axis: object property"
+#~ msgstr "X-as: objecteigenschap"
+
+#~ msgctxt "PropertyName"
+#~ msgid "indexX"
+#~ msgstr "indexX"
+
+#~ msgid "X axis: vector index"
+#~ msgstr "X-as: vectorindex"
+
+#~ msgctxt "PropertyName"
+#~ msgid "objectY"
+#~ msgstr "objectY"
+
+#~ msgid "Y axis: object"
+#~ msgstr "Y-as: object"
+
+#~ msgctxt "PropertyName"
+#~ msgid "propertyY"
+#~ msgstr "eigenschapY"
+
+#~ msgid "Y axis: property"
+#~ msgstr "Y-as: eigenschap"
+
+#~ msgctxt "PropertyName"
+#~ msgid "indexY"
+#~ msgstr "indexY"
+
+#~ msgid "Y axis: vector index"
+#~ msgstr "Y-as: vectorindex"
+
+#~ msgctxt "PropertyName"
+#~ msgid "autoLimitsX"
+#~ msgstr "autoLimietenX"
+
+#~ msgid "Auto-limits along X axis"
+#~ msgstr "Auto-limieten langs de X-as"
+
+#~ msgctxt "PropertyName"
+#~ msgid "autoLimitsY"
+#~ msgstr "autoLimietenY"
+
+#~ msgid "Auto-limits along Y axis"
+#~ msgstr "Auto-limieten langs de Y-as"
+
+#~ msgctxt "PropertyName"
+#~ msgid "limitsX"
+#~ msgstr "limietenX"
+
+#~ msgid "Limits along X axis"
+#~ msgstr "Limieten langs de X-as"
+
+#~ msgctxt "PropertyName"
+#~ msgid "limitsY"
+#~ msgstr "limietenY"
+
+#~ msgid "Limits along Y axis"
+#~ msgstr "Limieten langs de Y-as"
+
+#~ msgctxt "PropertyName"
+#~ msgid "showPoints"
+#~ msgstr "puntenTonen"
+
+#~ msgid "Show points on the graph"
+#~ msgstr "Punten tonen op de grafiek"
+
+#~ msgctxt "PropertyName"
+#~ msgid "showLines"
+#~ msgstr "lijnenTonen"
+
+#~ msgid "Show lines on the graph"
+#~ msgstr "Lijnen tonen op de grafiek"
+
+#~ msgid "currentValue"
+#~ msgstr "huidigeWaarde"
+
+#~ msgid "Current value"
+#~ msgstr "Huidige waarde"
+
+#~ msgctxt "PropertyName"
+#~ msgid "points"
+#~ msgstr "punten"
+
+#~ msgid "points"
+#~ msgstr "punten"
+
+#~ msgid "unitsX"
+#~ msgstr "eenhedenX"
+
+#~ msgid "Units along X axis"
+#~ msgstr "Eenheden langs de X-as"
+
+#~ msgid "unitsY"
+#~ msgstr "eenhedenY"
+
+#~ msgid "Units along Y axis"
+#~ msgstr "Eenheden langs de Y-as"
+
+#~ msgctxt "ObjectClass"
+#~ msgid "Meter"
+#~ msgstr "Meter"
+
+#~ msgid "Meter: displays any property on the scene"
+#~ msgstr "Meter: toont eender welke eigenschap op het werkvlak"
+
+#~ msgid "Meter position on the scene"
+#~ msgstr "Positie van de meter op het werkvlak"
+
+#~ msgid "Meter size on the scene"
+#~ msgstr "Grootte van de meter op het werkvlak"
+
+#~ msgctxt "PropertyName"
+#~ msgid "object"
+#~ msgstr "object"
+
+#~ msgid "Observed object"
+#~ msgstr "Onderzocht object"
+
+#~ msgctxt "PropertyName"
+#~ msgid "property"
+#~ msgstr "eigenschap"
+
+#~ msgid "Observed property"
+#~ msgstr "Onderzochte eigenschap"
+
+#~ msgctxt "PropertyName"
+#~ msgid "index"
+#~ msgstr "index"
+
+#~ msgctxt "PropertyName"
+#~ msgid "digits"
+#~ msgstr "cijfers"
+
+#~ msgid "Display digits"
+#~ msgstr "Cijfers tonen"
+
+#~ msgid "value"
+#~ msgstr "waarde"
+
+#~ msgid "units"
+#~ msgstr "eenheden"
+
+#~ msgid "Units of measured property"
+#~ msgstr "Eenheden van gemeten eigenschap"
+
+#~ msgctxt "ObjectClass"
+#~ msgid "Controller"
+#~ msgstr "Controller"
+
+#~ msgid "Controller: allows to easily control any property"
+#~ msgstr "Controller: laat u eenvoudig eender welke eigenschap controleren"
+
+#~ msgid "Controller position on the scene"
+#~ msgstr "Positie van de controller op het werkvlak"
+
+#~ msgid "Controller size on the scene"
+#~ msgstr "Grootte van de controller op het werkvlak"
+
+#~ msgid "Controlled object"
+#~ msgstr "Gecontroleerd object"
+
+#~ msgid "Controlled property property"
+#~ msgstr "Gecontroleerde eigenschap"
+
+#~ msgctxt "PropertyName"
+#~ msgid "limits"
+#~ msgstr "limieten"
+
+#~ msgid "Limits"
+#~ msgstr "Limieten"
+
+#~ msgctxt "PropertyName"
+#~ msgid "increaseShortcut"
+#~ msgstr "verhoogSneltoets"
+
+#~ msgid "Shortcut to increase the value"
+#~ msgstr "Sneltoets om de waarde te verhogen"
+
+#~ msgctxt "PropertyName"
+#~ msgid "decreaseShortcut"
+#~ msgstr "verlaagSneltoets"
+
+#~ msgid "Shortcut to decrease the value"
+#~ msgstr "Sneltoets om de waarde te verlagen"
+
+#~ msgctxt "PropertyName"
+#~ msgid "increment"
+#~ msgstr "toename:"
+
+#~ msgid "Increment value"
+#~ msgstr "Waarde toenemen"
+
+#~ msgctxt "PropertyName"
+#~ msgid "value"
+#~ msgstr "waarde"
+
+#~ msgid "Units of controlled property"
+#~ msgstr "Eenheden van de gecontroleerde eigenschap"
+
+#~ msgctxt "ObjectClass"
+#~ msgid "Tracer"
+#~ msgstr "Volger"
+
+#~ msgid "Tracer: traces trajectory of a point on a body"
+#~ msgstr "Volger: volgt het traject van een punt op een lichaam"
+
+#~ msgctxt "PropertyName"
+#~ msgid "body"
+#~ msgstr "lichaam"
+
+#~ msgid "Traced body"
+#~ msgstr "Gevolgd lichaam"
+
+#~ msgctxt "PropertyName"
+#~ msgid "localPosition"
+#~ msgstr "lokalePositie"
+
+#~ msgid "Local position"
+#~ msgstr "Lokale positie"
+
+#~ msgid "Position"
+#~ msgstr "Positie"
+
+#~ msgctxt "ObjectClass"
+#~ msgid "LinearMotor"
+#~ msgstr "LineaireMotor"
+
+#~ msgid ""
+#~ "Linear motor: applies a constant force to a given position of the body"
+#~ msgstr ""
+#~ "LineaireMotor: oefent een constante kracht uit op een bepaalde plaats van "
+#~ "het lichaam"
+
+#~ msgid "Body"
+#~ msgstr "Berichttekst"
+
+#~ msgid "Position of the motor on a body"
+#~ msgstr "Positie van de motor op een lichaam"
+
+#~ msgctxt "PropertyName"
+#~ msgid "forceValue"
+#~ msgstr "krachtGrootte"
+
+#~ msgid "Value of the force, acting on the body"
+#~ msgstr "Grootte van de kracht op het lichaam"
+
+#~ msgctxt "ObjectClass"
+#~ msgid "CircularMotor"
+#~ msgstr "CirculaireMotor"
+
+#~ msgid "Circular motor: applies a constant torque to the body"
+#~ msgstr "Circulaire motor: oefent een constante koppel uit op het lichaam"
+
+#~ msgctxt "PropertyName"
+#~ msgid "torqueValue"
+#~ msgstr "koppelKracht"
+
+#~ msgid "Value of the torque, acting on the body"
+#~ msgstr "Kracht van de koppel op het lichaam"
+
+#~ msgctxt "ObjectClass"
+#~ msgid "Item"
+#~ msgstr "Item"
+
+#~ msgid "Item"
+#~ msgstr "Item"
+
+#~ msgctxt "PropertyName"
+#~ msgid "color"
+#~ msgstr "kleur"
+
+#~ msgid "Item color"
+#~ msgstr "Kleur van het item"
+
+#~ msgctxt "ObjectClass"
+#~ msgid "Body"
+#~ msgstr "Lichaam"
+
+#~ msgctxt "ObjectClass"
+#~ msgid "Force"
+#~ msgstr "Kracht"
+
+#~ msgid "Force"
+#~ msgstr "Kracht"
+
+#~ msgctxt "ObjectClass"
+#~ msgid "Joint"
+#~ msgstr "Scharnier"
+
+#~ msgid "Joint"
+#~ msgstr "Scharnier"
+
+#~ msgctxt "ObjectClass"
+#~ msgid "Tool"
+#~ msgstr "Hulpmiddel"
+
+#~ msgid "Tool"
+#~ msgstr "Hulpmiddel"
+
+#~ msgctxt "ObjectClass"
+#~ msgid "ObjectErrors"
+#~ msgstr "ObjectFouten"
+
+#~ msgid "ObjectErrors"
+#~ msgstr "ObjectFouten"
+
+#~ msgctxt "ObjectClass"
+#~ msgid "ItemGroup"
+#~ msgstr "ItemGroep"
+
+#~ msgid "ItemGroup"
+#~ msgstr "ItemGroep"
+
+#~ msgctxt "ObjectClass"
+#~ msgid "World"
+#~ msgstr "Wereld"
+
+#~ msgid "World"
+#~ msgstr "Wereld"
+
+#~ msgctxt "PropertyName"
+#~ msgid "time"
+#~ msgstr "tijd"
+
+#~ msgid "Current time"
+#~ msgstr "Huidige tijd"
+
+#~ msgid "timeScale"
+#~ msgstr "tijdSchaal"
+
+#~ msgid "Simulation speed scale"
+#~ msgstr "Snelheidsschaal van de simulatie"
+
+#~ msgid "errorsCalculation"
+#~ msgstr "foutBerekening"
+
+#~ msgid "Enable global errors calculation"
+#~ msgstr "Globale foutberekening inschakelen"
+
+#~ msgctxt "ObjectClass"
+#~ msgid "Anchor"
+#~ msgstr "Anker"
+
+#~ msgid "Anchor: fixes position of the body"
+#~ msgstr "Anker: zet de positie van het lichaam vast"
+
+#~ msgid "Angle"
+#~ msgstr "Hoek"
+
+#~ msgctxt "ObjectClass"
+#~ msgid "Pin"
+#~ msgstr "Pin"
+
+#~ msgid "Pin: fixes position of a given point on the body"
+#~ msgstr "Pin: zet de positie van een bepaald punt van het lichaam vast"
+
+#~ msgid "Position on the body"
+#~ msgstr "Positie op het lichaam"
+
+#~ msgid "Position in the world"
+#~ msgstr "Positie in de wereld"
+
+#~ msgctxt "ObjectClass"
+#~ msgid "Stick"
+#~ msgstr "Stok"
+
+#~ msgid "Massless stick which can be connected to bodies"
+#~ msgstr "Stok zonder massa die aan lichamen kan worden vastgemaakt"
+
+#~ msgctxt "PropertyName"
+#~ msgid "restLength"
+#~ msgstr "rustLengte"
+
+#~ msgid "Rest length of the stick"
+#~ msgstr "Lengte in rust van de stok"
+
+#~ msgctxt "PropertyName"
+#~ msgid "body1"
+#~ msgstr "lichaam1"
+
+#~ msgid "Body1"
+#~ msgstr "Lichaam1"
+
+#~ msgctxt "PropertyName"
+#~ msgid "body2"
+#~ msgstr "lichaam2"
+
+#~ msgid "Body2"
+#~ msgstr "Lichaam2"
+
+#~ msgctxt "PropertyName"
+#~ msgid "localPosition1"
+#~ msgstr "lokalePositie1"
+
+#~ msgid "Local position 1"
+#~ msgstr "Lokale positie 1"
+
+#~ msgctxt "PropertyName"
+#~ msgid "localPosition2"
+#~ msgstr "lokalePositie2"
+
+#~ msgid "Local position 2"
+#~ msgstr "Lokale positie 2"
+
+#~ msgctxt "PropertyName"
+#~ msgid "position1"
+#~ msgstr "positie1"
+
+#~ msgid "Position1"
+#~ msgstr "Positie1"
+
+#~ msgctxt "PropertyName"
+#~ msgid "position2"
+#~ msgstr "positie2"
+
+#~ msgid "Position2"
+#~ msgstr "Positie2"
+
+#~ msgctxt "ObjectClass"
+#~ msgid "Rope"
+#~ msgstr "Touw"
+
+#~ msgid "Massless rope which can be connected to bodies"
+#~ msgstr "Touw zonder massa dat aan lichamen kan worden vastgemaakt"
+
+#~ msgctxt "ObjectClass"
+#~ msgid "Object"
+#~ msgstr "Object"
+
+#~ msgid "Object"
+#~ msgstr "Object"
+
+#~ msgctxt "PropertyName"
+#~ msgid "name"
+#~ msgstr "naam"
+
+#~ msgctxt "ObjectClass"
+#~ msgid "GravitationForce"
+#~ msgstr "ZwaarteKracht"
+
+#~ msgid "Gravitation force"
+#~ msgstr "Zwaartekracht"
+
+#~ msgctxt "PropertyName"
+#~ msgid "gravitationConst"
+#~ msgstr "gravitatieConst"
+
+#~ msgctxt "Units"
+#~ msgid "N m²/kg²"
+#~ msgstr "N m²/kg²"
+
+#~ msgid "Gravitation constant"
+#~ msgstr "Gravitatieconstante"
+
+#~ msgctxt "ObjectClass"
+#~ msgid "GravitationForceErrors"
+#~ msgstr "ZwaarteKrachtFouten"
+
+#~ msgid "Errors class for GravitationForce"
+#~ msgstr "Foutenklasse voor ZwaarteKracht"
+
+#~ msgctxt "PropertyName"
+#~ msgid "gravitationConstVariance"
+#~ msgstr "gravitatieConstVariantie"
+
+#~ msgid "Gravitation constant variance"
+#~ msgstr "Variantie van de gravitatieconstante"
+
+#~ msgctxt "ObjectClass"
+#~ msgid "WeightForce"
+#~ msgstr "Gewicht"
+
+#~ msgid "Weight force"
+#~ msgstr "Gewicht"
+
+#~ msgctxt "PropertyName"
+#~ msgid "weightConst"
+#~ msgstr "gewichtConst"
+
+#~ msgid "Weight constant"
+#~ msgstr "Gewichtconstante"
+
+#~ msgctxt "ObjectClass"
+#~ msgid "WeightForceErrors"
+#~ msgstr "GewichtFouten"
+
+#~ msgid "Errors class for WeightForce"
+#~ msgstr "Foutenklasse voor Gewicht"
+
+#~ msgctxt "PropertyName"
+#~ msgid "weightConstVariance"
+#~ msgstr "gewichtConstVariantie"
+
+#~ msgid "Weight constant variance"
+#~ msgstr "Variantie van gewichtconstante"
+
+#~ msgctxt "ObjectClass"
+#~ msgid "Spring"
+#~ msgstr "Veer"
+
+#~ msgid "Massless spring which can be connected to bodies"
+#~ msgstr "Veer zonder massa die met lichamen kan worden verbonden"
+
+#~ msgid "Rest length"
+#~ msgstr "Lengte in rust"
+
+#~ msgctxt "PropertyName"
+#~ msgid "length"
+#~ msgstr "lengte"
+
+#~ msgid "Current length"
+#~ msgstr "Huidige lengte"
+
+#~ msgctxt "PropertyName"
+#~ msgid "stiffness"
+#~ msgstr "stijfheid"
+
+#~ msgctxt "Units"
+#~ msgid "N/m"
+#~ msgstr "N/m"
+
+#~ msgid "Stiffness"
+#~ msgstr "Stijfheid"
+
+#~ msgctxt "PropertyName"
+#~ msgid "damping"
+#~ msgstr "trillingsdemping"
+
+#~ msgctxt "Units"
+#~ msgid "N s/m"
+#~ msgstr "N s/m"
+
+#~ msgid "Damping"
+#~ msgstr "Trillingsdemping"
+
+#~ msgid "Spring tension force"
+#~ msgstr "Veerkracht"
+
+#~ msgctxt "ObjectClass"
+#~ msgid "SpringErrors"
+#~ msgstr "VeerFouten"
+
+#~ msgid "Errors class for Spring"
+#~ msgstr "Foutenklasse voor Veer"
+
+#~ msgctxt "PropertyName"
+#~ msgid "restLengthVariance"
+#~ msgstr "rustLengteVariantie"
+
+#~ msgid "Rest length variance"
+#~ msgstr "Variantie van de lengte in rust"
+
+#~ msgctxt "PropertyName"
+#~ msgid "lengthVariance"
+#~ msgstr "lengteVariantie"
+
+#~ msgid "Current length variance"
+#~ msgstr "Huidige lengtevariantie"
+
+#~ msgctxt "PropertyName"
+#~ msgid "stiffnessVariance"
+#~ msgstr "stijfheidsVariantie"
+
+#~ msgid "Stiffness variance"
+#~ msgstr "Stijheidsvariantie"
+
+#~ msgctxt "PropertyName"
+#~ msgid "dampingVariance"
+#~ msgstr "dempingsVariantie"
+
+#~ msgid "Damping variance"
+#~ msgstr "Dempingsvariantie"
+
+#~ msgctxt "PropertyName"
+#~ msgid "localPosition1Variance"
+#~ msgstr "lokalePositie1Variantie"
+
+#~ msgid "Local position 1 variance"
+#~ msgstr "Variantie van lokale positie 1"
+
+#~ msgctxt "PropertyName"
+#~ msgid "localPosition2Variance"
+#~ msgstr "lokalePositie2Variantie"
+
+#~ msgid "Local position 2 variance"
+#~ msgstr "Variantie van lokale positie 2"
+
+#~ msgctxt "PropertyName"
+#~ msgid "position1Variance"
+#~ msgstr "positie1Variantie"
+
+#~ msgid "Position1 variance"
+#~ msgstr "Variantie van positie1"
+
+#~ msgctxt "PropertyName"
+#~ msgid "position2Variance"
+#~ msgstr "positie2Variantie"
+
+#~ msgid "Position2 variance"
+#~ msgstr "Variantie van positie2"
+
+#~ msgid "Spring tension force variance"
+#~ msgstr "Variantie van veerkracht"
+
+#~ msgctxt "ObjectClass"
+#~ msgid "GslGenericSolver"
+#~ msgstr "GslGenericSolver"
+
+#~ msgid "GSL generic solver"
+#~ msgstr "Generieke GSL-oplossingsmethode"
+
+#~ msgctxt "ObjectClass"
+#~ msgid "GslSolver"
+#~ msgstr "GslOplosser"
+
+#~ msgid "GSL non-adaptive solver"
+#~ msgstr "Niet-adaptieve GSL-oplossingsmethode"
+
+#~ msgctxt "ObjectClass"
+#~ msgid "GslAdaptiveSolver"
+#~ msgstr "GslAdaptiveSolver"
+
+#~ msgid "GSL adaptive solver"
+#~ msgstr "Adaptieve GSL-oplossingsmethode"
+
+#~ msgctxt "ObjectClass"
+#~ msgid "GslRK2Solver"
+#~ msgstr "GslRK2Solver"
+
+#~ msgid "Runge-Kutta second-order solver from GSL library"
+#~ msgstr ""
+#~ "Tweede orde oplossingsmethode van Runge-Kutta, uit de GSL-bibliotheek"
+
+#~ msgctxt "ObjectClass"
+#~ msgid "GslAdaptiveRK2Solver"
+#~ msgstr "GslAdaptiveRK2Solver"
+
+#~ msgid "Adaptive Runge-Kutta second-order solver from GSL library"
+#~ msgstr ""
+#~ "Adaptieve tweede orde oplossingsmethode van Runge-Kutta, uit de GSL-"
+#~ "bibliotheek"
+
+#~ msgctxt "ObjectClass"
+#~ msgid "GslRK4Solver"
+#~ msgstr "GslRK4Solver"
+
+#~ msgid "Runge-Kutta classical fourth-order solver from GSL library"
+#~ msgstr ""
+#~ "Klassieke vierde orde oplossingsmethode van Runge-Kutta, uit de GSL-"
+#~ "bibliotheek"
+
+#~ msgctxt "ObjectClass"
+#~ msgid "GslAdaptiveRK4Solver"
+#~ msgstr "GslAdaptiveRK4Solver"
+
+#~ msgid "Adaptive Runge-Kutta classical fourth-order solver from GSL library"
+#~ msgstr ""
+#~ "Adaptieve klassieke vierde orde oplossingsmethode van Runge-Kutta, uit de "
+#~ "GSL-bibliotheek"
+
+#~ msgctxt "ObjectClass"
+#~ msgid "GslRKF45Solver"
+#~ msgstr "GslRKF45Solver"
+
+#~ msgid "Runge-Kutta-Fehlberg (4,5) solver from GSL library"
+#~ msgstr ""
+#~ "Oplossingsmethode van Runge-Kutta-Fehlberg (4,5), uit de GSL-bibliotheek"
+
+#~ msgctxt "ObjectClass"
+#~ msgid "GslAdaptiveRKF45Solver"
+#~ msgstr "GslAdaptiveRKF45Solver"
+
+#~ msgid "Adaptive Runge-Kutta-Fehlberg (4,5) solver from GSL library"
+#~ msgstr ""
+#~ "Adaptieve oplossingsmethode van Runge-Kutta-Fehlberg (4,5), uit de GSL-"
+#~ "bibliotheek"
+
+#~ msgctxt "ObjectClass"
+#~ msgid "GslRKCKSolver"
+#~ msgstr "GslRKCKSolver"
+
+#~ msgid "Runge-Kutta Cash-Karp (4,5) solver from GSL library"
+#~ msgstr ""
+#~ "Oplossingsmethode van Runge-Kutta Cash-Carp (4,5), uit de GSL-bibliotheek"
+
+#~ msgctxt "ObjectClass"
+#~ msgid "GslAdaptiveRKCKSolver"
+#~ msgstr "GslAdaptiveRKCKSolver"
+
+#~ msgid "Adaptive Runge-Kutta Cash-Karp (4,5) solver from GSL library"
+#~ msgstr ""
+#~ "Adaptieve oplossingsmethode van Runge-Kutta Cash-Carp (4,5), uit de GSL-"
+#~ "bibliotheek"
+
+#~ msgctxt "ObjectClass"
+#~ msgid "GslRK8PDSolver"
+#~ msgstr "GslRK8PDSolver"
+
+#~ msgid "Runge-Kutta Prince-Dormand (8,9) solver from GSL library"
+#~ msgstr ""
+#~ "Oplossingsmethode van Runge-Kutta Prince-Dormand (8,9), uit de GSL-"
+#~ "bibliotheek"
+
+#~ msgctxt "ObjectClass"
+#~ msgid "GslAdaptiveRK8PDSolver"
+#~ msgstr "GslAdaptiveRK8PDSolver"
+
+#~ msgid "Adaptive Runge-Kutta Prince-Dormand (8,9) solver from GSL library"
+#~ msgstr ""
+#~ "Adaptieve oplossingsmethode van Runge-Kutta Prince-Dormand (8,9), uit de "
+#~ "GSL-bibliotheek"
+
+#~ msgctxt "ObjectClass"
+#~ msgid "GslRK2IMPSolver"
+#~ msgstr "GslRK2IMPSolver"
+
+#~ msgid "Runge-Kutta implicit second-order solver from GSL library"
+#~ msgstr ""
+#~ "Impliciete tweede orde oplossingsmethode van Runge-Kutta, uit de GSL-"
+#~ "bibliotheek"
+
+#~ msgctxt "ObjectClass"
+#~ msgid "GslAdaptiveRK2IMPSolver"
+#~ msgstr "GslAdaptiveRK2IMPSolver"
+
+#~ msgid "Adaptive Runge-Kutta implicit second-order solver from GSL library"
+#~ msgstr ""
+#~ "Adaptieve impliciete tweede orde oplossingsmethode van Runge-Kutta, uit "
+#~ "de GSL-bibliotheek"
+
+#~ msgctxt "ObjectClass"
+#~ msgid "GslRK4IMPSolver"
+#~ msgstr "GslRK4IMPSolver"
+
+#~ msgid "Runge-Kutta implicit fourth-order solver from GSL library"
+#~ msgstr ""
+#~ "Impliciete vierde orde oplossingsmethode van Runge-Kutta, uit de GSL-"
+#~ "bibliotheek"
+
+#~ msgctxt "ObjectClass"
+#~ msgid "GslAdaptiveRK4IMPSolver"
+#~ msgstr "GslAdaptiveRK4IMPSolver"
+
+#~ msgid "Adaptive Runge-Kutta implicit fource-order solver from GSL library"
+#~ msgstr ""
+#~ "Adaptieve impliciete vierde orde oplossingsmethode van Runge-Kutta, uit "
+#~ "de GSL-bibliotheek"
+
+#~ msgctxt "ObjectClass"
+#~ msgid "GenericEulerSolver"
+#~ msgstr "GenericEulerSolver"
+
+#~ msgid "Generic Euler solver"
+#~ msgstr "Generieke oplossingsmethode van Euler"
+
+#~ msgctxt "ObjectClass"
+#~ msgid "EulerSolver"
+#~ msgstr "EulerSolver"
+
+#~ msgid "Non-adaptive Euler solver"
+#~ msgstr "Niet-adaptieve oplossingsmethode van Euler"
+
+#~ msgctxt "ObjectClass"
+#~ msgid "AdaptiveEulerSolver"
+#~ msgstr "AdaptiveEulerSolver"
+
+#~ msgid "Adaptive Euler solver"
+#~ msgstr "Adaptieve oplossingsmethode van Euler"
+
+#~ msgctxt "ObjectClass"
+#~ msgid "CoulombForce"
+#~ msgstr "CoulombKracht"
+
+#~ msgid "Coulomb force"
+#~ msgstr "Coulombkracht"
+
+#~ msgctxt "PropertyName"
+#~ msgid "coulombConst"
+#~ msgstr "constanteVanCoulomb"
+
+#~ msgctxt "Units"
+#~ msgid "N m²/C²"
+#~ msgstr "N m²/C²"
+
+#~ msgid "Coulomb constant"
+#~ msgstr "Constante van Coulomb"
+
+#~ msgctxt "ObjectClass"
+#~ msgid "CoulombForceErrors"
+#~ msgstr "CoulombKrachtFouten"
+
+#~ msgid "Errors class for CoulombForce"
+#~ msgstr "Foutenklasse voor CoulombKracht"
+
+#~ msgctxt "PropertyName"
+#~ msgid "coulombConstVariance"
+#~ msgstr "coulombConstVariantie"
+
+#~ msgid "Coulomb constant variance"
+#~ msgstr "Variantie van de Coulombconstante"

@@ -1,0 +1,242 @@
+<chapter id="examples">
+<title
+>Exemples de &step;</title
+> 
+<para
+>Le paquet &step; contient plusieurs exemples instructifs pour vous aider à comprendre les principes de travail de l'application. Pour ouvrir un exemple parmi ceux par défaut, cliquez sur <menuchoice
+><guimenu
+>Fichier</guimenu
+> <guisubmenu
+>Exemples</guisubmenu
+> <guimenuitem
+>Ouvrir un exemple...</guimenuitem
+></menuchoice
+> depuis le menu de la fenêtre principale. </para>
+
+<para
+>Vous pouvez partager vos propres exemples avec <menuchoice
+><guimenu
+>Fichier</guimenu
+> <guisubmenu
+>Exemples</guisubmenu
+> <guimenuitem
+>Partager l'expérience actuelle...</guimenuitem
+></menuchoice
+> ou télécharger des exemples partagés par d'autres utilisateurs avec <menuchoice
+><guimenu
+>Fichier</guimenu
+><guisubmenu
+>Exemples</guisubmenu
+> <guimenuitem
+>Télécharger de nouvelles expériences...</guimenuitem
+></menuchoice
+>. Les exemples téléchargés peuvent être ouvert en utilisant l'élément de menu <menuchoice
+><guimenu
+>Fichier</guimenu
+> <guisubmenu
+>Exemples</guisubmenu
+> <guimenuitem
+>Ouvrir un exemple téléchargé...</guimenuitem
+></menuchoice
+>. </para>
+
+<para
+>Vous pouvez trouver les descriptions des fichiers d'exemple par défaut ci-dessous. </para>
+
+<variablelist>
+<varlistentry id="brownian">
+<term
+>brownian.step</term>
+<listitem
+><para
+>Trace la trajectoire d'un disque rigide interagissant avec 40 particules qui évolue aléatoirement dans une boite.Cet exemple simule <ulink url="https://fr.wikipedia.org/wiki/Mouvement_brownien"
+>mouvement brownien</ulink
+> des particules de gaz parfait.</para
+></listitem>
+</varlistentry>
+
+<varlistentry id="pendulum">
+<term
+>doublependulum.step</term>
+<listitem
+><para
+>Cet exemple simule <ulink url="https://fr.wikipedia.org/wiki/Pendule_double"
+>le mouvement d'un pendule double</ulink
+> en utilisant 2 particules massives et deux barres.</para
+></listitem>
+</varlistentry>
+
+<varlistentry id="eightpendulum">
+<term
+>eightpendulum.step</term>
+<listitem
+><para
+>Cet exemple est une simple démonstration du célèbre <ulink url="https://fr.wikipedia.org/wiki/Pendule_de_Newton"
+>pendule de Newton</ulink
+>. Il est réalisé dans &step; grâce à des barres, 8 disques et une boite. Les six boules dans le milieu n'ont pas de mouvement parce qu'elles transfèrent uniquement de l'énergie et de l'impulsion, pas un mouvement.</para
+></listitem>
+</varlistentry>
+
+<varlistentry id="first">
+<term
+>first.step : premier exemple</term>
+<listitem
+><para
+>Cet exemple a deux parties. La première partie contient deux particules reliées par un ressort et la seconde partie contient deux particules chargées.</para>
+
+<variablelist>
+<varlistentry id="first-two-particles">
+<term
+>Deux particules reliées par un ressort</term>
+<listitem>
+  <para
+>Dans cet exemple, deux particules sont ajoutées à l'espace de travail et un ressort les relie. Les propriétés des deux particules telles que leur vitesse, leur quantité de mouvement, leur position &etc; ont été définies dans le navigateur de propriétés. Les propriétés du ressort telles que sa raideur, sa longueur de relaxation, son amortissement &etc; ont également été définies dans ce navigateur. </para>
+ <para>
+   <emphasis
+>Explication de la simulation :</emphasis>
+ </para>
+ <para
+>C'est un bon exemple d'un mouvement harmonique simple. Ici, l'accélération de la première particule est définie dans la direction de l'axe x positif et l'accélération de l'autre particule est définie le long de l'axe x négatif. Ainsi, les deux particules étirent le ressort dans des directions opposées, tandis que le ressort essaie de faire revenir les deux particules à leur position initiale. Ainsi, le système exécute un mouvement harmonique simple. La simulation des particules et du ressort sous ces conditions peut être visualisée dans l'espace de travail. </para>
+</listitem>
+</varlistentry>
+
+<varlistentry id="first-two-charged">
+<term
+>Deux particules chargées</term>
+<listitem>
+  <para
+>La vitesse de chaque particules chargées est ainsi définie dans une certaine direction, ainsi les particules chargées se déplacent dans une direction respective à leur vitesse mais chaque particule dispose d'une charge égale et opposée ce qui induit que les particules essaient de s'attirer l'une l'autre. Ainsi la simulation des particules chargées sous ces conditions peut être visualisée dans l'espace de travail. </para>
+</listitem>
+</varlistentry>
+</variablelist>
+</listitem>
+</varlistentry>
+
+<varlistentry id="fourpendula">
+<term
+>fourpendula.step</term>
+<listitem
+><para
+>Cet exemple est une démonstration correcte du <ulink url="https://fr.wikipedia.org/wiki/Pendule_de_Newton"
+>pendule de Newton</ulink
+>.  Comme le système est imparfait, deux disques au milieu ont un mouvement visuel avec le temps.</para
+></listitem>
+</varlistentry>
+
+<varlistentry id="gas">
+<term
+>gas.step</term>
+<listitem
+><para
+>Cet exemple simule la pression d'un gaz parfait provoquée par le <ulink url="https://fr.wikipedia.org/wiki/Mouvement_brownien"
+>mouvement brownien</ulink
+>.</para
+></listitem>
+</varlistentry>
+
+<varlistentry id="graph">
+<term
+>graph.step</term>
+<listitem
+><para
+>Trace un graphe de la vitesse en fonction de la position pour la particule 1 dans le système de deux particules reliées par un ressort.</para
+></listitem>
+</varlistentry>
+
+<varlistentry id="liquid">
+<term
+>liquid.step</term>
+<listitem
+><para
+>Cet exemple simule un liquide monoatomique.</para
+></listitem>
+</varlistentry>
+
+<varlistentry id="lissajous">
+<term
+>lissajous.step</term>
+<listitem
+><para
+>Cet exemple simule une <ulink url="https://fr.wikipedia.org/wiki/Courbe_de_Lissajous"
+>courbe de Lissajous</ulink
+> en utilisant le modèle à deux particules. Les paramètres du modèle peuvent être changé en utilisant le contrôleur au centre de l'espace de travail.</para
+></listitem>
+</varlistentry>
+
+<varlistentry id="motor1">
+<term
+>motor1.step</term>
+<listitem
+><para
+>Simule un corps dur triangulaire sous la charge de trois moteurs linéaires.</para
+></listitem>
+</varlistentry>
+
+<varlistentry id="motor-example">
+<term
+>motor.step</term>
+<listitem
+><para
+>Simule l'interaction d'un moteur linéaire avec un corps dur rectangulaire sur un ressort.</para
+></listitem>
+</varlistentry>
+
+<varlistentry id="note-example">
+<term
+>note.step</term>
+<listitem
+><para
+>Exemple avec une formule LaTeX(<ulink url="https://fr.wikipedia.org/wiki/Th%C3%A9or%C3%A8me_de_flux-divergence"
+>théorème de flux-divergence</ulink
+>) et une image embarquée.</para
+></listitem>
+</varlistentry>
+
+<varlistentry id="resonance">
+<term
+>resonance.step</term>
+<listitem
+><para
+>Cet exemple simule une résonance dans un système avec un moteur angulaire.</para
+></listitem>
+</varlistentry>
+
+<varlistentry id="softbody">
+<term
+>softbody.step</term>
+<listitem
+><para
+>Cet exemple simule une interaction de deux corps durs avec un corps mou entre eux.</para
+></listitem>
+</varlistentry>
+
+<varlistentry id="solar">
+<term
+>solar.step</term>
+<listitem
+><para
+>Cet exemple simule le mouvement des principaux corps du système solaire (le Soleil et les planètes).</para
+></listitem>
+</varlistentry>
+
+<varlistentry id="springs">
+<term
+>springs.step</term>
+<listitem
+><para
+>Cet exemple simule le mouvement d système planaire de cinq particules reliées par quatre ressorts.</para
+></listitem>
+</varlistentry>
+
+<varlistentry id="wave">
+<term
+>wave.step</term>
+<listitem
+><para
+>Le graphe de l'espace de travail expose les oscillations de la particule verte. Lorsque vous démarrez la simulation, l'onde commence à voyager à partir de la particule rouge. La particule bleue réfléchira l'onde et voyagera dans la direction inverse jusqu'à ce que la particule rouge la réfléchisse de nouveau. Après un certain temps, l'onde disparaîtra due à l'amortissement des ressorts.</para
+></listitem>
+</varlistentry>
+
+</variablelist>
+
+</chapter>

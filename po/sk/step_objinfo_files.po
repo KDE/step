@@ -1,0 +1,433 @@
+# translation of step_objinfo_files.po to Slovak
+# Roman Paholík <wizzardsk@gmail.com>, 2019.
+msgid ""
+msgstr ""
+"Project-Id-Version: step_objinfo_files\n"
+"Report-Msgid-Bugs-To: https://bugs.kde.org\n"
+"POT-Creation-Date: 2020-06-17 01:58+0200\n"
+"PO-Revision-Date: 2019-11-29 20:07+0100\n"
+"Last-Translator: Roman Paholik <wizzardsk@gmail.com>\n"
+"Language-Team: Slovak <kde-sk@linux.sk>\n"
+"Language: sk\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Lokalize 19.08.3\n"
+"Plural-Forms: nplurals=3; plural=(n==1) ? 0 : (n>=2 && n<=4) ? 1 : 2;\n"
+
+#: objectinfo/anchor.html:6
+#, kde-format
+msgctxt "anchor.html:title"
+msgid "Anchor"
+msgstr "Ukotvenie"
+
+#: objectinfo/anchor.html:9
+#, kde-format
+msgctxt "anchor.html:p"
+msgid ""
+"Anchor is a joint that fixes position of the body. The body can not move "
+"when it has an anchor."
+msgstr ""
+
+#: objectinfo/box.html:6
+#, kde-format
+msgctxt "box.html:title"
+msgid "Box"
+msgstr "Obdĺžnik"
+
+#: objectinfo/box.html:9
+#, kde-format
+msgctxt "box.html:p"
+msgid "A rigid box with a unique name and the following parameters:"
+msgstr ""
+
+#: objectinfo/box.html:21
+#, kde-format
+msgctxt "box.html:body"
+msgid ""
+"<ul>\n"
+"\t\t<li><b>position:</b> The X/Y position of the center of mass of the box, "
+"relative to the center of the <a href=\"objinfo:World\">world</a>.</li>\n"
+"\t\t<li><b>angle:</b> By how much the box is rotated in positive direction, "
+"that is clock-wise.</li>\n"
+"\t\t<li><b>velocity:</b> The velocity of the center of mass of the box. "
+"Unit: meters/second.</li>\n"
+"\t\t<li><b>angular velocity:</b> How fast the box is spinning in positive "
+"direction, that is clock-wise.</li>\n"
+"\t\t<li><b>mass:</b> Total mass of the box. This influences forces with "
+"which the box interacts with other items.</li>\n"
+"\t\t<li><b>inertia:</b> How difficult it is to change the box's rotation.</"
+"li>\n"
+"\t\t<li><b>momentum:</b> A fundamental quantity in mechanics that is "
+"conserved in the absence of external forces. A product of the mass and the "
+"velocity.</li>\n"
+"\t\t<li><b>angular momentum:</b> Measure of the extent to which the box will "
+"continue to rotate unless acted upon by an external torque.</li>\n"
+"\t\t<li><b>kinetic energy:</b> The work needed to accelerate the body of a "
+"given mass from rest to its current velocity.</li>\n"
+"\t\t<li><b>size:</b> Defines width and height of the box.</li>\n"
+"\t</ul>"
+msgstr ""
+
+#: objectinfo/chargedparticle.html:6
+#, kde-format
+msgctxt "chargedparticle.html:title"
+msgid "Charged Particle"
+msgstr ""
+
+#: objectinfo/chargedparticle.html:9
+#, kde-format
+msgctxt "chargedparticle.html:p"
+msgid ""
+"A zero-sized particle which carries an electric charge. It has a unique name "
+"and five parameters:"
+msgstr ""
+
+#: objectinfo/chargedparticle.html:16
+#, kde-format
+msgctxt "chargedparticle.html:body"
+msgid ""
+"<ul>\n"
+"\t\t<li><b>position:</b> The X/Y position of the particle, relative to the "
+"center of the <a href=\"objinfo:World\">world</a>.</li>\n"
+"\t\t<li><b>velocity:</b> the velocity of the particle. Unit: meters/second.</"
+"li>\n"
+"\t\t<li><b>force:</b> the force with which the particle is moving around.</"
+"li>\n"
+"\t\t<li><b>mass:</b> the mass of the particle. This influences forces with "
+"which the particle interacts with other items.</li>\n"
+" \t\t<li><b>charge:</b> The amount of positive or negative electricity "
+"deposited on the particle. Unit: Coulomb.</li>\n"
+"\t</ul>"
+msgstr ""
+
+#: objectinfo/coulombforce.html:6
+#, kde-format
+msgctxt "coulombforce.html:title"
+msgid "Coulomb Force"
+msgstr "Coulombova sila"
+
+#: objectinfo/coulombforce.html:9
+#, kde-format
+msgctxt "coulombforce.html:p"
+msgid "Coulomb force is a force of interaction between charged particles."
+msgstr ""
+
+#: objectinfo/coulombforce.html:10
+#, kde-format
+msgctxt "coulombforce.html:p"
+msgid "<b>Coulomb's law</b>"
+msgstr ""
+
+#: objectinfo/coulombforce.html:11
+#, kde-format
+msgctxt "coulombforce.html:body"
+msgid ""
+"<li>The magnitude of the electrostatic force between two point electric "
+"charges is directly proportional to the product of the magnitudes of each of "
+"the charges and inversely proportional to the square of the distance between "
+"the two charges.</li>"
+msgstr ""
+
+#: objectinfo/coulombforce.html:12
+#, kde-format
+msgctxt "coulombforce.html:p"
+msgid ""
+"For more details, please refer to the <a href=\"https://en.wikipedia.org/"
+"wiki/Coulomb's_law\">Coulomb Force</a>."
+msgstr ""
+
+#: objectinfo/disk.html:6
+#, kde-format
+msgctxt "disk.html:title"
+msgid "Disk"
+msgstr "Disk"
+
+#: objectinfo/disk.html:9
+#, kde-format
+msgctxt "disk.html:p"
+msgid "A rigid disk with a unique name and the following parameters:"
+msgstr ""
+
+#: objectinfo/disk.html:21
+#, kde-format
+msgctxt "disk.html:body"
+msgid ""
+"<ul>\n"
+"\t\t<li><b>position:</b> The X/Y position of the center of mass of the disk, "
+"relative to the center of the <a href=\"objinfo:World\">world</a>.</li>\n"
+"\t\t<li><b>angle:</b> By how much the disk is rotated in positive direction, "
+"that is clock-wise.</li>\n"
+"\t\t<li><b>velocity:</b> The velocity of the center of mass of the disk. "
+"Unit: meters/second.</li>\n"
+"\t\t<li><b>angular velocity:</b> How fast the disk is spinning in positive "
+"direction, that is clock-wise.</li>\n"
+"\t\t<li><b>mass:</b> Total mass of the disk. This influences forces with "
+"which the disk interacts with other items.</li>\n"
+"\t\t<li><b>inertia:</b> How difficult it is to change the disk's rotation.</"
+"li>\n"
+"\t\t<li><b>momentum:</b> A fundamental quantity in mechanics that is "
+"conserved in the absence of external forces. A product of the mass and the "
+"velocity.</li>\n"
+"\t\t<li><b>angular momentum:</b> Measure of the extent to which the disk "
+"will continue to rotate unless acted upon by an external torque.</li>\n"
+"\t\t<li><b>kinetic energy:</b> The work needed to accelerate the body of a "
+"given mass from rest to its current velocity.</li>\n"
+"\t\t<li><b>radius:</b> Defines how big the disk is.</li>\n"
+"\t</ul>"
+msgstr ""
+
+#: objectinfo/gas.html:6
+#, kde-format
+msgctxt "gas.html:title"
+msgid "Gas"
+msgstr "Plyn"
+
+#: objectinfo/gas.html:9
+#, kde-format
+msgctxt "gas.html:p"
+msgid ""
+"A gas is a collection of <a href=\"objinfo:GasParticle\">gasoline particles</"
+"a>. Associated with the gas is a <a href=\"objinfo:GasLJForce\">force</a>. "
+"To add gas particles right-click the gas and click on \"Create particles\"."
+msgstr ""
+
+#: objectinfo/gas.html:10
+#, kde-format
+msgctxt "gas.html:p"
+msgid ""
+"For details about the math used to calculate the forces, please refer to the "
+"<a href=\"https://en.wikipedia.org/wiki/Lennard-Jones_potential\">Lennard-"
+"Jones potential</a>."
+msgstr ""
+
+#: objectinfo/gasljforce.html:6
+#, kde-format
+msgctxt "gasljforce.html:title"
+msgid "Force"
+msgstr "Sila"
+
+#: objectinfo/gasljforce.html:9
+#, kde-format
+msgctxt "gasljforce.html:p"
+msgid ""
+"This force simulates the <a href=\"https://en.wikipedia.org/wiki/Lennard-"
+"Jones_potential\">Lennard-Jones potential</a>. There are three parameters "
+"for this force:"
+msgstr ""
+
+#: objectinfo/gasljforce.html:14
+#, kde-format
+msgctxt "gasljforce.html:body"
+msgid ""
+"<ul>\n"
+"        <li><b>depth:</b> The minimum value of the Lennard-Jones potential "
+"well</li>\n"
+"        <li><b>rmin:</b> The distance from the origin to the minimum of the "
+"potential</li>\n"
+"        <li><b>cutoff:</b> The distance, where the Lennard-Jones (LJ) "
+"potential is often truncated to save computational time</li>\n"
+"\t</ul>"
+msgstr ""
+
+#: objectinfo/gasljforce.html:15
+#, kde-format
+msgctxt "gasljforce.html:p"
+msgid ""
+"These parameters are empirical and are usually obtained from experiment or "
+"some rough estimation."
+msgstr ""
+
+#: objectinfo/gasparticle.html:6
+#, kde-format
+msgctxt "gasparticle.html:title"
+msgid "Gas Particle"
+msgstr "Plynová častica "
+
+#: objectinfo/gasparticle.html:9
+#, kde-format
+msgctxt "gasparticle.html:p"
+msgid ""
+"A <a href=\"objinfo:Gas\">gas</a> particle simulates one single particle in "
+"a gasoline system. Each particle is tracked individually and has a unique "
+"name and four parameters:"
+msgstr ""
+
+#: objectinfo/gasparticle.html:15
+#, kde-format
+msgctxt "gasparticle.html:body"
+msgid ""
+"<ul>\n"
+"\t\t<li><b>position:</b> The X/Y position of the particle relative, to the "
+"center of the <a href=\"objinfo:World\">world</a>.</li>\n"
+"\t\t<li><b>velocity:</b> the velocity of the particle. Unit: meters/second.</"
+"li>\n"
+"\t\t<li><b>force:</b> the force with which the particle is moving around.</"
+"li>\n"
+"\t\t<li><b>mass:</b> the mass of the particle. This influences forces with "
+"which the particle interacts with other items.</li>\n"
+"\t</ul>"
+msgstr ""
+
+#: objectinfo/gravitationforce.html:6
+#, kde-format
+msgctxt "gravitationforce.html:title"
+msgid "Gravitation Force"
+msgstr "Gravitačná sila"
+
+#: objectinfo/gravitationforce.html:9
+#, kde-format
+msgctxt "gravitationforce.html:p"
+msgid ""
+"Gravitational force is an attractive force that act between bodies having "
+"mass."
+msgstr ""
+
+#: objectinfo/gravitationforce.html:10
+#, kde-format
+msgctxt "gravitationforce.html:p"
+msgid "<b>Newton's law</b>"
+msgstr ""
+
+#: objectinfo/gravitationforce.html:11
+#, kde-format
+msgctxt "gravitationforce.html:body"
+msgid ""
+"<li>Every body in the universe attracts every other body with a force, which "
+"is proportional to the product of the masses of the bodies and inversely "
+"proportional to square of the distance between them.</li>"
+msgstr ""
+
+#: objectinfo/gravitationforce.html:12
+#, kde-format
+msgctxt "gravitationforce.html:p"
+msgid "<b>General relativity</b>"
+msgstr ""
+
+#: objectinfo/gravitationforce.html:13
+#, kde-format
+msgctxt "gravitationforce.html:body"
+msgid ""
+"<li>In general relativity gravitation is explained on the basis of curvature "
+"of space-time.</li>"
+msgstr ""
+
+#: objectinfo/gravitationforce.html:14
+#, kde-format
+msgctxt "gravitationforce.html:p"
+msgid ""
+"For more details, please refer to the <a href=\"https://en.wikipedia.org/"
+"wiki/Gravitation\">Gravitation Force</a>."
+msgstr ""
+
+#: objectinfo/linearmotor.html:6
+#, kde-format
+msgctxt "linearmotor.html:title"
+msgid "Linear Motor"
+msgstr ""
+
+#: objectinfo/linearmotor.html:9
+#, kde-format
+msgctxt "linearmotor.html:p"
+msgid "A linear motor produces a linear force along its length."
+msgstr ""
+
+#: objectinfo/linearmotor.html:10
+#, kde-format
+msgctxt "linearmotor.html:p"
+msgid ""
+"You can set the desired linear force for an object by changing the force "
+"value in the properties browser."
+msgstr ""
+
+#: objectinfo/meter.html:6
+#, kde-format
+msgctxt "meter.html:title"
+msgid "Meter"
+msgstr "Meter"
+
+#: objectinfo/meter.html:9
+#, kde-format
+msgctxt "meter.html:p"
+msgid ""
+"A meter can show you values of properties. The meter can be configured to "
+"show property of any given object of the simulation."
+msgstr ""
+
+#: objectinfo/note.html:6
+#, kde-format
+msgctxt "note.html:title"
+msgid "Note"
+msgstr "Poznámka"
+
+#: objectinfo/note.html:9
+#, kde-format
+msgctxt "note.html:p"
+msgid "You can use notes to place text on the canvas of Step."
+msgstr ""
+
+#: objectinfo/particle.html:6
+#, kde-format
+msgctxt "particle.html:title"
+msgid "Particle"
+msgstr "Častica"
+
+#: objectinfo/particle.html:9
+#, kde-format
+msgctxt "particle.html:p"
+msgid "A zero-sized particle which has a unique name and four parameters:"
+msgstr ""
+
+#: objectinfo/particle.html:15
+#, kde-format
+msgctxt "particle.html:body"
+msgid ""
+"<ul>\n"
+"\t\t<li><b>position:</b> The X/Y position of the particle, relative to the "
+"center of the <a href=\"objinfo:World\">world</a>.</li>\n"
+"\t\t<li><b>velocity:</b> the velocity of the particle. Unit: meters/second.</"
+"li>\n"
+"\t\t<li><b>force:</b> the force with which the particle is moving around.</"
+"li>\n"
+"\t\t<li><b>mass:</b> the mass of the particle. This influences forces with "
+"which the particle interacts with other items.</li>\n"
+"\t</ul>"
+msgstr ""
+
+#: objectinfo/pin.html:6
+#, kde-format
+msgctxt "pin.html:title"
+msgid "Pin"
+msgstr "Pin"
+
+#: objectinfo/pin.html:9
+#, kde-format
+msgctxt "pin.html:p"
+msgid ""
+"A pin is a joint that fixes a particular point of the body, The body can "
+"still move around the pin."
+msgstr ""
+
+#: objectinfo/polygon.html:6
+#, kde-format
+msgctxt "polygon.html:title"
+msgid "Polygon"
+msgstr "Mnohouholník"
+
+#: objectinfo/polygon.html:9
+#, kde-format
+msgctxt "polygon.html:p"
+msgid "A rigid polygon with a unique name and the following parameters:"
+msgstr ""
+
+#~ msgctxt "spring.html:title"
+#~ msgid "Spring"
+#~ msgstr "Jar"
+
+#~ msgctxt "weightforce.html:title"
+#~ msgid "Weight Force"
+#~ msgstr "Sila tiaže"
+
+#~ msgctxt "world.html:title"
+#~ msgid "World"
+#~ msgstr "Svet"

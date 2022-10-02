@@ -1,0 +1,254 @@
+<?xml version="1.0" ?>
+<!DOCTYPE book PUBLIC "-//KDE//DTD DocBook XML V4.5-Based Variant V1.1//EN" "dtd/kdedbx45.dtd" [
+  <!ENTITY tutorials SYSTEM "tutorials.docbook">
+  <!ENTITY examples SYSTEM "examples.docbook">
+  <!ENTITY % addindex "IGNORE">
+  <!ENTITY % Spanish "INCLUDE"
+><!-- change language only here -->
+]>
+
+<book id="step" lang="&language;">
+
+<bookinfo>
+<title
+>El manual de &step;</title>
+
+
+<authorgroup>
+<author
+>&Anne-Marie.Mahfouf; &Anne-Marie.Mahfouf.mail; </author>
+
+<othercredit role="translator"
+><firstname
+>Eloy</firstname
+><surname
+>Cuadra</surname
+><affiliation
+><address
+><email
+>ecuadra@eloihr.net</email
+></address
+></affiliation
+><contrib
+>Traductor</contrib
+></othercredit
+> <othercredit role="translator"
+><firstname
+>Leticia</firstname
+><surname
+>Martín Hernández</surname
+><affiliation
+><address
+><email
+>leticia.martin@gmail.com</email
+></address
+></affiliation
+><contrib
+>Traductor</contrib
+></othercredit
+> 
+</authorgroup>
+
+
+<copyright>
+<year
+>2007</year>
+<holder
+>&Anne-Marie.Mahfouf;</holder>
+</copyright>
+
+<legalnotice
+>&FDLNotice;</legalnotice>
+
+<date
+>2021-10-24</date>
+<releaseinfo
+>KDE Gear 21.08</releaseinfo>
+
+<abstract>
+<para
+>&step; es un simulador interactivo de Física que le permite explorar el mundo físico mediante simulaciones. Funciona de la siguiente manera: se colocan algunos cuerpos en la escena, se añaden algunas fuerzas (como la gravedad o muelles) y luego se pulsa el icono <inlinemediaobject
+><imageobject
+><imagedata fileref="media-playback-start.png" format="PNG"/></imageobject
+></inlinemediaobject
+> <guiicon
+>Simular</guiicon
+> para que &step; muestre cómo evoluciona lu escena según las leyes de la Física. Puede cambiar cualquier propiedad de los cuerpos o fuerzas del experimento (incluso durante la simulación) y observar cómo cambia la evolución del experimento. Con &step; no solo aprenderá, sino que también podrá sentir cómo funciona la Física. </para>
+</abstract>
+
+<keywordset>
+  <keyword
+>KDE</keyword>
+  <keyword
+>kdeedu</keyword>
+  <keyword
+>física</keyword>
+  <keyword
+>simulador</keyword>
+  <keyword
+>fuerzas</keyword>
+  <keyword
+>Step</keyword>
+</keywordset>
+
+</bookinfo>
+
+<chapter id="introduction">
+<title
+>Introducción</title>
+<para
+>&step; es un simulador interactivo de Física.</para>
+
+<para
+>Características de &step;: <itemizedlist>
+  <listitem
+><para
+>Simulaciones de mecánica clásica en dos dimensiones.</para
+></listitem>
+
+  <listitem
+><para
+>Partículas, muelles con amortiguación, fuerzas gravitatorias y de Coulomb</para
+></listitem>
+
+  <listitem
+><para
+>Cuerpos rígidos.</para
+></listitem>
+
+  <listitem
+><para
+>Detección y manejo de colisiones (actualmente, solo discretas).</para
+></listitem>
+
+  <listitem
+><para
+>Simulación de cuerpos flexibles (deformables) como un sistema de partículas y muelles que puede ser editado por el usuario, ondas de sonido.</para
+></listitem>
+
+  <listitem
+><para
+>Dinámica molecular (actualmente, usando el potencial de Lennard-Jones): gas y líquido, condensación y evaporación, cálculo de cantidades macroscópicas y sus varianzas.</para
+></listitem>
+
+  <listitem
+><para
+>Conversión de unidades y cálculo de expresiones: puede introducir algo como «(2 días + 3 horas) * 80 km/h», que será aceptado como una distancia (requiere libqalculate).</para
+></listitem>
+
+  <listitem
+><para
+>Cálculo y propagación de errores: puede introducir valores como «1.3 ± 0.2» para cualquier propiedad, y los errores para todas las propiedades dependientes serán calculados usando fórmulas estadísticas.</para
+></listitem>
+
+  <listitem
+><para
+>Estimación del error de la resolución: los errores introducidos por el mecanismo de resolución son calculados y añadidos a los errores introducidos por el usuario.</para
+></listitem>
+
+  <listitem
+><para
+>Diferentes mecanismos de resolución: hasta el octavo orden, explícito e implícito, con o sin paso de tiempo adaptativo (la mayoría de los mecanismos de resolución necesitan la biblioteca GSL).</para
+></listitem>
+
+  <listitem
+><para
+>Herramienta para controlar fácilmente las propiedades durante la simulación (incluso con accesos rápidos de teclado personalizados).</para
+></listitem>
+
+  <listitem
+><para
+>Herramientas para visualizar los resultados: gráfica, medidor, trazador.</para
+></listitem>
+
+  <listitem
+><para
+>Información contextual para todos los objetos, navegador de Wikipedia integrado.</para
+></listitem>
+
+  <listitem
+><para
+>Colección de experimentos de ejemplo, pudiéndose descargar más con &knewstuff;3.</para
+></listitem>
+
+  <listitem
+><para
+>Tutoriales integrados.</para
+></listitem>
+</itemizedlist>
+</para>
+</chapter>
+
+<chapter id="using-step">
+<title
+>Uso de &step;</title>
+
+<para
+>&step; simula un mundo físico. La parte principal de &step; (1) es la escena del mundo, situada en el centro de la ventana principal de &step;, donde primero colocará los objetos y donde a continuación verá la simulación. A la izquierda de esta escena hay una paleta (2) que le permite escoger sus objetos físicos. Puede mover libremente esta paleta a cualquier parte de su escritorio con solo arrastrar su barra de título. A la derecha de la escena puede ver la descripción del mundo actual (3), sus propiedades (4), algo de ayuda para explicar lo que significan algunas palabras (5) y el historial del mundo actual (6). Cada uno de estos paneles puede colocarse en cualquier lugar de la pantalla arrastrando sus respectivas barras de título. </para>
+
+<screenshot>
+  <screeninfo
+>Aquí tiene una captura de pantalla de &step; cuando se inicia por primera vez.</screeninfo>
+  <mediaobject>
+    <imageobject
+><imagedata fileref="mainwindow.png" format="PNG"/></imageobject>
+    <textobject
+><phrase
+>Ventana principal de &step;</phrase
+></textobject>
+  </mediaobject>
+</screenshot>
+
+<para
+>Como ayuda cuando comienza, &step; integra una serie de tutoriales que le enseñarán a construir un experimento de un modo sencillo. Por favor, siga el primer tutorial paso a paso. </para>
+</chapter>
+
+&tutorials;
+&examples;
+
+<chapter id="credits">
+
+<title
+>Créditos y licencia</title>
+
+<para
+>&step; </para>
+
+<para
+>Derechos de autor del programa 2007 &Vladimir.Kuznetsov; &Vladimir.Kuznetsov.mail; </para>
+
+<para
+>Colaboradores: <itemizedlist>
+  <listitem
+><para
+>Autor: &Vladimir.Kuznetsov; &Vladimir.Kuznetsov.mail;</para
+></listitem>
+  <listitem
+><para
+>Colaborador: &Carsten.Niehaus; &Carsten.Niehaus.mail;</para
+></listitem>
+</itemizedlist>
+</para>
+
+<para
+>Derechos de autor de la documentación 2007 &Anne-Marie.Mahfouf; &Anne-Marie.Mahfouf.mail; </para>
+
+<para
+>Traducido por Eloy Cuadra <email
+>ecuadra@eloihr.net</email
+> y Leticia Martín Hernández <email
+>leticia.martin@gmail.com</email
+>.</para
+> &underFDL; &underGPL; </chapter>
+
+&documentation.index;
+</book>
+<!--
+Local Variables:
+mode: sgml
+sgml-minimize-attributes:nil
+sgml-general-insert-case:lower
+sgml-indent-step:0
+sgml-indent-data:nil
+End:
+-->

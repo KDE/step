@@ -1,0 +1,310 @@
+<chapter id="examples">
+<title
+>Exempel i &step;</title>
+
+<para
+>&step;-paket innehåller flera instruktiva exempel för att hjälpa till att förstå principerna för hur programmet fungerar: </para>
+
+<variablelist>
+  <varlistentry>
+    <term
+><menuchoice
+><guimenu
+>Arkiv</guimenu
+> <guisubmenu
+>Exempel</guisubmenu
+></menuchoice
+></term>
+    <listitem
+><para
+><action
+>Visar en undermeny</action
+> med olika alternativ.</para>
+    <variablelist>
+      <varlistentry>
+        <term
+><guimenuitem
+>Öppna exempel...</guimenuitem
+></term>
+        <listitem
+><para
+><action
+>Öppnar ett exempel</action
+> från den fördefinierade uppsättningen</para
+></listitem>
+      </varlistentry>
+      <varlistentry>
+        <term
+><guimenuitem
+>Öppna nerladdat exempel...</guimenuitem
+></term>
+        <listitem
+><para
+><action
+>Öppnar de nerladdade exemplen.</action
+></para
+></listitem>
+      </varlistentry>
+      <varlistentry>
+        <term
+><guimenuitem
+>Ladda ner nya experiment...</guimenuitem
+></term>
+        <listitem
+><para
+><action
+>Ladda ner exempel</action
+> delade av andra användare.</para
+></listitem>
+      </varlistentry>
+      <varlistentry>
+        <term
+><guimenuitem
+>Dela med nuvarande experiment...</guimenuitem
+></term>
+        <listitem
+><para
+><action
+>Du kan dela dina egna exempel.</action
+></para
+></listitem>
+      </varlistentry>
+    </variablelist>
+    </listitem>
+  </varlistentry>
+</variablelist>
+
+<para
+>Beskrivningen av standardexempelfilerna hittar du nedan. </para>
+
+<variablelist>
+  <varlistentry id="brownian">
+    <term
+><filename
+>brownian.step</filename
+></term>
+    <listitem
+><para
+>Ritar upp bana för den stela skivan som samverkar med 40 partiklar vilka rör sig slumpmässigt i en låda. Exemplet simulerar <ulink url="https://sv.wikipedia.org/wiki/Brownsk_rörelse"
+>Brownsk rörelse</ulink
+> hos ideala gaspartiklar.</para
+></listitem>
+  </varlistentry>
+
+  <varlistentry id="pendulum">
+    <term
+><filename
+>doublependulum.step</filename
+></term>
+    <listitem
+><para
+>Det här exemplet simulerar <ulink url="https://sv.wikipedia.org/wiki/Dubbelpendel"
+>rörelsen hos en dubbelpendel</ulink
+> med användning av två solida partiklar och två pinnar.</para
+></listitem>
+  </varlistentry>
+
+  <varlistentry id="eightpendulum">
+    <term
+><filename
+>eightpendulum.step</filename
+></term>
+    <listitem
+><para
+>Detta exempel är en enkel demonstration av den berömda <ulink url="https://sv.wikipedia.org/wiki/Newtons_vagga"
+>Newtons vagga</ulink
+>. Det görs i &step; med pinnar, skivor och en låda. De sex kulorna i mitten rör sig inte efter som de hålls på plats med stift.</para
+></listitem>
+  </varlistentry>
+
+  <varlistentry id="first">
+    <term
+><filename
+>first.step</filename
+>: Första exemplet</term>
+    <listitem
+><para
+>Det här exemplet har två delar. Den första delen innehåller två partiklar hopkopplade med en fjäder, och den andra delen innehåller två laddade partiklar. </para>
+    <variablelist>
+      <varlistentry id="first-two-particles">
+        <term
+>Två partiklar hopkopplade med en fjäder</term>
+        <listitem
+><para
+>I det här exemplet läggs två partiklar till i rummet och en fjäder kopplas mellan dem. Båda partiklarnas egenskaper, som hastighet, rörelsemängd, position, etc., har ställts in i egenskapsbläddraren. Fjäderns egenskaper, som styvhet, vilolängd, dämpning etc., har också ställts in i egenskapsbläddraren. </para>
+
+        <para
+><emphasis
+>Förklaring av simuleringen:</emphasis>
+        </para>
+
+        <para
+>Det här är ett bra exempel på en enkel harmonisk rörelse. Här är den ena partikelns acceleration längs den positiva x-axeln och den andra partikelns acceleration längs den negativa x-axeln. Resultatet blir att båda partiklarna drar fjädern i motsatta riktningar, medan fjädern försöker få de båda partiklarna tillbaka till sina ursprungliga positioner. På så sätt utför systemet en enkel harmonisk rörelse. Simuleringen av partiklarna och fjädern med dessa förutsättningar syns i rummet. </para
+></listitem>
+      </varlistentry>
+
+      <varlistentry id="first-two-charged">
+        <term
+>Två laddade partiklar</term>
+        <listitem
+><para
+>Varje laddad partikels hastighet är inställd i en viss riktning så att de laddade partiklarna rör sig i hastighetsriktningen, men varje partikel har fått en lika men motsatt laddning så att partiklarna försöker attrahera varandra. Resultatet kan ses i simuleringen av de laddade partiklarna under dessa förhållanden i rummet.</para
+></listitem>
+      </varlistentry>
+    </variablelist>
+    </listitem>
+  </varlistentry>
+
+  <varlistentry id="fourpendula">
+    <term
+><filename
+>fourpendula.step</filename
+></term>
+    <listitem
+><para
+>Detta exempel är en korrekt demonstration av den berömda <ulink url="https://sv.wikipedia.org/wiki/Newtons_vagga"
+>Newtons vagga</ulink
+>. Eftersom systemet inte är perfekt, ger två skivor i mitten visuell rörelse i tiden.</para
+></listitem>
+  </varlistentry>
+
+  <varlistentry id="gas">
+    <term
+><filename
+>gas.step</filename
+></term>
+    <listitem
+><para
+>Exemplet simulerar idealt gastryck orsakat av <ulink url="https://sv.wikipedia.org/wiki/Brownsk_rörelse"
+>Brownsk rörelse</ulink
+>.</para
+></listitem>
+  </varlistentry>
+
+  <varlistentry id="graph">
+    <term
+><filename
+>graph.step</filename
+></term>
+    <listitem
+><para
+>Ritar upp diagrammet över hastighet och position för partikel1 i systemet med två partiklar hopkopplade med en fjäder.</para
+></listitem>
+  </varlistentry>
+
+  <varlistentry id="liquid">
+    <term
+><filename
+>liquid.step</filename
+></term>
+    <listitem
+><para
+>Det här exemplet simulerar en monoatomär vätska.</para
+></listitem>
+  </varlistentry>
+
+  <varlistentry id="lissajous">
+    <term
+><filename
+>lissajous.step</filename
+></term>
+    <listitem
+><para
+>Det här exemplet simulerar <ulink url="https://sv.wikipedia.org/wiki/Lissajouskurva"
+>Lissajous kurva</ulink
+> med en tvåpartikelmodell. Modellens parametrar kan ändras med reglaget i mitten av rummet.</para
+></listitem>
+  </varlistentry>
+
+  <varlistentry id="motor1">
+    <term
+><filename
+>motor1.step</filename
+></term>
+    <listitem
+><para
+>Simulerar en triangelformad stel kropp under last från tre linjära motorer.</para
+></listitem>
+  </varlistentry>
+
+  <varlistentry id="motor-example">
+    <term
+><filename
+>motor.step</filename
+></term>
+    <listitem
+><para
+>Simulerar samverkan av den linjära motorn med en stel rektangulär kropp på en fjäder.</para
+></listitem>
+  </varlistentry>
+
+  <varlistentry id="note-example">
+    <term
+><filename
+>note.step</filename
+></term>
+    <listitem
+><para
+>Exempel med &latex;-formel (<ulink url="https://sv.wikipedia.org/wiki/Gauss_sats"
+>divergenssatsen</ulink
+>) och inbäddad bild.</para
+></listitem>
+  </varlistentry>
+
+  <varlistentry id="resonance">
+    <term
+><filename
+>resonance.step</filename
+></term>
+    <listitem
+><para
+>Det här exemplet simulerar resonans i systemet med vinkelmotorn.</para
+></listitem>
+  </varlistentry>
+
+  <varlistentry id="softbody">
+    <term
+><filename
+>softbody.step</filename
+></term>
+    <listitem
+><para
+>Exemplet simulerar samverkan av två stela kroppar med en deformerbar kropp mellan sig..</para
+></listitem>
+  </varlistentry>
+
+  <varlistentry id="solar">
+    <term
+><filename
+>solar.step</filename
+></term>
+    <listitem
+><para
+>Det här exemplet simulerar rörelsen hos solsystemets större kroppar (solen och planeterna).</para
+></listitem>
+  </varlistentry>
+
+  <varlistentry id="springs">
+    <term
+><filename
+>springs.step</filename
+></term>
+    <listitem
+><para
+>Det här exemplet simulerar rörelsen hos det plana systemet med fem partiklar hopkopplade med fyra fjädrar.</para
+></listitem>
+  </varlistentry>
+
+  <varlistentry id="wave">
+    <term
+><filename
+>wave.step</filename
+></term>
+    <listitem
+><para
+>Diagrammet i rummet visar den gröna partikelns svängningar. När simuleringen startas börjar vågen röra sig från den röda partikeln. Den blåa partikeln reflekterar vågen och den rör sig i motsatt riktning till den röda partikeln reflekterar den igen. Efter en viss tid kommer vågen att försvinna, eftersom fjädrarna har dämpning.</para
+></listitem>
+  </varlistentry>
+</variablelist>
+
+</chapter>

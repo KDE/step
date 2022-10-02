@@ -1,0 +1,251 @@
+<chapter id="tutorials">
+<title
+>Bli bekant med &step;: Handledningar</title>
+
+<para
+>Menyalternativet <menuchoice
+><guimenu
+>Arkiv</guimenu
+> <guimenuitem
+>Öppna handledning...</guimenuitem
+></menuchoice
+> visar en fildialogruta där du kan ladda de inbyggda handledningarna i &step;. Det finns fem handledningar, och du lär dig stegvis att använda varje element i &step;. Det är bäst att börja med den första handledningen genom att klicka på filen <filename
+>tutorial1.step</filename
+>. Det visar Handledning 1 i &step;. </para>
+
+<note
+><para
+>Om du inte ser handledningen riktigt, kan du försöka zooma in för att visa den bättre.</para
+></note>
+
+<para
+>Rutan <guilabel
+>Värld</guilabel
+> till höger listar alla objekt som finns i ditt diagram. Genom att klicka på ett objekt här, visar rutan <guilabel
+>Egenskaper</guilabel
+> nedanför egenskaperna för det objektet. Du kan ändra egenskaperna här genom att klicka på den du vill ändra. </para>
+
+<para
+>Varje handledning består av en del text som presenterar nya element och förklarar deras egenskaper. Därefter blir du ombedd att ändra några egenskaper hos elementen för att åstadkomma ett nytt resultat i experimentet. </para>
+
+<sect1 id="tutorial1">
+<title
+>Handledning 1: Kroppar och fjädrar</title>
+
+<para
+>Handledningen presenterar kroppar och fjädrar, och hur du startar din första simulering. </para>
+
+<para
+>En fysikalisk kropp, eller kortfattat bara kropp, är ett objekt som kan beskrivas med teorierna i klassisk mekanik eller kvantmekanik, och utsättas för experiment med fysiska instrument. Det omfattar att bestämma dess position, och i vissa fall dess orientering i rymden, samt möjlighet att ändra dem genom att tillföra krafter. </para>
+
+<para
+>En fjäder är ett flexibelt elastiskt objekt som används för att lagra mekanisk energi. </para>
+
+<screenshot>
+  <screeninfo
+>Experiment i Handledning 1</screeninfo>
+  <mediaobject>
+    <imageobject
+><imagedata fileref="tutorial1.png" format="PNG"/></imageobject>
+    <textobject
+><phrase
+>Experiment i Handledning 1</phrase
+></textobject>
+  </mediaobject>
+</screenshot>
+
+<para
+>De fysikaliska experimenten i handledningen representerar två skivor länkade med en fjäder. Skivorna har en initialhastighet i tangentens riktning (den lilla blå pilen) och en acceleration (den röda pilen) och fjädern har en styvhet och längden kan ändras. När experimentet körs kan du se hur skivorna trycks och dras av fjädern. Handledningen inbjuder dig att ändra fjäderns styvhet, och också att försöka ändra systemets experiment. </para>
+
+<para
+>I slutet av handledningen bör du vara mer bekant med gränssnittet i &step;, och du bör också enkelt kunna ändra egenskaper hos kroppar. </para>
+</sect1>
+
+<sect1 id="tutorial2">
+<title
+>Handledning 2: Reglage och diagram</title>
+
+<para
+>Du får lära dig mer om reglage och diagram i den här handledningen. </para>
+
+<para
+>Ett reglage är en enhet som låter dig ändra en egenskap hos en kropp eller fjäder grafiskt. I handledningen låter reglaget dig ändra styvheten hos fjädern <quote
+>spring1</quote
+>. Genom att flytta reglaget åt höger eller använda tangenten <keycap
+>W</keycap
+> kan du öka fjäderns styvhetsvärde, och genom att flytta reglaget åt vänster eller använda tangenten <keycap
+>Q</keycap
+> kan du minska det. Att högerklicka på reglaget ger dig flera sammanhangsberoende alternativ och alternativet <guimenuitem
+>Anpassa reglage...</guimenuitem
+> låter dig ändra reglagets alla egenskaper. </para>
+
+<screenshot>
+  <screeninfo
+>Experiment i Handledning 2</screeninfo>
+  <mediaobject>
+    <imageobject
+><imagedata fileref="tutorial2.png" format="PNG"/></imageobject>
+    <textobject
+><phrase
+>Experiment i Handledning 2</phrase
+></textobject>
+  </mediaobject>
+</screenshot>
+
+<para
+>Diagram låter dig grafiskt åskådliggöra sambandet mellan två variabler. Exemplet i handledningen skriver ut hur positionen för particle1 ändras med tiden i world1. Du kan rensa eller ta bort diagrammet med ett högerklick, samt visa inställningsdialogrutan och ändra diagrammets alla egenskaper. </para>
+
+<para
+>I slutet av handledningen klarar du att använda reglage för att påverka egenskaper hos dina kroppar, och diagram för att övervaka specifika egenskaper i ditt experiment. </para>
+</sect1>
+
+<sect1 id="tutorial3">
+<title
+>Handledning 3: Stela kroppar och spårenheter</title>
+
+<para
+>Handledning 3 presenterar stela kroppar och spårenheter. </para>
+
+<para
+>En stel kropp är en idealiserad fast kropp av ändlig storlek där deformering bortses från. Med andra ord förblir avståndet mellan två givna punkter på en stel kropp konstant i tiden oberoende av externa krafter som den utsätts för. </para>
+
+<para
+>En spårenhet är ett verktyg som visar banan en given punkt på en stel kropp följer. </para>
+
+<screenshot>
+  <screeninfo
+>Skivans egenskaper</screeninfo>
+  <mediaobject>
+    <imageobject
+><imagedata fileref="disk-properties.png" format="PNG"/></imageobject>
+    <textobject
+><phrase
+>Skivans egenskaper</phrase
+></textobject>
+  </mediaobject>
+</screenshot>
+
+<para
+>När en stel kropp (här en skiva) är markerad, ser du tre gråa grepp på den. Att använda dem genom att klicka på dem och flytta dem, gör att du kan ändra kroppens hastighet, vinkel och vinkelhastighet. </para>
+
+<screenshot>
+  <screeninfo
+>Handledning 3: Två spår</screeninfo>
+  <mediaobject>
+    <imageobject
+><imagedata fileref="tutorial3.png" format="PNG"/></imageobject>
+    <textobject
+><phrase
+>Handledning 3: Två spår</phrase
+></textobject>
+  </mediaobject>
+</screenshot>
+
+<para
+>Experimentet i Handledning 3 visar en skiva och en låda som är länkade med en fjäder. En spårenhet (den blåa) finns redan på lådan. Du kan lägga till en till: Välj knappen <guibutton
+>Spår</guibutton
+> i rutan <guilabel
+>Palett</guilabel
+>, och klicka därefter på den punkt på lådan där du vill att spårenheten ska vara. I rutan <guilabel
+>Egenskaper</guilabel
+>, klicka på raden <guilabel
+>färg</guilabel
+> och till höger på raden kan du klicka på den blåa fyrkanten för att visa en färgpalett. Där kan du välja en ny färg på spårenheten. Skärmbilden ovan visar två spårenheter efter att simuleringen har kört några sekunder. </para>
+</sect1>
+
+<sect1 id="tutorial4">
+<title
+>Handledning 4: Motorer och krafter</title>
+
+<para
+>Det finns två sorters motorer tillgängliga i &step;: linjärmotorer och cirkulärmotorer. En linjärmotor applicerar en konstant kraft i en given punkt på en kropp, medan en cirkulärmotor applicerar ett konstant vridmoment på en kropp. </para>
+
+<para
+>Tre olika krafter kan läggas till i kroppar: tyngdkraft, gravitationskraft och Coulombkraft. Normalt är alla krafter avstängda i &step;. Coulombkraften är en inneboende kraft som existerar mellan två laddningar. </para>
+
+<screenshot>
+  <screeninfo
+>Handledning 4: Motorer</screeninfo>
+  <mediaobject>
+    <imageobject
+><imagedata fileref="tutorial4.png" format="PNG"/></imageobject>
+    <textobject
+><phrase
+>Handledning 4: Motorer</phrase
+></textobject>
+  </mediaobject>
+</screenshot>
+
+<para
+>Du har en skiva och låda länkade med en fjäder i experimentet. En platt låda längst ner skapar en gräns. Skivan och lådan har båda en linjärmotor ansluten. Två reglage låter dig ändra kraften från varje motor. Starta simuleringen och lek med reglagen. Stoppa därefter simuleringen och lägg till en tyngdkraft i världen (krafter är globala och gäller hela världen). Starta om simuleringen och analysera skillnaden. </para>
+
+<para
+>Du kan också ta bort linjärmotorn på lådan och lägga till en cirkulärmotor istället. Tryck på <inlinemediaobject
+><imageobject
+><imagedata fileref="step_object_CircularMotor.png" format="PNG"/></imageobject
+></inlinemediaobject
+> <guibutton
+>Cirkulärmotor</guibutton
+> i rutan <guilabel
+>Palett</guilabel
+> och klicka därefter på lådan. Cirkulärmotorn läggs till på lådan. Därefter måste du ställa in vridmomentet genom att klicka och flytta motorns gråa grepp. </para>
+
+<screenshot>
+  <screeninfo
+>Cirkulärmotor</screeninfo>
+  <mediaobject>
+    <imageobject
+><imagedata fileref="circular-motor.png" format="PNG"/></imageobject>
+    <textobject
+><phrase
+>Cirkulärmotor</phrase
+></textobject>
+  </mediaobject>
+</screenshot>
+
+<para
+>Den här handledningen introducerar motorer och krafter, och nu bör du kunna lägga till dem till kroppar.</para>
+</sect1>
+
+<sect1 id="tutorial5">
+<title
+>Handledning 5: Leder</title>
+
+<para
+>Leder är objekt som kopplar ihop kroppar med varandra eller bakgrunden. Följande leder finns i &step;: förankringar, stift och pinnar. En förankring är en led som fixerar kroppens position. Kroppen kan inte flyttas när den är förankrad. Ett stift är en led som fixerar en punkt på kroppen, kroppen kan fortfarande röra sig omkring stiftet. En pinne är en led som fixerar avståndet mellan två punkter på två kroppar. </para>
+
+<screenshot>
+  <screeninfo
+>Handledning 5: Dubbel pendel</screeninfo>
+  <mediaobject>
+    <imageobject
+><imagedata fileref="tutorial5.png" format="PNG"/></imageobject>
+    <textobject
+><phrase
+>Handledning 5: Dubbel pendel</phrase
+></textobject>
+  </mediaobject>
+</screenshot>
+
+<para
+>Handledning 5 beskriver en dubbel pendel. </para>
+
+<para
+>Lägg till en <inlinemediaobject
+><imageobject
+><imagedata fileref="step_object_Particle.png" format="PNG"/></imageobject
+></inlinemediaobject
+> <guibutton
+>Partikel</guibutton
+> i diagrammet och koppla ihop partikeln och particle2 med en pinne. Tryck på knappen <inlinemediaobject
+><imageobject
+><imagedata fileref="step_object_Stick.png" format="PNG"/></imageobject
+></inlinemediaobject
+> <guibutton
+>Pinne</guibutton
+> i rutan <guilabel
+>Palett</guilabel
+>. Därefter måste du välja det första objektet som ska kopplas till pinnen (particle2) med vänster musknapp, dra musen till det andra objektet (particle3), och släppa musknappen på particle3. Nu har du en trepunktspendel. </para>
+</sect1>
+
+</chapter>

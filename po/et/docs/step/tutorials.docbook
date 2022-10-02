@@ -1,0 +1,208 @@
+<chapter id="tutorials">
+<title
+>&step;iga tutvumine: õppematerjalid</title
+> 
+<para
+>Menüükäsuga <menuchoice
+><guimenu
+>Fail</guimenu
+><guimenuitem
+>Ava õppematerjal...</guimenuitem
+></menuchoice
+> ilmub failidialoog, mis võimaldab laadida &step;iga kaasasolevaid õppematerjale. Neid on viis ja nad õpetavad järjest paremini kasutama kõiki &step; elemente. Parim on muidugi alustada algusest, niisiis valida <filename
+>tutorial1.step</filename
+>. See avab &step;is esimese õppematerjali.</para>
+<note
+><para
+>Kui sa ei näe õppematerjali korralikult, võiks proovida suurendamist.</para
+></note>
+
+<para
+>Paremal asuv paneel <guilabel
+>Maailm</guilabel
+> loetleb kõik stseenil paiknevad objektid. Mõnel neist klõpsates näitab allasuv paneel <guilabel
+>Omadused</guilabel
+> objekti omadusi. Viimaseid saab muuta, kui klõpsata omadusel, mida soovid muuta.</para>
+
+<para
+>Iga õppematerjal sisaldab veidi uusi elemente tutvustavat ja nende omadusi seletavat teksti. Seejärel palutakse sul muuta mõnda elemendi omadust, et saavutada katses uus tulemus. </para>
+
+<sect1 id="tutorial1">
+<title
+>Esimene õppematerjal: kehad ja vedrud</title>
+<para
+>See õppematerjal tutvustab kehasid ja vedrusid ning näitab, kuidas alustada oma esimest simulatsiooni.</para>
+<para
+>Keha on objekt, mida saab kirjeldada kas klassikalise või kvantmehaanika teooriatega ning millega saab füüsikainstrumentide abil katseid ette võtta. Selle hulka kuulub keha asukoha ja mõnel juhul suuna määramine ruumis, samuti võimalused neid muuta vastavaid jõude rakendades.</para>
+<para
+>Vedru on painduv elastne objekt, mis salvestab endas mehaanilist energiat.</para>
+<screenshot>
+     <screeninfo
+>Esimese õppematerjali katse</screeninfo>
+	<mediaobject>
+	  <imageobject>
+	    <imagedata fileref="tutorial1.png" format="PNG"/>
+	  </imageobject>
+	    <textobject>
+	    <phrase
+>Esimese õppematerjali katse</phrase>
+	  </textobject>
+	</mediaobject>
+</screenshot>
+<para
+>Õppematerjali füüsikakatse kujutab endast kaht vedruga ühendatud ketast. Ketastel on algkiirus kindla suunaga (sinine nool) ja kiirendusega (punane nool), vedrudel jäikus ja pikkus, mida kõike saab muuta. Katse ajal näed, kuidas vedru kettaid tõmbab ja tõukab. Õppematerjal õhutab muutma vedru jäikust ja seeläbi muutma katset ennast.</para>
+<para
+>Õppematerjali lõpuks peaksid olema juba veidi tuttav &step;i liidesega ning suutma muuta kehade omadusi.</para>
+</sect1>
+
+<sect1 id="tutorial2">
+<title
+>Teine õppematerjal: kontrollerid ja graafikud</title>
+<para
+>See õppematerjal tutvustab lähemalt kontrollereid ja graafikuid.</para>
+<para
+>Kontroller on seade, mis võimaldab graafiliselt muuta keha või vedru omadust. Selles õppematerjalis saab kontrolleriga muuta vedru "spring1" jäikust. Liugurit paremale liigutades või klahvi W kasutades saab spring1 jäikust suurendada, liugurit vasakule liigutades või klahvi Q abil aga vähendada. Paremklõpsuga kontrollerile avaneb kontekstimenüü mitme toimingu ning käsuga <guilabel
+>Kontrolleri seadistamine...</guilabel
+>, mille valimisel ilmuvas dialoogis saab muuta kontrolleri kõiki omadusi.</para>
+<screenshot>
+     <screeninfo
+>Teise õppematerjali katse</screeninfo>
+	<mediaobject>
+	  <imageobject>
+	    <imagedata fileref="tutorial2.png" format="PNG"/>
+	  </imageobject>
+	    <textobject>
+	    <phrase
+>Teise õppematerjali katse</phrase>
+	  </textobject>
+	</mediaobject>
+</screenshot>
+<para
+>Graafikut võimaldavad visuaalselt esitada kahe muutuja suhet. Selle õppematerjali näidises kuvatakse osakese particle1 asukoha muutumine ajas maailmas world1. Paremklõpsuga graafikule saab selle puhastada või kustutada, aga ka seda muuta seadistustedialoogis, kus saab määrata kõiki graafiku omadusi.</para>
+<para
+>Õppematerjali lõpuks peaksid olema suuteline kontrollerite abil muutma kehade omadusi ning looma graafikuid, millega jälgida katse kindlaid omadusi.</para>
+</sect1>
+
+<sect1 id="tutorial3">
+<title
+>Kolmas õppematerjal: mitteelastsed kehad ja jälgijad</title>
+<para
+>Kolmas õppematerjal tutvustab mitteelastseid kehasid ja jälgijaid.</para>
+<para
+>Mitteelastne keha on lõpliku suurusega tahke keha ideaalvorm, mille deformeerimine jäetakse arvesse võtmata. See tähendab, et vahemaa tahke keha kahe mis tahes punkti vahel jääb ajas muutumatuks sõltumata kehale mõjuvatest välistest jõududest.</para>
+<para
+>Jälgija on tööriist, mis näitab konkreetse punkti trajektoori mitteelastsel kehal.</para>
+<screenshot>
+     <screeninfo
+>Ketta omadused</screeninfo>
+	<mediaobject>
+	  <imageobject>
+	    <imagedata fileref="disk-properties.png" format="PNG"/>
+	  </imageobject>
+	    <textobject>
+	    <phrase
+>Ketta omadused</phrase>
+	  </textobject>
+	</mediaobject>
+</screenshot>
+<para
+>Kui valida mitteelastne keha (antud juhul ketas), näeb selle juures kolme pidet. Neile klõpsates ja neid liigutades saab muuta keha kiirust, nurka ja nurkkiirust.</para>
+<screenshot>
+     <screeninfo
+>Kolmas õppematerjal: kaks jälgijat</screeninfo>
+	<mediaobject>
+	  <imageobject>
+	    <imagedata fileref="tutorial3.png" format="PNG"/>
+	  </imageobject>
+	    <textobject>
+	    <phrase
+>Kolmas õppematerjal: kaks jälgijat</phrase>
+	  </textobject>
+	</mediaobject>
+</screenshot>
+<para
+>Kolmanda õppematerjali katses on tegemist vedruga ühendatud ketta ja kastiga. Kastis on juba jälgija (sinine). Soovi korral võid lisada teise: vali paneelis <guilabel
+>Palett</guilabel
+> <guilabel
+>Jälgija</guilabel
+> ning klõpsa kastis punktile, kuhu soovid selle asetada. Paneelis <guilabel
+>Omadused</guilabel
+> klõpsa reale <guilabel
+>värv</guilabel
+>, klõpsa sellest paremal sinisele ruudukesel ja vali ilmuvas värvidialoogis jälgijale uus värv. Pildil on näha kaks jälgijat pärast seda, kui katse on kestnud mõne sekundi.</para>
+</sect1>
+
+<sect1 id="tutorial4">
+<title
+>Neljas õppematerjal: mootorid ja jõud</title>
+<para
+>&step;is on kaht sorti mootoreid: lineaarsed ja ringmootorid. Lineaarmootor rakendab keha konkreetsele punktile konstantset jõudu, ringmootor aga rakendab kehale konstantse pöördemomendi.</para>
+<para
+>Kehale saab rakendada kolme eri jõudu: raskusjõud, gravitatsioonijõud ja Coulomb'i jõud. Vaikimisi ei rakendata &step;is ühtegi jõudu. Coulomb'i jõud on kahe laengu vahel eksisteeriv jõud.</para>
+<screenshot>
+     <screeninfo
+>Neljas õppematerjal: mootorid</screeninfo>
+	<mediaobject>
+	  <imageobject>
+	    <imagedata fileref="tutorial4.png" format="PNG"/>
+	  </imageobject>
+	    <textobject>
+	    <phrase
+>Neljas õppematerjal: mootorid</phrase>
+	  </textobject>
+	</mediaobject>
+</screenshot>
+<para
+>Selles katses on tegemist vedruga ühendatud ketta ja kastiga. All olev lame *kast moodustab piiri. Nii kettale kui kastile on rakendatud lineaarmootor. Kahe kontrolleri abil saab muuta mõlema mootori jõu väärtust. Alusta simulatsiooni ja kasuta kontrollereid. Seejärel peata simulatsioon ning rakenda maailmas raskusjõudu (jõud on globaalsed ja rakenduvad kogu maailmas). Käivita simulatsioon uuesti ja analüüsi erinevusi.</para>
+<para
+>Soovi korral võib kastist eemaldada lineaarmootori ja asedanda selle ringmootoriga. Vali paneelis <guilabel
+>Palett</guilabel
+> <guilabel
+>Ringmootor</guilabel
+> paneel ja klõpsa kastil. Sellele rakendatakse ringmootor. Nüüd tuleb veel määrata jõumoment, klõpsates mootori hallil pidemel ja seda liigutades.</para>
+<screenshot>
+     <screeninfo
+>Ringmootor</screeninfo>
+	<mediaobject>
+	  <imageobject>
+	    <imagedata fileref="circular-motor.png" format="PNG"/>
+	  </imageobject>
+	    <textobject>
+	    <phrase
+>Ringmootor</phrase>
+	  </textobject>
+	</mediaobject>
+</screenshot>
+<para
+>See õppematerjal tutvustas mootoreid ja jõude ning nüüd peaksid oskama neid kehadele lisada.</para>
+</sect1>
+
+<sect1 id="tutorial5">
+<title
+>Viies õppematerjal: ühendused</title>
+<para
+>Ühendused on objektid, mis seovad kehasid teineteise või taustaga. &step;is on järgmised ühendused: ankrud, nõelad ja pulgad. Ankur on ühendus, mis fikseerib keha asukoha. Kui kehal on ankur, ei saa ta liikuda. Nõel on ühendus, mis fikseerib keha konkreetse punkti, aga keha saab siiski liikuda ümber nõela. Pulk on ühendus, mis fikseerib vahemaa kahe keha kahe punkti vahel.</para>
+<screenshot>
+     <screeninfo
+>Viies õppematerjal: topeltpendel</screeninfo>
+	<mediaobject>
+	  <imageobject>
+	    <imagedata fileref="tutorial5.png" format="PNG"/>
+	  </imageobject>
+	    <textobject>
+	    <phrase
+>Viies õppematerjal: topeltpendel</phrase>
+	  </textobject>
+	</mediaobject>
+</screenshot>
+<para
+>Viies õppematerjal tutvustab topeltpendlit.</para>
+<para
+>Lisa stseenile <guilabel
+>osake</guilabel
+> ning ühenda siis see osakesega particle2 pulga abil. Selleks vali paneelis <guilabel
+>Palett</guilabel
+> Pulk. Seejärel tuleb esmalt valida esimene pulgaga ühendatud objekt (particle2) hiire vasaku nupuga, siis lohistada hiirega teise objektini (particle3) ja vabastada hiirenupp, kui oled jõudnud particle3 peale. Nüüd on tegemist juba kolmikpendliga!</para>
+</sect1>
+
+</chapter>

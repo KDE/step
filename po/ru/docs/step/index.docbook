@@ -1,0 +1,260 @@
+<?xml version="1.0" ?>
+<!DOCTYPE book PUBLIC "-//KDE//DTD DocBook XML V4.5-Based Variant V1.1//EN" "dtd/kdedbx45.dtd" [
+  <!ENTITY tutorials SYSTEM "tutorials.docbook">
+  <!ENTITY examples SYSTEM "examples.docbook">
+  <!ENTITY % addindex "IGNORE">
+  <!ENTITY % Russian "INCLUDE"
+><!-- change language only here -->
+]>
+
+<book id="step" lang="&language;">
+
+<bookinfo>
+<title
+>Руководство пользователя &step;</title>
+
+
+<authorgroup>
+<author
+>&Anne-Marie.Mahfouf; &Anne-Marie.Mahfouf.mail; </author>
+
+<othercredit role="translator"
+><firstname
+>Николай</firstname
+><surname
+>Шафоростов</surname
+><affiliation
+><address
+><email
+>shaforostoff@kde.ru</email
+></address
+></affiliation
+><contrib
+>Перевод на русский язык</contrib
+></othercredit
+> <othercredit role="translator"
+><firstname
+>Мария</firstname
+><surname
+>Шикунова</surname
+><affiliation
+><address
+><email
+>translation-team@basealt.ru</email
+></address
+></affiliation
+><contrib
+>Обновление перевода на русский язык</contrib
+></othercredit
+> 
+</authorgroup>
+
+
+<copyright>
+<year
+>2007</year>
+<holder
+>&Anne-Marie.Mahfouf;</holder>
+</copyright>
+
+<legalnotice
+>&FDLNotice;</legalnotice>
+
+<date
+>24 октября 2021 г.</date>
+<releaseinfo
+>KDE Gear 21.08</releaseinfo>
+
+<abstract>
+<para
+>&step; — это интерактивный симулятор физических процессов. Он позволяет изучать физические явления с помощью их имитации. Пользователь располагает в исследовательской области (сцене) некоторые тела, включает силы (гравитационные силы и силы натяжения от пружин), а потом нажимает кнопку <inlinemediaobject
+><imageobject
+><imagedata fileref="media-playback-start.png" format="PNG"/></imageobject
+></inlinemediaobject
+> <guiicon
+>Симулировать</guiicon
+> на панели инструментов, — &step; покажет, как согласно законам физики будут развиваться события в построенной пользователем системе. Возможно менять все свойства тел или сил в эксперименте (даже во время симуляции), чтобы увидеть, как такие изменения влияют на ход эксперимента. &step; поможет не просто изучить физику, а прочувствовать, как работают физические законы. </para>
+</abstract>
+
+<keywordset>
+  <keyword
+>KDE</keyword>
+  <keyword
+>kdeedu</keyword>
+  <keyword
+>физика</keyword>
+  <keyword
+>симулятор</keyword>
+  <keyword
+>силы</keyword>
+  <keyword
+>Step</keyword>
+</keywordset>
+
+</bookinfo>
+
+<chapter id="introduction">
+<title
+>Введение</title>
+<para
+>&step; — это интерактивный симулятор физических процессов.</para>
+
+<para
+>Возможности &step;: <itemizedlist>
+  <listitem
+><para
+>Имитация классического механического взаимодействия в двух измерениях</para
+></listitem>
+
+  <listitem
+><para
+>Частицы, пружины с диссипацией, гравитационные и электростатические силы</para
+></listitem>
+
+  <listitem
+><para
+>Твёрдые тела</para
+></listitem>
+
+  <listitem
+><para
+>Обработка столкновений (на данный момент есть только дискретная реализация)</para
+></listitem>
+
+  <listitem
+><para
+>Мягкие (деформируемые) тела, моделируемые как системы частиц и пружин с возможностью изменения параметров пользователем, звуковые волны</para
+></listitem>
+
+  <listitem
+><para
+>Молекулярная динамика (в этой версии используется модель потенциала Леннард-Джонса): газы и жидкости, конденсация и испарение, вычисление значений термодинамических величин и их изменений</para
+></listitem>
+
+  <listitem
+><para
+>Калькулятор выражений и преобразование единиц измерения: возможно ввести формулу вида <quote
+>(2 дня + 3 часа) * 80 км/ч</quote
+>, и она будет распознаваться как расстояние (для этого потребуется установить пакет libqalculate)</para
+></listitem>
+
+  <listitem
+><para
+>Расчёт погрешностей с учётом их распространения: для любого свойства возможно ввести значение вида <quote
+>1.3 ± 0.2</quote
+>, и все зависящие от него значения будут рассчитаны по статистическим формулам</para
+></listitem>
+
+  <listitem
+><para
+>Вычислитель погрешностей при решении уравнений: программа рассчитывает погрешности вычислений и складывает их с погрешностями, введёнными пользователем</para
+></listitem>
+
+  <listitem
+><para
+>Различные вычислители: до восьмого порядка, явные и неявные, с переменным или постоянным шагом во времени (для большинства вычислителей требуется библиотека GSL)</para
+></listitem>
+
+  <listitem
+><para
+>Инструмент управления объектами, позволяющий легко менять их свойства в процессе моделирования (даже с помощью настраиваемых комбинаций клавиш)</para
+></listitem>
+
+  <listitem
+><para
+>Средства визуализации результатов: графики, измерители, траектории</para
+></listitem>
+
+  <listitem
+><para
+>Контекстная информация по всем объектам, встроенный просмотр Википедии</para
+></listitem>
+
+  <listitem
+><para
+>Сборник примеров экспериментов и возможность загрузить другие эксперименты с помощью &knewstuff;3</para
+></listitem>
+
+  <listitem
+><para
+>Встроенные уроки</para
+></listitem>
+</itemizedlist>
+</para>
+</chapter>
+
+<chapter id="using-step">
+<title
+>Использование &step;</title>
+
+<para
+>&step; имитирует физическое поведение тел. Главная часть окна &step; (1) — это область эксперимента (сцена), которая размещена в центре главного окна &step;; в этой области пользователь сначала располагает объекты, а потом наблюдает за их поведением. Слева от сцены расположена панель физических объектов (2). Эту панель возможно перемещать в любое место на экране посредством перетаскивания её за заголовок. Справа от сцены показывается описание текущего эксперимента (3), его свойства (4), справка, объясняющая некоторые термины (5), и история текущего эксперимента (6). Каждую из этих панелей возможно расположить в любом удобном месте на экране посредством перетаскивания панели за заголовок. </para>
+
+<screenshot>
+  <screeninfo
+>Это снимок окна &step; при первом запуске программы.</screeninfo>
+  <mediaobject>
+    <imageobject
+><imagedata fileref="mainwindow.png" format="PNG"/></imageobject>
+    <textobject
+><phrase
+>Главное окно &step;</phrase
+></textobject>
+  </mediaobject>
+</screenshot>
+
+<para
+>Чтобы помочь разобраться в работе приложения, &step; предлагает серию уроков, которые легко научат создавать эксперименты. Начните с пошаговой инструкции первого урока. </para>
+</chapter>
+
+&tutorials;
+&examples;
+
+<chapter id="credits">
+
+<title
+>Авторские права и лицензии</title>
+
+<para
+>&step; </para>
+
+<para
+>Авторские права на программу © &Vladimir.Kuznetsov; &Vladimir.Kuznetsov.mail;, 2007 </para>
+
+<para
+>Участники: <itemizedlist>
+  <listitem
+><para
+>Автор: &Vladimir.Kuznetsov; &Vladimir.Kuznetsov.mail;</para
+></listitem>
+  <listitem
+><para
+>Разработчик: &Carsten.Niehaus; &Carsten.Niehaus.mail;</para
+></listitem>
+</itemizedlist>
+</para>
+
+<para
+>Авторские права на документацию © &Anne-Marie.Mahfouf; &Anne-Marie.Mahfouf.mail;, 2007 </para>
+
+<para
+>Перевод на русский язык — Николай Шафоростов<email
+>shaforostoff@kde.ru</email
+></para
+><para
+>Обновление перевода — Мария Шикунова<email
+>translation-team@basealt.ru</email
+></para
+> &underFDL; &underGPL; </chapter>
+
+&documentation.index;
+</book>
+<!--
+Local Variables:
+mode: sgml
+sgml-minimize-attributes:nil
+sgml-general-insert-case:lower
+sgml-indent-step:0
+sgml-indent-data:nil
+End:
+-->

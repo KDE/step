@@ -1,0 +1,242 @@
+<chapter id="examples">
+<title
+>Exemplos do &step;</title
+> 
+<para
+>O pacote &step; contém diversos exemplos de aprendizagem que o ajudam a compreender os princípios de funcionamento do aplicativo. Para abrir um exemplo do conjunto padrão, escolha a opção <menuchoice
+><guimenu
+>Arquivo</guimenu
+> <guisubmenu
+>Exemplos</guisubmenu
+> <guimenuitem
+>Abrir exemplo...</guimenuitem
+></menuchoice
+> no menu da janela principal. </para>
+
+<para
+>Você pode compartilhar os seus próprios exemplos com a opção <menuchoice
+><guimenu
+>Arquivo</guimenu
+> <guisubmenu
+>Exemplos</guisubmenu
+> <guimenuitem
+>Compartilhar o experimento atual...</guimenuitem
+></menuchoice
+> ou poderá baixar exemplos compartilhados por outros usuários em <menuchoice
+><guimenu
+>Arquivo</guimenu
+> <guisubmenu
+>Exemplos</guisubmenu
+> <guimenuitem
+>Obter novos experimentos...</guimenuitem
+></menuchoice
+>. Os exemplos baixados podem ser abertos com a opção <menuchoice
+><guimenu
+>Arquivo</guimenu
+> <guisubmenu
+>Exemplos</guisubmenu
+> <guimenuitem
+>Abrir o exemplo transferido...</guimenuitem
+></menuchoice
+>. </para>
+
+<para
+>Abaixo você pode descobrir as descrições dos arquivos de exemplos padrão. </para>
+
+<variablelist>
+<varlistentry id="brownian">
+<term
+>brownian.step</term>
+<listitem
+><para
+>Desenha a trajetória do disco rígido com 40 partículas que se deslocam à deriva em uma caixa. Este exemplo simula o <ulink url="http://en.wikipedia.org/wiki/Brownian_motion"
+>movimento de Brownian</ulink
+> das partículas de gás ideais.</para
+></listitem>
+</varlistentry>
+
+<varlistentry id="pendulum">
+<term
+>doublependulum.step</term>
+<listitem
+><para
+>Este exemplo simula o <ulink url="http://en.wikipedia.org/wiki/Double_pendulum"
+>movimento de pêndulo duplo</ulink
+> usando 2 partículas com massa e dois bastões.</para
+></listitem>
+</varlistentry>
+
+<varlistentry id="eightpendulum">
+<term
+>eightpendulum.step</term>
+<listitem
+><para
+>Este exemplo é uma simples demonstração do famoso <ulink url="http://en.wikipedia.org/wiki/Newton%27s_cradle"
+>pêndulo de Newton</ulink
+>. É feito no &step; usando bastões, 8 discos e uma caixa. As seis bolas no meio não estão se movendo, pois elas apenas transferem o momento linear e a energia, não o movimento.</para
+></listitem>
+</varlistentry>
+
+<varlistentry id="first">
+<term
+>first.step: Primeiro exemplo</term>
+<listitem
+><para
+>Este exemplo tem duas partes. A primeira parte contém duas partículas ligadas por uma espiral e a segunda parte contém duas partículas com carga.</para>
+
+<variablelist>
+<varlistentry id="first-two-particles">
+<term
+>Duas partículas ligadas por uma espiral</term>
+<listitem>
+  <para
+>Neste exemplo são adicionadas duas partículas à cena e a espiral está ligando-as. As propriedades de ambas as partículas, como a velocidade, o momento linear, a posição, &etc; foram definidas no navegador de propriedades. As propriedades da espiral, como a rigidez, o tamanho em repouso e o decaimento, &etc;, também foram definidas no navegador de propriedades. </para>
+ <para>
+   <emphasis
+>Explicação da simulação:</emphasis>
+ </para>
+ <para
+>Este é um bom exemplo de um movimento harmônico simples. Aqui a aceleração de uma partícula é definida na direção positiva do eixo X e a aceleração da outra partícula é definida ao longo da direção negativa do eixo X. Como resultado, ambas as partículas puxam a espiral em direções opostas, enquanto a espiral tenta puxar as duas partículas para as suas posições originais. Como tal, o sistema executa um movimento harmônico simples. A simulação das partículas e da espiral nestas condições podem ser vistas na cena. </para>
+</listitem>
+</varlistentry>
+
+<varlistentry id="first-two-charged">
+<term
+>Duas partículas com carga</term>
+<listitem>
+  <para
+>A velocidade de cada partícula com carga está configurada para uma determinada direção de modo que as partículas com carga movem-se na direção respectiva das suas velocidades, só que cada partícula foi dada uma carga igual e oposta, para tentar que as partículas se atraiam. Como resultado, a simulação das partículas com carga nestas condições podem ser vistas na cena. </para>
+</listitem>
+</varlistentry>
+</variablelist>
+</listitem>
+</varlistentry>
+
+<varlistentry id="fourpendula">
+<term
+>fourpendula.step</term>
+<listitem
+><para
+>Este exemplo é uma demonstração correta do <ulink url="http://en.wikipedia.org/wiki/Newton%27s_cradle"
+>pêndulo de Newton</ulink
+>. Como o sistema é imperfeito, dois discos do meio têm algum movimento visual com o tempo.</para
+></listitem>
+</varlistentry>
+
+<varlistentry id="gas">
+<term
+>gas.step</term>
+<listitem
+><para
+>Este exemplo simula a pressão de um gás ideal provocada pelo <ulink url="http://en.wikipedia.org/wiki/Brownian_motion"
+>movimento de Brownian</ulink
+>.</para
+></listitem>
+</varlistentry>
+
+<varlistentry id="graph">
+<term
+>graph.step</term>
+<listitem
+><para
+>Desenha um gráfico da velocidade vs. posição para a 'partícula1' no sistema de duas partículas ligadas por uma espiral.</para
+></listitem>
+</varlistentry>
+
+<varlistentry id="liquid">
+<term
+>liquid.step</term>
+<listitem
+><para
+>Este exemplo simula um líquido monoatômico.</para
+></listitem>
+</varlistentry>
+
+<varlistentry id="lissajous">
+<term
+>lissajous.step</term>
+<listitem
+><para
+>Este exemplo simula a <ulink url="http://en.wikipedia.org/wiki/Lissajous_curve"
+>curva de Lissajous</ulink
+> usando um modelo de duas partículas. Os parâmetros do modelo podem ser alterados com o controlador no centro do mundo.</para
+></listitem>
+</varlistentry>
+
+<varlistentry id="motor1">
+<term
+>motor1.step</term>
+<listitem
+><para
+>Simula um corpo rígido triangular sob a carga dos três motores lineares.</para
+></listitem>
+</varlistentry>
+
+<varlistentry id="motor-example">
+<term
+>motor.step</term>
+<listitem
+><para
+>Simula a interação do motor linear com um corpo retangular rígido em uma espiral.</para
+></listitem>
+</varlistentry>
+
+<varlistentry id="note-example">
+<term
+>note.step</term>
+<listitem
+><para
+>Exemplo com uma fórmula em LaTeX (<ulink url="http://en.wikipedia.org/wiki/Divergence_theorem"
+>teorema da divergência</ulink
+>) e uma imagem incorporada.</para
+></listitem>
+</varlistentry>
+
+<varlistentry id="resonance">
+<term
+>resonance.step</term>
+<listitem
+><para
+>Este exemplo simula a ressonância no sistema com um motor angular.</para
+></listitem>
+</varlistentry>
+
+<varlistentry id="softbody">
+<term
+>softbody.step</term>
+<listitem
+><para
+>Este exemplo simula a interação de dois corpos rígidos com um corpo suave entre eles.</para
+></listitem>
+</varlistentry>
+
+<varlistentry id="solar">
+<term
+>solar.step</term>
+<listitem
+><para
+>Este exemplo simula o movimento dos corpos principais do sistema solar (o Sol e os planetas).</para
+></listitem>
+</varlistentry>
+
+<varlistentry id="springs">
+<term
+>springs.step</term>
+<listitem
+><para
+>Este exemplo simula o movimento do sistema planar de cinco partículas ligadas com quatro espirais.</para
+></listitem>
+</varlistentry>
+
+<varlistentry id="wave">
+<term
+>wave.step</term>
+<listitem
+><para
+>O gráfico na cena mostra as oscilações da partícula verde. Quando você iniciar a simulação, a onda começa a viajar a partir da partícula vermelha. A partícula azul irá refletir a onda e irá viajar no sentido inverso até que a partícula vermelha a reflita novamente. Após algum tempo, a onda irá desaparecer porque as espirais têm amortecimento.</para
+></listitem>
+</varlistentry>
+
+</variablelist>
+
+</chapter>

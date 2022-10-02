@@ -1,0 +1,234 @@
+<chapter id="examples">
+<title
+>Beispiele für &step;</title
+> 
+<para
+>&step; enthält mehrere lehrreiche Beispiele, die Ihnen helfen, die Arbeitsweise des Programms zu verstehen. Um eines der als Standard installierten Beispiele zu laden, wählen Sie <menuchoice
+><guimenu
+>Datei</guimenu
+><guisubmenu
+>Beispiele</guisubmenu
+><guimenuitem
+>Beispiele öffnen ...</guimenuitem
+></menuchoice
+> aus dem Menü des Hauptfensters. </para>
+
+<para
+>Sie können Ihre eigenen Versuchsbeispiele mit <menuchoice
+><guimenu
+>Datei</guimenu
+> <guisubmenu
+>Beispiele</guisubmenu
+> <guimenuitem
+>Aktuelles Experiment bereitstellen ...</guimenuitem
+></menuchoice
+> für andere Benutzer hochladen oder Experimente anderer Benutzer mit <menuchoice
+><guimenu
+>Datei</guimenu
+> <guisubmenu
+>Beispiele</guisubmenu
+> <guimenuitem
+>Neue Experimente herunterladen ...</guimenuitem
+></menuchoice
+> ausprobieren. </para>
+
+<para
+>Im Folgenden finden Sie eine kurze Beschreibung der mitgelieferten Beispiele: </para>
+
+<variablelist>
+<varlistentry id="brownian">
+<term
+>brownian.step</term>
+<listitem
+><para
+>Zeichnet die Bewegungsbahn einer starren Scheibe auf, die durch Zusammenstöße mit sich zufällig bewegenden Teilchen in einem Kasten erzeugt wird. In diesem Beispiel wird die <ulink url="http://de.wikipedia.org/wiki/Brownsche_Bewegung"
+>Brownsche Bewegung</ulink
+> von idealen Gasteilchen simuliert.</para
+></listitem>
+</varlistentry>
+
+<varlistentry id="pendulum">
+<term
+>doublependulum.step</term>
+<listitem
+><para
+>Diese Beispiel zeigt die Simulation der Bewegung eines <ulink url="http://de.wikipedia.org/wiki/Doppelpendel"
+>Doppelpendels</ulink
+> aus zwei Teilchen, die durch zwei Stäbe verbunden sind.</para
+></listitem>
+</varlistentry>
+
+<varlistentry id="eightpendulum">
+<term
+>eightpendulum.step</term>
+<listitem
+><para
+>Dieses Beispiele ist eine einfache Demonstration des bekannten <ulink url="http://de.wikipedia.org/wiki/Newtonpendel"
+>Newton- oder Kugelstoßpendels</ulink
+>. Dafür werden in &step; 8 Scheiben mit je einem Stab und einem Rechteck benutzt. Die sechs Scheiben in der Mitte bewegen sich nicht, da Sie nur den Impuls und Energie weitergeben, aber keine Bewegung.</para
+></listitem>
+</varlistentry>
+
+<varlistentry id="first">
+<term
+>first.step: Erstes Beispiel</term>
+<listitem
+><para
+>Dieses Beispiel besteht aus zwei Teilen. Der erste Teil enthält zwei Teilchen, die durch eine Feder verbunden sind. Der zweite Teil enthält  zwei Ladungsteilchen.</para>
+
+<variablelist>
+<varlistentry id="first-two-particles">
+<term
+>Zwei durch eine Feder verbundene Teilchen</term>
+<listitem>
+  <para
+>In diesem Beispiel werden zwei Teilchen eingefügt und durch eine Feder verbunden. Die Eigenschaften beider Teilchen wie zum Beispiel Geschwindigkeit, Impuls, Position &etc; wie auch die Steifigkeit, Ruhelänge, Dämpfung der Feder wurde im Eigenschaften-Fenster eingestellt.  </para>
+ <para>
+   <emphasis
+>Erläuterung der Simulation:</emphasis>
+ </para>
+ <para
+>Dies ist ein schönes Beispiel einer einfachen harmonischen Bewegung. Hier wird für die beide Teilchen eine entgegengesetzte Beschleunigung entlang der X-Achse eingegeben. Daher ziehen die beiden Teilchen die Feder in entgegengesetzte Richtungen und die Feder versucht, die Teilchen wider in ihre ursprüngliche Lage zurückzubringen. Daher führt das System eine einfache harmonische Bewegung aus. Die Simulation der Bewegung der Teilchen und der Feder wird im Versuchsfenster dargestellt. </para>
+</listitem>
+</varlistentry>
+
+<varlistentry id="first-two-charged">
+<term
+>Zwei Ladungsteilchen</term>
+<listitem>
+  <para
+>Die Geschwindigkeit jedes Ladungsteilchens ist so eingestellt, dass die Ladungsteilchen sich in entgegengesetzter Richtung bewegen. Da jedes Teilchen eine gleichgroße, aber entgegengesetzte Ladung hat, versuchen sie sich anzuziehen. Das Ergebnis der geladenen Teilchen unter diesen Bedingungen wird im Versuchsfenster angezeigt. </para>
+</listitem>
+</varlistentry>
+</variablelist>
+</listitem>
+</varlistentry>
+
+<varlistentry id="fourpendula">
+<term
+>fourpendula.step</term>
+<listitem
+><para
+>Dieses Beispiele ist eine korrekte Demonstration des bekannten <ulink url="http://de.wikipedia.org/wiki/Newtonpendel"
+>Newton- oder Kugelstoßpendels</ulink
+>. Da es kein perfektes System ist, bewegen sich die mittleren Scheiben nach einiger Zeit.</para
+></listitem>
+</varlistentry>
+
+<varlistentry id="gas">
+<term
+>gas.step</term>
+<listitem
+><para
+>In diesem Beispiel wird eine Simulation des Gasdrucks vorgeführt, der durch die <ulink url="http://de.wikipedia.org/wiki/Brownsche_Bewegung"
+>Brownsche Bewegung</ulink
+> verursacht wird.</para
+></listitem>
+</varlistentry>
+
+<varlistentry id="graph">
+<term
+>graph.step</term>
+<listitem
+><para
+>Grafische Darstellung der Geschwindigkeit und Position des ersten Teilchens in einem System aus zwei durch eine Feder verbundene Teilchen.</para
+></listitem>
+</varlistentry>
+
+<varlistentry id="liquid">
+<term
+>liquid.step</term>
+<listitem
+><para
+>Dieses Beispiel ist die Simulation einer einatomigen Flüssigkeit.</para
+></listitem>
+</varlistentry>
+
+<varlistentry id="lissajous">
+<term
+>lissajous.step</term>
+<listitem
+><para
+>In diesem Beispiel werden <ulink url="http://de.wikipedia.org/wiki/Lissajous-Figuren"
+>Lissajous-Figuren</ulink
+> mit einem Versuch aus zwei Teilchen simuliert. Lissajous-Figuren sind Kurvengraphen, die durch Überlagerung harmonischer Schwingungen entstehen. Die Parameter dieses Experiments können mit dem Schieberegler für die Steifigkeit der ersten Feder in der Mitte des Versuchsfensters geändert werden.</para
+></listitem>
+</varlistentry>
+
+<varlistentry id="motor1">
+<term
+>motor1.step</term>
+<listitem
+><para
+>Simulation eines starren dreieckigen Körpers unter Lasteinwirkungen von drei Linearmotoren.</para
+></listitem>
+</varlistentry>
+
+<varlistentry id="motor-example">
+<term
+>motor.step</term>
+<listitem
+><para
+>Simulation des Einflusses einer Kraft aus einem Linearmotor auf einen starren rechteckigen Körper, der durch eine Feder gehalten wird.</para
+></listitem>
+</varlistentry>
+
+<varlistentry id="note-example">
+<term
+>note.step</term>
+<listitem
+><para
+>Beispiel mit dem <ulink url="http://de.wikipedia.org/wiki/Gaußscher_Integralsatz"
+>Gaußschen Integralsatz oder Divergenzsatz</ulink
+> als LaTeX-Formel und einem eingebetteten Bild.</para
+></listitem>
+</varlistentry>
+
+<varlistentry id="resonance">
+<term
+>resonance.step</term>
+<listitem
+><para
+>In diesem Beispiel werden Resonanzen in einem System mit Drehmotor simuliert.</para
+></listitem>
+</varlistentry>
+
+<varlistentry id="softbody">
+<term
+>softbody.step</term>
+<listitem
+><para
+>In diesem Beispiel wird die Kollision von zwei starren Körpern mit einem elastischer Körper dazwischen simuliert.</para
+></listitem>
+</varlistentry>
+
+<varlistentry id="solar">
+<term
+>solar.step</term>
+<listitem
+><para
+>Eine Simulation der Bewegung der Planeten unseres Sonnensystems.</para
+></listitem>
+</varlistentry>
+
+<varlistentry id="springs">
+<term
+>springs.step</term>
+<listitem
+><para
+>In diesem Beispiel sehen Sie die Simulation der Bewegung eines ebenen Systems aus 5 Teilchen, die durch 4 Federn verbunden sind.</para
+></listitem>
+</varlistentry>
+
+<varlistentry id="wave">
+<term
+>wave.step</term>
+<listitem
+><para
+>Im Diagramm werden die Schwingungen des grünen Teilchens dargestellt. Wird die Simulation gestartet, beginnt die Wellenbewegung beim roten Teilchen. Das blaue Teilchen reflektiert die Welle in entgegengesetzter Richtung zurück zum roten Teilchen, das die Welle wiederum reflektiert. Nach einiger Zeit kommt die Wellenbewegung zum Stillstand, da Federn eine Dämpfung haben.</para
+></listitem>
+</varlistentry>
+
+</variablelist>
+
+</chapter>

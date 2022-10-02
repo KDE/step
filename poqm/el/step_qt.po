@@ -1,0 +1,3257 @@
+# translation of step.po to Greek
+# Copyright (C) YEAR This_file_is_part_of_KDE
+# This file is distributed under the same license as the PACKAGE package.
+#
+# Spiros Georgaras <sng@hellug.gr>, 2007, 2008.
+# Toussis Manolis <manolis@koppermind.homelinux.org>, 2007, 2008, 2009.
+# Dimitrios Glentadakis <dglent@gmail.com>, 2011.
+# Stelios <sstavra@gmail.com>, 2020.
+msgid ""
+msgstr ""
+"Project-Id-Version: step\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2016-06-22 08:50+0000\n"
+"PO-Revision-Date: 2020-10-21 15:17+0300\n"
+"Last-Translator: Stelios <sstavra@gmail.com>\n"
+"Language-Team: Greek <kde-i18n-el@kde.org>\n"
+"Language: el\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Lokalize 20.04.2\n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Qt-Contexts: true\n"
+
+#: body.cc:26
+msgctxt "ObjectClass|"
+msgid "Body"
+msgstr "Body"
+
+#: body.cc:26
+msgctxt "ObjectDescription|"
+msgid "Body"
+msgstr "Σώμα"
+
+#: collisionsolver.cc:31
+msgctxt "ObjectClass|"
+msgid "CollisionSolver"
+msgstr "CollisionSolver"
+
+#: collisionsolver.cc:32 solver.cc:28
+msgctxt "PropertyDescription|"
+msgid "Allowed absolute tolerance"
+msgstr "Επιτρεπόμενη απόλυτη ανοχή"
+
+#: collisionsolver.cc:32 solver.cc:28
+msgctxt "PropertyName|"
+msgid "toleranceAbs"
+msgstr "toleranceAbs"
+
+#: collisionsolver.cc:33 solver.cc:31
+msgctxt "PropertyDescription|"
+msgid "Maximal local error during last step"
+msgstr "Μέγιστο τοπικό σφάλμα κατά το τελευταίο βήμα"
+
+#: collisionsolver.cc:33 solver.cc:31
+msgctxt "PropertyName|"
+msgid "localError"
+msgstr "localError"
+
+#: collisionsolver.cc:35
+msgctxt "ObjectClass|"
+msgid "GJKCollisionSolver"
+msgstr "GJKCollisionSolver"
+
+#: constraintsolver.cc:31
+msgctxt "ObjectClass|"
+msgid "ConstraintSolver"
+msgstr "ConstraintSolver"
+
+#: constraintsolver.cc:35
+msgctxt "ObjectClass|"
+msgid "CGConstraintSolver"
+msgstr "CGConstraintSolver"
+
+#: coulombforce.cc:26
+msgctxt "ObjectClass|"
+msgid "CoulombForce"
+msgstr "CoulombForce"
+
+#: coulombforce.cc:26
+msgctxt "ObjectDescription|"
+msgid "Coulomb force"
+msgstr "Δύναμη Coulomb"
+
+#: coulombforce.cc:28
+msgctxt "PropertyName|"
+msgid "coulombConst"
+msgstr "coulombConst"
+
+#: coulombforce.cc:28 coulombforce.cc:33
+msgctxt "Units|"
+msgid "N m²/C²"
+msgstr "N m²/C²"
+
+#: coulombforce.cc:29
+msgctxt "PropertyDescription|"
+msgid "Coulomb constant"
+msgstr "Σταθερά Coulomb"
+
+#: coulombforce.cc:31
+msgctxt "ObjectClass|"
+msgid "CoulombForceErrors"
+msgstr "CoulombForceErrors"
+
+#: coulombforce.cc:31
+msgctxt "ObjectDescription|"
+msgid "Errors class for CoulombForce"
+msgstr "Κλάση σφαλμάτων δύναμης Coulomb"
+
+#: coulombforce.cc:33
+msgctxt "PropertyName|"
+msgid "coulombConstVariance"
+msgstr "coulombConstVariance"
+
+#: coulombforce.cc:34
+msgctxt "PropertyDescription|"
+msgid "Coulomb constant variance"
+msgstr "Διακύμανση σταθεράς Coulomb"
+
+#: eulersolver.cc:27
+msgctxt "ObjectClass|"
+msgid "GenericEulerSolver"
+msgstr "GenericEulerSolver"
+
+#: eulersolver.cc:27
+msgctxt "ObjectDescription|"
+msgid "Generic Euler solver"
+msgstr "Γενικευμένος επιλυτής Euler"
+
+#: eulersolver.cc:28
+msgctxt "ObjectClass|"
+msgid "EulerSolver"
+msgstr "EulerSolver"
+
+#: eulersolver.cc:28
+msgctxt "ObjectDescription|"
+msgid "Non-adaptive Euler solver"
+msgstr "Μη προσαρμόσιμος επιλυτής Euler"
+
+#: eulersolver.cc:29
+msgctxt "ObjectClass|"
+msgid "AdaptiveEulerSolver"
+msgstr "AdaptiveEulerSolver"
+
+#: eulersolver.cc:29
+msgctxt "ObjectDescription|"
+msgid "Adaptive Euler solver"
+msgstr "Προσαρμόσιμος επιλυτής Euler"
+
+#: force.cc:27
+msgctxt "ObjectClass|"
+msgid "Force"
+msgstr "Force"
+
+#: force.cc:27
+msgctxt "ObjectDescription|"
+msgid "Force"
+msgstr "Δύναμη"
+
+#: gas.cc:27
+msgctxt "ObjectClass|"
+msgid "GasParticle"
+msgstr "GasParticle"
+
+#: gas.cc:27
+msgctxt "ObjectDescription|"
+msgid "Gas particle"
+msgstr "Σωματίδιο αερίου"
+
+#: gas.cc:29
+msgctxt "ObjectClass|"
+msgid "GasLJForce"
+msgstr "GasLJForce"
+
+#: gas.cc:29
+msgctxt "ObjectDescription|"
+msgid "Lennard-Jones force"
+msgstr "Δύναμη Lennard-Jones"
+
+#: gas.cc:31
+msgctxt "PropertyDescription|"
+msgid "Potential depth"
+msgstr "Ικανό βάθος"
+
+#: gas.cc:31
+msgctxt "PropertyName|"
+msgid "depth"
+msgstr "depth"
+
+#: gas.cc:31 gas.cc:37 gas.cc:59 gas.cc:74 particle.cc:37 particle.cc:53
+#: rigidbody.cc:49 rigidbody.cc:80
+msgctxt "Units|"
+msgid "J"
+msgstr "J"
+
+#: gas.cc:32
+msgctxt "PropertyDescription|"
+msgid "Distance at which the force is zero"
+msgstr "Απόσταση μηδενισμού της δύναμης"
+
+#: gas.cc:32
+msgctxt "PropertyName|"
+msgid "rmin"
+msgstr "rmin"
+
+#: gas.cc:32 gas.cc:33 gas.cc:39 gas.cc:45 gas.cc:47 joints.cc:29 joints.cc:35
+#: joints.cc:36 joints.cc:40 joints.cc:43 joints.cc:45 joints.cc:47
+#: joints.cc:48 motor.cc:30 motor.cc:36 particle.cc:29 particle.cc:41
+#: rigidbody.cc:28 rigidbody.cc:53 rigidbody.cc:84 rigidbody.cc:89
+#: rigidbody.cc:92 softbody.cc:36 spring.cc:30 spring.cc:31 spring.cc:36
+#: spring.cc:38 spring.cc:40 spring.cc:41 spring.cc:47 spring.cc:49
+#: spring.cc:55 spring.cc:57 spring.cc:59 spring.cc:61 tool.cc:38 tool.cc:39
+#: tool.cc:45 tool.cc:46 tool.cc:67 tool.cc:68 tool.cc:79 tool.cc:80 tool.cc:98
+#: tool.cc:100 tool.cc:101
+msgctxt "Units|"
+msgid "m"
+msgstr "m"
+
+#: gas.cc:33
+msgctxt "PropertyDescription|"
+msgid "Cut-off distance"
+msgstr "Απόσταση αποκοπής"
+
+#: gas.cc:33
+msgctxt "PropertyName|"
+msgid "cutoff"
+msgstr "cutoff"
+
+#: gas.cc:35
+msgctxt "ObjectClass|"
+msgid "GasLJForceErrors"
+msgstr "GasLJForceErrors"
+
+#: gas.cc:35
+msgctxt "ObjectDescription|"
+msgid "Errors class for GasLJForce"
+msgstr "Κλάση σφαλμάτων δύναμης αερίου LJ"
+
+#: gas.cc:37
+msgctxt "PropertyName|"
+msgid "depthVariance"
+msgstr "depthVariance"
+
+#: gas.cc:38
+msgctxt "PropertyDescription|"
+msgid "Potential depth variance"
+msgstr "Διακύμανση ικανού βάθους"
+
+#: gas.cc:39
+msgctxt "PropertyName|"
+msgid "rminVariance"
+msgstr "rminVariance"
+
+#: gas.cc:40
+msgctxt "PropertyDescription|"
+msgid "Variance of the distance at which the force is zero"
+msgstr "Διακύμανση της απόστασης μηδενισμού της δύναμης"
+
+#: gas.cc:44
+msgctxt "ObjectClass|"
+msgid "Gas"
+msgstr "Gas"
+
+#: gas.cc:44
+msgctxt "ObjectDescription|"
+msgid "Particle gas"
+msgstr "Σωματίδιο αερίου"
+
+#: gas.cc:45
+msgctxt "PropertyName|"
+msgid "measureRectCenter"
+msgstr "measureRectCenter"
+
+#: gas.cc:46
+msgctxt "PropertyDescription|"
+msgid "Center of the rect for measurements"
+msgstr "Κέντρο του ορθογωνίου για τις μετρήσεις"
+
+#: gas.cc:47
+msgctxt "PropertyName|"
+msgid "measureRectSize"
+msgstr "measureRectSize"
+
+#: gas.cc:48
+msgctxt "PropertyDescription|"
+msgid "Size of the rect for measurements"
+msgstr "Μέγεθος του ορθογωνίου μετρήσεων"
+
+#: gas.cc:49
+msgctxt "PropertyName|"
+msgid "rectVolume"
+msgstr "rectVolume"
+
+#: gas.cc:49
+msgctxt "Units|"
+msgid "m²"
+msgstr "m²"
+
+#: gas.cc:50
+msgctxt "PropertyDescription|"
+msgid "Volume of the measureRect"
+msgstr "Όγκος του ορθογωνίου μέτρησης"
+
+#: gas.cc:51
+msgctxt "PropertyName|"
+msgid "rectParticleCount"
+msgstr "rectParticleCount"
+
+#: gas.cc:52
+msgctxt "PropertyDescription|"
+msgid "Count of particles in the measureRect"
+msgstr "Το πλήθος των σωματιδίων στο ορθογώνιο μέτρησης"
+
+#: gas.cc:53
+msgctxt "PropertyName|"
+msgid "rectConcentration"
+msgstr "rectConcentration"
+
+#: gas.cc:53
+msgctxt "Units|"
+msgid "1/m²"
+msgstr "1/m²"
+
+#: gas.cc:54
+msgctxt "PropertyDescription|"
+msgid "Concentration of particles in the measureRect"
+msgstr "Η συγκέντρωση των σωματιδίων στο ορθογώνιο μέτρησης"
+
+#: gas.cc:55
+msgctxt "PropertyName|"
+msgid "rectPressure"
+msgstr "rectPressure"
+
+#: gas.cc:55 gas.cc:70
+msgctxt "Units|"
+msgid "Pa"
+msgstr "Pa"
+
+#: gas.cc:56
+msgctxt "PropertyDescription|"
+msgid "Pressure of particles in the measureRect"
+msgstr "H πίεση των σωματιδίων στο ορθογώνιο μέτρησης"
+
+#: gas.cc:57
+msgctxt "PropertyName|"
+msgid "rectTemperature"
+msgstr "rectTemperature"
+
+#: gas.cc:57 gas.cc:72
+msgctxt "Units|"
+msgid "K"
+msgstr "K"
+
+#: gas.cc:58
+msgctxt "PropertyDescription|"
+msgid "Temperature of particles in the measureRect"
+msgstr "Η θερμοκρασία των σωματιδίων στο ορθογώνιο μέτρησης"
+
+#: gas.cc:59
+msgctxt "PropertyName|"
+msgid "rectMeanKineticEnergy"
+msgstr "rectMeanKineticEnergy"
+
+#: gas.cc:60
+msgctxt "PropertyDescription|"
+msgid "Mean kinetic energy of particles in the measureRect"
+msgstr "Η μέση κινητική ενέργεια των σωματιδίων στο ορθογώνιο μέτρησης"
+
+#: gas.cc:61
+msgctxt "PropertyName|"
+msgid "rectMeanVelocity"
+msgstr "rectMeanVelocity"
+
+#: gas.cc:61 gas.cc:76 particle.cc:30 particle.cc:43 rigidbody.cc:31
+#: rigidbody.cc:58 softbody.cc:38
+msgctxt "Units|"
+msgid "m/s"
+msgstr "m/s"
+
+#: gas.cc:62
+msgctxt "PropertyDescription|"
+msgid "Mean velocity of particles in the measureRect"
+msgstr "Η μέση ταχύτητα των σωματιδίων στο ορθογώνιο μέτρησης"
+
+#: gas.cc:63
+msgctxt "PropertyName|"
+msgid "rectMeanParticleMass"
+msgstr "rectMeanParticleMass"
+
+#: gas.cc:63 gas.cc:65 gas.cc:78 gas.cc:80 particle.cc:34 particle.cc:49
+#: particle.cc:61 rigidbody.cc:42 rigidbody.cc:71 softbody.cc:50
+msgctxt "Units|"
+msgid "kg"
+msgstr "kg"
+
+#: gas.cc:64
+msgctxt "PropertyDescription|"
+msgid "Mean mass of particles in the measureRect"
+msgstr "Η μέση μάζα των σωματιδίων στο ορθογώνιο μέτρησης"
+
+#: gas.cc:65
+msgctxt "PropertyName|"
+msgid "rectMass"
+msgstr "rectMass"
+
+#: gas.cc:66
+msgctxt "PropertyDescription|"
+msgid "Total mass of particles in the measureRect"
+msgstr "Η συνολική μάζα των σωματιδίων στο ορθογώνιο μέτρησης"
+
+#: gas.cc:69
+msgctxt "ObjectClass|"
+msgid "GasErrors"
+msgstr "GasErrors"
+
+#: gas.cc:69
+msgctxt "ObjectDescription|"
+msgid "Errors class for Gas"
+msgstr "Κλάση σφαλμάτων του αερίου"
+
+#: gas.cc:70
+msgctxt "PropertyName|"
+msgid "rectPressureVariance"
+msgstr "rectPressureVariance"
+
+#: gas.cc:71
+msgctxt "PropertyDescription|"
+msgid "Variance of pressure of particles in the measureRect"
+msgstr "Η διακύμανση της πίεσης των σωματιδίων στο ορθογώνιο μέτρησης"
+
+#: gas.cc:72
+msgctxt "PropertyName|"
+msgid "rectTemperatureVariance"
+msgstr "rectTemperatureVariance"
+
+#: gas.cc:73
+msgctxt "PropertyDescription|"
+msgid "Variance of temperature of particles in the measureRect"
+msgstr "Η διακύμανση της θερμοκρασίας των σωματιδίων στο ορθογώνιο μέτρησης"
+
+#: gas.cc:74
+msgctxt "PropertyName|"
+msgid "rectMeanKineticEnergyVariance"
+msgstr "rectMeanKineticEnergyVariance"
+
+#: gas.cc:75
+msgctxt "PropertyDescription|"
+msgid "Variance of mean kinetic energy of particles in the measureRect"
+msgstr ""
+"Η διακύμανση της μέσης κινητικής ενέργειας των σωματιδίων στο ορθογώνιο "
+"μέτρησης"
+
+#: gas.cc:76
+msgctxt "PropertyName|"
+msgid "rectMeanVelocityVariance"
+msgstr "rectMeanVelocityVariance"
+
+#: gas.cc:77
+msgctxt "PropertyDescription|"
+msgid "Variance of mean velocity of particles in the measureRect"
+msgstr "Η διακύμανση της μέσης ταχύτητας των σωματιδίων στο ορθογώνιο μέτρησης"
+
+#: gas.cc:78
+msgctxt "PropertyName|"
+msgid "rectMeanParticleMassVariance"
+msgstr "rectMeanParticleMassVariance"
+
+#: gas.cc:79
+msgctxt "PropertyDescription|"
+msgid "Variance of mean mass of particles in the measureRect"
+msgstr "Η διακύμανση της μέσης μάζας των σωματιδίων στο ορθογώνιο μέτρησης"
+
+#: gas.cc:80
+msgctxt "PropertyName|"
+msgid "rectMassVariance"
+msgstr "rectMassVariance"
+
+#: gas.cc:81
+msgctxt "PropertyDescription|"
+msgid "Variance of total mass of particles in the measureRect"
+msgstr "Η διακύμανση της συνολικής μάζας των σωματιδίων στο ορθογώνιο μέτρησης"
+
+#: gravitation.cc:27
+msgctxt "ObjectClass|"
+msgid "GravitationForce"
+msgstr "GravitationForce"
+
+#: gravitation.cc:27
+msgctxt "ObjectDescription|"
+msgid "Gravitation force"
+msgstr "Δύναμη βαρύτητας"
+
+#: gravitation.cc:29
+msgctxt "PropertyName|"
+msgid "gravitationConst"
+msgstr "gravitationConst"
+
+#: gravitation.cc:29 gravitation.cc:34
+msgctxt "Units|"
+msgid "N m²/kg²"
+msgstr "N m²/kg²"
+
+#: gravitation.cc:30
+msgctxt "PropertyDescription|"
+msgid "Gravitation constant"
+msgstr "Σταθερά βαρύτητας"
+
+#: gravitation.cc:32
+msgctxt "ObjectClass|"
+msgid "GravitationForceErrors"
+msgstr "GravitationForceErrors"
+
+#: gravitation.cc:32
+msgctxt "ObjectDescription|"
+msgid "Errors class for GravitationForce"
+msgstr "Κλάση σφαλμάτων της σταθεράς βαρύτητας"
+
+#: gravitation.cc:34
+msgctxt "PropertyName|"
+msgid "gravitationConstVariance"
+msgstr "gravitationConstVariance"
+
+#: gravitation.cc:35
+msgctxt "PropertyDescription|"
+msgid "Gravitation constant variance"
+msgstr "Διακύμανση σταθεράς βαρύτητας"
+
+#: gravitation.cc:37
+msgctxt "ObjectClass|"
+msgid "WeightForce"
+msgstr "WeightForce"
+
+#: gravitation.cc:37
+msgctxt "ObjectDescription|"
+msgid "Weight force"
+msgstr "Δύναμη βάρους"
+
+#: gravitation.cc:39
+msgctxt "PropertyDescription|"
+msgid "Weight constant"
+msgstr "Σταθερά βάρους"
+
+#: gravitation.cc:39
+msgctxt "PropertyName|"
+msgid "weightConst"
+msgstr "weightConst"
+
+#: gravitation.cc:39 gravitation.cc:44 particle.cc:31 particle.cc:45
+#: rigidbody.cc:34 rigidbody.cc:63 softbody.cc:43
+msgctxt "Units|"
+msgid "m/s²"
+msgstr "m/s²"
+
+#: gravitation.cc:42
+msgctxt "ObjectClass|"
+msgid "WeightForceErrors"
+msgstr "WeightForceErrors"
+
+#: gravitation.cc:42
+msgctxt "ObjectDescription|"
+msgid "Errors class for WeightForce"
+msgstr "Κλάση σφαλμάτων σταθεράς βάρους"
+
+#: gravitation.cc:44
+msgctxt "PropertyName|"
+msgid "weightConstVariance"
+msgstr "weightConstVariance"
+
+#: gravitation.cc:45
+msgctxt "PropertyDescription|"
+msgid "Weight constant variance"
+msgstr "Διακύμανση σταθεράς βάρους"
+
+#: gslsolver.cc:30
+msgctxt "ObjectClass|"
+msgid "GslGenericSolver"
+msgstr "GslGenericSolver"
+
+#: gslsolver.cc:30
+msgctxt "ObjectDescription|"
+msgid "GSL generic solver"
+msgstr "Γενικευμένος επιλυτής GSL"
+
+#: gslsolver.cc:32
+msgctxt "ObjectClass|"
+msgid "GslSolver"
+msgstr "GslSolver"
+
+#: gslsolver.cc:32
+msgctxt "ObjectDescription|"
+msgid "GSL non-adaptive solver"
+msgstr "Μη προσαρμόσιμος επιλυτής GSL"
+
+#: gslsolver.cc:35
+msgctxt "ObjectClass|"
+msgid "GslAdaptiveSolver"
+msgstr "GslAdaptiveSolver"
+
+#: gslsolver.cc:35
+msgctxt "ObjectDescription|"
+msgid "GSL adaptive solver"
+msgstr "Προσαρμόσιμος επιλυτής GSL"
+
+#: gslsolver.cc:38
+msgctxt "ObjectClass|"
+msgid "GslRK2Solver"
+msgstr "GslRK2Solver"
+
+#: gslsolver.cc:38
+msgctxt "ObjectDescription|"
+msgid "Runge-Kutta second-order solver from GSL library"
+msgstr "Επιλυτής Runge-Kutta δευτέρου βαθμού από τη βιβλιοθήκη GSL"
+
+#: gslsolver.cc:40
+msgctxt "ObjectClass|"
+msgid "GslAdaptiveRK2Solver"
+msgstr "GslAdaptiveRK2Solver"
+
+#: gslsolver.cc:40
+msgctxt "ObjectDescription|"
+msgid "Adaptive Runge-Kutta second-order solver from GSL library"
+msgstr ""
+"Προσαρμόσιμος επιλυτής Runge-Kutta δευτέρου βαθμού από τη βιβλιοθήκη GSL"
+
+#: gslsolver.cc:43
+msgctxt "ObjectClass|"
+msgid "GslRK4Solver"
+msgstr "GslRK4Solver"
+
+#: gslsolver.cc:43
+msgctxt "ObjectDescription|"
+msgid "Runge-Kutta classical fourth-order solver from GSL library"
+msgstr "Κλασικός επιλυτής Runge-Kutta τετάρτου βαθμού από τη βιβλιοθήκη GSL"
+
+#: gslsolver.cc:45
+msgctxt "ObjectClass|"
+msgid "GslAdaptiveRK4Solver"
+msgstr "GslAdaptiveRK4Solver"
+
+#: gslsolver.cc:45
+msgctxt "ObjectDescription|"
+msgid "Adaptive Runge-Kutta classical fourth-order solver from GSL library"
+msgstr ""
+"Προσαρμόσιμος κλασικός επιλυτής Runge-Kutta τετάρτου βαθμού από τη "
+"βιβλιοθήκη GSL"
+
+#: gslsolver.cc:48
+msgctxt "ObjectClass|"
+msgid "GslRKF45Solver"
+msgstr "GslRKF45Solver"
+
+#: gslsolver.cc:48
+msgctxt "ObjectDescription|"
+msgid "Runge-Kutta-Fehlberg (4,5) solver from GSL library"
+msgstr "Επιλυτής Runge-Kutta-Fehlberg (4,5) από τη βιβλιοθήκη GSL"
+
+#: gslsolver.cc:50
+msgctxt "ObjectClass|"
+msgid "GslAdaptiveRKF45Solver"
+msgstr "GslAdaptiveRKF45Solver"
+
+#: gslsolver.cc:50
+msgctxt "ObjectDescription|"
+msgid "Adaptive Runge-Kutta-Fehlberg (4,5) solver from GSL library"
+msgstr ""
+"Προσαρμόσιμος επιλυτής Runge-Kutta-Fehlberg (4,5) από τη βιβλιοθήκη GSL"
+
+#: gslsolver.cc:53
+msgctxt "ObjectClass|"
+msgid "GslRKCKSolver"
+msgstr "GslRKCKSolver"
+
+#: gslsolver.cc:53
+msgctxt "ObjectDescription|"
+msgid "Runge-Kutta Cash-Karp (4,5) solver from GSL library"
+msgstr "Επιλυτής Runge-Kutta Cash-Karp (4,5) από τη βιβλιοθήκη GSL"
+
+#: gslsolver.cc:55
+msgctxt "ObjectClass|"
+msgid "GslAdaptiveRKCKSolver"
+msgstr "GslAdaptiveRKCKSolver"
+
+#: gslsolver.cc:55
+msgctxt "ObjectDescription|"
+msgid "Adaptive Runge-Kutta Cash-Karp (4,5) solver from GSL library"
+msgstr ""
+"Προσαρμόσιμος επιλυτής Runge-Kutta Cash-Karp (4,5) από τη βιβλιοθήκη GSL"
+
+#: gslsolver.cc:58
+msgctxt "ObjectClass|"
+msgid "GslRK8PDSolver"
+msgstr "GslRK8PDSolver"
+
+#: gslsolver.cc:58
+msgctxt "ObjectDescription|"
+msgid "Runge-Kutta Prince-Dormand (8,9) solver from GSL library"
+msgstr "Επιλυτής Runge-Kutta Prince-Dormand (8,9) από τη βιβλιοθήκη GSL"
+
+#: gslsolver.cc:60
+msgctxt "ObjectClass|"
+msgid "GslAdaptiveRK8PDSolver"
+msgstr "GslAdaptiveRK8PDSolver"
+
+#: gslsolver.cc:60
+msgctxt "ObjectDescription|"
+msgid "Adaptive Runge-Kutta Prince-Dormand (8,9) solver from GSL library"
+msgstr ""
+"Προσαρμόσιμος επιλυτής Runge-Kutta Prince-Dormand (8,9) από τη βιβλιοθήκη GSL"
+
+#: gslsolver.cc:63
+msgctxt "ObjectClass|"
+msgid "GslRK2IMPSolver"
+msgstr "GslRK2IMPSolver"
+
+#: gslsolver.cc:63
+msgctxt "ObjectDescription|"
+msgid "Runge-Kutta implicit second-order solver from GSL library"
+msgstr "Έμμεσος επιλυτής Runge-Kutta δευτέρου βαθμού από τη βιβλιοθήκη GSL"
+
+#: gslsolver.cc:65
+msgctxt "ObjectClass|"
+msgid "GslAdaptiveRK2IMPSolver"
+msgstr "GslAdaptiveRK2IMPSolver"
+
+#: gslsolver.cc:65
+msgctxt "ObjectDescription|"
+msgid "Adaptive Runge-Kutta implicit second-order solver from GSL library"
+msgstr ""
+"Προσαρμόσιμος έμμεσος επιλυτής Runge-Kutta δευτέρου βαθμού από τη βιβλιοθήκη "
+"GSL"
+
+#: gslsolver.cc:68
+msgctxt "ObjectClass|"
+msgid "GslRK4IMPSolver"
+msgstr "GslRK4IMPSolver"
+
+#: gslsolver.cc:68
+msgctxt "ObjectDescription|"
+msgid "Runge-Kutta implicit fourth-order solver from GSL library"
+msgstr "Έμμεσος επιλυτής Runge-Kutta τετάρτου βαθμού από τη βιβλιοθήκη GSL"
+
+#: gslsolver.cc:70
+msgctxt "ObjectClass|"
+msgid "GslAdaptiveRK4IMPSolver"
+msgstr "GslAdaptiveRK4IMPSolver"
+
+#: gslsolver.cc:70
+msgctxt "ObjectDescription|"
+msgid "Adaptive Runge-Kutta implicit fourth-order solver from GSL library"
+msgstr ""
+"Προσαρμόσιμος έμμεσος επιλυτής Runge-Kutta τετάρτου βαθμού από τη βιβλιοθήκη "
+"GSL"
+
+#: item.cc:28
+msgctxt "ObjectClass|"
+msgid "Item"
+msgstr "Item"
+
+#: item.cc:28
+msgctxt "ObjectDescription|"
+msgid "Item"
+msgstr "Αντικείμενο"
+
+#: item.cc:30
+msgctxt "PropertyName|"
+msgid "color"
+msgstr "color"
+
+#: item.cc:31
+msgctxt "PropertyDescription|"
+msgid "Item color"
+msgstr "Χρώμα αντικειμένου"
+
+#: itemgroup.cc:28
+msgctxt "ObjectClass|"
+msgid "ItemGroup"
+msgstr "ItemGroup"
+
+#: itemgroup.cc:28
+msgctxt "ObjectDescription|"
+msgid "ItemGroup"
+msgstr "Ομάδα αντικειμένου"
+
+#: joint.cc:26
+msgctxt "ObjectClass|"
+msgid "Joint"
+msgstr "Joint"
+
+#: joint.cc:26
+msgctxt "ObjectDescription|"
+msgid "Joint"
+msgstr "Δεσμός"
+
+#: joints.cc:26
+msgctxt "ObjectClass|"
+msgid "Anchor"
+msgstr "Anchor"
+
+#: joints.cc:26
+msgctxt "ObjectDescription|"
+msgid "Anchor: fixes position of the body"
+msgstr "Αγκύρωση: σταθεροποιεί τη θέση του αντικειμένου"
+
+#: joints.cc:28 joints.cc:34 motor.cc:29 motor.cc:35
+msgctxt "PropertyDescription|"
+msgid "Body"
+msgstr "Σώμα"
+
+#: joints.cc:28 joints.cc:34 motor.cc:29 motor.cc:35 tool.cc:97
+msgctxt "PropertyName|"
+msgid "body"
+msgstr "body"
+
+#: joints.cc:29 tool.cc:100
+msgctxt "PropertyDescription|"
+msgid "Position"
+msgstr "Θέση"
+
+#: joints.cc:29 joints.cc:36 particle.cc:29 rigidbody.cc:28 softbody.cc:36
+#: tool.cc:38 tool.cc:45 tool.cc:67 tool.cc:79 tool.cc:100
+msgctxt "PropertyName|"
+msgid "position"
+msgstr "position"
+
+#: joints.cc:30
+msgctxt "PropertyDescription|"
+msgid "Angle"
+msgstr "Γωνία"
+
+#: joints.cc:30 rigidbody.cc:29
+msgctxt "PropertyName|"
+msgid "angle"
+msgstr "angle"
+
+#: joints.cc:30 rigidbody.cc:29 rigidbody.cc:55
+msgctxt "Units|"
+msgid "rad"
+msgstr "rad"
+
+#: joints.cc:32
+msgctxt "ObjectClass|"
+msgid "Pin"
+msgstr "Pin"
+
+#: joints.cc:32
+msgctxt "ObjectDescription|"
+msgid "Pin: fixes position of a given point on the body"
+msgstr "Πείρος: σταθεροποιεί τη θέση ενός σημείου του σώματος"
+
+#: joints.cc:35
+msgctxt "PropertyDescription|"
+msgid "Position on the body"
+msgstr "Η θέση πάνω στο σώμα"
+
+#: joints.cc:35 motor.cc:30 motor.cc:36 tool.cc:98
+msgctxt "PropertyName|"
+msgid "localPosition"
+msgstr "localPosition"
+
+#: joints.cc:36
+msgctxt "PropertyDescription|"
+msgid "Position in the world"
+msgstr "Η θέση στον κόσμο"
+
+#: joints.cc:38
+msgctxt "ObjectClass|"
+msgid "Stick"
+msgstr "Stick"
+
+#: joints.cc:38
+msgctxt "ObjectDescription|"
+msgid "Massless stick which can be connected to bodies"
+msgstr "Αβαρής ράβδος που συνδέεται με σώματα"
+
+#: joints.cc:40
+msgctxt "PropertyDescription|"
+msgid "Rest length of the stick"
+msgstr "Μήκος ηρεμίας της ράβδου"
+
+#: joints.cc:40 spring.cc:30
+msgctxt "PropertyName|"
+msgid "restLength"
+msgstr "restLength"
+
+#: joints.cc:41 spring.cc:34
+msgctxt "PropertyDescription|"
+msgid "Body1"
+msgstr "Σώμα1"
+
+#: joints.cc:41 spring.cc:34
+msgctxt "PropertyName|"
+msgid "body1"
+msgstr "body1"
+
+#: joints.cc:42 spring.cc:35
+msgctxt "PropertyDescription|"
+msgid "Body2"
+msgstr "Σώμα2"
+
+#: joints.cc:42 spring.cc:35
+msgctxt "PropertyName|"
+msgid "body2"
+msgstr "body2"
+
+#: joints.cc:43 spring.cc:36
+msgctxt "PropertyName|"
+msgid "localPosition1"
+msgstr "localPosition1"
+
+#: joints.cc:44 spring.cc:37
+msgctxt "PropertyDescription|"
+msgid "Local position 1"
+msgstr "Τοπική θέση 1"
+
+#: joints.cc:45 spring.cc:38
+msgctxt "PropertyName|"
+msgid "localPosition2"
+msgstr "localPosition2"
+
+#: joints.cc:46 spring.cc:39
+msgctxt "PropertyDescription|"
+msgid "Local position 2"
+msgstr "Τοπική θέση 2"
+
+#: joints.cc:47 spring.cc:40
+msgctxt "PropertyDescription|"
+msgid "Position1"
+msgstr "Θέση 1"
+
+#: joints.cc:47 spring.cc:40
+msgctxt "PropertyName|"
+msgid "position1"
+msgstr "position1"
+
+#: joints.cc:48 spring.cc:41
+msgctxt "PropertyDescription|"
+msgid "Position2"
+msgstr "Θέση 2"
+
+#: joints.cc:48 spring.cc:41
+msgctxt "PropertyName|"
+msgid "position2"
+msgstr "position2"
+
+#: joints.cc:51
+msgctxt "ObjectClass|"
+msgid "Rope"
+msgstr "Rope"
+
+#: joints.cc:51
+msgctxt "ObjectDescription|"
+msgid "Massless rope which can be connected to bodies"
+msgstr "Αβαρές σκοινί που μπορεί να συνδέεται με σώματα"
+
+#: motor.cc:27
+msgctxt "ObjectClass|"
+msgid "LinearMotor"
+msgstr "LinearMotor"
+
+#: motor.cc:27
+msgctxt "ObjectDescription|"
+msgid "Linear motor: applies a constant force to a given position of the body"
+msgstr ""
+"Γραμμικός κινητήρας: εφαρμόζει μια σταθερή δύναμη σε μια δοσμένη θέση του "
+"σώματος"
+
+#: motor.cc:30 motor.cc:36
+msgctxt "PropertyDescription|"
+msgid "Position of the motor on a body"
+msgstr "Θέση του κινητήρα στο σώμα"
+
+#: motor.cc:31
+msgctxt "PropertyDescription|"
+msgid "Value of the force, acting on the body"
+msgstr "Η τιμή της δύναμης, που ενεργεί στο σώμα"
+
+#: motor.cc:31
+msgctxt "PropertyName|"
+msgid "forceValue"
+msgstr "forceValue"
+
+#: motor.cc:31 particle.cc:33 particle.cc:47 rigidbody.cc:39 rigidbody.cc:68
+#: softbody.cc:48 spring.cc:42 spring.cc:63
+msgctxt "Units|"
+msgid "N"
+msgstr "N"
+
+#: motor.cc:33
+msgctxt "ObjectClass|"
+msgid "CircularMotor"
+msgstr "CircularMotor"
+
+#: motor.cc:33
+msgctxt "ObjectDescription|"
+msgid "Circular motor: applies a constant torque to the body"
+msgstr "Κυκλικός κινητήρας: εφαρμόζει μια σταθερή στροφορμή στο σώμα"
+
+#: motor.cc:37
+msgctxt "PropertyDescription|"
+msgid "Value of the torque, acting on the body"
+msgstr "Η τιμή της στροφορμής που ενεργεί πάνω στο σώμα"
+
+#: motor.cc:37
+msgctxt "PropertyName|"
+msgid "torqueValue"
+msgstr "torqueValue"
+
+#: motor.cc:37 rigidbody.cc:40 rigidbody.cc:69 softbody.cc:49
+msgctxt "Units|"
+msgid "N m"
+msgstr "N m"
+
+#: object.cc:25
+msgctxt "ObjectClass|"
+msgid "Object"
+msgstr "Object"
+
+#: object.cc:25
+msgctxt "ObjectDescription|"
+msgid "Object"
+msgstr "Αντικείμενο"
+
+#: object.cc:26
+msgctxt "PropertyDescription|"
+msgid "Object name"
+msgstr "Όνομα αντικειμένου"
+
+#: object.cc:26
+msgctxt "PropertyName|"
+msgid "name"
+msgstr "name"
+
+#: objecterrors.cc:26
+msgctxt "ObjectClass|"
+msgid "ObjectErrors"
+msgstr "ObjectErrors"
+
+#: objecterrors.cc:26
+msgctxt "ObjectDescription|"
+msgid "ObjectErrors"
+msgstr "Σφάλματα αντικειμένου"
+
+#: particle.cc:27
+msgctxt "ObjectClass|"
+msgid "Particle"
+msgstr "Particle"
+
+#: particle.cc:27
+msgctxt "ObjectDescription|"
+msgid "Simple zero-size particle"
+msgstr "Απλό σωματίδιο μηδενικού μεγέθους"
+
+#: particle.cc:29
+msgctxt "PropertyDescription|"
+msgid "position"
+msgstr "θέση"
+
+#: particle.cc:30
+msgctxt "PropertyDescription|"
+msgid "velocity"
+msgstr "ταχύτητα"
+
+#: particle.cc:30 rigidbody.cc:31 softbody.cc:38
+msgctxt "PropertyName|"
+msgid "velocity"
+msgstr "velocity"
+
+#: particle.cc:31 rigidbody.cc:34 softbody.cc:43
+msgctxt "PropertyName|"
+msgid "acceleration"
+msgstr "acceleration"
+
+#: particle.cc:32
+msgctxt "PropertyDescription|"
+msgid "acceleration"
+msgstr "επιτάχυνση"
+
+#: particle.cc:33
+msgctxt "PropertyDescription|"
+msgid "force"
+msgstr "δύναμη"
+
+#: particle.cc:33 rigidbody.cc:39 softbody.cc:48 spring.cc:42
+msgctxt "PropertyName|"
+msgid "force"
+msgstr "force"
+
+#: particle.cc:34
+msgctxt "PropertyDescription|"
+msgid "mass"
+msgstr "μάζα"
+
+#: particle.cc:34 rigidbody.cc:42 softbody.cc:50
+msgctxt "PropertyName|"
+msgid "mass"
+msgstr "mass"
+
+#: particle.cc:35 rigidbody.cc:45
+msgctxt "PropertyDescription|"
+msgid "momentum"
+msgstr "ροπή"
+
+#: particle.cc:35 rigidbody.cc:45
+msgctxt "PropertyName|"
+msgid "momentum"
+msgstr "momentum"
+
+#: particle.cc:35 particle.cc:51 rigidbody.cc:45 rigidbody.cc:75
+msgctxt "Units|"
+msgid "kg m/s"
+msgstr "kg m/s"
+
+#: particle.cc:37 rigidbody.cc:49
+msgctxt "PropertyDescription|"
+msgid "kinetic energy"
+msgstr "κινητική ενέργεια"
+
+#: particle.cc:37 rigidbody.cc:49
+msgctxt "PropertyName|"
+msgid "kineticEnergy"
+msgstr "kineticEnergy"
+
+#: particle.cc:40
+msgctxt "ObjectClass|"
+msgid "ParticleErrors"
+msgstr "ParticleErrors"
+
+#: particle.cc:40
+msgctxt "ObjectDescription|"
+msgid "Errors class for Particle"
+msgstr "Κλάση σφαλμάτων σωματιδίου"
+
+#: particle.cc:41 rigidbody.cc:53
+msgctxt "PropertyName|"
+msgid "positionVariance"
+msgstr "positionVariance"
+
+#: particle.cc:42 rigidbody.cc:54
+msgctxt "PropertyDescription|"
+msgid "position variance"
+msgstr "διακύμανση θέσης"
+
+#: particle.cc:43 rigidbody.cc:58
+msgctxt "PropertyName|"
+msgid "velocityVariance"
+msgstr "velocityVariance"
+
+#: particle.cc:44 rigidbody.cc:59
+msgctxt "PropertyDescription|"
+msgid "velocity variance"
+msgstr "διακύμανση ταχύτητας"
+
+#: particle.cc:45 rigidbody.cc:63
+msgctxt "PropertyName|"
+msgid "accelerationVariance"
+msgstr "accelerationVariance"
+
+#: particle.cc:46 rigidbody.cc:64
+msgctxt "PropertyDescription|"
+msgid "acceleration variance"
+msgstr "διακύμανση επιτάχυνσης"
+
+#: particle.cc:47 rigidbody.cc:68 spring.cc:63
+msgctxt "PropertyName|"
+msgid "forceVariance"
+msgstr "forceVariance"
+
+#: particle.cc:48 rigidbody.cc:68
+msgctxt "PropertyDescription|"
+msgid "force variance"
+msgstr "διακύμανση δύναμης"
+
+#: particle.cc:49 rigidbody.cc:71
+msgctxt "PropertyName|"
+msgid "massVariance"
+msgstr "massVariance"
+
+#: particle.cc:50 rigidbody.cc:72
+msgctxt "PropertyDescription|"
+msgid "mass variance"
+msgstr "διακύμανση μάζας"
+
+#: particle.cc:51 rigidbody.cc:75
+msgctxt "PropertyName|"
+msgid "momentumVariance"
+msgstr "momentumVariance"
+
+#: particle.cc:52 rigidbody.cc:76
+msgctxt "PropertyDescription|"
+msgid "momentum variance"
+msgstr "διακύμανση ροπής"
+
+#: particle.cc:53 rigidbody.cc:80
+msgctxt "PropertyName|"
+msgid "kineticEnergyVariance"
+msgstr "kineticEnergyVariance"
+
+#: particle.cc:54 rigidbody.cc:81
+msgctxt "PropertyDescription|"
+msgid "kinetic energy variance"
+msgstr "διασπορά κινητικής ενέργειας"
+
+#: particle.cc:56
+msgctxt "ObjectClass|"
+msgid "ChargedParticle"
+msgstr "ChargedParticle"
+
+#: particle.cc:56
+msgctxt "ObjectDescription|"
+msgid "Charged zero-size particle"
+msgstr "Φορτισμένο σωματίδιο μηδενικού μεγέθους"
+
+#: particle.cc:57
+msgctxt "PropertyDescription|"
+msgid "charge"
+msgstr "φορτίο"
+
+#: particle.cc:57
+msgctxt "PropertyName|"
+msgid "charge"
+msgstr "charge"
+
+#: particle.cc:57
+msgctxt "Units|"
+msgid "C"
+msgstr "C"
+
+#: particle.cc:59
+msgctxt "ObjectClass|"
+msgid "ChargedParticleErrors"
+msgstr "ChargedParticleErrors"
+
+#: particle.cc:59
+msgctxt "ObjectDescription|"
+msgid "Errors class for ChargedParticle"
+msgstr "Κλάση σφαλμάτων φορτισμένου σωματιδίου"
+
+#: particle.cc:61
+msgctxt "PropertyName|"
+msgid "chargeVariance"
+msgstr "chargeVariance"
+
+#: particle.cc:62
+msgctxt "PropertyDescription|"
+msgid "charge variance"
+msgstr "διασπορά φορτίου"
+
+#: rigidbody.cc:27
+msgctxt "ObjectClass|"
+msgid "RigidBody"
+msgstr "RigidBody"
+
+#: rigidbody.cc:27
+msgctxt "ObjectDescription|"
+msgid "Generic rigid body"
+msgstr "Γενικευμένο συμπαγές σώμα"
+
+#: rigidbody.cc:28 softbody.cc:36
+msgctxt "PropertyDescription|"
+msgid "Position of the center of mass"
+msgstr "Θέση κέντρου μάζας"
+
+#: rigidbody.cc:29
+msgctxt "PropertyDescription|"
+msgid "Rotation angle"
+msgstr "Γωνία περιστροφής"
+
+#: rigidbody.cc:31 softbody.cc:38
+msgctxt "PropertyDescription|"
+msgid "Velocity of the center of mass"
+msgstr "Ταχύτητα του κέντρου μάζας"
+
+#: rigidbody.cc:32 softbody.cc:39
+msgctxt "PropertyDescription|"
+msgid "Angular velocity of the body"
+msgstr "Γωνιακή ταχύτητα του σώματος"
+
+#: rigidbody.cc:32 softbody.cc:39
+msgctxt "PropertyName|"
+msgid "angularVelocity"
+msgstr "angularVelocity"
+
+#: rigidbody.cc:32 rigidbody.cc:60 softbody.cc:39
+msgctxt "Units|"
+msgid "rad/s"
+msgstr "rad/s"
+
+#: rigidbody.cc:35 softbody.cc:44
+msgctxt "PropertyDescription|"
+msgid "Acceleration of the center of mass"
+msgstr "Επιτάχυνση του κέντρου μάζας"
+
+#: rigidbody.cc:36 softbody.cc:45
+msgctxt "PropertyName|"
+msgid "angularAcceleration"
+msgstr "angularAcceleration"
+
+#: rigidbody.cc:36 rigidbody.cc:65 softbody.cc:45
+msgctxt "Units|"
+msgid "rad/s²"
+msgstr "rad/s²"
+
+#: rigidbody.cc:37 softbody.cc:46
+msgctxt "PropertyDescription|"
+msgid "Angular acceleration of the body"
+msgstr "Γωνιακή επιτάχυνση του σώματος"
+
+#: rigidbody.cc:39 softbody.cc:48
+msgctxt "PropertyDescription|"
+msgid "Force that acts upon the body"
+msgstr "Η δύναμη που εξασκείται στο σώμα"
+
+#: rigidbody.cc:40 softbody.cc:49
+msgctxt "PropertyDescription|"
+msgid "Torque that acts upon the body"
+msgstr "Η στροφορμή που δρα πάνω στο σώμα"
+
+#: rigidbody.cc:40 softbody.cc:49
+msgctxt "PropertyName|"
+msgid "torque"
+msgstr "torque"
+
+#: rigidbody.cc:42 softbody.cc:50
+msgctxt "PropertyDescription|"
+msgid "Total mass of the body"
+msgstr "Συνολική μάζα του σώματος"
+
+#: rigidbody.cc:43 softbody.cc:51
+msgctxt "PropertyName|"
+msgid "inertia"
+msgstr "inertia"
+
+#: rigidbody.cc:43 rigidbody.cc:73 softbody.cc:51
+msgctxt "Units|"
+msgid "kg m²"
+msgstr "kg m²"
+
+#: rigidbody.cc:44 softbody.cc:52
+msgctxt "PropertyDescription|"
+msgid "Inertia \"tensor\" of the body"
+msgstr "Η αδράνεια «τανιστής» του σώματος"
+
+#: rigidbody.cc:47
+msgctxt "PropertyDescription|"
+msgid "angular momentum"
+msgstr "γωνιακή ροπή"
+
+#: rigidbody.cc:47 softbody.cc:40
+msgctxt "PropertyName|"
+msgid "angularMomentum"
+msgstr "angularMomentum"
+
+#: rigidbody.cc:47 rigidbody.cc:77
+msgctxt "Units|"
+msgid "kg m² rad/s"
+msgstr "kg m² rad/s"
+
+#: rigidbody.cc:52
+msgctxt "ObjectClass|"
+msgid "RigidBodyErrors"
+msgstr "RigidBodyErrors"
+
+#: rigidbody.cc:52
+msgctxt "ObjectDescription|"
+msgid "Errors class for RigidBody"
+msgstr "Κλάση σφαλμάτων του συμπαγούς σώματος"
+
+#: rigidbody.cc:55
+msgctxt "PropertyName|"
+msgid "angleVariance"
+msgstr "angleVariance"
+
+#: rigidbody.cc:56
+msgctxt "PropertyDescription|"
+msgid "angle variance"
+msgstr "διακύμανση γωνίας"
+
+#: rigidbody.cc:60
+msgctxt "PropertyName|"
+msgid "angularVelocityVariance"
+msgstr "angularVelocityVariance"
+
+#: rigidbody.cc:61
+msgctxt "PropertyDescription|"
+msgid "angularVelocity variance"
+msgstr "διακύμανση γωνιακής ταχύτητας"
+
+#: rigidbody.cc:65
+msgctxt "PropertyName|"
+msgid "angularAccelerationVariance"
+msgstr "angularAccelerationVariance"
+
+#: rigidbody.cc:66
+msgctxt "PropertyDescription|"
+msgid "angularAcceleration variance"
+msgstr "διακύμανση γωνιακής επιτάχυνσης"
+
+#: rigidbody.cc:69
+msgctxt "PropertyDescription|"
+msgid "torque variance"
+msgstr "διακύμανση στροφορμής"
+
+#: rigidbody.cc:69
+msgctxt "PropertyName|"
+msgid "torqueVariance"
+msgstr "torqueVariance"
+
+#: rigidbody.cc:73
+msgctxt "PropertyName|"
+msgid "inertiaVariance"
+msgstr "inertiaVariance"
+
+#: rigidbody.cc:74
+msgctxt "PropertyDescription|"
+msgid "inertia variance"
+msgstr "διακύμανση αδράνειας"
+
+#: rigidbody.cc:77
+msgctxt "PropertyName|"
+msgid "angularMomentumVariance"
+msgstr "angularMomentumVariance"
+
+#: rigidbody.cc:78
+msgctxt "PropertyDescription|"
+msgid "angular momentum variance"
+msgstr "διακύμανση γωνιακής ροπής"
+
+#: rigidbody.cc:83
+msgctxt "ObjectClass|"
+msgid "Disk"
+msgstr "Disk"
+
+#: rigidbody.cc:83
+msgctxt "ObjectDescription|"
+msgid "Rigid disk"
+msgstr "Συμπαγής δίσκος"
+
+#: rigidbody.cc:84
+msgctxt "PropertyDescription|"
+msgid "Radius of the disk"
+msgstr "Η ακτίνα του δίσκου"
+
+#: rigidbody.cc:84
+msgctxt "PropertyName|"
+msgid "radius"
+msgstr "radius"
+
+#: rigidbody.cc:86
+msgctxt "ObjectClass|"
+msgid "BasePolygon"
+msgstr "BasePolygon"
+
+#: rigidbody.cc:86
+msgctxt "ObjectDescription|"
+msgid "Base polygon body"
+msgstr "Σώμα βασικού πολυγώνου"
+
+#: rigidbody.cc:88
+msgctxt "ObjectClass|"
+msgid "Box"
+msgstr "Box"
+
+#: rigidbody.cc:88
+msgctxt "ObjectDescription|"
+msgid "Rigid box"
+msgstr "Συμπαγές πλαίσιο"
+
+#: rigidbody.cc:89
+msgctxt "PropertyDescription|"
+msgid "Size of the box"
+msgstr "Μέγεθος του πλαισίου"
+
+#: rigidbody.cc:89 tool.cc:39 tool.cc:46 tool.cc:68 tool.cc:80
+msgctxt "PropertyName|"
+msgid "size"
+msgstr "size"
+
+#: rigidbody.cc:91
+msgctxt "ObjectClass|"
+msgid "Polygon"
+msgstr "Polygon"
+
+#: rigidbody.cc:91
+msgctxt "ObjectDescription|"
+msgid "Rigid polygon body"
+msgstr "Συμπαγές σώμα πολυγώνου"
+
+#: rigidbody.cc:92
+msgctxt "PropertyDescription|"
+msgid "Vertex list"
+msgstr "Λίστα κορυφών"
+
+#: rigidbody.cc:92
+msgctxt "PropertyName|"
+msgid "vertices"
+msgstr "vertices"
+
+#: softbody.cc:31
+msgctxt "ObjectClass|"
+msgid "SoftBodyParticle"
+msgstr "SoftBodyParticle"
+
+#: softbody.cc:31
+msgctxt "ObjectDescription|"
+msgid "SoftBody particle"
+msgstr "Σωματίδιο ελαστικού σώματος"
+
+#: softbody.cc:32
+msgctxt "ObjectClass|"
+msgid "SoftBodySpring"
+msgstr "SoftBodySpring"
+
+#: softbody.cc:32
+msgctxt "ObjectDescription|"
+msgid "SoftBody spring"
+msgstr "Ελατήριο ελαστικού σώματος"
+
+#: softbody.cc:33
+msgctxt "ObjectClass|"
+msgid "SoftBody"
+msgstr "SoftBody"
+
+#: softbody.cc:33
+msgctxt "ObjectDescription|"
+msgid "Deformable SoftBody"
+msgstr "Παραμορφώσιμο ελαστικό σώμα"
+
+#: softbody.cc:34
+msgctxt "PropertyDescription|"
+msgid "Show internal items"
+msgstr "Εμφάνιση εσωτερικών αντικειμένων"
+
+#: softbody.cc:34
+msgctxt "PropertyName|"
+msgid "showInternalItems"
+msgstr "showInternalItems"
+
+#: softbody.cc:40
+msgctxt "Units|"
+msgid "kg m²/s"
+msgstr "kg m²/s"
+
+#: softbody.cc:41
+msgctxt "PropertyDescription|"
+msgid "Angular momentum of the body"
+msgstr "Γωνιακή ροπή του σώματος"
+
+#: softbody.cc:53
+msgctxt "PropertyName|"
+msgid "borderParticleNames"
+msgstr "borderParticleNames"
+
+#: softbody.cc:54
+msgctxt "PropertyDescription|"
+msgid "Border particle names (temporal property)"
+msgstr "Ονόματα ορίων σωματιδίου (προσωρινή ιδιότητα)"
+
+#: solver.cc:25
+msgctxt "ObjectClass|"
+msgid "Solver"
+msgstr "Solver"
+
+#: solver.cc:25
+msgctxt "ObjectDescription|"
+msgid "Solver"
+msgstr "Επιλυτής"
+
+#: solver.cc:26
+msgctxt "PropertyDescription|"
+msgid "Solver type"
+msgstr "Τύπος επιλυτή"
+
+#: solver.cc:26
+msgctxt "PropertyName|"
+msgid "solverType"
+msgstr "solverType"
+
+#: solver.cc:27
+msgctxt "PropertyDescription|"
+msgid "Step size"
+msgstr "Μέγεθος βήματος"
+
+#: solver.cc:27
+msgctxt "PropertyName|"
+msgid "stepSize"
+msgstr "stepSize"
+
+#: solver.cc:27 world.cc:35
+msgctxt "Units|"
+msgid "s"
+msgstr "s"
+
+#: solver.cc:29
+msgctxt "PropertyDescription|"
+msgid "Allowed relative tolerance"
+msgstr "Επιτρεπόμενη σχετική ανοχή"
+
+#: solver.cc:29
+msgctxt "PropertyName|"
+msgid "toleranceRel"
+msgstr "toleranceRel"
+
+#: solver.cc:30
+msgctxt "PropertyDescription|"
+msgid "Count of dynamic variables"
+msgstr "Αριθμός δυναμικών μεταβλητών"
+
+#: solver.cc:30
+msgctxt "PropertyName|"
+msgid "dimension"
+msgstr "dimension"
+
+#: solver.cc:32
+msgctxt "PropertyDescription|"
+msgid "Maximal local error ratio during last step"
+msgstr "Μέγιστη αναλογία τοπικού σφάλματος κατά το τελευταίο βήμα"
+
+#: solver.cc:32
+msgctxt "PropertyName|"
+msgid "localErrorRatio"
+msgstr "localErrorRatio"
+
+#: spring.cc:28
+msgctxt "ObjectClass|"
+msgid "Spring"
+msgstr "Spring"
+
+#: spring.cc:28
+msgctxt "ObjectDescription|"
+msgid "Massless spring which can be connected to bodies"
+msgstr "Αβαρές ελατήριο το οποίο μπορεί να συνδέεται με σώματα"
+
+#: spring.cc:30
+msgctxt "PropertyDescription|"
+msgid "Rest length"
+msgstr "Μήκος ηρεμίας"
+
+#: spring.cc:31
+msgctxt "PropertyDescription|"
+msgid "Current length"
+msgstr "Τρέχον μήκος"
+
+#: spring.cc:31
+msgctxt "PropertyName|"
+msgid "length"
+msgstr "length"
+
+#: spring.cc:32
+msgctxt "PropertyDescription|"
+msgid "Stiffness"
+msgstr "Δυσκαμψία"
+
+#: spring.cc:32
+msgctxt "PropertyName|"
+msgid "stiffness"
+msgstr "stiffness"
+
+#: spring.cc:32 spring.cc:51 spring.cc:53
+msgctxt "Units|"
+msgid "N/m"
+msgstr "N/m"
+
+#: spring.cc:33
+msgctxt "PropertyDescription|"
+msgid "Damping"
+msgstr "Απόσβεση"
+
+#: spring.cc:33
+msgctxt "PropertyName|"
+msgid "damping"
+msgstr "damping"
+
+#: spring.cc:33
+msgctxt "Units|"
+msgid "N s/m"
+msgstr "N s/m"
+
+#: spring.cc:42
+msgctxt "PropertyDescription|"
+msgid "Spring tension force"
+msgstr "Δύναμη τανιστή ελατηρίου"
+
+#: spring.cc:45
+msgctxt "ObjectClass|"
+msgid "SpringErrors"
+msgstr "SpringErrors"
+
+#: spring.cc:45
+msgctxt "ObjectDescription|"
+msgid "Errors class for Spring"
+msgstr "Κλάση σφαλμάτων για το ελατήριο"
+
+#: spring.cc:47
+msgctxt "PropertyName|"
+msgid "restLengthVariance"
+msgstr "restLengthVariance"
+
+#: spring.cc:48
+msgctxt "PropertyDescription|"
+msgid "Rest length variance"
+msgstr "Διακύμανση μήκους ηρεμίας"
+
+#: spring.cc:49
+msgctxt "PropertyName|"
+msgid "lengthVariance"
+msgstr "lengthVariance"
+
+#: spring.cc:50
+msgctxt "PropertyDescription|"
+msgid "Current length variance"
+msgstr "Διακύμανση τρέχοντος μήκους"
+
+#: spring.cc:51
+msgctxt "PropertyName|"
+msgid "stiffnessVariance"
+msgstr "stiffnessVariance"
+
+#: spring.cc:52
+msgctxt "PropertyDescription|"
+msgid "Stiffness variance"
+msgstr "Διακύμανση δυσκαμψίας"
+
+#: spring.cc:53
+msgctxt "PropertyName|"
+msgid "dampingVariance"
+msgstr "dampingVariance"
+
+#: spring.cc:54
+msgctxt "PropertyDescription|"
+msgid "Damping variance"
+msgstr "Διακύμανση απόσβεσης"
+
+#: spring.cc:55
+msgctxt "PropertyName|"
+msgid "localPosition1Variance"
+msgstr "localPosition1Variance"
+
+#: spring.cc:56
+msgctxt "PropertyDescription|"
+msgid "Local position 1 variance"
+msgstr "Διακύμανση τοπικής θέσης 1"
+
+#: spring.cc:57
+msgctxt "PropertyName|"
+msgid "localPosition2Variance"
+msgstr "localPosition2Variance"
+
+#: spring.cc:58
+msgctxt "PropertyDescription|"
+msgid "Local position 2 variance"
+msgstr "Διακύμανση τοπικής θέσης 2"
+
+#: spring.cc:59
+msgctxt "PropertyName|"
+msgid "position1Variance"
+msgstr "position1Variance"
+
+#: spring.cc:60
+msgctxt "PropertyDescription|"
+msgid "Position1 variance"
+msgstr "Διακύμανση θέσης 1"
+
+#: spring.cc:61
+msgctxt "PropertyName|"
+msgid "position2Variance"
+msgstr "position2Variance"
+
+#: spring.cc:62
+msgctxt "PropertyDescription|"
+msgid "Position2 variance"
+msgstr "Διακύμανση θέσης 2"
+
+#: spring.cc:64
+msgctxt "PropertyDescription|"
+msgid "Spring tension force variance"
+msgstr "Διακύμανση δύναμης τανιστή ελατηρίου"
+
+#: tool.cc:26
+msgctxt "ObjectClass|"
+msgid "NoteImage"
+msgstr "NoteImage"
+
+#: tool.cc:26
+msgctxt "ObjectDescription|"
+msgid "NoteImage: an image embedded in Note"
+msgstr "NoteImage: μια εικόνα ενσωματωμένη σε μια σημείωση"
+
+#: tool.cc:28
+msgctxt "PropertyDescription|"
+msgid "Image data"
+msgstr "Δεδομένα εικόνας"
+
+#: tool.cc:28
+msgctxt "PropertyName|"
+msgid "image"
+msgstr "image"
+
+#: tool.cc:31
+msgctxt "ObjectClass|"
+msgid "NoteFormula"
+msgstr "NoteFormula"
+
+#: tool.cc:31
+msgctxt "ObjectDescription|"
+msgid "NoteFormula: a formula embedded in Note"
+msgstr "NoteFormula: μια μαθηματική σχέση ενσωματωμένη σε μια σημείωση"
+
+#: tool.cc:33
+msgctxt "PropertyDescription|"
+msgid "Formula code"
+msgstr "Κωδικός μαθηματικής σχέσης"
+
+#: tool.cc:33
+msgctxt "PropertyName|"
+msgid "code"
+msgstr "code"
+
+#: tool.cc:36
+msgctxt "ObjectClass|"
+msgid "Note"
+msgstr "Note"
+
+#: tool.cc:36
+msgctxt "ObjectDescription|"
+msgid "Note: displays a textual note on the scene"
+msgstr "Note: εμφάνιση μιας σημείωσης κειμένου στη σκηνή"
+
+#: tool.cc:38
+msgctxt "PropertyDescription|"
+msgid "Note position on the scene"
+msgstr "Θέση σημείωσης στη σκηνή"
+
+#: tool.cc:39
+msgctxt "PropertyDescription|"
+msgid "Note size on the scene"
+msgstr "Μέγεθος σημείωσης στη σκηνή"
+
+#: tool.cc:40
+msgctxt "PropertyDescription|"
+msgid "Text"
+msgstr "Κείμενο"
+
+#: tool.cc:40
+msgctxt "PropertyName|"
+msgid "text"
+msgstr "text"
+
+#: tool.cc:43
+msgctxt "ObjectClass|"
+msgid "Graph"
+msgstr "Graph"
+
+#: tool.cc:43
+msgctxt "ObjectDescription|"
+msgid "Graph: plots a graph of any properties"
+msgstr "Graph: σχεδίαση ενός γραφήματος οποιασδήποτε ιδιότητας"
+
+#: tool.cc:45
+msgctxt "PropertyDescription|"
+msgid "Graph position on the scene"
+msgstr "Θέση γραφήματος στη σκηνή"
+
+#: tool.cc:46
+msgctxt "PropertyDescription|"
+msgid "Graph size on the scene"
+msgstr "Μέγεθος γραφήματος στη σκηνή"
+
+#: tool.cc:47
+msgctxt "PropertyDescription|"
+msgid "X axis: object"
+msgstr "άξονας X: αντικείμενο"
+
+#: tool.cc:47
+msgctxt "PropertyName|"
+msgid "objectX"
+msgstr "objectX"
+
+#: tool.cc:48
+msgctxt "PropertyDescription|"
+msgid "X axis: object property"
+msgstr "άξονας X: ιδιότητα αντικειμένου"
+
+#: tool.cc:48
+msgctxt "PropertyName|"
+msgid "propertyX"
+msgstr "propertyX"
+
+#: tool.cc:49
+msgctxt "PropertyDescription|"
+msgid "X axis: vector index"
+msgstr "άξονας Χ: δείκτης διανύσματος"
+
+#: tool.cc:49
+msgctxt "PropertyName|"
+msgid "indexX"
+msgstr "indexX"
+
+#: tool.cc:50
+msgctxt "PropertyDescription|"
+msgid "Y axis: object"
+msgstr "άξονας Y: αντικείμενο"
+
+#: tool.cc:50
+msgctxt "PropertyName|"
+msgid "objectY"
+msgstr "objectY"
+
+#: tool.cc:51
+msgctxt "PropertyDescription|"
+msgid "Y axis: property"
+msgstr "άξονας Y: ιδιότητα"
+
+#: tool.cc:51
+msgctxt "PropertyName|"
+msgid "propertyY"
+msgstr "propertyΥ"
+
+#: tool.cc:52
+msgctxt "PropertyDescription|"
+msgid "Y axis: vector index"
+msgstr "άξονας Y: δείκτης διανύσματος"
+
+#: tool.cc:52
+msgctxt "PropertyName|"
+msgid "indexY"
+msgstr "indexΥ"
+
+#: tool.cc:53
+msgctxt "PropertyDescription|"
+msgid "Auto-limits along X axis"
+msgstr "Αυτόματα όρια κατά τον άξονα Χ"
+
+#: tool.cc:53
+msgctxt "PropertyName|"
+msgid "autoLimitsX"
+msgstr "autoLimitsX"
+
+#: tool.cc:54
+msgctxt "PropertyDescription|"
+msgid "Auto-limits along Y axis"
+msgstr "Αυτόματα όρια κατά τον άξονα Υ"
+
+#: tool.cc:54
+msgctxt "PropertyName|"
+msgid "autoLimitsY"
+msgstr "autoLimitsΥ"
+
+#: tool.cc:55
+msgctxt "PropertyDescription|"
+msgid "Limits along X axis"
+msgstr "Όρια Χ κατά τον άξονα Χ"
+
+#: tool.cc:55
+msgctxt "PropertyName|"
+msgid "limitsX"
+msgstr "limitsX"
+
+#: tool.cc:56
+msgctxt "PropertyDescription|"
+msgid "Limits along Y axis"
+msgstr "Όρια κατά τον άξονα Υ"
+
+#: tool.cc:56
+msgctxt "PropertyName|"
+msgid "limitsY"
+msgstr "limitsY"
+
+#: tool.cc:57
+msgctxt "PropertyDescription|"
+msgid "Show points on the graph"
+msgstr "Εμφάνιση σημείων στο γράφημα"
+
+#: tool.cc:57
+msgctxt "PropertyName|"
+msgid "showPoints"
+msgstr "showPoints"
+
+#: tool.cc:58
+msgctxt "PropertyDescription|"
+msgid "Show lines on the graph"
+msgstr "Εμφάνιση γραμμών στο γράφημα"
+
+#: tool.cc:58
+msgctxt "PropertyName|"
+msgid "showLines"
+msgstr "showLines"
+
+#: tool.cc:59
+msgctxt "PropertyDescription|"
+msgid "Current value"
+msgstr "Τρέχουσα τιμή"
+
+#: tool.cc:59
+msgctxt "PropertyName|"
+msgid "currentValue"
+msgstr "currentValue"
+
+#: tool.cc:60 tool.cc:101
+msgctxt "PropertyDescription|"
+msgid "points"
+msgstr "σημεία"
+
+#: tool.cc:60 tool.cc:101
+msgctxt "PropertyName|"
+msgid "points"
+msgstr "points"
+
+#: tool.cc:61
+msgctxt "PropertyName|"
+msgid "unitsX"
+msgstr "unitsX"
+
+#: tool.cc:61
+msgctxt "PropertyName|"
+msgid "Units along X axis"
+msgstr "Μονάδες κατά τον άξονα Χ"
+
+#: tool.cc:62
+msgctxt "PropertyName|"
+msgid "unitsY"
+msgstr "unitsΥ"
+
+#: tool.cc:62
+msgctxt "PropertyName|"
+msgid "Units along Y axis"
+msgstr "Μονάδες κατά τον άξονα Υ"
+
+#: tool.cc:65
+msgctxt "ObjectClass|"
+msgid "Meter"
+msgstr "Meter"
+
+#: tool.cc:65
+msgctxt "ObjectDescription|"
+msgid "Meter: displays any property on the scene"
+msgstr "Meter: εμφάνιση οποιασδήποτε ιδιότητας στη σκηνή"
+
+#: tool.cc:67
+msgctxt "PropertyDescription|"
+msgid "Meter position on the scene"
+msgstr "Θέση οργάνου στη σκηνή"
+
+#: tool.cc:68
+msgctxt "PropertyDescription|"
+msgid "Meter size on the scene"
+msgstr "Μέγεθος οργάνου στη σκηνή"
+
+#: tool.cc:69
+msgctxt "PropertyDescription|"
+msgid "Observed object"
+msgstr "Παρατηρούμενο αντικείμενο"
+
+#: tool.cc:69 tool.cc:81
+msgctxt "PropertyName|"
+msgid "object"
+msgstr "object"
+
+#: tool.cc:70
+msgctxt "PropertyDescription|"
+msgid "Observed property"
+msgstr "Παρατηρούμενη ιδιότητα"
+
+#: tool.cc:70 tool.cc:82
+msgctxt "PropertyName|"
+msgid "property"
+msgstr "property"
+
+#: tool.cc:71 tool.cc:83
+msgctxt "PropertyDescription|"
+msgid "Vector index"
+msgstr "Δείκτης διανύσματος"
+
+#: tool.cc:71 tool.cc:83
+msgctxt "PropertyName|"
+msgid "index"
+msgstr "index"
+
+#: tool.cc:72
+msgctxt "PropertyDescription|"
+msgid "Display digits"
+msgstr "Εμφάνιση ψηφίων"
+
+#: tool.cc:72
+msgctxt "PropertyName|"
+msgid "digits"
+msgstr "digits"
+
+#: tool.cc:73 tool.cc:90
+msgctxt "PropertyDescription|"
+msgid "Value"
+msgstr "Τιμή"
+
+#: tool.cc:73 tool.cc:90
+msgctxt "PropertyName|"
+msgid "value"
+msgstr "value"
+
+#: tool.cc:74
+msgctxt "PropertyDescription|"
+msgid "Units of measured property"
+msgstr "Μονάδες της μετρούμενης ιδιότητας"
+
+#: tool.cc:74 tool.cc:92
+msgctxt "PropertyName|"
+msgid "units"
+msgstr "units"
+
+#: tool.cc:77
+msgctxt "ObjectClass|"
+msgid "Controller"
+msgstr "Controller"
+
+#: tool.cc:77
+msgctxt "ObjectDescription|"
+msgid "Controller: allows to easily control any property"
+msgstr "Controller: επιτρέπει τον εύκολο έλεγχο κάποιας ιδιότητας"
+
+#: tool.cc:79
+msgctxt "PropertyDescription|"
+msgid "Controller position on the scene"
+msgstr "Θέση ελεγκτή στη σκηνή"
+
+#: tool.cc:80
+msgctxt "PropertyDescription|"
+msgid "Controller size on the scene"
+msgstr "Μέγεθος ελεγκτή στη σκηνή"
+
+#: tool.cc:81
+msgctxt "PropertyDescription|"
+msgid "Controlled object"
+msgstr "Ελεγχόμενο αντικείμενο"
+
+#: tool.cc:82
+msgctxt "PropertyDescription|"
+msgid "Controlled property"
+msgstr "Ελεγχόμενη ιδιότητα"
+
+#: tool.cc:84
+msgctxt "PropertyDescription|"
+msgid "Limits"
+msgstr "Όρια"
+
+#: tool.cc:84
+msgctxt "PropertyName|"
+msgid "limits"
+msgstr "limits"
+
+#: tool.cc:85
+msgctxt "PropertyName|"
+msgid "increaseShortcut"
+msgstr "increaseShortcut"
+
+#: tool.cc:86
+msgctxt "PropertyDescription|"
+msgid "Shortcut to increase the value"
+msgstr "Συντόμευση αύξησης της τιμής"
+
+#: tool.cc:87
+msgctxt "PropertyName|"
+msgid "decreaseShortcut"
+msgstr "decreaseShortcut"
+
+#: tool.cc:88
+msgctxt "PropertyDescription|"
+msgid "Shortcut to decrease the value"
+msgstr "Συντόμευση μείωσης της τιμής"
+
+#: tool.cc:89
+msgctxt "PropertyDescription|"
+msgid "Increment value"
+msgstr "Τιμή βήματος"
+
+#: tool.cc:89
+msgctxt "PropertyName|"
+msgid "increment"
+msgstr "increment"
+
+#: tool.cc:92
+msgctxt "PropertyDescription|"
+msgid "Units of controlled property"
+msgstr "Μονάδες της ελεγχόμενης ιδιότητας"
+
+#: tool.cc:95
+msgctxt "ObjectClass|"
+msgid "Tracer"
+msgstr "Tracer"
+
+#: tool.cc:95
+msgctxt "ObjectDescription|"
+msgid "Tracer: traces trajectory of a point on a body"
+msgstr "Tracer: είναι το ίχνος της τροχιάς ενός σημείου ενός σώματος"
+
+#: tool.cc:97
+msgctxt "PropertyDescription|"
+msgid "Traced body"
+msgstr "Ίχνος σώματος"
+
+#: tool.cc:99
+msgctxt "PropertyDescription|"
+msgid "Local position"
+msgstr "Τοπική θέση"
+
+#: world.cc:32
+msgctxt "ObjectClass|"
+msgid "Tool"
+msgstr "Tool"
+
+#: world.cc:32
+msgctxt "ObjectDescription|"
+msgid "Tool"
+msgstr "Εργαλείο"
+
+#: world.cc:34
+msgctxt "ObjectClass|"
+msgid "World"
+msgstr "World"
+
+#: world.cc:34
+msgctxt "ObjectDescription|"
+msgid "World"
+msgstr "Κόσμος"
+
+#: world.cc:35
+msgctxt "PropertyDescription|"
+msgid "Current time"
+msgstr "Τρέχων χρόνος"
+
+#: world.cc:35
+msgctxt "PropertyName|"
+msgid "time"
+msgstr "time"
+
+#: world.cc:36
+msgctxt "PropertyDescription|"
+msgid "Simulation speed scale"
+msgstr "Κλίμακα ταχύτητας εξομοίωσης"
+
+#: world.cc:36
+msgctxt "PropertyName|"
+msgid "timeScale"
+msgstr "timeScale"
+
+#: world.cc:37
+msgctxt "PropertyName|"
+msgid "errorsCalculation"
+msgstr "errorsCalculation"
+
+#: world.cc:38
+msgctxt "PropertyDescription|"
+msgid "Enable global error calculation"
+msgstr "Ενεργοποίηση υπολογισμού καθολικού σφάλματος"
+
+#: xmlfile.cc:201
+msgctxt "QObject|"
+msgid "The file is not a StepCoreXML file."
+msgstr "Το αρχείο δεν είναι ένα αρχείο StepCoreXML."
+
+#: xmlfile.cc:247
+#, qt-format
+msgctxt "QObject|"
+msgid "Unknown item type \"%1\""
+msgstr "Άγνωστος τύπος αντικειμένου «%1»"
+
+#: xmlfile.cc:268
+#, qt-format
+msgctxt "QObject|"
+msgid "Unknown solver type \"%1\""
+msgstr "Άγνωστος τύπος επιλυτή «%1»"
+
+#: xmlfile.cc:282
+#, qt-format
+msgctxt "QObject|"
+msgid "Unknown collisionSolver type \"%1\""
+msgstr "Άγνωστος τύπος επιλυτή συγκρούσεων «%1»"
+
+#: xmlfile.cc:296
+#, qt-format
+msgctxt "QObject|"
+msgid "Unknown constraint solver type \"%1\""
+msgstr "Άγνωστος τύπος επιλυτή περιορισμών «%1»"
+
+#: xmlfile.cc:324
+#, qt-format
+msgctxt "QObject|"
+msgid "Wrong ID attribute value for %1"
+msgstr "Εσφαλμένη ιδιότητα ID για το %1"
+
+#: xmlfile.cc:329
+#, qt-format
+msgctxt "QObject|"
+msgid "Non-unique ID attribute value for %1"
+msgstr "Μη μοναδική ιδιότητα ID για το %1"
+
+#: xmlfile.cc:357 xmlfile.cc:371
+#, qt-format
+msgctxt "QObject|"
+msgid "Property \"%1\" of \"%2\" has illegal value"
+msgstr "Η ιδιότητα «%1» του «%2» έχει μη έγκυρη τιμή"
+
+#: xmlfile.cc:384
+msgctxt "QObject|"
+msgid "File is not writable."
+msgstr "Το αρχείο δεν είναι εγγράψιμο."
+
+#, fuzzy
+#~| msgid "Body"
+#~ msgctxt "StepCore|"
+#~ msgid "Body"
+#~ msgstr "Σώμα"
+
+#, fuzzy
+#~| msgid "Force"
+#~ msgctxt "StepCore|"
+#~ msgid "Force"
+#~ msgstr "Δύναμη"
+
+#, fuzzy
+#~| msgid "Item"
+#~ msgctxt "StepCore|"
+#~ msgid "Item"
+#~ msgstr "Αντικείμενο"
+
+#, fuzzy
+#~| msgid "ItemGroup"
+#~ msgctxt "StepCore|"
+#~ msgid "ItemGroup"
+#~ msgstr "Ομάδα αντικειμένου"
+
+#, fuzzy
+#~| msgid "Joint"
+#~ msgctxt "StepCore|"
+#~ msgid "Joint"
+#~ msgstr "Δεσμός"
+
+#, fuzzy
+#~| msgid "Object"
+#~ msgctxt "StepCore|"
+#~ msgid "Object"
+#~ msgstr "Αντικείμενο"
+
+#, fuzzy
+#~| msgid "ObjectErrors"
+#~ msgctxt "StepCore|"
+#~ msgid "ObjectErrors"
+#~ msgstr "Σφάλματα αντικειμένου"
+
+#, fuzzy
+#~| msgid "position"
+#~ msgctxt "StepCore|"
+#~ msgid "position"
+#~ msgstr "θέση"
+
+#, fuzzy
+#~| msgid "velocity"
+#~ msgctxt "StepCore|"
+#~ msgid "velocity"
+#~ msgstr "ταχύτητα"
+
+#, fuzzy
+#~| msgid "acceleration"
+#~ msgctxt "StepCore|"
+#~ msgid "acceleration"
+#~ msgstr "επιτάχυνση"
+
+#, fuzzy
+#~| msgid "force"
+#~ msgctxt "StepCore|"
+#~ msgid "force"
+#~ msgstr "δύναμη"
+
+#, fuzzy
+#~| msgid "mass"
+#~ msgctxt "StepCore|"
+#~ msgid "mass"
+#~ msgstr "μάζα"
+
+#, fuzzy
+#~| msgid "momentum"
+#~ msgctxt "StepCore|"
+#~ msgid "momentum"
+#~ msgstr "ροπή"
+
+#, fuzzy
+#~| msgid "charge"
+#~ msgctxt "StepCore|"
+#~ msgid "charge"
+#~ msgstr "φορτίο"
+
+#, fuzzy
+#~| msgctxt "ObjectClass"
+#~| msgid "Plane"
+#~ msgctxt "ObjectClass|"
+#~ msgid "Plane"
+#~ msgstr "Επίπεδο"
+
+#, fuzzy
+#~| msgid "Unmovable rigid plane"
+#~ msgctxt "StepCore|"
+#~ msgid "Unmovable rigid plane"
+#~ msgstr "Αμετακίνητο συμπαγές επίπεδο"
+
+#, fuzzy
+#~| msgctxt "PropertyName"
+#~| msgid "point1"
+#~ msgctxt "PropertyName|"
+#~ msgid "point1"
+#~ msgstr "σημείο1"
+
+#, fuzzy
+#~| msgid "First point which defines the plane"
+#~ msgctxt "StepCore|"
+#~ msgid "First point which defines the plane"
+#~ msgstr "Πρώτο σημείο ορισμού του επιπέδου"
+
+#, fuzzy
+#~| msgctxt "PropertyName"
+#~| msgid "point2"
+#~ msgctxt "PropertyName|"
+#~ msgid "point2"
+#~ msgstr "σημείο2"
+
+#, fuzzy
+#~| msgid "Second point which defines the plane"
+#~ msgctxt "StepCore|"
+#~ msgid "Second point which defines the plane"
+#~ msgstr "Δεύτερο σημείο ορισμού του επιπέδου"
+
+#, fuzzy
+#~| msgid "Solver"
+#~ msgctxt "StepCore|"
+#~ msgid "Solver"
+#~ msgstr "Επιλυτής"
+
+#, fuzzy
+#~| msgid "points"
+#~ msgctxt "StepCore|"
+#~ msgid "points"
+#~ msgstr "σημεία"
+
+#, fuzzy
+#~| msgid "value"
+#~ msgctxt "StepCore|"
+#~ msgid "value"
+#~ msgstr "τιμή"
+
+#, fuzzy
+#~| msgid "Tool"
+#~ msgctxt "StepCore|"
+#~ msgid "Tool"
+#~ msgstr "Εργαλείο"
+
+#, fuzzy
+#~| msgid "World"
+#~ msgctxt "StepCore|"
+#~ msgid "World"
+#~ msgstr "Κόσμος"
+
+#~ msgctxt "ObjectClass"
+#~ msgid "Body"
+#~ msgstr "Σώμα"
+
+#~ msgctxt "ObjectClass"
+#~ msgid "Force"
+#~ msgstr "Δύναμη"
+
+#~ msgctxt "ObjectClass"
+#~ msgid "Item"
+#~ msgstr "Αντικείμενο"
+
+#~ msgctxt "ObjectClass"
+#~ msgid "ItemGroup"
+#~ msgstr "Ομάδα αντικειμένου"
+
+#~ msgctxt "ObjectClass"
+#~ msgid "Joint"
+#~ msgstr "Δεσμός"
+
+#~ msgctxt "PropertyName"
+#~ msgid "position"
+#~ msgstr "θέση"
+
+#~ msgctxt "ObjectClass"
+#~ msgid "Object"
+#~ msgstr "Αντικείμενο"
+
+#~ msgctxt "ObjectClass"
+#~ msgid "ObjectErrors"
+#~ msgstr "Σφάλματα αντικειμένου"
+
+#~ msgctxt "PropertyName"
+#~ msgid "velocity"
+#~ msgstr "ταχύτητα"
+
+#~ msgctxt "PropertyName"
+#~ msgid "acceleration"
+#~ msgstr "επιτάχυνση"
+
+#~ msgctxt "PropertyName"
+#~ msgid "force"
+#~ msgstr "δύναμη"
+
+#~ msgctxt "PropertyName"
+#~ msgid "mass"
+#~ msgstr "μάζα"
+
+#~ msgctxt "PropertyName"
+#~ msgid "momentum"
+#~ msgstr "ροπή"
+
+#~ msgctxt "PropertyName"
+#~ msgid "charge"
+#~ msgstr "φορτίο"
+
+#~ msgctxt "ObjectClass"
+#~ msgid "Solver"
+#~ msgstr "Επιλυτής"
+
+#~ msgctxt "PropertyName"
+#~ msgid "points"
+#~ msgstr "σημεία"
+
+#~ msgctxt "PropertyName"
+#~ msgid "value"
+#~ msgstr "τιμή"
+
+#~ msgctxt "ObjectClass"
+#~ msgid "Tool"
+#~ msgstr "Εργαλείο"
+
+#~ msgctxt "ObjectClass"
+#~ msgid "World"
+#~ msgstr "Κόσμος"
+
+#~ msgid "Item \"%1\" has no stored property named \"%2\""
+#~ msgstr ""
+#~ "Το αντικείμενο \"%1\" δεν έχει αποθηκευμένη ιδιότητα με όνομα \"%2\""
+
+#~ msgid "Unexpected tag \"%1\""
+#~ msgstr "Μη αναμενόμενη ετικέτα \"%1\""
+
+#~ msgid "\"world\" tag not found"
+#~ msgstr "Δε βρέθηκε η ετικέτα \"world\""
+
+#~ msgid "Error parsing file at line %1: %2"
+#~ msgstr "Σφάλμα ανάλυσης αρχείου στη γραμμή %1: %2"
+
+#~ msgctxt "NAME OF TRANSLATORS"
+#~ msgid "Your names"
+#~ msgstr "Τούσης Μανώλης"
+
+#~ msgctxt "EMAIL OF TRANSLATORS"
+#~ msgid "Your emails"
+#~ msgstr "manolis@koppermind.homelinux.org"
+
+#~ msgid "Main Toolbar"
+#~ msgstr "Κύρια γραμμή εργαλείων"
+
+#~ msgid "Simulation Toolbar"
+#~ msgstr "Γραμμή εργαλείων εξομοίωσης"
+
+#~ msgid "&Examples"
+#~ msgstr "&Παραδείγματα"
+
+#~ msgid "&Simulation"
+#~ msgstr "&Εξομοίωση"
+
+#~ msgid "&Run Speed"
+#~ msgstr "&Ταχύτητα εκτέλεσης"
+
+#~ msgid "&Panels"
+#~ msgstr "&Πίνακες"
+
+#~ msgid "Data Source"
+#~ msgstr "Πηγή δεδομένων"
+
+#~ msgid "Range"
+#~ msgstr "Εύρος"
+
+#~ msgid "min:"
+#~ msgstr "ελαχ:"
+
+#~ msgid "max:"
+#~ msgstr "μεγ:"
+
+#~ msgid "0"
+#~ msgstr "0"
+
+#~ msgid "1"
+#~ msgstr "1"
+
+#~ msgid "Shortcuts"
+#~ msgstr "Συντομεύσεις"
+
+#~ msgid "Decrease:"
+#~ msgstr "Μείωση:"
+
+#~ msgid "Increase:"
+#~ msgstr "Αύξηση:"
+
+#~ msgid "Increment:"
+#~ msgstr "Βήμα:"
+
+#~ msgid "0.1"
+#~ msgstr "0.1"
+
+#~ msgid "Options"
+#~ msgstr "Επιλογές"
+
+#~ msgid "Area"
+#~ msgstr "Περιοχή"
+
+#~ msgid "The area the gas takes"
+#~ msgstr "Η περιοχή που καταλαμβάνει το αέριο"
+
+#~ msgid "Particles count:"
+#~ msgstr "Πλήθος σωματιδίων:"
+
+#~ msgid "The number of partcles of this gas."
+#~ msgstr "Ο αριθμός των σωματιδίων στο αέριο."
+
+#~ msgid "20"
+#~ msgstr "20"
+
+#~ msgid "Concentration:"
+#~ msgstr "Συγκέντρωση:"
+
+#~ msgid "Particles mass:"
+#~ msgstr "Μάζα σωματιδίου:"
+
+#~ msgid "The mass of one particle"
+#~ msgstr "Η μάζα ενός σωματιδίου"
+
+#~ msgid "Temperature:"
+#~ msgstr "Θερμοκρασία:"
+
+#~ msgid "1e21"
+#~ msgstr "1e21"
+
+#~ msgid "Mean velocity:"
+#~ msgstr "Μέση ταχύτητα:"
+
+#~ msgid "(0,0)"
+#~ msgstr "(0,0)"
+
+#~ msgid "Display precision:"
+#~ msgstr "Ακρίβεια εμφάνισης:"
+
+#~ msgid "Show scene axes"
+#~ msgstr "Εμφάνιση αξόνων"
+
+#~ msgid "Show tips when creating objects"
+#~ msgstr "Εμφάνιση συμβουλών κατά τη δημιουργία αντικειμένων"
+
+#~ msgid "Enable OpenGL (EXPERIMENTAL)"
+#~ msgstr "Ενεργοποίηση OpenGL (πειραματικό)"
+
+#~ msgid "Open wikipedia in external browser"
+#~ msgstr "Άνοιγμα wikipedia σε εξωτερικό περιηγητή"
+
+#~ msgid "Position:"
+#~ msgstr "Θέση:"
+
+#~ msgid "Body size:"
+#~ msgstr "Μέγεθος σώματος:"
+
+#~ msgid "(1,1)"
+#~ msgstr "(1,1)"
+
+#~ msgid "Body mass:"
+#~ msgstr "Μάζα σώματος:"
+
+#~ msgid "Young's modulus:"
+#~ msgstr "Συντελεστής Young:"
+
+#~ msgid "15"
+#~ msgstr "15"
+
+#~ msgid "Body damping:"
+#~ msgstr "Απόσβεση σώματος:"
+
+#~ msgid "0.3"
+#~ msgstr "0.3"
+
+#~ msgid "Body split counts:"
+#~ msgstr "Πλήθος τμημάτων σώματος:"
+
+#~ msgid "(4,4)"
+#~ msgstr "(4,4)"
+
+#~ msgid "Number of digits:"
+#~ msgstr "Αριθμός ψηφίων:"
+
+#~ msgid "X :"
+#~ msgstr "X :"
+
+#~ msgid "Y :"
+#~ msgstr "Y :"
+
+#~ msgid "Ranges"
+#~ msgstr "Εύρη"
+
+#~ msgid "auto"
+#~ msgstr "αυτόματο"
+
+#~ msgid "Show lines"
+#~ msgstr "Εμφάνιση γραμμών"
+
+#~ msgid "Show points"
+#~ msgstr "Εμφάνιση σημείων"
+
+#~ msgid "Click on the scene to create a %1"
+#~ msgstr "Κάντε κλικ στη σκηνή για να δημιουργήσετε ένα %1"
+
+#~ msgid "Create %1"
+#~ msgstr "Δημιουργία %1"
+
+#~ msgid "%1 named '%2' created"
+#~ msgstr "Δημιουργία %1 με όνομα '%2'"
+
+#~ msgid ""
+#~ "Press left mouse button to position first end of a %1\n"
+#~ "then drag and release it to position the second end"
+#~ msgstr ""
+#~ "Πιέστε το αριστερό κουμπί του ποντικιού για την τοποθέτηση του πρώτου "
+#~ "άκρου του %1\n"
+#~ "και έπειτα σύρετε και ελευθερώστε για την τοποθέτηση του δευτέρου άκρου"
+
+#~ msgid "Release left mouse button to position second end of the %1"
+#~ msgstr ""
+#~ "Ελευθερώστε το αριστερό κουμπί του ποντικιού για την τοποθέτηση του "
+#~ "δεύτερου άκρου του %1"
+
+#~ msgid "Move %1"
+#~ msgstr "Μετακίνηση %1"
+
+#~ msgid "several objects"
+#~ msgstr "διάφορα αντικείμενα"
+
+#~ msgid "Change %1.%2"
+#~ msgstr "Τροποποίηση %1.%2"
+
+#~ msgid "Change %1"
+#~ msgstr "Τροποποίηση %1"
+
+#~ msgid "&Delete"
+#~ msgstr "&Διαγραφή"
+
+#~ msgctxt "Object list"
+#~ msgid "World"
+#~ msgstr "Κόσμος"
+
+#~ msgid "Palette"
+#~ msgstr "Παλέτα"
+
+#~ msgid "Pointer"
+#~ msgstr "Δείκτης"
+
+#~ msgid "Selection pointer"
+#~ msgstr "Δείκτης επιλογής"
+
+#~ msgid "Show text"
+#~ msgstr "Εμφάνιση κειμένου"
+
+#~ msgid "can not launch %1"
+#~ msgstr "αδυναμία εκτέλεσης του %1"
+
+#~ msgid "error running %1"
+#~ msgstr "Σφάλμα εκτέλεσης του %1"
+
+#~ msgid ""
+#~ "%1 reported an error (exit status %2):\n"
+#~ "%3"
+#~ msgstr ""
+#~ "Το %1 ανέφερε ένα σφάλμα (κατάσταση εξόδου %2):\n"
+#~ "%3"
+
+#~ msgid "%1 did not create output file"
+#~ msgstr "Το %1 δε δημιούργησε αρχείο εξόδου"
+
+#~ msgid "can not open temporary file"
+#~ msgstr "αδυναμία ανοίγματος προσωρινού αρχείου"
+
+#~ msgid "can not open result file"
+#~ msgstr "αδυναμία ανοίγματος αρχείου αποτελεσμάτων"
+
+#~ msgid "Move end of %1"
+#~ msgstr "Μετακίνηση στο τέλος του %1"
+
+#~ msgid "Create items..."
+#~ msgstr "Δημιουργία αντικειμένων..."
+
+#~ msgid "Create soft body items"
+#~ msgstr "Δημιουργία αντικειμένων ελαστικού σώματος"
+
+#~ msgid "Create items for %1"
+#~ msgstr "Δημιουργία αντικειμένων για %1"
+
+#~ msgid "Objects under mouse:"
+#~ msgstr "Αντικείμενα στο ποντίκι:"
+
+#~ msgid "... (%1 more items)"
+#~ msgstr "... (%1 περισσότερα αντικείμενα)"
+
+#~ msgid "Interactive physical simulator"
+#~ msgstr "Διαδραστικός εξομοιωτής φυσικής"
+
+#~ msgid "Step"
+#~ msgstr "Βήμα"
+
+#~ msgid "(C) 2007 Vladimir Kuznetsov"
+#~ msgstr "(C) 2007 Vladimir Kuznetsov"
+
+#~ msgid "Vladimir Kuznetsov"
+#~ msgstr "Vladimir Kuznetsov"
+
+#~ msgid "Original author"
+#~ msgstr "Αρχικός συγγραφέας"
+
+#~ msgid "Carsten Niehaus"
+#~ msgstr "Carsten Niehaus"
+
+#~ msgid "Code contributions"
+#~ msgstr "Συνεισφορά κώδικα"
+
+#~ msgid "Document to open"
+#~ msgstr "Έγγραφο για άνοιγμα"
+
+#~ msgid "Delete %1"
+#~ msgstr "Διαγραφή του %1"
+
+#~ msgid "Delete several items"
+#~ msgstr "Διαγραφή διάφορων αντικειμένων"
+
+#~ msgid "<no object>"
+#~ msgstr "<κανένα αντικείμενο>"
+
+#~ msgid "<unnamed>"
+#~ msgstr "<ανώνυμο>"
+
+#~ msgid "%1: %2"
+#~ msgstr "%1: %2"
+
+#~ msgid "<nobr><h4><u>%1</u></h4></nobr>"
+#~ msgstr "<nobr><h4><u>%1</u></h4></nobr>"
+
+#~ msgid "<tr><td>%1&nbsp;&nbsp;</td><td>%2</td></tr>"
+#~ msgstr "<tr><td>%1&nbsp;&nbsp;</td><td>%2</td></tr>"
+
+#~ msgid "Simulate %1 → %2"
+#~ msgstr "Εξομοίωση %1 → %2"
+
+#~ msgid "Undo history"
+#~ msgstr "Ιστορικό αναίρεσης"
+
+#~ msgid "Change solver type"
+#~ msgstr "Τροποποίηση τύπου επιλυτή"
+
+#~ msgid "Rename %1 to %2"
+#~ msgstr "Μετονομασία %1 σε %2"
+
+#~ msgid "Property"
+#~ msgstr "Ιδιότητα"
+
+#~ msgid "false"
+#~ msgstr "ψευδές"
+
+#~ msgid "true"
+#~ msgstr "αληθές"
+
+#~ msgid "Properties"
+#~ msgstr "Ιδιότητες"
+
+#~ msgid "&Open Tutorial..."
+#~ msgstr "Ά&νοιγμα εκμάθησης..."
+
+#~ msgid "&Open Example..."
+#~ msgstr "Ά&νοιγμα παραδείγματος..."
+
+#~ msgid "Open Down&loaded Example..."
+#~ msgstr "Άνοιγμα &ληφθέντος παραδείγματος..."
+
+#~ msgid "Share C&urrent Experiment..."
+#~ msgstr "Κοινή χρήση &τρέχοντος πειράματος..."
+
+#~ msgid "&Download New Experiments..."
+#~ msgstr "&Λήψη νέων πειραμάτων..."
+
+#~ msgid "Redo"
+#~ msgstr "Επαναφορά"
+
+#~ msgid "Undo"
+#~ msgstr "Αναίρεση"
+
+#~ msgid "&Run"
+#~ msgstr "&Εκτέλεση"
+
+#~ msgid "Execute the program"
+#~ msgstr "Εκτέλεση του προγράμματος"
+
+#~ msgid "Run: Execute the program"
+#~ msgstr "Εκτέλεση: εκτέλεση του προγράμματος"
+
+#~ msgctxt "@option:radio"
+#~ msgid "1x Speed"
+#~ msgstr "Ταχύτητα 1x"
+
+#~ msgctxt "@option:radio choose the slow speed"
+#~ msgid "2x Speed"
+#~ msgstr "Ταχύτητα 2x"
+
+#~ msgctxt "@option:radio"
+#~ msgid "4x Speed"
+#~ msgstr "Ταχύτητα 4x"
+
+#~ msgctxt "@option:radio"
+#~ msgid "8x Speed"
+#~ msgstr "Ταχύτητα 8x"
+
+#~ msgctxt "@option:radio"
+#~ msgid "16x Speed"
+#~ msgstr "Ταχύτητα 16x"
+
+#~ msgctxt "filename"
+#~ msgid "untitled.step"
+#~ msgstr "ανώνυμο.step"
+
+#~ msgid "<new file>"
+#~ msgstr "<νέο αρχείο>"
+
+#~ msgid "*.step|Step files (*.step)"
+#~ msgstr "*.step|αρχεία Step (*.step)"
+
+#~ msgid "Cannot open file '%1'"
+#~ msgstr "Αδυναμία ανοίγματος του αρχείου '%1'"
+
+#~ msgid "Cannot parse file '%1': %2"
+#~ msgstr "Αδυναμία ανάλυσης του αρχείου '%1': %2"
+
+#~ msgid "<open file: %1>"
+#~ msgstr "<άνοιγμα αρχείου: %1>"
+
+#~ msgid "The file \"%1\" already exists. Do you wish to overwrite it?"
+#~ msgstr "Το αρχείο \"%1\" υπάρχει ήδη. Επιθυμείτε την αντικατάστασή του;"
+
+#~ msgid "Warning - Step"
+#~ msgstr "Προειδοποίηση - Step"
+
+#~ msgid "Cannot save file '%1': %2"
+#~ msgstr "Αδυναμία αποθήκευσης του αρχείου '%1': %2"
+
+#~ msgid ""
+#~ "The experiment has been modified.\n"
+#~ "Do you want to save your changes?"
+#~ msgstr ""
+#~ "Το πείραμα τροποποιήθηκε.\n"
+#~ "Επιθυμείτε την αποθήκευση των τροποποιήσεων;"
+
+#~ msgid "Uploading is still not implemented in kdelibs."
+#~ msgstr "Η αποστολή δεν έχει υλοποιηθεί ακόμη στο kdelibs."
+
+#~ msgid "Sorry - Step"
+#~ msgstr "Δυστυχώς - Step"
+
+#~ msgid "&Stop"
+#~ msgstr "&Σταμάτημα"
+
+#~ msgid "&Simulate"
+#~ msgstr "&Εξομοίωση"
+
+#~ msgid ""
+#~ "Cannot finish this step because local error is greater than local "
+#~ "tolerance.\n"
+#~ "Please check solver settings and try again."
+#~ msgstr ""
+#~ "Αδυναμία τερματισμού του βήματος αυτού, επειδή το τοπικό σφάλμα είναι "
+#~ "μεγαλύτερο της ανοχής.\n"
+#~ "Παρακαλώ ελέγξτε τις ρυθμίσεις του επιλυτή και ξαναπροσπαθήστε."
+
+#~ msgid ""
+#~ "Cannot finish this step because there are collisions which cannot be "
+#~ "resolved automatically.\n"
+#~ "Please move colliding objects apart and try again."
+#~ msgstr ""
+#~ "Αδυναμία τερματισμού του βήματος αυτού επειδή υπάρχουν συγκρούσεις μη "
+#~ "αυτόματα επιλύσιμες.\n"
+#~ "Παρακαλώ ξεχωρίστε τα συγκρουόμενα αντικείμενα και ξαναπροσπαθήστε."
+
+#~ msgid "Cannot finish this step because of an unknown error."
+#~ msgstr "Αδυναμία τερματισμού του βήματος αυτού εξαιτίας αγνώστου σφάλματος."
+
+#~ msgid "&Undo"
+#~ msgstr "Α&ναίρεση"
+
+#~ msgid "&Undo: %1"
+#~ msgstr "Αναίρεσ&η: %1"
+
+#~ msgid "Re&do"
+#~ msgstr "Επαναφο&ρά"
+
+#~ msgid "Re&do: %1"
+#~ msgstr "Επαναφο&ρά: %1"
+
+#~ msgid "General"
+#~ msgstr "Γενικά"
+
+#~ msgid ""
+#~ "Press left mouse button to position\n"
+#~ "top left corner of a region for %1"
+#~ msgstr ""
+#~ "Πιέστε το αριστερό κουμπί του ποντικιού για την τοποθέτηση\n"
+#~ "της πάνω αριστερής γωνίας της περιοχής του %1"
+
+#~ msgid ""
+#~ "Move mouse and release left mouse button to position\n"
+#~ "bottom right corner of the region for %1"
+#~ msgstr ""
+#~ "Μετακινήστε το ποντίκι και ελευθερώστε το αριστερό κουμπί του για την "
+#~ "τοποθέτηση\n"
+#~ "της κάτω δεξιά γωνίας της περιοχής του %1"
+
+#~ msgid "Please fill in the parameters for the gas particles."
+#~ msgstr "Παρακαλώ συμπληρώστε τις παραμέτρους για τα σωματίδια του αερίου."
+
+#~ msgid "Create particles..."
+#~ msgstr "Δημιουργία σωματιδίων..."
+
+#~ msgid "Create gas particles"
+#~ msgstr "Δημιουργία σωματιδίων αερίου"
+
+#~ msgid ""
+#~ "You are trying to create a very large number of particles. It will make "
+#~ "simulation very slow. Do you want to continue ?"
+#~ msgstr ""
+#~ "Προσπαθείτε να δημιουργήσετε έναν πολύ μεγάλο αριθμό σωματιδίων. Αυτό θα "
+#~ "κάνει την εξομοίωση πολύ αργή. Επιθυμείτε να συνεχίσετε;"
+
+#~ msgid "Create particles for %1"
+#~ msgstr "Δημιουργία σωματιδίων για %1"
+
+#~ msgid "Click to enter a text"
+#~ msgstr "Κλικ για την εισαγωγή κειμένου"
+
+#~ msgid "&Color"
+#~ msgstr "&Χρώμα"
+
+#~ msgid "&Bold"
+#~ msgstr "Έ&ντονα"
+
+#~ msgid "&Italic"
+#~ msgstr "&Πλάγια"
+
+#~ msgid "&Underline"
+#~ msgstr "&Υπογράμμιση"
+
+#~ msgid "Align &Left"
+#~ msgstr "Στοίχιση &αριστερά"
+
+#~ msgid "Align C&enter"
+#~ msgstr "Στοίχιση στο &κέντρο"
+
+#~ msgid "Align &Right"
+#~ msgstr "Στοίχιση &δεξιά"
+
+#~ msgid "Align &Justify"
+#~ msgstr "Στοίχιση &ομοιόμορφα"
+
+#~ msgid "&Align"
+#~ msgstr "&Στοίχιση"
+
+#~ msgid "&Font"
+#~ msgstr "&Γραμματοσειρά"
+
+#~ msgid "Font &Size"
+#~ msgstr "Μέγε&θος γραμματοσειράς"
+
+#~ msgid "Insert &Image"
+#~ msgstr "Εισαγωγή &εικόνας"
+
+#~ msgid "Insert &Formula"
+#~ msgstr "Εισαγωγή &μαθηματικής σχέσης"
+
+#~ msgid "Edit %1"
+#~ msgstr "Επεξεργασία του %1"
+
+#~ msgid "Cannot parse file '%1'"
+#~ msgstr "Αδυναμία ανάλυσης του αρχείου '%1'"
+
+#~ msgid ""
+#~ "Cannot find latex installation. You need 'latex', 'dvips' and 'gs' "
+#~ "executables installed and accessible from $PATH"
+#~ msgstr ""
+#~ "Αδυναμία εύρεσης της εγκατάστασης latex. Χρειάζεστε τα εκτελέσιμα "
+#~ "'latex', 'dvips' και 'gs' να είναι εγκατεστημένα και προσβάσιμα από το "
+#~ "$PATH"
+
+#~ msgid "LaTex Formula - Step"
+#~ msgstr "Μαθηματικός τύπος LaTex - Step"
+
+#~ msgid "Enter LaTeX formula string"
+#~ msgstr "Εισάγετε τη συμβολοσειρά της μαθηματικής σχέσης LaTeX"
+
+#~ msgid "Cannot compile LaTeX formula: %1"
+#~ msgstr "Αδυναμία μεταγλώττισης της μαθηματικής σχέσης LaTeX: %1"
+
+#~ msgid "Cannot parse result image"
+#~ msgstr "Αδυναμία ανάλυσης της εικόνας αποτελέσματος"
+
+#~ msgid "Property name"
+#~ msgstr "Όνομα ιδιότητας"
+
+#~ msgid "%1.%2"
+#~ msgstr "%1.%2"
+
+#~ msgid "[%1]"
+#~ msgstr "[%1]"
+
+#~ msgid "[not configured]"
+#~ msgstr "[μη ρυθμισμένο]"
+
+#~ msgid "Clear graph"
+#~ msgstr "Καθαρισμός γραφήματος"
+
+#~ msgid "Configure graph..."
+#~ msgstr "Ρύθμιση γραφήματος..."
+
+#~ msgid "Configure graph"
+#~ msgstr "Ρύθμιση γραφήματος"
+
+#~ msgid "Edit properties of %1"
+#~ msgstr "Επεξεργασία ιδιοτήτων του %1"
+
+#~ msgid "Clear graph %1"
+#~ msgstr "Καθαρισμός γραφήματος %1"
+
+#~ msgid "Configure meter..."
+#~ msgstr "Ρύθμιση οργάνου..."
+
+#~ msgid "Configure meter"
+#~ msgstr "Ρύθμιση οργάνου"
+
+#~ msgid "Increase value"
+#~ msgstr "Αύξηση τιμής"
+
+#~ msgid "Decrease value"
+#~ msgstr "Μείωση τιμής"
+
+#~ msgid "Decrease controller %1"
+#~ msgstr "Αύξηση ελεγκτή %1"
+
+#~ msgid "Increase controller %1"
+#~ msgstr "Μείωση ελεγκτή %1"
+
+#~ msgid "Change controller %1"
+#~ msgstr "Τροποποίηση ελεγκτή %1"
+
+#~ msgid "Configure controller..."
+#~ msgstr "Ρύθμιση ελεγκτή..."
+
+#~ msgid "Configure controller"
+#~ msgstr "Ρύθμιση ελεγκτή"
+
+#~ msgid "Clear trace"
+#~ msgstr "Καθαρισμός ίχνους"
+
+#~ msgid "Clear tracer %1"
+#~ msgstr "Καθαρισμός ίχνους %1"
+
+#~ msgid "Context info"
+#~ msgstr "Σχετικές πληροφορίες"
+
+#~ msgid "Back"
+#~ msgstr "Πίσω"
+
+#~ msgid "Forward"
+#~ msgstr "Εμπρός"
+
+#~ msgid "Sync selection"
+#~ msgstr "Συγχρονισμός επιλογής"
+
+#~ msgid "Follow selection"
+#~ msgstr "Ακολούθηση επιλογής"
+
+#~ msgid "Open in browser"
+#~ msgstr "Άνοιγμα στον περιηγητή"
+
+#~ msgid "Documentation"
+#~ msgstr "Τεκμηρίωση"
+
+#~ msgid "No current object."
+#~ msgstr "Χωρίς τρέχον αντικείμενο."
+
+#~ msgid "Documentation error"
+#~ msgstr "Σφάλμα τεκμηρίωσης"
+
+#~ msgid "Documentation for %1 not available."
+#~ msgstr "Μη διαθέσιμη τεκμηρίωση του %1."
+
+#~ msgid ""
+#~ "You can help <a href=\"http://edu.kde.org/step\">Step</a> by writing it!"
+#~ msgstr ""
+#~ "Μπορείτε να βοηθήσετε το <a href=\"http://edu.kde.org/step\">Step</a> "
+#~ "γράφοντάς την εσείς!"
+
+#~ msgid "Wikipedia"
+#~ msgstr "Wikipedia"
+
+#~ msgid "Fetching Wikipedia Information..."
+#~ msgstr "Ανάκτηση πληροφοριών Wikipedia..."
+
+#~ msgid "Wikipedia error"
+#~ msgstr "Σφάλμα Wikipedia"
+
+#~ msgid ""
+#~ "Information could not be retrieved because the server was not reachable."
+#~ msgstr ""
+#~ "Αδυναμία ανάκτησης πληροφοριών επειδή ο εξυπηρετητής δεν είναι "
+#~ "προσπελάσιμος."
+
+#~ msgid "Wikipedia Information"
+#~ msgstr "Πληροφορίες Wikipedia"
+
+#~ msgid "Wikipedia Other Languages"
+#~ msgstr "Άλλες γλώσσες του Wikipedia"
+
+#~ msgid "Press left mouse button to position a center of a %1"
+#~ msgstr ""
+#~ "Πιέστε το αριστερό κουμπί του ποντικιού για την τοποθέτηση του κέντρου "
+#~ "του %1"
+
+#~ msgid ""
+#~ "Move mouse and release left mouse button to define a radius of the %1"
+#~ msgstr ""
+#~ "Μετακινήστε το ποντίκι και ελευθερώστε το αριστερό κουμπί του ποντικιού "
+#~ "για τον ορισμό της ακτίνας του %1"
+
+#~ msgid ""
+#~ "Press left mouse button to position\n"
+#~ "top left corner of a %1"
+#~ msgstr ""
+#~ "Πιέστε το αριστερό κουμπί του ποντικιού για την τοποθέτηση\n"
+#~ "της πάνω αριστερής γωνίας του %1"
+
+#~ msgid ""
+#~ "Move mouse and release left mouse button to position\n"
+#~ "bottom right corner of the %1"
+#~ msgstr ""
+#~ "Μετακινήστε και ελευθερώστε το αριστερό κουμπί του ποντικιού για την "
+#~ "τοποθέτηση του\n"
+#~ "της κάτω δεξιάς γωνίας του %1"
+
+#~ msgid "Click on the scene to create a first vertex of %1"
+#~ msgstr "Κλικ στη σκηνή για τη δημιουργία του πρώτου σημείου του %1"
+
+#~ msgid "Click on the scene to add new vertex or press Enter to finish"
+#~ msgstr ""
+#~ "Κλικ στη σκηνή για την προσθήκη νέου σημείου ή πιέστε το Enter για "
+#~ "τερματισμό"

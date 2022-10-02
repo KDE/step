@@ -1,0 +1,251 @@
+<chapter id="tutorials">
+<title
+>Prendere familiarità con le esercitazioni di &step;</title>
+
+<para
+>La voce di menu <menuchoice
+><guimenu
+>File</guimenu
+><guimenuitem
+>Apri esercitazione...</guimenuitem
+></menuchoice
+> porta ad una finestra di dialogo da cui puoi caricare le esercitazioni integrate in &step;. Ci sono cinque esercitazioni e con esse imparerai progressivamente ad interagire con tutti gli elementi di &step;. È meglio iniziare con la prima esercitazione facendo clic sul file <filename
+>tutorial1.step</filename
+>. Questo mostrerà Tutorial 1 in &step;. </para>
+
+<note
+><para
+>Se non visualizzi correttamente le esercitazioni, puoi tentare di ingrandire la scena per mostrarle più chiaramente.</para
+></note>
+
+<para
+>Il pannello <guilabel
+>Mondo</guilabel
+> sulla destra mostra tutti gli oggetti disponibili sulla scena. Facendo clic su uno degli oggetti contenuti, il pannello sottostante <guilabel
+>Proprietà</guilabel
+> ne mostrerà le proprietà. Puoi cambiare tali proprietà facendo clic su quella che vuoi modificare. </para>
+
+<para
+>Ogni esercitazione è composta da del testo che presenta i nuovi elementi e ne spiega le proprietà. Ti viene quindi richiesto di cambiare alcune proprietà degli elementi per modificare l'esito dell'esperimento. </para>
+
+<sect1 id="tutorial1">
+<title
+>Esercitazione 1: corpi e molle</title>
+
+<para
+>Questa esercitazione presenta corpi e molle e come iniziare con la prima simulazione. </para>
+
+<para
+>Un corpo, in fisica, è un oggetto che può essere descritto tramite le teorie della meccanica classica o della meccanica quantistica, e su cui si può sperimentare con strumenti della fisica. Questo include la determinazione della posizione e in alcuni casi l'orientamento spaziale, così come la modifica di tali valori applicando delle forze. </para>
+
+<para
+>Una molla è un oggetto elastico flessibile utilizzato per immagazzinare energia meccanica. </para>
+
+<screenshot>
+  <screeninfo
+>Esperimento dell'esercitazione 1</screeninfo>
+  <mediaobject>
+    <imageobject
+><imagedata fileref="tutorial1.png" format="PNG"/></imageobject>
+    <textobject
+><phrase
+>Esperimento dell'esercitazione 1</phrase
+></textobject>
+  </mediaobject>
+</screenshot>
+
+<para
+>L'esperimento di fisica di questa esercitazione rappresenta due dischi collegati da una molla. I dischi hanno una velocità tangenziale iniziale (la piccola freccia blu) e un'accelerazione (la freccia rossa) mentre le molle sono caratterizzate da rigidezza e lunghezza, tutti parametri modificabili. Lanciando l'esperimento potrai vedere i dischi alternativamente tirati e spinti dalla molla. L'esperimento invita a modificare la rigidezza della molla e a provare a cambiare il sistema. </para>
+
+<para
+>Alla fine di questa esercitazione dovresti aver acquisito maggiore familiarità con l'interfaccia di &step; e dovresti anche essere in grado di modificare facilmente le proprietà dei corpi. </para>
+</sect1>
+
+<sect1 id="tutorial2">
+<title
+>Esercitazione 2: controllori e grafici</title>
+
+<para
+>In questa esercitazione apprenderai il funzionamento dei controllori e dei grafici. </para>
+
+<para
+>Un controllore è un dispositivo che consente di modificare graficamente una proprietà di un corpo o di una molla. In questa esercitazione, il controllore ti consente di modificare la rigidezza della molla <quote
+>spring1</quote
+>. Spostando il cursore verso destra o utilizzando il tasto <keycap
+>W</keycap
+> puoi aumentare il valore di rigidezza di spring1, mentre spostando il cursore a sinistra o utilizzando il tasto <keycap
+>Q</keycap
+> puoi diminuirlo. Facendo clic con il pulsante destro sul controllore potrai scegliere tra varie azioni contestuali, tra cui l'elemento  <guimenuitem
+>Configura controllore...</guimenuitem
+> mostra una finestra di dialogo che consente di modificare ogni proprietà del controllore. </para>
+
+<screenshot>
+  <screeninfo
+>Esperimento dell'esercitazione 2</screeninfo>
+  <mediaobject>
+    <imageobject
+><imagedata fileref="tutorial2.png" format="PNG"/></imageobject>
+    <textobject
+><phrase
+>Esperimento dell'esercitazione 2</phrase
+></textobject>
+  </mediaobject>
+</screenshot>
+
+<para
+>I grafici ti consentono di visualizzare graficamente le relazioni tra due variabili. L'esempio in questa esercitazione stampa l'evoluzione della posizione di particle1 all'avanzare del tempo in world1. Facendo clic con il pulsante destro su un grafico puoi ripulirlo o cancellarlo nonché richiamarne la finestra di configurazione e modificarne tutte le proprietà. </para>
+
+<para
+>Alla fine di questa esercitazione sarai in grado di usare i controllori, per agire sulle proprietà dei corpi, ed i grafici, per monitorare determinate proprietà, nei tuoi esperimenti. </para>
+</sect1>
+
+<sect1 id="tutorial3">
+<title
+>Esercitazione 3: corpi rigidi e traccianti</title>
+
+<para
+>L'esercitazione 3 illustra i corpi rigidi ed i traccianti. </para>
+
+<para
+>Un corpo rigido è l'astrazione di un corpo solido indeformabile di dimensione finita. In altre parole, la distanza tra ogni coppia di punti del corpo rigido rimane costante nel tempo indipendentemente dalle forze che agiscono sul corpo. </para>
+
+<para
+>Un tracciante è uno strumento che mostra la traiettoria di un dato punto di un corpo rigido. </para>
+
+<screenshot>
+  <screeninfo
+>Proprietà disco</screeninfo>
+  <mediaobject>
+    <imageobject
+><imagedata fileref="disk-properties.png" format="PNG"/></imageobject>
+    <textobject
+><phrase
+>Proprietà disco</phrase
+></textobject>
+  </mediaobject>
+</screenshot>
+
+<para
+>Quando un corpo rigido (in questo caso un disco) è selezionato, puoi vedere tre maniglie su di esso. Tramite queste maniglie, selezionandole e spostandole, puoi modificare velocità, angolo e velocità angolare del corpo. </para>
+
+<screenshot>
+  <screeninfo
+>Esercitazione 3: due traccianti</screeninfo>
+  <mediaobject>
+    <imageobject
+><imagedata fileref="tutorial3.png" format="PNG"/></imageobject>
+    <textobject
+><phrase
+>Esercitazione 3: due traccianti</phrase
+></textobject>
+  </mediaobject>
+</screenshot>
+
+<para
+>L'esperimento nell'esercitazione 3 presenta un disco ed una scatola collegati da una molla. Un tracciante (quello blu) è già posizionato sulla scatola. Puoi aggiungerne un secondo: seleziona il pulsante <guibutton
+>Tracciante</guibutton
+> nel pannello <guilabel
+>Tavolozza</guilabel
+>, quindi fai clic sulla scatola nel punto in cui vuoi posizionare il tracciante. Nel pannello <guilabel
+>Proprietà</guilabel
+> fai clic sulla riga <guilabel
+>colore</guilabel
+> e nella relativa parte destra, facendo clic sul quadrato blu, apparirà una tavolozza di colori: puoi scegliere un nuovo colore per questo tracciante. La schermata sopra mostra l'effetto di due traccianti dopo alcuni secondi di simulazione. </para>
+</sect1>
+
+<sect1 id="tutorial4">
+<title
+>Esercitazione 4: motori e forze</title>
+
+<para
+>Sono disponibili due tipo di motori in &step;: motori lineari e motori circolari. Un motore lineare applica una forza costante ad un dato punto su un corpo, mentre un motore circolare applica un momento angolare costante ad un corpo. </para>
+
+<para
+>Tre forze diverse possono essere aggiunte ai corpi: la forza peso, la forza di gravità e la forza di Coulomb. Inizialmente tutte queste forze non sono applicate in &step;. La forza di Coulomb è una forza che esiste intrinsecamente tra due cariche. </para>
+
+<screenshot>
+  <screeninfo
+>Esercitazione 4: motori</screeninfo>
+  <mediaobject>
+    <imageobject
+><imagedata fileref="tutorial4.png" format="PNG"/></imageobject>
+    <textobject
+><phrase
+>Esercitazione 4: motori</phrase
+></textobject>
+  </mediaobject>
+</screenshot>
+
+<para
+>In questo esperimento hai a disposizione un disco ed una scatola collegati da una molla. Un oggetto piatto in basso delimita il confine. Sia al disco che alla scatola è associato un motore lineare ciascuno. Due controllori consentono di cambiare il valore della forza per ogni motore. Lancia la simulazione e gioca con i controllori. Quindi ferma la simulazione e aggiungi una forza peso nel mondo (le forze sono globali e si applicano all'intero mondo). Riavvia la simulazione e analizza la differenza. </para>
+
+<para
+>Puoi anche rimuovere il motore lineare sulla scatola e sostituirlo con un motore circolare. Premi il pulsante <inlinemediaobject
+><imageobject
+><imagedata fileref="step_object_CircularMotor.png" format="PNG"/></imageobject
+></inlinemediaobject
+> <guibutton
+>Motore circolare</guibutton
+> nel pannello <guilabel
+>Tavolozza</guilabel
+> e fai clic sulla scatola. Il motore circolare è ora applicato alla scatola. Devi quindi impostare il valore della forza di rotazione facendo clic e spostando l'apposito cursore del motore. </para>
+
+<screenshot>
+  <screeninfo
+>Motore circolare</screeninfo>
+  <mediaobject>
+    <imageobject
+><imagedata fileref="circular-motor.png" format="PNG"/></imageobject>
+    <textobject
+><phrase
+>Motore circolare</phrase
+></textobject>
+  </mediaobject>
+</screenshot>
+
+<para
+>Questa esercitazione ti ha introdotto all'uso dei motori e delle forze; adesso dovresti essere in grado di associarli ai corpi.</para>
+</sect1>
+
+<sect1 id="tutorial5">
+<title
+>Esercitazione 5: giunti</title>
+
+<para
+>I giunti sono oggetti che uniscono i corpi tra loro o con lo sfondo. Sono disponibili i seguenti tipo di giunti in &step;: ancore, spilli e aste. Un'ancora è un giunto che fissa la posizione del corpo. Il corpo non si può muovere quando ha un'ancora associata. Uno spillo è un giunto che fissa un punto del corpo, che si può ancora muovere attorno allo spillo. Un'asta è un giunto che fissa la distanza tra due punti su due corpi. </para>
+
+<screenshot>
+  <screeninfo
+>Esercitazione 5: pendolo doppio</screeninfo>
+  <mediaobject>
+    <imageobject
+><imagedata fileref="tutorial5.png" format="PNG"/></imageobject>
+    <textobject
+><phrase
+>Esercitazione 5: pendolo doppio</phrase
+></textobject>
+  </mediaobject>
+</screenshot>
+
+<para
+>L'esercitazione 5 descrive un pendolo doppio. </para>
+
+<para
+>Aggiungi una <inlinemediaobject
+><imageobject
+><imagedata fileref="step_object_Particle.png" format="PNG"/></imageobject
+></inlinemediaobject
+> <guibutton
+>Particella</guibutton
+> alla scena, quindi uniscila a Particle2 con un'asta. Premi il pulsante <inlinemediaobject
+><imageobject
+><imagedata fileref="step_object_Stick.png" format="PNG"/></imageobject
+></inlinemediaobject
+> <guibutton
+>Asta</guibutton
+> nel pannello <guilabel
+>Tavolozza</guilabel
+>. A questo punto devi selezionare il primo oggetto da assicurare con l'asta (particle2) facendo clic con il pulsante sinistro del mouse, quindi trascinare il mouse sul secondo oggetto (particle3) e rilasciare il pulsante sinistro su particle3. Hai ottenuto un pendolo triplo! </para>
+</sect1>
+
+</chapter>

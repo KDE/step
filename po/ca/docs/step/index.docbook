@@ -1,0 +1,228 @@
+<?xml version="1.0" ?>
+<!DOCTYPE book PUBLIC "-//KDE//DTD DocBook XML V4.5-Based Variant V1.1//EN" "dtd/kdedbx45.dtd" [
+  <!ENTITY tutorials SYSTEM "tutorials.docbook">
+  <!ENTITY examples SYSTEM "examples.docbook">
+  <!ENTITY % addindex "IGNORE">
+  <!ENTITY % Catalan  "INCLUDE"
+><!-- change language only here -->
+]>
+
+<book id="step" lang="&language;">
+
+<bookinfo>
+<title
+>El manual de l'&step;</title>
+
+
+<authorgroup>
+<author
+>&Anne-Marie.Mahfouf; &Anne-Marie.Mahfouf.mail; </author>
+
+&traductor.Antoni.Bella; 
+</authorgroup>
+
+
+<copyright>
+<year
+>2007</year>
+<holder
+>&Anne-Marie.Mahfouf;</holder>
+</copyright>
+
+<legalnotice
+>&FDLNotice;</legalnotice>
+
+<date
+>24 d'octubre de 2021</date>
+<releaseinfo
+>KDE Gear 21.08</releaseinfo>
+
+<abstract>
+<para
+>L'&step; és un simulador de física interactiu. Permet explorar el món físic a través de simulacions. Funciona així: es col·loquen alguns cossos en l'escena, s'afegeixen algunes forces com la gravetat o elasticitat, després premeu la icona <inlinemediaobject
+><imageobject
+><imagedata fileref="media-playback-start.png" format="PNG"/></imageobject
+></inlinemediaobject
+> <guiicon
+>Simula</guiicon
+> a la barra d'eines i l'&step; mostrarà com es desenvoluparà l'escena d'acord amb les lleis de la física. Podeu canviar totes les propietats dels cossos/forces en el vostre experiment (fins i tot durant la simulació) i veure com canviarà l'evolució d'aquest. Amb l'&step; no només aprendreu, sinó que sentireu com funciona la física! </para>
+</abstract>
+
+<keywordset>
+  <keyword
+>KDE</keyword>
+  <keyword
+>kdeedu</keyword>
+  <keyword
+>física</keyword>
+  <keyword
+>simulador</keyword>
+  <keyword
+>forces</keyword>
+  <keyword
+>Step</keyword>
+</keywordset>
+
+</bookinfo>
+
+<chapter id="introduction">
+<title
+>Introducció</title>
+<para
+>L'&step; és un simulador interactiu de física.</para>
+
+<para
+>Característiques de l'&step;: <itemizedlist>
+  <listitem
+><para
+>Simulació mecànica clàssica en dues dimensions</para
+></listitem>
+
+  <listitem
+><para
+>Partícules, elasticitats amb forces de descàrregues, gravitacionals i «coulomb»</para
+></listitem>
+
+  <listitem
+><para
+>Cossos rígids</para
+></listitem>
+
+  <listitem
+><para
+>Detecció de col·lisions (actualment només discreta) i el maneig</para
+></listitem>
+
+  <listitem
+><para
+>Simulació de cossos flexibles (deformables) com el sistema de partícules elàstiques editable per l'usuari, ones de so</para
+></listitem>
+
+  <listitem
+><para
+>Dinàmica molecular (actualment utilitzant el potencial de Lennard-Jones): gas i líquid, la condensació i l'evaporació, el càlcul de quantitats macroscòpiques i les seves variàncies</para
+></listitem>
+
+  <listitem
+><para
+>Conversió d'unitats i càlcul d'expressions: podeu introduir alguna cosa com <quote
+>(2 dies + 3 hores) * 80 km/h</quote
+> i s'accepta com a valor de distància (requereix <quote
+>libqalculate</quote
+>)</para
+></listitem>
+
+  <listitem
+><para
+>Errors de càlcul i propagació: podeu introduir valors com <quote
+>1,3 ± 0,2</quote
+> per a qualsevol propietat i error per a totes les propietats dependents que es calculin utilitzant fórmules estadístiques</para
+></listitem>
+
+  <listitem
+><para
+>Estimació del solucionador d'errors: es calculen i afegeixen errors introduïts pel solucionador als errors introduïts per l'usuari</para
+></listitem>
+
+  <listitem
+><para
+>Diversos solucionadors diferents: fins al vuitè ordre, explícits i implícits, amb adaptació o sense de pas de temps (la majoria dels solucionadors requereixen la biblioteca «GSL»)</para
+></listitem>
+
+  <listitem
+><para
+>Eina de controlador per a controlar amb facilitat les propietats durant la simulació (fins i tot amb dreceres de teclat personalitzades)</para
+></listitem>
+
+  <listitem
+><para
+>Eines per a visualitzar els resultats: graf, mesurador, traçador</para
+></listitem>
+
+  <listitem
+><para
+>Informació contextual per a tots els objectes, integrant la Viquipèdia en el navegador</para
+></listitem>
+
+  <listitem
+><para
+>Col·lecció d'experiments d'exemple, se'n poden descarregar més amb el &knewstuff;3</para
+></listitem>
+
+  <listitem
+><para
+>Guies d'aprenentatge integrades</para
+></listitem>
+</itemizedlist>
+</para>
+</chapter>
+
+<chapter id="using-step">
+<title
+>Usar l'&step;</title>
+
+<para
+>L'&step; simula un món físic. La part principal de l'&step; (1) és l'escena mundial en el centre de la finestra principal de l'&step; on primer col·locareu objectes físics i on es veurà la simulació. A l'esquerra d'aquesta escena, una paleta (2) permet que escolliu els objectes físics. Podeu moure amb llibertat aquesta paleta cap a qualsevol lloc de l'escriptori arrossegant la barra de títol. A la dreta de l'escena podeu veure la descripció del món actual (3), les seves propietats (4), algunes ajuden a explicar algunes paraules (5) i la història del món actual (6). Cadascun d'aquests plafons es poden ser col·locar en una altra part de la pantalla arrossegant la barra de títol. </para>
+
+<screenshot>
+  <screeninfo
+>Aquesta és una captura de pantalla de l'&step; quan l'inicieu per primera vegada</screeninfo>
+  <mediaobject>
+    <imageobject
+><imagedata fileref="mainwindow.png" format="PNG"/></imageobject>
+    <textobject
+><phrase
+>Finestra principal de l'&step;</phrase
+></textobject>
+  </mediaobject>
+</screenshot>
+
+<para
+>Per ajudar-vos a començar, l'&step; integra una sèrie de guies d'aprenentatge que us ensenyaran amb facilitat com construir un experiment. Llegiu el pas a pas per començar amb la primera guia d'aprenentatge. </para>
+</chapter>
+
+&tutorials;
+&examples;
+
+<chapter id="credits">
+
+<title
+>Crèdits i llicència</title>
+
+<para
+>&step; </para>
+
+<para
+>Copyright del programa 2007 &Vladimir.Kuznetsov; &Vladimir.Kuznetsov.mail; </para>
+
+<para
+>Col·laboradors: <itemizedlist>
+  <listitem
+><para
+>Autor: &Vladimir.Kuznetsov; &Vladimir.Kuznetsov.mail;</para
+></listitem>
+  <listitem
+><para
+>Col·laborador: &Carsten.Niehaus; &Carsten.Niehaus.mail;</para
+></listitem>
+</itemizedlist>
+</para>
+
+<para
+>Copyright de la documentació 2007 &Anne-Marie.Mahfouf; &Anne-Marie.Mahfouf.mail; </para>
+
+<para
+>Traductor de la documentació: &credits.Antoni.Bella;</para
+> &underFDL; &underGPL; </chapter>
+
+&documentation.index;
+</book>
+<!--
+Local Variables:
+mode: sgml
+sgml-minimize-attributes:nil
+sgml-general-insert-case:lower
+sgml-indent-step:0
+sgml-indent-data:nil
+End:
+-->

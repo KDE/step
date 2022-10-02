@@ -1,0 +1,200 @@
+<?xml version="1.0" ?>
+<!DOCTYPE book PUBLIC "-//KDE//DTD DocBook XML V4.5-Based Variant V1.1//EN" "dtd/kdedbx45.dtd" [
+  <!ENTITY kappname "&step;">
+  <!ENTITY tutorials SYSTEM "tutorials.docbook">
+  <!ENTITY examples SYSTEM "examples.docbook">
+  <!ENTITY % addindex "IGNORE">
+  <!ENTITY % French "INCLUDE"
+><!-- change language only here -->
+]>
+
+<book id="step" lang="&language;">
+
+<bookinfo>
+<title
+>Manuel de &step;</title>
+
+
+<authorgroup>
+<author
+>&Anne-Marie.Mahfouf; &Anne-Marie.Mahfouf.mail; </author>
+
+&traducteurOlivierDelaune; 
+</authorgroup>
+
+
+<copyright>
+<year
+>2007</year>
+<holder
+>&Anne-Marie.Mahfouf;</holder>
+</copyright>
+
+<legalnotice
+>&FDLNotice;</legalnotice>
+
+<date
+>07-05-2016</date>
+<releaseinfo
+>0.1.0 (Applications 16.04)</releaseinfo>
+
+<abstract>
+<para
+>&step; est un simulateur physique interactif. Il vous permet d'explorer le monde de la physique au travers de simulations. Il fonctionne de cette façon : vous placez des corps sur l'espace de travail, vous ajoutez des forces telles que la gravité ou des ressorts, puis vous cliquez sur <guibutton
+> Simuler </guibutton
+> et &step; vous montre comment votre espace de travail évoluera selon les lois de la physique. Vous pouvez modifier chaque caractéristique des corps / forces de votre expérience (même durant la simulation) et voir comment cela change l'évolution de votre expérience. Avec &step;, vous ne faites pas qu'apprendre mais vous ressentez comment la physique fonctionne ! </para>
+</abstract>
+
+<keywordset>
+<keyword
+>KDE</keyword>
+<keyword
+>kdeedu</keyword>
+<keyword
+>physique</keyword>
+<keyword
+>simulateur</keyword>
+<keyword
+>forces</keyword>
+</keywordset>
+
+</bookinfo>
+
+<chapter id="introduction">
+<title
+>Introduction</title>
+<para
+>&step; est un simulateur physique interactif.</para>
+     
+<para
+>Fonctionnalités de &step; :  <itemizedlist>
+<listitem
+><para
+>Simulation de la mécanique classique en deux dimensions </para
+></listitem>
+<listitem
+><para
+>Particules, ressorts avec amortissement, forces gravitationnelle et coulombienne </para
+></listitem>
+<listitem
+><para
+>Corps durs </para
+></listitem>
+<listitem
+><para
+>Manipulation et détection de collisions (actuellement seulement discret) </para
+></listitem>
+<listitem
+><para
+>Corps mous (déformables) simulés par un système particules-ressorts modifiable par l'utilisateur, ondes sonores </para
+></listitem>
+<listitem
+><para
+>Dynamique moléculaire (utilisation actuelle du potentiel de Lennard-Jones) : gaz et liquide, condensation et évaporation, calcul des quantités macroscopiques et de leurs variations. </para
+></listitem>
+<listitem
+><para
+>Conversion d'unités et calcul d'expression : vous pouvez saisir quelque chose comme « (2 jours + 3 heures) * 80 km/h » et ce sera reconnu comme une distance (nécessite libqalculate) </para
+></listitem>
+<listitem
+><para
+>Calcul et propagation d'erreurs : vous pouvez saisir une valeur comme « 1.3 ± 0.2 » pour chaque caractéristique et les erreurs de toutes les caractéristiques dépendantes seront calculées en utilisant les formules de statistiques. </para
+></listitem>
+<listitem
+><para
+>Estimation de l'erreur du solveur : les erreurs introduites par le solveur sont calculées et ajoutées aux erreurs saisies par l'utilisateur. </para
+></listitem>
+<listitem
+><para
+>Plusieurs solveurs différents : jusqu'au 8e ordre, explicite et implicite, avec ou sans pas de temps adaptatif (la plupart des solveurs nécessite la bibliothèque GSL) </para
+></listitem>
+<listitem
+><para
+>Le contrôleur permet de piloter facilement les caractéristiques au cours de la simulation (même avec les raccourcis clavier personnalisés) </para
+></listitem>
+<listitem
+><para
+>Outils pour afficher les résultats : graphique, capteur, traceur </para
+></listitem>
+<listitem
+><para
+>Information contextuelle pour chaque objet, navigateur utilisant Wikipédia intégré </para
+></listitem>
+<listitem
+><para
+>Ensemble d'exemples d'expériences, d'autres peuvent être téléchargées avec KNewStuff2 </para
+></listitem>
+<listitem
+><para
+>Tutoriels intégrés </para
+></listitem>
+</itemizedlist>
+</para>
+</chapter>
+
+<chapter id="using-step">
+<title
+>Utilisation de &step;</title>
+<para
+>&step; simule le monde physique. La partie principale de &step; (1) est l'espace de travail au centre de la fenêtre principale de &step; où vous placez en premier les objets physiques et où se déroule la simulation. Sur la gauche, une palette (2) vous permet de choisir vos objets physiques. Vous pouvez déplacer librement la palette n'importe où sur votre bureau en déplaçant la barre de titre (avec un glisser-déposer). Sur la droite, vous pouvez voir la description du monde actuel (3), ses caractéristiques (4), de l'aide pour expliquer certains mots (5) et l'historique du monde actuel (6). Chacun de ces panneaux peut être placé autre part sur votre écran en déplaçant la barre de titre (avec un glisser-déposer).</para>
+<screenshot>
+     <screeninfo
+>Voici une capture d'écran de &step; lorsque vous le démarrer pour la première fois.</screeninfo>
+	<mediaobject>
+	  <imageobject>
+	    <imagedata fileref="mainwindow.png" format="PNG"/>
+	  </imageobject>
+	    <textobject>
+	    <phrase
+>Fenêtre principale de Step</phrase>
+	  </textobject>
+	</mediaobject>
+</screenshot>
+
+<para
+>Pour vous aider à commencer, &step; intègre une série de tutoriels qui vous explique simplement comment créer une expérience. Veuillez suivre étape par étape en commençant par le premier tutoriel.</para>
+</chapter>
+
+&tutorials;  
+&examples;
+
+<chapter id="credits">
+
+<title
+>Remerciements et licence</title>
+
+<para
+>&step; </para>
+<para
+>Programme sous copyright, 2007 &Vladimir.Kuznetsov; &Vladimir.Kuznetsov.mail; </para>
+<para
+>Collaborateurs : <itemizedlist>
+<listitem
+><para
+>Auteur : &Vladimir.Kuznetsov; &Vladimir.Kuznetsov.mail;</para>
+</listitem>
+<listitem
+><para
+>Collaborateur : &Carsten.Niehaus; &Carsten.Niehaus.mail;</para>
+</listitem>
+</itemizedlist>
+</para>
+
+<para
+>Documentation sous copyright, 2007 &Anne-Marie.Mahfouf; &Anne-Marie.Mahfouf.mail; </para>
+
+<para
+>Traduction française par &OlivierDelaune;.</para
+> &underFDL; &underGPL; </chapter>
+
+&documentation.index;
+</book>
+<!--
+Local Variables:
+mode: sgml
+sgml-minimize-attributes:nil
+sgml-general-insert-case:lower
+sgml-indent-step:0
+sgml-indent-data:nil
+End:
+-->

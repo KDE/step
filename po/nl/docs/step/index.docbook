@@ -1,0 +1,224 @@
+<?xml version="1.0" ?>
+<!DOCTYPE book PUBLIC "-//KDE//DTD DocBook XML V4.5-Based Variant V1.1//EN" "dtd/kdedbx45.dtd" [
+  <!ENTITY tutorials SYSTEM "tutorials.docbook">
+  <!ENTITY examples SYSTEM "examples.docbook">
+  <!ENTITY % addindex "IGNORE">
+  <!ENTITY % Dutch "INCLUDE"
+><!-- change language only here -->
+]>
+
+<book id="step" lang="&language;">
+
+<bookinfo>
+<title
+>Het handboek voor &step;</title>
+
+
+<authorgroup>
+<author
+>&Anne-Marie.Mahfouf; &Anne-Marie.Mahfouf.mail; </author>
+
+&Jaap.Woldringh;&Kristof.Bal; 
+</authorgroup>
+
+
+<copyright>
+<year
+>2007</year>
+<holder
+>&Anne-Marie.Mahfouf;</holder>
+</copyright>
+
+<legalnotice
+>&FDLNotice;</legalnotice>
+
+<date
+>2021-10-24</date>
+<releaseinfo
+>KDE Gear 21.08</releaseinfo>
+
+<abstract>
+<para
+>&step; is een interactief natuurkundig simulatieprogramma. U kunt ermee natuurkundige experimenten doen door middel van simulaties. Het werkt zo: u neemt enige lichamen, voegt er wat krachten aan toe zoals de zwaartekracht en wat veren, en druk daarna op het pictogram <inlinemediaobject
+><imageobject
+><imagedata fileref="media-playback-start.png" format="PNG"/></imageobject
+></inlinemediaobject
+> <guiicon
+>Simuleren</guiicon
+> in de werkbalk, waarna &step; u laat zien hoe dit stelsel evolueert volgens de natuurkundige wetten. U kunt elke eigenschap van de lichamen en krachten in uw experiment wijzigen (zelfs tijdens de simulatie) en zien wat daarvan de gevolgen zijn. Met &step; leert u niet alleen natuurkunde, maar krijgt u er gevoel voor! </para>
+</abstract>
+
+<keywordset>
+  <keyword
+>KDE</keyword>
+  <keyword
+>kdeedu</keyword>
+  <keyword
+>natuurkunde</keyword>
+  <keyword
+>simulator</keyword>
+  <keyword
+>krachten</keyword>
+  <keyword
+>Step</keyword>
+</keywordset>
+
+</bookinfo>
+
+<chapter id="introduction">
+<title
+>Inleiding</title>
+<para
+>&step; is een interactief natuurkundig simulatieprogramma.</para>
+
+<para
+>Eigenschappen van &step;: <itemizedlist>
+  <listitem
+><para
+>Simulatie in twee dimensies volgens de klassieke mechanica</para
+></listitem>
+
+  <listitem
+><para
+>Deeltjes, veren met demping, zwaarte- en elektrische krachten</para
+></listitem>
+
+  <listitem
+><para
+>Stijve lichamen</para
+></listitem>
+
+  <listitem
+><para
+>Botsingdetectie (nu nog alleen discreet) en afhandeling</para
+></listitem>
+
+  <listitem
+><para
+>Zachte (vervormbare) lichamen gesimuleerd als een deeltjes-veersysteem dat door de gebruiker kan worden bewerkt, geluidsgolven</para
+></listitem>
+
+  <listitem
+><para
+>Moleculaire dynamica (thans wordt de Lennard-Jones potentiaal gebruikt): gas en vloeistof, condensatie en verdamping, berekening van macroscopische hoeveelheden en hun varianties</para
+></listitem>
+
+  <listitem
+><para
+>Conversie van eenheden en berekening van expressies zoals <quote
+>(2 dagen + 3 uren) * 80 km/u</quote
+>, waarna dit zal worden beschouwd als een afstand (vereist libqalculate)</para
+></listitem>
+
+  <listitem
+><para
+>Foutenberekening en -voortplanting: u kunt voor elke eigenschap zoiets invullen als <quote
+>1,3 ± 0,2</quote
+>, waarna voor elke daarvan afhankelijke eigenschap de fouten zullen worden berekend met gebruik van statistische formules</para
+></listitem>
+
+  <listitem
+><para
+>Het afschatten van fouten veroorzaakt door de oplossingsmethode: fouten die bij het oplossen zijn ontstaan worden berekend en opgeteld bij de fouten die door de gebruiker zijn ingevoerd</para
+></listitem>
+
+  <listitem
+><para
+>Er zijn diverse oplossingsmethoden: tot aan de 8e orde, expliciet en impliciet, met of zonder een adaptieve tijdstap (voor de meesten is de GSL-bibliotheek nodig)</para
+></listitem>
+
+  <listitem
+><para
+>Hulpmiddel voor het eenvoudig beheersen van eigenschappen tijdens een simulatie (zelfs met aangepaste sneltoetsen)</para
+></listitem>
+
+  <listitem
+><para
+>Hulpmiddelen voor het visualiseren van de resultaten: grafiek, meter, spoor</para
+></listitem>
+
+  <listitem
+><para
+>Contekstinformatie voor alle objecten, geintegreerde wikipedia-browser</para
+></listitem>
+
+  <listitem
+><para
+>Verzameling van voorbeeldexperimenten, meer kunnen er worden opgehaald met &knewstuff;3</para
+></listitem>
+
+  <listitem
+><para
+>Geïntegreerd lesmateriaal</para
+></listitem>
+</itemizedlist>
+</para>
+</chapter>
+
+<chapter id="using-step">
+<title
+>&step; gebruiken</title>
+
+<para
+>Met &step; wordt een natuurkundige wereld gesimuleerd. Het hoofdbestanddeel van &step; (1) is die wereld in het midden van het hoofdvenster van &step;, waarin u eerst de natuurkundige objecten plaatst, en waar de simulatie wordt uitgevoerd. Links hiervan is een palet (2), waarin u uw natuurkundige objecten kunt kiezen. U kunt dit palet vrij verplaatsen op het bureaublad door het aan de titelbalk te slepen. Rechts ziet u de beschrijving van de huidige wereld (3), de eigenschappen ervan (4), wat uitleg bij een aantal woorden (5), en de geschiedenis die tot de huidige wereld heeft geleid. </para>
+
+<screenshot>
+  <screeninfo
+>Hier is een schermafbeelding van &step; nadat het voor de eerste keer is gestart</screeninfo>
+  <mediaobject>
+    <imageobject
+><imagedata fileref="mainwindow.png" format="PNG"/></imageobject>
+    <textobject
+><phrase
+>Hoofdvenster van &step;</phrase
+></textobject>
+  </mediaobject>
+</screenshot>
+
+<para
+>Om u op weg te helpen met &step;, is er wat lesmateriaal toegevoegd, waarmee u leert hoe u eenvoudig een experiment kunt opzetten. Zie stap voor stap als u met het eerste lesboek wilt gaan beginnen. </para>
+</chapter>
+
+&tutorials;
+&examples;
+
+<chapter id="credits">
+
+<title
+>Dankbetuigingen en licentie</title>
+
+<para
+>&step; </para>
+
+<para
+>Copyright 2007 &Vladimir.Kuznetsov; &Vladimir.Kuznetsov.mail; </para>
+
+<para
+>Medewerkers: <itemizedlist>
+  <listitem
+><para
+>Auteur: &Vladimir.Kuznetsov; &Vladimir.Kuznetsov.mail;</para
+></listitem>
+  <listitem
+><para
+>Bijdragen van &Carsten.Niehaus; &Carsten.Niehaus.mail;</para
+></listitem>
+</itemizedlist>
+</para>
+
+<para
+>Copyright op handboek 2007 &Anne-Marie.Mahfouf; &Anne-Marie.Mahfouf.mail; </para>
+
+&meld.fouten;&vertaling.jaap;&vertaling.kristof; &underFDL; &underGPL; </chapter>
+
+&documentation.index;
+</book>
+<!--
+Local Variables:
+mode: sgml
+sgml-minimize-attributes:nil
+sgml-general-insert-case:lower
+sgml-indent-step:0
+sgml-indent-data:nil
+End:
+-->

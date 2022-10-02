@@ -1,0 +1,2736 @@
+# Copyright (C) YEAR This_file_is_part_of_KDE
+# This file is distributed under the same license as the PACKAGE package.
+#
+# Svetoslav Stefanov <lfu.project@gmail.com>, 2010.
+msgid ""
+msgstr ""
+"Project-Id-Version: step_qt\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2016-06-22 08:50+0000\n"
+"PO-Revision-Date: 2010-08-16 10:38+0200\n"
+"Last-Translator: Svetoslav Stefanov <lfu.project@gmail.com>\n"
+"Language-Team: Svetoslav Stefanov <lfu.project@gmail.com>\n"
+"Language: bg\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Poedit-Language: Bulgarian\n"
+"X-Poedit-Country: BULGARIA\n"
+"X-Poedit-SourceCharset: utf-8\n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Qt-Contexts: true\n"
+
+#: body.cc:26
+#, fuzzy
+msgctxt "ObjectClass|"
+msgid "Body"
+msgstr "Тяло"
+
+#: body.cc:26
+#, fuzzy
+msgctxt "ObjectDescription|"
+msgid "Body"
+msgstr "Тяло"
+
+#: collisionsolver.cc:31
+#, fuzzy
+msgctxt "ObjectClass|"
+msgid "CollisionSolver"
+msgstr "КолизияРешавач"
+
+#: collisionsolver.cc:32 solver.cc:28
+#, fuzzy
+msgctxt "PropertyDescription|"
+msgid "Allowed absolute tolerance"
+msgstr "Позволен абсолютен толеранс"
+
+#: collisionsolver.cc:32 solver.cc:28
+#, fuzzy
+msgctxt "PropertyName|"
+msgid "toleranceAbs"
+msgstr "толерансАбс"
+
+#: collisionsolver.cc:33 solver.cc:31
+#, fuzzy
+msgctxt "PropertyDescription|"
+msgid "Maximal local error during last step"
+msgstr "Максимална локална грешка по време на последната стъпка"
+
+#: collisionsolver.cc:33 solver.cc:31
+#, fuzzy
+msgctxt "PropertyName|"
+msgid "localError"
+msgstr "локалнаГрешка"
+
+#: collisionsolver.cc:35
+#, fuzzy
+msgctxt "ObjectClass|"
+msgid "GJKCollisionSolver"
+msgstr "GJKКолизияРешавач"
+
+#: constraintsolver.cc:31
+#, fuzzy
+msgctxt "ObjectClass|"
+msgid "ConstraintSolver"
+msgstr "ОграничениеРешавач"
+
+#: constraintsolver.cc:35
+#, fuzzy
+msgctxt "ObjectClass|"
+msgid "CGConstraintSolver"
+msgstr "CGОграничениеРешавач"
+
+#: coulombforce.cc:26
+#, fuzzy
+msgctxt "ObjectClass|"
+msgid "CoulombForce"
+msgstr "Сила на Кулон"
+
+#: coulombforce.cc:26
+#, fuzzy
+msgctxt "ObjectDescription|"
+msgid "Coulomb force"
+msgstr "Сила на Кулон"
+
+#: coulombforce.cc:28
+#, fuzzy
+msgctxt "PropertyName|"
+msgid "coulombConst"
+msgstr "кулонКонст"
+
+#: coulombforce.cc:28 coulombforce.cc:33
+#, fuzzy
+msgctxt "Units|"
+msgid "N m²/C²"
+msgstr "N m²/C²"
+
+#: coulombforce.cc:29
+#, fuzzy
+msgctxt "PropertyDescription|"
+msgid "Coulomb constant"
+msgstr "Константа на Кулон"
+
+#: coulombforce.cc:31
+#, fuzzy
+msgctxt "ObjectClass|"
+msgid "CoulombForceErrors"
+msgstr "КулонСилаГрешки"
+
+#: coulombforce.cc:31
+#, fuzzy
+msgctxt "ObjectDescription|"
+msgid "Errors class for CoulombForce"
+msgstr "Клас грешки за Сила на Кулон"
+
+#: coulombforce.cc:33
+#, fuzzy
+msgctxt "PropertyName|"
+msgid "coulombConstVariance"
+msgstr "кулонКонстВариация"
+
+#: coulombforce.cc:34
+#, fuzzy
+msgctxt "PropertyDescription|"
+msgid "Coulomb constant variance"
+msgstr "Вариация на константата на Кулон"
+
+#: eulersolver.cc:27
+#, fuzzy
+msgctxt "ObjectClass|"
+msgid "GenericEulerSolver"
+msgstr "ОбщРешавачОйлер"
+
+#: eulersolver.cc:27
+#, fuzzy
+msgctxt "ObjectDescription|"
+msgid "Generic Euler solver"
+msgstr "Общ решавач на Ойлер"
+
+#: eulersolver.cc:28
+#, fuzzy
+msgctxt "ObjectClass|"
+msgid "EulerSolver"
+msgstr "РешавачОйлер"
+
+#: eulersolver.cc:28
+#, fuzzy
+msgctxt "ObjectDescription|"
+msgid "Non-adaptive Euler solver"
+msgstr "Неадаптивен решавач на Ойлер"
+
+#: eulersolver.cc:29
+#, fuzzy
+msgctxt "ObjectClass|"
+msgid "AdaptiveEulerSolver"
+msgstr "АдаптивенРешавачОйлер"
+
+#: eulersolver.cc:29
+#, fuzzy
+msgctxt "ObjectDescription|"
+msgid "Adaptive Euler solver"
+msgstr "Адаптивен решавач на Ойлер"
+
+#: force.cc:27
+#, fuzzy
+msgctxt "ObjectClass|"
+msgid "Force"
+msgstr "Сила"
+
+#: force.cc:27
+#, fuzzy
+msgctxt "ObjectDescription|"
+msgid "Force"
+msgstr "Сила"
+
+#: gas.cc:27
+#, fuzzy
+msgctxt "ObjectClass|"
+msgid "GasParticle"
+msgstr "ГазоваЧастица"
+
+#: gas.cc:27
+#, fuzzy
+msgctxt "ObjectDescription|"
+msgid "Gas particle"
+msgstr "Газова частица"
+
+#: gas.cc:29
+#, fuzzy
+msgctxt "ObjectClass|"
+msgid "GasLJForce"
+msgstr "ГазЛДжСила"
+
+#: gas.cc:29
+#, fuzzy
+msgctxt "ObjectDescription|"
+msgid "Lennard-Jones force"
+msgstr "Сила на Ленард-Джоунс"
+
+#: gas.cc:31
+#, fuzzy
+msgctxt "PropertyDescription|"
+msgid "Potential depth"
+msgstr "Вариране на дължината на подпората"
+
+#: gas.cc:31
+#, fuzzy
+msgctxt "PropertyName|"
+msgid "depth"
+msgstr "дълбочина"
+
+#: gas.cc:31 gas.cc:37 gas.cc:59 gas.cc:74 particle.cc:37 particle.cc:53
+#: rigidbody.cc:49 rigidbody.cc:80
+#, fuzzy
+msgctxt "Units|"
+msgid "J"
+msgstr "J"
+
+#: gas.cc:32
+#, fuzzy
+msgctxt "PropertyDescription|"
+msgid "Distance at which the force is zero"
+msgstr "Разстояние, на което силата е нула"
+
+#: gas.cc:32
+#, fuzzy
+msgctxt "PropertyName|"
+msgid "rmin"
+msgstr "rmin"
+
+#: gas.cc:32 gas.cc:33 gas.cc:39 gas.cc:45 gas.cc:47 joints.cc:29 joints.cc:35
+#: joints.cc:36 joints.cc:40 joints.cc:43 joints.cc:45 joints.cc:47
+#: joints.cc:48 motor.cc:30 motor.cc:36 particle.cc:29 particle.cc:41
+#: rigidbody.cc:28 rigidbody.cc:53 rigidbody.cc:84 rigidbody.cc:89
+#: rigidbody.cc:92 softbody.cc:36 spring.cc:30 spring.cc:31 spring.cc:36
+#: spring.cc:38 spring.cc:40 spring.cc:41 spring.cc:47 spring.cc:49
+#: spring.cc:55 spring.cc:57 spring.cc:59 spring.cc:61 tool.cc:38 tool.cc:39
+#: tool.cc:45 tool.cc:46 tool.cc:67 tool.cc:68 tool.cc:79 tool.cc:80 tool.cc:98
+#: tool.cc:100 tool.cc:101
+#, fuzzy
+msgctxt "Units|"
+msgid "m"
+msgstr "m"
+
+#: gas.cc:33
+msgctxt "PropertyDescription|"
+msgid "Cut-off distance"
+msgstr ""
+
+#: gas.cc:33
+msgctxt "PropertyName|"
+msgid "cutoff"
+msgstr ""
+
+#: gas.cc:35
+#, fuzzy
+msgctxt "ObjectClass|"
+msgid "GasLJForceErrors"
+msgstr "ГазЛДжСила"
+
+#: gas.cc:35
+#, fuzzy
+msgctxt "ObjectDescription|"
+msgid "Errors class for GasLJForce"
+msgstr "Клас грешки за Газ"
+
+#: gas.cc:37
+#, fuzzy
+msgctxt "PropertyName|"
+msgid "depthVariance"
+msgstr "дълбочинаВариация"
+
+#: gas.cc:38
+#, fuzzy
+msgctxt "PropertyDescription|"
+msgid "Potential depth variance"
+msgstr "Вариране на дължината на подпората"
+
+#: gas.cc:39
+#, fuzzy
+msgctxt "PropertyName|"
+msgid "rminVariance"
+msgstr "затихванеВариация"
+
+#: gas.cc:40
+#, fuzzy
+msgctxt "PropertyDescription|"
+msgid "Variance of the distance at which the force is zero"
+msgstr "Вариране на разстоянието при което силата е нула"
+
+#: gas.cc:44
+#, fuzzy
+msgctxt "ObjectClass|"
+msgid "Gas"
+msgstr "Газ"
+
+#: gas.cc:44
+#, fuzzy
+msgctxt "ObjectDescription|"
+msgid "Particle gas"
+msgstr "Газова частица"
+
+#: gas.cc:45
+#, fuzzy
+msgctxt "PropertyName|"
+msgid "measureRectCenter"
+msgstr "мяркаПравоъгълникЦентър"
+
+#: gas.cc:46
+#, fuzzy
+msgctxt "PropertyDescription|"
+msgid "Center of the rect for measurements"
+msgstr "Център на правоъгълника за мерки"
+
+#: gas.cc:47
+#, fuzzy
+msgctxt "PropertyName|"
+msgid "measureRectSize"
+msgstr "мяркаПравоъгълникРазмер"
+
+#: gas.cc:48
+#, fuzzy
+msgctxt "PropertyDescription|"
+msgid "Size of the rect for measurements"
+msgstr "Размер на измерващия правоъгълник"
+
+#: gas.cc:49
+#, fuzzy
+msgctxt "PropertyName|"
+msgid "rectVolume"
+msgstr "правоъгълникОбем"
+
+#: gas.cc:49
+#, fuzzy
+msgctxt "Units|"
+msgid "m²"
+msgstr "m²"
+
+#: gas.cc:50
+#, fuzzy
+msgctxt "PropertyDescription|"
+msgid "Volume of the measureRect"
+msgstr "Обем на измерващПравоъгълник"
+
+#: gas.cc:51
+#, fuzzy
+msgctxt "PropertyName|"
+msgid "rectParticleCount"
+msgstr "правоъгълникЧастициБрой"
+
+#: gas.cc:52
+#, fuzzy
+msgctxt "PropertyDescription|"
+msgid "Count of particles in the measureRect"
+msgstr "Брой частици в измерващПравоъгълник"
+
+#: gas.cc:53
+#, fuzzy
+msgctxt "PropertyName|"
+msgid "rectConcentration"
+msgstr "правоъгълникКонцентрация"
+
+#: gas.cc:53
+#, fuzzy
+msgctxt "Units|"
+msgid "1/m²"
+msgstr "1/m²"
+
+#: gas.cc:54
+#, fuzzy
+msgctxt "PropertyDescription|"
+msgid "Concentration of particles in the measureRect"
+msgstr "Концентрация на частиците в измерващПравоъгълник"
+
+#: gas.cc:55
+#, fuzzy
+msgctxt "PropertyName|"
+msgid "rectPressure"
+msgstr "правоъгълникНалягане"
+
+#: gas.cc:55 gas.cc:70
+#, fuzzy
+msgctxt "Units|"
+msgid "Pa"
+msgstr "Pa"
+
+#: gas.cc:56
+#, fuzzy
+msgctxt "PropertyDescription|"
+msgid "Pressure of particles in the measureRect"
+msgstr "Налягане на частиците в измерващПравоъгълник"
+
+#: gas.cc:57
+#, fuzzy
+msgctxt "PropertyName|"
+msgid "rectTemperature"
+msgstr "правоъгълникТемпература"
+
+#: gas.cc:57 gas.cc:72
+#, fuzzy
+msgctxt "Units|"
+msgid "K"
+msgstr "K"
+
+#: gas.cc:58
+#, fuzzy
+msgctxt "PropertyDescription|"
+msgid "Temperature of particles in the measureRect"
+msgstr "Температура на частиците в измерващПравоъгълник"
+
+#: gas.cc:59
+#, fuzzy
+msgctxt "PropertyName|"
+msgid "rectMeanKineticEnergy"
+msgstr "правоъгълникСреднаКинетичнаЕнергия"
+
+#: gas.cc:60
+#, fuzzy
+msgctxt "PropertyDescription|"
+msgid "Mean kinetic energy of particles in the measureRect"
+msgstr "Средна кинетична енергия на частиците в измерващПравоъгълник"
+
+#: gas.cc:61
+#, fuzzy
+msgctxt "PropertyName|"
+msgid "rectMeanVelocity"
+msgstr "правоъгълникСреднаСкорост"
+
+#: gas.cc:61 gas.cc:76 particle.cc:30 particle.cc:43 rigidbody.cc:31
+#: rigidbody.cc:58 softbody.cc:38
+#, fuzzy
+msgctxt "Units|"
+msgid "m/s"
+msgstr "m/s"
+
+#: gas.cc:62
+#, fuzzy
+msgctxt "PropertyDescription|"
+msgid "Mean velocity of particles in the measureRect"
+msgstr "Средна скорост на частиците в измерващПравоъгълник"
+
+#: gas.cc:63
+#, fuzzy
+msgctxt "PropertyName|"
+msgid "rectMeanParticleMass"
+msgstr "правоъгълникСреднаМасаЧастици"
+
+#: gas.cc:63 gas.cc:65 gas.cc:78 gas.cc:80 particle.cc:34 particle.cc:49
+#: particle.cc:61 rigidbody.cc:42 rigidbody.cc:71 softbody.cc:50
+#, fuzzy
+msgctxt "Units|"
+msgid "kg"
+msgstr "kg"
+
+#: gas.cc:64
+#, fuzzy
+msgctxt "PropertyDescription|"
+msgid "Mean mass of particles in the measureRect"
+msgstr "Средна маса на частиците в измерващПравоъгълник"
+
+#: gas.cc:65
+#, fuzzy
+msgctxt "PropertyName|"
+msgid "rectMass"
+msgstr "правоъгълникМаса"
+
+#: gas.cc:66
+#, fuzzy
+msgctxt "PropertyDescription|"
+msgid "Total mass of particles in the measureRect"
+msgstr "Обща маса на частиците в измерващПравоъгълник"
+
+#: gas.cc:69
+#, fuzzy
+msgctxt "ObjectClass|"
+msgid "GasErrors"
+msgstr "ГазГрешки"
+
+#: gas.cc:69
+#, fuzzy
+msgctxt "ObjectDescription|"
+msgid "Errors class for Gas"
+msgstr "Клас грешки за Газ"
+
+#: gas.cc:70
+#, fuzzy
+msgctxt "PropertyName|"
+msgid "rectPressureVariance"
+msgstr "правогълникНаляганеВариация"
+
+#: gas.cc:71
+#, fuzzy
+msgctxt "PropertyDescription|"
+msgid "Variance of pressure of particles in the measureRect"
+msgstr "Вариране на налягането на частиците в измерващПравоъгълник"
+
+#: gas.cc:72
+#, fuzzy
+msgctxt "PropertyName|"
+msgid "rectTemperatureVariance"
+msgstr "правоъгълникТемператураВариация"
+
+#: gas.cc:73
+#, fuzzy
+msgctxt "PropertyDescription|"
+msgid "Variance of temperature of particles in the measureRect"
+msgstr "Вариране на температурата на частиците в измерващПравоъгълник"
+
+#: gas.cc:74
+#, fuzzy
+msgctxt "PropertyName|"
+msgid "rectMeanKineticEnergyVariance"
+msgstr "правоъгълникСреднаКинетичнаЕнергияВариация"
+
+#: gas.cc:75
+#, fuzzy
+msgctxt "PropertyDescription|"
+msgid "Variance of mean kinetic energy of particles in the measureRect"
+msgstr ""
+"Вариране на средната кинетична енергия на частиците в измерващПравоъгълник"
+
+#: gas.cc:76
+#, fuzzy
+msgctxt "PropertyName|"
+msgid "rectMeanVelocityVariance"
+msgstr "правоъгълникСреднаСкоростВариация"
+
+#: gas.cc:77
+#, fuzzy
+msgctxt "PropertyDescription|"
+msgid "Variance of mean velocity of particles in the measureRect"
+msgstr "Вариране на средната скорост на частиците в измерващПравоъгълник"
+
+#: gas.cc:78
+#, fuzzy
+msgctxt "PropertyName|"
+msgid "rectMeanParticleMassVariance"
+msgstr "правоъгълникЧастициСреднаМасаВариация"
+
+#: gas.cc:79
+#, fuzzy
+msgctxt "PropertyDescription|"
+msgid "Variance of mean mass of particles in the measureRect"
+msgstr "Вариране на средната маса на частиците в измерващПравоъгълник"
+
+#: gas.cc:80
+#, fuzzy
+msgctxt "PropertyName|"
+msgid "rectMassVariance"
+msgstr "правоъгълникМасаВариация"
+
+#: gas.cc:81
+#, fuzzy
+msgctxt "PropertyDescription|"
+msgid "Variance of total mass of particles in the measureRect"
+msgstr "Вариране на общата маса на частиците в измерващПравоъгълник"
+
+#: gravitation.cc:27
+#, fuzzy
+msgctxt "ObjectClass|"
+msgid "GravitationForce"
+msgstr "Гравитационна сила"
+
+#: gravitation.cc:27
+#, fuzzy
+msgctxt "ObjectDescription|"
+msgid "Gravitation force"
+msgstr "Гравитационна сила"
+
+#: gravitation.cc:29
+#, fuzzy
+msgctxt "PropertyName|"
+msgid "gravitationConst"
+msgstr "гравитационнаКонст"
+
+#: gravitation.cc:29 gravitation.cc:34
+#, fuzzy
+msgctxt "Units|"
+msgid "N m²/kg²"
+msgstr "N m²/kg²"
+
+#: gravitation.cc:30
+#, fuzzy
+msgctxt "PropertyDescription|"
+msgid "Gravitation constant"
+msgstr "Гравитационна константа"
+
+#: gravitation.cc:32
+#, fuzzy
+msgctxt "ObjectClass|"
+msgid "GravitationForceErrors"
+msgstr "ГравитационнаСилаГрешки"
+
+#: gravitation.cc:32
+#, fuzzy
+msgctxt "ObjectDescription|"
+msgid "Errors class for GravitationForce"
+msgstr "Клас грешки за Гравитационна сила"
+
+#: gravitation.cc:34
+#, fuzzy
+msgctxt "PropertyName|"
+msgid "gravitationConstVariance"
+msgstr "гравитационнаКонстВариация"
+
+#: gravitation.cc:35
+#, fuzzy
+msgctxt "PropertyDescription|"
+msgid "Gravitation constant variance"
+msgstr "Вариация на гравитационната константа"
+
+#: gravitation.cc:37
+#, fuzzy
+msgctxt "ObjectClass|"
+msgid "WeightForce"
+msgstr "Сила на тежестта"
+
+#: gravitation.cc:37
+#, fuzzy
+msgctxt "ObjectDescription|"
+msgid "Weight force"
+msgstr "Сила на тежестта"
+
+#: gravitation.cc:39
+#, fuzzy
+msgctxt "PropertyDescription|"
+msgid "Weight constant"
+msgstr "Константа на тежестта "
+
+#: gravitation.cc:39
+#, fuzzy
+msgctxt "PropertyName|"
+msgid "weightConst"
+msgstr "тежестКонст"
+
+#: gravitation.cc:39 gravitation.cc:44 particle.cc:31 particle.cc:45
+#: rigidbody.cc:34 rigidbody.cc:63 softbody.cc:43
+#, fuzzy
+msgctxt "Units|"
+msgid "m/s²"
+msgstr "m/s²"
+
+#: gravitation.cc:42
+#, fuzzy
+msgctxt "ObjectClass|"
+msgid "WeightForceErrors"
+msgstr "ТежестСилаГрешки"
+
+#: gravitation.cc:42
+#, fuzzy
+msgctxt "ObjectDescription|"
+msgid "Errors class for WeightForce"
+msgstr "Клас грешки за Силата на тежестта"
+
+#: gravitation.cc:44
+#, fuzzy
+msgctxt "PropertyName|"
+msgid "weightConstVariance"
+msgstr "тежестКонстВариация"
+
+#: gravitation.cc:45
+#, fuzzy
+msgctxt "PropertyDescription|"
+msgid "Weight constant variance"
+msgstr "Вариация на константата на тежестта"
+
+#: gslsolver.cc:30
+#, fuzzy
+msgctxt "ObjectClass|"
+msgid "GslGenericSolver"
+msgstr "GslОбщРешавач"
+
+#: gslsolver.cc:30
+#, fuzzy
+msgctxt "ObjectDescription|"
+msgid "GSL generic solver"
+msgstr "GSL Общ решавач"
+
+#: gslsolver.cc:32
+#, fuzzy
+msgctxt "ObjectClass|"
+msgid "GslSolver"
+msgstr "GslРешавач"
+
+#: gslsolver.cc:32
+#, fuzzy
+msgctxt "ObjectDescription|"
+msgid "GSL non-adaptive solver"
+msgstr "GSL неадаптивен решавач"
+
+#: gslsolver.cc:35
+#, fuzzy
+msgctxt "ObjectClass|"
+msgid "GslAdaptiveSolver"
+msgstr "GslАдаптивенРешавач"
+
+#: gslsolver.cc:35
+#, fuzzy
+msgctxt "ObjectDescription|"
+msgid "GSL adaptive solver"
+msgstr "GSL адаптивен решавач"
+
+#: gslsolver.cc:38
+#, fuzzy
+msgctxt "ObjectClass|"
+msgid "GslRK2Solver"
+msgstr "GslРК2Решавач"
+
+#: gslsolver.cc:38
+#, fuzzy
+msgctxt "ObjectDescription|"
+msgid "Runge-Kutta second-order solver from GSL library"
+msgstr "Решавач на Рунге-Кута от втори порядък от библиотеката GSL"
+
+#: gslsolver.cc:40
+#, fuzzy
+msgctxt "ObjectClass|"
+msgid "GslAdaptiveRK2Solver"
+msgstr "GslАдаптивенРК2Решавач"
+
+#: gslsolver.cc:40
+#, fuzzy
+msgctxt "ObjectDescription|"
+msgid "Adaptive Runge-Kutta second-order solver from GSL library"
+msgstr "Адаптивен решавач на Рунге-Кута от втори порядък от библиотеката GSL"
+
+#: gslsolver.cc:43
+#, fuzzy
+msgctxt "ObjectClass|"
+msgid "GslRK4Solver"
+msgstr "GslРК4Решавач"
+
+#: gslsolver.cc:43
+#, fuzzy
+msgctxt "ObjectDescription|"
+msgid "Runge-Kutta classical fourth-order solver from GSL library"
+msgstr ""
+"Решавач от класически четвърти порядък на Рунге-Кута от библиотеката GSL"
+
+#: gslsolver.cc:45
+#, fuzzy
+msgctxt "ObjectClass|"
+msgid "GslAdaptiveRK4Solver"
+msgstr "GslAdaptiveRK4Solver"
+
+#: gslsolver.cc:45
+#, fuzzy
+msgctxt "ObjectDescription|"
+msgid "Adaptive Runge-Kutta classical fourth-order solver from GSL library"
+msgstr ""
+"Адаптивен решавач от класически четвърти порядък на Рунге-Кута от "
+"библиотеката GSL"
+
+#: gslsolver.cc:48
+#, fuzzy
+msgctxt "ObjectClass|"
+msgid "GslRKF45Solver"
+msgstr "GslРКФ45Решавач"
+
+#: gslsolver.cc:48
+#, fuzzy
+msgctxt "ObjectDescription|"
+msgid "Runge-Kutta-Fehlberg (4,5) solver from GSL library"
+msgstr "Решавач (4-5) на Рунге-Кута-Фелберг от библиотеката GSL"
+
+#: gslsolver.cc:50
+#, fuzzy
+msgctxt "ObjectClass|"
+msgid "GslAdaptiveRKF45Solver"
+msgstr "GslАдаптивенРКФ45Решавач"
+
+#: gslsolver.cc:50
+#, fuzzy
+msgctxt "ObjectDescription|"
+msgid "Adaptive Runge-Kutta-Fehlberg (4,5) solver from GSL library"
+msgstr "Адаптивен решавач (4-5) на Рунге-Кута-Фелберг от библиотеката GSL"
+
+#: gslsolver.cc:53
+#, fuzzy
+msgctxt "ObjectClass|"
+msgid "GslRKCKSolver"
+msgstr "GslРКККРешавач"
+
+#: gslsolver.cc:53
+#, fuzzy
+msgctxt "ObjectDescription|"
+msgid "Runge-Kutta Cash-Karp (4,5) solver from GSL library"
+msgstr "Решавач (4,5) на Рунге-Кута Каш-Карп от библиотеката GSL"
+
+#: gslsolver.cc:55
+#, fuzzy
+msgctxt "ObjectClass|"
+msgid "GslAdaptiveRKCKSolver"
+msgstr "GslАдаптивенРКККРешавач"
+
+#: gslsolver.cc:55
+#, fuzzy
+msgctxt "ObjectDescription|"
+msgid "Adaptive Runge-Kutta Cash-Karp (4,5) solver from GSL library"
+msgstr "Адаптивен решавач (4,5) на Рунге-Кута Каш-Карп от библиотеката GSL"
+
+#: gslsolver.cc:58
+#, fuzzy
+msgctxt "ObjectClass|"
+msgid "GslRK8PDSolver"
+msgstr "GslРК8ПДРешавач"
+
+#: gslsolver.cc:58
+#, fuzzy
+msgctxt "ObjectDescription|"
+msgid "Runge-Kutta Prince-Dormand (8,9) solver from GSL library"
+msgstr "Решавач (8,9) на Рунге-Кута Принс-Дорманд от библиотеката GSL"
+
+#: gslsolver.cc:60
+#, fuzzy
+msgctxt "ObjectClass|"
+msgid "GslAdaptiveRK8PDSolver"
+msgstr "GslАдаптивенРК8ПДРешавач"
+
+#: gslsolver.cc:60
+#, fuzzy
+msgctxt "ObjectDescription|"
+msgid "Adaptive Runge-Kutta Prince-Dormand (8,9) solver from GSL library"
+msgstr ""
+"Адаптивен решавач (8,9) на Рунге-Кута Принс-Дорманд от библиотеката GSL"
+
+#: gslsolver.cc:63
+#, fuzzy
+msgctxt "ObjectClass|"
+msgid "GslRK2IMPSolver"
+msgstr "GslРК2ИМПРешавач"
+
+#: gslsolver.cc:63
+#, fuzzy
+msgctxt "ObjectDescription|"
+msgid "Runge-Kutta implicit second-order solver from GSL library"
+msgstr "Имплицитен решавач от втори порядък на Рунге-Крита от библиотеката GSL"
+
+#: gslsolver.cc:65
+#, fuzzy
+msgctxt "ObjectClass|"
+msgid "GslAdaptiveRK2IMPSolver"
+msgstr "GslАдаптивенРК2ИМПРешавач"
+
+#: gslsolver.cc:65
+#, fuzzy
+msgctxt "ObjectDescription|"
+msgid "Adaptive Runge-Kutta implicit second-order solver from GSL library"
+msgstr ""
+"Адаптивен имплицитен решавач от втори порядък на Рунге-Крита от библиотеката "
+"GSL"
+
+#: gslsolver.cc:68
+#, fuzzy
+msgctxt "ObjectClass|"
+msgid "GslRK4IMPSolver"
+msgstr "GslРК4ИМПРешавач"
+
+#: gslsolver.cc:68
+#, fuzzy
+msgctxt "ObjectDescription|"
+msgid "Runge-Kutta implicit fourth-order solver from GSL library"
+msgstr ""
+"Имплицитен решавач от четвърти порядък на Рунге-Крита от библиотеката GSL"
+
+#: gslsolver.cc:70
+#, fuzzy
+msgctxt "ObjectClass|"
+msgid "GslAdaptiveRK4IMPSolver"
+msgstr "GslАдаптивенРК4ИМПРешавач"
+
+#: gslsolver.cc:70
+#, fuzzy
+msgctxt "ObjectDescription|"
+msgid "Adaptive Runge-Kutta implicit fourth-order solver from GSL library"
+msgstr ""
+"Адаптивен имплицитен решавач от четвърти порядък на Рунге-Крита от "
+"библиотеката GSL"
+
+#: item.cc:28
+#, fuzzy
+msgctxt "ObjectClass|"
+msgid "Item"
+msgstr "Елемент"
+
+#: item.cc:28
+#, fuzzy
+msgctxt "ObjectDescription|"
+msgid "Item"
+msgstr "Елемент"
+
+#: item.cc:30
+#, fuzzy
+msgctxt "PropertyName|"
+msgid "color"
+msgstr "цвят"
+
+#: item.cc:31
+#, fuzzy
+msgctxt "PropertyDescription|"
+msgid "Item color"
+msgstr "цвят на елемента"
+
+#: itemgroup.cc:28
+#, fuzzy
+msgctxt "ObjectClass|"
+msgid "ItemGroup"
+msgstr "ЕлементГрупа"
+
+#: itemgroup.cc:28
+#, fuzzy
+msgctxt "ObjectDescription|"
+msgid "ItemGroup"
+msgstr "ЕлементГрупа"
+
+#: joint.cc:26
+#, fuzzy
+msgctxt "ObjectClass|"
+msgid "Joint"
+msgstr "Съединение"
+
+#: joint.cc:26
+#, fuzzy
+msgctxt "ObjectDescription|"
+msgid "Joint"
+msgstr "Съединение"
+
+#: joints.cc:26
+#, fuzzy
+msgctxt "ObjectClass|"
+msgid "Anchor"
+msgstr "Котва"
+
+#: joints.cc:26
+#, fuzzy
+msgctxt "ObjectDescription|"
+msgid "Anchor: fixes position of the body"
+msgstr "Котва: фиксира позицията на тялото"
+
+#: joints.cc:28 joints.cc:34 motor.cc:29 motor.cc:35
+#, fuzzy
+msgctxt "PropertyDescription|"
+msgid "Body"
+msgstr "Тяло"
+
+#: joints.cc:28 joints.cc:34 motor.cc:29 motor.cc:35 tool.cc:97
+#, fuzzy
+msgctxt "PropertyName|"
+msgid "body"
+msgstr "тяло"
+
+#: joints.cc:29 tool.cc:100
+#, fuzzy
+msgctxt "PropertyDescription|"
+msgid "Position"
+msgstr "Позиция"
+
+#: joints.cc:29 joints.cc:36 particle.cc:29 rigidbody.cc:28 softbody.cc:36
+#: tool.cc:38 tool.cc:45 tool.cc:67 tool.cc:79 tool.cc:100
+#, fuzzy
+msgctxt "PropertyName|"
+msgid "position"
+msgstr "позиция"
+
+#: joints.cc:30
+#, fuzzy
+msgctxt "PropertyDescription|"
+msgid "Angle"
+msgstr "Ъгъл"
+
+#: joints.cc:30 rigidbody.cc:29
+#, fuzzy
+msgctxt "PropertyName|"
+msgid "angle"
+msgstr "ъгъл"
+
+#: joints.cc:30 rigidbody.cc:29 rigidbody.cc:55
+#, fuzzy
+msgctxt "Units|"
+msgid "rad"
+msgstr "rad"
+
+#: joints.cc:32
+#, fuzzy
+msgctxt "ObjectClass|"
+msgid "Pin"
+msgstr "Забождане"
+
+#: joints.cc:32
+#, fuzzy
+msgctxt "ObjectDescription|"
+msgid "Pin: fixes position of a given point on the body"
+msgstr "Забождане: фиксира позицията на дадена точка от тялото"
+
+#: joints.cc:35
+#, fuzzy
+msgctxt "PropertyDescription|"
+msgid "Position on the body"
+msgstr "Позиция на тялото"
+
+#: joints.cc:35 motor.cc:30 motor.cc:36 tool.cc:98
+#, fuzzy
+msgctxt "PropertyName|"
+msgid "localPosition"
+msgstr "локалнаПозиция"
+
+#: joints.cc:36
+#, fuzzy
+msgctxt "PropertyDescription|"
+msgid "Position in the world"
+msgstr "Позиция в света"
+
+#: joints.cc:38
+#, fuzzy
+msgctxt "ObjectClass|"
+msgid "Stick"
+msgstr "Прът"
+
+#: joints.cc:38
+#, fuzzy
+msgctxt "ObjectDescription|"
+msgid "Massless stick which can be connected to bodies"
+msgstr "Безтегловен прът, който може да бъде свързан към тела"
+
+#: joints.cc:40
+#, fuzzy
+msgctxt "PropertyDescription|"
+msgid "Rest length of the stick"
+msgstr "Дължина на подпората на пръта"
+
+#: joints.cc:40 spring.cc:30
+#, fuzzy
+msgctxt "PropertyName|"
+msgid "restLength"
+msgstr "подпораДължина"
+
+#: joints.cc:41 spring.cc:34
+#, fuzzy
+msgctxt "PropertyDescription|"
+msgid "Body1"
+msgstr "Тяло1"
+
+#: joints.cc:41 spring.cc:34
+#, fuzzy
+msgctxt "PropertyName|"
+msgid "body1"
+msgstr "тяло1"
+
+#: joints.cc:42 spring.cc:35
+#, fuzzy
+msgctxt "PropertyDescription|"
+msgid "Body2"
+msgstr "Тяло2"
+
+#: joints.cc:42 spring.cc:35
+#, fuzzy
+msgctxt "PropertyName|"
+msgid "body2"
+msgstr "тяло2"
+
+#: joints.cc:43 spring.cc:36
+#, fuzzy
+msgctxt "PropertyName|"
+msgid "localPosition1"
+msgstr "локалнаПозиция1"
+
+#: joints.cc:44 spring.cc:37
+#, fuzzy
+msgctxt "PropertyDescription|"
+msgid "Local position 1"
+msgstr "Локална позиция 1"
+
+#: joints.cc:45 spring.cc:38
+#, fuzzy
+msgctxt "PropertyName|"
+msgid "localPosition2"
+msgstr "локалнаПозиция2"
+
+#: joints.cc:46 spring.cc:39
+#, fuzzy
+msgctxt "PropertyDescription|"
+msgid "Local position 2"
+msgstr "Локална позиция 2"
+
+#: joints.cc:47 spring.cc:40
+#, fuzzy
+msgctxt "PropertyDescription|"
+msgid "Position1"
+msgstr "Позиция1"
+
+#: joints.cc:47 spring.cc:40
+#, fuzzy
+msgctxt "PropertyName|"
+msgid "position1"
+msgstr "позиция1"
+
+#: joints.cc:48 spring.cc:41
+#, fuzzy
+msgctxt "PropertyDescription|"
+msgid "Position2"
+msgstr "Позиция2"
+
+#: joints.cc:48 spring.cc:41
+#, fuzzy
+msgctxt "PropertyName|"
+msgid "position2"
+msgstr "позиция2"
+
+#: joints.cc:51
+#, fuzzy
+msgctxt "ObjectClass|"
+msgid "Rope"
+msgstr "Въже"
+
+#: joints.cc:51
+#, fuzzy
+msgctxt "ObjectDescription|"
+msgid "Massless rope which can be connected to bodies"
+msgstr "Безтегловно въже, което може да бъде свързано към тела"
+
+#: motor.cc:27
+#, fuzzy
+msgctxt "ObjectClass|"
+msgid "LinearMotor"
+msgstr "Линеен мотор"
+
+#: motor.cc:27
+#, fuzzy
+msgctxt "ObjectDescription|"
+msgid "Linear motor: applies a constant force to a given position of the body"
+msgstr "Линеен мотор: прилага постоянна сила върху дадена позиция от тялото"
+
+#: motor.cc:30 motor.cc:36
+#, fuzzy
+msgctxt "PropertyDescription|"
+msgid "Position of the motor on a body"
+msgstr "Позиция на мотора върху тялото"
+
+#: motor.cc:31
+#, fuzzy
+msgctxt "PropertyDescription|"
+msgid "Value of the force, acting on the body"
+msgstr "Стойност на силата, въздействаща на тялото"
+
+#: motor.cc:31
+#, fuzzy
+msgctxt "PropertyName|"
+msgid "forceValue"
+msgstr "силаСтойност"
+
+#: motor.cc:31 particle.cc:33 particle.cc:47 rigidbody.cc:39 rigidbody.cc:68
+#: softbody.cc:48 spring.cc:42 spring.cc:63
+#, fuzzy
+msgctxt "Units|"
+msgid "N"
+msgstr "N"
+
+#: motor.cc:33
+#, fuzzy
+msgctxt "ObjectClass|"
+msgid "CircularMotor"
+msgstr "Кръгообразен мотор"
+
+#: motor.cc:33
+#, fuzzy
+msgctxt "ObjectDescription|"
+msgid "Circular motor: applies a constant torque to the body"
+msgstr "Кръгообразен мотор: прилага постоянно усукване върху тялото"
+
+#: motor.cc:37
+#, fuzzy
+msgctxt "PropertyDescription|"
+msgid "Value of the torque, acting on the body"
+msgstr "Стойност на усукването, въздействащо на тялото"
+
+#: motor.cc:37
+#, fuzzy
+msgctxt "PropertyName|"
+msgid "torqueValue"
+msgstr "усукванеСтойност"
+
+#: motor.cc:37 rigidbody.cc:40 rigidbody.cc:69 softbody.cc:49
+#, fuzzy
+msgctxt "Units|"
+msgid "N m"
+msgstr "N m"
+
+#: object.cc:25
+#, fuzzy
+msgctxt "ObjectClass|"
+msgid "Object"
+msgstr "Обект"
+
+#: object.cc:25
+#, fuzzy
+msgctxt "ObjectDescription|"
+msgid "Object"
+msgstr "Обект"
+
+#: object.cc:26
+#, fuzzy
+msgctxt "PropertyDescription|"
+msgid "Object name"
+msgstr "Име на обект"
+
+#: object.cc:26
+#, fuzzy
+msgctxt "PropertyName|"
+msgid "name"
+msgstr "име"
+
+#: objecterrors.cc:26
+#, fuzzy
+msgctxt "ObjectClass|"
+msgid "ObjectErrors"
+msgstr "ОбектГрешки"
+
+#: objecterrors.cc:26
+#, fuzzy
+msgctxt "ObjectDescription|"
+msgid "ObjectErrors"
+msgstr "ОбектГрешки"
+
+#: particle.cc:27
+#, fuzzy
+msgctxt "ObjectClass|"
+msgid "Particle"
+msgstr "Частица"
+
+#: particle.cc:27
+#, fuzzy
+msgctxt "ObjectDescription|"
+msgid "Simple zero-size particle"
+msgstr "Проста частица с нулев размер"
+
+#: particle.cc:29
+#, fuzzy
+msgctxt "PropertyDescription|"
+msgid "position"
+msgstr "позиция"
+
+#: particle.cc:30
+#, fuzzy
+msgctxt "PropertyDescription|"
+msgid "velocity"
+msgstr "скорост"
+
+#: particle.cc:30 rigidbody.cc:31 softbody.cc:38
+#, fuzzy
+msgctxt "PropertyName|"
+msgid "velocity"
+msgstr "скорост"
+
+#: particle.cc:31 rigidbody.cc:34 softbody.cc:43
+#, fuzzy
+msgctxt "PropertyName|"
+msgid "acceleration"
+msgstr "ускорение"
+
+#: particle.cc:32
+#, fuzzy
+msgctxt "PropertyDescription|"
+msgid "acceleration"
+msgstr "ускорение"
+
+#: particle.cc:33
+#, fuzzy
+msgctxt "PropertyDescription|"
+msgid "force"
+msgstr "сила"
+
+#: particle.cc:33 rigidbody.cc:39 softbody.cc:48 spring.cc:42
+#, fuzzy
+msgctxt "PropertyName|"
+msgid "force"
+msgstr "сила"
+
+#: particle.cc:34
+#, fuzzy
+msgctxt "PropertyDescription|"
+msgid "mass"
+msgstr "маса"
+
+#: particle.cc:34 rigidbody.cc:42 softbody.cc:50
+#, fuzzy
+msgctxt "PropertyName|"
+msgid "mass"
+msgstr "маса"
+
+#: particle.cc:35 rigidbody.cc:45
+#, fuzzy
+msgctxt "PropertyDescription|"
+msgid "momentum"
+msgstr "импулс"
+
+#: particle.cc:35 rigidbody.cc:45
+#, fuzzy
+msgctxt "PropertyName|"
+msgid "momentum"
+msgstr "импулс"
+
+#: particle.cc:35 particle.cc:51 rigidbody.cc:45 rigidbody.cc:75
+#, fuzzy
+msgctxt "Units|"
+msgid "kg m/s"
+msgstr "kg m/s"
+
+#: particle.cc:37 rigidbody.cc:49
+#, fuzzy
+msgctxt "PropertyDescription|"
+msgid "kinetic energy"
+msgstr "кинетична енергия"
+
+#: particle.cc:37 rigidbody.cc:49
+#, fuzzy
+msgctxt "PropertyName|"
+msgid "kineticEnergy"
+msgstr "кинетичнаЕнергия"
+
+#: particle.cc:40
+#, fuzzy
+msgctxt "ObjectClass|"
+msgid "ParticleErrors"
+msgstr "ЧастицаГрешки"
+
+#: particle.cc:40
+#, fuzzy
+msgctxt "ObjectDescription|"
+msgid "Errors class for Particle"
+msgstr "Клас грешки за Частица"
+
+#: particle.cc:41 rigidbody.cc:53
+#, fuzzy
+msgctxt "PropertyName|"
+msgid "positionVariance"
+msgstr "позицияВариация"
+
+#: particle.cc:42 rigidbody.cc:54
+#, fuzzy
+msgctxt "PropertyDescription|"
+msgid "position variance"
+msgstr "вариация на позицията"
+
+#: particle.cc:43 rigidbody.cc:58
+#, fuzzy
+msgctxt "PropertyName|"
+msgid "velocityVariance"
+msgstr "скоростВариация"
+
+#: particle.cc:44 rigidbody.cc:59
+#, fuzzy
+msgctxt "PropertyDescription|"
+msgid "velocity variance"
+msgstr "вариация на скоростта"
+
+#: particle.cc:45 rigidbody.cc:63
+#, fuzzy
+msgctxt "PropertyName|"
+msgid "accelerationVariance"
+msgstr "ускорениеВариация"
+
+#: particle.cc:46 rigidbody.cc:64
+#, fuzzy
+msgctxt "PropertyDescription|"
+msgid "acceleration variance"
+msgstr "вариация на ускорението"
+
+#: particle.cc:47 rigidbody.cc:68 spring.cc:63
+#, fuzzy
+msgctxt "PropertyName|"
+msgid "forceVariance"
+msgstr "силаВариация"
+
+#: particle.cc:48 rigidbody.cc:68
+#, fuzzy
+msgctxt "PropertyDescription|"
+msgid "force variance"
+msgstr "Вариация на силата"
+
+#: particle.cc:49 rigidbody.cc:71
+#, fuzzy
+msgctxt "PropertyName|"
+msgid "massVariance"
+msgstr "масаВариация"
+
+#: particle.cc:50 rigidbody.cc:72
+#, fuzzy
+msgctxt "PropertyDescription|"
+msgid "mass variance"
+msgstr "вариация на масата"
+
+#: particle.cc:51 rigidbody.cc:75
+#, fuzzy
+msgctxt "PropertyName|"
+msgid "momentumVariance"
+msgstr "импулсВариация"
+
+#: particle.cc:52 rigidbody.cc:76
+#, fuzzy
+msgctxt "PropertyDescription|"
+msgid "momentum variance"
+msgstr "вариация на импулса"
+
+#: particle.cc:53 rigidbody.cc:80
+#, fuzzy
+msgctxt "PropertyName|"
+msgid "kineticEnergyVariance"
+msgstr "кинетичнаЕнелгияВариация"
+
+#: particle.cc:54 rigidbody.cc:81
+#, fuzzy
+msgctxt "PropertyDescription|"
+msgid "kinetic energy variance"
+msgstr "вариация на кинетичната енергия"
+
+#: particle.cc:56
+#, fuzzy
+msgctxt "ObjectClass|"
+msgid "ChargedParticle"
+msgstr "Заредена частица"
+
+#: particle.cc:56
+#, fuzzy
+msgctxt "ObjectDescription|"
+msgid "Charged zero-size particle"
+msgstr "Заредена частица с нулев размер"
+
+#: particle.cc:57
+#, fuzzy
+msgctxt "PropertyDescription|"
+msgid "charge"
+msgstr "заряд"
+
+#: particle.cc:57
+#, fuzzy
+msgctxt "PropertyName|"
+msgid "charge"
+msgstr "заряд"
+
+#: particle.cc:57
+#, fuzzy
+msgctxt "Units|"
+msgid "C"
+msgstr "C"
+
+#: particle.cc:59
+#, fuzzy
+msgctxt "ObjectClass|"
+msgid "ChargedParticleErrors"
+msgstr "ЗаредеваЧастицаГрешки"
+
+#: particle.cc:59
+#, fuzzy
+msgctxt "ObjectDescription|"
+msgid "Errors class for ChargedParticle"
+msgstr "Клас грешки за Заредена частица"
+
+#: particle.cc:61
+#, fuzzy
+msgctxt "PropertyName|"
+msgid "chargeVariance"
+msgstr "зарядВариация"
+
+#: particle.cc:62
+#, fuzzy
+msgctxt "PropertyDescription|"
+msgid "charge variance"
+msgstr "вариация на заряда"
+
+#: rigidbody.cc:27
+#, fuzzy
+msgctxt "ObjectClass|"
+msgid "RigidBody"
+msgstr "АбсолютноТвърдоТяло"
+
+#: rigidbody.cc:27
+msgctxt "ObjectDescription|"
+msgid "Generic rigid body"
+msgstr ""
+
+#: rigidbody.cc:28 softbody.cc:36
+#, fuzzy
+msgctxt "PropertyDescription|"
+msgid "Position of the center of mass"
+msgstr "Позиция на центъра на масата"
+
+#: rigidbody.cc:29
+#, fuzzy
+msgctxt "PropertyDescription|"
+msgid "Rotation angle"
+msgstr "Ъгъл на завъртане"
+
+#: rigidbody.cc:31 softbody.cc:38
+#, fuzzy
+msgctxt "PropertyDescription|"
+msgid "Velocity of the center of mass"
+msgstr "Скорост на центъра на масата"
+
+#: rigidbody.cc:32 softbody.cc:39
+#, fuzzy
+msgctxt "PropertyDescription|"
+msgid "Angular velocity of the body"
+msgstr "Ъглова скорост на тялото"
+
+#: rigidbody.cc:32 softbody.cc:39
+#, fuzzy
+msgctxt "PropertyName|"
+msgid "angularVelocity"
+msgstr "ъгловаСкорост"
+
+#: rigidbody.cc:32 rigidbody.cc:60 softbody.cc:39
+#, fuzzy
+msgctxt "Units|"
+msgid "rad/s"
+msgstr "rad/s"
+
+#: rigidbody.cc:35 softbody.cc:44
+#, fuzzy
+msgctxt "PropertyDescription|"
+msgid "Acceleration of the center of mass"
+msgstr "Ускорение на центъра на масата"
+
+#: rigidbody.cc:36 softbody.cc:45
+#, fuzzy
+msgctxt "PropertyName|"
+msgid "angularAcceleration"
+msgstr "ъгловоУскорение"
+
+#: rigidbody.cc:36 rigidbody.cc:65 softbody.cc:45
+#, fuzzy
+msgctxt "Units|"
+msgid "rad/s²"
+msgstr "rad/s²"
+
+#: rigidbody.cc:37 softbody.cc:46
+#, fuzzy
+msgctxt "PropertyDescription|"
+msgid "Angular acceleration of the body"
+msgstr "Ъглово ускорение на тялото"
+
+#: rigidbody.cc:39 softbody.cc:48
+#, fuzzy
+msgctxt "PropertyDescription|"
+msgid "Force that acts upon the body"
+msgstr "Сила, действаща върху тялото"
+
+#: rigidbody.cc:40 softbody.cc:49
+#, fuzzy
+msgctxt "PropertyDescription|"
+msgid "Torque that acts upon the body"
+msgstr "Усукване, действащо върху тялото"
+
+#: rigidbody.cc:40 softbody.cc:49
+#, fuzzy
+msgctxt "PropertyName|"
+msgid "torque"
+msgstr "усукване"
+
+#: rigidbody.cc:42 softbody.cc:50
+#, fuzzy
+msgctxt "PropertyDescription|"
+msgid "Total mass of the body"
+msgstr "Обща маса на тялото"
+
+#: rigidbody.cc:43 softbody.cc:51
+#, fuzzy
+msgctxt "PropertyName|"
+msgid "inertia"
+msgstr "инерция"
+
+#: rigidbody.cc:43 rigidbody.cc:73 softbody.cc:51
+#, fuzzy
+msgctxt "Units|"
+msgid "kg m²"
+msgstr "kg m²"
+
+#: rigidbody.cc:44 softbody.cc:52
+#, fuzzy
+msgctxt "PropertyDescription|"
+msgid "Inertia \"tensor\" of the body"
+msgstr "инерция \"тензор\" на тялото"
+
+#: rigidbody.cc:47
+#, fuzzy
+msgctxt "PropertyDescription|"
+msgid "angular momentum"
+msgstr "ъглов импулс"
+
+#: rigidbody.cc:47 softbody.cc:40
+#, fuzzy
+msgctxt "PropertyName|"
+msgid "angularMomentum"
+msgstr "ъгловИмпулс"
+
+#: rigidbody.cc:47 rigidbody.cc:77
+#, fuzzy
+msgctxt "Units|"
+msgid "kg m² rad/s"
+msgstr "kg m² rad/s"
+
+#: rigidbody.cc:52
+#, fuzzy
+msgctxt "ObjectClass|"
+msgid "RigidBodyErrors"
+msgstr "ТвърдоТялоГрешки"
+
+#: rigidbody.cc:52
+#, fuzzy
+msgctxt "ObjectDescription|"
+msgid "Errors class for RigidBody"
+msgstr "Клас грешки за Твърдо тяло"
+
+#: rigidbody.cc:55
+#, fuzzy
+msgctxt "PropertyName|"
+msgid "angleVariance"
+msgstr "ъгълВариация"
+
+#: rigidbody.cc:56
+#, fuzzy
+msgctxt "PropertyDescription|"
+msgid "angle variance"
+msgstr "вариация на ъгъла"
+
+#: rigidbody.cc:60
+#, fuzzy
+msgctxt "PropertyName|"
+msgid "angularVelocityVariance"
+msgstr "ъгловаСкоростВариация"
+
+#: rigidbody.cc:61
+#, fuzzy
+msgctxt "PropertyDescription|"
+msgid "angularVelocity variance"
+msgstr "Вариация на ъгловата скорост"
+
+#: rigidbody.cc:65
+#, fuzzy
+msgctxt "PropertyName|"
+msgid "angularAccelerationVariance"
+msgstr "ъгловоУскорениеВариация"
+
+#: rigidbody.cc:66
+#, fuzzy
+msgctxt "PropertyDescription|"
+msgid "angularAcceleration variance"
+msgstr "Вариация на ъгловото ускорение"
+
+#: rigidbody.cc:69
+#, fuzzy
+msgctxt "PropertyDescription|"
+msgid "torque variance"
+msgstr "вариация на усукването"
+
+#: rigidbody.cc:69
+#, fuzzy
+msgctxt "PropertyName|"
+msgid "torqueVariance"
+msgstr "усукванеВариация"
+
+#: rigidbody.cc:73
+#, fuzzy
+msgctxt "PropertyName|"
+msgid "inertiaVariance"
+msgstr "инерцияВариация"
+
+#: rigidbody.cc:74
+#, fuzzy
+msgctxt "PropertyDescription|"
+msgid "inertia variance"
+msgstr "вариация на инерцията"
+
+#: rigidbody.cc:77
+#, fuzzy
+msgctxt "PropertyName|"
+msgid "angularMomentumVariance"
+msgstr "ъгловИмпулсВариация"
+
+#: rigidbody.cc:78
+#, fuzzy
+msgctxt "PropertyDescription|"
+msgid "angular momentum variance"
+msgstr "вариация на ъгловия импулс"
+
+#: rigidbody.cc:83
+#, fuzzy
+msgctxt "ObjectClass|"
+msgid "Disk"
+msgstr "Диск"
+
+#: rigidbody.cc:83
+#, fuzzy
+msgctxt "ObjectDescription|"
+msgid "Rigid disk"
+msgstr "Твърдотелен диск"
+
+#: rigidbody.cc:84
+#, fuzzy
+msgctxt "PropertyDescription|"
+msgid "Radius of the disk"
+msgstr "Радиус на диска"
+
+#: rigidbody.cc:84
+#, fuzzy
+msgctxt "PropertyName|"
+msgid "radius"
+msgstr "радиус"
+
+#: rigidbody.cc:86
+#, fuzzy
+msgctxt "ObjectClass|"
+msgid "BasePolygon"
+msgstr "Многоъгълник"
+
+#: rigidbody.cc:86
+#, fuzzy
+msgctxt "ObjectDescription|"
+msgid "Base polygon body"
+msgstr "Твърдотелен многоъгълник"
+
+#: rigidbody.cc:88
+#, fuzzy
+msgctxt "ObjectClass|"
+msgid "Box"
+msgstr "Кутия"
+
+#: rigidbody.cc:88
+#, fuzzy
+msgctxt "ObjectDescription|"
+msgid "Rigid box"
+msgstr "Твърдотелна кутия"
+
+#: rigidbody.cc:89
+#, fuzzy
+msgctxt "PropertyDescription|"
+msgid "Size of the box"
+msgstr "Размер на кутията"
+
+#: rigidbody.cc:89 tool.cc:39 tool.cc:46 tool.cc:68 tool.cc:80
+#, fuzzy
+msgctxt "PropertyName|"
+msgid "size"
+msgstr "размер"
+
+#: rigidbody.cc:91
+#, fuzzy
+msgctxt "ObjectClass|"
+msgid "Polygon"
+msgstr "Многоъгълник"
+
+#: rigidbody.cc:91
+#, fuzzy
+msgctxt "ObjectDescription|"
+msgid "Rigid polygon body"
+msgstr "Твърдотелен многоъгълник"
+
+#: rigidbody.cc:92
+#, fuzzy
+msgctxt "PropertyDescription|"
+msgid "Vertex list"
+msgstr "Списък с върхове"
+
+#: rigidbody.cc:92
+#, fuzzy
+msgctxt "PropertyName|"
+msgid "vertices"
+msgstr "върхове"
+
+#: softbody.cc:31
+#, fuzzy
+msgctxt "ObjectClass|"
+msgid "SoftBodyParticle"
+msgstr "МекоТялоЧастица"
+
+#: softbody.cc:31
+#, fuzzy
+msgctxt "ObjectDescription|"
+msgid "SoftBody particle"
+msgstr "Частица на меко тяло"
+
+#: softbody.cc:32
+#, fuzzy
+msgctxt "ObjectClass|"
+msgid "SoftBodySpring"
+msgstr "МекоТялоЕластичност"
+
+#: softbody.cc:32
+#, fuzzy
+msgctxt "ObjectDescription|"
+msgid "SoftBody spring"
+msgstr "Еластичност на меко тяло"
+
+#: softbody.cc:33
+#, fuzzy
+msgctxt "ObjectClass|"
+msgid "SoftBody"
+msgstr "Меко тяло"
+
+#: softbody.cc:33
+#, fuzzy
+msgctxt "ObjectDescription|"
+msgid "Deformable SoftBody"
+msgstr "Деформируемо меко тяло"
+
+#: softbody.cc:34
+#, fuzzy
+msgctxt "PropertyDescription|"
+msgid "Show internal items"
+msgstr "Показване на вътрешните елементи"
+
+#: softbody.cc:34
+#, fuzzy
+msgctxt "PropertyName|"
+msgid "showInternalItems"
+msgstr "показванеВътрешниЕлементи"
+
+#: softbody.cc:40
+#, fuzzy
+msgctxt "Units|"
+msgid "kg m²/s"
+msgstr "kg m²/s"
+
+#: softbody.cc:41
+#, fuzzy
+msgctxt "PropertyDescription|"
+msgid "Angular momentum of the body"
+msgstr "Ъглов импулс на тялото"
+
+#: softbody.cc:53
+#, fuzzy
+msgctxt "PropertyName|"
+msgid "borderParticleNames"
+msgstr "Газова частица"
+
+#: softbody.cc:54
+msgctxt "PropertyDescription|"
+msgid "Border particle names (temporal property)"
+msgstr ""
+
+#: solver.cc:25
+#, fuzzy
+msgctxt "ObjectClass|"
+msgid "Solver"
+msgstr "Решавач"
+
+#: solver.cc:25
+#, fuzzy
+msgctxt "ObjectDescription|"
+msgid "Solver"
+msgstr "Решавач"
+
+#: solver.cc:26
+#, fuzzy
+msgctxt "PropertyDescription|"
+msgid "Solver type"
+msgstr "Тип на решавача"
+
+#: solver.cc:26
+#, fuzzy
+msgctxt "PropertyName|"
+msgid "solverType"
+msgstr "решавачТип"
+
+#: solver.cc:27
+#, fuzzy
+msgctxt "PropertyDescription|"
+msgid "Step size"
+msgstr "Размер на стъпката"
+
+#: solver.cc:27
+#, fuzzy
+msgctxt "PropertyName|"
+msgid "stepSize"
+msgstr "стъпкаРазмер"
+
+#: solver.cc:27 world.cc:35
+#, fuzzy
+msgctxt "Units|"
+msgid "s"
+msgstr "s"
+
+#: solver.cc:29
+#, fuzzy
+msgctxt "PropertyDescription|"
+msgid "Allowed relative tolerance"
+msgstr "Позволен относителен толеранс"
+
+#: solver.cc:29
+#, fuzzy
+msgctxt "PropertyName|"
+msgid "toleranceRel"
+msgstr "толерансОтн"
+
+#: solver.cc:30
+#, fuzzy
+msgctxt "PropertyDescription|"
+msgid "Count of dynamic variables"
+msgstr "Брой на динамични променливи"
+
+#: solver.cc:30
+#, fuzzy
+msgctxt "PropertyName|"
+msgid "dimension"
+msgstr "размер"
+
+#: solver.cc:32
+#, fuzzy
+msgctxt "PropertyDescription|"
+msgid "Maximal local error ratio during last step"
+msgstr ""
+"Максимален коефициент на локалната грешка по време на последната стъпка"
+
+#: solver.cc:32
+#, fuzzy
+msgctxt "PropertyName|"
+msgid "localErrorRatio"
+msgstr "локалнаГрешкаКоефициент"
+
+#: spring.cc:28
+#, fuzzy
+msgctxt "ObjectClass|"
+msgid "Spring"
+msgstr "Пружина"
+
+#: spring.cc:28
+#, fuzzy
+msgctxt "ObjectDescription|"
+msgid "Massless spring which can be connected to bodies"
+msgstr "Безтегловна пружина, която може да бъде свързана към тела"
+
+#: spring.cc:30
+#, fuzzy
+msgctxt "PropertyDescription|"
+msgid "Rest length"
+msgstr "Дължина на подпората"
+
+#: spring.cc:31
+#, fuzzy
+msgctxt "PropertyDescription|"
+msgid "Current length"
+msgstr "Текуща дължина"
+
+#: spring.cc:31
+#, fuzzy
+msgctxt "PropertyName|"
+msgid "length"
+msgstr "дължина"
+
+#: spring.cc:32
+#, fuzzy
+msgctxt "PropertyDescription|"
+msgid "Stiffness"
+msgstr "Твърдост"
+
+#: spring.cc:32
+#, fuzzy
+msgctxt "PropertyName|"
+msgid "stiffness"
+msgstr "твърдост"
+
+#: spring.cc:32 spring.cc:51 spring.cc:53
+#, fuzzy
+msgctxt "Units|"
+msgid "N/m"
+msgstr "N/m"
+
+#: spring.cc:33
+#, fuzzy
+msgctxt "PropertyDescription|"
+msgid "Damping"
+msgstr "Затихване"
+
+#: spring.cc:33
+#, fuzzy
+msgctxt "PropertyName|"
+msgid "damping"
+msgstr "затихване"
+
+#: spring.cc:33
+#, fuzzy
+msgctxt "Units|"
+msgid "N s/m"
+msgstr "N s/m"
+
+#: spring.cc:42
+#, fuzzy
+msgctxt "PropertyDescription|"
+msgid "Spring tension force"
+msgstr "Сила на опън на пружината"
+
+#: spring.cc:45
+#, fuzzy
+msgctxt "ObjectClass|"
+msgid "SpringErrors"
+msgstr "ПружинаГрешки"
+
+#: spring.cc:45
+#, fuzzy
+msgctxt "ObjectDescription|"
+msgid "Errors class for Spring"
+msgstr "Клас грешки за Пружината"
+
+#: spring.cc:47
+#, fuzzy
+msgctxt "PropertyName|"
+msgid "restLengthVariance"
+msgstr "подпораДължинаВариация"
+
+#: spring.cc:48
+#, fuzzy
+msgctxt "PropertyDescription|"
+msgid "Rest length variance"
+msgstr "Вариране на дължината на подпората"
+
+#: spring.cc:49
+#, fuzzy
+msgctxt "PropertyName|"
+msgid "lengthVariance"
+msgstr "дължинаВариация"
+
+#: spring.cc:50
+#, fuzzy
+msgctxt "PropertyDescription|"
+msgid "Current length variance"
+msgstr "Вариране на текущата дължина"
+
+#: spring.cc:51
+#, fuzzy
+msgctxt "PropertyName|"
+msgid "stiffnessVariance"
+msgstr "твърдостВариация"
+
+#: spring.cc:52
+#, fuzzy
+msgctxt "PropertyDescription|"
+msgid "Stiffness variance"
+msgstr "Вариация на твърдостта"
+
+#: spring.cc:53
+#, fuzzy
+msgctxt "PropertyName|"
+msgid "dampingVariance"
+msgstr "затихванеВариация"
+
+#: spring.cc:54
+#, fuzzy
+msgctxt "PropertyDescription|"
+msgid "Damping variance"
+msgstr "Вариация на затипване"
+
+#: spring.cc:55
+#, fuzzy
+msgctxt "PropertyName|"
+msgid "localPosition1Variance"
+msgstr "локалнаПозиция1Вариация"
+
+#: spring.cc:56
+#, fuzzy
+msgctxt "PropertyDescription|"
+msgid "Local position 1 variance"
+msgstr "Вариация на локална позиция 1"
+
+#: spring.cc:57
+#, fuzzy
+msgctxt "PropertyName|"
+msgid "localPosition2Variance"
+msgstr "локалнаПозиция2Вариация"
+
+#: spring.cc:58
+#, fuzzy
+msgctxt "PropertyDescription|"
+msgid "Local position 2 variance"
+msgstr "Вариация на локална позиция 2"
+
+#: spring.cc:59
+#, fuzzy
+msgctxt "PropertyName|"
+msgid "position1Variance"
+msgstr "позиция1Вариация"
+
+#: spring.cc:60
+#, fuzzy
+msgctxt "PropertyDescription|"
+msgid "Position1 variance"
+msgstr "Вариация на позиция1"
+
+#: spring.cc:61
+#, fuzzy
+msgctxt "PropertyName|"
+msgid "position2Variance"
+msgstr "позиция2Вариация"
+
+#: spring.cc:62
+#, fuzzy
+msgctxt "PropertyDescription|"
+msgid "Position2 variance"
+msgstr "Вариация на позиция2"
+
+#: spring.cc:64
+#, fuzzy
+msgctxt "PropertyDescription|"
+msgid "Spring tension force variance"
+msgstr "Вариация на силата на опън на пружината"
+
+#: tool.cc:26
+#, fuzzy
+msgctxt "ObjectClass|"
+msgid "NoteImage"
+msgstr "БележкаИзображение"
+
+#: tool.cc:26
+#, fuzzy
+msgctxt "ObjectDescription|"
+msgid "NoteImage: an image embedded in Note"
+msgstr "БележкаИзображение: изображение, вградено в Бележка"
+
+#: tool.cc:28
+#, fuzzy
+msgctxt "PropertyDescription|"
+msgid "Image data"
+msgstr "данни на изображението"
+
+#: tool.cc:28
+#, fuzzy
+msgctxt "PropertyName|"
+msgid "image"
+msgstr "изображение"
+
+#: tool.cc:31
+#, fuzzy
+msgctxt "ObjectClass|"
+msgid "NoteFormula"
+msgstr "БележкаФормула"
+
+#: tool.cc:31
+#, fuzzy
+msgctxt "ObjectDescription|"
+msgid "NoteFormula: a formula embedded in Note"
+msgstr "БележкаФормула: формула, вградена в Бележка"
+
+#: tool.cc:33
+#, fuzzy
+msgctxt "PropertyDescription|"
+msgid "Formula code"
+msgstr "Код на формула"
+
+#: tool.cc:33
+#, fuzzy
+msgctxt "PropertyName|"
+msgid "code"
+msgstr "код"
+
+#: tool.cc:36
+#, fuzzy
+msgctxt "ObjectClass|"
+msgid "Note"
+msgstr "Бележка"
+
+#: tool.cc:36
+#, fuzzy
+msgctxt "ObjectDescription|"
+msgid "Note: displays a textual note on the scene"
+msgstr "Бележка: показва текстова бележка на сцената"
+
+#: tool.cc:38
+#, fuzzy
+msgctxt "PropertyDescription|"
+msgid "Note position on the scene"
+msgstr "Позиция на бележката на сцената"
+
+#: tool.cc:39
+#, fuzzy
+msgctxt "PropertyDescription|"
+msgid "Note size on the scene"
+msgstr "Размер на бележката на сцената"
+
+#: tool.cc:40
+#, fuzzy
+msgctxt "PropertyDescription|"
+msgid "Text"
+msgstr "Текст"
+
+#: tool.cc:40
+#, fuzzy
+msgctxt "PropertyName|"
+msgid "text"
+msgstr "текст"
+
+#: tool.cc:43
+#, fuzzy
+msgctxt "ObjectClass|"
+msgid "Graph"
+msgstr "Диаграма"
+
+#: tool.cc:43
+#, fuzzy
+msgctxt "ObjectDescription|"
+msgid "Graph: plots a graph of any properties"
+msgstr "Диаграма: изчертава диаграма от всякакви свойства"
+
+#: tool.cc:45
+#, fuzzy
+msgctxt "PropertyDescription|"
+msgid "Graph position on the scene"
+msgstr "Позиция на диаграмата на сцената"
+
+#: tool.cc:46
+#, fuzzy
+msgctxt "PropertyDescription|"
+msgid "Graph size on the scene"
+msgstr "Размер на диаграмата на сцената"
+
+#: tool.cc:47
+#, fuzzy
+msgctxt "PropertyDescription|"
+msgid "X axis: object"
+msgstr "Оста Х: обект"
+
+#: tool.cc:47
+#, fuzzy
+msgctxt "PropertyName|"
+msgid "objectX"
+msgstr "обектХ"
+
+#: tool.cc:48
+#, fuzzy
+msgctxt "PropertyDescription|"
+msgid "X axis: object property"
+msgstr "Оста Х: свойство на обект"
+
+#: tool.cc:48
+#, fuzzy
+msgctxt "PropertyName|"
+msgid "propertyX"
+msgstr "свойствоХ"
+
+#: tool.cc:49
+#, fuzzy
+msgctxt "PropertyDescription|"
+msgid "X axis: vector index"
+msgstr "Оста Х: векторен индекс"
+
+#: tool.cc:49
+#, fuzzy
+msgctxt "PropertyName|"
+msgid "indexX"
+msgstr "индексХ"
+
+#: tool.cc:50
+#, fuzzy
+msgctxt "PropertyDescription|"
+msgid "Y axis: object"
+msgstr "Оста Y: обект"
+
+#: tool.cc:50
+#, fuzzy
+msgctxt "PropertyName|"
+msgid "objectY"
+msgstr "обектY"
+
+#: tool.cc:51
+#, fuzzy
+msgctxt "PropertyDescription|"
+msgid "Y axis: property"
+msgstr "Оста Y: свойство"
+
+#: tool.cc:51
+#, fuzzy
+msgctxt "PropertyName|"
+msgid "propertyY"
+msgstr "свойствоY"
+
+#: tool.cc:52
+#, fuzzy
+msgctxt "PropertyDescription|"
+msgid "Y axis: vector index"
+msgstr "Оста Y: векторен индекс"
+
+#: tool.cc:52
+#, fuzzy
+msgctxt "PropertyName|"
+msgid "indexY"
+msgstr "индексY"
+
+#: tool.cc:53
+#, fuzzy
+msgctxt "PropertyDescription|"
+msgid "Auto-limits along X axis"
+msgstr "Автоматични ограничения по оста Х"
+
+#: tool.cc:53
+#, fuzzy
+msgctxt "PropertyName|"
+msgid "autoLimitsX"
+msgstr "автоОграниченияХ"
+
+#: tool.cc:54
+#, fuzzy
+msgctxt "PropertyDescription|"
+msgid "Auto-limits along Y axis"
+msgstr "Автоматични ограничения по оста Y"
+
+#: tool.cc:54
+#, fuzzy
+msgctxt "PropertyName|"
+msgid "autoLimitsY"
+msgstr "автоОграниченияY"
+
+#: tool.cc:55
+#, fuzzy
+msgctxt "PropertyDescription|"
+msgid "Limits along X axis"
+msgstr "Ограничения по оста Х"
+
+#: tool.cc:55
+#, fuzzy
+msgctxt "PropertyName|"
+msgid "limitsX"
+msgstr "ограниченияХ"
+
+#: tool.cc:56
+#, fuzzy
+msgctxt "PropertyDescription|"
+msgid "Limits along Y axis"
+msgstr "Ограничения по оста Y"
+
+#: tool.cc:56
+#, fuzzy
+msgctxt "PropertyName|"
+msgid "limitsY"
+msgstr "ограниченияY"
+
+#: tool.cc:57
+#, fuzzy
+msgctxt "PropertyDescription|"
+msgid "Show points on the graph"
+msgstr "Показва точки на диаграмата"
+
+#: tool.cc:57
+#, fuzzy
+msgctxt "PropertyName|"
+msgid "showPoints"
+msgstr "показванеТочки"
+
+#: tool.cc:58
+#, fuzzy
+msgctxt "PropertyDescription|"
+msgid "Show lines on the graph"
+msgstr "Показва линии на диаграмата"
+
+#: tool.cc:58
+#, fuzzy
+msgctxt "PropertyName|"
+msgid "showLines"
+msgstr "показванеЛинии"
+
+#: tool.cc:59
+#, fuzzy
+msgctxt "PropertyDescription|"
+msgid "Current value"
+msgstr "Текущата стойност"
+
+#: tool.cc:59
+#, fuzzy
+msgctxt "PropertyName|"
+msgid "currentValue"
+msgstr "текущаСтойност"
+
+#: tool.cc:60 tool.cc:101
+#, fuzzy
+msgctxt "PropertyDescription|"
+msgid "points"
+msgstr "точки"
+
+#: tool.cc:60 tool.cc:101
+#, fuzzy
+msgctxt "PropertyName|"
+msgid "points"
+msgstr "точки"
+
+#: tool.cc:61
+#, fuzzy
+msgctxt "PropertyName|"
+msgid "unitsX"
+msgstr "единициХ"
+
+#: tool.cc:61
+#, fuzzy
+msgctxt "PropertyName|"
+msgid "Units along X axis"
+msgstr "Единици по оста Х"
+
+#: tool.cc:62
+#, fuzzy
+msgctxt "PropertyName|"
+msgid "unitsY"
+msgstr "единициY"
+
+#: tool.cc:62
+#, fuzzy
+msgctxt "PropertyName|"
+msgid "Units along Y axis"
+msgstr "Единици по оста Y"
+
+#: tool.cc:65
+#, fuzzy
+msgctxt "ObjectClass|"
+msgid "Meter"
+msgstr "Брояч"
+
+#: tool.cc:65
+#, fuzzy
+msgctxt "ObjectDescription|"
+msgid "Meter: displays any property on the scene"
+msgstr "Брояч: показва всяко свойство на сцената"
+
+#: tool.cc:67
+#, fuzzy
+msgctxt "PropertyDescription|"
+msgid "Meter position on the scene"
+msgstr "Позиция на брояча на сцената"
+
+#: tool.cc:68
+#, fuzzy
+msgctxt "PropertyDescription|"
+msgid "Meter size on the scene"
+msgstr "Размер на брояча на сцената"
+
+#: tool.cc:69
+#, fuzzy
+msgctxt "PropertyDescription|"
+msgid "Observed object"
+msgstr "Наблюдаван обект"
+
+#: tool.cc:69 tool.cc:81
+#, fuzzy
+msgctxt "PropertyName|"
+msgid "object"
+msgstr "обект"
+
+#: tool.cc:70
+#, fuzzy
+msgctxt "PropertyDescription|"
+msgid "Observed property"
+msgstr "Наблюдавано свойство"
+
+#: tool.cc:70 tool.cc:82
+#, fuzzy
+msgctxt "PropertyName|"
+msgid "property"
+msgstr "свойство"
+
+#: tool.cc:71 tool.cc:83
+#, fuzzy
+msgctxt "PropertyDescription|"
+msgid "Vector index"
+msgstr "Векторен индекс"
+
+#: tool.cc:71 tool.cc:83
+#, fuzzy
+msgctxt "PropertyName|"
+msgid "index"
+msgstr "индекс"
+
+#: tool.cc:72
+#, fuzzy
+msgctxt "PropertyDescription|"
+msgid "Display digits"
+msgstr "Показване на цифри"
+
+#: tool.cc:72
+#, fuzzy
+msgctxt "PropertyName|"
+msgid "digits"
+msgstr "цифри"
+
+#: tool.cc:73 tool.cc:90
+#, fuzzy
+msgctxt "PropertyDescription|"
+msgid "Value"
+msgstr "Стойност"
+
+#: tool.cc:73 tool.cc:90
+#, fuzzy
+msgctxt "PropertyName|"
+msgid "value"
+msgstr "стойност"
+
+#: tool.cc:74
+#, fuzzy
+msgctxt "PropertyDescription|"
+msgid "Units of measured property"
+msgstr "Единици на измерваното свойство"
+
+#: tool.cc:74 tool.cc:92
+#, fuzzy
+msgctxt "PropertyName|"
+msgid "units"
+msgstr "единици"
+
+#: tool.cc:77
+#, fuzzy
+msgctxt "ObjectClass|"
+msgid "Controller"
+msgstr "Контролер"
+
+#: tool.cc:77
+#, fuzzy
+msgctxt "ObjectDescription|"
+msgid "Controller: allows to easily control any property"
+msgstr "Контролер: позволява лесно да се контролира всяко свойство"
+
+#: tool.cc:79
+#, fuzzy
+msgctxt "PropertyDescription|"
+msgid "Controller position on the scene"
+msgstr "Позиция на контролера на сцената"
+
+#: tool.cc:80
+#, fuzzy
+msgctxt "PropertyDescription|"
+msgid "Controller size on the scene"
+msgstr "Размер на контролера на сцената"
+
+#: tool.cc:81
+#, fuzzy
+msgctxt "PropertyDescription|"
+msgid "Controlled object"
+msgstr "Контролиран обект"
+
+#: tool.cc:82
+#, fuzzy
+msgctxt "PropertyDescription|"
+msgid "Controlled property"
+msgstr "Контролирано свойство"
+
+#: tool.cc:84
+#, fuzzy
+msgctxt "PropertyDescription|"
+msgid "Limits"
+msgstr "Ограничения"
+
+#: tool.cc:84
+#, fuzzy
+msgctxt "PropertyName|"
+msgid "limits"
+msgstr "ограничения"
+
+#: tool.cc:85
+#, fuzzy
+msgctxt "PropertyName|"
+msgid "increaseShortcut"
+msgstr "увеличениеБързКлавиш"
+
+#: tool.cc:86
+#, fuzzy
+msgctxt "PropertyDescription|"
+msgid "Shortcut to increase the value"
+msgstr "Бърз клавиш за увеличаване на стойността"
+
+#: tool.cc:87
+#, fuzzy
+msgctxt "PropertyName|"
+msgid "decreaseShortcut"
+msgstr "намалениеБързКлавиш"
+
+#: tool.cc:88
+#, fuzzy
+msgctxt "PropertyDescription|"
+msgid "Shortcut to decrease the value"
+msgstr "Бърз клавиш за намаляване на стойността"
+
+#: tool.cc:89
+#, fuzzy
+msgctxt "PropertyDescription|"
+msgid "Increment value"
+msgstr "стойност на нарастването"
+
+#: tool.cc:89
+#, fuzzy
+msgctxt "PropertyName|"
+msgid "increment"
+msgstr "нарастване"
+
+#: tool.cc:92
+#, fuzzy
+msgctxt "PropertyDescription|"
+msgid "Units of controlled property"
+msgstr "Единици на контролираното свойство"
+
+#: tool.cc:95
+#, fuzzy
+msgctxt "ObjectClass|"
+msgid "Tracer"
+msgstr "Индикатор"
+
+#: tool.cc:95
+#, fuzzy
+msgctxt "ObjectDescription|"
+msgid "Tracer: traces trajectory of a point on a body"
+msgstr "Индикатор: проследява траекторията на точка от тялото"
+
+#: tool.cc:97
+#, fuzzy
+msgctxt "PropertyDescription|"
+msgid "Traced body"
+msgstr "Проследено тяло"
+
+#: tool.cc:99
+#, fuzzy
+msgctxt "PropertyDescription|"
+msgid "Local position"
+msgstr "Локална позиция"
+
+#: world.cc:32
+#, fuzzy
+msgctxt "ObjectClass|"
+msgid "Tool"
+msgstr "Инструмент"
+
+#: world.cc:32
+#, fuzzy
+msgctxt "ObjectDescription|"
+msgid "Tool"
+msgstr "Инструмент"
+
+#: world.cc:34
+#, fuzzy
+msgctxt "ObjectClass|"
+msgid "World"
+msgstr "Свят"
+
+#: world.cc:34
+#, fuzzy
+msgctxt "ObjectDescription|"
+msgid "World"
+msgstr "Свят"
+
+#: world.cc:35
+#, fuzzy
+msgctxt "PropertyDescription|"
+msgid "Current time"
+msgstr "Текущо време"
+
+#: world.cc:35
+#, fuzzy
+msgctxt "PropertyName|"
+msgid "time"
+msgstr "време"
+
+#: world.cc:36
+#, fuzzy
+msgctxt "PropertyDescription|"
+msgid "Simulation speed scale"
+msgstr "Мащаб на скоростта на симулацията"
+
+#: world.cc:36
+#, fuzzy
+msgctxt "PropertyName|"
+msgid "timeScale"
+msgstr "времеМащаб"
+
+#: world.cc:37
+#, fuzzy
+msgctxt "PropertyName|"
+msgid "errorsCalculation"
+msgstr "грешкиИзчисление"
+
+#: world.cc:38
+#, fuzzy
+msgctxt "PropertyDescription|"
+msgid "Enable global error calculation"
+msgstr "Включва глобално изчисление на грешки"
+
+#: xmlfile.cc:201
+#, fuzzy
+msgctxt "QObject|"
+msgid "The file is not a StepCoreXML file."
+msgstr "Файлът не е от тип StepCoreXML."
+
+#: xmlfile.cc:247
+#, fuzzy, qt-format
+msgctxt "QObject|"
+msgid "Unknown item type \"%1\""
+msgstr "Неизвестен тип на елемента \"%1\""
+
+#: xmlfile.cc:268
+#, fuzzy, qt-format
+msgctxt "QObject|"
+msgid "Unknown solver type \"%1\""
+msgstr "Неизвестен тип решавач \"%1\""
+
+#: xmlfile.cc:282
+#, fuzzy, qt-format
+msgctxt "QObject|"
+msgid "Unknown collisionSolver type \"%1\""
+msgstr "Неизвестен тип колизияРешавач \"%1\""
+
+#: xmlfile.cc:296
+#, fuzzy, qt-format
+msgctxt "QObject|"
+msgid "Unknown constraint solver type \"%1\""
+msgstr "Неизвестен тип ограничениеРешавач \"%1\""
+
+#: xmlfile.cc:324
+#, qt-format
+msgctxt "QObject|"
+msgid "Wrong ID attribute value for %1"
+msgstr ""
+
+#: xmlfile.cc:329
+#, qt-format
+msgctxt "QObject|"
+msgid "Non-unique ID attribute value for %1"
+msgstr ""
+
+#: xmlfile.cc:357 xmlfile.cc:371
+#, fuzzy, qt-format
+msgctxt "QObject|"
+msgid "Property \"%1\" of \"%2\" has illegal value"
+msgstr "Свойството \"%1\" на \"%2\" има недопустима стойност"
+
+#: xmlfile.cc:384
+#, fuzzy
+msgctxt "QObject|"
+msgid "File is not writable."
+msgstr "Файлът не е записваем."

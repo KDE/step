@@ -1,0 +1,312 @@
+<chapter id="examples">
+<title
+>Voorbeelden voor &step;</title>
+
+<para
+>Het pakket &step; bevat een aantal instructieve voorbeelden om u te helpen de principes van hoe de toepassing werkt te verstaan: </para>
+
+<variablelist>
+  <varlistentry>
+    <term
+><menuchoice
+><guimenu
+>Bestand</guimenu
+> <guimenuitem
+>Voorbeelden</guimenuitem
+></menuchoice
+></term>
+    <listitem
+><para
+><action
+>Opent een submenu</action
+> met verschillende actie-items.</para>
+    <variablelist>
+      <varlistentry>
+        <term
+><guimenuitem
+>Voorbeeld openen...</guimenuitem
+></term>
+        <listitem
+><para
+><action
+>Opent een voorbeeld</action
+> uit de standaard set</para
+></listitem>
+      </varlistentry>
+      <varlistentry>
+        <term
+><guimenuitem
+>Gedownload voorbeeld openen...</guimenuitem
+></term>
+        <listitem
+><para
+><action
+>Opent de gedownloade voorbeelden.</action
+></para
+></listitem>
+      </varlistentry>
+      <varlistentry>
+        <term
+><guimenuitem
+>Nieuwe experimenten downloaden...</guimenuitem
+></term>
+        <listitem
+><para
+><action
+>Voorbeelden downloaden</action
+> gedeeld door andere gebruikers.</para
+></listitem>
+      </varlistentry>
+      <varlistentry>
+        <term
+><guimenuitem
+>Huidig experiment delen...</guimenuitem
+></term>
+        <listitem
+><para
+><action
+>U kunt uw eigen voorbeelden delen.</action
+></para
+></listitem>
+      </varlistentry>
+    </variablelist>
+    </listitem>
+  </varlistentry>
+</variablelist>
+
+<para
+>Hieronder vindt u de beschrijving van de standaard voorbeelden. </para>
+
+<variablelist>
+  <varlistentry id="brownian">
+    <term
+><filename
+>brownian.step</filename
+></term>
+    <listitem
+><para
+>Plot de baan van een stijve schijf in interactie met 40 deeltjes die willekeurig bewegen in een doos. In dit voorbeeld wordt de <ulink url="https://en.wikipedia.org/wiki/Brownian_motion"
+>Brownse beweging</ulink
+> in een ideaal gas gesimuleerd.</para
+></listitem>
+  </varlistentry>
+
+  <varlistentry id="pendulum">
+    <term
+><filename
+>doublependulum.step</filename
+></term>
+    <listitem
+><para
+>In dit voorbeeld wordt de <ulink url="https://en.wikipedia.org/wiki/Double_pendulum"
+>double pendulum motion</ulink
+> met 2 massadeeltjes gesimuleerd (Engels. Nederlandse Googlevertaling hiervan is te vinden op <ulink url="http://translate.google.com/translate?hl=nl&amp;langpair=en|nl&amp;u=http://en.wikipedia.org/wiki/Double_pendulum"
+>Dubbele slinger</ulink
+>).</para
+></listitem>
+  </varlistentry>
+
+  <varlistentry id="eightpendulum">
+    <term
+><filename
+>eightpendulum.step</filename
+></term>
+    <listitem
+><para
+>Dit voorbeeld is een eenvoudige demonstratie van de bekende <ulink url="https://en.wikipedia.org/wiki/Newton%27s_cradle"
+>Newton's cradle</ulink
+> (Newton's wieg). In &step; worden hiervoor stokken gebruikt, 8 schijven en een doos. De zes ballen in het midden staan stil, omdat zij slechts de impuls en energie doorgeven, en niet de beweging.</para
+></listitem>
+  </varlistentry>
+
+  <varlistentry id="first">
+    <term
+><filename
+>first.step</filename
+>: Eerste voorbeeld</term>
+    <listitem
+><para
+>Dit voorbeeld heeft twee gedeelten. In het eerste deel zijn twee deeltjes met elkaar verbonden door een veer, en in het tweede deel zijn er twee geladen deeltjes. </para>
+    <variablelist>
+      <varlistentry id="first-two-particles">
+        <term
+>Twee deeltjes met elkaar verbonden door een veer</term>
+        <listitem
+><para
+>In dit voorbeeld worden twee deeltjes toegevoegd, en een veer die beide verbindt. De eigenschappen van beide deeltjes, zoals snelheid, impuls, positie &etc; worden  in de eigenschappen-browser ingesteld. De eigenschappen van de veer, zoals stijfheid, rustlengte, demping &etc; worden ook hierin ingesteld. </para>
+
+        <para
+><emphasis
+>UItleg van de situatie:</emphasis>
+        </para>
+
+        <para
+>Dit is een goed voorbeeld van een eenvoudige harmonische beweging. Hier wordt de versnelling van het ene deeltje ingesteld in de richting van de positieve x-as, en de versnelling van het andere deeltje in de richting van de negatieve x-as. Als gevolg hiervan trekken beide deeltjes in tegengestelde richting aan de veer, terwijl de veer de beide deeltjes weer naar hun oorspronkelijke posities terugtrekt. Zo voert het systeem een eenvoudige harmonische beweging uit. Op het scherm (de scene)  ziet u de simulatie van de deeltjes en de veer onder deze condities. </para
+></listitem>
+      </varlistentry>
+
+      <varlistentry id="first-two-charged">
+        <term
+>Twee geladen deeltjes</term>
+        <listitem
+><para
+>Elk deeltje krijgt een snelheid in een willekeurige richting, maar beide deeltjes hebben een gelijke, tegengestelde lading, zodat zij elkander aantrekken. Op deze manier ontstaat op het scherm (scene) de simulatie van geladen deeltjes onder deze omstandigheden </para
+></listitem>
+      </varlistentry>
+    </variablelist>
+    </listitem>
+  </varlistentry>
+
+  <varlistentry id="fourpendula">
+    <term
+><filename
+>fourpendula.step</filename
+></term>
+    <listitem
+><para
+>Dit voorbeeld is een goede demonstratie van de <ulink url="https://en.wikipedia.org/wiki/Newton%27s_cradle"
+>Newton's cradle</ulink
+> (Newton's wieg). Omdat het systeem imperfect is zullen de twee schijven in het midden zichtbaar in de tijd bewegen.</para
+></listitem>
+  </varlistentry>
+
+  <varlistentry id="gas">
+    <term
+><filename
+>gas.step</filename
+></term>
+    <listitem
+><para
+>In dit voorbeeld wordt de gasdruk door de <ulink url="https://en.wikipedia.org/wiki/Brownian_motion"
+>Brownse beweging</ulink
+> in een ideaal gas gesimuleerd.</para
+></listitem>
+  </varlistentry>
+
+  <varlistentry id="graph">
+    <term
+><filename
+>graph.step</filename
+></term>
+    <listitem
+><para
+>Plot de grafiek van snelheid tegen positie voor deeltje1 in het systeem van twee deeltjes verbonden door een veer.</para
+></listitem>
+  </varlistentry>
+
+  <varlistentry id="liquid">
+    <term
+><filename
+>liquid.step</filename
+></term>
+    <listitem
+><para
+>In dit voorbeeld wordt een eenatomig gas gesimuleerd.</para
+></listitem>
+  </varlistentry>
+
+  <varlistentry id="lissajous">
+    <term
+><filename
+>lissajous.step</filename
+></term>
+    <listitem
+><para
+>In dit voorbeeld wordt een <ulink url="https://en.wikipedia.org/wiki/Lissajous_curve"
+>Lissajouskromme</ulink
+> gesimuleerd met een twee deeltjesmodel. De parameters voor dit model kunnen worden veranderd met behulp van de besturing in het midden van de wereld.</para
+></listitem>
+  </varlistentry>
+
+  <varlistentry id="motor1">
+    <term
+><filename
+>motor1.step</filename
+></term>
+    <listitem
+><para
+>Simulatie van een driehoekig stijf lichaam onder de belasting van de drie lineaire motoren.</para
+></listitem>
+  </varlistentry>
+
+  <varlistentry id="motor-example">
+    <term
+><filename
+>motor.step</filename
+></term>
+    <listitem
+><para
+>Simulatie van de wisselwerking van de lineaire motor en een stijf rechthoekig lichaam op een veer.</para
+></listitem>
+  </varlistentry>
+
+  <varlistentry id="note-example">
+    <term
+><filename
+>note.step</filename
+></term>
+    <listitem
+><para
+>Voorbeeld van &latex;-formule (<ulink url="http://en.wikipedia.org/wiki/Divergence_theorem"
+>divergentie theorema</ulink
+>) en ingebedde afbeelding.</para
+></listitem>
+  </varlistentry>
+
+  <varlistentry id="resonance">
+    <term
+><filename
+>resonance.step</filename
+></term>
+    <listitem
+><para
+>In dit voorbeeld wordt resonantie gesimuleerd in het systeem met circulaire motor.</para
+></listitem>
+  </varlistentry>
+
+  <varlistentry id="softbody">
+    <term
+><filename
+>softbody.step</filename
+></term>
+    <listitem
+><para
+>In dit voorbeeld wordt de wisselwerking gesimuleerd van twee stijve lichamen met een zacht lichaam er tussen.</para
+></listitem>
+  </varlistentry>
+
+  <varlistentry id="solar">
+    <term
+><filename
+>solar.step</filename
+></term>
+    <listitem
+><para
+>In dit voorbeeld worden de bewegingen in het zonnestelsel (Zon en planeten) gesimuleerd.</para
+></listitem>
+  </varlistentry>
+
+  <varlistentry id="springs">
+    <term
+><filename
+>springs.step</filename
+></term>
+    <listitem
+><para
+>In dit voorbeeld worden de bewegingen in het systeem in één vlak van 5 deeltjes, met elkaar door vier veren verbonden, gesimuleerd.</para
+></listitem>
+  </varlistentry>
+
+  <varlistentry id="wave">
+    <term
+><filename
+>wave.step</filename
+></term>
+    <listitem
+><para
+>De grafiek op het scherm (scene) toont op- en neergaande bewegingen van het groene deeltje. Wanneer de simulatie begint, begint de golf weg te lopen van het rode deeltje. Het blauwe deeltje reflecteert de golf, die daarna in de tegengestelde richting loopt, totdat die weer door het rode deeltje wordt terug gekaatst. Na verloop van tijd verdwijnt de golf als gevolg van demping in de veren.</para
+></listitem>
+  </varlistentry>
+</variablelist>
+
+</chapter>

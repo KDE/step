@@ -1,0 +1,718 @@
+# Copyright (C) YEAR This file is copyright:
+# This file is distributed under the same license as the step package.
+#
+# Freek de Kruijf <freekdekruijf@kde.nl>, 2019.
+# jaap <jjhwoldringh@kde.nl>, 2019.
+msgid ""
+msgstr ""
+"Project-Id-Version: step\n"
+"Report-Msgid-Bugs-To: https://bugs.kde.org\n"
+"POT-Creation-Date: 2020-06-17 01:58+0200\n"
+"PO-Revision-Date: 2019-11-29 21:41+0100\n"
+"Last-Translator: jaap <jjhwoldringh@kde.nl>\n"
+"Language-Team: Dutch <kde-i18n-nl@kde.org>\n"
+"Language: nl\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: Lokalize 2.0\n"
+
+#: objectinfo/anchor.html:6
+#, kde-format
+msgctxt "anchor.html:title"
+msgid "Anchor"
+msgstr "Anker"
+
+#: objectinfo/anchor.html:9
+#, kde-format
+msgctxt "anchor.html:p"
+msgid ""
+"Anchor is a joint that fixes position of the body. The body can not move "
+"when it has an anchor."
+msgstr ""
+"Een anker is een koppeling waarmee de positie wordt vastgezet van een "
+"lichaam. Het lichaam kan niet bewegen als het een anker heeft."
+
+#: objectinfo/box.html:6
+#, kde-format
+msgctxt "box.html:title"
+msgid "Box"
+msgstr "Vak"
+
+#: objectinfo/box.html:9
+#, kde-format
+msgctxt "box.html:p"
+msgid "A rigid box with a unique name and the following parameters:"
+msgstr "Een stijf vak met een unieke naam en de volgende parameters:"
+
+#: objectinfo/box.html:21
+#, kde-format
+msgctxt "box.html:body"
+msgid ""
+"<ul>\n"
+"\t\t<li><b>position:</b> The X/Y position of the center of mass of the box, "
+"relative to the center of the <a href=\"objinfo:World\">world</a>.</li>\n"
+"\t\t<li><b>angle:</b> By how much the box is rotated in positive direction, "
+"that is clock-wise.</li>\n"
+"\t\t<li><b>velocity:</b> The velocity of the center of mass of the box. "
+"Unit: meters/second.</li>\n"
+"\t\t<li><b>angular velocity:</b> How fast the box is spinning in positive "
+"direction, that is clock-wise.</li>\n"
+"\t\t<li><b>mass:</b> Total mass of the box. This influences forces with "
+"which the box interacts with other items.</li>\n"
+"\t\t<li><b>inertia:</b> How difficult it is to change the box's rotation.</"
+"li>\n"
+"\t\t<li><b>momentum:</b> A fundamental quantity in mechanics that is "
+"conserved in the absence of external forces. A product of the mass and the "
+"velocity.</li>\n"
+"\t\t<li><b>angular momentum:</b> Measure of the extent to which the box will "
+"continue to rotate unless acted upon by an external torque.</li>\n"
+"\t\t<li><b>kinetic energy:</b> The work needed to accelerate the body of a "
+"given mass from rest to its current velocity.</li>\n"
+"\t\t<li><b>size:</b> Defines width and height of the box.</li>\n"
+"\t</ul>"
+msgstr ""
+"<ul>\n"
+"\t\t<li><b>positie:</b> De X/Y-positie van het zwaartepunt van het vak, "
+"relatief ten opzichte van de<a href=\"objinfo:World\">wereld</a>.</li>\n"
+"\t\t<li><b>hoek:</b> Hoeveel het vak is gedraaid in positieve richting, dus "
+"rechtsom.</li>\n"
+"\t\t<li><b>snelheid:</b> De snelheid van het zwaartepunt van het vak. "
+"Eenheid: meters/seconde.</li>\n"
+"\t\t<li><b>hoeksnelheid:</b> Hoe snel het vak draait in positieve richting, "
+"dus rechtsom.</li>\n"
+"\t\t<li><b>massa:</b> Totale massa van het vak. Dit bepaalt hoe het vak zich "
+"gedraagt met andere lichamen.</li>\n"
+"\t\t<li><b>traagheid:</b> Hoe moeilijk het is de rotatie van het vak te "
+"wijzigen.</li>\n"
+"\t\t<li><b>moment:</b> Een fundamentele grootheid in de mechanica die "
+"behouden is (zelfde blijft) in de afwezigheid van externe krachten. Een "
+"product van de massa en de snelheid.</li>\n"
+"\t\t<li><b>hoekmoment:</b> Maat van in hoeverre het vak zal blijven roteren "
+"bij afwezigheid van een externe torsiekracht.</li>\n"
+"\t\t<li><b>kinetische energie:</b> De energie die nodig is om een lichaam "
+"met een gegeven massa te versnellen vanuit rust naar zijn huidige snelheid.."
+"</li>\n"
+"\t\t<li><b>grootte:</b> Bepaalt de breedte en de hoogte van het vak.</li>\n"
+"\t</ul>"
+
+#: objectinfo/chargedparticle.html:6
+#, kde-format
+msgctxt "chargedparticle.html:title"
+msgid "Charged Particle"
+msgstr "Geladen deeltje"
+
+#: objectinfo/chargedparticle.html:9
+#, kde-format
+msgctxt "chargedparticle.html:p"
+msgid ""
+"A zero-sized particle which carries an electric charge. It has a unique name "
+"and five parameters:"
+msgstr ""
+"Een deeltje met grootte nul, die een elektrische lading draagt. het heeft "
+"een unieke naam en vijf parameters:"
+
+#: objectinfo/chargedparticle.html:16
+#, kde-format
+msgctxt "chargedparticle.html:body"
+msgid ""
+"<ul>\n"
+"\t\t<li><b>position:</b> The X/Y position of the particle, relative to the "
+"center of the <a href=\"objinfo:World\">world</a>.</li>\n"
+"\t\t<li><b>velocity:</b> the velocity of the particle. Unit: meters/second.</"
+"li>\n"
+"\t\t<li><b>force:</b> the force with which the particle is moving around.</"
+"li>\n"
+"\t\t<li><b>mass:</b> the mass of the particle. This influences forces with "
+"which the particle interacts with other items.</li>\n"
+" \t\t<li><b>charge:</b> The amount of positive or negative electricity "
+"deposited on the particle. Unit: Coulomb.</li>\n"
+"\t</ul>"
+msgstr ""
+"<ul>\n"
+"\t\t<li><b>positie:</b> De X/Y-positie van het zwaartepunt van het deeltje, "
+"relatief ten opzichte van de<a href=\"objinfo:World\">wereld</a>.</li>\n"
+"\t\t<li><b>snelheid:</b> De snelheid van het zwaartepunt van het deeltje. "
+"Eenheid: meters/seconde.</li>\n"
+"\t\t<li><b>kracht:</b> de kracht waarmee het deeltje beweegt.</li>\n"
+"\t\t<li><b>massa:</b> Totale massa van het deeltje. Dit bepaalt hoe het "
+"deeltje zich gedraagt met andere lichamen.</li>\n"
+" \t\t<li><b>lading:</b> De hoeveelheid positieve of negatieve elektriciteit "
+"op het deeltje. Eenheid: Coulomb.</li>\n"
+"\t</ul> "
+
+#: objectinfo/coulombforce.html:6
+#, kde-format
+msgctxt "coulombforce.html:title"
+msgid "Coulomb Force"
+msgstr "Coulombkracht"
+
+#: objectinfo/coulombforce.html:9
+#, kde-format
+msgctxt "coulombforce.html:p"
+msgid "Coulomb force is a force of interaction between charged particles."
+msgstr "De Coulombkracht is een kracht tussen geladen deeltjes."
+
+#: objectinfo/coulombforce.html:10
+#, kde-format
+msgctxt "coulombforce.html:p"
+msgid "<b>Coulomb's law</b>"
+msgstr "<b>Wet van Coulomb</b>"
+
+#: objectinfo/coulombforce.html:11
+#, kde-format
+msgctxt "coulombforce.html:body"
+msgid ""
+"<li>The magnitude of the electrostatic force between two point electric "
+"charges is directly proportional to the product of the magnitudes of each of "
+"the charges and inversely proportional to the square of the distance between "
+"the two charges.</li>"
+msgstr ""
+"<li>De grootte van de elektrostatische kracht tussen twee elektrische "
+"puntladingen is recht evenredig met het product van de groottes van de beide "
+"ladingen, en omgekeerd evenredig met het kwadraat van hun onderlinge afstand."
+"</li>"
+
+#: objectinfo/coulombforce.html:12
+#, kde-format
+msgctxt "coulombforce.html:p"
+msgid ""
+"For more details, please refer to the <a href=\"https://en.wikipedia.org/"
+"wiki/Coulomb's_law\">Coulomb Force</a>."
+msgstr ""
+"Voor verdere bijzonderheden, zie <a href=\"https://nl.wikipedia.org/wiki/"
+"Wet_van_Coulomb\">Coulombkracht</a>."
+
+#: objectinfo/disk.html:6
+#, kde-format
+msgctxt "disk.html:title"
+msgid "Disk"
+msgstr "Schijf"
+
+#: objectinfo/disk.html:9
+#, kde-format
+msgctxt "disk.html:p"
+msgid "A rigid disk with a unique name and the following parameters:"
+msgstr "Een stijve schijf met een unieke naam en de volgende parameters:"
+
+#: objectinfo/disk.html:21
+#, kde-format
+msgctxt "disk.html:body"
+msgid ""
+"<ul>\n"
+"\t\t<li><b>position:</b> The X/Y position of the center of mass of the disk, "
+"relative to the center of the <a href=\"objinfo:World\">world</a>.</li>\n"
+"\t\t<li><b>angle:</b> By how much the disk is rotated in positive direction, "
+"that is clock-wise.</li>\n"
+"\t\t<li><b>velocity:</b> The velocity of the center of mass of the disk. "
+"Unit: meters/second.</li>\n"
+"\t\t<li><b>angular velocity:</b> How fast the disk is spinning in positive "
+"direction, that is clock-wise.</li>\n"
+"\t\t<li><b>mass:</b> Total mass of the disk. This influences forces with "
+"which the disk interacts with other items.</li>\n"
+"\t\t<li><b>inertia:</b> How difficult it is to change the disk's rotation.</"
+"li>\n"
+"\t\t<li><b>momentum:</b> A fundamental quantity in mechanics that is "
+"conserved in the absence of external forces. A product of the mass and the "
+"velocity.</li>\n"
+"\t\t<li><b>angular momentum:</b> Measure of the extent to which the disk "
+"will continue to rotate unless acted upon by an external torque.</li>\n"
+"\t\t<li><b>kinetic energy:</b> The work needed to accelerate the body of a "
+"given mass from rest to its current velocity.</li>\n"
+"\t\t<li><b>radius:</b> Defines how big the disk is.</li>\n"
+"\t</ul>"
+msgstr ""
+"<ul>\n"
+"\t\t<li><b>positie:</b> De X/Y-positie van het zwaartepunt van de schijf, "
+"relatief ten opzichte van de<a href=\"objinfo:World\">wereld</a>.</li>\n"
+"\t\t<li><b>hoek:</b> Hoeveel de schijf is gedraaid in positieve richting, "
+"dus rechtsom.</li>\n"
+"\t\t<li><b>snelheid:</b> De snelheid van het zwaartepunt van de schijf. "
+"Eenheid: meters/seconde.</li>\n"
+"\t\t<li><b>hoeksnelheid:</b> Hoe snel de schijf draait in positieve "
+"richting, dus rechtsom.</li>\n"
+"\t\t<li><b>massa:</b> Totale massa van de schijf. Dit bepaalt hoe de schijf "
+"zich gedraagt met andere lichamen.</li>\n"
+"\t\t<li><b>traagheid:</b> Hoe moeilijk het is de rotatie van de schijf te "
+"wijzigen.</li>\n"
+"\t\t<li><b>moment:</b> Een fundamentele grootheid in de mechanica die "
+"behouden is (zelfde blijft) in de afwezigheid van externe krachten. Een "
+"product van de massa en de snelheid.</li>\n"
+"\t\t<li><b>hoekmoment:</b> Maat van in hoeverre het vak zal blijven roteren "
+"bij afwezigheid van een externe torsiekracht.</li>\n"
+"\t\t<li><b>kinetische energie:</b> De energie die nodig is om een lichaam "
+"met een gegeven massa te versnellen vanuit rust naar zijn huidige snelheid.."
+"</li>\n"
+"\t\t<li><b>straal:</b> bepaalt de grootte van de schijf.</li>\n"
+"\t</ul> "
+
+#: objectinfo/gas.html:6
+#, kde-format
+msgctxt "gas.html:title"
+msgid "Gas"
+msgstr "Gas"
+
+#: objectinfo/gas.html:9
+#, kde-format
+msgctxt "gas.html:p"
+msgid ""
+"A gas is a collection of <a href=\"objinfo:GasParticle\">gasoline particles</"
+"a>. Associated with the gas is a <a href=\"objinfo:GasLJForce\">force</a>. "
+"To add gas particles right-click the gas and click on \"Create particles\"."
+msgstr ""
+"Een gas is een verzameling van <a href=\"objinfo:GasParticle\">gasdeeltjes</"
+"a>. Bij een gas hoort een <a href=\"objinfo:GasLJForce\">kracht</a>. "
+"Aanmaken van meer gasdeeltjes doet u door op het gas te rechtsklikken en te "
+"klikken op \"Aanmaken deeltjes\"."
+
+#: objectinfo/gas.html:10
+#, kde-format
+msgctxt "gas.html:p"
+msgid ""
+"For details about the math used to calculate the forces, please refer to the "
+"<a href=\"https://en.wikipedia.org/wiki/Lennard-Jones_potential\">Lennard-"
+"Jones potential</a>."
+msgstr ""
+"Voor bijzonderheden over de wiskunde, nodig voor het berekenen van de "
+"krachten, zie <a href=\"https://nl.wikipedia.org/wiki/Lennard-Jones-"
+"potentiaal\">Lennard-Jones potential</a>."
+
+#: objectinfo/gasljforce.html:6
+#, kde-format
+msgctxt "gasljforce.html:title"
+msgid "Force"
+msgstr "Kracht"
+
+#: objectinfo/gasljforce.html:9
+#, kde-format
+msgctxt "gasljforce.html:p"
+msgid ""
+"This force simulates the <a href=\"https://en.wikipedia.org/wiki/Lennard-"
+"Jones_potential\">Lennard-Jones potential</a>. There are three parameters "
+"for this force:"
+msgstr ""
+"Deze kracht simuleert de <a href=\"https://nl.wikipedia.org/wiki/Lennard-"
+"Jones-potentiaal\">Lennard-Jones potentiaal</a>. Deze kracht heeft drie "
+"parameters:"
+
+#: objectinfo/gasljforce.html:14
+#, kde-format
+msgctxt "gasljforce.html:body"
+msgid ""
+"<ul>\n"
+"        <li><b>depth:</b> The minimum value of the Lennard-Jones potential "
+"well</li>\n"
+"        <li><b>rmin:</b> The distance from the origin to the minimum of the "
+"potential</li>\n"
+"        <li><b>cutoff:</b> The distance, where the Lennard-Jones (LJ) "
+"potential is often truncated to save computational time</li>\n"
+"\t</ul>"
+msgstr ""
+"<ul>\n"
+"        <li><b>diepte:</b> De ondergrens van de potentiaalput van Lennard-"
+"Jones</li>\n"
+"        <li><b>rmin:</b> De afstand van de oorsprong tot het laagste   "
+"potentiaalpunt (de bodem van de potentiaalput)</li>\n"
+"        <li><b>afsnijd-afstand:</b> De afstand waarop de Lennard-Jones (LJ) "
+"potentiaal vaak wordt afgesneden om rekentijd te besparen</li>\n"
+"\t</ul>"
+
+#: objectinfo/gasljforce.html:15
+#, kde-format
+msgctxt "gasljforce.html:p"
+msgid ""
+"These parameters are empirical and are usually obtained from experiment or "
+"some rough estimation."
+msgstr ""
+"Deze parameters zijn proefondervindelijk bepaald en worden gewoonlijk uit "
+"experimenten of ruwe afschattingen verkregen."
+
+#: objectinfo/gasparticle.html:6
+#, kde-format
+msgctxt "gasparticle.html:title"
+msgid "Gas Particle"
+msgstr "Gasdeeltje"
+
+#: objectinfo/gasparticle.html:9
+#, kde-format
+msgctxt "gasparticle.html:p"
+msgid ""
+"A <a href=\"objinfo:Gas\">gas</a> particle simulates one single particle in "
+"a gasoline system. Each particle is tracked individually and has a unique "
+"name and four parameters:"
+msgstr ""
+"Een <a href=\"objinfo:Gas\">gas</a>deeltje simuleert een enkel deeltje in "
+"een gassysteem. Elk deeltje wordt individueel gevolgd en heeft een unieke "
+"naam en vier parameters:"
+
+#: objectinfo/gasparticle.html:15
+#, kde-format
+msgctxt "gasparticle.html:body"
+msgid ""
+"<ul>\n"
+"\t\t<li><b>position:</b> The X/Y position of the particle relative, to the "
+"center of the <a href=\"objinfo:World\">world</a>.</li>\n"
+"\t\t<li><b>velocity:</b> the velocity of the particle. Unit: meters/second.</"
+"li>\n"
+"\t\t<li><b>force:</b> the force with which the particle is moving around.</"
+"li>\n"
+"\t\t<li><b>mass:</b> the mass of the particle. This influences forces with "
+"which the particle interacts with other items.</li>\n"
+"\t</ul>"
+msgstr ""
+"<ul>\n"
+"\t\t<li><b>positie:</b> De X/Y-positie van het zwaartepunt van het deeltje, "
+"relatief ten opzichte van de<a href=\"objinfo:World\">wereld</a>.</li>\n"
+"\t\t<li><b>snelheid:</b> De snelheid van het zwaartepunt van het deeltje. "
+"Eenheid: meters/seconde.</li>\n"
+"\t\t<li><b>kracht:</b> de kracht waarmee het deeltje beweegt.</li>\n"
+"\t\t<li><b>massa:</b> De massa van het deeltje. Dit bepaalt hoe het deeltje "
+"zich gedraagt met andere lichamen.</li>\n"
+"\t</ul>"
+
+#: objectinfo/gravitationforce.html:6
+#, kde-format
+msgctxt "gravitationforce.html:title"
+msgid "Gravitation Force"
+msgstr "Zwaartekracht"
+
+#: objectinfo/gravitationforce.html:9
+#, kde-format
+msgctxt "gravitationforce.html:p"
+msgid ""
+"Gravitational force is an attractive force that act between bodies having "
+"mass."
+msgstr ""
+"De  zwaartekracht is een aantrekkende kracht die twee lichamen met massa op "
+"elkaar uitoefenen."
+
+#: objectinfo/gravitationforce.html:10
+#, kde-format
+msgctxt "gravitationforce.html:p"
+msgid "<b>Newton's law</b>"
+msgstr "<b>De wet van Newton</b>"
+
+#: objectinfo/gravitationforce.html:11
+#, kde-format
+msgctxt "gravitationforce.html:body"
+msgid ""
+"<li>Every body in the universe attracts every other body with a force, which "
+"is proportional to the product of the masses of the bodies and inversely "
+"proportional to square of the distance between them.</li>"
+msgstr ""
+"<li>Elk lichaam in het heelal trekt elk ander lichaam aan met een kracht die "
+"recht evenredig is met het product van de massa's van beide lichamen, en "
+"omgekeerd evenredig met het kwadraat van hun onderlinge afstand.</li>"
+
+#: objectinfo/gravitationforce.html:12
+#, kde-format
+msgctxt "gravitationforce.html:p"
+msgid "<b>General relativity</b>"
+msgstr "<b>Algemene relativiteit</b>"
+
+#: objectinfo/gravitationforce.html:13
+#, kde-format
+msgctxt "gravitationforce.html:body"
+msgid ""
+"<li>In general relativity gravitation is explained on the basis of curvature "
+"of space-time.</li>"
+msgstr ""
+"<li>In de algemene relativiteitsleer wordt de zwaartekracht verklaard op "
+"grond van de kromming van de ruimte-tijd.</li>"
+
+#: objectinfo/gravitationforce.html:14
+#, kde-format
+msgctxt "gravitationforce.html:p"
+msgid ""
+"For more details, please refer to the <a href=\"https://en.wikipedia.org/"
+"wiki/Gravitation\">Gravitation Force</a>."
+msgstr ""
+"Zie verder <a href=\"https://nl.wikipedia.org/wiki/Zwaartekracht"
+"\">Zwaartekracht</a>."
+
+#: objectinfo/linearmotor.html:6
+#, kde-format
+msgctxt "linearmotor.html:title"
+msgid "Linear Motor"
+msgstr "Lineaire motor"
+
+#: objectinfo/linearmotor.html:9
+#, kde-format
+msgctxt "linearmotor.html:p"
+msgid "A linear motor produces a linear force along its length."
+msgstr "Een lineaire motor genereert een lineaire kracht langs zijn lengteas."
+
+#: objectinfo/linearmotor.html:10
+#, kde-format
+msgctxt "linearmotor.html:p"
+msgid ""
+"You can set the desired linear force for an object by changing the force "
+"value in the properties browser."
+msgstr ""
+"U kunt de gewenste lineaire kracht voor een object instellen door de waarde "
+"ervan te wijzigen in zijn eigenschappen."
+
+#: objectinfo/meter.html:6
+#, kde-format
+msgctxt "meter.html:title"
+msgid "Meter"
+msgstr "Meter"
+
+#: objectinfo/meter.html:9
+#, kde-format
+msgctxt "meter.html:p"
+msgid ""
+"A meter can show you values of properties. The meter can be configured to "
+"show property of any given object of the simulation."
+msgstr ""
+"Een meter kan u waarden tonen van eigenschappen. De meter kan worden "
+"ingesteld dat die een eigenschap toont van enig object in de simulatie."
+
+#: objectinfo/note.html:6
+#, kde-format
+msgctxt "note.html:title"
+msgid "Note"
+msgstr "Notitie"
+
+#: objectinfo/note.html:9
+#, kde-format
+msgctxt "note.html:p"
+msgid "You can use notes to place text on the canvas of Step."
+msgstr "Met notities kunt u tekst plaatsen op het canvas van Step."
+
+#: objectinfo/particle.html:6
+#, kde-format
+msgctxt "particle.html:title"
+msgid "Particle"
+msgstr "Deeltje"
+
+#: objectinfo/particle.html:9
+#, kde-format
+msgctxt "particle.html:p"
+msgid "A zero-sized particle which has a unique name and four parameters:"
+msgstr "Een deeltje met grootte nul, met een unieke naam en vier parameters:"
+
+#: objectinfo/particle.html:15
+#, kde-format
+msgctxt "particle.html:body"
+msgid ""
+"<ul>\n"
+"\t\t<li><b>position:</b> The X/Y position of the particle, relative to the "
+"center of the <a href=\"objinfo:World\">world</a>.</li>\n"
+"\t\t<li><b>velocity:</b> the velocity of the particle. Unit: meters/second.</"
+"li>\n"
+"\t\t<li><b>force:</b> the force with which the particle is moving around.</"
+"li>\n"
+"\t\t<li><b>mass:</b> the mass of the particle. This influences forces with "
+"which the particle interacts with other items.</li>\n"
+"\t</ul>"
+msgstr ""
+"<ul>\n"
+"\t\t<li><b>positie:</b> De X/Y-positie van het zwaartepunt van het deeltje, "
+"relatief ten opzichte van de<a href=\"objinfo:World\">wereld</a>.</li>\n"
+"\t\t<li><b>snelheid:</b> De snelheid van het deeltje. Eenheid: meters/"
+"seconde.</li>\n"
+"\t\t<li><b>kracht:</b> de kracht waarmee het deeltje beweegt.</li>\n"
+"\t\t<li><b>massa:</b> Totale massa van het deeltje. Dit bepaalt hoe het "
+"deeltje zich gedraagt met andere lichamen.</li>\n"
+"\t</ul> "
+
+#: objectinfo/pin.html:6
+#, kde-format
+msgctxt "pin.html:title"
+msgid "Pin"
+msgstr "Pin"
+
+#: objectinfo/pin.html:9
+#, kde-format
+msgctxt "pin.html:p"
+msgid ""
+"A pin is a joint that fixes a particular point of the body, The body can "
+"still move around the pin."
+msgstr ""
+"Een pin is een koppeling die een bepaald punt van het lichaam vastzet. Het "
+"lichaam kan wel bewegen rondom de pin."
+
+#: objectinfo/polygon.html:6
+#, kde-format
+msgctxt "polygon.html:title"
+msgid "Polygon"
+msgstr "Veelhoek"
+
+#: objectinfo/polygon.html:9
+#, kde-format
+msgctxt "polygon.html:p"
+msgid "A rigid polygon with a unique name and the following parameters:"
+msgstr "Een stijve veelhoek met een unieke naam en de volgende parameters:"
+
+#~ msgctxt "polygon.html:body"
+#~ msgid ""
+#~ "<ul>\n"
+#~ "\t\t<li><b>position:</b> The X/Y position of the center of mass of the "
+#~ "polygon, relative to the center of the <a href=\"objinfo:World\">world</"
+#~ "a>.</li>\n"
+#~ "\t\t<li><b>angle:</b> By how much the polygon is rotated in positive "
+#~ "direction, that is clock-wise.</li>\n"
+#~ "\t\t<li><b>velocity:</b> The velocity of the center of mass of the "
+#~ "polygon. Unit: meters/second.</li>\n"
+#~ "\t\t<li><b>angular velocity:</b> How fast the polygon is spinning in "
+#~ "positive direction, that is clock-wise.</li>\n"
+#~ "\t\t<li><b>mass:</b> Total mass of the polygon. This influences forces "
+#~ "with which the polygon interacts with other items.</li>\n"
+#~ "\t\t<li><b>inertia:</b> How difficult it is to change the polygon's "
+#~ "rotation.</li>\n"
+#~ "\t\t<li><b>momentum:</b> A fundamental quantity in mechanics that is "
+#~ "conserved in the absence of external forces. A product of the mass and "
+#~ "the velocity.</li>\n"
+#~ "\t\t<li><b>angular momentum:</b> Measure of the extent to which the "
+#~ "polygon will continue to rotate unless acted upon by an external torque.</"
+#~ "li>\n"
+#~ "\t\t<li><b>kinetic energy:</b> The work needed to accelerate the body of "
+#~ "a given mass from rest to its current velocity.</li>\n"
+#~ "\t\t<li><b>vertexes:</b> A list of vertexes (corners) of the polygon, "
+#~ "which define its size and shape. Coordinates of each vertex are relative "
+#~ "to the center of mass of the polygon.</li>\n"
+#~ "\t</ul>"
+#~ msgstr ""
+#~ "<ul>\n"
+#~ "\t\t<li><b>positie:</b> De X/Y-positie van het zwaartepunt van de "
+#~ "veelhoek, relatief ten opzichte van de<a href=\"objinfo:World\">wereld</"
+#~ "a>.</li>\n"
+#~ "\t\t<li><b>hoek:</b> Hoeveel de veelhoek is gedraaid in positieve "
+#~ "richting, dus rechtsom.</li>\n"
+#~ "\t\t<li><b>snelheid:</b> De snelheid van het zwaartepunt van de veelhoek. "
+#~ "Eenheid: meters/seconde.</li>\n"
+#~ "\t\t<li><b>hoeksnelheid:</b> Hoe snel de veelhoek draait in positieve "
+#~ "richting, dus rechtsom.</li>\n"
+#~ "\t\t<li><b>massa:</b> Totale massa van de veelhoek. Dit bepaalt hoe de "
+#~ "veelhoek zich gedraagt met andere lichamen.</li>\n"
+#~ "\t\t<li><b>traagheid:</b> Hoe moeilijk het is de rotatie van de veelhoek "
+#~ "te wijzigen.</li>\n"
+#~ "\t\t<li><b>moment:</b> Een fundamentele grootheid in de mechanica die "
+#~ "behouden is (zelfde blijft) in de afwezigheid van externe krachten. Een "
+#~ "product van de massa en de snelheid.</li>\n"
+#~ "\t\t<li><b>hoekmoment:</b> Maat van in hoeverre de veelhoek zal blijven "
+#~ "roteren bij afwezigheid van een externe torsiekracht.</li>\n"
+#~ "\t\t<li><b>kinetische energie:</b> De energie die nodig is om een lichaam "
+#~ "met een gegeven massa te versnellen vanuit rust naar zijn huidige "
+#~ "snelheid..</li>\n"
+#~ "\t\t<li><b>hoekpunten:</b> Een lijst van de hoekpunten van de veelhoek, "
+#~ "die grootte en vorm van de veelhoek definiëren. Coördinaten van elk "
+#~ "hoekpunten zijn relatief te n opzichte van het zwaartepunt van de "
+#~ "veelhoek.</li>\n"
+#~ "\t</ul>"
+
+#~ msgctxt "softbody.html:title"
+#~ msgid "Soft body"
+#~ msgstr "Zacht lichaam"
+
+#~ msgctxt "softbody.html:p"
+#~ msgid ""
+#~ "A soft body is a collection of <a href=\"objinfo:particle\">particles</a> "
+#~ "connected by <a href=\"objinfo:spring\">springs</a>. This can be used to "
+#~ "simulate an <a href=\"https://en.wikipedia.org/wiki/"
+#~ "Elasticity_(physics)\">elastic</a> or viscoelastic body."
+#~ msgstr ""
+#~ "Een zacht lichaam bestaat uit <a href=\"objinfo:particle\">deeltjes</a> "
+#~ "die met elkaar verbonden zijn door <a href=\"objinfo:spring\">veren</a>. "
+#~ "Hiermee kan een<a href=\"https://en.wikipedia.org/wiki/"
+#~ "Elasticity_(physics)\">elastisch</a> of visceus (stroperig) lichaam "
+#~ "worden gesimuleerd."
+
+#~ msgctxt "spring.html:title"
+#~ msgid "Spring"
+#~ msgstr "Veer"
+
+#~ msgctxt "spring.html:p"
+#~ msgid ""
+#~ "A flexible elastic object to store mechanical energy. It has a unique "
+#~ "name and the following parameters:"
+#~ msgstr ""
+#~ "Een flexibel elastisch object waarin mechanische energie kan worden "
+#~ "opgeslagen. Een veer heeft een unieke naam en de volgende parameters:"
+
+#~ msgctxt "spring.html:body"
+#~ msgid ""
+#~ "<ul>\n"
+#~ "\t\t<li><b>rest length:</b> is the length of the spring as it is not "
+#~ "compressed or stretched.</li>\n"
+#~ "\t\t<li><b>length:</b> is the initial spring length</li>\n"
+#~ "\t\t<li><b>stiffness:</b> is the level of spring resistance to "
+#~ "compression or stretching</li>\n"
+#~ "\t\t<li><b>damping:</b> is level of spring ability to disperse stored "
+#~ "energy, an internal viscosity</li>\n"
+#~ "\t\t<li><b>body 1 and 2:</b> are the bodies to which the spring is fixed</"
+#~ "li>\n"
+#~ "\t\t<li><b>local position 1 and 2:</b> are the local positions of the "
+#~ "spring ends relative to its center in the non-deformed state</li>\n"
+#~ "\t\t<li><b>position 1 and 2:</b> are the global positions of the spring "
+#~ "ends</li>\n"
+#~ "\t\t<li><b>force:</b> is the force that acts along the spring</li>\n"
+#~ "\t</ul>"
+#~ msgstr ""
+#~ "<ul>\n"
+#~ "\t\t<li><b>rustlengte:</b> is de lengte van de veer als er geen krachten "
+#~ "op werken.</li>\n"
+#~ "\t\t<li><b>lengte:</b> is de beginlengte van de veer</li>\n"
+#~ "\t\t<li><b>stijfheid:</b> is de weerstand van de veer tegen compressie en "
+#~ "uitrekking</li>\n"
+#~ "\t\t<li><b>demping:</b> is het vermogen van de veer opgenomen energie af "
+#~ "te voeren, een interne viscositeit.</li>\n"
+#~ "\t\t<li><b>lichaam 1 en 2:</b> zijn de lichamen die door de veer zijn "
+#~ "verbonden</li>\n"
+#~ "\t\t<li><b>lokale posities 1 en 2:</b> zijn de lokale posities van de "
+#~ "eindpunten van de veer ten opzichte van het midden van de veer in de niet "
+#~ "vervormde toestand</li>\n"
+#~ "\t\t<li><b>positie 1 en 2:</b> zijn de globale (in de wereld) posities "
+#~ "van de eindpunten van de veer</li>\n"
+#~ "\t\t<li><b>kracht:</b> is de kracht in de lengterichting van de veer</"
+#~ "li>\n"
+#~ "\t</ul>"
+
+#~ msgctxt "weightforce.html:title"
+#~ msgid "Weight Force"
+#~ msgstr "Gewicht"
+
+#~ msgctxt "weightforce.html:p"
+#~ msgid "Weight of an object is the force exerted on it by gravity."
+#~ msgstr "Het gewicht van een lichaam is de zwaartekracht die het ondervindt"
+
+#~ msgctxt "weightforce.html:p"
+#~ msgid ""
+#~ "Weight is a vector quantity. It is often denoted by W and given by the "
+#~ "relation W = mg."
+#~ msgstr ""
+#~ "Gewicht is een vector (grootte en richting). Wordt vaak W genoemd. W = mg."
+
+#~ msgctxt "weightforce.html:body"
+#~ msgid ""
+#~ "<li>Where, <b>m</b> is the mass of the body</li>\n"
+#~ "<li>and <b>g</b> is the acceleration due to gravity.</li>"
+#~ msgstr ""
+#~ "<li>Waarin, <b>m</b> de massa is van het lichaam</li>\n"
+#~ "<li>en <b>g</b> de versnelling door de zwaartekracht.</li>"
+
+#~ msgctxt "weightforce.html:p"
+#~ msgid ""
+#~ "For more details, please refer to the <a href=\"https://en.wikipedia.org/"
+#~ "wiki/Weight\">Weight Force</a>."
+#~ msgstr ""
+#~ "Voor verdere bijzonderheden, zie <a href=\"https://nl.wikipedia.org/wiki/"
+#~ "Zwaartekracht\">Zwaartekracht</a>."
+
+#~ msgctxt "world.html:title"
+#~ msgid "World"
+#~ msgstr "Wereld"
+
+#~ msgctxt "world.html:p"
+#~ msgid ""
+#~ "This is the world scene. From the objects palette you should pick some "
+#~ "items and put them on the canvas. After you set properties of objects you "
+#~ "can click on the <b>Simulate</b> button in toolbar and your scene will "
+#~ "evolve according to the laws of physics."
+#~ msgstr ""
+#~ "Dit is waarin alles zich afspeelt. Uit het objectenpalet kiest u de  "
+#~ "items die u op het canvas plaatst. Na het instellen van de eigenschappen "
+#~ "kunt u klikken op de knop <b>Simulatie</b> in de taakbalk, waarna een en "
+#~ "ander zich ontwikkelt volgens wetten van de Natuurkunde."

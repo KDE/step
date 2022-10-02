@@ -1,0 +1,2116 @@
+# Gujarati Translation of step.po.
+# Copyright (C) 2008 This_file_is_part_of_KDE
+# This file is distributed under the same license as the PACKAGE package.
+# Kartik Mistry <kartik.mistry@gmail.com>, 2008.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: step-gu\n"
+"Report-Msgid-Bugs-To: https://bugs.kde.org\n"
+"POT-Creation-Date: 2022-07-04 00:41+0000\n"
+"PO-Revision-Date: 2008-11-26 09:38+0530\n"
+"Last-Translator: Kartik Mistry <kartik.mistry@gmail.com>\n"
+"Language-Team: Gujarati <kde-i18n-doc@kde.org>\n"
+"Language: gu\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n!=1);\n"
+
+#, kde-format
+msgctxt "NAME OF TRANSLATORS"
+msgid "Your names"
+msgstr "કાર્તિક મિસ્ત્રી"
+
+#, kde-format
+msgctxt "EMAIL OF TRANSLATORS"
+msgid "Your emails"
+msgstr "kartik.mistry@gmail.com"
+
+#. i18n: ectx: property (title), widget (QGroupBox, groupBox)
+#: step/configure_controller.ui:28 step/configure_graph.ui:28
+#: step/configure_meter.ui:28
+#, kde-format
+msgid "Data Source"
+msgstr "માહિતી સ્ત્રોત"
+
+#. i18n: ectx: property (title), widget (QGroupBox, groupBox_2)
+#: step/configure_controller.ui:47
+#, kde-format
+msgid "Range"
+msgstr "અવધિ"
+
+#. i18n: ectx: property (text), widget (QLabel, label_5)
+#: step/configure_controller.ui:59
+#, kde-format
+msgid "min:"
+msgstr "ન્યૂનતમ:"
+
+#. i18n: ectx: property (text), widget (QLabel, label_6)
+#: step/configure_controller.ui:75
+#, kde-format
+msgid "max:"
+msgstr "મહત્તમ:"
+
+#. i18n: ectx: property (text), widget (QLineEdit, lineEditMinX)
+#. i18n: ectx: property (text), widget (QLineEdit, lineEditMinY)
+#. i18n: ectx: property (text), widget (QLineEdit, lineEditMin)
+#: step/configure_controller.ui:97 step/configure_graph.ui:135
+#: step/configure_graph.ui:187
+#, kde-format
+msgid "0"
+msgstr "૦"
+
+#. i18n: ectx: property (text), widget (QLineEdit, lineEditMass)
+#. i18n: ectx: property (text), widget (QLineEdit, lineEditBodyMass)
+#. i18n: ectx: property (text), widget (QLineEdit, lineEditMaxX)
+#. i18n: ectx: property (text), widget (QLineEdit, lineEditMaxY)
+#. i18n: ectx: property (text), widget (QLineEdit, lineEditMax)
+#: step/configure_controller.ui:119 step/configure_graph.ui:151
+#: step/configure_graph.ui:203 step/create_gas_particles.ui:125
+#: step/create_softbody_items.ui:78
+#, kde-format
+msgid "1"
+msgstr "૧"
+
+#. i18n: ectx: property (title), widget (QGroupBox, groupBox_3)
+#: step/configure_controller.ui:132
+#, kde-format
+msgid "Shortcuts"
+msgstr "ટૂંકાણો"
+
+#. i18n: ectx: property (text), widget (QLabel, label)
+#: step/configure_controller.ui:138
+#, kde-format
+msgid "Decrease:"
+msgstr "ઘટાડો:"
+
+#. i18n: ectx: property (text), widget (QLabel, label_2)
+#: step/configure_controller.ui:148
+#, kde-format
+msgid "Increase:"
+msgstr "વધારો:"
+
+#. i18n: ectx: property (text), widget (QLabel, label_3)
+#: step/configure_controller.ui:179
+#, kde-format
+msgid "Increment:"
+msgstr "વધારો:"
+
+#. i18n: ectx: property (text), widget (QLineEdit, lineEditIncrement)
+#: step/configure_controller.ui:192
+#, kde-format
+msgid "0.1"
+msgstr "૦.૧"
+
+#. i18n: ectx: property (text), widget (QLabel, label)
+#. i18n: ectx: property (text), widget (QLabel, label_3)
+#: step/configure_graph.ui:34 step/configure_graph.ui:109
+#, kde-format
+msgid "X :"
+msgstr "X :"
+
+#. i18n: ectx: property (text), widget (QLabel, label_2)
+#. i18n: ectx: property (text), widget (QLabel, label_4)
+#: step/configure_graph.ui:51 step/configure_graph.ui:161
+#, kde-format
+msgid "Y :"
+msgstr "Y :"
+
+#. i18n: ectx: property (title), widget (QGroupBox, groupBox_2)
+#: step/configure_graph.ui:71
+#, kde-format
+msgid "Ranges"
+msgstr "અવધિઓ"
+
+#. i18n: ectx: property (text), widget (QLabel, label_5)
+#: step/configure_graph.ui:83
+#, kde-format
+msgid "Min:"
+msgstr ""
+
+#. i18n: ectx: property (text), widget (QLabel, label_6)
+#: step/configure_graph.ui:99
+#, kde-format
+msgid "Max:"
+msgstr ""
+
+#. i18n: ectx: property (text), widget (QCheckBox, checkBoxAutoX)
+#. i18n: ectx: property (text), widget (QCheckBox, checkBoxAutoY)
+#: step/configure_graph.ui:122 step/configure_graph.ui:174
+#, kde-format
+msgid "auto"
+msgstr "આપમેળે"
+
+#. i18n: ectx: property (title), widget (QGroupBox, groupBox_2)
+#. i18n: ectx: property (title), widget (QGroupBox, groupBox)
+#. i18n: ectx: property (title), widget (QGroupBox, groupBox_3)
+#: step/configure_graph.ui:216 step/configure_meter.ui:47
+#: step/create_gas_particles.ui:28 step/create_softbody_items.ui:28
+#, kde-format
+msgid "Options"
+msgstr "વિકલ્પો"
+
+#. i18n: ectx: property (text), widget (QCheckBox, checkBoxShowLines)
+#: step/configure_graph.ui:222
+#, kde-format
+msgid "Show lines"
+msgstr "રેખાઓ બતાવો"
+
+#. i18n: ectx: property (text), widget (QCheckBox, checkBoxShowPoints)
+#: step/configure_graph.ui:229
+#, kde-format
+msgid "Show points"
+msgstr "બિંદુઓ બતાવો"
+
+#. i18n: ectx: property (text), widget (QLabel, label)
+#: step/configure_meter.ui:53
+#, kde-format
+msgid "Number of digits:"
+msgstr "આંકડાઓની સંખ્યા:"
+
+#. i18n: ectx: property (text), widget (QLabel, label)
+#: step/configure_step_general.ui:16
+#, kde-format
+msgid "Display precision:"
+msgstr "દેખાવ ચોકસાઇ:"
+
+#. i18n: ectx: property (text), widget (QCheckBox, kcfg_showAxes)
+#: step/configure_step_general.ui:52
+#, kde-format
+msgid "Show scene axes"
+msgstr "દ્રશ્યની ધારો બતાવો"
+
+#. i18n: ectx: property (text), widget (QCheckBox, kcfg_showCreationTips)
+#: step/configure_step_general.ui:59
+#, kde-format
+msgid "Show tips when creating objects"
+msgstr "વસ્તુઓ બનાવતી વખતે ટીપ્પણીઓ બતાવો"
+
+#. i18n: ectx: property (text), widget (QCheckBox, kcfg_enableOpenGL)
+#: step/configure_step_general.ui:66
+#, kde-format
+msgid "Enable OpenGL (EXPERIMENTAL)"
+msgstr "OpenGL (પ્રાયોગિક) સક્રિય કરો"
+
+#. i18n: ectx: property (text), widget (QCheckBox, kcfg_wikiExternal)
+#: step/configure_step_general.ui:73
+#, kde-format
+msgid "Open wikipedia in external browser"
+msgstr "વિકિપીડિઆ બાહ્ય બ્રાઉઝરમાં ખોલો"
+
+#. i18n: ectx: property (text), widget (QLabel, label_5)
+#: step/create_gas_particles.ui:34
+#, fuzzy, kde-format
+#| msgid "Area"
+msgid "Area:"
+msgstr "વિસ્તાર"
+
+#. i18n: ectx: property (toolTip), widget (QLineEdit, lineEditVolume)
+#: step/create_gas_particles.ui:41
+#, kde-format
+msgid "The area the gas takes"
+msgstr "આ વાયુએ રોકેલ વિસ્તાર"
+
+#. i18n: ectx: property (text), widget (QLabel, label)
+#: step/create_gas_particles.ui:61
+#, fuzzy, kde-format
+#| msgid "Particles count:"
+msgid "Particle count:"
+msgstr "અણુઓની સંખ્યા:"
+
+#. i18n: ectx: property (toolTip), widget (QLineEdit, lineEditCount)
+#. i18n: ectx: property (whatsThis), widget (QLineEdit, lineEditCount)
+#: step/create_gas_particles.ui:68 step/create_gas_particles.ui:71
+#, fuzzy, kde-format
+#| msgid "The number of partcles of this gas."
+msgid "The number of particles of this gas."
+msgstr "આ વાયુમાં અણુઓની સંખ્યા."
+
+#. i18n: ectx: property (text), widget (QLineEdit, lineEditCount)
+#: step/create_gas_particles.ui:74
+#, kde-format
+msgid "20"
+msgstr "૨૦"
+
+#. i18n: ectx: property (text), widget (QLabel, label_6)
+#: step/create_gas_particles.ui:91
+#, kde-format
+msgid "Concentration:"
+msgstr "કેન્દ્રિત:"
+
+#. i18n: ectx: property (text), widget (QLabel, label_2)
+#: step/create_gas_particles.ui:112
+#, fuzzy, kde-format
+#| msgid "Particles mass:"
+msgid "Particle mass:"
+msgstr "અણુઓનું વજન:"
+
+#. i18n: ectx: property (toolTip), widget (QLineEdit, lineEditMass)
+#. i18n: ectx: property (whatsThis), widget (QLineEdit, lineEditMass)
+#: step/create_gas_particles.ui:119 step/create_gas_particles.ui:122
+#, kde-format
+msgid "The mass of one particle"
+msgstr "એક અણુનું વજન"
+
+#. i18n: ectx: property (text), widget (QLabel, label_3)
+#: step/create_gas_particles.ui:142
+#, kde-format
+msgid "Temperature:"
+msgstr "તાપમાન:"
+
+#. i18n: ectx: property (text), widget (QLineEdit, lineEditTemperature)
+#: step/create_gas_particles.ui:149
+#, kde-format
+msgid "1e21"
+msgstr "૧e૨૧"
+
+#. i18n: ectx: property (text), widget (QLabel, label_4)
+#: step/create_gas_particles.ui:166
+#, kde-format
+msgid "Mean velocity:"
+msgstr "મધ્યમ વેગ:"
+
+#. i18n: ectx: property (text), widget (QLineEdit, lineEditMeanVelocity)
+#. i18n: ectx: property (text), widget (QLineEdit, lineEditPosition)
+#: step/create_gas_particles.ui:173 step/create_softbody_items.ui:44
+#, kde-format
+msgid "(0,0)"
+msgstr "(૦,૦)"
+
+#. i18n: ectx: property (text), widget (QLabel, label_4)
+#: step/create_softbody_items.ui:37
+#, kde-format
+msgid "Position:"
+msgstr "સ્થિતિ:"
+
+#. i18n: ectx: property (text), widget (QLabel, label_3)
+#: step/create_softbody_items.ui:54
+#, kde-format
+msgid "Body size:"
+msgstr "પદાર્થ માપ:"
+
+#. i18n: ectx: property (text), widget (QLineEdit, lineEditSize)
+#: step/create_softbody_items.ui:61
+#, kde-format
+msgid "(1,1)"
+msgstr "(૧,૧)"
+
+#. i18n: ectx: property (text), widget (QLabel, label_2)
+#: step/create_softbody_items.ui:71
+#, kde-format
+msgid "Body mass:"
+msgstr "પદાર્થ વજન:"
+
+#. i18n: ectx: property (text), widget (QLabel, label)
+#: step/create_softbody_items.ui:88
+#, kde-format
+msgid "Young's modulus:"
+msgstr "યંગનો મોડ્યુલસ:"
+
+#. i18n: ectx: property (text), widget (QLineEdit, lineEditYoungModulus)
+#: step/create_softbody_items.ui:95
+#, kde-format
+msgid "15"
+msgstr "૧૫"
+
+#. i18n: ectx: property (text), widget (QLabel, label1)
+#: step/create_softbody_items.ui:105
+#, kde-format
+msgid "Body damping:"
+msgstr "પદાર્થ આદ્રીકરણ:"
+
+#. i18n: ectx: property (text), widget (QLineEdit, lineEditBodyDamping)
+#: step/create_softbody_items.ui:112
+#, kde-format
+msgid "0.3"
+msgstr "૦.૩"
+
+#. i18n: ectx: property (text), widget (QLabel, label2)
+#: step/create_softbody_items.ui:122
+#, kde-format
+msgid "Body split counts:"
+msgstr "પદાર્થ ભાગની સંખ્યા:"
+
+#. i18n: ectx: property (text), widget (QLineEdit, lineEditSplit)
+#: step/create_softbody_items.ui:129
+#, kde-format
+msgid "(4,4)"
+msgstr "(૪,૪)"
+
+#: step/gascreationdialog.cc:43
+#, fuzzy, kde-format
+#| msgid "Create gas particles"
+msgctxt "@title:window"
+msgid "Create Gas Particles"
+msgstr "વાયુ અણુઓ બનાવો"
+
+#: step/gasgraphics.cc:43
+#, kde-format
+msgid ""
+"Press left mouse button to position\n"
+"top left corner of a region for %1"
+msgstr ""
+"%1 માટે વિસ્તારની ઉપરની ડાબે ખૂણે સ્થિતિ માટે\n"
+"માઉસનું ડાબું બટન દબાવો"
+
+#: step/gasgraphics.cc:55 step/motorgraphics.cc:42 step/motorgraphics.cc:223
+#: step/polygongraphics.cc:173 step/polygongraphics.cc:307
+#: step/polygongraphics.cc:452 step/softbodygraphics.cc:62
+#: step/worldgraphics.cc:70 step/worldgraphics.cc:120
+#, kde-format
+msgid "Create %1"
+msgstr "%1 બનાવો"
+
+#: step/gasgraphics.cc:71
+#, kde-format
+msgid ""
+"Move mouse and release left mouse button to position\n"
+"bottom right corner of the region for %1"
+msgstr ""
+"%1 માટે વિસ્તારનાં તળિયેનાં જમણે ખૂણે સ્થિતિમાં\n"
+"માઉસ ખસેડો અને ડાબું બટન છોડો"
+
+#: step/gasgraphics.cc:97
+#, kde-format
+msgid "Please fill in the parameters for the gas particles."
+msgstr "વાયુ અણુઓ માટે મહેરબાની કરી વિકલ્પો ભરો."
+
+#: step/gasgraphics.cc:106 step/polygongraphics.cc:208
+#: step/polygongraphics.cc:347 step/polygongraphics.cc:502
+#: step/softbodygraphics.cc:79 step/worldgraphics.cc:87
+#: step/worldgraphics.cc:134 step/worldgraphics.cc:169
+#, kde-format
+msgid "%1 named '%2' created"
+msgstr "%1 નામનું '%2' બનાવવામાં આવ્યું છે"
+
+#: step/gasgraphics.cc:294
+#, fuzzy, kde-format
+#| msgid "Create particles..."
+msgid "Create Particles..."
+msgstr "અણુઓ બનાવો..."
+
+#: step/gasgraphics.cc:364
+#, fuzzy, kde-format
+#| msgid ""
+#| "You are trying to create a very large number of particles. It will make "
+#| "simulation very slow. Do you want to continue ?"
+msgid ""
+"You are trying to create a very large number of particles. This will make "
+"simulation very slow. Do you want to continue?"
+msgstr ""
+"તમે ઘણી મોટી સંખ્યામાં અણુઓ બનાવવાનો પ્રયત્ન કરી રહ્યા છો. તે સિમ્યુલેશન ઘણું ધીમું બનાવી "
+"દેશે. તમે ચાલુ રાખવા માંગો છો?"
+
+#: step/gasgraphics.cc:366 step/mainwindow.cc:409
+#, kde-format
+msgid "Warning - Step"
+msgstr "ચેતવણી - સ્ટેપ"
+
+#: step/gasgraphics.cc:377
+#, kde-format
+msgid "Create particles for %1"
+msgstr "%1 માટે અણુઓ બનાવો"
+
+#: step/infobrowser.cc:38
+#, fuzzy, kde-format
+#| msgid "Context info"
+msgid "Context Info"
+msgstr "સંદર્ભ માહિતી"
+
+#: step/infobrowser.cc:56
+#, kde-format
+msgid "Back"
+msgstr "પાછળ"
+
+#: step/infobrowser.cc:58
+#, kde-format
+msgid "Forward"
+msgstr "આગળ"
+
+#: step/infobrowser.cc:62
+#, kde-format
+msgid "Sync selection"
+msgstr "સિન્ક પસંદગી"
+
+#: step/infobrowser.cc:64
+#, kde-format
+msgid "Follow selection"
+msgstr "પસંદગીને અનુસરો"
+
+#: step/infobrowser.cc:69
+#, fuzzy, kde-format
+#| msgid "Open in browser"
+msgid "Open in Browser"
+msgstr "બ્રાઉઝરમાં ખોલો"
+
+#: step/infobrowser.cc:144
+#, kde-format
+msgid "Documentation"
+msgstr "દસ્તાવેજ"
+
+#: step/infobrowser.cc:149
+#, kde-format
+msgid "No current object."
+msgstr "હાલની કોઇ વસ્તુ નથી."
+
+#: step/infobrowser.cc:171
+#, kde-format
+msgid "Documentation error"
+msgstr "દસ્તાવેજ ક્ષતિ"
+
+#: step/infobrowser.cc:176
+#, fuzzy, kde-format
+#| msgid "Documentation for %1 not available."
+msgid "Documentation for %1 not available. "
+msgstr "%1 માટે દસ્તાવેજ પ્રાપ્ત નથી."
+
+#: step/infobrowser.cc:177
+#, fuzzy, kde-format
+#| msgid ""
+#| "You can help <a href=\"http://edu.kde.org/step\">Step</a> by writing it!"
+msgid ""
+"You can help <a href=\"https://edu.kde.org/step\">Step</a> by writing it!"
+msgstr ""
+"તમે <a href=\"http://edu.kde.org/step\">Step</a> વિશે લખીને મદદ કરી શકો છો!"
+
+#: step/itempalette.cc:189
+#, kde-format
+msgid "Palette"
+msgstr "પટ્ટી"
+
+#: step/itempalette.cc:208
+#, kde-format
+msgid "Pointer"
+msgstr "દર્શક"
+
+#: step/itempalette.cc:209
+#, kde-format
+msgid "Selection pointer"
+msgstr "પસંદગી દર્શક"
+
+#: step/itempalette.cc:232
+#, kde-format
+msgid "Show text"
+msgstr "લખાણ બતાવો"
+
+#: step/jointgraphics.cc:170 step/springgraphics.cc:42
+#, kde-format
+msgid "Move end of %1"
+msgstr "%1નાં અંત પર ખસો"
+
+#: step/latexformula.cc:42
+#, kde-format
+msgid "can not launch %1"
+msgstr "%1 શરૂ કરી શકાતું નથી"
+
+#: step/latexformula.cc:52
+#, kde-format
+msgid "error running %1"
+msgstr "%1 ચલાવતી વખતે ક્ષતિ આવી"
+
+#: step/latexformula.cc:56
+#, kde-format
+msgid ""
+"%1 reported an error (exit status %2):\n"
+"%3"
+msgstr ""
+"%1 એ ક્ષતિ અહેવાલ આપ્યો (બહાર નીકળવાની સ્થિતિ %2):\n"
+"%3"
+
+#: step/latexformula.cc:61
+#, kde-format
+msgid "%1 did not create output file"
+msgstr "%1 આઉટપુટ ફાઇલ બનાવી શકાતી નથી"
+
+#: step/latexformula.cc:93
+#, kde-format
+msgid "can not open temporary file"
+msgstr "ટેમ્પરરી ફાઇલ ખોલી શકાતી નથી"
+
+#: step/latexformula.cc:127
+#, kde-format
+msgid "can not open result file"
+msgstr "પરિણામ ફાઇલ ખોલી શકાતી નથી"
+
+#: step/main.cc:42 step/main.cc:50
+#, kde-format
+msgid "Step"
+msgstr "સ્ટેપ"
+
+#: step/main.cc:52
+#, kde-format
+msgid "Interactive physical simulator"
+msgstr "ભૌતિકવિજ્ઞાન સિમ્યુલેટર"
+
+#: step/main.cc:54
+#, kde-format
+msgid "(C) 2007 Vladimir Kuznetsov"
+msgstr "(C) ૨૦૦૭ વ્લાડિમિર કુઝ્નેટ્સોવ"
+
+#: step/main.cc:55
+#, kde-format
+msgid "https://edu.kde.org/step"
+msgstr ""
+
+#: step/main.cc:60
+#, kde-format
+msgid "Original author"
+msgstr "મૂળ લેખક"
+
+#: step/main.cc:61
+#, kde-format
+msgid "ks.vladimir@gmail.com"
+msgstr ""
+
+#: step/main.cc:66
+#, kde-format
+msgid "Code contributions"
+msgstr "કોડમાં ફાળો આપનારાઓ"
+
+#: step/main.cc:67
+#, kde-format
+msgid "cniehaus@kde.org"
+msgstr ""
+
+#: step/main.cc:74
+#, kde-format
+msgid "Document to open"
+msgstr "ખોલવા માટેનો દસ્તાવેજ"
+
+#: step/mainwindow.cc:155
+#, kde-format
+msgid "&Open Tutorial..."
+msgstr "માર્ગદર્શક ખોલો (&O)..."
+
+#: step/mainwindow.cc:160
+#, kde-format
+msgid "&Open Example..."
+msgstr "ઉદાહરણ ખોલો (&O)..."
+
+#: step/mainwindow.cc:165
+#, kde-format
+msgid "Open Down&loaded Example..."
+msgstr "ડાઉનલોડ કરેલ ઉદાહરણ ખોલો (&l)..."
+
+#: step/mainwindow.cc:170
+#, kde-format
+msgid "Share C&urrent Experiment..."
+msgstr "હાલનાં પ્રયોગોને વહેંચો (&u)..."
+
+#: step/mainwindow.cc:173
+#, kde-format
+msgid "&Download New Experiments..."
+msgstr "નવા પ્રયોગો ડાઉનલોડ કરો (&D)..."
+
+#: step/mainwindow.cc:180
+#, kde-format
+msgid "Redo"
+msgstr " ફરી કરો"
+
+#: step/mainwindow.cc:180
+#, kde-format
+msgid "Undo"
+msgstr "પાછું લાવો"
+
+#: step/mainwindow.cc:202
+#, kde-format
+msgid "&Delete"
+msgstr "દૂર કરો (&D)"
+
+#: step/mainwindow.cc:212
+#, kde-format
+msgid "&Run"
+msgstr "ચલાવો (&R)"
+
+#: step/mainwindow.cc:217
+#, kde-format
+msgid "Execute the program"
+msgstr "કાર્યક્રમ ચલાવો"
+
+#: step/mainwindow.cc:218
+#, kde-format
+msgid "Run: Execute the program"
+msgstr "ચલાવો: કાર્યક્રમ ચલાવો"
+
+#: step/mainwindow.cc:220
+#, kde-format
+msgctxt "@option:radio"
+msgid "1x Speed"
+msgstr "૧ ગણી ઝડપ"
+
+#: step/mainwindow.cc:228
+#, kde-format
+msgctxt "@option:radio choose the slow speed"
+msgid "2x Speed"
+msgstr "૨ ગણી ઝડપ"
+
+#: step/mainwindow.cc:235
+#, kde-format
+msgctxt "@option:radio"
+msgid "4x Speed"
+msgstr "૪ ગણી ઝડપ"
+
+#: step/mainwindow.cc:242
+#, kde-format
+msgctxt "@option:radio"
+msgid "8x Speed"
+msgstr "૮ ગણી ઝડપ"
+
+#: step/mainwindow.cc:249
+#, kde-format
+msgctxt "@option:radio"
+msgid "16x Speed"
+msgstr "૧૬ ગણી ઝડપ"
+
+#: step/mainwindow.cc:279
+#, kde-format
+msgctxt "filename"
+msgid "untitled.step"
+msgstr "શીર્ષકવગરનું.step"
+
+#: step/mainwindow.cc:305
+#, kde-format
+msgid "<new file>"
+msgstr "<નવી ફાઇલ>"
+
+#: step/mainwindow.cc:319
+#, kde-format
+msgctxt "@title:window"
+msgid "Open Step File"
+msgstr ""
+
+#: step/mainwindow.cc:319 step/mainwindow.cc:349
+#, fuzzy, kde-format
+#| msgid "*.step|Step files (*.step)"
+msgid "Step files (*.step)"
+msgstr "*.step|સ્ટેપ ફાઇલ્સ (*.step)"
+
+#: step/mainwindow.cc:329
+#, kde-format
+msgid "Cannot parse file '%1': %2"
+msgstr "'%1': %2 ફાઇલ જોઇ શકાતી નથી"
+
+#: step/mainwindow.cc:338
+#, kde-format
+msgid "<open file: %1>"
+msgstr "<આ ફાઇલ ખોલો: %1>"
+
+#: step/mainwindow.cc:349
+#, kde-format
+msgctxt "@title:window"
+msgid "Save Step File"
+msgstr ""
+
+#: step/mainwindow.cc:365
+#, kde-format
+msgid "Cannot open file '%1'"
+msgstr "'%1' ફાઇલ ખોલી શકાતી નથી"
+
+#: step/mainwindow.cc:371
+#, kde-format
+msgid "Cannot save file '%1': %2"
+msgstr "'%1': %2 ફાઇલ સંગ્રહ કરી શકાતી નથી"
+
+#: step/mainwindow.cc:408
+#, kde-format
+msgid ""
+"The experiment has been modified.\n"
+"Do you want to save your changes?"
+msgstr ""
+"આ પ્રયોગ બદલવામાં આવેલ છે.\n"
+"શું તમે તમારા ફેરફારો સંગ્રહ કરવા માંગો છો?"
+
+#: step/mainwindow.cc:456
+#, kde-format
+msgid "Uploading is still not implemented in kdelibs."
+msgstr "kdelibs માં અપલોડ હજી સુધી મૂકવામાં આવ્યું નથી."
+
+#: step/mainwindow.cc:457
+#, kde-format
+msgid "Sorry - Step"
+msgstr "માફ કરશો - સ્ટેપ"
+
+#: step/mainwindow.cc:484
+#, kde-format
+msgid "&Stop"
+msgstr "બંધ (&S)"
+
+#: step/mainwindow.cc:494
+#, kde-format
+msgid "&Simulate"
+msgstr "સિમ્યુલેટ (&S)"
+
+#: step/mainwindow.cc:499
+#, kde-format
+msgid ""
+"Cannot finish this step because local error is greater than local "
+"tolerance.\n"
+"Please check solver settings and try again."
+msgstr ""
+"આ પગથિયું પુરૂં કરી શકાતું નથી કારણ કે સ્થાનિક ક્ષતિ એ સ્થાનિક ક્ષમતા કરતાં મોટી છે.\n"
+"મહેરબાની કરી ઉકેલ ગોઠવણીઓ ચકાસો અને ફરી પ્રયત્ન કરો."
+
+#: step/mainwindow.cc:504
+#, kde-format
+msgid ""
+"Cannot finish this step because there are collisions which cannot be "
+"resolved automatically.\n"
+"Please move colliding objects apart and try again."
+msgstr ""
+"આ પગથિયું પૂરૂં કરી શકાયું નહી કારણકે અહીં અથડામણો છે જે આપમેળે ઉકેલી શકાશે નહી.\n"
+"મહેરબાની કરીને અથડાતી વસ્તુઓ ખસેડો અને ફરી પ્રયત્ન કરો."
+
+#: step/mainwindow.cc:508
+#, kde-format
+msgid "Cannot finish this step because of an unknown error."
+msgstr "અજાણી ક્ષતિને કારણે આ પગથિયું પૂરુ કરી શકાતું નથી."
+
+#: step/mainwindow.cc:541
+#, kde-format
+msgid "&Undo"
+msgstr "પાછું લાવો (&U)"
+
+#: step/mainwindow.cc:542
+#, kde-format
+msgid "&Undo: %1"
+msgstr "પાછું લાવો (&U): %1"
+
+#: step/mainwindow.cc:547
+#, kde-format
+msgid "Re&do"
+msgstr "ફરી કરો (&d)"
+
+#: step/mainwindow.cc:548
+#, kde-format
+msgid "Re&do: %1"
+msgstr "ફરી કરો (&d): %1"
+
+#: step/mainwindow.cc:579
+#, kde-format
+msgid "General"
+msgstr "સામાન્ય"
+
+#: step/motorgraphics.cc:112 step/motorgraphics.cc:290
+#: step/stepgraphicsitem.cc:206 step/stepgraphicsitem.cc:218
+#, kde-format
+msgid "Move %1"
+msgstr "%1 ખસેડો"
+
+#: step/polygongraphics.cc:161
+#, kde-format
+msgid "Press left mouse button to position a center of a %1"
+msgstr "%1 ની સ્થિતિના મધ્ય પર ડાબું માઉસ બટન દબાવો"
+
+#: step/polygongraphics.cc:182
+#, kde-format
+msgid "Move mouse and release left mouse button to define a radius of the %1"
+msgstr "%1 ની ત્રિજ્યા નક્કી કરવા માટે માઉસ ખસેડો અને ડાબું માઉસ બટન છોડો"
+
+#: step/polygongraphics.cc:295
+#, kde-format
+msgid ""
+"Press left mouse button to position\n"
+"top left corner of a %1"
+msgstr ""
+"%1 ની સ્થિતિના ઉપરનાં ડાબા ખૂણા પર\n"
+"માઉસનું ડાબું બટન દબાવો"
+
+#: step/polygongraphics.cc:317
+#, kde-format
+msgid ""
+"Move mouse and release left mouse button to position\n"
+"bottom right corner of the %1"
+msgstr ""
+"%1 ની નીચેનાં જમણાં ખૂણાની સ્થિતિ પર માઉસ લઇ જાવ\n"
+"અને ડાબું માઉસ બટન છોડો"
+
+#: step/polygongraphics.cc:440
+#, kde-format
+msgid "Click on the scene to create a first vertex of %1"
+msgstr "%1 ની પ્રથમ ટોચ બનાવવા માટે દ્રશ્ય પર ક્લિક કરો"
+
+#: step/polygongraphics.cc:488
+#, kde-format
+msgid "Click on the scene to add new vertex or press Enter to finish"
+msgstr "નવી ટોચ ઉમેરવા માટે દ્રશ્ય પર ક્લિક કરો અથવા પૂરું કરવા માટે એન્ટર દબાવો"
+
+#: step/propertiesbrowser.cc:279
+#, kde-format
+msgid "Change solver type"
+msgstr "ઉકેલ પ્રકાર બદલો"
+
+#: step/propertiesbrowser.cc:294 step/propertiesbrowser.cc:300
+#: step/propertiesbrowser.cc:307 step/propertiesbrowser.cc:316
+#: step/propertiesbrowser.cc:400 step/propertiesbrowser.cc:417
+#: step/stepgraphicsitem.cc:401 step/stepgraphicsitem.cc:546
+#, kde-format
+msgid "Change %1.%2"
+msgstr "%1.%2 બદલો"
+
+#: step/propertiesbrowser.cc:314
+#, kde-format
+msgid "Rename %1 to %2"
+msgstr "%1 થી %2 નામ બદલો"
+
+#: step/propertiesbrowser.cc:464
+#, kde-format
+msgid "Property"
+msgstr "ગુણધર્મ"
+
+#: step/propertiesbrowser.cc:465
+#, kde-format
+msgid "Value"
+msgstr "કિંમત"
+
+#: step/propertiesbrowser.cc:530
+#, kde-format
+msgid "false"
+msgstr "ખોટું"
+
+#: step/propertiesbrowser.cc:531
+#, kde-format
+msgid "true"
+msgstr "સાચું"
+
+#: step/propertiesbrowser.cc:675
+#, kde-format
+msgid "Properties"
+msgstr "ગુણધર્મો"
+
+#: step/softbodygraphics.cc:49 step/worldgraphics.cc:62
+#: step/worldgraphics.cc:106
+#, kde-format
+msgid "Click on the scene to create a %1"
+msgstr "%1 બનાવવા માટે દ્રશ્ય પર ક્લિક કરો"
+
+#: step/softbodygraphics.cc:66
+#, fuzzy, kde-format
+#| msgid "Please fill in the parameters for the gas particles."
+msgid "Please fill in the parameters for %1"
+msgstr "વાયુ અણુઓ માટે મહેરબાની કરી વિકલ્પો ભરો."
+
+#: step/softbodygraphics.cc:126
+#, fuzzy, kde-format
+#| msgid "Create soft body items"
+msgctxt "@title:window"
+msgid "Create Soft Body Items"
+msgstr "હલકાં દ્રવ્યની વસ્તુઓ બનાવો "
+
+#: step/softbodygraphics.cc:187
+#, kde-format
+msgid "Create items for %1"
+msgstr "%1 માટે વસ્તુઓ બનાવો"
+
+#. i18n: ectx: label, entry (showCreationTips), group (General)
+#. i18n: ectx: whatsthis, entry (showCreationTips), group (General)
+#: step/step.kcfg:9 step/step.kcfg:10
+#, fuzzy, kde-format
+#| msgid "Show tips when creating objects"
+msgid "Show tips when creating items"
+msgstr "વસ્તુઓ બનાવતી વખતે ટીપ્પણીઓ બતાવો"
+
+#. i18n: ectx: label, entry (showAxes), group (General)
+#. i18n: ectx: whatsthis, entry (showAxes), group (General)
+#: step/step.kcfg:14 step/step.kcfg:15
+#, fuzzy, kde-format
+#| msgid "Show lines on the graph"
+msgid "Show axes on the scene"
+msgstr "આલેખમાં રેખાઓ બતાવો"
+
+#. i18n: ectx: label, entry (floatDisplayPrecision), group (General)
+#. i18n: ectx: whatsthis, entry (floatDisplayPrecision), group (General)
+#: step/step.kcfg:19 step/step.kcfg:20
+#, fuzzy, kde-format
+#| msgid "Display precision:"
+msgid "Display precision of double numbers"
+msgstr "દેખાવ ચોકસાઇ:"
+
+#. i18n: ectx: label, entry (enableOpenGL), group (General)
+#. i18n: ectx: whatsthis, entry (enableOpenGL), group (General)
+#: step/step.kcfg:26 step/step.kcfg:27
+#, kde-format
+msgid "Use OpenGL to accelerate drawing whenever possible"
+msgstr ""
+
+#. i18n: ectx: label, entry (wikiExternal), group (InfoBrowser)
+#. i18n: ectx: whatsthis, entry (wikiExternal), group (InfoBrowser)
+#: step/step.kcfg:33 step/step.kcfg:34
+#, fuzzy, kde-format
+#| msgid "Open wikipedia in external browser"
+msgid "Browse wikipedia in external browser"
+msgstr "વિકિપીડિઆ બાહ્ય બ્રાઉઝરમાં ખોલો"
+
+#. i18n: ectx: label, entry (showButtonText), group (ItemPalette)
+#. i18n: ectx: whatsthis, entry (showButtonText), group (ItemPalette)
+#: step/step.kcfg:40 step/step.kcfg:41
+#, fuzzy, kde-format
+#| msgid "Show text"
+msgid "Show text beside icon"
+msgstr "લખાણ બતાવો"
+
+#: step/stepgraphicsitem.cc:218
+#, kde-format
+msgid "several objects"
+msgstr "ઘણી વસ્તુઓ"
+
+#: step/stepgraphicsitem.cc:402 step/stepgraphicsitem.cc:548
+#, kde-format
+msgid "Change %1"
+msgstr "%1 બદલો"
+
+#. i18n: ectx: ToolBar (mainToolBar)
+#: step/stepui.rc:7
+#, kde-format
+msgid "Main Toolbar"
+msgstr "મુખ્ય સાધનપટ્ટી"
+
+#. i18n: ectx: ToolBar (simulationToolBar)
+#: step/stepui.rc:12
+#, kde-format
+msgid "Simulation Toolbar"
+msgstr "સિમ્યુલેશન સાધનપટ્ટી"
+
+#. i18n: ectx: Menu (examples)
+#: step/stepui.rc:21
+#, kde-format
+msgid "&Examples"
+msgstr "ઉદાહરણો (&E)"
+
+#. i18n: ectx: Menu (simulation)
+#: step/stepui.rc:32
+#, kde-format
+msgid "&Simulation"
+msgstr "સિમ્યુલેશન (&S)"
+
+#. i18n: ectx: Menu (speed)
+#: step/stepui.rc:35
+#, kde-format
+msgid "&Run Speed"
+msgstr "ચલાવવાની ઝડપ (&R)"
+
+#. i18n: ectx: Menu (panels)
+#: step/stepui.rc:45
+#, kde-format
+msgid "&Panels"
+msgstr "પેનલો (&P)"
+
+#: step/toolgraphics.cc:267
+#, fuzzy, kde-format
+#| msgid "Click to enter a text"
+msgid "Click to enter text"
+msgstr "લખાણ દાખલ કરવા માટે ક્લિક કરો"
+
+#: step/toolgraphics.cc:392
+#, kde-format
+msgid "&Color"
+msgstr "રંગ (&C)"
+
+#: step/toolgraphics.cc:394
+#, kde-format
+msgid "&Bold"
+msgstr "ઘાટાં (&B)"
+
+#: step/toolgraphics.cc:396
+#, kde-format
+msgid "&Italic"
+msgstr "ત્રાંસાં (&I)"
+
+#: step/toolgraphics.cc:398
+#, kde-format
+msgid "&Underline"
+msgstr "નીચે લીટી (&U)"
+
+#: step/toolgraphics.cc:401
+#, kde-format
+msgid "Align &Left"
+msgstr "ડાબે ગોઠવો (&L)"
+
+#: step/toolgraphics.cc:403
+#, kde-format
+msgid "Align C&enter"
+msgstr "મધ્યમાં ગોઠવો (&e)"
+
+#: step/toolgraphics.cc:405
+#, kde-format
+msgid "Align &Right"
+msgstr "જમણે ગોઠવો (&R)"
+
+#: step/toolgraphics.cc:407
+#, kde-format
+msgid "Align &Justify"
+msgstr "બરાબર ગોઠવો (&J)"
+
+#: step/toolgraphics.cc:410
+#, kde-format
+msgid "&Align"
+msgstr "ગોઠવો (&A)"
+
+#: step/toolgraphics.cc:419
+#, kde-format
+msgid "&Font"
+msgstr "ફોન્ટ (&F)"
+
+#: step/toolgraphics.cc:420
+#, kde-format
+msgid "Font &Size"
+msgstr "ફોન્ટ માપ &S"
+
+#: step/toolgraphics.cc:422
+#, fuzzy, kde-format
+#| msgid "Insert &Image"
+msgid "Insert &Image..."
+msgstr "ચિત્ર ઉમેરો (&I)"
+
+#: step/toolgraphics.cc:427
+#, fuzzy, kde-format
+#| msgid "Insert &Formula"
+msgid "Insert &Formula..."
+msgstr "સૂત્ર ઉમેરો (&F)"
+
+#: step/toolgraphics.cc:538
+#, kde-format
+msgid "Edit %1"
+msgstr "%1 ફેરફાર કરો"
+
+#: step/toolgraphics.cc:643
+#, kde-format
+msgctxt "@title:window"
+msgid "Open Image File"
+msgstr ""
+
+#: step/toolgraphics.cc:643
+#, kde-format
+msgid "Images (*.png *.jpg *.jpeg)"
+msgstr ""
+
+#: step/toolgraphics.cc:661
+#, kde-format
+msgid "Cannot parse file '%1'"
+msgstr "ફાઇલ '%1' જોઇ શકાતી નથી"
+
+#: step/toolgraphics.cc:705
+#, kde-format
+msgid ""
+"Cannot find latex installation. You need 'latex', 'dvips' and 'gs' "
+"executables installed and accessible from $PATH"
+msgstr ""
+"લેટેક સ્થાપન મળી શક્યું નહી. તમારે 'latex', 'dvips' અને 'gs' ચલાવનાર સ્થાપિત થયેલ અને "
+"$PATH માંથી ઉપયોગ કરી શકાય તેવા હોવા જોઇએ"
+
+#: step/toolgraphics.cc:711
+#, fuzzy, kde-format
+#| msgid "LaTex Formula - Step"
+msgctxt "@title:window"
+msgid "LaTex Formula - Step"
+msgstr "લેટેક સૂત્ર - સ્ટેપ"
+
+#: step/toolgraphics.cc:712
+#, fuzzy, kde-format
+#| msgid "Enter LaTeX formula string"
+msgid "Enter LaTeX formula string:"
+msgstr "લેટેક સૂત્ર વાક્ય દાખલ કરો"
+
+#: step/toolgraphics.cc:721
+#, kde-format
+msgid "Cannot compile LaTeX formula: %1"
+msgstr "લેટેક સૂત્ર ને કમ્પાઇલ કરી શકાતું નથી: %1"
+
+#: step/toolgraphics.cc:727
+#, kde-format
+msgid "Cannot parse result image"
+msgstr "પરિણામ ચિત્ર જોઇ શકાતું નથી"
+
+#: step/toolgraphics.cc:788
+#, kde-format
+msgid "Object name"
+msgstr "વસ્તુ નામ"
+
+#: step/toolgraphics.cc:793
+#, kde-format
+msgid "Property name"
+msgstr "ગુણધર્મ નામ"
+
+#: step/toolgraphics.cc:799
+#, kde-format
+msgid "Vector index"
+msgstr "સદિશ અનુક્રમણિકા"
+
+#: step/toolgraphics.cc:988 step/toolgraphics.cc:996 step/toolgraphics.cc:1489
+#, kde-format
+msgid "%1.%2"
+msgstr "%1.%2"
+
+#: step/toolgraphics.cc:989 step/toolgraphics.cc:997 step/toolgraphics.cc:1490
+#, kde-format
+msgid "[%1]"
+msgstr "[%1]"
+
+#: step/toolgraphics.cc:993 step/toolgraphics.cc:1001 step/toolgraphics.cc:1494
+#, kde-format
+msgid "[not configured]"
+msgstr "[રૂપરેખાંકિત નથી]"
+
+#: step/toolgraphics.cc:1089
+#, fuzzy, kde-format
+#| msgid "Clear graph"
+msgid "Clear Graph"
+msgstr "આલેખ સાફ કરો"
+
+#: step/toolgraphics.cc:1090
+#, fuzzy, kde-format
+#| msgid "Configure graph..."
+msgid "Configure Graph..."
+msgstr "આલેખ રૂપરેખાંકિત કરો..."
+
+#: step/toolgraphics.cc:1108
+#, fuzzy, kde-format
+#| msgid "Configure graph"
+msgctxt "@title:window"
+msgid "Configure Graph"
+msgstr "આલેખ રૂપરેખાંકિત કરો"
+
+#: step/toolgraphics.cc:1184 step/toolgraphics.cc:1383
+#: step/toolgraphics.cc:1721
+#, kde-format
+msgid "Edit properties of %1"
+msgstr "%1 માટે ગુણધર્મો ફેરફાર કરો"
+
+#: step/toolgraphics.cc:1236
+#, kde-format
+msgid "Clear graph %1"
+msgstr "આલેખ %1 સાફ કરો"
+
+#: step/toolgraphics.cc:1317
+#, fuzzy, kde-format
+#| msgid "Configure meter..."
+msgid "Configure Meter..."
+msgstr "મીટર રૂપરેખાંકિત કરો..."
+
+#: step/toolgraphics.cc:1335
+#, fuzzy, kde-format
+#| msgid "Configure meter"
+msgctxt "@title:window"
+msgid "Configure Meter"
+msgstr "મીટર રૂપરેખાંકિત કરો"
+
+#: step/toolgraphics.cc:1432 step/toolgraphics.cc:1629
+#, fuzzy, kde-format
+#| msgid "Increase value"
+msgid "Increase Value"
+msgstr "કિંમત વધારો"
+
+#: step/toolgraphics.cc:1433 step/toolgraphics.cc:1630
+#, fuzzy, kde-format
+#| msgid "Decrease value"
+msgid "Decrease Value"
+msgstr "કિંમત ઘટાડો"
+
+#: step/toolgraphics.cc:1463 step/toolgraphics.cc:1758
+#, kde-format
+msgid "Decrease controller %1"
+msgstr "નિયંત્રક %1 ઘટાડો"
+
+#: step/toolgraphics.cc:1472 step/toolgraphics.cc:1767
+#, kde-format
+msgid "Increase controller %1"
+msgstr "નિયંત્રક %1 વધારો"
+
+#: step/toolgraphics.cc:1606
+#, kde-format
+msgid "Change controller %1"
+msgstr "નિયંત્રક %1 બદલો"
+
+#: step/toolgraphics.cc:1632
+#, fuzzy, kde-format
+#| msgid "Configure controller..."
+msgid "Configure Controller..."
+msgstr "નિયંત્રક રૂપરેખાંકિત કરો..."
+
+#: step/toolgraphics.cc:1650
+#, fuzzy, kde-format
+#| msgid "Configure controller"
+msgctxt "@title:window"
+msgid "Configure Controller"
+msgstr "નિયંત્રક રૂપરેખાંકિત કરો"
+
+#: step/toolgraphics.cc:1911
+#, fuzzy, kde-format
+#| msgid "Clear trace"
+msgid "Clear Trace"
+msgstr "નિશાની સાફ કરો"
+
+#: step/toolgraphics.cc:1920
+#, kde-format
+msgid "Clear tracer %1"
+msgstr "નિશાની રાખનાર %1 સાફ કરો"
+
+#: step/undobrowser.cc:30
+#, fuzzy, kde-format
+#| msgid "Undo history"
+msgid "Undo History"
+msgstr "ઇતિહાસ પાછો ફેરવો"
+
+#: step/worldbrowser.cc:62
+#, kde-format
+msgctxt "Object list"
+msgid "World"
+msgstr "દુનિયા"
+
+#: step/worldgraphics.cc:102
+#, kde-format
+msgid ""
+"Press left mouse button to position first end of a %1\n"
+"then drag and release it to position the second end"
+msgstr ""
+"%1 ની સ્થિતિના પ્રથમ અંત પર ડાબું માઉસ બટન દબાવો\n"
+"પછી તેને બીજા છેડેની સ્થિતિ પર ખેંચીને છોડી દો"
+
+#: step/worldgraphics.cc:130
+#, kde-format
+msgid "Release left mouse button to position second end of the %1"
+msgstr "%1 ની સ્થિતિના પ્રથમ અંત પર ડાબું માઉસ બટન છોડી દો"
+
+#: step/worldmodel.cc:641
+#, kde-format
+msgid "Delete %1"
+msgstr "%1 દૂર કરો"
+
+#: step/worldmodel.cc:642
+#, kde-format
+msgid "Delete several items"
+msgstr "ઘણી બધી વસ્તુઓ દૂર કરો"
+
+#: step/worldmodel.cc:713 step/worldmodel.cc:720
+#, kde-format
+msgid "<no object>"
+msgstr "<કોઇ વસ્તુ નહી>"
+
+#: step/worldmodel.cc:715
+#, kde-format
+msgid "<unnamed>"
+msgstr "<નામ વગરનું>"
+
+#: step/worldmodel.cc:721
+#, kde-format
+msgid "%1: %2"
+msgstr "%1: %2"
+
+#: step/worldmodel.cc:793
+#, kde-format
+msgid "<nobr><h4><u>%1</u></h4></nobr>"
+msgstr "<nobr><h4><u>%1</u></h4></nobr>"
+
+#: step/worldmodel.cc:821
+#, kde-format
+msgid "<tr><td>%1&nbsp;&nbsp;</td><td>%2</td></tr>"
+msgstr "<tr><td>%1&nbsp;&nbsp;</td><td>%2</td></tr>"
+
+#: step/worldmodel.cc:1019
+#, kde-format
+msgid "Simulate %1 → %2"
+msgstr "%1 → %2 સિમ્યુલેટ કરો"
+
+#: step/worldmodel.cc:1072
+#, fuzzy, kde-format
+#| msgid "Create %1"
+msgid "Cut %1"
+msgstr "%1 બનાવો"
+
+#: step/worldmodel.cc:1073
+#, fuzzy, kde-format
+#| msgid "Delete several items"
+msgid "Cut several items"
+msgstr "ઘણી બધી વસ્તુઓ દૂર કરો"
+
+#: step/worldmodel.cc:1095
+#, fuzzy, kde-format
+#| msgid "Create %1"
+msgid "Pasted %1"
+msgstr "%1 બનાવો"
+
+#: step/worldmodel.cc:1096
+#, fuzzy, kde-format
+#| msgid "Delete several items"
+msgid "Pasted several items"
+msgstr "ઘણી બધી વસ્તુઓ દૂર કરો"
+
+#: step/worldscene.cc:260
+#, kde-format
+msgid "Objects under mouse:"
+msgstr "માઉસની નીચેની વસ્તુઓ:"
+
+#: step/worldscene.cc:265
+#, fuzzy, kde-format
+#| msgid "... (%1 more items)"
+msgid "... (1 more item)"
+msgid_plural "... (%1 more items)"
+msgstr[0] "... (%1 વધુ વસ્તુઓ)"
+msgstr[1] "... (%1 વધુ વસ્તુઓ)"
+
+#~ msgid "Wikipedia"
+#~ msgstr "વીકીપિડીઆ"
+
+#~ msgid "Fetching Wikipedia Information..."
+#~ msgstr "વિકિપીડિઆ માહિતી મેળવી રહ્યા છે..."
+
+#~ msgid "Wikipedia error"
+#~ msgstr "વીકીપિડીઆ ક્ષતિ"
+
+#~ msgid ""
+#~ "Information could not be retrieved because the server was not reachable."
+#~ msgstr "માહિતી મેળવી શકાઇ નહી કારણકે સર્વર પહોંચી શકાય તેમ ન હતું."
+
+#~ msgid "Wikipedia Information"
+#~ msgstr "વીકીપિડીઆ માહિતી"
+
+#~ msgid "Wikipedia Other Languages"
+#~ msgstr "વીકીપિડીઆ બીજી ભાષાઓ"
+
+#~ msgid "The file \"%1\" already exists. Do you wish to overwrite it?"
+#~ msgstr "ફાઇલ \"%1\" પહેલેથી હાજર જ છે. તમે તેનાં ઉપર લખવા માંગો છો?"
+
+#~ msgid "Vladimir Kuznetsov"
+#~ msgstr "વ્લાડિમીર કુઝનેટ્સોવ"
+
+#~ msgid "Carsten Niehaus"
+#~ msgstr "કાર્સ્ટેન નિહાઉસ"
+
+#~ msgid "Create items..."
+#~ msgstr "વસ્તુઓ બનાવો..."
+
+#~ msgctxt "PropertyName"
+#~ msgid "position"
+#~ msgstr "સ્થિતિ"
+
+#~ msgctxt "Units"
+#~ msgid "m"
+#~ msgstr "મી"
+
+#~ msgid "Position of the center of mass"
+#~ msgstr "દળનાં કેન્દ્રની સ્થિતિ"
+
+#~ msgctxt "PropertyName"
+#~ msgid "angle"
+#~ msgstr "ખૂણો"
+
+#~ msgctxt "Units"
+#~ msgid "rad"
+#~ msgstr "રેડ"
+
+#~ msgid "Rotation angle"
+#~ msgstr "ચક્રિય ખૂણો"
+
+#~ msgctxt "PropertyName"
+#~ msgid "velocity"
+#~ msgstr "વેગ"
+
+#~ msgctxt "Units"
+#~ msgid "m/s"
+#~ msgstr "મી/સે"
+
+#~ msgid "Velocity of the center of mass"
+#~ msgstr "દળનાં કેન્દ્રનો વેગ"
+
+#~ msgctxt "PropertyName"
+#~ msgid "angularVelocity"
+#~ msgstr "કોણીયવેગ"
+
+#~ msgctxt "Units"
+#~ msgid "rad/s"
+#~ msgstr "રેડ/સે"
+
+#~ msgctxt "PropertyName"
+#~ msgid "acceleration"
+#~ msgstr "પ્રવેગ"
+
+#~ msgctxt "Units"
+#~ msgid "m/s²"
+#~ msgstr "મી/સે²"
+
+#~ msgctxt "Units"
+#~ msgid "rad/s²"
+#~ msgstr "રેડ/સે²"
+
+#~ msgctxt "PropertyName"
+#~ msgid "force"
+#~ msgstr "બળ"
+
+#~ msgctxt "Units"
+#~ msgid "N"
+#~ msgstr "N"
+
+#~ msgctxt "PropertyName"
+#~ msgid "torque"
+#~ msgstr "ટોર્ક"
+
+#~ msgctxt "Units"
+#~ msgid "N m"
+#~ msgstr "N m"
+
+#~ msgctxt "PropertyName"
+#~ msgid "mass"
+#~ msgstr "દળ"
+
+#~ msgctxt "Units"
+#~ msgid "kg"
+#~ msgstr "કિગ્રા"
+
+#~ msgctxt "PropertyName"
+#~ msgid "inertia"
+#~ msgstr "જડત્વ"
+
+#~ msgctxt "Units"
+#~ msgid "kg m²"
+#~ msgstr "કિગ્રા મી²"
+
+#~ msgctxt "PropertyName"
+#~ msgid "momentum"
+#~ msgstr "જડત્વ"
+
+#~ msgctxt "Units"
+#~ msgid "kg m/s"
+#~ msgstr "કિગ્રા મી/સે"
+
+#~ msgid "momentum"
+#~ msgstr "જડત્વ"
+
+#~ msgctxt "PropertyName"
+#~ msgid "angularMomentum"
+#~ msgstr "કોણીયજડત્વ"
+
+#~ msgctxt "Units"
+#~ msgid "kg m² rad/s"
+#~ msgstr "કિગ્રા મી² રેડ/સે"
+
+#~ msgid "angular momentum"
+#~ msgstr "કોણીય જડત્વ"
+
+#~ msgctxt "PropertyName"
+#~ msgid "kineticEnergy"
+#~ msgstr "કાઇનેટિકએનર્જી"
+
+#~ msgctxt "Units"
+#~ msgid "J"
+#~ msgstr "J"
+
+#~ msgid "kinetic energy"
+#~ msgstr "કાઇનેટિક એનર્જી"
+
+#~ msgctxt "PropertyName"
+#~ msgid "positionVariance"
+#~ msgstr "સ્થિતિવિસંગતિ"
+
+#~ msgid "position variance"
+#~ msgstr "સ્થિતિ વિસંગતિ"
+
+#~ msgctxt "PropertyName"
+#~ msgid "angleVariance"
+#~ msgstr "કોણવિસંગતિ"
+
+#~ msgid "angle variance"
+#~ msgstr "કોણ વિસંગતિ"
+
+#~ msgctxt "PropertyName"
+#~ msgid "velocityVariance"
+#~ msgstr "વેગવિસંગતિ"
+
+#~ msgid "velocity variance"
+#~ msgstr "વેગ વિસંગતિ"
+
+#~ msgctxt "PropertyName"
+#~ msgid "angularVelocityVariance"
+#~ msgstr "કોણીયજડત્વવિસંગતિ"
+
+#~ msgid "angularVelocity variance"
+#~ msgstr "કોણીયજડત્વ વિસંગતિ"
+
+#~ msgctxt "PropertyName"
+#~ msgid "accelerationVariance"
+#~ msgstr "પ્રવેગવિસંગતિ"
+
+#~ msgid "acceleration variance"
+#~ msgstr "પ્રવેગ વિસંગતિ"
+
+#~ msgctxt "PropertyName"
+#~ msgid "angularAccelerationVariance"
+#~ msgstr "કોણીયપ્રવેગવિસંગતિ"
+
+#~ msgid "angularAcceleration variance"
+#~ msgstr "કોણીયપ્રવેગ વિસંગતિ"
+
+#~ msgctxt "PropertyName"
+#~ msgid "forceVariance"
+#~ msgstr "બળવિસંગતિ"
+
+#~ msgid "force variance"
+#~ msgstr "બળ વિસંગતિ"
+
+#~ msgctxt "PropertyName"
+#~ msgid "torqueVariance"
+#~ msgstr "ટોર્કવિસંગતિ"
+
+#~ msgid "torque variance"
+#~ msgstr "ટોર્ક વિસંગતિ"
+
+#~ msgctxt "PropertyName"
+#~ msgid "massVariance"
+#~ msgstr "દળવિસંગતિ"
+
+#~ msgid "mass variance"
+#~ msgstr "દળ વિસંગતિ"
+
+#~ msgctxt "PropertyName"
+#~ msgid "inertiaVariance"
+#~ msgstr "જડત્વવિસંગતિ"
+
+#~ msgid "inertia variance"
+#~ msgstr "જડત્વ વિસંગતિ"
+
+#~ msgctxt "PropertyName"
+#~ msgid "momentumVariance"
+#~ msgstr "જડત્વવિસંગતિ"
+
+#~ msgid "momentum variance"
+#~ msgstr "જડત્વ વિસંગતિ"
+
+#~ msgctxt "PropertyName"
+#~ msgid "angularMomentumVariance"
+#~ msgstr "કોણીયજડત્વવિસંગતિ"
+
+#~ msgid "angular momentum variance"
+#~ msgstr "કોણીય જડત્વ વિસંગતિ"
+
+#~ msgctxt "PropertyName"
+#~ msgid "kineticEnergyVariance"
+#~ msgstr "કાઇનેટિકએનર્જીવિસંગતિ"
+
+#~ msgid "kinetic energy variance"
+#~ msgstr "કાઇનેટિક એનર્જી વિસંગતિ"
+
+#~ msgctxt "ObjectClass"
+#~ msgid "Disk"
+#~ msgstr "તકતી"
+
+#~ msgid "Rigid disk"
+#~ msgstr "જડિત તકતી"
+
+#~ msgctxt "PropertyName"
+#~ msgid "radius"
+#~ msgstr "ત્રિજ્યા"
+
+#~ msgid "Radius of the disk"
+#~ msgstr "તકતીની ત્રિજ્યા"
+
+#~ msgctxt "ObjectClass"
+#~ msgid "Box"
+#~ msgstr "પેટી"
+
+#~ msgid "Rigid box"
+#~ msgstr "જડિત પેટી"
+
+#~ msgctxt "PropertyName"
+#~ msgid "size"
+#~ msgstr "માપ"
+
+#~ msgid "Size of the box"
+#~ msgstr "પેટીનું કદ"
+
+#~ msgctxt "ObjectClass"
+#~ msgid "Polygon"
+#~ msgstr "પોલીગોન"
+
+#~ msgctxt "ObjectClass"
+#~ msgid "Plane"
+#~ msgstr "સમતલ"
+
+#~ msgctxt "PropertyName"
+#~ msgid "point1"
+#~ msgstr "બિંદુ૧"
+
+#~ msgctxt "PropertyName"
+#~ msgid "point2"
+#~ msgstr "બિંદુ૨"
+
+#~ msgid "Show internal items"
+#~ msgstr "આંતરિક વસ્તુઓ બતાવો"
+
+#~ msgctxt "Units"
+#~ msgid "kg m²/s"
+#~ msgstr "કિગ્રા મી²/સે"
+
+#~ msgctxt "Units"
+#~ msgid "s"
+#~ msgstr "s"
+
+#~ msgctxt "PropertyName"
+#~ msgid "dimension"
+#~ msgstr "પરિમાણ"
+
+#~ msgctxt "PropertyName"
+#~ msgid "localError"
+#~ msgstr "સ્થાનિકક્ષતિ"
+
+#~ msgctxt "ObjectClass"
+#~ msgid "Particle"
+#~ msgstr "અણુ"
+
+#~ msgid "position"
+#~ msgstr "સ્થિતિ"
+
+#~ msgid "velocity"
+#~ msgstr "વેગ"
+
+#~ msgid "acceleration"
+#~ msgstr "પ્રવેગ"
+
+#~ msgid "force"
+#~ msgstr "બળ"
+
+#~ msgid "mass"
+#~ msgstr "દળ"
+
+#~ msgctxt "ObjectClass"
+#~ msgid "ParticleErrors"
+#~ msgstr "અણુ ક્ષતિઓ"
+
+#~ msgctxt "PropertyName"
+#~ msgid "charge"
+#~ msgstr "ચાર્જ"
+
+#~ msgctxt "Units"
+#~ msgid "C"
+#~ msgstr "C"
+
+#~ msgid "charge"
+#~ msgstr "ચાર્જ"
+
+#~ msgctxt "PropertyName"
+#~ msgid "chargeVariance"
+#~ msgstr "ચાર્જવિસંગતિ"
+
+#~ msgid "charge variance"
+#~ msgstr "ચાર્જ વિસંગતિ"
+
+#~ msgid "Wrong ID attribute value for %1"
+#~ msgstr "%1 માટે ખોટી ઓળખ ગુણધર્મ"
+
+#~ msgid "Non-unique ID attribute value for %1"
+#~ msgstr "%1 માટે ઐક્ય ન હોય તેવી ઓળખ કિંમત"
+
+#~ msgid "The file is not a StepCoreXML file."
+#~ msgstr "ફાઇલ એ StepCoreXML ફાઇલ નથી."
+
+#~ msgid "Unknown item type \"%1\""
+#~ msgstr "અજાણી વસ્તુ પ્રકાર \"%1\""
+
+#~ msgid "Unknown solver type \"%1\""
+#~ msgstr "અજાણ્યો ઉકેલ પ્રકાર \"%1\""
+
+#~ msgid "Unknown collisionSolver type \"%1\""
+#~ msgstr "અજાણ્યો અથડામણઉકેલ પ્રકાર \"%1\""
+
+#~ msgid "Unknown constraintSolver type \"%1\""
+#~ msgstr "અજાણ્યો દબાણઉકેલ પ્રકાર \"%1\""
+
+#~ msgid "Item \"%1\" has no stored property named \"%2\""
+#~ msgstr "વસ્તુ \"%1\" ને  \"%2\" નામનો કોઇ ગુણધર્મ સંગ્રહ થયેલ નથી"
+
+#~ msgid "Unexpected tag \"%1\""
+#~ msgstr "ન ધારેલ ટેગ \"%1\""
+
+#~ msgid "Property \"%1\" of \"%2\" has illegal value"
+#~ msgstr "\"%2\" નાં ગુણધર્મ \"%1\" ને અયોગ્ય કિંમત છે"
+
+#~ msgid "\"world\" tag not found"
+#~ msgstr "\"world\" ટેગ મળ્યું નહી"
+
+#~ msgid "Error parsing file at line %1: %2"
+#~ msgstr "ફાઇલને જોતી વખતે લીટી %1: %2 પર ક્ષતિ આવી"
+
+#~ msgid "File is not writable."
+#~ msgstr "ફાઇલમાં લખી શકાય તેવી નથી."
+
+#~ msgctxt "ObjectClass"
+#~ msgid "GasParticle"
+#~ msgstr "વાયુઅણુ"
+
+#~ msgid "Gas particle"
+#~ msgstr "વાયુ અણુ"
+
+#~ msgid "Lennard-Jones force"
+#~ msgstr "લેન્નાર્ડ-જોન્સ બળ"
+
+#~ msgctxt "PropertyName"
+#~ msgid "depth"
+#~ msgstr "ઉંડાઇ"
+
+#~ msgctxt "ObjectClass"
+#~ msgid "Gas"
+#~ msgstr "વાયુ"
+
+#~ msgid "Particle gas"
+#~ msgstr "અણુ વાયુ"
+
+#~ msgctxt "Units"
+#~ msgid "m²"
+#~ msgstr "મી²"
+
+#~ msgctxt "Units"
+#~ msgid "1/m²"
+#~ msgstr "૧/મી²"
+
+#~ msgctxt "Units"
+#~ msgid "K"
+#~ msgstr "K"
+
+#~ msgctxt "PropertyName"
+#~ msgid "image"
+#~ msgstr "ચિત્ર"
+
+#~ msgid "Image data"
+#~ msgstr "ચિત્ર માહિતી"
+
+#~ msgctxt "ObjectClass"
+#~ msgid "Note"
+#~ msgstr "નોંધ"
+
+#~ msgctxt "PropertyName"
+#~ msgid "text"
+#~ msgstr "લખાણ"
+
+#~ msgid "Text"
+#~ msgstr "લખાણ"
+
+#~ msgctxt "ObjectClass"
+#~ msgid "Graph"
+#~ msgstr "આલેખ"
+
+#~ msgctxt "PropertyName"
+#~ msgid "objectX"
+#~ msgstr "વસ્તુX"
+
+#~ msgctxt "PropertyName"
+#~ msgid "propertyX"
+#~ msgstr "ગુણધર્મX"
+
+#~ msgctxt "PropertyName"
+#~ msgid "objectY"
+#~ msgstr "વસ્તુY"
+
+#~ msgctxt "PropertyName"
+#~ msgid "propertyY"
+#~ msgstr "ગુણધર્મY"
+
+#~ msgctxt "PropertyName"
+#~ msgid "showPoints"
+#~ msgstr "બિંદુઓબતાવો"
+
+#~ msgid "Show points on the graph"
+#~ msgstr "આલેખમાં બિંદુઓ બતાવો"
+
+#~ msgctxt "PropertyName"
+#~ msgid "showLines"
+#~ msgstr "રેખાઓબતાવો"
+
+#~ msgid "Current value"
+#~ msgstr "હાલની કિંમત"
+
+#~ msgctxt "PropertyName"
+#~ msgid "points"
+#~ msgstr "બિંદુઓ"
+
+#~ msgid "points"
+#~ msgstr "બિંદુઓ"
+
+#~ msgctxt "ObjectClass"
+#~ msgid "Meter"
+#~ msgstr "મીટર"
+
+#~ msgctxt "PropertyName"
+#~ msgid "object"
+#~ msgstr "વસ્તુ"
+
+#~ msgctxt "PropertyName"
+#~ msgid "property"
+#~ msgstr "ગુણધર્મ"
+
+#~ msgctxt "PropertyName"
+#~ msgid "index"
+#~ msgstr "અનુક્રમ"
+
+#~ msgctxt "PropertyName"
+#~ msgid "digits"
+#~ msgstr "આંકડાઓ"
+
+#~ msgid "value"
+#~ msgstr "કિંમત"
+
+#~ msgctxt "ObjectClass"
+#~ msgid "Controller"
+#~ msgstr "નિયંત્રક"
+
+#~ msgid "Controlled object"
+#~ msgstr "નિયંત્રિત વસ્તુ"
+
+#~ msgctxt "PropertyName"
+#~ msgid "limits"
+#~ msgstr "મર્યાદાઓ"
+
+#~ msgid "Limits"
+#~ msgstr "મર્યાદાઓ"
+
+#~ msgctxt "PropertyName"
+#~ msgid "increment"
+#~ msgstr "વધારો"
+
+#~ msgctxt "PropertyName"
+#~ msgid "value"
+#~ msgstr "કિંમત"
+
+#~ msgctxt "PropertyName"
+#~ msgid "localPosition"
+#~ msgstr "સ્થાનિકસ્થિતિ"
+
+#~ msgid "Local position"
+#~ msgstr "સ્થાનિક સ્થિતિ"
+
+#~ msgid "Position"
+#~ msgstr "સ્થિતિ"
+
+#~ msgctxt "PropertyName"
+#~ msgid "forceValue"
+#~ msgstr "બળકિંમત"
+
+#~ msgctxt "ObjectClass"
+#~ msgid "Item"
+#~ msgstr "વસ્તુ"
+
+#~ msgid "Item"
+#~ msgstr "વસ્તુ"
+
+#~ msgctxt "PropertyName"
+#~ msgid "color"
+#~ msgstr "રંગ"
+
+#~ msgid "Item color"
+#~ msgstr "વસ્તુ રંગ"
+
+#~ msgctxt "ObjectClass"
+#~ msgid "Force"
+#~ msgstr "બળ"
+
+#~ msgid "Force"
+#~ msgstr "બળ"
+
+#~ msgctxt "ObjectClass"
+#~ msgid "Joint"
+#~ msgstr "જોડાણ"
+
+#~ msgid "Joint"
+#~ msgstr "જોડાણ"
+
+#~ msgctxt "ObjectClass"
+#~ msgid "Tool"
+#~ msgstr "સાધન"
+
+#~ msgid "Tool"
+#~ msgstr "સાધન"
+
+#~ msgctxt "ObjectClass"
+#~ msgid "ItemGroup"
+#~ msgstr "વસ્તુસમૂહ"
+
+#~ msgid "ItemGroup"
+#~ msgstr "વસ્તુસમૂહ"
+
+#~ msgctxt "ObjectClass"
+#~ msgid "World"
+#~ msgstr "દુનિયા"
+
+#~ msgid "World"
+#~ msgstr "દુનિયા"
+
+#~ msgctxt "PropertyName"
+#~ msgid "time"
+#~ msgstr "સમય"
+
+#~ msgid "Current time"
+#~ msgstr "હાલનો સમય"
+
+#~ msgid "Simulation speed scale"
+#~ msgstr "સિમ્યુલેશન ઝડપ માપ"
+
+#~ msgid "Angle"
+#~ msgstr "ખૂણો"
+
+#~ msgctxt "ObjectClass"
+#~ msgid "Pin"
+#~ msgstr "પિન"
+
+#~ msgctxt "PropertyName"
+#~ msgid "localPosition1"
+#~ msgstr "સ્થાનિકસ્થિતિ૧"
+
+#~ msgid "Local position 1"
+#~ msgstr "સ્થાનિક સ્થિતિ ૧"
+
+#~ msgctxt "PropertyName"
+#~ msgid "localPosition2"
+#~ msgstr "સ્થાનિકસ્થિતિ૨"
+
+#~ msgid "Local position 2"
+#~ msgstr "સ્થાનિક સ્થિતિ ૨"
+
+#~ msgctxt "PropertyName"
+#~ msgid "position1"
+#~ msgstr "સ્થિતિ૧"
+
+#~ msgid "Position1"
+#~ msgstr "સ્થિતિ૧"
+
+#~ msgctxt "PropertyName"
+#~ msgid "position2"
+#~ msgstr "સ્થિતિ૨"
+
+#~ msgid "Position2"
+#~ msgstr "સ્થિતિ૨"
+
+#~ msgctxt "ObjectClass"
+#~ msgid "Rope"
+#~ msgstr "દોરડું"
+
+#~ msgctxt "ObjectClass"
+#~ msgid "Object"
+#~ msgstr "વસ્તુ"
+
+#~ msgid "Object"
+#~ msgstr "વસ્તુ"
+
+#~ msgctxt "PropertyName"
+#~ msgid "name"
+#~ msgstr "નામ"
+
+#~ msgctxt "ObjectClass"
+#~ msgid "GravitationForce"
+#~ msgstr "ગુરુત્વબળ"
+
+#~ msgid "Gravitation force"
+#~ msgstr "ગુરુત્વ બળ"
+
+#~ msgctxt "PropertyName"
+#~ msgid "gravitationConst"
+#~ msgstr "ગુરુત્વઅચળાંક"
+
+#~ msgctxt "Units"
+#~ msgid "N m²/kg²"
+#~ msgstr "N મી²/કિગ્રા²"
+
+#~ msgid "Gravitation constant"
+#~ msgstr "ગુરૂત્વબળ અચળાંક"
+
+#~ msgctxt "ObjectClass"
+#~ msgid "GravitationForceErrors"
+#~ msgstr "ગુરુત્વબળક્ષતિઓ"
+
+#~ msgctxt "PropertyName"
+#~ msgid "gravitationConstVariance"
+#~ msgstr "ગુરુત્વઅચળાંકવિસંગતિ"
+
+#~ msgctxt "ObjectClass"
+#~ msgid "WeightForce"
+#~ msgstr "વજનબળ"
+
+#~ msgid "Weight force"
+#~ msgstr "વજન બળ"
+
+#~ msgctxt "PropertyName"
+#~ msgid "weightConst"
+#~ msgstr "વજનઅચળાંક"
+
+#~ msgid "Weight constant"
+#~ msgstr "વજન અચળાંક"
+
+#~ msgctxt "ObjectClass"
+#~ msgid "WeightForceErrors"
+#~ msgstr "વજનબળક્ષતિઓ"
+
+#~ msgctxt "ObjectClass"
+#~ msgid "Spring"
+#~ msgstr "સ્પ્રિંગ"
+
+#~ msgctxt "PropertyName"
+#~ msgid "length"
+#~ msgstr "લંબાઇ"
+
+#~ msgid "Current length"
+#~ msgstr "હાલની લંબાઇ"
+
+#~ msgctxt "Units"
+#~ msgid "N/m"
+#~ msgstr "N/મી"
+
+#~ msgctxt "Units"
+#~ msgid "N s/m"
+#~ msgstr "N સે/મી"
+
+#~ msgctxt "ObjectClass"
+#~ msgid "SpringErrors"
+#~ msgstr "સ્પ્રિંગક્ષતિઓ"
+
+#~ msgctxt "PropertyName"
+#~ msgid "localPosition1Variance"
+#~ msgstr "સ્થાનિકસ્થિતિ૧વિસંગતિ"
+
+#~ msgid "Local position 1 variance"
+#~ msgstr "સ્થાનિક સ્થિતિ ૧ વિસંગતિ"
+
+#~ msgctxt "PropertyName"
+#~ msgid "localPosition2Variance"
+#~ msgstr "સ્થાનિકસ્થિતિ૨વિસંગતિ"
+
+#~ msgid "Local position 2 variance"
+#~ msgstr "સ્થાનિક સ્થિતિ ૨ વિસંગતિ"
+
+#~ msgctxt "PropertyName"
+#~ msgid "position1Variance"
+#~ msgstr "સ્થિતિ૧વિસંગતિ"
+
+#~ msgid "Position1 variance"
+#~ msgstr "સ્થિતિ૧ વિસંગતિ"
+
+#~ msgctxt "PropertyName"
+#~ msgid "position2Variance"
+#~ msgstr "સ્થિતિ૨વિસંગતિ"
+
+#~ msgid "Position2 variance"
+#~ msgstr "સ્થિતિ૨ વિસંગતિ"
+
+#~ msgctxt "ObjectClass"
+#~ msgid "CoulombForce"
+#~ msgstr "કુલંબબળ"
+
+#~ msgid "Coulomb force"
+#~ msgstr "કુલંબ બળ"
+
+#~ msgctxt "PropertyName"
+#~ msgid "coulombConst"
+#~ msgstr "કુલંબઅચળાંક"
+
+#~ msgctxt "Units"
+#~ msgid "N m²/C²"
+#~ msgstr "N મી²/C²"
+
+#~ msgid "Coulomb constant"
+#~ msgstr "કુલંબ અચળાંક"
+
+#~ msgctxt "ObjectClass"
+#~ msgid "CoulombForceErrors"
+#~ msgstr "કુલંબબળક્ષતિઓ"
+
+#~ msgctxt "PropertyName"
+#~ msgid "coulombConstVariance"
+#~ msgstr "કુલંબઅચળાંકવિસંગતિ"
+
+#~ msgid "Coulomb constant variance"
+#~ msgstr "કુલંબ અચળાંક વિસંગતિ"

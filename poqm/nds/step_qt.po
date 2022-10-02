@@ -1,0 +1,4329 @@
+# Translation of step.po to Low Saxon
+# Copyright (C) YEAR This_file_is_part_of_KDE
+# This file is distributed under the same license as the PACKAGE package.
+# Manfred Wiese <m.j.wiese@web.de>, 2008, 2009, 2011.
+# Sönke Dibbern <s_dibbern@web.de>, 2008, 2014.
+# translation of step.po to Low Saxon
+msgid ""
+msgstr ""
+"Project-Id-Version: step\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2016-06-22 08:50+0000\n"
+"PO-Revision-Date: 2014-04-27 21:54+0200\n"
+"Last-Translator: Sönke Dibbern <s_dibbern@web.de>\n"
+"Language-Team: Low Saxon <kde-i18n-nds@kde.org>\n"
+"Language: nds\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Lokalize 1.4\n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Qt-Contexts: true\n"
+
+#: body.cc:26
+#, fuzzy
+#| msgid "Body"
+msgctxt "ObjectClass|"
+msgid "Body"
+msgstr "Körper"
+
+#: body.cc:26
+#, fuzzy
+#| msgid "Body"
+msgctxt "ObjectDescription|"
+msgid "Body"
+msgstr "Körper"
+
+#: collisionsolver.cc:31
+#, fuzzy
+#| msgctxt "ObjectClass"
+#| msgid "CollisionSolver"
+msgctxt "ObjectClass|"
+msgid "CollisionSolver"
+msgstr "Tosamenstöötlöser"
+
+#: collisionsolver.cc:32 solver.cc:28
+#, fuzzy
+#| msgid "Allowed absolute tolerance"
+msgctxt "PropertyDescription|"
+msgid "Allowed absolute tolerance"
+msgstr "Tolaten afsoluut Fehler"
+
+#: collisionsolver.cc:32 solver.cc:28
+#, fuzzy
+#| msgctxt "PropertyName"
+#| msgid "toleranceAbs"
+msgctxt "PropertyName|"
+msgid "toleranceAbs"
+msgstr "afsoluut Fehler"
+
+#: collisionsolver.cc:33 solver.cc:31
+#, fuzzy
+#| msgid "Maximal local error during last step"
+msgctxt "PropertyDescription|"
+msgid "Maximal local error during last step"
+msgstr "Gröttst lokaal Fehler bi den lesten Schritt"
+
+#: collisionsolver.cc:33 solver.cc:31
+#, fuzzy
+#| msgctxt "PropertyName"
+#| msgid "localError"
+msgctxt "PropertyName|"
+msgid "localError"
+msgstr "lokaal Fehler"
+
+#: collisionsolver.cc:35
+#, fuzzy
+#| msgctxt "ObjectClass"
+#| msgid "GJKCollisionSolver"
+msgctxt "ObjectClass|"
+msgid "GJKCollisionSolver"
+msgstr "GJK-Tosamenstöötlöser"
+
+#: constraintsolver.cc:31
+#, fuzzy
+#| msgctxt "ObjectClass"
+#| msgid "ConstraintSolver"
+msgctxt "ObjectClass|"
+msgid "ConstraintSolver"
+msgstr "Bedingenlöser"
+
+#: constraintsolver.cc:35
+#, fuzzy
+#| msgctxt "ObjectClass"
+#| msgid "CGConstraintSolver"
+msgctxt "ObjectClass|"
+msgid "CGConstraintSolver"
+msgstr "CG-Bedingenlöser"
+
+#: coulombforce.cc:26
+#, fuzzy
+#| msgctxt "ObjectClass"
+#| msgid "CoulombForce"
+msgctxt "ObjectClass|"
+msgid "CoulombForce"
+msgstr "Coulomb-Kraft"
+
+#: coulombforce.cc:26
+#, fuzzy
+#| msgid "Coulomb force"
+msgctxt "ObjectDescription|"
+msgid "Coulomb force"
+msgstr "Coulomb-Kraft"
+
+#: coulombforce.cc:28
+#, fuzzy
+#| msgctxt "PropertyName"
+#| msgid "coulombConst"
+msgctxt "PropertyName|"
+msgid "coulombConst"
+msgstr "Coulomb-Konstante"
+
+#: coulombforce.cc:28 coulombforce.cc:33
+#, fuzzy
+#| msgctxt "Units"
+#| msgid "N m²/C²"
+msgctxt "Units|"
+msgid "N m²/C²"
+msgstr "N m²/C²"
+
+#: coulombforce.cc:29
+#, fuzzy
+#| msgid "Coulomb constant"
+msgctxt "PropertyDescription|"
+msgid "Coulomb constant"
+msgstr "Coulomb-Konstante"
+
+#: coulombforce.cc:31
+#, fuzzy
+#| msgctxt "ObjectClass"
+#| msgid "CoulombForceErrors"
+msgctxt "ObjectClass|"
+msgid "CoulombForceErrors"
+msgstr "Coulomb-Kraftfehler"
+
+#: coulombforce.cc:31
+#, fuzzy
+#| msgid "Errors class for CoulombForce"
+msgctxt "ObjectDescription|"
+msgid "Errors class for CoulombForce"
+msgstr "Fehlerklass för Coulomb-Kraft"
+
+#: coulombforce.cc:33
+#, fuzzy
+#| msgctxt "PropertyName"
+#| msgid "coulombConstVariance"
+msgctxt "PropertyName|"
+msgid "coulombConstVariance"
+msgstr "Coulomb-Konstantenvarianz"
+
+#: coulombforce.cc:34
+#, fuzzy
+#| msgid "Coulomb constant variance"
+msgctxt "PropertyDescription|"
+msgid "Coulomb constant variance"
+msgstr "Coulomb-Konstantenvarianz"
+
+#: eulersolver.cc:27
+#, fuzzy
+#| msgctxt "ObjectClass"
+#| msgid "GenericEulerSolver"
+msgctxt "ObjectClass|"
+msgid "GenericEulerSolver"
+msgstr "Allmeen Euler-Löser"
+
+#: eulersolver.cc:27
+#, fuzzy
+#| msgid "Generic Euler solver"
+msgctxt "ObjectDescription|"
+msgid "Generic Euler solver"
+msgstr "Allmeen Euler-Löser"
+
+#: eulersolver.cc:28
+#, fuzzy
+#| msgctxt "ObjectClass"
+#| msgid "EulerSolver"
+msgctxt "ObjectClass|"
+msgid "EulerSolver"
+msgstr "Euler-Löser"
+
+#: eulersolver.cc:28
+#, fuzzy
+#| msgid "Non-adaptive Euler solver"
+msgctxt "ObjectDescription|"
+msgid "Non-adaptive Euler solver"
+msgstr "Nich-topasst Euler-Löser"
+
+#: eulersolver.cc:29
+#, fuzzy
+#| msgctxt "ObjectClass"
+#| msgid "AdaptiveEulerSolver"
+msgctxt "ObjectClass|"
+msgid "AdaptiveEulerSolver"
+msgstr "Topasst Euler-Löser"
+
+#: eulersolver.cc:29
+#, fuzzy
+#| msgid "Adaptive Euler solver"
+msgctxt "ObjectDescription|"
+msgid "Adaptive Euler solver"
+msgstr "Topasst Euler-Löser"
+
+#: force.cc:27
+#, fuzzy
+#| msgid "Force"
+msgctxt "ObjectClass|"
+msgid "Force"
+msgstr "Kraft"
+
+#: force.cc:27
+#, fuzzy
+#| msgid "Force"
+msgctxt "ObjectDescription|"
+msgid "Force"
+msgstr "Kraft"
+
+#: gas.cc:27
+#, fuzzy
+#| msgctxt "ObjectClass"
+#| msgid "GasParticle"
+msgctxt "ObjectClass|"
+msgid "GasParticle"
+msgstr "Gasdeeltje"
+
+#: gas.cc:27
+#, fuzzy
+#| msgid "Gas particle"
+msgctxt "ObjectDescription|"
+msgid "Gas particle"
+msgstr "Gasdeeltje"
+
+#: gas.cc:29
+#, fuzzy
+#| msgctxt "ObjectClass"
+#| msgid "GasLJForce"
+msgctxt "ObjectClass|"
+msgid "GasLJForce"
+msgstr "Gas-LJ-Kraft"
+
+#: gas.cc:29
+#, fuzzy
+#| msgid "Lennard-Jones force"
+msgctxt "ObjectDescription|"
+msgid "Lennard-Jones force"
+msgstr "\"Lennard-Jones\"-Kraft"
+
+#: gas.cc:31
+#, fuzzy
+#| msgid "Potential depth"
+msgctxt "PropertyDescription|"
+msgid "Potential depth"
+msgstr "Potentschaaldeepde"
+
+#: gas.cc:31
+#, fuzzy
+#| msgctxt "PropertyName"
+#| msgid "depth"
+msgctxt "PropertyName|"
+msgid "depth"
+msgstr "Deepde"
+
+#: gas.cc:31 gas.cc:37 gas.cc:59 gas.cc:74 particle.cc:37 particle.cc:53
+#: rigidbody.cc:49 rigidbody.cc:80
+#, fuzzy
+#| msgctxt "Units"
+#| msgid "J"
+msgctxt "Units|"
+msgid "J"
+msgstr "J"
+
+#: gas.cc:32
+#, fuzzy
+#| msgid "Distance at which the force is zero"
+msgctxt "PropertyDescription|"
+msgid "Distance at which the force is zero"
+msgstr "Afstand, bi den de Kraft Null is"
+
+#: gas.cc:32
+#, fuzzy
+#| msgctxt "PropertyName"
+#| msgid "rmin"
+msgctxt "PropertyName|"
+msgid "rmin"
+msgstr "rmin"
+
+#: gas.cc:32 gas.cc:33 gas.cc:39 gas.cc:45 gas.cc:47 joints.cc:29 joints.cc:35
+#: joints.cc:36 joints.cc:40 joints.cc:43 joints.cc:45 joints.cc:47
+#: joints.cc:48 motor.cc:30 motor.cc:36 particle.cc:29 particle.cc:41
+#: rigidbody.cc:28 rigidbody.cc:53 rigidbody.cc:84 rigidbody.cc:89
+#: rigidbody.cc:92 softbody.cc:36 spring.cc:30 spring.cc:31 spring.cc:36
+#: spring.cc:38 spring.cc:40 spring.cc:41 spring.cc:47 spring.cc:49
+#: spring.cc:55 spring.cc:57 spring.cc:59 spring.cc:61 tool.cc:38 tool.cc:39
+#: tool.cc:45 tool.cc:46 tool.cc:67 tool.cc:68 tool.cc:79 tool.cc:80 tool.cc:98
+#: tool.cc:100 tool.cc:101
+#, fuzzy
+#| msgctxt "Units"
+#| msgid "m"
+msgctxt "Units|"
+msgid "m"
+msgstr "m"
+
+#: gas.cc:33
+#, fuzzy
+#| msgid "Cut-off distance"
+msgctxt "PropertyDescription|"
+msgid "Cut-off distance"
+msgstr "Grenzweert-Afstand"
+
+#: gas.cc:33
+#, fuzzy
+#| msgctxt "PropertyName"
+#| msgid "cutoff"
+msgctxt "PropertyName|"
+msgid "cutoff"
+msgstr "Grenzweert"
+
+#: gas.cc:35
+#, fuzzy
+#| msgctxt "ObjectClass"
+#| msgid "GasLJForceErrors"
+msgctxt "ObjectClass|"
+msgid "GasLJForceErrors"
+msgstr "Gas-LJ-Kraftfehlers"
+
+#: gas.cc:35
+#, fuzzy
+#| msgid "Errors class for GasLJForce"
+msgctxt "ObjectDescription|"
+msgid "Errors class for GasLJForce"
+msgstr "Fehlerklass för Gas-LJ-Kraft"
+
+#: gas.cc:37
+#, fuzzy
+#| msgctxt "PropertyName"
+#| msgid "depthVariance"
+msgctxt "PropertyName|"
+msgid "depthVariance"
+msgstr "Deepden-Varianz"
+
+#: gas.cc:38
+#, fuzzy
+#| msgid "Potential depth variance"
+msgctxt "PropertyDescription|"
+msgid "Potential depth variance"
+msgstr "Potentschaaldeepden-Varianz"
+
+#: gas.cc:39
+#, fuzzy
+#| msgctxt "PropertyName"
+#| msgid "rminVariance"
+msgctxt "PropertyName|"
+msgid "rminVariance"
+msgstr "Minimaal-Varianz"
+
+#: gas.cc:40
+#, fuzzy
+#| msgid "Variance of the distance at which the force is zero"
+msgctxt "PropertyDescription|"
+msgid "Variance of the distance at which the force is zero"
+msgstr "Varianz vun den Afstand, bi den de Kraft Null is."
+
+#: gas.cc:44
+#, fuzzy
+#| msgctxt "ObjectClass"
+#| msgid "Gas"
+msgctxt "ObjectClass|"
+msgid "Gas"
+msgstr "Gas"
+
+#: gas.cc:44
+#, fuzzy
+#| msgid "Particle gas"
+msgctxt "ObjectDescription|"
+msgid "Particle gas"
+msgstr "Gasdeeltje"
+
+#: gas.cc:45
+#, fuzzy
+#| msgctxt "PropertyName"
+#| msgid "measureRectCenter"
+msgctxt "PropertyName|"
+msgid "measureRectCenter"
+msgstr "MeetRechtMerrn"
+
+#: gas.cc:46
+#, fuzzy
+#| msgid "Center of the rect for measurements"
+msgctxt "PropertyDescription|"
+msgid "Center of the rect for measurements"
+msgstr "Rechteckmerrn för't Meten"
+
+#: gas.cc:47
+#, fuzzy
+#| msgctxt "PropertyName"
+#| msgid "measureRectSize"
+msgctxt "PropertyName|"
+msgid "measureRectSize"
+msgstr "MeetRechtGrött"
+
+#: gas.cc:48
+#, fuzzy
+#| msgid "Size of the rect for measurements"
+msgctxt "PropertyDescription|"
+msgid "Size of the rect for measurements"
+msgstr "Rechteckgrött för't Meten"
+
+#: gas.cc:49
+#, fuzzy
+#| msgctxt "PropertyName"
+#| msgid "rectVolume"
+msgctxt "PropertyName|"
+msgid "rectVolume"
+msgstr "RechtInh"
+
+#: gas.cc:49
+#, fuzzy
+#| msgctxt "Units"
+#| msgid "m²"
+msgctxt "Units|"
+msgid "m²"
+msgstr "m²"
+
+#: gas.cc:50
+#, fuzzy
+#| msgid "Volume of the measureRect"
+msgctxt "PropertyDescription|"
+msgid "Volume of the measureRect"
+msgstr "Den Meetrechteck sien Inholt"
+
+#: gas.cc:51
+#, fuzzy
+#| msgctxt "PropertyName"
+#| msgid "rectParticleCount"
+msgctxt "PropertyName|"
+msgid "rectParticleCount"
+msgstr "RechtDeeltjestall"
+
+#: gas.cc:52
+#, fuzzy
+#| msgid "Count of particles in the measureRect"
+msgctxt "PropertyDescription|"
+msgid "Count of particles in the measureRect"
+msgstr "Tall vun Deeltjes binnen den Meetrechteck"
+
+#: gas.cc:53
+#, fuzzy
+#| msgctxt "PropertyName"
+#| msgid "rectConcentration"
+msgctxt "PropertyName|"
+msgid "rectConcentration"
+msgstr "RechtKonzentreren"
+
+#: gas.cc:53
+#, fuzzy
+#| msgctxt "Units"
+#| msgid "1/m²"
+msgctxt "Units|"
+msgid "1/m²"
+msgstr "1/m²"
+
+#: gas.cc:54
+#, fuzzy
+#| msgid "Concentration of particles in the measureRect"
+msgctxt "PropertyDescription|"
+msgid "Concentration of particles in the measureRect"
+msgstr "Deeltjeskonzentreren binnen den Meetrechteck"
+
+#: gas.cc:55
+#, fuzzy
+#| msgctxt "PropertyName"
+#| msgid "rectPressure"
+msgctxt "PropertyName|"
+msgid "rectPressure"
+msgstr "RechtDruck"
+
+#: gas.cc:55 gas.cc:70
+#, fuzzy
+#| msgctxt "Units"
+#| msgid "Pa"
+msgctxt "Units|"
+msgid "Pa"
+msgstr "Pa"
+
+#: gas.cc:56
+#, fuzzy
+#| msgid "Pressure of particles in the measureRect"
+msgctxt "PropertyDescription|"
+msgid "Pressure of particles in the measureRect"
+msgstr "Deeltjesdruck binnen den Meetrechteck"
+
+#: gas.cc:57
+#, fuzzy
+#| msgctxt "PropertyName"
+#| msgid "rectTemperature"
+msgctxt "PropertyName|"
+msgid "rectTemperature"
+msgstr "RechtTemp"
+
+#: gas.cc:57 gas.cc:72
+#, fuzzy
+#| msgctxt "Units"
+#| msgid "K"
+msgctxt "Units|"
+msgid "K"
+msgstr "K"
+
+#: gas.cc:58
+#, fuzzy
+#| msgid "Temperature of particles in the measureRect"
+msgctxt "PropertyDescription|"
+msgid "Temperature of particles in the measureRect"
+msgstr "Deeltjestemperatuur binnen den Meetrechteck"
+
+#: gas.cc:59
+#, fuzzy
+#| msgctxt "PropertyName"
+#| msgid "rectMeanKineticEnergy"
+msgctxt "PropertyName|"
+msgid "rectMeanKineticEnergy"
+msgstr "RechtDörsnKinEnergie"
+
+#: gas.cc:60
+#, fuzzy
+#| msgid "Mean kinetic energy of particles in the measureRect"
+msgctxt "PropertyDescription|"
+msgid "Mean kinetic energy of particles in the measureRect"
+msgstr "Dörsnittlich kineetsch Energie vun Deeltjes binnen den Meetrechteck"
+
+#: gas.cc:61
+#, fuzzy
+#| msgctxt "PropertyName"
+#| msgid "rectMeanVelocity"
+msgctxt "PropertyName|"
+msgid "rectMeanVelocity"
+msgstr "RechtDörsnGau"
+
+#: gas.cc:61 gas.cc:76 particle.cc:30 particle.cc:43 rigidbody.cc:31
+#: rigidbody.cc:58 softbody.cc:38
+#, fuzzy
+#| msgctxt "Units"
+#| msgid "m/s"
+msgctxt "Units|"
+msgid "m/s"
+msgstr "m/s"
+
+#: gas.cc:62
+#, fuzzy
+#| msgid "Mean velocity of particles in the measureRect"
+msgctxt "PropertyDescription|"
+msgid "Mean velocity of particles in the measureRect"
+msgstr "Dörsnittlich Deeltjesgauheit binnen den Meetrechteck"
+
+#: gas.cc:63
+#, fuzzy
+#| msgctxt "PropertyName"
+#| msgid "rectMeanParticleMass"
+msgctxt "PropertyName|"
+msgid "rectMeanParticleMass"
+msgstr "RechtDörsnDeeltjeMass"
+
+#: gas.cc:63 gas.cc:65 gas.cc:78 gas.cc:80 particle.cc:34 particle.cc:49
+#: particle.cc:61 rigidbody.cc:42 rigidbody.cc:71 softbody.cc:50
+#, fuzzy
+#| msgctxt "Units"
+#| msgid "kg"
+msgctxt "Units|"
+msgid "kg"
+msgstr "kg"
+
+#: gas.cc:64
+#, fuzzy
+#| msgid "Mean mass of particles in the measureRect"
+msgctxt "PropertyDescription|"
+msgid "Mean mass of particles in the measureRect"
+msgstr "Dörsnittlich Deeltjesmass binnen den Meetrechteck"
+
+#: gas.cc:65
+#, fuzzy
+#| msgctxt "PropertyName"
+#| msgid "rectMass"
+msgctxt "PropertyName|"
+msgid "rectMass"
+msgstr "RechtMass"
+
+#: gas.cc:66
+#, fuzzy
+#| msgid "Total mass of particles in the measureRect"
+msgctxt "PropertyDescription|"
+msgid "Total mass of particles in the measureRect"
+msgstr "Heel Deeltjesmass binnen den Meetrechteck"
+
+#: gas.cc:69
+#, fuzzy
+#| msgctxt "ObjectClass"
+#| msgid "GasErrors"
+msgctxt "ObjectClass|"
+msgid "GasErrors"
+msgstr "Gasfehlers"
+
+#: gas.cc:69
+#, fuzzy
+#| msgid "Errors class for Gas"
+msgctxt "ObjectDescription|"
+msgid "Errors class for Gas"
+msgstr "Fehlerklass för Gas"
+
+#: gas.cc:70
+#, fuzzy
+#| msgctxt "PropertyName"
+#| msgid "rectPressureVariance"
+msgctxt "PropertyName|"
+msgid "rectPressureVariance"
+msgstr "RechtDruckVarianz"
+
+#: gas.cc:71
+#, fuzzy
+#| msgid "Variance of pressure of particles in the measureRect"
+msgctxt "PropertyDescription|"
+msgid "Variance of pressure of particles in the measureRect"
+msgstr "Druckvarianz vun Deeltjes binnen den Meetrechteck"
+
+#: gas.cc:72
+#, fuzzy
+#| msgctxt "PropertyName"
+#| msgid "rectTemperatureVariance"
+msgctxt "PropertyName|"
+msgid "rectTemperatureVariance"
+msgstr "RechtTemperatuurVarianz"
+
+#: gas.cc:73
+#, fuzzy
+#| msgid "Variance of temperature of particles in the measureRect"
+msgctxt "PropertyDescription|"
+msgid "Variance of temperature of particles in the measureRect"
+msgstr "Temperatuurvarianz vun Deeltjes binnen den Meetrechteck"
+
+#: gas.cc:74
+#, fuzzy
+#| msgctxt "PropertyName"
+#| msgid "rectMeanKineticEnergyVariance"
+msgctxt "PropertyName|"
+msgid "rectMeanKineticEnergyVariance"
+msgstr "RechtDörsnKinetEnergieVarianz"
+
+#: gas.cc:75
+#, fuzzy
+#| msgid "Variance of mean kinetic energy of particles in the measureRect"
+msgctxt "PropertyDescription|"
+msgid "Variance of mean kinetic energy of particles in the measureRect"
+msgstr ""
+"Varianz vun de dörsnittlich kineetsch Energie vun Deeltjes binnen den "
+"Meetrechteck"
+
+#: gas.cc:76
+#, fuzzy
+#| msgctxt "PropertyName"
+#| msgid "rectMeanVelocityVariance"
+msgctxt "PropertyName|"
+msgid "rectMeanVelocityVariance"
+msgstr "RechtDörsnGauhVarianz"
+
+#: gas.cc:77
+#, fuzzy
+#| msgid "Variance of mean velocity of particles in the measureRect"
+msgctxt "PropertyDescription|"
+msgid "Variance of mean velocity of particles in the measureRect"
+msgstr "Varianz vun de dörsnittlich Deeltjesgauheit binnen den Meetrechteck"
+
+#: gas.cc:78
+#, fuzzy
+#| msgctxt "PropertyName"
+#| msgid "rectMeanParticleMassVariance"
+msgctxt "PropertyName|"
+msgid "rectMeanParticleMassVariance"
+msgstr "RechtDörsnDeeltjesMassVarianz"
+
+#: gas.cc:79
+#, fuzzy
+#| msgid "Variance of mean mass of particles in the measureRect"
+msgctxt "PropertyDescription|"
+msgid "Variance of mean mass of particles in the measureRect"
+msgstr "Varianz vun de dörsnittlich Deeltjesmass binnen den Meetrechtec"
+
+#: gas.cc:80
+#, fuzzy
+#| msgctxt "PropertyName"
+#| msgid "rectMassVariance"
+msgctxt "PropertyName|"
+msgid "rectMassVariance"
+msgstr "RechtMassVarianz"
+
+#: gas.cc:81
+#, fuzzy
+#| msgid "Variance of total mass of particles in the measureRect"
+msgctxt "PropertyDescription|"
+msgid "Variance of total mass of particles in the measureRect"
+msgstr "Varianz vun de heel Deeltjesmass binnen den Meetrechteck"
+
+#: gravitation.cc:27
+#, fuzzy
+#| msgctxt "ObjectClass"
+#| msgid "GravitationForce"
+msgctxt "ObjectClass|"
+msgid "GravitationForce"
+msgstr "Gravitatschoonkraft"
+
+#: gravitation.cc:27
+#, fuzzy
+#| msgid "Gravitation force"
+msgctxt "ObjectDescription|"
+msgid "Gravitation force"
+msgstr "Gravitatschoonkraft"
+
+#: gravitation.cc:29
+#, fuzzy
+#| msgctxt "PropertyName"
+#| msgid "gravitationConst"
+msgctxt "PropertyName|"
+msgid "gravitationConst"
+msgstr "Gravitatschoonkonstant"
+
+#: gravitation.cc:29 gravitation.cc:34
+#, fuzzy
+#| msgctxt "Units"
+#| msgid "N m²/kg²"
+msgctxt "Units|"
+msgid "N m²/kg²"
+msgstr "N m²/kg²"
+
+#: gravitation.cc:30
+#, fuzzy
+#| msgid "Gravitation constant"
+msgctxt "PropertyDescription|"
+msgid "Gravitation constant"
+msgstr "Gravitatschoonkonstant"
+
+#: gravitation.cc:32
+#, fuzzy
+#| msgctxt "ObjectClass"
+#| msgid "GravitationForceErrors"
+msgctxt "ObjectClass|"
+msgid "GravitationForceErrors"
+msgstr "Gravitatschoonkraftfehlers"
+
+#: gravitation.cc:32
+#, fuzzy
+#| msgid "Errors class for GravitationForce"
+msgctxt "ObjectDescription|"
+msgid "Errors class for GravitationForce"
+msgstr "Fehlerklass för Gravitatschoonkraft"
+
+#: gravitation.cc:34
+#, fuzzy
+#| msgctxt "PropertyName"
+#| msgid "gravitationConstVariance"
+msgctxt "PropertyName|"
+msgid "gravitationConstVariance"
+msgstr "Gravitatschoonkonstant-Varianz"
+
+#: gravitation.cc:35
+#, fuzzy
+#| msgid "Gravitation constant variance"
+msgctxt "PropertyDescription|"
+msgid "Gravitation constant variance"
+msgstr "Gravitatschoonkonstant-Varianz"
+
+#: gravitation.cc:37
+#, fuzzy
+#| msgctxt "ObjectClass"
+#| msgid "WeightForce"
+msgctxt "ObjectClass|"
+msgid "WeightForce"
+msgstr "Wicht-Kraft"
+
+#: gravitation.cc:37
+#, fuzzy
+#| msgid "Weight force"
+msgctxt "ObjectDescription|"
+msgid "Weight force"
+msgstr "Wicht-Kraft"
+
+#: gravitation.cc:39
+#, fuzzy
+#| msgid "Weight constant"
+msgctxt "PropertyDescription|"
+msgid "Weight constant"
+msgstr "Wichtkonstant"
+
+#: gravitation.cc:39
+#, fuzzy
+#| msgctxt "PropertyName"
+#| msgid "weightConst"
+msgctxt "PropertyName|"
+msgid "weightConst"
+msgstr "Wichtkonstant"
+
+#: gravitation.cc:39 gravitation.cc:44 particle.cc:31 particle.cc:45
+#: rigidbody.cc:34 rigidbody.cc:63 softbody.cc:43
+#, fuzzy
+#| msgctxt "Units"
+#| msgid "m/s²"
+msgctxt "Units|"
+msgid "m/s²"
+msgstr "m/s²"
+
+#: gravitation.cc:42
+#, fuzzy
+#| msgctxt "ObjectClass"
+#| msgid "WeightForceErrors"
+msgctxt "ObjectClass|"
+msgid "WeightForceErrors"
+msgstr "Wichtkraft-Fehlers"
+
+#: gravitation.cc:42
+#, fuzzy
+#| msgid "Errors class for WeightForce"
+msgctxt "ObjectDescription|"
+msgid "Errors class for WeightForce"
+msgstr "Fehlerklass för WichtKraft"
+
+#: gravitation.cc:44
+#, fuzzy
+#| msgctxt "PropertyName"
+#| msgid "weightConstVariance"
+msgctxt "PropertyName|"
+msgid "weightConstVariance"
+msgstr "Wichtkonstant-Varianz"
+
+#: gravitation.cc:45
+#, fuzzy
+#| msgid "Weight constant variance"
+msgctxt "PropertyDescription|"
+msgid "Weight constant variance"
+msgstr "Wichtkonstant-Varianz"
+
+#: gslsolver.cc:30
+#, fuzzy
+#| msgctxt "ObjectClass"
+#| msgid "GslGenericSolver"
+msgctxt "ObjectClass|"
+msgid "GslGenericSolver"
+msgstr "Allmeen GSL-Löser"
+
+#: gslsolver.cc:30
+#, fuzzy
+#| msgid "GSL generic solver"
+msgctxt "ObjectDescription|"
+msgid "GSL generic solver"
+msgstr "Allmeen GSL-Löser"
+
+#: gslsolver.cc:32
+#, fuzzy
+#| msgctxt "ObjectClass"
+#| msgid "GslSolver"
+msgctxt "ObjectClass|"
+msgid "GslSolver"
+msgstr "GSL-Löser"
+
+#: gslsolver.cc:32
+#, fuzzy
+#| msgid "GSL non-adaptive solver"
+msgctxt "ObjectDescription|"
+msgid "GSL non-adaptive solver"
+msgstr "Nich-topasst GSL-Löser"
+
+#: gslsolver.cc:35
+#, fuzzy
+#| msgctxt "ObjectClass"
+#| msgid "GslAdaptiveSolver"
+msgctxt "ObjectClass|"
+msgid "GslAdaptiveSolver"
+msgstr "Topasst GSL-Löser"
+
+#: gslsolver.cc:35
+#, fuzzy
+#| msgid "GSL adaptive solver"
+msgctxt "ObjectDescription|"
+msgid "GSL adaptive solver"
+msgstr "Topasst GSL-Löser"
+
+#: gslsolver.cc:38
+#, fuzzy
+#| msgctxt "ObjectClass"
+#| msgid "GslRK2Solver"
+msgctxt "ObjectClass|"
+msgid "GslRK2Solver"
+msgstr "GSL-RK2-Löser"
+
+#: gslsolver.cc:38
+#, fuzzy
+#| msgid "Runge-Kutta second-order solver from GSL library"
+msgctxt "ObjectDescription|"
+msgid "Runge-Kutta second-order solver from GSL library"
+msgstr "Twee-stoopsch \"Runge-Kutta\"-Löser vun GSL-Bibliotheek"
+
+#: gslsolver.cc:40
+#, fuzzy
+#| msgctxt "ObjectClass"
+#| msgid "GslAdaptiveRK2Solver"
+msgctxt "ObjectClass|"
+msgid "GslAdaptiveRK2Solver"
+msgstr "Topasst GSL-RK2-Löser"
+
+#: gslsolver.cc:40
+#, fuzzy
+#| msgid "Adaptive Runge-Kutta second-order solver from GSL library"
+msgctxt "ObjectDescription|"
+msgid "Adaptive Runge-Kutta second-order solver from GSL library"
+msgstr "Topasst twee-stoopsch \"Runge-Kutta\"-Löser vun GSL-Bibliotheek"
+
+#: gslsolver.cc:43
+#, fuzzy
+#| msgctxt "ObjectClass"
+#| msgid "GslRK4Solver"
+msgctxt "ObjectClass|"
+msgid "GslRK4Solver"
+msgstr "GSL-RK4-Löser"
+
+#: gslsolver.cc:43
+#, fuzzy
+#| msgid "Runge-Kutta classical fourth-order solver from GSL library"
+msgctxt "ObjectDescription|"
+msgid "Runge-Kutta classical fourth-order solver from GSL library"
+msgstr "Veer-stoopsch klass'sch \"Runge-Kutta\"-Löser vun GSL-Bibliotheek"
+
+#: gslsolver.cc:45
+#, fuzzy
+#| msgctxt "ObjectClass"
+#| msgid "GslAdaptiveRK4Solver"
+msgctxt "ObjectClass|"
+msgid "GslAdaptiveRK4Solver"
+msgstr "Topasst GSL-RK4-Löser"
+
+#: gslsolver.cc:45
+#, fuzzy
+#| msgid "Adaptive Runge-Kutta classical fourth-order solver from GSL library"
+msgctxt "ObjectDescription|"
+msgid "Adaptive Runge-Kutta classical fourth-order solver from GSL library"
+msgstr ""
+"Veer-stoopsch topasst klass'sch \"Runge-Kutta\"-Löser vun GSL-Bibliotheek"
+
+#: gslsolver.cc:48
+#, fuzzy
+#| msgctxt "ObjectClass"
+#| msgid "GslRKF45Solver"
+msgctxt "ObjectClass|"
+msgid "GslRKF45Solver"
+msgstr "GSL-RKF45-Löser"
+
+#: gslsolver.cc:48
+#, fuzzy
+#| msgid "Runge-Kutta-Fehlberg (4,5) solver from GSL library"
+msgctxt "ObjectDescription|"
+msgid "Runge-Kutta-Fehlberg (4,5) solver from GSL library"
+msgstr "\"Runge-Kutta-Fehlberg\"-Löser (4,5) vun GSL-Bibliotheek"
+
+#: gslsolver.cc:50
+#, fuzzy
+#| msgctxt "ObjectClass"
+#| msgid "GslAdaptiveRKF45Solver"
+msgctxt "ObjectClass|"
+msgid "GslAdaptiveRKF45Solver"
+msgstr "Topasst GSL-RKF45-Löser"
+
+#: gslsolver.cc:50
+#, fuzzy
+#| msgid "Adaptive Runge-Kutta-Fehlberg (4,5) solver from GSL library"
+msgctxt "ObjectDescription|"
+msgid "Adaptive Runge-Kutta-Fehlberg (4,5) solver from GSL library"
+msgstr "Topasst \"Runge-Kutta-Fehlberg\"-Löser (4,5) vun GSL-Bibliotheek"
+
+#: gslsolver.cc:53
+#, fuzzy
+#| msgctxt "ObjectClass"
+#| msgid "GslRKCKSolver"
+msgctxt "ObjectClass|"
+msgid "GslRKCKSolver"
+msgstr "GSL-RKCK-Löser"
+
+#: gslsolver.cc:53
+#, fuzzy
+#| msgid "Runge-Kutta Cash-Karp (4,5) solver from GSL library"
+msgctxt "ObjectDescription|"
+msgid "Runge-Kutta Cash-Karp (4,5) solver from GSL library"
+msgstr "\"Runge-Kutta Cash-Karp\"-Löser (4,5) vun GSL-Bibliotheek"
+
+#: gslsolver.cc:55
+#, fuzzy
+#| msgctxt "ObjectClass"
+#| msgid "GslAdaptiveRKCKSolver"
+msgctxt "ObjectClass|"
+msgid "GslAdaptiveRKCKSolver"
+msgstr "Topasst GSL-RKCK-Löser"
+
+#: gslsolver.cc:55
+#, fuzzy
+#| msgid "Adaptive Runge-Kutta Cash-Karp (4,5) solver from GSL library"
+msgctxt "ObjectDescription|"
+msgid "Adaptive Runge-Kutta Cash-Karp (4,5) solver from GSL library"
+msgstr "Topasst \"Runge-Kutta Cash-Karp\"-Löser (4,5) vun GSL-Bibliotheek"
+
+#: gslsolver.cc:58
+#, fuzzy
+#| msgctxt "ObjectClass"
+#| msgid "GslRK8PDSolver"
+msgctxt "ObjectClass|"
+msgid "GslRK8PDSolver"
+msgstr "GSL-RK8PD-Löser"
+
+#: gslsolver.cc:58
+#, fuzzy
+#| msgid "Runge-Kutta Prince-Dormand (8,9) solver from GSL library"
+msgctxt "ObjectDescription|"
+msgid "Runge-Kutta Prince-Dormand (8,9) solver from GSL library"
+msgstr "\"Runge-Kutta Prince-Dormand\"-Löser (8,9) vun GSL-Bibliotheek"
+
+#: gslsolver.cc:60
+#, fuzzy
+#| msgctxt "ObjectClass"
+#| msgid "GslAdaptiveRK8PDSolver"
+msgctxt "ObjectClass|"
+msgid "GslAdaptiveRK8PDSolver"
+msgstr "Topasst GSL-RK8PD-Löser"
+
+#: gslsolver.cc:60
+#, fuzzy
+#| msgid "Adaptive Runge-Kutta Prince-Dormand (8,9) solver from GSL library"
+msgctxt "ObjectDescription|"
+msgid "Adaptive Runge-Kutta Prince-Dormand (8,9) solver from GSL library"
+msgstr "Topasst \"Runge-Kutta Prince-Dormand\"-Löser (8,9) vun GSL-Bibliotheek"
+
+#: gslsolver.cc:63
+#, fuzzy
+#| msgctxt "ObjectClass"
+#| msgid "GslRK2IMPSolver"
+msgctxt "ObjectClass|"
+msgid "GslRK2IMPSolver"
+msgstr "GSL-RK2IMP-Löser"
+
+#: gslsolver.cc:63
+#, fuzzy
+#| msgid "Runge-Kutta implicit second-order solver from GSL library"
+msgctxt "ObjectDescription|"
+msgid "Runge-Kutta implicit second-order solver from GSL library"
+msgstr "Implizit twee-stoopsch \"Runge-Kutta\"-Löser vun GSL-Bibliotheek"
+
+#: gslsolver.cc:65
+#, fuzzy
+#| msgctxt "ObjectClass"
+#| msgid "GslAdaptiveRK2IMPSolver"
+msgctxt "ObjectClass|"
+msgid "GslAdaptiveRK2IMPSolver"
+msgstr "Topasst GSL-RK2IMP-Löser"
+
+#: gslsolver.cc:65
+#, fuzzy
+#| msgid "Adaptive Runge-Kutta implicit second-order solver from GSL library"
+msgctxt "ObjectDescription|"
+msgid "Adaptive Runge-Kutta implicit second-order solver from GSL library"
+msgstr ""
+"Topasst implizit twee-stoopsch \"Runge-Kutta\"-Löser vun GSL-Bibliotheek"
+
+#: gslsolver.cc:68
+#, fuzzy
+#| msgctxt "ObjectClass"
+#| msgid "GslRK4IMPSolver"
+msgctxt "ObjectClass|"
+msgid "GslRK4IMPSolver"
+msgstr "GSL-RK4IMP-Löser"
+
+#: gslsolver.cc:68
+#, fuzzy
+#| msgid "Runge-Kutta implicit fourth-order solver from GSL library"
+msgctxt "ObjectDescription|"
+msgid "Runge-Kutta implicit fourth-order solver from GSL library"
+msgstr "Veer-stoopsch implizit \"Runge-Kutta\"-Löser vun GSL-Bibliotheek"
+
+#: gslsolver.cc:70
+#, fuzzy
+#| msgctxt "ObjectClass"
+#| msgid "GslAdaptiveRK4IMPSolver"
+msgctxt "ObjectClass|"
+msgid "GslAdaptiveRK4IMPSolver"
+msgstr "Topasst GSL-RK4IMP-Löser"
+
+#: gslsolver.cc:70
+#, fuzzy
+#| msgid "Adaptive Runge-Kutta implicit fource-order solver from GSL library"
+msgctxt "ObjectDescription|"
+msgid "Adaptive Runge-Kutta implicit fourth-order solver from GSL library"
+msgstr ""
+"Topasst implizit veer-stoopsch \"Runge-Kutta\"-Löser vun GSL-Bibliotheek"
+
+#: item.cc:28
+#, fuzzy
+#| msgid "Item"
+msgctxt "ObjectClass|"
+msgid "Item"
+msgstr "Element"
+
+#: item.cc:28
+#, fuzzy
+#| msgid "Item"
+msgctxt "ObjectDescription|"
+msgid "Item"
+msgstr "Element"
+
+#: item.cc:30
+#, fuzzy
+#| msgctxt "PropertyName"
+#| msgid "color"
+msgctxt "PropertyName|"
+msgid "color"
+msgstr "Klöör"
+
+#: item.cc:31
+#, fuzzy
+#| msgid "Item color"
+msgctxt "PropertyDescription|"
+msgid "Item color"
+msgstr "Element-Klöör"
+
+#: itemgroup.cc:28
+#, fuzzy
+#| msgid "ItemGroup"
+msgctxt "ObjectClass|"
+msgid "ItemGroup"
+msgstr "Element-Koppel"
+
+#: itemgroup.cc:28
+#, fuzzy
+#| msgid "ItemGroup"
+msgctxt "ObjectDescription|"
+msgid "ItemGroup"
+msgstr "Element-Koppel"
+
+#: joint.cc:26
+#, fuzzy
+#| msgid "Joint"
+msgctxt "ObjectClass|"
+msgid "Joint"
+msgstr "Ansluss"
+
+#: joint.cc:26
+#, fuzzy
+#| msgid "Joint"
+msgctxt "ObjectDescription|"
+msgid "Joint"
+msgstr "Ansluss"
+
+#: joints.cc:26
+#, fuzzy
+#| msgctxt "ObjectClass"
+#| msgid "Anchor"
+msgctxt "ObjectClass|"
+msgid "Anchor"
+msgstr "Anker"
+
+#: joints.cc:26
+#, fuzzy
+#| msgid "Anchor: fixes position of the body"
+msgctxt "ObjectDescription|"
+msgid "Anchor: fixes position of the body"
+msgstr "Anker: maakt en Positschoon op en Körper fast"
+
+#: joints.cc:28 joints.cc:34 motor.cc:29 motor.cc:35
+#, fuzzy
+#| msgid "Body"
+msgctxt "PropertyDescription|"
+msgid "Body"
+msgstr "Körper"
+
+#: joints.cc:28 joints.cc:34 motor.cc:29 motor.cc:35 tool.cc:97
+#, fuzzy
+#| msgctxt "PropertyName"
+#| msgid "body"
+msgctxt "PropertyName|"
+msgid "body"
+msgstr "Körper"
+
+#: joints.cc:29 tool.cc:100
+#, fuzzy
+#| msgid "Position"
+msgctxt "PropertyDescription|"
+msgid "Position"
+msgstr "Positschoon"
+
+#: joints.cc:29 joints.cc:36 particle.cc:29 rigidbody.cc:28 softbody.cc:36
+#: tool.cc:38 tool.cc:45 tool.cc:67 tool.cc:79 tool.cc:100
+#, fuzzy
+#| msgid "position"
+msgctxt "PropertyName|"
+msgid "position"
+msgstr "Positschoon"
+
+#: joints.cc:30
+#, fuzzy
+#| msgid "Angle"
+msgctxt "PropertyDescription|"
+msgid "Angle"
+msgstr "Winkel"
+
+#: joints.cc:30 rigidbody.cc:29
+#, fuzzy
+#| msgctxt "PropertyName"
+#| msgid "angle"
+msgctxt "PropertyName|"
+msgid "angle"
+msgstr "Winkel"
+
+#: joints.cc:30 rigidbody.cc:29 rigidbody.cc:55
+#, fuzzy
+#| msgctxt "Units"
+#| msgid "rad"
+msgctxt "Units|"
+msgid "rad"
+msgstr "rad"
+
+#: joints.cc:32
+#, fuzzy
+#| msgctxt "ObjectClass"
+#| msgid "Pin"
+msgctxt "ObjectClass|"
+msgid "Pin"
+msgstr "Nadel"
+
+#: joints.cc:32
+#, fuzzy
+#| msgid "Pin: fixes position of a given point on the body"
+msgctxt "ObjectDescription|"
+msgid "Pin: fixes position of a given point on the body"
+msgstr "Nadel: maakt de Positschoon vun en angeven Punkt op den Körper fast"
+
+#: joints.cc:35
+#, fuzzy
+#| msgid "Position on the body"
+msgctxt "PropertyDescription|"
+msgid "Position on the body"
+msgstr "Positschoon op den Körper"
+
+#: joints.cc:35 motor.cc:30 motor.cc:36 tool.cc:98
+#, fuzzy
+#| msgctxt "PropertyName"
+#| msgid "localPosition"
+msgctxt "PropertyName|"
+msgid "localPosition"
+msgstr "Lokaal Positschoon"
+
+#: joints.cc:36
+#, fuzzy
+#| msgid "Position in the world"
+msgctxt "PropertyDescription|"
+msgid "Position in the world"
+msgstr "Positschoon in de Welt"
+
+#: joints.cc:38
+#, fuzzy
+#| msgctxt "ObjectClass"
+#| msgid "Stick"
+msgctxt "ObjectClass|"
+msgid "Stick"
+msgstr "Pinn"
+
+#: joints.cc:38
+#, fuzzy
+#| msgid "Massless stick which can be connected to bodies"
+msgctxt "ObjectDescription|"
+msgid "Massless stick which can be connected to bodies"
+msgstr "Massfree Pinn, de sik mit Körpers verbinnen lett"
+
+#: joints.cc:40
+#, fuzzy
+#| msgid "Rest length of the stick"
+msgctxt "PropertyDescription|"
+msgid "Rest length of the stick"
+msgstr "Ruhlängde vun den Pinn"
+
+#: joints.cc:40 spring.cc:30
+#, fuzzy
+#| msgctxt "PropertyName"
+#| msgid "restLength"
+msgctxt "PropertyName|"
+msgid "restLength"
+msgstr "Ruhlängde"
+
+#: joints.cc:41 spring.cc:34
+#, fuzzy
+#| msgid "Body1"
+msgctxt "PropertyDescription|"
+msgid "Body1"
+msgstr "Körper 1"
+
+#: joints.cc:41 spring.cc:34
+#, fuzzy
+#| msgctxt "PropertyName"
+#| msgid "body1"
+msgctxt "PropertyName|"
+msgid "body1"
+msgstr "Körper 1"
+
+#: joints.cc:42 spring.cc:35
+#, fuzzy
+#| msgid "Body2"
+msgctxt "PropertyDescription|"
+msgid "Body2"
+msgstr "Körper 2"
+
+#: joints.cc:42 spring.cc:35
+#, fuzzy
+#| msgctxt "PropertyName"
+#| msgid "body2"
+msgctxt "PropertyName|"
+msgid "body2"
+msgstr "Körper 2"
+
+#: joints.cc:43 spring.cc:36
+#, fuzzy
+#| msgctxt "PropertyName"
+#| msgid "localPosition1"
+msgctxt "PropertyName|"
+msgid "localPosition1"
+msgstr "Lokaal Positschoon 1"
+
+#: joints.cc:44 spring.cc:37
+#, fuzzy
+#| msgid "Local position 1"
+msgctxt "PropertyDescription|"
+msgid "Local position 1"
+msgstr "Lokaal Positschoon 1"
+
+#: joints.cc:45 spring.cc:38
+#, fuzzy
+#| msgctxt "PropertyName"
+#| msgid "localPosition2"
+msgctxt "PropertyName|"
+msgid "localPosition2"
+msgstr "Lokaal Positschoon 2"
+
+#: joints.cc:46 spring.cc:39
+#, fuzzy
+#| msgid "Local position 2"
+msgctxt "PropertyDescription|"
+msgid "Local position 2"
+msgstr "Lokaal Positschoon 2"
+
+#: joints.cc:47 spring.cc:40
+#, fuzzy
+#| msgid "Position1"
+msgctxt "PropertyDescription|"
+msgid "Position1"
+msgstr "Positschoon 1"
+
+#: joints.cc:47 spring.cc:40
+#, fuzzy
+#| msgctxt "PropertyName"
+#| msgid "position1"
+msgctxt "PropertyName|"
+msgid "position1"
+msgstr "Positschoon 1"
+
+#: joints.cc:48 spring.cc:41
+#, fuzzy
+#| msgid "Position2"
+msgctxt "PropertyDescription|"
+msgid "Position2"
+msgstr "Positschoon 2"
+
+#: joints.cc:48 spring.cc:41
+#, fuzzy
+#| msgctxt "PropertyName"
+#| msgid "position2"
+msgctxt "PropertyName|"
+msgid "position2"
+msgstr "Positschoon 2"
+
+#: joints.cc:51
+#, fuzzy
+#| msgctxt "ObjectClass"
+#| msgid "Rope"
+msgctxt "ObjectClass|"
+msgid "Rope"
+msgstr "Snoor"
+
+#: joints.cc:51
+#, fuzzy
+#| msgid "Massless rope which can be connected to bodies"
+msgctxt "ObjectDescription|"
+msgid "Massless rope which can be connected to bodies"
+msgstr "Massfree Snoor, de sik mit Körpers verbinnen lett"
+
+#: motor.cc:27
+#, fuzzy
+#| msgctxt "ObjectClass"
+#| msgid "LinearMotor"
+msgctxt "ObjectClass|"
+msgid "LinearMotor"
+msgstr "Lineaarmotor"
+
+#: motor.cc:27
+#, fuzzy
+#| msgid ""
+#| "Linear motor: applies a constant force to a given position of the body"
+msgctxt "ObjectDescription|"
+msgid "Linear motor: applies a constant force to a given position of the body"
+msgstr ""
+"Lineaarmotor: leggt en fast Kraft na en angeven Steed vun den Körper an"
+
+#: motor.cc:30 motor.cc:36
+#, fuzzy
+#| msgid "Position of the motor on a body"
+msgctxt "PropertyDescription|"
+msgid "Position of the motor on a body"
+msgstr "Positschoon vun den Motor op en Körper"
+
+#: motor.cc:31
+#, fuzzy
+#| msgid "Value of the force, acting on the body"
+msgctxt "PropertyDescription|"
+msgid "Value of the force, acting on the body"
+msgstr "Weert vun de Kraft, de op den Körper warkt"
+
+#: motor.cc:31
+#, fuzzy
+#| msgctxt "PropertyName"
+#| msgid "forceValue"
+msgctxt "PropertyName|"
+msgid "forceValue"
+msgstr "Kraftweert"
+
+#: motor.cc:31 particle.cc:33 particle.cc:47 rigidbody.cc:39 rigidbody.cc:68
+#: softbody.cc:48 spring.cc:42 spring.cc:63
+#, fuzzy
+#| msgctxt "Units"
+#| msgid "N"
+msgctxt "Units|"
+msgid "N"
+msgstr "N"
+
+#: motor.cc:33
+#, fuzzy
+#| msgctxt "ObjectClass"
+#| msgid "CircularMotor"
+msgctxt "ObjectClass|"
+msgid "CircularMotor"
+msgstr "Dreihmotor"
+
+#: motor.cc:33
+#, fuzzy
+#| msgid "Circular motor: applies a constant torque to the body"
+msgctxt "ObjectDescription|"
+msgid "Circular motor: applies a constant torque to the body"
+msgstr "Dreihmotor: leggt en fast Dreihmomang op den Körper an"
+
+#: motor.cc:37
+#, fuzzy
+#| msgid "Value of the torque, acting on the body"
+msgctxt "PropertyDescription|"
+msgid "Value of the torque, acting on the body"
+msgstr "Weert vun't Dreihmomang, dat op den Körper warkt"
+
+#: motor.cc:37
+#, fuzzy
+#| msgctxt "PropertyName"
+#| msgid "torqueValue"
+msgctxt "PropertyName|"
+msgid "torqueValue"
+msgstr "Dreihmomangweert"
+
+#: motor.cc:37 rigidbody.cc:40 rigidbody.cc:69 softbody.cc:49
+#, fuzzy
+#| msgctxt "Units"
+#| msgid "N m"
+msgctxt "Units|"
+msgid "N m"
+msgstr "N m"
+
+#: object.cc:25
+#, fuzzy
+#| msgid "Object"
+msgctxt "ObjectClass|"
+msgid "Object"
+msgstr "Objekt"
+
+#: object.cc:25
+#, fuzzy
+#| msgid "Object"
+msgctxt "ObjectDescription|"
+msgid "Object"
+msgstr "Objekt"
+
+#: object.cc:26
+#, fuzzy
+#| msgid "Object name"
+msgctxt "PropertyDescription|"
+msgid "Object name"
+msgstr "Objektnaam"
+
+#: object.cc:26
+#, fuzzy
+#| msgctxt "PropertyName"
+#| msgid "name"
+msgctxt "PropertyName|"
+msgid "name"
+msgstr "Naam"
+
+#: objecterrors.cc:26
+#, fuzzy
+#| msgid "ObjectErrors"
+msgctxt "ObjectClass|"
+msgid "ObjectErrors"
+msgstr "Objektfehlers"
+
+#: objecterrors.cc:26
+#, fuzzy
+#| msgid "ObjectErrors"
+msgctxt "ObjectDescription|"
+msgid "ObjectErrors"
+msgstr "Objektfehlers"
+
+#: particle.cc:27
+#, fuzzy
+#| msgctxt "ObjectClass"
+#| msgid "Particle"
+msgctxt "ObjectClass|"
+msgid "Particle"
+msgstr "Deeltje"
+
+#: particle.cc:27
+#, fuzzy
+#| msgid "Simple zero-size particle"
+msgctxt "ObjectDescription|"
+msgid "Simple zero-size particle"
+msgstr "Normaal Deeltje ahn Grött"
+
+#: particle.cc:29
+#, fuzzy
+#| msgid "position"
+msgctxt "PropertyDescription|"
+msgid "position"
+msgstr "Positschoon"
+
+#: particle.cc:30
+#, fuzzy
+#| msgid "velocity"
+msgctxt "PropertyDescription|"
+msgid "velocity"
+msgstr "Gauheit"
+
+#: particle.cc:30 rigidbody.cc:31 softbody.cc:38
+#, fuzzy
+#| msgid "velocity"
+msgctxt "PropertyName|"
+msgid "velocity"
+msgstr "Gauheit"
+
+#: particle.cc:31 rigidbody.cc:34 softbody.cc:43
+#, fuzzy
+#| msgid "acceleration"
+msgctxt "PropertyName|"
+msgid "acceleration"
+msgstr "Beslünigen"
+
+#: particle.cc:32
+#, fuzzy
+#| msgid "acceleration"
+msgctxt "PropertyDescription|"
+msgid "acceleration"
+msgstr "Beslünigen"
+
+#: particle.cc:33
+#, fuzzy
+#| msgid "force"
+msgctxt "PropertyDescription|"
+msgid "force"
+msgstr "Kraft"
+
+#: particle.cc:33 rigidbody.cc:39 softbody.cc:48 spring.cc:42
+#, fuzzy
+#| msgid "force"
+msgctxt "PropertyName|"
+msgid "force"
+msgstr "Kraft"
+
+#: particle.cc:34
+#, fuzzy
+#| msgid "mass"
+msgctxt "PropertyDescription|"
+msgid "mass"
+msgstr "Mass"
+
+#: particle.cc:34 rigidbody.cc:42 softbody.cc:50
+#, fuzzy
+#| msgid "mass"
+msgctxt "PropertyName|"
+msgid "mass"
+msgstr "Mass"
+
+#: particle.cc:35 rigidbody.cc:45
+#, fuzzy
+#| msgid "momentum"
+msgctxt "PropertyDescription|"
+msgid "momentum"
+msgstr "Momang"
+
+#: particle.cc:35 rigidbody.cc:45
+#, fuzzy
+#| msgid "momentum"
+msgctxt "PropertyName|"
+msgid "momentum"
+msgstr "Momang"
+
+#: particle.cc:35 particle.cc:51 rigidbody.cc:45 rigidbody.cc:75
+#, fuzzy
+#| msgctxt "Units"
+#| msgid "kg m/s"
+msgctxt "Units|"
+msgid "kg m/s"
+msgstr "kg m/s"
+
+#: particle.cc:37 rigidbody.cc:49
+#, fuzzy
+#| msgid "kinetic energy"
+msgctxt "PropertyDescription|"
+msgid "kinetic energy"
+msgstr "Kineetsch Energie"
+
+#: particle.cc:37 rigidbody.cc:49
+#, fuzzy
+#| msgctxt "PropertyName"
+#| msgid "kineticEnergy"
+msgctxt "PropertyName|"
+msgid "kineticEnergy"
+msgstr "Kineetsch Energie"
+
+#: particle.cc:40
+#, fuzzy
+#| msgctxt "ObjectClass"
+#| msgid "ParticleErrors"
+msgctxt "ObjectClass|"
+msgid "ParticleErrors"
+msgstr "Deeltje-Fehlers"
+
+#: particle.cc:40
+#, fuzzy
+#| msgid "Errors class for Particle"
+msgctxt "ObjectDescription|"
+msgid "Errors class for Particle"
+msgstr "Fehlerklass för Deeltje"
+
+#: particle.cc:41 rigidbody.cc:53
+#, fuzzy
+#| msgctxt "PropertyName"
+#| msgid "positionVariance"
+msgctxt "PropertyName|"
+msgid "positionVariance"
+msgstr "Positschoon-Varianz"
+
+#: particle.cc:42 rigidbody.cc:54
+#, fuzzy
+#| msgid "position variance"
+msgctxt "PropertyDescription|"
+msgid "position variance"
+msgstr "Positschoon-Varianz"
+
+#: particle.cc:43 rigidbody.cc:58
+#, fuzzy
+#| msgctxt "PropertyName"
+#| msgid "velocityVariance"
+msgctxt "PropertyName|"
+msgid "velocityVariance"
+msgstr "Gauheit-Varianz"
+
+#: particle.cc:44 rigidbody.cc:59
+#, fuzzy
+#| msgid "velocity variance"
+msgctxt "PropertyDescription|"
+msgid "velocity variance"
+msgstr "Gauheit-Varianz"
+
+#: particle.cc:45 rigidbody.cc:63
+#, fuzzy
+#| msgctxt "PropertyName"
+#| msgid "accelerationVariance"
+msgctxt "PropertyName|"
+msgid "accelerationVariance"
+msgstr "Beslünigen-Varianz"
+
+#: particle.cc:46 rigidbody.cc:64
+#, fuzzy
+#| msgid "acceleration variance"
+msgctxt "PropertyDescription|"
+msgid "acceleration variance"
+msgstr "Beslünigen-Varianz"
+
+#: particle.cc:47 rigidbody.cc:68 spring.cc:63
+#, fuzzy
+#| msgctxt "PropertyName"
+#| msgid "forceVariance"
+msgctxt "PropertyName|"
+msgid "forceVariance"
+msgstr "Kraft-Varianz"
+
+#: particle.cc:48 rigidbody.cc:68
+#, fuzzy
+#| msgid "force variance"
+msgctxt "PropertyDescription|"
+msgid "force variance"
+msgstr "Kraft-Varianz"
+
+#: particle.cc:49 rigidbody.cc:71
+#, fuzzy
+#| msgctxt "PropertyName"
+#| msgid "massVariance"
+msgctxt "PropertyName|"
+msgid "massVariance"
+msgstr "Mass-Varianz"
+
+#: particle.cc:50 rigidbody.cc:72
+#, fuzzy
+#| msgid "mass variance"
+msgctxt "PropertyDescription|"
+msgid "mass variance"
+msgstr "Mass-Varianz"
+
+#: particle.cc:51 rigidbody.cc:75
+#, fuzzy
+#| msgctxt "PropertyName"
+#| msgid "momentumVariance"
+msgctxt "PropertyName|"
+msgid "momentumVariance"
+msgstr "Momang-Varianz"
+
+#: particle.cc:52 rigidbody.cc:76
+#, fuzzy
+#| msgid "momentum variance"
+msgctxt "PropertyDescription|"
+msgid "momentum variance"
+msgstr "Momang-Varianz"
+
+#: particle.cc:53 rigidbody.cc:80
+#, fuzzy
+#| msgctxt "PropertyName"
+#| msgid "kineticEnergyVariance"
+msgctxt "PropertyName|"
+msgid "kineticEnergyVariance"
+msgstr "Kineetsch Energievarianz"
+
+#: particle.cc:54 rigidbody.cc:81
+#, fuzzy
+#| msgid "kinetic energy variance"
+msgctxt "PropertyDescription|"
+msgid "kinetic energy variance"
+msgstr "Kineetsch Energievarianz"
+
+#: particle.cc:56
+#, fuzzy
+#| msgctxt "ObjectClass"
+#| msgid "ChargedParticle"
+msgctxt "ObjectClass|"
+msgid "ChargedParticle"
+msgstr "Oplaadt Deeltje"
+
+#: particle.cc:56
+#, fuzzy
+#| msgid "Charged zero-size particle"
+msgctxt "ObjectDescription|"
+msgid "Charged zero-size particle"
+msgstr "Oplaadt Deeltje ahn Grött"
+
+#: particle.cc:57
+#, fuzzy
+#| msgid "charge"
+msgctxt "PropertyDescription|"
+msgid "charge"
+msgstr "Opladen"
+
+#: particle.cc:57
+#, fuzzy
+#| msgid "charge"
+msgctxt "PropertyName|"
+msgid "charge"
+msgstr "Opladen"
+
+#: particle.cc:57
+#, fuzzy
+#| msgctxt "Units"
+#| msgid "C"
+msgctxt "Units|"
+msgid "C"
+msgstr "C"
+
+#: particle.cc:59
+#, fuzzy
+#| msgctxt "ObjectClass"
+#| msgid "ChargedParticleErrors"
+msgctxt "ObjectClass|"
+msgid "ChargedParticleErrors"
+msgstr "Opladendeeltjefehlers"
+
+#: particle.cc:59
+#, fuzzy
+#| msgid "Errors class for ChargedParticle"
+msgctxt "ObjectDescription|"
+msgid "Errors class for ChargedParticle"
+msgstr "Fehlerklass för oplaadt Deeltje"
+
+#: particle.cc:61
+#, fuzzy
+#| msgctxt "PropertyName"
+#| msgid "chargeVariance"
+msgctxt "PropertyName|"
+msgid "chargeVariance"
+msgstr "Opladen-Varianz"
+
+#: particle.cc:62
+#, fuzzy
+#| msgid "charge variance"
+msgctxt "PropertyDescription|"
+msgid "charge variance"
+msgstr "Opladen-Varianz"
+
+#: rigidbody.cc:27
+#, fuzzy
+#| msgctxt "ObjectClass"
+#| msgid "RigidBody"
+msgctxt "ObjectClass|"
+msgid "RigidBody"
+msgstr "Fast Körper"
+
+#: rigidbody.cc:27
+#, fuzzy
+#| msgid "Generic rigid body"
+msgctxt "ObjectDescription|"
+msgid "Generic rigid body"
+msgstr "Allmeen fast Körper"
+
+#: rigidbody.cc:28 softbody.cc:36
+#, fuzzy
+#| msgid "Position of the center of mass"
+msgctxt "PropertyDescription|"
+msgid "Position of the center of mass"
+msgstr "Positschoon vun de Massenmerrn"
+
+#: rigidbody.cc:29
+#, fuzzy
+#| msgid "Rotation angle"
+msgctxt "PropertyDescription|"
+msgid "Rotation angle"
+msgstr "Dreihwinkel"
+
+#: rigidbody.cc:31 softbody.cc:38
+#, fuzzy
+#| msgid "Velocity of the center of mass"
+msgctxt "PropertyDescription|"
+msgid "Velocity of the center of mass"
+msgstr "Gauheit vun de Massenmerrn"
+
+#: rigidbody.cc:32 softbody.cc:39
+#, fuzzy
+#| msgid "Angular velocity of the body"
+msgctxt "PropertyDescription|"
+msgid "Angular velocity of the body"
+msgstr "Winkelgauheit vun den Körper"
+
+#: rigidbody.cc:32 softbody.cc:39
+#, fuzzy
+#| msgctxt "PropertyName"
+#| msgid "angularVelocity"
+msgctxt "PropertyName|"
+msgid "angularVelocity"
+msgstr "Winkelgauheit"
+
+#: rigidbody.cc:32 rigidbody.cc:60 softbody.cc:39
+#, fuzzy
+#| msgctxt "Units"
+#| msgid "rad/s"
+msgctxt "Units|"
+msgid "rad/s"
+msgstr "rad/s"
+
+#: rigidbody.cc:35 softbody.cc:44
+#, fuzzy
+#| msgid "Acceleration of the center of mass"
+msgctxt "PropertyDescription|"
+msgid "Acceleration of the center of mass"
+msgstr "Beslünigen vun de Massenmerrn"
+
+#: rigidbody.cc:36 softbody.cc:45
+#, fuzzy
+#| msgctxt "PropertyName"
+#| msgid "angularAcceleration"
+msgctxt "PropertyName|"
+msgid "angularAcceleration"
+msgstr "Winkelbeslünigen"
+
+#: rigidbody.cc:36 rigidbody.cc:65 softbody.cc:45
+#, fuzzy
+#| msgctxt "Units"
+#| msgid "rad/s²"
+msgctxt "Units|"
+msgid "rad/s²"
+msgstr "rad/s²"
+
+#: rigidbody.cc:37 softbody.cc:46
+#, fuzzy
+#| msgid "Angular acceleration of the body"
+msgctxt "PropertyDescription|"
+msgid "Angular acceleration of the body"
+msgstr "Winkelbeslünigen vun den Körper"
+
+#: rigidbody.cc:39 softbody.cc:48
+#, fuzzy
+#| msgid "Force that acts upon the body"
+msgctxt "PropertyDescription|"
+msgid "Force that acts upon the body"
+msgstr "Kraft, de op den Körper warkt"
+
+#: rigidbody.cc:40 softbody.cc:49
+#, fuzzy
+#| msgid "Torque that acts upon the body"
+msgctxt "PropertyDescription|"
+msgid "Torque that acts upon the body"
+msgstr "Dreihmomang, dat op den Körper warkt"
+
+#: rigidbody.cc:40 softbody.cc:49
+#, fuzzy
+#| msgctxt "PropertyName"
+#| msgid "torque"
+msgctxt "PropertyName|"
+msgid "torque"
+msgstr "Dreihmomang"
+
+#: rigidbody.cc:42 softbody.cc:50
+#, fuzzy
+#| msgid "Total mass of the body"
+msgctxt "PropertyDescription|"
+msgid "Total mass of the body"
+msgstr "Heel Mass vun den Körper"
+
+#: rigidbody.cc:43 softbody.cc:51
+#, fuzzy
+#| msgctxt "PropertyName"
+#| msgid "inertia"
+msgctxt "PropertyName|"
+msgid "inertia"
+msgstr "Traachheit"
+
+#: rigidbody.cc:43 rigidbody.cc:73 softbody.cc:51
+#, fuzzy
+#| msgctxt "Units"
+#| msgid "kg m²"
+msgctxt "Units|"
+msgid "kg m²"
+msgstr "kg m²"
+
+#: rigidbody.cc:44 softbody.cc:52
+#, fuzzy
+#| msgid "Inertia \"tensor\" of the body"
+msgctxt "PropertyDescription|"
+msgid "Inertia \"tensor\" of the body"
+msgstr "Traachheit \"Tensor\" vun den Körper"
+
+#: rigidbody.cc:47
+#, fuzzy
+#| msgid "angular momentum"
+msgctxt "PropertyDescription|"
+msgid "angular momentum"
+msgstr "Winkelmomang"
+
+#: rigidbody.cc:47 softbody.cc:40
+#, fuzzy
+#| msgctxt "PropertyName"
+#| msgid "angularMomentum"
+msgctxt "PropertyName|"
+msgid "angularMomentum"
+msgstr "Winkelmomang"
+
+#: rigidbody.cc:47 rigidbody.cc:77
+#, fuzzy
+#| msgctxt "Units"
+#| msgid "kg m² rad/s"
+msgctxt "Units|"
+msgid "kg m² rad/s"
+msgstr "kg m² rad/s"
+
+#: rigidbody.cc:52
+#, fuzzy
+#| msgctxt "ObjectClass"
+#| msgid "RigidBodyErrors"
+msgctxt "ObjectClass|"
+msgid "RigidBodyErrors"
+msgstr "Fastkörper-Fehlers"
+
+#: rigidbody.cc:52
+#, fuzzy
+#| msgid "Errors class for RigidBody"
+msgctxt "ObjectDescription|"
+msgid "Errors class for RigidBody"
+msgstr "Fehlerklass för Fastkörper"
+
+#: rigidbody.cc:55
+#, fuzzy
+#| msgctxt "PropertyName"
+#| msgid "angleVariance"
+msgctxt "PropertyName|"
+msgid "angleVariance"
+msgstr "Winkelvarianz"
+
+#: rigidbody.cc:56
+#, fuzzy
+#| msgid "angle variance"
+msgctxt "PropertyDescription|"
+msgid "angle variance"
+msgstr "Winkelvarianz"
+
+#: rigidbody.cc:60
+#, fuzzy
+#| msgctxt "PropertyName"
+#| msgid "angularVelocityVariance"
+msgctxt "PropertyName|"
+msgid "angularVelocityVariance"
+msgstr "Winkelgauheit-Varianz"
+
+#: rigidbody.cc:61
+#, fuzzy
+#| msgid "angularVelocity variance"
+msgctxt "PropertyDescription|"
+msgid "angularVelocity variance"
+msgstr "Winkelgauheit-Varianz"
+
+#: rigidbody.cc:65
+#, fuzzy
+#| msgctxt "PropertyName"
+#| msgid "angularAccelerationVariance"
+msgctxt "PropertyName|"
+msgid "angularAccelerationVariance"
+msgstr "Winkelbeslünigen-Varianz"
+
+#: rigidbody.cc:66
+#, fuzzy
+#| msgid "angularAcceleration variance"
+msgctxt "PropertyDescription|"
+msgid "angularAcceleration variance"
+msgstr "Winkelbeslünigen-Varianz"
+
+#: rigidbody.cc:69
+#, fuzzy
+#| msgid "torque variance"
+msgctxt "PropertyDescription|"
+msgid "torque variance"
+msgstr "Dreihmomang-Varianz"
+
+#: rigidbody.cc:69
+#, fuzzy
+#| msgctxt "PropertyName"
+#| msgid "torqueVariance"
+msgctxt "PropertyName|"
+msgid "torqueVariance"
+msgstr "Dreihmomang-Varianz"
+
+#: rigidbody.cc:73
+#, fuzzy
+#| msgctxt "PropertyName"
+#| msgid "inertiaVariance"
+msgctxt "PropertyName|"
+msgid "inertiaVariance"
+msgstr "Traachheit-Varianz"
+
+#: rigidbody.cc:74
+#, fuzzy
+#| msgid "inertia variance"
+msgctxt "PropertyDescription|"
+msgid "inertia variance"
+msgstr "Traachheit-Varianz"
+
+#: rigidbody.cc:77
+#, fuzzy
+#| msgctxt "PropertyName"
+#| msgid "angularMomentumVariance"
+msgctxt "PropertyName|"
+msgid "angularMomentumVariance"
+msgstr "Winkelmomang-Varianz"
+
+#: rigidbody.cc:78
+#, fuzzy
+#| msgid "angular momentum variance"
+msgctxt "PropertyDescription|"
+msgid "angular momentum variance"
+msgstr "Winkelmomang-Varianz"
+
+#: rigidbody.cc:83
+#, fuzzy
+#| msgctxt "ObjectClass"
+#| msgid "Disk"
+msgctxt "ObjectClass|"
+msgid "Disk"
+msgstr "Schiev"
+
+#: rigidbody.cc:83
+#, fuzzy
+#| msgid "Rigid disk"
+msgctxt "ObjectDescription|"
+msgid "Rigid disk"
+msgstr "Fast Schiev"
+
+#: rigidbody.cc:84
+#, fuzzy
+#| msgid "Radius of the disk"
+msgctxt "PropertyDescription|"
+msgid "Radius of the disk"
+msgstr "Halfmaat vun de Schiev"
+
+#: rigidbody.cc:84
+#, fuzzy
+#| msgctxt "PropertyName"
+#| msgid "radius"
+msgctxt "PropertyName|"
+msgid "radius"
+msgstr "Halfmaat"
+
+#: rigidbody.cc:86
+#, fuzzy
+#| msgctxt "ObjectClass"
+#| msgid "BasePolygon"
+msgctxt "ObjectClass|"
+msgid "BasePolygon"
+msgstr "Basisveeleck"
+
+#: rigidbody.cc:86
+#, fuzzy
+#| msgid "Base polygon body"
+msgctxt "ObjectDescription|"
+msgid "Base polygon body"
+msgstr "Basisveeleck-Körper"
+
+#: rigidbody.cc:88
+#, fuzzy
+#| msgctxt "ObjectClass"
+#| msgid "Box"
+msgctxt "ObjectClass|"
+msgid "Box"
+msgstr "Kist"
+
+#: rigidbody.cc:88
+#, fuzzy
+#| msgid "Rigid box"
+msgctxt "ObjectDescription|"
+msgid "Rigid box"
+msgstr "Fast Kist"
+
+#: rigidbody.cc:89
+#, fuzzy
+#| msgid "Size of the box"
+msgctxt "PropertyDescription|"
+msgid "Size of the box"
+msgstr "Grött vun de Kist"
+
+#: rigidbody.cc:89 tool.cc:39 tool.cc:46 tool.cc:68 tool.cc:80
+#, fuzzy
+#| msgctxt "PropertyName"
+#| msgid "size"
+msgctxt "PropertyName|"
+msgid "size"
+msgstr "Grött"
+
+#: rigidbody.cc:91
+#, fuzzy
+#| msgctxt "ObjectClass"
+#| msgid "Polygon"
+msgctxt "ObjectClass|"
+msgid "Polygon"
+msgstr "Veeleck"
+
+#: rigidbody.cc:91
+#, fuzzy
+#| msgid "Rigid polygon body"
+msgctxt "ObjectDescription|"
+msgid "Rigid polygon body"
+msgstr "Fast veeleckig Körper"
+
+#: rigidbody.cc:92
+#, fuzzy
+#| msgid "Vertex list"
+msgctxt "PropertyDescription|"
+msgid "Vertex list"
+msgstr "Höörnlist"
+
+#: rigidbody.cc:92
+#, fuzzy
+#| msgctxt "PropertyName"
+#| msgid "vertices"
+msgctxt "PropertyName|"
+msgid "vertices"
+msgstr "Höörn"
+
+#: softbody.cc:31
+#, fuzzy
+#| msgctxt "ObjectClass"
+#| msgid "SoftBodyParticle"
+msgctxt "ObjectClass|"
+msgid "SoftBodyParticle"
+msgstr "Weekkörperdeeltje"
+
+#: softbody.cc:31
+#, fuzzy
+#| msgid "SoftBody particle"
+msgctxt "ObjectDescription|"
+msgid "SoftBody particle"
+msgstr "Weekkörperdeeltje"
+
+#: softbody.cc:32
+#, fuzzy
+#| msgctxt "ObjectClass"
+#| msgid "SoftBodySpring"
+msgctxt "ObjectClass|"
+msgid "SoftBodySpring"
+msgstr "Weekkörperfedder"
+
+#: softbody.cc:32
+#, fuzzy
+#| msgid "SoftBody spring"
+msgctxt "ObjectDescription|"
+msgid "SoftBody spring"
+msgstr "Weekkörperfedder"
+
+#: softbody.cc:33
+#, fuzzy
+#| msgctxt "ObjectClass"
+#| msgid "SoftBody"
+msgctxt "ObjectClass|"
+msgid "SoftBody"
+msgstr "Weekkörper"
+
+#: softbody.cc:33
+#, fuzzy
+#| msgid "Deformable SoftBody"
+msgctxt "ObjectDescription|"
+msgid "Deformable SoftBody"
+msgstr "Verformbor Weekkörper"
+
+#: softbody.cc:34
+#, fuzzy
+#| msgid "Show internal items"
+msgctxt "PropertyDescription|"
+msgid "Show internal items"
+msgstr "Intern Elementen wiesen"
+
+#: softbody.cc:34
+#, fuzzy
+#| msgctxt "PropertyName"
+#| msgid "showInternalItems"
+msgctxt "PropertyName|"
+msgid "showInternalItems"
+msgstr "Intern Elementen wiesen"
+
+#: softbody.cc:40
+#, fuzzy
+#| msgctxt "Units"
+#| msgid "kg m²/s"
+msgctxt "Units|"
+msgid "kg m²/s"
+msgstr "kg m²/s"
+
+#: softbody.cc:41
+#, fuzzy
+#| msgid "Angular momentum of the body"
+msgctxt "PropertyDescription|"
+msgid "Angular momentum of the body"
+msgstr "Den Körper sien Winkelmomang"
+
+#: softbody.cc:53
+#, fuzzy
+#| msgctxt "PropertyName"
+#| msgid "borderParticleNames"
+msgctxt "PropertyName|"
+msgid "borderParticleNames"
+msgstr "Randdeeltjesnaam"
+
+#: softbody.cc:54
+#, fuzzy
+#| msgid "Border particle names (temporal property)"
+msgctxt "PropertyDescription|"
+msgid "Border particle names (temporal property)"
+msgstr "Randdeeltjesnaam (temporeer Egenschap)"
+
+#: solver.cc:25
+#, fuzzy
+#| msgid "Solver"
+msgctxt "ObjectClass|"
+msgid "Solver"
+msgstr "Löser"
+
+#: solver.cc:25
+#, fuzzy
+#| msgid "Solver"
+msgctxt "ObjectDescription|"
+msgid "Solver"
+msgstr "Löser"
+
+#: solver.cc:26
+#, fuzzy
+#| msgid "Solver type"
+msgctxt "PropertyDescription|"
+msgid "Solver type"
+msgstr "Löser-Typ"
+
+#: solver.cc:26
+#, fuzzy
+#| msgctxt "PropertyName"
+#| msgid "solverType"
+msgctxt "PropertyName|"
+msgid "solverType"
+msgstr "Löser-Typ"
+
+#: solver.cc:27
+#, fuzzy
+#| msgid "Step size"
+msgctxt "PropertyDescription|"
+msgid "Step size"
+msgstr "Schrittgrött"
+
+#: solver.cc:27
+#, fuzzy
+#| msgctxt "PropertyName"
+#| msgid "stepSize"
+msgctxt "PropertyName|"
+msgid "stepSize"
+msgstr "Schrittgrött"
+
+#: solver.cc:27 world.cc:35
+#, fuzzy
+#| msgctxt "Units"
+#| msgid "s"
+msgctxt "Units|"
+msgid "s"
+msgstr "s"
+
+#: solver.cc:29
+#, fuzzy
+#| msgid "Allowed relative tolerance"
+msgctxt "PropertyDescription|"
+msgid "Allowed relative tolerance"
+msgstr "Tolaten relativ Afwieken"
+
+#: solver.cc:29
+#, fuzzy
+#| msgctxt "PropertyName"
+#| msgid "toleranceRel"
+msgctxt "PropertyName|"
+msgid "toleranceRel"
+msgstr "relativ Afwieken"
+
+#: solver.cc:30
+#, fuzzy
+#| msgid "Count of dynamic variables"
+msgctxt "PropertyDescription|"
+msgid "Count of dynamic variables"
+msgstr "Tall vun dünaamsch Variabeln"
+
+#: solver.cc:30
+#, fuzzy
+#| msgctxt "PropertyName"
+#| msgid "dimension"
+msgctxt "PropertyName|"
+msgid "dimension"
+msgstr "Afmeten"
+
+#: solver.cc:32
+#, fuzzy
+#| msgid "Maximal local error ratio during last step"
+msgctxt "PropertyDescription|"
+msgid "Maximal local error ratio during last step"
+msgstr "Gröttst lokaal Fehlerandeel bi den lesten Schritt"
+
+#: solver.cc:32
+#, fuzzy
+#| msgctxt "PropertyName"
+#| msgid "localErrorRatio"
+msgctxt "PropertyName|"
+msgid "localErrorRatio"
+msgstr "lokaalFehlerandeel"
+
+#: spring.cc:28
+#, fuzzy
+#| msgctxt "ObjectClass"
+#| msgid "Spring"
+msgctxt "ObjectClass|"
+msgid "Spring"
+msgstr "Fedder"
+
+#: spring.cc:28
+#, fuzzy
+#| msgid "Massless spring which can be connected to bodies"
+msgctxt "ObjectDescription|"
+msgid "Massless spring which can be connected to bodies"
+msgstr "Massfree Fedder, de sik mit Körpers verbinnen lett"
+
+#: spring.cc:30
+#, fuzzy
+#| msgid "Rest length"
+msgctxt "PropertyDescription|"
+msgid "Rest length"
+msgstr "Ruhlängde"
+
+#: spring.cc:31
+#, fuzzy
+#| msgid "Current length"
+msgctxt "PropertyDescription|"
+msgid "Current length"
+msgstr "Aktuell Längde"
+
+#: spring.cc:31
+#, fuzzy
+#| msgctxt "PropertyName"
+#| msgid "length"
+msgctxt "PropertyName|"
+msgid "length"
+msgstr "Längde"
+
+#: spring.cc:32
+#, fuzzy
+#| msgid "Stiffness"
+msgctxt "PropertyDescription|"
+msgid "Stiffness"
+msgstr "Stevigkeit"
+
+#: spring.cc:32
+#, fuzzy
+#| msgctxt "PropertyName"
+#| msgid "stiffness"
+msgctxt "PropertyName|"
+msgid "stiffness"
+msgstr "Stevigkeit"
+
+#: spring.cc:32 spring.cc:51 spring.cc:53
+#, fuzzy
+#| msgctxt "Units"
+#| msgid "N/m"
+msgctxt "Units|"
+msgid "N/m"
+msgstr "N/m"
+
+#: spring.cc:33
+#, fuzzy
+#| msgid "Damping"
+msgctxt "PropertyDescription|"
+msgid "Damping"
+msgstr "Dämpen"
+
+#: spring.cc:33
+#, fuzzy
+#| msgctxt "PropertyName"
+#| msgid "damping"
+msgctxt "PropertyName|"
+msgid "damping"
+msgstr "Dämpen"
+
+#: spring.cc:33
+#, fuzzy
+#| msgctxt "Units"
+#| msgid "N s/m"
+msgctxt "Units|"
+msgid "N s/m"
+msgstr "N s/m"
+
+#: spring.cc:42
+#, fuzzy
+#| msgid "Spring tension force"
+msgctxt "PropertyDescription|"
+msgid "Spring tension force"
+msgstr "Fedderkraft"
+
+#: spring.cc:45
+#, fuzzy
+#| msgctxt "ObjectClass"
+#| msgid "SpringErrors"
+msgctxt "ObjectClass|"
+msgid "SpringErrors"
+msgstr "Fedderfehlers"
+
+#: spring.cc:45
+#, fuzzy
+#| msgid "Errors class for Spring"
+msgctxt "ObjectDescription|"
+msgid "Errors class for Spring"
+msgstr "Fehlerklass för de Fedder"
+
+#: spring.cc:47
+#, fuzzy
+#| msgctxt "PropertyName"
+#| msgid "restLengthVariance"
+msgctxt "PropertyName|"
+msgid "restLengthVariance"
+msgstr "Ruhlängde-Varianz"
+
+#: spring.cc:48
+#, fuzzy
+#| msgid "Rest length variance"
+msgctxt "PropertyDescription|"
+msgid "Rest length variance"
+msgstr "Ruhlängde-Varianz"
+
+#: spring.cc:49
+#, fuzzy
+#| msgctxt "PropertyName"
+#| msgid "lengthVariance"
+msgctxt "PropertyName|"
+msgid "lengthVariance"
+msgstr "Längdenvarianz"
+
+#: spring.cc:50
+#, fuzzy
+#| msgid "Current length variance"
+msgctxt "PropertyDescription|"
+msgid "Current length variance"
+msgstr "Aktuell Längdenvarianz"
+
+#: spring.cc:51
+#, fuzzy
+#| msgctxt "PropertyName"
+#| msgid "stiffnessVariance"
+msgctxt "PropertyName|"
+msgid "stiffnessVariance"
+msgstr "Stevigkeit-Varianz"
+
+#: spring.cc:52
+#, fuzzy
+#| msgid "Stiffness variance"
+msgctxt "PropertyDescription|"
+msgid "Stiffness variance"
+msgstr "Stevigkeit-Varianz"
+
+#: spring.cc:53
+#, fuzzy
+#| msgctxt "PropertyName"
+#| msgid "dampingVariance"
+msgctxt "PropertyName|"
+msgid "dampingVariance"
+msgstr "Dämpen-Varianz"
+
+#: spring.cc:54
+#, fuzzy
+#| msgid "Damping variance"
+msgctxt "PropertyDescription|"
+msgid "Damping variance"
+msgstr "Dämpen-Varianz"
+
+#: spring.cc:55
+#, fuzzy
+#| msgctxt "PropertyName"
+#| msgid "localPosition1Variance"
+msgctxt "PropertyName|"
+msgid "localPosition1Variance"
+msgstr "Varianz vun lokaal Positschoon 1"
+
+#: spring.cc:56
+#, fuzzy
+#| msgid "Local position 1 variance"
+msgctxt "PropertyDescription|"
+msgid "Local position 1 variance"
+msgstr "Varianz vun lokaal Positschoon 1"
+
+#: spring.cc:57
+#, fuzzy
+#| msgctxt "PropertyName"
+#| msgid "localPosition2Variance"
+msgctxt "PropertyName|"
+msgid "localPosition2Variance"
+msgstr "Varianz vun lokaal Positschoon 2"
+
+#: spring.cc:58
+#, fuzzy
+#| msgid "Local position 2 variance"
+msgctxt "PropertyDescription|"
+msgid "Local position 2 variance"
+msgstr "Varianz vun lokaal Positschoon 2"
+
+#: spring.cc:59
+#, fuzzy
+#| msgctxt "PropertyName"
+#| msgid "position1Variance"
+msgctxt "PropertyName|"
+msgid "position1Variance"
+msgstr "Varianz vun Positschoon 1"
+
+#: spring.cc:60
+#, fuzzy
+#| msgid "Position1 variance"
+msgctxt "PropertyDescription|"
+msgid "Position1 variance"
+msgstr "Varianz vun Positschoon 1"
+
+#: spring.cc:61
+#, fuzzy
+#| msgctxt "PropertyName"
+#| msgid "position2Variance"
+msgctxt "PropertyName|"
+msgid "position2Variance"
+msgstr "Varianz vun Positschoon 2"
+
+#: spring.cc:62
+#, fuzzy
+#| msgid "Position2 variance"
+msgctxt "PropertyDescription|"
+msgid "Position2 variance"
+msgstr "Varianz vun Positschoon 2"
+
+#: spring.cc:64
+#, fuzzy
+#| msgid "Spring tension force variance"
+msgctxt "PropertyDescription|"
+msgid "Spring tension force variance"
+msgstr "Fedderkraft-Varianz"
+
+#: tool.cc:26
+#, fuzzy
+#| msgctxt "ObjectClass"
+#| msgid "NoteImage"
+msgctxt "ObjectClass|"
+msgid "NoteImage"
+msgstr "Bildnotiz"
+
+#: tool.cc:26
+#, fuzzy
+#| msgid "NoteImage: an image embedded in Note"
+msgctxt "ObjectDescription|"
+msgid "NoteImage: an image embedded in Note"
+msgstr "Bildnotiz: En na en Notiz inbett Bild"
+
+#: tool.cc:28
+#, fuzzy
+#| msgid "Image data"
+msgctxt "PropertyDescription|"
+msgid "Image data"
+msgstr "Bilddaten"
+
+#: tool.cc:28
+#, fuzzy
+#| msgctxt "PropertyName"
+#| msgid "image"
+msgctxt "PropertyName|"
+msgid "image"
+msgstr "Bild"
+
+#: tool.cc:31
+#, fuzzy
+#| msgctxt "ObjectClass"
+#| msgid "NoteFormula"
+msgctxt "ObjectClass|"
+msgid "NoteFormula"
+msgstr "Formelnotiz"
+
+#: tool.cc:31
+#, fuzzy
+#| msgid "NoteFormula: a formula embedded in Note"
+msgctxt "ObjectDescription|"
+msgid "NoteFormula: a formula embedded in Note"
+msgstr "Formelnotiz: En na en Notiz inbett Formel"
+
+#: tool.cc:33
+#, fuzzy
+#| msgid "Formula code"
+msgctxt "PropertyDescription|"
+msgid "Formula code"
+msgstr "Formelkode"
+
+#: tool.cc:33
+#, fuzzy
+#| msgctxt "PropertyName"
+#| msgid "code"
+msgctxt "PropertyName|"
+msgid "code"
+msgstr "Kode"
+
+#: tool.cc:36
+#, fuzzy
+#| msgctxt "ObjectClass"
+#| msgid "Note"
+msgctxt "ObjectClass|"
+msgid "Note"
+msgstr "Notiz"
+
+#: tool.cc:36
+#, fuzzy
+#| msgid "Note: displays a textual note on the scene"
+msgctxt "ObjectDescription|"
+msgid "Note: displays a textual note on the scene"
+msgstr "Notiz: wiest en Textnotiz op den Opbu"
+
+#: tool.cc:38
+#, fuzzy
+#| msgid "Note position on the scene"
+msgctxt "PropertyDescription|"
+msgid "Note position on the scene"
+msgstr "Notizpositschoon op den Opbu"
+
+#: tool.cc:39
+#, fuzzy
+#| msgid "Note size on the scene"
+msgctxt "PropertyDescription|"
+msgid "Note size on the scene"
+msgstr "Notizgrött op den Opbu"
+
+#: tool.cc:40
+#, fuzzy
+#| msgid "Text"
+msgctxt "PropertyDescription|"
+msgid "Text"
+msgstr "Text"
+
+#: tool.cc:40
+#, fuzzy
+#| msgctxt "PropertyName"
+#| msgid "text"
+msgctxt "PropertyName|"
+msgid "text"
+msgstr "Text"
+
+#: tool.cc:43
+#, fuzzy
+#| msgctxt "ObjectClass"
+#| msgid "Graph"
+msgctxt "ObjectClass|"
+msgid "Graph"
+msgstr "Diagramm"
+
+#: tool.cc:43
+#, fuzzy
+#| msgid "Graph: plots a graph of any properties"
+msgctxt "ObjectDescription|"
+msgid "Graph: plots a graph of any properties"
+msgstr "Diagramm: teekt en Diagramm vun all Egenschappen"
+
+#: tool.cc:45
+#, fuzzy
+#| msgid "Graph position on the scene"
+msgctxt "PropertyDescription|"
+msgid "Graph position on the scene"
+msgstr "Diagrammpositschoon op den Opbu"
+
+#: tool.cc:46
+#, fuzzy
+#| msgid "Graph size on the scene"
+msgctxt "PropertyDescription|"
+msgid "Graph size on the scene"
+msgstr "Diagrammgrött op den Opbu"
+
+#: tool.cc:47
+#, fuzzy
+#| msgid "X axis: object"
+msgctxt "PropertyDescription|"
+msgid "X axis: object"
+msgstr "X-Ass: Objekt"
+
+#: tool.cc:47
+#, fuzzy
+#| msgctxt "PropertyName"
+#| msgid "objectX"
+msgctxt "PropertyName|"
+msgid "objectX"
+msgstr "Objekt X"
+
+#: tool.cc:48
+#, fuzzy
+#| msgid "X axis: object property"
+msgctxt "PropertyDescription|"
+msgid "X axis: object property"
+msgstr "X-Ass: Objekt-Egenschap"
+
+#: tool.cc:48
+#, fuzzy
+#| msgctxt "PropertyName"
+#| msgid "propertyX"
+msgctxt "PropertyName|"
+msgid "propertyX"
+msgstr "Egenschap X"
+
+#: tool.cc:49
+#, fuzzy
+#| msgid "X axis: vector index"
+msgctxt "PropertyDescription|"
+msgid "X axis: vector index"
+msgstr "X-Ass: Vektorindex"
+
+#: tool.cc:49
+#, fuzzy
+#| msgctxt "PropertyName"
+#| msgid "indexX"
+msgctxt "PropertyName|"
+msgid "indexX"
+msgstr "Index X"
+
+#: tool.cc:50
+#, fuzzy
+#| msgid "Y axis: object"
+msgctxt "PropertyDescription|"
+msgid "Y axis: object"
+msgstr "Y-Ass: Objekt"
+
+#: tool.cc:50
+#, fuzzy
+#| msgctxt "PropertyName"
+#| msgid "objectY"
+msgctxt "PropertyName|"
+msgid "objectY"
+msgstr "Objekt Y"
+
+#: tool.cc:51
+#, fuzzy
+#| msgid "Y axis: property"
+msgctxt "PropertyDescription|"
+msgid "Y axis: property"
+msgstr "Y-Ass: Egenschap"
+
+#: tool.cc:51
+#, fuzzy
+#| msgctxt "PropertyName"
+#| msgid "propertyY"
+msgctxt "PropertyName|"
+msgid "propertyY"
+msgstr "Egenschap Y"
+
+#: tool.cc:52
+#, fuzzy
+#| msgid "Y axis: vector index"
+msgctxt "PropertyDescription|"
+msgid "Y axis: vector index"
+msgstr "Y-Ass: Vektorindex"
+
+#: tool.cc:52
+#, fuzzy
+#| msgctxt "PropertyName"
+#| msgid "indexY"
+msgctxt "PropertyName|"
+msgid "indexY"
+msgstr "Index Y"
+
+#: tool.cc:53
+#, fuzzy
+#| msgid "Auto-limits along X axis"
+msgctxt "PropertyDescription|"
+msgid "Auto-limits along X axis"
+msgstr "Automaatsch Grenzen blang de X-Ass"
+
+#: tool.cc:53
+#, fuzzy
+#| msgctxt "PropertyName"
+#| msgid "autoLimitsX"
+msgctxt "PropertyName|"
+msgid "autoLimitsX"
+msgstr "Automaatsch Grenzen X"
+
+#: tool.cc:54
+#, fuzzy
+#| msgid "Auto-limits along Y axis"
+msgctxt "PropertyDescription|"
+msgid "Auto-limits along Y axis"
+msgstr "Automaatsch Grenzen blang de Y-Ass"
+
+#: tool.cc:54
+#, fuzzy
+#| msgctxt "PropertyName"
+#| msgid "autoLimitsY"
+msgctxt "PropertyName|"
+msgid "autoLimitsY"
+msgstr "Automaatsch Grenzen Y"
+
+#: tool.cc:55
+#, fuzzy
+#| msgid "Limits along X axis"
+msgctxt "PropertyDescription|"
+msgid "Limits along X axis"
+msgstr "Grenzen blang de X-Ass"
+
+#: tool.cc:55
+#, fuzzy
+#| msgctxt "PropertyName"
+#| msgid "limitsX"
+msgctxt "PropertyName|"
+msgid "limitsX"
+msgstr "Grenzen X"
+
+#: tool.cc:56
+#, fuzzy
+#| msgid "Limits along Y axis"
+msgctxt "PropertyDescription|"
+msgid "Limits along Y axis"
+msgstr "Grenzen blang de Y-Ass"
+
+#: tool.cc:56
+#, fuzzy
+#| msgctxt "PropertyName"
+#| msgid "limitsY"
+msgctxt "PropertyName|"
+msgid "limitsY"
+msgstr "Grenzen Y"
+
+#: tool.cc:57
+#, fuzzy
+#| msgid "Show points on the graph"
+msgctxt "PropertyDescription|"
+msgid "Show points on the graph"
+msgstr "Diagramm mit Pünkt wiesen"
+
+#: tool.cc:57
+#, fuzzy
+#| msgctxt "PropertyName"
+#| msgid "showPoints"
+msgctxt "PropertyName|"
+msgid "showPoints"
+msgstr "Pünkt wiesen"
+
+#: tool.cc:58
+#, fuzzy
+#| msgid "Show lines on the graph"
+msgctxt "PropertyDescription|"
+msgid "Show lines on the graph"
+msgstr "Diagramm mit Lienen wiesen"
+
+#: tool.cc:58
+#, fuzzy
+#| msgctxt "PropertyName"
+#| msgid "showLines"
+msgctxt "PropertyName|"
+msgid "showLines"
+msgstr "Lienen wiesen"
+
+#: tool.cc:59
+#, fuzzy
+#| msgid "Current value"
+msgctxt "PropertyDescription|"
+msgid "Current value"
+msgstr "Aktuell Weert"
+
+#: tool.cc:59
+#, fuzzy
+#| msgid "currentValue"
+msgctxt "PropertyName|"
+msgid "currentValue"
+msgstr "aktuell Weert"
+
+#: tool.cc:60 tool.cc:101
+#, fuzzy
+#| msgid "points"
+msgctxt "PropertyDescription|"
+msgid "points"
+msgstr "Pünkt"
+
+#: tool.cc:60 tool.cc:101
+#, fuzzy
+#| msgid "points"
+msgctxt "PropertyName|"
+msgid "points"
+msgstr "Pünkt"
+
+#: tool.cc:61
+#, fuzzy
+#| msgid "unitsX"
+msgctxt "PropertyName|"
+msgid "unitsX"
+msgstr "Eenheiten X"
+
+#: tool.cc:61
+#, fuzzy
+#| msgid "Units along X axis"
+msgctxt "PropertyName|"
+msgid "Units along X axis"
+msgstr "Eenheiten blang de X-Ass"
+
+#: tool.cc:62
+#, fuzzy
+#| msgid "unitsY"
+msgctxt "PropertyName|"
+msgid "unitsY"
+msgstr "Eenheiten Y"
+
+#: tool.cc:62
+#, fuzzy
+#| msgid "Units along Y axis"
+msgctxt "PropertyName|"
+msgid "Units along Y axis"
+msgstr "Eenheiten blang de Y-Ass"
+
+#: tool.cc:65
+#, fuzzy
+#| msgctxt "ObjectClass"
+#| msgid "Meter"
+msgctxt "ObjectClass|"
+msgid "Meter"
+msgstr "Maat"
+
+#: tool.cc:65
+#, fuzzy
+#| msgid "Meter: displays any property on the scene"
+msgctxt "ObjectDescription|"
+msgid "Meter: displays any property on the scene"
+msgstr "Maat: wiest all Egenschappen op den Opbu"
+
+#: tool.cc:67
+#, fuzzy
+#| msgid "Meter position on the scene"
+msgctxt "PropertyDescription|"
+msgid "Meter position on the scene"
+msgstr "Maatpositschoon op den Opbu"
+
+#: tool.cc:68
+#, fuzzy
+#| msgid "Meter size on the scene"
+msgctxt "PropertyDescription|"
+msgid "Meter size on the scene"
+msgstr "Maatgrött op den Opbu"
+
+#: tool.cc:69
+#, fuzzy
+#| msgid "Observed object"
+msgctxt "PropertyDescription|"
+msgid "Observed object"
+msgstr "Beluert Objekt"
+
+#: tool.cc:69 tool.cc:81
+#, fuzzy
+#| msgctxt "PropertyName"
+#| msgid "object"
+msgctxt "PropertyName|"
+msgid "object"
+msgstr "Objekt"
+
+#: tool.cc:70
+#, fuzzy
+#| msgid "Observed property"
+msgctxt "PropertyDescription|"
+msgid "Observed property"
+msgstr "Beluert Egenschap"
+
+#: tool.cc:70 tool.cc:82
+#, fuzzy
+#| msgctxt "PropertyName"
+#| msgid "property"
+msgctxt "PropertyName|"
+msgid "property"
+msgstr "Egenschap"
+
+#: tool.cc:71 tool.cc:83
+#, fuzzy
+#| msgid "Vector index"
+msgctxt "PropertyDescription|"
+msgid "Vector index"
+msgstr "Vektorindex"
+
+#: tool.cc:71 tool.cc:83
+#, fuzzy
+#| msgctxt "PropertyName"
+#| msgid "index"
+msgctxt "PropertyName|"
+msgid "index"
+msgstr "Index"
+
+#: tool.cc:72
+#, fuzzy
+#| msgid "Display digits"
+msgctxt "PropertyDescription|"
+msgid "Display digits"
+msgstr "Dorstellnauigkeit"
+
+#: tool.cc:72
+#, fuzzy
+#| msgctxt "PropertyName"
+#| msgid "digits"
+msgctxt "PropertyName|"
+msgid "digits"
+msgstr "Steden"
+
+#: tool.cc:73 tool.cc:90
+#, fuzzy
+#| msgid "Value"
+msgctxt "PropertyDescription|"
+msgid "Value"
+msgstr "Weert"
+
+#: tool.cc:73 tool.cc:90
+#, fuzzy
+#| msgid "value"
+msgctxt "PropertyName|"
+msgid "value"
+msgstr "Weert"
+
+#: tool.cc:74
+#, fuzzy
+#| msgid "Units of measured property"
+msgctxt "PropertyDescription|"
+msgid "Units of measured property"
+msgstr "Eenheiten vun de meten Egenschap"
+
+#: tool.cc:74 tool.cc:92
+#, fuzzy
+#| msgid "units"
+msgctxt "PropertyName|"
+msgid "units"
+msgstr "Eenheiten"
+
+#: tool.cc:77
+#, fuzzy
+#| msgctxt "ObjectClass"
+#| msgid "Controller"
+msgctxt "ObjectClass|"
+msgid "Controller"
+msgstr "Kuntrull"
+
+#: tool.cc:77
+#, fuzzy
+#| msgid "Controller: allows to easily control any property"
+msgctxt "ObjectDescription|"
+msgid "Controller: allows to easily control any property"
+msgstr "Kuntrull: eenfach Ännern vun all Egenschappen"
+
+#: tool.cc:79
+#, fuzzy
+#| msgid "Controller position on the scene"
+msgctxt "PropertyDescription|"
+msgid "Controller position on the scene"
+msgstr "Kuntrull-Positschoon op den Opbu"
+
+#: tool.cc:80
+#, fuzzy
+#| msgid "Controller size on the scene"
+msgctxt "PropertyDescription|"
+msgid "Controller size on the scene"
+msgstr "Kuntrull-Grött op den Opbu"
+
+#: tool.cc:81
+#, fuzzy
+#| msgid "Controlled object"
+msgctxt "PropertyDescription|"
+msgid "Controlled object"
+msgstr "Beluert Objekt"
+
+#: tool.cc:82
+#, fuzzy
+#| msgid "Controlled property"
+msgctxt "PropertyDescription|"
+msgid "Controlled property"
+msgstr "Beluert Egenschap"
+
+#: tool.cc:84
+#, fuzzy
+#| msgid "Limits"
+msgctxt "PropertyDescription|"
+msgid "Limits"
+msgstr "Grenzen"
+
+#: tool.cc:84
+#, fuzzy
+#| msgctxt "PropertyName"
+#| msgid "limits"
+msgctxt "PropertyName|"
+msgid "limits"
+msgstr "Grenzen"
+
+#: tool.cc:85
+#, fuzzy
+#| msgctxt "PropertyName"
+#| msgid "increaseShortcut"
+msgctxt "PropertyName|"
+msgid "increaseShortcut"
+msgstr "Ropsett-Tastkombinatschoon"
+
+#: tool.cc:86
+#, fuzzy
+#| msgid "Shortcut to increase the value"
+msgctxt "PropertyDescription|"
+msgid "Shortcut to increase the value"
+msgstr "Tastkombinatschoon för't Ropsetten vun en Weert"
+
+#: tool.cc:87
+#, fuzzy
+#| msgctxt "PropertyName"
+#| msgid "decreaseShortcut"
+msgctxt "PropertyName|"
+msgid "decreaseShortcut"
+msgstr "Daalsett-Tastkombinatschoon"
+
+#: tool.cc:88
+#, fuzzy
+#| msgid "Shortcut to decrease the value"
+msgctxt "PropertyDescription|"
+msgid "Shortcut to decrease the value"
+msgstr "Tastkombinatschoon för't Minnern vun en Weert"
+
+#: tool.cc:89
+#, fuzzy
+#| msgid "Increment value"
+msgctxt "PropertyDescription|"
+msgid "Increment value"
+msgstr "Weert ropsetten"
+
+#: tool.cc:89
+#, fuzzy
+#| msgctxt "PropertyName"
+#| msgid "increment"
+msgctxt "PropertyName|"
+msgid "increment"
+msgstr "Grötter maken"
+
+#: tool.cc:92
+#, fuzzy
+#| msgid "Units of controlled property"
+msgctxt "PropertyDescription|"
+msgid "Units of controlled property"
+msgstr "Eenheiten vun de beluert Egenschap"
+
+#: tool.cc:95
+#, fuzzy
+#| msgctxt "ObjectClass"
+#| msgid "Tracer"
+msgctxt "ObjectClass|"
+msgid "Tracer"
+msgstr "Spoor"
+
+#: tool.cc:95
+#, fuzzy
+#| msgid "Tracer: traces trajectory of a point on a body"
+msgctxt "ObjectDescription|"
+msgid "Tracer: traces trajectory of a point on a body"
+msgstr "Spoor: beluert de Bewegen vun en Punkt op en Körper"
+
+#: tool.cc:97
+#, fuzzy
+#| msgid "Traced body"
+msgctxt "PropertyDescription|"
+msgid "Traced body"
+msgstr "Beluert Körper"
+
+#: tool.cc:99
+#, fuzzy
+#| msgid "Local position"
+msgctxt "PropertyDescription|"
+msgid "Local position"
+msgstr "Lokaal Positschoon"
+
+#: world.cc:32
+#, fuzzy
+#| msgid "Tool"
+msgctxt "ObjectClass|"
+msgid "Tool"
+msgstr "Warktüüch"
+
+#: world.cc:32
+#, fuzzy
+#| msgid "Tool"
+msgctxt "ObjectDescription|"
+msgid "Tool"
+msgstr "Warktüüch"
+
+#: world.cc:34
+#, fuzzy
+#| msgid "World"
+msgctxt "ObjectClass|"
+msgid "World"
+msgstr "Welt"
+
+#: world.cc:34
+#, fuzzy
+#| msgid "World"
+msgctxt "ObjectDescription|"
+msgid "World"
+msgstr "Welt"
+
+#: world.cc:35
+#, fuzzy
+#| msgid "Current time"
+msgctxt "PropertyDescription|"
+msgid "Current time"
+msgstr "Aktuell Tiet"
+
+#: world.cc:35
+#, fuzzy
+#| msgctxt "PropertyName"
+#| msgid "time"
+msgctxt "PropertyName|"
+msgid "time"
+msgstr "Tiet"
+
+#: world.cc:36
+#, fuzzy
+#| msgid "Simulation speed scale"
+msgctxt "PropertyDescription|"
+msgid "Simulation speed scale"
+msgstr "Simuleren-Gauheitmaat"
+
+#: world.cc:36
+#, fuzzy
+#| msgid "timeScale"
+msgctxt "PropertyName|"
+msgid "timeScale"
+msgstr "Tietschrittmaat"
+
+#: world.cc:37
+#, fuzzy
+#| msgid "errorsCalculation"
+msgctxt "PropertyName|"
+msgid "errorsCalculation"
+msgstr "Fehlerutreken"
+
+#: world.cc:38
+#, fuzzy
+#| msgid "Enable global error calculation"
+msgctxt "PropertyDescription|"
+msgid "Enable global error calculation"
+msgstr "Globaal Fehlerutreken anmaken"
+
+#: xmlfile.cc:201
+#, fuzzy
+#| msgid "The file is not a StepCoreXML file."
+msgctxt "QObject|"
+msgid "The file is not a StepCoreXML file."
+msgstr "De Datei is keen StepCoreXML-Datei."
+
+#: xmlfile.cc:247
+#, fuzzy, qt-format
+#| msgid "Unknown item type \"%1\""
+msgctxt "QObject|"
+msgid "Unknown item type \"%1\""
+msgstr "Element-Typ \"%1\" nich begäng "
+
+#: xmlfile.cc:268
+#, fuzzy, qt-format
+#| msgid "Unknown solver type \"%1\""
+msgctxt "QObject|"
+msgid "Unknown solver type \"%1\""
+msgstr "Löser-Typ \"%1\" nich begäng"
+
+#: xmlfile.cc:282
+#, fuzzy, qt-format
+#| msgid "Unknown collisionSolver type \"%1\""
+msgctxt "QObject|"
+msgid "Unknown collisionSolver type \"%1\""
+msgstr "Tosamenstöötlöser-Typ \"%1\" nich begäng"
+
+#: xmlfile.cc:296
+#, fuzzy, qt-format
+#| msgid "Unknown constraint solver type \"%1\""
+msgctxt "QObject|"
+msgid "Unknown constraint solver type \"%1\""
+msgstr "Bedingenlöser-Typ \"%1\" nich begäng"
+
+#: xmlfile.cc:324
+#, fuzzy, qt-format
+#| msgid "Wrong ID attribute value for %1"
+msgctxt "QObject|"
+msgid "Wrong ID attribute value for %1"
+msgstr "Falsch ID-Attributweert för %1"
+
+#: xmlfile.cc:329
+#, fuzzy, qt-format
+#| msgid "Non-unique ID attribute value for %1"
+msgctxt "QObject|"
+msgid "Non-unique ID attribute value for %1"
+msgstr "Nich-eenkennig ID-Attributweert för %1"
+
+#: xmlfile.cc:357 xmlfile.cc:371
+#, fuzzy, qt-format
+#| msgid "Property \"%1\" of \"%2\" has illegal value"
+msgctxt "QObject|"
+msgid "Property \"%1\" of \"%2\" has illegal value"
+msgstr "Egenschap \"%1\" vun \"%2\" is leeg"
+
+#: xmlfile.cc:384
+#, fuzzy
+#| msgid "File is not writable."
+msgctxt "QObject|"
+msgid "File is not writable."
+msgstr "Datei lett sik nich schrieven."
+
+#, fuzzy
+#~| msgid "Body"
+#~ msgctxt "StepCore|"
+#~ msgid "Body"
+#~ msgstr "Körper"
+
+#, fuzzy
+#~| msgid "Force"
+#~ msgctxt "StepCore|"
+#~ msgid "Force"
+#~ msgstr "Kraft"
+
+#, fuzzy
+#~| msgid "Item"
+#~ msgctxt "StepCore|"
+#~ msgid "Item"
+#~ msgstr "Element"
+
+#, fuzzy
+#~| msgid "ItemGroup"
+#~ msgctxt "StepCore|"
+#~ msgid "ItemGroup"
+#~ msgstr "Element-Koppel"
+
+#, fuzzy
+#~| msgid "Joint"
+#~ msgctxt "StepCore|"
+#~ msgid "Joint"
+#~ msgstr "Ansluss"
+
+#, fuzzy
+#~| msgid "Object"
+#~ msgctxt "StepCore|"
+#~ msgid "Object"
+#~ msgstr "Objekt"
+
+#, fuzzy
+#~| msgid "ObjectErrors"
+#~ msgctxt "StepCore|"
+#~ msgid "ObjectErrors"
+#~ msgstr "Objektfehlers"
+
+#, fuzzy
+#~| msgid "position"
+#~ msgctxt "StepCore|"
+#~ msgid "position"
+#~ msgstr "Positschoon"
+
+#, fuzzy
+#~| msgid "velocity"
+#~ msgctxt "StepCore|"
+#~ msgid "velocity"
+#~ msgstr "Gauheit"
+
+#, fuzzy
+#~| msgid "acceleration"
+#~ msgctxt "StepCore|"
+#~ msgid "acceleration"
+#~ msgstr "Beslünigen"
+
+#, fuzzy
+#~| msgid "force"
+#~ msgctxt "StepCore|"
+#~ msgid "force"
+#~ msgstr "Kraft"
+
+#, fuzzy
+#~| msgid "mass"
+#~ msgctxt "StepCore|"
+#~ msgid "mass"
+#~ msgstr "Mass"
+
+#, fuzzy
+#~| msgid "momentum"
+#~ msgctxt "StepCore|"
+#~ msgid "momentum"
+#~ msgstr "Momang"
+
+#, fuzzy
+#~| msgid "charge"
+#~ msgctxt "StepCore|"
+#~ msgid "charge"
+#~ msgstr "Opladen"
+
+#, fuzzy
+#~| msgctxt "ObjectClass"
+#~| msgid "Plane"
+#~ msgctxt "ObjectClass|"
+#~ msgid "Plane"
+#~ msgstr "Evene"
+
+#, fuzzy
+#~| msgid "Unmovable rigid plane"
+#~ msgctxt "StepCore|"
+#~ msgid "Unmovable rigid plane"
+#~ msgstr "Nich schuuvbor fast Evene"
+
+#, fuzzy
+#~| msgctxt "PropertyName"
+#~| msgid "point1"
+#~ msgctxt "PropertyName|"
+#~ msgid "point1"
+#~ msgstr "Punkt 1"
+
+#, fuzzy
+#~| msgid "First point which defines the plane"
+#~ msgctxt "StepCore|"
+#~ msgid "First point which defines the plane"
+#~ msgstr "Eerst Punkt, de de Evene fastleggt"
+
+#, fuzzy
+#~| msgctxt "PropertyName"
+#~| msgid "point2"
+#~ msgctxt "PropertyName|"
+#~ msgid "point2"
+#~ msgstr "Punkt 2"
+
+#, fuzzy
+#~| msgid "Second point which defines the plane"
+#~ msgctxt "StepCore|"
+#~ msgid "Second point which defines the plane"
+#~ msgstr "Tweet Punkt, de de Evene fastleggt"
+
+#, fuzzy
+#~| msgid "Solver"
+#~ msgctxt "StepCore|"
+#~ msgid "Solver"
+#~ msgstr "Löser"
+
+#, fuzzy
+#~| msgid "points"
+#~ msgctxt "StepCore|"
+#~ msgid "points"
+#~ msgstr "Pünkt"
+
+#, fuzzy
+#~| msgid "value"
+#~ msgctxt "StepCore|"
+#~ msgid "value"
+#~ msgstr "Weert"
+
+#, fuzzy
+#~| msgid "Tool"
+#~ msgctxt "StepCore|"
+#~ msgid "Tool"
+#~ msgstr "Warktüüch"
+
+#, fuzzy
+#~| msgid "World"
+#~ msgctxt "StepCore|"
+#~ msgid "World"
+#~ msgstr "Welt"
+
+#~ msgctxt "ObjectClass"
+#~ msgid "Body"
+#~ msgstr "Körper"
+
+#~ msgctxt "ObjectClass"
+#~ msgid "Force"
+#~ msgstr "Kraft"
+
+#~ msgctxt "ObjectClass"
+#~ msgid "Item"
+#~ msgstr "Element"
+
+#~ msgctxt "ObjectClass"
+#~ msgid "ItemGroup"
+#~ msgstr "Element-Koppel"
+
+#~ msgctxt "ObjectClass"
+#~ msgid "Joint"
+#~ msgstr "Ansluss"
+
+#~ msgctxt "PropertyName"
+#~ msgid "position"
+#~ msgstr "Positschoon"
+
+#~ msgctxt "ObjectClass"
+#~ msgid "Object"
+#~ msgstr "Objekt"
+
+#~ msgctxt "ObjectClass"
+#~ msgid "ObjectErrors"
+#~ msgstr "Objektfehlers"
+
+#~ msgctxt "PropertyName"
+#~ msgid "velocity"
+#~ msgstr "Gauheit"
+
+#~ msgctxt "PropertyName"
+#~ msgid "acceleration"
+#~ msgstr "Beslünigen"
+
+#~ msgctxt "PropertyName"
+#~ msgid "force"
+#~ msgstr "Kraft"
+
+#~ msgctxt "PropertyName"
+#~ msgid "mass"
+#~ msgstr "Mass"
+
+#~ msgctxt "PropertyName"
+#~ msgid "momentum"
+#~ msgstr "Momang"
+
+#~ msgctxt "PropertyName"
+#~ msgid "charge"
+#~ msgstr "Opladen"
+
+#~ msgctxt "ObjectClass"
+#~ msgid "Solver"
+#~ msgstr "Löser"
+
+#~ msgctxt "PropertyName"
+#~ msgid "points"
+#~ msgstr "Pünkt"
+
+#~ msgctxt "PropertyName"
+#~ msgid "value"
+#~ msgstr "Weert"
+
+#~ msgctxt "ObjectClass"
+#~ msgid "Tool"
+#~ msgstr "Warktüüch"
+
+#~ msgctxt "ObjectClass"
+#~ msgid "World"
+#~ msgstr "Welt"
+
+#~ msgid "Item \"%1\" has no stored property named \"%2\""
+#~ msgstr "Element \"%1\" bargt keen sekert Egenschap mit den Naam \"%2\""
+
+#~ msgid "Unexpected tag \"%1\""
+#~ msgstr "Nich verwacht Beteker \"%1\""
+
+#~ msgid "\"world\" tag not found"
+#~ msgstr "Beteker \"world\" lett sik nich finnen"
+
+#~ msgid "Error parsing file at line %1: %2"
+#~ msgstr "Datei-Inleesfehler bi Reeg %1: %2"
+
+#~ msgctxt "NAME OF TRANSLATORS"
+#~ msgid "Your names"
+#~ msgstr "Manfred Wiese, Sönke Dibbern"
+
+#~ msgctxt "EMAIL OF TRANSLATORS"
+#~ msgid "Your emails"
+#~ msgstr "m.j.wiese@web.de, s_dibbern@web.de"
+
+#~ msgid "Main Toolbar"
+#~ msgstr "Hööft-Warktüüchbalken"
+
+#~ msgid "Simulation Toolbar"
+#~ msgstr "Simuleren-Warktüüchbalken"
+
+#~ msgid "&Examples"
+#~ msgstr "&Bispelen"
+
+#~ msgid "&Simulation"
+#~ msgstr "&Simuleren"
+
+#~ msgid "&Run Speed"
+#~ msgstr "&Loopgauheit"
+
+#~ msgid "&Panels"
+#~ msgstr "&Paneels"
+
+#~ msgid "Data Source"
+#~ msgstr "Datenborn"
+
+#~ msgid "Range"
+#~ msgstr "Rebeet"
+
+#~ msgid "min:"
+#~ msgstr "tom:"
+
+#~ msgid "max:"
+#~ msgstr "toh:"
+
+#~ msgid "0"
+#~ msgstr "0"
+
+#~ msgid "1"
+#~ msgstr "1"
+
+#~ msgid "Shortcuts"
+#~ msgstr "Tastkombinatschonen"
+
+#~ msgid "Decrease:"
+#~ msgstr "Minnern:"
+
+#~ msgid "Increase:"
+#~ msgstr "Ropsetten:"
+
+#~ msgid "Increment:"
+#~ msgstr "Towass:"
+
+#~ msgid "0.1"
+#~ msgstr "0,1"
+
+#~ msgid "Options"
+#~ msgstr "Optschonen"
+
+#~ msgid "Area"
+#~ msgstr "Rebeet"
+
+#~ msgid "The area the gas takes"
+#~ msgstr "De Ruum, den dat Gas bruukt"
+
+#~ msgid "Particles count:"
+#~ msgstr "Tall vun Deeltjes:"
+
+#~ msgid "The number of partcles of this gas."
+#~ msgstr "De Tall vun Deeltjes vun dat Gas."
+
+#~ msgid "20"
+#~ msgstr "20"
+
+#~ msgid "Concentration:"
+#~ msgstr "Verdelendicht:"
+
+#~ msgid "Particles mass:"
+#~ msgstr "Deeltjemass:"
+
+#~ msgid "The mass of one particle"
+#~ msgstr "De Mass vun en Deeltje"
+
+#~ msgid "Temperature:"
+#~ msgstr "Temperatuur:"
+
+#~ msgid "1e21"
+#~ msgstr "1e21"
+
+#~ msgid "Mean velocity:"
+#~ msgstr "Dörsnittlich Gauheit:"
+
+#~ msgid "(0,0)"
+#~ msgstr "(0,0)"
+
+#~ msgid "Display precision:"
+#~ msgstr "Dorstellnauigkeit:"
+
+#~ msgid "Show scene axes"
+#~ msgstr "Assen wiesen"
+
+#~ msgid "Show tips when creating objects"
+#~ msgstr "Tipps bi't Opstellen vun Objekten wiesen"
+
+#~ msgid "Enable OpenGL (EXPERIMENTAL)"
+#~ msgstr "OpenGL anmaken (testwies)"
+
+#~ msgid "Open wikipedia in external browser"
+#~ msgstr "Wikipedia mit extern Nettkieker opmaken"
+
+#~ msgid "Position:"
+#~ msgstr "Positschoon:"
+
+#~ msgid "Body size:"
+#~ msgstr "Körpergrött:"
+
+#~ msgid "(1,1)"
+#~ msgstr "(1,1)"
+
+#~ msgid "Body mass:"
+#~ msgstr "Körpermass:"
+
+#~ msgid "Young's modulus:"
+#~ msgstr "Bögenbiweert:"
+
+#~ msgid "15"
+#~ msgstr "15"
+
+#~ msgid "Body damping:"
+#~ msgstr "Körperdämpen:"
+
+#~ msgid "0.3"
+#~ msgstr "0,3"
+
+#~ msgid "Body split counts:"
+#~ msgstr "Körperdelentallen:"
+
+#~ msgid "(4,4)"
+#~ msgstr "(4,4)"
+
+#~ msgid "Number of digits:"
+#~ msgstr "Tall vun Steden:"
+
+#~ msgid "X :"
+#~ msgstr "X:"
+
+#~ msgid "Y :"
+#~ msgstr "Y:"
+
+#~ msgid "Ranges"
+#~ msgstr "Rebeden"
+
+#~ msgid "auto"
+#~ msgstr "Automaatsch"
+
+#~ msgid "Show lines"
+#~ msgstr "Regen wiesen"
+
+#~ msgid "Show points"
+#~ msgstr "Pünkt wiesen"
+
+#~ msgid "Click on the scene to create a %1"
+#~ msgstr "Klick op den Opbu, wenn Du en %1 opstellen wullt"
+
+#~ msgid "Create %1"
+#~ msgstr "%1 opstellen"
+
+#~ msgid "%1 named '%2' created"
+#~ msgstr "%1 nöömt \"%2\" opstellt"
+
+#~ msgid ""
+#~ "Press left mouse button to position first end of a %1\n"
+#~ "then drag and release it to position the second end"
+#~ msgstr ""
+#~ "Drück den linken Muusknoop för't Setten vun den Anfang vun\n"
+#~ "en %1, treck, un laat em för't Setten vun't Enn wedder loos."
+
+#~ msgid "Release left mouse button to position second end of the %1"
+#~ msgstr ""
+#~ "För't Setten vun't Enn vun en %1 laat den linken Muusknoop wedder loos."
+
+#~ msgid "Move %1"
+#~ msgstr "%1 verschuven"
+
+#~ msgid "several objects"
+#~ msgstr "Verscheden Objekten"
+
+#~ msgid "Change %1.%2"
+#~ msgstr "%1.%2 ännern"
+
+#~ msgid "Change %1"
+#~ msgstr "%1 ännern"
+
+#~ msgid "&Delete"
+#~ msgstr "&Wegdoon"
+
+#~ msgctxt "Object list"
+#~ msgid "World"
+#~ msgstr "Welt"
+
+#~ msgid "Palette"
+#~ msgstr "Klörensett"
+
+#~ msgid "Pointer"
+#~ msgstr "Wieser"
+
+#~ msgid "Selection pointer"
+#~ msgstr "Köörwieser"
+
+#~ msgid "Show text"
+#~ msgstr "Text wiesen"
+
+#~ msgid "can not launch %1"
+#~ msgstr "%1 lett sik nich opropen"
+
+#~ msgid "error running %1"
+#~ msgstr "Fehler bi't Utföhren vun %1"
+
+#~ msgid ""
+#~ "%1 reported an error (exit status %2):\n"
+#~ "%3"
+#~ msgstr ""
+#~ "%1 meldt en Fehler (Fehlerkode %2):\n"
+#~ "%3"
+
+#~ msgid "%1 did not create output file"
+#~ msgstr "%1 hett keen Utgaavdatei opstellt"
+
+#~ msgid "can not open temporary file"
+#~ msgstr "Temporeerdatei lett sik nich opmaken"
+
+#~ msgid "can not open result file"
+#~ msgstr "Utgaavdatei lett sik nich opmaken"
+
+#~ msgid "Move end of %1"
+#~ msgstr "Enn vun %1 verschuven"
+
+#~ msgid "Create items..."
+#~ msgstr "Elementen opstellen..."
+
+#~ msgid "Create soft body items"
+#~ msgstr "Week Elementen opstellen"
+
+#~ msgid "Create items for %1"
+#~ msgstr "Elementen för %1 opstellen"
+
+#~ msgid "Objects under mouse:"
+#~ msgstr "Objekten ünner Muus:"
+
+#~ msgid "... (%1 more items)"
+#~ msgstr "... (noch %1 Indrääg mehr)"
+
+#~ msgid "Interactive physical simulator"
+#~ msgstr "Brukerstüert Physiksimuleren"
+
+#~ msgid "Step"
+#~ msgstr "Step"
+
+#~ msgid "(C) 2007 Vladimir Kuznetsov"
+#~ msgstr "(C) 2007, Vladimir Kuznetsov"
+
+#~ msgid "Vladimir Kuznetsov"
+#~ msgstr "Vladimir Kuznetsov"
+
+#~ msgid "Original author"
+#~ msgstr "Orginaalautor"
+
+#~ msgid "Carsten Niehaus"
+#~ msgstr "Carsten Niehaus"
+
+#~ msgid "Code contributions"
+#~ msgstr "Kodebidrääg"
+
+#~ msgid "Document to open"
+#~ msgstr "Dokment, dat Du opmaken wullt"
+
+#~ msgid "Delete %1"
+#~ msgstr "\"%1\" wegdoon"
+
+#~ msgid "Delete several items"
+#~ msgstr "Mehr Indrääg wegdoon"
+
+#~ msgid "<no object>"
+#~ msgstr "<keen Objekt>"
+
+#~ msgid "<unnamed>"
+#~ msgstr "<ahn Naam>"
+
+#~ msgid "%1: %2"
+#~ msgstr "%1: %2"
+
+#~ msgid "<nobr><h4><u>%1</u></h4></nobr>"
+#~ msgstr "<nobr><h4><u>%1</u></h4></nobr>"
+
+#~ msgid "<tr><td>%1&nbsp;&nbsp;</td><td>%2</td></tr>"
+#~ msgstr "<tr><td>%1&nbsp;&nbsp;</td><td>%2</td></tr>"
+
+#~ msgid "Simulate %1 → %2"
+#~ msgstr "Simuleren %1 → %2"
+
+#~ msgid "Undo history"
+#~ msgstr "Torüchnehmlist"
+
+#~ msgid "Change solver type"
+#~ msgstr "Löser-Typ ännern"
+
+#~ msgid "Rename %1 to %2"
+#~ msgstr "%1 na %2 ümnömen"
+
+#~ msgid "Property"
+#~ msgstr "Egenschap"
+
+#~ msgid "false"
+#~ msgstr "Falsch"
+
+#~ msgid "true"
+#~ msgstr "Wohr"
+
+#~ msgid "Properties"
+#~ msgstr "Egenschappen"
+
+#~ msgid "&Open Tutorial..."
+#~ msgstr "Inföhren &opmaken..."
+
+#~ msgid "&Open Example..."
+#~ msgstr "Bispill &opmaken..."
+
+#~ msgid "Open Down&loaded Example..."
+#~ msgstr "Daal&laadt Bispill opmaken..."
+
+#~ msgid "Share C&urrent Experiment..."
+#~ msgstr "Akt&uell Versöök freegeven..."
+
+#~ msgid "&Download New Experiments..."
+#~ msgstr "Nieg Versöken &daalladen..."
+
+#~ msgid "Redo"
+#~ msgstr "Wedderhalen"
+
+#~ msgid "Undo"
+#~ msgstr "Torüchnehmen"
+
+#~ msgid "&Run"
+#~ msgstr "&Utföhren"
+
+#~ msgid "Execute the program"
+#~ msgstr "Dat Programm utföhren"
+
+#~ msgid "Run: Execute the program"
+#~ msgstr "Utföhren: Dat Programm utföhren"
+
+#~ msgctxt "@option:radio"
+#~ msgid "1x Speed"
+#~ msgstr "Eenfach Gauheit"
+
+#~ msgctxt "@option:radio choose the slow speed"
+#~ msgid "2x Speed"
+#~ msgstr "Dubbelt Gauheit"
+
+#~ msgctxt "@option:radio"
+#~ msgid "4x Speed"
+#~ msgstr "Veerfach Gauheit"
+
+#~ msgctxt "@option:radio"
+#~ msgid "8x Speed"
+#~ msgstr "Achtfach Gauheit"
+
+#~ msgctxt "@option:radio"
+#~ msgid "16x Speed"
+#~ msgstr "Sössteihnfach Gauheit"
+
+#~ msgctxt "filename"
+#~ msgid "untitled.step"
+#~ msgstr "ahnnaam.step"
+
+#~ msgid "<new file>"
+#~ msgstr "<Nieg Datei>"
+
+#~ msgid "*.step|Step files (*.step)"
+#~ msgstr "*.step|Step-Dateien (*.step)"
+
+#~ msgid "Cannot open file '%1'"
+#~ msgstr "Datei \"%1\" lett sik nich opmaken"
+
+#~ msgid "Cannot parse file '%1': %2"
+#~ msgstr "Datei \"%1\" lett sik nich inlesen: %2"
+
+#~ msgid "<open file: %1>"
+#~ msgstr "<Apen Datei: %1>"
+
+#~ msgid "The file \"%1\" already exists. Do you wish to overwrite it?"
+#~ msgstr "De Datei \"%1\" gifft dat al. Wullt Du ehr överschrieven?"
+
+#~ msgid "Warning - Step"
+#~ msgstr "Wohrschoen - Step"
+
+#~ msgid "Cannot save file '%1': %2"
+#~ msgstr "Datei \"%1\" lett sik nich schrieven: %2"
+
+#~ msgid ""
+#~ "The experiment has been modified.\n"
+#~ "Do you want to save your changes?"
+#~ msgstr ""
+#~ "De Versöök wöör ännert.\n"
+#~ "Wullt Du Dien Ännern sekern?"
+
+#~ msgid "Uploading is still not implemented in kdelibs."
+#~ msgstr "Hoochladen is noch nich in Kdelibs inbuut."
+
+#~ msgid "Sorry - Step"
+#~ msgstr "Deit mi leed - Step"
+
+#~ msgid "&Stop"
+#~ msgstr "&Anhollen"
+
+#~ msgid "&Simulate"
+#~ msgstr "&Simuleren"
+
+#~ msgid ""
+#~ "Cannot finish this step because local error is greater than local "
+#~ "tolerance.\n"
+#~ "Please check solver settings and try again."
+#~ msgstr ""
+#~ "Disse Schritt lett sik nich afsluten, wiel de lokaal Fehler grötter is as "
+#~ "tolaten.\n"
+#~ "Bitte prööv de Instellen för den Löser un versöök dat denn nochmaal."
+
+#~ msgid ""
+#~ "Cannot finish this step because there are collisions which cannot be "
+#~ "resolved automatically.\n"
+#~ "Please move colliding objects apart and try again."
+#~ msgstr ""
+#~ "Disse Schritt lett sik nich afsluten, wiel dat Tosamenstööt gifft, de sik "
+#~ "nich automaatsch oplösen laat.\n"
+#~ "Bitte verschuuv de tosamenstöten Objekten en beten un versöök dat denn "
+#~ "nochmaal."
+
+#~ msgid "Cannot finish this step because of an unknown error."
+#~ msgstr "Disse Schritt lett sik wegen en nich begäng Fehler nich afsluten."
+
+#~ msgid "&Undo"
+#~ msgstr "&Torüchnehmen"
+
+#~ msgid "&Undo: %1"
+#~ msgstr "&Torüchnehmen: %1"
+
+#~ msgid "Re&do"
+#~ msgstr "&Wedderhalen"
+
+#~ msgid "Re&do: %1"
+#~ msgstr "&Wedderhalen: %1"
+
+#~ msgid "General"
+#~ msgstr "Allgemeen"
+
+#~ msgid ""
+#~ "Press left mouse button to position\n"
+#~ "top left corner of a region for %1"
+#~ msgstr ""
+#~ "Drück den linken Muusknoop för't Setten\n"
+#~ "vun de bövere linke Eck vun en Rebeet för %1"
+
+#~ msgid ""
+#~ "Move mouse and release left mouse button to position\n"
+#~ "bottom right corner of the region for %1"
+#~ msgstr ""
+#~ "Verschuuv de Muus un laat ehr linken Knoop för't Fastleggen\n"
+#~ "vun de ünnere rechte Eck vun dat Rebeet vun en %1 loos"
+
+#~ msgid "Please fill in the parameters for the gas particles."
+#~ msgstr "Bitte de Parameters för de Gasdeeltjes ingeven."
+
+#~ msgid "Create particles..."
+#~ msgstr "Deeltjes opstellen..."
+
+#~ msgid "Create gas particles"
+#~ msgstr "Gasdeeltjes opstellen"
+
+#~ msgid ""
+#~ "You are trying to create a very large number of particles. It will make "
+#~ "simulation very slow. Do you want to continue ?"
+#~ msgstr ""
+#~ "Du wullt bannig veel Deeltjes opstellen. Dat maakt de Simuleren bannig "
+#~ "langsam. Wullt Du wiedermaken?"
+
+#~ msgid "Create particles for %1"
+#~ msgstr "Deeltjes för %1 opstellen"
+
+#~ msgid "Click to enter a text"
+#~ msgstr "Klick hier, wenn Du en Text ingeven wullt"
+
+#~ msgid "&Color"
+#~ msgstr "&Klöör"
+
+#~ msgid "&Bold"
+#~ msgstr "&Fett"
+
+#~ msgid "&Italic"
+#~ msgstr "&Kursiev"
+
+#~ msgid "&Underline"
+#~ msgstr "Ü&nnerstreken"
+
+#~ msgid "Align &Left"
+#~ msgstr "&Linkerhand utrichten"
+
+#~ msgid "Align C&enter"
+#~ msgstr "Na de &Merrn utrichten"
+
+#~ msgid "Align &Right"
+#~ msgstr "&Rechterhand utrichten"
+
+#~ msgid "Align &Justify"
+#~ msgstr "&Blocksatz"
+
+#~ msgid "&Align"
+#~ msgstr "&Utrichten"
+
+#~ msgid "&Font"
+#~ msgstr "&Schriftoort"
+
+#~ msgid "Font &Size"
+#~ msgstr "&Schriftgrött"
+
+#~ msgid "Insert &Image"
+#~ msgstr "&Bild infögen"
+
+#~ msgid "Insert &Formula"
+#~ msgstr "&Formel infögen"
+
+#~ msgid "Edit %1"
+#~ msgstr "%1 bewerken"
+
+#~ msgid "Cannot parse file '%1'"
+#~ msgstr "Datei \"%1\" lett sik nich inlesen."
+
+#~ msgid ""
+#~ "Cannot find latex installation. You need 'latex', 'dvips' and 'gs' "
+#~ "executables installed and accessible from $PATH"
+#~ msgstr ""
+#~ "Latex-Installatschoon lett sik nich finnen. De Programmen \"latex\", "
+#~ "\"dvips\" un \"gs\" mööt installeert wesen un sik över de PATH-Variable "
+#~ "finnen laten."
+
+#~ msgid "LaTex Formula - Step"
+#~ msgstr "LaTeX-Formel - Step"
+
+#~ msgid "Enter LaTeX formula string"
+#~ msgstr "LaTeX-Formeltekenkeed ingeven"
+
+#~ msgid "Cannot compile LaTeX formula: %1"
+#~ msgstr "LaTeX-Formel lett sik nich kompileren: %1"
+
+#~ msgid "Cannot parse result image"
+#~ msgstr "Utgaavbild lett sik nich inlesen"
+
+#~ msgid "Property name"
+#~ msgstr "Egenschapnaam"
+
+#~ msgid "%1.%2"
+#~ msgstr "%1.%2"
+
+#~ msgid "[%1]"
+#~ msgstr "[%1]"
+
+#~ msgid "[not configured]"
+#~ msgstr "[nich inricht]"
+
+#~ msgid "Clear graph"
+#~ msgstr "Grafik wegdoon"
+
+#~ msgid "Configure graph..."
+#~ msgstr "Grafik instellen..."
+
+#~ msgid "Configure graph"
+#~ msgstr "Grafik instellen"
+
+#~ msgid "Edit properties of %1"
+#~ msgstr "Egenschappen vun %1 bewerken"
+
+#~ msgid "Clear graph %1"
+#~ msgstr "Grafik %1 wegdoon"
+
+#~ msgid "Configure meter..."
+#~ msgstr "Klock instellen..."
+
+#~ msgid "Configure meter"
+#~ msgstr "Klock instellen"
+
+#~ msgid "Increase value"
+#~ msgstr "Weert ropsetten"
+
+#~ msgid "Decrease value"
+#~ msgstr "Weert minnern"
+
+#~ msgid "Decrease controller %1"
+#~ msgstr "Stüern %1 minnern"
+
+#~ msgid "Increase controller %1"
+#~ msgstr "Stüern %1 ropsetten"
+
+#~ msgid "Change controller %1"
+#~ msgstr "Stüern %1 ännern"
+
+#~ msgid "Configure controller..."
+#~ msgstr "Stüern instellen..."
+
+#~ msgid "Configure controller"
+#~ msgstr "Stüern instellen"
+
+#~ msgid "Clear trace"
+#~ msgstr "Spoor wegmaken"
+
+#~ msgid "Clear tracer %1"
+#~ msgstr "Spoor %1 wegmaken"
+
+#~ msgid "Context info"
+#~ msgstr "Kontextinformatschoon"
+
+#~ msgid "Back"
+#~ msgstr "Torüch"
+
+#~ msgid "Forward"
+#~ msgstr "Vörut"
+
+#~ msgid "Sync selection"
+#~ msgstr "Synkroniserenköör"
+
+#~ msgid "Follow selection"
+#~ msgstr "Köör nagahn"
+
+#~ msgid "Open in browser"
+#~ msgstr "In'n Nettkieker opmaken"
+
+#~ msgid "Documentation"
+#~ msgstr "Dokmentatschoon"
+
+#~ msgid "No current object."
+#~ msgstr "Keen aktuell Objekt"
+
+#~ msgid "Documentation error"
+#~ msgstr "Dokmentatschoon-Fehler"
+
+#~ msgid "Documentation for %1 not available."
+#~ msgstr "Dokmentatschoon för %1 nich verföögbor."
+
+#~ msgid ""
+#~ "You can help <a href=\"http://edu.kde.org/step\">Step</a> by writing it!"
+#~ msgstr ""
+#~ "Du kannst <a href=\"http://edu.kde.org/step\">Step</a> ünnerstütten, un "
+#~ "ehr schrieven!"
+
+#~ msgid "Wikipedia"
+#~ msgstr "Wikipedia"
+
+#~ msgid "Fetching Wikipedia Information..."
+#~ msgstr "Wikipedia-Informatschoon warrt haalt..."
+
+#~ msgid "Wikipedia error"
+#~ msgstr "Wikipedia-Fehler"
+
+#~ msgid ""
+#~ "Information could not be retrieved because the server was not reachable."
+#~ msgstr ""
+#~ "Informatschoon lett sik nich halen, wiel de Server sik nich faatkriegen "
+#~ "leet."
+
+#~ msgid "Wikipedia Information"
+#~ msgstr "Wikipedia-Informatschoon"
+
+#~ msgid "Wikipedia Other Languages"
+#~ msgstr "Wikipedia - Anner Spraken"
+
+#~ msgid "Press left mouse button to position a center of a %1"
+#~ msgstr "Drück den linken Muusknoop för't Setten vun de Merrn vun en %1"
+
+#~ msgid ""
+#~ "Move mouse and release left mouse button to define a radius of the %1"
+#~ msgstr ""
+#~ "Verschuuv de Muus un laat ehr linken Knoop för't Fastleggen vun en "
+#~ "Halfmaat vun en %1 loos"
+
+#~ msgid ""
+#~ "Press left mouse button to position\n"
+#~ "top left corner of a %1"
+#~ msgstr ""
+#~ "Drück den linken Muusknoop för't Setten\n"
+#~ "vun de bövere linke Eck vun en %1"
+
+#~ msgid ""
+#~ "Move mouse and release left mouse button to position\n"
+#~ "bottom right corner of the %1"
+#~ msgstr ""
+#~ "Verschuuv de Muus un laat ehr linken Knoop för't Fastleggen\n"
+#~ "vun de ünnere rechte Eck vun en %1 loos"
+
+#~ msgid "Click on the scene to create a first vertex of %1"
+#~ msgstr "Klick op den Opbu för't Opstellen vun't eerst Höörn vun %1"
+
+#~ msgid "Click on the scene to add new vertex or press Enter to finish"
+#~ msgstr ""
+#~ "Klick op den Opbu, wenn Du en nieg Höörn tofögen wullt, oder drück de "
+#~ "Ingaavtast för't Fardigmaken"

@@ -1,0 +1,238 @@
+<?xml version="1.0" ?>
+<!DOCTYPE book PUBLIC "-//KDE//DTD DocBook XML V4.5-Based Variant V1.1//EN" "dtd/kdedbx45.dtd" [
+  <!ENTITY tutorials SYSTEM "tutorials.docbook">
+  <!ENTITY examples SYSTEM "examples.docbook">
+  <!ENTITY % addindex "IGNORE">
+  <!ENTITY % Ukrainian "INCLUDE"
+><!-- change language only here -->
+]>
+
+<book id="step" lang="&language;">
+
+<bookinfo>
+<title
+>Підручник зі &step;</title>
+
+
+<authorgroup>
+<author
+>&Anne-Marie.Mahfouf; &Anne-Marie.Mahfouf.mail; </author>
+
+<othercredit role="translator"
+><firstname
+>Юрій</firstname
+><surname
+>Чорноіван</surname
+><affiliation
+><address
+><email
+>yurchor@ukr.net</email
+></address
+></affiliation
+><contrib
+>Переклад українською</contrib
+></othercredit
+> 
+</authorgroup>
+
+
+<copyright>
+<year
+>2007</year>
+<holder
+>&Anne-Marie.Mahfouf;</holder>
+</copyright>
+
+<legalnotice
+>&FDLNotice;</legalnotice>
+
+<date
+>24 жовтня 2021 року</date>
+<releaseinfo
+>KDE Gear 21.08</releaseinfo>
+
+<abstract>
+<para
+>&step; є інтерактивним імітатором фізичних процесів. Він надає вам змогу вивчати фізичні явища за допомогою їх імітації. Ось як він працює: ви розташовуєте у дослідній області деякі тіла, додаєте сили їх взаємодії (такі як гравітаційні сили та пружні сили у вигляді пружин), а потім натискаєте кнопку <inlinemediaobject
+><imageobject
+><imagedata fileref="media-playback-start.png" format="PNG"/></imageobject
+></inlinemediaobject
+> <guiicon
+>Імітувати</guiicon
+>, — &step; покаже як розвиватимуться події у побудованій вами системі з плином часу відповідно до законів фізики. Ви можете змінювати всі властивості тіл або сил у вашому експерименті (навіть під час імітації), щоб побачити як такі зміни впливають на перебіг експерименту. За допомогою &step; ви не просто вивчите фізику, а відчуєте як працюють фізичні закони! </para>
+</abstract>
+
+<keywordset>
+  <keyword
+>KDE</keyword>
+  <keyword
+>kdeedu</keyword>
+  <keyword
+>фізика</keyword>
+  <keyword
+>імітатор</keyword>
+  <keyword
+>сили</keyword>
+  <keyword
+>Step</keyword>
+</keywordset>
+
+</bookinfo>
+
+<chapter id="introduction">
+<title
+>Вступ</title>
+<para
+>&step; є інтерактивним імітатором фізичних процесів.</para>
+
+<para
+>Можливості &step;: <itemizedlist>
+  <listitem
+><para
+>Імітація класичної механічної взаємодії у двох вимірах</para
+></listitem>
+
+  <listitem
+><para
+>Частинки, пружини з елементами в’язкості, гравітаційні і кулонові сили</para
+></listitem>
+
+  <listitem
+><para
+>Тверді тіла</para
+></listitem>
+
+  <listitem
+><para
+>Виявлення (у цій версії лише дискретне) і керування зіткненнями</para
+></listitem>
+
+  <listitem
+><para
+>М’які (пружні) тіла імітуються як система з часточок і пружин, з можливістю зміни її параметрів користувачем, рух якої описують гармонічні функції</para
+></listitem>
+
+  <listitem
+><para
+>Молекулярна динаміка (у цій версії з використанням потенціалу Леннард-Джонса): газ і рідина, конденсація і випаровування, обчислення макроскопічних величин та їх змін</para
+></listitem>
+
+  <listitem
+><para
+>Перетворення одиниць і обчислення виразів: ви можете ввести щось на зразок «(2 дні + 3 години) * 80 км/г» і цю величину буде прийнято як значення відстані (для того, щоб це працювало слід встановити libqalculate)</para
+></listitem>
+
+  <listitem
+><para
+>Обчислення і поширення похибок: ви можете вводити значення на зразок «1.3 ± 0.2» для будь-якої з властивостей, і похибки для всіх властивостей, що залежать від вказаної властивості, буде обчислено за статистичними формулами</para
+></listitem>
+
+  <listitem
+><para
+>Оцінка похибки розв’язувача: похибки, що виникають внаслідок застосування числових методів розв’язання задач, обчислюються і додаються до введених користувачем похибок</para
+></listitem>
+
+  <listitem
+><para
+>Декілька різних розв’язувачів: аж до восьмого порядку, явні і неявні, з та без зміни кроку за часом (більшість з розв’язувачів потребують бібліотеки GSL)</para
+></listitem>
+
+  <listitem
+><para
+>Інструмент «регулятор» призначено для простого керування властивостями під час імітації (можна навіть призначити власні клавіатурні скорочення для керування регулятором)</para
+></listitem>
+
+  <listitem
+><para
+>Інструменти для візуалізації результатів: графік, вимірювач, траєкторія</para
+></listitem>
+
+  <listitem
+><para
+>Контекстна інформація щодо всіх об’єктів, інтегрований переглядач вікіпедії</para
+></listitem>
+
+  <listitem
+><para
+>Збірка зразкових експериментів, додаткові експерименти можна отримати за допомогою &knewstuff;3</para
+></listitem>
+
+  <listitem
+><para
+>Вбудовані підручники</para
+></listitem>
+</itemizedlist>
+</para>
+</chapter>
+
+<chapter id="using-step">
+<title
+>Користування &step;</title>
+
+<para
+>&step; імітує фізичну поведінку реальних тіл. Головною частиною вікна &step; (1) є область експерименту, яка розміщена по центру головного вікна &step;, у цій області ви спочатку розташовуєте об’єкти, а потім спостерігаєте за їх рухом. Ліворуч від області експерименту розташовано палітру (2), з якої ви можете обирати ваші фізичні об’єкти. Палітру можна пересунути у будь-яке місце на вашій стільниці простим перетягуванням за поле заголовка. Праворуч від області експерименту можна бачити опис поточного експерименту (3), його властивості (4), довідку, що стосується деяких слів (5), та історію поточного експерименту (6). Кожну з цих панелей можна розташувати у бажаному місце екрана простим перетягуванням за поле заголовка. </para>
+
+<screenshot>
+  <screeninfo
+>Це знімок вікна &step; під час його першого запуску</screeninfo>
+  <mediaobject>
+    <imageobject
+><imagedata fileref="mainwindow.png" format="PNG"/></imageobject>
+    <textobject
+><phrase
+>Головне вікно &step;</phrase
+></textobject>
+  </mediaobject>
+</screenshot>
+
+<para
+>Щоб допомогти вам розпочати роботу з програмою, до &step; включено підручники, за якими вам буде просто навчитися побудові експерименту. Будь ласка, перегляньте пункт «Крок за кроком», щоб почати вивчення першого з підручників. </para>
+</chapter>
+
+&tutorials;
+&examples;
+
+<chapter id="credits">
+
+<title
+>Подяки і ліцензія</title>
+
+<para
+>&step; </para>
+
+<para
+>Авторські права на програму належать &Vladimir.Kuznetsov; &Vladimir.Kuznetsov.mail;, ©2007 </para>
+
+<para
+>Учасники розробки: <itemizedlist>
+  <listitem
+><para
+>Автор: &Vladimir.Kuznetsov; &Vladimir.Kuznetsov.mail;</para
+></listitem>
+  <listitem
+><para
+>Учасник розробки: &Carsten.Niehaus; &Carsten.Niehaus.mail;</para
+></listitem>
+</itemizedlist>
+</para>
+
+<para
+>Авторські права на документацію належать &Anne-Marie.Mahfouf; &Anne-Marie.Mahfouf.mail;, ©2007 </para>
+
+<para
+>Переклад українською: Юрій Чорноіван <email
+>yurchor@ukr.net</email
+></para
+> &underFDL; &underGPL; </chapter>
+
+&documentation.index;
+</book>
+<!--
+Local Variables:
+mode: sgml
+sgml-minimize-attributes:nil
+sgml-general-insert-case:lower
+sgml-indent-step:0
+sgml-indent-data:nil
+End:
+-->
