@@ -572,7 +572,7 @@ msgstr "Document que s'obrirà"
 #: step/mainwindow.cc:155
 #, kde-format
 msgid "&Open Tutorial..."
-msgstr "&Obri la guia d'aprenentatge..."
+msgstr "O&bri la guia d'aprenentatge..."
 
 #: step/mainwindow.cc:160
 #, kde-format
@@ -587,7 +587,7 @@ msgstr "Obri un exemple de&scarregat..."
 #: step/mainwindow.cc:170
 #, kde-format
 msgid "Share C&urrent Experiment..."
-msgstr "&Compartix l'experiment actual..."
+msgstr "Com&partix l'experiment actual..."
 
 #: step/mainwindow.cc:173
 #, kde-format
