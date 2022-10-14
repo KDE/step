@@ -3,19 +3,21 @@
 # Martin Ereth <martin.ereth@arcor.de>, 2008.
 # Felix Schweighofer <felix.schweighofer@web.de>, 2010.
 # Peter Rüthemann <peter.ruethemann@gmail.com>, 2011.
+# Alois Spitzbart <spitz234@hotmail.com>, 2022.
 msgid ""
 msgstr ""
 "Project-Id-Version: step\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2022-07-04 00:41+0000\n"
-"PO-Revision-Date: 2020-01-08 08:32+0100\n"
-"Last-Translator: Burkhard Lück <lueck@hube-lueck.de>\n"
+"PO-Revision-Date: 2022-09-05 18:24+0200\n"
+"Last-Translator: Alois Spitzbart <spitz234@hotmail.com>\n"
 "Language-Team: German <kde-i18n-de@kde.org>\n"
 "Language: de\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: Lokalize 22.08.0\n"
 
 #, kde-format
 msgctxt "NAME OF TRANSLATORS"
@@ -127,13 +129,13 @@ msgstr "Bereiche"
 #: step/configure_graph.ui:83
 #, kde-format
 msgid "Min:"
-msgstr ""
+msgstr "Min:"
 
 #. i18n: ectx: property (text), widget (QLabel, label_6)
 #: step/configure_graph.ui:99
 #, kde-format
 msgid "Max:"
-msgstr ""
+msgstr "Max:"
 
 #. i18n: ectx: property (text), widget (QCheckBox, checkBoxAutoX)
 #. i18n: ectx: property (text), widget (QCheckBox, checkBoxAutoY)
@@ -201,10 +203,9 @@ msgstr "Wikipedia in externem Browser anzeigen"
 
 #. i18n: ectx: property (text), widget (QLabel, label_5)
 #: step/create_gas_particles.ui:34
-#, fuzzy, kde-format
-#| msgid "Area"
+#, kde-format
 msgid "Area:"
-msgstr "Fläche"
+msgstr "Fläche:"
 
 #. i18n: ectx: property (toolTip), widget (QLineEdit, lineEditVolume)
 #: step/create_gas_particles.ui:41
@@ -336,8 +337,7 @@ msgid "(4,4)"
 msgstr "(4,4)"
 
 #: step/gascreationdialog.cc:43
-#, fuzzy, kde-format
-#| msgid "Create gas particles"
+#, kde-format
 msgctxt "@title:window"
 msgid "Create Gas Particles"
 msgstr "Gasteilchen erzeugen"
@@ -382,8 +382,7 @@ msgid "%1 named '%2' created"
 msgstr "%1 mit dem Namen „%2“ erzeugt"
 
 #: step/gasgraphics.cc:294
-#, fuzzy, kde-format
-#| msgid "Create particles..."
+#, kde-format
 msgid "Create Particles..."
 msgstr "Teilchen erzeugen ..."
 
@@ -407,8 +406,7 @@ msgid "Create particles for %1"
 msgstr "Teilchen erzeugen für %1"
 
 #: step/infobrowser.cc:38
-#, fuzzy, kde-format
-#| msgid "Context info"
+#, kde-format
 msgid "Context Info"
 msgstr "Kontextinformation"
 
@@ -433,8 +431,7 @@ msgid "Follow selection"
 msgstr "Auswahl folgen"
 
 #: step/infobrowser.cc:69
-#, fuzzy, kde-format
-#| msgid "Open in browser"
+#, kde-format
 msgid "Open in Browser"
 msgstr "Im Browser öffnen"
 
@@ -667,8 +664,7 @@ msgid "<new file>"
 msgstr "<neue Datei>"
 
 #: step/mainwindow.cc:319
-#, fuzzy, kde-format
-#| msgid "Open Step File"
+#, kde-format
 msgctxt "@title:window"
 msgid "Open Step File"
 msgstr "Step-Datei öffnen"
@@ -689,8 +685,7 @@ msgid "<open file: %1>"
 msgstr "<geöffnete Datei: %1>"
 
 #: step/mainwindow.cc:349
-#, fuzzy, kde-format
-#| msgid "Save Step File"
+#, kde-format
 msgctxt "@title:window"
 msgid "Save Step File"
 msgstr "Step-Datei speichern"
@@ -896,8 +891,7 @@ msgid "Please fill in the parameters for %1"
 msgstr "Bitte geben Sie Parameter für %1 ein"
 
 #: step/softbodygraphics.cc:126
-#, fuzzy, kde-format
-#| msgid "Create soft body items"
+#, kde-format
 msgctxt "@title:window"
 msgid "Create Soft Body Items"
 msgstr "Elastische Körperelemente erzeugen"
@@ -1056,16 +1050,14 @@ msgid "Font &Size"
 msgstr "&Schriftgröße"
 
 #: step/toolgraphics.cc:422
-#, fuzzy, kde-format
-#| msgid "Insert &Image"
+#, kde-format
 msgid "Insert &Image..."
-msgstr "&Bild einfügen"
+msgstr "&Bild einfügen ..."
 
 #: step/toolgraphics.cc:427
-#, fuzzy, kde-format
-#| msgid "Insert &Formula"
+#, kde-format
 msgid "Insert &Formula..."
-msgstr "&Formel einfügen"
+msgstr "&Formel einfügen ..."
 
 #: step/toolgraphics.cc:538
 #, kde-format
@@ -1073,8 +1065,7 @@ msgid "Edit %1"
 msgstr "%1 bearbeiten"
 
 #: step/toolgraphics.cc:643
-#, fuzzy, kde-format
-#| msgid "Open Image File"
+#, kde-format
 msgctxt "@title:window"
 msgid "Open Image File"
 msgstr "Bilddatei öffnen"
@@ -1100,17 +1091,15 @@ msgstr ""
 "erreichbar sein."
 
 #: step/toolgraphics.cc:711
-#, fuzzy, kde-format
-#| msgid "LaTex Formula - Step"
+#, kde-format
 msgctxt "@title:window"
 msgid "LaTex Formula - Step"
 msgstr "LaTeX-Formel – Step"
 
 #: step/toolgraphics.cc:712
-#, fuzzy, kde-format
-#| msgid "Enter LaTeX formula string"
+#, kde-format
 msgid "Enter LaTeX formula string:"
-msgstr "LaTeX-Formel eingeben"
+msgstr "LaTeX-Formel eingeben:"
 
 #: step/toolgraphics.cc:721
 #, kde-format
@@ -1153,20 +1142,17 @@ msgid "[not configured]"
 msgstr "[nicht eingerichtet]"
 
 #: step/toolgraphics.cc:1089
-#, fuzzy, kde-format
-#| msgid "Clear graph"
+#, kde-format
 msgid "Clear Graph"
 msgstr "Diagramm zurücksetzen"
 
 #: step/toolgraphics.cc:1090
-#, fuzzy, kde-format
-#| msgid "Configure graph..."
+#, kde-format
 msgid "Configure Graph..."
 msgstr "Diagramm einrichten ..."
 
 #: step/toolgraphics.cc:1108
-#, fuzzy, kde-format
-#| msgid "Configure graph"
+#, kde-format
 msgctxt "@title:window"
 msgid "Configure Graph"
 msgstr "Diagramm einrichten"
@@ -1183,21 +1169,18 @@ msgid "Clear graph %1"
 msgstr "Diagramm %1 zurücksetzen"
 
 #: step/toolgraphics.cc:1317
-#, fuzzy, kde-format
-#| msgid "Configure meter..."
+#, kde-format
 msgid "Configure Meter..."
 msgstr "Messwert einrichten ... "
 
 #: step/toolgraphics.cc:1335
-#, fuzzy, kde-format
-#| msgid "Configure meter"
+#, kde-format
 msgctxt "@title:window"
 msgid "Configure Meter"
 msgstr "Messwert einrichten"
 
 #: step/toolgraphics.cc:1432 step/toolgraphics.cc:1629
-#, fuzzy, kde-format
-#| msgid "Increase value"
+#, kde-format
 msgid "Increase Value"
 msgstr "Wert vergrößern"
 
@@ -1223,21 +1206,18 @@ msgid "Change controller %1"
 msgstr "Schieberegler %1 ändern"
 
 #: step/toolgraphics.cc:1632
-#, fuzzy, kde-format
-#| msgid "Configure controller..."
+#, kde-format
 msgid "Configure Controller..."
 msgstr "Schieberegler einrichten ..."
 
 #: step/toolgraphics.cc:1650
-#, fuzzy, kde-format
-#| msgid "Configure controller"
+#, kde-format
 msgctxt "@title:window"
 msgid "Configure Controller"
 msgstr "Schieberegler einrichten"
 
 #: step/toolgraphics.cc:1911
-#, fuzzy, kde-format
-#| msgid "Clear trace"
+#, kde-format
 msgid "Clear Trace"
 msgstr "Spur löschen"
 
@@ -1247,8 +1227,7 @@ msgid "Clear tracer %1"
 msgstr "Spur %1 löschen"
 
 #: step/undobrowser.cc:30
-#, fuzzy, kde-format
-#| msgid "Undo history"
+#, kde-format
 msgid "Undo History"
 msgstr "Verlauf"
 
