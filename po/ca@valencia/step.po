@@ -567,7 +567,7 @@ msgstr "cniehaus@kde.org"
 #: step/main.cc:74
 #, kde-format
 msgid "Document to open"
-msgstr "Document que s'obrirà"
+msgstr "Document que s'ha d'obrir"
 
 #: step/mainwindow.cc:155
 #, kde-format
