@@ -47,6 +47,7 @@
 #include <QStatusBar>
 #include <QTemporaryFile>
 
+#include <kwidgetsaddons_version.h>
 #include <KActionCollection>
 #include <KConfig>
 #include <KConfigDialog>
@@ -404,10 +405,18 @@ bool MainWindow::saveFile()
 bool MainWindow::maybeSave()
 {
     if(!worldModel->undoStack()->isClean()) {
+#if KWIDGETSADDONS_VERSION >= QT_VERSION_CHECK(5, 100, 0)
+         int ret = KMessageBox::warningTwoActionsCancel(this,
+#else
          int ret = KMessageBox::warningYesNoCancel(this, 
+#endif
               i18n("The experiment has been modified.\nDo you want to save your changes?"),
               i18n("Warning - Step"), KStandardGuiItem::save(), KStandardGuiItem::discard());
+#if KWIDGETSADDONS_VERSION >= QT_VERSION_CHECK(5, 100, 0)
+         if (ret == KMessageBox::PrimaryAction) return saveFile();
+#else
          if (ret == KMessageBox::Yes) return saveFile();
+#endif
          else if(ret == KMessageBox::Cancel) return false;
     }
     return true;
