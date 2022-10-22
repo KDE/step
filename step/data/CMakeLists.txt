@@ -37,7 +37,7 @@ if(PYTHON_EXECUTABLE)
         separate_arguments(_extractxml_args_copy)
         file(MAKE_DIRECTORY ${CMAKE_CURRENT_BINARY_DIR}/${_lang})
         add_custom_command(OUTPUT ${_xmlfile_tr}
-            COMMAND ${EXTRACTXML_EXECUTABLE} --translate --mo-file=${_mo_file} --output-dir=${CMAKE_CURRENT_BINARY_DIR}/${_lang} ${_extractxml_args_copy} ${_xmlfile}
+            COMMAND ${PYTHON_EXECUTABLE} ${EXTRACTXML_EXECUTABLE} --translate --mo-file=${_mo_file} --output-dir=${CMAKE_CURRENT_BINARY_DIR}/${_lang} ${_extractxml_args_copy} ${_xmlfile}
             WORKING_DIRECTORY "${CMAKE_CURRENT_SOURCE_DIR}"
             DEPENDS ${_xmlfile} ${_mo_file}
         )
