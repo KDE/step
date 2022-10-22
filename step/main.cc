@@ -35,15 +35,9 @@ int main(int argc, char* argv[])
 {
     QApplication app(argc, argv);
     KLocalizedString::setApplicationDomain("step");
-    QApplication::setApplicationName(QStringLiteral("step"));
-    QApplication::setApplicationVersion(STEP_VERSION_STRING);
-    QApplication::setOrganizationDomain(QStringLiteral("kde.org"));
-    QApplication::setApplicationDisplayName(i18n("Step"));
-    QApplication::setWindowIcon(QIcon::fromTheme(QStringLiteral("step")));
 
     app.setAttribute(Qt::AA_UseHighDpiPixmaps, true);
 
-    KCrash::initialize();
 
     KAboutData aboutData(QStringLiteral("step"),
                          i18n("Step"),
@@ -67,6 +61,9 @@ int main(int argc, char* argv[])
     );
 
     KAboutData::setApplicationData(aboutData);
+    QApplication::setWindowIcon(QIcon::fromTheme(QStringLiteral("step")));
+
+    KCrash::initialize();
 
     QCommandLineParser parser;
 
