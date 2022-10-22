@@ -45,6 +45,7 @@ int main(int argc, char* argv[])
                          i18n("Interactive physical simulator"),
                          KAboutLicense::GPL,
                          i18n("(C) 2007 Vladimir Kuznetsov"),
+                         QString(),
                          i18n("https://edu.kde.org/step")
     );
 
