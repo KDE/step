@@ -33,9 +33,8 @@
 
 int main(int argc, char* argv[])
 {
-    KLocalizedString::setApplicationDomain("step");
-
     QApplication app(argc, argv);
+    KLocalizedString::setApplicationDomain("step");
     QApplication::setApplicationName(QStringLiteral("step"));
     QApplication::setApplicationVersion(STEP_VERSION_STRING);
     QApplication::setOrganizationDomain(QStringLiteral("kde.org"));
