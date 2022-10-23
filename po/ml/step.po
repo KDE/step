@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: step\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2022-07-04 00:41+0000\n"
+"POT-Creation-Date: 2022-10-23 00:40+0000\n"
 "PO-Revision-Date: 2019-12-12 21:37+0000\n"
 "Last-Translator: Vivek KJ Pazhedath <vivekkj2004@gmail.com>\n"
 "Language-Team: Swathanthra|സ്വതന്ത്ര Malayalam|മലയാളം Computing|കമ്പ്യൂട്ടിങ്ങ് <smc-"
@@ -398,7 +398,7 @@ msgstr ""
 "വലിയഅളവില്‍ കണങ്ങള്‍ നിര്‍മ്മിക്കാനാണു് നിങ്ങള്‍ ശ്രമിക്കുന്നതു്. ഇതു് പരീക്ഷണം മന്ദഗതിയിലാക്കും. "
 "തുടരാനുദ്ദേശമുണ്ടോ?"
 
-#: step/gasgraphics.cc:366 step/mainwindow.cc:409
+#: step/gasgraphics.cc:366 step/mainwindow.cc:414
 #, kde-format
 msgid "Warning - Step"
 msgstr "താക്കീത് - പടി"
@@ -527,185 +527,185 @@ msgstr "താല്‍കാലികശേഖരം തുറക്കാന�
 msgid "can not open result file"
 msgstr "ഫലശേഖരം തുറക്കാന്‍ കഴിയില്ല"
 
-#: step/main.cc:42 step/main.cc:50
+#: step/main.cc:43
 #, kde-format
 msgid "Step"
 msgstr "പടി"
 
-#: step/main.cc:52
+#: step/main.cc:45
 #, kde-format
 msgid "Interactive physical simulator"
 msgstr "പ്രതികരിക്കുന്ന ഭൌതിക പരീക്ഷണങ്ങള്‍"
 
-#: step/main.cc:54
+#: step/main.cc:47
 #, kde-format
 msgid "(C) 2007 Vladimir Kuznetsov"
 msgstr "(c) 2007 വ്ളാദിമര്‍ കുഷ്നെറ്റ്സോവ്"
 
-#: step/main.cc:55
+#: step/main.cc:49
 #, kde-format
 msgid "https://edu.kde.org/step"
 msgstr ""
 
-#: step/main.cc:60
+#: step/main.cc:54
 #, kde-format
 msgid "Original author"
 msgstr "യഥാര്‍ത്ഥ രചയിതാവു്"
 
-#: step/main.cc:61
+#: step/main.cc:55
 #, kde-format
 msgid "ks.vladimir@gmail.com"
 msgstr ""
 
-#: step/main.cc:66
+#: step/main.cc:60
 #, kde-format
 msgid "Code contributions"
 msgstr "രഹസ്യഭാഷയുടെ പങ്കാളിത്തം"
 
-#: step/main.cc:67
+#: step/main.cc:61
 #, kde-format
 msgid "cniehaus@kde.org"
 msgstr ""
 
-#: step/main.cc:74
+#: step/main.cc:71
 #, kde-format
 msgid "Document to open"
 msgstr "പ്രമാണം തുറക്കാന്‍"
 
-#: step/mainwindow.cc:155
+#: step/mainwindow.cc:156
 #, kde-format
 msgid "&Open Tutorial..."
 msgstr "&അഭ്യാസപാഠം തുറക്കുക..."
 
-#: step/mainwindow.cc:160
+#: step/mainwindow.cc:161
 #, kde-format
 msgid "&Open Example..."
 msgstr "&ഉദാഹരണം തുറക്കുക..."
 
-#: step/mainwindow.cc:165
+#: step/mainwindow.cc:166
 #, kde-format
 msgid "Open Down&loaded Example..."
 msgstr "&ഇറക്കുമതിചെയ്ത ഉദാഹരണം തുറക്കുക..."
 
-#: step/mainwindow.cc:170
+#: step/mainwindow.cc:171
 #, kde-format
 msgid "Share C&urrent Experiment..."
 msgstr "&ഇപ്പോഴത്തെ പരീക്ഷണം പങ്കുവെയ്ക്കുക..."
 
-#: step/mainwindow.cc:173
+#: step/mainwindow.cc:174
 #, kde-format
 msgid "&Download New Experiments..."
 msgstr "&പുതിയ പരീക്ഷണങ്ങള്‍ ഇറക്കുമതി ചെയ്യുക..."
 
-#: step/mainwindow.cc:180
+#: step/mainwindow.cc:181
 #, kde-format
 msgid "Redo"
 msgstr "ആവര്‍ത്തിക്കുക"
 
-#: step/mainwindow.cc:180
+#: step/mainwindow.cc:181
 #, kde-format
 msgid "Undo"
 msgstr "തിരിച്ച് ചെയ്യുക"
 
-#: step/mainwindow.cc:202
+#: step/mainwindow.cc:203
 #, kde-format
 msgid "&Delete"
 msgstr "&മായ്ക്കുക"
 
-#: step/mainwindow.cc:212
+#: step/mainwindow.cc:213
 #, kde-format
 msgid "&Run"
 msgstr "&പ്രവര്‍ത്തിപ്പിക്കുക"
 
-#: step/mainwindow.cc:217
+#: step/mainwindow.cc:218
 #, kde-format
 msgid "Execute the program"
 msgstr "പദ്ധതി നിര്‍വഹിക്കുക"
 
-#: step/mainwindow.cc:218
+#: step/mainwindow.cc:219
 #, kde-format
 msgid "Run: Execute the program"
 msgstr "പ്രവര്‍ത്തിപ്പിക്കുക:പദ്ധതി നിര്‍വഹിക്കുക"
 
-#: step/mainwindow.cc:220
+#: step/mainwindow.cc:221
 #, kde-format
 msgctxt "@option:radio"
 msgid "1x Speed"
 msgstr "1x വേഗത"
 
-#: step/mainwindow.cc:228
+#: step/mainwindow.cc:229
 #, kde-format
 msgctxt "@option:radio choose the slow speed"
 msgid "2x Speed"
 msgstr "2x വേഗത"
 
-#: step/mainwindow.cc:235
+#: step/mainwindow.cc:236
 #, kde-format
 msgctxt "@option:radio"
 msgid "4x Speed"
 msgstr "4x വേഗത"
 
-#: step/mainwindow.cc:242
+#: step/mainwindow.cc:243
 #, kde-format
 msgctxt "@option:radio"
 msgid "8x Speed"
 msgstr "8x വേഗത"
 
-#: step/mainwindow.cc:249
+#: step/mainwindow.cc:250
 #, kde-format
 msgctxt "@option:radio"
 msgid "16x Speed"
 msgstr "16x വേഗത"
 
-#: step/mainwindow.cc:279
+#: step/mainwindow.cc:280
 #, kde-format
 msgctxt "filename"
 msgid "untitled.step"
 msgstr ""
 
-#: step/mainwindow.cc:305
+#: step/mainwindow.cc:306
 #, kde-format
 msgid "<new file>"
 msgstr "<പുതിയശേഖരം>"
 
-#: step/mainwindow.cc:319
+#: step/mainwindow.cc:320
 #, fuzzy, kde-format
 msgctxt "@title:window"
 msgid "Open Step File"
 msgstr "പടി"
 
-#: step/mainwindow.cc:319 step/mainwindow.cc:349
+#: step/mainwindow.cc:320 step/mainwindow.cc:350
 #, kde-format
 msgid "Step files (*.step)"
 msgstr ""
 
-#: step/mainwindow.cc:329
+#: step/mainwindow.cc:330
 #, kde-format
 msgid "Cannot parse file '%1': %2"
 msgstr "'%1': %2 ശേഖരങ്ങളെ വ്യാകരിക്കുവാന്‍ കഴിയില്ല"
 
-#: step/mainwindow.cc:338
+#: step/mainwindow.cc:339
 #, kde-format
 msgid "<open file: %1>"
 msgstr "<ശേഖരം തുറക്കുക: %1>"
 
-#: step/mainwindow.cc:349
+#: step/mainwindow.cc:350
 #, fuzzy, kde-format
 msgctxt "@title:window"
 msgid "Save Step File"
 msgstr "പടി"
 
-#: step/mainwindow.cc:365
+#: step/mainwindow.cc:366
 #, kde-format
 msgid "Cannot open file '%1'"
 msgstr "%1 ശേഖരം തുറക്കാന്‍ കഴിയില്ല"
 
-#: step/mainwindow.cc:371
+#: step/mainwindow.cc:372
 #, kde-format
 msgid "Cannot save file '%1': %2"
 msgstr "%1 ശേഖരം സൂക്ഷിക്കാനായില്ല: %2"
 
-#: step/mainwindow.cc:408
+#: step/mainwindow.cc:413
 #, kde-format
 msgid ""
 "The experiment has been modified.\n"
@@ -714,27 +714,27 @@ msgstr ""
 "പരീക്ഷണം പരിഷ്കരിക്കപ്പെട്ടിരിക്കുന്നു.\n"
 "മാറ്റങ്ങള്‍ സുരകഷിതമാക്കണോ?"
 
-#: step/mainwindow.cc:456
+#: step/mainwindow.cc:465
 #, kde-format
 msgid "Uploading is still not implemented in kdelibs."
 msgstr "കെഡിഈ ഗ്രന്ധശാലയില്‍ കയറ്റുമതി ഇനിയും നടപ്പിലാക്കിയിട്ടില്ല"
 
-#: step/mainwindow.cc:457
+#: step/mainwindow.cc:466
 #, kde-format
 msgid "Sorry - Step"
 msgstr "ക്ഷമിക്കണം - പടി"
 
-#: step/mainwindow.cc:484
+#: step/mainwindow.cc:493
 #, kde-format
 msgid "&Stop"
 msgstr "&നിര്‍ത്തുക"
 
-#: step/mainwindow.cc:494
+#: step/mainwindow.cc:503
 #, kde-format
 msgid "&Simulate"
 msgstr "&പരീക്ഷിച്ചുനോക്കുക"
 
-#: step/mainwindow.cc:499
+#: step/mainwindow.cc:508
 #, kde-format
 msgid ""
 "Cannot finish this step because local error is greater than local "
@@ -744,7 +744,7 @@ msgstr ""
 "ഈ ഘട്ടം മുഴുമിക്കാനായില്ല കാരണം താങ്ങാവുന്നതിലധികം പിശകുകളുണ്ടിവിടെ \n"
 "ദയവായി സോള് വര് വിതാനങ്ങള് പരിശോധിക്കൂ"
 
-#: step/mainwindow.cc:504
+#: step/mainwindow.cc:513
 #, fuzzy, kde-format
 msgid ""
 "Cannot finish this step because there are collisions which cannot be "
@@ -752,32 +752,32 @@ msgid ""
 "Please move colliding objects apart and try again."
 msgstr "ഈ ഘട്ടം മുഴുമിക്കാനായില്ല കാരണം സ്വയം പരിഹരിക്കാന്‍ കഴിയാത്തത്ത വൈവരുദ്ധ്യങ്ങളുണ്ടു്"
 
-#: step/mainwindow.cc:508
+#: step/mainwindow.cc:517
 #, kde-format
 msgid "Cannot finish this step because of an unknown error."
 msgstr "അറിയപ്പെടാത്ത പിശക്മൂലം ഈ ഘട്ടം മുഴുമിക്കാനായില്ല."
 
-#: step/mainwindow.cc:541
+#: step/mainwindow.cc:550
 #, kde-format
 msgid "&Undo"
 msgstr "&തിരിച്ച് ചെയ്യുക"
 
-#: step/mainwindow.cc:542
+#: step/mainwindow.cc:551
 #, kde-format
 msgid "&Undo: %1"
 msgstr "&തിരിച്ച് ചെയ്യുക: %1"
 
-#: step/mainwindow.cc:547
+#: step/mainwindow.cc:556
 #, kde-format
 msgid "Re&do"
 msgstr "&ആവര്‍ത്തിക്കുക"
 
-#: step/mainwindow.cc:548
+#: step/mainwindow.cc:557
 #, kde-format
 msgid "Re&do: %1"
 msgstr "&ആവര്‍ത്തിക്കുക: %1"
 
-#: step/mainwindow.cc:579
+#: step/mainwindow.cc:588
 #, kde-format
 msgid "General"
 msgstr "സാമാന്യം"

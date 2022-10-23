@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: step\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2022-07-04 00:41+0000\n"
+"POT-Creation-Date: 2022-10-23 00:40+0000\n"
 "PO-Revision-Date: 2021-10-25 08:38+0300\n"
 "Last-Translator: Yuri Chornoivan <yurchor@ukr.net>\n"
 "Language-Team: Ukrainian <kde-i18n-uk@kde.org>\n"
@@ -396,7 +396,7 @@ msgstr ""
 "Ви намагаєтеся створити дуже велику кількість часток. Це зробить моделювання "
 "дуже повільним. Бажаєте продовжувати?"
 
-#: step/gasgraphics.cc:366 step/mainwindow.cc:409
+#: step/gasgraphics.cc:366 step/mainwindow.cc:414
 #, kde-format
 msgid "Warning - Step"
 msgstr "Попередження — Step"
@@ -523,185 +523,185 @@ msgstr "не вдалося відкрити тимчасовий файл"
 msgid "can not open result file"
 msgstr "не вдалося відкрити файл результатів"
 
-#: step/main.cc:42 step/main.cc:50
+#: step/main.cc:43
 #, kde-format
 msgid "Step"
 msgstr "Step"
 
-#: step/main.cc:52
+#: step/main.cc:45
 #, kde-format
 msgid "Interactive physical simulator"
 msgstr "Програма для інтерактивного фізичного моделювання"
 
-#: step/main.cc:54
+#: step/main.cc:47
 #, kde-format
 msgid "(C) 2007 Vladimir Kuznetsov"
 msgstr "© Vladimir Kuznetsov, 2007"
 
-#: step/main.cc:55
+#: step/main.cc:49
 #, kde-format
 msgid "https://edu.kde.org/step"
 msgstr "https://edu.kde.org/step"
 
-#: step/main.cc:60
+#: step/main.cc:54
 #, kde-format
 msgid "Original author"
 msgstr "Автор програми"
 
-#: step/main.cc:61
+#: step/main.cc:55
 #, kde-format
 msgid "ks.vladimir@gmail.com"
 msgstr "ks.vladimir@gmail.com"
 
-#: step/main.cc:66
+#: step/main.cc:60
 #, kde-format
 msgid "Code contributions"
 msgstr "Написання коду"
 
-#: step/main.cc:67
+#: step/main.cc:61
 #, kde-format
 msgid "cniehaus@kde.org"
 msgstr "cniehaus@kde.org"
 
-#: step/main.cc:74
+#: step/main.cc:71
 #, kde-format
 msgid "Document to open"
 msgstr "Відкрити документ"
 
-#: step/mainwindow.cc:155
+#: step/mainwindow.cc:156
 #, kde-format
 msgid "&Open Tutorial..."
 msgstr "&Відкрити підручник…"
 
-#: step/mainwindow.cc:160
+#: step/mainwindow.cc:161
 #, kde-format
 msgid "&Open Example..."
 msgstr "&Відкрити приклад…"
 
-#: step/mainwindow.cc:165
+#: step/mainwindow.cc:166
 #, kde-format
 msgid "Open Down&loaded Example..."
 msgstr "Відкрити отрима&ний приклад…"
 
-#: step/mainwindow.cc:170
+#: step/mainwindow.cc:171
 #, kde-format
 msgid "Share C&urrent Experiment..."
 msgstr "Поділитися по&точним експериментом…"
 
-#: step/mainwindow.cc:173
+#: step/mainwindow.cc:174
 #, kde-format
 msgid "&Download New Experiments..."
 msgstr "&Отримати нові експерименти…"
 
-#: step/mainwindow.cc:180
+#: step/mainwindow.cc:181
 #, kde-format
 msgid "Redo"
 msgstr "Повторити"
 
-#: step/mainwindow.cc:180
+#: step/mainwindow.cc:181
 #, kde-format
 msgid "Undo"
 msgstr "Повернути"
 
-#: step/mainwindow.cc:202
+#: step/mainwindow.cc:203
 #, kde-format
 msgid "&Delete"
 msgstr "&Вилучити"
 
-#: step/mainwindow.cc:212
+#: step/mainwindow.cc:213
 #, kde-format
 msgid "&Run"
 msgstr "&Виконати"
 
-#: step/mainwindow.cc:217
+#: step/mainwindow.cc:218
 #, kde-format
 msgid "Execute the program"
 msgstr "Виконати програму"
 
-#: step/mainwindow.cc:218
+#: step/mainwindow.cc:219
 #, kde-format
 msgid "Run: Execute the program"
 msgstr "Запуск: Виконати програму"
 
-#: step/mainwindow.cc:220
+#: step/mainwindow.cc:221
 #, kde-format
 msgctxt "@option:radio"
 msgid "1x Speed"
 msgstr "Швидкість 1x"
 
-#: step/mainwindow.cc:228
+#: step/mainwindow.cc:229
 #, kde-format
 msgctxt "@option:radio choose the slow speed"
 msgid "2x Speed"
 msgstr "Швидкість 2x"
 
-#: step/mainwindow.cc:235
+#: step/mainwindow.cc:236
 #, kde-format
 msgctxt "@option:radio"
 msgid "4x Speed"
 msgstr "Швидкість 4x"
 
-#: step/mainwindow.cc:242
+#: step/mainwindow.cc:243
 #, kde-format
 msgctxt "@option:radio"
 msgid "8x Speed"
 msgstr "Швидкість 8x"
 
-#: step/mainwindow.cc:249
+#: step/mainwindow.cc:250
 #, kde-format
 msgctxt "@option:radio"
 msgid "16x Speed"
 msgstr "Швидкість 16x"
 
-#: step/mainwindow.cc:279
+#: step/mainwindow.cc:280
 #, kde-format
 msgctxt "filename"
 msgid "untitled.step"
 msgstr "без_назви.step"
 
-#: step/mainwindow.cc:305
+#: step/mainwindow.cc:306
 #, kde-format
 msgid "<new file>"
 msgstr "<новий файл>"
 
-#: step/mainwindow.cc:319
+#: step/mainwindow.cc:320
 #, kde-format
 msgctxt "@title:window"
 msgid "Open Step File"
 msgstr "Відкриття файла Step"
 
-#: step/mainwindow.cc:319 step/mainwindow.cc:349
+#: step/mainwindow.cc:320 step/mainwindow.cc:350
 #, kde-format
 msgid "Step files (*.step)"
 msgstr "файли Step (*.step)"
 
-#: step/mainwindow.cc:329
+#: step/mainwindow.cc:330
 #, kde-format
 msgid "Cannot parse file '%1': %2"
 msgstr "Не вдалося розібрати файл «%1»: %2"
 
-#: step/mainwindow.cc:338
+#: step/mainwindow.cc:339
 #, kde-format
 msgid "<open file: %1>"
 msgstr "<відкрити файл: %1>"
 
-#: step/mainwindow.cc:349
+#: step/mainwindow.cc:350
 #, kde-format
 msgctxt "@title:window"
 msgid "Save Step File"
 msgstr "Збереження файла Step"
 
-#: step/mainwindow.cc:365
+#: step/mainwindow.cc:366
 #, kde-format
 msgid "Cannot open file '%1'"
 msgstr "Не вдалося відкрити файл «%1»"
 
-#: step/mainwindow.cc:371
+#: step/mainwindow.cc:372
 #, kde-format
 msgid "Cannot save file '%1': %2"
 msgstr "Не вдалося зберегти файл «%1»: %2"
 
-#: step/mainwindow.cc:408
+#: step/mainwindow.cc:413
 #, kde-format
 msgid ""
 "The experiment has been modified.\n"
@@ -710,27 +710,27 @@ msgstr ""
 "Умови експерименту було змінено.\n"
 "Чи бажаєте ви зберегти ваші зміни?"
 
-#: step/mainwindow.cc:456
+#: step/mainwindow.cc:465
 #, kde-format
 msgid "Uploading is still not implemented in kdelibs."
 msgstr "Завантаження на сервер ще не реалізовано у kdelibs."
 
-#: step/mainwindow.cc:457
+#: step/mainwindow.cc:466
 #, kde-format
 msgid "Sorry - Step"
 msgstr "Вибачте — Step"
 
-#: step/mainwindow.cc:484
+#: step/mainwindow.cc:493
 #, kde-format
 msgid "&Stop"
 msgstr "&Зупинити"
 
-#: step/mainwindow.cc:494
+#: step/mainwindow.cc:503
 #, kde-format
 msgid "&Simulate"
 msgstr "&Імітувати"
 
-#: step/mainwindow.cc:499
+#: step/mainwindow.cc:508
 #, kde-format
 msgid ""
 "Cannot finish this step because local error is greater than local "
@@ -742,7 +742,7 @@ msgstr ""
 "Будь ласка, перевірте налаштування програми розв’язання і\n"
 "спробуйте ще раз."
 
-#: step/mainwindow.cc:504
+#: step/mainwindow.cc:513
 #, kde-format
 msgid ""
 "Cannot finish this step because there are collisions which cannot be "
@@ -753,32 +753,32 @@ msgstr ""
 "визначити автоматично.\n"
 "Будь ласка, розведіть об’єкти, що зіткнулися, і спробуйте ще раз."
 
-#: step/mainwindow.cc:508
+#: step/mainwindow.cc:517
 #, kde-format
 msgid "Cannot finish this step because of an unknown error."
 msgstr "Не вдалося завершити цей крок через невідому помилку."
 
-#: step/mainwindow.cc:541
+#: step/mainwindow.cc:550
 #, kde-format
 msgid "&Undo"
 msgstr "По&вернути"
 
-#: step/mainwindow.cc:542
+#: step/mainwindow.cc:551
 #, kde-format
 msgid "&Undo: %1"
 msgstr "По&вернути: %1"
 
-#: step/mainwindow.cc:547
+#: step/mainwindow.cc:556
 #, kde-format
 msgid "Re&do"
 msgstr "П&овторити"
 
-#: step/mainwindow.cc:548
+#: step/mainwindow.cc:557
 #, kde-format
 msgid "Re&do: %1"
 msgstr "П&овторити: %1"
 
-#: step/mainwindow.cc:579
+#: step/mainwindow.cc:588
 #, kde-format
 msgid "General"
 msgstr "Загальні"

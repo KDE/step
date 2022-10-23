@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: step\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2022-07-04 00:41+0000\n"
+"POT-Creation-Date: 2022-10-23 00:40+0000\n"
 "PO-Revision-Date: 2022-01-01 16:00+0000\n"
 "Last-Translator: Steve Allewell <steve.allewell@gmail.com>\n"
 "Language-Team: British English <kde-l10n-en_gb@kde.org>\n"
@@ -394,7 +394,7 @@ msgstr ""
 "You are trying to create a very large number of particles. This will make "
 "simulation very slow. Do you want to continue?"
 
-#: step/gasgraphics.cc:366 step/mainwindow.cc:409
+#: step/gasgraphics.cc:366 step/mainwindow.cc:414
 #, kde-format
 msgid "Warning - Step"
 msgstr "Warning - Step"
@@ -520,185 +520,185 @@ msgstr "can not open temporary file"
 msgid "can not open result file"
 msgstr "can not open result file"
 
-#: step/main.cc:42 step/main.cc:50
+#: step/main.cc:43
 #, kde-format
 msgid "Step"
 msgstr "Step"
 
-#: step/main.cc:52
+#: step/main.cc:45
 #, kde-format
 msgid "Interactive physical simulator"
 msgstr "Interactive physical simulator"
 
-#: step/main.cc:54
+#: step/main.cc:47
 #, kde-format
 msgid "(C) 2007 Vladimir Kuznetsov"
 msgstr "(C) 2007 Vladimir Kuznetsov"
 
-#: step/main.cc:55
+#: step/main.cc:49
 #, kde-format
 msgid "https://edu.kde.org/step"
 msgstr "https://edu.kde.org/step"
 
-#: step/main.cc:60
+#: step/main.cc:54
 #, kde-format
 msgid "Original author"
 msgstr "Original author"
 
-#: step/main.cc:61
+#: step/main.cc:55
 #, kde-format
 msgid "ks.vladimir@gmail.com"
 msgstr "ks.vladimir@gmail.com"
 
-#: step/main.cc:66
+#: step/main.cc:60
 #, kde-format
 msgid "Code contributions"
 msgstr "Code contributions"
 
-#: step/main.cc:67
+#: step/main.cc:61
 #, kde-format
 msgid "cniehaus@kde.org"
 msgstr "cniehaus@kde.org"
 
-#: step/main.cc:74
+#: step/main.cc:71
 #, kde-format
 msgid "Document to open"
 msgstr "Document to open"
 
-#: step/mainwindow.cc:155
+#: step/mainwindow.cc:156
 #, kde-format
 msgid "&Open Tutorial..."
 msgstr "&Open Tutorial..."
 
-#: step/mainwindow.cc:160
+#: step/mainwindow.cc:161
 #, kde-format
 msgid "&Open Example..."
 msgstr "&Open Example..."
 
-#: step/mainwindow.cc:165
+#: step/mainwindow.cc:166
 #, kde-format
 msgid "Open Down&loaded Example..."
 msgstr "Open Down&loaded Example..."
 
-#: step/mainwindow.cc:170
+#: step/mainwindow.cc:171
 #, kde-format
 msgid "Share C&urrent Experiment..."
 msgstr "Share C&urrent Experiment..."
 
-#: step/mainwindow.cc:173
+#: step/mainwindow.cc:174
 #, kde-format
 msgid "&Download New Experiments..."
 msgstr "&Download New Experiments..."
 
-#: step/mainwindow.cc:180
+#: step/mainwindow.cc:181
 #, kde-format
 msgid "Redo"
 msgstr "Redo"
 
-#: step/mainwindow.cc:180
+#: step/mainwindow.cc:181
 #, kde-format
 msgid "Undo"
 msgstr "Undo"
 
-#: step/mainwindow.cc:202
+#: step/mainwindow.cc:203
 #, kde-format
 msgid "&Delete"
 msgstr "&Delete"
 
-#: step/mainwindow.cc:212
+#: step/mainwindow.cc:213
 #, kde-format
 msgid "&Run"
 msgstr "&Run"
 
-#: step/mainwindow.cc:217
+#: step/mainwindow.cc:218
 #, kde-format
 msgid "Execute the program"
 msgstr "Execute the program"
 
-#: step/mainwindow.cc:218
+#: step/mainwindow.cc:219
 #, kde-format
 msgid "Run: Execute the program"
 msgstr "Run: Execute the program"
 
-#: step/mainwindow.cc:220
+#: step/mainwindow.cc:221
 #, kde-format
 msgctxt "@option:radio"
 msgid "1x Speed"
 msgstr "1x Speed"
 
-#: step/mainwindow.cc:228
+#: step/mainwindow.cc:229
 #, kde-format
 msgctxt "@option:radio choose the slow speed"
 msgid "2x Speed"
 msgstr "2x Speed"
 
-#: step/mainwindow.cc:235
+#: step/mainwindow.cc:236
 #, kde-format
 msgctxt "@option:radio"
 msgid "4x Speed"
 msgstr "4x Speed"
 
-#: step/mainwindow.cc:242
+#: step/mainwindow.cc:243
 #, kde-format
 msgctxt "@option:radio"
 msgid "8x Speed"
 msgstr "8x Speed"
 
-#: step/mainwindow.cc:249
+#: step/mainwindow.cc:250
 #, kde-format
 msgctxt "@option:radio"
 msgid "16x Speed"
 msgstr "16x Speed"
 
-#: step/mainwindow.cc:279
+#: step/mainwindow.cc:280
 #, kde-format
 msgctxt "filename"
 msgid "untitled.step"
 msgstr "untitled.step"
 
-#: step/mainwindow.cc:305
+#: step/mainwindow.cc:306
 #, kde-format
 msgid "<new file>"
 msgstr "<new file>"
 
-#: step/mainwindow.cc:319
+#: step/mainwindow.cc:320
 #, kde-format
 msgctxt "@title:window"
 msgid "Open Step File"
 msgstr "Open Step File"
 
-#: step/mainwindow.cc:319 step/mainwindow.cc:349
+#: step/mainwindow.cc:320 step/mainwindow.cc:350
 #, kde-format
 msgid "Step files (*.step)"
 msgstr "Step files (*.step)"
 
-#: step/mainwindow.cc:329
+#: step/mainwindow.cc:330
 #, kde-format
 msgid "Cannot parse file '%1': %2"
 msgstr "Cannot parse file '%1': %2"
 
-#: step/mainwindow.cc:338
+#: step/mainwindow.cc:339
 #, kde-format
 msgid "<open file: %1>"
 msgstr "<open file: %1>"
 
-#: step/mainwindow.cc:349
+#: step/mainwindow.cc:350
 #, kde-format
 msgctxt "@title:window"
 msgid "Save Step File"
 msgstr "Save Step File"
 
-#: step/mainwindow.cc:365
+#: step/mainwindow.cc:366
 #, kde-format
 msgid "Cannot open file '%1'"
 msgstr "Cannot open file '%1'"
 
-#: step/mainwindow.cc:371
+#: step/mainwindow.cc:372
 #, kde-format
 msgid "Cannot save file '%1': %2"
 msgstr "Cannot save file '%1': %2"
 
-#: step/mainwindow.cc:408
+#: step/mainwindow.cc:413
 #, kde-format
 msgid ""
 "The experiment has been modified.\n"
@@ -707,74 +707,74 @@ msgstr ""
 "The experiment has been modified.\n"
 "Do you want to save your changes?"
 
-#: step/mainwindow.cc:456
+#: step/mainwindow.cc:465
 #, kde-format
 msgid "Uploading is still not implemented in kdelibs."
 msgstr "Uploading is still not implemented in kdelibs."
 
-#: step/mainwindow.cc:457
+#: step/mainwindow.cc:466
 #, kde-format
 msgid "Sorry - Step"
 msgstr "Sorry - Step"
 
-#: step/mainwindow.cc:484
+#: step/mainwindow.cc:493
 #, kde-format
 msgid "&Stop"
 msgstr "&Stop"
 
-#: step/mainwindow.cc:494
+#: step/mainwindow.cc:503
 #, kde-format
 msgid "&Simulate"
 msgstr "&Simulate"
 
-#: step/mainwindow.cc:499
-#, kde-format
-msgid ""
-"Cannot finish this step because local error is greater than local "
-"tolerance.\n"
-"Please check solver settings and try again."
-msgstr ""
-"Cannot finish this step because local error is greater than local "
-"tolerance.\n"
-"Please check solver settings and try again."
-
-#: step/mainwindow.cc:504
-#, kde-format
-msgid ""
-"Cannot finish this step because there are collisions which cannot be "
-"resolved automatically.\n"
-"Please move colliding objects apart and try again."
-msgstr ""
-"Cannot finish this step because there are collisions which cannot be "
-"resolved automatically.\n"
-"Please move colliding objects apart and try again."
-
 #: step/mainwindow.cc:508
+#, kde-format
+msgid ""
+"Cannot finish this step because local error is greater than local "
+"tolerance.\n"
+"Please check solver settings and try again."
+msgstr ""
+"Cannot finish this step because local error is greater than local "
+"tolerance.\n"
+"Please check solver settings and try again."
+
+#: step/mainwindow.cc:513
+#, kde-format
+msgid ""
+"Cannot finish this step because there are collisions which cannot be "
+"resolved automatically.\n"
+"Please move colliding objects apart and try again."
+msgstr ""
+"Cannot finish this step because there are collisions which cannot be "
+"resolved automatically.\n"
+"Please move colliding objects apart and try again."
+
+#: step/mainwindow.cc:517
 #, kde-format
 msgid "Cannot finish this step because of an unknown error."
 msgstr "Cannot finish this step because of an unknown error."
 
-#: step/mainwindow.cc:541
+#: step/mainwindow.cc:550
 #, kde-format
 msgid "&Undo"
 msgstr "&Undo"
 
-#: step/mainwindow.cc:542
+#: step/mainwindow.cc:551
 #, kde-format
 msgid "&Undo: %1"
 msgstr "&Undo: %1"
 
-#: step/mainwindow.cc:547
+#: step/mainwindow.cc:556
 #, kde-format
 msgid "Re&do"
 msgstr "Re&do"
 
-#: step/mainwindow.cc:548
+#: step/mainwindow.cc:557
 #, kde-format
 msgid "Re&do: %1"
 msgstr "Re&do: %1"
 
-#: step/mainwindow.cc:579
+#: step/mainwindow.cc:588
 #, kde-format
 msgid "General"
 msgstr "General"

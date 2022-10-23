@@ -11,7 +11,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kdeedu-kde4\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2022-07-04 00:41+0000\n"
+"POT-Creation-Date: 2022-10-23 00:40+0000\n"
 "PO-Revision-Date: 2022-10-08 13:10+0300\n"
 "Last-Translator: Emir SARI <emir_sari@icloud.com>\n"
 "Language-Team: Turkish <kde-l10n-tr@kde.org>\n"
@@ -401,7 +401,7 @@ msgstr ""
 "Çok büyük sayıda parçacık oluşturmaya çalışıyorsunuz. Bu benzeştirimi çok "
 "yavaşlatacaktır. Devam etmek istiyor musunuz ?"
 
-#: step/gasgraphics.cc:366 step/mainwindow.cc:409
+#: step/gasgraphics.cc:366 step/mainwindow.cc:414
 #, kde-format
 msgid "Warning - Step"
 msgstr "Uyarı - Step"
@@ -531,186 +531,186 @@ msgstr "geçici dosya açılamadı"
 msgid "can not open result file"
 msgstr "sonuç dosyası açılamadı"
 
-#: step/main.cc:42 step/main.cc:50
+#: step/main.cc:43
 #, kde-format
 msgid "Step"
 msgstr "Step"
 
-#: step/main.cc:52
+#: step/main.cc:45
 #, kde-format
 msgid "Interactive physical simulator"
 msgstr "Etkileşimli fizik benzetimcisi"
 
-#: step/main.cc:54
+#: step/main.cc:47
 #, kde-format
 msgid "(C) 2007 Vladimir Kuznetsov"
 msgstr "(C) 2007 Vladimir Kuznetsov"
 
-#: step/main.cc:55
+#: step/main.cc:49
 #, fuzzy, kde-format
 #| msgid "http://edu.kde.org/step"
 msgid "https://edu.kde.org/step"
 msgstr "http://edu.kde.org/step"
 
-#: step/main.cc:60
+#: step/main.cc:54
 #, kde-format
 msgid "Original author"
 msgstr "Özgün yazar"
 
-#: step/main.cc:61
+#: step/main.cc:55
 #, kde-format
 msgid "ks.vladimir@gmail.com"
 msgstr "ks.vladimir@gmail.com"
 
-#: step/main.cc:66
+#: step/main.cc:60
 #, kde-format
 msgid "Code contributions"
 msgstr "Kod katkıları"
 
-#: step/main.cc:67
+#: step/main.cc:61
 #, kde-format
 msgid "cniehaus@kde.org"
 msgstr "cniehaus@kde.org"
 
-#: step/main.cc:74
+#: step/main.cc:71
 #, kde-format
 msgid "Document to open"
 msgstr "Açılacak belge"
 
-#: step/mainwindow.cc:155
+#: step/mainwindow.cc:156
 #, kde-format
 msgid "&Open Tutorial..."
 msgstr "Öğreticiyi &Aç..."
 
-#: step/mainwindow.cc:160
+#: step/mainwindow.cc:161
 #, kde-format
 msgid "&Open Example..."
 msgstr "Ö&rnek Aç..."
 
-#: step/mainwindow.cc:165
+#: step/mainwindow.cc:166
 #, kde-format
 msgid "Open Down&loaded Example..."
 msgstr "İndiri&lmiş Örneği Aç..."
 
-#: step/mainwindow.cc:170
+#: step/mainwindow.cc:171
 #, kde-format
 msgid "Share C&urrent Experiment..."
 msgstr "Geçerli &Deneyi Paylaş..."
 
-#: step/mainwindow.cc:173
+#: step/mainwindow.cc:174
 #, kde-format
 msgid "&Download New Experiments..."
 msgstr "&Yeni Deneyler İndir..."
 
-#: step/mainwindow.cc:180
+#: step/mainwindow.cc:181
 #, kde-format
 msgid "Redo"
 msgstr "Yinele"
 
-#: step/mainwindow.cc:180
+#: step/mainwindow.cc:181
 #, kde-format
 msgid "Undo"
 msgstr "Geri Al"
 
-#: step/mainwindow.cc:202
+#: step/mainwindow.cc:203
 #, kde-format
 msgid "&Delete"
 msgstr "&Sil"
 
-#: step/mainwindow.cc:212
+#: step/mainwindow.cc:213
 #, kde-format
 msgid "&Run"
 msgstr "Çalıştı&r"
 
-#: step/mainwindow.cc:217
+#: step/mainwindow.cc:218
 #, kde-format
 msgid "Execute the program"
 msgstr "Uygulamayı çalıştır"
 
-#: step/mainwindow.cc:218
+#: step/mainwindow.cc:219
 #, kde-format
 msgid "Run: Execute the program"
 msgstr "Çalıştır: Uygulamayı çalıştır"
 
-#: step/mainwindow.cc:220
+#: step/mainwindow.cc:221
 #, kde-format
 msgctxt "@option:radio"
 msgid "1x Speed"
 msgstr "1x Hız"
 
-#: step/mainwindow.cc:228
+#: step/mainwindow.cc:229
 #, kde-format
 msgctxt "@option:radio choose the slow speed"
 msgid "2x Speed"
 msgstr "2x Hız"
 
-#: step/mainwindow.cc:235
+#: step/mainwindow.cc:236
 #, kde-format
 msgctxt "@option:radio"
 msgid "4x Speed"
 msgstr "4x Hız"
 
-#: step/mainwindow.cc:242
+#: step/mainwindow.cc:243
 #, kde-format
 msgctxt "@option:radio"
 msgid "8x Speed"
 msgstr "8x Hız"
 
-#: step/mainwindow.cc:249
+#: step/mainwindow.cc:250
 #, kde-format
 msgctxt "@option:radio"
 msgid "16x Speed"
 msgstr "16x Hız"
 
-#: step/mainwindow.cc:279
+#: step/mainwindow.cc:280
 #, kde-format
 msgctxt "filename"
 msgid "untitled.step"
 msgstr "adsız.step"
 
-#: step/mainwindow.cc:305
+#: step/mainwindow.cc:306
 #, kde-format
 msgid "<new file>"
 msgstr "<yeni dosya>"
 
-#: step/mainwindow.cc:319
+#: step/mainwindow.cc:320
 #, kde-format
 msgctxt "@title:window"
 msgid "Open Step File"
 msgstr "Step Dosyası Aç"
 
-#: step/mainwindow.cc:319 step/mainwindow.cc:349
+#: step/mainwindow.cc:320 step/mainwindow.cc:350
 #, kde-format
 msgid "Step files (*.step)"
 msgstr "Step dosyaları (*.step)"
 
-#: step/mainwindow.cc:329
+#: step/mainwindow.cc:330
 #, kde-format
 msgid "Cannot parse file '%1': %2"
 msgstr "'%1' dosyası ayrıştırılamadı: %2"
 
-#: step/mainwindow.cc:338
+#: step/mainwindow.cc:339
 #, kde-format
 msgid "<open file: %1>"
 msgstr "<dosya aç: %1>"
 
-#: step/mainwindow.cc:349
+#: step/mainwindow.cc:350
 #, kde-format
 msgctxt "@title:window"
 msgid "Save Step File"
 msgstr "Step Dosyasını Kaydet"
 
-#: step/mainwindow.cc:365
+#: step/mainwindow.cc:366
 #, kde-format
 msgid "Cannot open file '%1'"
 msgstr "'%1' dosyası açılamıyor"
 
-#: step/mainwindow.cc:371
+#: step/mainwindow.cc:372
 #, kde-format
 msgid "Cannot save file '%1': %2"
 msgstr "'%1' dosyası kaydedilemedi: %2"
 
-#: step/mainwindow.cc:408
+#: step/mainwindow.cc:413
 #, kde-format
 msgid ""
 "The experiment has been modified.\n"
@@ -719,27 +719,27 @@ msgstr ""
 "Deney değiştirildi.\n"
 "Değişiklikleri kaydetmek istiyor musunuz?"
 
-#: step/mainwindow.cc:456
+#: step/mainwindow.cc:465
 #, kde-format
 msgid "Uploading is still not implemented in kdelibs."
 msgstr "Karşıya yükleme özelliği henüz kdelibs içerisine eklenmedi."
 
-#: step/mainwindow.cc:457
+#: step/mainwindow.cc:466
 #, kde-format
 msgid "Sorry - Step"
 msgstr "Üzgünüm - Step"
 
-#: step/mainwindow.cc:484
+#: step/mainwindow.cc:493
 #, kde-format
 msgid "&Stop"
 msgstr "&Durdur"
 
-#: step/mainwindow.cc:494
+#: step/mainwindow.cc:503
 #, kde-format
 msgid "&Simulate"
 msgstr "&Benzetim Yap"
 
-#: step/mainwindow.cc:499
+#: step/mainwindow.cc:508
 #, kde-format
 msgid ""
 "Cannot finish this step because local error is greater than local "
@@ -750,7 +750,7 @@ msgstr ""
 "tamamlanamamaktadir.\n"
 "Lutfen çözücü ayarlarını kontrol edip yeniden deneyin."
 
-#: step/mainwindow.cc:504
+#: step/mainwindow.cc:513
 #, kde-format
 msgid ""
 "Cannot finish this step because there are collisions which cannot be "
@@ -761,32 +761,32 @@ msgstr ""
 "tamamlanamamaktadır.\n"
 "Lütfen çakışan nesneleri ayırın ve yeniden deneyin."
 
-#: step/mainwindow.cc:508
+#: step/mainwindow.cc:517
 #, kde-format
 msgid "Cannot finish this step because of an unknown error."
 msgstr "Bilinmeyen bir hata nedeniyle bu adım tamamlanamıyor."
 
-#: step/mainwindow.cc:541
+#: step/mainwindow.cc:550
 #, kde-format
 msgid "&Undo"
 msgstr "&Geri Al"
 
-#: step/mainwindow.cc:542
+#: step/mainwindow.cc:551
 #, kde-format
 msgid "&Undo: %1"
 msgstr "&Geri Al: %1"
 
-#: step/mainwindow.cc:547
+#: step/mainwindow.cc:556
 #, kde-format
 msgid "Re&do"
 msgstr "&Yinele"
 
-#: step/mainwindow.cc:548
+#: step/mainwindow.cc:557
 #, kde-format
 msgid "Re&do: %1"
 msgstr "&Yinele: %1"
 
-#: step/mainwindow.cc:579
+#: step/mainwindow.cc:588
 #, kde-format
 msgid "General"
 msgstr "Genel"
