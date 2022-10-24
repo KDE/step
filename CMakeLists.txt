@@ -97,6 +97,7 @@ add_subdirectory(stepcore)
 add_subdirectory(step)
 add_subdirectory(autotests)
 
+ecm_install_po_files_as_qm(poqm)
 ki18n_install(po)
 if (KF5DocTools_FOUND)
     kdoctools_install(po)
