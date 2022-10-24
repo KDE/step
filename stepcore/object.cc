@@ -62,7 +62,7 @@ void MetaObject::init() const
 
     // strings
     _classNameTr = QCoreApplication::translate("ObjectClass", _className.toUtf8().constData());
-    _descriptionTr = QCoreApplication::translate(NULL, _description.toUtf8().constData());
+    _descriptionTr = QCoreApplication::translate("ObjectDescription", _description.toUtf8().constData());
 
     _initialized = true;
 }
@@ -114,7 +114,7 @@ void MetaProperty::init() const
 {
     _nameTr = QCoreApplication::translate("PropertyName", _name.toUtf8().constData());
     _unitsTr = QCoreApplication::translate("Units", _units.toUtf8().constData());
-    _descriptionTr = QCoreApplication::translate(NULL, _description.toUtf8().constData());
+    _descriptionTr = QCoreApplication::translate("PropertyDescription", _description.toUtf8().constData());
 
     _initialized = true;
 }
