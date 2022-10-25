@@ -405,7 +405,7 @@ def main():
                 except IOError as e:
                     optparser.error('can not open output file: ' + str(e))
             else:
-                outfile = sys.stdout
+                outfile = sys.stdout.buffer
     else:
         if not opt.po_file and not opt.mo_file:
             optparser.error('please specify either --po-file or --mo-file option for translation')
