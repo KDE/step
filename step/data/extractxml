@@ -451,12 +451,13 @@ def main():
                 sys.stderr.write('can not parse file %s: %s\n' % (fname, str(e)))
                 sys.exit(1)
 
-            outfile.close()
 
         infile.close()
 
-    if opt.extract and opt.xgettext:
+    if outfile:
         outfile.close()
+
+    if opt.extract and opt.xgettext:
         xgettext_cmd = 'xgettext ' + opt.xgettext_args
         xgettext_cmd += ' ' + opt.xgettext_extra_args
         if opt.output:
