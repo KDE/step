@@ -35,7 +35,7 @@
 #include <stepcore/rigidbody.h>
 
 #include <QCoreApplication>
-#include <QGLWidget>
+#include <QOpenGLWidget>
 #include <QGraphicsItem>
 #include <QGraphicsSceneMouseEvent>
 #include <QItemSelectionModel>
@@ -647,14 +647,14 @@ void WorldGraphicsView::actualSize()
 
 void WorldGraphicsView::settingsChanged()
 {
-    if(qobject_cast<QGLWidget*>(viewport())) {
+    if(qobject_cast<QOpenGLWidget*>(viewport())) {
         if(!Settings::enableOpenGL()) setViewport(new QWidget(this));
     } else {
-        if(Settings::enableOpenGL() && QGLFormat::hasOpenGL()) {
+        if(Settings::enableOpenGL()) {
             //qDebug() << "enable OpenGL" << endl;
-            setViewport(new QGLWidget(QGLFormat(QGL::SampleBuffers), this));
-            if(!qobject_cast<QGLWidget*>(viewport())) {
-                qDebug() << "can't create QGLWidget!" << endl;
+            setViewport(new QOpenGLWidget(this));
+            if(!qobject_cast<QOpenGLWidget*>(viewport())) {
+                qDebug() << "can't create QOpenGLWidget!" << endl;
             }
         }
     }

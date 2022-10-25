@@ -81,7 +81,6 @@ target_link_libraries(step
     KF5::TextWidgets
     KF5::Plotting
     KF5::NewStuffWidgets
-    Qt::OpenGL
     Qt::Widgets
     ${qalculate_LIBS})
 
