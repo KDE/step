@@ -267,7 +267,7 @@ msgstr ""
 "Un gas és una col·lecció de <a href=\"objinfo:GasParticle\">partícules de "
 "gasolina</a>. Associada al gas hi ha una <a href=\"objinfo:GasLJForce"
 "\">força</a>. Per a afegir partícules de gas feu clic al gas amb el botó "
-"dret i cliqueu a «Crea partícules»."
+"dret i cliqueu en «Crea partícules»."
 
 #: objectinfo/gas.html:10
 #, kde-format
