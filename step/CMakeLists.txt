@@ -31,6 +31,8 @@ target_sources(step PRIVATE
     messageframe.cc
     main.cc
     choicesmodel.cc
+
+    step.qrc
 )
 
 if(STEP_WITH_QALCULATE)
@@ -78,7 +80,6 @@ endif()
 
 install(TARGETS step ${KDE_INSTALL_TARGETS_DEFAULT_ARGS})
 install(FILES step.kcfg DESTINATION  ${KDE_INSTALL_KCFGDIR})
-install(FILES stepui.rc DESTINATION  ${KDE_INSTALL_KXMLGUIDIR}/step)
 install(FILES step.knsrc DESTINATION  ${KDE_INSTALL_KNSRCDIR})
 install( PROGRAMS org.kde.step.desktop DESTINATION ${KDE_INSTALL_APPDIR} )
 
