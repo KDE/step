@@ -66,7 +66,7 @@ public:
     void setToleranceRel(double toleranceRel) { fini(); _toleranceRel = toleranceRel; init(); }
 
     int doCalcFn(double* t, const VectorXd* y, const VectorXd* yvar,
-                            VectorXd* f = 0, VectorXd* fvar = 0);
+                            VectorXd* f = nullptr, VectorXd* fvar = nullptr);
     int doEvolve(double* t, double t1, VectorXd* y, VectorXd* yvar);
 
 protected:

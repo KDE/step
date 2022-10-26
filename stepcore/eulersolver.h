@@ -57,8 +57,8 @@ public:
 
     void setDimension(int dimension) override { fini(); _dimension = dimension; init(); }
 
-    int doCalcFn(double* t, const VectorXd* y, const VectorXd* yvar = 0,
-                        VectorXd* f = 0, VectorXd* fvar = 0) override;
+    int doCalcFn(double* t, const VectorXd* y, const VectorXd* yvar = nullptr,
+                        VectorXd* f = nullptr, VectorXd* fvar = nullptr) override;
     int doEvolve(double* t, double t1, VectorXd* y, VectorXd* yvar) override;
 
 protected:

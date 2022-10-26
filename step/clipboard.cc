@@ -103,7 +103,7 @@ void CopyHelper::fixItemLinks(StepCore::Item* item)
         if (pr->userTypeId() == qMetaTypeId<StepCore::Object*>()) {
             QVariant v = pr->readVariant(item);
             StepCore::Object *obj = v.value<StepCore::Object*>();
-            StepCore::Object *copy = _copyMap.value(obj, 0); 
+            StepCore::Object *copy = _copyMap.value(obj, nullptr);
             pr->writeVariant(item, QVariant::fromValue(copy));
         }
     }

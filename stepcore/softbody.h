@@ -53,7 +53,7 @@ class SoftBodySpring: public Spring
 public:
     /** Constructs a SoftBodySpring */
     explicit SoftBodySpring(double restLength = 0, double stiffness = 1, double damping = 0,
-                                                     Item* bodyPtr1 = 0, Item* bodyPtr2 = 0)
+                                                     Item* bodyPtr1 = nullptr, Item* bodyPtr2 = nullptr)
         : Spring(restLength, stiffness, damping, bodyPtr1, bodyPtr2) {}
 };
 

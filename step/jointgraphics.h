@@ -29,7 +29,7 @@ public:
     AnchorCreator(const QString& className, WorldModel* worldModel, WorldScene* worldScene)
         : AttachableItemCreator(className, worldModel, worldScene, WorldScene::SnapRigidBody |
                         WorldScene::SnapParticle | WorldScene::SnapOnCenter |
-                        WorldScene::SnapSetPosition | WorldScene::SnapSetAngle, 0) {}
+                        WorldScene::SnapSetPosition | WorldScene::SnapSetAngle, nullptr) {}
 };
 
 class AnchorGraphicsItem : public StepGraphicsItem
@@ -55,7 +55,7 @@ class PinCreator: public AttachableItemCreator
 public:
     PinCreator(const QString& className, WorldModel* worldModel, WorldScene* worldScene)
         : AttachableItemCreator(className, worldModel, worldScene, WorldScene::SnapRigidBody |
-                            WorldScene::SnapSetPosition | WorldScene::SnapSetLocalPosition, 0) {}
+                            WorldScene::SnapSetPosition | WorldScene::SnapSetLocalPosition, nullptr) {}
 };
 
 class PinGraphicsItem: public StepGraphicsItem
@@ -82,7 +82,7 @@ public:
     StickCreator(const QString& className, WorldModel* worldModel, WorldScene* worldScene)
                 : AttachableItemCreator(className, worldModel, worldScene,
                         WorldScene::SnapRigidBody | WorldScene::SnapParticle |
-                        WorldScene::SnapSetLocalPosition, 0, true) {}
+                        WorldScene::SnapSetLocalPosition, nullptr, true) {}
 };
 
 class StickHandlerGraphicsItem: public StepGraphicsItem

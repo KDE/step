@@ -29,7 +29,7 @@ public:
     SpringCreator(const QString& className, WorldModel* worldModel, WorldScene* worldScene)
                 : AttachableItemCreator(className, worldModel, worldScene,
                         WorldScene::SnapRigidBody | WorldScene::SnapParticle |
-                        WorldScene::SnapSetLocalPosition, 0, true) {}
+                        WorldScene::SnapSetLocalPosition, nullptr, true) {}
 };
 
 class SpringHandlerGraphicsItem : public StepGraphicsItem {

@@ -355,9 +355,9 @@ void SoftBody::worldItemRemoved(Item* item)
 
 void SoftBody::setWorld(World* world)
 {
-    if(world == NULL) {
+    if(world == nullptr) {
         _borderParticles.clear();
-    } else if(this->world() != NULL) { 
+    } else if(this->world() != nullptr) {
         const SoftBodyParticleList::iterator end = _borderParticles.end();
         for(SoftBodyParticleList::iterator i = _borderParticles.begin(); i != end; ++i) {
             *i = static_cast<SoftBodyParticle*>(world->object((*i)->name()));

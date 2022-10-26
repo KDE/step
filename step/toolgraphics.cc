@@ -130,7 +130,7 @@ void WidgetVertexHandlerGraphicsItem::setValue(const StepCore::Vector2d& value)
 }
 
 WidgetGraphicsItem::WidgetGraphicsItem(StepCore::Item* item, WorldModel* worldModel)
-    : StepGraphicsItem(item, worldModel), _centralWidget(0)
+    : StepGraphicsItem(item, worldModel), _centralWidget(nullptr)
 {
     setFlag(QGraphicsItem::ItemIsSelectable);
     setFlag(QGraphicsItem::ItemIsMovable);
@@ -170,7 +170,7 @@ OnHoverHandlerGraphicsItem* WidgetGraphicsItem::createOnHoverHandler(const QPoin
     if(num >= 0)
         return new WidgetVertexHandlerGraphicsItem(_item, _worldModel, this, num);
 
-    return 0;
+    return nullptr;
 }
 
 // XXX: ???
@@ -310,15 +310,15 @@ void NoteTextEdit::focusOutEvent(QFocusEvent *event)
 StepCore::NoteFormula* NoteTextEdit::formulaAt(const QPoint& pos)
 {
     int p = document()->documentLayout()->hitTest(pos, Qt::ExactHit);
-    if(p < 0) return NULL;
+    if(p < 0) return nullptr;
 
     QTextCursor cursor(document());
     cursor.setPosition(p);
-    if(cursor.atEnd()) return NULL;
+    if(cursor.atEnd()) return nullptr;
     cursor.setPosition(p+1);
 
     QTextFormat format = cursor.charFormat();
-    if(!format.isImageFormat()) return NULL;
+    if(!format.isImageFormat()) return nullptr;
     QString image = format.toImageFormat().name();
 
     StepCore::Item* item = _noteItem->note()->childItem(image);
@@ -328,7 +328,7 @@ StepCore::NoteFormula* NoteTextEdit::formulaAt(const QPoint& pos)
     }
 
     if(!item || !item->metaObject()->inherits<StepCore::NoteFormula>())
-        return NULL;
+        return nullptr;
 
     return static_cast<StepCore::NoteFormula*>(item);
 }
@@ -341,7 +341,7 @@ void NoteTextEdit::mousePressEvent(QMouseEvent *e)
 
 void NoteTextEdit::mouseMoveEvent(QMouseEvent *e)
 {
-    if(formulaAt(e->pos()) != NULL) {
+    if(formulaAt(e->pos()) != nullptr) {
         viewport()->setCursor(Qt::PointingHandCursor);
     } else {
         viewport()->setCursor(Qt::IBeamCursor);
@@ -367,7 +367,7 @@ void NoteTextEdit::mouseReleaseEvent(QMouseEvent *e)
 NoteGraphicsItem::NoteGraphicsItem(StepCore::Item* item, WorldModel* worldModel)
     : WidgetGraphicsItem(item, worldModel)
 {
-    Q_ASSERT(dynamic_cast<StepCore::Note*>(_item) != NULL);
+    Q_ASSERT(dynamic_cast<StepCore::Note*>(_item) != nullptr);
     setFlag(QGraphicsItem::ItemIsSelectable);
     setFlag(QGraphicsItem::ItemIsMovable);
     setAcceptHoverEvents(true);
@@ -526,7 +526,7 @@ bool NoteGraphicsItem::eventFilter(QObject* obj, QEvent* event)
             static_cast<QFocusEvent*>(event)->reason() != Qt::PopupFocusReason) {
 
         QObject* f = QApplication::focusWidget();
-        if(f == obj) f = NULL;
+        if(f == obj) f = nullptr;
         while(f && f != _widget) f = f->parent();
 
         if(!f) {
@@ -665,7 +665,7 @@ void NoteGraphicsItem::insertImage()
     QString imgName;
     for(int n=0;; ++n) {
         imgName = QStringLiteral("img:%1").arg(n);
-        if(note()->childItem(imgName) != NULL) continue;
+        if(note()->childItem(imgName) != nullptr) continue;
         bool found = false;
         foreach(StepCore::Item* item, _newItems)
             if(item->name() == imgName) { found = true; break; }
@@ -682,7 +682,7 @@ void NoteGraphicsItem::insertFormula()
     QString imgName;
     for(int n=0;; ++n) {
         imgName = QStringLiteral("fml:%1").arg(n);
-        if(note()->childItem(imgName) != NULL) continue;
+        if(note()->childItem(imgName) != nullptr) continue;
         bool found = false;
         foreach(StepCore::Item* item, _newItems)
             if(item->name() == imgName) { found = true; break; }
@@ -777,7 +777,7 @@ void NoteGraphicsItem::worldDataChanged(bool dynamicOnly)
 
 ////////////////////////////////////////////////////
 DataSourceWidget::DataSourceWidget(QWidget* parent)
-    : QWidget(parent), _worldModel(0)
+    : QWidget(parent), _worldModel(nullptr)
 {
     _skipReadOnly = false;
     
@@ -826,7 +826,7 @@ void DataSourceWidget::addObjects(const QModelIndex& parent, const QString& inde
 
 StepCore::Object* DataSourceWidget::dataObject() const
 {
-    if(_object->currentIndex() < 0) return NULL;
+    if(_object->currentIndex() < 0) return nullptr;
     return _object->itemData(_object->currentIndex()).value<StepCore::Object*>();
 }
 
@@ -858,7 +858,7 @@ void DataSourceWidget::objectSelected(int index)
     _property->clear();
 
     const StepCore::Object* obj = _object->itemData(index).value<StepCore::Object*>();
-    if(obj != 0) {
+    if(obj != nullptr) {
         _property->setEnabled(true);
         for(int i=0; i<obj->metaObject()->propertyCount(); ++i) {
             const StepCore::MetaProperty* pr = obj->metaObject()->property(i);
@@ -881,10 +881,10 @@ void DataSourceWidget::propertySelected(int index)
     QString text = _property->itemData(index).toString();
     const StepCore::Object* obj = _object->itemData(_object->currentIndex())
                                                         .value<StepCore::Object*>();
-    const StepCore::MetaProperty* pr = obj ? obj->metaObject()->property(text) : 0;
+    const StepCore::MetaProperty* pr = obj ? obj->metaObject()->property(text) : nullptr;
 
     _index->clear();
-    if(pr != 0 && pr->userTypeId() == qMetaTypeId<StepCore::Vector2d>()) {
+    if(pr != nullptr && pr->userTypeId() == qMetaTypeId<StepCore::Vector2d>()) {
         _index->setEnabled(true);
         _index->addItem(QStringLiteral("0"));
         _index->addItem(QStringLiteral("1"));
@@ -897,7 +897,7 @@ void DataSourceWidget::propertySelected(int index)
 GraphGraphicsItem::GraphGraphicsItem(StepCore::Item* item, WorldModel* worldModel)
     : WidgetGraphicsItem(item, worldModel)
 {
-    Q_ASSERT(dynamic_cast<StepCore::Graph*>(_item) != NULL);
+    Q_ASSERT(dynamic_cast<StepCore::Graph*>(_item) != nullptr);
     setFlag(QGraphicsItem::ItemIsSelectable);
     setFlag(QGraphicsItem::ItemIsMovable);
     setAcceptHoverEvents(true);
@@ -1082,8 +1082,8 @@ void GraphGraphicsItem::worldDataChanged(bool dynamicOnly)
 
 void GraphMenuHandler::populateMenu(QMenu* menu, KActionCollection* actions)
 {
-    _confUi = 0;
-    _confDialog = 0;
+    _confUi = nullptr;
+    _confDialog = nullptr;
     _confChanged = false;
 
     menu->addAction(QIcon::fromTheme(QStringLiteral("edit-clear")), i18n("Clear Graph"), this, &GraphMenuHandler::clearGraph);
@@ -1166,8 +1166,8 @@ void GraphMenuHandler::configureGraph()
 
     _confDialog->exec();
 
-    delete _confDialog; _confDialog = 0;
-    delete _confUi; _confUi = 0;
+    delete _confDialog; _confDialog = nullptr;
+    delete _confUi; _confUi = nullptr;
 }
 
 void GraphMenuHandler::confApply(QAbstractButton *button)
@@ -1243,7 +1243,7 @@ void GraphMenuHandler::clearGraph()
 MeterGraphicsItem::MeterGraphicsItem(StepCore::Item* item, WorldModel* worldModel)
     : WidgetGraphicsItem(item, worldModel)
 {
-    Q_ASSERT(dynamic_cast<StepCore::Meter*>(_item) != NULL);
+    Q_ASSERT(dynamic_cast<StepCore::Meter*>(_item) != nullptr);
     setFlag(QGraphicsItem::ItemIsSelectable);
     setFlag(QGraphicsItem::ItemIsMovable);
     setAcceptHoverEvents(true);
@@ -1310,8 +1310,8 @@ void MeterGraphicsItem::worldDataChanged(bool dynamicOnly)
 
 void MeterMenuHandler::populateMenu(QMenu* menu, KActionCollection* actions)
 {
-    _confUi = 0;
-    _confDialog = 0;
+    _confUi = nullptr;
+    _confDialog = nullptr;
     _confChanged = false;
 
     menu->addAction(QIcon::fromTheme(QStringLiteral("configure")), i18n("Configure Meter..."), this, &MeterMenuHandler::configureMeter);
@@ -1365,8 +1365,8 @@ void MeterMenuHandler::configureMeter()
 
     _confDialog->exec();
 
-    delete _confDialog; _confDialog = 0;
-    delete _confUi; _confUi = 0;
+    delete _confDialog; _confDialog = nullptr;
+    delete _confUi; _confUi = nullptr;
 }
 
 void MeterMenuHandler::confApply(QAbstractButton *button)
@@ -1406,7 +1406,7 @@ void MeterMenuHandler::confChanged()
 ControllerGraphicsItem::ControllerGraphicsItem(StepCore::Item* item, WorldModel* worldModel)
     : WidgetGraphicsItem(item, worldModel)
 {
-    Q_ASSERT(dynamic_cast<StepCore::Controller*>(_item) != NULL);
+    Q_ASSERT(dynamic_cast<StepCore::Controller*>(_item) != nullptr);
     setFlag(QGraphicsItem::ItemIsSelectable);
     setFlag(QGraphicsItem::ItemIsMovable);
     setAcceptHoverEvents(true);
@@ -1622,8 +1622,8 @@ void ControllerGraphicsItem::sliderReleased()
 
 void ControllerMenuHandler::populateMenu(QMenu* menu, KActionCollection* actions)
 {
-    _confUi = 0;
-    _confDialog = 0;
+    _confUi = nullptr;
+    _confDialog = nullptr;
     _confChanged = false;
 
     menu->addAction(QIcon::fromTheme(QStringLiteral("arrow-up")), i18n("Increase Value"), this, &ControllerMenuHandler::incTriggered);
@@ -1703,8 +1703,8 @@ void ControllerMenuHandler::configureController()
 
     _confDialog->exec();
 
-    delete _confDialog; _confDialog = 0;
-    delete _confUi; _confUi = 0;
+    delete _confDialog; _confDialog = nullptr;
+    delete _confUi; _confUi = nullptr;
 }
 
 void ControllerMenuHandler::confApply(QAbstractButton *button)
@@ -1775,7 +1775,7 @@ void ControllerMenuHandler::incTriggered()
 TracerGraphicsItem::TracerGraphicsItem(StepCore::Item* item, WorldModel* worldModel)
     : StepGraphicsItem(item, worldModel), _moving(false), _movingDelta(0,0)
 {
-    Q_ASSERT(dynamic_cast<StepCore::Tracer*>(_item) != NULL);
+    Q_ASSERT(dynamic_cast<StepCore::Tracer*>(_item) != nullptr);
     setFlag(QGraphicsItem::ItemIsSelectable);
     setFlag(QGraphicsItem::ItemIsMovable);
     setZValue(HANDLER_ZVALUE);
@@ -1903,7 +1903,7 @@ void TracerGraphicsItem::mouseSetPos(const QPointF&, const QPointF& diff, Moving
 {
     static_cast<WorldScene*>(scene())->snapItem(vectorToPoint(tracer()->position()) + diff,
                 WorldScene::SnapRigidBody | WorldScene::SnapParticle |
-                WorldScene::SnapSetLocalPosition, 0, movingState, _item);
+                WorldScene::SnapSetLocalPosition, nullptr, movingState, _item);
 }
 
 void TracerMenuHandler::populateMenu(QMenu* menu, KActionCollection* actions)

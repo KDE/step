@@ -25,7 +25,7 @@
 class UnitsCalcHelper
 {
 public:
-    UnitsCalcHelper(): q(0) {}
+    UnitsCalcHelper(): q(nullptr) {}
     ~UnitsCalcHelper() { delete q; }
     UnitsCalc* q;
 };

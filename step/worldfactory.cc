@@ -218,7 +218,7 @@ ItemCreator* WorldFactory::newItemCreator(const QString& className,
                     WorldModel* worldModel, WorldScene* worldScene) const
 {
     const StepCore::MetaObject* mObject = metaObject(className);
-    if(!mObject) return NULL;
+    if(!mObject) return nullptr;
     const ExtMetaObject *extMetaObject = _extMetaObjects.value(mObject, NULL);
     if(extMetaObject && extMetaObject->newItemCreator)
         return extMetaObject->newItemCreator(className, worldModel, worldScene);
@@ -230,7 +230,7 @@ StepGraphicsItem* WorldFactory::newGraphicsItem(StepCore::Item* item, WorldModel
     const ExtMetaObject *extMetaObject = _extMetaObjects.value(item->metaObject(), NULL);
     if(extMetaObject && extMetaObject->newGraphicsItem)
         return extMetaObject->newGraphicsItem(item, worldModel);
-    return NULL;
+    return nullptr;
 }
 
 ItemMenuHandler* WorldFactory::newItemMenuHandler(StepCore::Object* object, WorldModel* worldModel, QObject* parent) const

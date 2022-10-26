@@ -208,12 +208,12 @@ public:
 
     /** Get pointer to the property for X axis (or zero if not defined) */
     const MetaProperty* propertyXPtr() const {
-        return _objectX ? _objectX->metaObject()->property(_propertyX) : 0;
+        return _objectX ? _objectX->metaObject()->property(_propertyX) : nullptr;
     }
 
     /** Get pointer to the property for Y axis (or zero if not defined) */
     const MetaProperty* propertyYPtr() const {
-        return _objectY ? _objectY->metaObject()->property(_propertyY) : 0;
+        return _objectY ? _objectY->metaObject()->property(_propertyY) : nullptr;
     }
 
     /** Returns true if X-axis data source is valid */
@@ -224,7 +224,7 @@ public:
     bool isValid() const { return isValidX() && isValidY(); }
 
     /** Get current point value */
-    Vector2d currentValue() const { return currentValue(0); }
+    Vector2d currentValue() const { return currentValue(nullptr); }
 
     /** Get current point value
      *  \param ok Will indicate success of operation (if not null) */
@@ -232,7 +232,7 @@ public:
 
     /** Get current point value and add it to points list
      *  \param ok Will indicate success of operation (if not null) */
-    Vector2d recordPoint(bool* ok = 0);
+    Vector2d recordPoint(bool* ok = nullptr);
 
     /** Clear points list */
     void clearPoints() { _points.clear(); }
@@ -319,11 +319,11 @@ public:
 
     /** Get pointer to the observed property */
     const MetaProperty* propertyPtr() const {
-        return _object ? _object->metaObject()->property(_property) : 0;
+        return _object ? _object->metaObject()->property(_property) : nullptr;
     }
 
     /** Get value of the observed property */
-    double value() const { return value(0); }
+    double value() const { return value(nullptr); }
 
     /** Set value of the controlled property */
     virtual void setValue(double) {}
@@ -413,13 +413,13 @@ public:
 
     /** Get pointer to the controlled property */
     const MetaProperty* propertyPtr() const {
-        return _object ? _object->metaObject()->property(_property) : 0;
+        return _object ? _object->metaObject()->property(_property) : nullptr;
     }
 
     /** Get value of the controlled property */
-    double value() const { return value(0); }
+    double value() const { return value(nullptr); }
     /** Set value of the controlled property */
-    void setValue(double value) { setValue(value, 0); }
+    void setValue(double value) { setValue(value, nullptr); }
 
     /** Get value of the controlled property
      *  \param ok Will indicate success of operation (if not null) */
@@ -465,7 +465,7 @@ class Tracer: public Item, public Tool
 
 public:
     /** Constructs Spring */
-    explicit Tracer(Object* body = 0, const Vector2d& localPosition = Vector2d::Zero());
+    explicit Tracer(Object* body = nullptr, const Vector2d& localPosition = Vector2d::Zero());
 
     /** Get pointer to the first body */
     Object* body() const { return _body; }

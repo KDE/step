@@ -101,14 +101,14 @@ void TestMetaobject::testMetaObject()
 {
     /* Abstract class: can't create */
     QVERIFY( MetaObjectTestInterface::staticMetaObject()->isAbstract() );
-    QVERIFY( MetaObjectTestInterface::staticMetaObject()->newObject() == NULL );
+    QVERIFY( MetaObjectTestInterface::staticMetaObject()->newObject() == nullptr );
 
     /* Normal class: should create */
     QVERIFY( !MetaObjectTestObject::staticMetaObject()->isAbstract() );
     StepCore::Object* object = MetaObjectTestObject::staticMetaObject()->newObject();
-    QVERIFY( object != NULL);
+    QVERIFY( object != nullptr);
     MetaObjectTestObject* testObject = dynamic_cast<MetaObjectTestObject*>(object);
-    QVERIFY( testObject != NULL );
+    QVERIFY( testObject != nullptr );
     
     QVERIFY( object->metaObject() == MetaObjectTestObject::staticMetaObject() );
 
@@ -143,7 +143,7 @@ void TestMetaobject::testMetaObject()
     QVERIFY( metaObject->property("property2") == metaObject->property(2) );
     QVERIFY( metaObject->property("property3") == metaObject->property(3) );
     QVERIFY( metaObject->property("property4") == metaObject->property(4) );
-    QVERIFY( metaObject->property("notProperty") == NULL );
+    QVERIFY( metaObject->property("notProperty") == nullptr );
 
     const StepCore::MetaProperty* property;
 

@@ -44,9 +44,9 @@ void GenericEulerSolver::fini()
 int GenericEulerSolver::doCalcFn(double* t, const VectorXd* y,
                     const VectorXd* yvar, VectorXd* f, VectorXd* fvar)
 {
-    int ret = _function(*t, y->data(), yvar?yvar->data():0,
+    int ret = _function(*t, y->data(), yvar?yvar->data():nullptr,
                             f ? f->data() : _ydiff.data(),
-                            fvar?fvar->data():0, _params);
+                            fvar?fvar->data():nullptr, _params);
     //if(f != NULL) std::memcpy(f, _ydiff, _dimension*sizeof(*f));
     return ret;
 }
@@ -59,8 +59,8 @@ int GenericEulerSolver::doStep(double t, double stepSize, VectorXd* y, VectorXd*
     //int ret = _function(t, y, _ydiff, _params);
     //if(ret != OK) return ret;
 
-    VectorXd* ytempvar = yvar ? &_ytempvar : 0;
-    VectorXd* ydiffvar = yvar ? &_ydiffvar : 0;
+    VectorXd* ytempvar = yvar ? &_ytempvar : nullptr;
+    VectorXd* ydiffvar = yvar ? &_ydiffvar : nullptr;
 
     // Error estimation: integration with timestep = stepSize
     _yerr = - *y - stepSize*_ydiff;
@@ -71,8 +71,8 @@ int GenericEulerSolver::doStep(double t, double stepSize, VectorXd* y, VectorXd*
         *ytempvar = (yvar->array().sqrt().matrix()+(stepSize/2)*(*ydiffvar)).array().square().matrix();
     }
 
-    int ret = _function(t + stepSize/2, _ytemp.data(), ytempvar?ytempvar->data():0,
-                        _ydiff.data(), ydiffvar?ydiffvar->data():0, _params);
+    int ret = _function(t + stepSize/2, _ytemp.data(), ytempvar?ytempvar->data():nullptr,
+                        _ydiff.data(), ydiffvar?ydiffvar->data():nullptr, _params);
     if(ret != OK) return ret;
 
     for(int i=0; i<_dimension; ++i) {
@@ -93,8 +93,8 @@ int GenericEulerSolver::doStep(double t, double stepSize, VectorXd* y, VectorXd*
     if(_localErrorRatio > 1.1) return ToleranceError;
 
     // XXX
-    ret = _function(t + stepSize, _ytemp.data(), ytempvar?ytempvar->data():0,
-                    _ydiff.data(), ydiffvar?ydiffvar->data():0, _params);
+    ret = _function(t + stepSize, _ytemp.data(), ytempvar?ytempvar->data():nullptr,
+                    _ydiff.data(), ydiffvar?ydiffvar->data():nullptr, _params);
     if(ret != OK) return ret;
 
     *y = _ytemp;
@@ -127,9 +127,9 @@ int GenericEulerSolver::doEvolve(double* t, double t1, VectorXd* y, VectorXd* yv
     const double S = 0.9;
     int result;
 
-    VectorXd* ydiffvar = yvar ? &_ydiffvar : 0;
+    VectorXd* ydiffvar = yvar ? &_ydiffvar : nullptr;
 
-    result = _function(*t, y->data(), yvar?yvar->data():0, _ydiff.data(), ydiffvar?ydiffvar->data():0, _params);
+    result = _function(*t, y->data(), yvar?yvar->data():nullptr, _ydiff.data(), ydiffvar?ydiffvar->data():nullptr, _params);
     if(result != OK) return result;
 
     while(*t < t1) {
@@ -154,8 +154,8 @@ int GenericEulerSolver::doEvolve(double* t, double t1, VectorXd* y, VectorXd* yv
                 if(newStepSize < t1 - t11) _stepSize = newStepSize;
             }
             if(result != OK) {
-                result = _function(*t, y->data(), yvar?yvar->data():0, _ydiff.data(),
-                                   ydiffvar?ydiffvar->data():0, _params);
+                result = _function(*t, y->data(), yvar?yvar->data():nullptr, _ydiff.data(),
+                                   ydiffvar?ydiffvar->data():nullptr, _params);
                 if(result != OK) return result;
                 continue;
             }

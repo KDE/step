@@ -74,7 +74,7 @@ public:
     QLayoutItem* takeAt(int index) override {
         resetCache();
         if (index >= 0 && index < itemList.size()) return itemList.takeAt(index);
-        else return 0;
+        else return nullptr;
     }
 
     Qt::Orientations expandingDirections() const override { return Qt::Vertical; }
@@ -186,7 +186,7 @@ protected:
 };
 
 ItemPalette::ItemPalette(WorldModel* worldModel, QWidget* parent)
-    : QDockWidget(i18n("Palette"), parent), _worldModel(worldModel), _widget(0)
+    : QDockWidget(i18n("Palette"), parent), _worldModel(worldModel), _widget(nullptr)
 {
     setAllowedAreas(Qt::LeftDockWidgetArea | Qt::RightDockWidgetArea);
     //setFeatures(QDockWidget::DockWidgetMovable | QDockWidget::DockWidgetFloatable);

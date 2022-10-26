@@ -66,7 +66,7 @@ struct ConstraintsInfo
     bool               collisionFlag;       ///< True if there is a collision to be resolved
 
     ConstraintsInfo(): variablesCount(0), constraintsCount(0), contactsCount(0),
-                       position(0,0), velocity(0,0), acceleration(0,0) {}
+                       position(nullptr,0), velocity(nullptr,0), acceleration(nullptr,0) {}
 
     /** Set variablesCount, constraintsCount and reset contactsCount,
      *  resize all arrays appropriately */

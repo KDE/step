@@ -147,8 +147,8 @@ Note::Note(const Vector2d &position, const Vector2d &size, const QString &text)
 
 Graph::Graph(const Vector2d &position, const Vector2d &size)
     : _position(position), _size(size),
-      _objectX(0), _propertyX(), _indexX(-1),
-      _objectY(0), _propertyY(), _indexY(-1),
+      _objectX(nullptr), _propertyX(), _indexX(-1),
+      _objectY(nullptr), _propertyY(), _indexY(-1),
       _autoLimitsX(true), _autoLimitsY(true),
       _limitsX(0,1), _limitsY(0,1),
       _showLines(true), _showPoints(false)
@@ -243,7 +243,7 @@ QString Graph::unitsY() const
 
 Meter::Meter(const Vector2d &position, const Vector2d &size)
     : _position(position), _size(size),
-      _object(0), _property(), _index(-1),
+      _object(nullptr), _property(), _index(-1),
       _digits(7)
 {
 }
@@ -301,7 +301,7 @@ void Meter::setWorld(World* world)
 
 Controller::Controller(const Vector2d &position, const Vector2d &size)
     : _position(position), _size(size),
-      _object(0), _property(), _index(-1),
+      _object(nullptr), _property(), _index(-1),
       _limits(-1,1), _increment(0.1)
 {
 }
@@ -331,7 +331,7 @@ double Controller::value(bool* ok) const
     return 0;
 }
 
-void Controller::setValue(double value, bool* ok = 0)
+void Controller::setValue(double value, bool* ok = nullptr)
 {
     const MetaProperty* pr = propertyPtr();
 
@@ -386,18 +386,18 @@ void Tracer::setBody(Object* body)
         if(body->metaObject()->inherits<Particle>()) {
             _body = body;
             _p = static_cast<Particle*>(body);
-            _r = NULL;
+            _r = nullptr;
             return;
         } else if(body->metaObject()->inherits<RigidBody>()) {
             _body = body;
-            _p = NULL;
+            _p = nullptr;
             _r = static_cast<RigidBody*>(body);
             return;
         }
     }
-    _body = NULL;
-    _p = NULL;
-    _r = NULL;
+    _body = nullptr;
+    _p = nullptr;
+    _r = nullptr;
 }
 
 Vector2d Tracer::position() const

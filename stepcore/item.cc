@@ -42,7 +42,7 @@ Item& Item::operator=(const Item& item)
             item._objectErrors->metaObject()->cloneObject(*item._objectErrors) );
         _objectErrors->setOwner(this);
     } else {
-        _objectErrors = NULL;
+        _objectErrors = nullptr;
     }
 
     _color = item._color;

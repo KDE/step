@@ -40,7 +40,7 @@ bool LinearMotorCreator::sceneEvent(QEvent* event)
 
         _worldModel->simulationPause();
         _worldModel->beginMacro(i18n("Create %1", _worldModel->newItemName(_className)));
-        _item = _worldModel->createItem(className()); Q_ASSERT(_item != NULL);
+        _item = _worldModel->createItem(className()); Q_ASSERT(_item != nullptr);
 
         _worldModel->setProperty(_item, QStringLiteral("localPosition"), vpos);
         _worldModel->addItem(_item);
@@ -77,7 +77,7 @@ void LinearMotorCreator::tryAttach(const QPointF& pos)
 LinearMotorGraphicsItem::LinearMotorGraphicsItem(StepCore::Item* item, WorldModel* worldModel)
     : StepGraphicsItem(item, worldModel), _moving(false)
 {
-    Q_ASSERT(dynamic_cast<StepCore::LinearMotor*>(_item) != NULL);
+    Q_ASSERT(dynamic_cast<StepCore::LinearMotor*>(_item) != nullptr);
     setFlag(QGraphicsItem::ItemIsSelectable);
     setFlag(QGraphicsItem::ItemIsMovable);
     setZValue(HANDLER_ZVALUE);
@@ -221,7 +221,7 @@ bool CircularMotorCreator::sceneEvent(QEvent* event)
 
         _worldModel->simulationPause();
         _worldModel->beginMacro(i18n("Create %1", _worldModel->newItemName(_className)));
-        _item = _worldModel->createItem(className()); Q_ASSERT(_item != NULL);
+        _item = _worldModel->createItem(className()); Q_ASSERT(_item != nullptr);
 
         _worldModel->setProperty(_item, QStringLiteral("localPosition"), vpos);
         _worldModel->addItem(_item);
@@ -256,7 +256,7 @@ void CircularMotorCreator::tryAttach(const QPointF& pos)
 CircularMotorGraphicsItem::CircularMotorGraphicsItem(StepCore::Item* item, WorldModel* worldModel)
     : StepGraphicsItem(item, worldModel), _moving(false)
 {
-    Q_ASSERT(dynamic_cast<StepCore::CircularMotor*>(_item) != NULL);
+    Q_ASSERT(dynamic_cast<StepCore::CircularMotor*>(_item) != nullptr);
     setFlag(QGraphicsItem::ItemIsSelectable);
     setFlag(QGraphicsItem::ItemIsMovable);
     _torqueHandler = new CircularArrowHandlerGraphicsItem(item, worldModel,  this, ARROW_RADIUS,

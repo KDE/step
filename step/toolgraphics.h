@@ -67,7 +67,7 @@ class WidgetVertexHandlerGraphicsItem: public OnHoverHandlerGraphicsItem
 public:
     WidgetVertexHandlerGraphicsItem(StepCore::Item* item, WorldModel* worldModel,
                                         QGraphicsItem* parent, int vertexNum)
-        : OnHoverHandlerGraphicsItem(item, worldModel, parent, NULL, NULL, vertexNum) {}
+        : OnHoverHandlerGraphicsItem(item, worldModel, parent, nullptr, nullptr, vertexNum) {}
 
 
 protected:
@@ -111,7 +111,7 @@ class NoteTextEdit: public KTextEdit
     Q_OBJECT
 
 public:
-    explicit NoteTextEdit(NoteGraphicsItem* noteItem, QWidget* parent = 0)
+    explicit NoteTextEdit(NoteGraphicsItem* noteItem, QWidget* parent = nullptr)
         : KTextEdit(parent), _noteItem(noteItem), _mousePressPoint(-1,-1) {}
     QString emptyNotice() const;
 
@@ -189,10 +189,10 @@ class DataSourceWidget: public QWidget
     Q_OBJECT
 
 public:
-    explicit DataSourceWidget(QWidget* parent = 0);
+    explicit DataSourceWidget(QWidget* parent = nullptr);
 
     void setSkipReadOnly(bool skipReadOnly) { _skipReadOnly = skipReadOnly; }
-    void setDataSource(WorldModel* worldModel, StepCore::Object* object = NULL,
+    void setDataSource(WorldModel* worldModel, StepCore::Object* object = nullptr,
                             const QString& property = QString(), int index = 0);
 
     StepCore::Object* dataObject() const;
@@ -381,7 +381,7 @@ public:
     TracerCreator(const QString& className, WorldModel* worldModel, WorldScene* worldScene)
         : AttachableItemCreator(className, worldModel, worldScene,
                             WorldScene::SnapRigidBody | WorldScene::SnapParticle |
-                            WorldScene::SnapSetLocalPosition, 0) {}
+                            WorldScene::SnapSetLocalPosition, nullptr) {}
 };
 
 class TracerGraphicsItem: public StepGraphicsItem

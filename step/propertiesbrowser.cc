@@ -45,7 +45,7 @@
 class PropertiesBrowserModel: public QAbstractItemModel
 {
 public:
-    PropertiesBrowserModel(WorldModel* worldModel, QObject* parent = 0);
+    PropertiesBrowserModel(WorldModel* worldModel, QObject* parent = nullptr);
 
     QVariant data(const QModelIndex &index, int role) const override;
     QModelIndex index(int row, int column, const QModelIndex &parent = QModelIndex()) const override;
@@ -73,7 +73,7 @@ protected:
 };
 
 PropertiesBrowserModel::PropertiesBrowserModel(WorldModel* worldModel, QObject* parent)
-    : QAbstractItemModel(parent), _worldModel(worldModel), _object(NULL)
+    : QAbstractItemModel(parent), _worldModel(worldModel), _object(nullptr)
 {
     _solverChoices = new ChoicesModel(this);
 
@@ -95,7 +95,7 @@ void PropertiesBrowserModel::setObject(StepCore::Object* object)
     _object = object;
 
     _subRows.clear();
-    if(_object != NULL) {
+    if(_object != nullptr) {
         _worldModel->simulationPause();
 
         _item = dynamic_cast<StepCore::Item*>(_object);
@@ -103,7 +103,7 @@ void PropertiesBrowserModel::setObject(StepCore::Object* object)
             if(_item->world()->errorsCalculation()) _objectErrors = _item->objectErrors();
             else _objectErrors = _item->tryGetObjectErrors();
         } else {
-            _objectErrors = NULL;
+            _objectErrors = nullptr;
         }
 
         for(int i=0; i<_object->metaObject()->propertyCount(); ++i) {
@@ -119,7 +119,7 @@ void PropertiesBrowserModel::setObject(StepCore::Object* object)
 
 void PropertiesBrowserModel::emitDataChanged(bool dynamicOnly)
 {
-    if(_object == NULL) return;
+    if(_object == nullptr) return;
 
     _worldModel->simulationPause();
 
@@ -128,7 +128,7 @@ void PropertiesBrowserModel::emitDataChanged(bool dynamicOnly)
         if(_item->world()->errorsCalculation()) _objectErrors = _item->objectErrors();
         else _objectErrors = _item->tryGetObjectErrors();
     } else {
-        _objectErrors = NULL;
+        _objectErrors = nullptr;
     }
 
     for(int i=0; i<_object->metaObject()->propertyCount(); i++) {
@@ -154,7 +154,7 @@ void PropertiesBrowserModel::emitDataChanged(bool dynamicOnly)
 
 QVariant PropertiesBrowserModel::data(const QModelIndex &index, int role) const
 {
-    if(_object == NULL) return QVariant();
+    if(_object == nullptr) return QVariant();
 
     if(!index.isValid()) return QVariant();
 
@@ -175,7 +175,7 @@ QVariant PropertiesBrowserModel::data(const QModelIndex &index, int role) const
                     p->userTypeId() == qMetaTypeId<StepCore::Vector2d>() ||
                     p->userTypeId() == qMetaTypeId<StepCore::Vector2dList >()) {
                     return _worldModel->formatProperty(_object, _objectErrors, p,
-                                role == Qt::EditRole ? WorldModel::FormatEditable : WorldModel::FormatFlags(0));
+                                role == Qt::EditRole ? WorldModel::FormatEditable : WorldModel::FormatFlags());
                 } else if(p->userTypeId() == qMetaTypeId<StepCore::Object*>()) {
                     return _worldModel->formatName(p->readVariant(_object).value<StepCore::Object*>());
                 } else if(p->userTypeId() == qMetaTypeId<StepCore::Color>()) {
@@ -265,7 +265,7 @@ QVariant PropertiesBrowserModel::data(const QModelIndex &index, int role) const
 
 bool PropertiesBrowserModel::setData(const QModelIndex &index, const QVariant &value, int role)
 {
-    if(_object == NULL) return false;
+    if(_object == nullptr) return false;
 
     if(index.isValid() && index.column() == 1 && role == Qt::EditRole) {
         _worldModel->simulationPause();
@@ -278,14 +278,14 @@ bool PropertiesBrowserModel::setData(const QModelIndex &index, const QVariant &v
                     beginResetModel();
                     _worldModel->beginMacro(i18n("Change solver type"));
                     _object = _worldModel->newSolver(value.toString() + "Solver");
-                    Q_ASSERT(_object != NULL);
+                    Q_ASSERT(_object != nullptr);
                     _worldModel->endMacro();
                     endResetModel();
                 }
             } else {
                 const StepCore::MetaProperty* p = _object->metaObject()->property(index.row());
                 const StepCore::MetaProperty* pv = _objectErrors ?
-                        _objectErrors->metaObject()->property(p->name() + "Variance") : NULL;
+                        _objectErrors->metaObject()->property(p->name() + "Variance") : nullptr;
 
                 if(p->userTypeId() == qMetaTypeId<StepCore::Object*>()) {
                     Q_ASSERT(!pv);
@@ -425,7 +425,7 @@ bool PropertiesBrowserModel::setData(const QModelIndex &index, const QVariant &v
 
 QModelIndex PropertiesBrowserModel::index(int row, int column, const QModelIndex &parent) const
 {
-    if(_object == NULL) return QModelIndex();
+    if(_object == nullptr) return QModelIndex();
     if(!parent.isValid()) return createIndex(row, column);
 
     if(parent.internalId() == 0 && _subRows[parent.row()] != 0)
@@ -443,7 +443,7 @@ QModelIndex PropertiesBrowserModel::parent(const QModelIndex& index) const
 
 int PropertiesBrowserModel::rowCount(const QModelIndex &parent) const
 {
-    if(_object == NULL) return 0;
+    if(_object == nullptr) return 0;
     else if(parent.isValid()) {
         if(parent.column() == 0 && parent.internalId() == 0) return _subRows[parent.row()];
         return 0;
@@ -592,7 +592,7 @@ void PropertiesBrowserDelegate::editorActivated()
 class PropertiesBrowserView: public QTreeView
 {
 public:
-    PropertiesBrowserView(QWidget* parent = 0);
+    PropertiesBrowserView(QWidget* parent = nullptr);
 protected:
     void changeEvent(QEvent* event) override;
     void mousePressEvent(QMouseEvent* event) override;
@@ -718,7 +718,7 @@ PropertiesBrowser::PropertiesBrowser(WorldModel* worldModel, QWidget* parent)
 
 void PropertiesBrowser::worldModelReset()
 {
-    _propertiesBrowserModel->setObject(NULL);
+    _propertiesBrowserModel->setObject(nullptr);
 }
 
 void PropertiesBrowser::worldCurrentChanged(const QModelIndex& current, const QModelIndex& /*previous*/)
@@ -743,7 +743,7 @@ void PropertiesBrowser::worldRowsRemoved(const QModelIndex& parent, int start, i
     Q_UNUSED(start)
     Q_UNUSED(end)
     if(!_worldModel->objectIndex(_propertiesBrowserModel->object()).isValid())
-        _propertiesBrowserModel->setObject(NULL);
+        _propertiesBrowserModel->setObject(nullptr);
 }
 
 void PropertiesBrowser::currentChanged(const QModelIndex& current, const QModelIndex& /*previous*/)

@@ -29,7 +29,7 @@
 AnchorGraphicsItem::AnchorGraphicsItem(StepCore::Item* item, WorldModel* worldModel)
     : StepGraphicsItem(item, worldModel)
 {
-    Q_ASSERT(dynamic_cast<StepCore::Anchor*>(_item) != NULL);
+    Q_ASSERT(dynamic_cast<StepCore::Anchor*>(_item) != nullptr);
     setFlag(QGraphicsItem::ItemIsSelectable);
     setFlag(QGraphicsItem::ItemIsMovable);
     setZValue(JOINT_ZVALUE);
@@ -53,7 +53,7 @@ void AnchorGraphicsItem::mouseSetPos(const QPointF& pos, const QPointF&, MovingS
 {
     static_cast<WorldScene*>(scene())->snapItem(pos,
                 WorldScene::SnapRigidBody | WorldScene::SnapParticle | WorldScene::SnapOnCenter |
-                WorldScene::SnapSetPosition | WorldScene::SnapSetAngle, 0, movingState, _item);
+                WorldScene::SnapSetPosition | WorldScene::SnapSetAngle, nullptr, movingState, _item);
 }
 
 void AnchorGraphicsItem::paint(QPainter* painter, const QStyleOptionGraphicsItem* /*option*/, QWidget* /*widget*/)
@@ -96,7 +96,7 @@ void AnchorGraphicsItem::worldDataChanged(bool dynamicOnly)
 PinGraphicsItem::PinGraphicsItem(StepCore::Item* item, WorldModel* worldModel)
     : StepGraphicsItem(item, worldModel)
 {
-    Q_ASSERT(dynamic_cast<StepCore::Pin*>(_item) != NULL);
+    Q_ASSERT(dynamic_cast<StepCore::Pin*>(_item) != nullptr);
     setFlag(QGraphicsItem::ItemIsSelectable);
     setFlag(QGraphicsItem::ItemIsMovable);
     setZValue(JOINT_ZVALUE);
@@ -120,7 +120,7 @@ void PinGraphicsItem::mouseSetPos(const QPointF& pos, const QPointF&, MovingStat
 {
     static_cast<WorldScene*>(scene())->snapItem(pos,
                 WorldScene::SnapRigidBody | WorldScene::SnapSetPosition |
-                WorldScene::SnapSetLocalPosition, 0, movingState, _item);
+                WorldScene::SnapSetLocalPosition, nullptr, movingState, _item);
 }
 
 void PinGraphicsItem::paint(QPainter* painter, const QStyleOptionGraphicsItem* /*option*/, QWidget* /*widget*/)
@@ -189,7 +189,7 @@ void StickHandlerGraphicsItem::mouseSetPos(const QPointF& pos, const QPointF&, M
 {
     static_cast<WorldScene*>(scene())->snapItem(parentItem()->mapToParent(pos),
                     WorldScene::SnapParticle | WorldScene::SnapRigidBody |
-                    WorldScene::SnapSetLocalPosition, 0, movingState, _item, _num);
+                    WorldScene::SnapSetLocalPosition, nullptr, movingState, _item, _num);
 
     StepCore::Stick* stick = static_cast<StepCore::Stick*>(_item);
     _worldModel->setProperty(_item, QStringLiteral("restLength"), 
@@ -200,7 +200,7 @@ void StickHandlerGraphicsItem::mouseSetPos(const QPointF& pos, const QPointF&, M
 StickGraphicsItem::StickGraphicsItem(StepCore::Item* item, WorldModel* worldModel)
     : StepGraphicsItem(item, worldModel)
 {
-    Q_ASSERT(dynamic_cast<StepCore::Stick*>(_item) != NULL);
+    Q_ASSERT(dynamic_cast<StepCore::Stick*>(_item) != nullptr);
     setFlag(QGraphicsItem::ItemIsSelectable);
     setFlag(QGraphicsItem::ItemIsMovable);
     setZValue(JOINT_ZVALUE);
@@ -331,7 +331,7 @@ void StickGraphicsItem::mouseSetPos(const QPointF& /*pos*/, const QPointF& diff,
         Q_ASSERT(stick()->body1()->metaObject()->inherits<StepCore::Item>());
         StepGraphicsItem* gItem = static_cast<WorldScene*>(
             scene())->graphicsFromItem(static_cast<StepCore::Item*>(stick()->body1()));
-        Q_ASSERT(gItem != NULL);
+        Q_ASSERT(gItem != nullptr);
         if(!gItem->isSelected()) {
             _worldModel->setProperty(_item, QStringLiteral("localPosition1"),
                             _item->metaObject()->property(QStringLiteral("position1"))->readVariant(_item));
@@ -347,7 +347,7 @@ void StickGraphicsItem::mouseSetPos(const QPointF& /*pos*/, const QPointF& diff,
         Q_ASSERT(stick()->body2()->metaObject()->inherits<StepCore::Item>());
         StepGraphicsItem* gItem = static_cast<WorldScene*>(
             scene())->graphicsFromItem(static_cast<StepCore::Item*>(stick()->body2()));
-        Q_ASSERT(gItem != NULL);
+        Q_ASSERT(gItem != nullptr);
         if(!gItem->isSelected()) {
             _worldModel->setProperty(_item, QStringLiteral("localPosition2"),
                             _item->metaObject()->property(QStringLiteral("position2"))->readVariant(_item));

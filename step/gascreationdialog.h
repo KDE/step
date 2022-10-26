@@ -38,7 +38,7 @@ class GasCreationDialog: public QDialog
     
 public:
     GasCreationDialog(GasMenuHandler* handler, StepCore::Gas *gas,
-		      QWidget *parent=0);
+		      QWidget *parent=nullptr);
 
     Ui::WidgetCreateGasParticles *ui();
 

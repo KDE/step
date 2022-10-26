@@ -37,7 +37,7 @@
 RigidBodyGraphicsItem::RigidBodyGraphicsItem(StepCore::Item* item, WorldModel* worldModel)
     : StepGraphicsItem(item, worldModel)
 {
-    Q_ASSERT(dynamic_cast<StepCore::RigidBody*>(_item) != NULL);
+    Q_ASSERT(dynamic_cast<StepCore::RigidBody*>(_item) != nullptr);
     setFlag(QGraphicsItem::ItemIsSelectable);
     setFlag(QGraphicsItem::ItemIsMovable);
     setAcceptHoverEvents(true);
@@ -171,7 +171,7 @@ bool DiskCreator::sceneEvent(QEvent* event)
 
         _worldModel->simulationPause();
         _worldModel->beginMacro(i18n("Create %1", _worldModel->newItemName(_className)));
-        _item = _worldModel->createItem(_className); Q_ASSERT(_item != NULL);
+        _item = _worldModel->createItem(_className); Q_ASSERT(_item != nullptr);
         _worldModel->setProperty(_item, QStringLiteral("position"), vpos);
         _worldModel->setProperty(_item, QStringLiteral("radius"), QVariant::fromValue(0.0));
         _worldModel->addItem(_item);
@@ -233,7 +233,7 @@ void DiskVertexHandlerGraphicsItem::setValue(const StepCore::Vector2d& value)
 DiskGraphicsItem::DiskGraphicsItem(StepCore::Item* item, WorldModel* worldModel)
     : RigidBodyGraphicsItem(item, worldModel)
 {
-    Q_ASSERT(dynamic_cast<StepCore::Disk*>(_item) != NULL);
+    Q_ASSERT(dynamic_cast<StepCore::Disk*>(_item) != nullptr);
 }
 
 inline StepCore::Disk* DiskGraphicsItem::disk() const
@@ -284,7 +284,7 @@ OnHoverHandlerGraphicsItem* DiskGraphicsItem::createOnHoverHandler(const QPointF
     if(num >= 0)
         return new DiskVertexHandlerGraphicsItem(_item, _worldModel, this, num);
 
-    return 0;
+    return nullptr;
 }
 
 /////////////////////////////////////////////////////////////////////////////////////////
@@ -305,7 +305,7 @@ bool BoxCreator::sceneEvent(QEvent* event)
 
         _worldModel->simulationPause();
         _worldModel->beginMacro(i18n("Create %1", _worldModel->newItemName(_className)));
-        _item = _worldModel->createItem(_className); Q_ASSERT(_item != NULL);
+        _item = _worldModel->createItem(_className); Q_ASSERT(_item != nullptr);
         _worldModel->setProperty(_item, QStringLiteral("position"), vpos);
         _worldModel->setProperty(_item, QStringLiteral("size"), QVariant::fromValue(StepCore::Vector2d::Zero().eval()));
         _worldModel->addItem(_item);
@@ -450,7 +450,7 @@ bool PolygonCreator::sceneEvent(QEvent* event)
 
         _worldModel->simulationPause();
         _worldModel->beginMacro(i18n("Create %1", _worldModel->newItemName(_className)));
-        _item = _worldModel->createItem(_className); Q_ASSERT(_item != NULL);
+        _item = _worldModel->createItem(_className); Q_ASSERT(_item != nullptr);
         _worldModel->setProperty(_item, QStringLiteral("position"), vpos);
         _worldModel->setProperty(_item, QStringLiteral("vertexes"), QStringLiteral("(0,0)"));
         _worldModel->addItem(_item);
@@ -513,7 +513,7 @@ bool PolygonCreator::sceneEvent(QEvent* event)
 BasePolygonGraphicsItem::BasePolygonGraphicsItem(StepCore::Item* item, WorldModel* worldModel)
     : RigidBodyGraphicsItem(item, worldModel)
 {
-    Q_ASSERT(dynamic_cast<StepCore::BasePolygon*>(_item) != NULL);
+    Q_ASSERT(dynamic_cast<StepCore::BasePolygon*>(_item) != nullptr);
 }
 
 inline StepCore::BasePolygon* BasePolygonGraphicsItem::basePolygon() const
@@ -625,7 +625,7 @@ OnHoverHandlerGraphicsItem* BoxGraphicsItem::createOnHoverHandler(const QPointF&
     if(num >= 0)
         return new BoxVertexHandlerGraphicsItem(_item, _worldModel, this, num);
 
-    return 0;
+    return nullptr;
 }
 
 /////////////////////////////////////////////////////////////////////////////////////////
@@ -661,7 +661,7 @@ OnHoverHandlerGraphicsItem* PolygonGraphicsItem::createOnHoverHandler(const QPoi
     if(num >= 0)
         return new PolygonVertexHandlerGraphicsItem(_item, _worldModel, this, num);
 
-    return 0;
+    return nullptr;
 }
 
 inline StepCore::Polygon* PolygonGraphicsItem::polygon() const

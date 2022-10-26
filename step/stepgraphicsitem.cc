@@ -58,7 +58,7 @@ StepGraphicsItem::StepGraphicsItem(StepCore::Item* item, WorldModel* worldModel,
     , _isMouseOverItem(false)
     , _isSelected(false)
     , _isMoving(false)
-    , _onHoverHandler(0)
+    , _onHoverHandler(nullptr)
     , _onHoverHandlerTimer(false)
 {
     // XXX: use persistent indexes here and in propertiesbrowser
@@ -154,7 +154,7 @@ void StepGraphicsItem::drawCircularArrow(QPainter* painter, double angle, double
 void StepGraphicsItem::mouseSetPos(const QPointF& pos, const QPointF&, MovingState)
 {
     const StepCore::MetaProperty* property = _item->metaObject()->property(QStringLiteral("position"));
-    if(property != NULL) {
+    if(property != nullptr) {
         _worldModel->simulationPause();
         _worldModel->setProperty(_item, property,
                                 QVariant::fromValue( pointToVector(pos) ));

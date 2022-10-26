@@ -44,7 +44,7 @@ class LinearMotor : public Force
 
 public:
     /** Constructs LinearMotor */
-    explicit LinearMotor(Object* body = 0, const Vector2d& localPosition = Vector2d::Zero(),
+    explicit LinearMotor(Object* body = nullptr, const Vector2d& localPosition = Vector2d::Zero(),
                         const Vector2d &forceValue = Vector2d::Zero());
 
     void calcForce(bool calcVariances) override;
@@ -90,7 +90,7 @@ class CircularMotor : public Force
 
 public:
     /** Constructs CircularMotor */
-    explicit CircularMotor(Object* body = 0, const Vector2d& localPosition = Vector2d::Zero(),
+    explicit CircularMotor(Object* body = nullptr, const Vector2d& localPosition = Vector2d::Zero(),
                                             double torqueValue = 0);
 
     void calcForce(bool calcVariances) override;

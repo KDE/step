@@ -78,7 +78,7 @@ void StepStreamWriter::saveProperties(const Object* obj, int first)
 
 void StepStreamWriter::saveObject(const QString& tag, const Object* obj)
 {
-    Q_ASSERT(obj != NULL);
+    Q_ASSERT(obj != nullptr);
     
     _writer.writeStartElement(tag);
     _writer.writeAttribute(QStringLiteral("class"), obj->metaObject()->className());
@@ -245,16 +245,16 @@ Item* StepDomDocument::createItem(const QDomElement& element)
     QScopedPointer<Item> item(_factory->newItem(className));
     if (!item) {
         _errorMsg = QObject::tr("Unknown item type \"%1\"").arg(className);
-        return 0;
+        return nullptr;
     }
     
-    if (!parseObject(item.data(), element)) return 0;
+    if (!parseObject(item.data(), element)) return nullptr;
     ObjectErrors *objErrors = item->objectErrors();
-    if (objErrors && !parseProperties(objErrors, element)) return 0;
+    if (objErrors && !parseProperties(objErrors, element)) return nullptr;
     
     if (item->metaObject()->inherits("ItemGroup")) {
         ItemGroup *group = static_cast<ItemGroup*>(item.data());
-        if (!parseItems(group, element)) return 0;
+        if (!parseItems(group, element)) return nullptr;
     }
 
     return item.take();
@@ -266,10 +266,10 @@ Solver* StepDomDocument::createSolver(const QDomElement& element)
     QScopedPointer<Solver> solver(_factory->newSolver(className));
     if (!solver) {
         _errorMsg = QObject::tr("Unknown solver type \"%1\"").arg(className);
-        return 0;
+        return nullptr;
     }
     
-    if (!parseObject(solver.data(), element)) return 0;
+    if (!parseObject(solver.data(), element)) return nullptr;
     
     return solver.take();
 }
@@ -280,10 +280,10 @@ CollisionSolver* StepDomDocument::createCollisionSolver(const QDomElement& eleme
     QScopedPointer<CollisionSolver> solver(_factory->newCollisionSolver(className));
     if (!solver) {
         _errorMsg = QObject::tr("Unknown collisionSolver type \"%1\"").arg(className);
-        return 0;
+        return nullptr;
     }
     
-    if (!parseObject(solver.data(), element)) return 0;
+    if (!parseObject(solver.data(), element)) return nullptr;
     
     return solver.take();
 }
@@ -294,10 +294,10 @@ ConstraintSolver* StepDomDocument::createConstraintSolver(const QDomElement& ele
     QScopedPointer<ConstraintSolver> solver(_factory->newConstraintSolver(className));
     if (!solver) {
         _errorMsg = QObject::tr("Unknown constraint solver type \"%1\"").arg(className);
-        return 0;
+        return nullptr;
     }
     
-    if (!parseObject(solver.data(), element)) return 0;
+    if (!parseObject(solver.data(), element)) return nullptr;
     
     return solver.take();
 }
@@ -366,7 +366,7 @@ bool StepDomDocument::parseProperties(Object* object, const QDomElement& parent)
 bool StepDomDocument::connectLinks()
 {
     foreach (const Link& link, _links) {
-        QVariant target = QVariant::fromValue(_ids.value(link.second, 0));
+        QVariant target = QVariant::fromValue(_ids.value(link.second, nullptr));
         if (!link.first.second->writeVariant(link.first.first, target)) {
             _errorMsg = QObject::tr("Property \"%1\" of \"%2\" has illegal value")
                 .arg(link.first.second->name(), link.first.first->metaObject()->className());

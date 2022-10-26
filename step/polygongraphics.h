@@ -78,7 +78,7 @@ class DiskVertexHandlerGraphicsItem: public OnHoverHandlerGraphicsItem
 public:
     DiskVertexHandlerGraphicsItem(StepCore::Item* item, WorldModel* worldModel,
                                         QGraphicsItem* parent, int vertexNum)
-        : OnHoverHandlerGraphicsItem(item, worldModel, parent, NULL, NULL, vertexNum) {}
+        : OnHoverHandlerGraphicsItem(item, worldModel, parent, nullptr, nullptr, vertexNum) {}
 
 protected:
     StepCore::Disk* disk() const;
@@ -133,7 +133,7 @@ class BoxVertexHandlerGraphicsItem: public OnHoverHandlerGraphicsItem
 public:
     BoxVertexHandlerGraphicsItem(StepCore::Item* item, WorldModel* worldModel,
                                         QGraphicsItem* parent, int vertexNum)
-        : OnHoverHandlerGraphicsItem(item, worldModel, parent, NULL, NULL, vertexNum) {}
+        : OnHoverHandlerGraphicsItem(item, worldModel, parent, nullptr, nullptr, vertexNum) {}
 
 protected:
     StepCore::Box* box() const;
@@ -173,7 +173,7 @@ class PolygonVertexHandlerGraphicsItem: public OnHoverHandlerGraphicsItem
 public:
     PolygonVertexHandlerGraphicsItem(StepCore::Item* item, WorldModel* worldModel,
                                         QGraphicsItem* parent, int vertexNum)
-        : OnHoverHandlerGraphicsItem(item, worldModel, parent, NULL, NULL, vertexNum) {}
+        : OnHoverHandlerGraphicsItem(item, worldModel, parent, nullptr, nullptr, vertexNum) {}
 
 protected:
     StepCore::Polygon* polygon() const;

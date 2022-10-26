@@ -47,7 +47,7 @@ class ObjectErrors: public Object
 
 public:
     /** Constructs ObjectErrors */
-    explicit ObjectErrors(Item* owner = NULL): _owner(owner) {}
+    explicit ObjectErrors(Item* owner = nullptr): _owner(owner) {}
 
     /** Get the owner of ObjectErrors */
     Item* owner() const { return _owner; }

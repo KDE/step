@@ -42,7 +42,7 @@ class GravitationForceErrors: public ObjectErrors
 
 public:
     /** Constructs GravitationForceErrors */
-    explicit GravitationForceErrors(Item* owner = NULL)
+    explicit GravitationForceErrors(Item* owner = nullptr)
         : ObjectErrors(owner), _gravitationConstVariance(0) {}
 
     /** Get owner as GravitationForce */
@@ -111,7 +111,7 @@ class WeightForceErrors: public ObjectErrors
 
 public:
     /** Constructs WeightForceErrors */
-    explicit WeightForceErrors(Item* owner = NULL)
+    explicit WeightForceErrors(Item* owner = nullptr)
         : ObjectErrors(owner), _weightConstVariance(0) {}
 
     /** Get owner as WeightForce */

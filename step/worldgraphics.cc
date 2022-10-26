@@ -68,9 +68,9 @@ bool ItemCreator::sceneEvent(QEvent* event)
         _worldModel->simulationPause();
 
         _worldModel->beginMacro(i18n("Create %1", _worldModel->newItemName(_className)));
-        _item = _worldModel->createItem(_className); Q_ASSERT(_item != NULL);
+        _item = _worldModel->createItem(_className); Q_ASSERT(_item != nullptr);
         const StepCore::MetaProperty* property = _item->metaObject()->property(QStringLiteral("position"));
-        if(property != NULL) {
+        if(property != nullptr) {
             QGraphicsSceneMouseEvent* mouseEvent = static_cast<QGraphicsSceneMouseEvent*>(event);
             QPointF pos = mouseEvent->scenePos();
             QVariant vpos = QVariant::fromValue(StepGraphicsItem::pointToVector(pos));
@@ -110,7 +110,7 @@ bool AttachableItemCreator::sceneEvent(QEvent* event)
 {
     QGraphicsSceneMouseEvent* mouseEvent = static_cast<QGraphicsSceneMouseEvent*>(event);
 
-    if(event->type() == QEvent::GraphicsSceneMouseMove && _item == NULL) {
+    if(event->type() == QEvent::GraphicsSceneMouseMove && _item == nullptr) {
         _worldScene->snapHighlight(mouseEvent->scenePos(), _snapFlags, _snapTypes);
         return false;
 
@@ -118,7 +118,7 @@ bool AttachableItemCreator::sceneEvent(QEvent* event)
         QPointF pos = mouseEvent->scenePos();
         _worldModel->simulationPause();
         _worldModel->beginMacro(i18n("Create %1", _worldModel->newItemName(_className)));
-        _item = _worldModel->createItem(className()); Q_ASSERT(_item != NULL);
+        _item = _worldModel->createItem(className()); Q_ASSERT(_item != nullptr);
 
         if(_twoEnds) {
             _worldScene->snapItem(pos, _snapFlags, _snapTypes, StepGraphicsItem::Finished, _item, 1);

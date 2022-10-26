@@ -137,7 +137,7 @@ const MetaProperty* MetaObject::property(const QString& name) const
         const MetaProperty* pr = superClass(i)->property(name);
         if(pr) return pr;
     }*/
-    return NULL;
+    return nullptr;
 }
 
 } // namespace StepCore

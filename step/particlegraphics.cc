@@ -28,7 +28,7 @@
 ParticleGraphicsItem::ParticleGraphicsItem(StepCore::Item* item, WorldModel* worldModel)
     : StepGraphicsItem(item, worldModel)
 {
-    Q_ASSERT(dynamic_cast<StepCore::Particle*>(_item) != NULL);
+    Q_ASSERT(dynamic_cast<StepCore::Particle*>(_item) != nullptr);
     setFlag(QGraphicsItem::ItemIsSelectable);
     setFlag(QGraphicsItem::ItemIsMovable);
     setAcceptHoverEvents(true);

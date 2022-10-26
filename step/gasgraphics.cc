@@ -53,7 +53,7 @@ bool GasCreator::sceneEvent(QEvent* event)
 
         _worldModel->simulationPause();
         _worldModel->beginMacro(i18n("Create %1", _worldModel->newItemName(_className)));
-        _item = _worldModel->newItem(_className); Q_ASSERT(_item != NULL);
+        _item = _worldModel->newItem(_className); Q_ASSERT(_item != nullptr);
         _worldModel->setProperty(_item, QStringLiteral("measureRectCenter"), vpos);
         _worldModel->setProperty(_item, QStringLiteral("measureRectSize"), QVariant::fromValue(StepCore::Vector2d::Zero().eval()));
         _worldModel->selectionModel()->setCurrentIndex(_worldModel->objectIndex(_item),
@@ -96,7 +96,7 @@ bool GasCreator::sceneEvent(QEvent* event)
         showMessage(MessageFrame::Information,
             i18n("Please fill in the parameters for the gas particles."));
 
-        GasMenuHandler* menuHandler = new GasMenuHandler(_item, _worldModel, NULL);
+        GasMenuHandler* menuHandler = new GasMenuHandler(_item, _worldModel, nullptr);
         menuHandler->createGasParticles();
         menuHandler->deleteLater();
 
@@ -176,7 +176,7 @@ void GasVertexHandlerGraphicsItem::setValue(const StepCore::Vector2d& value)
 GasGraphicsItem::GasGraphicsItem(StepCore::Item* item, WorldModel* worldModel)
     : StepGraphicsItem(item, worldModel)
 {
-    Q_ASSERT(dynamic_cast<StepCore::Gas*>(_item) != NULL);
+    Q_ASSERT(dynamic_cast<StepCore::Gas*>(_item) != nullptr);
     setFlag(QGraphicsItem::ItemIsSelectable);
     setFlag(QGraphicsItem::ItemIsMovable);
     //setExclusiveMoving(true);
@@ -282,13 +282,13 @@ OnHoverHandlerGraphicsItem* GasGraphicsItem::createOnHoverHandler(const QPointF&
     if(num >= 0)
         return new GasVertexHandlerGraphicsItem(_item, _worldModel, this, num);
 
-    return 0;
+    return nullptr;
 }
 
 void GasMenuHandler::populateMenu(QMenu* menu, KActionCollection* actions)
 {
-    _createGasParticlesUi = 0;
-    _creationDialog = 0;
+    _createGasParticlesUi = nullptr;
+    _creationDialog = nullptr;
     //_confChanged = false;
 
     menu->addAction(QIcon::fromTheme(QStringLiteral("step_object_GasParticle")), i18n("Create Particles..."), this, &GasMenuHandler::createGasParticles);
@@ -335,8 +335,8 @@ void GasMenuHandler::createGasParticles()
 	createGasParticlesApply();
     }
 
-    delete _creationDialog; _creationDialog = 0;
-    delete _createGasParticlesUi; _createGasParticlesUi = 0;
+    delete _creationDialog; _creationDialog = nullptr;
+    delete _createGasParticlesUi; _createGasParticlesUi = nullptr;
 }
 
 void GasMenuHandler::createGasParticlesCountChanged()
@@ -360,7 +360,7 @@ bool GasMenuHandler::createGasParticlesApply()
     int count = _createGasParticlesUi->lineEditCount->text().toInt();
 
     if(count > MAX_PARTICLES) {
-        int ret = KMessageBox::warningContinueCancel(NULL, 
+        int ret = KMessageBox::warningContinueCancel(nullptr,
               i18n("You are trying to create a very large number of particles. "
                    "This will make simulation very slow. Do you want to continue?"),
               i18n("Warning - Step"));

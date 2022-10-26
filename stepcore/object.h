@@ -91,8 +91,8 @@ public:
 public:
     MetaProperty():
         _name(QLatin1String("")), _units(QString()), _description(QLatin1String("")),
-        _flags(0), _userTypeId(0), _readVariant(0), _writeVariant(0),
-        _readString(0), _writeString(0), _initialized(false) {}
+        _flags(0), _userTypeId(0), _readVariant(nullptr), _writeVariant(nullptr),
+        _readString(nullptr), _writeString(nullptr), _initialized(false) {}
 
     /*MetaProperty(const MetaProperty& p):
         _name(p._name), _units(p._units), _flags(p.flags), _userTypeId(p._userTypeId),
@@ -357,8 +357,8 @@ struct MetaObjectHelper {
 
 template<class Class>
 struct MetaObjectHelper<Class, MetaObject::ABSTRACT> {
-    static Object* newObjectHelper() { return NULL; }
-    static Object* cloneObjectHelper(const Object& obj) { Q_UNUSED(obj) return NULL; }
+    static Object* newObjectHelper() { return nullptr; }
+    static Object* cloneObjectHelper(const Object& obj) { Q_UNUSED(obj) return nullptr; }
 };
 
 #define STEPCORE_FROM_UTF8(str) QString::fromUtf8(str)
@@ -370,13 +370,13 @@ struct MetaObjectHelper<Class, MetaObject::ABSTRACT> {
 
 #define STEPCORE_META_OBJECT(_className, _classNameNoop, _description, _flags, __superClasses, __properties) \
     const StepCore::MetaProperty _className::_classProperties[] = { _STEPCORE_PROPERTY_NULL, __properties }; \
-    const StepCore::MetaObject*  _className::_superClasses[] = { 0, __superClasses }; \
+    const StepCore::MetaObject*  _className::_superClasses[] = { nullptr, __superClasses }; \
     const StepCore::MetaObject   _className::_metaObject = { \
         QString(STEPCORE_STRINGIFY(_className)), QString(_description), _flags, \
         StepCore::MetaObjectHelper<_className, _flags & StepCore::MetaObject::ABSTRACT>::newObjectHelper, \
         StepCore::MetaObjectHelper<_className, _flags & StepCore::MetaObject::ABSTRACT>::cloneObjectHelper, \
         _superClasses+1, sizeof(_superClasses)/sizeof(*_superClasses)-1, \
-        _classProperties+1, sizeof(_classProperties)/sizeof(*_classProperties)-1, false, 0, 0, 0, QBitArray(), "", "" };
+        _classProperties+1, sizeof(_classProperties)/sizeof(*_classProperties)-1, false, nullptr, 0, 0, QBitArray(), "", "" };
     
 #define STEPCORE_SUPER_CLASS(_className) _className::staticMetaObject(),
 

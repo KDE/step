@@ -38,35 +38,35 @@ const MetaObject* Factory::metaObject(const QString& name) const
 Object* Factory::newObject(const QString& name) const
 {
     const MetaObject* metaObject = this->metaObject(name);
-    if(!metaObject) return NULL;
+    if(!metaObject) return nullptr;
     return metaObject->newObject();
 }
 
 Item* Factory::newItem(const QString& name) const
 {
     const MetaObject* metaObject = this->metaObject(name);
-    if(!metaObject || !metaObject->inherits<Item>()) return NULL;
+    if(!metaObject || !metaObject->inherits<Item>()) return nullptr;
     return static_cast<Item*>(metaObject->newObject());
 }
 
 Solver* Factory::newSolver(const QString& name) const
 {
     const MetaObject* metaObject = this->metaObject(name);
-    if(!metaObject || !metaObject->inherits<Solver>()) return NULL;
+    if(!metaObject || !metaObject->inherits<Solver>()) return nullptr;
     return static_cast<Solver*>(metaObject->newObject());
 }
 
 CollisionSolver* Factory::newCollisionSolver(const QString& name) const
 {
     const MetaObject* metaObject = this->metaObject(name);
-    if(!metaObject || !metaObject->inherits<CollisionSolver>()) return NULL;
+    if(!metaObject || !metaObject->inherits<CollisionSolver>()) return nullptr;
     return static_cast<CollisionSolver*>(metaObject->newObject());
 }
 
 ConstraintSolver* Factory::newConstraintSolver(const QString& name) const
 {
     const MetaObject* metaObject = this->metaObject(name);
-    if(!metaObject || !metaObject->inherits<ConstraintSolver>()) return NULL;
+    if(!metaObject || !metaObject->inherits<ConstraintSolver>()) return nullptr;
     return static_cast<ConstraintSolver*>(metaObject->newObject());
 }
 

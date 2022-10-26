@@ -62,8 +62,8 @@ void ItemGroup::addItem(Item* item)
 
 void ItemGroup::removeItem(Item* item)
 {
-    item->setWorld(NULL);
-    item->setGroup(NULL);
+    item->setWorld(nullptr);
+    item->setGroup(nullptr);
 
     if(world()) world()->worldItemRemoved(item);
 
@@ -76,8 +76,8 @@ void ItemGroup::clear()
 {
     ItemList::const_iterator end = _items.end();
     for(ItemList::const_iterator it = _items.begin(); it != end; ++it) {
-        (*it)->setWorld(NULL);
-        (*it)->setGroup(NULL);
+        (*it)->setWorld(nullptr);
+        (*it)->setGroup(nullptr);
         if(world()) world()->worldItemRemoved(*it);
     }
 
@@ -144,12 +144,12 @@ Item* ItemGroup::childItem(const QString& name) const
     ItemList::const_iterator end = _items.end();
     for(ItemList::const_iterator it = _items.begin(); it != end; ++it)
         if((*it)->name() == name) return *it;
-    return NULL;
+    return nullptr;
 }
 
 Item* ItemGroup::item(const QString& name) const
 {
-    if(name.isEmpty()) return NULL;
+    if(name.isEmpty()) return nullptr;
     ItemList::const_iterator end = _items.end();
     for(ItemList::const_iterator it = _items.begin(); it != end; ++it) {
         if((*it)->name() == name) return *it;
@@ -158,7 +158,7 @@ Item* ItemGroup::item(const QString& name) const
             if(ret) return ret;
         }
     }
-    return NULL;
+    return nullptr;
 }
 
 void ItemGroup::allItems(ItemList* items) const

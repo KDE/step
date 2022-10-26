@@ -61,14 +61,14 @@ void SpringHandlerGraphicsItem::mouseSetPos(const QPointF& pos, const QPointF&, 
 {
     static_cast<WorldScene*>(scene())->snapItem(parentItem()->mapToParent(pos),
                     WorldScene::SnapParticle | WorldScene::SnapRigidBody |
-                    WorldScene::SnapSetLocalPosition, 0, movingState, _item, _num);
+                    WorldScene::SnapSetLocalPosition, nullptr, movingState, _item, _num);
 
 }
 
 SpringGraphicsItem::SpringGraphicsItem(StepCore::Item* item, WorldModel* worldModel)
     : StepGraphicsItem(item, worldModel)
 {
-    Q_ASSERT(dynamic_cast<StepCore::Spring*>(_item) != NULL);
+    Q_ASSERT(dynamic_cast<StepCore::Spring*>(_item) != nullptr);
     setFlag(QGraphicsItem::ItemIsSelectable);
     setFlag(QGraphicsItem::ItemIsMovable);
     setZValue(FORCE_ZVALUE);
@@ -207,7 +207,7 @@ void SpringGraphicsItem::mouseSetPos(const QPointF& /*pos*/, const QPointF& diff
         Q_ASSERT(spring()->body1()->metaObject()->inherits<StepCore::Item>());
         StepGraphicsItem* gItem = static_cast<WorldScene*>(
             scene())->graphicsFromItem(static_cast<StepCore::Item*>(spring()->body1()));
-        Q_ASSERT(gItem != NULL);
+        Q_ASSERT(gItem != nullptr);
         if(!gItem->isSelected()) {
             _worldModel->setProperty(_item, QStringLiteral("localPosition1"),
                         _item->metaObject()->property(QStringLiteral("position1"))->readVariant(_item));
@@ -223,7 +223,7 @@ void SpringGraphicsItem::mouseSetPos(const QPointF& /*pos*/, const QPointF& diff
         Q_ASSERT(spring()->body2()->metaObject()->inherits<StepCore::Item>());
         StepGraphicsItem* gItem = static_cast<WorldScene*>(
             scene())->graphicsFromItem(static_cast<StepCore::Item*>(spring()->body2()));
-        Q_ASSERT(gItem != NULL);
+        Q_ASSERT(gItem != nullptr);
         if(!gItem->isSelected()) {
             _worldModel->setProperty(_item, QStringLiteral("localPosition2"),
                         _item->metaObject()->property(QStringLiteral("position2"))->readVariant(_item));

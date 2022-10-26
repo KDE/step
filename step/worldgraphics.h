@@ -45,7 +45,7 @@ class ItemCreator
 public:
     ItemCreator(const QString& className, WorldModel* worldModel, WorldScene* worldScene)
            : _className(className), _worldModel(worldModel),
-             _worldScene(worldScene), _item(NULL), _finished(false), _messageId(-1) {}
+             _worldScene(worldScene), _item(nullptr), _finished(false), _messageId(-1) {}
     virtual ~ItemCreator() { closeMessage(); }
 
     /** Returns class name of the item which this creator creates */
@@ -111,7 +111,7 @@ public:
     AttachableItemCreator(const QString& className, WorldModel* worldModel, WorldScene* worldScene)
                 : ItemCreator(className, worldModel, worldScene),
                     _snapFlags(WorldScene::SnapParticle | WorldScene::SnapRigidBody |
-                    WorldScene::SnapSetPosition | WorldScene::SnapSetLocalPosition), _snapTypes(0), _twoEnds(false) {}
+                    WorldScene::SnapSetPosition | WorldScene::SnapSetLocalPosition), _snapTypes(nullptr), _twoEnds(false) {}
 
     /** Constructs AttachableItemCreator
      *
@@ -149,7 +149,7 @@ class ItemMenuHandler : public QObject
     Q_OBJECT
 
 public:
-    ItemMenuHandler(StepCore::Object* object, WorldModel* worldModel, QObject* parent = 0);
+    ItemMenuHandler(StepCore::Object* object, WorldModel* worldModel, QObject* parent = nullptr);
 
     /** Populate context menu by item-specific entries.
      *  Default implementation adds delete action. */

@@ -105,7 +105,7 @@ void CommandEditProperty::undo()
 bool CommandEditProperty::mergeWith(const QUndoCommand* command)
 {
     const CommandEditProperty* cmd = dynamic_cast<const CommandEditProperty*>(command);
-    Q_ASSERT(cmd != NULL);
+    Q_ASSERT(cmd != nullptr);
     if(cmd->_commands.count() != 1) return false;
 
     const EditProperty& p1 = cmd->_commands[0];
@@ -281,7 +281,7 @@ CommandSimulate::CommandSimulate(WorldModel* worldModel)
     _newWorld = _worldModel->_world = new StepCore::World(*_oldWorld);
     _worldModel->endResetModel();
 
-    _startTime = _worldModel->formatProperty(_worldModel->_world, NULL,
+    _startTime = _worldModel->formatProperty(_worldModel->_world, nullptr,
                             _worldModel->_world->metaObject()->property(QStringLiteral("time")),
                             WorldModel::FormatEditable);
 
@@ -294,7 +294,7 @@ CommandSimulate::CommandSimulate(WorldModel* worldModel)
 
 void CommandSimulate::done()
 {
-    _endTime = _worldModel->formatProperty(_worldModel->_world, NULL,
+    _endTime = _worldModel->formatProperty(_worldModel->_world, nullptr,
                             _worldModel->_world->metaObject()->property(QStringLiteral("time")),
                             WorldModel::FormatEditable);
 }
@@ -324,7 +324,7 @@ void CommandSimulate::undo()
 }
 
 WorldModel::WorldModel(QObject* parent)
-    : QAbstractItemModel(parent), _actions(0)
+    : QAbstractItemModel(parent), _actions(nullptr)
 {
     _selectionModel = new QItemSelectionModel(this, this);
     _undoStack = new QUndoStack(this);
@@ -332,7 +332,7 @@ WorldModel::WorldModel(QObject* parent)
     _worldFactory = new WorldFactory();
     _world = new StepCore::World();
 
-    _simulationCommand = NULL;
+    _simulationCommand = nullptr;
     _simulationTimer = new QTimer(this);
     _simulationTimer0 = new QTimer(this);
     _simulationTimer0->setSingleShot(true);
@@ -382,15 +382,15 @@ void WorldModel::resetWorld()
         // XXX: check that loaded items has unique names !
         _world->setName(getUniqueName(QStringLiteral("world")));
     }
-    if(NULL == _world->solver()) {
+    if(nullptr == _world->solver()) {
         _world->setSolver(new StepCore::AdaptiveEulerSolver());
         _world->solver()->setName(getUniqueName(QStringLiteral("solver")));
     }
-    if(NULL == _world->collisionSolver()) {
+    if(nullptr == _world->collisionSolver()) {
         _world->setCollisionSolver(new StepCore::GJKCollisionSolver());
         _world->collisionSolver()->setName(getUniqueName(QStringLiteral("collisionSolver")));
     }
-    if(NULL == _world->constraintSolver()) {
+    if(nullptr == _world->constraintSolver()) {
         _world->setConstraintSolver(new StepCore::CGConstraintSolver());
         _world->constraintSolver()->setName(getUniqueName(QStringLiteral("constraintSolver")));
     }
@@ -456,7 +456,7 @@ QModelIndex WorldModel::objectIndex(StepCore::Object* obj) const
     else {
         StepCore::Item* item = dynamic_cast<StepCore::Item*>(obj);
         for(StepCore::Item* it = item; it != _world; it = it->group()) {
-            if(it == NULL) return QModelIndex();
+            if(it == nullptr) return QModelIndex();
         }
         STEPCORE_ASSERT_NOABORT(item && item->group());
         return createIndex(item->group()->childItemIndex(item), 0, item);
@@ -467,7 +467,7 @@ QModelIndex WorldModel::objectIndex(StepCore::Object* obj) const
 StepCore::Object* WorldModel::object(const QModelIndex& index) const
 {
     if(index.isValid()) return static_cast<StepCore::Object*>(index.internalPointer());
-    else return NULL;
+    else return nullptr;
 }
 
 #if 0
@@ -570,7 +570,7 @@ StepCore::Item* WorldModel::createItem(const QString& className, StepCore::ItemG
 {
     Q_UNUSED(parent)
     StepCore::Item* item = _worldFactory->newItem(className);
-    if(item == NULL) return NULL;
+    if(item == nullptr) return nullptr;
     item->setName(getUniqueName(className));
     return item;
 }
@@ -578,7 +578,7 @@ StepCore::Item* WorldModel::createItem(const QString& className, StepCore::ItemG
 StepCore::Item* WorldModel::newItem(const QString& className, StepCore::ItemGroup* parent)
 {
     StepCore::Item* item = _worldFactory->newItem(className);
-    if(item == NULL) return NULL;
+    if(item == nullptr) return nullptr;
     item->setName(getUniqueName(className));
     pushCommand(new CommandNewItem(this, item, parent, true));
     return item;
@@ -593,7 +593,7 @@ void WorldModel::addItem(StepCore::Item* item, StepCore::ItemGroup* parent)
 StepCore::Solver* WorldModel::newSolver(const QString& className)
 {
     StepCore::Solver* solver = _worldFactory->newSolver(className);
-    if(solver == NULL) return NULL;
+    if(solver == nullptr) return nullptr;
 
     // Copy similarly named properties
     // XXX: is it right ?
@@ -632,7 +632,7 @@ void WorldModel::deleteSelectedItems()
     }
 
     foreach(StepCore::Item* it, items) {
-        for(StepCore::Item* it1 = it->group(); it1 != 0 && it1 != _world; it1 = it1->group()) {
+        for(StepCore::Item* it1 = it->group(); it1 != nullptr && it1 != _world; it1 = it1->group()) {
             if(items.contains(it1)) { items.removeOne(it); break; }
         }
     }
@@ -704,7 +704,7 @@ void WorldModel::endMacro()
 void WorldModel::setProperty(StepCore::Object* object,
             const StepCore::MetaProperty* property, const QVariant& value, UndoFlags flags)
 {
-    Q_ASSERT(object != NULL); Q_ASSERT(property != NULL);
+    Q_ASSERT(object != nullptr); Q_ASSERT(property != nullptr);
     pushCommand(new CommandEditProperty(this, object, property, value, !flags.testFlag(UndoNoMerge)));
 }
 
@@ -740,7 +740,7 @@ QString WorldModel::formatProperty(const StepCore::Object* object,
     }
 
     const StepCore::MetaProperty* pv = objectErrors ?
-            objectErrors->metaObject()->property(property->name() + "Variance") : NULL;
+            objectErrors->metaObject()->property(property->name() + "Variance") : nullptr;
 
     // Common property types
     if(property->userTypeId() == QMetaType::Double) {
@@ -795,7 +795,7 @@ QString WorldModel::createToolTip(const QModelIndex& index) const
 
     StepCore::Object* object = this->object(index);
     StepCore::Item* item = dynamic_cast<StepCore::Item*>(object);
-    const StepCore::Object* objectErrors = NULL;
+    const StepCore::Object* objectErrors = nullptr;
     if(item) {
         if(world()->errorsCalculation()) objectErrors = item->objectErrors();
         else objectErrors = item->tryGetObjectErrors();
@@ -868,7 +868,7 @@ bool WorldModel::loadXml(QIODevice* device)
 bool WorldModel::checkUniqueName(const QString& name) const
 {
     if(name.isEmpty()) return false;
-    if(_world->object(name) != NULL) return false;
+    if(_world->object(name) != nullptr) return false;
     return true;
 }
 
@@ -1020,7 +1020,7 @@ void WorldModel::simulationFrameEnd(int result)
                 _simulationCommand->startTime(), _simulationCommand->endTime()));
         _undoStack->push(_simulationCommand);
         _undoStack->endMacro();
-        _simulationCommand = NULL;
+        _simulationCommand = nullptr;
 
         _simulationTimer->stop();
         _simulationTimer0->stop();
@@ -1049,7 +1049,7 @@ QList<StepCore::Item*> WorldModel::selectedItems()
     }
     
     foreach (StepCore::Item* it, items) {
-        for (StepCore::Item* it1 = it->group(); it1 != 0 && it1 != _world; it1 = it1->group()) {
+        for (StepCore::Item* it1 = it->group(); it1 != nullptr && it1 != _world; it1 = it1->group()) {
             if (items.contains(it1)) {
                 items.removeOne(it);
                 break;

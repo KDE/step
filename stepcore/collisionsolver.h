@@ -109,7 +109,7 @@ public:
      *  \param count number of contacts
      *  \return maximum contact state (i.e. maximum value of Contact::state)
      */
-    virtual int checkContacts(BodyList& bodies, bool collisions = false, int* count = NULL) = 0;
+    virtual int checkContacts(BodyList& bodies, bool collisions = false, int* count = nullptr) = 0;
     
     /** Fill the constraint info structure with the contacts computed by checkContacts()
      *  \param info ConstraintsInfo structure to fill
@@ -178,7 +178,7 @@ public:
      * \param collisions defines whether body collisions are taken into account
      * \param count number of contacts
      */
-    int checkContacts(BodyList& bodies, bool collisions = false, int* count = NULL) override;
+    int checkContacts(BodyList& bodies, bool collisions = false, int* count = nullptr) override;
     /**
      * \param info ConstraintsInfo structure to fill
      * \param collisions defines whether body collisions are taken into account

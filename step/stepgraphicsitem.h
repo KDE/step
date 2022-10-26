@@ -54,7 +54,7 @@ public:
     enum MovingState { Started, Moving, Finished };
 
     /** Constructs StepGraphicsItem */
-    StepGraphicsItem(StepCore::Item* item, WorldModel* worldModel, QGraphicsItem* parent = 0);
+    StepGraphicsItem(StepCore::Item* item, WorldModel* worldModel, QGraphicsItem* parent = nullptr);
 
     /** Get StepCore::Item which is represented by this graphicsItem */
     StepCore::Item* item() const { return _item; }
@@ -155,7 +155,7 @@ protected:
     /** Virtual function which is called to create on-hover handler for given point.
      *  If the handler is the same as already-existing just return _onHoverHandler.
      *  If no handler it required for given point just return NULL */
-    virtual OnHoverHandlerGraphicsItem* createOnHoverHandler(const QPointF&) { return 0; }
+    virtual OnHoverHandlerGraphicsItem* createOnHoverHandler(const QPointF&) { return nullptr; }
 
 protected:
     StepCore::Item* _item;
@@ -222,7 +222,7 @@ public:
      */
     ArrowHandlerGraphicsItem(StepCore::Item* item, WorldModel* worldModel,
                         QGraphicsItem* parent, const StepCore::MetaProperty* property,
-                        const StepCore::MetaProperty* positionProperty = NULL);
+                        const StepCore::MetaProperty* positionProperty = nullptr);
 
     void paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget) override;
 
@@ -260,7 +260,7 @@ public:
      */
     CircularArrowHandlerGraphicsItem(StepCore::Item* item, WorldModel* worldModel,
                         QGraphicsItem* parent, double radius, const StepCore::MetaProperty* property,
-                        const StepCore::MetaProperty* positionProperty = NULL);
+                        const StepCore::MetaProperty* positionProperty = nullptr);
 
     void paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget) override;
 
@@ -293,7 +293,7 @@ class OnHoverHandlerGraphicsItem : public QObject, public ArrowHandlerGraphicsIt
 public:
     OnHoverHandlerGraphicsItem(StepCore::Item* item, WorldModel* worldModel,
                     QGraphicsItem* parent, const StepCore::MetaProperty* property,
-                    const StepCore::MetaProperty* positionProperty = NULL,
+                    const StepCore::MetaProperty* positionProperty = nullptr,
                     int vertexNum = 0);
 
     void setDeleteTimerEnabled(bool enabled);

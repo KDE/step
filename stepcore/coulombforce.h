@@ -42,7 +42,7 @@ class CoulombForceErrors: public ObjectErrors
 
 public:
     /** Constructs CoulombForceErrors */
-    explicit CoulombForceErrors(Item* owner = NULL)
+    explicit CoulombForceErrors(Item* owner = nullptr)
         : ObjectErrors(owner), _coulombConstVariance(0) {}
 
     /** Get owner as CoulombForce */

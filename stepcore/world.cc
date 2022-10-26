@@ -39,7 +39,7 @@ STEPCORE_META_OBJECT(World, QT_TRANSLATE_NOOP("ObjectClass", "World"), QT_TRANSL
 
 World::World()
     : _time(0), _timeScale(1), _errorsCalculation(false),
-      _solver(NULL), _collisionSolver(NULL), _constraintSolver(NULL),
+      _solver(nullptr), _collisionSolver(nullptr), _constraintSolver(nullptr),
       _variablesCount(0)
 {
     setColor(0xffffffff);
@@ -49,7 +49,7 @@ World::World()
 
 World::World(const World& world)
     : ItemGroup(), _time(0), _timeScale(1), _errorsCalculation(false),
-      _solver(NULL), _collisionSolver(NULL), _constraintSolver(NULL),
+      _solver(nullptr), _collisionSolver(nullptr), _constraintSolver(nullptr),
       _variablesCount(0)
 {
     *this = world;
@@ -74,9 +74,9 @@ void World::clear()
     //_bodies.clear();
     //_forces.clear();
 
-    delete _solver; _solver = NULL;
-    delete _collisionSolver; _collisionSolver = NULL;
-    delete _constraintSolver; _constraintSolver = NULL;
+    delete _solver; _solver = nullptr;
+    delete _collisionSolver; _collisionSolver = nullptr;
+    delete _constraintSolver; _constraintSolver = nullptr;
 
     _variablesCount = 0;
     _variables.resize(0);
@@ -111,16 +111,16 @@ World& World::operator=(const World& world)
     if(world._solver) {
         setSolver(static_cast<Solver*>(
                 world._solver->metaObject()->cloneObject(*(world._solver))));
-    } else setSolver(0);
+    } else setSolver(nullptr);
 
     if(world._collisionSolver) {
         setCollisionSolver(static_cast<CollisionSolver*>(
                world._collisionSolver->metaObject()->cloneObject(*(world._collisionSolver))));
-    } else setCollisionSolver(0);
+    } else setCollisionSolver(nullptr);
 
     if(world._constraintSolver) setConstraintSolver(static_cast<ConstraintSolver*>(
                world._constraintSolver->metaObject()->cloneObject(*(world._constraintSolver))));
-    else setConstraintSolver(0);
+    else setConstraintSolver(nullptr);
 
     _time = world._time;
     _timeScale = world._timeScale;
@@ -329,7 +329,7 @@ Item* World::item(const QString& name) const
 
 Object* World::object(const QString& name)
 {
-    if(name.isEmpty()) return NULL;
+    if(name.isEmpty()) return nullptr;
     if(this->name() == name) return this;
     else if(_solver && _solver->name() == name) return _solver;
     else if(_collisionSolver && _collisionSolver->name() == name) return _collisionSolver;
@@ -341,7 +341,7 @@ void World::setSolver(Solver* solver)
 {
     delete _solver;
     _solver = solver;
-    if(_solver != 0) {
+    if(_solver != nullptr) {
         _solver->setDimension(_variablesCount*2);
         _solver->setFunction(solverFunction);
         _solver->setParams(this);
@@ -351,7 +351,7 @@ void World::setSolver(Solver* solver)
 Solver* World::removeSolver()
 {
     Solver* solver = _solver;
-    _solver = NULL;
+    _solver = nullptr;
     return solver;
 }
 
@@ -364,7 +364,7 @@ void World::setCollisionSolver(CollisionSolver* collisionSolver)
 CollisionSolver* World::removeCollisionSolver()
 {
     CollisionSolver* collisionSolver = _collisionSolver;
-    _collisionSolver = NULL;
+    _collisionSolver = nullptr;
     return collisionSolver;
 }
 
@@ -377,7 +377,7 @@ void World::setConstraintSolver(ConstraintSolver* constraintSolver)
 ConstraintSolver* World::removeConstraintSolver()
 {
     ConstraintSolver* constraintSolver = _constraintSolver;
-    _constraintSolver = NULL;
+    _constraintSolver = nullptr;
     return constraintSolver;
 }
 
@@ -413,7 +413,7 @@ void World::gatherAccelerations(double* acceleration, double* accelerationVarian
     int index = 0;
     const BodyList::const_iterator it_end = _bodies.end();
     for(BodyList::iterator b = _bodies.begin(); b != it_end; ++b) {
-        (*b)->getAccelerations(acceleration + index, accelerationVariance ? accelerationVariance + index : NULL);
+        (*b)->getAccelerations(acceleration + index, accelerationVariance ? accelerationVariance + index : nullptr);
         index += (*b)->variablesCount();
     }
 }
@@ -426,8 +426,8 @@ void World::gatherVariables(double* variables, double* variances)
     const BodyList::const_iterator it_end = _bodies.end();
     for(BodyList::iterator b = _bodies.begin(); b != it_end; ++b) {
         (*b)->getVariables(variables + index, variables + _variablesCount + index,
-                           variances ? variances + index : NULL,
-                           variances ? variances + _variablesCount + index : NULL);
+                           variances ? variances + index : nullptr,
+                           variances ? variances + _variablesCount + index : nullptr);
         index += (*b)->variablesCount();
     }
 }
@@ -438,8 +438,8 @@ void World::scatterVariables(const double* variables, const double* variances)
     const BodyList::const_iterator it_end = _bodies.end();
     for(BodyList::iterator b = _bodies.begin(); b != it_end; ++b) {
         (*b)->setVariables(variables + index,  variables + _variablesCount + index,
-                           variances ? variances + index : NULL,
-                           variances ? variances + _variablesCount + index : NULL);
+                           variances ? variances + index : nullptr,
+                           variances ? variances + _variablesCount + index : nullptr);
         index += (*b)->variablesCount();
     }
 }
@@ -451,7 +451,7 @@ void World::gatherJointsInfo(ConstraintsInfo* info)
     int offset = 0;
     const BodyList::const_iterator b_end = _bodies.end();
     for(BodyList::iterator body = _bodies.begin(); body != b_end; ++body) {
-        (*body)->getInverseMass(&(info->inverseMass), NULL, offset);
+        (*body)->getInverseMass(&(info->inverseMass), nullptr, offset);
         offset += (*body)->variablesCount();
     }
 
@@ -465,24 +465,24 @@ void World::gatherJointsInfo(ConstraintsInfo* info)
 
 int World::doCalcFn()
 {
-    STEPCORE_ASSERT_NOABORT(_solver != NULL);
+    STEPCORE_ASSERT_NOABORT(_solver != nullptr);
 
     //if(_collisionSolver) _collisionSolver->resetCaches();
 
     _stopOnCollision = false;
     _stopOnIntersection = false;
     checkVariablesCount();
-    gatherVariables(_variables.data(), _errorsCalculation ? _variances.data() : NULL);
-    return _solver->doCalcFn(&_time, &_variables, _errorsCalculation ? &_variances : NULL,
-                             NULL, _errorsCalculation ? &_variances : NULL);
+    gatherVariables(_variables.data(), _errorsCalculation ? _variances.data() : nullptr);
+    return _solver->doCalcFn(&_time, &_variables, _errorsCalculation ? &_variances : nullptr,
+                             nullptr, _errorsCalculation ? &_variances : nullptr);
 }
 
 int World::doEvolve(double delta)
 {
-    STEPCORE_ASSERT_NOABORT(_solver != NULL);
+    STEPCORE_ASSERT_NOABORT(_solver != nullptr);
     
     checkVariablesCount();
-    gatherVariables(_variables.data(), _errorsCalculation ? _variances.data() : NULL);
+    gatherVariables(_variables.data(), _errorsCalculation ? _variances.data() : nullptr);
 
     int ret = Solver::OK;
     double targetTime = _time + delta*_timeScale;
@@ -504,7 +504,7 @@ int World::doEvolve(double delta)
         _stopOnIntersection = true;
         
         ret = _solver->doEvolve(&time, targetTime, &_variables,
-                            _errorsCalculation ? &_variances : NULL);
+                            _errorsCalculation ? &_variances : nullptr);
         
         _time = time;
 
@@ -529,7 +529,7 @@ int World::doEvolve(double delta)
                 double endTime = collisionEndTime - time > stepSize*1.01 ? time+stepSize : collisionEndTime;
 
                 ret = _solver->doEvolve(&time, endTime, &_variables,
-                            _errorsCalculation ? &_variances : NULL);
+                            _errorsCalculation ? &_variances : nullptr);
                 
                 _time = time;
 
@@ -549,7 +549,7 @@ int World::doEvolve(double delta)
                     // All joints should be taken into account, but since we are
                     // calculating impulses we should "froze" the jacobian i.e.
                     // ignore it derivative
-                    scatterVariables(_variables.data(), _errorsCalculation ? _variances.data() : NULL);
+                    scatterVariables(_variables.data(), _errorsCalculation ? _variances.data() : nullptr);
                     
                     // check and count contacts before the sparse matrix assembly
                     int contactsCount = 0;
@@ -589,7 +589,7 @@ int World::doEvolve(double delta)
     }
 
 out:
-    scatterVariables(_variables.data(), _errorsCalculation ? _variances.data() : NULL);
+    scatterVariables(_variables.data(), _errorsCalculation ? _variances.data() : nullptr);
     return ret;
 }
 
@@ -602,7 +602,7 @@ inline int World::solverFunction(double t, const double* y,
     scatterVariables(y, yvar); // this will reset force
 
     // 1. Forces
-    bool calcVariances = (fvar != NULL);
+    bool calcVariances = (fvar != nullptr);
     const ForceList::const_iterator f_end = _forces.end();
     for(ForceList::iterator force = _forces.begin(); force != f_end; ++force) {
         (*force)->calcForce(calcVariances);
@@ -610,7 +610,7 @@ inline int World::solverFunction(double t, const double* y,
     
     std::memcpy(f, y+_variablesCount, _variablesCount*sizeof(*f));
     if(fvar) std::memcpy(fvar, y+_variablesCount, _variablesCount*sizeof(*fvar));
-    gatherAccelerations(f+_variablesCount, fvar ? fvar+_variablesCount : NULL);
+    gatherAccelerations(f+_variablesCount, fvar ? fvar+_variablesCount : nullptr);
     
     if (_constraintSolver)
     {
@@ -674,8 +674,8 @@ inline int World::solverFunction(double t, const double* y,
           int offset = 0;
           const BodyList::const_iterator b_end = _bodies.end();
           for(BodyList::iterator body = _bodies.begin(); body != b_end; ++body) {
-              (*body)->addForce(&_constraintsInfo.force[offset], NULL);
-              (*body)->getAccelerations(f+_variablesCount+offset, NULL);
+              (*body)->addForce(&_constraintsInfo.force[offset], nullptr);
+              (*body)->getAccelerations(f+_variablesCount+offset, nullptr);
               offset += (*body)->variablesCount();
           }
       }

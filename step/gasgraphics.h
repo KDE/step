@@ -52,7 +52,7 @@ class GasVertexHandlerGraphicsItem: public OnHoverHandlerGraphicsItem
 public:
     GasVertexHandlerGraphicsItem(StepCore::Item* item, WorldModel* worldModel,
                                         QGraphicsItem* parent, int vertexNum)
-        : OnHoverHandlerGraphicsItem(item, worldModel, parent, NULL, NULL, vertexNum) {}
+        : OnHoverHandlerGraphicsItem(item, worldModel, parent, nullptr, nullptr, vertexNum) {}
 
 protected:
     StepCore::Gas* gas() const;

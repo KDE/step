@@ -40,7 +40,7 @@ class RigidBodyErrors: public ObjectErrors
 
 public:
     /** Constructs RigidBodyErrors */
-    explicit RigidBodyErrors(Item* owner = 0)
+    explicit RigidBodyErrors(Item* owner = nullptr)
         : ObjectErrors(owner), _positionVariance(0,0), _angleVariance(0), _velocityVariance(0,0),
           _angularVelocityVariance(0), _forceVariance(0,0), _torqueVariance(0),
           _massVariance(0), _inertiaVariance(0) {}

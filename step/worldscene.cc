@@ -51,7 +51,7 @@
 class WorldSceneAxes: public QGraphicsItem
 {
 public:
-    WorldSceneAxes(QGraphicsItem* parent = 0, QGraphicsScene* scene = 0);
+    WorldSceneAxes(QGraphicsItem* parent = nullptr, QGraphicsScene* scene = nullptr);
     QRectF boundingRect() const override;
     QPainterPath shape() const override;
     void paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget) override;
@@ -129,9 +129,9 @@ void WorldSceneAxes::viewScaleChanged()
 }
 
 WorldScene::WorldScene(WorldModel* worldModel, QObject* parent)
-    : QGraphicsScene(parent), _worldModel(worldModel), _worldView(0),
-        _currentViewScale(1), _itemCreator(0), _bgColor(0),
-        _sceneAxes(0), _snapItem(0)
+    : QGraphicsScene(parent), _worldModel(worldModel), _worldView(nullptr),
+        _currentViewScale(1), _itemCreator(nullptr), _bgColor(0),
+        _sceneAxes(nullptr), _snapItem(nullptr)
 {
     #ifdef __GNUC__
     #warning TODO: measure what index method is faster
@@ -174,8 +174,8 @@ StepCore::Item* WorldScene::itemFromGraphics(const QGraphicsItem* graphicsItem) 
 {
     const StepGraphicsItem* worldGraphicsItem =
             dynamic_cast<const StepGraphicsItem*>(graphicsItem);
-    if(worldGraphicsItem != NULL) return worldGraphicsItem->item();
-    else return NULL;
+    if(worldGraphicsItem != nullptr) return worldGraphicsItem->item();
+    else return nullptr;
 }
 
 StepGraphicsItem* WorldScene::graphicsFromItem(const StepCore::Item* item) const
@@ -188,14 +188,14 @@ void WorldScene::beginAddItem(const QString& name)
     //_currentCreator = name;
     if(_itemCreator) {
         _itemCreator->abort();
-        emit endAddItem(_itemCreator->className(), _itemCreator->item() != NULL);
+        emit endAddItem(_itemCreator->className(), _itemCreator->item() != nullptr);
         delete _itemCreator;
     }
     if(name == QLatin1String("Pointer")) {
-        _itemCreator = NULL;
+        _itemCreator = nullptr;
     } else {
         _itemCreator = _worldModel->worldFactory()->newItemCreator(name, _worldModel, this);
-        Q_ASSERT(_itemCreator != NULL);
+        Q_ASSERT(_itemCreator != nullptr);
         _itemCreator->start();
     }
 }
@@ -214,11 +214,11 @@ bool WorldScene::event(QEvent* event)
     if(_itemCreator) {
         bool handled = _itemCreator->sceneEvent(event);
         if(_itemCreator->finished()) {
-            emit endAddItem(_itemCreator->className(), _itemCreator->item() != NULL);
+            emit endAddItem(_itemCreator->className(), _itemCreator->item() != nullptr);
             // ~ItemCreator() will indirectly call this method, thus we must set
             // the pointer to NULL before deleting the ItemCreator.
             ItemCreator* itemCreator = _itemCreator;
-            _itemCreator = NULL;
+            _itemCreator = nullptr;
             delete itemCreator;
         }
         if(handled) {
@@ -231,7 +231,7 @@ bool WorldScene::event(QEvent* event)
 
 void WorldScene::mousePressEvent(QGraphicsSceneMouseEvent* mouseEvent)
 {
-    if(itemAt(mouseEvent->scenePos(), QTransform()) == NULL) {
+    if(itemAt(mouseEvent->scenePos(), QTransform()) == nullptr) {
         // XXX: how to easily select World ?
         //_worldModel->selectionModel()->clearSelection();
         _worldModel->selectionModel()->setCurrentIndex(_worldModel->worldIndex(), QItemSelectionModel::Clear);
@@ -281,7 +281,7 @@ void WorldScene::worldModelReset()
         delete item;
     }
     _itemsHash.clear();
-    _sceneAxes = 0;
+    _sceneAxes = nullptr;
 
     /* Background */
     if(_bgColor != _worldModel->world()->color()) {
@@ -438,7 +438,7 @@ void WorldScene::snapClear()
 {
     if(_snapItem) {
         _snapItem->setItemHighlighted(false);
-        _snapItem = 0;
+        _snapItem = nullptr;
         _snapToolTip.clear();
         _snapTimer->start();
     }
@@ -451,8 +451,8 @@ StepCore::Item* WorldScene::snapHighlight(QPointF pos, SnapFlags flags, const Sn
     if(flags.testFlag(SnapRigidBody)) types << StepCore::RigidBody::staticMetaObject();
     if(moreTypes) types << *moreTypes;
 
-    StepCore::Item* item = 0;
-    QGraphicsItem* gItem = 0;
+    StepCore::Item* item = nullptr;
+    QGraphicsItem* gItem = nullptr;
     foreach(gItem, items(pos)) {
         item = itemFromGraphics(gItem); if(!item) continue;
         if(flags.testFlag(SnapParticle) && item->metaObject()->inherits<StepCore::Particle>()) break;
@@ -464,7 +464,7 @@ StepCore::Item* WorldScene::snapHighlight(QPointF pos, SnapFlags flags, const Sn
                 if(item->metaObject()->inherits(type)) { found = true; break; }
             if(found) break;
         }
-        item = NULL;
+        item = nullptr;
     }
 
     if(item) {
@@ -480,7 +480,7 @@ StepCore::Item* WorldScene::snapHighlight(QPointF pos, SnapFlags flags, const Sn
 
     } else {
         snapClear();
-        return 0;
+        return nullptr;
     }
 }
 
@@ -654,7 +654,7 @@ void WorldGraphicsView::settingsChanged()
             //qDebug() << "enable OpenGL" << endl;
             setViewport(new QOpenGLWidget(this));
             if(!qobject_cast<QOpenGLWidget*>(viewport())) {
-                qDebug() << "can't create QOpenGLWidget!" << endl;
+                qDebug() << "can't create QOpenGLWidget!" << Qt::endl;
             }
         }
     }

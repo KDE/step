@@ -34,7 +34,7 @@ public:
     enum Flag { CloseButton = 1, CloseTimer = 2 };
     Q_DECLARE_FLAGS(Flags, Flag)
 
-    explicit MessageFrame(QWidget* parent = 0);
+    explicit MessageFrame(QWidget* parent = nullptr);
 
     int showMessage(Type type, const QString& text, Flags flags = {});
     int changeMessage(int id, Type type, const QString& text, Flags flags = {});

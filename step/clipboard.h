@@ -31,7 +31,7 @@ namespace StepCore
 class Clipboard : public QObject
 {
 public:
-    explicit Clipboard(QObject* parent = 0);
+    explicit Clipboard(QObject* parent = nullptr);
     
     void copy(const QList<StepCore::Item*>& items);
     QList<StepCore::Item*> paste(const StepCore::Factory* factory);

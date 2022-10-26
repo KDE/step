@@ -64,18 +64,18 @@ void Anchor::setBody(Object* body)
         if(body->metaObject()->inherits<Particle>()) {
             _body = body;
             _p = static_cast<Particle*>(body);
-            _r = NULL;
+            _r = nullptr;
             return;
         } else if(body->metaObject()->inherits<RigidBody>()) {
             _body = body;
-            _p = NULL;
+            _p = nullptr;
             _r = static_cast<RigidBody*>(body);
             return;
         }
     }
-    _body = NULL;
-    _p = NULL;
-    _r = NULL;
+    _body = nullptr;
+    _p = nullptr;
+    _r = nullptr;
 }
 
 int Anchor::constraintsCount()
@@ -125,18 +125,18 @@ void Pin::setBody(Object* body)
         if(body->metaObject()->inherits<Particle>()) {
             _body = body;
             _p = static_cast<Particle*>(body);
-            _r = NULL;
+            _r = nullptr;
             return;
         } else if(body->metaObject()->inherits<RigidBody>()) {
             _body = body;
-            _p = NULL;
+            _p = nullptr;
             _r = static_cast<RigidBody*>(body);
             return;
         }
     }
-    _body = NULL;
-    _p = NULL;
-    _r = NULL;
+    _body = nullptr;
+    _p = nullptr;
+    _r = nullptr;
 }
 
 int Pin::constraintsCount()
@@ -210,18 +210,18 @@ void Stick::setBody1(Object* body1)
         if(body1->metaObject()->inherits<Particle>()) {
             _body1 = body1;
             _p1 = static_cast<Particle*>(body1);
-            _r1 = NULL;
+            _r1 = nullptr;
             return;
         } else if(body1->metaObject()->inherits<RigidBody>()) {
             _body1 = body1;
-            _p1 = NULL;
+            _p1 = nullptr;
             _r1 = static_cast<RigidBody*>(body1);
             return;
         }
     }
-    _body1 = NULL;
-    _p1 = NULL;
-    _r1 = NULL;
+    _body1 = nullptr;
+    _p1 = nullptr;
+    _r1 = nullptr;
 }
 
 void Stick::setBody2(Object* body2)
@@ -230,18 +230,18 @@ void Stick::setBody2(Object* body2)
         if(body2->metaObject()->inherits<Particle>()) {
             _body2 = body2;
             _p2 = static_cast<Particle*>(body2);
-            _r2 = NULL;
+            _r2 = nullptr;
             return;
         } else if(body2->metaObject()->inherits<RigidBody>()) {
             _body2 = body2;
-            _p2 = NULL;
+            _p2 = nullptr;
             _r2 = static_cast<RigidBody*>(body2);
             return;
         }
     }
-    _body2 = NULL;
-    _p2 = NULL;
-    _r2 = NULL;
+    _body2 = nullptr;
+    _p2 = nullptr;
+    _r2 = nullptr;
 }
 
 Vector2d Stick::position1() const

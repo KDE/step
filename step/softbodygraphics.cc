@@ -65,10 +65,10 @@ bool SoftBodyCreator::sceneEvent(QEvent* event)
         showMessage(MessageFrame::Information,
             i18n("Please fill in the parameters for %1", classNameTr()));
 
-        _item = _worldModel->createItem(_className); Q_ASSERT(_item != 0);
+        _item = _worldModel->createItem(_className); Q_ASSERT(_item != nullptr);
         
         SoftBodyMenuHandler* menuHandler =
-            new SoftBodyMenuHandler(_item, _worldModel, 0);
+            new SoftBodyMenuHandler(_item, _worldModel, nullptr);
         menuHandler->createSoftBodyItems(position);
         menuHandler->deleteLater();
         
@@ -81,7 +81,7 @@ bool SoftBodyCreator::sceneEvent(QEvent* event)
         }
         else {
             delete _item;
-            _item = 0;
+            _item = nullptr;
         }
 
         setFinished();
@@ -94,8 +94,8 @@ bool SoftBodyCreator::sceneEvent(QEvent* event)
 
 void SoftBodyMenuHandler::populateMenu(QMenu* menu, KActionCollection* actions)
 {
-    _createSoftBodyItemsUi = 0;
-    _createSoftBodyItemsDialog = 0;
+    _createSoftBodyItemsUi = nullptr;
+    _createSoftBodyItemsDialog = nullptr;
     //_confChanged = false;
 
     // XXX: better icon
@@ -163,8 +163,8 @@ void SoftBodyMenuHandler::createSoftBodyItems(const StepCore::Vector2d& pos)
 	createSoftBodyItemsApply();
     }
 
-    delete _createSoftBodyItemsDialog; _createSoftBodyItemsDialog = 0;
-    delete _createSoftBodyItemsUi; _createSoftBodyItemsUi = 0;
+    delete _createSoftBodyItemsDialog; _createSoftBodyItemsDialog = nullptr;
+    delete _createSoftBodyItemsUi; _createSoftBodyItemsUi = nullptr;
 }
 
 void SoftBodyMenuHandler::createSoftBodyItemsApply()
@@ -209,7 +209,7 @@ void SoftBodyMenuHandler::createSoftBodyItemsApply()
 SoftBodyGraphicsItem::SoftBodyGraphicsItem(StepCore::Item* item, WorldModel* worldModel)
     : StepGraphicsItem(item, worldModel)
 {
-    Q_ASSERT(dynamic_cast<StepCore::SoftBody*>(_item) != NULL);
+    Q_ASSERT(dynamic_cast<StepCore::SoftBody*>(_item) != nullptr);
     setFlag(QGraphicsItem::ItemIsSelectable);
     setFlag(QGraphicsItem::ItemIsMovable);
     setAcceptHoverEvents(true);

@@ -33,8 +33,8 @@ class PropertiesBrowserDelegate: public QItemDelegate
 {
     Q_OBJECT
 public:
-    explicit PropertiesBrowserDelegate(QObject* parent = 0):
-            QItemDelegate(parent), _editor(NULL), _updating(false) {}
+    explicit PropertiesBrowserDelegate(QObject* parent = nullptr):
+            QItemDelegate(parent), _editor(nullptr), _updating(false) {}
     QWidget* createEditor(QWidget* parent, const QStyleOptionViewItem& option,
                            const QModelIndex& index) const override;
     void setEditorData(QWidget* editor, const QModelIndex& index) const override;
@@ -59,7 +59,7 @@ class PropertiesBrowser: public QDockWidget
     Q_OBJECT
 
 public:
-    explicit PropertiesBrowser(WorldModel* worldModel, QWidget* parent = 0);
+    explicit PropertiesBrowser(WorldModel* worldModel, QWidget* parent = nullptr);
 
 public slots:
     void settingsChanged();

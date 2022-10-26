@@ -46,7 +46,7 @@ class SpringErrors: public ObjectErrors
 
 public:
     /** Constructs SpringErrors */
-    explicit SpringErrors(Item* owner = NULL)
+    explicit SpringErrors(Item* owner = nullptr)
         : ObjectErrors(owner), _restLengthVariance(0), _stiffnessVariance(0),
           _dampingVariance(0), _localPosition1Variance(0,0), _localPosition2Variance(0,0) {}
 
@@ -133,7 +133,7 @@ class Spring : public Force
 public:
     /** Constructs Spring */
     explicit Spring(double restLength = 0, double stiffness = 1, double damping = 0,
-                Item* body1 = 0, Item* body2 = 0);
+                Item* body1 = nullptr, Item* body2 = nullptr);
 
     void calcForce(bool calcVariances) override;
 

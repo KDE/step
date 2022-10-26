@@ -63,7 +63,7 @@ public:
     Q_DECLARE_FLAGS(SnapFlags, SnapFlag)
 
     /** Construct WorldScene */
-    explicit WorldScene(WorldModel* worldModel, QObject* parent = 0);
+    explicit WorldScene(WorldModel* worldModel, QObject* parent = nullptr);
     ~WorldScene();
 
     /** Get StepCore::Item by QGraphicsItem */
@@ -84,7 +84,7 @@ public:
      *  \param pos position
      *  \param flags snap flags
      *  \param moreTypes additional item types to snap */
-    StepCore::Item* snapHighlight(QPointF pos, SnapFlags flags, const SnapList* moreTypes = 0);
+    StepCore::Item* snapHighlight(QPointF pos, SnapFlags flags, const SnapList* moreTypes = nullptr);
 
     /** Remove highlighting */
     void snapClear();

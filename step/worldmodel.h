@@ -62,7 +62,7 @@ public:
     Q_DECLARE_FLAGS(UndoFlags, UndoFlag)
 
 public:
-    explicit WorldModel(QObject* parent = 0);
+    explicit WorldModel(QObject* parent = nullptr);
     ~WorldModel();
 
     /** Get QItemSelectionModel associated with this WorldModel */
@@ -76,7 +76,7 @@ public:
     QModelIndex collisionSolverIndex() const; ///< Get index of StepCore::CollisionSolver
     QModelIndex constraintSolverIndex() const; ///< Get index of StepCore::ConstraintSolver
     QModelIndex objectIndex(StepCore::Object* obj) const; ///< Get index of given object by pointer
-    QModelIndex childItemIndex(int n, StepCore::ItemGroup* group = NULL) const; ///< Get index of n-th child of the group
+    QModelIndex childItemIndex(int n, StepCore::ItemGroup* group = nullptr) const; ///< Get index of n-th child of the group
     
     /** Get StepCore::Object by index. \note Never change returned object directly ! */
     StepCore::Object* object(const QModelIndex& index) const;
@@ -114,11 +114,11 @@ public:
     // Add/remove/set functions
     /** Generates new unique item name */
     QString newItemName(const QString& className);
-    StepCore::Item* createItem(const QString& className, StepCore::ItemGroup* parent = 0);
+    StepCore::Item* createItem(const QString& className, StepCore::ItemGroup* parent = nullptr);
     /** Creates new item of className with unique name */
-    StepCore::Item* newItem(const QString& className, StepCore::ItemGroup* parent = 0);
+    StepCore::Item* newItem(const QString& className, StepCore::ItemGroup* parent = nullptr);
     /** Add already created item to the world */
-    void addItem(StepCore::Item* item, StepCore::ItemGroup* parent = 0);
+    void addItem(StepCore::Item* item, StepCore::ItemGroup* parent = nullptr);
     /** Delete item from the world */
     void deleteItem(StepCore::Item* item);
 
@@ -240,7 +240,7 @@ signals:
 protected:
     void resetWorld();
     void emitChanged(bool fullUpdate, bool recalcFn);
-    void addCreatedItem(StepCore::Item* item, StepCore::ItemGroup* parent = 0);
+    void addCreatedItem(StepCore::Item* item, StepCore::ItemGroup* parent = nullptr);
     void removeCreatedItem(StepCore::Item* item);
     StepCore::Solver* swapSolver(StepCore::Solver* solver);
     QList<StepCore::Item*> selectedItems();

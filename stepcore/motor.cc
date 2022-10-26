@@ -60,18 +60,18 @@ void LinearMotor::setBody(Object* body)
         if(body->metaObject()->inherits<Particle>()) {
             _body = body;
             _p = static_cast<Particle*>(body);
-            _r = NULL;
+            _r = nullptr;
             return;
         } else if(body->metaObject()->inherits<RigidBody>()) {
             _body = body;
-            _p = NULL;
+            _p = nullptr;
             _r = static_cast<RigidBody*>(body);
             return;
         }
     }
-    _body = NULL;
-    _p = NULL;
-    _r = NULL;
+    _body = nullptr;
+    _p = nullptr;
+    _r = nullptr;
 }    
 
 Vector2d LinearMotor::position() const
@@ -123,8 +123,8 @@ void CircularMotor::setBody(Object* body)
             return;
         }
     }
-    _body = NULL;
-    _r = NULL;
+    _body = nullptr;
+    _r = nullptr;
 }    
 
 Vector2d CircularMotor::localPosition() const

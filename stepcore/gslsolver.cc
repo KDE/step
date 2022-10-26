@@ -80,43 +80,43 @@ void GslGenericSolver::init()
     _dydt_out.resize(_dimension);
 
     _gslStep = gsl_odeiv_step_alloc(_gslStepType, _dimension);
-    STEPCORE_ASSERT_NOABORT(NULL != _gslStep);
+    STEPCORE_ASSERT_NOABORT(nullptr != _gslStep);
 
     _gslSystem.function = gslFunction;
-    _gslSystem.jacobian = NULL;
+    _gslSystem.jacobian = nullptr;
     _gslSystem.dimension = _dimension;
     _gslSystem.params = this;
 
     if(_adaptive) {
         _gslControl = gsl_odeiv_control_y_new(_toleranceAbs, _toleranceRel);
-        STEPCORE_ASSERT_NOABORT(NULL != _gslControl);
+        STEPCORE_ASSERT_NOABORT(nullptr != _gslControl);
         _gslEvolve = gsl_odeiv_evolve_alloc(_dimension);
-        STEPCORE_ASSERT_NOABORT(NULL != _gslEvolve);
+        STEPCORE_ASSERT_NOABORT(nullptr != _gslEvolve);
     } else {
-        _gslControl = NULL;
-        _gslEvolve = NULL;
+        _gslControl = nullptr;
+        _gslEvolve = nullptr;
     }
 }
 
 void GslGenericSolver::fini()
 {
-    if(_gslStep != NULL) gsl_odeiv_step_free(_gslStep);
-    if(_gslControl != NULL) gsl_odeiv_control_free(_gslControl);
-    if(_gslEvolve != NULL) gsl_odeiv_evolve_free(_gslEvolve);
+    if(_gslStep != nullptr) gsl_odeiv_step_free(_gslStep);
+    if(_gslControl != nullptr) gsl_odeiv_control_free(_gslControl);
+    if(_gslEvolve != nullptr) gsl_odeiv_evolve_free(_gslEvolve);
 }
 
 int GslGenericSolver::gslFunction(double t, const double* y, double* f, void* params)
 {
     GslGenericSolver* s = static_cast<GslGenericSolver*>(params);
-    return s->_function(t, y, 0, f, 0, s->_params);
+    return s->_function(t, y, nullptr, f, nullptr, s->_params);
 }
 
 int GslGenericSolver::doCalcFn(double* t, const VectorXd* y,
             const VectorXd* yvar, VectorXd* f, VectorXd* fvar)
 {
     //int ret = GSL_ODEIV_FN_EVAL(&_gslSystem, *t, y, _ydiff);
-    int ret = _function(*t, y->data(), yvar?yvar->data():0, f ? f->data() : _ydiff.data(),
-                        fvar?fvar->data():0, _params);
+    int ret = _function(*t, y->data(), yvar?yvar->data():nullptr, f ? f->data() : _ydiff.data(),
+                        fvar?fvar->data():nullptr, _params);
     //if(f != NULL) std::memcpy(f, _ydiff, _dimension*sizeof(*f));
     return ret;
     //_hasSavedState = true;

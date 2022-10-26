@@ -67,8 +67,8 @@
 
 MainWindow::MainWindow()
 {
-    qsrand(time(NULL));
-    std::srand(time(NULL));
+    qsrand(time(nullptr));
+    std::srand(time(nullptr));
 
     // Load UnitCalc at startup
     UnitsCalc::self();
@@ -582,7 +582,7 @@ void MainWindow::configureStep()
     KConfigDialog* dialog = new KConfigDialog(this, QStringLiteral("settings"), Settings::self());
 
     Ui::ConfigureStepGeneralWidget generalUi;
-    QWidget* generalWidget = new QWidget(0);
+    QWidget* generalWidget = new QWidget(nullptr);
     generalWidget->setObjectName(QStringLiteral("general"));
     generalUi.setupUi(generalWidget);
     dialog->addPage(generalWidget, i18n("General"), QStringLiteral("step")); //shows the "step" icon, the "general" icon doesn't exist

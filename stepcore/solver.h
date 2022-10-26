@@ -78,8 +78,8 @@ public:
                              double* f, double* fvar, void* params);
 
     /** Constructs a solver */
-    explicit Solver(int dimension = 0, Function function = NULL,
-                void* params = NULL, double stepSize = 0.001);
+    explicit Solver(int dimension = 0, Function function = nullptr,
+                void* params = nullptr, double stepSize = 0.001);
     /** Constructs a solver */
     explicit Solver(double stepSize);
 
@@ -124,8 +124,8 @@ public:
     double localErrorRatio() const { return _localErrorRatio; }
 
     /** Calculate function value */
-    virtual int doCalcFn(double* t, const VectorXd* y, const VectorXd* yvar = 0,
-                            VectorXd* f = 0, VectorXd* fvar = 0) = 0;
+    virtual int doCalcFn(double* t, const VectorXd* y, const VectorXd* yvar = nullptr,
+                            VectorXd* f = nullptr, VectorXd* fvar = nullptr) = 0;
 
     /** Integrate.
      *  \param t Current time (will be updated by the new value)
@@ -168,7 +168,7 @@ inline Solver::Solver(int dimension, Function function, void* params, double ste
 }
 
 inline Solver::Solver(double stepSize)
-     : _dimension(0), _function(0), _params(0), _stepSize(stepSize),
+     : _dimension(0), _function(nullptr), _params(nullptr), _stepSize(stepSize),
        _toleranceAbs(0.001), _toleranceRel(0.001), _localError(0), _localErrorRatio(0)
 {
 }

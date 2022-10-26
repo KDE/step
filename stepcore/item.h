@@ -50,9 +50,9 @@ public:
     /** Constructs Item */
     explicit Item(const QString& name = QString())
         : Object(name)
-        , _world(NULL)
-        , _group(NULL)
-        , _objectErrors(NULL)
+        , _world(nullptr)
+        , _group(nullptr)
+        , _objectErrors(nullptr)
         , _color(0xff000000) {}
     /** Constructs a copy of item */
     Item(const Item& item) : Object() { *this = item; }
@@ -81,7 +81,7 @@ public:
     ObjectErrors* objectErrors();
 
     /** Delete objectErrors */
-    void deleteObjectErrors() { delete _objectErrors; _objectErrors = NULL; }
+    void deleteObjectErrors() { delete _objectErrors; _objectErrors = nullptr; }
 
     /** Get item color (for use in GUI) */
     Color color() const { return _color; }
@@ -99,7 +99,7 @@ public:
 protected:
     /** \internal Creates specific ObjectErrors-derived class
      *  (to be reimplemented in derived classes) */
-    virtual ObjectErrors* createObjectErrors() { return NULL; } // XXX: rename to createObjectVariances
+    virtual ObjectErrors* createObjectErrors() { return nullptr; } // XXX: rename to createObjectVariances
 
 private:
     World*        _world;

@@ -41,7 +41,7 @@ class Anchor : public Joint
         
 public:
     /** Constructs Anchor */
-    explicit Anchor(Object* body = 0, const Vector2d& position = Vector2d::Zero(), double angle = 0);
+    explicit Anchor(Object* body = nullptr, const Vector2d& position = Vector2d::Zero(), double angle = 0);
 
     /** Get pointer to the body */
     Object* body() const { return _body; }
@@ -82,7 +82,7 @@ class Pin : public Joint
 
 public:
     /** Constructs Pin */
-    explicit Pin(Object* body = 0, const Vector2d& localPosition = Vector2d::Zero(),
+    explicit Pin(Object* body = nullptr, const Vector2d& localPosition = Vector2d::Zero(),
                         const Vector2d& position = Vector2d::Zero());
 
     /** Get pointer to the body */
@@ -125,7 +125,7 @@ class Stick : public Joint
 public:
     /** Constructs Stick */
     explicit Stick(double restLength = 1, 
-               Object* body1 = 0, Object* body2 = 0,
+               Object* body1 = nullptr, Object* body2 = nullptr,
                const Vector2d& localPosition1 = Vector2d::Zero(),
                const Vector2d& localPosition2 = Vector2d::Zero());
 

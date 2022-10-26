@@ -33,7 +33,7 @@
 class WorldBrowserView: public QTreeView
 {
 public:
-    WorldBrowserView(QWidget* parent = 0);
+    WorldBrowserView(QWidget* parent = nullptr);
     void reset() override;
 
 protected:
