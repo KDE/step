@@ -1,8 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<kcfg xmlns="http://www.kde.org/standards/kcfg/1.0"
-      xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-      xsi:schemaLocation="http://www.kde.org/standards/kcfg/1.0
-                          http://www.kde.org/standards/kcfg/1.0/kcfg.xsd" >
+<!DOCTYPE gui SYSTEM "kpartgui.dtd">
+<gui version="1" name="step" translationDomain="step">
   <ToolBar name="mainToolBar" >
     <text>Main Toolbar</text>
     <Action name="view_zoom_in" />
@@ -51,4 +49,4 @@
         </Menu>
     </Menu>
   </MenuBar>
-</kcfg>
+</gui>
