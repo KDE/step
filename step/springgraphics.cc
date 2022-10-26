@@ -171,7 +171,7 @@ void SpringGraphicsItem::viewScaleChanged()
 
     double u = 1/s;
     _painterPath.addRect(QRectF(-u, -_radius-u, _rnorm+u, _radius*2+u));
-    _painterPath = QMatrix().rotate(atan2(r[1], r[0])*180/3.14).map(_painterPath);
+    _painterPath = QTransform().rotate(atan2(r[1], r[0])*180/3.14).map(_painterPath);
         
     //update(); // XXX: documentation says this is unnecessary, but it doesn't work without it
 }

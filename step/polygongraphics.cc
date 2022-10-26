@@ -263,7 +263,7 @@ void DiskGraphicsItem::viewScaleChanged()
 	// Don't need a marker when the disk is too small to see in detail.
     }
 
-    _markPath = QMatrix().rotate(disk()->angle() * 180 / StepCore::Constants::Pi).map(_markPath);
+    _markPath = QTransform().rotate(disk()->angle() * 180 / StepCore::Constants::Pi).map(_markPath);
     RigidBodyGraphicsItem::viewScaleChanged();
 }
 
@@ -532,7 +532,7 @@ void BasePolygonGraphicsItem::viewScaleChanged()
             _painterPath.lineTo(vectorToPoint( basePolygon()->vertexes()[i] ));
         }
         _painterPath.closeSubpath();
-        _painterPath = QMatrix().rotate(basePolygon()->angle() * 180 / StepCore::Constants::Pi).map(_painterPath);
+        _painterPath = QTransform().rotate(basePolygon()->angle() * 180 / StepCore::Constants::Pi).map(_painterPath);
     } else {
         double s = currentViewScale();
         _painterPath.addEllipse(-1/s, -1/s, 2/s, 2/s);

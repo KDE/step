@@ -400,7 +400,7 @@ void WorldScene::worldDataChanged(bool dynamicOnly)
 void WorldScene::updateViewScale()
 {
     if(_worldView) {
-        _currentViewScale = _worldView->matrix().m11();
+        _currentViewScale = _worldView->transform().m11();
         _worldModel->simulationPause();
         foreach (QGraphicsItem *item, items()) {
             StepGraphicsItem* gItem = dynamic_cast<StepGraphicsItem*>(item);
@@ -614,14 +614,14 @@ void WorldGraphicsView::fitToPage()
     //qDebug() << br << " " << (br | QRectF(0,0,0,0)) << endl;
     QRect  ws = viewport()->rect();
 
-    double currentViewScale = matrix().m11();
+    double currentViewScale = transform().m11();
     double s = qMin( ws.width()/br.width(), ws.height()/br.height() );
 
     // XXX: use QSize::scale !
 
     if(s < currentViewScale || s*0.8 > currentViewScale) {
         s *= 0.9;
-        resetMatrix();
+        resetTransform();
         scale(s, -s);
         updateSceneRect();
     } else {
@@ -636,7 +636,7 @@ void WorldGraphicsView::fitToPage()
 
 void WorldGraphicsView::actualSize()
 {
-    resetMatrix();
+    resetTransform();
     scale(100, -100);
     updateSceneRect();
     
