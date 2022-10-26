@@ -555,7 +555,7 @@ void WorldScene::snapUpdateToolTip()
     } else {
         QToolTip::hideText();
         // Hack to hide tooltip immediately
-        QWheelEvent fakeEvent(QPoint(0,0), 0, Qt::NoButton, Qt::NoModifier);
+        QWheelEvent fakeEvent(QPointF(0,0), QPointF(0,0), QPoint(0, 0), QPoint(0, 0), Qt::NoButton, Qt::NoModifier, Qt::NoScrollPhase, false);
         QCoreApplication::sendEvent(_messageFrame, &fakeEvent);
     }
 }
