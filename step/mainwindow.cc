@@ -67,7 +67,6 @@
 
 MainWindow::MainWindow()
 {
-    qsrand(time(nullptr));
     std::srand(time(nullptr));
 
     // Load UnitCalc at startup
