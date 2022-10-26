@@ -48,8 +48,6 @@ endif(STEPCORE_WITH_GSL)
 if(STEPCORE_WITH_QT)
     target_compile_definitions(stepcore PUBLIC -DSTEPCORE_WITH_QT)
 
-    set(QT_DONT_USE_QTGUI ON)
-    set(QT_USE_QTXML ON)
     find_package(Qt${QT_MAJOR_VERSION} ${QT_MIN_VERSION} REQUIRED NO_MODULE COMPONENTS Xml)
 
     target_link_libraries(stepcore Qt::Core Qt::Xml)
