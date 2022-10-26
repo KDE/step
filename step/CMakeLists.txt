@@ -64,12 +64,11 @@ endif(STEP_WITH_QALCULATE)
 ki18n_wrap_ui(step_SRCS ${step_UIS})
 kconfig_add_kcfg_files(step_SRCS ${step_KCFGS})
 
-include_directories(${CMAKE_CURRENT_BINARY_DIR})
-include_directories(${CMAKE_CURRENT_SOURCE_DIR})
-
 ecm_create_qm_loader(step_SRCS step_qt)
 
 add_executable(step ${step_SRCS})
+
+target_include_directories(step PUBLIC ${CMAKE_SOURCE_DIR})
 
 target_link_libraries(step
     stepcore
