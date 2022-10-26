@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: step_example_files\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2021-03-14 19:34+0000\n"
+"POT-Creation-Date: 2022-10-26 00:42+0000\n"
 "PO-Revision-Date: 2019-12-05 21:22+0100\n"
 "Last-Translator: Eloy Cuadra <ecuadra@eloihr.net>\n"
 "Language-Team: Spanish <kde-l10n-es@kde.org>\n"
@@ -90,7 +90,7 @@ msgstr "trazador1"
 #: examples/note.step:41 examples/resonance.step:179 examples/softbody.step:679
 #: examples/wave.step:481 tutorials/tutorial1.step:138
 #: tutorials/tutorial2.step:147 tutorials/tutorial3.step:100
-#: tutorials/tutorial4.step:173
+#: tutorials/tutorial4.step:173 tutorials/tutorial5.step:122
 #, kde-format
 msgctxt "name"
 msgid "solver1"
@@ -104,7 +104,7 @@ msgstr "resolución1"
 #: examples/softbody.step:686 examples/solar.step:105 examples/springs.step:106
 #: examples/wave.step:488 tutorials/tutorial1.step:145
 #: tutorials/tutorial2.step:154 tutorials/tutorial3.step:107
-#: tutorials/tutorial4.step:180
+#: tutorials/tutorial4.step:180 tutorials/tutorial5.step:129
 #, kde-format
 msgctxt "name"
 msgid "collisionSolver1"
@@ -118,7 +118,7 @@ msgstr "resoluciónDeColisión1"
 #: examples/softbody.step:691 examples/solar.step:110 examples/springs.step:111
 #: examples/wave.step:493 tutorials/tutorial1.step:150
 #: tutorials/tutorial2.step:159 tutorials/tutorial3.step:112
-#: tutorials/tutorial4.step:185
+#: tutorials/tutorial4.step:185 tutorials/tutorial5.step:134
 #, kde-format
 msgctxt "name"
 msgid "constraintSolver1"
@@ -1780,11 +1780,12 @@ msgctxt "HTML:p"
 msgid "- A pin is a joint that fixes one point of the body."
 msgstr "- Una fijación es una unión que fija un punto del cuerpo."
 
-#, fuzzy
-#~| msgctxt "HTML:p"
-#~| msgid "- A pin is a joint that fixes one point of the body."
-#~ msgctxt "HTML:p"
-#~ msgid ""
-#~ "- A stick is a joint that fixes the distance between two points on two "
-#~ "bodies."
-#~ msgstr "- Una fijación es una unión que fija un punto del cuerpo."
+#: tutorials/tutorial5.step:118
+#, fuzzy, kde-format
+#| msgctxt "HTML:p"
+#| msgid "- A pin is a joint that fixes one point of the body."
+msgctxt "HTML:p"
+msgid ""
+"- A stick is a joint that fixes the distance between two points on two "
+"bodies."
+msgstr "- Una fijación es una unión que fija un punto del cuerpo."

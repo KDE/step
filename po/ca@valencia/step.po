@@ -845,7 +845,7 @@ msgstr "Canvia %1.%2"
 #: step/propertiesbrowser.cc:314
 #, kde-format
 msgid "Rename %1 to %2"
-msgstr "Canvia el nom %1 a %2"
+msgstr "Canvia el nom de %1 a %2"
 
 #: step/propertiesbrowser.cc:464
 #, kde-format

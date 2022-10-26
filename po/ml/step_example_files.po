@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: step\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2021-03-14 19:34+0000\n"
+"POT-Creation-Date: 2022-10-26 00:42+0000\n"
 "PO-Revision-Date: 2019-11-28 03:03+0100\n"
 "Last-Translator: Automatically generated\n"
 "Language-Team: SMC <smc.org.in>\n"
@@ -88,7 +88,7 @@ msgstr ""
 #: examples/note.step:41 examples/resonance.step:179 examples/softbody.step:679
 #: examples/wave.step:481 tutorials/tutorial1.step:138
 #: tutorials/tutorial2.step:147 tutorials/tutorial3.step:100
-#: tutorials/tutorial4.step:173
+#: tutorials/tutorial4.step:173 tutorials/tutorial5.step:122
 #, kde-format
 msgctxt "name"
 msgid "solver1"
@@ -102,7 +102,7 @@ msgstr ""
 #: examples/softbody.step:686 examples/solar.step:105 examples/springs.step:106
 #: examples/wave.step:488 tutorials/tutorial1.step:145
 #: tutorials/tutorial2.step:154 tutorials/tutorial3.step:107
-#: tutorials/tutorial4.step:180
+#: tutorials/tutorial4.step:180 tutorials/tutorial5.step:129
 #, kde-format
 msgctxt "name"
 msgid "collisionSolver1"
@@ -116,7 +116,7 @@ msgstr ""
 #: examples/softbody.step:691 examples/solar.step:110 examples/springs.step:111
 #: examples/wave.step:493 tutorials/tutorial1.step:150
 #: tutorials/tutorial2.step:159 tutorials/tutorial3.step:112
-#: tutorials/tutorial4.step:185
+#: tutorials/tutorial4.step:185 tutorials/tutorial5.step:134
 #, kde-format
 msgctxt "name"
 msgid "constraintSolver1"
@@ -1697,4 +1697,12 @@ msgstr ""
 #, kde-format
 msgctxt "HTML:p"
 msgid "- A pin is a joint that fixes one point of the body."
+msgstr ""
+
+#: tutorials/tutorial5.step:118
+#, kde-format
+msgctxt "HTML:p"
+msgid ""
+"- A stick is a joint that fixes the distance between two points on two "
+"bodies."
 msgstr ""
