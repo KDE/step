@@ -73,7 +73,11 @@ double StepGraphicsItem::currentViewScale() const
 
 QColor StepGraphicsItem::highlightColor(const QColor& color)
 {
+#if QT_VERSION >= QT_VERSION_CHECK(6, 0, 0)
+    float h, s, v, a;
+#else
     qreal h, s, v, a;
+#endif
     QColor hsv = color.toHsv();
     hsv.getHsvF(&h, &s, &v, &a);
 

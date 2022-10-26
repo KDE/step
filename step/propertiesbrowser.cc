@@ -597,7 +597,11 @@ protected:
     void changeEvent(QEvent* event) override;
     void mousePressEvent(QMouseEvent* event) override;
     void drawBranches(QPainter *painter, const QRect &rect, const QModelIndex &index) const override;
+#if QT_VERSION >= QT_VERSION_CHECK(6, 0, 0)
+    void initViewItemOption(QStyleOptionViewItem *option) const override;
+#else
     QStyleOptionViewItem viewOptions() const override;
+#endif
     const int _windowsDecoSize;
     bool _macStyle;
 };
@@ -639,7 +643,12 @@ void PropertiesBrowserView::mousePressEvent(QMouseEvent* event)
 void PropertiesBrowserView::drawBranches(QPainter *painter, const QRect &rect, const QModelIndex &index) const
 {
     // Inspired by qt-designer code in src/components/propertyeditor/qpropertyeditor.cpp
+#if QT_VERSION >= QT_VERSION_CHECK(6, 0, 0)
+    QStyleOptionViewItem opt;
+    initViewItemOption(&opt);
+#else
     QStyleOptionViewItem opt = viewOptions();
+#endif
 
     if(model()->hasChildren(index)) {
         opt.state |= QStyle::State_Children;
@@ -664,12 +673,23 @@ void PropertiesBrowserView::drawBranches(QPainter *painter, const QRect &rect, c
     }
 }
 
+#if QT_VERSION >= QT_VERSION_CHECK(6, 0, 0)
+void PropertiesBrowserView::initViewItemOption(QStyleOptionViewItem *option) const
+{
+    if (!option) {
+        return;
+    }
+    QTreeView::initViewItemOption(option);
+    option->showDecorationSelected = true;
+}
+#else
 QStyleOptionViewItem PropertiesBrowserView::viewOptions() const
 {
     QStyleOptionViewItem option = QTreeView::viewOptions();
     option.showDecorationSelected = true;
     return option;
 }
+#endif
 
 PropertiesBrowser::PropertiesBrowser(WorldModel* worldModel, QWidget* parent)
     : QDockWidget(i18n("Properties"), parent)

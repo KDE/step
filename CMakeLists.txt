@@ -30,6 +30,9 @@ find_package(Qt${QT_MAJOR_VERSION} ${QT_MIN_VERSION} REQUIRED NO_MODULE COMPONEN
     Xml
     Svg
 )
+if (QT_MAJOR_VERSION STREQUAL "6")
+    find_package(Qt6 REQUIRED NO_MODULE COMPONENTS OpenGLWidgets)
+endif()
 
 find_package(KF5 ${KF5_MIN_VERSION} REQUIRED COMPONENTS
     Crash

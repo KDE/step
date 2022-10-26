@@ -83,6 +83,9 @@ target_link_libraries(step
     KF5::NewStuffWidgets
     Qt::Widgets
     ${qalculate_LIBS})
+if (QT_MAJOR_VERSION STREQUAL "6")
+    target_link_libraries(step Qt6::OpenGLWidgets)
+endif()
 
 install(TARGETS step ${KDE_INSTALL_TARGETS_DEFAULT_ARGS})
 install(FILES step.kcfg DESTINATION  ${KDE_INSTALL_KCFGDIR})
