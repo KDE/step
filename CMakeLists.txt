@@ -90,8 +90,6 @@ endif()
 
 include_directories(${CMAKE_CURRENT_SOURCE_DIR})
 
-add_definitions(-DQT_NO_URL_CAST_FROM_STRING)
-
 if(KF5DocTools_FOUND)
     ecm_optional_add_subdirectory(doc)
 endif()
