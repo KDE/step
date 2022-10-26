@@ -25,14 +25,6 @@ include(ECMMarkAsTest)
 
 find_package(Qt${QT_MAJOR_VERSION}Test ${QT_MIN_VERSION} CONFIG QUIET)
 
-if(STEPCORE_WITH_QT)
-    add_definitions(-DSTEPCORE_WITH_QT)
-endif(STEPCORE_WITH_QT)
-
-if(STEPCORE_WITH_GSL)
-    add_definitions(-DSTEPCORE_WITH_GSL)
-endif(STEPCORE_WITH_GSL)
-
 if(NOT Qt${QT_MAJOR_VERSION}Test_FOUND)
     message(STATUS "Qt5Test not found, autotests will not be built.")
     return()

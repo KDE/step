@@ -1,5 +1,6 @@
+add_library(stepcore STATIC)
 
-set(stepcore_SRCS
+target_sources(stepcore PRIVATE
     constants.cc
 
     material.cc
@@ -33,24 +34,23 @@ set(stepcore_SRCS
     xmlfile.cc
 )
 
+target_link_libraries(stepcore
+    Eigen3::Eigen
+)
+
 if(STEPCORE_WITH_GSL)
-    add_definitions(-DSTEPCORE_WITH_GSL)
-    include_directories(${GSL_INCLUDE_DIR})
-    set(stepcore_use_LIBS ${stepcore_use_LIBS} ${GSL_LIBRARIES} ${GSL_CBLAS_LIBRARIES})
-    set(stepcore_SRCS ${stepcore_SRCS} gslsolver.cc)
+    target_compile_definitions(stepcore PUBLIC -DSTEPCORE_WITH_GSL)
+    target_include_directories(stepcore PUBLIC ${GSL_INCLUDE_DIR})
+    target_link_libraries(stepcore ${GSL_LIBRARIES} ${GSL_CBLAS_LIBRARIES})
+    target_sources(stepcore PRIVATE gslsolver.cc)
 endif(STEPCORE_WITH_GSL)
 
 if(STEPCORE_WITH_QT)
-    add_definitions(-DSTEPCORE_WITH_QT)
+    target_compile_definitions(stepcore PUBLIC -DSTEPCORE_WITH_QT)
 
     set(QT_DONT_USE_QTGUI ON)
     set(QT_USE_QTXML ON)
     find_package(Qt${QT_MAJOR_VERSION} ${QT_MIN_VERSION} REQUIRED NO_MODULE COMPONENTS Xml)
 
-    set(stepcore_use_LIBS ${stepcore_use_LIBS} Qt::Core Qt::Xml)
+    target_link_libraries(stepcore Qt::Core Qt::Xml)
 endif(STEPCORE_WITH_QT)
-
-add_library(stepcore STATIC ${stepcore_SRCS})
-
-target_link_libraries(stepcore ${stepcore_use_LIBS} Eigen3::Eigen)
-

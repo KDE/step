@@ -1,6 +1,8 @@
+add_executable(step)
+
 ecm_setup_version(${RELEASE_SERVICE_VERSION} VARIABLE_PREFIX STEP VERSION_HEADER step_version.h)
 
-set(step_SRCS
+target_sources(step PRIVATE
     arrow.cc
     clipboard.cc
     mainwindow.cc
@@ -31,42 +33,30 @@ set(step_SRCS
     choicesmodel.cc
 )
 
-set(step_UIS
-    create_gas_particles.ui
-    create_softbody_items.ui
-    configure_graph.ui
-    configure_meter.ui
-    configure_controller.ui
-    configure_step_general.ui)
-
-set(step_KCFGS
-    settings.kcfgc)
-
-if(STEPCORE_WITH_QT)
-    add_definitions(-DSTEPCORE_WITH_QT)
-endif(STEPCORE_WITH_QT)
-
-if(STEPCORE_WITH_GSL)
-    add_definitions(-DSTEPCORE_WITH_GSL)
-    include_directories(${GSL_INCLUDE_DIR})
-endif(STEPCORE_WITH_GSL)
-
 if(STEP_WITH_QALCULATE)
-    add_definitions(-DSTEP_WITH_QALCULATE)
-    add_definitions(-DSTEP_WITH_UNITSCALC)
-    add_definitions(${QALCULATE_CFLAGS})
-    set(qalculate_LIBS ${QALCULATE_LIBRARIES} ${CLN_LIBRARIES})
+    target_compile_definitions(step PRIVATE
+        -DSTEP_WITH_QALCULATE
+        -DSTEP_WITH_UNITSCALC
+    )
+    target_compile_options(step PRIVATE ${QALCULATE_CFLAGS})
+    target_link_libraries(step ${QALCULATE_LIBRARIES} ${CLN_LIBRARIES})
     # To compile with libcln
     string (REPLACE "-fno-exceptions" "" CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS}")
     add_definitions (-fexceptions)
 endif(STEP_WITH_QALCULATE)
 
-ki18n_wrap_ui(step_SRCS ${step_UIS})
-kconfig_add_kcfg_files(step_SRCS ${step_KCFGS})
+ki18n_wrap_ui(step
+    create_gas_particles.ui
+    create_softbody_items.ui
+    configure_graph.ui
+    configure_meter.ui
+    configure_controller.ui
+    configure_step_general.ui
+)
 
-ecm_create_qm_loader(step_SRCS step_qt)
+kconfig_add_kcfg_files(step settings.kcfgc)
 
-add_executable(step ${step_SRCS})
+ecm_create_qm_loader(step step_qt)
 
 target_include_directories(step PUBLIC ${CMAKE_SOURCE_DIR})
 
@@ -81,7 +71,7 @@ target_link_libraries(step
     KF5::Plotting
     KF5::NewStuffWidgets
     Qt::Widgets
-    ${qalculate_LIBS})
+)
 if (QT_MAJOR_VERSION STREQUAL "6")
     target_link_libraries(step Qt6::OpenGLWidgets)
 endif()
@@ -94,4 +84,3 @@ install( PROGRAMS org.kde.step.desktop DESTINATION ${KDE_INSTALL_APPDIR} )
 
 add_subdirectory(icons)
 add_subdirectory(data)
-
