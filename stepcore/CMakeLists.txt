@@ -51,8 +51,6 @@ if(STEPCORE_WITH_QT)
     set(stepcore_use_LIBS ${stepcore_use_LIBS} Qt::Core Qt::Xml)
 endif(STEPCORE_WITH_QT)
 
-add_definitions(-Wall) # XXX ?
-
 add_library(stepcore STATIC ${stepcore_SRCS})
 
 target_link_libraries(stepcore ${stepcore_use_LIBS} Eigen3::Eigen)
