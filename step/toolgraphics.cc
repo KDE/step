@@ -477,7 +477,7 @@ NoteGraphicsItem::NoteGraphicsItem(StepCore::Item* item, WorldModel* worldModel)
     QComboBox* font = qobject_cast<QComboBox*>(_toolBar->widgetForAction(_actionFont));
     if(font) {
         font->setMinimumContentsLength(5);
-        font->setSizeAdjustPolicy(QComboBox::AdjustToMinimumContentsLength);
+        font->setSizeAdjustPolicy(QComboBox::AdjustToContents);
         font->installEventFilter(this);
         font->setToolTip(_actionFont->toolTip());
     }
@@ -485,7 +485,7 @@ NoteGraphicsItem::NoteGraphicsItem(StepCore::Item* item, WorldModel* worldModel)
     QComboBox* fontSize = qobject_cast<QComboBox*>(_toolBar->widgetForAction(_actionFontSize));
     if(fontSize) {
         fontSize->setMinimumContentsLength(2);
-        fontSize->setSizeAdjustPolicy(QComboBox::AdjustToMinimumContentsLength);
+        fontSize->setSizeAdjustPolicy(QComboBox::AdjustToContents);
         fontSize->installEventFilter(this);
         fontSize->setToolTip(_actionFontSize->toolTip());
     }
@@ -798,7 +798,7 @@ DataSourceWidget::DataSourceWidget(QWidget* parent)
     _index = new KComboBox(this);
     _index->setToolTip(i18n("Vector index"));
     _index->setMinimumContentsLength(1);
-    _index->setSizeAdjustPolicy(QComboBox::AdjustToMinimumContentsLength);
+    _index->setSizeAdjustPolicy(QComboBox::AdjustToContents);
     layout->addWidget(_index, 0);
 
     connect(_object, SIGNAL(activated(int)),
