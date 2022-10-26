@@ -3,10 +3,9 @@
 #  GSL_INCLUDE_DIR - the libusb include directory
 #  GSL_LIBRARIES - Link these to use libusb
 
-# Copyright (c) 2008, Allen Winter <winter@kde.org>
+# SPDX-FileCopyrightText: 2008 Allen Winter <winter@kde.org>
 #
-# Redistribution and use is allowed according to the terms of the BSD license.
-# For details see the accompanying COPYING-CMAKE-SCRIPTS file.
+# SPDX-License-Identifier: BSD-3-Clause.
 
 if (GSL_INCLUDE_DIR AND GSL_LIBRARIES AND GSL_CBLAS_LIBRARIES)
 
