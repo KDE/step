@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: step\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2022-10-23 00:40+0000\n"
+"POT-Creation-Date: 2022-10-27 00:42+0000\n"
 "PO-Revision-Date: 2019-12-12 21:37+0000\n"
 "Last-Translator: Vivek KJ Pazhedath <vivekkj2004@gmail.com>\n"
 "Language-Team: Swathanthra|സ്വതന്ത്ര Malayalam|മലയാളം Computing|കമ്പ്യൂട്ടിങ്ങ് <smc-"
@@ -337,14 +337,14 @@ msgstr "ദേഹപരിച്ഛേദങ്ങളുടെ എണ്ണം"
 msgid "(4,4)"
 msgstr "(4.4)"
 
-#: step/gascreationdialog.cc:43
+#: step/gascreationdialog.cc:31
 #, fuzzy, kde-format
 #| msgid "Create gas particles"
 msgctxt "@title:window"
 msgid "Create Gas Particles"
 msgstr "വാതകകണങ്ങള്‍ സൃഷ്ടിക്കുക"
 
-#: step/gasgraphics.cc:43
+#: step/gasgraphics.cc:31
 #, kde-format
 msgid ""
 "Press left mouse button to position\n"
@@ -353,15 +353,15 @@ msgstr ""
 "%1 നു് ഇടത്തേമുകള്‍ ഭാഗം സഥാനമുറപ്പിക്കാന്‍\n"
 "മൌസിന്റെ ഇടത്തേ ബട്ടണ്‍ അമര്‍ത്തുക"
 
-#: step/gasgraphics.cc:55 step/motorgraphics.cc:42 step/motorgraphics.cc:223
-#: step/polygongraphics.cc:173 step/polygongraphics.cc:307
-#: step/polygongraphics.cc:452 step/softbodygraphics.cc:62
-#: step/worldgraphics.cc:70 step/worldgraphics.cc:120
+#: step/gasgraphics.cc:43 step/motorgraphics.cc:30 step/motorgraphics.cc:211
+#: step/polygongraphics.cc:161 step/polygongraphics.cc:295
+#: step/polygongraphics.cc:440 step/softbodygraphics.cc:50
+#: step/worldgraphics.cc:58 step/worldgraphics.cc:108
 #, kde-format
 msgid "Create %1"
 msgstr "%1 നിര്‍മ്മിക്കുക"
 
-#: step/gasgraphics.cc:71
+#: step/gasgraphics.cc:59
 #, kde-format
 msgid ""
 "Move mouse and release left mouse button to position\n"
@@ -370,26 +370,26 @@ msgstr ""
 "%1 നു് വലത്തേകീഴ്ഭാഗം സ്ഥാനമുറപ്പിക്കാന്‍\n"
 "മൌസ് നീക്കി ഇടതു ബട്ടണ്‍ വിടുക"
 
-#: step/gasgraphics.cc:97
+#: step/gasgraphics.cc:85
 #, kde-format
 msgid "Please fill in the parameters for the gas particles."
 msgstr "വാതക അണുക്കളുടെ സഥിരരാശികള്‍ പൂരിപ്പിക്കുക."
 
-#: step/gasgraphics.cc:106 step/polygongraphics.cc:208
-#: step/polygongraphics.cc:347 step/polygongraphics.cc:502
-#: step/softbodygraphics.cc:79 step/worldgraphics.cc:87
-#: step/worldgraphics.cc:134 step/worldgraphics.cc:169
+#: step/gasgraphics.cc:94 step/polygongraphics.cc:196
+#: step/polygongraphics.cc:335 step/polygongraphics.cc:490
+#: step/softbodygraphics.cc:67 step/worldgraphics.cc:75
+#: step/worldgraphics.cc:122 step/worldgraphics.cc:157
 #, kde-format
 msgid "%1 named '%2' created"
 msgstr "'%2' പേരില്‍ %1 നിര്‍മ്മിച്ചു"
 
-#: step/gasgraphics.cc:294
+#: step/gasgraphics.cc:282
 #, fuzzy, kde-format
 #| msgid "Create particles..."
 msgid "Create Particles..."
 msgstr "രേണുക്കള്‍ സൃഷ്ടിക്കുക..."
 
-#: step/gasgraphics.cc:364
+#: step/gasgraphics.cc:352
 #, fuzzy, kde-format
 msgid ""
 "You are trying to create a very large number of particles. This will make "
@@ -398,69 +398,69 @@ msgstr ""
 "വലിയഅളവില്‍ കണങ്ങള്‍ നിര്‍മ്മിക്കാനാണു് നിങ്ങള്‍ ശ്രമിക്കുന്നതു്. ഇതു് പരീക്ഷണം മന്ദഗതിയിലാക്കും. "
 "തുടരാനുദ്ദേശമുണ്ടോ?"
 
-#: step/gasgraphics.cc:366 step/mainwindow.cc:414
+#: step/gasgraphics.cc:354 step/mainwindow.cc:401
 #, kde-format
 msgid "Warning - Step"
 msgstr "താക്കീത് - പടി"
 
-#: step/gasgraphics.cc:377
+#: step/gasgraphics.cc:365
 #, kde-format
 msgid "Create particles for %1"
 msgstr "%1 ന്റെ കണങ്ങള്‍ സൃഷ്ടിക്കുക"
 
-#: step/infobrowser.cc:38
+#: step/infobrowser.cc:26
 #, fuzzy, kde-format
 #| msgid "Context info"
 msgid "Context Info"
 msgstr "സന്ദര്‍ഭ വിവരണം"
 
-#: step/infobrowser.cc:56
+#: step/infobrowser.cc:44
 #, kde-format
 msgid "Back"
 msgstr "പിന്നോട്ട്"
 
-#: step/infobrowser.cc:58
+#: step/infobrowser.cc:46
 #, kde-format
 msgid "Forward"
 msgstr "മുന്നോട്ട്"
 
-#: step/infobrowser.cc:62
+#: step/infobrowser.cc:50
 #, kde-format
 msgid "Sync selection"
 msgstr "sync തെരഞ്ഞെടുപ്പു്"
 
-#: step/infobrowser.cc:64
+#: step/infobrowser.cc:52
 #, kde-format
 msgid "Follow selection"
 msgstr "തെരഞ്ഞെടുപ്പു് പിന്തുടരുക"
 
-#: step/infobrowser.cc:69
+#: step/infobrowser.cc:57
 #, fuzzy, kde-format
 #| msgid "Open in browser"
 msgid "Open in Browser"
 msgstr "മേച്ചില്‍ പാളിയില്‍ തുറക്കുക"
 
-#: step/infobrowser.cc:144
+#: step/infobrowser.cc:132
 #, kde-format
 msgid "Documentation"
 msgstr "വിവരണക്കുറിപ്പു്"
 
-#: step/infobrowser.cc:149
+#: step/infobrowser.cc:137
 #, kde-format
 msgid "No current object."
 msgstr "വര്‍ത്തമാന വസ്തുക്കളില്ല."
 
-#: step/infobrowser.cc:171
+#: step/infobrowser.cc:159
 #, kde-format
 msgid "Documentation error"
 msgstr "വിവരണക്കുറിപ്പിലുള്ള പിശകു്"
 
-#: step/infobrowser.cc:176
+#: step/infobrowser.cc:164
 #, fuzzy, kde-format
 msgid "Documentation for %1 not available. "
 msgstr "%1-നുള്ള വിവരണക്കുറിപ്പു് ലഭ്യമല്ല."
 
-#: step/infobrowser.cc:177
+#: step/infobrowser.cc:165
 #, fuzzy, kde-format
 msgid ""
 "You can help <a href=\"https://edu.kde.org/step\">Step</a> by writing it!"
@@ -468,42 +468,42 @@ msgstr ""
 "<a href=\"http;//edu.kde.org/step\">നിര്‍ദ്ദേശങ്ങള്‍ക്കു്</a> വിവരണമെഴുതി നിങ്ങള്‍ക്കും "
 "സഹായിക്കാം!"
 
-#: step/itempalette.cc:189
+#: step/itempalette.cc:177
 #, kde-format
 msgid "Palette"
 msgstr "വര്‍ണ്ണഫലകം"
 
-#: step/itempalette.cc:208
+#: step/itempalette.cc:196
 #, kde-format
 msgid "Pointer"
 msgstr "സൂചിക "
 
-#: step/itempalette.cc:209
+#: step/itempalette.cc:197
 #, kde-format
 msgid "Selection pointer"
 msgstr "തെരഞ്ഞെടുപ്പ് സൂചിക"
 
-#: step/itempalette.cc:232
+#: step/itempalette.cc:220
 #, kde-format
 msgid "Show text"
 msgstr "പാഠം കാണിക്കുക"
 
-#: step/jointgraphics.cc:170 step/springgraphics.cc:42
+#: step/jointgraphics.cc:158 step/springgraphics.cc:30
 #, kde-format
 msgid "Move end of %1"
 msgstr "%1 ന്റെ അന്ത്യഭാഗം നീക്കുക"
 
-#: step/latexformula.cc:42
+#: step/latexformula.cc:30
 #, kde-format
 msgid "can not launch %1"
 msgstr "%1 തൊടുക്കാന്‍ കഴിയുന്നില്ല"
 
-#: step/latexformula.cc:52
+#: step/latexformula.cc:40
 #, kde-format
 msgid "error running %1"
 msgstr "%1 പ്രവര്‍ത്തനം പിശകാണു്"
 
-#: step/latexformula.cc:56
+#: step/latexformula.cc:44
 #, kde-format
 msgid ""
 "%1 reported an error (exit status %2):\n"
@@ -512,200 +512,200 @@ msgstr ""
 "%1 ഒരു പിശകാണെന്നു് അറിയിപ്പുണ്ടു്.(ബഹിര്ഗമനഘട്ടം %2):\n"
 "%3"
 
-#: step/latexformula.cc:61
+#: step/latexformula.cc:49
 #, kde-format
 msgid "%1 did not create output file"
 msgstr "%1 ഔട്ട്പുട്ട് സൃഷ്ടിക്കാന്‍ കഴിഞ്ഞിട്ടില്ല"
 
-#: step/latexformula.cc:93
+#: step/latexformula.cc:81
 #, kde-format
 msgid "can not open temporary file"
 msgstr "താല്‍കാലികശേഖരം തുറക്കാന്‍ കഴിയില്ല"
 
-#: step/latexformula.cc:127
+#: step/latexformula.cc:115
 #, kde-format
 msgid "can not open result file"
 msgstr "ഫലശേഖരം തുറക്കാന്‍ കഴിയില്ല"
 
-#: step/main.cc:43
+#: step/main.cc:31
 #, kde-format
 msgid "Step"
 msgstr "പടി"
 
-#: step/main.cc:45
+#: step/main.cc:33
 #, kde-format
 msgid "Interactive physical simulator"
 msgstr "പ്രതികരിക്കുന്ന ഭൌതിക പരീക്ഷണങ്ങള്‍"
 
-#: step/main.cc:47
+#: step/main.cc:35
 #, kde-format
 msgid "(C) 2007 Vladimir Kuznetsov"
 msgstr "(c) 2007 വ്ളാദിമര്‍ കുഷ്നെറ്റ്സോവ്"
 
-#: step/main.cc:49
+#: step/main.cc:37
 #, kde-format
 msgid "https://edu.kde.org/step"
 msgstr ""
 
-#: step/main.cc:54
+#: step/main.cc:42
 #, kde-format
 msgid "Original author"
 msgstr "യഥാര്‍ത്ഥ രചയിതാവു്"
 
-#: step/main.cc:55
+#: step/main.cc:43
 #, kde-format
 msgid "ks.vladimir@gmail.com"
 msgstr ""
 
-#: step/main.cc:60
+#: step/main.cc:48
 #, kde-format
 msgid "Code contributions"
 msgstr "രഹസ്യഭാഷയുടെ പങ്കാളിത്തം"
 
-#: step/main.cc:61
+#: step/main.cc:49
 #, kde-format
 msgid "cniehaus@kde.org"
 msgstr ""
 
-#: step/main.cc:71
+#: step/main.cc:59
 #, kde-format
 msgid "Document to open"
 msgstr "പ്രമാണം തുറക്കാന്‍"
 
-#: step/mainwindow.cc:156
+#: step/mainwindow.cc:143
 #, kde-format
 msgid "&Open Tutorial..."
 msgstr "&അഭ്യാസപാഠം തുറക്കുക..."
 
-#: step/mainwindow.cc:161
+#: step/mainwindow.cc:148
 #, kde-format
 msgid "&Open Example..."
 msgstr "&ഉദാഹരണം തുറക്കുക..."
 
-#: step/mainwindow.cc:166
+#: step/mainwindow.cc:153
 #, kde-format
 msgid "Open Down&loaded Example..."
 msgstr "&ഇറക്കുമതിചെയ്ത ഉദാഹരണം തുറക്കുക..."
 
-#: step/mainwindow.cc:171
+#: step/mainwindow.cc:158
 #, kde-format
 msgid "Share C&urrent Experiment..."
 msgstr "&ഇപ്പോഴത്തെ പരീക്ഷണം പങ്കുവെയ്ക്കുക..."
 
-#: step/mainwindow.cc:174
+#: step/mainwindow.cc:161
 #, kde-format
 msgid "&Download New Experiments..."
 msgstr "&പുതിയ പരീക്ഷണങ്ങള്‍ ഇറക്കുമതി ചെയ്യുക..."
 
-#: step/mainwindow.cc:181
+#: step/mainwindow.cc:168
 #, kde-format
 msgid "Redo"
 msgstr "ആവര്‍ത്തിക്കുക"
 
-#: step/mainwindow.cc:181
+#: step/mainwindow.cc:168
 #, kde-format
 msgid "Undo"
 msgstr "തിരിച്ച് ചെയ്യുക"
 
-#: step/mainwindow.cc:203
+#: step/mainwindow.cc:190
 #, kde-format
 msgid "&Delete"
 msgstr "&മായ്ക്കുക"
 
-#: step/mainwindow.cc:213
+#: step/mainwindow.cc:200
 #, kde-format
 msgid "&Run"
 msgstr "&പ്രവര്‍ത്തിപ്പിക്കുക"
 
-#: step/mainwindow.cc:218
+#: step/mainwindow.cc:205
 #, kde-format
 msgid "Execute the program"
 msgstr "പദ്ധതി നിര്‍വഹിക്കുക"
 
-#: step/mainwindow.cc:219
+#: step/mainwindow.cc:206
 #, kde-format
 msgid "Run: Execute the program"
 msgstr "പ്രവര്‍ത്തിപ്പിക്കുക:പദ്ധതി നിര്‍വഹിക്കുക"
 
-#: step/mainwindow.cc:221
+#: step/mainwindow.cc:208
 #, kde-format
 msgctxt "@option:radio"
 msgid "1x Speed"
 msgstr "1x വേഗത"
 
-#: step/mainwindow.cc:229
+#: step/mainwindow.cc:216
 #, kde-format
 msgctxt "@option:radio choose the slow speed"
 msgid "2x Speed"
 msgstr "2x വേഗത"
 
-#: step/mainwindow.cc:236
+#: step/mainwindow.cc:223
 #, kde-format
 msgctxt "@option:radio"
 msgid "4x Speed"
 msgstr "4x വേഗത"
 
-#: step/mainwindow.cc:243
+#: step/mainwindow.cc:230
 #, kde-format
 msgctxt "@option:radio"
 msgid "8x Speed"
 msgstr "8x വേഗത"
 
-#: step/mainwindow.cc:250
+#: step/mainwindow.cc:237
 #, kde-format
 msgctxt "@option:radio"
 msgid "16x Speed"
 msgstr "16x വേഗത"
 
-#: step/mainwindow.cc:280
+#: step/mainwindow.cc:267
 #, kde-format
 msgctxt "filename"
 msgid "untitled.step"
 msgstr ""
 
-#: step/mainwindow.cc:306
+#: step/mainwindow.cc:293
 #, kde-format
 msgid "<new file>"
 msgstr "<പുതിയശേഖരം>"
 
-#: step/mainwindow.cc:320
+#: step/mainwindow.cc:307
 #, fuzzy, kde-format
 msgctxt "@title:window"
 msgid "Open Step File"
 msgstr "പടി"
 
-#: step/mainwindow.cc:320 step/mainwindow.cc:350
+#: step/mainwindow.cc:307 step/mainwindow.cc:337
 #, kde-format
 msgid "Step files (*.step)"
 msgstr ""
 
-#: step/mainwindow.cc:330
+#: step/mainwindow.cc:317
 #, kde-format
 msgid "Cannot parse file '%1': %2"
 msgstr "'%1': %2 ശേഖരങ്ങളെ വ്യാകരിക്കുവാന്‍ കഴിയില്ല"
 
-#: step/mainwindow.cc:339
+#: step/mainwindow.cc:326
 #, kde-format
 msgid "<open file: %1>"
 msgstr "<ശേഖരം തുറക്കുക: %1>"
 
-#: step/mainwindow.cc:350
+#: step/mainwindow.cc:337
 #, fuzzy, kde-format
 msgctxt "@title:window"
 msgid "Save Step File"
 msgstr "പടി"
 
-#: step/mainwindow.cc:366
+#: step/mainwindow.cc:353
 #, kde-format
 msgid "Cannot open file '%1'"
 msgstr "%1 ശേഖരം തുറക്കാന്‍ കഴിയില്ല"
 
-#: step/mainwindow.cc:372
+#: step/mainwindow.cc:359
 #, kde-format
 msgid "Cannot save file '%1': %2"
 msgstr "%1 ശേഖരം സൂക്ഷിക്കാനായില്ല: %2"
 
-#: step/mainwindow.cc:413
+#: step/mainwindow.cc:400
 #, kde-format
 msgid ""
 "The experiment has been modified.\n"
@@ -714,27 +714,27 @@ msgstr ""
 "പരീക്ഷണം പരിഷ്കരിക്കപ്പെട്ടിരിക്കുന്നു.\n"
 "മാറ്റങ്ങള്‍ സുരകഷിതമാക്കണോ?"
 
-#: step/mainwindow.cc:465
+#: step/mainwindow.cc:452
 #, kde-format
 msgid "Uploading is still not implemented in kdelibs."
 msgstr "കെഡിഈ ഗ്രന്ധശാലയില്‍ കയറ്റുമതി ഇനിയും നടപ്പിലാക്കിയിട്ടില്ല"
 
-#: step/mainwindow.cc:466
+#: step/mainwindow.cc:453
 #, kde-format
 msgid "Sorry - Step"
 msgstr "ക്ഷമിക്കണം - പടി"
 
-#: step/mainwindow.cc:493
+#: step/mainwindow.cc:480
 #, kde-format
 msgid "&Stop"
 msgstr "&നിര്‍ത്തുക"
 
-#: step/mainwindow.cc:503
+#: step/mainwindow.cc:490
 #, kde-format
 msgid "&Simulate"
 msgstr "&പരീക്ഷിച്ചുനോക്കുക"
 
-#: step/mainwindow.cc:508
+#: step/mainwindow.cc:495
 #, kde-format
 msgid ""
 "Cannot finish this step because local error is greater than local "
@@ -744,7 +744,7 @@ msgstr ""
 "ഈ ഘട്ടം മുഴുമിക്കാനായില്ല കാരണം താങ്ങാവുന്നതിലധികം പിശകുകളുണ്ടിവിടെ \n"
 "ദയവായി സോള് വര് വിതാനങ്ങള് പരിശോധിക്കൂ"
 
-#: step/mainwindow.cc:513
+#: step/mainwindow.cc:500
 #, fuzzy, kde-format
 msgid ""
 "Cannot finish this step because there are collisions which cannot be "
@@ -752,53 +752,53 @@ msgid ""
 "Please move colliding objects apart and try again."
 msgstr "ഈ ഘട്ടം മുഴുമിക്കാനായില്ല കാരണം സ്വയം പരിഹരിക്കാന്‍ കഴിയാത്തത്ത വൈവരുദ്ധ്യങ്ങളുണ്ടു്"
 
-#: step/mainwindow.cc:517
+#: step/mainwindow.cc:504
 #, kde-format
 msgid "Cannot finish this step because of an unknown error."
 msgstr "അറിയപ്പെടാത്ത പിശക്മൂലം ഈ ഘട്ടം മുഴുമിക്കാനായില്ല."
 
-#: step/mainwindow.cc:550
+#: step/mainwindow.cc:537
 #, kde-format
 msgid "&Undo"
 msgstr "&തിരിച്ച് ചെയ്യുക"
 
-#: step/mainwindow.cc:551
+#: step/mainwindow.cc:538
 #, kde-format
 msgid "&Undo: %1"
 msgstr "&തിരിച്ച് ചെയ്യുക: %1"
 
-#: step/mainwindow.cc:556
+#: step/mainwindow.cc:543
 #, kde-format
 msgid "Re&do"
 msgstr "&ആവര്‍ത്തിക്കുക"
 
-#: step/mainwindow.cc:557
+#: step/mainwindow.cc:544
 #, kde-format
 msgid "Re&do: %1"
 msgstr "&ആവര്‍ത്തിക്കുക: %1"
 
-#: step/mainwindow.cc:588
+#: step/mainwindow.cc:575
 #, kde-format
 msgid "General"
 msgstr "സാമാന്യം"
 
-#: step/motorgraphics.cc:112 step/motorgraphics.cc:290
-#: step/stepgraphicsitem.cc:206 step/stepgraphicsitem.cc:218
+#: step/motorgraphics.cc:100 step/motorgraphics.cc:278
+#: step/stepgraphicsitem.cc:198 step/stepgraphicsitem.cc:210
 #, kde-format
 msgid "Move %1"
 msgstr "%1 നീക്കുക"
 
-#: step/polygongraphics.cc:161
+#: step/polygongraphics.cc:149
 #, kde-format
 msgid "Press left mouse button to position a center of a %1"
 msgstr "%1-നു് ഒരു കേന്ദ്രം സഥാപിക്കാന്‍ മൌസിന്റെ ഇടതു ബട്ടണ്‍ അമര്‍ത്തുക"
 
-#: step/polygongraphics.cc:182
+#: step/polygongraphics.cc:170
 #, kde-format
 msgid "Move mouse and release left mouse button to define a radius of the %1"
 msgstr "മൌസ് വലിച്ച്നീക്കി ഇടതുബട്ടണ്‍ വിട്ടാല്‍ %1 ന്റെ അര്‍ദ്ധവ്യാസം കാണാം"
 
-#: step/polygongraphics.cc:295
+#: step/polygongraphics.cc:283
 #, kde-format
 msgid ""
 "Press left mouse button to position\n"
@@ -807,7 +807,7 @@ msgstr ""
 "%1 ന്റെ ഇടത്തെ മുകളറ്റം ഉറപ്പിക്കാന്‍ \n"
 "മൌസിന്റെ ഇടത്തെ ബട്ടണ്‍ അമര്‍ത്തുക"
 
-#: step/polygongraphics.cc:317
+#: step/polygongraphics.cc:305
 #, kde-format
 msgid ""
 "Move mouse and release left mouse button to position\n"
@@ -816,80 +816,80 @@ msgstr ""
 "%1-നും വലത്തേ കീഴ്ഭാഗം സ്ഥാനമുറപ്പിക്കാന്‍\n"
 "മൌസ് നീക്കി ഇടതു ബട്ടണ്‍ വിടുക"
 
-#: step/polygongraphics.cc:440
+#: step/polygongraphics.cc:428
 #, kde-format
 msgid "Click on the scene to create a first vertex of %1"
 msgstr "%1ന്റെ ആദ്യത്തെ ലംബം സൃഷ്ടിക്കാന്‍ കാഴ്ചപ്പുറത്ത് ഒന്ന് ക്ലിക്ക് ചെയ്യുക"
 
-#: step/polygongraphics.cc:488
+#: step/polygongraphics.cc:476
 #, kde-format
 msgid "Click on the scene to add new vertex or press Enter to finish"
 msgstr ""
 "പുതിയ ലംബശീര്‍ഷം സൃഷ്ടിക്കാന്‍ കാഴ്ചപ്പുറത്ത് ക്ലിക്കു് ചെയ്യുകയോ അല്ലെങ്കില്‍ അവസാനിപ്പിക്കാന്‍ Enter "
 "അമര്‍ത്തുകയോ ചെയ്യാം"
 
-#: step/propertiesbrowser.cc:279
+#: step/propertiesbrowser.cc:267
 #, kde-format
 msgid "Change solver type"
 msgstr "സോള്‍വര്‍ ഇനങ്ങള്‍ മാറ്റുക"
 
-#: step/propertiesbrowser.cc:294 step/propertiesbrowser.cc:300
-#: step/propertiesbrowser.cc:307 step/propertiesbrowser.cc:316
-#: step/propertiesbrowser.cc:400 step/propertiesbrowser.cc:417
-#: step/stepgraphicsitem.cc:401 step/stepgraphicsitem.cc:546
+#: step/propertiesbrowser.cc:282 step/propertiesbrowser.cc:288
+#: step/propertiesbrowser.cc:295 step/propertiesbrowser.cc:304
+#: step/propertiesbrowser.cc:388 step/propertiesbrowser.cc:405
+#: step/stepgraphicsitem.cc:393 step/stepgraphicsitem.cc:538
 #, kde-format
 msgid "Change %1.%2"
 msgstr "%1 %2 ആയി മാറ്റുക"
 
-#: step/propertiesbrowser.cc:314
+#: step/propertiesbrowser.cc:302
 #, kde-format
 msgid "Rename %1 to %2"
 msgstr "%1 മുതല്‍ %2 വരെ പുതുക്കിയ പേരുകള്‍ നല്‍കണം"
 
-#: step/propertiesbrowser.cc:464
+#: step/propertiesbrowser.cc:452
 #, kde-format
 msgid "Property"
 msgstr "ഗുണവിശേഷം"
 
-#: step/propertiesbrowser.cc:465
+#: step/propertiesbrowser.cc:453
 #, kde-format
 msgid "Value"
 msgstr "മൂല്യം"
 
-#: step/propertiesbrowser.cc:530
+#: step/propertiesbrowser.cc:518
 #, kde-format
 msgid "false"
 msgstr "അബദ്ധം"
 
-#: step/propertiesbrowser.cc:531
+#: step/propertiesbrowser.cc:519
 #, kde-format
 msgid "true"
 msgstr "സുബദ്ധം"
 
-#: step/propertiesbrowser.cc:675
+#: step/propertiesbrowser.cc:683
 #, kde-format
 msgid "Properties"
 msgstr "ഗുണവിശേഷങ്ങള്‍"
 
-#: step/softbodygraphics.cc:49 step/worldgraphics.cc:62
-#: step/worldgraphics.cc:106
+#: step/softbodygraphics.cc:37 step/worldgraphics.cc:50
+#: step/worldgraphics.cc:94
 #, kde-format
 msgid "Click on the scene to create a %1"
 msgstr "%1 നിര്‍മ്മിക്കാന്‍ ഈ കാഴ്ചപ്പുറത്തു് ക്ലിക്ക് ചെയ്യുക"
 
-#: step/softbodygraphics.cc:66
+#: step/softbodygraphics.cc:54
 #, fuzzy, kde-format
 msgid "Please fill in the parameters for %1"
 msgstr "വാതക അണുക്കളുടെ സഥിരരാശികള്‍ പൂരിപ്പിക്കുക."
 
-#: step/softbodygraphics.cc:126
+#: step/softbodygraphics.cc:114
 #, fuzzy, kde-format
 #| msgid "Create soft body items"
 msgctxt "@title:window"
 msgid "Create Soft Body Items"
 msgstr "മൃദുലബിംബത്തിന്റെ ഇനങ്ങള്‍ സൃഷ്ടിക്കുക"
 
-#: step/softbodygraphics.cc:187
+#: step/softbodygraphics.cc:175
 #, kde-format
 msgid "Create items for %1"
 msgstr "%1 ന്റെ ഇനങ്ങള്‍ സൃഷ്ടിക്കുക"
@@ -936,146 +936,146 @@ msgstr "പുറമെനിന്നുള്ള ബ്രൌസറില്�
 msgid "Show text beside icon"
 msgstr "പാഠം കാണിക്കുക"
 
-#: step/stepgraphicsitem.cc:218
+#: step/stepgraphicsitem.cc:210
 #, kde-format
 msgid "several objects"
 msgstr "പല വസ്തുക്കള്‍"
 
-#: step/stepgraphicsitem.cc:402 step/stepgraphicsitem.cc:548
+#: step/stepgraphicsitem.cc:394 step/stepgraphicsitem.cc:540
 #, kde-format
 msgid "Change %1"
 msgstr "%1 മാറ്റുക"
 
 #. i18n: ectx: ToolBar (mainToolBar)
-#: step/stepui.rc:7
+#: step/stepui.rc:5
 #, kde-format
 msgid "Main Toolbar"
 msgstr "പ്രധാന ഉപകരണനിര"
 
 #. i18n: ectx: ToolBar (simulationToolBar)
-#: step/stepui.rc:12
+#: step/stepui.rc:10
 #, kde-format
 msgid "Simulation Toolbar"
 msgstr "പരീക്ഷണങ്ങള്‍ക്കുള്ള ഉപകരണനിര"
 
 #. i18n: ectx: Menu (examples)
-#: step/stepui.rc:21
+#: step/stepui.rc:19
 #, kde-format
 msgid "&Examples"
 msgstr "&ഉദാഹരണങ്ങള്‍"
 
 #. i18n: ectx: Menu (simulation)
-#: step/stepui.rc:32
+#: step/stepui.rc:30
 #, kde-format
 msgid "&Simulation"
 msgstr "&പരീക്ഷണം"
 
 #. i18n: ectx: Menu (speed)
-#: step/stepui.rc:35
+#: step/stepui.rc:33
 #, kde-format
 msgid "&Run Speed"
 msgstr "&പ്രവര്‍ത്തനവേഗം"
 
 #. i18n: ectx: Menu (panels)
-#: step/stepui.rc:45
+#: step/stepui.rc:43
 #, kde-format
 msgid "&Panels"
 msgstr "&പട്ടികകള്‍"
 
-#: step/toolgraphics.cc:267
+#: step/toolgraphics.cc:255
 #, fuzzy, kde-format
 msgid "Click to enter text"
 msgstr "വാക്യങ്ങള് ചേര്‍ക്കാന്‍ ഇവിടെ ക്ലിക്ക് ചെയ്യുക"
 
-#: step/toolgraphics.cc:392
+#: step/toolgraphics.cc:380
 #, kde-format
 msgid "&Color"
 msgstr "&വര്‍ണ്ണം"
 
-#: step/toolgraphics.cc:394
+#: step/toolgraphics.cc:382
 #, kde-format
 msgid "&Bold"
 msgstr "&തടിച്ച "
 
-#: step/toolgraphics.cc:396
+#: step/toolgraphics.cc:384
 #, kde-format
 msgid "&Italic"
 msgstr "&ചെരിഞ്ഞ"
 
-#: step/toolgraphics.cc:398
+#: step/toolgraphics.cc:386
 #, kde-format
 msgid "&Underline"
 msgstr "&അടിവര"
 
-#: step/toolgraphics.cc:401
+#: step/toolgraphics.cc:389
 #, kde-format
 msgid "Align &Left"
 msgstr "ഇടതുഭാഗം &അണിനിരത്തുക"
 
-#: step/toolgraphics.cc:403
+#: step/toolgraphics.cc:391
 #, kde-format
 msgid "Align C&enter"
 msgstr "നടുഭാഗം &അണിനിരത്തുക"
 
-#: step/toolgraphics.cc:405
+#: step/toolgraphics.cc:393
 #, kde-format
 msgid "Align &Right"
 msgstr "വലതുഭാഗം &അണിനിരത്തുക"
 
-#: step/toolgraphics.cc:407
+#: step/toolgraphics.cc:395
 #, kde-format
 msgid "Align &Justify"
 msgstr "സന്തുലിതമായി &ഒപ്പിക്കുക"
 
-#: step/toolgraphics.cc:410
+#: step/toolgraphics.cc:398
 #, kde-format
 msgid "&Align"
 msgstr "&അണിനിരത്തുക"
 
-#: step/toolgraphics.cc:419
+#: step/toolgraphics.cc:407
 #, kde-format
 msgid "&Font"
 msgstr "&അക്ഷരസഞ്ചയം"
 
-#: step/toolgraphics.cc:420
+#: step/toolgraphics.cc:408
 #, kde-format
 msgid "Font &Size"
 msgstr "&അക്ഷരസഞ്ചയത്തിന്റെ വലിപ്പം"
 
-#: step/toolgraphics.cc:422
+#: step/toolgraphics.cc:410
 #, fuzzy, kde-format
 #| msgid "Insert &Image"
 msgid "Insert &Image..."
 msgstr "&ഛായ തിരുകിക്കയറ്റുക"
 
-#: step/toolgraphics.cc:427
+#: step/toolgraphics.cc:415
 #, fuzzy, kde-format
 #| msgid "Insert &Formula"
 msgid "Insert &Formula..."
 msgstr "&ഗണിതസൂത്രം തിരുകിക്കയറ്റുക"
 
-#: step/toolgraphics.cc:538
+#: step/toolgraphics.cc:526
 #, kde-format
 msgid "Edit %1"
 msgstr "%1 ചിട്ടപ്പെടുത്തുക"
 
-#: step/toolgraphics.cc:643
+#: step/toolgraphics.cc:631
 #, fuzzy, kde-format
 msgctxt "@title:window"
 msgid "Open Image File"
 msgstr "പടി"
 
-#: step/toolgraphics.cc:643
+#: step/toolgraphics.cc:631
 #, kde-format
 msgid "Images (*.png *.jpg *.jpeg)"
 msgstr ""
 
-#: step/toolgraphics.cc:661
+#: step/toolgraphics.cc:649
 #, kde-format
 msgid "Cannot parse file '%1'"
 msgstr "%1 ശേഖരം വ്യാകരിക്കാന്‍ കഴിയുന്നില്ല"
 
-#: step/toolgraphics.cc:705
+#: step/toolgraphics.cc:693
 #, fuzzy, kde-format
 msgid ""
 "Cannot find latex installation. You need 'latex', 'dvips' and 'gs' "
@@ -1084,166 +1084,166 @@ msgstr ""
 "'ലാറ്റക്സ്' സഥാപിച്ചതായി കാണുന്നില്ല. ലാറ്റക്സിന്റെ 'dvips', 'gs' എന്നീ നിര്‍വാഹങ്ങള്‍ "
 "സഥാപിച്ചു് $വഴിയില്‍ സന്ധിക്കാന്‍ കഴിയണം"
 
-#: step/toolgraphics.cc:711
+#: step/toolgraphics.cc:699
 #, fuzzy, kde-format
 #| msgid "LaTex Formula - Step"
 msgctxt "@title:window"
 msgid "LaTex Formula - Step"
 msgstr "ലാറ്റക്സ് ഗണിതസൂത്രം - പടി"
 
-#: step/toolgraphics.cc:712
+#: step/toolgraphics.cc:700
 #, fuzzy, kde-format
 #| msgid "Enter LaTeX formula string"
 msgid "Enter LaTeX formula string:"
 msgstr "ലാറ്റക്സ് ഗണിതസൂത്രവാക്യം ചേര്‍ക്കണം"
 
-#: step/toolgraphics.cc:721
+#: step/toolgraphics.cc:709
 #, kde-format
 msgid "Cannot compile LaTeX formula: %1"
 msgstr "ലാറ്റക്സ് ഗണിതസൂത്രം %1 സംഗ്രഹിക്കാന്‍ കഴിയില്ല"
 
-#: step/toolgraphics.cc:727
+#: step/toolgraphics.cc:715
 #, kde-format
 msgid "Cannot parse result image"
 msgstr "തല്‍ഫലമായ ഛായ വ്യാഖ്യാനിക്കാന്‍ കഴിയില്ല"
 
-#: step/toolgraphics.cc:788
+#: step/toolgraphics.cc:776
 #, fuzzy, kde-format
 msgid "Object name"
 msgstr "മൌസിനു് താഴെയുള്ള വസ്തുക്കള്‍:"
 
-#: step/toolgraphics.cc:793
+#: step/toolgraphics.cc:781
 #, fuzzy, kde-format
 msgid "Property name"
 msgstr "ഗുണവിശേഷം"
 
-#: step/toolgraphics.cc:799
+#: step/toolgraphics.cc:787
 #, kde-format
 msgid "Vector index"
 msgstr ""
 
-#: step/toolgraphics.cc:988 step/toolgraphics.cc:996 step/toolgraphics.cc:1489
+#: step/toolgraphics.cc:976 step/toolgraphics.cc:984 step/toolgraphics.cc:1477
 #, kde-format
 msgid "%1.%2"
 msgstr "%1 %2"
 
-#: step/toolgraphics.cc:989 step/toolgraphics.cc:997 step/toolgraphics.cc:1490
+#: step/toolgraphics.cc:977 step/toolgraphics.cc:985 step/toolgraphics.cc:1478
 #, kde-format
 msgid "[%1]"
 msgstr "[%1]"
 
-#: step/toolgraphics.cc:993 step/toolgraphics.cc:1001 step/toolgraphics.cc:1494
+#: step/toolgraphics.cc:981 step/toolgraphics.cc:989 step/toolgraphics.cc:1482
 #, kde-format
 msgid "[not configured]"
 msgstr "[ക്രമികരിച്ചിട്ടില്ല]"
 
-#: step/toolgraphics.cc:1089
+#: step/toolgraphics.cc:1077
 #, fuzzy, kde-format
 #| msgid "Clear graph"
 msgid "Clear Graph"
 msgstr "രേഖാരൂപം ഒഴിവാക്കുക"
 
-#: step/toolgraphics.cc:1090
+#: step/toolgraphics.cc:1078
 #, fuzzy, kde-format
 #| msgid "Configure graph..."
 msgid "Configure Graph..."
 msgstr "രേഖാലിഖിതം രൂപപ്പെടുത്തുക...."
 
-#: step/toolgraphics.cc:1108
+#: step/toolgraphics.cc:1096
 #, fuzzy, kde-format
 #| msgid "Configure graph"
 msgctxt "@title:window"
 msgid "Configure Graph"
 msgstr "രേഖാലിഖിതം രൂപപ്പെടുത്തുക"
 
-#: step/toolgraphics.cc:1184 step/toolgraphics.cc:1383
-#: step/toolgraphics.cc:1721
+#: step/toolgraphics.cc:1172 step/toolgraphics.cc:1371
+#: step/toolgraphics.cc:1709
 #, kde-format
 msgid "Edit properties of %1"
 msgstr "%1 ന്റെ ഗുണവിശേഷങ്ങളിലെ തിരുത്ത്"
 
-#: step/toolgraphics.cc:1236
+#: step/toolgraphics.cc:1224
 #, kde-format
 msgid "Clear graph %1"
 msgstr "%1 രേഖാലിഖിതം ഒഴിവാക്കുക"
 
-#: step/toolgraphics.cc:1317
+#: step/toolgraphics.cc:1305
 #, fuzzy, kde-format
 #| msgid "Configure meter..."
 msgid "Configure Meter..."
 msgstr "മീറ്റര്‍ രൂപപ്പെടുത്തുക..."
 
-#: step/toolgraphics.cc:1335
+#: step/toolgraphics.cc:1323
 #, fuzzy, kde-format
 #| msgid "Configure meter"
 msgctxt "@title:window"
 msgid "Configure Meter"
 msgstr "മീറ്റര്‍ രൂപപ്പെടുത്തുക"
 
-#: step/toolgraphics.cc:1432 step/toolgraphics.cc:1629
+#: step/toolgraphics.cc:1420 step/toolgraphics.cc:1617
 #, fuzzy, kde-format
 #| msgid "Increase value"
 msgid "Increase Value"
 msgstr "മൂല ്യം കൂട്ടുക"
 
-#: step/toolgraphics.cc:1433 step/toolgraphics.cc:1630
+#: step/toolgraphics.cc:1421 step/toolgraphics.cc:1618
 #, fuzzy, kde-format
 #| msgid "Decrease value"
 msgid "Decrease Value"
 msgstr "മൂല്യം കുറക്കുക"
 
-#: step/toolgraphics.cc:1463 step/toolgraphics.cc:1758
+#: step/toolgraphics.cc:1451 step/toolgraphics.cc:1746
 #, kde-format
 msgid "Decrease controller %1"
 msgstr "%1 നിയാമകനെ കുറക്കുക"
 
-#: step/toolgraphics.cc:1472 step/toolgraphics.cc:1767
+#: step/toolgraphics.cc:1460 step/toolgraphics.cc:1755
 #, kde-format
 msgid "Increase controller %1"
 msgstr "%1 നിയാമകനെ കൂട്ടുക"
 
-#: step/toolgraphics.cc:1606
+#: step/toolgraphics.cc:1594
 #, kde-format
 msgid "Change controller %1"
 msgstr "%1 നിയാമകനെ മാറ്റുക"
 
-#: step/toolgraphics.cc:1632
+#: step/toolgraphics.cc:1620
 #, fuzzy, kde-format
 #| msgid "Configure controller..."
 msgid "Configure Controller..."
 msgstr "നിയാമകനെ പരുവപ്പടുത്തുക..."
 
-#: step/toolgraphics.cc:1650
+#: step/toolgraphics.cc:1638
 #, fuzzy, kde-format
 #| msgid "Configure controller"
 msgctxt "@title:window"
 msgid "Configure Controller"
 msgstr "നിയാമകനെ പരുവപ്പടുത്തുക"
 
-#: step/toolgraphics.cc:1911
+#: step/toolgraphics.cc:1899
 #, fuzzy, kde-format
 #| msgid "Clear trace"
 msgid "Clear Trace"
 msgstr "അവശേഷിപ്പ് മായ്ക്കുക"
 
-#: step/toolgraphics.cc:1920
+#: step/toolgraphics.cc:1908
 #, kde-format
 msgid "Clear tracer %1"
 msgstr "%1അനുധാവകനെ ഒഴിവാക്കുക"
 
-#: step/undobrowser.cc:30
+#: step/undobrowser.cc:18
 #, fuzzy, kde-format
 #| msgid "Undo history"
 msgid "Undo History"
 msgstr "മുമ്പ് ചെയ്തതു് തിരിച്ചു് ചെയ്യുക"
 
-#: step/worldbrowser.cc:62
+#: step/worldbrowser.cc:50
 #, kde-format
 msgctxt "Object list"
 msgid "World"
 msgstr "ലോകം"
 
-#: step/worldgraphics.cc:102
+#: step/worldgraphics.cc:90
 #, kde-format
 msgid ""
 "Press left mouse button to position first end of a %1\n"
@@ -1252,77 +1252,77 @@ msgstr ""
 "%1 ന്റെ തുടക്കസ്ഥാനം ഉറപ്പിക്കാന്‍ ഇടത് മൌസ് ബട്ടണ്‍ അമര്‍ത്തുക\n"
 "മൌസ് വലിച്ച് നീക്കി അമര്‍ത്തിപ്പിടിച്ചു ബട്ടണ്‍ വിട്ടാല്‍ രണ്ടാമത്തെ അറ്റവും ഉറപ്പിക്കാം"
 
-#: step/worldgraphics.cc:130
+#: step/worldgraphics.cc:118
 #, kde-format
 msgid "Release left mouse button to position second end of the %1"
 msgstr "അമര്‍ത്തിപ്പിടിച്ച ബട്ടണ്‍ വിട്ടാല്‍ %1 ന്റെ രണ്ടാമത്തെ അറ്റം ഉറപ്പിക്കാം"
 
-#: step/worldmodel.cc:641
+#: step/worldmodel.cc:629
 #, kde-format
 msgid "Delete %1"
 msgstr "%1 മായ്ക്കുക"
 
-#: step/worldmodel.cc:642
+#: step/worldmodel.cc:630
 #, kde-format
 msgid "Delete several items"
 msgstr "പല ഇനങ്ങളും മായ്ചുകളയുക"
 
-#: step/worldmodel.cc:713 step/worldmodel.cc:720
+#: step/worldmodel.cc:701 step/worldmodel.cc:708
 #, kde-format
 msgid "<no object>"
 msgstr "<വിഷയം ഇല്ല>"
 
-#: step/worldmodel.cc:715
+#: step/worldmodel.cc:703
 #, kde-format
 msgid "<unnamed>"
 msgstr "<unnamed>"
 
-#: step/worldmodel.cc:721
+#: step/worldmodel.cc:709
 #, kde-format
 msgid "%1: %2"
 msgstr "%1: %2"
 
-#: step/worldmodel.cc:793
+#: step/worldmodel.cc:781
 #, kde-format
 msgid "<nobr><h4><u>%1</u></h4></nobr>"
 msgstr "<nobr><h4><u>%1</u></h4></nobr>"
 
-#: step/worldmodel.cc:821
+#: step/worldmodel.cc:809
 #, kde-format
 msgid "<tr><td>%1&nbsp;&nbsp;</td><td>%2</td></tr>"
 msgstr "<tr><td>%1&nbsp;&nbsp;</td><td>%2</td></tr>"
 
-#: step/worldmodel.cc:1019
+#: step/worldmodel.cc:1007
 #, kde-format
 msgid "Simulate %1 → %2"
 msgstr "%1 → %2 പരീക്ഷണം നടത്തുക"
 
-#: step/worldmodel.cc:1072
+#: step/worldmodel.cc:1060
 #, fuzzy, kde-format
 msgid "Cut %1"
 msgstr "%1 നിര്‍മ്മിക്കുക"
 
-#: step/worldmodel.cc:1073
+#: step/worldmodel.cc:1061
 #, fuzzy, kde-format
 msgid "Cut several items"
 msgstr "പല ഇനങ്ങളും മായ്ചുകളയുക"
 
-#: step/worldmodel.cc:1095
+#: step/worldmodel.cc:1083
 #, fuzzy, kde-format
 msgid "Pasted %1"
 msgstr "%1 നിര്‍മ്മിക്കുക"
 
-#: step/worldmodel.cc:1096
+#: step/worldmodel.cc:1084
 #, fuzzy, kde-format
 msgid "Pasted several items"
 msgstr "പല ഇനങ്ങളും മായ്ചുകളയുക"
 
-#: step/worldscene.cc:260
+#: step/worldscene.cc:248
 #, kde-format
 msgid "Objects under mouse:"
 msgstr "മൌസിനു് താഴെയുള്ള വസ്തുക്കള്‍:"
 
-#: step/worldscene.cc:265
+#: step/worldscene.cc:253
 #, fuzzy, kde-format
 msgid "... (1 more item)"
 msgid_plural "... (%1 more items)"

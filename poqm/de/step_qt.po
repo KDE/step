@@ -18,2292 +18,2292 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
 "X-Qt-Contexts: true\n"
 
-#: body.cc:26
+#: body.cc:13
 msgctxt "ObjectClass|"
 msgid "Body"
 msgstr "Körper"
 
-#: body.cc:26
+#: body.cc:13
 msgctxt "ObjectDescription|"
 msgid "Body"
 msgstr "Körper"
 
-#: collisionsolver.cc:31
+#: collisionsolver.cc:19
 msgctxt "ObjectClass|"
 msgid "CollisionSolver"
 msgstr "Kollisionslöser"
 
-#: collisionsolver.cc:32 solver.cc:28
+#: collisionsolver.cc:20 solver.cc:16
 msgctxt "PropertyDescription|"
 msgid "Allowed absolute tolerance"
 msgstr "Zulässige absolute Toleranz"
 
-#: collisionsolver.cc:32 solver.cc:28
+#: collisionsolver.cc:20 solver.cc:16
 msgctxt "PropertyName|"
 msgid "toleranceAbs"
 msgstr "Absolute Toleranz"
 
-#: collisionsolver.cc:33 solver.cc:31
+#: collisionsolver.cc:21 solver.cc:19
 msgctxt "PropertyDescription|"
 msgid "Maximal local error during last step"
 msgstr "Maximaler lokaler Fehler während des letzten Simulationsschrittes"
 
-#: collisionsolver.cc:33 solver.cc:31
+#: collisionsolver.cc:21 solver.cc:19
 msgctxt "PropertyName|"
 msgid "localError"
 msgstr "Lokaler Fehler"
 
-#: collisionsolver.cc:35
+#: collisionsolver.cc:23
 msgctxt "ObjectClass|"
 msgid "GJKCollisionSolver"
 msgstr "GJK-Kollisionslöser"
 
-#: constraintsolver.cc:31
+#: constraintsolver.cc:19
 msgctxt "ObjectClass|"
 msgid "ConstraintSolver"
 msgstr "Bedingungsgleichungslöser"
 
-#: constraintsolver.cc:35
+#: constraintsolver.cc:23
 msgctxt "ObjectClass|"
 msgid "CGConstraintSolver"
 msgstr "CG-Bedingungsgleichungslöser"
 
-#: coulombforce.cc:26
+#: coulombforce.cc:14
 msgctxt "ObjectClass|"
 msgid "CoulombForce"
 msgstr "Coulomb-Kraft"
 
-#: coulombforce.cc:26
+#: coulombforce.cc:14
 msgctxt "ObjectDescription|"
 msgid "Coulomb force"
 msgstr "Coulomb-Kraft"
 
-#: coulombforce.cc:28
+#: coulombforce.cc:16
 msgctxt "PropertyName|"
 msgid "coulombConst"
 msgstr "Coulomb-Konstante"
 
-#: coulombforce.cc:28 coulombforce.cc:33
+#: coulombforce.cc:16 coulombforce.cc:21
 msgctxt "Units|"
 msgid "N m²/C²"
 msgstr "N*m²/C²"
 
-#: coulombforce.cc:29
+#: coulombforce.cc:17
 msgctxt "PropertyDescription|"
 msgid "Coulomb constant"
 msgstr "Coulomb-Konstante"
 
-#: coulombforce.cc:31
+#: coulombforce.cc:19
 msgctxt "ObjectClass|"
 msgid "CoulombForceErrors"
 msgstr "Coulomb-Kraft-Fehler"
 
-#: coulombforce.cc:31
+#: coulombforce.cc:19
 msgctxt "ObjectDescription|"
 msgid "Errors class for CoulombForce"
 msgstr "Fehlerklasse für Coulomb-Kraft"
 
-#: coulombforce.cc:33
+#: coulombforce.cc:21
 msgctxt "PropertyName|"
 msgid "coulombConstVariance"
 msgstr "Abweichung der Coulomb-Konstante"
 
-#: coulombforce.cc:34
+#: coulombforce.cc:22
 msgctxt "PropertyDescription|"
 msgid "Coulomb constant variance"
 msgstr "Abweichung der Coulombkonstante"
 
-#: eulersolver.cc:27
+#: eulersolver.cc:15
 msgctxt "ObjectClass|"
 msgid "GenericEulerSolver"
 msgstr "Allgemeiner Euler-Gleichungslöser"
 
-#: eulersolver.cc:27
+#: eulersolver.cc:15
 msgctxt "ObjectDescription|"
 msgid "Generic Euler solver"
 msgstr "Allgemeiner Euler-Gleichungslöser"
 
-#: eulersolver.cc:28
+#: eulersolver.cc:16
 msgctxt "ObjectClass|"
 msgid "EulerSolver"
 msgstr "Euler-Gleichungslöser"
 
-#: eulersolver.cc:28
+#: eulersolver.cc:16
 msgctxt "ObjectDescription|"
 msgid "Non-adaptive Euler solver"
 msgstr "Nichtadaptiver Euler-Gleichungslöser"
 
-#: eulersolver.cc:29
+#: eulersolver.cc:17
 msgctxt "ObjectClass|"
 msgid "AdaptiveEulerSolver"
 msgstr "Adaptiver Euler-Gleichungslöser"
 
-#: eulersolver.cc:29
+#: eulersolver.cc:17
 msgctxt "ObjectDescription|"
 msgid "Adaptive Euler solver"
 msgstr "Adaptiver Euler-Gleichungslöser"
 
-#: force.cc:27
+#: force.cc:14
 msgctxt "ObjectClass|"
 msgid "Force"
 msgstr "Kraft"
 
-#: force.cc:27
+#: force.cc:14
 msgctxt "ObjectDescription|"
 msgid "Force"
 msgstr "Kraft"
 
-#: gas.cc:27
+#: gas.cc:15
 msgctxt "ObjectClass|"
 msgid "GasParticle"
 msgstr "Gasteilchen"
 
-#: gas.cc:27
+#: gas.cc:15
 msgctxt "ObjectDescription|"
 msgid "Gas particle"
 msgstr "Gasteilchen"
 
-#: gas.cc:29
+#: gas.cc:17
 msgctxt "ObjectClass|"
 msgid "GasLJForce"
 msgstr "Lennard-Jones-Potential"
 
-#: gas.cc:29
+#: gas.cc:17
 msgctxt "ObjectDescription|"
 msgid "Lennard-Jones force"
 msgstr "Lennard-Jones-Potential"
 
-#: gas.cc:31
+#: gas.cc:19
 msgctxt "PropertyDescription|"
 msgid "Potential depth"
 msgstr "Potentialtiefe"
 
-#: gas.cc:31
+#: gas.cc:19
 msgctxt "PropertyName|"
 msgid "depth"
 msgstr "Tiefe"
 
-#: gas.cc:31 gas.cc:37 gas.cc:59 gas.cc:74 particle.cc:37 particle.cc:53
-#: rigidbody.cc:49 rigidbody.cc:80
+#: gas.cc:19 gas.cc:25 gas.cc:47 gas.cc:62 particle.cc:25 particle.cc:41
+#: rigidbody.cc:37 rigidbody.cc:68
 msgctxt "Units|"
 msgid "J"
 msgstr "J"
 
-#: gas.cc:32
+#: gas.cc:20
 msgctxt "PropertyDescription|"
 msgid "Distance at which the force is zero"
 msgstr "Entfernung bei der das Potential Null ist"
 
-#: gas.cc:32
+#: gas.cc:20
 msgctxt "PropertyName|"
 msgid "rmin"
 msgstr "rmin"
 
-#: gas.cc:32 gas.cc:33 gas.cc:39 gas.cc:45 gas.cc:47 joints.cc:29 joints.cc:35
-#: joints.cc:36 joints.cc:40 joints.cc:43 joints.cc:45 joints.cc:47
-#: joints.cc:48 motor.cc:30 motor.cc:36 particle.cc:29 particle.cc:41
-#: rigidbody.cc:28 rigidbody.cc:53 rigidbody.cc:84 rigidbody.cc:89
-#: rigidbody.cc:92 softbody.cc:36 spring.cc:30 spring.cc:31 spring.cc:36
-#: spring.cc:38 spring.cc:40 spring.cc:41 spring.cc:47 spring.cc:49
-#: spring.cc:55 spring.cc:57 spring.cc:59 spring.cc:61 tool.cc:38 tool.cc:39
-#: tool.cc:45 tool.cc:46 tool.cc:67 tool.cc:68 tool.cc:79 tool.cc:80 tool.cc:98
-#: tool.cc:100 tool.cc:101
+#: gas.cc:20 gas.cc:21 gas.cc:27 gas.cc:33 gas.cc:35 joints.cc:17 joints.cc:23
+#: joints.cc:24 joints.cc:28 joints.cc:31 joints.cc:33 joints.cc:35
+#: joints.cc:36 motor.cc:18 motor.cc:24 particle.cc:17 particle.cc:29
+#: rigidbody.cc:16 rigidbody.cc:41 rigidbody.cc:72 rigidbody.cc:77
+#: rigidbody.cc:80 softbody.cc:24 spring.cc:18 spring.cc:19 spring.cc:24
+#: spring.cc:26 spring.cc:28 spring.cc:29 spring.cc:35 spring.cc:37
+#: spring.cc:43 spring.cc:45 spring.cc:47 spring.cc:49 tool.cc:26 tool.cc:27
+#: tool.cc:33 tool.cc:34 tool.cc:55 tool.cc:56 tool.cc:67 tool.cc:68 tool.cc:86
+#: tool.cc:88 tool.cc:89
 msgctxt "Units|"
 msgid "m"
 msgstr "m"
 
-#: gas.cc:33
+#: gas.cc:21
 msgctxt "PropertyDescription|"
 msgid "Cut-off distance"
 msgstr ""
 "Abstand des Punktes, an dem die Werte des Lennard-Jones-Potentials "
 "vernachlässigt werden"
 
-#: gas.cc:33
+#: gas.cc:21
 msgctxt "PropertyName|"
 msgid "cutoff"
 msgstr "Kürzungspunkt"
 
-#: gas.cc:35
+#: gas.cc:23
 msgctxt "ObjectClass|"
 msgid "GasLJForceErrors"
 msgstr "Lennard-Jones-Potential-Fehler"
 
-#: gas.cc:35
+#: gas.cc:23
 msgctxt "ObjectDescription|"
 msgid "Errors class for GasLJForce"
 msgstr "Fehlerklasse für das Lennard-Jones-Potential"
 
-#: gas.cc:37
+#: gas.cc:25
 msgctxt "PropertyName|"
 msgid "depthVariance"
 msgstr "Tiefenabweichung"
 
-#: gas.cc:38
+#: gas.cc:26
 msgctxt "PropertyDescription|"
 msgid "Potential depth variance"
 msgstr "Abweichung der Potentialtiefe"
 
-#: gas.cc:39
+#: gas.cc:27
 msgctxt "PropertyName|"
 msgid "rminVariance"
 msgstr "Minimumabweichung"
 
-#: gas.cc:40
+#: gas.cc:28
 msgctxt "PropertyDescription|"
 msgid "Variance of the distance at which the force is zero"
 msgstr "Entfernungsabweichung bei der die Kraft Null ist"
 
-#: gas.cc:44
+#: gas.cc:32
 msgctxt "ObjectClass|"
 msgid "Gas"
 msgstr "Gas"
 
-#: gas.cc:44
+#: gas.cc:32
 msgctxt "ObjectDescription|"
 msgid "Particle gas"
 msgstr "Gasteilchen"
 
-#: gas.cc:45
+#: gas.cc:33
 msgctxt "PropertyName|"
 msgid "measureRectCenter"
 msgstr "Behälterzentrum"
 
-#: gas.cc:46
+#: gas.cc:34
 msgctxt "PropertyDescription|"
 msgid "Center of the rect for measurements"
 msgstr "Mittelpunkt des Behälters für die Messungen"
 
-#: gas.cc:47
+#: gas.cc:35
 msgctxt "PropertyName|"
 msgid "measureRectSize"
 msgstr "Behältergröße"
 
-#: gas.cc:48
+#: gas.cc:36
 msgctxt "PropertyDescription|"
 msgid "Size of the rect for measurements"
 msgstr "Größe des Behälters für die Messungen"
 
-#: gas.cc:49
+#: gas.cc:37
 msgctxt "PropertyName|"
 msgid "rectVolume"
 msgstr "Behälterfläche"
 
-#: gas.cc:49
+#: gas.cc:37
 msgctxt "Units|"
 msgid "m²"
 msgstr "m²"
 
-#: gas.cc:50
+#: gas.cc:38
 msgctxt "PropertyDescription|"
 msgid "Volume of the measureRect"
 msgstr "Volumen des Gasbehälters"
 
-#: gas.cc:51
+#: gas.cc:39
 msgctxt "PropertyName|"
 msgid "rectParticleCount"
 msgstr "Teilchenanzahl"
 
-#: gas.cc:52
+#: gas.cc:40
 msgctxt "PropertyDescription|"
 msgid "Count of particles in the measureRect"
 msgstr "Anzahl der Teilchen im Behälter"
 
-#: gas.cc:53
+#: gas.cc:41
 msgctxt "PropertyName|"
 msgid "rectConcentration"
 msgstr "Teilchenkonzentration"
 
-#: gas.cc:53
+#: gas.cc:41
 msgctxt "Units|"
 msgid "1/m²"
 msgstr "1/m²"
 
-#: gas.cc:54
+#: gas.cc:42
 msgctxt "PropertyDescription|"
 msgid "Concentration of particles in the measureRect"
 msgstr "Konzentration der Teilchen im Behälter"
 
-#: gas.cc:55
+#: gas.cc:43
 msgctxt "PropertyName|"
 msgid "rectPressure"
 msgstr "Druck"
 
-#: gas.cc:55 gas.cc:70
+#: gas.cc:43 gas.cc:58
 msgctxt "Units|"
 msgid "Pa"
 msgstr "Pa"
 
-#: gas.cc:56
+#: gas.cc:44
 msgctxt "PropertyDescription|"
 msgid "Pressure of particles in the measureRect"
 msgstr "Druck der Teilchen im Behälter"
 
-#: gas.cc:57
+#: gas.cc:45
 msgctxt "PropertyName|"
 msgid "rectTemperature"
 msgstr "Temperatur"
 
-#: gas.cc:57 gas.cc:72
+#: gas.cc:45 gas.cc:60
 msgctxt "Units|"
 msgid "K"
 msgstr "K"
 
-#: gas.cc:58
+#: gas.cc:46
 msgctxt "PropertyDescription|"
 msgid "Temperature of particles in the measureRect"
 msgstr "Temperatur der Teilchen im Behälter"
 
-#: gas.cc:59
+#: gas.cc:47
 msgctxt "PropertyName|"
 msgid "rectMeanKineticEnergy"
 msgstr "Mittlere Bewegungsenergie"
 
-#: gas.cc:60
+#: gas.cc:48
 msgctxt "PropertyDescription|"
 msgid "Mean kinetic energy of particles in the measureRect"
 msgstr "Mittlere Bewegungsenergie der Teilchen im Behälter"
 
-#: gas.cc:61
+#: gas.cc:49
 msgctxt "PropertyName|"
 msgid "rectMeanVelocity"
 msgstr "Mittlere Geschwindigkeit"
 
-#: gas.cc:61 gas.cc:76 particle.cc:30 particle.cc:43 rigidbody.cc:31
-#: rigidbody.cc:58 softbody.cc:38
+#: gas.cc:49 gas.cc:64 particle.cc:18 particle.cc:31 rigidbody.cc:19
+#: rigidbody.cc:46 softbody.cc:26
 msgctxt "Units|"
 msgid "m/s"
 msgstr "m/s"
 
-#: gas.cc:62
+#: gas.cc:50
 msgctxt "PropertyDescription|"
 msgid "Mean velocity of particles in the measureRect"
 msgstr "Mittlere Geschwindigkeit der Teilchen im Behälter"
 
-#: gas.cc:63
+#: gas.cc:51
 msgctxt "PropertyName|"
 msgid "rectMeanParticleMass"
 msgstr "Mittlere Teilchenmasse"
 
-#: gas.cc:63 gas.cc:65 gas.cc:78 gas.cc:80 particle.cc:34 particle.cc:49
-#: particle.cc:61 rigidbody.cc:42 rigidbody.cc:71 softbody.cc:50
+#: gas.cc:51 gas.cc:53 gas.cc:66 gas.cc:68 particle.cc:22 particle.cc:37
+#: particle.cc:49 rigidbody.cc:30 rigidbody.cc:59 softbody.cc:38
 msgctxt "Units|"
 msgid "kg"
 msgstr "kg"
 
-#: gas.cc:64
+#: gas.cc:52
 msgctxt "PropertyDescription|"
 msgid "Mean mass of particles in the measureRect"
 msgstr "Mittlere Masse der Teilchen im Behälter"
 
-#: gas.cc:65
+#: gas.cc:53
 msgctxt "PropertyName|"
 msgid "rectMass"
 msgstr "Masse"
 
-#: gas.cc:66
+#: gas.cc:54
 msgctxt "PropertyDescription|"
 msgid "Total mass of particles in the measureRect"
 msgstr "Gesamte Masse der Teilchen im Behälter"
 
-#: gas.cc:69
+#: gas.cc:57
 msgctxt "ObjectClass|"
 msgid "GasErrors"
 msgstr "Gasfehler"
 
-#: gas.cc:69
+#: gas.cc:57
 msgctxt "ObjectDescription|"
 msgid "Errors class for Gas"
 msgstr "Fehlerklasse für Gas"
 
-#: gas.cc:70
+#: gas.cc:58
 msgctxt "PropertyName|"
 msgid "rectPressureVariance"
 msgstr "Druckabweichung"
 
-#: gas.cc:71
+#: gas.cc:59
 msgctxt "PropertyDescription|"
 msgid "Variance of pressure of particles in the measureRect"
 msgstr "Abweichung des Drucks der Teilchen im Behälter"
 
-#: gas.cc:72
+#: gas.cc:60
 msgctxt "PropertyName|"
 msgid "rectTemperatureVariance"
 msgstr "Temperaturabweichung"
 
-#: gas.cc:73
+#: gas.cc:61
 msgctxt "PropertyDescription|"
 msgid "Variance of temperature of particles in the measureRect"
 msgstr "Abweichung der Temperatur der Teilchen im Behälter"
 
-#: gas.cc:74
+#: gas.cc:62
 msgctxt "PropertyName|"
 msgid "rectMeanKineticEnergyVariance"
 msgstr "Abweichung der mittleren Bewegungsenergie"
 
-#: gas.cc:75
+#: gas.cc:63
 msgctxt "PropertyDescription|"
 msgid "Variance of mean kinetic energy of particles in the measureRect"
 msgstr "Abweichung der mittleren Bewegungsenergie der Teilchen im Behälter"
 
-#: gas.cc:76
+#: gas.cc:64
 msgctxt "PropertyName|"
 msgid "rectMeanVelocityVariance"
 msgstr "Abweichung der mittleren Geschwindigkeit"
 
-#: gas.cc:77
+#: gas.cc:65
 msgctxt "PropertyDescription|"
 msgid "Variance of mean velocity of particles in the measureRect"
 msgstr "Abweichung der mittleren Geschwindigkeit der Teilchen im Behälter"
 
-#: gas.cc:78
+#: gas.cc:66
 msgctxt "PropertyName|"
 msgid "rectMeanParticleMassVariance"
 msgstr "Abweichung der mittleren Teilchenmasse"
 
-#: gas.cc:79
+#: gas.cc:67
 msgctxt "PropertyDescription|"
 msgid "Variance of mean mass of particles in the measureRect"
 msgstr "Abweichung der mittleren Masse der Teilchen im Behälter"
 
-#: gas.cc:80
+#: gas.cc:68
 msgctxt "PropertyName|"
 msgid "rectMassVariance"
 msgstr "Massenabweichung"
 
-#: gas.cc:81
+#: gas.cc:69
 msgctxt "PropertyDescription|"
 msgid "Variance of total mass of particles in the measureRect"
 msgstr "Abweichung der gesamten Masse der Teilchen im Behälter"
 
-#: gravitation.cc:27
+#: gravitation.cc:15
 msgctxt "ObjectClass|"
 msgid "GravitationForce"
 msgstr "Gravitationskraft"
 
-#: gravitation.cc:27
+#: gravitation.cc:15
 msgctxt "ObjectDescription|"
 msgid "Gravitation force"
 msgstr "Gravitationskraft"
 
-#: gravitation.cc:29
+#: gravitation.cc:17
 msgctxt "PropertyName|"
 msgid "gravitationConst"
 msgstr "Gravitationskonstante"
 
-#: gravitation.cc:29 gravitation.cc:34
+#: gravitation.cc:17 gravitation.cc:22
 msgctxt "Units|"
 msgid "N m²/kg²"
 msgstr "N*m²/kg²"
 
-#: gravitation.cc:30
+#: gravitation.cc:18
 msgctxt "PropertyDescription|"
 msgid "Gravitation constant"
 msgstr "Gravitationskonstante"
 
-#: gravitation.cc:32
+#: gravitation.cc:20
 msgctxt "ObjectClass|"
 msgid "GravitationForceErrors"
 msgstr "Gravitationskraft-Fehler"
 
-#: gravitation.cc:32
+#: gravitation.cc:20
 msgctxt "ObjectDescription|"
 msgid "Errors class for GravitationForce"
 msgstr "Fehlerklasse für die Gravitationskraft"
 
-#: gravitation.cc:34
+#: gravitation.cc:22
 msgctxt "PropertyName|"
 msgid "gravitationConstVariance"
 msgstr "Abweichung der Gravitationskonstante"
 
-#: gravitation.cc:35
+#: gravitation.cc:23
 msgctxt "PropertyDescription|"
 msgid "Gravitation constant variance"
 msgstr "Abweichung der Gravitationskonstante"
 
-#: gravitation.cc:37
+#: gravitation.cc:25
 msgctxt "ObjectClass|"
 msgid "WeightForce"
 msgstr "Gewichtskraft"
 
-#: gravitation.cc:37
+#: gravitation.cc:25
 msgctxt "ObjectDescription|"
 msgid "Weight force"
 msgstr "Gewichtskraft"
 
-#: gravitation.cc:39
+#: gravitation.cc:27
 msgctxt "PropertyDescription|"
 msgid "Weight constant"
 msgstr "Gewichtskonstante"
 
-#: gravitation.cc:39
+#: gravitation.cc:27
 msgctxt "PropertyName|"
 msgid "weightConst"
 msgstr "Gewichtskonstante"
 
-#: gravitation.cc:39 gravitation.cc:44 particle.cc:31 particle.cc:45
-#: rigidbody.cc:34 rigidbody.cc:63 softbody.cc:43
+#: gravitation.cc:27 gravitation.cc:32 particle.cc:19 particle.cc:33
+#: rigidbody.cc:22 rigidbody.cc:51 softbody.cc:31
 msgctxt "Units|"
 msgid "m/s²"
 msgstr "m/s²"
 
-#: gravitation.cc:42
+#: gravitation.cc:30
 msgctxt "ObjectClass|"
 msgid "WeightForceErrors"
 msgstr "Gewichtskraft-Fehler"
 
-#: gravitation.cc:42
+#: gravitation.cc:30
 msgctxt "ObjectDescription|"
 msgid "Errors class for WeightForce"
 msgstr "Fehlerklasse für die Gewichtskraft"
 
-#: gravitation.cc:44
+#: gravitation.cc:32
 msgctxt "PropertyName|"
 msgid "weightConstVariance"
 msgstr "Abweichung der Gewichtskonstante"
 
-#: gravitation.cc:45
+#: gravitation.cc:33
 msgctxt "PropertyDescription|"
 msgid "Weight constant variance"
 msgstr "Abweichung der Gewichtskonstante"
 
-#: gslsolver.cc:30
+#: gslsolver.cc:18
 msgctxt "ObjectClass|"
 msgid "GslGenericSolver"
 msgstr "Allgemeiner GSL-Gleichungslöser"
 
-#: gslsolver.cc:30
+#: gslsolver.cc:18
 msgctxt "ObjectDescription|"
 msgid "GSL generic solver"
 msgstr "Allgemeiner GSL-Gleichungslöser"
 
-#: gslsolver.cc:32
+#: gslsolver.cc:20
 msgctxt "ObjectClass|"
 msgid "GslSolver"
 msgstr "Gsl-Gleichungslöser"
 
-#: gslsolver.cc:32
+#: gslsolver.cc:20
 msgctxt "ObjectDescription|"
 msgid "GSL non-adaptive solver"
 msgstr "Nichtadaptiver GSL-Gleichungslöser"
 
-#: gslsolver.cc:35
+#: gslsolver.cc:23
 msgctxt "ObjectClass|"
 msgid "GslAdaptiveSolver"
 msgstr "Adaptiver GSL-Gleichungslöser"
 
-#: gslsolver.cc:35
+#: gslsolver.cc:23
 msgctxt "ObjectDescription|"
 msgid "GSL adaptive solver"
 msgstr "Adaptiver GSL-Gleichungslöser"
 
-#: gslsolver.cc:38
+#: gslsolver.cc:26
 msgctxt "ObjectClass|"
 msgid "GslRK2Solver"
 msgstr "GslRK2-Gleichungslöser"
 
-#: gslsolver.cc:38
+#: gslsolver.cc:26
 msgctxt "ObjectDescription|"
 msgid "Runge-Kutta second-order solver from GSL library"
 msgstr "Gleichungslöser 2. Ordnung nach Runge-Kutta aus der GSL-Bibliothek"
 
-#: gslsolver.cc:40
+#: gslsolver.cc:28
 msgctxt "ObjectClass|"
 msgid "GslAdaptiveRK2Solver"
 msgstr "GslAdaptiveRK2-Gleichungslöser"
 
-#: gslsolver.cc:40
+#: gslsolver.cc:28
 msgctxt "ObjectDescription|"
 msgid "Adaptive Runge-Kutta second-order solver from GSL library"
 msgstr ""
 "Adaptiver Gleichungslöser 2. Ordnung nach Runge-Kutta aus der GSL-Bibliothek"
 
-#: gslsolver.cc:43
+#: gslsolver.cc:31
 msgctxt "ObjectClass|"
 msgid "GslRK4Solver"
 msgstr "GslRK4-Gleichungslöser"
 
-#: gslsolver.cc:43
+#: gslsolver.cc:31
 msgctxt "ObjectDescription|"
 msgid "Runge-Kutta classical fourth-order solver from GSL library"
 msgstr ""
 "Klassischer Gleichungslöser 4. Ordnung nach Runge-Kutta aus der GSL-"
 "Bibliothek"
 
-#: gslsolver.cc:45
+#: gslsolver.cc:33
 msgctxt "ObjectClass|"
 msgid "GslAdaptiveRK4Solver"
 msgstr "GslAdaptiveRK4-Gleichungslöser"
 
-#: gslsolver.cc:45
+#: gslsolver.cc:33
 msgctxt "ObjectDescription|"
 msgid "Adaptive Runge-Kutta classical fourth-order solver from GSL library"
 msgstr ""
 "Adaptiver klassischer Gleichungslöser 4. Ordnung nach Runge-Kutta aus der "
 "GSL-Bibliothek"
 
-#: gslsolver.cc:48
+#: gslsolver.cc:36
 msgctxt "ObjectClass|"
 msgid "GslRKF45Solver"
 msgstr "GslRKF45-Gleichungslöser"
 
-#: gslsolver.cc:48
+#: gslsolver.cc:36
 msgctxt "ObjectDescription|"
 msgid "Runge-Kutta-Fehlberg (4,5) solver from GSL library"
 msgstr "Gleichungslöser nach Runge-Kutta-Fehlberg (4,5) aus der GSL-Bibliothek"
 
-#: gslsolver.cc:50
+#: gslsolver.cc:38
 msgctxt "ObjectClass|"
 msgid "GslAdaptiveRKF45Solver"
 msgstr "GslAdaptiveRKF45-Gleichungslöser"
 
-#: gslsolver.cc:50
+#: gslsolver.cc:38
 msgctxt "ObjectDescription|"
 msgid "Adaptive Runge-Kutta-Fehlberg (4,5) solver from GSL library"
 msgstr ""
 "Adaptiver Gleichungslöser nach Runge-Kutta-Fehlberg (4,5) aus der GSL-"
 "Bibliothek"
 
-#: gslsolver.cc:53
+#: gslsolver.cc:41
 msgctxt "ObjectClass|"
 msgid "GslRKCKSolver"
 msgstr "GslRKCK-Gleichungslöser"
 
-#: gslsolver.cc:53
+#: gslsolver.cc:41
 msgctxt "ObjectDescription|"
 msgid "Runge-Kutta Cash-Karp (4,5) solver from GSL library"
 msgstr ""
 "Gleichungslöser nach Runge-Kutta-Cash-Karp (4,5) aus der GSL-Bibliothek"
 
-#: gslsolver.cc:55
+#: gslsolver.cc:43
 msgctxt "ObjectClass|"
 msgid "GslAdaptiveRKCKSolver"
 msgstr "GslAdaptiveRKCK-Gleichungslöser"
 
-#: gslsolver.cc:55
+#: gslsolver.cc:43
 msgctxt "ObjectDescription|"
 msgid "Adaptive Runge-Kutta Cash-Karp (4,5) solver from GSL library"
 msgstr ""
 "Adaptiver Gleichungslöser nach Runge-Kutta-Cash-Karp (4,5) aus der GSL-"
 "Bibliothek"
 
-#: gslsolver.cc:58
+#: gslsolver.cc:46
 msgctxt "ObjectClass|"
 msgid "GslRK8PDSolver"
 msgstr "GslRK8PD-Gleichungslöser"
 
-#: gslsolver.cc:58
+#: gslsolver.cc:46
 msgctxt "ObjectDescription|"
 msgid "Runge-Kutta Prince-Dormand (8,9) solver from GSL library"
 msgstr ""
 "Gleichungslöser nach Runge-Kutta-Prince-Dormand (8,9) aus der GSL-Bibliothek"
 
-#: gslsolver.cc:60
+#: gslsolver.cc:48
 msgctxt "ObjectClass|"
 msgid "GslAdaptiveRK8PDSolver"
 msgstr "GslAdaptiveRK8PD-Gleichungslöser"
 
-#: gslsolver.cc:60
+#: gslsolver.cc:48
 msgctxt "ObjectDescription|"
 msgid "Adaptive Runge-Kutta Prince-Dormand (8,9) solver from GSL library"
 msgstr ""
 "Adaptiver Gleichungslöser nach Runge-Kutta-Prince-Dormand (8,9) aus der GSL-"
 "Bibliothek"
 
-#: gslsolver.cc:63
+#: gslsolver.cc:51
 msgctxt "ObjectClass|"
 msgid "GslRK2IMPSolver"
 msgstr "GslRK2IMP-Gleichungslöser"
 
-#: gslsolver.cc:63
+#: gslsolver.cc:51
 msgctxt "ObjectDescription|"
 msgid "Runge-Kutta implicit second-order solver from GSL library"
 msgstr ""
 "Impliziter Gleichungslöser 2. Ordnung nach Runge-Kutta aus der GSL-Bibliothek"
 
-#: gslsolver.cc:65
+#: gslsolver.cc:53
 msgctxt "ObjectClass|"
 msgid "GslAdaptiveRK2IMPSolver"
 msgstr "GslAdaptiveRK2IMP-Gleichungslöser"
 
-#: gslsolver.cc:65
+#: gslsolver.cc:53
 msgctxt "ObjectDescription|"
 msgid "Adaptive Runge-Kutta implicit second-order solver from GSL library"
 msgstr ""
 "Adaptiver impliziter Gleichungslöser 2. Ordnung nach Runge-Kutta aus der GSL-"
 "Bibliothek"
 
-#: gslsolver.cc:68
+#: gslsolver.cc:56
 msgctxt "ObjectClass|"
 msgid "GslRK4IMPSolver"
 msgstr "GslRK4IMP-Gleichungslöser"
 
-#: gslsolver.cc:68
+#: gslsolver.cc:56
 msgctxt "ObjectDescription|"
 msgid "Runge-Kutta implicit fourth-order solver from GSL library"
 msgstr ""
 "Impliziter Gleichungslöser 4. Ordnung nach Runge-Kutta aus der GSL-Bibliothek"
 
-#: gslsolver.cc:70
+#: gslsolver.cc:58
 msgctxt "ObjectClass|"
 msgid "GslAdaptiveRK4IMPSolver"
 msgstr "GslAdaptiveRK4IMP-Gleichungslöser"
 
-#: gslsolver.cc:70
+#: gslsolver.cc:58
 msgctxt "ObjectDescription|"
 msgid "Adaptive Runge-Kutta implicit fourth-order solver from GSL library"
 msgstr ""
 "Adaptiver impliziter Gleichungslöser 4. Ordnung nach Runge-Kutta aus der GSL-"
 "Bibliothek"
 
-#: item.cc:28
+#: item.cc:15
 msgctxt "ObjectClass|"
 msgid "Item"
 msgstr "Element"
 
-#: item.cc:28
+#: item.cc:15
 msgctxt "ObjectDescription|"
 msgid "Item"
 msgstr "Element"
 
-#: item.cc:30
+#: item.cc:17
 msgctxt "PropertyName|"
 msgid "color"
 msgstr "Farbe"
 
-#: item.cc:31
+#: item.cc:18
 msgctxt "PropertyDescription|"
 msgid "Item color"
 msgstr "Farbe des Elements"
 
-#: itemgroup.cc:28
+#: itemgroup.cc:15
 msgctxt "ObjectClass|"
 msgid "ItemGroup"
 msgstr "Elementgruppe"
 
-#: itemgroup.cc:28
+#: itemgroup.cc:15
 msgctxt "ObjectDescription|"
 msgid "ItemGroup"
 msgstr "Elementgruppe"
 
-#: joint.cc:26
+#: joint.cc:14
 msgctxt "ObjectClass|"
 msgid "Joint"
 msgstr "Verbindung"
 
-#: joint.cc:26
+#: joint.cc:14
 msgctxt "ObjectDescription|"
 msgid "Joint"
 msgstr "Verbindung"
 
-#: joints.cc:26
+#: joints.cc:14
 msgctxt "ObjectClass|"
 msgid "Anchor"
 msgstr "Anker"
 
-#: joints.cc:26
+#: joints.cc:14
 msgctxt "ObjectDescription|"
 msgid "Anchor: fixes position of the body"
 msgstr "Anker: fixiert die Position des Körpers"
 
-#: joints.cc:28 joints.cc:34 motor.cc:29 motor.cc:35
+#: joints.cc:16 joints.cc:22 motor.cc:17 motor.cc:23
 msgctxt "PropertyDescription|"
 msgid "Body"
 msgstr "Körper"
 
-#: joints.cc:28 joints.cc:34 motor.cc:29 motor.cc:35 tool.cc:97
+#: joints.cc:16 joints.cc:22 motor.cc:17 motor.cc:23 tool.cc:85
 msgctxt "PropertyName|"
 msgid "body"
 msgstr "Körper"
 
-#: joints.cc:29 tool.cc:100
+#: joints.cc:17 tool.cc:88
 msgctxt "PropertyDescription|"
 msgid "Position"
 msgstr "Position"
 
-#: joints.cc:29 joints.cc:36 particle.cc:29 rigidbody.cc:28 softbody.cc:36
-#: tool.cc:38 tool.cc:45 tool.cc:67 tool.cc:79 tool.cc:100
+#: joints.cc:17 joints.cc:24 particle.cc:17 rigidbody.cc:16 softbody.cc:24
+#: tool.cc:26 tool.cc:33 tool.cc:55 tool.cc:67 tool.cc:88
 msgctxt "PropertyName|"
 msgid "position"
 msgstr "Position"
 
-#: joints.cc:30
+#: joints.cc:18
 msgctxt "PropertyDescription|"
 msgid "Angle"
 msgstr "Winkel"
 
-#: joints.cc:30 rigidbody.cc:29
+#: joints.cc:18 rigidbody.cc:17
 msgctxt "PropertyName|"
 msgid "angle"
 msgstr "Winkel"
 
-#: joints.cc:30 rigidbody.cc:29 rigidbody.cc:55
+#: joints.cc:18 rigidbody.cc:17 rigidbody.cc:43
 msgctxt "Units|"
 msgid "rad"
 msgstr "rad"
 
-#: joints.cc:32
+#: joints.cc:20
 msgctxt "ObjectClass|"
 msgid "Pin"
 msgstr "Stift"
 
-#: joints.cc:32
+#: joints.cc:20
 msgctxt "ObjectDescription|"
 msgid "Pin: fixes position of a given point on the body"
 msgstr "Stift: fixiert die Position eines Punktes auf dem Körper"
 
-#: joints.cc:35
+#: joints.cc:23
 msgctxt "PropertyDescription|"
 msgid "Position on the body"
 msgstr "Position am Körper"
 
-#: joints.cc:35 motor.cc:30 motor.cc:36 tool.cc:98
+#: joints.cc:23 motor.cc:18 motor.cc:24 tool.cc:86
 msgctxt "PropertyName|"
 msgid "localPosition"
 msgstr "Lokale Position"
 
-#: joints.cc:36
+#: joints.cc:24
 msgctxt "PropertyDescription|"
 msgid "Position in the world"
 msgstr "Position in der Welt"
 
-#: joints.cc:38
+#: joints.cc:26
 msgctxt "ObjectClass|"
 msgid "Stick"
 msgstr "Stab"
 
-#: joints.cc:38
+#: joints.cc:26
 msgctxt "ObjectDescription|"
 msgid "Massless stick which can be connected to bodies"
 msgstr "Masseloser Stab zur Verbindung von Körpern"
 
-#: joints.cc:40
+#: joints.cc:28
 msgctxt "PropertyDescription|"
 msgid "Rest length of the stick"
 msgstr "Ruhelänge des Stabes"
 
-#: joints.cc:40 spring.cc:30
+#: joints.cc:28 spring.cc:18
 msgctxt "PropertyName|"
 msgid "restLength"
 msgstr "Ruhelänge"
 
-#: joints.cc:41 spring.cc:34
+#: joints.cc:29 spring.cc:22
 msgctxt "PropertyDescription|"
 msgid "Body1"
 msgstr "Körper 1"
 
-#: joints.cc:41 spring.cc:34
+#: joints.cc:29 spring.cc:22
 msgctxt "PropertyName|"
 msgid "body1"
 msgstr "Körper 1"
 
-#: joints.cc:42 spring.cc:35
+#: joints.cc:30 spring.cc:23
 msgctxt "PropertyDescription|"
 msgid "Body2"
 msgstr "Körper 2"
 
-#: joints.cc:42 spring.cc:35
+#: joints.cc:30 spring.cc:23
 msgctxt "PropertyName|"
 msgid "body2"
 msgstr "Körper 2"
 
-#: joints.cc:43 spring.cc:36
+#: joints.cc:31 spring.cc:24
 msgctxt "PropertyName|"
 msgid "localPosition1"
 msgstr "Lokale Position 1"
 
-#: joints.cc:44 spring.cc:37
+#: joints.cc:32 spring.cc:25
 msgctxt "PropertyDescription|"
 msgid "Local position 1"
 msgstr "Lokale Position 1"
 
-#: joints.cc:45 spring.cc:38
+#: joints.cc:33 spring.cc:26
 msgctxt "PropertyName|"
 msgid "localPosition2"
 msgstr "Lokale Position 2"
 
-#: joints.cc:46 spring.cc:39
+#: joints.cc:34 spring.cc:27
 msgctxt "PropertyDescription|"
 msgid "Local position 2"
 msgstr "Lokale Position 2"
 
-#: joints.cc:47 spring.cc:40
+#: joints.cc:35 spring.cc:28
 msgctxt "PropertyDescription|"
 msgid "Position1"
 msgstr "Position 1"
 
-#: joints.cc:47 spring.cc:40
+#: joints.cc:35 spring.cc:28
 msgctxt "PropertyName|"
 msgid "position1"
 msgstr "Position 1"
 
-#: joints.cc:48 spring.cc:41
+#: joints.cc:36 spring.cc:29
 msgctxt "PropertyDescription|"
 msgid "Position2"
 msgstr "Position 2"
 
-#: joints.cc:48 spring.cc:41
+#: joints.cc:36 spring.cc:29
 msgctxt "PropertyName|"
 msgid "position2"
 msgstr "Position 2"
 
-#: joints.cc:51
+#: joints.cc:39
 msgctxt "ObjectClass|"
 msgid "Rope"
 msgstr "Seil"
 
-#: joints.cc:51
+#: joints.cc:39
 msgctxt "ObjectDescription|"
 msgid "Massless rope which can be connected to bodies"
 msgstr "Masseloses Seil zur Verbindung von Körpern"
 
-#: motor.cc:27
+#: motor.cc:15
 msgctxt "ObjectClass|"
 msgid "LinearMotor"
 msgstr "Linearmotor"
 
-#: motor.cc:27
+#: motor.cc:15
 msgctxt "ObjectDescription|"
 msgid "Linear motor: applies a constant force to a given position of the body"
 msgstr ""
 "Linearmotor: wendet eine konstante Kraft auf einen vorgegebenen Punkt des "
 "Körpers an"
 
-#: motor.cc:30 motor.cc:36
+#: motor.cc:18 motor.cc:24
 msgctxt "PropertyDescription|"
 msgid "Position of the motor on a body"
 msgstr "Position des Motors an einem Körper"
 
-#: motor.cc:31
+#: motor.cc:19
 msgctxt "PropertyDescription|"
 msgid "Value of the force, acting on the body"
 msgstr "Wert der Kraft, die auf den Körper wirkt"
 
-#: motor.cc:31
+#: motor.cc:19
 msgctxt "PropertyName|"
 msgid "forceValue"
 msgstr "Kraftwert"
 
-#: motor.cc:31 particle.cc:33 particle.cc:47 rigidbody.cc:39 rigidbody.cc:68
-#: softbody.cc:48 spring.cc:42 spring.cc:63
+#: motor.cc:19 particle.cc:21 particle.cc:35 rigidbody.cc:27 rigidbody.cc:56
+#: softbody.cc:36 spring.cc:30 spring.cc:51
 msgctxt "Units|"
 msgid "N"
 msgstr "N"
 
-#: motor.cc:33
+#: motor.cc:21
 msgctxt "ObjectClass|"
 msgid "CircularMotor"
 msgstr "Drehmotor"
 
-#: motor.cc:33
+#: motor.cc:21
 msgctxt "ObjectDescription|"
 msgid "Circular motor: applies a constant torque to the body"
 msgstr "Drehmotor: wendet ein konstantes Moment auf den Körper an"
 
-#: motor.cc:37
+#: motor.cc:25
 msgctxt "PropertyDescription|"
 msgid "Value of the torque, acting on the body"
 msgstr "Wert des Moments, das auf den Körper einwirkt"
 
-#: motor.cc:37
+#: motor.cc:25
 msgctxt "PropertyName|"
 msgid "torqueValue"
 msgstr "Momentwert"
 
-#: motor.cc:37 rigidbody.cc:40 rigidbody.cc:69 softbody.cc:49
+#: motor.cc:25 rigidbody.cc:28 rigidbody.cc:57 softbody.cc:37
 msgctxt "Units|"
 msgid "N m"
 msgstr "Nm"
 
-#: object.cc:25
+#: object.cc:13
 msgctxt "ObjectClass|"
 msgid "Object"
 msgstr "Objekt"
 
-#: object.cc:25
+#: object.cc:13
 msgctxt "ObjectDescription|"
 msgid "Object"
 msgstr "Objekt"
 
-#: object.cc:26
+#: object.cc:14
 msgctxt "PropertyDescription|"
 msgid "Object name"
 msgstr "Objektname"
 
-#: object.cc:26
+#: object.cc:14
 msgctxt "PropertyName|"
 msgid "name"
 msgstr "Name"
 
-#: objecterrors.cc:26
+#: objecterrors.cc:14
 msgctxt "ObjectClass|"
 msgid "ObjectErrors"
 msgstr "Objektfehler"
 
-#: objecterrors.cc:26
+#: objecterrors.cc:14
 msgctxt "ObjectDescription|"
 msgid "ObjectErrors"
 msgstr "Objektfehler"
 
-#: particle.cc:27
+#: particle.cc:15
 msgctxt "ObjectClass|"
 msgid "Particle"
 msgstr "Teilchen"
 
-#: particle.cc:27
+#: particle.cc:15
 msgctxt "ObjectDescription|"
 msgid "Simple zero-size particle"
 msgstr "Einfaches Punktteilchen ohne Ausdehnung"
 
-#: particle.cc:29
+#: particle.cc:17
 msgctxt "PropertyDescription|"
 msgid "position"
 msgstr "Position"
 
-#: particle.cc:30
+#: particle.cc:18
 msgctxt "PropertyDescription|"
 msgid "velocity"
 msgstr "Geschwindigkeit"
 
-#: particle.cc:30 rigidbody.cc:31 softbody.cc:38
+#: particle.cc:18 rigidbody.cc:19 softbody.cc:26
 msgctxt "PropertyName|"
 msgid "velocity"
 msgstr "Geschwindigkeit"
 
-#: particle.cc:31 rigidbody.cc:34 softbody.cc:43
+#: particle.cc:19 rigidbody.cc:22 softbody.cc:31
 msgctxt "PropertyName|"
 msgid "acceleration"
 msgstr "Beschleunigung"
 
-#: particle.cc:32
+#: particle.cc:20
 msgctxt "PropertyDescription|"
 msgid "acceleration"
 msgstr "Beschleunigung"
 
-#: particle.cc:33
+#: particle.cc:21
 msgctxt "PropertyDescription|"
 msgid "force"
 msgstr "Kraft"
 
-#: particle.cc:33 rigidbody.cc:39 softbody.cc:48 spring.cc:42
+#: particle.cc:21 rigidbody.cc:27 softbody.cc:36 spring.cc:30
 msgctxt "PropertyName|"
 msgid "force"
 msgstr "Kraft"
 
-#: particle.cc:34
+#: particle.cc:22
 msgctxt "PropertyDescription|"
 msgid "mass"
 msgstr "Masse"
 
-#: particle.cc:34 rigidbody.cc:42 softbody.cc:50
+#: particle.cc:22 rigidbody.cc:30 softbody.cc:38
 msgctxt "PropertyName|"
 msgid "mass"
 msgstr "Masse"
 
-#: particle.cc:35 rigidbody.cc:45
+#: particle.cc:23 rigidbody.cc:33
 msgctxt "PropertyDescription|"
 msgid "momentum"
 msgstr "Impuls"
 
-#: particle.cc:35 rigidbody.cc:45
+#: particle.cc:23 rigidbody.cc:33
 msgctxt "PropertyName|"
 msgid "momentum"
 msgstr "Impuls"
 
-#: particle.cc:35 particle.cc:51 rigidbody.cc:45 rigidbody.cc:75
+#: particle.cc:23 particle.cc:39 rigidbody.cc:33 rigidbody.cc:63
 msgctxt "Units|"
 msgid "kg m/s"
 msgstr "kg*m/s"
 
-#: particle.cc:37 rigidbody.cc:49
+#: particle.cc:25 rigidbody.cc:37
 msgctxt "PropertyDescription|"
 msgid "kinetic energy"
 msgstr "Bewegungsenergie"
 
-#: particle.cc:37 rigidbody.cc:49
+#: particle.cc:25 rigidbody.cc:37
 msgctxt "PropertyName|"
 msgid "kineticEnergy"
 msgstr "Bewegungsenergie"
 
-#: particle.cc:40
+#: particle.cc:28
 msgctxt "ObjectClass|"
 msgid "ParticleErrors"
 msgstr "Teilchenfehler"
 
-#: particle.cc:40
+#: particle.cc:28
 msgctxt "ObjectDescription|"
 msgid "Errors class for Particle"
 msgstr "Fehlerklasse für Teilchen"
 
-#: particle.cc:41 rigidbody.cc:53
+#: particle.cc:29 rigidbody.cc:41
 msgctxt "PropertyName|"
 msgid "positionVariance"
 msgstr "Positionsabweichung"
 
-#: particle.cc:42 rigidbody.cc:54
+#: particle.cc:30 rigidbody.cc:42
 msgctxt "PropertyDescription|"
 msgid "position variance"
 msgstr "Positionsabweichung"
 
-#: particle.cc:43 rigidbody.cc:58
+#: particle.cc:31 rigidbody.cc:46
 msgctxt "PropertyName|"
 msgid "velocityVariance"
 msgstr "Geschwindigkeitsabweichung"
 
-#: particle.cc:44 rigidbody.cc:59
+#: particle.cc:32 rigidbody.cc:47
 msgctxt "PropertyDescription|"
 msgid "velocity variance"
 msgstr "Geschwindigkeitsabweichung"
 
-#: particle.cc:45 rigidbody.cc:63
+#: particle.cc:33 rigidbody.cc:51
 msgctxt "PropertyName|"
 msgid "accelerationVariance"
 msgstr "Beschleunigungsabweichung"
 
-#: particle.cc:46 rigidbody.cc:64
+#: particle.cc:34 rigidbody.cc:52
 msgctxt "PropertyDescription|"
 msgid "acceleration variance"
 msgstr "Beschleunigungsabweichung"
 
-#: particle.cc:47 rigidbody.cc:68 spring.cc:63
+#: particle.cc:35 rigidbody.cc:56 spring.cc:51
 msgctxt "PropertyName|"
 msgid "forceVariance"
 msgstr "Kraftabweichung"
 
-#: particle.cc:48 rigidbody.cc:68
+#: particle.cc:36 rigidbody.cc:56
 msgctxt "PropertyDescription|"
 msgid "force variance"
 msgstr "Kraftabweichung"
 
-#: particle.cc:49 rigidbody.cc:71
+#: particle.cc:37 rigidbody.cc:59
 msgctxt "PropertyName|"
 msgid "massVariance"
 msgstr "Massenabweichung"
 
-#: particle.cc:50 rigidbody.cc:72
+#: particle.cc:38 rigidbody.cc:60
 msgctxt "PropertyDescription|"
 msgid "mass variance"
 msgstr "Massenabweichung"
 
-#: particle.cc:51 rigidbody.cc:75
+#: particle.cc:39 rigidbody.cc:63
 msgctxt "PropertyName|"
 msgid "momentumVariance"
 msgstr "Impulsabweichung"
 
-#: particle.cc:52 rigidbody.cc:76
+#: particle.cc:40 rigidbody.cc:64
 msgctxt "PropertyDescription|"
 msgid "momentum variance"
 msgstr "Impulsabweichung"
 
-#: particle.cc:53 rigidbody.cc:80
+#: particle.cc:41 rigidbody.cc:68
 msgctxt "PropertyName|"
 msgid "kineticEnergyVariance"
 msgstr "Bewegungsenergieabweichung"
 
-#: particle.cc:54 rigidbody.cc:81
+#: particle.cc:42 rigidbody.cc:69
 msgctxt "PropertyDescription|"
 msgid "kinetic energy variance"
 msgstr "Bewegungsenergieabweichung"
 
-#: particle.cc:56
+#: particle.cc:44
 msgctxt "ObjectClass|"
 msgid "ChargedParticle"
 msgstr "Ladungsteilchen"
 
-#: particle.cc:56
+#: particle.cc:44
 msgctxt "ObjectDescription|"
 msgid "Charged zero-size particle"
 msgstr "Geladenes Punktteilchen ohne Ausdehnung"
 
-#: particle.cc:57
+#: particle.cc:45
 msgctxt "PropertyDescription|"
 msgid "charge"
 msgstr "Ladung"
 
-#: particle.cc:57
+#: particle.cc:45
 msgctxt "PropertyName|"
 msgid "charge"
 msgstr "Ladung"
 
-#: particle.cc:57
+#: particle.cc:45
 msgctxt "Units|"
 msgid "C"
 msgstr "C"
 
-#: particle.cc:59
+#: particle.cc:47
 msgctxt "ObjectClass|"
 msgid "ChargedParticleErrors"
 msgstr "Ladungsteilchen-Fehler"
 
-#: particle.cc:59
+#: particle.cc:47
 msgctxt "ObjectDescription|"
 msgid "Errors class for ChargedParticle"
 msgstr "Fehlerklasse für Ladungsteilchen"
 
-#: particle.cc:61
+#: particle.cc:49
 msgctxt "PropertyName|"
 msgid "chargeVariance"
 msgstr "Ladungsabweichung"
 
-#: particle.cc:62
+#: particle.cc:50
 msgctxt "PropertyDescription|"
 msgid "charge variance"
 msgstr "Ladungsabweichung"
 
-#: rigidbody.cc:27
+#: rigidbody.cc:15
 msgctxt "ObjectClass|"
 msgid "RigidBody"
 msgstr "Starrer Körper "
 
-#: rigidbody.cc:27
+#: rigidbody.cc:15
 msgctxt "ObjectDescription|"
 msgid "Generic rigid body"
 msgstr "Allgemeiner starrer Körper "
 
-#: rigidbody.cc:28 softbody.cc:36
+#: rigidbody.cc:16 softbody.cc:24
 msgctxt "PropertyDescription|"
 msgid "Position of the center of mass"
 msgstr "Position des Schwerpunkts"
 
-#: rigidbody.cc:29
+#: rigidbody.cc:17
 msgctxt "PropertyDescription|"
 msgid "Rotation angle"
 msgstr "Drehwinkel"
 
-#: rigidbody.cc:31 softbody.cc:38
+#: rigidbody.cc:19 softbody.cc:26
 msgctxt "PropertyDescription|"
 msgid "Velocity of the center of mass"
 msgstr "Geschwindigkeit des Schwerpunkts"
 
-#: rigidbody.cc:32 softbody.cc:39
+#: rigidbody.cc:20 softbody.cc:27
 msgctxt "PropertyDescription|"
 msgid "Angular velocity of the body"
 msgstr "Winkelgeschwindigkeit des Körpers"
 
-#: rigidbody.cc:32 softbody.cc:39
+#: rigidbody.cc:20 softbody.cc:27
 msgctxt "PropertyName|"
 msgid "angularVelocity"
 msgstr "Winkelgeschwindigkeit"
 
-#: rigidbody.cc:32 rigidbody.cc:60 softbody.cc:39
+#: rigidbody.cc:20 rigidbody.cc:48 softbody.cc:27
 msgctxt "Units|"
 msgid "rad/s"
 msgstr "rad/s"
 
-#: rigidbody.cc:35 softbody.cc:44
+#: rigidbody.cc:23 softbody.cc:32
 msgctxt "PropertyDescription|"
 msgid "Acceleration of the center of mass"
 msgstr "Beschleunigung des Schwerpunkts"
 
-#: rigidbody.cc:36 softbody.cc:45
+#: rigidbody.cc:24 softbody.cc:33
 msgctxt "PropertyName|"
 msgid "angularAcceleration"
 msgstr "Winkelbeschleunigung"
 
-#: rigidbody.cc:36 rigidbody.cc:65 softbody.cc:45
+#: rigidbody.cc:24 rigidbody.cc:53 softbody.cc:33
 msgctxt "Units|"
 msgid "rad/s²"
 msgstr "rad/s²"
 
-#: rigidbody.cc:37 softbody.cc:46
+#: rigidbody.cc:25 softbody.cc:34
 msgctxt "PropertyDescription|"
 msgid "Angular acceleration of the body"
 msgstr "Winkelbeschleunigung des Körpers"
 
-#: rigidbody.cc:39 softbody.cc:48
+#: rigidbody.cc:27 softbody.cc:36
 msgctxt "PropertyDescription|"
 msgid "Force that acts upon the body"
 msgstr "Kraft, die auf den Körper wirkt"
 
-#: rigidbody.cc:40 softbody.cc:49
+#: rigidbody.cc:28 softbody.cc:37
 msgctxt "PropertyDescription|"
 msgid "Torque that acts upon the body"
 msgstr "Moment, das auf den Körper einwirkt"
 
-#: rigidbody.cc:40 softbody.cc:49
+#: rigidbody.cc:28 softbody.cc:37
 msgctxt "PropertyName|"
 msgid "torque"
 msgstr "Moment"
 
-#: rigidbody.cc:42 softbody.cc:50
+#: rigidbody.cc:30 softbody.cc:38
 msgctxt "PropertyDescription|"
 msgid "Total mass of the body"
 msgstr "Gesamte Masse des Körpers"
 
-#: rigidbody.cc:43 softbody.cc:51
+#: rigidbody.cc:31 softbody.cc:39
 msgctxt "PropertyName|"
 msgid "inertia"
 msgstr "Trägheitsmoment"
 
-#: rigidbody.cc:43 rigidbody.cc:73 softbody.cc:51
+#: rigidbody.cc:31 rigidbody.cc:61 softbody.cc:39
 msgctxt "Units|"
 msgid "kg m²"
 msgstr "kg*m²"
 
-#: rigidbody.cc:44 softbody.cc:52
+#: rigidbody.cc:32 softbody.cc:40
 msgctxt "PropertyDescription|"
 msgid "Inertia \"tensor\" of the body"
 msgstr "Trägheitsmoment-Tensor des Körpers"
 
-#: rigidbody.cc:47
+#: rigidbody.cc:35
 msgctxt "PropertyDescription|"
 msgid "angular momentum"
 msgstr "Drehimpuls"
 
-#: rigidbody.cc:47 softbody.cc:40
+#: rigidbody.cc:35 softbody.cc:28
 msgctxt "PropertyName|"
 msgid "angularMomentum"
 msgstr "Drehimpuls"
 
-#: rigidbody.cc:47 rigidbody.cc:77
+#: rigidbody.cc:35 rigidbody.cc:65
 msgctxt "Units|"
 msgid "kg m² rad/s"
 msgstr "kg*m²*rad/s"
 
-#: rigidbody.cc:52
+#: rigidbody.cc:40
 msgctxt "ObjectClass|"
 msgid "RigidBodyErrors"
 msgstr "Starrer-Körper-Fehler"
 
-#: rigidbody.cc:52
+#: rigidbody.cc:40
 msgctxt "ObjectDescription|"
 msgid "Errors class for RigidBody"
 msgstr "Fehlerklasse für starre Körper"
 
-#: rigidbody.cc:55
+#: rigidbody.cc:43
 msgctxt "PropertyName|"
 msgid "angleVariance"
 msgstr "Winkelabweichung"
 
-#: rigidbody.cc:56
+#: rigidbody.cc:44
 msgctxt "PropertyDescription|"
 msgid "angle variance"
 msgstr "Winkelabweichung"
 
-#: rigidbody.cc:60
+#: rigidbody.cc:48
 msgctxt "PropertyName|"
 msgid "angularVelocityVariance"
 msgstr "Winkelgeschwindigkeitsabweichung"
 
-#: rigidbody.cc:61
+#: rigidbody.cc:49
 msgctxt "PropertyDescription|"
 msgid "angularVelocity variance"
 msgstr "Winkelgeschwindigkeitsabweichung"
 
-#: rigidbody.cc:65
+#: rigidbody.cc:53
 msgctxt "PropertyName|"
 msgid "angularAccelerationVariance"
 msgstr "Drehbeschleunigungsabweichung"
 
-#: rigidbody.cc:66
+#: rigidbody.cc:54
 msgctxt "PropertyDescription|"
 msgid "angularAcceleration variance"
 msgstr "Drehbeschleunigungsabweichung"
 
-#: rigidbody.cc:69
+#: rigidbody.cc:57
 msgctxt "PropertyDescription|"
 msgid "torque variance"
 msgstr "Momentabweichung"
 
-#: rigidbody.cc:69
+#: rigidbody.cc:57
 msgctxt "PropertyName|"
 msgid "torqueVariance"
 msgstr "Momentabweichung"
 
-#: rigidbody.cc:73
+#: rigidbody.cc:61
 msgctxt "PropertyName|"
 msgid "inertiaVariance"
 msgstr "Trägheitsmomentabweichung"
 
-#: rigidbody.cc:74
+#: rigidbody.cc:62
 msgctxt "PropertyDescription|"
 msgid "inertia variance"
 msgstr "Trägheitsmomentabweichung"
 
-#: rigidbody.cc:77
+#: rigidbody.cc:65
 msgctxt "PropertyName|"
 msgid "angularMomentumVariance"
 msgstr "Drehimpulsabweichung"
 
-#: rigidbody.cc:78
+#: rigidbody.cc:66
 msgctxt "PropertyDescription|"
 msgid "angular momentum variance"
 msgstr "Drehimpulsabweichung"
 
-#: rigidbody.cc:83
+#: rigidbody.cc:71
 msgctxt "ObjectClass|"
 msgid "Disk"
 msgstr "Scheibe"
 
-#: rigidbody.cc:83
+#: rigidbody.cc:71
 msgctxt "ObjectDescription|"
 msgid "Rigid disk"
 msgstr "Starre Scheibe"
 
-#: rigidbody.cc:84
+#: rigidbody.cc:72
 msgctxt "PropertyDescription|"
 msgid "Radius of the disk"
 msgstr "Radius der Scheibe"
 
-#: rigidbody.cc:84
+#: rigidbody.cc:72
 msgctxt "PropertyName|"
 msgid "radius"
 msgstr "Radius"
 
-#: rigidbody.cc:86
+#: rigidbody.cc:74
 msgctxt "ObjectClass|"
 msgid "BasePolygon"
 msgstr "Basisvieleck"
 
-#: rigidbody.cc:86
+#: rigidbody.cc:74
 msgctxt "ObjectDescription|"
 msgid "Base polygon body"
 msgstr "Vieleckiger Basiskörper"
 
-#: rigidbody.cc:88
+#: rigidbody.cc:76
 msgctxt "ObjectClass|"
 msgid "Box"
 msgstr "Rechteck"
 
-#: rigidbody.cc:88
+#: rigidbody.cc:76
 msgctxt "ObjectDescription|"
 msgid "Rigid box"
 msgstr "Starres Rechteck"
 
-#: rigidbody.cc:89
+#: rigidbody.cc:77
 msgctxt "PropertyDescription|"
 msgid "Size of the box"
 msgstr "Größe des Rechtecks"
 
-#: rigidbody.cc:89 tool.cc:39 tool.cc:46 tool.cc:68 tool.cc:80
+#: rigidbody.cc:77 tool.cc:27 tool.cc:34 tool.cc:56 tool.cc:68
 msgctxt "PropertyName|"
 msgid "size"
 msgstr "Größe"
 
-#: rigidbody.cc:91
+#: rigidbody.cc:79
 msgctxt "ObjectClass|"
 msgid "Polygon"
 msgstr "Vieleck"
 
-#: rigidbody.cc:91
+#: rigidbody.cc:79
 msgctxt "ObjectDescription|"
 msgid "Rigid polygon body"
 msgstr "Starres Vieleck"
 
-#: rigidbody.cc:92
+#: rigidbody.cc:80
 msgctxt "PropertyDescription|"
 msgid "Vertex list"
 msgstr "Liste der Ecken"
 
-#: rigidbody.cc:92
+#: rigidbody.cc:80
 msgctxt "PropertyName|"
 msgid "vertices"
 msgstr "Ecken"
 
-#: softbody.cc:31
+#: softbody.cc:19
 msgctxt "ObjectClass|"
 msgid "SoftBodyParticle"
 msgstr "Elastisches Teilchen"
 
-#: softbody.cc:31
+#: softbody.cc:19
 msgctxt "ObjectDescription|"
 msgid "SoftBody particle"
 msgstr "Elastisches Teilchen"
 
-#: softbody.cc:32
+#: softbody.cc:20
 msgctxt "ObjectClass|"
 msgid "SoftBodySpring"
 msgstr "Elastische Feder"
 
-#: softbody.cc:32
+#: softbody.cc:20
 msgctxt "ObjectDescription|"
 msgid "SoftBody spring"
 msgstr "Elastische Feder"
 
-#: softbody.cc:33
+#: softbody.cc:21
 msgctxt "ObjectClass|"
 msgid "SoftBody"
 msgstr "Elastischer Körper"
 
-#: softbody.cc:33
+#: softbody.cc:21
 msgctxt "ObjectDescription|"
 msgid "Deformable SoftBody"
 msgstr "Verformbarer elastischer Körper"
 
-#: softbody.cc:34
+#: softbody.cc:22
 msgctxt "PropertyDescription|"
 msgid "Show internal items"
 msgstr "Interne Elemente anzeigen"
 
-#: softbody.cc:34
+#: softbody.cc:22
 msgctxt "PropertyName|"
 msgid "showInternalItems"
 msgstr "Interne Elemente anzeigen"
 
-#: softbody.cc:40
+#: softbody.cc:28
 msgctxt "Units|"
 msgid "kg m²/s"
 msgstr "kg*m²/s"
 
-#: softbody.cc:41
+#: softbody.cc:29
 msgctxt "PropertyDescription|"
 msgid "Angular momentum of the body"
 msgstr "Drehimpuls des Körpers"
 
-#: softbody.cc:53
+#: softbody.cc:41
 msgctxt "PropertyName|"
 msgid "borderParticleNames"
 msgstr "Namen der Randteilchen"
 
-#: softbody.cc:54
+#: softbody.cc:42
 msgctxt "PropertyDescription|"
 msgid "Border particle names (temporal property)"
 msgstr "Namen der Randteilchen (vorläufige Eigenschaft)"
 
-#: solver.cc:25
+#: solver.cc:13
 msgctxt "ObjectClass|"
 msgid "Solver"
 msgstr "Gleichungslöser"
 
-#: solver.cc:25
+#: solver.cc:13
 msgctxt "ObjectDescription|"
 msgid "Solver"
 msgstr "Gleichungslöser"
 
-#: solver.cc:26
+#: solver.cc:14
 msgctxt "PropertyDescription|"
 msgid "Solver type"
 msgstr "Gleichungslöser-Typ"
 
-#: solver.cc:26
+#: solver.cc:14
 msgctxt "PropertyName|"
 msgid "solverType"
 msgstr "Gleichungslöser-Typ"
 
-#: solver.cc:27
+#: solver.cc:15
 msgctxt "PropertyDescription|"
 msgid "Step size"
 msgstr "Schrittweite"
 
-#: solver.cc:27
+#: solver.cc:15
 msgctxt "PropertyName|"
 msgid "stepSize"
 msgstr "Schrittweite"
 
-#: solver.cc:27 world.cc:35
+#: solver.cc:15 world.cc:23
 msgctxt "Units|"
 msgid "s"
 msgstr "s"
 
-#: solver.cc:29
+#: solver.cc:17
 msgctxt "PropertyDescription|"
 msgid "Allowed relative tolerance"
 msgstr "Zulässige relative Toleranz"
 
-#: solver.cc:29
+#: solver.cc:17
 msgctxt "PropertyName|"
 msgid "toleranceRel"
 msgstr "Relative Toleranz"
 
-#: solver.cc:30
+#: solver.cc:18
 msgctxt "PropertyDescription|"
 msgid "Count of dynamic variables"
 msgstr "Anzahl der dynamischen Variablen"
 
-#: solver.cc:30
+#: solver.cc:18
 msgctxt "PropertyName|"
 msgid "dimension"
 msgstr "Dimension"
 
-#: solver.cc:32
+#: solver.cc:20
 msgctxt "PropertyDescription|"
 msgid "Maximal local error ratio during last step"
 msgstr "Maximale lokale Fehlerrate während des letzten Simulationsschrittes"
 
-#: solver.cc:32
+#: solver.cc:20
 msgctxt "PropertyName|"
 msgid "localErrorRatio"
 msgstr "Lokale Fehlerrate"
 
-#: spring.cc:28
+#: spring.cc:16
 msgctxt "ObjectClass|"
 msgid "Spring"
 msgstr "Feder"
 
-#: spring.cc:28
+#: spring.cc:16
 msgctxt "ObjectDescription|"
 msgid "Massless spring which can be connected to bodies"
 msgstr "Masselose Feder zur Verbindung von Körpern"
 
-#: spring.cc:30
+#: spring.cc:18
 msgctxt "PropertyDescription|"
 msgid "Rest length"
 msgstr "Ruhelänge"
 
-#: spring.cc:31
+#: spring.cc:19
 msgctxt "PropertyDescription|"
 msgid "Current length"
 msgstr "Aktuelle Länge"
 
-#: spring.cc:31
+#: spring.cc:19
 msgctxt "PropertyName|"
 msgid "length"
 msgstr "Länge"
 
-#: spring.cc:32
+#: spring.cc:20
 msgctxt "PropertyDescription|"
 msgid "Stiffness"
 msgstr "Steifigkeit"
 
-#: spring.cc:32
+#: spring.cc:20
 msgctxt "PropertyName|"
 msgid "stiffness"
 msgstr "Steifigkeit"
 
-#: spring.cc:32 spring.cc:51 spring.cc:53
+#: spring.cc:20 spring.cc:39 spring.cc:41
 msgctxt "Units|"
 msgid "N/m"
 msgstr "N/m"
 
-#: spring.cc:33
+#: spring.cc:21
 msgctxt "PropertyDescription|"
 msgid "Damping"
 msgstr "Dämpfung"
 
-#: spring.cc:33
+#: spring.cc:21
 msgctxt "PropertyName|"
 msgid "damping"
 msgstr "Dämpfung"
 
-#: spring.cc:33
+#: spring.cc:21
 msgctxt "Units|"
 msgid "N s/m"
 msgstr "N*s/m"
 
-#: spring.cc:42
+#: spring.cc:30
 msgctxt "PropertyDescription|"
 msgid "Spring tension force"
 msgstr "Federkraft"
 
-#: spring.cc:45
+#: spring.cc:33
 msgctxt "ObjectClass|"
 msgid "SpringErrors"
 msgstr "Federfehler"
 
-#: spring.cc:45
+#: spring.cc:33
 msgctxt "ObjectDescription|"
 msgid "Errors class for Spring"
 msgstr "Fehlerklasse für Federn"
 
-#: spring.cc:47
+#: spring.cc:35
 msgctxt "PropertyName|"
 msgid "restLengthVariance"
 msgstr "Abweichung der Ruhelänge"
 
-#: spring.cc:48
+#: spring.cc:36
 msgctxt "PropertyDescription|"
 msgid "Rest length variance"
 msgstr "Abweichung der Ruhelänge"
 
-#: spring.cc:49
+#: spring.cc:37
 msgctxt "PropertyName|"
 msgid "lengthVariance"
 msgstr "Längenabweichung"
 
-#: spring.cc:50
+#: spring.cc:38
 msgctxt "PropertyDescription|"
 msgid "Current length variance"
 msgstr "Aktuelle Längenabweichung"
 
-#: spring.cc:51
+#: spring.cc:39
 msgctxt "PropertyName|"
 msgid "stiffnessVariance"
 msgstr "Steifigkeitsabweichung"
 
-#: spring.cc:52
+#: spring.cc:40
 msgctxt "PropertyDescription|"
 msgid "Stiffness variance"
 msgstr "Steifigkeitsabweichung"
 
-#: spring.cc:53
+#: spring.cc:41
 msgctxt "PropertyName|"
 msgid "dampingVariance"
 msgstr "Dämpfungsabweichung"
 
-#: spring.cc:54
+#: spring.cc:42
 msgctxt "PropertyDescription|"
 msgid "Damping variance"
 msgstr "Dämpfungsabweichung"
 
-#: spring.cc:55
+#: spring.cc:43
 msgctxt "PropertyName|"
 msgid "localPosition1Variance"
 msgstr "Abweichung der lokalen Position 1"
 
-#: spring.cc:56
+#: spring.cc:44
 msgctxt "PropertyDescription|"
 msgid "Local position 1 variance"
 msgstr "Abweichung der lokalen Position 1"
 
-#: spring.cc:57
+#: spring.cc:45
 msgctxt "PropertyName|"
 msgid "localPosition2Variance"
 msgstr "Abweichung der lokalen Position 2"
 
-#: spring.cc:58
+#: spring.cc:46
 msgctxt "PropertyDescription|"
 msgid "Local position 2 variance"
 msgstr "Abweichung der lokalen Position 2"
 
-#: spring.cc:59
+#: spring.cc:47
 msgctxt "PropertyName|"
 msgid "position1Variance"
 msgstr "Abweichung der Position 1"
 
-#: spring.cc:60
+#: spring.cc:48
 msgctxt "PropertyDescription|"
 msgid "Position1 variance"
 msgstr "Abweichung der Position 1"
 
-#: spring.cc:61
+#: spring.cc:49
 msgctxt "PropertyName|"
 msgid "position2Variance"
 msgstr "Abweichung der Position 2"
 
-#: spring.cc:62
+#: spring.cc:50
 msgctxt "PropertyDescription|"
 msgid "Position2 variance"
 msgstr "Abweichung der Position 2"
 
-#: spring.cc:64
+#: spring.cc:52
 msgctxt "PropertyDescription|"
 msgid "Spring tension force variance"
 msgstr "Abweichung der Federkraft"
 
-#: tool.cc:26
+#: tool.cc:14
 msgctxt "ObjectClass|"
 msgid "NoteImage"
 msgstr "Bildnotiz"
 
-#: tool.cc:26
+#: tool.cc:14
 msgctxt "ObjectDescription|"
 msgid "NoteImage: an image embedded in Note"
 msgstr "Bildnotiz: ein Bild in einer Notiz"
 
-#: tool.cc:28
+#: tool.cc:16
 msgctxt "PropertyDescription|"
 msgid "Image data"
 msgstr "Bilddaten"
 
-#: tool.cc:28
+#: tool.cc:16
 msgctxt "PropertyName|"
 msgid "image"
 msgstr "Bild"
 
-#: tool.cc:31
+#: tool.cc:19
 msgctxt "ObjectClass|"
 msgid "NoteFormula"
 msgstr "Formelnotiz"
 
-#: tool.cc:31
+#: tool.cc:19
 msgctxt "ObjectDescription|"
 msgid "NoteFormula: a formula embedded in Note"
 msgstr "Formelnotiz: eine Formel in einer Notiz"
 
-#: tool.cc:33
+#: tool.cc:21
 msgctxt "PropertyDescription|"
 msgid "Formula code"
 msgstr "Formelquelltext"
 
-#: tool.cc:33
+#: tool.cc:21
 msgctxt "PropertyName|"
 msgid "code"
 msgstr "Quelltext"
 
-#: tool.cc:36
+#: tool.cc:24
 msgctxt "ObjectClass|"
 msgid "Note"
 msgstr "Notiz"
 
-#: tool.cc:36
+#: tool.cc:24
 msgctxt "ObjectDescription|"
 msgid "Note: displays a textual note on the scene"
 msgstr "Notiz: zeigt einen Text im Versuchsfenster an"
 
-#: tool.cc:38
+#: tool.cc:26
 msgctxt "PropertyDescription|"
 msgid "Note position on the scene"
 msgstr "Position der Notiz im Versuchsfenster"
 
-#: tool.cc:39
+#: tool.cc:27
 msgctxt "PropertyDescription|"
 msgid "Note size on the scene"
 msgstr "Größe der Notiz im Versuchsfenster"
 
-#: tool.cc:40
+#: tool.cc:28
 msgctxt "PropertyDescription|"
 msgid "Text"
 msgstr "Text"
 
-#: tool.cc:40
+#: tool.cc:28
 msgctxt "PropertyName|"
 msgid "text"
 msgstr "Text"
 
-#: tool.cc:43
+#: tool.cc:31
 msgctxt "ObjectClass|"
 msgid "Graph"
 msgstr "Diagramm"
 
-#: tool.cc:43
+#: tool.cc:31
 msgctxt "ObjectDescription|"
 msgid "Graph: plots a graph of any properties"
 msgstr "Diagramm: zeigt ein Diagramm einer beliebigen Eigenschaft"
 
-#: tool.cc:45
+#: tool.cc:33
 msgctxt "PropertyDescription|"
 msgid "Graph position on the scene"
 msgstr "Position des Diagramms im Versuchsfenster"
 
-#: tool.cc:46
+#: tool.cc:34
 msgctxt "PropertyDescription|"
 msgid "Graph size on the scene"
 msgstr "Größe des Diagramms im Versuchsfenster"
 
-#: tool.cc:47
+#: tool.cc:35
 msgctxt "PropertyDescription|"
 msgid "X axis: object"
 msgstr "Objekt auf der X-Achse"
 
-#: tool.cc:47
+#: tool.cc:35
 msgctxt "PropertyName|"
 msgid "objectX"
 msgstr "Objekt X-Achse"
 
-#: tool.cc:48
+#: tool.cc:36
 msgctxt "PropertyDescription|"
 msgid "X axis: object property"
 msgstr "Objekteigenschaft auf der X-Achse"
 
-#: tool.cc:48
+#: tool.cc:36
 msgctxt "PropertyName|"
 msgid "propertyX"
 msgstr "Eigenschaft X-Achse"
 
-#: tool.cc:49
+#: tool.cc:37
 msgctxt "PropertyDescription|"
 msgid "X axis: vector index"
 msgstr "Vektorindex auf der X-Achse"
 
-#: tool.cc:49
+#: tool.cc:37
 msgctxt "PropertyName|"
 msgid "indexX"
 msgstr "Index X-Achse"
 
-#: tool.cc:50
+#: tool.cc:38
 msgctxt "PropertyDescription|"
 msgid "Y axis: object"
 msgstr "Objekt auf der Y-Achse"
 
-#: tool.cc:50
+#: tool.cc:38
 msgctxt "PropertyName|"
 msgid "objectY"
 msgstr "Objekt Y-Achse"
 
-#: tool.cc:51
+#: tool.cc:39
 msgctxt "PropertyDescription|"
 msgid "Y axis: property"
 msgstr "Eigenschaft auf der Y-Achse"
 
-#: tool.cc:51
+#: tool.cc:39
 msgctxt "PropertyName|"
 msgid "propertyY"
 msgstr "Eigenschaft Y-Achse"
 
-#: tool.cc:52
+#: tool.cc:40
 msgctxt "PropertyDescription|"
 msgid "Y axis: vector index"
 msgstr "Vektorindex auf der Y-Achse"
 
-#: tool.cc:52
+#: tool.cc:40
 msgctxt "PropertyName|"
 msgid "indexY"
 msgstr "Index Y-Achse"
 
-#: tool.cc:53
+#: tool.cc:41
 msgctxt "PropertyDescription|"
 msgid "Auto-limits along X axis"
 msgstr "Automatischer Grenzwert auf der X-Achse"
 
-#: tool.cc:53
+#: tool.cc:41
 msgctxt "PropertyName|"
 msgid "autoLimitsX"
 msgstr "Autom. Grenzwert X-Achse"
 
-#: tool.cc:54
+#: tool.cc:42
 msgctxt "PropertyDescription|"
 msgid "Auto-limits along Y axis"
 msgstr "Automatischer Grenzwert auf der Y-Achse"
 
-#: tool.cc:54
+#: tool.cc:42
 msgctxt "PropertyName|"
 msgid "autoLimitsY"
 msgstr "Autom. Grenzwert Y-Achse"
 
-#: tool.cc:55
+#: tool.cc:43
 msgctxt "PropertyDescription|"
 msgid "Limits along X axis"
 msgstr "Grenzwert auf der X-Achse"
 
-#: tool.cc:55
+#: tool.cc:43
 msgctxt "PropertyName|"
 msgid "limitsX"
 msgstr "Grenzwert X-Achse"
 
-#: tool.cc:56
+#: tool.cc:44
 msgctxt "PropertyDescription|"
 msgid "Limits along Y axis"
 msgstr "Grenzwert auf der Y-Achse"
 
-#: tool.cc:56
+#: tool.cc:44
 msgctxt "PropertyName|"
 msgid "limitsY"
 msgstr "Grenzwert Y-Achse"
 
-#: tool.cc:57
+#: tool.cc:45
 msgctxt "PropertyDescription|"
 msgid "Show points on the graph"
 msgstr "Punkte im Diagramm anzeigen"
 
-#: tool.cc:57
+#: tool.cc:45
 msgctxt "PropertyName|"
 msgid "showPoints"
 msgstr "Punkte anzeigen"
 
-#: tool.cc:58
+#: tool.cc:46
 msgctxt "PropertyDescription|"
 msgid "Show lines on the graph"
 msgstr "Linien im Diagramm anzeigen"
 
-#: tool.cc:58
+#: tool.cc:46
 msgctxt "PropertyName|"
 msgid "showLines"
 msgstr "Linien anzeigen"
 
-#: tool.cc:59
+#: tool.cc:47
 msgctxt "PropertyDescription|"
 msgid "Current value"
 msgstr "Aktueller Wert"
 
-#: tool.cc:59
+#: tool.cc:47
 msgctxt "PropertyName|"
 msgid "currentValue"
 msgstr "Aktueller Wert"
 
-#: tool.cc:60 tool.cc:101
+#: tool.cc:48 tool.cc:89
 msgctxt "PropertyDescription|"
 msgid "points"
 msgstr "Punkte"
 
-#: tool.cc:60 tool.cc:101
+#: tool.cc:48 tool.cc:89
 msgctxt "PropertyName|"
 msgid "points"
 msgstr "Punkte"
 
-#: tool.cc:61
+#: tool.cc:49
 msgctxt "PropertyName|"
 msgid "unitsX"
 msgstr "Einheit X"
 
-#: tool.cc:61
+#: tool.cc:49
 msgctxt "PropertyName|"
 msgid "Units along X axis"
 msgstr "Einheiten auf der X-Achse"
 
-#: tool.cc:62
+#: tool.cc:50
 msgctxt "PropertyName|"
 msgid "unitsY"
 msgstr "Einheit Y"
 
-#: tool.cc:62
+#: tool.cc:50
 msgctxt "PropertyName|"
 msgid "Units along Y axis"
 msgstr "Einheiten auf der Y-Achse"
 
-#: tool.cc:65
+#: tool.cc:53
 msgctxt "ObjectClass|"
 msgid "Meter"
 msgstr "Messwert"
 
-#: tool.cc:65
+#: tool.cc:53
 msgctxt "ObjectDescription|"
 msgid "Meter: displays any property on the scene"
 msgstr ""
 "Messwert: zeigt den Wert einer beliebigen Eigenschaft im Versuchsfenster an"
 
-#: tool.cc:67
+#: tool.cc:55
 msgctxt "PropertyDescription|"
 msgid "Meter position on the scene"
 msgstr "Position des Messwerts im Versuchsfenster"
 
-#: tool.cc:68
+#: tool.cc:56
 msgctxt "PropertyDescription|"
 msgid "Meter size on the scene"
 msgstr "Größe des Messwerts im Versuchsfenster"
 
-#: tool.cc:69
+#: tool.cc:57
 msgctxt "PropertyDescription|"
 msgid "Observed object"
 msgstr "Beobachtetes Objekt"
 
-#: tool.cc:69 tool.cc:81
+#: tool.cc:57 tool.cc:69
 msgctxt "PropertyName|"
 msgid "object"
 msgstr "Objekt"
 
-#: tool.cc:70
+#: tool.cc:58
 msgctxt "PropertyDescription|"
 msgid "Observed property"
 msgstr "Beobachtete Eigenschaft"
 
-#: tool.cc:70 tool.cc:82
+#: tool.cc:58 tool.cc:70
 msgctxt "PropertyName|"
 msgid "property"
 msgstr "Eigenschaft"
 
-#: tool.cc:71 tool.cc:83
+#: tool.cc:59 tool.cc:71
 msgctxt "PropertyDescription|"
 msgid "Vector index"
 msgstr "Vektorindex"
 
-#: tool.cc:71 tool.cc:83
+#: tool.cc:59 tool.cc:71
 msgctxt "PropertyName|"
 msgid "index"
 msgstr "Index"
 
-#: tool.cc:72
+#: tool.cc:60
 msgctxt "PropertyDescription|"
 msgid "Display digits"
 msgstr "Stellen anzeigen"
 
-#: tool.cc:72
+#: tool.cc:60
 msgctxt "PropertyName|"
 msgid "digits"
 msgstr "Anzahl Stellen"
 
-#: tool.cc:73 tool.cc:90
+#: tool.cc:61 tool.cc:78
 msgctxt "PropertyDescription|"
 msgid "Value"
 msgstr "Wert"
 
-#: tool.cc:73 tool.cc:90
+#: tool.cc:61 tool.cc:78
 msgctxt "PropertyName|"
 msgid "value"
 msgstr "Wert"
 
-#: tool.cc:74
+#: tool.cc:62
 msgctxt "PropertyDescription|"
 msgid "Units of measured property"
 msgstr "Einheiten der gemessenen Eigenschaft"
 
-#: tool.cc:74 tool.cc:92
+#: tool.cc:62 tool.cc:80
 msgctxt "PropertyName|"
 msgid "units"
 msgstr "Einheiten"
 
-#: tool.cc:77
+#: tool.cc:65
 msgctxt "ObjectClass|"
 msgid "Controller"
 msgstr "Schieberegler"
 
-#: tool.cc:77
+#: tool.cc:65
 msgctxt "ObjectDescription|"
 msgid "Controller: allows to easily control any property"
 msgstr "Schieberegler: ermöglicht die Kontrolle einer beliebigen Eigenschaft"
 
-#: tool.cc:79
+#: tool.cc:67
 msgctxt "PropertyDescription|"
 msgid "Controller position on the scene"
 msgstr "Position des Schiebereglers im Versuchsfenster"
 
-#: tool.cc:80
+#: tool.cc:68
 msgctxt "PropertyDescription|"
 msgid "Controller size on the scene"
 msgstr "Größe des Schiebereglers im Versuchsfenster"
 
-#: tool.cc:81
+#: tool.cc:69
 msgctxt "PropertyDescription|"
 msgid "Controlled object"
 msgstr "Kontrolliertes Objekt"
 
-#: tool.cc:82
+#: tool.cc:70
 msgctxt "PropertyDescription|"
 msgid "Controlled property"
 msgstr "Kontrollierte Eigenschaft"
 
-#: tool.cc:84
+#: tool.cc:72
 msgctxt "PropertyDescription|"
 msgid "Limits"
 msgstr "Grenzen"
 
-#: tool.cc:84
+#: tool.cc:72
 msgctxt "PropertyName|"
 msgid "limits"
 msgstr "Grenzen"
 
-#: tool.cc:85
+#: tool.cc:73
 msgctxt "PropertyName|"
 msgid "increaseShortcut"
 msgstr "Kurzbefehl zur Vergrößerung"
 
-#: tool.cc:86
+#: tool.cc:74
 msgctxt "PropertyDescription|"
 msgid "Shortcut to increase the value"
 msgstr "Kurzbefehl zur Vergrößerung des Wertes"
 
-#: tool.cc:87
+#: tool.cc:75
 msgctxt "PropertyName|"
 msgid "decreaseShortcut"
 msgstr "Kurzbefehl zur Verkleinerung"
 
-#: tool.cc:88
+#: tool.cc:76
 msgctxt "PropertyDescription|"
 msgid "Shortcut to decrease the value"
 msgstr "Kurzbefehl zur Verkleinerung des Wertes"
 
-#: tool.cc:89
+#: tool.cc:77
 msgctxt "PropertyDescription|"
 msgid "Increment value"
 msgstr "Wert vergrößern"
 
-#: tool.cc:89
+#: tool.cc:77
 msgctxt "PropertyName|"
 msgid "increment"
 msgstr "Vergrößern"
 
-#: tool.cc:92
+#: tool.cc:80
 msgctxt "PropertyDescription|"
 msgid "Units of controlled property"
 msgstr "Einheiten der kontrollierten Eigenschaft"
 
-#: tool.cc:95
+#: tool.cc:83
 msgctxt "ObjectClass|"
 msgid "Tracer"
 msgstr "Spur"
 
-#: tool.cc:95
+#: tool.cc:83
 msgctxt "ObjectDescription|"
 msgid "Tracer: traces trajectory of a point on a body"
 msgstr "Spur: zeigt die Bahn der Bewegung eines Punktes auf einem Körper"
 
-#: tool.cc:97
+#: tool.cc:85
 msgctxt "PropertyDescription|"
 msgid "Traced body"
 msgstr "Verfolgter Körper"
 
-#: tool.cc:99
+#: tool.cc:87
 msgctxt "PropertyDescription|"
 msgid "Local position"
 msgstr "Lokale Position"
 
-#: world.cc:32
+#: world.cc:20
 msgctxt "ObjectClass|"
 msgid "Tool"
 msgstr "Werkzeug"
 
-#: world.cc:32
+#: world.cc:20
 msgctxt "ObjectDescription|"
 msgid "Tool"
 msgstr "Werkzeug"
 
-#: world.cc:34
+#: world.cc:22
 msgctxt "ObjectClass|"
 msgid "World"
 msgstr "Welt"
 
-#: world.cc:34
+#: world.cc:22
 msgctxt "ObjectDescription|"
 msgid "World"
 msgstr "Welt"
 
-#: world.cc:35
+#: world.cc:23
 msgctxt "PropertyDescription|"
 msgid "Current time"
 msgstr "Aktuelle Zeit"
 
-#: world.cc:35
+#: world.cc:23
 msgctxt "PropertyName|"
 msgid "time"
 msgstr "Zeit"
 
-#: world.cc:36
+#: world.cc:24
 msgctxt "PropertyDescription|"
 msgid "Simulation speed scale"
 msgstr "Simulationsgeschwindigkeit"
 
-#: world.cc:36
+#: world.cc:24
 msgctxt "PropertyName|"
 msgid "timeScale"
 msgstr "Zeitskala"
 
-#: world.cc:37
+#: world.cc:25
 msgctxt "PropertyName|"
 msgid "errorsCalculation"
 msgstr "Fehlerberechnung"
 
-#: world.cc:38
+#: world.cc:26
 msgctxt "PropertyDescription|"
 msgid "Enable global error calculation"
 msgstr "Globale Fehlerberechnung aktivieren"
 
-#: xmlfile.cc:201
+#: xmlfile.cc:189
 msgctxt "QObject|"
 msgid "The file is not a StepCoreXML file."
 msgstr "Die Datei ist keine StepCoreXML-Datei."
 
-#: xmlfile.cc:247
+#: xmlfile.cc:235
 #, qt-format
 msgctxt "QObject|"
 msgid "Unknown item type \"%1\""
 msgstr "Unbekannter Element-Typ „%1“"
 
-#: xmlfile.cc:268
+#: xmlfile.cc:256
 #, qt-format
 msgctxt "QObject|"
 msgid "Unknown solver type \"%1\""
 msgstr "Unbekannter Löser-Typ „%1“"
 
-#: xmlfile.cc:282
+#: xmlfile.cc:270
 #, qt-format
 msgctxt "QObject|"
 msgid "Unknown collisionSolver type \"%1\""
 msgstr "Unbekannter Kollisionslöser-Typ „%1“"
 
-#: xmlfile.cc:296
+#: xmlfile.cc:284
 #, qt-format
 msgctxt "QObject|"
 msgid "Unknown constraint solver type \"%1\""
 msgstr "Unbekannter Bedingungsgleichungslöser-Typ „%1“"
 
-#: xmlfile.cc:324
+#: xmlfile.cc:312
 #, qt-format
 msgctxt "QObject|"
 msgid "Wrong ID attribute value for %1"
 msgstr "Falscher ID-Attributwert für %1"
 
-#: xmlfile.cc:329
+#: xmlfile.cc:317
 #, qt-format
 msgctxt "QObject|"
 msgid "Non-unique ID attribute value for %1"
 msgstr "Nicht eindeutiger ID-Attributwert für %1"
 
-#: xmlfile.cc:357 xmlfile.cc:371
+#: xmlfile.cc:345 xmlfile.cc:359
 #, qt-format
 msgctxt "QObject|"
 msgid "Property \"%1\" of \"%2\" has illegal value"
 msgstr "Die Eigenschaft „%1“ von „%2“ enthält einen ungültigen Wert"
 
-#: xmlfile.cc:384
+#: xmlfile.cc:372
 msgctxt "QObject|"
 msgid "File is not writable."
 msgstr "Die Datei ist nicht beschreibbar."

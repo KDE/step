@@ -18,80 +18,80 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
 "X-Qt-Contexts: true\n"
 
-#: body.cc:26
+#: body.cc:13
 #, fuzzy
 #| msgid "Body"
 msgctxt "ObjectClass|"
 msgid "Body"
 msgstr "ਮੁੱਖਭਾਗ"
 
-#: body.cc:26
+#: body.cc:13
 #, fuzzy
 #| msgid "Body"
 msgctxt "ObjectDescription|"
 msgid "Body"
 msgstr "ਮੁੱਖਭਾਗ"
 
-#: collisionsolver.cc:31
+#: collisionsolver.cc:19
 msgctxt "ObjectClass|"
 msgid "CollisionSolver"
 msgstr ""
 
-#: collisionsolver.cc:32 solver.cc:28
+#: collisionsolver.cc:20 solver.cc:16
 msgctxt "PropertyDescription|"
 msgid "Allowed absolute tolerance"
 msgstr ""
 
-#: collisionsolver.cc:32 solver.cc:28
+#: collisionsolver.cc:20 solver.cc:16
 msgctxt "PropertyName|"
 msgid "toleranceAbs"
 msgstr ""
 
-#: collisionsolver.cc:33 solver.cc:31
+#: collisionsolver.cc:21 solver.cc:19
 msgctxt "PropertyDescription|"
 msgid "Maximal local error during last step"
 msgstr ""
 
-#: collisionsolver.cc:33 solver.cc:31
+#: collisionsolver.cc:21 solver.cc:19
 msgctxt "PropertyName|"
 msgid "localError"
 msgstr ""
 
-#: collisionsolver.cc:35
+#: collisionsolver.cc:23
 msgctxt "ObjectClass|"
 msgid "GJKCollisionSolver"
 msgstr ""
 
-#: constraintsolver.cc:31
+#: constraintsolver.cc:19
 msgctxt "ObjectClass|"
 msgid "ConstraintSolver"
 msgstr ""
 
-#: constraintsolver.cc:35
+#: constraintsolver.cc:23
 msgctxt "ObjectClass|"
 msgid "CGConstraintSolver"
 msgstr ""
 
-#: coulombforce.cc:26
+#: coulombforce.cc:14
 #, fuzzy
 #| msgid "Coulomb force"
 msgctxt "ObjectClass|"
 msgid "CoulombForce"
 msgstr "ਕੰਲੋਬਸ ਬਲ"
 
-#: coulombforce.cc:26
+#: coulombforce.cc:14
 #, fuzzy
 #| msgid "Coulomb force"
 msgctxt "ObjectDescription|"
 msgid "Coulomb force"
 msgstr "ਕੰਲੋਬਸ ਬਲ"
 
-#: coulombforce.cc:28
+#: coulombforce.cc:16
 msgctxt "PropertyName|"
 msgid "coulombConst"
 msgstr ""
 
-#: coulombforce.cc:28 coulombforce.cc:33
+#: coulombforce.cc:16 coulombforce.cc:21
 #, fuzzy
 #| msgctxt "Units"
 #| msgid "N m²/C²"
@@ -99,122 +99,122 @@ msgctxt "Units|"
 msgid "N m²/C²"
 msgstr "N m²/C²"
 
-#: coulombforce.cc:29
+#: coulombforce.cc:17
 #, fuzzy
 #| msgid "Coulomb force"
 msgctxt "PropertyDescription|"
 msgid "Coulomb constant"
 msgstr "ਕੰਲੋਬਸ ਬਲ"
 
-#: coulombforce.cc:31
+#: coulombforce.cc:19
 #, fuzzy
 #| msgid "Coulomb force"
 msgctxt "ObjectClass|"
 msgid "CoulombForceErrors"
 msgstr "ਕੰਲੋਬਸ ਬਲ"
 
-#: coulombforce.cc:31
+#: coulombforce.cc:19
 msgctxt "ObjectDescription|"
 msgid "Errors class for CoulombForce"
 msgstr ""
 
-#: coulombforce.cc:33
+#: coulombforce.cc:21
 #, fuzzy
 #| msgid "Coulomb force"
 msgctxt "PropertyName|"
 msgid "coulombConstVariance"
 msgstr "ਕੰਲੋਬਸ ਬਲ"
 
-#: coulombforce.cc:34
+#: coulombforce.cc:22
 #, fuzzy
 #| msgid "Coulomb force"
 msgctxt "PropertyDescription|"
 msgid "Coulomb constant variance"
 msgstr "ਕੰਲੋਬਸ ਬਲ"
 
-#: eulersolver.cc:27
+#: eulersolver.cc:15
 msgctxt "ObjectClass|"
 msgid "GenericEulerSolver"
 msgstr ""
 
-#: eulersolver.cc:27
+#: eulersolver.cc:15
 msgctxt "ObjectDescription|"
 msgid "Generic Euler solver"
 msgstr ""
 
-#: eulersolver.cc:28
+#: eulersolver.cc:16
 msgctxt "ObjectClass|"
 msgid "EulerSolver"
 msgstr ""
 
-#: eulersolver.cc:28
+#: eulersolver.cc:16
 msgctxt "ObjectDescription|"
 msgid "Non-adaptive Euler solver"
 msgstr ""
 
-#: eulersolver.cc:29
+#: eulersolver.cc:17
 msgctxt "ObjectClass|"
 msgid "AdaptiveEulerSolver"
 msgstr ""
 
-#: eulersolver.cc:29
+#: eulersolver.cc:17
 msgctxt "ObjectDescription|"
 msgid "Adaptive Euler solver"
 msgstr ""
 
-#: force.cc:27
+#: force.cc:14
 #, fuzzy
 #| msgid "Force"
 msgctxt "ObjectClass|"
 msgid "Force"
 msgstr "ਬਲ"
 
-#: force.cc:27
+#: force.cc:14
 #, fuzzy
 #| msgid "Force"
 msgctxt "ObjectDescription|"
 msgid "Force"
 msgstr "ਬਲ"
 
-#: gas.cc:27
+#: gas.cc:15
 #, fuzzy
 #| msgid "Gas particle"
 msgctxt "ObjectClass|"
 msgid "GasParticle"
 msgstr "ਗੈਸੀ ਤੱਤ"
 
-#: gas.cc:27
+#: gas.cc:15
 #, fuzzy
 #| msgid "Gas particle"
 msgctxt "ObjectDescription|"
 msgid "Gas particle"
 msgstr "ਗੈਸੀ ਤੱਤ"
 
-#: gas.cc:29
+#: gas.cc:17
 #, fuzzy
 #| msgid "Force"
 msgctxt "ObjectClass|"
 msgid "GasLJForce"
 msgstr "ਬਲ"
 
-#: gas.cc:29
+#: gas.cc:17
 msgctxt "ObjectDescription|"
 msgid "Lennard-Jones force"
 msgstr ""
 
-#: gas.cc:31
+#: gas.cc:19
 msgctxt "PropertyDescription|"
 msgid "Potential depth"
 msgstr ""
 
-#: gas.cc:31
+#: gas.cc:19
 #, fuzzy
 msgctxt "PropertyName|"
 msgid "depth"
 msgstr "ਡੂੰਘਾਈ:"
 
-#: gas.cc:31 gas.cc:37 gas.cc:59 gas.cc:74 particle.cc:37 particle.cc:53
-#: rigidbody.cc:49 rigidbody.cc:80
+#: gas.cc:19 gas.cc:25 gas.cc:47 gas.cc:62 particle.cc:25 particle.cc:41
+#: rigidbody.cc:37 rigidbody.cc:68
 #, fuzzy
 #| msgctxt "Units"
 #| msgid "J"
@@ -222,25 +222,25 @@ msgctxt "Units|"
 msgid "J"
 msgstr "J"
 
-#: gas.cc:32
+#: gas.cc:20
 msgctxt "PropertyDescription|"
 msgid "Distance at which the force is zero"
 msgstr ""
 
-#: gas.cc:32
+#: gas.cc:20
 msgctxt "PropertyName|"
 msgid "rmin"
 msgstr ""
 
-#: gas.cc:32 gas.cc:33 gas.cc:39 gas.cc:45 gas.cc:47 joints.cc:29 joints.cc:35
-#: joints.cc:36 joints.cc:40 joints.cc:43 joints.cc:45 joints.cc:47
-#: joints.cc:48 motor.cc:30 motor.cc:36 particle.cc:29 particle.cc:41
-#: rigidbody.cc:28 rigidbody.cc:53 rigidbody.cc:84 rigidbody.cc:89
-#: rigidbody.cc:92 softbody.cc:36 spring.cc:30 spring.cc:31 spring.cc:36
-#: spring.cc:38 spring.cc:40 spring.cc:41 spring.cc:47 spring.cc:49
-#: spring.cc:55 spring.cc:57 spring.cc:59 spring.cc:61 tool.cc:38 tool.cc:39
-#: tool.cc:45 tool.cc:46 tool.cc:67 tool.cc:68 tool.cc:79 tool.cc:80 tool.cc:98
-#: tool.cc:100 tool.cc:101
+#: gas.cc:20 gas.cc:21 gas.cc:27 gas.cc:33 gas.cc:35 joints.cc:17 joints.cc:23
+#: joints.cc:24 joints.cc:28 joints.cc:31 joints.cc:33 joints.cc:35
+#: joints.cc:36 motor.cc:18 motor.cc:24 particle.cc:17 particle.cc:29
+#: rigidbody.cc:16 rigidbody.cc:41 rigidbody.cc:72 rigidbody.cc:77
+#: rigidbody.cc:80 softbody.cc:24 spring.cc:18 spring.cc:19 spring.cc:24
+#: spring.cc:26 spring.cc:28 spring.cc:29 spring.cc:35 spring.cc:37
+#: spring.cc:43 spring.cc:45 spring.cc:47 spring.cc:49 tool.cc:26 tool.cc:27
+#: tool.cc:33 tool.cc:34 tool.cc:55 tool.cc:56 tool.cc:67 tool.cc:68 tool.cc:86
+#: tool.cc:88 tool.cc:89
 #, fuzzy
 #| msgctxt "Units"
 #| msgid "m"
@@ -248,49 +248,49 @@ msgctxt "Units|"
 msgid "m"
 msgstr "m"
 
-#: gas.cc:33
+#: gas.cc:21
 msgctxt "PropertyDescription|"
 msgid "Cut-off distance"
 msgstr ""
 
-#: gas.cc:33
+#: gas.cc:21
 msgctxt "PropertyName|"
 msgid "cutoff"
 msgstr ""
 
-#: gas.cc:35
+#: gas.cc:23
 msgctxt "ObjectClass|"
 msgid "GasLJForceErrors"
 msgstr ""
 
-#: gas.cc:35
+#: gas.cc:23
 msgctxt "ObjectDescription|"
 msgid "Errors class for GasLJForce"
 msgstr ""
 
-#: gas.cc:37
+#: gas.cc:25
 msgctxt "PropertyName|"
 msgid "depthVariance"
 msgstr ""
 
-#: gas.cc:38
+#: gas.cc:26
 #, fuzzy
 #| msgid "Current length"
 msgctxt "PropertyDescription|"
 msgid "Potential depth variance"
 msgstr "ਮੌਜੂਦਾ ਲੰਬਾਈ"
 
-#: gas.cc:39
+#: gas.cc:27
 msgctxt "PropertyName|"
 msgid "rminVariance"
 msgstr ""
 
-#: gas.cc:40
+#: gas.cc:28
 msgctxt "PropertyDescription|"
 msgid "Variance of the distance at which the force is zero"
 msgstr ""
 
-#: gas.cc:44
+#: gas.cc:32
 #, fuzzy
 #| msgctxt "ObjectClass"
 #| msgid "Gas"
@@ -298,7 +298,7 @@ msgctxt "ObjectClass|"
 msgid "Gas"
 msgstr "ਗੈਸ"
 
-#: gas.cc:44
+#: gas.cc:32
 #, fuzzy
 #| msgctxt "ObjectClass"
 #| msgid "Particle"
@@ -306,32 +306,32 @@ msgctxt "ObjectDescription|"
 msgid "Particle gas"
 msgstr "ਤੱਤ"
 
-#: gas.cc:45
+#: gas.cc:33
 msgctxt "PropertyName|"
 msgid "measureRectCenter"
 msgstr ""
 
-#: gas.cc:46
+#: gas.cc:34
 msgctxt "PropertyDescription|"
 msgid "Center of the rect for measurements"
 msgstr ""
 
-#: gas.cc:47
+#: gas.cc:35
 msgctxt "PropertyName|"
 msgid "measureRectSize"
 msgstr ""
 
-#: gas.cc:48
+#: gas.cc:36
 msgctxt "PropertyDescription|"
 msgid "Size of the rect for measurements"
 msgstr ""
 
-#: gas.cc:49
+#: gas.cc:37
 msgctxt "PropertyName|"
 msgid "rectVolume"
 msgstr ""
 
-#: gas.cc:49
+#: gas.cc:37
 #, fuzzy
 #| msgctxt "Units"
 #| msgid "m²"
@@ -339,12 +339,12 @@ msgctxt "Units|"
 msgid "m²"
 msgstr "m²"
 
-#: gas.cc:50
+#: gas.cc:38
 msgctxt "PropertyDescription|"
 msgid "Volume of the measureRect"
 msgstr ""
 
-#: gas.cc:51
+#: gas.cc:39
 #, fuzzy
 #| msgctxt "ObjectClass"
 #| msgid "Particle"
@@ -352,19 +352,19 @@ msgctxt "PropertyName|"
 msgid "rectParticleCount"
 msgstr "ਤੱਤ"
 
-#: gas.cc:52
+#: gas.cc:40
 msgctxt "PropertyDescription|"
 msgid "Count of particles in the measureRect"
 msgstr ""
 
-#: gas.cc:53
+#: gas.cc:41
 #, fuzzy
 #| msgid "acceleration"
 msgctxt "PropertyName|"
 msgid "rectConcentration"
 msgstr "ਪਰਵੇਗ"
 
-#: gas.cc:53
+#: gas.cc:41
 #, fuzzy
 #| msgctxt "Units"
 #| msgid "1/m²"
@@ -372,17 +372,17 @@ msgctxt "Units|"
 msgid "1/m²"
 msgstr "1/m²"
 
-#: gas.cc:54
+#: gas.cc:42
 msgctxt "PropertyDescription|"
 msgid "Concentration of particles in the measureRect"
 msgstr ""
 
-#: gas.cc:55
+#: gas.cc:43
 msgctxt "PropertyName|"
 msgid "rectPressure"
 msgstr ""
 
-#: gas.cc:55 gas.cc:70
+#: gas.cc:43 gas.cc:58
 #, fuzzy
 #| msgctxt "Units"
 #| msgid "Pa"
@@ -390,17 +390,17 @@ msgctxt "Units|"
 msgid "Pa"
 msgstr "Pa"
 
-#: gas.cc:56
+#: gas.cc:44
 msgctxt "PropertyDescription|"
 msgid "Pressure of particles in the measureRect"
 msgstr ""
 
-#: gas.cc:57
+#: gas.cc:45
 msgctxt "PropertyName|"
 msgid "rectTemperature"
 msgstr ""
 
-#: gas.cc:57 gas.cc:72
+#: gas.cc:45 gas.cc:60
 #, fuzzy
 #| msgctxt "Units"
 #| msgid "K"
@@ -408,28 +408,28 @@ msgctxt "Units|"
 msgid "K"
 msgstr "K"
 
-#: gas.cc:58
+#: gas.cc:46
 msgctxt "PropertyDescription|"
 msgid "Temperature of particles in the measureRect"
 msgstr ""
 
-#: gas.cc:59
+#: gas.cc:47
 msgctxt "PropertyName|"
 msgid "rectMeanKineticEnergy"
 msgstr ""
 
-#: gas.cc:60
+#: gas.cc:48
 msgctxt "PropertyDescription|"
 msgid "Mean kinetic energy of particles in the measureRect"
 msgstr ""
 
-#: gas.cc:61
+#: gas.cc:49
 msgctxt "PropertyName|"
 msgid "rectMeanVelocity"
 msgstr ""
 
-#: gas.cc:61 gas.cc:76 particle.cc:30 particle.cc:43 rigidbody.cc:31
-#: rigidbody.cc:58 softbody.cc:38
+#: gas.cc:49 gas.cc:64 particle.cc:18 particle.cc:31 rigidbody.cc:19
+#: rigidbody.cc:46 softbody.cc:26
 #, fuzzy
 #| msgctxt "Units"
 #| msgid "m/s"
@@ -437,18 +437,18 @@ msgctxt "Units|"
 msgid "m/s"
 msgstr "m/s"
 
-#: gas.cc:62
+#: gas.cc:50
 msgctxt "PropertyDescription|"
 msgid "Mean velocity of particles in the measureRect"
 msgstr ""
 
-#: gas.cc:63
+#: gas.cc:51
 msgctxt "PropertyName|"
 msgid "rectMeanParticleMass"
 msgstr ""
 
-#: gas.cc:63 gas.cc:65 gas.cc:78 gas.cc:80 particle.cc:34 particle.cc:49
-#: particle.cc:61 rigidbody.cc:42 rigidbody.cc:71 softbody.cc:50
+#: gas.cc:51 gas.cc:53 gas.cc:66 gas.cc:68 particle.cc:22 particle.cc:37
+#: particle.cc:49 rigidbody.cc:30 rigidbody.cc:59 softbody.cc:38
 #, fuzzy
 #| msgctxt "Units"
 #| msgid "kg"
@@ -456,113 +456,113 @@ msgctxt "Units|"
 msgid "kg"
 msgstr "kg"
 
-#: gas.cc:64
+#: gas.cc:52
 msgctxt "PropertyDescription|"
 msgid "Mean mass of particles in the measureRect"
 msgstr ""
 
-#: gas.cc:65
+#: gas.cc:53
 msgctxt "PropertyName|"
 msgid "rectMass"
 msgstr ""
 
-#: gas.cc:66
+#: gas.cc:54
 msgctxt "PropertyDescription|"
 msgid "Total mass of particles in the measureRect"
 msgstr ""
 
-#: gas.cc:69
+#: gas.cc:57
 msgctxt "ObjectClass|"
 msgid "GasErrors"
 msgstr ""
 
-#: gas.cc:69
+#: gas.cc:57
 msgctxt "ObjectDescription|"
 msgid "Errors class for Gas"
 msgstr ""
 
-#: gas.cc:70
+#: gas.cc:58
 msgctxt "PropertyName|"
 msgid "rectPressureVariance"
 msgstr ""
 
-#: gas.cc:71
+#: gas.cc:59
 msgctxt "PropertyDescription|"
 msgid "Variance of pressure of particles in the measureRect"
 msgstr ""
 
-#: gas.cc:72
+#: gas.cc:60
 msgctxt "PropertyName|"
 msgid "rectTemperatureVariance"
 msgstr ""
 
-#: gas.cc:73
+#: gas.cc:61
 msgctxt "PropertyDescription|"
 msgid "Variance of temperature of particles in the measureRect"
 msgstr ""
 
-#: gas.cc:74
+#: gas.cc:62
 msgctxt "PropertyName|"
 msgid "rectMeanKineticEnergyVariance"
 msgstr ""
 
-#: gas.cc:75
+#: gas.cc:63
 msgctxt "PropertyDescription|"
 msgid "Variance of mean kinetic energy of particles in the measureRect"
 msgstr ""
 
-#: gas.cc:76
+#: gas.cc:64
 msgctxt "PropertyName|"
 msgid "rectMeanVelocityVariance"
 msgstr ""
 
-#: gas.cc:77
+#: gas.cc:65
 msgctxt "PropertyDescription|"
 msgid "Variance of mean velocity of particles in the measureRect"
 msgstr ""
 
-#: gas.cc:78
+#: gas.cc:66
 msgctxt "PropertyName|"
 msgid "rectMeanParticleMassVariance"
 msgstr ""
 
-#: gas.cc:79
+#: gas.cc:67
 msgctxt "PropertyDescription|"
 msgid "Variance of mean mass of particles in the measureRect"
 msgstr ""
 
-#: gas.cc:80
+#: gas.cc:68
 msgctxt "PropertyName|"
 msgid "rectMassVariance"
 msgstr ""
 
-#: gas.cc:81
+#: gas.cc:69
 msgctxt "PropertyDescription|"
 msgid "Variance of total mass of particles in the measureRect"
 msgstr ""
 
-#: gravitation.cc:27
+#: gravitation.cc:15
 #, fuzzy
 #| msgid "Gravitation constant"
 msgctxt "ObjectClass|"
 msgid "GravitationForce"
 msgstr "ਗੁਰੂਤਾ ਸਥਿਰ"
 
-#: gravitation.cc:27
+#: gravitation.cc:15
 #, fuzzy
 #| msgid "Gravitation constant"
 msgctxt "ObjectDescription|"
 msgid "Gravitation force"
 msgstr "ਗੁਰੂਤਾ ਸਥਿਰ"
 
-#: gravitation.cc:29
+#: gravitation.cc:17
 #, fuzzy
 #| msgid "Gravitation constant"
 msgctxt "PropertyName|"
 msgid "gravitationConst"
 msgstr "ਗੁਰੂਤਾ ਸਥਿਰ"
 
-#: gravitation.cc:29 gravitation.cc:34
+#: gravitation.cc:17 gravitation.cc:22
 #, fuzzy
 #| msgctxt "Units"
 #| msgid "N m²/kg²"
@@ -570,69 +570,69 @@ msgctxt "Units|"
 msgid "N m²/kg²"
 msgstr "N m²/kg²"
 
-#: gravitation.cc:30
+#: gravitation.cc:18
 #, fuzzy
 #| msgid "Gravitation constant"
 msgctxt "PropertyDescription|"
 msgid "Gravitation constant"
 msgstr "ਗੁਰੂਤਾ ਸਥਿਰ"
 
-#: gravitation.cc:32
+#: gravitation.cc:20
 #, fuzzy
 #| msgid "Gravitation constant"
 msgctxt "ObjectClass|"
 msgid "GravitationForceErrors"
 msgstr "ਗੁਰੂਤਾ ਸਥਿਰ"
 
-#: gravitation.cc:32
+#: gravitation.cc:20
 #, fuzzy
 #| msgid "Gravitation constant"
 msgctxt "ObjectDescription|"
 msgid "Errors class for GravitationForce"
 msgstr "ਗੁਰੂਤਾ ਸਥਿਰ"
 
-#: gravitation.cc:34
+#: gravitation.cc:22
 #, fuzzy
 #| msgid "Gravitation constant"
 msgctxt "PropertyName|"
 msgid "gravitationConstVariance"
 msgstr "ਗੁਰੂਤਾ ਸਥਿਰ"
 
-#: gravitation.cc:35
+#: gravitation.cc:23
 #, fuzzy
 #| msgid "Gravitation constant"
 msgctxt "PropertyDescription|"
 msgid "Gravitation constant variance"
 msgstr "ਗੁਰੂਤਾ ਸਥਿਰ"
 
-#: gravitation.cc:37
+#: gravitation.cc:25
 #, fuzzy
 #| msgid "Force"
 msgctxt "ObjectClass|"
 msgid "WeightForce"
 msgstr "ਬਲ"
 
-#: gravitation.cc:37
+#: gravitation.cc:25
 #, fuzzy
 #| msgid "Force"
 msgctxt "ObjectDescription|"
 msgid "Weight force"
 msgstr "ਬਲ"
 
-#: gravitation.cc:39
+#: gravitation.cc:27
 #, fuzzy
 #| msgid "Gravitation constant"
 msgctxt "PropertyDescription|"
 msgid "Weight constant"
 msgstr "ਗੁਰੂਤਾ ਸਥਿਰ"
 
-#: gravitation.cc:39
+#: gravitation.cc:27
 msgctxt "PropertyName|"
 msgid "weightConst"
 msgstr ""
 
-#: gravitation.cc:39 gravitation.cc:44 particle.cc:31 particle.cc:45
-#: rigidbody.cc:34 rigidbody.cc:63 softbody.cc:43
+#: gravitation.cc:27 gravitation.cc:32 particle.cc:19 particle.cc:33
+#: rigidbody.cc:22 rigidbody.cc:51 softbody.cc:31
 #, fuzzy
 #| msgctxt "Units"
 #| msgid "m/s²"
@@ -640,298 +640,298 @@ msgctxt "Units|"
 msgid "m/s²"
 msgstr "m/s²"
 
-#: gravitation.cc:42
+#: gravitation.cc:30
 msgctxt "ObjectClass|"
 msgid "WeightForceErrors"
 msgstr ""
 
-#: gravitation.cc:42
+#: gravitation.cc:30
 msgctxt "ObjectDescription|"
 msgid "Errors class for WeightForce"
 msgstr ""
 
-#: gravitation.cc:44
+#: gravitation.cc:32
 msgctxt "PropertyName|"
 msgid "weightConstVariance"
 msgstr ""
 
-#: gravitation.cc:45
+#: gravitation.cc:33
 #, fuzzy
 #| msgid "Gravitation constant"
 msgctxt "PropertyDescription|"
 msgid "Weight constant variance"
 msgstr "ਗੁਰੂਤਾ ਸਥਿਰ"
 
-#: gslsolver.cc:30
+#: gslsolver.cc:18
 msgctxt "ObjectClass|"
 msgid "GslGenericSolver"
 msgstr ""
 
-#: gslsolver.cc:30
+#: gslsolver.cc:18
 msgctxt "ObjectDescription|"
 msgid "GSL generic solver"
 msgstr ""
 
-#: gslsolver.cc:32
+#: gslsolver.cc:20
 msgctxt "ObjectClass|"
 msgid "GslSolver"
 msgstr ""
 
-#: gslsolver.cc:32
+#: gslsolver.cc:20
 msgctxt "ObjectDescription|"
 msgid "GSL non-adaptive solver"
 msgstr ""
 
-#: gslsolver.cc:35
+#: gslsolver.cc:23
 msgctxt "ObjectClass|"
 msgid "GslAdaptiveSolver"
 msgstr ""
 
-#: gslsolver.cc:35
+#: gslsolver.cc:23
 msgctxt "ObjectDescription|"
 msgid "GSL adaptive solver"
 msgstr ""
 
-#: gslsolver.cc:38
+#: gslsolver.cc:26
 msgctxt "ObjectClass|"
 msgid "GslRK2Solver"
 msgstr ""
 
-#: gslsolver.cc:38
+#: gslsolver.cc:26
 msgctxt "ObjectDescription|"
 msgid "Runge-Kutta second-order solver from GSL library"
 msgstr ""
 
-#: gslsolver.cc:40
+#: gslsolver.cc:28
 msgctxt "ObjectClass|"
 msgid "GslAdaptiveRK2Solver"
 msgstr ""
 
-#: gslsolver.cc:40
+#: gslsolver.cc:28
 msgctxt "ObjectDescription|"
 msgid "Adaptive Runge-Kutta second-order solver from GSL library"
 msgstr ""
 
-#: gslsolver.cc:43
+#: gslsolver.cc:31
 msgctxt "ObjectClass|"
 msgid "GslRK4Solver"
 msgstr ""
 
-#: gslsolver.cc:43
+#: gslsolver.cc:31
 msgctxt "ObjectDescription|"
 msgid "Runge-Kutta classical fourth-order solver from GSL library"
 msgstr ""
 
-#: gslsolver.cc:45
+#: gslsolver.cc:33
 msgctxt "ObjectClass|"
 msgid "GslAdaptiveRK4Solver"
 msgstr ""
 
-#: gslsolver.cc:45
+#: gslsolver.cc:33
 msgctxt "ObjectDescription|"
 msgid "Adaptive Runge-Kutta classical fourth-order solver from GSL library"
 msgstr ""
 
-#: gslsolver.cc:48
+#: gslsolver.cc:36
 msgctxt "ObjectClass|"
 msgid "GslRKF45Solver"
 msgstr ""
 
-#: gslsolver.cc:48
+#: gslsolver.cc:36
 msgctxt "ObjectDescription|"
 msgid "Runge-Kutta-Fehlberg (4,5) solver from GSL library"
 msgstr ""
 
-#: gslsolver.cc:50
+#: gslsolver.cc:38
 msgctxt "ObjectClass|"
 msgid "GslAdaptiveRKF45Solver"
 msgstr ""
 
-#: gslsolver.cc:50
+#: gslsolver.cc:38
 msgctxt "ObjectDescription|"
 msgid "Adaptive Runge-Kutta-Fehlberg (4,5) solver from GSL library"
 msgstr ""
 
-#: gslsolver.cc:53
+#: gslsolver.cc:41
 msgctxt "ObjectClass|"
 msgid "GslRKCKSolver"
 msgstr ""
 
-#: gslsolver.cc:53
+#: gslsolver.cc:41
 msgctxt "ObjectDescription|"
 msgid "Runge-Kutta Cash-Karp (4,5) solver from GSL library"
 msgstr ""
 
-#: gslsolver.cc:55
+#: gslsolver.cc:43
 msgctxt "ObjectClass|"
 msgid "GslAdaptiveRKCKSolver"
 msgstr ""
 
-#: gslsolver.cc:55
+#: gslsolver.cc:43
 msgctxt "ObjectDescription|"
 msgid "Adaptive Runge-Kutta Cash-Karp (4,5) solver from GSL library"
 msgstr ""
 
-#: gslsolver.cc:58
+#: gslsolver.cc:46
 msgctxt "ObjectClass|"
 msgid "GslRK8PDSolver"
 msgstr ""
 
-#: gslsolver.cc:58
+#: gslsolver.cc:46
 msgctxt "ObjectDescription|"
 msgid "Runge-Kutta Prince-Dormand (8,9) solver from GSL library"
 msgstr ""
 
-#: gslsolver.cc:60
+#: gslsolver.cc:48
 msgctxt "ObjectClass|"
 msgid "GslAdaptiveRK8PDSolver"
 msgstr ""
 
-#: gslsolver.cc:60
+#: gslsolver.cc:48
 msgctxt "ObjectDescription|"
 msgid "Adaptive Runge-Kutta Prince-Dormand (8,9) solver from GSL library"
 msgstr ""
 
-#: gslsolver.cc:63
+#: gslsolver.cc:51
 msgctxt "ObjectClass|"
 msgid "GslRK2IMPSolver"
 msgstr ""
 
-#: gslsolver.cc:63
+#: gslsolver.cc:51
 msgctxt "ObjectDescription|"
 msgid "Runge-Kutta implicit second-order solver from GSL library"
 msgstr ""
 
-#: gslsolver.cc:65
+#: gslsolver.cc:53
 msgctxt "ObjectClass|"
 msgid "GslAdaptiveRK2IMPSolver"
 msgstr ""
 
-#: gslsolver.cc:65
+#: gslsolver.cc:53
 msgctxt "ObjectDescription|"
 msgid "Adaptive Runge-Kutta implicit second-order solver from GSL library"
 msgstr ""
 
-#: gslsolver.cc:68
+#: gslsolver.cc:56
 msgctxt "ObjectClass|"
 msgid "GslRK4IMPSolver"
 msgstr ""
 
-#: gslsolver.cc:68
+#: gslsolver.cc:56
 msgctxt "ObjectDescription|"
 msgid "Runge-Kutta implicit fourth-order solver from GSL library"
 msgstr ""
 
-#: gslsolver.cc:70
+#: gslsolver.cc:58
 msgctxt "ObjectClass|"
 msgid "GslAdaptiveRK4IMPSolver"
 msgstr ""
 
-#: gslsolver.cc:70
+#: gslsolver.cc:58
 msgctxt "ObjectDescription|"
 msgid "Adaptive Runge-Kutta implicit fourth-order solver from GSL library"
 msgstr ""
 
-#: item.cc:28
+#: item.cc:15
 #, fuzzy
 #| msgid "Item"
 msgctxt "ObjectClass|"
 msgid "Item"
 msgstr "ਆਈਟਮ"
 
-#: item.cc:28
+#: item.cc:15
 #, fuzzy
 #| msgid "Item"
 msgctxt "ObjectDescription|"
 msgid "Item"
 msgstr "ਆਈਟਮ"
 
-#: item.cc:30
+#: item.cc:17
 #, fuzzy
 msgctxt "PropertyName|"
 msgid "color"
 msgstr "ਰੰਗ"
 
-#: item.cc:31
+#: item.cc:18
 #, fuzzy
 msgctxt "PropertyDescription|"
 msgid "Item color"
 msgstr "ਰੰਗ"
 
-#: itemgroup.cc:28
+#: itemgroup.cc:15
 #, fuzzy
 #| msgid "Item"
 msgctxt "ObjectClass|"
 msgid "ItemGroup"
 msgstr "ਆਈਟਮ"
 
-#: itemgroup.cc:28
+#: itemgroup.cc:15
 #, fuzzy
 #| msgid "Item"
 msgctxt "ObjectDescription|"
 msgid "ItemGroup"
 msgstr "ਆਈਟਮ"
 
-#: joint.cc:26
+#: joint.cc:14
 #, fuzzy
 #| msgid "Joint"
 msgctxt "ObjectClass|"
 msgid "Joint"
 msgstr "ਜੁਆਇੰਟ"
 
-#: joint.cc:26
+#: joint.cc:14
 #, fuzzy
 #| msgid "Joint"
 msgctxt "ObjectDescription|"
 msgid "Joint"
 msgstr "ਜੁਆਇੰਟ"
 
-#: joints.cc:26
+#: joints.cc:14
 #, fuzzy
 msgctxt "ObjectClass|"
 msgid "Anchor"
 msgstr "ਅੰਕਰ"
 
-#: joints.cc:26
+#: joints.cc:14
 msgctxt "ObjectDescription|"
 msgid "Anchor: fixes position of the body"
 msgstr ""
 
-#: joints.cc:28 joints.cc:34 motor.cc:29 motor.cc:35
+#: joints.cc:16 joints.cc:22 motor.cc:17 motor.cc:23
 #, fuzzy
 #| msgid "Body"
 msgctxt "PropertyDescription|"
 msgid "Body"
 msgstr "ਮੁੱਖਭਾਗ"
 
-#: joints.cc:28 joints.cc:34 motor.cc:29 motor.cc:35 tool.cc:97
+#: joints.cc:16 joints.cc:22 motor.cc:17 motor.cc:23 tool.cc:85
 #, fuzzy
 msgctxt "PropertyName|"
 msgid "body"
 msgstr "ਮੁੱਖਭਾਗ"
 
-#: joints.cc:29 tool.cc:100
+#: joints.cc:17 tool.cc:88
 #, fuzzy
 msgctxt "PropertyDescription|"
 msgid "Position"
 msgstr "ਸਥਿਤੀ"
 
-#: joints.cc:29 joints.cc:36 particle.cc:29 rigidbody.cc:28 softbody.cc:36
-#: tool.cc:38 tool.cc:45 tool.cc:67 tool.cc:79 tool.cc:100
+#: joints.cc:17 joints.cc:24 particle.cc:17 rigidbody.cc:16 softbody.cc:24
+#: tool.cc:26 tool.cc:33 tool.cc:55 tool.cc:67 tool.cc:88
 #, fuzzy
 #| msgid "position"
 msgctxt "PropertyName|"
 msgid "position"
 msgstr "ਸਥਿਤੀ"
 
-#: joints.cc:30
+#: joints.cc:18
 #, fuzzy
 #| msgid "Angle"
 msgctxt "PropertyDescription|"
 msgid "Angle"
 msgstr "ਕੋਣ"
 
-#: joints.cc:30 rigidbody.cc:29
+#: joints.cc:18 rigidbody.cc:17
 #, fuzzy
 #| msgctxt "PropertyName"
 #| msgid "angle"
@@ -939,7 +939,7 @@ msgctxt "PropertyName|"
 msgid "angle"
 msgstr "ਕੋਣ"
 
-#: joints.cc:30 rigidbody.cc:29 rigidbody.cc:55
+#: joints.cc:18 rigidbody.cc:17 rigidbody.cc:43
 #, fuzzy
 #| msgctxt "Units"
 #| msgid "rad"
@@ -947,7 +947,7 @@ msgctxt "Units|"
 msgid "rad"
 msgstr "ਰੇਡੀ"
 
-#: joints.cc:32
+#: joints.cc:20
 #, fuzzy
 #| msgctxt "ObjectClass"
 #| msgid "Pin"
@@ -955,17 +955,17 @@ msgctxt "ObjectClass|"
 msgid "Pin"
 msgstr "ਪਿੰਨ"
 
-#: joints.cc:32
+#: joints.cc:20
 msgctxt "ObjectDescription|"
 msgid "Pin: fixes position of a given point on the body"
 msgstr ""
 
-#: joints.cc:35
+#: joints.cc:23
 msgctxt "PropertyDescription|"
 msgid "Position on the body"
 msgstr ""
 
-#: joints.cc:35 motor.cc:30 motor.cc:36 tool.cc:98
+#: joints.cc:23 motor.cc:18 motor.cc:24 tool.cc:86
 #, fuzzy
 #| msgctxt "PropertyName"
 #| msgid "localPosition1"
@@ -973,14 +973,14 @@ msgctxt "PropertyName|"
 msgid "localPosition"
 msgstr "ਲੋਕਲਸਥਿਤੀ1"
 
-#: joints.cc:36
+#: joints.cc:24
 #, fuzzy
 #| msgid "Position1"
 msgctxt "PropertyDescription|"
 msgid "Position in the world"
 msgstr "ਸਥਿਤੀ1"
 
-#: joints.cc:38
+#: joints.cc:26
 #, fuzzy
 #| msgctxt "ObjectClass"
 #| msgid "Stick"
@@ -988,50 +988,50 @@ msgctxt "ObjectClass|"
 msgid "Stick"
 msgstr "ਚਿਪਕਿਆ"
 
-#: joints.cc:38
+#: joints.cc:26
 msgctxt "ObjectDescription|"
 msgid "Massless stick which can be connected to bodies"
 msgstr ""
 
-#: joints.cc:40
+#: joints.cc:28
 #, fuzzy
 #| msgid "Current length"
 msgctxt "PropertyDescription|"
 msgid "Rest length of the stick"
 msgstr "ਮੌਜੂਦਾ ਲੰਬਾਈ"
 
-#: joints.cc:40 spring.cc:30
+#: joints.cc:28 spring.cc:18
 #, fuzzy
 #| msgid "Current length"
 msgctxt "PropertyName|"
 msgid "restLength"
 msgstr "ਮੌਜੂਦਾ ਲੰਬਾਈ"
 
-#: joints.cc:41 spring.cc:34
+#: joints.cc:29 spring.cc:22
 #, fuzzy
 msgctxt "PropertyDescription|"
 msgid "Body1"
 msgstr "ਮੁੱਖਭਾਗ"
 
-#: joints.cc:41 spring.cc:34
+#: joints.cc:29 spring.cc:22
 #, fuzzy
 msgctxt "PropertyName|"
 msgid "body1"
 msgstr "ਮੁੱਖਭਾਗ"
 
-#: joints.cc:42 spring.cc:35
+#: joints.cc:30 spring.cc:23
 #, fuzzy
 msgctxt "PropertyDescription|"
 msgid "Body2"
 msgstr "ਮੁੱਖਭਾਗ"
 
-#: joints.cc:42 spring.cc:35
+#: joints.cc:30 spring.cc:23
 #, fuzzy
 msgctxt "PropertyName|"
 msgid "body2"
 msgstr "ਮੁੱਖਭਾਗ"
 
-#: joints.cc:43 spring.cc:36
+#: joints.cc:31 spring.cc:24
 #, fuzzy
 #| msgctxt "PropertyName"
 #| msgid "localPosition1"
@@ -1039,14 +1039,14 @@ msgctxt "PropertyName|"
 msgid "localPosition1"
 msgstr "ਲੋਕਲਸਥਿਤੀ1"
 
-#: joints.cc:44 spring.cc:37
+#: joints.cc:32 spring.cc:25
 #, fuzzy
 #| msgid "Local position 1"
 msgctxt "PropertyDescription|"
 msgid "Local position 1"
 msgstr "ਲੋਕਲ ਸਥਿਤੀ 1"
 
-#: joints.cc:45 spring.cc:38
+#: joints.cc:33 spring.cc:26
 #, fuzzy
 #| msgctxt "PropertyName"
 #| msgid "localPosition2"
@@ -1054,21 +1054,21 @@ msgctxt "PropertyName|"
 msgid "localPosition2"
 msgstr "ਲੋਕਲਸਥਿਤੀ2"
 
-#: joints.cc:46 spring.cc:39
+#: joints.cc:34 spring.cc:27
 #, fuzzy
 #| msgid "Local position 2"
 msgctxt "PropertyDescription|"
 msgid "Local position 2"
 msgstr "ਲੋਕਲ ਸਥਿਤੀ 2"
 
-#: joints.cc:47 spring.cc:40
+#: joints.cc:35 spring.cc:28
 #, fuzzy
 #| msgid "Position1"
 msgctxt "PropertyDescription|"
 msgid "Position1"
 msgstr "ਸਥਿਤੀ1"
 
-#: joints.cc:47 spring.cc:40
+#: joints.cc:35 spring.cc:28
 #, fuzzy
 #| msgctxt "PropertyName"
 #| msgid "position1"
@@ -1076,14 +1076,14 @@ msgctxt "PropertyName|"
 msgid "position1"
 msgstr "ਸਥਿਤੀ1"
 
-#: joints.cc:48 spring.cc:41
+#: joints.cc:36 spring.cc:29
 #, fuzzy
 #| msgid "Position2"
 msgctxt "PropertyDescription|"
 msgid "Position2"
 msgstr "ਸਥਿਤੀ2"
 
-#: joints.cc:48 spring.cc:41
+#: joints.cc:36 spring.cc:29
 #, fuzzy
 #| msgctxt "PropertyName"
 #| msgid "position2"
@@ -1091,7 +1091,7 @@ msgctxt "PropertyName|"
 msgid "position2"
 msgstr "ਸਥਿਤੀ2"
 
-#: joints.cc:51
+#: joints.cc:39
 #, fuzzy
 #| msgctxt "ObjectClass"
 #| msgid "Rope"
@@ -1099,40 +1099,40 @@ msgctxt "ObjectClass|"
 msgid "Rope"
 msgstr "ਰੱਸੀ"
 
-#: joints.cc:51
+#: joints.cc:39
 msgctxt "ObjectDescription|"
 msgid "Massless rope which can be connected to bodies"
 msgstr ""
 
-#: motor.cc:27
+#: motor.cc:15
 msgctxt "ObjectClass|"
 msgid "LinearMotor"
 msgstr ""
 
-#: motor.cc:27
+#: motor.cc:15
 msgctxt "ObjectDescription|"
 msgid "Linear motor: applies a constant force to a given position of the body"
 msgstr ""
 
-#: motor.cc:30 motor.cc:36
+#: motor.cc:18 motor.cc:24
 msgctxt "PropertyDescription|"
 msgid "Position of the motor on a body"
 msgstr ""
 
-#: motor.cc:31
+#: motor.cc:19
 msgctxt "PropertyDescription|"
 msgid "Value of the force, acting on the body"
 msgstr ""
 
-#: motor.cc:31
+#: motor.cc:19
 #, fuzzy
 #| msgid "force"
 msgctxt "PropertyName|"
 msgid "forceValue"
 msgstr "ਬਲ"
 
-#: motor.cc:31 particle.cc:33 particle.cc:47 rigidbody.cc:39 rigidbody.cc:68
-#: softbody.cc:48 spring.cc:42 spring.cc:63
+#: motor.cc:19 particle.cc:21 particle.cc:35 rigidbody.cc:27 rigidbody.cc:56
+#: softbody.cc:36 spring.cc:30 spring.cc:51
 #, fuzzy
 #| msgctxt "Units"
 #| msgid "N"
@@ -1140,29 +1140,29 @@ msgctxt "Units|"
 msgid "N"
 msgstr "N"
 
-#: motor.cc:33
+#: motor.cc:21
 msgctxt "ObjectClass|"
 msgid "CircularMotor"
 msgstr ""
 
-#: motor.cc:33
+#: motor.cc:21
 msgctxt "ObjectDescription|"
 msgid "Circular motor: applies a constant torque to the body"
 msgstr ""
 
-#: motor.cc:37
+#: motor.cc:25
 msgctxt "PropertyDescription|"
 msgid "Value of the torque, acting on the body"
 msgstr ""
 
-#: motor.cc:37
+#: motor.cc:25
 #, fuzzy
 #| msgid "Value"
 msgctxt "PropertyName|"
 msgid "torqueValue"
 msgstr "ਮੁੱਲ"
 
-#: motor.cc:37 rigidbody.cc:40 rigidbody.cc:69 softbody.cc:49
+#: motor.cc:25 rigidbody.cc:28 rigidbody.cc:57 softbody.cc:37
 #, fuzzy
 #| msgctxt "Units"
 #| msgid "N m"
@@ -1170,28 +1170,28 @@ msgctxt "Units|"
 msgid "N m"
 msgstr "N m"
 
-#: object.cc:25
+#: object.cc:13
 #, fuzzy
 #| msgid "Object"
 msgctxt "ObjectClass|"
 msgid "Object"
 msgstr "ਆਬਜੈਕਟ"
 
-#: object.cc:25
+#: object.cc:13
 #, fuzzy
 #| msgid "Object"
 msgctxt "ObjectDescription|"
 msgid "Object"
 msgstr "ਆਬਜੈਕਟ"
 
-#: object.cc:26
+#: object.cc:14
 #, fuzzy
 #| msgid "Object name"
 msgctxt "PropertyDescription|"
 msgid "Object name"
 msgstr "ਆਬਜੈਕਟ ਨਾਂ"
 
-#: object.cc:26
+#: object.cc:14
 #, fuzzy
 #| msgctxt "PropertyName"
 #| msgid "name"
@@ -1199,21 +1199,21 @@ msgctxt "PropertyName|"
 msgid "name"
 msgstr "ਨਾਂ"
 
-#: objecterrors.cc:26
+#: objecterrors.cc:14
 #, fuzzy
 #| msgid "Object"
 msgctxt "ObjectClass|"
 msgid "ObjectErrors"
 msgstr "ਆਬਜੈਕਟ"
 
-#: objecterrors.cc:26
+#: objecterrors.cc:14
 #, fuzzy
 #| msgid "Object"
 msgctxt "ObjectDescription|"
 msgid "ObjectErrors"
 msgstr "ਆਬਜੈਕਟ"
 
-#: particle.cc:27
+#: particle.cc:15
 #, fuzzy
 #| msgctxt "ObjectClass"
 #| msgid "Particle"
@@ -1221,85 +1221,85 @@ msgctxt "ObjectClass|"
 msgid "Particle"
 msgstr "ਤੱਤ"
 
-#: particle.cc:27
+#: particle.cc:15
 msgctxt "ObjectDescription|"
 msgid "Simple zero-size particle"
 msgstr ""
 
-#: particle.cc:29
+#: particle.cc:17
 #, fuzzy
 #| msgid "position"
 msgctxt "PropertyDescription|"
 msgid "position"
 msgstr "ਸਥਿਤੀ"
 
-#: particle.cc:30
+#: particle.cc:18
 #, fuzzy
 #| msgid "velocity"
 msgctxt "PropertyDescription|"
 msgid "velocity"
 msgstr "ਵੇਗ"
 
-#: particle.cc:30 rigidbody.cc:31 softbody.cc:38
+#: particle.cc:18 rigidbody.cc:19 softbody.cc:26
 #, fuzzy
 #| msgid "velocity"
 msgctxt "PropertyName|"
 msgid "velocity"
 msgstr "ਵੇਗ"
 
-#: particle.cc:31 rigidbody.cc:34 softbody.cc:43
+#: particle.cc:19 rigidbody.cc:22 softbody.cc:31
 #, fuzzy
 #| msgid "acceleration"
 msgctxt "PropertyName|"
 msgid "acceleration"
 msgstr "ਪਰਵੇਗ"
 
-#: particle.cc:32
+#: particle.cc:20
 #, fuzzy
 #| msgid "acceleration"
 msgctxt "PropertyDescription|"
 msgid "acceleration"
 msgstr "ਪਰਵੇਗ"
 
-#: particle.cc:33
+#: particle.cc:21
 #, fuzzy
 #| msgid "force"
 msgctxt "PropertyDescription|"
 msgid "force"
 msgstr "ਬਲ"
 
-#: particle.cc:33 rigidbody.cc:39 softbody.cc:48 spring.cc:42
+#: particle.cc:21 rigidbody.cc:27 softbody.cc:36 spring.cc:30
 #, fuzzy
 #| msgid "force"
 msgctxt "PropertyName|"
 msgid "force"
 msgstr "ਬਲ"
 
-#: particle.cc:34
+#: particle.cc:22
 #, fuzzy
 #| msgid "mass"
 msgctxt "PropertyDescription|"
 msgid "mass"
 msgstr "ਪੁੰਜ"
 
-#: particle.cc:34 rigidbody.cc:42 softbody.cc:50
+#: particle.cc:22 rigidbody.cc:30 softbody.cc:38
 #, fuzzy
 #| msgid "mass"
 msgctxt "PropertyName|"
 msgid "mass"
 msgstr "ਪੁੰਜ"
 
-#: particle.cc:35 rigidbody.cc:45
+#: particle.cc:23 rigidbody.cc:33
 msgctxt "PropertyDescription|"
 msgid "momentum"
 msgstr ""
 
-#: particle.cc:35 rigidbody.cc:45
+#: particle.cc:23 rigidbody.cc:33
 msgctxt "PropertyName|"
 msgid "momentum"
 msgstr ""
 
-#: particle.cc:35 particle.cc:51 rigidbody.cc:45 rigidbody.cc:75
+#: particle.cc:23 particle.cc:39 rigidbody.cc:33 rigidbody.cc:63
 #, fuzzy
 #| msgctxt "Units"
 #| msgid "kg m/s"
@@ -1307,17 +1307,17 @@ msgctxt "Units|"
 msgid "kg m/s"
 msgstr "kg m/s"
 
-#: particle.cc:37 rigidbody.cc:49
+#: particle.cc:25 rigidbody.cc:37
 msgctxt "PropertyDescription|"
 msgid "kinetic energy"
 msgstr ""
 
-#: particle.cc:37 rigidbody.cc:49
+#: particle.cc:25 rigidbody.cc:37
 msgctxt "PropertyName|"
 msgid "kineticEnergy"
 msgstr ""
 
-#: particle.cc:40
+#: particle.cc:28
 #, fuzzy
 #| msgctxt "ObjectClass"
 #| msgid "Particle"
@@ -1325,102 +1325,102 @@ msgctxt "ObjectClass|"
 msgid "ParticleErrors"
 msgstr "ਤੱਤ"
 
-#: particle.cc:40
+#: particle.cc:28
 msgctxt "ObjectDescription|"
 msgid "Errors class for Particle"
 msgstr ""
 
-#: particle.cc:41 rigidbody.cc:53
+#: particle.cc:29 rigidbody.cc:41
 #, fuzzy
 #| msgid "position"
 msgctxt "PropertyName|"
 msgid "positionVariance"
 msgstr "ਸਥਿਤੀ"
 
-#: particle.cc:42 rigidbody.cc:54
+#: particle.cc:30 rigidbody.cc:42
 #, fuzzy
 #| msgid "position"
 msgctxt "PropertyDescription|"
 msgid "position variance"
 msgstr "ਸਥਿਤੀ"
 
-#: particle.cc:43 rigidbody.cc:58
+#: particle.cc:31 rigidbody.cc:46
 #, fuzzy
 #| msgid "velocity"
 msgctxt "PropertyName|"
 msgid "velocityVariance"
 msgstr "ਵੇਗ"
 
-#: particle.cc:44 rigidbody.cc:59
+#: particle.cc:32 rigidbody.cc:47
 #, fuzzy
 #| msgid "velocity"
 msgctxt "PropertyDescription|"
 msgid "velocity variance"
 msgstr "ਵੇਗ"
 
-#: particle.cc:45 rigidbody.cc:63
+#: particle.cc:33 rigidbody.cc:51
 #, fuzzy
 #| msgid "acceleration"
 msgctxt "PropertyName|"
 msgid "accelerationVariance"
 msgstr "ਪਰਵੇਗ"
 
-#: particle.cc:46 rigidbody.cc:64
+#: particle.cc:34 rigidbody.cc:52
 #, fuzzy
 #| msgid "acceleration"
 msgctxt "PropertyDescription|"
 msgid "acceleration variance"
 msgstr "ਪਰਵੇਗ"
 
-#: particle.cc:47 rigidbody.cc:68 spring.cc:63
+#: particle.cc:35 rigidbody.cc:56 spring.cc:51
 msgctxt "PropertyName|"
 msgid "forceVariance"
 msgstr ""
 
-#: particle.cc:48 rigidbody.cc:68
+#: particle.cc:36 rigidbody.cc:56
 #, fuzzy
 #| msgid "velocity"
 msgctxt "PropertyDescription|"
 msgid "force variance"
 msgstr "ਵੇਗ"
 
-#: particle.cc:49 rigidbody.cc:71
+#: particle.cc:37 rigidbody.cc:59
 msgctxt "PropertyName|"
 msgid "massVariance"
 msgstr ""
 
-#: particle.cc:50 rigidbody.cc:72
+#: particle.cc:38 rigidbody.cc:60
 #, fuzzy
 #| msgid "position"
 msgctxt "PropertyDescription|"
 msgid "mass variance"
 msgstr "ਸਥਿਤੀ"
 
-#: particle.cc:51 rigidbody.cc:75
+#: particle.cc:39 rigidbody.cc:63
 msgctxt "PropertyName|"
 msgid "momentumVariance"
 msgstr ""
 
-#: particle.cc:52 rigidbody.cc:76
+#: particle.cc:40 rigidbody.cc:64
 #, fuzzy
 #| msgid "position"
 msgctxt "PropertyDescription|"
 msgid "momentum variance"
 msgstr "ਸਥਿਤੀ"
 
-#: particle.cc:53 rigidbody.cc:80
+#: particle.cc:41 rigidbody.cc:68
 msgctxt "PropertyName|"
 msgid "kineticEnergyVariance"
 msgstr ""
 
-#: particle.cc:54 rigidbody.cc:81
+#: particle.cc:42 rigidbody.cc:69
 #, fuzzy
 #| msgid "Current length"
 msgctxt "PropertyDescription|"
 msgid "kinetic energy variance"
 msgstr "ਮੌਜੂਦਾ ਲੰਬਾਈ"
 
-#: particle.cc:56
+#: particle.cc:44
 #, fuzzy
 #| msgctxt "ObjectClass"
 #| msgid "Particle"
@@ -1428,7 +1428,7 @@ msgctxt "ObjectClass|"
 msgid "ChargedParticle"
 msgstr "ਤੱਤ"
 
-#: particle.cc:56
+#: particle.cc:44
 #, fuzzy
 #| msgctxt "ObjectClass"
 #| msgid "Particle"
@@ -1436,21 +1436,21 @@ msgctxt "ObjectDescription|"
 msgid "Charged zero-size particle"
 msgstr "ਤੱਤ"
 
-#: particle.cc:57
+#: particle.cc:45
 #, fuzzy
 #| msgid "charge"
 msgctxt "PropertyDescription|"
 msgid "charge"
 msgstr "ਚਾਰਜ"
 
-#: particle.cc:57
+#: particle.cc:45
 #, fuzzy
 #| msgid "charge"
 msgctxt "PropertyName|"
 msgid "charge"
 msgstr "ਚਾਰਜ"
 
-#: particle.cc:57
+#: particle.cc:45
 #, fuzzy
 #| msgctxt "Units"
 #| msgid "C"
@@ -1458,12 +1458,12 @@ msgctxt "Units|"
 msgid "C"
 msgstr "C"
 
-#: particle.cc:59
+#: particle.cc:47
 msgctxt "ObjectClass|"
 msgid "ChargedParticleErrors"
 msgstr ""
 
-#: particle.cc:59
+#: particle.cc:47
 #, fuzzy
 #| msgctxt "ObjectClass"
 #| msgid "Particle"
@@ -1471,64 +1471,64 @@ msgctxt "ObjectDescription|"
 msgid "Errors class for ChargedParticle"
 msgstr "ਤੱਤ"
 
-#: particle.cc:61
+#: particle.cc:49
 #, fuzzy
 #| msgid "charge"
 msgctxt "PropertyName|"
 msgid "chargeVariance"
 msgstr "ਚਾਰਜ"
 
-#: particle.cc:62
+#: particle.cc:50
 #, fuzzy
 #| msgid "charge"
 msgctxt "PropertyDescription|"
 msgid "charge variance"
 msgstr "ਚਾਰਜ"
 
-#: rigidbody.cc:27
+#: rigidbody.cc:15
 #, fuzzy
 #| msgid "Body"
 msgctxt "ObjectClass|"
 msgid "RigidBody"
 msgstr "ਮੁੱਖਭਾਗ"
 
-#: rigidbody.cc:27
+#: rigidbody.cc:15
 msgctxt "ObjectDescription|"
 msgid "Generic rigid body"
 msgstr ""
 
-#: rigidbody.cc:28 softbody.cc:36
+#: rigidbody.cc:16 softbody.cc:24
 msgctxt "PropertyDescription|"
 msgid "Position of the center of mass"
 msgstr ""
 
-#: rigidbody.cc:29
+#: rigidbody.cc:17
 #, fuzzy
 #| msgid "Rotation angle"
 msgctxt "PropertyDescription|"
 msgid "Rotation angle"
 msgstr "ਘੁੰਮਾਉਣ ਕੋਣ"
 
-#: rigidbody.cc:31 softbody.cc:38
+#: rigidbody.cc:19 softbody.cc:26
 msgctxt "PropertyDescription|"
 msgid "Velocity of the center of mass"
 msgstr ""
 
-#: rigidbody.cc:32 softbody.cc:39
+#: rigidbody.cc:20 softbody.cc:27
 #, fuzzy
 #| msgid "velocity"
 msgctxt "PropertyDescription|"
 msgid "Angular velocity of the body"
 msgstr "ਵੇਗ"
 
-#: rigidbody.cc:32 softbody.cc:39
+#: rigidbody.cc:20 softbody.cc:27
 #, fuzzy
 #| msgid "velocity"
 msgctxt "PropertyName|"
 msgid "angularVelocity"
 msgstr "ਵੇਗ"
 
-#: rigidbody.cc:32 rigidbody.cc:60 softbody.cc:39
+#: rigidbody.cc:20 rigidbody.cc:48 softbody.cc:27
 #, fuzzy
 #| msgctxt "Units"
 #| msgid "rad/s"
@@ -1536,19 +1536,19 @@ msgctxt "Units|"
 msgid "rad/s"
 msgstr "rad/s"
 
-#: rigidbody.cc:35 softbody.cc:44
+#: rigidbody.cc:23 softbody.cc:32
 msgctxt "PropertyDescription|"
 msgid "Acceleration of the center of mass"
 msgstr ""
 
-#: rigidbody.cc:36 softbody.cc:45
+#: rigidbody.cc:24 softbody.cc:33
 #, fuzzy
 #| msgid "acceleration"
 msgctxt "PropertyName|"
 msgid "angularAcceleration"
 msgstr "ਪਰਵੇਗ"
 
-#: rigidbody.cc:36 rigidbody.cc:65 softbody.cc:45
+#: rigidbody.cc:24 rigidbody.cc:53 softbody.cc:33
 #, fuzzy
 #| msgctxt "Units"
 #| msgid "rad/s²"
@@ -1556,39 +1556,39 @@ msgctxt "Units|"
 msgid "rad/s²"
 msgstr "rad/s²"
 
-#: rigidbody.cc:37 softbody.cc:46
+#: rigidbody.cc:25 softbody.cc:34
 #, fuzzy
 #| msgid "acceleration"
 msgctxt "PropertyDescription|"
 msgid "Angular acceleration of the body"
 msgstr "ਪਰਵੇਗ"
 
-#: rigidbody.cc:39 softbody.cc:48
+#: rigidbody.cc:27 softbody.cc:36
 msgctxt "PropertyDescription|"
 msgid "Force that acts upon the body"
 msgstr ""
 
-#: rigidbody.cc:40 softbody.cc:49
+#: rigidbody.cc:28 softbody.cc:37
 msgctxt "PropertyDescription|"
 msgid "Torque that acts upon the body"
 msgstr ""
 
-#: rigidbody.cc:40 softbody.cc:49
+#: rigidbody.cc:28 softbody.cc:37
 msgctxt "PropertyName|"
 msgid "torque"
 msgstr ""
 
-#: rigidbody.cc:42 softbody.cc:50
+#: rigidbody.cc:30 softbody.cc:38
 msgctxt "PropertyDescription|"
 msgid "Total mass of the body"
 msgstr ""
 
-#: rigidbody.cc:43 softbody.cc:51
+#: rigidbody.cc:31 softbody.cc:39
 msgctxt "PropertyName|"
 msgid "inertia"
 msgstr ""
 
-#: rigidbody.cc:43 rigidbody.cc:73 softbody.cc:51
+#: rigidbody.cc:31 rigidbody.cc:61 softbody.cc:39
 #, fuzzy
 #| msgctxt "Units"
 #| msgid "kg m²"
@@ -1596,22 +1596,22 @@ msgctxt "Units|"
 msgid "kg m²"
 msgstr "kg m²"
 
-#: rigidbody.cc:44 softbody.cc:52
+#: rigidbody.cc:32 softbody.cc:40
 msgctxt "PropertyDescription|"
 msgid "Inertia \"tensor\" of the body"
 msgstr ""
 
-#: rigidbody.cc:47
+#: rigidbody.cc:35
 msgctxt "PropertyDescription|"
 msgid "angular momentum"
 msgstr ""
 
-#: rigidbody.cc:47 softbody.cc:40
+#: rigidbody.cc:35 softbody.cc:28
 msgctxt "PropertyName|"
 msgid "angularMomentum"
 msgstr ""
 
-#: rigidbody.cc:47 rigidbody.cc:77
+#: rigidbody.cc:35 rigidbody.cc:65
 #, fuzzy
 #| msgctxt "Units"
 #| msgid "kg m² rad/s"
@@ -1619,91 +1619,91 @@ msgctxt "Units|"
 msgid "kg m² rad/s"
 msgstr "kg m² rad/s"
 
-#: rigidbody.cc:52
+#: rigidbody.cc:40
 msgctxt "ObjectClass|"
 msgid "RigidBodyErrors"
 msgstr ""
 
-#: rigidbody.cc:52
+#: rigidbody.cc:40
 msgctxt "ObjectDescription|"
 msgid "Errors class for RigidBody"
 msgstr ""
 
-#: rigidbody.cc:55
+#: rigidbody.cc:43
 msgctxt "PropertyName|"
 msgid "angleVariance"
 msgstr ""
 
-#: rigidbody.cc:56
+#: rigidbody.cc:44
 #, fuzzy
 #| msgid "charge"
 msgctxt "PropertyDescription|"
 msgid "angle variance"
 msgstr "ਚਾਰਜ"
 
-#: rigidbody.cc:60
+#: rigidbody.cc:48
 msgctxt "PropertyName|"
 msgid "angularVelocityVariance"
 msgstr ""
 
-#: rigidbody.cc:61
+#: rigidbody.cc:49
 #, fuzzy
 #| msgid "velocity"
 msgctxt "PropertyDescription|"
 msgid "angularVelocity variance"
 msgstr "ਵੇਗ"
 
-#: rigidbody.cc:65
+#: rigidbody.cc:53
 #, fuzzy
 #| msgid "acceleration"
 msgctxt "PropertyName|"
 msgid "angularAccelerationVariance"
 msgstr "ਪਰਵੇਗ"
 
-#: rigidbody.cc:66
+#: rigidbody.cc:54
 #, fuzzy
 #| msgid "acceleration"
 msgctxt "PropertyDescription|"
 msgid "angularAcceleration variance"
 msgstr "ਪਰਵੇਗ"
 
-#: rigidbody.cc:69
+#: rigidbody.cc:57
 #, fuzzy
 #| msgid "position"
 msgctxt "PropertyDescription|"
 msgid "torque variance"
 msgstr "ਸਥਿਤੀ"
 
-#: rigidbody.cc:69
+#: rigidbody.cc:57
 msgctxt "PropertyName|"
 msgid "torqueVariance"
 msgstr ""
 
-#: rigidbody.cc:73
+#: rigidbody.cc:61
 msgctxt "PropertyName|"
 msgid "inertiaVariance"
 msgstr ""
 
-#: rigidbody.cc:74
+#: rigidbody.cc:62
 #, fuzzy
 #| msgid "position"
 msgctxt "PropertyDescription|"
 msgid "inertia variance"
 msgstr "ਸਥਿਤੀ"
 
-#: rigidbody.cc:77
+#: rigidbody.cc:65
 msgctxt "PropertyName|"
 msgid "angularMomentumVariance"
 msgstr ""
 
-#: rigidbody.cc:78
+#: rigidbody.cc:66
 #, fuzzy
 #| msgid "acceleration"
 msgctxt "PropertyDescription|"
 msgid "angular momentum variance"
 msgstr "ਪਰਵੇਗ"
 
-#: rigidbody.cc:83
+#: rigidbody.cc:71
 #, fuzzy
 #| msgctxt "ObjectClass"
 #| msgid "Disk"
@@ -1711,19 +1711,19 @@ msgctxt "ObjectClass|"
 msgid "Disk"
 msgstr "ਚੱਕਰੀ"
 
-#: rigidbody.cc:83
+#: rigidbody.cc:71
 #, fuzzy
 #| msgid "Body"
 msgctxt "ObjectDescription|"
 msgid "Rigid disk"
 msgstr "ਮੁੱਖਭਾਗ"
 
-#: rigidbody.cc:84
+#: rigidbody.cc:72
 msgctxt "PropertyDescription|"
 msgid "Radius of the disk"
 msgstr ""
 
-#: rigidbody.cc:84
+#: rigidbody.cc:72
 #, fuzzy
 #| msgctxt "PropertyName"
 #| msgid "radius"
@@ -1731,7 +1731,7 @@ msgctxt "PropertyName|"
 msgid "radius"
 msgstr "ਰੇਡੀਅਸ"
 
-#: rigidbody.cc:86
+#: rigidbody.cc:74
 #, fuzzy
 #| msgctxt "ObjectClass"
 #| msgid "Polygon"
@@ -1739,7 +1739,7 @@ msgctxt "ObjectClass|"
 msgid "BasePolygon"
 msgstr "ਬਹੁਭੁਜ"
 
-#: rigidbody.cc:86
+#: rigidbody.cc:74
 #, fuzzy
 #| msgctxt "ObjectClass"
 #| msgid "Polygon"
@@ -1747,7 +1747,7 @@ msgctxt "ObjectDescription|"
 msgid "Base polygon body"
 msgstr "ਬਹੁਭੁਜ"
 
-#: rigidbody.cc:88
+#: rigidbody.cc:76
 #, fuzzy
 #| msgctxt "ObjectClass"
 #| msgid "Box"
@@ -1755,21 +1755,21 @@ msgctxt "ObjectClass|"
 msgid "Box"
 msgstr "ਬਾਕਸ"
 
-#: rigidbody.cc:88
+#: rigidbody.cc:76
 #, fuzzy
 #| msgid "Body"
 msgctxt "ObjectDescription|"
 msgid "Rigid box"
 msgstr "ਮੁੱਖਭਾਗ"
 
-#: rigidbody.cc:89
+#: rigidbody.cc:77
 #, fuzzy
 #| msgid "Size of the box"
 msgctxt "PropertyDescription|"
 msgid "Size of the box"
 msgstr "ਬਕਸੇ ਦਾ ਆਕਾਰ"
 
-#: rigidbody.cc:89 tool.cc:39 tool.cc:46 tool.cc:68 tool.cc:80
+#: rigidbody.cc:77 tool.cc:27 tool.cc:34 tool.cc:56 tool.cc:68
 #, fuzzy
 #| msgctxt "PropertyName"
 #| msgid "size"
@@ -1777,7 +1777,7 @@ msgctxt "PropertyName|"
 msgid "size"
 msgstr "ਆਕਾਰ"
 
-#: rigidbody.cc:91
+#: rigidbody.cc:79
 #, fuzzy
 #| msgctxt "ObjectClass"
 #| msgid "Polygon"
@@ -1785,19 +1785,19 @@ msgctxt "ObjectClass|"
 msgid "Polygon"
 msgstr "ਬਹੁਭੁਜ"
 
-#: rigidbody.cc:91
+#: rigidbody.cc:79
 msgctxt "ObjectDescription|"
 msgid "Rigid polygon body"
 msgstr ""
 
-#: rigidbody.cc:92
+#: rigidbody.cc:80
 #, fuzzy
 #| msgid "Vertex list"
 msgctxt "PropertyDescription|"
 msgid "Vertex list"
 msgstr "ਭੁਜਾ ਲਿਸਟ"
 
-#: rigidbody.cc:92
+#: rigidbody.cc:80
 #, fuzzy
 #| msgctxt "PropertyName"
 #| msgid "vertices"
@@ -1805,7 +1805,7 @@ msgctxt "PropertyName|"
 msgid "vertices"
 msgstr "ਭੁਜਾਵਾਂ"
 
-#: softbody.cc:31
+#: softbody.cc:19
 #, fuzzy
 #| msgctxt "ObjectClass"
 #| msgid "Particle"
@@ -1813,52 +1813,52 @@ msgctxt "ObjectClass|"
 msgid "SoftBodyParticle"
 msgstr "ਤੱਤ"
 
-#: softbody.cc:31
+#: softbody.cc:19
 #, fuzzy
 #| msgid "Gas particle"
 msgctxt "ObjectDescription|"
 msgid "SoftBody particle"
 msgstr "ਗੈਸੀ ਤੱਤ"
 
-#: softbody.cc:32
+#: softbody.cc:20
 msgctxt "ObjectClass|"
 msgid "SoftBodySpring"
 msgstr ""
 
-#: softbody.cc:32
+#: softbody.cc:20
 #, fuzzy
 #| msgid "Gas particle"
 msgctxt "ObjectDescription|"
 msgid "SoftBody spring"
 msgstr "ਗੈਸੀ ਤੱਤ"
 
-#: softbody.cc:33
+#: softbody.cc:21
 #, fuzzy
 #| msgid "Body"
 msgctxt "ObjectClass|"
 msgid "SoftBody"
 msgstr "ਮੁੱਖਭਾਗ"
 
-#: softbody.cc:33
+#: softbody.cc:21
 msgctxt "ObjectDescription|"
 msgid "Deformable SoftBody"
 msgstr ""
 
-#: softbody.cc:34
+#: softbody.cc:22
 #, fuzzy
 #| msgid "Show internal items"
 msgctxt "PropertyDescription|"
 msgid "Show internal items"
 msgstr "ਅੰਦਰੂਨੀ ਆਈਟਮਾਂ ਵੇਖੋ"
 
-#: softbody.cc:34
+#: softbody.cc:22
 #, fuzzy
 #| msgid "Show internal items"
 msgctxt "PropertyName|"
 msgid "showInternalItems"
 msgstr "ਅੰਦਰੂਨੀ ਆਈਟਮਾਂ ਵੇਖੋ"
 
-#: softbody.cc:40
+#: softbody.cc:28
 #, fuzzy
 #| msgctxt "Units"
 #| msgid "kg m²/s"
@@ -1866,42 +1866,42 @@ msgctxt "Units|"
 msgid "kg m²/s"
 msgstr "kg m²/s"
 
-#: softbody.cc:41
+#: softbody.cc:29
 msgctxt "PropertyDescription|"
 msgid "Angular momentum of the body"
 msgstr ""
 
-#: softbody.cc:53
+#: softbody.cc:41
 msgctxt "PropertyName|"
 msgid "borderParticleNames"
 msgstr ""
 
-#: softbody.cc:54
+#: softbody.cc:42
 msgctxt "PropertyDescription|"
 msgid "Border particle names (temporal property)"
 msgstr ""
 
-#: solver.cc:25
+#: solver.cc:13
 msgctxt "ObjectClass|"
 msgid "Solver"
 msgstr ""
 
-#: solver.cc:25
+#: solver.cc:13
 msgctxt "ObjectDescription|"
 msgid "Solver"
 msgstr ""
 
-#: solver.cc:26
+#: solver.cc:14
 msgctxt "PropertyDescription|"
 msgid "Solver type"
 msgstr ""
 
-#: solver.cc:26
+#: solver.cc:14
 msgctxt "PropertyName|"
 msgid "solverType"
 msgstr ""
 
-#: solver.cc:27
+#: solver.cc:15
 #, fuzzy
 #| msgctxt "PropertyName"
 #| msgid "size"
@@ -1909,44 +1909,44 @@ msgctxt "PropertyDescription|"
 msgid "Step size"
 msgstr "ਆਕਾਰ"
 
-#: solver.cc:27
+#: solver.cc:15
 msgctxt "PropertyName|"
 msgid "stepSize"
 msgstr ""
 
-#: solver.cc:27 world.cc:35
+#: solver.cc:15 world.cc:23
 #, fuzzy
 msgctxt "Units|"
 msgid "s"
 msgstr "%1/s"
 
-#: solver.cc:29
+#: solver.cc:17
 msgctxt "PropertyDescription|"
 msgid "Allowed relative tolerance"
 msgstr ""
 
-#: solver.cc:29
+#: solver.cc:17
 msgctxt "PropertyName|"
 msgid "toleranceRel"
 msgstr ""
 
-#: solver.cc:30
+#: solver.cc:18
 msgctxt "PropertyDescription|"
 msgid "Count of dynamic variables"
 msgstr ""
 
-#: solver.cc:30
+#: solver.cc:18
 #, fuzzy
 msgctxt "PropertyName|"
 msgid "dimension"
 msgstr "ਮਾਪ"
 
-#: solver.cc:32
+#: solver.cc:20
 msgctxt "PropertyDescription|"
 msgid "Maximal local error ratio during last step"
 msgstr ""
 
-#: solver.cc:32
+#: solver.cc:20
 #, fuzzy
 #| msgctxt "PropertyName"
 #| msgid "localPosition1"
@@ -1954,31 +1954,31 @@ msgctxt "PropertyName|"
 msgid "localErrorRatio"
 msgstr "ਲੋਕਲਸਥਿਤੀ1"
 
-#: spring.cc:28
+#: spring.cc:16
 msgctxt "ObjectClass|"
 msgid "Spring"
 msgstr ""
 
-#: spring.cc:28
+#: spring.cc:16
 msgctxt "ObjectDescription|"
 msgid "Massless spring which can be connected to bodies"
 msgstr ""
 
-#: spring.cc:30
+#: spring.cc:18
 #, fuzzy
 #| msgid "Current length"
 msgctxt "PropertyDescription|"
 msgid "Rest length"
 msgstr "ਮੌਜੂਦਾ ਲੰਬਾਈ"
 
-#: spring.cc:31
+#: spring.cc:19
 #, fuzzy
 #| msgid "Current length"
 msgctxt "PropertyDescription|"
 msgid "Current length"
 msgstr "ਮੌਜੂਦਾ ਲੰਬਾਈ"
 
-#: spring.cc:31
+#: spring.cc:19
 #, fuzzy
 #| msgctxt "PropertyName"
 #| msgid "length"
@@ -1986,17 +1986,17 @@ msgctxt "PropertyName|"
 msgid "length"
 msgstr "ਲੰਬਾਈ"
 
-#: spring.cc:32
+#: spring.cc:20
 msgctxt "PropertyDescription|"
 msgid "Stiffness"
 msgstr ""
 
-#: spring.cc:32
+#: spring.cc:20
 msgctxt "PropertyName|"
 msgid "stiffness"
 msgstr ""
 
-#: spring.cc:32 spring.cc:51 spring.cc:53
+#: spring.cc:20 spring.cc:39 spring.cc:41
 #, fuzzy
 #| msgctxt "Units"
 #| msgid "N/m"
@@ -2004,17 +2004,17 @@ msgctxt "Units|"
 msgid "N/m"
 msgstr "N/m"
 
-#: spring.cc:33
+#: spring.cc:21
 msgctxt "PropertyDescription|"
 msgid "Damping"
 msgstr ""
 
-#: spring.cc:33
+#: spring.cc:21
 msgctxt "PropertyName|"
 msgid "damping"
 msgstr ""
 
-#: spring.cc:33
+#: spring.cc:21
 #, fuzzy
 #| msgctxt "Units"
 #| msgid "N s/m"
@@ -2022,72 +2022,72 @@ msgctxt "Units|"
 msgid "N s/m"
 msgstr "N s/m"
 
-#: spring.cc:42
+#: spring.cc:30
 #, fuzzy
 #| msgid "Gravitation constant"
 msgctxt "PropertyDescription|"
 msgid "Spring tension force"
 msgstr "ਗੁਰੂਤਾ ਸਥਿਰ"
 
-#: spring.cc:45
+#: spring.cc:33
 msgctxt "ObjectClass|"
 msgid "SpringErrors"
 msgstr ""
 
-#: spring.cc:45
+#: spring.cc:33
 msgctxt "ObjectDescription|"
 msgid "Errors class for Spring"
 msgstr ""
 
-#: spring.cc:47
+#: spring.cc:35
 msgctxt "PropertyName|"
 msgid "restLengthVariance"
 msgstr ""
 
-#: spring.cc:48
+#: spring.cc:36
 #, fuzzy
 #| msgid "Current length"
 msgctxt "PropertyDescription|"
 msgid "Rest length variance"
 msgstr "ਮੌਜੂਦਾ ਲੰਬਾਈ"
 
-#: spring.cc:49
+#: spring.cc:37
 msgctxt "PropertyName|"
 msgid "lengthVariance"
 msgstr ""
 
-#: spring.cc:50
+#: spring.cc:38
 #, fuzzy
 #| msgid "Current length"
 msgctxt "PropertyDescription|"
 msgid "Current length variance"
 msgstr "ਮੌਜੂਦਾ ਲੰਬਾਈ"
 
-#: spring.cc:51
+#: spring.cc:39
 msgctxt "PropertyName|"
 msgid "stiffnessVariance"
 msgstr ""
 
-#: spring.cc:52
+#: spring.cc:40
 #, fuzzy
 #| msgid "position"
 msgctxt "PropertyDescription|"
 msgid "Stiffness variance"
 msgstr "ਸਥਿਤੀ"
 
-#: spring.cc:53
+#: spring.cc:41
 msgctxt "PropertyName|"
 msgid "dampingVariance"
 msgstr ""
 
-#: spring.cc:54
+#: spring.cc:42
 #, fuzzy
 #| msgid "position"
 msgctxt "PropertyDescription|"
 msgid "Damping variance"
 msgstr "ਸਥਿਤੀ"
 
-#: spring.cc:55
+#: spring.cc:43
 #, fuzzy
 #| msgctxt "PropertyName"
 #| msgid "localPosition1"
@@ -2095,14 +2095,14 @@ msgctxt "PropertyName|"
 msgid "localPosition1Variance"
 msgstr "ਲੋਕਲਸਥਿਤੀ1"
 
-#: spring.cc:56
+#: spring.cc:44
 #, fuzzy
 #| msgid "Local position 1"
 msgctxt "PropertyDescription|"
 msgid "Local position 1 variance"
 msgstr "ਲੋਕਲ ਸਥਿਤੀ 1"
 
-#: spring.cc:57
+#: spring.cc:45
 #, fuzzy
 #| msgctxt "PropertyName"
 #| msgid "localPosition2"
@@ -2110,14 +2110,14 @@ msgctxt "PropertyName|"
 msgid "localPosition2Variance"
 msgstr "ਲੋਕਲਸਥਿਤੀ2"
 
-#: spring.cc:58
+#: spring.cc:46
 #, fuzzy
 #| msgid "Local position 2"
 msgctxt "PropertyDescription|"
 msgid "Local position 2 variance"
 msgstr "ਲੋਕਲ ਸਥਿਤੀ 2"
 
-#: spring.cc:59
+#: spring.cc:47
 #, fuzzy
 #| msgctxt "PropertyName"
 #| msgid "position1"
@@ -2125,14 +2125,14 @@ msgctxt "PropertyName|"
 msgid "position1Variance"
 msgstr "ਸਥਿਤੀ1"
 
-#: spring.cc:60
+#: spring.cc:48
 #, fuzzy
 #| msgid "Position1"
 msgctxt "PropertyDescription|"
 msgid "Position1 variance"
 msgstr "ਸਥਿਤੀ1"
 
-#: spring.cc:61
+#: spring.cc:49
 #, fuzzy
 #| msgctxt "PropertyName"
 #| msgid "position2"
@@ -2140,92 +2140,92 @@ msgctxt "PropertyName|"
 msgid "position2Variance"
 msgstr "ਸਥਿਤੀ2"
 
-#: spring.cc:62
+#: spring.cc:50
 #, fuzzy
 #| msgid "Position2"
 msgctxt "PropertyDescription|"
 msgid "Position2 variance"
 msgstr "ਸਥਿਤੀ2"
 
-#: spring.cc:64
+#: spring.cc:52
 #, fuzzy
 #| msgid "position"
 msgctxt "PropertyDescription|"
 msgid "Spring tension force variance"
 msgstr "ਸਥਿਤੀ"
 
-#: tool.cc:26
+#: tool.cc:14
 #, fuzzy
 msgctxt "ObjectClass|"
 msgid "NoteImage"
 msgstr "ਨੋਟ"
 
-#: tool.cc:26
+#: tool.cc:14
 msgctxt "ObjectDescription|"
 msgid "NoteImage: an image embedded in Note"
 msgstr ""
 
-#: tool.cc:28
+#: tool.cc:16
 #, fuzzy
 msgctxt "PropertyDescription|"
 msgid "Image data"
 msgstr "ਚਿੱਤਰ ਡਾਟਾ"
 
-#: tool.cc:28
+#: tool.cc:16
 #, fuzzy
 msgctxt "PropertyName|"
 msgid "image"
 msgstr "ਚਿੱਤਰ"
 
-#: tool.cc:31
+#: tool.cc:19
 msgctxt "ObjectClass|"
 msgid "NoteFormula"
 msgstr ""
 
-#: tool.cc:31
+#: tool.cc:19
 msgctxt "ObjectDescription|"
 msgid "NoteFormula: a formula embedded in Note"
 msgstr ""
 
-#: tool.cc:33
+#: tool.cc:21
 msgctxt "PropertyDescription|"
 msgid "Formula code"
 msgstr ""
 
-#: tool.cc:33
+#: tool.cc:21
 #, fuzzy
 msgctxt "PropertyName|"
 msgid "code"
 msgstr "ਕੋਡ"
 
-#: tool.cc:36
+#: tool.cc:24
 #, fuzzy
 msgctxt "ObjectClass|"
 msgid "Note"
 msgstr "ਨੋਟ"
 
-#: tool.cc:36
+#: tool.cc:24
 msgctxt "ObjectDescription|"
 msgid "Note: displays a textual note on the scene"
 msgstr ""
 
-#: tool.cc:38
+#: tool.cc:26
 msgctxt "PropertyDescription|"
 msgid "Note position on the scene"
 msgstr ""
 
-#: tool.cc:39
+#: tool.cc:27
 msgctxt "PropertyDescription|"
 msgid "Note size on the scene"
 msgstr ""
 
-#: tool.cc:40
+#: tool.cc:28
 #, fuzzy
 msgctxt "PropertyDescription|"
 msgid "Text"
 msgstr "ਟੈਕਸਟ"
 
-#: tool.cc:40
+#: tool.cc:28
 #, fuzzy
 #| msgctxt "PropertyName"
 #| msgid "text"
@@ -2233,7 +2233,7 @@ msgctxt "PropertyName|"
 msgid "text"
 msgstr "ਟੈਕਸਟ"
 
-#: tool.cc:43
+#: tool.cc:31
 #, fuzzy
 #| msgctxt "ObjectClass"
 #| msgid "Graph"
@@ -2241,28 +2241,28 @@ msgctxt "ObjectClass|"
 msgid "Graph"
 msgstr "ਗਰਾਫ਼"
 
-#: tool.cc:43
+#: tool.cc:31
 msgctxt "ObjectDescription|"
 msgid "Graph: plots a graph of any properties"
 msgstr ""
 
-#: tool.cc:45
+#: tool.cc:33
 msgctxt "PropertyDescription|"
 msgid "Graph position on the scene"
 msgstr ""
 
-#: tool.cc:46
+#: tool.cc:34
 msgctxt "PropertyDescription|"
 msgid "Graph size on the scene"
 msgstr ""
 
-#: tool.cc:47
+#: tool.cc:35
 #, fuzzy
 msgctxt "PropertyDescription|"
 msgid "X axis: object"
 msgstr "ਵਿਸ਼ੇਸ਼ਤਾ"
 
-#: tool.cc:47
+#: tool.cc:35
 #, fuzzy
 #| msgctxt "PropertyName"
 #| msgid "object"
@@ -2270,26 +2270,26 @@ msgctxt "PropertyName|"
 msgid "objectX"
 msgstr "ਆਬਜੈਕਟ"
 
-#: tool.cc:48
+#: tool.cc:36
 #, fuzzy
 msgctxt "PropertyDescription|"
 msgid "X axis: object property"
 msgstr "ਵਿਸ਼ੇਸ਼ਤਾ"
 
-#: tool.cc:48
+#: tool.cc:36
 #, fuzzy
 msgctxt "PropertyName|"
 msgid "propertyX"
 msgstr "ਵਿਸ਼ੇਸ਼ਤਾ"
 
-#: tool.cc:49
+#: tool.cc:37
 #, fuzzy
 #| msgid "Vector index"
 msgctxt "PropertyDescription|"
 msgid "X axis: vector index"
 msgstr "ਵੈਕਟਰ ਇੰਡੈਕਸ"
 
-#: tool.cc:49
+#: tool.cc:37
 #, fuzzy
 #| msgctxt "PropertyName"
 #| msgid "index"
@@ -2297,13 +2297,13 @@ msgctxt "PropertyName|"
 msgid "indexX"
 msgstr "ਇੰਡੈਕਸ"
 
-#: tool.cc:50
+#: tool.cc:38
 #, fuzzy
 msgctxt "PropertyDescription|"
 msgid "Y axis: object"
 msgstr "ਵਿਸ਼ੇਸ਼ਤਾ"
 
-#: tool.cc:50
+#: tool.cc:38
 #, fuzzy
 #| msgctxt "PropertyName"
 #| msgid "object"
@@ -2311,26 +2311,26 @@ msgctxt "PropertyName|"
 msgid "objectY"
 msgstr "ਆਬਜੈਕਟ"
 
-#: tool.cc:51
+#: tool.cc:39
 #, fuzzy
 msgctxt "PropertyDescription|"
 msgid "Y axis: property"
 msgstr "ਵਿਸ਼ੇਸ਼ਤਾ"
 
-#: tool.cc:51
+#: tool.cc:39
 #, fuzzy
 msgctxt "PropertyName|"
 msgid "propertyY"
 msgstr "ਵਿਸ਼ੇਸ਼ਤਾ"
 
-#: tool.cc:52
+#: tool.cc:40
 #, fuzzy
 #| msgid "Vector index"
 msgctxt "PropertyDescription|"
 msgid "Y axis: vector index"
 msgstr "ਵੈਕਟਰ ਇੰਡੈਕਸ"
 
-#: tool.cc:52
+#: tool.cc:40
 #, fuzzy
 #| msgctxt "PropertyName"
 #| msgid "index"
@@ -2338,34 +2338,34 @@ msgctxt "PropertyName|"
 msgid "indexY"
 msgstr "ਇੰਡੈਕਸ"
 
-#: tool.cc:53
+#: tool.cc:41
 msgctxt "PropertyDescription|"
 msgid "Auto-limits along X axis"
 msgstr ""
 
-#: tool.cc:53
+#: tool.cc:41
 #, fuzzy
 msgctxt "PropertyName|"
 msgid "autoLimitsX"
 msgstr "ਲਿਮਟ"
 
-#: tool.cc:54
+#: tool.cc:42
 msgctxt "PropertyDescription|"
 msgid "Auto-limits along Y axis"
 msgstr ""
 
-#: tool.cc:54
+#: tool.cc:42
 #, fuzzy
 msgctxt "PropertyName|"
 msgid "autoLimitsY"
 msgstr "ਲਿਮਟ"
 
-#: tool.cc:55
+#: tool.cc:43
 msgctxt "PropertyDescription|"
 msgid "Limits along X axis"
 msgstr ""
 
-#: tool.cc:55
+#: tool.cc:43
 #, fuzzy
 #| msgctxt "PropertyName"
 #| msgid "limits"
@@ -2373,12 +2373,12 @@ msgctxt "PropertyName|"
 msgid "limitsX"
 msgstr "ਲਿਮਟ"
 
-#: tool.cc:56
+#: tool.cc:44
 msgctxt "PropertyDescription|"
 msgid "Limits along Y axis"
 msgstr ""
 
-#: tool.cc:56
+#: tool.cc:44
 #, fuzzy
 #| msgctxt "PropertyName"
 #| msgid "limits"
@@ -2386,112 +2386,112 @@ msgctxt "PropertyName|"
 msgid "limitsY"
 msgstr "ਲਿਮਟ"
 
-#: tool.cc:57
+#: tool.cc:45
 #, fuzzy
 #| msgid "Show lines on the graph"
 msgctxt "PropertyDescription|"
 msgid "Show points on the graph"
 msgstr "ਗਰਾਫ਼ ਉੱਤੇ ਲਾਈਨਾਂ ਵੇਖੋ"
 
-#: tool.cc:57
+#: tool.cc:45
 #, fuzzy
 #| msgid "points"
 msgctxt "PropertyName|"
 msgid "showPoints"
 msgstr "ਬਿੰਦੂ"
 
-#: tool.cc:58
+#: tool.cc:46
 #, fuzzy
 #| msgid "Show lines on the graph"
 msgctxt "PropertyDescription|"
 msgid "Show lines on the graph"
 msgstr "ਗਰਾਫ਼ ਉੱਤੇ ਲਾਈਨਾਂ ਵੇਖੋ"
 
-#: tool.cc:58
+#: tool.cc:46
 msgctxt "PropertyName|"
 msgid "showLines"
 msgstr ""
 
-#: tool.cc:59
+#: tool.cc:47
 #, fuzzy
 #| msgid "Current value"
 msgctxt "PropertyDescription|"
 msgid "Current value"
 msgstr "ਮੌਜੂਦਾ ਮੁੱਲ"
 
-#: tool.cc:59
+#: tool.cc:47
 #, fuzzy
 #| msgid "Current value"
 msgctxt "PropertyName|"
 msgid "currentValue"
 msgstr "ਮੌਜੂਦਾ ਮੁੱਲ"
 
-#: tool.cc:60 tool.cc:101
+#: tool.cc:48 tool.cc:89
 #, fuzzy
 #| msgid "points"
 msgctxt "PropertyDescription|"
 msgid "points"
 msgstr "ਬਿੰਦੂ"
 
-#: tool.cc:60 tool.cc:101
+#: tool.cc:48 tool.cc:89
 #, fuzzy
 #| msgid "points"
 msgctxt "PropertyName|"
 msgid "points"
 msgstr "ਬਿੰਦੂ"
 
-#: tool.cc:61
+#: tool.cc:49
 #, fuzzy
 #| msgid "units"
 msgctxt "PropertyName|"
 msgid "unitsX"
 msgstr "ਇਕਾਈ"
 
-#: tool.cc:61
+#: tool.cc:49
 msgctxt "PropertyName|"
 msgid "Units along X axis"
 msgstr ""
 
-#: tool.cc:62
+#: tool.cc:50
 #, fuzzy
 #| msgid "units"
 msgctxt "PropertyName|"
 msgid "unitsY"
 msgstr "ਇਕਾਈ"
 
-#: tool.cc:62
+#: tool.cc:50
 msgctxt "PropertyName|"
 msgid "Units along Y axis"
 msgstr ""
 
-#: tool.cc:65
+#: tool.cc:53
 #, fuzzy
 msgctxt "ObjectClass|"
 msgid "Meter"
 msgstr "%1 ਮੀਟਰ"
 
-#: tool.cc:65
+#: tool.cc:53
 msgctxt "ObjectDescription|"
 msgid "Meter: displays any property on the scene"
 msgstr ""
 
-#: tool.cc:67
+#: tool.cc:55
 msgctxt "PropertyDescription|"
 msgid "Meter position on the scene"
 msgstr ""
 
-#: tool.cc:68
+#: tool.cc:56
 msgctxt "PropertyDescription|"
 msgid "Meter size on the scene"
 msgstr ""
 
-#: tool.cc:69
+#: tool.cc:57
 #, fuzzy
 msgctxt "PropertyDescription|"
 msgid "Observed object"
 msgstr "ਵਿਸ਼ੇਸ਼ਤਾ"
 
-#: tool.cc:69 tool.cc:81
+#: tool.cc:57 tool.cc:69
 #, fuzzy
 #| msgctxt "PropertyName"
 #| msgid "object"
@@ -2499,26 +2499,26 @@ msgctxt "PropertyName|"
 msgid "object"
 msgstr "ਆਬਜੈਕਟ"
 
-#: tool.cc:70
+#: tool.cc:58
 #, fuzzy
 msgctxt "PropertyDescription|"
 msgid "Observed property"
 msgstr "ਵਿਸ਼ੇਸ਼ਤਾ"
 
-#: tool.cc:70 tool.cc:82
+#: tool.cc:58 tool.cc:70
 #, fuzzy
 msgctxt "PropertyName|"
 msgid "property"
 msgstr "ਵਿਸ਼ੇਸ਼ਤਾ"
 
-#: tool.cc:71 tool.cc:83
+#: tool.cc:59 tool.cc:71
 #, fuzzy
 #| msgid "Vector index"
 msgctxt "PropertyDescription|"
 msgid "Vector index"
 msgstr "ਵੈਕਟਰ ਇੰਡੈਕਸ"
 
-#: tool.cc:71 tool.cc:83
+#: tool.cc:59 tool.cc:71
 #, fuzzy
 #| msgctxt "PropertyName"
 #| msgid "index"
@@ -2526,14 +2526,14 @@ msgctxt "PropertyName|"
 msgid "index"
 msgstr "ਇੰਡੈਕਸ"
 
-#: tool.cc:72
+#: tool.cc:60
 #, fuzzy
 #| msgid "Display digits"
 msgctxt "PropertyDescription|"
 msgid "Display digits"
 msgstr "ਅੰਕ ਵੇਖੋ"
 
-#: tool.cc:72
+#: tool.cc:60
 #, fuzzy
 #| msgctxt "PropertyName"
 #| msgid "digits"
@@ -2541,34 +2541,34 @@ msgctxt "PropertyName|"
 msgid "digits"
 msgstr "ਅੰਕ"
 
-#: tool.cc:73 tool.cc:90
+#: tool.cc:61 tool.cc:78
 #, fuzzy
 #| msgid "Value"
 msgctxt "PropertyDescription|"
 msgid "Value"
 msgstr "ਮੁੱਲ"
 
-#: tool.cc:73 tool.cc:90
+#: tool.cc:61 tool.cc:78
 #, fuzzy
 #| msgid "value"
 msgctxt "PropertyName|"
 msgid "value"
 msgstr "ਮੁੱਲ"
 
-#: tool.cc:74
+#: tool.cc:62
 #, fuzzy
 msgctxt "PropertyDescription|"
 msgid "Units of measured property"
 msgstr "ਵਿਸ਼ੇਸ਼ਤਾ"
 
-#: tool.cc:74 tool.cc:92
+#: tool.cc:62 tool.cc:80
 #, fuzzy
 #| msgid "units"
 msgctxt "PropertyName|"
 msgid "units"
 msgstr "ਇਕਾਈ"
 
-#: tool.cc:77
+#: tool.cc:65
 #, fuzzy
 #| msgctxt "ObjectClass"
 #| msgid "Controller"
@@ -2576,22 +2576,22 @@ msgctxt "ObjectClass|"
 msgid "Controller"
 msgstr "ਕੰਟਰੋਲਰ"
 
-#: tool.cc:77
+#: tool.cc:65
 msgctxt "ObjectDescription|"
 msgid "Controller: allows to easily control any property"
 msgstr ""
 
-#: tool.cc:79
+#: tool.cc:67
 msgctxt "PropertyDescription|"
 msgid "Controller position on the scene"
 msgstr ""
 
-#: tool.cc:80
+#: tool.cc:68
 msgctxt "PropertyDescription|"
 msgid "Controller size on the scene"
 msgstr ""
 
-#: tool.cc:81
+#: tool.cc:69
 #, fuzzy
 #| msgctxt "ObjectClass"
 #| msgid "Controller"
@@ -2599,7 +2599,7 @@ msgctxt "PropertyDescription|"
 msgid "Controlled object"
 msgstr "ਕੰਟਰੋਲਰ"
 
-#: tool.cc:82
+#: tool.cc:70
 #, fuzzy
 #| msgctxt "ObjectClass"
 #| msgid "Controller"
@@ -2607,13 +2607,13 @@ msgctxt "PropertyDescription|"
 msgid "Controlled property"
 msgstr "ਕੰਟਰੋਲਰ"
 
-#: tool.cc:84
+#: tool.cc:72
 #, fuzzy
 msgctxt "PropertyDescription|"
 msgid "Limits"
 msgstr "ਲਿਮਟ"
 
-#: tool.cc:84
+#: tool.cc:72
 #, fuzzy
 #| msgctxt "PropertyName"
 #| msgid "limits"
@@ -2621,39 +2621,39 @@ msgctxt "PropertyName|"
 msgid "limits"
 msgstr "ਲਿਮਟ"
 
-#: tool.cc:85
+#: tool.cc:73
 msgctxt "PropertyName|"
 msgid "increaseShortcut"
 msgstr ""
 
-#: tool.cc:86
+#: tool.cc:74
 msgctxt "PropertyDescription|"
 msgid "Shortcut to increase the value"
 msgstr ""
 
-#: tool.cc:87
+#: tool.cc:75
 msgctxt "PropertyName|"
 msgid "decreaseShortcut"
 msgstr ""
 
-#: tool.cc:88
+#: tool.cc:76
 msgctxt "PropertyDescription|"
 msgid "Shortcut to decrease the value"
 msgstr ""
 
-#: tool.cc:89
+#: tool.cc:77
 #, fuzzy
 #| msgid "Current value"
 msgctxt "PropertyDescription|"
 msgid "Increment value"
 msgstr "ਮੌਜੂਦਾ ਮੁੱਲ"
 
-#: tool.cc:89
+#: tool.cc:77
 msgctxt "PropertyName|"
 msgid "increment"
 msgstr ""
 
-#: tool.cc:92
+#: tool.cc:80
 #, fuzzy
 #| msgctxt "ObjectClass"
 #| msgid "Controller"
@@ -2661,64 +2661,64 @@ msgctxt "PropertyDescription|"
 msgid "Units of controlled property"
 msgstr "ਕੰਟਰੋਲਰ"
 
-#: tool.cc:95
+#: tool.cc:83
 msgctxt "ObjectClass|"
 msgid "Tracer"
 msgstr ""
 
-#: tool.cc:95
+#: tool.cc:83
 msgctxt "ObjectDescription|"
 msgid "Tracer: traces trajectory of a point on a body"
 msgstr ""
 
-#: tool.cc:97
+#: tool.cc:85
 msgctxt "PropertyDescription|"
 msgid "Traced body"
 msgstr ""
 
-#: tool.cc:99
+#: tool.cc:87
 #, fuzzy
 #| msgid "Local position 1"
 msgctxt "PropertyDescription|"
 msgid "Local position"
 msgstr "ਲੋਕਲ ਸਥਿਤੀ 1"
 
-#: world.cc:32
+#: world.cc:20
 #, fuzzy
 #| msgid "Tool"
 msgctxt "ObjectClass|"
 msgid "Tool"
 msgstr "ਟੂਲ"
 
-#: world.cc:32
+#: world.cc:20
 #, fuzzy
 #| msgid "Tool"
 msgctxt "ObjectDescription|"
 msgid "Tool"
 msgstr "ਟੂਲ"
 
-#: world.cc:34
+#: world.cc:22
 #, fuzzy
 #| msgid "World"
 msgctxt "ObjectClass|"
 msgid "World"
 msgstr "ਸੰਸਾਰ"
 
-#: world.cc:34
+#: world.cc:22
 #, fuzzy
 #| msgid "World"
 msgctxt "ObjectDescription|"
 msgid "World"
 msgstr "ਸੰਸਾਰ"
 
-#: world.cc:35
+#: world.cc:23
 #, fuzzy
 #| msgid "Current time"
 msgctxt "PropertyDescription|"
 msgid "Current time"
 msgstr "ਮੌਜੂਦਾ ਸਮਾਂ"
 
-#: world.cc:35
+#: world.cc:23
 #, fuzzy
 #| msgctxt "PropertyName"
 #| msgid "time"
@@ -2726,76 +2726,76 @@ msgctxt "PropertyName|"
 msgid "time"
 msgstr "ਸਮਾਂ"
 
-#: world.cc:36
+#: world.cc:24
 msgctxt "PropertyDescription|"
 msgid "Simulation speed scale"
 msgstr ""
 
-#: world.cc:36
+#: world.cc:24
 #, fuzzy
 #| msgid "timeScale"
 msgctxt "PropertyName|"
 msgid "timeScale"
 msgstr "ਸਮਾਂ-ਸਕੇਲ"
 
-#: world.cc:37
+#: world.cc:25
 msgctxt "PropertyName|"
 msgid "errorsCalculation"
 msgstr ""
 
-#: world.cc:38
+#: world.cc:26
 msgctxt "PropertyDescription|"
 msgid "Enable global error calculation"
 msgstr ""
 
-#: xmlfile.cc:201
+#: xmlfile.cc:189
 msgctxt "QObject|"
 msgid "The file is not a StepCoreXML file."
 msgstr ""
 
-#: xmlfile.cc:247
+#: xmlfile.cc:235
 #, qt-format
 msgctxt "QObject|"
 msgid "Unknown item type \"%1\""
 msgstr ""
 
-#: xmlfile.cc:268
+#: xmlfile.cc:256
 #, qt-format
 msgctxt "QObject|"
 msgid "Unknown solver type \"%1\""
 msgstr ""
 
-#: xmlfile.cc:282
+#: xmlfile.cc:270
 #, qt-format
 msgctxt "QObject|"
 msgid "Unknown collisionSolver type \"%1\""
 msgstr ""
 
-#: xmlfile.cc:296
+#: xmlfile.cc:284
 #, qt-format
 msgctxt "QObject|"
 msgid "Unknown constraint solver type \"%1\""
 msgstr ""
 
-#: xmlfile.cc:324
+#: xmlfile.cc:312
 #, qt-format
 msgctxt "QObject|"
 msgid "Wrong ID attribute value for %1"
 msgstr ""
 
-#: xmlfile.cc:329
+#: xmlfile.cc:317
 #, qt-format
 msgctxt "QObject|"
 msgid "Non-unique ID attribute value for %1"
 msgstr ""
 
-#: xmlfile.cc:357 xmlfile.cc:371
+#: xmlfile.cc:345 xmlfile.cc:359
 #, qt-format
 msgctxt "QObject|"
 msgid "Property \"%1\" of \"%2\" has illegal value"
 msgstr ""
 
-#: xmlfile.cc:384
+#: xmlfile.cc:372
 msgctxt "QObject|"
 msgid "File is not writable."
 msgstr ""

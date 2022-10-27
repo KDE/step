@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: step\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2022-10-23 00:40+0000\n"
+"POT-Creation-Date: 2022-10-27 00:42+0000\n"
 "PO-Revision-Date: 2019-11-15 17:14+0100\n"
 "Last-Translator: Vit Pelcak <vit@pelcak.org>\n"
 "Language-Team: Czech <kde-i18n-doc@kde.org>\n"
@@ -334,13 +334,13 @@ msgstr "Počet rozdělení tělíska:"
 msgid "(4,4)"
 msgstr "(4,4)"
 
-#: step/gascreationdialog.cc:43
+#: step/gascreationdialog.cc:31
 #, kde-format
 msgctxt "@title:window"
 msgid "Create Gas Particles"
 msgstr ""
 
-#: step/gasgraphics.cc:43
+#: step/gasgraphics.cc:31
 #, kde-format
 msgid ""
 "Press left mouse button to position\n"
@@ -349,15 +349,15 @@ msgstr ""
 "Stiskněte levé tlačítko myši, abyste umístili\n"
 "levý horní roh oblasti pro %1"
 
-#: step/gasgraphics.cc:55 step/motorgraphics.cc:42 step/motorgraphics.cc:223
-#: step/polygongraphics.cc:173 step/polygongraphics.cc:307
-#: step/polygongraphics.cc:452 step/softbodygraphics.cc:62
-#: step/worldgraphics.cc:70 step/worldgraphics.cc:120
+#: step/gasgraphics.cc:43 step/motorgraphics.cc:30 step/motorgraphics.cc:211
+#: step/polygongraphics.cc:161 step/polygongraphics.cc:295
+#: step/polygongraphics.cc:440 step/softbodygraphics.cc:50
+#: step/worldgraphics.cc:58 step/worldgraphics.cc:108
 #, kde-format
 msgid "Create %1"
 msgstr "Vytvořit %1"
 
-#: step/gasgraphics.cc:71
+#: step/gasgraphics.cc:59
 #, kde-format
 msgid ""
 "Move mouse and release left mouse button to position\n"
@@ -366,25 +366,25 @@ msgstr ""
 "Přesuňte myš a uvolněte levé tlačítko myši, abyste umístili\n"
 "dolní pravý roh oblasti pro %1"
 
-#: step/gasgraphics.cc:97
+#: step/gasgraphics.cc:85
 #, kde-format
 msgid "Please fill in the parameters for the gas particles."
 msgstr "Prosím, vyplňte pomocné proměnné plynných částic."
 
-#: step/gasgraphics.cc:106 step/polygongraphics.cc:208
-#: step/polygongraphics.cc:347 step/polygongraphics.cc:502
-#: step/softbodygraphics.cc:79 step/worldgraphics.cc:87
-#: step/worldgraphics.cc:134 step/worldgraphics.cc:169
+#: step/gasgraphics.cc:94 step/polygongraphics.cc:196
+#: step/polygongraphics.cc:335 step/polygongraphics.cc:490
+#: step/softbodygraphics.cc:67 step/worldgraphics.cc:75
+#: step/worldgraphics.cc:122 step/worldgraphics.cc:157
 #, kde-format
 msgid "%1 named '%2' created"
 msgstr "%1 nazvaný '%2' vytvořen"
 
-#: step/gasgraphics.cc:294
+#: step/gasgraphics.cc:282
 #, kde-format
 msgid "Create Particles..."
 msgstr ""
 
-#: step/gasgraphics.cc:364
+#: step/gasgraphics.cc:352
 #, kde-format
 msgid ""
 "You are trying to create a very large number of particles. This will make "
@@ -393,67 +393,67 @@ msgstr ""
 "Pokoušíte se vytvořit velmi mnoho částic. Toto povede k velkému zpomalení "
 "simulace. Přejete si pokračovat?"
 
-#: step/gasgraphics.cc:366 step/mainwindow.cc:414
+#: step/gasgraphics.cc:354 step/mainwindow.cc:401
 #, kde-format
 msgid "Warning - Step"
 msgstr "Step - varování"
 
-#: step/gasgraphics.cc:377
+#: step/gasgraphics.cc:365
 #, kde-format
 msgid "Create particles for %1"
 msgstr "Vytvořit částice pro %1"
 
-#: step/infobrowser.cc:38
+#: step/infobrowser.cc:26
 #, kde-format
 msgid "Context Info"
 msgstr ""
 
-#: step/infobrowser.cc:56
+#: step/infobrowser.cc:44
 #, kde-format
 msgid "Back"
 msgstr "Zpět"
 
-#: step/infobrowser.cc:58
+#: step/infobrowser.cc:46
 #, kde-format
 msgid "Forward"
 msgstr "Vpřed"
 
-#: step/infobrowser.cc:62
+#: step/infobrowser.cc:50
 #, kde-format
 msgid "Sync selection"
 msgstr "Výběr sladění"
 
-#: step/infobrowser.cc:64
+#: step/infobrowser.cc:52
 #, kde-format
 msgid "Follow selection"
 msgstr "Sledovat výběr"
 
-#: step/infobrowser.cc:69
+#: step/infobrowser.cc:57
 #, kde-format
 msgid "Open in Browser"
 msgstr "Otevřít v prohlížeči"
 
-#: step/infobrowser.cc:144
+#: step/infobrowser.cc:132
 #, kde-format
 msgid "Documentation"
 msgstr "Dokumentace"
 
-#: step/infobrowser.cc:149
+#: step/infobrowser.cc:137
 #, kde-format
 msgid "No current object."
 msgstr "Bez nynějšího objektu."
 
-#: step/infobrowser.cc:171
+#: step/infobrowser.cc:159
 #, kde-format
 msgid "Documentation error"
 msgstr "Chyba v dokumentaci"
 
-#: step/infobrowser.cc:176
+#: step/infobrowser.cc:164
 #, kde-format
 msgid "Documentation for %1 not available. "
 msgstr "Dokumentace pro %1 není dostupná. "
 
-#: step/infobrowser.cc:177
+#: step/infobrowser.cc:165
 #, kde-format
 msgid ""
 "You can help <a href=\"https://edu.kde.org/step\">Step</a> by writing it!"
@@ -461,42 +461,42 @@ msgstr ""
 "Stepu <a href=\"https://edu.kde.org/step\">můžete pomoci</a> tím, že jej "
 "napíšete."
 
-#: step/itempalette.cc:189
+#: step/itempalette.cc:177
 #, kde-format
 msgid "Palette"
 msgstr "Paleta"
 
-#: step/itempalette.cc:208
+#: step/itempalette.cc:196
 #, kde-format
 msgid "Pointer"
 msgstr "Ukazatel"
 
-#: step/itempalette.cc:209
+#: step/itempalette.cc:197
 #, kde-format
 msgid "Selection pointer"
 msgstr "Ukazovátko výběru"
 
-#: step/itempalette.cc:232
+#: step/itempalette.cc:220
 #, kde-format
 msgid "Show text"
 msgstr "Zobrazit text"
 
-#: step/jointgraphics.cc:170 step/springgraphics.cc:42
+#: step/jointgraphics.cc:158 step/springgraphics.cc:30
 #, kde-format
 msgid "Move end of %1"
 msgstr "Přesunout konec %1"
 
-#: step/latexformula.cc:42
+#: step/latexformula.cc:30
 #, kde-format
 msgid "can not launch %1"
 msgstr "nelze spustit %1"
 
-#: step/latexformula.cc:52
+#: step/latexformula.cc:40
 #, kde-format
 msgid "error running %1"
 msgstr "při běhu %1 došlo k chybě"
 
-#: step/latexformula.cc:56
+#: step/latexformula.cc:44
 #, kde-format
 msgid ""
 "%1 reported an error (exit status %2):\n"
@@ -505,200 +505,200 @@ msgstr ""
 "%1 nahlásil chybu (stav ukončení %2):\n"
 "%3"
 
-#: step/latexformula.cc:61
+#: step/latexformula.cc:49
 #, kde-format
 msgid "%1 did not create output file"
 msgstr "%1 nevytvořil výstupní soubor"
 
-#: step/latexformula.cc:93
+#: step/latexformula.cc:81
 #, kde-format
 msgid "can not open temporary file"
 msgstr "nemůže otevřít dočasný soubor"
 
-#: step/latexformula.cc:127
+#: step/latexformula.cc:115
 #, kde-format
 msgid "can not open result file"
 msgstr "nemůže otevřít výsledný soubor"
 
-#: step/main.cc:43
+#: step/main.cc:31
 #, kde-format
 msgid "Step"
 msgstr "Step"
 
-#: step/main.cc:45
+#: step/main.cc:33
 #, kde-format
 msgid "Interactive physical simulator"
 msgstr "Interaktivní fyzikální cvičné zařízení"
 
-#: step/main.cc:47
+#: step/main.cc:35
 #, kde-format
 msgid "(C) 2007 Vladimir Kuznetsov"
 msgstr "(C) 2007 Vladimir Kuznetsov"
 
-#: step/main.cc:49
+#: step/main.cc:37
 #, kde-format
 msgid "https://edu.kde.org/step"
 msgstr "https://edu.kde.org/step"
 
-#: step/main.cc:54
+#: step/main.cc:42
 #, kde-format
 msgid "Original author"
 msgstr "Původní autor"
 
-#: step/main.cc:55
+#: step/main.cc:43
 #, kde-format
 msgid "ks.vladimir@gmail.com"
 msgstr "ks.vladimir@gmail.com"
 
-#: step/main.cc:60
+#: step/main.cc:48
 #, kde-format
 msgid "Code contributions"
 msgstr "Příspěvky do kódu"
 
-#: step/main.cc:61
+#: step/main.cc:49
 #, kde-format
 msgid "cniehaus@kde.org"
 msgstr "cniehaus@kde.org"
 
-#: step/main.cc:71
+#: step/main.cc:59
 #, kde-format
 msgid "Document to open"
 msgstr "Dokument k otevření"
 
-#: step/mainwindow.cc:156
+#: step/mainwindow.cc:143
 #, kde-format
 msgid "&Open Tutorial..."
 msgstr "&Otevřít výukový materiál..."
 
-#: step/mainwindow.cc:161
+#: step/mainwindow.cc:148
 #, kde-format
 msgid "&Open Example..."
 msgstr "&Otevřít příklad..."
 
-#: step/mainwindow.cc:166
+#: step/mainwindow.cc:153
 #, kde-format
 msgid "Open Down&loaded Example..."
 msgstr "Otevřít &stažený příklad..."
 
-#: step/mainwindow.cc:171
+#: step/mainwindow.cc:158
 #, kde-format
 msgid "Share C&urrent Experiment..."
 msgstr "Sdílet ny&nější pokus..."
 
-#: step/mainwindow.cc:174
+#: step/mainwindow.cc:161
 #, kde-format
 msgid "&Download New Experiments..."
 msgstr "S&táhnout nové pokusy..."
 
-#: step/mainwindow.cc:181
+#: step/mainwindow.cc:168
 #, kde-format
 msgid "Redo"
 msgstr "Znovu"
 
-#: step/mainwindow.cc:181
+#: step/mainwindow.cc:168
 #, kde-format
 msgid "Undo"
 msgstr "Zpět"
 
-#: step/mainwindow.cc:203
+#: step/mainwindow.cc:190
 #, kde-format
 msgid "&Delete"
 msgstr "S&mazat"
 
-#: step/mainwindow.cc:213
+#: step/mainwindow.cc:200
 #, kde-format
 msgid "&Run"
 msgstr "&Spusť"
 
-#: step/mainwindow.cc:218
+#: step/mainwindow.cc:205
 #, kde-format
 msgid "Execute the program"
 msgstr "Vykonat program"
 
-#: step/mainwindow.cc:219
+#: step/mainwindow.cc:206
 #, kde-format
 msgid "Run: Execute the program"
 msgstr "Spusť: vykonat program"
 
-#: step/mainwindow.cc:221
+#: step/mainwindow.cc:208
 #, kde-format
 msgctxt "@option:radio"
 msgid "1x Speed"
 msgstr "1 krát tak rychle"
 
-#: step/mainwindow.cc:229
+#: step/mainwindow.cc:216
 #, kde-format
 msgctxt "@option:radio choose the slow speed"
 msgid "2x Speed"
 msgstr "2 krát tak rychle"
 
-#: step/mainwindow.cc:236
+#: step/mainwindow.cc:223
 #, kde-format
 msgctxt "@option:radio"
 msgid "4x Speed"
 msgstr "4 krát tak rychle"
 
-#: step/mainwindow.cc:243
+#: step/mainwindow.cc:230
 #, kde-format
 msgctxt "@option:radio"
 msgid "8x Speed"
 msgstr "8 krát tak rychle"
 
-#: step/mainwindow.cc:250
+#: step/mainwindow.cc:237
 #, kde-format
 msgctxt "@option:radio"
 msgid "16x Speed"
 msgstr "16 krát tak rychle"
 
-#: step/mainwindow.cc:280
+#: step/mainwindow.cc:267
 #, kde-format
 msgctxt "filename"
 msgid "untitled.step"
 msgstr "bez_názvu.step"
 
-#: step/mainwindow.cc:306
+#: step/mainwindow.cc:293
 #, kde-format
 msgid "<new file>"
 msgstr "<new file>"
 
-#: step/mainwindow.cc:320
+#: step/mainwindow.cc:307
 #, kde-format
 msgctxt "@title:window"
 msgid "Open Step File"
 msgstr ""
 
-#: step/mainwindow.cc:320 step/mainwindow.cc:350
+#: step/mainwindow.cc:307 step/mainwindow.cc:337
 #, kde-format
 msgid "Step files (*.step)"
 msgstr "Soubory Step (*.step)"
 
-#: step/mainwindow.cc:330
+#: step/mainwindow.cc:317
 #, kde-format
 msgid "Cannot parse file '%1': %2"
 msgstr "Soubor '%1': %2 nelze podrobně zkoumat"
 
-#: step/mainwindow.cc:339
+#: step/mainwindow.cc:326
 #, kde-format
 msgid "<open file: %1>"
 msgstr "<open file: %1>"
 
-#: step/mainwindow.cc:350
+#: step/mainwindow.cc:337
 #, kde-format
 msgctxt "@title:window"
 msgid "Save Step File"
 msgstr ""
 
-#: step/mainwindow.cc:366
+#: step/mainwindow.cc:353
 #, kde-format
 msgid "Cannot open file '%1'"
 msgstr "Nelze otevřít soubor '%1'"
 
-#: step/mainwindow.cc:372
+#: step/mainwindow.cc:359
 #, kde-format
 msgid "Cannot save file '%1': %2"
 msgstr "Soubor '%1': %2 nelze uložit"
 
-#: step/mainwindow.cc:413
+#: step/mainwindow.cc:400
 #, kde-format
 msgid ""
 "The experiment has been modified.\n"
@@ -707,27 +707,27 @@ msgstr ""
 "Pokus byl upraven.\n"
 "Přejete si uložit změny?"
 
-#: step/mainwindow.cc:465
+#: step/mainwindow.cc:452
 #, kde-format
 msgid "Uploading is still not implemented in kdelibs."
 msgstr "V kdelibs stále ještě není provedeno odesílání dat do jiného počítače."
 
-#: step/mainwindow.cc:466
+#: step/mainwindow.cc:453
 #, kde-format
 msgid "Sorry - Step"
 msgstr "Step - promiňte"
 
-#: step/mainwindow.cc:493
+#: step/mainwindow.cc:480
 #, kde-format
 msgid "&Stop"
 msgstr "&Zastavit"
 
-#: step/mainwindow.cc:503
+#: step/mainwindow.cc:490
 #, kde-format
 msgid "&Simulate"
 msgstr "&Napodobit"
 
-#: step/mainwindow.cc:508
+#: step/mainwindow.cc:495
 #, kde-format
 msgid ""
 "Cannot finish this step because local error is greater than local "
@@ -738,7 +738,7 @@ msgstr ""
 "povolená odchylka.\n"
 "Prosím, zkontrolujte nastavení řešitele, a zkuste to znovu."
 
-#: step/mainwindow.cc:513
+#: step/mainwindow.cc:500
 #, kde-format
 msgid ""
 "Cannot finish this step because there are collisions which cannot be "
@@ -748,57 +748,57 @@ msgstr ""
 "Tento krok nelze ukončit kvůli srážkám, které nelze vyřešit automaticky.\n"
 "Prosím, přesuňte srážející se objekty stranou, a zkuste to znovu."
 
-#: step/mainwindow.cc:517
+#: step/mainwindow.cc:504
 #, kde-format
 msgid "Cannot finish this step because of an unknown error."
 msgstr "Tento krok nelze ukončit kvůli neznámé chybě."
 
-#: step/mainwindow.cc:550
+#: step/mainwindow.cc:537
 #, kde-format
 msgid "&Undo"
 msgstr "&Zpět"
 
-#: step/mainwindow.cc:551
+#: step/mainwindow.cc:538
 #, kde-format
 msgid "&Undo: %1"
 msgstr "&Zpět: %1"
 
-#: step/mainwindow.cc:556
+#: step/mainwindow.cc:543
 #, kde-format
 msgid "Re&do"
 msgstr "Znov&u"
 
-#: step/mainwindow.cc:557
+#: step/mainwindow.cc:544
 #, kde-format
 msgid "Re&do: %1"
 msgstr "Znov&u: %1"
 
-#: step/mainwindow.cc:588
+#: step/mainwindow.cc:575
 #, kde-format
 msgid "General"
 msgstr "Obecné"
 
-#: step/motorgraphics.cc:112 step/motorgraphics.cc:290
-#: step/stepgraphicsitem.cc:206 step/stepgraphicsitem.cc:218
+#: step/motorgraphics.cc:100 step/motorgraphics.cc:278
+#: step/stepgraphicsitem.cc:198 step/stepgraphicsitem.cc:210
 #, kde-format
 msgid "Move %1"
 msgstr "Přesunout %1"
 
-#: step/polygongraphics.cc:161
+#: step/polygongraphics.cc:149
 #, kde-format
 msgid "Press left mouse button to position a center of a %1"
 msgstr ""
 "Stiskněte levé tlačítko myši, abyste umístili\n"
 " %1 do středu"
 
-#: step/polygongraphics.cc:182
+#: step/polygongraphics.cc:170
 #, kde-format
 msgid "Move mouse and release left mouse button to define a radius of the %1"
 msgstr ""
 "Přesuňte myš a uvolněte levé tlačítko myši, abyste stanovili\n"
 "poloměr %1"
 
-#: step/polygongraphics.cc:295
+#: step/polygongraphics.cc:283
 #, kde-format
 msgid ""
 "Press left mouse button to position\n"
@@ -807,7 +807,7 @@ msgstr ""
 "Stiskněte levé tlačítko myši, abyste umístili\n"
 "levý horní roh %1"
 
-#: step/polygongraphics.cc:317
+#: step/polygongraphics.cc:305
 #, kde-format
 msgid ""
 "Move mouse and release left mouse button to position\n"
@@ -816,79 +816,79 @@ msgstr ""
 "Přesuňte myš a uvolněte levé tlačítko myši, abyste umístili\n"
 "dolní pravý roh %1"
 
-#: step/polygongraphics.cc:440
+#: step/polygongraphics.cc:428
 #, kde-format
 msgid "Click on the scene to create a first vertex of %1"
 msgstr "Pro vytvoření prvního vrcholu %1 klikněte na oblast"
 
-#: step/polygongraphics.cc:488
+#: step/polygongraphics.cc:476
 #, kde-format
 msgid "Click on the scene to add new vertex or press Enter to finish"
 msgstr ""
 "Pro přidání nového vrcholu klikněte na oblast, nebo stiskněte Enter, abyste "
 "skončil"
 
-#: step/propertiesbrowser.cc:279
+#: step/propertiesbrowser.cc:267
 #, kde-format
 msgid "Change solver type"
 msgstr "Změnit typ řešitele"
 
-#: step/propertiesbrowser.cc:294 step/propertiesbrowser.cc:300
-#: step/propertiesbrowser.cc:307 step/propertiesbrowser.cc:316
-#: step/propertiesbrowser.cc:400 step/propertiesbrowser.cc:417
-#: step/stepgraphicsitem.cc:401 step/stepgraphicsitem.cc:546
+#: step/propertiesbrowser.cc:282 step/propertiesbrowser.cc:288
+#: step/propertiesbrowser.cc:295 step/propertiesbrowser.cc:304
+#: step/propertiesbrowser.cc:388 step/propertiesbrowser.cc:405
+#: step/stepgraphicsitem.cc:393 step/stepgraphicsitem.cc:538
 #, kde-format
 msgid "Change %1.%2"
 msgstr "Změnit %1.%2"
 
-#: step/propertiesbrowser.cc:314
+#: step/propertiesbrowser.cc:302
 #, kde-format
 msgid "Rename %1 to %2"
 msgstr "Přejmenovat %1 na %2"
 
-#: step/propertiesbrowser.cc:464
+#: step/propertiesbrowser.cc:452
 #, kde-format
 msgid "Property"
 msgstr "Vlastnost"
 
-#: step/propertiesbrowser.cc:465
+#: step/propertiesbrowser.cc:453
 #, kde-format
 msgid "Value"
 msgstr "Hodnota"
 
-#: step/propertiesbrowser.cc:530
+#: step/propertiesbrowser.cc:518
 #, kde-format
 msgid "false"
 msgstr "nepravda"
 
-#: step/propertiesbrowser.cc:531
+#: step/propertiesbrowser.cc:519
 #, kde-format
 msgid "true"
 msgstr "pravda"
 
-#: step/propertiesbrowser.cc:675
+#: step/propertiesbrowser.cc:683
 #, kde-format
 msgid "Properties"
 msgstr "Vlastnosti"
 
-#: step/softbodygraphics.cc:49 step/worldgraphics.cc:62
-#: step/worldgraphics.cc:106
+#: step/softbodygraphics.cc:37 step/worldgraphics.cc:50
+#: step/worldgraphics.cc:94
 #, kde-format
 msgid "Click on the scene to create a %1"
 msgstr "Pro vytvoření %1 klikněte na oblast"
 
-#: step/softbodygraphics.cc:66
+#: step/softbodygraphics.cc:54
 #, kde-format
 msgid "Please fill in the parameters for %1"
 msgstr "Prosím, vyplňte parametry pro %1"
 
-#: step/softbodygraphics.cc:126
+#: step/softbodygraphics.cc:114
 #, kde-format
 msgctxt "@title:window"
 msgid "Create Soft Body Items"
 msgstr ""
 
-#: step/softbodygraphics.cc:187
+#: step/softbodygraphics.cc:175
 #, kde-format
 msgid "Create items for %1"
 msgstr "Vytvořit položky pro %1"
@@ -935,144 +935,144 @@ msgstr "Otevřít Wikipedii v externím prohlížeči"
 msgid "Show text beside icon"
 msgstr "Zobrazit vedle ikony text"
 
-#: step/stepgraphicsitem.cc:218
+#: step/stepgraphicsitem.cc:210
 #, kde-format
 msgid "several objects"
 msgstr "několik objektů"
 
-#: step/stepgraphicsitem.cc:402 step/stepgraphicsitem.cc:548
+#: step/stepgraphicsitem.cc:394 step/stepgraphicsitem.cc:540
 #, kde-format
 msgid "Change %1"
 msgstr "Změnit %1"
 
 #. i18n: ectx: ToolBar (mainToolBar)
-#: step/stepui.rc:7
+#: step/stepui.rc:5
 #, kde-format
 msgid "Main Toolbar"
 msgstr "Hlavní panel nástrojů"
 
 #. i18n: ectx: ToolBar (simulationToolBar)
-#: step/stepui.rc:12
+#: step/stepui.rc:10
 #, kde-format
 msgid "Simulation Toolbar"
 msgstr "Panel nástrojů pro simulaci"
 
 #. i18n: ectx: Menu (examples)
-#: step/stepui.rc:21
+#: step/stepui.rc:19
 #, kde-format
 msgid "&Examples"
 msgstr "Příkl&ady"
 
 #. i18n: ectx: Menu (simulation)
-#: step/stepui.rc:32
+#: step/stepui.rc:30
 #, kde-format
 msgid "&Simulation"
 msgstr "&Napodobení"
 
 #. i18n: ectx: Menu (speed)
-#: step/stepui.rc:35
+#: step/stepui.rc:33
 #, kde-format
 msgid "&Run Speed"
 msgstr "&Rychlost běhu"
 
 #. i18n: ectx: Menu (panels)
-#: step/stepui.rc:45
+#: step/stepui.rc:43
 #, kde-format
 msgid "&Panels"
 msgstr "&Panely"
 
-#: step/toolgraphics.cc:267
+#: step/toolgraphics.cc:255
 #, kde-format
 msgid "Click to enter text"
 msgstr "Klikněte pro napsání textu"
 
-#: step/toolgraphics.cc:392
+#: step/toolgraphics.cc:380
 #, kde-format
 msgid "&Color"
 msgstr "&Barva"
 
-#: step/toolgraphics.cc:394
+#: step/toolgraphics.cc:382
 #, kde-format
 msgid "&Bold"
 msgstr "T&učné"
 
-#: step/toolgraphics.cc:396
+#: step/toolgraphics.cc:384
 #, kde-format
 msgid "&Italic"
 msgstr "Kur&ziva"
 
-#: step/toolgraphics.cc:398
+#: step/toolgraphics.cc:386
 #, kde-format
 msgid "&Underline"
 msgstr "&Podtržené"
 
-#: step/toolgraphics.cc:401
+#: step/toolgraphics.cc:389
 #, kde-format
 msgid "Align &Left"
 msgstr "Zarovnat &vlevo"
 
-#: step/toolgraphics.cc:403
+#: step/toolgraphics.cc:391
 #, kde-format
 msgid "Align C&enter"
 msgstr "Zarovnat na &střed"
 
-#: step/toolgraphics.cc:405
+#: step/toolgraphics.cc:393
 #, kde-format
 msgid "Align &Right"
 msgstr "Zarovnat &vpravo"
 
-#: step/toolgraphics.cc:407
+#: step/toolgraphics.cc:395
 #, kde-format
 msgid "Align &Justify"
 msgstr "Zarovnat &do bloku"
 
-#: step/toolgraphics.cc:410
+#: step/toolgraphics.cc:398
 #, kde-format
 msgid "&Align"
 msgstr "&Zarovnat"
 
-#: step/toolgraphics.cc:419
+#: step/toolgraphics.cc:407
 #, kde-format
 msgid "&Font"
 msgstr "&Písmo"
 
-#: step/toolgraphics.cc:420
+#: step/toolgraphics.cc:408
 #, kde-format
 msgid "Font &Size"
 msgstr "Velikost &písma"
 
-#: step/toolgraphics.cc:422
+#: step/toolgraphics.cc:410
 #, kde-format
 msgid "Insert &Image..."
 msgstr ""
 
-#: step/toolgraphics.cc:427
+#: step/toolgraphics.cc:415
 #, kde-format
 msgid "Insert &Formula..."
 msgstr ""
 
-#: step/toolgraphics.cc:538
+#: step/toolgraphics.cc:526
 #, kde-format
 msgid "Edit %1"
 msgstr "Upravit %1"
 
-#: step/toolgraphics.cc:643
+#: step/toolgraphics.cc:631
 #, kde-format
 msgctxt "@title:window"
 msgid "Open Image File"
 msgstr ""
 
-#: step/toolgraphics.cc:643
+#: step/toolgraphics.cc:631
 #, kde-format
 msgid "Images (*.png *.jpg *.jpeg)"
 msgstr "Obrázky (*.png *.jpg *.jpeg)"
 
-#: step/toolgraphics.cc:661
+#: step/toolgraphics.cc:649
 #, kde-format
 msgid "Cannot parse file '%1'"
 msgstr "Soubor '%1' nelze podrobně zkoumat"
 
-#: step/toolgraphics.cc:705
+#: step/toolgraphics.cc:693
 #, kde-format
 msgid ""
 "Cannot find latex installation. You need 'latex', 'dvips' and 'gs' "
@@ -1081,153 +1081,153 @@ msgstr ""
 "Instalaci LaTeXu nelze najít. Potřebujete mít nainstalovány spustitelné "
 "'latex', 'dvips' a 'gs' a je potřeba, aby byly přístupné z $PATH"
 
-#: step/toolgraphics.cc:711
+#: step/toolgraphics.cc:699
 #, kde-format
 msgctxt "@title:window"
 msgid "LaTex Formula - Step"
 msgstr ""
 
-#: step/toolgraphics.cc:712
+#: step/toolgraphics.cc:700
 #, kde-format
 msgid "Enter LaTeX formula string:"
 msgstr ""
 
-#: step/toolgraphics.cc:721
+#: step/toolgraphics.cc:709
 #, kde-format
 msgid "Cannot compile LaTeX formula: %1"
 msgstr "Vzorce LaTeX nelze zkompilovat: %1"
 
-#: step/toolgraphics.cc:727
+#: step/toolgraphics.cc:715
 #, kde-format
 msgid "Cannot parse result image"
 msgstr "Nelze udělat rozbor obrázku s výsledkem"
 
-#: step/toolgraphics.cc:788
+#: step/toolgraphics.cc:776
 #, kde-format
 msgid "Object name"
 msgstr "Název objektu"
 
-#: step/toolgraphics.cc:793
+#: step/toolgraphics.cc:781
 #, kde-format
 msgid "Property name"
 msgstr "Název vlastnosti"
 
-#: step/toolgraphics.cc:799
+#: step/toolgraphics.cc:787
 #, kde-format
 msgid "Vector index"
 msgstr "Vektorový index"
 
-#: step/toolgraphics.cc:988 step/toolgraphics.cc:996 step/toolgraphics.cc:1489
+#: step/toolgraphics.cc:976 step/toolgraphics.cc:984 step/toolgraphics.cc:1477
 #, kde-format
 msgid "%1.%2"
 msgstr "%1.%2"
 
-#: step/toolgraphics.cc:989 step/toolgraphics.cc:997 step/toolgraphics.cc:1490
+#: step/toolgraphics.cc:977 step/toolgraphics.cc:985 step/toolgraphics.cc:1478
 #, kde-format
 msgid "[%1]"
 msgstr "[%1]"
 
-#: step/toolgraphics.cc:993 step/toolgraphics.cc:1001 step/toolgraphics.cc:1494
+#: step/toolgraphics.cc:981 step/toolgraphics.cc:989 step/toolgraphics.cc:1482
 #, kde-format
 msgid "[not configured]"
 msgstr "[nenastaveno]"
 
-#: step/toolgraphics.cc:1089
+#: step/toolgraphics.cc:1077
 #, kde-format
 msgid "Clear Graph"
 msgstr ""
 
-#: step/toolgraphics.cc:1090
+#: step/toolgraphics.cc:1078
 #, kde-format
 msgid "Configure Graph..."
 msgstr ""
 
-#: step/toolgraphics.cc:1108
+#: step/toolgraphics.cc:1096
 #, kde-format
 msgctxt "@title:window"
 msgid "Configure Graph"
 msgstr ""
 
-#: step/toolgraphics.cc:1184 step/toolgraphics.cc:1383
-#: step/toolgraphics.cc:1721
+#: step/toolgraphics.cc:1172 step/toolgraphics.cc:1371
+#: step/toolgraphics.cc:1709
 #, kde-format
 msgid "Edit properties of %1"
 msgstr "Upravit vlastnosti %1"
 
-#: step/toolgraphics.cc:1236
+#: step/toolgraphics.cc:1224
 #, kde-format
 msgid "Clear graph %1"
 msgstr "Smazat graf %1"
 
-#: step/toolgraphics.cc:1317
+#: step/toolgraphics.cc:1305
 #, kde-format
 msgid "Configure Meter..."
 msgstr ""
 
-#: step/toolgraphics.cc:1335
+#: step/toolgraphics.cc:1323
 #, kde-format
 msgctxt "@title:window"
 msgid "Configure Meter"
 msgstr ""
 
-#: step/toolgraphics.cc:1432 step/toolgraphics.cc:1629
+#: step/toolgraphics.cc:1420 step/toolgraphics.cc:1617
 #, kde-format
 msgid "Increase Value"
 msgstr "Zvýšit hodnotu"
 
-#: step/toolgraphics.cc:1433 step/toolgraphics.cc:1630
+#: step/toolgraphics.cc:1421 step/toolgraphics.cc:1618
 #, kde-format
 msgid "Decrease Value"
 msgstr "Snížit hodnotu"
 
-#: step/toolgraphics.cc:1463 step/toolgraphics.cc:1758
+#: step/toolgraphics.cc:1451 step/toolgraphics.cc:1746
 #, kde-format
 msgid "Decrease controller %1"
 msgstr "Ovladač snížení %1"
 
-#: step/toolgraphics.cc:1472 step/toolgraphics.cc:1767
+#: step/toolgraphics.cc:1460 step/toolgraphics.cc:1755
 #, kde-format
 msgid "Increase controller %1"
 msgstr "Ovladač zvýšení %1"
 
-#: step/toolgraphics.cc:1606
+#: step/toolgraphics.cc:1594
 #, kde-format
 msgid "Change controller %1"
 msgstr "Ovladač změn %1"
 
-#: step/toolgraphics.cc:1632
+#: step/toolgraphics.cc:1620
 #, kde-format
 msgid "Configure Controller..."
 msgstr ""
 
-#: step/toolgraphics.cc:1650
+#: step/toolgraphics.cc:1638
 #, kde-format
 msgctxt "@title:window"
 msgid "Configure Controller"
 msgstr ""
 
-#: step/toolgraphics.cc:1911
+#: step/toolgraphics.cc:1899
 #, kde-format
 msgid "Clear Trace"
 msgstr ""
 
-#: step/toolgraphics.cc:1920
+#: step/toolgraphics.cc:1908
 #, kde-format
 msgid "Clear tracer %1"
 msgstr "Smazat sledovač %1"
 
-#: step/undobrowser.cc:30
+#: step/undobrowser.cc:18
 #, kde-format
 msgid "Undo History"
 msgstr "Historie činností"
 
-#: step/worldbrowser.cc:62
+#: step/worldbrowser.cc:50
 #, kde-format
 msgctxt "Object list"
 msgid "World"
 msgstr "Svět"
 
-#: step/worldgraphics.cc:102
+#: step/worldgraphics.cc:90
 #, kde-format
 msgid ""
 "Press left mouse button to position first end of a %1\n"
@@ -1236,77 +1236,77 @@ msgstr ""
 "Stiskněte levé tlačítko myši, abyste umístili první konec %1.\n"
 "Potom táhněte a uvolněte tlačítko nad místem druhého konce"
 
-#: step/worldgraphics.cc:130
+#: step/worldgraphics.cc:118
 #, kde-format
 msgid "Release left mouse button to position second end of the %1"
 msgstr "Uvolněte levé tlačítko myši, abyste umístili druhý konec %1"
 
-#: step/worldmodel.cc:641
+#: step/worldmodel.cc:629
 #, kde-format
 msgid "Delete %1"
 msgstr "Smazat %1"
 
-#: step/worldmodel.cc:642
+#: step/worldmodel.cc:630
 #, kde-format
 msgid "Delete several items"
 msgstr "Smazat několik položek"
 
-#: step/worldmodel.cc:713 step/worldmodel.cc:720
+#: step/worldmodel.cc:701 step/worldmodel.cc:708
 #, kde-format
 msgid "<no object>"
 msgstr "<no object>"
 
-#: step/worldmodel.cc:715
+#: step/worldmodel.cc:703
 #, kde-format
 msgid "<unnamed>"
 msgstr "<unnamed>"
 
-#: step/worldmodel.cc:721
+#: step/worldmodel.cc:709
 #, kde-format
 msgid "%1: %2"
 msgstr "%1: %2"
 
-#: step/worldmodel.cc:793
+#: step/worldmodel.cc:781
 #, kde-format
 msgid "<nobr><h4><u>%1</u></h4></nobr>"
 msgstr "<nobr><h4><u>%1</u></h4></nobr>"
 
-#: step/worldmodel.cc:821
+#: step/worldmodel.cc:809
 #, kde-format
 msgid "<tr><td>%1&nbsp;&nbsp;</td><td>%2</td></tr>"
 msgstr "<tr><td>%1&nbsp;&nbsp;</td><td>%2</td></tr>"
 
-#: step/worldmodel.cc:1019
+#: step/worldmodel.cc:1007
 #, kde-format
 msgid "Simulate %1 → %2"
 msgstr "Napodobit %1 → %2"
 
-#: step/worldmodel.cc:1072
+#: step/worldmodel.cc:1060
 #, kde-format
 msgid "Cut %1"
 msgstr "Vyjmout %1"
 
-#: step/worldmodel.cc:1073
+#: step/worldmodel.cc:1061
 #, kde-format
 msgid "Cut several items"
 msgstr "Vyjmuto několik položek"
 
-#: step/worldmodel.cc:1095
+#: step/worldmodel.cc:1083
 #, kde-format
 msgid "Pasted %1"
 msgstr "Vloženo %1"
 
-#: step/worldmodel.cc:1096
+#: step/worldmodel.cc:1084
 #, kde-format
 msgid "Pasted several items"
 msgstr "Vloženo několik položek"
 
-#: step/worldscene.cc:260
+#: step/worldscene.cc:248
 #, kde-format
 msgid "Objects under mouse:"
 msgstr "Objekty pod myší:"
 
-#: step/worldscene.cc:265
+#: step/worldscene.cc:253
 #, kde-format
 msgid "... (1 more item)"
 msgid_plural "... (%1 more items)"

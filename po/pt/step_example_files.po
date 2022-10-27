@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: step\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2022-10-26 00:42+0000\n"
-"PO-Revision-Date: 2019-11-30 10:08+0000\n"
+"PO-Revision-Date: 2022-10-26 22:17+0100\n"
 "Last-Translator: José Nuno Coelho Pires <zepires@gmail.com>\n"
 "Language-Team: Portuguese <kde-i18n-pt@kde.org>\n"
 "Language: pt\n"
@@ -1780,11 +1780,10 @@ msgid "- A pin is a joint that fixes one point of the body."
 msgstr "- Um pino é uma junta que fixa um ponto do corpo."
 
 #: tutorials/tutorial5.step:118
-#, fuzzy, kde-format
-#| msgctxt "HTML:p"
-#| msgid "- A pin is a joint that fixes one point of the body."
+#, kde-format
 msgctxt "HTML:p"
 msgid ""
 "- A stick is a joint that fixes the distance between two points on two "
 "bodies."
-msgstr "- Um pino é uma junta que fixa um ponto do corpo."
+msgstr ""
+"- Um pau é uma junta que fixa a distância entre dois pontos em dois corpos."

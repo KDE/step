@@ -22,21 +22,21 @@ msgstr ""
 "20)) ? 1 : 2;\n"
 "X-Qt-Contexts: true\n"
 
-#: body.cc:26
+#: body.cc:13
 #, fuzzy
 #| msgid "Body"
 msgctxt "ObjectClass|"
 msgid "Body"
 msgstr "Corp"
 
-#: body.cc:26
+#: body.cc:13
 #, fuzzy
 #| msgid "Body"
 msgctxt "ObjectDescription|"
 msgid "Body"
 msgstr "Corp"
 
-#: collisionsolver.cc:31
+#: collisionsolver.cc:19
 #, fuzzy
 #| msgctxt "ObjectClass"
 #| msgid "CollisionSolver"
@@ -44,14 +44,14 @@ msgctxt "ObjectClass|"
 msgid "CollisionSolver"
 msgstr "CollisionSolver"
 
-#: collisionsolver.cc:32 solver.cc:28
+#: collisionsolver.cc:20 solver.cc:16
 #, fuzzy
 #| msgid "Allowed absolute tolerance"
 msgctxt "PropertyDescription|"
 msgid "Allowed absolute tolerance"
 msgstr "Toleranța absolută permisă"
 
-#: collisionsolver.cc:32 solver.cc:28
+#: collisionsolver.cc:20 solver.cc:16
 #, fuzzy
 #| msgctxt "PropertyName"
 #| msgid "toleranceAbs"
@@ -59,14 +59,14 @@ msgctxt "PropertyName|"
 msgid "toleranceAbs"
 msgstr "toleranceAbs"
 
-#: collisionsolver.cc:33 solver.cc:31
+#: collisionsolver.cc:21 solver.cc:19
 #, fuzzy
 #| msgid "Maximal local error during last step"
 msgctxt "PropertyDescription|"
 msgid "Maximal local error during last step"
 msgstr "Eroarea locală maximă în timpul ultimului pas"
 
-#: collisionsolver.cc:33 solver.cc:31
+#: collisionsolver.cc:21 solver.cc:19
 #, fuzzy
 #| msgctxt "PropertyName"
 #| msgid "localError"
@@ -74,7 +74,7 @@ msgctxt "PropertyName|"
 msgid "localError"
 msgstr "localError"
 
-#: collisionsolver.cc:35
+#: collisionsolver.cc:23
 #, fuzzy
 #| msgctxt "ObjectClass"
 #| msgid "GJKCollisionSolver"
@@ -82,7 +82,7 @@ msgctxt "ObjectClass|"
 msgid "GJKCollisionSolver"
 msgstr "GJKCollisionSolver"
 
-#: constraintsolver.cc:31
+#: constraintsolver.cc:19
 #, fuzzy
 #| msgctxt "ObjectClass"
 #| msgid "ConstraintSolver"
@@ -90,7 +90,7 @@ msgctxt "ObjectClass|"
 msgid "ConstraintSolver"
 msgstr "ConstraintSolver"
 
-#: constraintsolver.cc:35
+#: constraintsolver.cc:23
 #, fuzzy
 #| msgctxt "ObjectClass"
 #| msgid "CGConstraintSolver"
@@ -98,7 +98,7 @@ msgctxt "ObjectClass|"
 msgid "CGConstraintSolver"
 msgstr "CGConstraintSolver"
 
-#: coulombforce.cc:26
+#: coulombforce.cc:14
 #, fuzzy
 #| msgctxt "ObjectClass"
 #| msgid "CoulombForce"
@@ -106,14 +106,14 @@ msgctxt "ObjectClass|"
 msgid "CoulombForce"
 msgstr "CoulombForce"
 
-#: coulombforce.cc:26
+#: coulombforce.cc:14
 #, fuzzy
 #| msgid "Coulomb force"
 msgctxt "ObjectDescription|"
 msgid "Coulomb force"
 msgstr "Forță Coulomb"
 
-#: coulombforce.cc:28
+#: coulombforce.cc:16
 #, fuzzy
 #| msgctxt "PropertyName"
 #| msgid "coulombConst"
@@ -121,7 +121,7 @@ msgctxt "PropertyName|"
 msgid "coulombConst"
 msgstr "coulombConst"
 
-#: coulombforce.cc:28 coulombforce.cc:33
+#: coulombforce.cc:16 coulombforce.cc:21
 #, fuzzy
 #| msgctxt "Units"
 #| msgid "N m²/C²"
@@ -129,14 +129,14 @@ msgctxt "Units|"
 msgid "N m²/C²"
 msgstr "N m²/C²"
 
-#: coulombforce.cc:29
+#: coulombforce.cc:17
 #, fuzzy
 #| msgid "Coulomb constant"
 msgctxt "PropertyDescription|"
 msgid "Coulomb constant"
 msgstr "constanta Coulomb"
 
-#: coulombforce.cc:31
+#: coulombforce.cc:19
 #, fuzzy
 #| msgctxt "ObjectClass"
 #| msgid "CoulombForceErrors"
@@ -144,14 +144,14 @@ msgctxt "ObjectClass|"
 msgid "CoulombForceErrors"
 msgstr "CoulombForceErrors"
 
-#: coulombforce.cc:31
+#: coulombforce.cc:19
 #, fuzzy
 #| msgid "Errors class for CoulombForce"
 msgctxt "ObjectDescription|"
 msgid "Errors class for CoulombForce"
 msgstr "Clasă de erori pentru forțăCoulomb"
 
-#: coulombforce.cc:33
+#: coulombforce.cc:21
 #, fuzzy
 #| msgctxt "PropertyName"
 #| msgid "coulombConstVariance"
@@ -159,14 +159,14 @@ msgctxt "PropertyName|"
 msgid "coulombConstVariance"
 msgstr "coulombConstVariance"
 
-#: coulombforce.cc:34
+#: coulombforce.cc:22
 #, fuzzy
 #| msgid "Coulomb constant variance"
 msgctxt "PropertyDescription|"
 msgid "Coulomb constant variance"
 msgstr "Variație constantă Coulomb"
 
-#: eulersolver.cc:27
+#: eulersolver.cc:15
 #, fuzzy
 #| msgctxt "ObjectClass"
 #| msgid "GenericEulerSolver"
@@ -174,14 +174,14 @@ msgctxt "ObjectClass|"
 msgid "GenericEulerSolver"
 msgstr "GenericEulerSolver"
 
-#: eulersolver.cc:27
+#: eulersolver.cc:15
 #, fuzzy
 #| msgid "Generic Euler solver"
 msgctxt "ObjectDescription|"
 msgid "Generic Euler solver"
 msgstr "Solver Euler generic"
 
-#: eulersolver.cc:28
+#: eulersolver.cc:16
 #, fuzzy
 #| msgctxt "ObjectClass"
 #| msgid "EulerSolver"
@@ -189,14 +189,14 @@ msgctxt "ObjectClass|"
 msgid "EulerSolver"
 msgstr "EulerSolver"
 
-#: eulersolver.cc:28
+#: eulersolver.cc:16
 #, fuzzy
 #| msgid "Non-adaptive Euler solver"
 msgctxt "ObjectDescription|"
 msgid "Non-adaptive Euler solver"
 msgstr "Solver Euler non-adaptiv"
 
-#: eulersolver.cc:29
+#: eulersolver.cc:17
 #, fuzzy
 #| msgctxt "ObjectClass"
 #| msgid "AdaptiveEulerSolver"
@@ -204,28 +204,28 @@ msgctxt "ObjectClass|"
 msgid "AdaptiveEulerSolver"
 msgstr "AdaptiveEulerSolver"
 
-#: eulersolver.cc:29
+#: eulersolver.cc:17
 #, fuzzy
 #| msgid "Adaptive Euler solver"
 msgctxt "ObjectDescription|"
 msgid "Adaptive Euler solver"
 msgstr "Solver Euler adaptiv"
 
-#: force.cc:27
+#: force.cc:14
 #, fuzzy
 #| msgid "Force"
 msgctxt "ObjectClass|"
 msgid "Force"
 msgstr "Forță"
 
-#: force.cc:27
+#: force.cc:14
 #, fuzzy
 #| msgid "Force"
 msgctxt "ObjectDescription|"
 msgid "Force"
 msgstr "Forță"
 
-#: gas.cc:27
+#: gas.cc:15
 #, fuzzy
 #| msgctxt "ObjectClass"
 #| msgid "GasParticle"
@@ -233,14 +233,14 @@ msgctxt "ObjectClass|"
 msgid "GasParticle"
 msgstr "GasParticle"
 
-#: gas.cc:27
+#: gas.cc:15
 #, fuzzy
 #| msgid "Gas particle"
 msgctxt "ObjectDescription|"
 msgid "Gas particle"
 msgstr "Particulă de gaz"
 
-#: gas.cc:29
+#: gas.cc:17
 #, fuzzy
 #| msgctxt "ObjectClass"
 #| msgid "GasLJForce"
@@ -248,21 +248,21 @@ msgctxt "ObjectClass|"
 msgid "GasLJForce"
 msgstr "GasLJForce"
 
-#: gas.cc:29
+#: gas.cc:17
 #, fuzzy
 #| msgid "Lennard-Jones force"
 msgctxt "ObjectDescription|"
 msgid "Lennard-Jones force"
 msgstr "Forță Lennard-Jones"
 
-#: gas.cc:31
+#: gas.cc:19
 #, fuzzy
 #| msgid "Potential depth"
 msgctxt "PropertyDescription|"
 msgid "Potential depth"
 msgstr "Adâncime potențială"
 
-#: gas.cc:31
+#: gas.cc:19
 #, fuzzy
 #| msgctxt "PropertyName"
 #| msgid "depth"
@@ -270,8 +270,8 @@ msgctxt "PropertyName|"
 msgid "depth"
 msgstr "depth"
 
-#: gas.cc:31 gas.cc:37 gas.cc:59 gas.cc:74 particle.cc:37 particle.cc:53
-#: rigidbody.cc:49 rigidbody.cc:80
+#: gas.cc:19 gas.cc:25 gas.cc:47 gas.cc:62 particle.cc:25 particle.cc:41
+#: rigidbody.cc:37 rigidbody.cc:68
 #, fuzzy
 #| msgctxt "Units"
 #| msgid "J"
@@ -279,14 +279,14 @@ msgctxt "Units|"
 msgid "J"
 msgstr "J"
 
-#: gas.cc:32
+#: gas.cc:20
 #, fuzzy
 #| msgid "Distance at which the force is zero"
 msgctxt "PropertyDescription|"
 msgid "Distance at which the force is zero"
 msgstr "Distanța la care forța este zero"
 
-#: gas.cc:32
+#: gas.cc:20
 #, fuzzy
 #| msgctxt "PropertyName"
 #| msgid "rmin"
@@ -294,15 +294,15 @@ msgctxt "PropertyName|"
 msgid "rmin"
 msgstr "rmin"
 
-#: gas.cc:32 gas.cc:33 gas.cc:39 gas.cc:45 gas.cc:47 joints.cc:29 joints.cc:35
-#: joints.cc:36 joints.cc:40 joints.cc:43 joints.cc:45 joints.cc:47
-#: joints.cc:48 motor.cc:30 motor.cc:36 particle.cc:29 particle.cc:41
-#: rigidbody.cc:28 rigidbody.cc:53 rigidbody.cc:84 rigidbody.cc:89
-#: rigidbody.cc:92 softbody.cc:36 spring.cc:30 spring.cc:31 spring.cc:36
-#: spring.cc:38 spring.cc:40 spring.cc:41 spring.cc:47 spring.cc:49
-#: spring.cc:55 spring.cc:57 spring.cc:59 spring.cc:61 tool.cc:38 tool.cc:39
-#: tool.cc:45 tool.cc:46 tool.cc:67 tool.cc:68 tool.cc:79 tool.cc:80 tool.cc:98
-#: tool.cc:100 tool.cc:101
+#: gas.cc:20 gas.cc:21 gas.cc:27 gas.cc:33 gas.cc:35 joints.cc:17 joints.cc:23
+#: joints.cc:24 joints.cc:28 joints.cc:31 joints.cc:33 joints.cc:35
+#: joints.cc:36 motor.cc:18 motor.cc:24 particle.cc:17 particle.cc:29
+#: rigidbody.cc:16 rigidbody.cc:41 rigidbody.cc:72 rigidbody.cc:77
+#: rigidbody.cc:80 softbody.cc:24 spring.cc:18 spring.cc:19 spring.cc:24
+#: spring.cc:26 spring.cc:28 spring.cc:29 spring.cc:35 spring.cc:37
+#: spring.cc:43 spring.cc:45 spring.cc:47 spring.cc:49 tool.cc:26 tool.cc:27
+#: tool.cc:33 tool.cc:34 tool.cc:55 tool.cc:56 tool.cc:67 tool.cc:68 tool.cc:86
+#: tool.cc:88 tool.cc:89
 #, fuzzy
 #| msgctxt "Units"
 #| msgid "m"
@@ -310,14 +310,14 @@ msgctxt "Units|"
 msgid "m"
 msgstr "m"
 
-#: gas.cc:33
+#: gas.cc:21
 #, fuzzy
 #| msgid "Cut-off distance"
 msgctxt "PropertyDescription|"
 msgid "Cut-off distance"
 msgstr "Distanță întrerupere"
 
-#: gas.cc:33
+#: gas.cc:21
 #, fuzzy
 #| msgctxt "PropertyName"
 #| msgid "cutoff"
@@ -325,7 +325,7 @@ msgctxt "PropertyName|"
 msgid "cutoff"
 msgstr "cutoff"
 
-#: gas.cc:35
+#: gas.cc:23
 #, fuzzy
 #| msgctxt "ObjectClass"
 #| msgid "GasLJForceErrors"
@@ -333,14 +333,14 @@ msgctxt "ObjectClass|"
 msgid "GasLJForceErrors"
 msgstr "GasLJForceErrors"
 
-#: gas.cc:35
+#: gas.cc:23
 #, fuzzy
 #| msgid "Errors class for GasLJForce"
 msgctxt "ObjectDescription|"
 msgid "Errors class for GasLJForce"
 msgstr "Clasă de erori pentru forțăGazLJ"
 
-#: gas.cc:37
+#: gas.cc:25
 #, fuzzy
 #| msgctxt "PropertyName"
 #| msgid "depthVariance"
@@ -348,14 +348,14 @@ msgctxt "PropertyName|"
 msgid "depthVariance"
 msgstr "depthVariance"
 
-#: gas.cc:38
+#: gas.cc:26
 #, fuzzy
 #| msgid "Potential depth variance"
 msgctxt "PropertyDescription|"
 msgid "Potential depth variance"
 msgstr "Variație adâcime potențială"
 
-#: gas.cc:39
+#: gas.cc:27
 #, fuzzy
 #| msgctxt "PropertyName"
 #| msgid "rminVariance"
@@ -363,14 +363,14 @@ msgctxt "PropertyName|"
 msgid "rminVariance"
 msgstr "rminVariance"
 
-#: gas.cc:40
+#: gas.cc:28
 #, fuzzy
 #| msgid "Variance of the distance at which the force is zero"
 msgctxt "PropertyDescription|"
 msgid "Variance of the distance at which the force is zero"
 msgstr "Variația distanței la care forța este zero"
 
-#: gas.cc:44
+#: gas.cc:32
 #, fuzzy
 #| msgctxt "ObjectClass"
 #| msgid "Gas"
@@ -378,14 +378,14 @@ msgctxt "ObjectClass|"
 msgid "Gas"
 msgstr "Gas"
 
-#: gas.cc:44
+#: gas.cc:32
 #, fuzzy
 #| msgid "Particle gas"
 msgctxt "ObjectDescription|"
 msgid "Particle gas"
 msgstr "Gaz de particule"
 
-#: gas.cc:45
+#: gas.cc:33
 #, fuzzy
 #| msgctxt "PropertyName"
 #| msgid "measureRectCenter"
@@ -393,14 +393,14 @@ msgctxt "PropertyName|"
 msgid "measureRectCenter"
 msgstr "measureRectCenter"
 
-#: gas.cc:46
+#: gas.cc:34
 #, fuzzy
 #| msgid "Center of the rect for measurements"
 msgctxt "PropertyDescription|"
 msgid "Center of the rect for measurements"
 msgstr "Centrul dreptunghiului pentru măsurători"
 
-#: gas.cc:47
+#: gas.cc:35
 #, fuzzy
 #| msgctxt "PropertyName"
 #| msgid "measureRectSize"
@@ -408,14 +408,14 @@ msgctxt "PropertyName|"
 msgid "measureRectSize"
 msgstr "measureRectSize"
 
-#: gas.cc:48
+#: gas.cc:36
 #, fuzzy
 #| msgid "Size of the rect for measurements"
 msgctxt "PropertyDescription|"
 msgid "Size of the rect for measurements"
 msgstr "Mărimea dreptunghiului pentru măsurători"
 
-#: gas.cc:49
+#: gas.cc:37
 #, fuzzy
 #| msgctxt "PropertyName"
 #| msgid "rectVolume"
@@ -423,7 +423,7 @@ msgctxt "PropertyName|"
 msgid "rectVolume"
 msgstr "rectVolume"
 
-#: gas.cc:49
+#: gas.cc:37
 #, fuzzy
 #| msgctxt "Units"
 #| msgid "m²"
@@ -431,14 +431,14 @@ msgctxt "Units|"
 msgid "m²"
 msgstr "m²"
 
-#: gas.cc:50
+#: gas.cc:38
 #, fuzzy
 #| msgid "Volume of the measureRect"
 msgctxt "PropertyDescription|"
 msgid "Volume of the measureRect"
 msgstr "Volumul pentru măsurăDrept"
 
-#: gas.cc:51
+#: gas.cc:39
 #, fuzzy
 #| msgctxt "PropertyName"
 #| msgid "rectParticleCount"
@@ -446,14 +446,14 @@ msgctxt "PropertyName|"
 msgid "rectParticleCount"
 msgstr "rectParticleCount"
 
-#: gas.cc:52
+#: gas.cc:40
 #, fuzzy
 #| msgid "Count of particles in the measureRect"
 msgctxt "PropertyDescription|"
 msgid "Count of particles in the measureRect"
 msgstr "Numărul particulelor din măsurăDrept"
 
-#: gas.cc:53
+#: gas.cc:41
 #, fuzzy
 #| msgctxt "PropertyName"
 #| msgid "rectConcentration"
@@ -461,7 +461,7 @@ msgctxt "PropertyName|"
 msgid "rectConcentration"
 msgstr "rectConcentration"
 
-#: gas.cc:53
+#: gas.cc:41
 #, fuzzy
 #| msgctxt "Units"
 #| msgid "1/m²"
@@ -469,14 +469,14 @@ msgctxt "Units|"
 msgid "1/m²"
 msgstr "1/m²"
 
-#: gas.cc:54
+#: gas.cc:42
 #, fuzzy
 #| msgid "Concentration of particles in the measureRect"
 msgctxt "PropertyDescription|"
 msgid "Concentration of particles in the measureRect"
 msgstr "Concentrația particulelor din măsurăDrept"
 
-#: gas.cc:55
+#: gas.cc:43
 #, fuzzy
 #| msgctxt "PropertyName"
 #| msgid "rectPressure"
@@ -484,7 +484,7 @@ msgctxt "PropertyName|"
 msgid "rectPressure"
 msgstr "rectPressure"
 
-#: gas.cc:55 gas.cc:70
+#: gas.cc:43 gas.cc:58
 #, fuzzy
 #| msgctxt "Units"
 #| msgid "Pa"
@@ -492,14 +492,14 @@ msgctxt "Units|"
 msgid "Pa"
 msgstr "Pa"
 
-#: gas.cc:56
+#: gas.cc:44
 #, fuzzy
 #| msgid "Pressure of particles in the measureRect"
 msgctxt "PropertyDescription|"
 msgid "Pressure of particles in the measureRect"
 msgstr "Presiunea particulelor din măsurăDrept"
 
-#: gas.cc:57
+#: gas.cc:45
 #, fuzzy
 #| msgctxt "PropertyName"
 #| msgid "rectTemperature"
@@ -507,7 +507,7 @@ msgctxt "PropertyName|"
 msgid "rectTemperature"
 msgstr "rectTemperature"
 
-#: gas.cc:57 gas.cc:72
+#: gas.cc:45 gas.cc:60
 #, fuzzy
 #| msgctxt "Units"
 #| msgid "K"
@@ -515,14 +515,14 @@ msgctxt "Units|"
 msgid "K"
 msgstr "K"
 
-#: gas.cc:58
+#: gas.cc:46
 #, fuzzy
 #| msgid "Temperature of particles in the measureRect"
 msgctxt "PropertyDescription|"
 msgid "Temperature of particles in the measureRect"
 msgstr "Temperatura particulelor din măsurăDrept"
 
-#: gas.cc:59
+#: gas.cc:47
 #, fuzzy
 #| msgctxt "PropertyName"
 #| msgid "rectMeanKineticEnergy"
@@ -530,14 +530,14 @@ msgctxt "PropertyName|"
 msgid "rectMeanKineticEnergy"
 msgstr "rectMeanKineticEnergy"
 
-#: gas.cc:60
+#: gas.cc:48
 #, fuzzy
 #| msgid "Mean kinetic energy of particles in the measureRect"
 msgctxt "PropertyDescription|"
 msgid "Mean kinetic energy of particles in the measureRect"
 msgstr "Energia cinetică medie a particulelor din măsurăDrept"
 
-#: gas.cc:61
+#: gas.cc:49
 #, fuzzy
 #| msgctxt "PropertyName"
 #| msgid "rectMeanVelocity"
@@ -545,8 +545,8 @@ msgctxt "PropertyName|"
 msgid "rectMeanVelocity"
 msgstr "rectMeanVelocity"
 
-#: gas.cc:61 gas.cc:76 particle.cc:30 particle.cc:43 rigidbody.cc:31
-#: rigidbody.cc:58 softbody.cc:38
+#: gas.cc:49 gas.cc:64 particle.cc:18 particle.cc:31 rigidbody.cc:19
+#: rigidbody.cc:46 softbody.cc:26
 #, fuzzy
 #| msgctxt "Units"
 #| msgid "m/s"
@@ -554,14 +554,14 @@ msgctxt "Units|"
 msgid "m/s"
 msgstr "m/s"
 
-#: gas.cc:62
+#: gas.cc:50
 #, fuzzy
 #| msgid "Mean velocity of particles in the measureRect"
 msgctxt "PropertyDescription|"
 msgid "Mean velocity of particles in the measureRect"
 msgstr "Viteza medie a particulelor din măsurăDrept"
 
-#: gas.cc:63
+#: gas.cc:51
 #, fuzzy
 #| msgctxt "PropertyName"
 #| msgid "rectMeanParticleMass"
@@ -569,8 +569,8 @@ msgctxt "PropertyName|"
 msgid "rectMeanParticleMass"
 msgstr "rectMeanParticleMass"
 
-#: gas.cc:63 gas.cc:65 gas.cc:78 gas.cc:80 particle.cc:34 particle.cc:49
-#: particle.cc:61 rigidbody.cc:42 rigidbody.cc:71 softbody.cc:50
+#: gas.cc:51 gas.cc:53 gas.cc:66 gas.cc:68 particle.cc:22 particle.cc:37
+#: particle.cc:49 rigidbody.cc:30 rigidbody.cc:59 softbody.cc:38
 #, fuzzy
 #| msgctxt "Units"
 #| msgid "kg"
@@ -578,14 +578,14 @@ msgctxt "Units|"
 msgid "kg"
 msgstr "kg"
 
-#: gas.cc:64
+#: gas.cc:52
 #, fuzzy
 #| msgid "Mean mass of particles in the measureRect"
 msgctxt "PropertyDescription|"
 msgid "Mean mass of particles in the measureRect"
 msgstr "Masa medie a particulelor din măsurăDrept"
 
-#: gas.cc:65
+#: gas.cc:53
 #, fuzzy
 #| msgctxt "PropertyName"
 #| msgid "rectMass"
@@ -593,14 +593,14 @@ msgctxt "PropertyName|"
 msgid "rectMass"
 msgstr "rectMass"
 
-#: gas.cc:66
+#: gas.cc:54
 #, fuzzy
 #| msgid "Total mass of particles in the measureRect"
 msgctxt "PropertyDescription|"
 msgid "Total mass of particles in the measureRect"
 msgstr "Masa totală a particulelor din măsurăDrept"
 
-#: gas.cc:69
+#: gas.cc:57
 #, fuzzy
 #| msgctxt "ObjectClass"
 #| msgid "GasErrors"
@@ -608,14 +608,14 @@ msgctxt "ObjectClass|"
 msgid "GasErrors"
 msgstr "GasErrors"
 
-#: gas.cc:69
+#: gas.cc:57
 #, fuzzy
 #| msgid "Errors class for Gas"
 msgctxt "ObjectDescription|"
 msgid "Errors class for Gas"
 msgstr "Clasă de erori pentru gaz"
 
-#: gas.cc:70
+#: gas.cc:58
 #, fuzzy
 #| msgctxt "PropertyName"
 #| msgid "rectPressureVariance"
@@ -623,14 +623,14 @@ msgctxt "PropertyName|"
 msgid "rectPressureVariance"
 msgstr "rectPressureVariance"
 
-#: gas.cc:71
+#: gas.cc:59
 #, fuzzy
 #| msgid "Variance of pressure of particles in the measureRect"
 msgctxt "PropertyDescription|"
 msgid "Variance of pressure of particles in the measureRect"
 msgstr "Variație presiune a particulelor din măsurăDrept"
 
-#: gas.cc:72
+#: gas.cc:60
 #, fuzzy
 #| msgctxt "PropertyName"
 #| msgid "rectTemperatureVariance"
@@ -638,14 +638,14 @@ msgctxt "PropertyName|"
 msgid "rectTemperatureVariance"
 msgstr "rectTemperatureVariance"
 
-#: gas.cc:73
+#: gas.cc:61
 #, fuzzy
 #| msgid "Variance of temperature of particles in the measureRect"
 msgctxt "PropertyDescription|"
 msgid "Variance of temperature of particles in the measureRect"
 msgstr "Variație temperatură a particulelor din măsurăDrept"
 
-#: gas.cc:74
+#: gas.cc:62
 #, fuzzy
 #| msgctxt "PropertyName"
 #| msgid "rectMeanKineticEnergyVariance"
@@ -653,14 +653,14 @@ msgctxt "PropertyName|"
 msgid "rectMeanKineticEnergyVariance"
 msgstr "rectMeanKineticEnergyVariance"
 
-#: gas.cc:75
+#: gas.cc:63
 #, fuzzy
 #| msgid "Variance of mean kinetic energy of particles in the measureRect"
 msgctxt "PropertyDescription|"
 msgid "Variance of mean kinetic energy of particles in the measureRect"
 msgstr "Variație energie cinetică medie a particulelor din măsurăDrept"
 
-#: gas.cc:76
+#: gas.cc:64
 #, fuzzy
 #| msgctxt "PropertyName"
 #| msgid "rectMeanVelocityVariance"
@@ -668,14 +668,14 @@ msgctxt "PropertyName|"
 msgid "rectMeanVelocityVariance"
 msgstr "rectMeanVelocityVariance"
 
-#: gas.cc:77
+#: gas.cc:65
 #, fuzzy
 #| msgid "Variance of mean velocity of particles in the measureRect"
 msgctxt "PropertyDescription|"
 msgid "Variance of mean velocity of particles in the measureRect"
 msgstr "Variație viteză medie a particulelor din măsurăDrept"
 
-#: gas.cc:78
+#: gas.cc:66
 #, fuzzy
 #| msgctxt "PropertyName"
 #| msgid "rectMeanParticleMassVariance"
@@ -683,14 +683,14 @@ msgctxt "PropertyName|"
 msgid "rectMeanParticleMassVariance"
 msgstr "rectMeanParticleMassVariance"
 
-#: gas.cc:79
+#: gas.cc:67
 #, fuzzy
 #| msgid "Variance of mean mass of particles in the measureRect"
 msgctxt "PropertyDescription|"
 msgid "Variance of mean mass of particles in the measureRect"
 msgstr "Variație masă medie a particulelor din măsurăDrept"
 
-#: gas.cc:80
+#: gas.cc:68
 #, fuzzy
 #| msgctxt "PropertyName"
 #| msgid "rectMassVariance"
@@ -698,14 +698,14 @@ msgctxt "PropertyName|"
 msgid "rectMassVariance"
 msgstr "rectMassVariance"
 
-#: gas.cc:81
+#: gas.cc:69
 #, fuzzy
 #| msgid "Variance of total mass of particles in the measureRect"
 msgctxt "PropertyDescription|"
 msgid "Variance of total mass of particles in the measureRect"
 msgstr "Variație masă totală a particulelor din măsurăDrept"
 
-#: gravitation.cc:27
+#: gravitation.cc:15
 #, fuzzy
 #| msgctxt "ObjectClass"
 #| msgid "GravitationForce"
@@ -713,14 +713,14 @@ msgctxt "ObjectClass|"
 msgid "GravitationForce"
 msgstr "GravitationForce"
 
-#: gravitation.cc:27
+#: gravitation.cc:15
 #, fuzzy
 #| msgid "Gravitation force"
 msgctxt "ObjectDescription|"
 msgid "Gravitation force"
 msgstr "Forță de gravitație"
 
-#: gravitation.cc:29
+#: gravitation.cc:17
 #, fuzzy
 #| msgctxt "PropertyName"
 #| msgid "gravitationConst"
@@ -728,7 +728,7 @@ msgctxt "PropertyName|"
 msgid "gravitationConst"
 msgstr "gravitationConst"
 
-#: gravitation.cc:29 gravitation.cc:34
+#: gravitation.cc:17 gravitation.cc:22
 #, fuzzy
 #| msgctxt "Units"
 #| msgid "N m²/kg²"
@@ -736,14 +736,14 @@ msgctxt "Units|"
 msgid "N m²/kg²"
 msgstr "N m²/kg²"
 
-#: gravitation.cc:30
+#: gravitation.cc:18
 #, fuzzy
 #| msgid "Gravitation constant"
 msgctxt "PropertyDescription|"
 msgid "Gravitation constant"
 msgstr "Constantă gravitație"
 
-#: gravitation.cc:32
+#: gravitation.cc:20
 #, fuzzy
 #| msgctxt "ObjectClass"
 #| msgid "GravitationForceErrors"
@@ -751,14 +751,14 @@ msgctxt "ObjectClass|"
 msgid "GravitationForceErrors"
 msgstr "GravitationForceErrors"
 
-#: gravitation.cc:32
+#: gravitation.cc:20
 #, fuzzy
 #| msgid "Errors class for GravitationForce"
 msgctxt "ObjectDescription|"
 msgid "Errors class for GravitationForce"
 msgstr "Clasă de erori pentru forțăGravitație"
 
-#: gravitation.cc:34
+#: gravitation.cc:22
 #, fuzzy
 #| msgctxt "PropertyName"
 #| msgid "gravitationConstVariance"
@@ -766,14 +766,14 @@ msgctxt "PropertyName|"
 msgid "gravitationConstVariance"
 msgstr "gravitationConstVariance"
 
-#: gravitation.cc:35
+#: gravitation.cc:23
 #, fuzzy
 #| msgid "Gravitation constant variance"
 msgctxt "PropertyDescription|"
 msgid "Gravitation constant variance"
 msgstr "Variație constantă gravitațională"
 
-#: gravitation.cc:37
+#: gravitation.cc:25
 #, fuzzy
 #| msgctxt "ObjectClass"
 #| msgid "WeightForce"
@@ -781,21 +781,21 @@ msgctxt "ObjectClass|"
 msgid "WeightForce"
 msgstr "WeightForce"
 
-#: gravitation.cc:37
+#: gravitation.cc:25
 #, fuzzy
 #| msgid "Weight force"
 msgctxt "ObjectDescription|"
 msgid "Weight force"
 msgstr "Forță greutate"
 
-#: gravitation.cc:39
+#: gravitation.cc:27
 #, fuzzy
 #| msgid "Weight constant"
 msgctxt "PropertyDescription|"
 msgid "Weight constant"
 msgstr "Constantă greutate"
 
-#: gravitation.cc:39
+#: gravitation.cc:27
 #, fuzzy
 #| msgctxt "PropertyName"
 #| msgid "weightConst"
@@ -803,8 +803,8 @@ msgctxt "PropertyName|"
 msgid "weightConst"
 msgstr "weightConst"
 
-#: gravitation.cc:39 gravitation.cc:44 particle.cc:31 particle.cc:45
-#: rigidbody.cc:34 rigidbody.cc:63 softbody.cc:43
+#: gravitation.cc:27 gravitation.cc:32 particle.cc:19 particle.cc:33
+#: rigidbody.cc:22 rigidbody.cc:51 softbody.cc:31
 #, fuzzy
 #| msgctxt "Units"
 #| msgid "m/s²"
@@ -812,7 +812,7 @@ msgctxt "Units|"
 msgid "m/s²"
 msgstr "m/s²"
 
-#: gravitation.cc:42
+#: gravitation.cc:30
 #, fuzzy
 #| msgctxt "ObjectClass"
 #| msgid "WeightForceErrors"
@@ -820,14 +820,14 @@ msgctxt "ObjectClass|"
 msgid "WeightForceErrors"
 msgstr "WeightForceErrors"
 
-#: gravitation.cc:42
+#: gravitation.cc:30
 #, fuzzy
 #| msgid "Errors class for WeightForce"
 msgctxt "ObjectDescription|"
 msgid "Errors class for WeightForce"
 msgstr "Clasă de erori pentru WeightForce"
 
-#: gravitation.cc:44
+#: gravitation.cc:32
 #, fuzzy
 #| msgctxt "PropertyName"
 #| msgid "weightConstVariance"
@@ -835,14 +835,14 @@ msgctxt "PropertyName|"
 msgid "weightConstVariance"
 msgstr "weightConstVariance"
 
-#: gravitation.cc:45
+#: gravitation.cc:33
 #, fuzzy
 #| msgid "Weight constant variance"
 msgctxt "PropertyDescription|"
 msgid "Weight constant variance"
 msgstr "Variație constantă greutate"
 
-#: gslsolver.cc:30
+#: gslsolver.cc:18
 #, fuzzy
 #| msgctxt "ObjectClass"
 #| msgid "GslGenericSolver"
@@ -850,14 +850,14 @@ msgctxt "ObjectClass|"
 msgid "GslGenericSolver"
 msgstr "GslGenericSolver"
 
-#: gslsolver.cc:30
+#: gslsolver.cc:18
 #, fuzzy
 #| msgid "GSL generic solver"
 msgctxt "ObjectDescription|"
 msgid "GSL generic solver"
 msgstr "Solver generic GSL"
 
-#: gslsolver.cc:32
+#: gslsolver.cc:20
 #, fuzzy
 #| msgctxt "ObjectClass"
 #| msgid "GslSolver"
@@ -865,14 +865,14 @@ msgctxt "ObjectClass|"
 msgid "GslSolver"
 msgstr "GslSolver"
 
-#: gslsolver.cc:32
+#: gslsolver.cc:20
 #, fuzzy
 #| msgid "GSL non-adaptive solver"
 msgctxt "ObjectDescription|"
 msgid "GSL non-adaptive solver"
 msgstr "Solver non-adaptiv GSL"
 
-#: gslsolver.cc:35
+#: gslsolver.cc:23
 #, fuzzy
 #| msgctxt "ObjectClass"
 #| msgid "GslAdaptiveSolver"
@@ -880,14 +880,14 @@ msgctxt "ObjectClass|"
 msgid "GslAdaptiveSolver"
 msgstr "GslAdaptiveSolver"
 
-#: gslsolver.cc:35
+#: gslsolver.cc:23
 #, fuzzy
 #| msgid "GSL adaptive solver"
 msgctxt "ObjectDescription|"
 msgid "GSL adaptive solver"
 msgstr "Solver adaptiv GSL"
 
-#: gslsolver.cc:38
+#: gslsolver.cc:26
 #, fuzzy
 #| msgctxt "ObjectClass"
 #| msgid "GslRK2Solver"
@@ -895,14 +895,14 @@ msgctxt "ObjectClass|"
 msgid "GslRK2Solver"
 msgstr "GslRK2Solver"
 
-#: gslsolver.cc:38
+#: gslsolver.cc:26
 #, fuzzy
 #| msgid "Runge-Kutta second-order solver from GSL library"
 msgctxt "ObjectDescription|"
 msgid "Runge-Kutta second-order solver from GSL library"
 msgstr "Solver Runge-Kutta de ordinul doi de la biblioteca GSL"
 
-#: gslsolver.cc:40
+#: gslsolver.cc:28
 #, fuzzy
 #| msgctxt "ObjectClass"
 #| msgid "GslAdaptiveRK2Solver"
@@ -910,14 +910,14 @@ msgctxt "ObjectClass|"
 msgid "GslAdaptiveRK2Solver"
 msgstr "GslAdaptiveRK2Solver"
 
-#: gslsolver.cc:40
+#: gslsolver.cc:28
 #, fuzzy
 #| msgid "Adaptive Runge-Kutta second-order solver from GSL library"
 msgctxt "ObjectDescription|"
 msgid "Adaptive Runge-Kutta second-order solver from GSL library"
 msgstr "Solver adaptiv Runge-Kutta de ordinul doi de la biblioteca GSL"
 
-#: gslsolver.cc:43
+#: gslsolver.cc:31
 #, fuzzy
 #| msgctxt "ObjectClass"
 #| msgid "GslRK4Solver"
@@ -925,14 +925,14 @@ msgctxt "ObjectClass|"
 msgid "GslRK4Solver"
 msgstr "GslRK4Solver"
 
-#: gslsolver.cc:43
+#: gslsolver.cc:31
 #, fuzzy
 #| msgid "Runge-Kutta classical fourth-order solver from GSL library"
 msgctxt "ObjectDescription|"
 msgid "Runge-Kutta classical fourth-order solver from GSL library"
 msgstr "Solver clasic Runge-Kutta de ordinul patru de la biblioteca GSL"
 
-#: gslsolver.cc:45
+#: gslsolver.cc:33
 #, fuzzy
 #| msgctxt "ObjectClass"
 #| msgid "GslAdaptiveRK4Solver"
@@ -940,7 +940,7 @@ msgctxt "ObjectClass|"
 msgid "GslAdaptiveRK4Solver"
 msgstr "GslAdaptiveRK4Solver"
 
-#: gslsolver.cc:45
+#: gslsolver.cc:33
 #, fuzzy
 #| msgid "Adaptive Runge-Kutta classical fourth-order solver from GSL library"
 msgctxt "ObjectDescription|"
@@ -948,7 +948,7 @@ msgid "Adaptive Runge-Kutta classical fourth-order solver from GSL library"
 msgstr ""
 "Solver clasic adaptiv Runge-Kutta de ordinul patru de la biblioteca GSL"
 
-#: gslsolver.cc:48
+#: gslsolver.cc:36
 #, fuzzy
 #| msgctxt "ObjectClass"
 #| msgid "GslRKF45Solver"
@@ -956,14 +956,14 @@ msgctxt "ObjectClass|"
 msgid "GslRKF45Solver"
 msgstr "GslRKF45Solver"
 
-#: gslsolver.cc:48
+#: gslsolver.cc:36
 #, fuzzy
 #| msgid "Runge-Kutta-Fehlberg (4,5) solver from GSL library"
 msgctxt "ObjectDescription|"
 msgid "Runge-Kutta-Fehlberg (4,5) solver from GSL library"
 msgstr "Solver Runge-Kutta-Fehlberg (4,5) de la biblioteca GSL"
 
-#: gslsolver.cc:50
+#: gslsolver.cc:38
 #, fuzzy
 #| msgctxt "ObjectClass"
 #| msgid "GslAdaptiveRKF45Solver"
@@ -971,14 +971,14 @@ msgctxt "ObjectClass|"
 msgid "GslAdaptiveRKF45Solver"
 msgstr "GslAdaptiveRKF45Solver"
 
-#: gslsolver.cc:50
+#: gslsolver.cc:38
 #, fuzzy
 #| msgid "Adaptive Runge-Kutta-Fehlberg (4,5) solver from GSL library"
 msgctxt "ObjectDescription|"
 msgid "Adaptive Runge-Kutta-Fehlberg (4,5) solver from GSL library"
 msgstr "Solver adaptiv Runge-Kutta-Fehlberg (4,5) de la biblioteca GSL"
 
-#: gslsolver.cc:53
+#: gslsolver.cc:41
 #, fuzzy
 #| msgctxt "ObjectClass"
 #| msgid "GslRKCKSolver"
@@ -986,14 +986,14 @@ msgctxt "ObjectClass|"
 msgid "GslRKCKSolver"
 msgstr "GslRKCKSolver"
 
-#: gslsolver.cc:53
+#: gslsolver.cc:41
 #, fuzzy
 #| msgid "Runge-Kutta Cash-Karp (4,5) solver from GSL library"
 msgctxt "ObjectDescription|"
 msgid "Runge-Kutta Cash-Karp (4,5) solver from GSL library"
 msgstr "Solver Runge-Kutta Cash-Karp (4,5) de la biblioteca GSL"
 
-#: gslsolver.cc:55
+#: gslsolver.cc:43
 #, fuzzy
 #| msgctxt "ObjectClass"
 #| msgid "GslAdaptiveRKCKSolver"
@@ -1001,14 +1001,14 @@ msgctxt "ObjectClass|"
 msgid "GslAdaptiveRKCKSolver"
 msgstr "GslAdaptiveRKCKSolver"
 
-#: gslsolver.cc:55
+#: gslsolver.cc:43
 #, fuzzy
 #| msgid "Adaptive Runge-Kutta Cash-Karp (4,5) solver from GSL library"
 msgctxt "ObjectDescription|"
 msgid "Adaptive Runge-Kutta Cash-Karp (4,5) solver from GSL library"
 msgstr "Solver adaptiv Runge-Kutta Cash-Karp (4,5) de la biblioteca GSL"
 
-#: gslsolver.cc:58
+#: gslsolver.cc:46
 #, fuzzy
 #| msgctxt "ObjectClass"
 #| msgid "GslRK8PDSolver"
@@ -1016,14 +1016,14 @@ msgctxt "ObjectClass|"
 msgid "GslRK8PDSolver"
 msgstr "GslRK8PDSolver"
 
-#: gslsolver.cc:58
+#: gslsolver.cc:46
 #, fuzzy
 #| msgid "Runge-Kutta Prince-Dormand (8,9) solver from GSL library"
 msgctxt "ObjectDescription|"
 msgid "Runge-Kutta Prince-Dormand (8,9) solver from GSL library"
 msgstr "Solver Runge-Kutta Prince-Dormand (8,9) de la biblioteca GSL"
 
-#: gslsolver.cc:60
+#: gslsolver.cc:48
 #, fuzzy
 #| msgctxt "ObjectClass"
 #| msgid "GslAdaptiveRK8PDSolver"
@@ -1031,14 +1031,14 @@ msgctxt "ObjectClass|"
 msgid "GslAdaptiveRK8PDSolver"
 msgstr "GslAdaptiveRK8PDSolver"
 
-#: gslsolver.cc:60
+#: gslsolver.cc:48
 #, fuzzy
 #| msgid "Adaptive Runge-Kutta Prince-Dormand (8,9) solver from GSL library"
 msgctxt "ObjectDescription|"
 msgid "Adaptive Runge-Kutta Prince-Dormand (8,9) solver from GSL library"
 msgstr "Solver adaptiv Runge-Kutta Prince-Dormand (8,9) de la biblioteca GSL "
 
-#: gslsolver.cc:63
+#: gslsolver.cc:51
 #, fuzzy
 #| msgctxt "ObjectClass"
 #| msgid "GslRK2IMPSolver"
@@ -1046,14 +1046,14 @@ msgctxt "ObjectClass|"
 msgid "GslRK2IMPSolver"
 msgstr "GslRK2IMPSolver"
 
-#: gslsolver.cc:63
+#: gslsolver.cc:51
 #, fuzzy
 #| msgid "Runge-Kutta implicit second-order solver from GSL library"
 msgctxt "ObjectDescription|"
 msgid "Runge-Kutta implicit second-order solver from GSL library"
 msgstr "Solver implicit Runge-Kutta de ordinul doi de la biblioteca GSL "
 
-#: gslsolver.cc:65
+#: gslsolver.cc:53
 #, fuzzy
 #| msgctxt "ObjectClass"
 #| msgid "GslAdaptiveRK2IMPSolver"
@@ -1061,7 +1061,7 @@ msgctxt "ObjectClass|"
 msgid "GslAdaptiveRK2IMPSolver"
 msgstr "GslAdaptiveRK2IMPSolver"
 
-#: gslsolver.cc:65
+#: gslsolver.cc:53
 #, fuzzy
 #| msgid "Adaptive Runge-Kutta implicit second-order solver from GSL library"
 msgctxt "ObjectDescription|"
@@ -1069,7 +1069,7 @@ msgid "Adaptive Runge-Kutta implicit second-order solver from GSL library"
 msgstr ""
 "Solver implicit adaptiv Runge-Kutta de ordinul doi de la biblioteca GSL"
 
-#: gslsolver.cc:68
+#: gslsolver.cc:56
 #, fuzzy
 #| msgctxt "ObjectClass"
 #| msgid "GslRK4IMPSolver"
@@ -1077,14 +1077,14 @@ msgctxt "ObjectClass|"
 msgid "GslRK4IMPSolver"
 msgstr "GslRK4IMPSolver"
 
-#: gslsolver.cc:68
+#: gslsolver.cc:56
 #, fuzzy
 #| msgid "Runge-Kutta implicit fourth-order solver from GSL library"
 msgctxt "ObjectDescription|"
 msgid "Runge-Kutta implicit fourth-order solver from GSL library"
 msgstr "Solver implicit Runge-Kutta de ordinul patru de la biblioteca GSL"
 
-#: gslsolver.cc:70
+#: gslsolver.cc:58
 #, fuzzy
 #| msgctxt "ObjectClass"
 #| msgid "GslAdaptiveRK4IMPSolver"
@@ -1092,7 +1092,7 @@ msgctxt "ObjectClass|"
 msgid "GslAdaptiveRK4IMPSolver"
 msgstr "GslAdaptiveRK4IMPSolver"
 
-#: gslsolver.cc:70
+#: gslsolver.cc:58
 #, fuzzy
 #| msgid "Adaptive Runge-Kutta implicit fource-order solver from GSL library"
 msgctxt "ObjectDescription|"
@@ -1100,21 +1100,21 @@ msgid "Adaptive Runge-Kutta implicit fourth-order solver from GSL library"
 msgstr ""
 "Solver implicit adaptiv Runge-Kutta de ordinul patru de la biblioteca GSL"
 
-#: item.cc:28
+#: item.cc:15
 #, fuzzy
 #| msgid "Item"
 msgctxt "ObjectClass|"
 msgid "Item"
 msgstr "Element"
 
-#: item.cc:28
+#: item.cc:15
 #, fuzzy
 #| msgid "Item"
 msgctxt "ObjectDescription|"
 msgid "Item"
 msgstr "Element"
 
-#: item.cc:30
+#: item.cc:17
 #, fuzzy
 #| msgctxt "PropertyName"
 #| msgid "color"
@@ -1122,42 +1122,42 @@ msgctxt "PropertyName|"
 msgid "color"
 msgstr "color"
 
-#: item.cc:31
+#: item.cc:18
 #, fuzzy
 #| msgid "Item color"
 msgctxt "PropertyDescription|"
 msgid "Item color"
 msgstr "Culoare element"
 
-#: itemgroup.cc:28
+#: itemgroup.cc:15
 #, fuzzy
 #| msgid "ItemGroup"
 msgctxt "ObjectClass|"
 msgid "ItemGroup"
 msgstr "Grupul elementului"
 
-#: itemgroup.cc:28
+#: itemgroup.cc:15
 #, fuzzy
 #| msgid "ItemGroup"
 msgctxt "ObjectDescription|"
 msgid "ItemGroup"
 msgstr "Grupul elementului"
 
-#: joint.cc:26
+#: joint.cc:14
 #, fuzzy
 #| msgid "Joint"
 msgctxt "ObjectClass|"
 msgid "Joint"
 msgstr "Îmbinare"
 
-#: joint.cc:26
+#: joint.cc:14
 #, fuzzy
 #| msgid "Joint"
 msgctxt "ObjectDescription|"
 msgid "Joint"
 msgstr "Îmbinare"
 
-#: joints.cc:26
+#: joints.cc:14
 #, fuzzy
 #| msgctxt "ObjectClass"
 #| msgid "Anchor"
@@ -1165,21 +1165,21 @@ msgctxt "ObjectClass|"
 msgid "Anchor"
 msgstr "Anchor"
 
-#: joints.cc:26
+#: joints.cc:14
 #, fuzzy
 #| msgid "Anchor: fixes position of the body"
 msgctxt "ObjectDescription|"
 msgid "Anchor: fixes position of the body"
 msgstr "Ancoră: fixează poziția corpului"
 
-#: joints.cc:28 joints.cc:34 motor.cc:29 motor.cc:35
+#: joints.cc:16 joints.cc:22 motor.cc:17 motor.cc:23
 #, fuzzy
 #| msgid "Body"
 msgctxt "PropertyDescription|"
 msgid "Body"
 msgstr "Corp"
 
-#: joints.cc:28 joints.cc:34 motor.cc:29 motor.cc:35 tool.cc:97
+#: joints.cc:16 joints.cc:22 motor.cc:17 motor.cc:23 tool.cc:85
 #, fuzzy
 #| msgctxt "PropertyName"
 #| msgid "body"
@@ -1187,29 +1187,29 @@ msgctxt "PropertyName|"
 msgid "body"
 msgstr "body"
 
-#: joints.cc:29 tool.cc:100
+#: joints.cc:17 tool.cc:88
 #, fuzzy
 #| msgid "Position"
 msgctxt "PropertyDescription|"
 msgid "Position"
 msgstr "Poziție"
 
-#: joints.cc:29 joints.cc:36 particle.cc:29 rigidbody.cc:28 softbody.cc:36
-#: tool.cc:38 tool.cc:45 tool.cc:67 tool.cc:79 tool.cc:100
+#: joints.cc:17 joints.cc:24 particle.cc:17 rigidbody.cc:16 softbody.cc:24
+#: tool.cc:26 tool.cc:33 tool.cc:55 tool.cc:67 tool.cc:88
 #, fuzzy
 #| msgid "position"
 msgctxt "PropertyName|"
 msgid "position"
 msgstr "poziție"
 
-#: joints.cc:30
+#: joints.cc:18
 #, fuzzy
 #| msgid "Angle"
 msgctxt "PropertyDescription|"
 msgid "Angle"
 msgstr "Unghi"
 
-#: joints.cc:30 rigidbody.cc:29
+#: joints.cc:18 rigidbody.cc:17
 #, fuzzy
 #| msgctxt "PropertyName"
 #| msgid "angle"
@@ -1217,7 +1217,7 @@ msgctxt "PropertyName|"
 msgid "angle"
 msgstr "angle"
 
-#: joints.cc:30 rigidbody.cc:29 rigidbody.cc:55
+#: joints.cc:18 rigidbody.cc:17 rigidbody.cc:43
 #, fuzzy
 #| msgctxt "Units"
 #| msgid "rad"
@@ -1225,7 +1225,7 @@ msgctxt "Units|"
 msgid "rad"
 msgstr "rad"
 
-#: joints.cc:32
+#: joints.cc:20
 #, fuzzy
 #| msgctxt "ObjectClass"
 #| msgid "Pin"
@@ -1233,21 +1233,21 @@ msgctxt "ObjectClass|"
 msgid "Pin"
 msgstr "Pin"
 
-#: joints.cc:32
+#: joints.cc:20
 #, fuzzy
 #| msgid "Pin: fixes position of a given point on the body"
 msgctxt "ObjectDescription|"
 msgid "Pin: fixes position of a given point on the body"
 msgstr "Fixare: fixează poziția unui punct dat pe corp"
 
-#: joints.cc:35
+#: joints.cc:23
 #, fuzzy
 #| msgid "Position on the body"
 msgctxt "PropertyDescription|"
 msgid "Position on the body"
 msgstr "Poziția pe corp"
 
-#: joints.cc:35 motor.cc:30 motor.cc:36 tool.cc:98
+#: joints.cc:23 motor.cc:18 motor.cc:24 tool.cc:86
 #, fuzzy
 #| msgctxt "PropertyName"
 #| msgid "localPosition"
@@ -1255,14 +1255,14 @@ msgctxt "PropertyName|"
 msgid "localPosition"
 msgstr "localPosition"
 
-#: joints.cc:36
+#: joints.cc:24
 #, fuzzy
 #| msgid "Position in the world"
 msgctxt "PropertyDescription|"
 msgid "Position in the world"
 msgstr "Poziția în lume"
 
-#: joints.cc:38
+#: joints.cc:26
 #, fuzzy
 #| msgctxt "ObjectClass"
 #| msgid "Stick"
@@ -1270,21 +1270,21 @@ msgctxt "ObjectClass|"
 msgid "Stick"
 msgstr "Stick"
 
-#: joints.cc:38
+#: joints.cc:26
 #, fuzzy
 #| msgid "Massless stick which can be connected to bodies"
 msgctxt "ObjectDescription|"
 msgid "Massless stick which can be connected to bodies"
 msgstr "Tijă cu masă neglijabilă care poate fi conectată la corpuri"
 
-#: joints.cc:40
+#: joints.cc:28
 #, fuzzy
 #| msgid "Rest length of the stick"
 msgctxt "PropertyDescription|"
 msgid "Rest length of the stick"
 msgstr "Lungimea rămasă a tijei"
 
-#: joints.cc:40 spring.cc:30
+#: joints.cc:28 spring.cc:18
 #, fuzzy
 #| msgctxt "PropertyName"
 #| msgid "restLength"
@@ -1292,14 +1292,14 @@ msgctxt "PropertyName|"
 msgid "restLength"
 msgstr "restLength"
 
-#: joints.cc:41 spring.cc:34
+#: joints.cc:29 spring.cc:22
 #, fuzzy
 #| msgid "Body1"
 msgctxt "PropertyDescription|"
 msgid "Body1"
 msgstr "Corp1"
 
-#: joints.cc:41 spring.cc:34
+#: joints.cc:29 spring.cc:22
 #, fuzzy
 #| msgctxt "PropertyName"
 #| msgid "body1"
@@ -1307,14 +1307,14 @@ msgctxt "PropertyName|"
 msgid "body1"
 msgstr "body1"
 
-#: joints.cc:42 spring.cc:35
+#: joints.cc:30 spring.cc:23
 #, fuzzy
 #| msgid "Body2"
 msgctxt "PropertyDescription|"
 msgid "Body2"
 msgstr "Corp2"
 
-#: joints.cc:42 spring.cc:35
+#: joints.cc:30 spring.cc:23
 #, fuzzy
 #| msgctxt "PropertyName"
 #| msgid "body2"
@@ -1322,7 +1322,7 @@ msgctxt "PropertyName|"
 msgid "body2"
 msgstr "body2"
 
-#: joints.cc:43 spring.cc:36
+#: joints.cc:31 spring.cc:24
 #, fuzzy
 #| msgctxt "PropertyName"
 #| msgid "localPosition1"
@@ -1330,14 +1330,14 @@ msgctxt "PropertyName|"
 msgid "localPosition1"
 msgstr "localPosition1"
 
-#: joints.cc:44 spring.cc:37
+#: joints.cc:32 spring.cc:25
 #, fuzzy
 #| msgid "Local position 1"
 msgctxt "PropertyDescription|"
 msgid "Local position 1"
 msgstr "Poziție locală 1"
 
-#: joints.cc:45 spring.cc:38
+#: joints.cc:33 spring.cc:26
 #, fuzzy
 #| msgctxt "PropertyName"
 #| msgid "localPosition2"
@@ -1345,21 +1345,21 @@ msgctxt "PropertyName|"
 msgid "localPosition2"
 msgstr "localPosition2"
 
-#: joints.cc:46 spring.cc:39
+#: joints.cc:34 spring.cc:27
 #, fuzzy
 #| msgid "Local position 2"
 msgctxt "PropertyDescription|"
 msgid "Local position 2"
 msgstr "Poziție locală 2"
 
-#: joints.cc:47 spring.cc:40
+#: joints.cc:35 spring.cc:28
 #, fuzzy
 #| msgid "Position1"
 msgctxt "PropertyDescription|"
 msgid "Position1"
 msgstr "Poziție1"
 
-#: joints.cc:47 spring.cc:40
+#: joints.cc:35 spring.cc:28
 #, fuzzy
 #| msgctxt "PropertyName"
 #| msgid "position1"
@@ -1367,14 +1367,14 @@ msgctxt "PropertyName|"
 msgid "position1"
 msgstr "position1"
 
-#: joints.cc:48 spring.cc:41
+#: joints.cc:36 spring.cc:29
 #, fuzzy
 #| msgid "Position2"
 msgctxt "PropertyDescription|"
 msgid "Position2"
 msgstr "Poziție2"
 
-#: joints.cc:48 spring.cc:41
+#: joints.cc:36 spring.cc:29
 #, fuzzy
 #| msgctxt "PropertyName"
 #| msgid "position2"
@@ -1382,7 +1382,7 @@ msgctxt "PropertyName|"
 msgid "position2"
 msgstr "position2"
 
-#: joints.cc:51
+#: joints.cc:39
 #, fuzzy
 #| msgctxt "ObjectClass"
 #| msgid "Rope"
@@ -1390,14 +1390,14 @@ msgctxt "ObjectClass|"
 msgid "Rope"
 msgstr "Rope"
 
-#: joints.cc:51
+#: joints.cc:39
 #, fuzzy
 #| msgid "Massless rope which can be connected to bodies"
 msgctxt "ObjectDescription|"
 msgid "Massless rope which can be connected to bodies"
 msgstr "Sfoară cu masă neglijabilă care poate fi conectată la corpuri"
 
-#: motor.cc:27
+#: motor.cc:15
 #, fuzzy
 #| msgctxt "ObjectClass"
 #| msgid "LinearMotor"
@@ -1405,7 +1405,7 @@ msgctxt "ObjectClass|"
 msgid "LinearMotor"
 msgstr "LinearMotor"
 
-#: motor.cc:27
+#: motor.cc:15
 #, fuzzy
 #| msgid ""
 #| "Linear motor: applies a constant force to a given position of the body"
@@ -1414,21 +1414,21 @@ msgid "Linear motor: applies a constant force to a given position of the body"
 msgstr ""
 "Motor liniar: aplică o forță constantă la o poziție dată a corpuluiappl"
 
-#: motor.cc:30 motor.cc:36
+#: motor.cc:18 motor.cc:24
 #, fuzzy
 #| msgid "Position of the motor on a body"
 msgctxt "PropertyDescription|"
 msgid "Position of the motor on a body"
 msgstr "Poziția motorului pe un corp"
 
-#: motor.cc:31
+#: motor.cc:19
 #, fuzzy
 #| msgid "Value of the force, acting on the body"
 msgctxt "PropertyDescription|"
 msgid "Value of the force, acting on the body"
 msgstr "Valoarea forței, care acționează asupra corpului"
 
-#: motor.cc:31
+#: motor.cc:19
 #, fuzzy
 #| msgctxt "PropertyName"
 #| msgid "forceValue"
@@ -1436,8 +1436,8 @@ msgctxt "PropertyName|"
 msgid "forceValue"
 msgstr "forceValue"
 
-#: motor.cc:31 particle.cc:33 particle.cc:47 rigidbody.cc:39 rigidbody.cc:68
-#: softbody.cc:48 spring.cc:42 spring.cc:63
+#: motor.cc:19 particle.cc:21 particle.cc:35 rigidbody.cc:27 rigidbody.cc:56
+#: softbody.cc:36 spring.cc:30 spring.cc:51
 #, fuzzy
 #| msgctxt "Units"
 #| msgid "N"
@@ -1445,7 +1445,7 @@ msgctxt "Units|"
 msgid "N"
 msgstr "N"
 
-#: motor.cc:33
+#: motor.cc:21
 #, fuzzy
 #| msgctxt "ObjectClass"
 #| msgid "CircularMotor"
@@ -1453,21 +1453,21 @@ msgctxt "ObjectClass|"
 msgid "CircularMotor"
 msgstr "CircularMotor"
 
-#: motor.cc:33
+#: motor.cc:21
 #, fuzzy
 #| msgid "Circular motor: applies a constant torque to the body"
 msgctxt "ObjectDescription|"
 msgid "Circular motor: applies a constant torque to the body"
 msgstr "Motor circular: aplică o constantă cuplu asupra corpului"
 
-#: motor.cc:37
+#: motor.cc:25
 #, fuzzy
 #| msgid "Value of the torque, acting on the body"
 msgctxt "PropertyDescription|"
 msgid "Value of the torque, acting on the body"
 msgstr "Valoarea cuplului, care acționează asupra corpului"
 
-#: motor.cc:37
+#: motor.cc:25
 #, fuzzy
 #| msgctxt "PropertyName"
 #| msgid "torqueValue"
@@ -1475,7 +1475,7 @@ msgctxt "PropertyName|"
 msgid "torqueValue"
 msgstr "torqueValue"
 
-#: motor.cc:37 rigidbody.cc:40 rigidbody.cc:69 softbody.cc:49
+#: motor.cc:25 rigidbody.cc:28 rigidbody.cc:57 softbody.cc:37
 #, fuzzy
 #| msgctxt "Units"
 #| msgid "N m"
@@ -1483,28 +1483,28 @@ msgctxt "Units|"
 msgid "N m"
 msgstr "N m"
 
-#: object.cc:25
+#: object.cc:13
 #, fuzzy
 #| msgid "Object"
 msgctxt "ObjectClass|"
 msgid "Object"
 msgstr "Obiect"
 
-#: object.cc:25
+#: object.cc:13
 #, fuzzy
 #| msgid "Object"
 msgctxt "ObjectDescription|"
 msgid "Object"
 msgstr "Obiect"
 
-#: object.cc:26
+#: object.cc:14
 #, fuzzy
 #| msgid "Object name"
 msgctxt "PropertyDescription|"
 msgid "Object name"
 msgstr "Nume obiect"
 
-#: object.cc:26
+#: object.cc:14
 #, fuzzy
 #| msgctxt "PropertyName"
 #| msgid "name"
@@ -1512,21 +1512,21 @@ msgctxt "PropertyName|"
 msgid "name"
 msgstr "name"
 
-#: objecterrors.cc:26
+#: objecterrors.cc:14
 #, fuzzy
 #| msgid "ObjectErrors"
 msgctxt "ObjectClass|"
 msgid "ObjectErrors"
 msgstr "Erori ale obiectului"
 
-#: objecterrors.cc:26
+#: objecterrors.cc:14
 #, fuzzy
 #| msgid "ObjectErrors"
 msgctxt "ObjectDescription|"
 msgid "ObjectErrors"
 msgstr "Erori ale obiectului"
 
-#: particle.cc:27
+#: particle.cc:15
 #, fuzzy
 #| msgctxt "ObjectClass"
 #| msgid "Particle"
@@ -1534,91 +1534,91 @@ msgctxt "ObjectClass|"
 msgid "Particle"
 msgstr "Particle"
 
-#: particle.cc:27
+#: particle.cc:15
 #, fuzzy
 #| msgid "Simple zero-size particle"
 msgctxt "ObjectDescription|"
 msgid "Simple zero-size particle"
 msgstr "Particulă simplă de mărime zero"
 
-#: particle.cc:29
+#: particle.cc:17
 #, fuzzy
 #| msgid "position"
 msgctxt "PropertyDescription|"
 msgid "position"
 msgstr "poziție"
 
-#: particle.cc:30
+#: particle.cc:18
 #, fuzzy
 #| msgid "velocity"
 msgctxt "PropertyDescription|"
 msgid "velocity"
 msgstr "viteză"
 
-#: particle.cc:30 rigidbody.cc:31 softbody.cc:38
+#: particle.cc:18 rigidbody.cc:19 softbody.cc:26
 #, fuzzy
 #| msgid "velocity"
 msgctxt "PropertyName|"
 msgid "velocity"
 msgstr "viteză"
 
-#: particle.cc:31 rigidbody.cc:34 softbody.cc:43
+#: particle.cc:19 rigidbody.cc:22 softbody.cc:31
 #, fuzzy
 #| msgid "acceleration"
 msgctxt "PropertyName|"
 msgid "acceleration"
 msgstr "accelerație"
 
-#: particle.cc:32
+#: particle.cc:20
 #, fuzzy
 #| msgid "acceleration"
 msgctxt "PropertyDescription|"
 msgid "acceleration"
 msgstr "accelerație"
 
-#: particle.cc:33
+#: particle.cc:21
 #, fuzzy
 #| msgid "force"
 msgctxt "PropertyDescription|"
 msgid "force"
 msgstr "forță"
 
-#: particle.cc:33 rigidbody.cc:39 softbody.cc:48 spring.cc:42
+#: particle.cc:21 rigidbody.cc:27 softbody.cc:36 spring.cc:30
 #, fuzzy
 #| msgid "force"
 msgctxt "PropertyName|"
 msgid "force"
 msgstr "forță"
 
-#: particle.cc:34
+#: particle.cc:22
 #, fuzzy
 #| msgid "mass"
 msgctxt "PropertyDescription|"
 msgid "mass"
 msgstr "masă"
 
-#: particle.cc:34 rigidbody.cc:42 softbody.cc:50
+#: particle.cc:22 rigidbody.cc:30 softbody.cc:38
 #, fuzzy
 #| msgid "mass"
 msgctxt "PropertyName|"
 msgid "mass"
 msgstr "masă"
 
-#: particle.cc:35 rigidbody.cc:45
+#: particle.cc:23 rigidbody.cc:33
 #, fuzzy
 #| msgid "momentum"
 msgctxt "PropertyDescription|"
 msgid "momentum"
 msgstr "impuls"
 
-#: particle.cc:35 rigidbody.cc:45
+#: particle.cc:23 rigidbody.cc:33
 #, fuzzy
 #| msgid "momentum"
 msgctxt "PropertyName|"
 msgid "momentum"
 msgstr "impuls"
 
-#: particle.cc:35 particle.cc:51 rigidbody.cc:45 rigidbody.cc:75
+#: particle.cc:23 particle.cc:39 rigidbody.cc:33 rigidbody.cc:63
 #, fuzzy
 #| msgctxt "Units"
 #| msgid "kg m/s"
@@ -1626,14 +1626,14 @@ msgctxt "Units|"
 msgid "kg m/s"
 msgstr "kg m/s"
 
-#: particle.cc:37 rigidbody.cc:49
+#: particle.cc:25 rigidbody.cc:37
 #, fuzzy
 #| msgid "kinetic energy"
 msgctxt "PropertyDescription|"
 msgid "kinetic energy"
 msgstr "energie cinetică"
 
-#: particle.cc:37 rigidbody.cc:49
+#: particle.cc:25 rigidbody.cc:37
 #, fuzzy
 #| msgctxt "PropertyName"
 #| msgid "kineticEnergy"
@@ -1641,7 +1641,7 @@ msgctxt "PropertyName|"
 msgid "kineticEnergy"
 msgstr "kineticEnergy"
 
-#: particle.cc:40
+#: particle.cc:28
 #, fuzzy
 #| msgctxt "ObjectClass"
 #| msgid "ParticleErrors"
@@ -1649,14 +1649,14 @@ msgctxt "ObjectClass|"
 msgid "ParticleErrors"
 msgstr "ParticleErrors"
 
-#: particle.cc:40
+#: particle.cc:28
 #, fuzzy
 #| msgid "Errors class for Particle"
 msgctxt "ObjectDescription|"
 msgid "Errors class for Particle"
 msgstr "Clasă de erori pentru particulă"
 
-#: particle.cc:41 rigidbody.cc:53
+#: particle.cc:29 rigidbody.cc:41
 #, fuzzy
 #| msgctxt "PropertyName"
 #| msgid "positionVariance"
@@ -1664,14 +1664,14 @@ msgctxt "PropertyName|"
 msgid "positionVariance"
 msgstr "positionVariance"
 
-#: particle.cc:42 rigidbody.cc:54
+#: particle.cc:30 rigidbody.cc:42
 #, fuzzy
 #| msgid "position variance"
 msgctxt "PropertyDescription|"
 msgid "position variance"
 msgstr "variație poziție"
 
-#: particle.cc:43 rigidbody.cc:58
+#: particle.cc:31 rigidbody.cc:46
 #, fuzzy
 #| msgctxt "PropertyName"
 #| msgid "velocityVariance"
@@ -1679,14 +1679,14 @@ msgctxt "PropertyName|"
 msgid "velocityVariance"
 msgstr "velocityVariance"
 
-#: particle.cc:44 rigidbody.cc:59
+#: particle.cc:32 rigidbody.cc:47
 #, fuzzy
 #| msgid "velocity variance"
 msgctxt "PropertyDescription|"
 msgid "velocity variance"
 msgstr "variație viteză"
 
-#: particle.cc:45 rigidbody.cc:63
+#: particle.cc:33 rigidbody.cc:51
 #, fuzzy
 #| msgctxt "PropertyName"
 #| msgid "accelerationVariance"
@@ -1694,14 +1694,14 @@ msgctxt "PropertyName|"
 msgid "accelerationVariance"
 msgstr "accelerationVariance"
 
-#: particle.cc:46 rigidbody.cc:64
+#: particle.cc:34 rigidbody.cc:52
 #, fuzzy
 #| msgid "acceleration variance"
 msgctxt "PropertyDescription|"
 msgid "acceleration variance"
 msgstr "variație accelerație"
 
-#: particle.cc:47 rigidbody.cc:68 spring.cc:63
+#: particle.cc:35 rigidbody.cc:56 spring.cc:51
 #, fuzzy
 #| msgctxt "PropertyName"
 #| msgid "forceVariance"
@@ -1709,14 +1709,14 @@ msgctxt "PropertyName|"
 msgid "forceVariance"
 msgstr "forceVariance"
 
-#: particle.cc:48 rigidbody.cc:68
+#: particle.cc:36 rigidbody.cc:56
 #, fuzzy
 #| msgid "force variance"
 msgctxt "PropertyDescription|"
 msgid "force variance"
 msgstr "variație forță"
 
-#: particle.cc:49 rigidbody.cc:71
+#: particle.cc:37 rigidbody.cc:59
 #, fuzzy
 #| msgctxt "PropertyName"
 #| msgid "massVariance"
@@ -1724,14 +1724,14 @@ msgctxt "PropertyName|"
 msgid "massVariance"
 msgstr "massVariance"
 
-#: particle.cc:50 rigidbody.cc:72
+#: particle.cc:38 rigidbody.cc:60
 #, fuzzy
 #| msgid "mass variance"
 msgctxt "PropertyDescription|"
 msgid "mass variance"
 msgstr "variație masă"
 
-#: particle.cc:51 rigidbody.cc:75
+#: particle.cc:39 rigidbody.cc:63
 #, fuzzy
 #| msgctxt "PropertyName"
 #| msgid "momentumVariance"
@@ -1739,14 +1739,14 @@ msgctxt "PropertyName|"
 msgid "momentumVariance"
 msgstr "momentumVariance"
 
-#: particle.cc:52 rigidbody.cc:76
+#: particle.cc:40 rigidbody.cc:64
 #, fuzzy
 #| msgid "momentum variance"
 msgctxt "PropertyDescription|"
 msgid "momentum variance"
 msgstr "variație impuls"
 
-#: particle.cc:53 rigidbody.cc:80
+#: particle.cc:41 rigidbody.cc:68
 #, fuzzy
 #| msgctxt "PropertyName"
 #| msgid "kineticEnergyVariance"
@@ -1754,14 +1754,14 @@ msgctxt "PropertyName|"
 msgid "kineticEnergyVariance"
 msgstr "kineticEnergyVariance"
 
-#: particle.cc:54 rigidbody.cc:81
+#: particle.cc:42 rigidbody.cc:69
 #, fuzzy
 #| msgid "kinetic energy variance"
 msgctxt "PropertyDescription|"
 msgid "kinetic energy variance"
 msgstr "variație energie cinetică"
 
-#: particle.cc:56
+#: particle.cc:44
 #, fuzzy
 #| msgctxt "ObjectClass"
 #| msgid "ChargedParticle"
@@ -1769,28 +1769,28 @@ msgctxt "ObjectClass|"
 msgid "ChargedParticle"
 msgstr "ChargedParticle"
 
-#: particle.cc:56
+#: particle.cc:44
 #, fuzzy
 #| msgid "Charged zero-size particle"
 msgctxt "ObjectDescription|"
 msgid "Charged zero-size particle"
 msgstr "Particulă cu mărime-zero încărcată"
 
-#: particle.cc:57
+#: particle.cc:45
 #, fuzzy
 #| msgid "charge"
 msgctxt "PropertyDescription|"
 msgid "charge"
 msgstr "sarcină"
 
-#: particle.cc:57
+#: particle.cc:45
 #, fuzzy
 #| msgid "charge"
 msgctxt "PropertyName|"
 msgid "charge"
 msgstr "sarcină"
 
-#: particle.cc:57
+#: particle.cc:45
 #, fuzzy
 #| msgctxt "Units"
 #| msgid "C"
@@ -1798,7 +1798,7 @@ msgctxt "Units|"
 msgid "C"
 msgstr "C"
 
-#: particle.cc:59
+#: particle.cc:47
 #, fuzzy
 #| msgctxt "ObjectClass"
 #| msgid "ChargedParticleErrors"
@@ -1806,14 +1806,14 @@ msgctxt "ObjectClass|"
 msgid "ChargedParticleErrors"
 msgstr "ChargedParticleErrors"
 
-#: particle.cc:59
+#: particle.cc:47
 #, fuzzy
 #| msgid "Errors class for ChargedParticle"
 msgctxt "ObjectDescription|"
 msgid "Errors class for ChargedParticle"
 msgstr "Clasă de erori pentru particulaÎncărcată"
 
-#: particle.cc:61
+#: particle.cc:49
 #, fuzzy
 #| msgctxt "PropertyName"
 #| msgid "chargeVariance"
@@ -1821,14 +1821,14 @@ msgctxt "PropertyName|"
 msgid "chargeVariance"
 msgstr "chargeVariance"
 
-#: particle.cc:62
+#: particle.cc:50
 #, fuzzy
 #| msgid "charge variance"
 msgctxt "PropertyDescription|"
 msgid "charge variance"
 msgstr "variație sarcină"
 
-#: rigidbody.cc:27
+#: rigidbody.cc:15
 #, fuzzy
 #| msgctxt "ObjectClass"
 #| msgid "RigidBody"
@@ -1836,42 +1836,42 @@ msgctxt "ObjectClass|"
 msgid "RigidBody"
 msgstr "RigidBody"
 
-#: rigidbody.cc:27
+#: rigidbody.cc:15
 #, fuzzy
 #| msgid "Generic rigid body"
 msgctxt "ObjectDescription|"
 msgid "Generic rigid body"
 msgstr "Corp rigid generic"
 
-#: rigidbody.cc:28 softbody.cc:36
+#: rigidbody.cc:16 softbody.cc:24
 #, fuzzy
 #| msgid "Position of the center of mass"
 msgctxt "PropertyDescription|"
 msgid "Position of the center of mass"
 msgstr "Poziția centrului masei"
 
-#: rigidbody.cc:29
+#: rigidbody.cc:17
 #, fuzzy
 #| msgid "Rotation angle"
 msgctxt "PropertyDescription|"
 msgid "Rotation angle"
 msgstr "Unghi de rotație"
 
-#: rigidbody.cc:31 softbody.cc:38
+#: rigidbody.cc:19 softbody.cc:26
 #, fuzzy
 #| msgid "Velocity of the center of mass"
 msgctxt "PropertyDescription|"
 msgid "Velocity of the center of mass"
 msgstr "Viteza centrului masei"
 
-#: rigidbody.cc:32 softbody.cc:39
+#: rigidbody.cc:20 softbody.cc:27
 #, fuzzy
 #| msgid "Angular velocity of the body"
 msgctxt "PropertyDescription|"
 msgid "Angular velocity of the body"
 msgstr "Viteza unghiulară a corpului"
 
-#: rigidbody.cc:32 softbody.cc:39
+#: rigidbody.cc:20 softbody.cc:27
 #, fuzzy
 #| msgctxt "PropertyName"
 #| msgid "angularVelocity"
@@ -1879,7 +1879,7 @@ msgctxt "PropertyName|"
 msgid "angularVelocity"
 msgstr "angularVelocity"
 
-#: rigidbody.cc:32 rigidbody.cc:60 softbody.cc:39
+#: rigidbody.cc:20 rigidbody.cc:48 softbody.cc:27
 #, fuzzy
 #| msgctxt "Units"
 #| msgid "rad/s"
@@ -1887,14 +1887,14 @@ msgctxt "Units|"
 msgid "rad/s"
 msgstr "rad/s"
 
-#: rigidbody.cc:35 softbody.cc:44
+#: rigidbody.cc:23 softbody.cc:32
 #, fuzzy
 #| msgid "Acceleration of the center of mass"
 msgctxt "PropertyDescription|"
 msgid "Acceleration of the center of mass"
 msgstr "Accelerația centrului masei"
 
-#: rigidbody.cc:36 softbody.cc:45
+#: rigidbody.cc:24 softbody.cc:33
 #, fuzzy
 #| msgctxt "PropertyName"
 #| msgid "angularAcceleration"
@@ -1902,7 +1902,7 @@ msgctxt "PropertyName|"
 msgid "angularAcceleration"
 msgstr "angularAcceleration"
 
-#: rigidbody.cc:36 rigidbody.cc:65 softbody.cc:45
+#: rigidbody.cc:24 rigidbody.cc:53 softbody.cc:33
 #, fuzzy
 #| msgctxt "Units"
 #| msgid "rad/s²"
@@ -1910,28 +1910,28 @@ msgctxt "Units|"
 msgid "rad/s²"
 msgstr "rad/s²"
 
-#: rigidbody.cc:37 softbody.cc:46
+#: rigidbody.cc:25 softbody.cc:34
 #, fuzzy
 #| msgid "Angular acceleration of the body"
 msgctxt "PropertyDescription|"
 msgid "Angular acceleration of the body"
 msgstr "Accelerația unghiulară a corpului"
 
-#: rigidbody.cc:39 softbody.cc:48
+#: rigidbody.cc:27 softbody.cc:36
 #, fuzzy
 #| msgid "Force that acts upon the body"
 msgctxt "PropertyDescription|"
 msgid "Force that acts upon the body"
 msgstr "Forță care acționează asupra corpului"
 
-#: rigidbody.cc:40 softbody.cc:49
+#: rigidbody.cc:28 softbody.cc:37
 #, fuzzy
 #| msgid "Torque that acts upon the body"
 msgctxt "PropertyDescription|"
 msgid "Torque that acts upon the body"
 msgstr "Cuplu care acționează asupra corpului"
 
-#: rigidbody.cc:40 softbody.cc:49
+#: rigidbody.cc:28 softbody.cc:37
 #, fuzzy
 #| msgctxt "PropertyName"
 #| msgid "torque"
@@ -1939,14 +1939,14 @@ msgctxt "PropertyName|"
 msgid "torque"
 msgstr "torque"
 
-#: rigidbody.cc:42 softbody.cc:50
+#: rigidbody.cc:30 softbody.cc:38
 #, fuzzy
 #| msgid "Total mass of the body"
 msgctxt "PropertyDescription|"
 msgid "Total mass of the body"
 msgstr "Masa totală a corpului"
 
-#: rigidbody.cc:43 softbody.cc:51
+#: rigidbody.cc:31 softbody.cc:39
 #, fuzzy
 #| msgctxt "PropertyName"
 #| msgid "inertia"
@@ -1954,7 +1954,7 @@ msgctxt "PropertyName|"
 msgid "inertia"
 msgstr "inertia"
 
-#: rigidbody.cc:43 rigidbody.cc:73 softbody.cc:51
+#: rigidbody.cc:31 rigidbody.cc:61 softbody.cc:39
 #, fuzzy
 #| msgctxt "Units"
 #| msgid "kg m²"
@@ -1962,21 +1962,21 @@ msgctxt "Units|"
 msgid "kg m²"
 msgstr "kg m²"
 
-#: rigidbody.cc:44 softbody.cc:52
+#: rigidbody.cc:32 softbody.cc:40
 #, fuzzy
 #| msgid "Inertia \"tensor\" of the body"
 msgctxt "PropertyDescription|"
 msgid "Inertia \"tensor\" of the body"
 msgstr "Interția ”tensor” a corpului"
 
-#: rigidbody.cc:47
+#: rigidbody.cc:35
 #, fuzzy
 #| msgid "angular momentum"
 msgctxt "PropertyDescription|"
 msgid "angular momentum"
 msgstr "impuls unghiular"
 
-#: rigidbody.cc:47 softbody.cc:40
+#: rigidbody.cc:35 softbody.cc:28
 #, fuzzy
 #| msgctxt "PropertyName"
 #| msgid "angularMomentum"
@@ -1984,7 +1984,7 @@ msgctxt "PropertyName|"
 msgid "angularMomentum"
 msgstr "angularMomentum"
 
-#: rigidbody.cc:47 rigidbody.cc:77
+#: rigidbody.cc:35 rigidbody.cc:65
 #, fuzzy
 #| msgctxt "Units"
 #| msgid "kg m² rad/s"
@@ -1992,7 +1992,7 @@ msgctxt "Units|"
 msgid "kg m² rad/s"
 msgstr "kg m² rad/s"
 
-#: rigidbody.cc:52
+#: rigidbody.cc:40
 #, fuzzy
 #| msgctxt "ObjectClass"
 #| msgid "RigidBodyErrors"
@@ -2000,14 +2000,14 @@ msgctxt "ObjectClass|"
 msgid "RigidBodyErrors"
 msgstr "RigidBodyErrors"
 
-#: rigidbody.cc:52
+#: rigidbody.cc:40
 #, fuzzy
 #| msgid "Errors class for RigidBody"
 msgctxt "ObjectDescription|"
 msgid "Errors class for RigidBody"
 msgstr "Clasă de erori pentru corpRigid"
 
-#: rigidbody.cc:55
+#: rigidbody.cc:43
 #, fuzzy
 #| msgctxt "PropertyName"
 #| msgid "angleVariance"
@@ -2015,14 +2015,14 @@ msgctxt "PropertyName|"
 msgid "angleVariance"
 msgstr "angleVariance"
 
-#: rigidbody.cc:56
+#: rigidbody.cc:44
 #, fuzzy
 #| msgid "angle variance"
 msgctxt "PropertyDescription|"
 msgid "angle variance"
 msgstr "variație unghi"
 
-#: rigidbody.cc:60
+#: rigidbody.cc:48
 #, fuzzy
 #| msgctxt "PropertyName"
 #| msgid "angularVelocityVariance"
@@ -2030,14 +2030,14 @@ msgctxt "PropertyName|"
 msgid "angularVelocityVariance"
 msgstr "angularVelocityVariance"
 
-#: rigidbody.cc:61
+#: rigidbody.cc:49
 #, fuzzy
 #| msgid "angularVelocity variance"
 msgctxt "PropertyDescription|"
 msgid "angularVelocity variance"
 msgstr "variație vitezăUnghiulară"
 
-#: rigidbody.cc:65
+#: rigidbody.cc:53
 #, fuzzy
 #| msgctxt "PropertyName"
 #| msgid "angularAccelerationVariance"
@@ -2045,21 +2045,21 @@ msgctxt "PropertyName|"
 msgid "angularAccelerationVariance"
 msgstr "angularAccelerationVariance"
 
-#: rigidbody.cc:66
+#: rigidbody.cc:54
 #, fuzzy
 #| msgid "angularAcceleration variance"
 msgctxt "PropertyDescription|"
 msgid "angularAcceleration variance"
 msgstr "variație accelerațieUnghiulară"
 
-#: rigidbody.cc:69
+#: rigidbody.cc:57
 #, fuzzy
 #| msgid "torque variance"
 msgctxt "PropertyDescription|"
 msgid "torque variance"
 msgstr "variație cuplu"
 
-#: rigidbody.cc:69
+#: rigidbody.cc:57
 #, fuzzy
 #| msgctxt "PropertyName"
 #| msgid "torqueVariance"
@@ -2067,7 +2067,7 @@ msgctxt "PropertyName|"
 msgid "torqueVariance"
 msgstr "torqueVariance"
 
-#: rigidbody.cc:73
+#: rigidbody.cc:61
 #, fuzzy
 #| msgctxt "PropertyName"
 #| msgid "inertiaVariance"
@@ -2075,14 +2075,14 @@ msgctxt "PropertyName|"
 msgid "inertiaVariance"
 msgstr "inertiaVariance"
 
-#: rigidbody.cc:74
+#: rigidbody.cc:62
 #, fuzzy
 #| msgid "inertia variance"
 msgctxt "PropertyDescription|"
 msgid "inertia variance"
 msgstr "variație inerție"
 
-#: rigidbody.cc:77
+#: rigidbody.cc:65
 #, fuzzy
 #| msgctxt "PropertyName"
 #| msgid "angularMomentumVariance"
@@ -2090,14 +2090,14 @@ msgctxt "PropertyName|"
 msgid "angularMomentumVariance"
 msgstr "angularMomentumVariance"
 
-#: rigidbody.cc:78
+#: rigidbody.cc:66
 #, fuzzy
 #| msgid "angular momentum variance"
 msgctxt "PropertyDescription|"
 msgid "angular momentum variance"
 msgstr "variație impuls unghiular"
 
-#: rigidbody.cc:83
+#: rigidbody.cc:71
 #, fuzzy
 #| msgctxt "ObjectClass"
 #| msgid "Disk"
@@ -2105,21 +2105,21 @@ msgctxt "ObjectClass|"
 msgid "Disk"
 msgstr "Disk"
 
-#: rigidbody.cc:83
+#: rigidbody.cc:71
 #, fuzzy
 #| msgid "Rigid disk"
 msgctxt "ObjectDescription|"
 msgid "Rigid disk"
 msgstr "Disc rigid"
 
-#: rigidbody.cc:84
+#: rigidbody.cc:72
 #, fuzzy
 #| msgid "Radius of the disk"
 msgctxt "PropertyDescription|"
 msgid "Radius of the disk"
 msgstr "raza discului"
 
-#: rigidbody.cc:84
+#: rigidbody.cc:72
 #, fuzzy
 #| msgctxt "PropertyName"
 #| msgid "radius"
@@ -2127,7 +2127,7 @@ msgctxt "PropertyName|"
 msgid "radius"
 msgstr "radius"
 
-#: rigidbody.cc:86
+#: rigidbody.cc:74
 #, fuzzy
 #| msgctxt "ObjectClass"
 #| msgid "BasePolygon"
@@ -2135,14 +2135,14 @@ msgctxt "ObjectClass|"
 msgid "BasePolygon"
 msgstr "BasePolygon"
 
-#: rigidbody.cc:86
+#: rigidbody.cc:74
 #, fuzzy
 #| msgid "Base polygon body"
 msgctxt "ObjectDescription|"
 msgid "Base polygon body"
 msgstr "Corp poligon bază"
 
-#: rigidbody.cc:88
+#: rigidbody.cc:76
 #, fuzzy
 #| msgctxt "ObjectClass"
 #| msgid "Box"
@@ -2150,21 +2150,21 @@ msgctxt "ObjectClass|"
 msgid "Box"
 msgstr "Box"
 
-#: rigidbody.cc:88
+#: rigidbody.cc:76
 #, fuzzy
 #| msgid "Rigid box"
 msgctxt "ObjectDescription|"
 msgid "Rigid box"
 msgstr "Casetă rigidă"
 
-#: rigidbody.cc:89
+#: rigidbody.cc:77
 #, fuzzy
 #| msgid "Size of the box"
 msgctxt "PropertyDescription|"
 msgid "Size of the box"
 msgstr "Mărimea casetei"
 
-#: rigidbody.cc:89 tool.cc:39 tool.cc:46 tool.cc:68 tool.cc:80
+#: rigidbody.cc:77 tool.cc:27 tool.cc:34 tool.cc:56 tool.cc:68
 #, fuzzy
 #| msgctxt "PropertyName"
 #| msgid "size"
@@ -2172,7 +2172,7 @@ msgctxt "PropertyName|"
 msgid "size"
 msgstr "size"
 
-#: rigidbody.cc:91
+#: rigidbody.cc:79
 #, fuzzy
 #| msgctxt "ObjectClass"
 #| msgid "Polygon"
@@ -2180,21 +2180,21 @@ msgctxt "ObjectClass|"
 msgid "Polygon"
 msgstr "Polygon"
 
-#: rigidbody.cc:91
+#: rigidbody.cc:79
 #, fuzzy
 #| msgid "Rigid polygon body"
 msgctxt "ObjectDescription|"
 msgid "Rigid polygon body"
 msgstr "Corp poligon rigid"
 
-#: rigidbody.cc:92
+#: rigidbody.cc:80
 #, fuzzy
 #| msgid "Vertex list"
 msgctxt "PropertyDescription|"
 msgid "Vertex list"
 msgstr "Listă vertex"
 
-#: rigidbody.cc:92
+#: rigidbody.cc:80
 #, fuzzy
 #| msgctxt "PropertyName"
 #| msgid "vertices"
@@ -2202,7 +2202,7 @@ msgctxt "PropertyName|"
 msgid "vertices"
 msgstr "vertices"
 
-#: softbody.cc:31
+#: softbody.cc:19
 #, fuzzy
 #| msgctxt "ObjectClass"
 #| msgid "SoftBodyParticle"
@@ -2210,14 +2210,14 @@ msgctxt "ObjectClass|"
 msgid "SoftBodyParticle"
 msgstr "SoftBodyParticle"
 
-#: softbody.cc:31
+#: softbody.cc:19
 #, fuzzy
 #| msgid "SoftBody particle"
 msgctxt "ObjectDescription|"
 msgid "SoftBody particle"
 msgstr "Particulă softBody"
 
-#: softbody.cc:32
+#: softbody.cc:20
 #, fuzzy
 #| msgctxt "ObjectClass"
 #| msgid "SoftBodySpring"
@@ -2225,14 +2225,14 @@ msgctxt "ObjectClass|"
 msgid "SoftBodySpring"
 msgstr "SoftBodySpring"
 
-#: softbody.cc:32
+#: softbody.cc:20
 #, fuzzy
 #| msgid "SoftBody spring"
 msgctxt "ObjectDescription|"
 msgid "SoftBody spring"
 msgstr "Resort softBody"
 
-#: softbody.cc:33
+#: softbody.cc:21
 #, fuzzy
 #| msgctxt "ObjectClass"
 #| msgid "SoftBody"
@@ -2240,20 +2240,20 @@ msgctxt "ObjectClass|"
 msgid "SoftBody"
 msgstr "SoftBody"
 
-#: softbody.cc:33
+#: softbody.cc:21
 #, fuzzy
 #| msgid "Deformable SoftBody"
 msgctxt "ObjectDescription|"
 msgid "Deformable SoftBody"
 msgstr "SoftBody deformabil"
 
-#: softbody.cc:34
+#: softbody.cc:22
 #, fuzzy
 msgctxt "PropertyDescription|"
 msgid "Show internal items"
 msgstr "Afișează elemente interne"
 
-#: softbody.cc:34
+#: softbody.cc:22
 #, fuzzy
 #| msgctxt "PropertyName"
 #| msgid "showInternalItems"
@@ -2261,7 +2261,7 @@ msgctxt "PropertyName|"
 msgid "showInternalItems"
 msgstr "showInternalItems"
 
-#: softbody.cc:40
+#: softbody.cc:28
 #, fuzzy
 #| msgctxt "Units"
 #| msgid "kg m²/s"
@@ -2269,14 +2269,14 @@ msgctxt "Units|"
 msgid "kg m²/s"
 msgstr "kg m²/s"
 
-#: softbody.cc:41
+#: softbody.cc:29
 #, fuzzy
 #| msgid "Angular momentum of the body"
 msgctxt "PropertyDescription|"
 msgid "Angular momentum of the body"
 msgstr "Impulsul unghiular al corpului"
 
-#: softbody.cc:53
+#: softbody.cc:41
 #, fuzzy
 #| msgctxt "PropertyName"
 #| msgid "borderParticleNames"
@@ -2284,35 +2284,35 @@ msgctxt "PropertyName|"
 msgid "borderParticleNames"
 msgstr "borderParticleNames"
 
-#: softbody.cc:54
+#: softbody.cc:42
 #, fuzzy
 #| msgid "Border particle names (temporal property)"
 msgctxt "PropertyDescription|"
 msgid "Border particle names (temporal property)"
 msgstr "Nume particule de margine (proprietate termporară)"
 
-#: solver.cc:25
+#: solver.cc:13
 #, fuzzy
 #| msgid "Solver"
 msgctxt "ObjectClass|"
 msgid "Solver"
 msgstr "Solver"
 
-#: solver.cc:25
+#: solver.cc:13
 #, fuzzy
 #| msgid "Solver"
 msgctxt "ObjectDescription|"
 msgid "Solver"
 msgstr "Solver"
 
-#: solver.cc:26
+#: solver.cc:14
 #, fuzzy
 #| msgid "Solver type"
 msgctxt "PropertyDescription|"
 msgid "Solver type"
 msgstr "Tip solver"
 
-#: solver.cc:26
+#: solver.cc:14
 #, fuzzy
 #| msgctxt "PropertyName"
 #| msgid "solverType"
@@ -2320,14 +2320,14 @@ msgctxt "PropertyName|"
 msgid "solverType"
 msgstr "solverType"
 
-#: solver.cc:27
+#: solver.cc:15
 #, fuzzy
 #| msgid "Step size"
 msgctxt "PropertyDescription|"
 msgid "Step size"
 msgstr "Mărime pas"
 
-#: solver.cc:27
+#: solver.cc:15
 #, fuzzy
 #| msgctxt "PropertyName"
 #| msgid "stepSize"
@@ -2335,7 +2335,7 @@ msgctxt "PropertyName|"
 msgid "stepSize"
 msgstr "stepSize"
 
-#: solver.cc:27 world.cc:35
+#: solver.cc:15 world.cc:23
 #, fuzzy
 #| msgctxt "Units"
 #| msgid "s"
@@ -2343,14 +2343,14 @@ msgctxt "Units|"
 msgid "s"
 msgstr "s"
 
-#: solver.cc:29
+#: solver.cc:17
 #, fuzzy
 #| msgid "Allowed relative tolerance"
 msgctxt "PropertyDescription|"
 msgid "Allowed relative tolerance"
 msgstr "Toleranța relativă permisă"
 
-#: solver.cc:29
+#: solver.cc:17
 #, fuzzy
 #| msgctxt "PropertyName"
 #| msgid "toleranceRel"
@@ -2358,14 +2358,14 @@ msgctxt "PropertyName|"
 msgid "toleranceRel"
 msgstr "toleranceRel"
 
-#: solver.cc:30
+#: solver.cc:18
 #, fuzzy
 #| msgid "Count of dynamic variables"
 msgctxt "PropertyDescription|"
 msgid "Count of dynamic variables"
 msgstr "Numărul variabilelor dinamice"
 
-#: solver.cc:30
+#: solver.cc:18
 #, fuzzy
 #| msgctxt "PropertyName"
 #| msgid "dimension"
@@ -2373,14 +2373,14 @@ msgctxt "PropertyName|"
 msgid "dimension"
 msgstr "dimension"
 
-#: solver.cc:32
+#: solver.cc:20
 #, fuzzy
 #| msgid "Maximal local error ratio during last step"
 msgctxt "PropertyDescription|"
 msgid "Maximal local error ratio during last step"
 msgstr "Propotția erorii locale maximale în timpul ultimului pas"
 
-#: solver.cc:32
+#: solver.cc:20
 #, fuzzy
 #| msgctxt "PropertyName"
 #| msgid "localErrorRatio"
@@ -2388,7 +2388,7 @@ msgctxt "PropertyName|"
 msgid "localErrorRatio"
 msgstr "localErrorRatio"
 
-#: spring.cc:28
+#: spring.cc:16
 #, fuzzy
 #| msgctxt "ObjectClass"
 #| msgid "Spring"
@@ -2396,28 +2396,28 @@ msgctxt "ObjectClass|"
 msgid "Spring"
 msgstr "Spring"
 
-#: spring.cc:28
+#: spring.cc:16
 #, fuzzy
 #| msgid "Massless spring which can be connected to bodies"
 msgctxt "ObjectDescription|"
 msgid "Massless spring which can be connected to bodies"
 msgstr "Resortul cu masă neglijabilă care poate fi conectat la corpuri"
 
-#: spring.cc:30
+#: spring.cc:18
 #, fuzzy
 #| msgid "Rest length"
 msgctxt "PropertyDescription|"
 msgid "Rest length"
 msgstr "Lungime rămasă"
 
-#: spring.cc:31
+#: spring.cc:19
 #, fuzzy
 #| msgid "Current length"
 msgctxt "PropertyDescription|"
 msgid "Current length"
 msgstr "Lungime curentă"
 
-#: spring.cc:31
+#: spring.cc:19
 #, fuzzy
 #| msgctxt "PropertyName"
 #| msgid "length"
@@ -2425,14 +2425,14 @@ msgctxt "PropertyName|"
 msgid "length"
 msgstr "length"
 
-#: spring.cc:32
+#: spring.cc:20
 #, fuzzy
 #| msgid "Stiffness"
 msgctxt "PropertyDescription|"
 msgid "Stiffness"
 msgstr "Rigiditate"
 
-#: spring.cc:32
+#: spring.cc:20
 #, fuzzy
 #| msgctxt "PropertyName"
 #| msgid "stiffness"
@@ -2440,7 +2440,7 @@ msgctxt "PropertyName|"
 msgid "stiffness"
 msgstr "stiffness"
 
-#: spring.cc:32 spring.cc:51 spring.cc:53
+#: spring.cc:20 spring.cc:39 spring.cc:41
 #, fuzzy
 #| msgctxt "Units"
 #| msgid "N/m"
@@ -2448,14 +2448,14 @@ msgctxt "Units|"
 msgid "N/m"
 msgstr "N/m"
 
-#: spring.cc:33
+#: spring.cc:21
 #, fuzzy
 #| msgid "Damping"
 msgctxt "PropertyDescription|"
 msgid "Damping"
 msgstr "Umezire"
 
-#: spring.cc:33
+#: spring.cc:21
 #, fuzzy
 #| msgctxt "PropertyName"
 #| msgid "damping"
@@ -2463,7 +2463,7 @@ msgctxt "PropertyName|"
 msgid "damping"
 msgstr "damping"
 
-#: spring.cc:33
+#: spring.cc:21
 #, fuzzy
 #| msgctxt "Units"
 #| msgid "N s/m"
@@ -2471,14 +2471,14 @@ msgctxt "Units|"
 msgid "N s/m"
 msgstr "N s/m"
 
-#: spring.cc:42
+#: spring.cc:30
 #, fuzzy
 #| msgid "Spring tension force"
 msgctxt "PropertyDescription|"
 msgid "Spring tension force"
 msgstr "Forță de tensiune a resortului"
 
-#: spring.cc:45
+#: spring.cc:33
 #, fuzzy
 #| msgctxt "ObjectClass"
 #| msgid "SpringErrors"
@@ -2486,14 +2486,14 @@ msgctxt "ObjectClass|"
 msgid "SpringErrors"
 msgstr "SpringErrors"
 
-#: spring.cc:45
+#: spring.cc:33
 #, fuzzy
 #| msgid "Errors class for Spring"
 msgctxt "ObjectDescription|"
 msgid "Errors class for Spring"
 msgstr "Clasă de erori pentru resort"
 
-#: spring.cc:47
+#: spring.cc:35
 #, fuzzy
 #| msgctxt "PropertyName"
 #| msgid "restLengthVariance"
@@ -2501,14 +2501,14 @@ msgctxt "PropertyName|"
 msgid "restLengthVariance"
 msgstr "restLengthVariance"
 
-#: spring.cc:48
+#: spring.cc:36
 #, fuzzy
 #| msgid "Rest length variance"
 msgctxt "PropertyDescription|"
 msgid "Rest length variance"
 msgstr "Variație lungime rămasă"
 
-#: spring.cc:49
+#: spring.cc:37
 #, fuzzy
 #| msgctxt "PropertyName"
 #| msgid "lengthVariance"
@@ -2516,14 +2516,14 @@ msgctxt "PropertyName|"
 msgid "lengthVariance"
 msgstr "lengthVariance"
 
-#: spring.cc:50
+#: spring.cc:38
 #, fuzzy
 #| msgid "Current length variance"
 msgctxt "PropertyDescription|"
 msgid "Current length variance"
 msgstr "Variație lungime curentă"
 
-#: spring.cc:51
+#: spring.cc:39
 #, fuzzy
 #| msgctxt "PropertyName"
 #| msgid "stiffnessVariance"
@@ -2531,14 +2531,14 @@ msgctxt "PropertyName|"
 msgid "stiffnessVariance"
 msgstr "stiffnessVariance"
 
-#: spring.cc:52
+#: spring.cc:40
 #, fuzzy
 #| msgid "Stiffness variance"
 msgctxt "PropertyDescription|"
 msgid "Stiffness variance"
 msgstr "Variație rigiditate"
 
-#: spring.cc:53
+#: spring.cc:41
 #, fuzzy
 #| msgctxt "PropertyName"
 #| msgid "dampingVariance"
@@ -2546,14 +2546,14 @@ msgctxt "PropertyName|"
 msgid "dampingVariance"
 msgstr "dampingVariance"
 
-#: spring.cc:54
+#: spring.cc:42
 #, fuzzy
 #| msgid "Damping variance"
 msgctxt "PropertyDescription|"
 msgid "Damping variance"
 msgstr "Variație umezire"
 
-#: spring.cc:55
+#: spring.cc:43
 #, fuzzy
 #| msgctxt "PropertyName"
 #| msgid "localPosition1Variance"
@@ -2561,14 +2561,14 @@ msgctxt "PropertyName|"
 msgid "localPosition1Variance"
 msgstr "localPosition1Variance"
 
-#: spring.cc:56
+#: spring.cc:44
 #, fuzzy
 #| msgid "Local position 1 variance"
 msgctxt "PropertyDescription|"
 msgid "Local position 1 variance"
 msgstr "Variație poziție locală 1"
 
-#: spring.cc:57
+#: spring.cc:45
 #, fuzzy
 #| msgctxt "PropertyName"
 #| msgid "localPosition2Variance"
@@ -2576,14 +2576,14 @@ msgctxt "PropertyName|"
 msgid "localPosition2Variance"
 msgstr "localPosition2Variance"
 
-#: spring.cc:58
+#: spring.cc:46
 #, fuzzy
 #| msgid "Local position 2 variance"
 msgctxt "PropertyDescription|"
 msgid "Local position 2 variance"
 msgstr "Variație poziție locală 2"
 
-#: spring.cc:59
+#: spring.cc:47
 #, fuzzy
 #| msgctxt "PropertyName"
 #| msgid "position1Variance"
@@ -2591,14 +2591,14 @@ msgctxt "PropertyName|"
 msgid "position1Variance"
 msgstr "position1Variance"
 
-#: spring.cc:60
+#: spring.cc:48
 #, fuzzy
 #| msgid "Position1 variance"
 msgctxt "PropertyDescription|"
 msgid "Position1 variance"
 msgstr "Variație poziție1"
 
-#: spring.cc:61
+#: spring.cc:49
 #, fuzzy
 #| msgctxt "PropertyName"
 #| msgid "position2Variance"
@@ -2606,21 +2606,21 @@ msgctxt "PropertyName|"
 msgid "position2Variance"
 msgstr "position2Variance"
 
-#: spring.cc:62
+#: spring.cc:50
 #, fuzzy
 #| msgid "Position2 variance"
 msgctxt "PropertyDescription|"
 msgid "Position2 variance"
 msgstr "Variație poziție2"
 
-#: spring.cc:64
+#: spring.cc:52
 #, fuzzy
 #| msgid "Spring tension force variance"
 msgctxt "PropertyDescription|"
 msgid "Spring tension force variance"
 msgstr "Variație a forței de tensiune a resortului"
 
-#: tool.cc:26
+#: tool.cc:14
 #, fuzzy
 #| msgctxt "ObjectClass"
 #| msgid "NoteImage"
@@ -2628,21 +2628,21 @@ msgctxt "ObjectClass|"
 msgid "NoteImage"
 msgstr "NoteImage"
 
-#: tool.cc:26
+#: tool.cc:14
 #, fuzzy
 #| msgid "NoteImage: an image embedded in Note"
 msgctxt "ObjectDescription|"
 msgid "NoteImage: an image embedded in Note"
 msgstr "ImagineNotă: o imagine înglobată în notă"
 
-#: tool.cc:28
+#: tool.cc:16
 #, fuzzy
 #| msgid "Image data"
 msgctxt "PropertyDescription|"
 msgid "Image data"
 msgstr "Date imagine"
 
-#: tool.cc:28
+#: tool.cc:16
 #, fuzzy
 #| msgctxt "PropertyName"
 #| msgid "image"
@@ -2650,7 +2650,7 @@ msgctxt "PropertyName|"
 msgid "image"
 msgstr "image"
 
-#: tool.cc:31
+#: tool.cc:19
 #, fuzzy
 #| msgctxt "ObjectClass"
 #| msgid "NoteFormula"
@@ -2658,21 +2658,21 @@ msgctxt "ObjectClass|"
 msgid "NoteFormula"
 msgstr "NoteFormula"
 
-#: tool.cc:31
+#: tool.cc:19
 #, fuzzy
 #| msgid "NoteFormula: a formula embedded in Note"
 msgctxt "ObjectDescription|"
 msgid "NoteFormula: a formula embedded in Note"
 msgstr "FormulăNotă: o formulă înglobată în notă"
 
-#: tool.cc:33
+#: tool.cc:21
 #, fuzzy
 #| msgid "Formula code"
 msgctxt "PropertyDescription|"
 msgid "Formula code"
 msgstr "Cod formulă"
 
-#: tool.cc:33
+#: tool.cc:21
 #, fuzzy
 #| msgctxt "PropertyName"
 #| msgid "code"
@@ -2680,7 +2680,7 @@ msgctxt "PropertyName|"
 msgid "code"
 msgstr "code"
 
-#: tool.cc:36
+#: tool.cc:24
 #, fuzzy
 #| msgctxt "ObjectClass"
 #| msgid "Note"
@@ -2688,35 +2688,35 @@ msgctxt "ObjectClass|"
 msgid "Note"
 msgstr "Note"
 
-#: tool.cc:36
+#: tool.cc:24
 #, fuzzy
 #| msgid "Note: displays a textual note on the scene"
 msgctxt "ObjectDescription|"
 msgid "Note: displays a textual note on the scene"
 msgstr "Notă: afișează o notă textuală pe spațiul de lucru"
 
-#: tool.cc:38
+#: tool.cc:26
 #, fuzzy
 #| msgid "Note position on the scene"
 msgctxt "PropertyDescription|"
 msgid "Note position on the scene"
 msgstr "Poziția notei pe spațiul de lucru"
 
-#: tool.cc:39
+#: tool.cc:27
 #, fuzzy
 #| msgid "Note size on the scene"
 msgctxt "PropertyDescription|"
 msgid "Note size on the scene"
 msgstr "Mărimea notei pe spațiul de lucru"
 
-#: tool.cc:40
+#: tool.cc:28
 #, fuzzy
 #| msgid "Text"
 msgctxt "PropertyDescription|"
 msgid "Text"
 msgstr "Text"
 
-#: tool.cc:40
+#: tool.cc:28
 #, fuzzy
 #| msgctxt "PropertyName"
 #| msgid "text"
@@ -2724,7 +2724,7 @@ msgctxt "PropertyName|"
 msgid "text"
 msgstr "text"
 
-#: tool.cc:43
+#: tool.cc:31
 #, fuzzy
 #| msgctxt "ObjectClass"
 #| msgid "Graph"
@@ -2732,35 +2732,35 @@ msgctxt "ObjectClass|"
 msgid "Graph"
 msgstr "Graph"
 
-#: tool.cc:43
+#: tool.cc:31
 #, fuzzy
 #| msgid "Graph: plots a graph of any properties"
 msgctxt "ObjectDescription|"
 msgid "Graph: plots a graph of any properties"
 msgstr "Grafic: plotează un grafic cu orice proprietăți"
 
-#: tool.cc:45
+#: tool.cc:33
 #, fuzzy
 #| msgid "Graph position on the scene"
 msgctxt "PropertyDescription|"
 msgid "Graph position on the scene"
 msgstr "Poziția graficului pe spațiul de lucru"
 
-#: tool.cc:46
+#: tool.cc:34
 #, fuzzy
 #| msgid "Graph size on the scene"
 msgctxt "PropertyDescription|"
 msgid "Graph size on the scene"
 msgstr "Mărimea graficului pe spațiul de lucru"
 
-#: tool.cc:47
+#: tool.cc:35
 #, fuzzy
 #| msgid "X axis: object"
 msgctxt "PropertyDescription|"
 msgid "X axis: object"
 msgstr "Axa X: obiect"
 
-#: tool.cc:47
+#: tool.cc:35
 #, fuzzy
 #| msgctxt "PropertyName"
 #| msgid "objectX"
@@ -2768,14 +2768,14 @@ msgctxt "PropertyName|"
 msgid "objectX"
 msgstr "objectX"
 
-#: tool.cc:48
+#: tool.cc:36
 #, fuzzy
 #| msgid "X axis: object property"
 msgctxt "PropertyDescription|"
 msgid "X axis: object property"
 msgstr "Axa X: proprietate obiect"
 
-#: tool.cc:48
+#: tool.cc:36
 #, fuzzy
 #| msgctxt "PropertyName"
 #| msgid "propertyX"
@@ -2783,14 +2783,14 @@ msgctxt "PropertyName|"
 msgid "propertyX"
 msgstr "propertyX"
 
-#: tool.cc:49
+#: tool.cc:37
 #, fuzzy
 #| msgid "X axis: vector index"
 msgctxt "PropertyDescription|"
 msgid "X axis: vector index"
 msgstr "Axa X: indice vector"
 
-#: tool.cc:49
+#: tool.cc:37
 #, fuzzy
 #| msgctxt "PropertyName"
 #| msgid "indexX"
@@ -2798,14 +2798,14 @@ msgctxt "PropertyName|"
 msgid "indexX"
 msgstr "indexX"
 
-#: tool.cc:50
+#: tool.cc:38
 #, fuzzy
 #| msgid "Y axis: object"
 msgctxt "PropertyDescription|"
 msgid "Y axis: object"
 msgstr "Axa X: obiect "
 
-#: tool.cc:50
+#: tool.cc:38
 #, fuzzy
 #| msgctxt "PropertyName"
 #| msgid "objectY"
@@ -2813,14 +2813,14 @@ msgctxt "PropertyName|"
 msgid "objectY"
 msgstr "objectY"
 
-#: tool.cc:51
+#: tool.cc:39
 #, fuzzy
 #| msgid "Y axis: property"
 msgctxt "PropertyDescription|"
 msgid "Y axis: property"
 msgstr "Axa Y. proprietate"
 
-#: tool.cc:51
+#: tool.cc:39
 #, fuzzy
 #| msgctxt "PropertyName"
 #| msgid "propertyY"
@@ -2828,14 +2828,14 @@ msgctxt "PropertyName|"
 msgid "propertyY"
 msgstr "propertyY"
 
-#: tool.cc:52
+#: tool.cc:40
 #, fuzzy
 #| msgid "Y axis: vector index"
 msgctxt "PropertyDescription|"
 msgid "Y axis: vector index"
 msgstr "Axa Y: indice vector"
 
-#: tool.cc:52
+#: tool.cc:40
 #, fuzzy
 #| msgctxt "PropertyName"
 #| msgid "indexY"
@@ -2843,14 +2843,14 @@ msgctxt "PropertyName|"
 msgid "indexY"
 msgstr "indexY"
 
-#: tool.cc:53
+#: tool.cc:41
 #, fuzzy
 #| msgid "Auto-limits along X axis"
 msgctxt "PropertyDescription|"
 msgid "Auto-limits along X axis"
 msgstr "Limite-auto de pe axa X"
 
-#: tool.cc:53
+#: tool.cc:41
 #, fuzzy
 #| msgctxt "PropertyName"
 #| msgid "autoLimitsX"
@@ -2858,14 +2858,14 @@ msgctxt "PropertyName|"
 msgid "autoLimitsX"
 msgstr "autoLimitsX"
 
-#: tool.cc:54
+#: tool.cc:42
 #, fuzzy
 #| msgid "Auto-limits along Y axis"
 msgctxt "PropertyDescription|"
 msgid "Auto-limits along Y axis"
 msgstr "Limite-auto de pe axa Y"
 
-#: tool.cc:54
+#: tool.cc:42
 #, fuzzy
 #| msgctxt "PropertyName"
 #| msgid "autoLimitsY"
@@ -2873,14 +2873,14 @@ msgctxt "PropertyName|"
 msgid "autoLimitsY"
 msgstr "autoLimitsY"
 
-#: tool.cc:55
+#: tool.cc:43
 #, fuzzy
 #| msgid "Limits along X axis"
 msgctxt "PropertyDescription|"
 msgid "Limits along X axis"
 msgstr "Limite de pe axa X "
 
-#: tool.cc:55
+#: tool.cc:43
 #, fuzzy
 #| msgctxt "PropertyName"
 #| msgid "limitsX"
@@ -2888,14 +2888,14 @@ msgctxt "PropertyName|"
 msgid "limitsX"
 msgstr "limitsX"
 
-#: tool.cc:56
+#: tool.cc:44
 #, fuzzy
 #| msgid "Limits along Y axis"
 msgctxt "PropertyDescription|"
 msgid "Limits along Y axis"
 msgstr "Limite de pe axa Y"
 
-#: tool.cc:56
+#: tool.cc:44
 #, fuzzy
 #| msgctxt "PropertyName"
 #| msgid "limitsY"
@@ -2903,14 +2903,14 @@ msgctxt "PropertyName|"
 msgid "limitsY"
 msgstr "limitsY"
 
-#: tool.cc:57
+#: tool.cc:45
 #, fuzzy
 #| msgid "Show points on the graph"
 msgctxt "PropertyDescription|"
 msgid "Show points on the graph"
 msgstr "Afișează puncte pe grafic"
 
-#: tool.cc:57
+#: tool.cc:45
 #, fuzzy
 #| msgctxt "PropertyName"
 #| msgid "showPoints"
@@ -2918,14 +2918,14 @@ msgctxt "PropertyName|"
 msgid "showPoints"
 msgstr "showPoints"
 
-#: tool.cc:58
+#: tool.cc:46
 #, fuzzy
 #| msgid "Show lines on the graph"
 msgctxt "PropertyDescription|"
 msgid "Show lines on the graph"
 msgstr "Afișeză liniile pe grafic"
 
-#: tool.cc:58
+#: tool.cc:46
 #, fuzzy
 #| msgctxt "PropertyName"
 #| msgid "showLines"
@@ -2933,63 +2933,63 @@ msgctxt "PropertyName|"
 msgid "showLines"
 msgstr "showLines"
 
-#: tool.cc:59
+#: tool.cc:47
 #, fuzzy
 #| msgid "Current value"
 msgctxt "PropertyDescription|"
 msgid "Current value"
 msgstr "Valoare curentă"
 
-#: tool.cc:59
+#: tool.cc:47
 #, fuzzy
 #| msgid "currentValue"
 msgctxt "PropertyName|"
 msgid "currentValue"
 msgstr "valoareCurentă"
 
-#: tool.cc:60 tool.cc:101
+#: tool.cc:48 tool.cc:89
 #, fuzzy
 #| msgid "points"
 msgctxt "PropertyDescription|"
 msgid "points"
 msgstr "puncte"
 
-#: tool.cc:60 tool.cc:101
+#: tool.cc:48 tool.cc:89
 #, fuzzy
 #| msgid "points"
 msgctxt "PropertyName|"
 msgid "points"
 msgstr "puncte"
 
-#: tool.cc:61
+#: tool.cc:49
 #, fuzzy
 #| msgid "unitsX"
 msgctxt "PropertyName|"
 msgid "unitsX"
 msgstr "unitățiX"
 
-#: tool.cc:61
+#: tool.cc:49
 #, fuzzy
 #| msgid "Units along X axis"
 msgctxt "PropertyName|"
 msgid "Units along X axis"
 msgstr "Unități de pe axa X"
 
-#: tool.cc:62
+#: tool.cc:50
 #, fuzzy
 #| msgid "unitsY"
 msgctxt "PropertyName|"
 msgid "unitsY"
 msgstr "unitățiY"
 
-#: tool.cc:62
+#: tool.cc:50
 #, fuzzy
 #| msgid "Units along Y axis"
 msgctxt "PropertyName|"
 msgid "Units along Y axis"
 msgstr "Unități de pe axa Y"
 
-#: tool.cc:65
+#: tool.cc:53
 #, fuzzy
 #| msgctxt "ObjectClass"
 #| msgid "Meter"
@@ -2997,35 +2997,35 @@ msgctxt "ObjectClass|"
 msgid "Meter"
 msgstr "Meter"
 
-#: tool.cc:65
+#: tool.cc:53
 #, fuzzy
 #| msgid "Meter: displays any property on the scene"
 msgctxt "ObjectDescription|"
 msgid "Meter: displays any property on the scene"
 msgstr "Aparat de măsură: afișează orice proprietate pe spațiul de lucru"
 
-#: tool.cc:67
+#: tool.cc:55
 #, fuzzy
 #| msgid "Meter position on the scene"
 msgctxt "PropertyDescription|"
 msgid "Meter position on the scene"
 msgstr "Poziția aparatului de măsură pe spațiul de lucru"
 
-#: tool.cc:68
+#: tool.cc:56
 #, fuzzy
 #| msgid "Meter size on the scene"
 msgctxt "PropertyDescription|"
 msgid "Meter size on the scene"
 msgstr "Mărimea aparatului de măsură pe spațiul de lucru"
 
-#: tool.cc:69
+#: tool.cc:57
 #, fuzzy
 #| msgid "Observed object"
 msgctxt "PropertyDescription|"
 msgid "Observed object"
 msgstr "Obiect observat"
 
-#: tool.cc:69 tool.cc:81
+#: tool.cc:57 tool.cc:69
 #, fuzzy
 #| msgctxt "PropertyName"
 #| msgid "object"
@@ -3033,14 +3033,14 @@ msgctxt "PropertyName|"
 msgid "object"
 msgstr "object"
 
-#: tool.cc:70
+#: tool.cc:58
 #, fuzzy
 #| msgid "Observed property"
 msgctxt "PropertyDescription|"
 msgid "Observed property"
 msgstr "Proprietate observată"
 
-#: tool.cc:70 tool.cc:82
+#: tool.cc:58 tool.cc:70
 #, fuzzy
 #| msgctxt "PropertyName"
 #| msgid "property"
@@ -3048,14 +3048,14 @@ msgctxt "PropertyName|"
 msgid "property"
 msgstr "property"
 
-#: tool.cc:71 tool.cc:83
+#: tool.cc:59 tool.cc:71
 #, fuzzy
 #| msgid "Vector index"
 msgctxt "PropertyDescription|"
 msgid "Vector index"
 msgstr "Indice vector"
 
-#: tool.cc:71 tool.cc:83
+#: tool.cc:59 tool.cc:71
 #, fuzzy
 #| msgctxt "PropertyName"
 #| msgid "index"
@@ -3063,14 +3063,14 @@ msgctxt "PropertyName|"
 msgid "index"
 msgstr "index"
 
-#: tool.cc:72
+#: tool.cc:60
 #, fuzzy
 #| msgid "Display digits"
 msgctxt "PropertyDescription|"
 msgid "Display digits"
 msgstr "Afișează cifre"
 
-#: tool.cc:72
+#: tool.cc:60
 #, fuzzy
 #| msgctxt "PropertyName"
 #| msgid "digits"
@@ -3078,35 +3078,35 @@ msgctxt "PropertyName|"
 msgid "digits"
 msgstr "digits"
 
-#: tool.cc:73 tool.cc:90
+#: tool.cc:61 tool.cc:78
 #, fuzzy
 #| msgid "Value"
 msgctxt "PropertyDescription|"
 msgid "Value"
 msgstr "Valoare"
 
-#: tool.cc:73 tool.cc:90
+#: tool.cc:61 tool.cc:78
 #, fuzzy
 #| msgid "value"
 msgctxt "PropertyName|"
 msgid "value"
 msgstr "valoare"
 
-#: tool.cc:74
+#: tool.cc:62
 #, fuzzy
 #| msgid "Units of measured property"
 msgctxt "PropertyDescription|"
 msgid "Units of measured property"
 msgstr "Unitățile proprietății măsurate"
 
-#: tool.cc:74 tool.cc:92
+#: tool.cc:62 tool.cc:80
 #, fuzzy
 #| msgid "units"
 msgctxt "PropertyName|"
 msgid "units"
 msgstr "unități"
 
-#: tool.cc:77
+#: tool.cc:65
 #, fuzzy
 #| msgctxt "ObjectClass"
 #| msgid "Controller"
@@ -3114,49 +3114,49 @@ msgctxt "ObjectClass|"
 msgid "Controller"
 msgstr "Controller"
 
-#: tool.cc:77
+#: tool.cc:65
 #, fuzzy
 #| msgid "Controller: allows to easily control any property"
 msgctxt "ObjectDescription|"
 msgid "Controller: allows to easily control any property"
 msgstr "Controler. vă permite să controlați ușor orice proprietate"
 
-#: tool.cc:79
+#: tool.cc:67
 #, fuzzy
 #| msgid "Controller position on the scene"
 msgctxt "PropertyDescription|"
 msgid "Controller position on the scene"
 msgstr "Poziția controlerului pe spațiul de lucru"
 
-#: tool.cc:80
+#: tool.cc:68
 #, fuzzy
 #| msgid "Controller size on the scene"
 msgctxt "PropertyDescription|"
 msgid "Controller size on the scene"
 msgstr "Mărimea controlerului pe spațiul de lucru"
 
-#: tool.cc:81
+#: tool.cc:69
 #, fuzzy
 #| msgid "Controlled object"
 msgctxt "PropertyDescription|"
 msgid "Controlled object"
 msgstr "Obiect controlat"
 
-#: tool.cc:82
+#: tool.cc:70
 #, fuzzy
 #| msgid "Controlled property"
 msgctxt "PropertyDescription|"
 msgid "Controlled property"
 msgstr "Proprietate controlată"
 
-#: tool.cc:84
+#: tool.cc:72
 #, fuzzy
 #| msgid "Limits"
 msgctxt "PropertyDescription|"
 msgid "Limits"
 msgstr "Limite"
 
-#: tool.cc:84
+#: tool.cc:72
 #, fuzzy
 #| msgctxt "PropertyName"
 #| msgid "limits"
@@ -3164,7 +3164,7 @@ msgctxt "PropertyName|"
 msgid "limits"
 msgstr "limits"
 
-#: tool.cc:85
+#: tool.cc:73
 #, fuzzy
 #| msgctxt "PropertyName"
 #| msgid "increaseShortcut"
@@ -3172,14 +3172,14 @@ msgctxt "PropertyName|"
 msgid "increaseShortcut"
 msgstr "increaseShortcut"
 
-#: tool.cc:86
+#: tool.cc:74
 #, fuzzy
 #| msgid "Shortcut to increase the value"
 msgctxt "PropertyDescription|"
 msgid "Shortcut to increase the value"
 msgstr "Scurtătură pentru a mări valoarea"
 
-#: tool.cc:87
+#: tool.cc:75
 #, fuzzy
 #| msgctxt "PropertyName"
 #| msgid "decreaseShortcut"
@@ -3187,21 +3187,21 @@ msgctxt "PropertyName|"
 msgid "decreaseShortcut"
 msgstr "decreaseShortcut"
 
-#: tool.cc:88
+#: tool.cc:76
 #, fuzzy
 #| msgid "Shortcut to decrease the value"
 msgctxt "PropertyDescription|"
 msgid "Shortcut to decrease the value"
 msgstr "Scurtătură pentru a micșora valoarea"
 
-#: tool.cc:89
+#: tool.cc:77
 #, fuzzy
 #| msgid "Increment value"
 msgctxt "PropertyDescription|"
 msgid "Increment value"
 msgstr "Valoare incrementare"
 
-#: tool.cc:89
+#: tool.cc:77
 #, fuzzy
 #| msgctxt "PropertyName"
 #| msgid "increment"
@@ -3209,14 +3209,14 @@ msgctxt "PropertyName|"
 msgid "increment"
 msgstr "increment"
 
-#: tool.cc:92
+#: tool.cc:80
 #, fuzzy
 #| msgid "Units of controlled property"
 msgctxt "PropertyDescription|"
 msgid "Units of controlled property"
 msgstr "Unitățile proprietății controlate"
 
-#: tool.cc:95
+#: tool.cc:83
 #, fuzzy
 #| msgctxt "ObjectClass"
 #| msgid "Tracer"
@@ -3224,61 +3224,61 @@ msgctxt "ObjectClass|"
 msgid "Tracer"
 msgstr "Tracer"
 
-#: tool.cc:95
+#: tool.cc:83
 #, fuzzy
 #| msgid "Tracer: traces trajectory of a point on a body"
 msgctxt "ObjectDescription|"
 msgid "Tracer: traces trajectory of a point on a body"
 msgstr "Trasor: urmărește traiectoria unui punct de pe corp"
 
-#: tool.cc:97
+#: tool.cc:85
 #, fuzzy
 #| msgid "Traced body"
 msgctxt "PropertyDescription|"
 msgid "Traced body"
 msgstr "Corp urmărit"
 
-#: tool.cc:99
+#: tool.cc:87
 #, fuzzy
 #| msgid "Local position"
 msgctxt "PropertyDescription|"
 msgid "Local position"
 msgstr "Poziție locală"
 
-#: world.cc:32
+#: world.cc:20
 #, fuzzy
 msgctxt "ObjectClass|"
 msgid "Tool"
 msgstr "Unealtă"
 
-#: world.cc:32
+#: world.cc:20
 #, fuzzy
 msgctxt "ObjectDescription|"
 msgid "Tool"
 msgstr "Unealtă"
 
-#: world.cc:34
+#: world.cc:22
 #, fuzzy
 #| msgid "World"
 msgctxt "ObjectClass|"
 msgid "World"
 msgstr "Lume"
 
-#: world.cc:34
+#: world.cc:22
 #, fuzzy
 #| msgid "World"
 msgctxt "ObjectDescription|"
 msgid "World"
 msgstr "Lume"
 
-#: world.cc:35
+#: world.cc:23
 #, fuzzy
 #| msgid "Current time"
 msgctxt "PropertyDescription|"
 msgid "Current time"
 msgstr "Ora curentă"
 
-#: world.cc:35
+#: world.cc:23
 #, fuzzy
 #| msgctxt "PropertyName"
 #| msgid "time"
@@ -3286,91 +3286,91 @@ msgctxt "PropertyName|"
 msgid "time"
 msgstr "time"
 
-#: world.cc:36
+#: world.cc:24
 #, fuzzy
 #| msgid "Simulation speed scale"
 msgctxt "PropertyDescription|"
 msgid "Simulation speed scale"
 msgstr "Scară a vitezei de simulare"
 
-#: world.cc:36
+#: world.cc:24
 #, fuzzy
 #| msgid "timeScale"
 msgctxt "PropertyName|"
 msgid "timeScale"
 msgstr "scarăTimp"
 
-#: world.cc:37
+#: world.cc:25
 #, fuzzy
 #| msgid "errorsCalculation"
 msgctxt "PropertyName|"
 msgid "errorsCalculation"
 msgstr "calcularea erorilor"
 
-#: world.cc:38
+#: world.cc:26
 #, fuzzy
 #| msgid "Enable global error calculation"
 msgctxt "PropertyDescription|"
 msgid "Enable global error calculation"
 msgstr "Activează calcularea globală a erorii"
 
-#: xmlfile.cc:201
+#: xmlfile.cc:189
 #, fuzzy
 #| msgid "The file is not a StepCoreXML file."
 msgctxt "QObject|"
 msgid "The file is not a StepCoreXML file."
 msgstr "Fișierul nu este un fișier StepCoreXML."
 
-#: xmlfile.cc:247
+#: xmlfile.cc:235
 #, fuzzy, qt-format
 #| msgid "Unknown item type \"%1\""
 msgctxt "QObject|"
 msgid "Unknown item type \"%1\""
 msgstr "Tip de element necunoscut ”%1”"
 
-#: xmlfile.cc:268
+#: xmlfile.cc:256
 #, fuzzy, qt-format
 #| msgid "Unknown solver type \"%1\""
 msgctxt "QObject|"
 msgid "Unknown solver type \"%1\""
 msgstr "Tip de solver necunoscut ”%1”"
 
-#: xmlfile.cc:282
+#: xmlfile.cc:270
 #, fuzzy, qt-format
 #| msgid "Unknown collisionSolver type \"%1\""
 msgctxt "QObject|"
 msgid "Unknown collisionSolver type \"%1\""
 msgstr "Tip de collisionSolver necunoscut ”%1”"
 
-#: xmlfile.cc:296
+#: xmlfile.cc:284
 #, fuzzy, qt-format
 #| msgid "Unknown constraintSolver type \"%1\""
 msgctxt "QObject|"
 msgid "Unknown constraint solver type \"%1\""
 msgstr "Tip de constraintSolver necunoscut ”%1”"
 
-#: xmlfile.cc:324
+#: xmlfile.cc:312
 #, fuzzy, qt-format
 #| msgid "Wrong ID attribute value for %1"
 msgctxt "QObject|"
 msgid "Wrong ID attribute value for %1"
 msgstr "Valoare greșită a atributului ID pentru %1"
 
-#: xmlfile.cc:329
+#: xmlfile.cc:317
 #, fuzzy, qt-format
 #| msgid "Non-unique ID attribute value for %1"
 msgctxt "QObject|"
 msgid "Non-unique ID attribute value for %1"
 msgstr "Valoare non-unică a atributului ID pentru %1"
 
-#: xmlfile.cc:357 xmlfile.cc:371
+#: xmlfile.cc:345 xmlfile.cc:359
 #, fuzzy, qt-format
 #| msgid "Property \"%1\" of \"%2\" has illegal value"
 msgctxt "QObject|"
 msgid "Property \"%1\" of \"%2\" has illegal value"
 msgstr "Proprietatea  \"%1\" de \"%2\" are o valoare ilegală"
 
-#: xmlfile.cc:384
+#: xmlfile.cc:372
 #, fuzzy
 #| msgid "File is not writable."
 msgctxt "QObject|"

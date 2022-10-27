@@ -3,15 +3,15 @@
 # This file is distributed under the license LGPL version 2.1 or
 # version 3 or later versions approved by the membership of KDE e.V.
 #
-# Josep M. Ferrer <txemaq@gmail.com>, 2019, 2020, 2021.
+# Josep M. Ferrer <txemaq@gmail.com>, 2019, 2020, 2021, 2022.
 # Antoni Bella Pérez <antonibella5@yahoo.com>, 2020, 2022.
 msgid ""
 msgstr ""
 "Project-Id-Version: step\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2022-10-26 00:42+0000\n"
-"PO-Revision-Date: 2022-07-16 12:42+0200\n"
-"Last-Translator: Antoni Bella Pérez <antonibella5@yahoo.com>\n"
+"PO-Revision-Date: 2022-10-26 20:12+0200\n"
+"Last-Translator: Antoni Bella <antonibella5@yahoo.com>\n"
 "Language-Team: Catalan <kde-i18n-ca@kde.org>\n"
 "Language: ca@valencia\n"
 "MIME-Version: 1.0\n"
@@ -19,7 +19,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
 "X-Accelerator-Marker: &\n"
-"X-Generator: Lokalize 22.04.3\n"
+"X-Generator: Lokalize 20.12.0\n"
 
 #: objectinfo/anchor.html:6
 #, kde-format
@@ -552,32 +552,7 @@ msgid "A rigid polygon with a unique name and the following parameters:"
 msgstr "Un polígon rígid amb un nom únic i els paràmetres següents:"
 
 #: objectinfo/polygon.html:21
-#, fuzzy, kde-format
-#| msgctxt "box.html:body"
-#| msgid ""
-#| "<ul>\n"
-#| "\t\t<li><b>position:</b> The X/Y position of the center of mass of the "
-#| "box, relative to the center of the <a href=\"objinfo:World\">world</a>.</"
-#| "li>\n"
-#| "\t\t<li><b>angle:</b> By how much the box is rotated in positive "
-#| "direction, that is clock-wise.</li>\n"
-#| "\t\t<li><b>velocity:</b> The velocity of the center of mass of the box. "
-#| "Unit: meters/second.</li>\n"
-#| "\t\t<li><b>angular velocity:</b> How fast the box is spinning in positive "
-#| "direction, that is clock-wise.</li>\n"
-#| "\t\t<li><b>mass:</b> Total mass of the box. This influences forces with "
-#| "which the box interacts with other items.</li>\n"
-#| "\t\t<li><b>inertia:</b> How difficult it is to change the box's rotation."
-#| "</li>\n"
-#| "\t\t<li><b>momentum:</b> A fundamental quantity in mechanics that is "
-#| "conserved in the absence of external forces. A product of the mass and "
-#| "the velocity.</li>\n"
-#| "\t\t<li><b>angular momentum:</b> Measure of the extent to which the box "
-#| "will continue to rotate unless acted upon by an external torque.</li>\n"
-#| "\t\t<li><b>kinetic energy:</b> The work needed to accelerate the body of "
-#| "a given mass from rest to its current velocity.</li>\n"
-#| "\t\t<li><b>size:</b> Defines width and height of the box.</li>\n"
-#| "\t</ul>"
+#, kde-format
 msgctxt "polygon.html:body"
 msgid ""
 "<ul>\n"
@@ -607,33 +582,33 @@ msgid ""
 "\t</ul>"
 msgstr ""
 "<ul>\n"
-"\t\t<li><b>posició:</b> La posició X/Y del centre de massa del quadro, "
+"\t\t<li><b>posició:</b> La posició X/Y del centre de massa del polígon, "
 "relativa al centre del <a href=\"objinfo:World\">món</a>.</li>\n"
-"\t\t<li><b>angle:</b> Mesura la rotació del quadro en direcció positiva, que "
-"és en sentit horari.</li>\n"
-"\t\t<li><b>velocitat:</b> La velocitat del centre de massa del quadro. "
+"\t\t<li><b>angle:</b> Mesura la rotació del polígon en direcció positiva, "
+"que és en sentit horari.</li>\n"
+"\t\t<li><b>velocitat:</b> La velocitat del centre de massa del polígon. "
 "Unitats: metres/segon.</li>\n"
-"\t\t<li><b>velocitat angular:</b> Mesura la rapidesa del gir del quadro en "
+"\t\t<li><b>velocitat angular:</b> Mesura la rapidesa del gir del polígon en "
 "direcció positiva, que és en sentit horari.</li>\n"
-"\t\t<li><b>massa:</b> Massa total del quadro. Influïx a les forces amb què "
-"el quadro interactua amb altres elements.</li>\n"
+"\t\t<li><b>massa:</b> Massa total del polígon. Influïx a les forces amb què "
+"el polígon interactua amb altres elements.</li>\n"
 "\t\t<li><b>inèrcia:</b> Mesura la dificultat de canviar la rotació del "
-"quadro.</li>\n"
+"polígon.</li>\n"
 "\t\t<li><b>moment:</b> Una quantitat fonamental a la mecànica que es "
 "conserva en absència de forces externes. És el producte de la massa per la "
 "velocitat.</li>\n"
-"\t\t<li><b>moment angular:</b> Mesura l'extensió per la qual el quadro "
+"\t\t<li><b>moment angular:</b> Mesura l'extensió per la qual el polígon "
 "continuarà girant a menys que actue un parell extern.</li>\n"
 "\t\t<li><b>energia cinètica:</b> El treball necessari per a accelerar el cos "
 "d'una massa indicada des del repòs a la seua velocitat actual.</li>\n"
-"\t\t<li><b>mida:</b> Establix l'amplària i l'alçària del quadro.</li>\n"
+"\t\t<li><b>mida:</b> Establix l'amplària i l'alçària del polígon.</li>\n"
 "\t</ul>"
 
 #: objectinfo/softbody.html:6
 #, kde-format
 msgctxt "softbody.html:title"
 msgid "Soft body"
-msgstr ""
+msgstr "Cos bla"
 
 #: objectinfo/softbody.html:9
 #, kde-format
@@ -644,22 +619,26 @@ msgid ""
 "simulate an <a href=\"https://en.wikipedia.org/wiki/"
 "Elasticity_(physics)\">elastic</a> or viscoelastic body."
 msgstr ""
+"Un cos bla és una col·lecció de <a href=\"objinfo:particle\">partícules</a> "
+"connectades per <a href=\"objinfo:spring\">molles</a>. Açò es pot utilitzar "
+"per a simular un cos <a href=\"https://ca.wikipedia.org/wiki/Elasticitat"
+"\">elàstic</a> o viscoelàstic."
 
 #: objectinfo/spring.html:6
 #, kde-format
 msgctxt "spring.html:title"
 msgid "Spring"
-msgstr ""
+msgstr "Molla"
 
 #: objectinfo/spring.html:9
-#, fuzzy, kde-format
-#| msgctxt "box.html:p"
-#| msgid "A rigid box with a unique name and the following parameters:"
+#, kde-format
 msgctxt "spring.html:p"
 msgid ""
 "A flexible elastic object to store mechanical energy. It has a unique name "
 "and the following parameters:"
-msgstr "Un quadro rígid amb un nom únic i els paràmetres següents:"
+msgstr ""
+"Un objecte elàstic i flexible utilitzat per a emmagatzemar energia mecànica. "
+"Té un nom únic i els paràmetres següents:"
 
 #: objectinfo/spring.html:19
 #, kde-format
@@ -682,18 +661,34 @@ msgid ""
 "\t\t<li><b>force:</b> is the force that acts along the spring</li>\n"
 "\t</ul>"
 msgstr ""
+"<ul>\n"
+"\t\t<li><b>llargària en repòs:</b> és la llargària de la molla sense "
+"comprimir ni estirar.</li>\n"
+"\t\t<li><b>llargària:</b> és la llargària inicial de la molla.</li>\n"
+"\t\t<li><b>rigidesa:</b> és el nivell de la resistència de la molla a la "
+"compressió o l'estirament.</li>\n"
+"\t\t<li><b>esmorteïment:</b> és el nivell de la capacitat de la molla per a "
+"dispersar l'energia emmagatzemada, una viscositat interna.</li>\n"
+"\t\t<li><b>cos 1 i 2:</b> són els cossos als quals està fixada la molla.</"
+"li>\n"
+"\t\t<li><b>posició local 1 i 2:</b> són les posicions locals dels extrems de "
+"la molla relatives al seu centre en l'estat no deformat.</li>\n"
+"\t\t<li><b>posició 1 i 2:</b> són les posicions globals dels extrems de la "
+"molla.</li>\n"
+"\t\t<li><b>força:</b> és la força que actua per tota la molla.</li>\n"
+"\t</ul>"
 
 #: objectinfo/weightforce.html:6
 #, kde-format
 msgctxt "weightforce.html:title"
 msgid "Weight Force"
-msgstr ""
+msgstr "Força del pes"
 
 #: objectinfo/weightforce.html:9
 #, kde-format
 msgctxt "weightforce.html:p"
 msgid "Weight of an object is the force exerted on it by gravity."
-msgstr ""
+msgstr "El pes d'un objecte és la força exercida sobre ell per la gravetat."
 
 #: objectinfo/weightforce.html:10
 #, kde-format
@@ -702,6 +697,8 @@ msgid ""
 "Weight is a vector quantity. It is often denoted by W and given by the "
 "relation W = mg."
 msgstr ""
+"El pes és una quantitat vectorial. Sovint se'n fa referència amb F i ve "
+"donat per la relació F = mg."
 
 #: objectinfo/weightforce.html:12
 #, kde-format
@@ -710,26 +707,24 @@ msgid ""
 "<li>Where, <b>m</b> is the mass of the body</li>\n"
 "<li>and <b>g</b> is the acceleration due to gravity.</li>"
 msgstr ""
+"<li>A on, <b>m</b> és la massa del cos</li>\n"
+"<li>i <b>g</b> és l'acceleració de la gravetat.</li>"
 
 #: objectinfo/weightforce.html:13
-#, fuzzy, kde-format
-#| msgctxt "gravitationforce.html:p"
-#| msgid ""
-#| "For more details, please refer to the <a href=\"https://en.wikipedia.org/"
-#| "wiki/Gravitation\">Gravitation Force</a>."
+#, kde-format
 msgctxt "weightforce.html:p"
 msgid ""
 "For more details, please refer to the <a href=\"https://en.wikipedia.org/"
 "wiki/Weight\">Weight Force</a>."
 msgstr ""
-"Per a més detalls, vegeu la <a href=\"https://ca.wikipedia.org/wiki/Gravetat"
-"\">força de la gravitació</a>."
+"Per a més detalls, vegeu la <a href=\"https://ca.wikipedia.org/wiki/Pes"
+"\">força del pes</a>."
 
 #: objectinfo/world.html:6
 #, kde-format
 msgctxt "world.html:title"
 msgid "World"
-msgstr ""
+msgstr "Món"
 
 #: objectinfo/world.html:9
 #, kde-format
@@ -740,3 +735,7 @@ msgid ""
 "click on the <b>Simulate</b> button in toolbar and your scene will evolve "
 "according to the laws of physics."
 msgstr ""
+"Esta és l'escena del món. Des de la paleta d'objectes hauríeu de seleccionar "
+"alguns elements i posar-los al llenç. Després d'establir les propietats dels "
+"objectes, podeu fer clic en el botó <b>Simula</b> a la barra d'eines i "
+"l'escena evolucionarà segons les lleis de la física."
