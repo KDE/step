@@ -3,13 +3,13 @@
 # This file is distributed under the same license as the step package.
 #
 # Automatically generated, 2019.
-# Eloy Cuadra <ecuadra@eloihr.net>, 2019.
+# Eloy Cuadra <ecuadra@eloihr.net>, 2019, 2022.
 msgid ""
 msgstr ""
 "Project-Id-Version: step_example_files\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2022-10-26 00:42+0000\n"
-"PO-Revision-Date: 2019-12-05 21:22+0100\n"
+"PO-Revision-Date: 2022-10-27 12:16+0200\n"
 "Last-Translator: Eloy Cuadra <ecuadra@eloihr.net>\n"
 "Language-Team: Spanish <kde-l10n-es@kde.org>\n"
 "Language: es\n"
@@ -17,7 +17,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Lokalize 19.11.90\n"
+"X-Generator: Lokalize 22.08.2\n"
 
 #: examples/brownian.step:4 examples/doublependulum.step:4
 #: examples/fourpendula.step:4 examples/gas.step:4 examples/graph.step:4
@@ -1781,11 +1781,11 @@ msgid "- A pin is a joint that fixes one point of the body."
 msgstr "- Una fijación es una unión que fija un punto del cuerpo."
 
 #: tutorials/tutorial5.step:118
-#, fuzzy, kde-format
-#| msgctxt "HTML:p"
-#| msgid "- A pin is a joint that fixes one point of the body."
+#, kde-format
 msgctxt "HTML:p"
 msgid ""
 "- A stick is a joint that fixes the distance between two points on two "
 "bodies."
-msgstr "- Una fijación es una unión que fija un punto del cuerpo."
+msgstr ""
+"- Una varilla es una unión que fija la distancia entre dos puntos de dos "
+"cuerpos."

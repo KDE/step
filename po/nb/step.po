@@ -5,7 +5,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: step\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2022-07-04 00:41+0000\n"
+"POT-Creation-Date: 2022-10-27 00:42+0000\n"
 "PO-Revision-Date: 2011-05-12 22:20+0200\n"
 "Last-Translator: Bjørn Steensrud <bjornst@skogkatt.homelinux.org>\n"
 "Language-Team: Norwegian Bokmål <l10n-no@lister.huftis.org>\n"
@@ -336,13 +336,13 @@ msgstr "Antall legemsdelinger:"
 msgid "(4,4)"
 msgstr "(4,4)"
 
-#: step/gascreationdialog.cc:43
+#: step/gascreationdialog.cc:31
 #, kde-format
 msgctxt "@title:window"
 msgid "Create Gas Particles"
 msgstr ""
 
-#: step/gasgraphics.cc:43
+#: step/gasgraphics.cc:31
 #, kde-format
 msgid ""
 "Press left mouse button to position\n"
@@ -351,15 +351,15 @@ msgstr ""
 "Plasser øvre venstre hjørne av en region for\n"
 "%1 ved å trykke venstre museknapp"
 
-#: step/gasgraphics.cc:55 step/motorgraphics.cc:42 step/motorgraphics.cc:223
-#: step/polygongraphics.cc:173 step/polygongraphics.cc:307
-#: step/polygongraphics.cc:452 step/softbodygraphics.cc:62
-#: step/worldgraphics.cc:70 step/worldgraphics.cc:120
+#: step/gasgraphics.cc:43 step/motorgraphics.cc:30 step/motorgraphics.cc:211
+#: step/polygongraphics.cc:161 step/polygongraphics.cc:295
+#: step/polygongraphics.cc:440 step/softbodygraphics.cc:50
+#: step/worldgraphics.cc:58 step/worldgraphics.cc:108
 #, kde-format
 msgid "Create %1"
 msgstr "Opprett %1"
 
-#: step/gasgraphics.cc:71
+#: step/gasgraphics.cc:59
 #, kde-format
 msgid ""
 "Move mouse and release left mouse button to position\n"
@@ -368,25 +368,25 @@ msgstr ""
 "Plasser nedre høyre hjørne av regionen for %1 ved å\n"
 "flytte musepekeren og slippe venstre museknapp"
 
-#: step/gasgraphics.cc:97
+#: step/gasgraphics.cc:85
 #, kde-format
 msgid "Please fill in the parameters for the gas particles."
 msgstr "Fyll ut parametrene for gasspartiklene."
 
-#: step/gasgraphics.cc:106 step/polygongraphics.cc:208
-#: step/polygongraphics.cc:347 step/polygongraphics.cc:502
-#: step/softbodygraphics.cc:79 step/worldgraphics.cc:87
-#: step/worldgraphics.cc:134 step/worldgraphics.cc:169
+#: step/gasgraphics.cc:94 step/polygongraphics.cc:196
+#: step/polygongraphics.cc:335 step/polygongraphics.cc:490
+#: step/softbodygraphics.cc:67 step/worldgraphics.cc:75
+#: step/worldgraphics.cc:122 step/worldgraphics.cc:157
 #, kde-format
 msgid "%1 named '%2' created"
 msgstr "%1 ved navn %2 opprettet"
 
-#: step/gasgraphics.cc:294
+#: step/gasgraphics.cc:282
 #, kde-format
 msgid "Create Particles..."
 msgstr ""
 
-#: step/gasgraphics.cc:364
+#: step/gasgraphics.cc:352
 #, kde-format
 msgid ""
 "You are trying to create a very large number of particles. This will make "
@@ -395,108 +395,108 @@ msgstr ""
 "Du forsøker å opprette et stort antall partikler. Dette vil gjøre "
 "simuleringen svært langsom. Vil du fortsette?"
 
-#: step/gasgraphics.cc:366 step/mainwindow.cc:409
+#: step/gasgraphics.cc:354 step/mainwindow.cc:401
 #, kde-format
 msgid "Warning - Step"
 msgstr "Advarsel ‒ Step"
 
-#: step/gasgraphics.cc:377
+#: step/gasgraphics.cc:365
 #, kde-format
 msgid "Create particles for %1"
 msgstr "Opprett partikler for %1"
 
-#: step/infobrowser.cc:38
+#: step/infobrowser.cc:26
 #, kde-format
 msgid "Context Info"
 msgstr ""
 
-#: step/infobrowser.cc:56
+#: step/infobrowser.cc:44
 #, kde-format
 msgid "Back"
 msgstr "Tilbake"
 
-#: step/infobrowser.cc:58
+#: step/infobrowser.cc:46
 #, kde-format
 msgid "Forward"
 msgstr "Framover"
 
-#: step/infobrowser.cc:62
+#: step/infobrowser.cc:50
 #, kde-format
 msgid "Sync selection"
 msgstr "Synkroniser utvalg"
 
-#: step/infobrowser.cc:64
+#: step/infobrowser.cc:52
 #, kde-format
 msgid "Follow selection"
 msgstr "Følg utvalg"
 
-#: step/infobrowser.cc:69
+#: step/infobrowser.cc:57
 #, kde-format
 msgid "Open in Browser"
 msgstr ""
 
-#: step/infobrowser.cc:144
+#: step/infobrowser.cc:132
 #, kde-format
 msgid "Documentation"
 msgstr "Dokumentasjon"
 
-#: step/infobrowser.cc:149
+#: step/infobrowser.cc:137
 #, kde-format
 msgid "No current object."
 msgstr "Ikke noe gjeldende objekt."
 
-#: step/infobrowser.cc:171
+#: step/infobrowser.cc:159
 #, kde-format
 msgid "Documentation error"
 msgstr "Dokumentasjonsfeil"
 
-#: step/infobrowser.cc:176
+#: step/infobrowser.cc:164
 #, kde-format
 msgid "Documentation for %1 not available. "
 msgstr "Dokumentasjon for %1 er ikke tilgjengelig."
 
-#: step/infobrowser.cc:177
+#: step/infobrowser.cc:165
 #, kde-format
 msgid ""
 "You can help <a href=\"https://edu.kde.org/step\">Step</a> by writing it!"
 msgstr ""
 
-#: step/itempalette.cc:189
+#: step/itempalette.cc:177
 #, kde-format
 msgid "Palette"
 msgstr "Palett"
 
-#: step/itempalette.cc:208
+#: step/itempalette.cc:196
 #, kde-format
 msgid "Pointer"
 msgstr "Peker"
 
-#: step/itempalette.cc:209
+#: step/itempalette.cc:197
 #, kde-format
 msgid "Selection pointer"
 msgstr "Utvalgspeker"
 
-#: step/itempalette.cc:232
+#: step/itempalette.cc:220
 #, kde-format
 msgid "Show text"
 msgstr "Vis tekst"
 
-#: step/jointgraphics.cc:170 step/springgraphics.cc:42
+#: step/jointgraphics.cc:158 step/springgraphics.cc:30
 #, kde-format
 msgid "Move end of %1"
 msgstr "Flytt enden på %1"
 
-#: step/latexformula.cc:42
+#: step/latexformula.cc:30
 #, kde-format
 msgid "can not launch %1"
 msgstr "kan ikke starte %1"
 
-#: step/latexformula.cc:52
+#: step/latexformula.cc:40
 #, kde-format
 msgid "error running %1"
 msgstr "feil ved kjøring av %1"
 
-#: step/latexformula.cc:56
+#: step/latexformula.cc:44
 #, kde-format
 msgid ""
 "%1 reported an error (exit status %2):\n"
@@ -505,200 +505,200 @@ msgstr ""
 "%1 ga en feilmelding (avsluttet med status %2):\n"
 "%3"
 
-#: step/latexformula.cc:61
+#: step/latexformula.cc:49
 #, kde-format
 msgid "%1 did not create output file"
 msgstr "%1 laget ikke en utdata-fil"
 
-#: step/latexformula.cc:93
+#: step/latexformula.cc:81
 #, kde-format
 msgid "can not open temporary file"
 msgstr "kan ikke åpne midlertidig fil"
 
-#: step/latexformula.cc:127
+#: step/latexformula.cc:115
 #, kde-format
 msgid "can not open result file"
 msgstr "kan ikke åpne resultatfil"
 
-#: step/main.cc:42 step/main.cc:50
+#: step/main.cc:31
 #, kde-format
 msgid "Step"
 msgstr "Step"
 
-#: step/main.cc:52
+#: step/main.cc:33
 #, kde-format
 msgid "Interactive physical simulator"
 msgstr "Interaktiv fysikksimulator"
 
-#: step/main.cc:54
+#: step/main.cc:35
 #, kde-format
 msgid "(C) 2007 Vladimir Kuznetsov"
 msgstr "© 2007 Vladimir Kuznetsov"
 
-#: step/main.cc:55
+#: step/main.cc:37
 #, kde-format
 msgid "https://edu.kde.org/step"
 msgstr ""
 
-#: step/main.cc:60
+#: step/main.cc:42
 #, kde-format
 msgid "Original author"
 msgstr "Opprinnelig forfatter"
 
-#: step/main.cc:61
+#: step/main.cc:43
 #, kde-format
 msgid "ks.vladimir@gmail.com"
 msgstr ""
 
-#: step/main.cc:66
+#: step/main.cc:48
 #, kde-format
 msgid "Code contributions"
 msgstr "Kodebidrag"
 
-#: step/main.cc:67
+#: step/main.cc:49
 #, kde-format
 msgid "cniehaus@kde.org"
 msgstr ""
 
-#: step/main.cc:74
+#: step/main.cc:59
 #, kde-format
 msgid "Document to open"
 msgstr "Dokument som skal åpnes"
 
-#: step/mainwindow.cc:155
+#: step/mainwindow.cc:143
 #, kde-format
 msgid "&Open Tutorial..."
 msgstr "&Åpne veiledning …"
 
-#: step/mainwindow.cc:160
+#: step/mainwindow.cc:148
 #, kde-format
 msgid "&Open Example..."
 msgstr "&Åpne eksempel …"
 
-#: step/mainwindow.cc:165
+#: step/mainwindow.cc:153
 #, kde-format
 msgid "Open Down&loaded Example..."
 msgstr "Åpne ned&lastet eksempel …"
 
-#: step/mainwindow.cc:170
+#: step/mainwindow.cc:158
 #, kde-format
 msgid "Share C&urrent Experiment..."
 msgstr "Del &dette eksperimentet …"
 
-#: step/mainwindow.cc:173
+#: step/mainwindow.cc:161
 #, kde-format
 msgid "&Download New Experiments..."
 msgstr "&Last ned nye eksperimenter …"
 
-#: step/mainwindow.cc:180
+#: step/mainwindow.cc:168
 #, kde-format
 msgid "Redo"
 msgstr "Gjør om"
 
-#: step/mainwindow.cc:180
+#: step/mainwindow.cc:168
 #, kde-format
 msgid "Undo"
 msgstr "Angre"
 
-#: step/mainwindow.cc:202
+#: step/mainwindow.cc:190
 #, kde-format
 msgid "&Delete"
 msgstr "&Slett"
 
-#: step/mainwindow.cc:212
+#: step/mainwindow.cc:200
 #, kde-format
 msgid "&Run"
 msgstr "Kjø&r"
 
-#: step/mainwindow.cc:217
+#: step/mainwindow.cc:205
 #, kde-format
 msgid "Execute the program"
 msgstr "Kjør programmet"
 
-#: step/mainwindow.cc:218
+#: step/mainwindow.cc:206
 #, kde-format
 msgid "Run: Execute the program"
 msgstr "Kjør: Kjør programmet"
 
-#: step/mainwindow.cc:220
+#: step/mainwindow.cc:208
 #, kde-format
 msgctxt "@option:radio"
 msgid "1x Speed"
 msgstr "1x hastighet"
 
-#: step/mainwindow.cc:228
+#: step/mainwindow.cc:216
 #, kde-format
 msgctxt "@option:radio choose the slow speed"
 msgid "2x Speed"
 msgstr "2x hastighet"
 
-#: step/mainwindow.cc:235
+#: step/mainwindow.cc:223
 #, kde-format
 msgctxt "@option:radio"
 msgid "4x Speed"
 msgstr "4x hastighet"
 
-#: step/mainwindow.cc:242
+#: step/mainwindow.cc:230
 #, kde-format
 msgctxt "@option:radio"
 msgid "8x Speed"
 msgstr "8x hastighet"
 
-#: step/mainwindow.cc:249
+#: step/mainwindow.cc:237
 #, kde-format
 msgctxt "@option:radio"
 msgid "16x Speed"
 msgstr "16x hastighet"
 
-#: step/mainwindow.cc:279
+#: step/mainwindow.cc:267
 #, kde-format
 msgctxt "filename"
 msgid "untitled.step"
 msgstr "utennavn.step"
 
-#: step/mainwindow.cc:305
+#: step/mainwindow.cc:293
 #, kde-format
 msgid "<new file>"
 msgstr "&lt;ny fil&gt;"
 
-#: step/mainwindow.cc:319
+#: step/mainwindow.cc:307
 #, kde-format
 msgctxt "@title:window"
 msgid "Open Step File"
 msgstr ""
 
-#: step/mainwindow.cc:319 step/mainwindow.cc:349
+#: step/mainwindow.cc:307 step/mainwindow.cc:337
 #, kde-format
 msgid "Step files (*.step)"
 msgstr ""
 
-#: step/mainwindow.cc:329
+#: step/mainwindow.cc:317
 #, kde-format
 msgid "Cannot parse file '%1': %2"
 msgstr "Kan ikke tolke fila «%1»: %2"
 
-#: step/mainwindow.cc:338
+#: step/mainwindow.cc:326
 #, kde-format
 msgid "<open file: %1>"
 msgstr "<åpne fil: %1>"
 
-#: step/mainwindow.cc:349
+#: step/mainwindow.cc:337
 #, kde-format
 msgctxt "@title:window"
 msgid "Save Step File"
 msgstr ""
 
-#: step/mainwindow.cc:365
+#: step/mainwindow.cc:353
 #, kde-format
 msgid "Cannot open file '%1'"
 msgstr "kan ikke åpne fila «%1»"
 
-#: step/mainwindow.cc:371
+#: step/mainwindow.cc:359
 #, kde-format
 msgid "Cannot save file '%1': %2"
 msgstr "Kan ikke lagre fila «%1»: %2"
 
-#: step/mainwindow.cc:408
+#: step/mainwindow.cc:400
 #, kde-format
 msgid ""
 "The experiment has been modified.\n"
@@ -707,27 +707,27 @@ msgstr ""
 "Eksperimentet er blitt endret.\n"
 "Vil du lagre endringene?"
 
-#: step/mainwindow.cc:456
+#: step/mainwindow.cc:452
 #, kde-format
 msgid "Uploading is still not implemented in kdelibs."
 msgstr "Opplasting er fortsatt ikke implementert i kdelibs."
 
-#: step/mainwindow.cc:457
+#: step/mainwindow.cc:453
 #, kde-format
 msgid "Sorry - Step"
 msgstr "Beklager ‒ Step"
 
-#: step/mainwindow.cc:484
+#: step/mainwindow.cc:480
 #, kde-format
 msgid "&Stop"
 msgstr "&Stopp"
 
-#: step/mainwindow.cc:494
+#: step/mainwindow.cc:490
 #, kde-format
 msgid "&Simulate"
 msgstr "&Simuler"
 
-#: step/mainwindow.cc:499
+#: step/mainwindow.cc:495
 #, kde-format
 msgid ""
 "Cannot finish this step because local error is greater than local "
@@ -738,7 +738,7 @@ msgstr ""
 "toleranse.\n"
 "Sjekk løserinnstillingene og forsøk igjen."
 
-#: step/mainwindow.cc:504
+#: step/mainwindow.cc:500
 #, kde-format
 msgid ""
 "Cannot finish this step because there are collisions which cannot be "
@@ -749,54 +749,54 @@ msgstr ""
 "automatisk.\n"
 "Flytt kolliderende objekter fra hverandre og forsøk igjen."
 
-#: step/mainwindow.cc:508
+#: step/mainwindow.cc:504
 #, kde-format
 msgid "Cannot finish this step because of an unknown error."
 msgstr "Kan ikke fullføre dette steget på grunn av en ukjent feil."
 
-#: step/mainwindow.cc:541
+#: step/mainwindow.cc:537
 #, kde-format
 msgid "&Undo"
 msgstr "&Angre"
 
-#: step/mainwindow.cc:542
+#: step/mainwindow.cc:538
 #, kde-format
 msgid "&Undo: %1"
 msgstr "&Angre: %1"
 
-#: step/mainwindow.cc:547
+#: step/mainwindow.cc:543
 #, kde-format
 msgid "Re&do"
 msgstr "&Gjør om"
 
-#: step/mainwindow.cc:548
+#: step/mainwindow.cc:544
 #, kde-format
 msgid "Re&do: %1"
 msgstr "&Gjør om: %1"
 
-#: step/mainwindow.cc:579
+#: step/mainwindow.cc:575
 #, kde-format
 msgid "General"
 msgstr "Generelt"
 
-#: step/motorgraphics.cc:112 step/motorgraphics.cc:290
-#: step/stepgraphicsitem.cc:206 step/stepgraphicsitem.cc:218
+#: step/motorgraphics.cc:100 step/motorgraphics.cc:278
+#: step/stepgraphicsitem.cc:198 step/stepgraphicsitem.cc:210
 #, kde-format
 msgid "Move %1"
 msgstr "Flytt %1"
 
-#: step/polygongraphics.cc:161
+#: step/polygongraphics.cc:149
 #, kde-format
 msgid "Press left mouse button to position a center of a %1"
 msgstr "Plasser et senter for en %1 ved å trykke venstre mueknapp"
 
-#: step/polygongraphics.cc:182
+#: step/polygongraphics.cc:170
 #, kde-format
 msgid "Move mouse and release left mouse button to define a radius of the %1"
 msgstr ""
 "Definer en radius for %1 ved å flytte musepeker og slippe venstre museknapp"
 
-#: step/polygongraphics.cc:295
+#: step/polygongraphics.cc:283
 #, kde-format
 msgid ""
 "Press left mouse button to position\n"
@@ -805,7 +805,7 @@ msgstr ""
 "Plasser øvre venstre hjørne av en %1\n"
 "ved å trykke venstre museknapp"
 
-#: step/polygongraphics.cc:317
+#: step/polygongraphics.cc:305
 #, kde-format
 msgid ""
 "Move mouse and release left mouse button to position\n"
@@ -814,79 +814,79 @@ msgstr ""
 "Plasser nedre høyre hjørne for %1 ved å flytte \n"
 "musepekeren og slippe venstre museknapp"
 
-#: step/polygongraphics.cc:440
+#: step/polygongraphics.cc:428
 #, kde-format
 msgid "Click on the scene to create a first vertex of %1"
 msgstr "Opprett en første spiss på %1 ved å trykke på arbeidsflaten"
 
-#: step/polygongraphics.cc:488
+#: step/polygongraphics.cc:476
 #, kde-format
 msgid "Click on the scene to add new vertex or press Enter to finish"
 msgstr ""
 "Trykk på arbeidsflaten for å legge til en ny spiss eller trykk Enter for å "
 "avslutte"
 
-#: step/propertiesbrowser.cc:279
+#: step/propertiesbrowser.cc:267
 #, kde-format
 msgid "Change solver type"
 msgstr "Endre løsertype"
 
-#: step/propertiesbrowser.cc:294 step/propertiesbrowser.cc:300
-#: step/propertiesbrowser.cc:307 step/propertiesbrowser.cc:316
-#: step/propertiesbrowser.cc:400 step/propertiesbrowser.cc:417
-#: step/stepgraphicsitem.cc:401 step/stepgraphicsitem.cc:546
+#: step/propertiesbrowser.cc:282 step/propertiesbrowser.cc:288
+#: step/propertiesbrowser.cc:295 step/propertiesbrowser.cc:304
+#: step/propertiesbrowser.cc:388 step/propertiesbrowser.cc:405
+#: step/stepgraphicsitem.cc:393 step/stepgraphicsitem.cc:538
 #, kde-format
 msgid "Change %1.%2"
 msgstr "Endre %1.%2"
 
-#: step/propertiesbrowser.cc:314
+#: step/propertiesbrowser.cc:302
 #, kde-format
 msgid "Rename %1 to %2"
 msgstr "Endre navn på %1 til %2"
 
-#: step/propertiesbrowser.cc:464
+#: step/propertiesbrowser.cc:452
 #, kde-format
 msgid "Property"
 msgstr "Egenskap"
 
-#: step/propertiesbrowser.cc:465
+#: step/propertiesbrowser.cc:453
 #, kde-format
 msgid "Value"
 msgstr "Verdi"
 
-#: step/propertiesbrowser.cc:530
+#: step/propertiesbrowser.cc:518
 #, kde-format
 msgid "false"
 msgstr "usann"
 
-#: step/propertiesbrowser.cc:531
+#: step/propertiesbrowser.cc:519
 #, kde-format
 msgid "true"
 msgstr "sann"
 
-#: step/propertiesbrowser.cc:675
+#: step/propertiesbrowser.cc:683
 #, kde-format
 msgid "Properties"
 msgstr "Egenskaper"
 
-#: step/softbodygraphics.cc:49 step/worldgraphics.cc:62
-#: step/worldgraphics.cc:106
+#: step/softbodygraphics.cc:37 step/worldgraphics.cc:50
+#: step/worldgraphics.cc:94
 #, kde-format
 msgid "Click on the scene to create a %1"
 msgstr "Trykk på scenen for å opprette en %1"
 
-#: step/softbodygraphics.cc:66
+#: step/softbodygraphics.cc:54
 #, kde-format
 msgid "Please fill in the parameters for %1"
 msgstr "Fyll ut parametrene for %1"
 
-#: step/softbodygraphics.cc:126
+#: step/softbodygraphics.cc:114
 #, kde-format
 msgctxt "@title:window"
 msgid "Create Soft Body Items"
 msgstr ""
 
-#: step/softbodygraphics.cc:187
+#: step/softbodygraphics.cc:175
 #, kde-format
 msgid "Create items for %1"
 msgstr "Opprett elementer for %1"
@@ -933,144 +933,144 @@ msgstr "Åpne Wikipedia i ekstern nettleser "
 msgid "Show text beside icon"
 msgstr "Vis tekst ved siden av ikon"
 
-#: step/stepgraphicsitem.cc:218
+#: step/stepgraphicsitem.cc:210
 #, kde-format
 msgid "several objects"
 msgstr "flere objekter"
 
-#: step/stepgraphicsitem.cc:402 step/stepgraphicsitem.cc:548
+#: step/stepgraphicsitem.cc:394 step/stepgraphicsitem.cc:540
 #, kde-format
 msgid "Change %1"
 msgstr "Endre %1"
 
 #. i18n: ectx: ToolBar (mainToolBar)
-#: step/stepui.rc:7
+#: step/stepui.rc:5
 #, kde-format
 msgid "Main Toolbar"
 msgstr "Hovedverktøylinje"
 
 #. i18n: ectx: ToolBar (simulationToolBar)
-#: step/stepui.rc:12
+#: step/stepui.rc:10
 #, kde-format
 msgid "Simulation Toolbar"
 msgstr "Simuleringsverktøylinje"
 
 #. i18n: ectx: Menu (examples)
-#: step/stepui.rc:21
+#: step/stepui.rc:19
 #, kde-format
 msgid "&Examples"
 msgstr "&Eksempler"
 
 #. i18n: ectx: Menu (simulation)
-#: step/stepui.rc:32
+#: step/stepui.rc:30
 #, kde-format
 msgid "&Simulation"
 msgstr "&Simulering"
 
 #. i18n: ectx: Menu (speed)
-#: step/stepui.rc:35
+#: step/stepui.rc:33
 #, kde-format
 msgid "&Run Speed"
 msgstr "Kjø&rehastighet"
 
 #. i18n: ectx: Menu (panels)
-#: step/stepui.rc:45
+#: step/stepui.rc:43
 #, kde-format
 msgid "&Panels"
 msgstr "&Paneler"
 
-#: step/toolgraphics.cc:267
+#: step/toolgraphics.cc:255
 #, kde-format
 msgid "Click to enter text"
 msgstr "Trykk for å skrive inn en tekst"
 
-#: step/toolgraphics.cc:392
+#: step/toolgraphics.cc:380
 #, kde-format
 msgid "&Color"
 msgstr "&Farge"
 
-#: step/toolgraphics.cc:394
+#: step/toolgraphics.cc:382
 #, kde-format
 msgid "&Bold"
 msgstr "&Halvfet"
 
-#: step/toolgraphics.cc:396
+#: step/toolgraphics.cc:384
 #, kde-format
 msgid "&Italic"
 msgstr "Kurs&iv"
 
-#: step/toolgraphics.cc:398
+#: step/toolgraphics.cc:386
 #, kde-format
 msgid "&Underline"
 msgstr "&Understreket"
 
-#: step/toolgraphics.cc:401
+#: step/toolgraphics.cc:389
 #, kde-format
 msgid "Align &Left"
 msgstr "&Venstrejuster"
 
-#: step/toolgraphics.cc:403
+#: step/toolgraphics.cc:391
 #, kde-format
 msgid "Align C&enter"
 msgstr "&Sentrer"
 
-#: step/toolgraphics.cc:405
+#: step/toolgraphics.cc:393
 #, kde-format
 msgid "Align &Right"
 msgstr "&Høyrejuster"
 
-#: step/toolgraphics.cc:407
+#: step/toolgraphics.cc:395
 #, kde-format
 msgid "Align &Justify"
 msgstr "Rett inn &justert"
 
-#: step/toolgraphics.cc:410
+#: step/toolgraphics.cc:398
 #, kde-format
 msgid "&Align"
 msgstr "&Rett inn"
 
-#: step/toolgraphics.cc:419
+#: step/toolgraphics.cc:407
 #, kde-format
 msgid "&Font"
 msgstr "Skri&ft"
 
-#: step/toolgraphics.cc:420
+#: step/toolgraphics.cc:408
 #, kde-format
 msgid "Font &Size"
 msgstr "Skrift&størrelse"
 
-#: step/toolgraphics.cc:422
+#: step/toolgraphics.cc:410
 #, kde-format
 msgid "Insert &Image..."
 msgstr ""
 
-#: step/toolgraphics.cc:427
+#: step/toolgraphics.cc:415
 #, kde-format
 msgid "Insert &Formula..."
 msgstr ""
 
-#: step/toolgraphics.cc:538
+#: step/toolgraphics.cc:526
 #, kde-format
 msgid "Edit %1"
 msgstr "Rediger %1"
 
-#: step/toolgraphics.cc:643
+#: step/toolgraphics.cc:631
 #, kde-format
 msgctxt "@title:window"
 msgid "Open Image File"
 msgstr ""
 
-#: step/toolgraphics.cc:643
+#: step/toolgraphics.cc:631
 #, kde-format
 msgid "Images (*.png *.jpg *.jpeg)"
 msgstr ""
 
-#: step/toolgraphics.cc:661
+#: step/toolgraphics.cc:649
 #, kde-format
 msgid "Cannot parse file '%1'"
 msgstr "Kan ikke tolke fila «%1»"
 
-#: step/toolgraphics.cc:705
+#: step/toolgraphics.cc:693
 #, kde-format
 msgid ""
 "Cannot find latex installation. You need 'latex', 'dvips' and 'gs' "
@@ -1079,153 +1079,153 @@ msgstr ""
 "Kan ikke finne LaTeX-installasjonen. «latex», »dvips» og «gs» må være "
 "installert i søkestien $PATH"
 
-#: step/toolgraphics.cc:711
+#: step/toolgraphics.cc:699
 #, kde-format
 msgctxt "@title:window"
 msgid "LaTex Formula - Step"
 msgstr ""
 
-#: step/toolgraphics.cc:712
+#: step/toolgraphics.cc:700
 #, kde-format
 msgid "Enter LaTeX formula string:"
 msgstr ""
 
-#: step/toolgraphics.cc:721
+#: step/toolgraphics.cc:709
 #, kde-format
 msgid "Cannot compile LaTeX formula: %1"
 msgstr "Kan ikke kompilere LaTeX-formel: %1"
 
-#: step/toolgraphics.cc:727
+#: step/toolgraphics.cc:715
 #, kde-format
 msgid "Cannot parse result image"
 msgstr "Kan ikke tolke resultatbildet"
 
-#: step/toolgraphics.cc:788
+#: step/toolgraphics.cc:776
 #, kde-format
 msgid "Object name"
 msgstr "Objektnavn"
 
-#: step/toolgraphics.cc:793
+#: step/toolgraphics.cc:781
 #, kde-format
 msgid "Property name"
 msgstr "Egenskapsnavn"
 
-#: step/toolgraphics.cc:799
+#: step/toolgraphics.cc:787
 #, kde-format
 msgid "Vector index"
 msgstr "Vektorindeks"
 
-#: step/toolgraphics.cc:988 step/toolgraphics.cc:996 step/toolgraphics.cc:1489
+#: step/toolgraphics.cc:976 step/toolgraphics.cc:984 step/toolgraphics.cc:1477
 #, kde-format
 msgid "%1.%2"
 msgstr "%1.%2"
 
-#: step/toolgraphics.cc:989 step/toolgraphics.cc:997 step/toolgraphics.cc:1490
+#: step/toolgraphics.cc:977 step/toolgraphics.cc:985 step/toolgraphics.cc:1478
 #, kde-format
 msgid "[%1]"
 msgstr "[%1]"
 
-#: step/toolgraphics.cc:993 step/toolgraphics.cc:1001 step/toolgraphics.cc:1494
+#: step/toolgraphics.cc:981 step/toolgraphics.cc:989 step/toolgraphics.cc:1482
 #, kde-format
 msgid "[not configured]"
 msgstr "[ikke satt opp]"
 
-#: step/toolgraphics.cc:1089
+#: step/toolgraphics.cc:1077
 #, kde-format
 msgid "Clear Graph"
 msgstr ""
 
-#: step/toolgraphics.cc:1090
+#: step/toolgraphics.cc:1078
 #, kde-format
 msgid "Configure Graph..."
 msgstr ""
 
-#: step/toolgraphics.cc:1108
+#: step/toolgraphics.cc:1096
 #, kde-format
 msgctxt "@title:window"
 msgid "Configure Graph"
 msgstr ""
 
-#: step/toolgraphics.cc:1184 step/toolgraphics.cc:1383
-#: step/toolgraphics.cc:1721
+#: step/toolgraphics.cc:1172 step/toolgraphics.cc:1371
+#: step/toolgraphics.cc:1709
 #, kde-format
 msgid "Edit properties of %1"
 msgstr "Rediger egenskapene til %1"
 
-#: step/toolgraphics.cc:1236
+#: step/toolgraphics.cc:1224
 #, kde-format
 msgid "Clear graph %1"
 msgstr "Tøm graf %1"
 
-#: step/toolgraphics.cc:1317
+#: step/toolgraphics.cc:1305
 #, kde-format
 msgid "Configure Meter..."
 msgstr ""
 
-#: step/toolgraphics.cc:1335
+#: step/toolgraphics.cc:1323
 #, kde-format
 msgctxt "@title:window"
 msgid "Configure Meter"
 msgstr ""
 
-#: step/toolgraphics.cc:1432 step/toolgraphics.cc:1629
+#: step/toolgraphics.cc:1420 step/toolgraphics.cc:1617
 #, kde-format
 msgid "Increase Value"
 msgstr ""
 
-#: step/toolgraphics.cc:1433 step/toolgraphics.cc:1630
+#: step/toolgraphics.cc:1421 step/toolgraphics.cc:1618
 #, kde-format
 msgid "Decrease Value"
 msgstr ""
 
-#: step/toolgraphics.cc:1463 step/toolgraphics.cc:1758
+#: step/toolgraphics.cc:1451 step/toolgraphics.cc:1746
 #, kde-format
 msgid "Decrease controller %1"
 msgstr "Minsk styreenhet %1"
 
-#: step/toolgraphics.cc:1472 step/toolgraphics.cc:1767
+#: step/toolgraphics.cc:1460 step/toolgraphics.cc:1755
 #, kde-format
 msgid "Increase controller %1"
 msgstr "Øk styreenhet %1"
 
-#: step/toolgraphics.cc:1606
+#: step/toolgraphics.cc:1594
 #, kde-format
 msgid "Change controller %1"
 msgstr "Endre styreenhet %1"
 
-#: step/toolgraphics.cc:1632
+#: step/toolgraphics.cc:1620
 #, kde-format
 msgid "Configure Controller..."
 msgstr ""
 
-#: step/toolgraphics.cc:1650
+#: step/toolgraphics.cc:1638
 #, kde-format
 msgctxt "@title:window"
 msgid "Configure Controller"
 msgstr ""
 
-#: step/toolgraphics.cc:1911
+#: step/toolgraphics.cc:1899
 #, kde-format
 msgid "Clear Trace"
 msgstr ""
 
-#: step/toolgraphics.cc:1920
+#: step/toolgraphics.cc:1908
 #, kde-format
 msgid "Clear tracer %1"
 msgstr "Tøm sporer %1"
 
-#: step/undobrowser.cc:30
+#: step/undobrowser.cc:18
 #, kde-format
 msgid "Undo History"
 msgstr ""
 
-#: step/worldbrowser.cc:62
+#: step/worldbrowser.cc:50
 #, kde-format
 msgctxt "Object list"
 msgid "World"
 msgstr "Verden"
 
-#: step/worldgraphics.cc:102
+#: step/worldgraphics.cc:90
 #, kde-format
 msgid ""
 "Press left mouse button to position first end of a %1\n"
@@ -1234,77 +1234,77 @@ msgstr ""
 "Trykk venstre museknapp på stedet for den første enden av en %1,\n"
 "dra til der den andre enden skal være og slipp"
 
-#: step/worldgraphics.cc:130
+#: step/worldgraphics.cc:118
 #, kde-format
 msgid "Release left mouse button to position second end of the %1"
 msgstr "Plasser den andre enden av en %1 ved å slippe venstre museknapp"
 
-#: step/worldmodel.cc:641
+#: step/worldmodel.cc:629
 #, kde-format
 msgid "Delete %1"
 msgstr "Fjern %1"
 
-#: step/worldmodel.cc:642
+#: step/worldmodel.cc:630
 #, kde-format
 msgid "Delete several items"
 msgstr "Fjern flere elementer"
 
-#: step/worldmodel.cc:713 step/worldmodel.cc:720
+#: step/worldmodel.cc:701 step/worldmodel.cc:708
 #, kde-format
 msgid "<no object>"
 msgstr "<ikke noe objekt>"
 
-#: step/worldmodel.cc:715
+#: step/worldmodel.cc:703
 #, kde-format
 msgid "<unnamed>"
 msgstr "<navnløs>"
 
-#: step/worldmodel.cc:721
+#: step/worldmodel.cc:709
 #, kde-format
 msgid "%1: %2"
 msgstr "%1: %2"
 
-#: step/worldmodel.cc:793
+#: step/worldmodel.cc:781
 #, kde-format
 msgid "<nobr><h4><u>%1</u></h4></nobr>"
 msgstr "<nobr><h4><u>%1</u></h4></nobr>"
 
-#: step/worldmodel.cc:821
+#: step/worldmodel.cc:809
 #, kde-format
 msgid "<tr><td>%1&nbsp;&nbsp;</td><td>%2</td></tr>"
 msgstr "<tr><td>%1&nbsp;&nbsp;</td><td>%2</td></tr>"
 
-#: step/worldmodel.cc:1019
+#: step/worldmodel.cc:1007
 #, kde-format
 msgid "Simulate %1 → %2"
 msgstr "Simuler %1 → %2"
 
-#: step/worldmodel.cc:1072
+#: step/worldmodel.cc:1060
 #, kde-format
 msgid "Cut %1"
 msgstr "Klippet %1"
 
-#: step/worldmodel.cc:1073
+#: step/worldmodel.cc:1061
 #, kde-format
 msgid "Cut several items"
 msgstr "Klippet flere elementer"
 
-#: step/worldmodel.cc:1095
+#: step/worldmodel.cc:1083
 #, kde-format
 msgid "Pasted %1"
 msgstr "Limt inn %1"
 
-#: step/worldmodel.cc:1096
+#: step/worldmodel.cc:1084
 #, kde-format
 msgid "Pasted several items"
 msgstr "Limte inn flere elementer"
 
-#: step/worldscene.cc:260
+#: step/worldscene.cc:248
 #, kde-format
 msgid "Objects under mouse:"
 msgstr "Objekter under musepeker:"
 
-#: step/worldscene.cc:265
+#: step/worldscene.cc:253
 #, kde-format
 msgid "... (1 more item)"
 msgid_plural "... (%1 more items)"

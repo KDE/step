@@ -1,23 +1,23 @@
-# SOME DESCRIPTIVE TITLE.
 # Copyright (C) YEAR This file is copyright:
 # This file is distributed under the same license as the step package.
-# Translated by Martin Srebotnjak <miles@filmsi.net>, 2022.
 #
+# Translated by Martin Srebotnjak <miles@filmsi.net>, 2022.
+# Matjaž Jeran <matjaz.jeran@amis.net>, 2022.
 msgid ""
 msgstr ""
 "Project-Id-Version: step\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2022-10-26 00:42+0000\n"
-"PO-Revision-Date: 2021-12-25 16:44+0100\n"
-"Last-Translator: Martin Srebotnjak <miles@filmsi.net>\n"
-"Language-Team: Martin Srebotnjak <miles@filmsi.net>\n"
+"PO-Revision-Date: 2022-10-27 07:21+0200\n"
+"Last-Translator: Matjaž Jeran <matjaz.jeran@amis.net>\n"
+"Language-Team: Slovenian <lugos-slo@lugos.si>\n"
 "Language: sl\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=4; plural=(n%100==1 ? 1 : n%100==2 ? 2 : n%100==3 || n"
 "%100==4 ? 3 : 0);\n"
-"X-Generator: Poedit 3.0.1\n"
+"X-Generator: Lokalize 22.08.1\n"
 
 #: examples/brownian.step:4 examples/doublependulum.step:4
 #: examples/fourpendula.step:4 examples/gas.step:4 examples/graph.step:4
@@ -1768,11 +1768,10 @@ msgid "- A pin is a joint that fixes one point of the body."
 msgstr "- Zatič je spoj, ki popravi eno točko telesa."
 
 #: tutorials/tutorial5.step:118
-#, fuzzy, kde-format
-#| msgctxt "HTML:p"
-#| msgid "- A pin is a joint that fixes one point of the body."
+#, kde-format
 msgctxt "HTML:p"
 msgid ""
 "- A stick is a joint that fixes the distance between two points on two "
 "bodies."
-msgstr "- Zatič je spoj, ki popravi eno točko telesa."
+msgstr ""
+"- Zatič je spoj, ki fiksira razdaljo med dvema točkama na dveh telesih."
