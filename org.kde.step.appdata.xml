@@ -105,6 +105,7 @@
     <p xml:lang="tr">Step bir etkileşimli fizik öykünücüsüdür. Fiziksel dünyayı simülasyonlarla keşfetmenize imkan verir. Şöyle çalışır: ekranda bazı nesneleri seçersiniz ve yerçekimi veya yay gibi kuvvetler eklersiniz, ardından Hesapla tuşuna tıkladığınızda Step fizik kurallarına göre ekranın nasıl dönüşeceğini gösterir. Deneyinizdeki cisimlerin/kuvvetlerin her özelliğini (simülasyon sırasında bile) değiştirerek bunun sonucu nasıl değiştirdiğini görebilirsiniz. Step ile fiziği sadece öğrenmez onu hissedersiniz!</p>
     <p xml:lang="uk">Step є інтерактивним імітатором фізичних процесів. Він надає вам змогу вивчати фізичні явища за допомогою їх імітації. Ось як він працює: ви розташовуєте у дослідній області деякі тіла, додаєте сили їх взаємодії (такі як гравітаційні сили та пружні сили у вигляді пружин), а потім натискаєте кнопку «Імітувати, — Step покаже як розвиватимуться події у побудованій вами системі з плином часу відповідно до законів фізики. Ви можете змінювати всі властивості тіл або сил у вашому експерименті (навіть під час імітації), щоб побачити як такі зміни впливають на перебіг експерименту. За допомогою Step ви не просто вивчите фізику, а відчуєте як працюють фізичні закони!</p>
     <p xml:lang="x-test">xxStep is an interactive physical simulator. It allows you to explore the physical world through simulations. It works like this: you place some bodies on the scene, add some forces such as gravity or springs, then click Simulate and Step shows you how your scene will evolve according to the laws of physics. You can change every property of the bodies/forces in your experiment (even during simulation) and see how this will change evolution of the experiment. With Step you cannot only learn but feel how physics works!xx</p>
+    <p xml:lang="zh-CN">Step（步骤）是一个交互式物理模拟器。它允许您通过模拟探索物理世界。 它就像这样工作：你在现场放置一些身体，添加一些力量，如重力或泉水， 然后单击模拟和步骤向您展示您的场景将如何根据物理规律演变。 您可以更改实验中的每物体/力的属性(甚至在模拟期间)，并查看这将如何改变实验的进程。 跟着一步，你不只能学习，并且能感受到物理学如何工作！</p>
     <p xml:lang="zh-TW">Step 是一套互動式的物理模擬器。它可以讓您透過模擬探索物理的世界。它的運作方式是這樣的：您在場景中放入一些主體，加上一些力，如重力或彈力等，然後按下模擬鍵，Step 就會顯示出在您的場景中，根據物理定律產生的結果。您可以改變每個主體與力的屬性（甚至實驗中也可比改變），並看看它所造成的變化。有了 Step 您不只可以學習，更可以直接感受物理！</p>
     <p>Features:</p>
     <p xml:lang="ar">الميزات:</p>
@@ -172,6 +173,7 @@
       <li xml:lang="tr">İki boyutlu klasik mekanik simülasyonu</li>
       <li xml:lang="uk">Імітація класичної механічної взаємодії у двох вимірах</li>
       <li xml:lang="x-test">xxClassical mechanical simulation in two dimensionsxx</li>
+      <li xml:lang="zh-CN">经典力学模拟二体问题</li>
       <li xml:lang="zh-TW">傳統的二維機械模擬</li>
       <li>Particles, springs with damping, gravitational and coulomb forces</li>
       <li xml:lang="ar">الجسيمات ونوابض ذات قوى التخميد والجاذبية والكولوم</li>
@@ -202,6 +204,7 @@
       <li xml:lang="tr">Parçacıklar, sönümlemeli yaylar, yer çekimi ve coulomb kuvvetleri</li>
       <li xml:lang="uk">Частинки, пружини з елементами в’язкості, гравітаційні і кулонові сили</li>
       <li xml:lang="x-test">xxParticles, springs with damping, gravitational and coulomb forcesxx</li>
+      <li xml:lang="zh-CN">具有阻尼、重力和库仑力的粒子、弹簧</li>
       <li xml:lang="zh-TW">粒子，有阻力的彈力，重力與庫倫力等</li>
       <li>Rigid bodies</li>
       <li xml:lang="ar">أجسام جامدة</li>
@@ -232,6 +235,7 @@
       <li xml:lang="tr">Katı cisimler</li>
       <li xml:lang="uk">Тверді тіла</li>
       <li xml:lang="x-test">xxRigid bodiesxx</li>
+      <li xml:lang="zh-CN">刚体</li>
       <li xml:lang="zh-TW">堅固主體</li>
       <li>Collision detection (currently only discrete) and handling</li>
       <li xml:lang="ar">كشف التصادم (المنفصل فقط حاليًا) والتعامل معه</li>
@@ -261,6 +265,7 @@
       <li xml:lang="tr">Çarpışma algılama (şu anda sadece ayrık) ve idaresi</li>
       <li xml:lang="uk">Виявлення (у цій версії лише дискретне) і керування зіткненнями</li>
       <li xml:lang="x-test">xxCollision detection (currently only discrete) and handlingxx</li>
+      <li xml:lang="zh-CN">碰撞检测（目前仅为个别）和处理</li>
       <li xml:lang="zh-TW">碰撞偵測（目前只有不連接的）與處理</li>
       <li>Soft (deformable) bodies simulated as user-editable particles-springs system, sound waves</li>
       <li xml:lang="ar">أجسام لينة (قابلة للتشوه) تمت محاكاتها كنظام نوابض جسيمات يمكن للمستخدم تحريرها وموجات صوتية</li>
@@ -290,6 +295,7 @@
       <li xml:lang="tr">Yumuşak (form değiştirebilen), kullanıcının düzenleyebildiği parçacık-yay sistemleri, ses dalgaları</li>
       <li xml:lang="uk">М’які (пружні) тіла імітуються як система з часточок і пружин, з можливістю зміни її параметрів користувачем, рух якої описують гармонічні функції</li>
       <li xml:lang="x-test">xxSoft (deformable) bodies simulated as user-editable particles-springs system, sound wavesxx</li>
+      <li xml:lang="zh-CN">柔（可变形）体模拟为用户可编辑的粒子弹簧系统，声波</li>
       <li xml:lang="zh-TW">軟性（可變形）主體，模擬成使用者可編輯的粒子彈性系統，聲波</li>
       <li>Molecular dynamics (currently using Lennard-Jones potential): gas and liquid, condensation and evaporation, calculation of macroscopic quantities and their variances</li>
       <li xml:lang="ar">الديناميات الجزيئية (حاليًا باستخدام إمكانات لينارد جونز): الغاز والسائل، والتكثيف والتبخر، وحساب الكميات العيانية وتبايناتها</li>
@@ -319,6 +325,7 @@
       <li xml:lang="tr">Moleküler dinamik (şu anda Lennard-Jones potansiyeli kullanıyor): gaz ve sıvı, yoğuşma ve buharlaşma, makroskopik miktarların ve sapmaların hesaplanması</li>
       <li xml:lang="uk">Молекулярна динаміка (у цій версії з використанням потенціалу Леннарда-Джонса): газ і рідина, конденсація і випаровування, обчислення макроскопічних величин та їх змін</li>
       <li xml:lang="x-test">xxMolecular dynamics (currently using Lennard-Jones potential): gas and liquid, condensation and evaporation, calculation of macroscopic quantities and their variancesxx</li>
+      <li xml:lang="zh-CN">分子动力学（目前使用Lennard-Jones势）：气体和液体、冷凝和蒸发、宏观量及其方差的计算</li>
       <li xml:lang="zh-TW">分子動態（目前使用雷納德-瓊斯勢能，Lennard-Jones potential）：氣體與液體，濃縮與蒸發，可見質量與變異的計算</li>
       <li>Units conversion and expression calculation: you can enter something like "(2 days + 3 hours) * 80 km/h" and it will be accepted as distance value (requires libqalculate)</li>
       <li xml:lang="ar">تحويل الوحدات وحساب التعبير: يمكنك إدخال شيء مثل "(يومان + 3 ساعات) * 80 كم/ساعة" وسيتم قبوله كقيمة للمسافة (يتطلب libqalculate)</li>
@@ -349,6 +356,7 @@
       <li xml:lang="tr">Birim dönüştürme ve ifade hesaplama: "(2 gün + 3 saat) * 80 km/h" gibi bir ifade girebilirsiniz ve bu mesafe değeri (libqalculate gerektirir) olarak kabul edilecektir</li>
       <li xml:lang="uk">Перетворення одиниць і обчислення виразів: ви можете ввести щось на зразок «(2 дні + 3 години) * 80 км/г» і цю величину буде прийнято як значення відстані (для того, щоб це працювало слід встановити libqalculate)</li>
       <li xml:lang="x-test">xxUnits conversion and expression calculation: you can enter something like "(2 days + 3 hours) * 80 km/h" and it will be accepted as distance value (requires libqalculate)xx</li>
+      <li xml:lang="zh-CN">单位转换和表达式计算：您可以输入类似“（2天+3小时）*80公里/小时”的内容，它将被视为距离值（需要libqalculate库）</li>
       <li xml:lang="zh-TW">單位轉換與表示式計算：您可以輸入像是 "(2 days + 3 hours) * 80 km/h" 它會接受並做距離計算（需要 libqalculate）</li>
       <li>Errors calculation and propagation: you can enter values like "1.3 ± 0.2" for any property and errors for all dependent properties will be calculated using statistical formulas</li>
       <li xml:lang="ar">حساب الأخطاء وانتشارها: يمكنك إدخال قيم مثل "1.3 ± 0.2" لأي خاصية وسيتم حساب الأخطاء لجميع الخصائص التابعة باستخدام الصيغ الإحصائية</li>
@@ -378,6 +386,7 @@
       <li xml:lang="tr">Hata hesaplama ve yayılım: her özellik için "1.3 ± 0.2" gibi değerler girebilirsiniz ve tüm bağımlı özelliklerin hataları istatistik formülleri kullanılarak hesaplanır</li>
       <li xml:lang="uk">Обчислення і поширення похибок: ви можете вводити значення на зразок «1.3 ± 0.2» для будь-якої з властивостей, і похибки для всіх властивостей, що залежать від вказаної властивості, буде обчислено за статистичними формулами</li>
       <li xml:lang="x-test">xxErrors calculation and propagation: you can enter values like "1.3 ± 0.2" for any property and errors for all dependent properties will be calculated using statistical formulasxx</li>
+      <li xml:lang="zh-CN">误差计算和传递：您可以对任何属性使用这种值，如“1.3±0.2”，所有相关属性的误差将使用统计公式计算</li>
       <li xml:lang="zh-TW">計算與增殖誤差：您可以對每個屬性輸入像是 "1.3 ± 0.2" 允許誤差值，它會使用統計公式來計算</li>
       <li>Solver error estimation: errors introduced by the solver is calculated and added to user-entered errors</li>
       <li xml:lang="ar">تقدير أخطاء الحلّال: تحسب الأخطاء التي يقدمها الحلّال وتضاف إلى الأخطاء التي أدخلها المستخدم</li>
@@ -407,6 +416,7 @@
       <li xml:lang="tr">Çözücü hata tahmini: çözücü tarafından katılan hatalar hesaplanır ve kullanıcı tarafından girilen hatalara ilave edilir</li>
       <li xml:lang="uk">Оцінка похибки розв’язувача: похибки, що виникають внаслідок застосування числових методів розв’язання задач, обчислюються і додаються до введених користувачем похибок</li>
       <li xml:lang="x-test">xxSolver error estimation: errors introduced by the solver is calculated and added to user-entered errorsxx</li>
+      <li xml:lang="zh-CN">求解器误差估计：计算求解器引入的误差，并将其添加到用户输入的误差中</li>
       <li xml:lang="zh-TW">計算器誤差估計：由計算器造成的誤差會被計算，並加入使用者輸入的誤差</li>
       <li>Several different solvers: up to 8th order, explicit and implicit, with or without adaptive timestep (most of the solvers require GSL library)</li>
       <li xml:lang="ar">عدة أدوات حل مختلفة: حتى الترتيب الثامن، صريحًا وضمنيًا، مع أو بدون خطوة زمنية قابلة للتكيف (تتطلب معظم أدوات الحل مكتبة GSL)</li>
@@ -436,6 +446,7 @@
       <li xml:lang="tr">Çeşitli farklı çözücüler: 8. dereceye kadar, açık ve kapalı, uyarlanabilir zamanlama varken ve yokken (çözücülerin çoğu GSL kitaplığını gerektirir)</li>
       <li xml:lang="uk">Декілька різних розв’язувачів: аж до восьмого порядку, явні і неявні, з та без зміни кроку за часом (більшість з розв’язувачів потребують бібліотеки GSL)</li>
       <li xml:lang="x-test">xxSeveral different solvers: up to 8th order, explicit and implicit, with or without adaptive timestep (most of the solvers require GSL library)xx</li>
+      <li xml:lang="zh-CN">几种不同的求解器：高达8阶，显式和隐式，带或不带自适应时间步长（大多数求解器需要GSL库）</li>
       <li xml:lang="zh-TW">數種不同的計算器：最高到八階，外顯與內含的，包含與不包含時間（大部份的計算器都需要 GSL 函式庫）</li>
       <li>Controller tool to easily control properties during simulation (even with custom keyboard shortcuts)</li>
       <li xml:lang="ar">أداة تحكم للتحكم في الخصائص بسهولة أثناء المحاكاة (حتى مع اختصارات لوحة المفاتيح المخصصة)</li>
@@ -466,6 +477,7 @@
       <li xml:lang="tr">Simülasyon sırasında özelliklerin kontrolü için araç (özel klavye kısayolları ile bile kullanılabilir)</li>
       <li xml:lang="uk">Інструмент «регулятор» призначено для простого керування властивостями під час імітації (можна навіть призначити власні клавіатурні скорочення для керування регулятором)</li>
       <li xml:lang="x-test">xxController tool to easily control properties during simulation (even with custom keyboard shortcuts)xx</li>
+      <li xml:lang="zh-CN">在模拟时轻松控制属性的控制器工具 (即使使用自定义键盘快捷键)</li>
       <li xml:lang="zh-TW">用於在模擬實驗時控制變因的控制工具（還有鍵盤捷徑）</li>
       <li>Tools to visualize results: graph, meter, tracer</li>
       <li xml:lang="ar">أدوات لتصور النتائج: الرسم البياني، المقياس، التتبع</li>
@@ -496,6 +508,7 @@
       <li xml:lang="tr">Sonuçları görselleştirmek için araçlar: grafik, metre, izleyici</li>
       <li xml:lang="uk">Інструменти для візуалізації результатів: графік, вимірювач, траєкторія</li>
       <li xml:lang="x-test">xxTools to visualize results: graph, meter, tracerxx</li>
+      <li xml:lang="zh-CN">可视化结果的工具：图形、仪表、追踪器</li>
       <li xml:lang="zh-TW">視覺化結果的工具：圖形、尺、追蹤器</li>
       <li>Context information for all objects, integrated wikipedia browser</li>
       <li xml:lang="ar">معلومات السياق لجميع الكائنات، متصفح ويكيبيديا متكامل</li>
@@ -526,6 +539,7 @@
       <li xml:lang="tr">Tüm nesneler için içerik bilgileri, entegre wikipedia tarayıcı</li>
       <li xml:lang="uk">Контекстна інформація щодо всіх об’єктів, інтегрований переглядач вікіпедії</li>
       <li xml:lang="x-test">xxContext information for all objects, integrated wikipedia browserxx</li>
+      <li xml:lang="zh-CN">所有对象的上下文信息，集成维基百科浏览器</li>
       <li xml:lang="zh-TW">所有物件的內文資訊，整合的維基瀏覽器</li>
       <li>Collection of example experiments, more can be downloaded with KNewStuff</li>
       <li xml:lang="ar">مجموعة من أمثلة التجارب ، يمكن تنزيل المزيد باستخدام KNewStuff</li>
@@ -556,6 +570,7 @@
       <li xml:lang="tr">Örnek deney koleksiyonu, daha çoğu KNewStuff ile indirilebilir</li>
       <li xml:lang="uk">Збірка зразкових експериментів, додаткові експерименти можна отримати за допомогою KNewStuff</li>
       <li xml:lang="x-test">xxCollection of example experiments, more can be downloaded with KNewStuffxx</li>
+      <li xml:lang="zh-CN">示例实验集合，可以通过 KNewStuff 下载更多</li>
       <li xml:lang="zh-TW">範例實驗的收藏。可以透過 KNewStuff 下載更多</li>
       <li>Integrated tutorials</li>
       <li xml:lang="ar">دروس مضمنة</li>
@@ -587,6 +602,7 @@
       <li xml:lang="tr">Bütünleşik öğreticiler</li>
       <li xml:lang="uk">Вбудовані підручники</li>
       <li xml:lang="x-test">xxIntegrated tutorialsxx</li>
+      <li xml:lang="zh-CN">内置教程</li>
       <li xml:lang="zh-TW">整合教學</li>
     </ul>
   </description>
