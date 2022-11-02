@@ -102,7 +102,7 @@
     <p xml:lang="sk">Step je interaktívny fyzikálny simulátor. Umožňuje vám objaviť fyzikálny svet cez simulácie. Funguje takto: umiestnite nejaké telesá na scénu, pridáte nejaké sily ako gravitáciu alebo pružiny, potom kliknete na Simulácia a Step vám ukáže, ako sa vaša scéna bude vyvíjať podľa zákonov fyziky. Môžete zmeniť každú vlastnosť telies/síl vo vašom experimente (aj  počas simulácie) a vidieť, ako to zmení vývoj experimentu. S programom Step sa nielen učíte, ale aj cítite, ako fyzika funguje!</p>
     <p xml:lang="sl">Step je interaktivni fizikalni simulator. Omogoča vam raziskovati svet fizike preko simulacij. Deluje pa na naslednji način: v sceno postavite nekaj teles ter dodate sile kot npr. težnost ali vzmeti. Nato kliknete na Simuliraj in Step vam pokaže, kako bi se scena odvila glede na fizikalne zakone. V poskusu lahko spremenite katerokoli lastnost teles/sil (celo med simulacijo) in si ogledate, kako bi to vplivalo na razvoj poskusa. S programom Step se ne le naučite, ampak tudi občutite kako fizikalni zakoni delujejo!</p>
     <p xml:lang="sv">Step är en interaktiv fysiksimulator. Den låter dig utforska den fysiska värden genom simuleringar. Den fungerar så här: Du placerar några kroppar i diagrammet, lägger till några krafter som gravitation eller fjädrar, och klickar därefter på Simulera så visar Step dig hur diagrammet förändras enligt fysikens lagar. Du kan ändra alla egenskaper hos kropparna och krafterna i experimentet (till och med under simuleringen) och se hur det påverkar experimentets förlopp. Med Step kan du inte bara lära dig hur fysiken fungerar, utan också få en känsla för det.</p>
-    <p xml:lang="tr">Step bir etkileşimli fizik öykünücüsüdür. Fiziksel dünyayı simülasyonlarla keşfetmenize imkan verir. Şöyle çalışır: ekranda bazı nesneleri seçersiniz ve yerçekimi veya yay gibi kuvvetler eklersiniz, ardından Hesapla tuşuna tıkladığınızda Step fizik kurallarına göre ekranın nasıl dönüşeceğini gösterir. Deneyinizdeki cisimlerin/kuvvetlerin her özelliğini (simülasyon sırasında bile) değiştirerek bunun sonucu nasıl değiştirdiğini görebilirsiniz. Step ile fiziği sadece öğrenmez onu hissedersiniz!</p>
+    <p xml:lang="tr">Step bir etkileşimli fizik öykünücüsüdür. Fiziksel dünyayı benzetimlerle keşfetmenize olanak verir. Şöyle çalışır: Ekrandaki bazı nesneleri seçersiniz ve yerçekimi veya yay gibi kuvvetler eklersiniz, ardından Hesapla düğmesine tıkladığınızda Step, fizik kurallarına göre ekranın nasıl dönüşeceğini gösterir. Deneyinizdeki nesnelerin/kuvvetlerin her özelliğini (benzetim sırasında bile) değiştirerek bunun sonucu nasıl değiştirdiğini görebilirsiniz. Step ile fiziği yalnızca öğrenmez onu hissedersiniz!</p>
     <p xml:lang="uk">Step є інтерактивним імітатором фізичних процесів. Він надає вам змогу вивчати фізичні явища за допомогою їх імітації. Ось як він працює: ви розташовуєте у дослідній області деякі тіла, додаєте сили їх взаємодії (такі як гравітаційні сили та пружні сили у вигляді пружин), а потім натискаєте кнопку «Імітувати, — Step покаже як розвиватимуться події у побудованій вами системі з плином часу відповідно до законів фізики. Ви можете змінювати всі властивості тіл або сил у вашому експерименті (навіть під час імітації), щоб побачити як такі зміни впливають на перебіг експерименту. За допомогою Step ви не просто вивчите фізику, а відчуєте як працюють фізичні закони!</p>
     <p xml:lang="x-test">xxStep is an interactive physical simulator. It allows you to explore the physical world through simulations. It works like this: you place some bodies on the scene, add some forces such as gravity or springs, then click Simulate and Step shows you how your scene will evolve according to the laws of physics. You can change every property of the bodies/forces in your experiment (even during simulation) and see how this will change evolution of the experiment. With Step you cannot only learn but feel how physics works!xx</p>
     <p xml:lang="zh-CN">Step（步骤）是一个交互式物理模拟器。它允许您通过模拟探索物理世界。 它就像这样工作：你在现场放置一些身体，添加一些力量，如重力或泉水， 然后单击模拟和步骤向您展示您的场景将如何根据物理规律演变。 您可以更改实验中的每物体/力的属性(甚至在模拟期间)，并查看这将如何改变实验的进程。 跟着一步，你不只能学习，并且能感受到物理学如何工作！</p>
@@ -170,7 +170,7 @@
       <li xml:lang="sk">Simulácie klasickej mechaniky v dvoch rozmeroch</li>
       <li xml:lang="sl">Klasične mehanske simulacije v dveh dimenzijah</li>
       <li xml:lang="sv">Simulering av klassisk mekanik i två dimensioner</li>
-      <li xml:lang="tr">İki boyutlu klasik mekanik simülasyonu</li>
+      <li xml:lang="tr">İki boyutlu klasik mekanik benzetimi</li>
       <li xml:lang="uk">Імітація класичної механічної взаємодії у двох вимірах</li>
       <li xml:lang="x-test">xxClassical mechanical simulation in two dimensionsxx</li>
       <li xml:lang="zh-CN">经典力学模拟二体问题</li>
@@ -201,7 +201,7 @@
       <li xml:lang="sk">Častice, pružiny s tlakom, gravitačné a coulombove sily</li>
       <li xml:lang="sl">Delci, vzmeti z dušenjem, težnostne in električne sile</li>
       <li xml:lang="sv">Partiklar, dämpade fjädrar, gravitationskrafter och coulombkrafter</li>
-      <li xml:lang="tr">Parçacıklar, sönümlemeli yaylar, yer çekimi ve coulomb kuvvetleri</li>
+      <li xml:lang="tr">Parçacıklar, sönümlemeli yaylar, yerçekimi ve coulomb kuvvetleri</li>
       <li xml:lang="uk">Частинки, пружини з елементами в’язкості, гравітаційні і кулонові сили</li>
       <li xml:lang="x-test">xxParticles, springs with damping, gravitational and coulomb forcesxx</li>
       <li xml:lang="zh-CN">具有阻尼、重力和库仑力的粒子、弹簧</li>
@@ -232,7 +232,7 @@
       <li xml:lang="sk">Tuhé telesá</li>
       <li xml:lang="sl">Toga telesa</li>
       <li xml:lang="sv">Stela kroppar</li>
-      <li xml:lang="tr">Katı cisimler</li>
+      <li xml:lang="tr">Katı nesneler</li>
       <li xml:lang="uk">Тверді тіла</li>
       <li xml:lang="x-test">xxRigid bodiesxx</li>
       <li xml:lang="zh-CN">刚体</li>
@@ -262,7 +262,7 @@
       <li xml:lang="sk">Detekcia kolízií (aktuálne iba oddelené) a ich spracovanie</li>
       <li xml:lang="sl">Zaznavanje trkov (trenutno samo diskretnih) in njihovo obravnavanje</li>
       <li xml:lang="sv">Detektering och hantering av kollisioner (för närvarande bara diskreta)</li>
-      <li xml:lang="tr">Çarpışma algılama (şu anda sadece ayrık) ve idaresi</li>
+      <li xml:lang="tr">Çarpışma algılama (şu anda yalnızca ayrık) ve idaresi</li>
       <li xml:lang="uk">Виявлення (у цій версії лише дискретне) і керування зіткненнями</li>
       <li xml:lang="x-test">xxCollision detection (currently only discrete) and handlingxx</li>
       <li xml:lang="zh-CN">碰撞检测（目前仅为个别）和处理</li>
@@ -322,7 +322,7 @@
       <li xml:lang="sk">Molekulárna dynamika (aktuálne používa Lennardov-Jonesov potenciál): plyn a kvapalina, kondenzácia a vyparovanie, výpočet makroskopických kvantít a ich odchýliek</li>
       <li xml:lang="sl">Molekulska dinamika (trenutno uporablja Lennard-Jonesov potencial): plini in tekočine, kondenzacija in izparevanje, izračun makroskopskih količin in njihovih varianc</li>
       <li xml:lang="sv">Molekyldynamik (för närvarande med användning av Lennard-Jones potentialen): gaser och vätskor, kondensering och avdunstning, beräkning av makroskopiska kvantiteter och deras varians</li>
-      <li xml:lang="tr">Moleküler dinamik (şu anda Lennard-Jones potansiyeli kullanıyor): gaz ve sıvı, yoğuşma ve buharlaşma, makroskopik miktarların ve sapmaların hesaplanması</li>
+      <li xml:lang="tr">Moleküler dinamik (şu anda Lennard-Jones potansiyeli kullanıyor): Gaz ve sıvı, yoğuşma ve buharlaşma, makroskopik tutarların ve sapmaların hesaplanması</li>
       <li xml:lang="uk">Молекулярна динаміка (у цій версії з використанням потенціалу Леннарда-Джонса): газ і рідина, конденсація і випаровування, обчислення макроскопічних величин та їх змін</li>
       <li xml:lang="x-test">xxMolecular dynamics (currently using Lennard-Jones potential): gas and liquid, condensation and evaporation, calculation of macroscopic quantities and their variancesxx</li>
       <li xml:lang="zh-CN">分子动力学（目前使用Lennard-Jones势）：气体和液体、冷凝和蒸发、宏观量及其方差的计算</li>
@@ -353,7 +353,7 @@
       <li xml:lang="sk">Konverzie jednotiek a výpočet výrazov: môžete zadať niečo ako "(2 dni + 3 hodiny) * 80 km/h" a bude to prijaté ako hodnota vzdialenosti (vyžaduje libqalculate)</li>
       <li xml:lang="sl">Pretvorbe enot in izračuni izrazov: če vnesete npr. "(2 dni + 3 ure) * 80 km/h", bo to obravnavano kot dolžinska vrednost (zahteva libqalculate)</li>
       <li xml:lang="sv">Enhetskonvertering och uttrycksberäkning: Du kan skriva in någonting i stil med "(2 dagar + 3 timmar) * 80 km/h", vilket accepteras som ett avståndsvärde (kräver libqalculate)</li>
-      <li xml:lang="tr">Birim dönüştürme ve ifade hesaplama: "(2 gün + 3 saat) * 80 km/h" gibi bir ifade girebilirsiniz ve bu mesafe değeri (libqalculate gerektirir) olarak kabul edilecektir</li>
+      <li xml:lang="tr">Birim dönüştürme ve ifade hesaplama: "(2 gün + 3 saat) * 80 km/sa" gibi bir ifade girebilirsiniz ve bu mesafe değeri (libqalculate gerektirir) olarak kabul edilecektir</li>
       <li xml:lang="uk">Перетворення одиниць і обчислення виразів: ви можете ввести щось на зразок «(2 дні + 3 години) * 80 км/г» і цю величину буде прийнято як значення відстані (для того, щоб це працювало слід встановити libqalculate)</li>
       <li xml:lang="x-test">xxUnits conversion and expression calculation: you can enter something like "(2 days + 3 hours) * 80 km/h" and it will be accepted as distance value (requires libqalculate)xx</li>
       <li xml:lang="zh-CN">单位转换和表达式计算：您可以输入类似“（2天+3小时）*80公里/小时”的内容，它将被视为距离值（需要libqalculate库）</li>
@@ -383,7 +383,7 @@
       <li xml:lang="sk">Výpočet a šírenie chýb: môžete zadať hodnoty ako "1,3 ± 0,2" pre ľubovoľnú vlastnosť a chyby pre všetky závislé vlastnosti sa prepočítajú pomocou štatistických vzorcov</li>
       <li xml:lang="sl">Izračun napak in njihov prenos: vnesete lahko npr. "1.3 ± 0.2" za katerokoli vrednost in napake za vse odvisne lastnosti bodo izračunane s pomočjo statističnih enačb</li>
       <li xml:lang="sv">Felberäkning och felpropagering: Du kan skriva in värden som "1,3 ± 0,2" för alla egenskaper, och fel för alla beroende egenskaper beräknas med statistiska formler</li>
-      <li xml:lang="tr">Hata hesaplama ve yayılım: her özellik için "1.3 ± 0.2" gibi değerler girebilirsiniz ve tüm bağımlı özelliklerin hataları istatistik formülleri kullanılarak hesaplanır</li>
+      <li xml:lang="tr">Hata hesaplama ve yayılım: Her özellik için "1.3 ± 0.2" gibi değerler girebilirsiniz ve tüm bağımlı özelliklerin hataları istatistik formülleri kullanılarak hesaplanır</li>
       <li xml:lang="uk">Обчислення і поширення похибок: ви можете вводити значення на зразок «1.3 ± 0.2» для будь-якої з властивостей, і похибки для всіх властивостей, що залежать від вказаної властивості, буде обчислено за статистичними формулами</li>
       <li xml:lang="x-test">xxErrors calculation and propagation: you can enter values like "1.3 ± 0.2" for any property and errors for all dependent properties will be calculated using statistical formulasxx</li>
       <li xml:lang="zh-CN">误差计算和传递：您可以对任何属性使用这种值，如“1.3±0.2”，所有相关属性的误差将使用统计公式计算</li>
@@ -413,7 +413,7 @@
       <li xml:lang="sk">Odhad chýb riešiteľa: chyby spôsobené riešiteľom sa počítajú a pridávajú do používateľom zadaných chýb</li>
       <li xml:lang="sl">Ocena napake reševalnika: napake, ki so posledica računanja reševalnika, se izračunajo in dodajo k uporabniško vnesenim napakam</li>
       <li xml:lang="sv">Feluppskattning av evalueringsenheten: fel som införs av evalueringsenheten beräknas och läggs till användarinmatade fel</li>
-      <li xml:lang="tr">Çözücü hata tahmini: çözücü tarafından katılan hatalar hesaplanır ve kullanıcı tarafından girilen hatalara ilave edilir</li>
+      <li xml:lang="tr">Çözücü hata tahmini: Çözücü tarafından katılan hatalar hesaplanır ve kullanıcı tarafından girilen hatalara eklenir</li>
       <li xml:lang="uk">Оцінка похибки розв’язувача: похибки, що виникають внаслідок застосування числових методів розв’язання задач, обчислюються і додаються до введених користувачем похибок</li>
       <li xml:lang="x-test">xxSolver error estimation: errors introduced by the solver is calculated and added to user-entered errorsxx</li>
       <li xml:lang="zh-CN">求解器误差估计：计算求解器引入的误差，并将其添加到用户输入的误差中</li>
@@ -474,7 +474,7 @@
       <li xml:lang="sk">Nástroj ovládača na jednoduché ovládanie vlastností počas simulácie (dokonca s vlastnými klávesovými skratkami)</li>
       <li xml:lang="sl">Nadzorno orodje za enostaven nadzor nad lastnostmi med simulacijo (celo s tipkovnimi bližnjicami po meri)</li>
       <li xml:lang="sv">Styrverktyg för att enkelt hantera egenskaper under simuleringen (också med egna snabbtangenter)</li>
-      <li xml:lang="tr">Simülasyon sırasında özelliklerin kontrolü için araç (özel klavye kısayolları ile bile kullanılabilir)</li>
+      <li xml:lang="tr">Benzetim sırasında özelliklerin denetimi için araç (özel klavye kısayolları ile bile kullanılabilir)</li>
       <li xml:lang="uk">Інструмент «регулятор» призначено для простого керування властивостями під час імітації (можна навіть призначити власні клавіатурні скорочення для керування регулятором)</li>
       <li xml:lang="x-test">xxController tool to easily control properties during simulation (even with custom keyboard shortcuts)xx</li>
       <li xml:lang="zh-CN">在模拟时轻松控制属性的控制器工具 (即使使用自定义键盘快捷键)</li>
@@ -505,7 +505,7 @@
       <li xml:lang="sk">Nástroje na vizualizáciu výsledkov: graf, meter, stopár</li>
       <li xml:lang="sl">Orodja za prikaz rezultatov: graf, merilnik, sledilnik</li>
       <li xml:lang="sv">Verktyg för att åskådliggöra resultat: grafer, mätare, spår</li>
-      <li xml:lang="tr">Sonuçları görselleştirmek için araçlar: grafik, metre, izleyici</li>
+      <li xml:lang="tr">Sonuçları görselleştirmek için araçlar: Grafik, metre, izleyici</li>
       <li xml:lang="uk">Інструменти для візуалізації результатів: графік, вимірювач, траєкторія</li>
       <li xml:lang="x-test">xxTools to visualize results: graph, meter, tracerxx</li>
       <li xml:lang="zh-CN">可视化结果的工具：图形、仪表、追踪器</li>
@@ -536,7 +536,7 @@
       <li xml:lang="sk">Kontextové informácie pre všetky objekty, integrovaný prehliadač Wikipédia</li>
       <li xml:lang="sl">Vsebinske podrobnosti za vse predmete, vgrajen brskalnik po Wikipediji</li>
       <li xml:lang="sv">Sammanhangsberoende information för alla objekt, inbyggd Wikipedia-bläddrare</li>
-      <li xml:lang="tr">Tüm nesneler için içerik bilgileri, entegre wikipedia tarayıcı</li>
+      <li xml:lang="tr">Tüm nesneler için içerik bilgileri, tümleşik Vikipedi tarayıcısı</li>
       <li xml:lang="uk">Контекстна інформація щодо всіх об’єктів, інтегрований переглядач вікіпедії</li>
       <li xml:lang="x-test">xxContext information for all objects, integrated wikipedia browserxx</li>
       <li xml:lang="zh-CN">所有对象的上下文信息，集成维基百科浏览器</li>
@@ -567,7 +567,7 @@
       <li xml:lang="sk">Kolekcia ukážkových experimentov, viac je možné stiahnuť z KNewStuff</li>
       <li xml:lang="sl">Zbirka primerov poskusov, več jih lahko prejmete z "Dobi vroče novosti"</li>
       <li xml:lang="sv">En samling exempel på experiment, och fler kan laddas ner via Hämta heta nyheter</li>
-      <li xml:lang="tr">Örnek deney koleksiyonu, daha çoğu KNewStuff ile indirilebilir</li>
+      <li xml:lang="tr">Örnek deney koleksiyonu, bir çoğu KNewStuff ile indirilebilir</li>
       <li xml:lang="uk">Збірка зразкових експериментів, додаткові експерименти можна отримати за допомогою KNewStuff</li>
       <li xml:lang="x-test">xxCollection of example experiments, more can be downloaded with KNewStuffxx</li>
       <li xml:lang="zh-CN">示例实验集合，可以通过 KNewStuff 下载更多</li>
@@ -637,6 +637,7 @@
       <caption xml:lang="sk">Fyzikálna simulácia v Step</caption>
       <caption xml:lang="sl">Fizikalni simulator Step</caption>
       <caption xml:lang="sv">Fysiksimulering i Step</caption>
+      <caption xml:lang="tr">Step içinde fiziksel benzetim</caption>
       <caption xml:lang="uk">Фізичний експеримент у Step</caption>
       <caption xml:lang="x-test">xxPhysical simulation in Stepxx</caption>
       <caption xml:lang="zh-CN">在 Step 进行物理学模拟</caption>
