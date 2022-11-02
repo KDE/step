@@ -1,296 +1,205 @@
-# SOME DESCRIPTIVE TITLE.
 # Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
 # This file is distributed under the same license as the PACKAGE package.
 #
 # Translators:
-# Huseyin Nacak <nacakhuseyin@googlemail.com>, 2009
-# Muhammet Kara <muhammetk@gmail.com>, 2009
-# obsoleteman <tulliana@gmail.com>, 2008-2009
-# Volkan Gezer <volkangezer@gmail.com>, 2013-2014
+# Huseyin Nacak <nacakhuseyin@googlemail.com>, 2009.
+# Muhammet Kara <muhammetk@gmail.com>, 2009.
+# obsoleteman <tulliana@gmail.com>, 2008-2009.
+# Volkan Gezer <volkangezer@gmail.com>, 2013-2014.
+# Emir SARI <emir_sari@icloud.com>, 2022.
 msgid ""
 msgstr ""
 "Project-Id-Version: kdeedu-kde4\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2016-06-22 08:50+0000\n"
-"PO-Revision-Date: 2017-06-01 12:33+0000\n"
-"Last-Translator: Kaan <kaanozdincer@gmail.com>\n"
-"Language-Team: Turkish (http://www.transifex.com/projects/p/kdeedu-k-tr/"
-"language/tr/)\n"
+"PO-Revision-Date: 2022-11-01 20:25+0300\n"
+"Last-Translator: Emir SARI <emir_sari@icloud.com>\n"
+"Language-Team: Turkish <kde-l10n-tr@kde.org>\n"
 "Language: tr\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
 "X-Qt-Contexts: true\n"
+"X-Generator: Lokalize 22.08.2\n"
 
 #: body.cc:13
-#, fuzzy
-#| msgid "Body"
 msgctxt "ObjectClass|"
 msgid "Body"
-msgstr "Cisim"
+msgstr "Gövde"
 
 #: body.cc:13
-#, fuzzy
-#| msgid "Body"
 msgctxt "ObjectDescription|"
 msgid "Body"
-msgstr "Cisim"
+msgstr "Gövde"
 
 #: collisionsolver.cc:19
-#, fuzzy
-#| msgctxt "ObjectClass"
-#| msgid "CollisionSolver"
 msgctxt "ObjectClass|"
 msgid "CollisionSolver"
-msgstr "ÇarpışmaÇözücüsü"
+msgstr "ÇarpışmaÇözücü"
 
 #: collisionsolver.cc:20 solver.cc:16
-#, fuzzy
-#| msgid "Allowed absolute tolerance"
 msgctxt "PropertyDescription|"
 msgid "Allowed absolute tolerance"
 msgstr "İzin verilen tam hata payı"
 
 #: collisionsolver.cc:20 solver.cc:16
-#, fuzzy
-#| msgctxt "PropertyName"
-#| msgid "toleranceAbs"
 msgctxt "PropertyName|"
 msgid "toleranceAbs"
 msgstr "hatapayıTam"
 
 #: collisionsolver.cc:21 solver.cc:19
-#, fuzzy
-#| msgid "Maximal local error during last step"
 msgctxt "PropertyDescription|"
 msgid "Maximal local error during last step"
 msgstr "Son adımdaki en büyük yerel hata"
 
 #: collisionsolver.cc:21 solver.cc:19
-#, fuzzy
-#| msgctxt "PropertyName"
-#| msgid "localError"
 msgctxt "PropertyName|"
 msgid "localError"
 msgstr "yerelHata"
 
 #: collisionsolver.cc:23
-#, fuzzy
-#| msgctxt "ObjectClass"
-#| msgid "GJKCollisionSolver"
 msgctxt "ObjectClass|"
 msgid "GJKCollisionSolver"
 msgstr "GJKÇarpışmaÇözücü"
 
 #: constraintsolver.cc:19
-#, fuzzy
-#| msgctxt "ObjectClass"
-#| msgid "ConstraintSolver"
 msgctxt "ObjectClass|"
 msgid "ConstraintSolver"
 msgstr "KısıtlamaÇözücü"
 
 #: constraintsolver.cc:23
-#, fuzzy
-#| msgctxt "ObjectClass"
-#| msgid "CGConstraintSolver"
 msgctxt "ObjectClass|"
 msgid "CGConstraintSolver"
 msgstr "KısıtlamaÇözücü"
 
 #: coulombforce.cc:14
-#, fuzzy
-#| msgctxt "ObjectClass"
-#| msgid "CoulombForce"
 msgctxt "ObjectClass|"
 msgid "CoulombForce"
 msgstr "CoulombKuvveti"
 
 #: coulombforce.cc:14
-#, fuzzy
-#| msgid "Coulomb force"
 msgctxt "ObjectDescription|"
 msgid "Coulomb force"
 msgstr "CoulombKuvveti"
 
 #: coulombforce.cc:16
-#, fuzzy
-#| msgctxt "PropertyName"
-#| msgid "coulombConst"
 msgctxt "PropertyName|"
 msgid "coulombConst"
 msgstr "coulombSabiti"
 
 #: coulombforce.cc:16 coulombforce.cc:21
-#, fuzzy
-#| msgctxt "Units"
-#| msgid "N m²/C²"
 msgctxt "Units|"
 msgid "N m²/C²"
-msgstr "coulombSabiti"
+msgstr "N m²/C²"
 
 #: coulombforce.cc:17
-#, fuzzy
-#| msgid "Coulomb constant"
 msgctxt "PropertyDescription|"
 msgid "Coulomb constant"
 msgstr "Coulomb sabiti"
 
 #: coulombforce.cc:19
-#, fuzzy
-#| msgctxt "ObjectClass"
-#| msgid "CoulombForceErrors"
 msgctxt "ObjectClass|"
 msgid "CoulombForceErrors"
-msgstr "Coulomb sabiti"
+msgstr "CoulombSabitiHataları"
 
 #: coulombforce.cc:19
-#, fuzzy
-#| msgid "Errors class for CoulombForce"
 msgctxt "ObjectDescription|"
 msgid "Errors class for CoulombForce"
 msgstr "CoulombKuvveti için hata sınıfı"
 
 #: coulombforce.cc:21
-#, fuzzy
-#| msgctxt "PropertyName"
-#| msgid "coulombConstVariance"
 msgctxt "PropertyName|"
 msgid "coulombConstVariance"
 msgstr "coulombSabitiVaryansı"
 
 #: coulombforce.cc:22
-#, fuzzy
-#| msgid "Coulomb constant variance"
 msgctxt "PropertyDescription|"
 msgid "Coulomb constant variance"
 msgstr "Coulomb sabiti varyansı"
 
 #: eulersolver.cc:15
-#, fuzzy
-#| msgctxt "ObjectClass"
-#| msgid "GenericEulerSolver"
 msgctxt "ObjectClass|"
 msgid "GenericEulerSolver"
 msgstr "GenelEulerÇözücü"
 
 #: eulersolver.cc:15
-#, fuzzy
-#| msgid "Generic Euler solver"
 msgctxt "ObjectDescription|"
 msgid "Generic Euler solver"
 msgstr "Genel Euler Çözücü"
 
 #: eulersolver.cc:16
-#, fuzzy
-#| msgctxt "ObjectClass"
-#| msgid "EulerSolver"
 msgctxt "ObjectClass|"
 msgid "EulerSolver"
 msgstr "EulerÇözücü"
 
 #: eulersolver.cc:16
-#, fuzzy
-#| msgid "Non-adaptive Euler solver"
 msgctxt "ObjectDescription|"
 msgid "Non-adaptive Euler solver"
 msgstr "Uyarlamasız Euler çözücü"
 
 #: eulersolver.cc:17
-#, fuzzy
-#| msgctxt "ObjectClass"
-#| msgid "AdaptiveEulerSolver"
 msgctxt "ObjectClass|"
 msgid "AdaptiveEulerSolver"
 msgstr "UyarlamalıEulerÇözücü"
 
 #: eulersolver.cc:17
-#, fuzzy
-#| msgid "Adaptive Euler solver"
 msgctxt "ObjectDescription|"
 msgid "Adaptive Euler solver"
 msgstr "Uyarlamalı Euler çözücü"
 
 #: force.cc:14
-#, fuzzy
-#| msgid "Force"
 msgctxt "ObjectClass|"
 msgid "Force"
 msgstr "Kuvvet"
 
 #: force.cc:14
-#, fuzzy
-#| msgid "Force"
 msgctxt "ObjectDescription|"
 msgid "Force"
 msgstr "Kuvvet"
 
 #: gas.cc:15
-#, fuzzy
-#| msgctxt "ObjectClass"
-#| msgid "GasParticle"
 msgctxt "ObjectClass|"
 msgid "GasParticle"
 msgstr "GazParçacığı"
 
 #: gas.cc:15
-#, fuzzy
-#| msgid "Gas particle"
 msgctxt "ObjectDescription|"
 msgid "Gas particle"
 msgstr "Gaz parçacığı"
 
 #: gas.cc:17
-#, fuzzy
-#| msgctxt "ObjectClass"
-#| msgid "GasLJForce"
 msgctxt "ObjectClass|"
 msgid "GasLJForce"
 msgstr "GazLJKuvveti"
 
 #: gas.cc:17
-#, fuzzy
-#| msgid "Lennard-Jones force"
 msgctxt "ObjectDescription|"
 msgid "Lennard-Jones force"
 msgstr "Lennard-Jones kuvveti"
 
 #: gas.cc:19
-#, fuzzy
-#| msgid "Potential depth"
 msgctxt "PropertyDescription|"
 msgid "Potential depth"
 msgstr "Potansiyel derinlik"
 
 #: gas.cc:19
-#, fuzzy
-#| msgctxt "PropertyName"
-#| msgid "depth"
 msgctxt "PropertyName|"
 msgid "depth"
 msgstr "derinlik"
 
 #: gas.cc:19 gas.cc:25 gas.cc:47 gas.cc:62 particle.cc:25 particle.cc:41
 #: rigidbody.cc:37 rigidbody.cc:68
-#, fuzzy
-#| msgctxt "Units"
-#| msgid "J"
 msgctxt "Units|"
 msgid "J"
 msgstr "J"
 
 #: gas.cc:20
-#, fuzzy
-#| msgid "Distance at which the force is zero"
 msgctxt "PropertyDescription|"
 msgid "Distance at which the force is zero"
-msgstr "Kuvvetin sıfır oldugu mesafe"
+msgstr "Kuvvetin sıfır olduğu uzaklık"
 
 #: gas.cc:20
-#, fuzzy
-#| msgctxt "PropertyName"
-#| msgid "rmin"
 msgctxt "PropertyName|"
 msgid "rmin"
 msgstr "rmin"
@@ -304,125 +213,84 @@ msgstr "rmin"
 #: spring.cc:43 spring.cc:45 spring.cc:47 spring.cc:49 tool.cc:26 tool.cc:27
 #: tool.cc:33 tool.cc:34 tool.cc:55 tool.cc:56 tool.cc:67 tool.cc:68 tool.cc:86
 #: tool.cc:88 tool.cc:89
-#, fuzzy
-#| msgctxt "Units"
-#| msgid "m"
 msgctxt "Units|"
 msgid "m"
 msgstr "m"
 
 #: gas.cc:21
-#, fuzzy
-#| msgid "Cut-off distance"
 msgctxt "PropertyDescription|"
 msgid "Cut-off distance"
-msgstr "Kesme mesafesi"
+msgstr "Kesme uzaklığı"
 
 #: gas.cc:21
-#, fuzzy
-#| msgctxt "PropertyName"
-#| msgid "cutoff"
 msgctxt "PropertyName|"
 msgid "cutoff"
 msgstr "kesme"
 
 #: gas.cc:23
-#, fuzzy
-#| msgctxt "ObjectClass"
-#| msgid "GasLJForceErrors"
 msgctxt "ObjectClass|"
 msgid "GasLJForceErrors"
 msgstr "GazLJKuvvetiHataları"
 
 #: gas.cc:23
-#, fuzzy
-#| msgid "Errors class for GasLJForce"
 msgctxt "ObjectDescription|"
 msgid "Errors class for GasLJForce"
 msgstr "GazLJKuvveti için hata sınıfı"
 
 #: gas.cc:25
-#, fuzzy
-#| msgctxt "PropertyName"
-#| msgid "depthVariance"
 msgctxt "PropertyName|"
 msgid "depthVariance"
 msgstr "derinlikVaryansı"
 
 #: gas.cc:26
-#, fuzzy
-#| msgid "Potential depth variance"
 msgctxt "PropertyDescription|"
 msgid "Potential depth variance"
 msgstr "Potansiyel derinlik varyansı"
 
 #: gas.cc:27
-#, fuzzy
-#| msgctxt "PropertyName"
-#| msgid "rminVariance"
 msgctxt "PropertyName|"
 msgid "rminVariance"
 msgstr "rminVaryansı"
 
 #: gas.cc:28
-#, fuzzy
-#| msgid "Variance of the distance at which the force is zero"
 msgctxt "PropertyDescription|"
 msgid "Variance of the distance at which the force is zero"
-msgstr "Kuvvetin sıfır olduğu mesafedeki varyans"
+msgstr "Kuvvetin sıfır olduğu uzaklıktaki varyans"
 
 #: gas.cc:32
-#, fuzzy
-#| msgctxt "ObjectClass"
-#| msgid "Gas"
 msgctxt "ObjectClass|"
 msgid "Gas"
 msgstr "Gaz"
 
 #: gas.cc:32
-#, fuzzy
-#| msgid "Particle gas"
 msgctxt "ObjectDescription|"
 msgid "Particle gas"
-msgstr "Gaz parçacığı"
+msgstr "Parçacık gaz"
 
 #: gas.cc:33
-#, fuzzy
-#| msgctxt "PropertyName"
-#| msgid "measureRectCenter"
 msgctxt "PropertyName|"
 msgid "measureRectCenter"
-msgstr "RectMerkeziölçümü"
+msgstr "dörtgenMerkeziÖlçümü"
 
 #: gas.cc:34
-#, fuzzy
-#| msgid "Center of the rect for measurements"
 msgctxt "PropertyDescription|"
 msgid "Center of the rect for measurements"
-msgstr " Ölçümler için rect merkezi"
+msgstr "Ölçümler için dörtgen merkezi"
 
 #: gas.cc:35
-#, fuzzy
-#| msgctxt "PropertyName"
-#| msgid "measureRectSize"
 msgctxt "PropertyName|"
 msgid "measureRectSize"
-msgstr "RectBüyüklüğüölçümü"
+msgstr "dörtgenBüyüklüğüÖlçümü"
 
 #: gas.cc:36
-#, fuzzy
-#| msgid "Size of the rect for measurements"
 msgctxt "PropertyDescription|"
 msgid "Size of the rect for measurements"
-msgstr "Ölçümler için rect büyüklüğü"
+msgstr "Ölçümler için dörtgen büyüklüğü"
 
 #: gas.cc:37
-#, fuzzy
-#| msgctxt "PropertyName"
-#| msgid "rectVolume"
 msgctxt "PropertyName|"
 msgid "rectVolume"
-msgstr "rectHacmi"
+msgstr "dörtgenHacmi"
 
 #: gas.cc:37
 msgctxt "Units|"
@@ -430,34 +298,24 @@ msgid "m²"
 msgstr "m²"
 
 #: gas.cc:38
-#, fuzzy
-#| msgid "Volume of the measureRect"
 msgctxt "PropertyDescription|"
 msgid "Volume of the measureRect"
-msgstr "Rectölçümünün Hacmi"
+msgstr "dörtgenÖlçümünün hacmi"
 
 #: gas.cc:39
-#, fuzzy
-#| msgctxt "PropertyName"
-#| msgid "rectParticleCount"
 msgctxt "PropertyName|"
 msgid "rectParticleCount"
-msgstr "rectParçacıklarıSayımı"
+msgstr "dörtgenParçacıklarıSayımı"
 
 #: gas.cc:40
-#, fuzzy
-#| msgid "Count of particles in the measureRect"
 msgctxt "PropertyDescription|"
 msgid "Count of particles in the measureRect"
-msgstr "RectÖlçümündeki parçacıkların sayımı"
+msgstr "dörtgenÖlçümündeki parçacıkların sayımı"
 
 #: gas.cc:41
-#, fuzzy
-#| msgctxt "PropertyName"
-#| msgid "rectConcentration"
 msgctxt "PropertyName|"
 msgid "rectConcentration"
-msgstr "rectYoğunluğu"
+msgstr "dörtgenYoğunluğu"
 
 #: gas.cc:41
 msgctxt "Units|"
@@ -465,42 +323,29 @@ msgid "1/m²"
 msgstr "1/m²"
 
 #: gas.cc:42
-#, fuzzy
-#| msgid "Concentration of particles in the measureRect"
 msgctxt "PropertyDescription|"
 msgid "Concentration of particles in the measureRect"
-msgstr "RectÖlçümündeki parçacıkların yoğunluğu"
+msgstr "dörtgenÖlçümü'ndeki parçacıkların yoğunluğu"
 
 #: gas.cc:43
-#, fuzzy
-#| msgctxt "PropertyName"
-#| msgid "rectPressure"
 msgctxt "PropertyName|"
 msgid "rectPressure"
-msgstr "rectBasıncı"
+msgstr "dörtgenBasıncı"
 
 #: gas.cc:43 gas.cc:58
-#, fuzzy
-#| msgctxt "Units"
-#| msgid "Pa"
 msgctxt "Units|"
 msgid "Pa"
 msgstr "Pa"
 
 #: gas.cc:44
-#, fuzzy
-#| msgid "Pressure of particles in the measureRect"
 msgctxt "PropertyDescription|"
 msgid "Pressure of particles in the measureRect"
-msgstr "RectÖlçümündeki parçacıkların basıncı"
+msgstr "dörtgenÖlçümü'ndeki parçacıkların basıncı"
 
 #: gas.cc:45
-#, fuzzy
-#| msgctxt "PropertyName"
-#| msgid "rectTemperature"
 msgctxt "PropertyName|"
 msgid "rectTemperature"
-msgstr "rectSıcaklığı"
+msgstr "dörtgenSıcaklığı"
 
 #: gas.cc:45 gas.cc:60
 msgctxt "Units|"
@@ -508,2862 +353,1938 @@ msgid "K"
 msgstr "K"
 
 #: gas.cc:46
-#, fuzzy
-#| msgid "Temperature of particles in the measureRect"
 msgctxt "PropertyDescription|"
 msgid "Temperature of particles in the measureRect"
-msgstr "RectÖlçümündeki parçacıkların sıcaklığı"
+msgstr "dörtgenÖlçümündeki parçacıkların sıcaklığı"
 
 #: gas.cc:47
-#, fuzzy
-#| msgctxt "PropertyName"
-#| msgid "rectMeanKineticEnergy"
 msgctxt "PropertyName|"
 msgid "rectMeanKineticEnergy"
-msgstr "rectOrtalamaKinetikEenerjisi"
+msgstr "dörtgenOrtalamaDevinimselEnerjisi"
 
 #: gas.cc:48
-#, fuzzy
-#| msgid "Mean kinetic energy of particles in the measureRect"
 msgctxt "PropertyDescription|"
 msgid "Mean kinetic energy of particles in the measureRect"
-msgstr "RectÖlçümündeki parçacıkların ortalama kinetik enerjisi"
+msgstr "dörtgenÖlçümü'ndeki parçacıkların ortalama devinimsel enerjisi"
 
 #: gas.cc:49
-#, fuzzy
-#| msgctxt "PropertyName"
-#| msgid "rectMeanVelocity"
 msgctxt "PropertyName|"
 msgid "rectMeanVelocity"
-msgstr "rectOrtalamaHızı"
+msgstr "dörtgenOrtalamaHızı"
 
 #: gas.cc:49 gas.cc:64 particle.cc:18 particle.cc:31 rigidbody.cc:19
 #: rigidbody.cc:46 softbody.cc:26
-#, fuzzy
-#| msgctxt "Units"
-#| msgid "m/s"
 msgctxt "Units|"
 msgid "m/s"
-msgstr "m/s"
+msgstr "m/sn"
 
 #: gas.cc:50
-#, fuzzy
-#| msgid "Mean velocity of particles in the measureRect"
 msgctxt "PropertyDescription|"
 msgid "Mean velocity of particles in the measureRect"
-msgstr "RectÖlçümündeki parçacıkların ortalama hızı"
+msgstr "dörtgenÖlçümü'ndeki parçacıkların ortalama hızı"
 
 #: gas.cc:51
-#, fuzzy
-#| msgctxt "PropertyName"
-#| msgid "rectMeanParticleMass"
 msgctxt "PropertyName|"
 msgid "rectMeanParticleMass"
-msgstr "rectOrtalamaParçacıkKütlesi"
+msgstr "dörtgenOrtalamaParçacıkKütlesi"
 
 #: gas.cc:51 gas.cc:53 gas.cc:66 gas.cc:68 particle.cc:22 particle.cc:37
 #: particle.cc:49 rigidbody.cc:30 rigidbody.cc:59 softbody.cc:38
-#, fuzzy
-#| msgctxt "Units"
-#| msgid "kg"
 msgctxt "Units|"
 msgid "kg"
 msgstr "kg"
 
 #: gas.cc:52
-#, fuzzy
-#| msgid "Mean mass of particles in the measureRect"
 msgctxt "PropertyDescription|"
 msgid "Mean mass of particles in the measureRect"
-msgstr "RectÖlçümündeki parçacıkların ortalama kütlesi"
+msgstr "dörtgenÖlçümü'ndeki parçacıkların ortalama kütlesi"
 
 #: gas.cc:53
-#, fuzzy
-#| msgctxt "PropertyName"
-#| msgid "rectMass"
 msgctxt "PropertyName|"
 msgid "rectMass"
-msgstr "rectKütlesi"
+msgstr "dörtgenKütlesi"
 
 #: gas.cc:54
-#, fuzzy
-#| msgid "Total mass of particles in the measureRect"
 msgctxt "PropertyDescription|"
 msgid "Total mass of particles in the measureRect"
-msgstr "RectÖlçümündeki parçacıkların toplam kütlesi"
+msgstr "dörtgenÖlçümü'ndeki parçacıkların toplam kütlesi"
 
 #: gas.cc:57
-#, fuzzy
-#| msgctxt "ObjectClass"
-#| msgid "GasErrors"
 msgctxt "ObjectClass|"
 msgid "GasErrors"
 msgstr "GazHataları"
 
 #: gas.cc:57
-#, fuzzy
-#| msgid "Errors class for Gas"
 msgctxt "ObjectDescription|"
 msgid "Errors class for Gas"
-msgstr "Gaz Hataları türü"
+msgstr "Gaz için hata sınıfı"
 
 #: gas.cc:58
-#, fuzzy
-#| msgctxt "PropertyName"
-#| msgid "rectPressureVariance"
 msgctxt "PropertyName|"
 msgid "rectPressureVariance"
-msgstr "rectBasınçSapması"
+msgstr "dörtgenBasınçSapması"
 
 #: gas.cc:59
-#, fuzzy
-#| msgid "Variance of pressure of particles in the measureRect"
 msgctxt "PropertyDescription|"
 msgid "Variance of pressure of particles in the measureRect"
-msgstr "RectÖlçümündeki parçacıkların basıncındaki sapma"
+msgstr "dörtgenÖlçümü'ndeki parçacıkların basıncındaki sapma"
 
 #: gas.cc:60
-#, fuzzy
-#| msgctxt "PropertyName"
-#| msgid "rectTemperatureVariance"
 msgctxt "PropertyName|"
 msgid "rectTemperatureVariance"
-msgstr "rectSıcaklıkSapması"
+msgstr "dörtgenSıcaklıkSapması"
 
 #: gas.cc:61
-#, fuzzy
-#| msgid "Variance of temperature of particles in the measureRect"
 msgctxt "PropertyDescription|"
 msgid "Variance of temperature of particles in the measureRect"
-msgstr "RectÖlçümündeki parçacıkların sıcaklığındaki sapma"
+msgstr "dörtgenÖlçümü'ndeki parçacıkların sıcaklığındaki sapma"
 
 #: gas.cc:62
-#, fuzzy
-#| msgctxt "PropertyName"
-#| msgid "rectMeanKineticEnergyVariance"
 msgctxt "PropertyName|"
 msgid "rectMeanKineticEnergyVariance"
-msgstr "rectOrtalamaKinetikEnerjiSapması"
+msgstr "dörtgenOrtalamaKinetikEnerjiSapması"
 
 #: gas.cc:63
-#, fuzzy
-#| msgid "Variance of mean kinetic energy of particles in the measureRect"
 msgctxt "PropertyDescription|"
 msgid "Variance of mean kinetic energy of particles in the measureRect"
-msgstr "RectÖlçümündeki parçacıkların ortalama kinetik enerjisindeki sapma"
+msgstr "dörtgenÖlçümü'ndeki parçacıkların ortalama kinetik enerjisindeki sapma"
 
 #: gas.cc:64
-#, fuzzy
-#| msgctxt "PropertyName"
-#| msgid "rectMeanVelocityVariance"
 msgctxt "PropertyName|"
 msgid "rectMeanVelocityVariance"
-msgstr "rectOrtalamaHızSapması"
+msgstr "dörtgenOrtalamaHızSapması"
 
 #: gas.cc:65
-#, fuzzy
-#| msgid "Variance of mean velocity of particles in the measureRect"
 msgctxt "PropertyDescription|"
 msgid "Variance of mean velocity of particles in the measureRect"
-msgstr "RectÖlçümündeki parçacıkların ortalama hızlarındaki sapma"
+msgstr "dörtgenÖlçümü'ndeki parçacıkların ortalama hızlarındaki sapma"
 
 #: gas.cc:66
-#, fuzzy
-#| msgctxt "PropertyName"
-#| msgid "rectMeanParticleMassVariance"
 msgctxt "PropertyName|"
 msgid "rectMeanParticleMassVariance"
-msgstr "rectOrtalamaParçacıkKütlesiSapması"
+msgstr "dörtgenOrtalamaParçacıkKütlesiSapması"
 
 #: gas.cc:67
-#, fuzzy
-#| msgid "Variance of mean mass of particles in the measureRect"
 msgctxt "PropertyDescription|"
 msgid "Variance of mean mass of particles in the measureRect"
-msgstr "RectÖlçümündeki parçacıkların ortalama kütlelerindeki sapma"
+msgstr "dörtgenÖlçümü'ndeki parçacıkların ortalama kütlelerindeki sapma"
 
 #: gas.cc:68
-#, fuzzy
-#| msgctxt "PropertyName"
-#| msgid "rectMassVariance"
 msgctxt "PropertyName|"
 msgid "rectMassVariance"
-msgstr "rectKütleSapması"
+msgstr "dörtgenKütleSapması"
 
 #: gas.cc:69
-#, fuzzy
-#| msgid "Variance of total mass of particles in the measureRect"
 msgctxt "PropertyDescription|"
 msgid "Variance of total mass of particles in the measureRect"
-msgstr "RectÖlçümündeki parçacıkların toplam kütlelerindeki sapma"
+msgstr "dörtgenÖlçümü'ndeki parçacıkların toplam kütlelerindeki sapma"
 
 #: gravitation.cc:15
-#, fuzzy
-#| msgctxt "ObjectClass"
-#| msgid "GravitationForce"
 msgctxt "ObjectClass|"
 msgid "GravitationForce"
 msgstr "YerçekimiKuvveti"
 
 #: gravitation.cc:15
-#, fuzzy
-#| msgid "Gravitation force"
 msgctxt "ObjectDescription|"
 msgid "Gravitation force"
 msgstr "Yerçekimi kuvveti"
 
 #: gravitation.cc:17
-#, fuzzy
-#| msgctxt "PropertyName"
-#| msgid "gravitationConst"
 msgctxt "PropertyName|"
 msgid "gravitationConst"
 msgstr "yerçekimiSabiti"
 
 #: gravitation.cc:17 gravitation.cc:22
-#, fuzzy
-#| msgctxt "Units"
-#| msgid "N m²/kg²"
 msgctxt "Units|"
 msgid "N m²/kg²"
 msgstr "N m²/kg²"
 
 #: gravitation.cc:18
-#, fuzzy
-#| msgid "Gravitation constant"
 msgctxt "PropertyDescription|"
 msgid "Gravitation constant"
 msgstr "Yerçekimi sabiti"
 
 #: gravitation.cc:20
-#, fuzzy
-#| msgctxt "ObjectClass"
-#| msgid "GravitationForceErrors"
 msgctxt "ObjectClass|"
 msgid "GravitationForceErrors"
 msgstr "YerçekimiKuvvetiHataları"
 
 #: gravitation.cc:20
-#, fuzzy
-#| msgid "Errors class for GravitationForce"
 msgctxt "ObjectDescription|"
 msgid "Errors class for GravitationForce"
-msgstr "YerçekimiKuvveti hataları türü"
+msgstr "YerçekimiKuvveti için hata sınıfı"
 
 #: gravitation.cc:22
-#, fuzzy
-#| msgctxt "PropertyName"
-#| msgid "gravitationConstVariance"
 msgctxt "PropertyName|"
 msgid "gravitationConstVariance"
 msgstr "yerçekimiSabitiSapması"
 
 #: gravitation.cc:23
-#, fuzzy
-#| msgid "Gravitation constant variance"
 msgctxt "PropertyDescription|"
 msgid "Gravitation constant variance"
 msgstr "Yerçekimi sabiti sapması"
 
 #: gravitation.cc:25
-#, fuzzy
-#| msgctxt "ObjectClass"
-#| msgid "WeightForce"
 msgctxt "ObjectClass|"
 msgid "WeightForce"
 msgstr "AğırlıkKuvveti"
 
 #: gravitation.cc:25
-#, fuzzy
-#| msgid "Weight force"
 msgctxt "ObjectDescription|"
 msgid "Weight force"
 msgstr "Ağırlık kuvveti"
 
 #: gravitation.cc:27
-#, fuzzy
-#| msgid "Weight constant"
 msgctxt "PropertyDescription|"
 msgid "Weight constant"
 msgstr "Ağırlık sabiti"
 
 #: gravitation.cc:27
-#, fuzzy
-#| msgctxt "PropertyName"
-#| msgid "weightConst"
 msgctxt "PropertyName|"
 msgid "weightConst"
 msgstr "AğırlıkSabiti"
 
 #: gravitation.cc:27 gravitation.cc:32 particle.cc:19 particle.cc:33
 #: rigidbody.cc:22 rigidbody.cc:51 softbody.cc:31
-#, fuzzy
-#| msgctxt "Units"
-#| msgid "m/s²"
 msgctxt "Units|"
 msgid "m/s²"
-msgstr "m/s²"
+msgstr "m/sn²"
 
 #: gravitation.cc:30
-#, fuzzy
-#| msgctxt "ObjectClass"
-#| msgid "WeightForceErrors"
 msgctxt "ObjectClass|"
 msgid "WeightForceErrors"
 msgstr "AğırlıkKuvvetiHataları"
 
 #: gravitation.cc:30
-#, fuzzy
-#| msgid "Errors class for WeightForce"
 msgctxt "ObjectDescription|"
 msgid "Errors class for WeightForce"
-msgstr "AğırlıkKuvveti hataları türü"
+msgstr "AğırlıkKuvveti için hata sınıfı"
 
 #: gravitation.cc:32
-#, fuzzy
-#| msgctxt "PropertyName"
-#| msgid "weightConstVariance"
 msgctxt "PropertyName|"
 msgid "weightConstVariance"
-msgstr "ağırlıkSabitisapması"
+msgstr "ağırlıkSabitiSapması"
 
 #: gravitation.cc:33
-#, fuzzy
-#| msgid "Weight constant variance"
 msgctxt "PropertyDescription|"
 msgid "Weight constant variance"
 msgstr "Ağırlık sabiti sapması"
 
 #: gslsolver.cc:18
-#, fuzzy
-#| msgctxt "ObjectClass"
-#| msgid "GslGenericSolver"
 msgctxt "ObjectClass|"
 msgid "GslGenericSolver"
 msgstr "GSLGenelÇözücü"
 
 #: gslsolver.cc:18
-#, fuzzy
-#| msgid "GSL generic solver"
 msgctxt "ObjectDescription|"
 msgid "GSL generic solver"
 msgstr "GSL genel çözücü"
 
 #: gslsolver.cc:20
-#, fuzzy
-#| msgctxt "ObjectClass"
-#| msgid "GslSolver"
 msgctxt "ObjectClass|"
 msgid "GslSolver"
 msgstr "GslÇözücü"
 
 #: gslsolver.cc:20
-#, fuzzy
-#| msgid "GSL non-adaptive solver"
 msgctxt "ObjectDescription|"
 msgid "GSL non-adaptive solver"
 msgstr "GSL uyarlamasız çözücü"
 
 #: gslsolver.cc:23
-#, fuzzy
-#| msgctxt "ObjectClass"
-#| msgid "GslAdaptiveSolver"
 msgctxt "ObjectClass|"
 msgid "GslAdaptiveSolver"
 msgstr "GSLUyarlamalıÇözücü"
 
 #: gslsolver.cc:23
-#, fuzzy
-#| msgid "GSL adaptive solver"
 msgctxt "ObjectDescription|"
 msgid "GSL adaptive solver"
 msgstr "GSL uyarlamalı çözücü"
 
 #: gslsolver.cc:26
-#, fuzzy
-#| msgctxt "ObjectClass"
-#| msgid "GslRK2Solver"
 msgctxt "ObjectClass|"
 msgid "GslRK2Solver"
 msgstr "GslRK2Çözücü"
 
 #: gslsolver.cc:26
-#, fuzzy
-#| msgid "Runge-Kutta second-order solver from GSL library"
 msgctxt "ObjectDescription|"
 msgid "Runge-Kutta second-order solver from GSL library"
-msgstr "GLS kitaplığından ikinci-derece Runge-Kutta çözücü"
+msgstr "GLS kitaplığından ikinci derece Runge-Kutta çözücü"
 
 #: gslsolver.cc:28
-#, fuzzy
-#| msgctxt "ObjectClass"
-#| msgid "GslAdaptiveRK2Solver"
 msgctxt "ObjectClass|"
 msgid "GslAdaptiveRK2Solver"
 msgstr "GSLUyarlamalıRK2Çözücü"
 
 #: gslsolver.cc:28
-#, fuzzy
-#| msgid "Adaptive Runge-Kutta second-order solver from GSL library"
 msgctxt "ObjectDescription|"
 msgid "Adaptive Runge-Kutta second-order solver from GSL library"
-msgstr "GLS kitaplığından uyarlamalı ikinci-derece Runge-Kutta çözücü"
+msgstr "GLS kitaplığından uyarlamalı ikinci derece Runge-Kutta çözücü"
 
 #: gslsolver.cc:31
-#, fuzzy
-#| msgctxt "ObjectClass"
-#| msgid "GslRK4Solver"
 msgctxt "ObjectClass|"
 msgid "GslRK4Solver"
 msgstr "GslRK4Çözücü"
 
 #: gslsolver.cc:31
-#, fuzzy
-#| msgid "Runge-Kutta classical fourth-order solver from GSL library"
 msgctxt "ObjectDescription|"
 msgid "Runge-Kutta classical fourth-order solver from GSL library"
-msgstr "GLS kitaplığından dördüncü-derece klasik Runge-Kutta çözücü"
+msgstr "GLS kitaplığından dördüncü derece klasik Runge-Kutta çözücü"
 
 #: gslsolver.cc:33
-#, fuzzy
-#| msgctxt "ObjectClass"
-#| msgid "GslAdaptiveRK4Solver"
 msgctxt "ObjectClass|"
 msgid "GslAdaptiveRK4Solver"
 msgstr "GslUyarlamalıRK4Çözücü"
 
 #: gslsolver.cc:33
-#, fuzzy
-#| msgid "Adaptive Runge-Kutta classical fourth-order solver from GSL library"
 msgctxt "ObjectDescription|"
 msgid "Adaptive Runge-Kutta classical fourth-order solver from GSL library"
 msgstr "GLS kitaplığından uyarlamalı dördüncü-derece klasik Runge-Kutta çözücü"
 
 #: gslsolver.cc:36
-#, fuzzy
-#| msgctxt "ObjectClass"
-#| msgid "GslRKF45Solver"
 msgctxt "ObjectClass|"
 msgid "GslRKF45Solver"
 msgstr "GslRKF45Çözücü"
 
 #: gslsolver.cc:36
-#, fuzzy
-#| msgid "Runge-Kutta-Fehlberg (4,5) solver from GSL library"
 msgctxt "ObjectDescription|"
 msgid "Runge-Kutta-Fehlberg (4,5) solver from GSL library"
 msgstr "GLS kitaplığından Runge-Kutta-Fehlberg (4,5) çözücü"
 
 #: gslsolver.cc:38
-#, fuzzy
-#| msgctxt "ObjectClass"
-#| msgid "GslAdaptiveRKF45Solver"
 msgctxt "ObjectClass|"
 msgid "GslAdaptiveRKF45Solver"
 msgstr "GslUyarlamalıRKF45Çözücü"
 
 #: gslsolver.cc:38
-#, fuzzy
-#| msgid "Adaptive Runge-Kutta-Fehlberg (4,5) solver from GSL library"
 msgctxt "ObjectDescription|"
 msgid "Adaptive Runge-Kutta-Fehlberg (4,5) solver from GSL library"
 msgstr "GLS kitaplığından uyarlamalı Runge-Kutta-Fehlberg (4,5) çözücü"
 
 #: gslsolver.cc:41
-#, fuzzy
-#| msgctxt "ObjectClass"
-#| msgid "GslRKCKSolver"
 msgctxt "ObjectClass|"
 msgid "GslRKCKSolver"
 msgstr "GslRKCKÇözücü"
 
 #: gslsolver.cc:41
-#, fuzzy
-#| msgid "Runge-Kutta Cash-Karp (4,5) solver from GSL library"
 msgctxt "ObjectDescription|"
 msgid "Runge-Kutta Cash-Karp (4,5) solver from GSL library"
 msgstr "GLS kitaplığından Runge-Kutta Cash-Karp (4,5) çözücü"
 
 #: gslsolver.cc:43
-#, fuzzy
-#| msgctxt "ObjectClass"
-#| msgid "GslAdaptiveRKCKSolver"
 msgctxt "ObjectClass|"
 msgid "GslAdaptiveRKCKSolver"
 msgstr "GslUyarlamalıRKCKÇözücü"
 
 #: gslsolver.cc:43
-#, fuzzy
-#| msgid "Adaptive Runge-Kutta Cash-Karp (4,5) solver from GSL library"
 msgctxt "ObjectDescription|"
 msgid "Adaptive Runge-Kutta Cash-Karp (4,5) solver from GSL library"
 msgstr "GLS kitaplığından uyarlamalı Runge-Kutta Cash-Karp (4,5) çözücü"
 
 #: gslsolver.cc:46
-#, fuzzy
-#| msgctxt "ObjectClass"
-#| msgid "GslRK8PDSolver"
 msgctxt "ObjectClass|"
 msgid "GslRK8PDSolver"
 msgstr "GslRK8PDÇözücü"
 
 #: gslsolver.cc:46
-#, fuzzy
-#| msgid "Runge-Kutta Prince-Dormand (8,9) solver from GSL library"
 msgctxt "ObjectDescription|"
 msgid "Runge-Kutta Prince-Dormand (8,9) solver from GSL library"
 msgstr "GLS kitaplığından Runge-Kutta Prince-Dormand (8,9) çözücü"
 
 #: gslsolver.cc:48
-#, fuzzy
-#| msgctxt "ObjectClass"
-#| msgid "GslAdaptiveRK8PDSolver"
 msgctxt "ObjectClass|"
 msgid "GslAdaptiveRK8PDSolver"
 msgstr "GslUyarlamalıRK8PDÇözücü"
 
 #: gslsolver.cc:48
-#, fuzzy
-#| msgid "Adaptive Runge-Kutta Prince-Dormand (8,9) solver from GSL library"
 msgctxt "ObjectDescription|"
 msgid "Adaptive Runge-Kutta Prince-Dormand (8,9) solver from GSL library"
 msgstr "GLS kitaplığından uyarlamalı Runge-Kutta Prince-Dormand (8,9) çözücü"
 
 #: gslsolver.cc:51
-#, fuzzy
-#| msgctxt "ObjectClass"
-#| msgid "GslRK2IMPSolver"
 msgctxt "ObjectClass|"
 msgid "GslRK2IMPSolver"
 msgstr "GslRK2IMPÇözücü"
 
 #: gslsolver.cc:51
-#, fuzzy
-#| msgid "Runge-Kutta implicit second-order solver from GSL library"
 msgctxt "ObjectDescription|"
 msgid "Runge-Kutta implicit second-order solver from GSL library"
 msgstr "GLS kitaplığından ikinci-derece tam Runge-Kutta çözücü"
 
 #: gslsolver.cc:53
-#, fuzzy
-#| msgctxt "ObjectClass"
-#| msgid "GslAdaptiveRK2IMPSolver"
 msgctxt "ObjectClass|"
 msgid "GslAdaptiveRK2IMPSolver"
 msgstr "GslUyarlamalıRK2IMPÇözücü"
 
 #: gslsolver.cc:53
-#, fuzzy
-#| msgid "Adaptive Runge-Kutta implicit second-order solver from GSL library"
 msgctxt "ObjectDescription|"
 msgid "Adaptive Runge-Kutta implicit second-order solver from GSL library"
-msgstr "GLS kitaplığından uyarlamalı ikinci-derece tam Runge-Kutta çözücü"
+msgstr "GLS kitaplığından uyarlamalı ikinci derece tam Runge-Kutta çözücü"
 
 #: gslsolver.cc:56
-#, fuzzy
-#| msgctxt "ObjectClass"
-#| msgid "GslRK4IMPSolver"
 msgctxt "ObjectClass|"
 msgid "GslRK4IMPSolver"
 msgstr "GslRK4IMPÇözücü"
 
 #: gslsolver.cc:56
-#, fuzzy
-#| msgid "Runge-Kutta implicit fourth-order solver from GSL library"
 msgctxt "ObjectDescription|"
 msgid "Runge-Kutta implicit fourth-order solver from GSL library"
-msgstr "GLS kitaplığından dördüncü-derece tam Runge-Kutta çözücü"
+msgstr "GLS kitaplığından dördüncü derece tam Runge-Kutta çözücü"
 
 #: gslsolver.cc:58
-#, fuzzy
-#| msgctxt "ObjectClass"
-#| msgid "GslAdaptiveRK4IMPSolver"
 msgctxt "ObjectClass|"
 msgid "GslAdaptiveRK4IMPSolver"
 msgstr "GslUyarlamalıRK4IMPÇözücü"
 
 #: gslsolver.cc:58
-#, fuzzy
-#| msgid "Adaptive Runge-Kutta implicit fource-order solver from GSL library"
 msgctxt "ObjectDescription|"
 msgid "Adaptive Runge-Kutta implicit fourth-order solver from GSL library"
-msgstr "GLS kitaplığından uyarlamalı dördüncü-derece tam Runge-Kutta çözücü"
+msgstr "GLS kitaplığından uyarlamalı dördüncü derece tam Runge-Kutta çözücü"
 
 #: item.cc:15
-#, fuzzy
-#| msgid "Item"
 msgctxt "ObjectClass|"
 msgid "Item"
 msgstr "Öge"
 
 #: item.cc:15
-#, fuzzy
-#| msgid "Item"
 msgctxt "ObjectDescription|"
 msgid "Item"
 msgstr "Öge"
 
 #: item.cc:17
-#, fuzzy
-#| msgctxt "PropertyName"
-#| msgid "color"
 msgctxt "PropertyName|"
 msgid "color"
 msgstr "renk"
 
 #: item.cc:18
-#, fuzzy
-#| msgid "Item color"
 msgctxt "PropertyDescription|"
 msgid "Item color"
 msgstr "Öge rengi"
 
 #: itemgroup.cc:15
-#, fuzzy
-#| msgid "ItemGroup"
 msgctxt "ObjectClass|"
 msgid "ItemGroup"
 msgstr "ÖgeGrubu"
 
 #: itemgroup.cc:15
-#, fuzzy
-#| msgid "ItemGroup"
 msgctxt "ObjectDescription|"
 msgid "ItemGroup"
 msgstr "ÖgeGrubu"
 
 #: joint.cc:14
-#, fuzzy
-#| msgid "Joint"
 msgctxt "ObjectClass|"
 msgid "Joint"
 msgstr "Birleşik"
 
 #: joint.cc:14
-#, fuzzy
-#| msgid "Joint"
 msgctxt "ObjectDescription|"
 msgid "Joint"
 msgstr "Birleşik"
 
 #: joints.cc:14
-#, fuzzy
-#| msgctxt "ObjectClass"
-#| msgid "Anchor"
 msgctxt "ObjectClass|"
 msgid "Anchor"
 msgstr "Çapa"
 
 #: joints.cc:14
-#, fuzzy
-#| msgid "Anchor: fixes position of the body"
 msgctxt "ObjectDescription|"
 msgid "Anchor: fixes position of the body"
-msgstr "Çapa: cismin konumunu sabitler"
+msgstr "Çapa: Gövdenin konumunu sabitler"
 
 #: joints.cc:16 joints.cc:22 motor.cc:17 motor.cc:23
-#, fuzzy
-#| msgid "Body"
 msgctxt "PropertyDescription|"
 msgid "Body"
-msgstr "Cisim"
+msgstr "Gövde"
 
 #: joints.cc:16 joints.cc:22 motor.cc:17 motor.cc:23 tool.cc:85
-#, fuzzy
-#| msgctxt "PropertyName"
-#| msgid "body"
 msgctxt "PropertyName|"
 msgid "body"
-msgstr "cisim"
+msgstr "gövde"
 
 #: joints.cc:17 tool.cc:88
-#, fuzzy
-#| msgid "Position"
 msgctxt "PropertyDescription|"
 msgid "Position"
 msgstr "Konum"
 
 #: joints.cc:17 joints.cc:24 particle.cc:17 rigidbody.cc:16 softbody.cc:24
 #: tool.cc:26 tool.cc:33 tool.cc:55 tool.cc:67 tool.cc:88
-#, fuzzy
-#| msgid "position"
 msgctxt "PropertyName|"
 msgid "position"
 msgstr "konum"
 
 #: joints.cc:18
-#, fuzzy
-#| msgid "Angle"
 msgctxt "PropertyDescription|"
 msgid "Angle"
 msgstr "Açı"
 
 #: joints.cc:18 rigidbody.cc:17
-#, fuzzy
-#| msgctxt "PropertyName"
-#| msgid "angle"
 msgctxt "PropertyName|"
 msgid "angle"
 msgstr "açı"
 
 #: joints.cc:18 rigidbody.cc:17 rigidbody.cc:43
-#, fuzzy
-#| msgctxt "Units"
-#| msgid "rad"
 msgctxt "Units|"
 msgid "rad"
 msgstr "rad"
 
 #: joints.cc:20
-#, fuzzy
-#| msgctxt "ObjectClass"
-#| msgid "Pin"
 msgctxt "ObjectClass|"
 msgid "Pin"
-msgstr "Pin"
+msgstr "Pim"
 
 #: joints.cc:20
-#, fuzzy
-#| msgid "Pin: fixes position of a given point on the body"
 msgctxt "ObjectDescription|"
 msgid "Pin: fixes position of a given point on the body"
-msgstr "Pin: cisim üzerinde verilen bir noktanın konumunu sabitler"
+msgstr "Pim: Gövde üzerinde verilen bir noktanın konumunu sabitler"
 
 #: joints.cc:23
-#, fuzzy
-#| msgid "Position on the body"
 msgctxt "PropertyDescription|"
 msgid "Position on the body"
-msgstr "Cisim üzerindeki konumu"
+msgstr "Gövde üzerindeki konumu"
 
 #: joints.cc:23 motor.cc:18 motor.cc:24 tool.cc:86
-#, fuzzy
-#| msgctxt "PropertyName"
-#| msgid "localPosition"
 msgctxt "PropertyName|"
 msgid "localPosition"
-msgstr "Yerel Konum"
+msgstr "yerelKonum"
 
 #: joints.cc:24
-#, fuzzy
-#| msgid "Position in the world"
 msgctxt "PropertyDescription|"
 msgid "Position in the world"
-msgstr "Dünyadaki konumu"
+msgstr "Dünyadaki konum"
 
 #: joints.cc:26
-#, fuzzy
-#| msgctxt "ObjectClass"
-#| msgid "Stick"
 msgctxt "ObjectClass|"
 msgid "Stick"
 msgstr "Çubuk"
 
 #: joints.cc:26
-#, fuzzy
-#| msgid "Massless stick which can be connected to bodies"
 msgctxt "ObjectDescription|"
 msgid "Massless stick which can be connected to bodies"
-msgstr "Cisimlere bağlanabilen kütlesiz çubuk"
+msgstr "Gövdelere bağlanabilen kütlesiz çubuk"
 
 #: joints.cc:28
-#, fuzzy
-#| msgid "Rest length of the stick"
 msgctxt "PropertyDescription|"
 msgid "Rest length of the stick"
 msgstr "Çubuğun durağan haldeki boyu"
 
 #: joints.cc:28 spring.cc:18
-#, fuzzy
-#| msgctxt "PropertyName"
-#| msgid "restLength"
 msgctxt "PropertyName|"
 msgid "restLength"
 msgstr "durağanBoy"
 
 #: joints.cc:29 spring.cc:22
-#, fuzzy
-#| msgid "Body1"
 msgctxt "PropertyDescription|"
 msgid "Body1"
-msgstr "Cisim1"
+msgstr "Gövde1"
 
 #: joints.cc:29 spring.cc:22
-#, fuzzy
-#| msgctxt "PropertyName"
-#| msgid "body1"
 msgctxt "PropertyName|"
 msgid "body1"
-msgstr "cisim1"
+msgstr "gövde1"
 
 #: joints.cc:30 spring.cc:23
-#, fuzzy
-#| msgid "Body2"
 msgctxt "PropertyDescription|"
 msgid "Body2"
-msgstr "Cisim2"
+msgstr "Gövde2"
 
 #: joints.cc:30 spring.cc:23
-#, fuzzy
-#| msgctxt "PropertyName"
-#| msgid "body2"
 msgctxt "PropertyName|"
 msgid "body2"
-msgstr "cisim2"
+msgstr "gövde2"
 
 #: joints.cc:31 spring.cc:24
-#, fuzzy
-#| msgctxt "PropertyName"
-#| msgid "localPosition1"
 msgctxt "PropertyName|"
 msgid "localPosition1"
-msgstr "Yerel Konum1"
+msgstr "yerelKonum1"
 
 #: joints.cc:32 spring.cc:25
-#, fuzzy
-#| msgid "Local position 1"
 msgctxt "PropertyDescription|"
 msgid "Local position 1"
 msgstr "Yerel konum 1"
 
 #: joints.cc:33 spring.cc:26
-#, fuzzy
-#| msgctxt "PropertyName"
-#| msgid "localPosition2"
 msgctxt "PropertyName|"
 msgid "localPosition2"
-msgstr "Yerel Konum2"
+msgstr "yerelKonum2"
 
 #: joints.cc:34 spring.cc:27
-#, fuzzy
-#| msgid "Local position 2"
 msgctxt "PropertyDescription|"
 msgid "Local position 2"
 msgstr "Yerel konum 2"
 
 #: joints.cc:35 spring.cc:28
-#, fuzzy
-#| msgid "Position1"
 msgctxt "PropertyDescription|"
 msgid "Position1"
 msgstr "Konum1"
 
 #: joints.cc:35 spring.cc:28
-#, fuzzy
-#| msgctxt "PropertyName"
-#| msgid "position1"
 msgctxt "PropertyName|"
 msgid "position1"
 msgstr "konum1"
 
 #: joints.cc:36 spring.cc:29
-#, fuzzy
-#| msgid "Position2"
 msgctxt "PropertyDescription|"
 msgid "Position2"
 msgstr "Konum2"
 
 #: joints.cc:36 spring.cc:29
-#, fuzzy
-#| msgctxt "PropertyName"
-#| msgid "position2"
 msgctxt "PropertyName|"
 msgid "position2"
 msgstr "konum2"
 
 #: joints.cc:39
-#, fuzzy
-#| msgctxt "ObjectClass"
-#| msgid "Rope"
 msgctxt "ObjectClass|"
 msgid "Rope"
 msgstr "İp"
 
 #: joints.cc:39
-#, fuzzy
-#| msgid "Massless rope which can be connected to bodies"
 msgctxt "ObjectDescription|"
 msgid "Massless rope which can be connected to bodies"
-msgstr "Cisimlere bağlanabilen kütlesiz ip"
+msgstr "Gövdelere bağlanabilen kütlesiz ip"
 
 #: motor.cc:15
-#, fuzzy
-#| msgctxt "ObjectClass"
-#| msgid "LinearMotor"
 msgctxt "ObjectClass|"
 msgid "LinearMotor"
 msgstr "DoğrusalMotor"
 
 #: motor.cc:15
-#, fuzzy
-#| msgid ""
-#| "Linear motor: applies a constant force to a given position of the body"
 msgctxt "ObjectDescription|"
 msgid "Linear motor: applies a constant force to a given position of the body"
-msgstr "Doğrusal motor: verilen bir konumda cisme sabit bir kuvvet uygular"
+msgstr "Doğrusal motor: Verilen bir konumda gövdeye sabit bir kuvvet uygular"
 
 #: motor.cc:18 motor.cc:24
-#, fuzzy
-#| msgid "Position of the motor on a body"
 msgctxt "PropertyDescription|"
 msgid "Position of the motor on a body"
-msgstr "Motorun cisim üzerindeki konumu"
+msgstr "Motorun gövde üzerindeki konumu"
 
 #: motor.cc:19
-#, fuzzy
-#| msgid "Value of the force, acting on the body"
 msgctxt "PropertyDescription|"
 msgid "Value of the force, acting on the body"
-msgstr "Cisme etkiyen kuvvetin değeri"
+msgstr "Gövdeye etkiyen kuvvetin değeri"
 
 #: motor.cc:19
-#, fuzzy
-#| msgctxt "PropertyName"
-#| msgid "forceValue"
 msgctxt "PropertyName|"
 msgid "forceValue"
 msgstr "kuvvetDeğeri"
 
 #: motor.cc:19 particle.cc:21 particle.cc:35 rigidbody.cc:27 rigidbody.cc:56
 #: softbody.cc:36 spring.cc:30 spring.cc:51
-#, fuzzy
-#| msgctxt "Units"
-#| msgid "N"
 msgctxt "Units|"
 msgid "N"
 msgstr "N"
 
 #: motor.cc:21
-#, fuzzy
-#| msgctxt "ObjectClass"
-#| msgid "CircularMotor"
 msgctxt "ObjectClass|"
 msgid "CircularMotor"
 msgstr "DaireselMotor"
 
 #: motor.cc:21
-#, fuzzy
-#| msgid "Circular motor: applies a constant torque to the body"
 msgctxt "ObjectDescription|"
 msgid "Circular motor: applies a constant torque to the body"
-msgstr "Dairesel motor: cisme sabit bir tork uygular"
+msgstr "Dairesel motor: Gövdeye sabit bir tork uygular"
 
 #: motor.cc:25
-#, fuzzy
-#| msgid "Value of the torque, acting on the body"
 msgctxt "PropertyDescription|"
 msgid "Value of the torque, acting on the body"
-msgstr "Cisme etkiyen torkun değeri"
+msgstr "Gövdeye etkiyen torkun değeri"
 
 #: motor.cc:25
-#, fuzzy
-#| msgctxt "PropertyName"
-#| msgid "torqueValue"
 msgctxt "PropertyName|"
 msgid "torqueValue"
 msgstr "torkDeğeri"
 
 #: motor.cc:25 rigidbody.cc:28 rigidbody.cc:57 softbody.cc:37
-#, fuzzy
-#| msgctxt "Units"
-#| msgid "N m"
 msgctxt "Units|"
 msgid "N m"
 msgstr "N m"
 
 #: object.cc:13
-#, fuzzy
-#| msgid "Object"
 msgctxt "ObjectClass|"
 msgid "Object"
 msgstr "Nesne"
 
 #: object.cc:13
-#, fuzzy
-#| msgid "Object"
 msgctxt "ObjectDescription|"
 msgid "Object"
 msgstr "Nesne"
 
 #: object.cc:14
-#, fuzzy
-#| msgid "Object name"
 msgctxt "PropertyDescription|"
 msgid "Object name"
 msgstr "Nesne adı"
 
 #: object.cc:14
-#, fuzzy
-#| msgctxt "PropertyName"
-#| msgid "name"
 msgctxt "PropertyName|"
 msgid "name"
-msgstr "isim"
+msgstr "ad"
 
 #: objecterrors.cc:14
-#, fuzzy
-#| msgid "ObjectErrors"
 msgctxt "ObjectClass|"
 msgid "ObjectErrors"
 msgstr "NesneHataları"
 
 #: objecterrors.cc:14
-#, fuzzy
-#| msgid "ObjectErrors"
 msgctxt "ObjectDescription|"
 msgid "ObjectErrors"
 msgstr "NesneHataları"
 
 #: particle.cc:15
-#, fuzzy
-#| msgctxt "ObjectClass"
-#| msgid "Particle"
 msgctxt "ObjectClass|"
 msgid "Particle"
 msgstr "Parçacık"
 
 #: particle.cc:15
-#, fuzzy
-#| msgid "Simple zero-size particle"
 msgctxt "ObjectDescription|"
 msgid "Simple zero-size particle"
 msgstr "Basit noktasal parçacık"
 
 #: particle.cc:17
-#, fuzzy
-#| msgid "position"
 msgctxt "PropertyDescription|"
 msgid "position"
 msgstr "konum"
 
 #: particle.cc:18
-#, fuzzy
-#| msgid "velocity"
 msgctxt "PropertyDescription|"
 msgid "velocity"
 msgstr "hız"
 
 #: particle.cc:18 rigidbody.cc:19 softbody.cc:26
-#, fuzzy
-#| msgid "velocity"
 msgctxt "PropertyName|"
 msgid "velocity"
 msgstr "hız"
 
 #: particle.cc:19 rigidbody.cc:22 softbody.cc:31
-#, fuzzy
-#| msgid "acceleration"
 msgctxt "PropertyName|"
 msgid "acceleration"
 msgstr "ivme"
 
 #: particle.cc:20
-#, fuzzy
-#| msgid "acceleration"
 msgctxt "PropertyDescription|"
 msgid "acceleration"
 msgstr "ivme"
 
 #: particle.cc:21
-#, fuzzy
-#| msgid "force"
 msgctxt "PropertyDescription|"
 msgid "force"
 msgstr "kuvvet"
 
 #: particle.cc:21 rigidbody.cc:27 softbody.cc:36 spring.cc:30
-#, fuzzy
-#| msgid "force"
 msgctxt "PropertyName|"
 msgid "force"
 msgstr "kuvvet"
 
 #: particle.cc:22
-#, fuzzy
-#| msgid "mass"
 msgctxt "PropertyDescription|"
 msgid "mass"
 msgstr "kütle"
 
 #: particle.cc:22 rigidbody.cc:30 softbody.cc:38
-#, fuzzy
-#| msgid "mass"
 msgctxt "PropertyName|"
 msgid "mass"
 msgstr "kütle"
 
 #: particle.cc:23 rigidbody.cc:33
-#, fuzzy
-#| msgid "momentum"
 msgctxt "PropertyDescription|"
 msgid "momentum"
 msgstr "momentum"
 
 #: particle.cc:23 rigidbody.cc:33
-#, fuzzy
-#| msgid "momentum"
 msgctxt "PropertyName|"
 msgid "momentum"
 msgstr "momentum"
 
 #: particle.cc:23 particle.cc:39 rigidbody.cc:33 rigidbody.cc:63
-#, fuzzy
-#| msgctxt "Units"
-#| msgid "kg m/s"
 msgctxt "Units|"
 msgid "kg m/s"
-msgstr "kg m/s"
+msgstr "kg m/sn"
 
 #: particle.cc:25 rigidbody.cc:37
-#, fuzzy
-#| msgid "kinetic energy"
 msgctxt "PropertyDescription|"
 msgid "kinetic energy"
-msgstr "kinetik enerji"
+msgstr "devinimsel enerji"
 
 #: particle.cc:25 rigidbody.cc:37
-#, fuzzy
-#| msgctxt "PropertyName"
-#| msgid "kineticEnergy"
 msgctxt "PropertyName|"
 msgid "kineticEnergy"
-msgstr "Kinetik Enerji"
+msgstr "devinimselEnerji"
 
 #: particle.cc:28
-#, fuzzy
-#| msgctxt "ObjectClass"
-#| msgid "ParticleErrors"
 msgctxt "ObjectClass|"
 msgid "ParticleErrors"
 msgstr "ParçacıkHataları"
 
 #: particle.cc:28
-#, fuzzy
-#| msgid "Errors class for Particle"
 msgctxt "ObjectDescription|"
 msgid "Errors class for Particle"
-msgstr "Parçacık hataları türü"
+msgstr "Parçacık için hata sınıfı"
 
 #: particle.cc:29 rigidbody.cc:41
-#, fuzzy
-#| msgctxt "PropertyName"
-#| msgid "positionVariance"
 msgctxt "PropertyName|"
 msgid "positionVariance"
-msgstr "konumdakiSapma"
+msgstr "konumSapması"
 
 #: particle.cc:30 rigidbody.cc:42
-#, fuzzy
-#| msgid "position variance"
 msgctxt "PropertyDescription|"
 msgid "position variance"
-msgstr "konumdaki sapma"
+msgstr "konum sapması"
 
 #: particle.cc:31 rigidbody.cc:46
-#, fuzzy
-#| msgctxt "PropertyName"
-#| msgid "velocityVariance"
 msgctxt "PropertyName|"
 msgid "velocityVariance"
-msgstr "hızdakiSapma"
+msgstr "hızSapması"
 
 #: particle.cc:32 rigidbody.cc:47
-#, fuzzy
-#| msgid "velocity variance"
 msgctxt "PropertyDescription|"
 msgid "velocity variance"
-msgstr "hızdaki sapma"
+msgstr "hız sapması"
 
 #: particle.cc:33 rigidbody.cc:51
-#, fuzzy
-#| msgctxt "PropertyName"
-#| msgid "accelerationVariance"
 msgctxt "PropertyName|"
 msgid "accelerationVariance"
-msgstr "ivmedekiSapma"
+msgstr "ivmeSapması"
 
 #: particle.cc:34 rigidbody.cc:52
-#, fuzzy
-#| msgid "acceleration variance"
 msgctxt "PropertyDescription|"
 msgid "acceleration variance"
-msgstr "ivmedeki sapma"
+msgstr "ivme sapması"
 
 #: particle.cc:35 rigidbody.cc:56 spring.cc:51
-#, fuzzy
-#| msgctxt "PropertyName"
-#| msgid "forceVariance"
 msgctxt "PropertyName|"
 msgid "forceVariance"
-msgstr "kuvvettekiSapma"
+msgstr "kuvvetSapması"
 
 #: particle.cc:36 rigidbody.cc:56
-#, fuzzy
-#| msgid "force variance"
 msgctxt "PropertyDescription|"
 msgid "force variance"
-msgstr "kuvvetteki sapma"
+msgstr "kuvvet sapması"
 
 #: particle.cc:37 rigidbody.cc:59
-#, fuzzy
-#| msgctxt "PropertyName"
-#| msgid "massVariance"
 msgctxt "PropertyName|"
 msgid "massVariance"
-msgstr "kütledekiSapma"
+msgstr "kütleSapması"
 
 #: particle.cc:38 rigidbody.cc:60
-#, fuzzy
-#| msgid "mass variance"
 msgctxt "PropertyDescription|"
 msgid "mass variance"
-msgstr "kütledeki sapma"
+msgstr "kütle sapması"
 
 #: particle.cc:39 rigidbody.cc:63
-#, fuzzy
-#| msgctxt "PropertyName"
-#| msgid "momentumVariance"
 msgctxt "PropertyName|"
 msgid "momentumVariance"
-msgstr "momentumdakiSapma"
+msgstr "momentumSapması"
 
 #: particle.cc:40 rigidbody.cc:64
-#, fuzzy
-#| msgid "momentum variance"
 msgctxt "PropertyDescription|"
 msgid "momentum variance"
-msgstr "momentumdaki sapma"
+msgstr "momentum sapması"
 
 #: particle.cc:41 rigidbody.cc:68
-#, fuzzy
-#| msgctxt "PropertyName"
-#| msgid "kineticEnergyVariance"
 msgctxt "PropertyName|"
 msgid "kineticEnergyVariance"
-msgstr "kinetikEnerjidekiSapma"
+msgstr "devinimselEnerjiSapması"
 
 #: particle.cc:42 rigidbody.cc:69
-#, fuzzy
-#| msgid "kinetic energy variance"
 msgctxt "PropertyDescription|"
 msgid "kinetic energy variance"
-msgstr "kinetik enerjideki sapma"
+msgstr "devinimsel enerji sapması"
 
 #: particle.cc:44
-#, fuzzy
-#| msgctxt "ObjectClass"
-#| msgid "ChargedParticle"
 msgctxt "ObjectClass|"
 msgid "ChargedParticle"
 msgstr "YüklüParçacık"
 
 #: particle.cc:44
-#, fuzzy
-#| msgid "Charged zero-size particle"
 msgctxt "ObjectDescription|"
 msgid "Charged zero-size particle"
 msgstr "Yüklü noktasal parçacık"
 
 #: particle.cc:45
-#, fuzzy
-#| msgid "charge"
 msgctxt "PropertyDescription|"
 msgid "charge"
 msgstr "yük"
 
 #: particle.cc:45
-#, fuzzy
-#| msgid "charge"
 msgctxt "PropertyName|"
 msgid "charge"
 msgstr "yük"
 
 #: particle.cc:45
-#, fuzzy
-#| msgctxt "Units"
-#| msgid "C"
 msgctxt "Units|"
 msgid "C"
 msgstr "C"
 
 #: particle.cc:47
-#, fuzzy
-#| msgctxt "ObjectClass"
-#| msgid "ChargedParticleErrors"
 msgctxt "ObjectClass|"
 msgid "ChargedParticleErrors"
 msgstr "YüklüParçacıkHataları"
 
 #: particle.cc:47
-#, fuzzy
-#| msgid "Errors class for ChargedParticle"
 msgctxt "ObjectDescription|"
 msgid "Errors class for ChargedParticle"
-msgstr "YüklüParçacık Hataları türü"
+msgstr "YüklüParçacık için hata sınıfı"
 
 #: particle.cc:49
-#, fuzzy
-#| msgctxt "PropertyName"
-#| msgid "chargeVariance"
 msgctxt "PropertyName|"
 msgid "chargeVariance"
-msgstr "yüktekiSapma"
+msgstr "yükSapması"
 
 #: particle.cc:50
-#, fuzzy
-#| msgid "charge variance"
 msgctxt "PropertyDescription|"
 msgid "charge variance"
-msgstr "yükteki sapma"
+msgstr "yük sapması"
 
 #: rigidbody.cc:15
-#, fuzzy
-#| msgctxt "ObjectClass"
-#| msgid "RigidBody"
 msgctxt "ObjectClass|"
 msgid "RigidBody"
-msgstr "SertCisim"
+msgstr "SertGövde"
 
 #: rigidbody.cc:15
-#, fuzzy
-#| msgid "Generic rigid body"
 msgctxt "ObjectDescription|"
 msgid "Generic rigid body"
-msgstr "Genel sert cisim"
+msgstr "Genel sert gövde"
 
 #: rigidbody.cc:16 softbody.cc:24
-#, fuzzy
-#| msgid "Position of the center of mass"
 msgctxt "PropertyDescription|"
 msgid "Position of the center of mass"
 msgstr "Kütle merkezinin konumu"
 
 #: rigidbody.cc:17
-#, fuzzy
-#| msgid "Rotation angle"
 msgctxt "PropertyDescription|"
 msgid "Rotation angle"
 msgstr "Döndürme açısı"
 
 #: rigidbody.cc:19 softbody.cc:26
-#, fuzzy
-#| msgid "Velocity of the center of mass"
 msgctxt "PropertyDescription|"
 msgid "Velocity of the center of mass"
 msgstr "Kütle merkezinin hızı"
 
 #: rigidbody.cc:20 softbody.cc:27
-#, fuzzy
-#| msgid "Angular velocity of the body"
 msgctxt "PropertyDescription|"
 msgid "Angular velocity of the body"
-msgstr "Cismin açısal hızı"
+msgstr "Gövdenin açısal hızı"
 
 #: rigidbody.cc:20 softbody.cc:27
-#, fuzzy
-#| msgctxt "PropertyName"
-#| msgid "angularVelocity"
 msgctxt "PropertyName|"
 msgid "angularVelocity"
 msgstr "açısalHız"
 
 #: rigidbody.cc:20 rigidbody.cc:48 softbody.cc:27
-#, fuzzy
-#| msgctxt "Units"
-#| msgid "rad/s"
 msgctxt "Units|"
 msgid "rad/s"
-msgstr "rad/s"
+msgstr "rad/sn"
 
 #: rigidbody.cc:23 softbody.cc:32
-#, fuzzy
-#| msgid "Acceleration of the center of mass"
 msgctxt "PropertyDescription|"
 msgid "Acceleration of the center of mass"
 msgstr "Kütle merkezinin ivmesi"
 
 #: rigidbody.cc:24 softbody.cc:33
-#, fuzzy
-#| msgctxt "PropertyName"
-#| msgid "angularAcceleration"
 msgctxt "PropertyName|"
 msgid "angularAcceleration"
 msgstr "açısalİvme"
 
 #: rigidbody.cc:24 rigidbody.cc:53 softbody.cc:33
-#, fuzzy
-#| msgctxt "Units"
-#| msgid "rad/s²"
 msgctxt "Units|"
 msgid "rad/s²"
-msgstr "rad/s²"
+msgstr "rad/sn²"
 
 #: rigidbody.cc:25 softbody.cc:34
-#, fuzzy
-#| msgid "Angular acceleration of the body"
 msgctxt "PropertyDescription|"
 msgid "Angular acceleration of the body"
-msgstr "Cismin açısal ivmesi"
+msgstr "Gövdenin açısal ivmesi"
 
 #: rigidbody.cc:27 softbody.cc:36
-#, fuzzy
-#| msgid "Force that acts upon the body"
 msgctxt "PropertyDescription|"
 msgid "Force that acts upon the body"
-msgstr "Cisme etki eden kuvvet"
+msgstr "Gövdeye etkiyen kuvvet"
 
 #: rigidbody.cc:28 softbody.cc:37
-#, fuzzy
-#| msgid "Torque that acts upon the body"
 msgctxt "PropertyDescription|"
 msgid "Torque that acts upon the body"
-msgstr "Cisme etki eden tork"
+msgstr "Gövdeye etkiyen tork"
 
 #: rigidbody.cc:28 softbody.cc:37
-#, fuzzy
-#| msgctxt "PropertyName"
-#| msgid "torque"
 msgctxt "PropertyName|"
 msgid "torque"
 msgstr "tork"
 
 #: rigidbody.cc:30 softbody.cc:38
-#, fuzzy
-#| msgid "Total mass of the body"
 msgctxt "PropertyDescription|"
 msgid "Total mass of the body"
-msgstr "Cismin toplam kütlesi"
+msgstr "Gövdenin toplam kütlesi"
 
 #: rigidbody.cc:31 softbody.cc:39
-#, fuzzy
-#| msgctxt "PropertyName"
-#| msgid "inertia"
 msgctxt "PropertyName|"
 msgid "inertia"
 msgstr "eylemsizlik"
 
 #: rigidbody.cc:31 rigidbody.cc:61 softbody.cc:39
-#, fuzzy
-#| msgctxt "Units"
-#| msgid "kg m²"
 msgctxt "Units|"
 msgid "kg m²"
 msgstr "kg m²"
 
 #: rigidbody.cc:32 softbody.cc:40
-#, fuzzy
-#| msgid "Inertia \"tensor\" of the body"
 msgctxt "PropertyDescription|"
 msgid "Inertia \"tensor\" of the body"
-msgstr "Cismin eylemsizlik \"tensörü\""
+msgstr "Gövdenin eylemsizlik \"tensörü\""
 
 #: rigidbody.cc:35
-#, fuzzy
-#| msgid "angular momentum"
 msgctxt "PropertyDescription|"
 msgid "angular momentum"
 msgstr "açısal momentum"
 
 #: rigidbody.cc:35 softbody.cc:28
-#, fuzzy
-#| msgctxt "PropertyName"
-#| msgid "angularMomentum"
 msgctxt "PropertyName|"
 msgid "angularMomentum"
 msgstr "açısalMomentum"
 
 #: rigidbody.cc:35 rigidbody.cc:65
-#, fuzzy
-#| msgctxt "Units"
-#| msgid "kg m² rad/s"
 msgctxt "Units|"
 msgid "kg m² rad/s"
-msgstr "kg m² rad/s"
+msgstr "kg m² rad/sn"
 
 #: rigidbody.cc:40
-#, fuzzy
-#| msgctxt "ObjectClass"
-#| msgid "RigidBodyErrors"
 msgctxt "ObjectClass|"
 msgid "RigidBodyErrors"
-msgstr "SertCisimHataları"
+msgstr "SertGövdeHataları"
 
 #: rigidbody.cc:40
-#, fuzzy
-#| msgid "Errors class for RigidBody"
 msgctxt "ObjectDescription|"
 msgid "Errors class for RigidBody"
-msgstr "SertCismin Hata türü"
+msgstr "SertNesne için hata sınıfı"
 
 #: rigidbody.cc:43
-#, fuzzy
-#| msgctxt "PropertyName"
-#| msgid "angleVariance"
 msgctxt "PropertyName|"
 msgid "angleVariance"
-msgstr "açıdakiSapma"
+msgstr "açıSapması"
 
 #: rigidbody.cc:44
-#, fuzzy
-#| msgid "angle variance"
 msgctxt "PropertyDescription|"
 msgid "angle variance"
-msgstr "açıdaki sapma"
+msgstr "açı sapması"
 
 #: rigidbody.cc:48
-#, fuzzy
-#| msgctxt "PropertyName"
-#| msgid "angularVelocityVariance"
 msgctxt "PropertyName|"
 msgid "angularVelocityVariance"
-msgstr "açısalHızdakiSapma"
+msgstr "açısalHızSapması"
 
 #: rigidbody.cc:49
-#, fuzzy
-#| msgid "angularVelocity variance"
 msgctxt "PropertyDescription|"
 msgid "angularVelocity variance"
-msgstr "açısalHızdaki sapma"
+msgstr "açısalHız sapması"
 
 #: rigidbody.cc:53
-#, fuzzy
-#| msgctxt "PropertyName"
-#| msgid "angularAccelerationVariance"
 msgctxt "PropertyName|"
 msgid "angularAccelerationVariance"
-msgstr "açısalİvmedekiSapma"
+msgstr "açısalİvmeSapması"
 
 #: rigidbody.cc:54
-#, fuzzy
-#| msgid "angularAcceleration variance"
 msgctxt "PropertyDescription|"
 msgid "angularAcceleration variance"
-msgstr "açısalİvmedeki sapma"
+msgstr "açısalİvme sapması"
 
 #: rigidbody.cc:57
-#, fuzzy
-#| msgid "torque variance"
 msgctxt "PropertyDescription|"
 msgid "torque variance"
-msgstr "torktaki sapma"
+msgstr "tork sapması"
 
 #: rigidbody.cc:57
-#, fuzzy
-#| msgctxt "PropertyName"
-#| msgid "torqueVariance"
 msgctxt "PropertyName|"
 msgid "torqueVariance"
-msgstr "torktakiSapma"
+msgstr "torkSapması"
 
 #: rigidbody.cc:61
-#, fuzzy
-#| msgctxt "PropertyName"
-#| msgid "inertiaVariance"
 msgctxt "PropertyName|"
 msgid "inertiaVariance"
-msgstr "eylemsizliktekiSapma"
+msgstr "eylemsizlikSapması"
 
 #: rigidbody.cc:62
-#, fuzzy
-#| msgid "inertia variance"
 msgctxt "PropertyDescription|"
 msgid "inertia variance"
-msgstr "eylemsizlikteki sapma"
+msgstr "eylemsizlik sapması"
 
 #: rigidbody.cc:65
-#, fuzzy
-#| msgctxt "PropertyName"
-#| msgid "angularMomentumVariance"
 msgctxt "PropertyName|"
 msgid "angularMomentumVariance"
-msgstr "açısalMomentumdakiSapma"
+msgstr "açısalMomentumSapması"
 
 #: rigidbody.cc:66
-#, fuzzy
-#| msgid "angular momentum variance"
 msgctxt "PropertyDescription|"
 msgid "angular momentum variance"
-msgstr "açısal momentumdaki sapma"
+msgstr "açısal momentum sapması"
 
 #: rigidbody.cc:71
-#, fuzzy
-#| msgctxt "ObjectClass"
-#| msgid "Disk"
 msgctxt "ObjectClass|"
 msgid "Disk"
 msgstr "Disk"
 
 #: rigidbody.cc:71
-#, fuzzy
-#| msgid "Rigid disk"
 msgctxt "ObjectDescription|"
 msgid "Rigid disk"
 msgstr "Sert disk"
 
 #: rigidbody.cc:72
-#, fuzzy
-#| msgid "Radius of the disk"
 msgctxt "PropertyDescription|"
 msgid "Radius of the disk"
 msgstr "Diskin yarıçapı"
 
 #: rigidbody.cc:72
-#, fuzzy
-#| msgctxt "PropertyName"
-#| msgid "radius"
 msgctxt "PropertyName|"
 msgid "radius"
 msgstr "yarıçap"
 
 #: rigidbody.cc:74
-#, fuzzy
-#| msgctxt "ObjectClass"
-#| msgid "BasePolygon"
 msgctxt "ObjectClass|"
 msgid "BasePolygon"
 msgstr "TemelÇokgen"
 
 #: rigidbody.cc:74
-#, fuzzy
-#| msgid "Base polygon body"
 msgctxt "ObjectDescription|"
 msgid "Base polygon body"
-msgstr "Temel çokgen cismi"
+msgstr "Temel çokgen gövdesi"
 
 #: rigidbody.cc:76
-#, fuzzy
-#| msgctxt "ObjectClass"
-#| msgid "Box"
 msgctxt "ObjectClass|"
 msgid "Box"
 msgstr "Kutu"
 
 #: rigidbody.cc:76
-#, fuzzy
-#| msgid "Rigid box"
 msgctxt "ObjectDescription|"
 msgid "Rigid box"
 msgstr "Sert kutu"
 
 #: rigidbody.cc:77
-#, fuzzy
-#| msgid "Size of the box"
 msgctxt "PropertyDescription|"
 msgid "Size of the box"
 msgstr "Kutunun boyutu"
 
 #: rigidbody.cc:77 tool.cc:27 tool.cc:34 tool.cc:56 tool.cc:68
-#, fuzzy
-#| msgctxt "PropertyName"
-#| msgid "size"
 msgctxt "PropertyName|"
 msgid "size"
 msgstr "boyut"
 
 #: rigidbody.cc:79
-#, fuzzy
-#| msgctxt "ObjectClass"
-#| msgid "Polygon"
 msgctxt "ObjectClass|"
 msgid "Polygon"
 msgstr "Çokgen"
 
 #: rigidbody.cc:79
-#, fuzzy
-#| msgid "Rigid polygon body"
 msgctxt "ObjectDescription|"
 msgid "Rigid polygon body"
-msgstr "Sert çokgen cismi"
+msgstr "Sert çokgen gövdesi"
 
 #: rigidbody.cc:80
-#, fuzzy
-#| msgid "Vertex list"
 msgctxt "PropertyDescription|"
 msgid "Vertex list"
 msgstr "Kesişme noktaları listesi"
 
 #: rigidbody.cc:80
-#, fuzzy
-#| msgctxt "PropertyName"
-#| msgid "vertices"
 msgctxt "PropertyName|"
 msgid "vertices"
 msgstr "köşeler (kesişme noktaları)"
 
 #: softbody.cc:19
-#, fuzzy
-#| msgctxt "ObjectClass"
-#| msgid "SoftBodyParticle"
 msgctxt "ObjectClass|"
 msgid "SoftBodyParticle"
-msgstr "YumuşakCisimParçacığı"
+msgstr "YumuşakGövdeParçacığı"
 
 #: softbody.cc:19
-#, fuzzy
-#| msgid "SoftBody particle"
 msgctxt "ObjectDescription|"
 msgid "SoftBody particle"
-msgstr "YumuşakCisim parçacığı"
+msgstr "YumuşakGövde parçacığı"
 
 #: softbody.cc:20
-#, fuzzy
-#| msgctxt "ObjectClass"
-#| msgid "SoftBodySpring"
 msgctxt "ObjectClass|"
 msgid "SoftBodySpring"
-msgstr "YumuşakCisimYayı"
+msgstr "YumuşakGövdeYayı"
 
 #: softbody.cc:20
-#, fuzzy
-#| msgid "SoftBody spring"
 msgctxt "ObjectDescription|"
 msgid "SoftBody spring"
-msgstr "YumuşakCisim yayı"
+msgstr "YumuşakGövde yayı"
 
 #: softbody.cc:21
-#, fuzzy
-#| msgctxt "ObjectClass"
-#| msgid "SoftBody"
 msgctxt "ObjectClass|"
 msgid "SoftBody"
-msgstr "YumuşakCisim"
+msgstr "YumuşakGövde"
 
 #: softbody.cc:21
-#, fuzzy
-#| msgid "Deformable SoftBody"
 msgctxt "ObjectDescription|"
 msgid "Deformable SoftBody"
-msgstr "Biçimi Bozulabilen YumuşakCisim"
+msgstr "Biçimi bozulabilen YumuşakGövde"
 
 #: softbody.cc:22
-#, fuzzy
-#| msgid "Show internal items"
 msgctxt "PropertyDescription|"
 msgid "Show internal items"
 msgstr "İç ögeleri göster"
 
 #: softbody.cc:22
-#, fuzzy
-#| msgctxt "PropertyName"
-#| msgid "showInternalItems"
 msgctxt "PropertyName|"
 msgid "showInternalItems"
-msgstr "İçÖgeleriGöster"
+msgstr "içÖgeleriGöster"
 
 #: softbody.cc:28
-#, fuzzy
-#| msgctxt "Units"
-#| msgid "kg m²/s"
 msgctxt "Units|"
 msgid "kg m²/s"
-msgstr "kg m²/s"
+msgstr "kg m²/sn"
 
 #: softbody.cc:29
-#, fuzzy
-#| msgid "Angular momentum of the body"
 msgctxt "PropertyDescription|"
 msgid "Angular momentum of the body"
-msgstr "Cismin açısal momentumu"
+msgstr "Gövdenin açısal momentumu"
 
 #: softbody.cc:41
-#, fuzzy
-#| msgctxt "PropertyName"
-#| msgid "borderParticleNames"
 msgctxt "PropertyName|"
 msgid "borderParticleNames"
-msgstr "sınırParçacığıİsimleri"
+msgstr "kenarParçacığıAdları"
 
 #: softbody.cc:42
-#, fuzzy
-#| msgid "Border particle names (temporal property)"
 msgctxt "PropertyDescription|"
 msgid "Border particle names (temporal property)"
-msgstr "Sınır parçacığı isimleri (geçici özellik)"
+msgstr "Kenar parçacığı adları (geçici özellik)"
 
 #: solver.cc:13
-#, fuzzy
-#| msgid "Solver"
 msgctxt "ObjectClass|"
 msgid "Solver"
 msgstr "Çözücü"
 
 #: solver.cc:13
-#, fuzzy
-#| msgid "Solver"
 msgctxt "ObjectDescription|"
 msgid "Solver"
 msgstr "Çözücü"
 
 #: solver.cc:14
-#, fuzzy
-#| msgid "Solver type"
 msgctxt "PropertyDescription|"
 msgid "Solver type"
 msgstr "Çözücü türü"
 
 #: solver.cc:14
-#, fuzzy
-#| msgctxt "PropertyName"
-#| msgid "solverType"
 msgctxt "PropertyName|"
 msgid "solverType"
 msgstr "ÇözücüTürü"
 
 #: solver.cc:15
-#, fuzzy
-#| msgid "Step size"
 msgctxt "PropertyDescription|"
 msgid "Step size"
 msgstr "Adım büyüklüğü"
 
 #: solver.cc:15
-#, fuzzy
-#| msgctxt "PropertyName"
-#| msgid "stepSize"
 msgctxt "PropertyName|"
 msgid "stepSize"
 msgstr "adımBüyüklüğü"
 
 #: solver.cc:15 world.cc:23
-#, fuzzy
-#| msgctxt "Units"
-#| msgid "s"
 msgctxt "Units|"
 msgid "s"
 msgstr "s"
 
 #: solver.cc:17
-#, fuzzy
-#| msgid "Allowed relative tolerance"
 msgctxt "PropertyDescription|"
 msgid "Allowed relative tolerance"
 msgstr "İzin verilen bağıl hata payı"
 
 #: solver.cc:17
-#, fuzzy
-#| msgctxt "PropertyName"
-#| msgid "toleranceRel"
 msgctxt "PropertyName|"
 msgid "toleranceRel"
-msgstr "hata payıRel"
+msgstr "hatapayıBağıl"
 
 #: solver.cc:18
-#, fuzzy
-#| msgid "Count of dynamic variables"
 msgctxt "PropertyDescription|"
 msgid "Count of dynamic variables"
-msgstr "Dinamik değişkenlerin sayısı"
+msgstr "Devingen değişkenlerin sayısı"
 
 #: solver.cc:18
-#, fuzzy
-#| msgctxt "PropertyName"
-#| msgid "dimension"
 msgctxt "PropertyName|"
 msgid "dimension"
 msgstr "boyut"
 
 #: solver.cc:20
-#, fuzzy
-#| msgid "Maximal local error ratio during last step"
 msgctxt "PropertyDescription|"
 msgid "Maximal local error ratio during last step"
 msgstr "Son adımdaki en büyük yerel hata oranı"
 
 #: solver.cc:20
-#, fuzzy
-#| msgctxt "PropertyName"
-#| msgid "localErrorRatio"
 msgctxt "PropertyName|"
 msgid "localErrorRatio"
 msgstr "yerelHataOranı"
 
 #: spring.cc:16
-#, fuzzy
-#| msgctxt "ObjectClass"
-#| msgid "Spring"
 msgctxt "ObjectClass|"
 msgid "Spring"
 msgstr "Yay"
 
 #: spring.cc:16
-#, fuzzy
-#| msgid "Massless spring which can be connected to bodies"
 msgctxt "ObjectDescription|"
 msgid "Massless spring which can be connected to bodies"
-msgstr "Cisimlere bağlanabilen kütlesiz yay"
+msgstr "Gövdelere bağlanabilen kütlesiz yay"
 
 #: spring.cc:18
-#, fuzzy
-#| msgid "Rest length"
 msgctxt "PropertyDescription|"
 msgid "Rest length"
 msgstr "Durağan boy"
 
 #: spring.cc:19
-#, fuzzy
-#| msgid "Current length"
 msgctxt "PropertyDescription|"
 msgid "Current length"
-msgstr "Şimdiki boy"
+msgstr "Geçerli boy"
 
 #: spring.cc:19
-#, fuzzy
-#| msgctxt "PropertyName"
-#| msgid "length"
 msgctxt "PropertyName|"
 msgid "length"
 msgstr "boy"
 
 #: spring.cc:20
-#, fuzzy
-#| msgid "Stiffness"
 msgctxt "PropertyDescription|"
 msgid "Stiffness"
 msgstr "Sertlik"
 
 #: spring.cc:20
-#, fuzzy
-#| msgctxt "PropertyName"
-#| msgid "stiffness"
 msgctxt "PropertyName|"
 msgid "stiffness"
 msgstr "sertlik"
 
 #: spring.cc:20 spring.cc:39 spring.cc:41
-#, fuzzy
-#| msgctxt "Units"
-#| msgid "N/m"
 msgctxt "Units|"
 msgid "N/m"
 msgstr "N/m"
 
 #: spring.cc:21
-#, fuzzy
-#| msgid "Damping"
 msgctxt "PropertyDescription|"
 msgid "Damping"
 msgstr "Sönümlenme"
 
 #: spring.cc:21
-#, fuzzy
-#| msgctxt "PropertyName"
-#| msgid "damping"
 msgctxt "PropertyName|"
 msgid "damping"
 msgstr "sönümlenme"
 
 #: spring.cc:21
-#, fuzzy
-#| msgctxt "Units"
-#| msgid "N s/m"
 msgctxt "Units|"
 msgid "N s/m"
 msgstr "N s/m"
 
 #: spring.cc:30
-#, fuzzy
-#| msgid "Spring tension force"
 msgctxt "PropertyDescription|"
 msgid "Spring tension force"
 msgstr "Yay gerilim kuvveti"
 
 #: spring.cc:33
-#, fuzzy
-#| msgctxt "ObjectClass"
-#| msgid "SpringErrors"
 msgctxt "ObjectClass|"
 msgid "SpringErrors"
 msgstr "YayHataları"
 
 #: spring.cc:33
-#, fuzzy
-#| msgid "Errors class for Spring"
 msgctxt "ObjectDescription|"
 msgid "Errors class for Spring"
-msgstr "Yay hataları türü"
+msgstr "Yay için hata sınıfı"
 
 #: spring.cc:35
-#, fuzzy
-#| msgctxt "PropertyName"
-#| msgid "restLengthVariance"
 msgctxt "PropertyName|"
 msgid "restLengthVariance"
 msgstr "durağanBoySapması"
 
 #: spring.cc:36
-#, fuzzy
-#| msgid "Rest length variance"
 msgctxt "PropertyDescription|"
 msgid "Rest length variance"
 msgstr "Durağan boy sapması"
 
 #: spring.cc:37
-#, fuzzy
-#| msgctxt "PropertyName"
-#| msgid "lengthVariance"
 msgctxt "PropertyName|"
 msgid "lengthVariance"
 msgstr "boySapması"
 
 #: spring.cc:38
-#, fuzzy
-#| msgid "Current length variance"
 msgctxt "PropertyDescription|"
 msgid "Current length variance"
-msgstr "Şimdiki boy sapması"
+msgstr "Geçerli boy sapması"
 
 #: spring.cc:39
-#, fuzzy
-#| msgctxt "PropertyName"
-#| msgid "stiffnessVariance"
 msgctxt "PropertyName|"
 msgid "stiffnessVariance"
 msgstr "sertlikSapması"
 
 #: spring.cc:40
-#, fuzzy
-#| msgid "Stiffness variance"
 msgctxt "PropertyDescription|"
 msgid "Stiffness variance"
 msgstr "Sertlik sapması"
 
 #: spring.cc:41
-#, fuzzy
-#| msgctxt "PropertyName"
-#| msgid "dampingVariance"
 msgctxt "PropertyName|"
 msgid "dampingVariance"
 msgstr "sönümlenmeSapması"
 
 #: spring.cc:42
-#, fuzzy
-#| msgid "Damping variance"
 msgctxt "PropertyDescription|"
 msgid "Damping variance"
 msgstr "Sönümlenme sapması"
 
 #: spring.cc:43
-#, fuzzy
-#| msgctxt "PropertyName"
-#| msgid "localPosition1Variance"
 msgctxt "PropertyName|"
 msgid "localPosition1Variance"
 msgstr "yerelKonum1Sapması"
 
 #: spring.cc:44
-#, fuzzy
-#| msgid "Local position 1 variance"
 msgctxt "PropertyDescription|"
 msgid "Local position 1 variance"
 msgstr "Yerel konum 1 sapması"
 
 #: spring.cc:45
-#, fuzzy
-#| msgctxt "PropertyName"
-#| msgid "localPosition2Variance"
 msgctxt "PropertyName|"
 msgid "localPosition2Variance"
 msgstr "yerelKonum2Sapması"
 
 #: spring.cc:46
-#, fuzzy
-#| msgid "Local position 2 variance"
 msgctxt "PropertyDescription|"
 msgid "Local position 2 variance"
 msgstr "Yerel konum 2 sapması"
 
 #: spring.cc:47
-#, fuzzy
-#| msgctxt "PropertyName"
-#| msgid "position1Variance"
 msgctxt "PropertyName|"
 msgid "position1Variance"
 msgstr "konum1Sapması"
 
 #: spring.cc:48
-#, fuzzy
-#| msgid "Position1 variance"
 msgctxt "PropertyDescription|"
 msgid "Position1 variance"
 msgstr "Konum 1 sapması"
 
 #: spring.cc:49
-#, fuzzy
-#| msgctxt "PropertyName"
-#| msgid "position2Variance"
 msgctxt "PropertyName|"
 msgid "position2Variance"
 msgstr "konum2Sapması"
 
 #: spring.cc:50
-#, fuzzy
-#| msgid "Position2 variance"
 msgctxt "PropertyDescription|"
 msgid "Position2 variance"
 msgstr "Konum 2 sapması"
 
 #: spring.cc:52
-#, fuzzy
-#| msgid "Spring tension force variance"
 msgctxt "PropertyDescription|"
 msgid "Spring tension force variance"
 msgstr "Yay gerilim kuvveti sapması"
 
 #: tool.cc:14
-#, fuzzy
-#| msgctxt "ObjectClass"
-#| msgid "NoteImage"
 msgctxt "ObjectClass|"
 msgid "NoteImage"
-msgstr "NotResmi"
+msgstr "NotGörseli"
 
 #: tool.cc:14
-#, fuzzy
-#| msgid "NoteImage: an image embedded in Note"
 msgctxt "ObjectDescription|"
 msgid "NoteImage: an image embedded in Note"
-msgstr "NotResmi:Not içinde yerleşik resim"
+msgstr "NotGörseli: Nota gömülü bir görsel"
 
 #: tool.cc:16
-#, fuzzy
-#| msgid "Image data"
 msgctxt "PropertyDescription|"
 msgid "Image data"
-msgstr "Resim verileri"
+msgstr "Görsel verisi"
 
 #: tool.cc:16
-#, fuzzy
-#| msgctxt "PropertyName"
-#| msgid "image"
 msgctxt "PropertyName|"
 msgid "image"
-msgstr "resim"
+msgstr "görsel"
 
 #: tool.cc:19
-#, fuzzy
-#| msgctxt "ObjectClass"
-#| msgid "NoteFormula"
 msgctxt "ObjectClass|"
 msgid "NoteFormula"
 msgstr "NotFormülü"
 
 #: tool.cc:19
-#, fuzzy
-#| msgid "NoteFormula: a formula embedded in Note"
 msgctxt "ObjectDescription|"
 msgid "NoteFormula: a formula embedded in Note"
-msgstr "NotFormülü: Not içinde yerleşik formül"
+msgstr "NotFormülü: Nota gömülü bir formül"
 
 #: tool.cc:21
-#, fuzzy
-#| msgid "Formula code"
 msgctxt "PropertyDescription|"
 msgid "Formula code"
 msgstr "Formül kodu"
 
 #: tool.cc:21
-#, fuzzy
-#| msgctxt "PropertyName"
-#| msgid "code"
 msgctxt "PropertyName|"
 msgid "code"
 msgstr "kod"
 
 #: tool.cc:24
-#, fuzzy
-#| msgctxt "ObjectClass"
-#| msgid "Note"
 msgctxt "ObjectClass|"
 msgid "Note"
 msgstr "Not"
 
 #: tool.cc:24
-#, fuzzy
-#| msgid "Note: displays a textual note on the scene"
 msgctxt "ObjectDescription|"
 msgid "Note: displays a textual note on the scene"
-msgstr "Not: Ekranda bir metin not gösterir"
+msgstr "Not: Sahnede bir metin notu gösterir"
 
 #: tool.cc:26
-#, fuzzy
-#| msgid "Note position on the scene"
 msgctxt "PropertyDescription|"
 msgid "Note position on the scene"
-msgstr "Notun ekrandaki konumu"
+msgstr "Notun sahnedeki konumu"
 
 #: tool.cc:27
-#, fuzzy
-#| msgid "Note size on the scene"
 msgctxt "PropertyDescription|"
 msgid "Note size on the scene"
-msgstr "Notun ekrandaki boyutu"
+msgstr "Notun sahnedeki boyutu"
 
 #: tool.cc:28
-#, fuzzy
-#| msgid "Text"
 msgctxt "PropertyDescription|"
 msgid "Text"
 msgstr "Metin"
 
 #: tool.cc:28
-#, fuzzy
-#| msgctxt "PropertyName"
-#| msgid "text"
 msgctxt "PropertyName|"
 msgid "text"
 msgstr "metin"
 
 #: tool.cc:31
-#, fuzzy
-#| msgctxt "ObjectClass"
-#| msgid "Graph"
 msgctxt "ObjectClass|"
 msgid "Graph"
-msgstr "Grafik"
+msgstr "Çizelge"
 
 #: tool.cc:31
-#, fuzzy
-#| msgid "Graph: plots a graph of any properties"
 msgctxt "ObjectDescription|"
 msgid "Graph: plots a graph of any properties"
-msgstr "Grafik: herhangi bir özelliğin grafiğini çizer"
+msgstr "Çizelge: Herhangi bir özelliğin grafiğini çizer"
 
 #: tool.cc:33
-#, fuzzy
-#| msgid "Graph position on the scene"
 msgctxt "PropertyDescription|"
 msgid "Graph position on the scene"
-msgstr "Grafiğin ekrandaki konumu"
+msgstr "Çizelgenin sahnedeki konumu"
 
 #: tool.cc:34
-#, fuzzy
-#| msgid "Graph size on the scene"
 msgctxt "PropertyDescription|"
 msgid "Graph size on the scene"
-msgstr "Grafiğin ekrandaki boyutu"
+msgstr "Çizelgenin sahnedeki boyutu"
 
 #: tool.cc:35
-#, fuzzy
-#| msgid "X axis: object"
 msgctxt "PropertyDescription|"
 msgid "X axis: object"
-msgstr "X ekseni: nesne"
+msgstr "X ekseni: Nesne"
 
 #: tool.cc:35
-#, fuzzy
-#| msgctxt "PropertyName"
-#| msgid "objectX"
 msgctxt "PropertyName|"
 msgid "objectX"
 msgstr "nesneX"
 
 #: tool.cc:36
-#, fuzzy
-#| msgid "X axis: object property"
 msgctxt "PropertyDescription|"
 msgid "X axis: object property"
-msgstr "X ekseni: nesne özelliği"
+msgstr "X ekseni: Nesne özelliği"
 
 #: tool.cc:36
-#, fuzzy
-#| msgctxt "PropertyName"
-#| msgid "propertyX"
 msgctxt "PropertyName|"
 msgid "propertyX"
 msgstr "özellikX"
 
 #: tool.cc:37
-#, fuzzy
-#| msgid "X axis: vector index"
 msgctxt "PropertyDescription|"
 msgid "X axis: vector index"
-msgstr "X ekseni: vektör dizini"
+msgstr "X ekseni: Vektör indeksi"
 
 #: tool.cc:37
-#, fuzzy
-#| msgctxt "PropertyName"
-#| msgid "indexX"
 msgctxt "PropertyName|"
 msgid "indexX"
-msgstr "dizinX"
+msgstr "indeksX"
 
 #: tool.cc:38
-#, fuzzy
-#| msgid "Y axis: object"
 msgctxt "PropertyDescription|"
 msgid "Y axis: object"
-msgstr "Y ekseni: nesne"
+msgstr "Y ekseni: Nesne"
 
 #: tool.cc:38
-#, fuzzy
-#| msgctxt "PropertyName"
-#| msgid "objectY"
 msgctxt "PropertyName|"
 msgid "objectY"
 msgstr "nesneY"
 
 #: tool.cc:39
-#, fuzzy
-#| msgid "Y axis: property"
 msgctxt "PropertyDescription|"
 msgid "Y axis: property"
-msgstr "Y ekseni: nesne özelliği"
+msgstr "Y ekseni: Nesne özelliği"
 
 #: tool.cc:39
-#, fuzzy
-#| msgctxt "PropertyName"
-#| msgid "propertyY"
 msgctxt "PropertyName|"
 msgid "propertyY"
 msgstr "özellikY"
 
 #: tool.cc:40
-#, fuzzy
-#| msgid "Y axis: vector index"
 msgctxt "PropertyDescription|"
 msgid "Y axis: vector index"
-msgstr "Y ekseni: vektör dizini"
+msgstr "Y ekseni: Vektör indeksi"
 
 #: tool.cc:40
-#, fuzzy
-#| msgctxt "PropertyName"
-#| msgid "indexY"
 msgctxt "PropertyName|"
 msgid "indexY"
-msgstr "dizinY"
+msgstr "indeksY"
 
 #: tool.cc:41
-#, fuzzy
-#| msgid "Auto-limits along X axis"
 msgctxt "PropertyDescription|"
 msgid "Auto-limits along X axis"
 msgstr "X ekseni boyunca otomatik limit"
 
 #: tool.cc:41
-#, fuzzy
-#| msgctxt "PropertyName"
-#| msgid "autoLimitsX"
 msgctxt "PropertyName|"
 msgid "autoLimitsX"
 msgstr "otomatikLimitX"
 
 #: tool.cc:42
-#, fuzzy
-#| msgid "Auto-limits along Y axis"
 msgctxt "PropertyDescription|"
 msgid "Auto-limits along Y axis"
 msgstr "Y ekseni boyunca otomatik limit"
 
 #: tool.cc:42
-#, fuzzy
-#| msgctxt "PropertyName"
-#| msgid "autoLimitsY"
 msgctxt "PropertyName|"
 msgid "autoLimitsY"
 msgstr "otomatikLimitY"
 
 #: tool.cc:43
-#, fuzzy
-#| msgid "Limits along X axis"
 msgctxt "PropertyDescription|"
 msgid "Limits along X axis"
 msgstr "X ekseni boyunca limit"
 
 #: tool.cc:43
-#, fuzzy
-#| msgctxt "PropertyName"
-#| msgid "limitsX"
 msgctxt "PropertyName|"
 msgid "limitsX"
 msgstr "limitX"
 
 #: tool.cc:44
-#, fuzzy
-#| msgid "Limits along Y axis"
 msgctxt "PropertyDescription|"
 msgid "Limits along Y axis"
 msgstr "Y ekseni boyunca limit"
 
 #: tool.cc:44
-#, fuzzy
-#| msgctxt "PropertyName"
-#| msgid "limitsY"
 msgctxt "PropertyName|"
 msgid "limitsY"
 msgstr "limitY"
 
 #: tool.cc:45
-#, fuzzy
-#| msgid "Show points on the graph"
 msgctxt "PropertyDescription|"
 msgid "Show points on the graph"
-msgstr "Grafikte noktaları göster"
+msgstr "Çizelgede noktaları göster"
 
 #: tool.cc:45
-#, fuzzy
-#| msgctxt "PropertyName"
-#| msgid "showPoints"
 msgctxt "PropertyName|"
 msgid "showPoints"
-msgstr "Noktaları Göster"
+msgstr "noktalarıGöster"
 
 #: tool.cc:46
-#, fuzzy
-#| msgid "Show lines on the graph"
 msgctxt "PropertyDescription|"
 msgid "Show lines on the graph"
-msgstr "Grafikte çizgileri göster"
+msgstr "Çizelgede çizgileri göster"
 
 #: tool.cc:46
-#, fuzzy
-#| msgctxt "PropertyName"
-#| msgid "showLines"
 msgctxt "PropertyName|"
 msgid "showLines"
-msgstr "Çizgileri Göster"
+msgstr "çizgileriGöster"
 
 #: tool.cc:47
-#, fuzzy
-#| msgid "Current value"
 msgctxt "PropertyDescription|"
 msgid "Current value"
-msgstr "Şimdiki değer"
+msgstr "Geçerli değer"
 
 #: tool.cc:47
-#, fuzzy
-#| msgid "currentValue"
 msgctxt "PropertyName|"
 msgid "currentValue"
-msgstr "şimdikiDeğer"
+msgstr "geçerliDeğer"
 
 #: tool.cc:48 tool.cc:89
-#, fuzzy
-#| msgid "points"
 msgctxt "PropertyDescription|"
 msgid "points"
 msgstr "noktalar"
 
 #: tool.cc:48 tool.cc:89
-#, fuzzy
-#| msgid "points"
 msgctxt "PropertyName|"
 msgid "points"
 msgstr "noktalar"
 
 #: tool.cc:49
-#, fuzzy
-#| msgid "unitsX"
 msgctxt "PropertyName|"
 msgid "unitsX"
 msgstr "birimX"
 
 #: tool.cc:49
-#, fuzzy
-#| msgid "Units along X axis"
 msgctxt "PropertyName|"
 msgid "Units along X axis"
 msgstr "X ekseni boyunca birimler"
 
 #: tool.cc:50
-#, fuzzy
-#| msgid "unitsY"
 msgctxt "PropertyName|"
 msgid "unitsY"
 msgstr "birimY"
 
 #: tool.cc:50
-#, fuzzy
-#| msgid "Units along Y axis"
 msgctxt "PropertyName|"
 msgid "Units along Y axis"
 msgstr "Y ekseni boyunca birimler"
 
 #: tool.cc:53
-#, fuzzy
-#| msgctxt "ObjectClass"
-#| msgid "Meter"
 msgctxt "ObjectClass|"
 msgid "Meter"
 msgstr "Ölçü"
 
 #: tool.cc:53
-#, fuzzy
-#| msgid "Meter: displays any property on the scene"
 msgctxt "ObjectDescription|"
 msgid "Meter: displays any property on the scene"
-msgstr "Ölçü: herhangi bir özelliği ekranda gösterir"
+msgstr "Ölçü: Herhangi bir özelliği sahnede gösterir"
 
 #: tool.cc:55
-#, fuzzy
-#| msgid "Meter position on the scene"
 msgctxt "PropertyDescription|"
 msgid "Meter position on the scene"
-msgstr "Ölçünün ekrandaki konumu"
+msgstr "Ölçünün sahnedeki konumu"
 
 #: tool.cc:56
-#, fuzzy
-#| msgid "Meter size on the scene"
 msgctxt "PropertyDescription|"
 msgid "Meter size on the scene"
-msgstr "Ölçünün ekrandaki büyüklüğü"
+msgstr "Ölçünün sahnedeki büyüklüğü"
 
 #: tool.cc:57
-#, fuzzy
-#| msgid "Observed object"
 msgctxt "PropertyDescription|"
 msgid "Observed object"
 msgstr "Gözlenen nesne"
 
 #: tool.cc:57 tool.cc:69
-#, fuzzy
-#| msgctxt "PropertyName"
-#| msgid "object"
 msgctxt "PropertyName|"
 msgid "object"
 msgstr "nesne"
 
 #: tool.cc:58
-#, fuzzy
-#| msgid "Observed property"
 msgctxt "PropertyDescription|"
 msgid "Observed property"
 msgstr "Gözlenen özellik"
 
 #: tool.cc:58 tool.cc:70
-#, fuzzy
-#| msgctxt "PropertyName"
-#| msgid "property"
 msgctxt "PropertyName|"
 msgid "property"
 msgstr "özellik"
 
 #: tool.cc:59 tool.cc:71
-#, fuzzy
-#| msgid "Vector index"
 msgctxt "PropertyDescription|"
 msgid "Vector index"
-msgstr "Vektör dizini"
+msgstr "Vektör indeksi"
 
 #: tool.cc:59 tool.cc:71
-#, fuzzy
-#| msgctxt "PropertyName"
-#| msgid "index"
 msgctxt "PropertyName|"
 msgid "index"
-msgstr "dizin"
+msgstr "indeks"
 
 #: tool.cc:60
-#, fuzzy
-#| msgid "Display digits"
 msgctxt "PropertyDescription|"
 msgid "Display digits"
 msgstr "Basamakları göster"
 
 #: tool.cc:60
-#, fuzzy
-#| msgctxt "PropertyName"
-#| msgid "digits"
 msgctxt "PropertyName|"
 msgid "digits"
 msgstr "basamak"
 
 #: tool.cc:61 tool.cc:78
-#, fuzzy
-#| msgid "Value"
 msgctxt "PropertyDescription|"
 msgid "Value"
 msgstr "Değer"
 
 #: tool.cc:61 tool.cc:78
-#, fuzzy
-#| msgid "value"
 msgctxt "PropertyName|"
 msgid "value"
 msgstr "değer"
 
 #: tool.cc:62
-#, fuzzy
-#| msgid "Units of measured property"
 msgctxt "PropertyDescription|"
 msgid "Units of measured property"
 msgstr "Ölçülen özelliğin birimi"
 
 #: tool.cc:62 tool.cc:80
-#, fuzzy
-#| msgid "units"
 msgctxt "PropertyName|"
 msgid "units"
 msgstr "birimler"
 
 #: tool.cc:65
-#, fuzzy
-#| msgctxt "ObjectClass"
-#| msgid "Controller"
 msgctxt "ObjectClass|"
 msgid "Controller"
 msgstr "Denetleyici"
 
 #: tool.cc:65
-#, fuzzy
-#| msgid "Controller: allows to easily control any property"
 msgctxt "ObjectDescription|"
 msgid "Controller: allows to easily control any property"
-msgstr "Denetleyici: herhangi bir özelliği kolayca kontrol etmeye yarar"
+msgstr "Denetleyici: Herhangi bir özelliği kolayca denetlemeye yarar"
 
 #: tool.cc:67
-#, fuzzy
-#| msgid "Controller position on the scene"
 msgctxt "PropertyDescription|"
 msgid "Controller position on the scene"
-msgstr "Denetleyicinin ekrandaki konumu"
+msgstr "Denetleyicinin sahnedeki konumu"
 
 #: tool.cc:68
-#, fuzzy
-#| msgid "Controller size on the scene"
 msgctxt "PropertyDescription|"
 msgid "Controller size on the scene"
-msgstr "Denetleyicinin ekrandaki boyutu"
+msgstr "Denetleyicinin sahnedeki boyutu"
 
 #: tool.cc:69
-#, fuzzy
-#| msgid "Controlled object"
 msgctxt "PropertyDescription|"
 msgid "Controlled object"
 msgstr "Denetlenen nesne"
 
 #: tool.cc:70
-#, fuzzy
-#| msgid "Controlled property"
 msgctxt "PropertyDescription|"
 msgid "Controlled property"
 msgstr "Denetlenen özellik"
 
 #: tool.cc:72
-#, fuzzy
-#| msgid "Limits"
 msgctxt "PropertyDescription|"
 msgid "Limits"
 msgstr "Limitler"
 
 #: tool.cc:72
-#, fuzzy
-#| msgctxt "PropertyName"
-#| msgid "limits"
 msgctxt "PropertyName|"
 msgid "limits"
 msgstr "limitler"
 
 #: tool.cc:73
-#, fuzzy
-#| msgctxt "PropertyName"
-#| msgid "increaseShortcut"
 msgctxt "PropertyName|"
 msgid "increaseShortcut"
 msgstr "artırmaKısayolu"
 
 #: tool.cc:74
-#, fuzzy
-#| msgid "Shortcut to increase the value"
 msgctxt "PropertyDescription|"
 msgid "Shortcut to increase the value"
 msgstr "Değeri artırmak için kısayol"
 
 #: tool.cc:75
-#, fuzzy
-#| msgctxt "PropertyName"
-#| msgid "decreaseShortcut"
 msgctxt "PropertyName|"
 msgid "decreaseShortcut"
 msgstr "azaltmaKısayolu"
 
 #: tool.cc:76
-#, fuzzy
-#| msgid "Shortcut to decrease the value"
 msgctxt "PropertyDescription|"
 msgid "Shortcut to decrease the value"
 msgstr "Değeri azaltmak için kısayol"
 
 #: tool.cc:77
-#, fuzzy
-#| msgid "Increment value"
 msgctxt "PropertyDescription|"
 msgid "Increment value"
-msgstr "Değeri arttır"
+msgstr "Değeri artır"
 
 #: tool.cc:77
-#, fuzzy
-#| msgctxt "PropertyName"
-#| msgid "increment"
 msgctxt "PropertyName|"
 msgid "increment"
 msgstr "artış"
 
 #: tool.cc:80
-#, fuzzy
-#| msgid "Units of controlled property"
 msgctxt "PropertyDescription|"
 msgid "Units of controlled property"
-msgstr "Kontrol edilen özelliğin birimleri"
+msgstr "Denetlenen özelliğin birimleri"
 
 #: tool.cc:83
-#, fuzzy
-#| msgctxt "ObjectClass"
-#| msgid "Tracer"
 msgctxt "ObjectClass|"
 msgid "Tracer"
 msgstr "İzleyici"
 
 #: tool.cc:83
-#, fuzzy
-#| msgid "Tracer: traces trajectory of a point on a body"
 msgctxt "ObjectDescription|"
 msgid "Tracer: traces trajectory of a point on a body"
-msgstr "İzleyici: bir cisim üzerindeki noktanın çizdiği yörüngeyi izler"
+msgstr "İzleyici: Bir gövde üzerindeki noktanın çizdiği yörüngeyi izler"
 
 #: tool.cc:85
-#, fuzzy
-#| msgid "Traced body"
 msgctxt "PropertyDescription|"
 msgid "Traced body"
-msgstr "İzlenen cisim"
+msgstr "İzlenen gövde"
 
 #: tool.cc:87
-#, fuzzy
-#| msgid "Local position"
 msgctxt "PropertyDescription|"
 msgid "Local position"
 msgstr "Yerel konum"
 
 #: world.cc:20
-#, fuzzy
-#| msgid "Tool"
 msgctxt "ObjectClass|"
 msgid "Tool"
 msgstr "Araç"
 
 #: world.cc:20
-#, fuzzy
-#| msgid "Tool"
 msgctxt "ObjectDescription|"
 msgid "Tool"
 msgstr "Araç"
 
 #: world.cc:22
-#, fuzzy
-#| msgid "World"
 msgctxt "ObjectClass|"
 msgid "World"
 msgstr "Dünya"
 
 #: world.cc:22
-#, fuzzy
-#| msgid "World"
 msgctxt "ObjectDescription|"
 msgid "World"
 msgstr "Dünya"
 
 #: world.cc:23
-#, fuzzy
-#| msgid "Current time"
 msgctxt "PropertyDescription|"
 msgid "Current time"
-msgstr "Şimdiki zaman"
+msgstr "Geçerli zaman"
 
 #: world.cc:23
-#, fuzzy
-#| msgctxt "PropertyName"
-#| msgid "time"
 msgctxt "PropertyName|"
 msgid "time"
 msgstr "zaman"
 
 #: world.cc:24
-#, fuzzy
-#| msgid "Simulation speed scale"
 msgctxt "PropertyDescription|"
 msgid "Simulation speed scale"
-msgstr "Benzeştirim hızı ölçeği"
+msgstr "Benzetim hızı ölçeği"
 
 #: world.cc:24
-#, fuzzy
-#| msgid "timeScale"
 msgctxt "PropertyName|"
 msgid "timeScale"
 msgstr "zamanÖlçeği"
 
 #: world.cc:25
-#, fuzzy
-#| msgid "errorsCalculation"
 msgctxt "PropertyName|"
 msgid "errorsCalculation"
 msgstr "hataHesabı"
 
 #: world.cc:26
-#, fuzzy
-#| msgid "Enable global error calculation"
 msgctxt "PropertyDescription|"
 msgid "Enable global error calculation"
-msgstr "Genel hata hesabını etkinleştir"
+msgstr "Global hata hesaplamasını etkinleştir"
 
 #: xmlfile.cc:189
-#, fuzzy
-#| msgid "The file is not a StepCoreXML file."
 msgctxt "QObject|"
 msgid "The file is not a StepCoreXML file."
-msgstr "Dosya StepCoreXML dosyası değil."
+msgstr "Dosya, bir StepCoreXML dosyası değil."
 
 #: xmlfile.cc:235
-#, fuzzy, qt-format
-#| msgid "Unknown item type \"%1\""
+#, qt-format
 msgctxt "QObject|"
 msgid "Unknown item type \"%1\""
 msgstr "Bilinmeyen öge türü \"%1\" "
 
 #: xmlfile.cc:256
-#, fuzzy, qt-format
-#| msgid "Unknown solver type \"%1\""
+#, qt-format
 msgctxt "QObject|"
 msgid "Unknown solver type \"%1\""
 msgstr "Bilinmeyen çözücü türü \"%1\""
 
 #: xmlfile.cc:270
-#, fuzzy, qt-format
-#| msgid "Unknown collisionSolver type \"%1\""
+#, qt-format
 msgctxt "QObject|"
 msgid "Unknown collisionSolver type \"%1\""
 msgstr "Bilinmeyen çarpışmaÇözücüsü türü \"%1\""
 
 #: xmlfile.cc:284
-#, fuzzy, qt-format
-#| msgid "Unknown constraint solver type \"%1\""
+#, qt-format
 msgctxt "QObject|"
 msgid "Unknown constraint solver type \"%1\""
-msgstr "Bilinmeyen sınırlayıcı çözücüsü türü \"%1\""
+msgstr "Bilinmeyen kısıtlama çözücüsü türü \"%1\""
 
 #: xmlfile.cc:312
-#, fuzzy, qt-format
-#| msgid "Wrong ID attribute value for %1"
+#, qt-format
 msgctxt "QObject|"
 msgid "Wrong ID attribute value for %1"
-msgstr "%1 İçin yanliş kimlik değeri ataması"
+msgstr "%1 için yanlış kimlik öznitelik değeri"
 
 #: xmlfile.cc:317
-#, fuzzy, qt-format
-#| msgid "Non-unique ID attribute value for %1"
+#, qt-format
 msgctxt "QObject|"
 msgid "Non-unique ID attribute value for %1"
-msgstr "%1 İcin özgün olmayan kimlik değeri ataması"
+msgstr "%1 için benzersiz olmayan kimlik özniteliği değeri"
 
 #: xmlfile.cc:345 xmlfile.cc:359
-#, fuzzy, qt-format
-#| msgid "Property \"%1\" of \"%2\" has illegal value"
+#, qt-format
 msgctxt "QObject|"
 msgid "Property \"%1\" of \"%2\" has illegal value"
-msgstr "\"%2\" Özellikten \"%1\" tanesi geçersiz değer içermekte"
+msgstr "\"%2\" için \"%1\" özelliğinde izin verilmeyen değer var"
 
 #: xmlfile.cc:372
-#, fuzzy
-#| msgid "File is not writable."
 msgctxt "QObject|"
 msgid "File is not writable."
 msgstr "Dosya yazılabilir değil."
