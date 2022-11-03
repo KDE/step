@@ -12,7 +12,7 @@ msgstr ""
 "Project-Id-Version: kdeedu-kde4\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2022-10-27 00:42+0000\n"
-"PO-Revision-Date: 2022-10-08 13:10+0300\n"
+"PO-Revision-Date: 2022-11-02 10:36+0300\n"
 "Last-Translator: Emir SARI <emir_sari@icloud.com>\n"
 "Language-Team: Turkish <kde-l10n-tr@kde.org>\n"
 "Language: tr\n"
@@ -20,17 +20,17 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
-"X-Generator: Lokalize 22.08.1\n"
+"X-Generator: Lokalize 22.08.2\n"
 
 #, kde-format
 msgctxt "NAME OF TRANSLATORS"
 msgid "Your names"
-msgstr "Serdar Soytetir, Hüseyin Nacak"
+msgstr "Serdar Soytetir, Hüseyin Nacak, Emir SARI"
 
 #, kde-format
 msgctxt "EMAIL OF TRANSLATORS"
 msgid "Your emails"
-msgstr "tulliana@gmail.com, nacakhuseyin@googlemail.com"
+msgstr "tulliana@gmail.com, nacakhuseyin@googlemail.com, emir_sari@icloud.com"
 
 #. i18n: ectx: property (title), widget (QGroupBox, groupBox)
 #: step/configure_controller.ui:28 step/configure_graph.ui:28
@@ -43,7 +43,7 @@ msgstr "Veri Kaynağı"
 #: step/configure_controller.ui:47
 #, kde-format
 msgid "Range"
-msgstr "Aralık"
+msgstr "Erim"
 
 #. i18n: ectx: property (text), widget (QLabel, label_5)
 #: step/configure_controller.ui:59
@@ -126,19 +126,19 @@ msgstr "Y :"
 #: step/configure_graph.ui:71
 #, kde-format
 msgid "Ranges"
-msgstr "Aralıklar"
+msgstr "Erimler"
 
 #. i18n: ectx: property (text), widget (QLabel, label_5)
 #: step/configure_graph.ui:83
 #, kde-format
 msgid "Min:"
-msgstr ""
+msgstr "En az:"
 
 #. i18n: ectx: property (text), widget (QLabel, label_6)
 #: step/configure_graph.ui:99
 #, kde-format
 msgid "Max:"
-msgstr ""
+msgstr "En çok:"
 
 #. i18n: ectx: property (text), widget (QCheckBox, checkBoxAutoX)
 #. i18n: ectx: property (text), widget (QCheckBox, checkBoxAutoY)
@@ -184,7 +184,7 @@ msgstr "Gösterge hassasiyeti:"
 #: step/configure_step_general.ui:52
 #, kde-format
 msgid "Show scene axes"
-msgstr "Eksenleri göster"
+msgstr "Sahne eksenlerini göster"
 
 #. i18n: ectx: property (text), widget (QCheckBox, kcfg_showCreationTips)
 #: step/configure_step_general.ui:59
@@ -202,14 +202,13 @@ msgstr "OpenGL'yi Etkinleştir (DENEYSEL)"
 #: step/configure_step_general.ui:73
 #, kde-format
 msgid "Open wikipedia in external browser"
-msgstr "Dış tarayıcıda Wikipedia'yı aç"
+msgstr "Dış tarayıcıda Vikipedi'yi aç"
 
 #. i18n: ectx: property (text), widget (QLabel, label_5)
 #: step/create_gas_particles.ui:34
-#, fuzzy, kde-format
-#| msgid "Area"
+#, kde-format
 msgid "Area:"
-msgstr "Alan"
+msgstr "Alan:"
 
 #. i18n: ectx: property (toolTip), widget (QLineEdit, lineEditVolume)
 #: step/create_gas_particles.ui:41
@@ -290,7 +289,7 @@ msgstr "Konum:"
 #: step/create_softbody_items.ui:54
 #, kde-format
 msgid "Body size:"
-msgstr "Cismin boyutu:"
+msgstr "Gövde boyutu:"
 
 #. i18n: ectx: property (text), widget (QLineEdit, lineEditSize)
 #: step/create_softbody_items.ui:61
@@ -302,7 +301,7 @@ msgstr "(1,1)"
 #: step/create_softbody_items.ui:71
 #, kde-format
 msgid "Body mass:"
-msgstr "Cismin kütlesi:"
+msgstr "Gövde kütlesi:"
 
 #. i18n: ectx: property (text), widget (QLabel, label)
 #: step/create_softbody_items.ui:88
@@ -320,7 +319,7 @@ msgstr "15"
 #: step/create_softbody_items.ui:105
 #, kde-format
 msgid "Body damping:"
-msgstr "Cismin yavaşlaması:"
+msgstr "Gövde yavaşlaması:"
 
 #. i18n: ectx: property (text), widget (QLineEdit, lineEditBodyDamping)
 #: step/create_softbody_items.ui:112
@@ -332,7 +331,7 @@ msgstr "0.3"
 #: step/create_softbody_items.ui:122
 #, kde-format
 msgid "Body split counts:"
-msgstr "Cismin dilim sayısı:"
+msgstr "Gövde dilim sayısı:"
 
 #. i18n: ectx: property (text), widget (QLineEdit, lineEditSplit)
 #: step/create_softbody_items.ui:129
@@ -341,11 +340,10 @@ msgid "(4,4)"
 msgstr "(4,4)"
 
 #: step/gascreationdialog.cc:31
-#, fuzzy, kde-format
-#| msgid "Create gas particles"
+#, kde-format
 msgctxt "@title:window"
 msgid "Create Gas Particles"
-msgstr "Gaz parçacıklarını oluştur"
+msgstr "Gaz Parçacıkları Oluştur"
 
 #: step/gasgraphics.cc:31
 #, kde-format
@@ -353,8 +351,8 @@ msgid ""
 "Press left mouse button to position\n"
 "top left corner of a region for %1"
 msgstr ""
-"%1 için bir bölgenin sol üst köşesini belirlemek\n"
-"üzere farenin sol tuşuna basın"
+"%1 için bir bölgenin sol üst köşesini\n"
+"konumlamak üzere sol fare düğmesine basın"
 
 #: step/gasgraphics.cc:43 step/motorgraphics.cc:30 step/motorgraphics.cc:211
 #: step/polygongraphics.cc:161 step/polygongraphics.cc:295
@@ -370,8 +368,8 @@ msgid ""
 "Move mouse and release left mouse button to position\n"
 "bottom right corner of the region for %1"
 msgstr ""
-"Fareyi hareket ettirin ve %1 için bölgenin sağ alt köşesini belirlemek\n"
-"üzere farenin sol tuşunu bırakın"
+"%1 için bir bölgenin sol üst köşesini konumlamak\n"
+"üzere fareyi hareket ettiren ve sol fare düğmesini bırakın"
 
 #: step/gasgraphics.cc:85
 #, kde-format
@@ -384,13 +382,12 @@ msgstr "Lütfen gaz parçacıkları için değişkenleri girin."
 #: step/worldgraphics.cc:122 step/worldgraphics.cc:157
 #, kde-format
 msgid "%1 named '%2' created"
-msgstr "%1 isimlendirildi '%2' oluşturuldu "
+msgstr "%1 adlı \"%2\" oluşturuldu"
 
 #: step/gasgraphics.cc:282
-#, fuzzy, kde-format
-#| msgid "Create particles..."
+#, kde-format
 msgid "Create Particles..."
-msgstr "Parçacıkları oluştur..."
+msgstr "Parçacıklar Oluştur..."
 
 #: step/gasgraphics.cc:352
 #, kde-format
@@ -398,8 +395,8 @@ msgid ""
 "You are trying to create a very large number of particles. This will make "
 "simulation very slow. Do you want to continue?"
 msgstr ""
-"Çok büyük sayıda parçacık oluşturmaya çalışıyorsunuz. Bu benzeştirimi çok "
-"yavaşlatacaktır. Devam etmek istiyor musunuz ?"
+"Çok büyük sayıda parçacık oluşturmaya çalışıyorsunuz. Bu benzetimi pek "
+"yavaşlatacaktır. Sürdürmek istiyor musunuz ?"
 
 #: step/gasgraphics.cc:354 step/mainwindow.cc:401
 #, kde-format
@@ -409,13 +406,12 @@ msgstr "Uyarı - Step"
 #: step/gasgraphics.cc:365
 #, kde-format
 msgid "Create particles for %1"
-msgstr "%1 için parçacıkları oluştur"
+msgstr "%1 için parçacıklar oluştur"
 
 #: step/infobrowser.cc:26
-#, fuzzy, kde-format
-#| msgid "Context info"
+#, kde-format
 msgid "Context Info"
-msgstr "Bağlam bilgileri"
+msgstr "Bağlam Bilgisi"
 
 #: step/infobrowser.cc:44
 #, kde-format
@@ -438,10 +434,9 @@ msgid "Follow selection"
 msgstr "Seçimi takip et"
 
 #: step/infobrowser.cc:57
-#, fuzzy, kde-format
-#| msgid "Open in browser"
+#, kde-format
 msgid "Open in Browser"
-msgstr "Tarayıcıda aç"
+msgstr "Tarayıcıda Aç"
 
 #: step/infobrowser.cc:132
 #, kde-format
@@ -461,16 +456,15 @@ msgstr "Belgelendirme hatası"
 #: step/infobrowser.cc:164
 #, kde-format
 msgid "Documentation for %1 not available. "
-msgstr "%1 için belgelendirme kullanılabilir değil. "
+msgstr "%1 için belgelendirme yok. "
 
 #: step/infobrowser.cc:165
-#, fuzzy, kde-format
-#| msgid ""
-#| "You can help <a href=\"http://edu.kde.org/step\">Step</a> by writing it!"
+#, kde-format
 msgid ""
 "You can help <a href=\"https://edu.kde.org/step\">Step</a> by writing it!"
 msgstr ""
-"<a href=\"http://edu.kde.org/step\">Step</a> Yazarak yardım edebilirsiniz !"
+"<a href=\"http://edu.kde.org/step\">Step</a>'e, onu yazarak yardım "
+"edebilirsiniz !"
 
 #: step/itempalette.cc:177
 #, kde-format
@@ -485,12 +479,12 @@ msgstr "İşaretçi"
 #: step/itempalette.cc:197
 #, kde-format
 msgid "Selection pointer"
-msgstr "Seçme işaretçisi"
+msgstr "Seçim işaretçisi"
 
 #: step/itempalette.cc:220
 #, kde-format
 msgid "Show text"
-msgstr "Metni Göster"
+msgstr "Metni göster"
 
 #: step/jointgraphics.cc:158 step/springgraphics.cc:30
 #, kde-format
@@ -539,7 +533,7 @@ msgstr "Step"
 #: step/main.cc:33
 #, kde-format
 msgid "Interactive physical simulator"
-msgstr "Etkileşimli fizik benzetimcisi"
+msgstr "Etkileşimli fizik benzetimci"
 
 #: step/main.cc:35
 #, kde-format
@@ -547,10 +541,9 @@ msgid "(C) 2007 Vladimir Kuznetsov"
 msgstr "(C) 2007 Vladimir Kuznetsov"
 
 #: step/main.cc:37
-#, fuzzy, kde-format
-#| msgid "http://edu.kde.org/step"
+#, kde-format
 msgid "https://edu.kde.org/step"
-msgstr "http://edu.kde.org/step"
+msgstr "https://edu.kde.org/step"
 
 #: step/main.cc:42
 #, kde-format
@@ -625,12 +618,12 @@ msgstr "Çalıştı&r"
 #: step/mainwindow.cc:205
 #, kde-format
 msgid "Execute the program"
-msgstr "Uygulamayı çalıştır"
+msgstr "Uygulamayı yürüt"
 
 #: step/mainwindow.cc:206
 #, kde-format
 msgid "Run: Execute the program"
-msgstr "Çalıştır: Uygulamayı çalıştır"
+msgstr "Çalıştır: Uygulamayı yürüt"
 
 #: step/mainwindow.cc:208
 #, kde-format
@@ -737,7 +730,7 @@ msgstr "&Durdur"
 #: step/mainwindow.cc:490
 #, kde-format
 msgid "&Simulate"
-msgstr "&Benzetim Yap"
+msgstr "&Benzet"
 
 #: step/mainwindow.cc:495
 #, kde-format
@@ -746,9 +739,9 @@ msgid ""
 "tolerance.\n"
 "Please check solver settings and try again."
 msgstr ""
-"Bu adım kısmi hatanın izin verilen degerden daha büyük olması nedeniyle "
-"tamamlanamamaktadir.\n"
-"Lutfen çözücü ayarlarını kontrol edip yeniden deneyin."
+"Bu adım, kısmi hatanın izin verilen değerden daha büyük olması nedeniyle "
+"tamamlanamamaktadır.\n"
+"Lütfen çözücü ayarlarını denetleyip yeniden deneyin."
 
 #: step/mainwindow.cc:500
 #, kde-format
@@ -757,7 +750,7 @@ msgid ""
 "resolved automatically.\n"
 "Please move colliding objects apart and try again."
 msgstr ""
-"Bu adım var olan çakışmalar otomatik olarak giderilemediği için "
+"Bu adım, var olan çakışmalar otomatik olarak giderilemediği için "
 "tamamlanamamaktadır.\n"
 "Lütfen çakışan nesneleri ayırın ve yeniden deneyin."
 
@@ -795,18 +788,19 @@ msgstr "Genel"
 #: step/stepgraphicsitem.cc:198 step/stepgraphicsitem.cc:210
 #, kde-format
 msgid "Move %1"
-msgstr "%1 Taşı"
+msgstr "Taşı: %1"
 
 #: step/polygongraphics.cc:149
 #, kde-format
 msgid "Press left mouse button to position a center of a %1"
-msgstr " %1 için bir merkez belirlemek üzere farenin sol tuşuna basın"
+msgstr "%1 için bir merkez belirlemek üzere farenin sol düğmesine basın"
 
 #: step/polygongraphics.cc:170
 #, kde-format
 msgid "Move mouse and release left mouse button to define a radius of the %1"
 msgstr ""
-"%1 yarıçapını tanımlayabilmek için fareyi hareket ettirin ve sol tuşu bırakın"
+"%1 yarıçapını tanımlayabilmek için fareyi hareket ettirin ve sol düğmeyi "
+"bırakın"
 
 #: step/polygongraphics.cc:283
 #, kde-format
@@ -815,7 +809,7 @@ msgid ""
 "top left corner of a %1"
 msgstr ""
 "%1 için sol üst köşeyi belirlemek\n"
-" üzere farenin sol tuşuna basın"
+" üzere farenin sol düğmesine basın"
 
 #: step/polygongraphics.cc:305
 #, kde-format
@@ -824,7 +818,7 @@ msgid ""
 "bottom right corner of the %1"
 msgstr ""
 "Fareyi hareket ettirin ve %1 için sağ alt köşeyi belirlemek\n"
-" üzere farenin sol tuşunu bırakın"
+" üzere farenin sol düğmesini bırakın"
 
 #: step/polygongraphics.cc:428
 #, kde-format
@@ -836,7 +830,7 @@ msgstr "%1 için birinci kesişme noktasını oluşturmak üzere ekrana tıklay�
 msgid "Click on the scene to add new vertex or press Enter to finish"
 msgstr ""
 "Yeni bir kesişme noktası eklemek için ekrana tıklayın veya bitirmek için "
-"Giriş Tuşuna basın"
+"Enter'a basın"
 
 #: step/propertiesbrowser.cc:267
 #, kde-format
@@ -849,7 +843,7 @@ msgstr "Çözücü türünü değiştir"
 #: step/stepgraphicsitem.cc:393 step/stepgraphicsitem.cc:538
 #, kde-format
 msgid "Change %1.%2"
-msgstr "Değiştir %1, %2"
+msgstr "Değiştir: %1,%2"
 
 #: step/propertiesbrowser.cc:302
 #, kde-format
@@ -893,11 +887,10 @@ msgid "Please fill in the parameters for %1"
 msgstr "Lütfen %1 için değişkenleri girin."
 
 #: step/softbodygraphics.cc:114
-#, fuzzy, kde-format
-#| msgid "Create soft body items"
+#, kde-format
 msgctxt "@title:window"
 msgid "Create Soft Body Items"
-msgstr "Yumuşak gövde ögeleri oluştur"
+msgstr "Yumuşak Gövde Ögeleri Oluştur"
 
 #: step/softbodygraphics.cc:175
 #, kde-format
@@ -916,28 +909,28 @@ msgstr "Nesneleri oluştururken ipuçları göster"
 #: step/step.kcfg:14 step/step.kcfg:15
 #, kde-format
 msgid "Show axes on the scene"
-msgstr "Eksenleri ekranda göster"
+msgstr "Sahnede eksenleri göster"
 
 #. i18n: ectx: label, entry (floatDisplayPrecision), group (General)
 #. i18n: ectx: whatsthis, entry (floatDisplayPrecision), group (General)
 #: step/step.kcfg:19 step/step.kcfg:20
 #, kde-format
 msgid "Display precision of double numbers"
-msgstr "Gösterge hassasiyeti:"
+msgstr "Ondalıklı sayıların görüntüleme derecesi"
 
 #. i18n: ectx: label, entry (enableOpenGL), group (General)
 #. i18n: ectx: whatsthis, entry (enableOpenGL), group (General)
 #: step/step.kcfg:26 step/step.kcfg:27
 #, kde-format
 msgid "Use OpenGL to accelerate drawing whenever possible"
-msgstr "Mümkün olan her yerde çizimi hızlandırmak için OpenGL kullan"
+msgstr "Olabilen her yerde çizimi hızlandırmak için OpenGL kullan"
 
 #. i18n: ectx: label, entry (wikiExternal), group (InfoBrowser)
 #. i18n: ectx: whatsthis, entry (wikiExternal), group (InfoBrowser)
 #: step/step.kcfg:33 step/step.kcfg:34
 #, kde-format
 msgid "Browse wikipedia in external browser"
-msgstr "Dış tarayıcıda Wikipedia'yı aç"
+msgstr "Dış tarayıcıda Vikipedi'yi aç"
 
 #. i18n: ectx: label, entry (showButtonText), group (ItemPalette)
 #. i18n: ectx: whatsthis, entry (showButtonText), group (ItemPalette)
@@ -966,7 +959,7 @@ msgstr "Ana araç çubuğu"
 #: step/stepui.rc:10
 #, kde-format
 msgid "Simulation Toolbar"
-msgstr "Benzeştirim Araç Çubuğu"
+msgstr "Benzetim Araç Çubuğu"
 
 #. i18n: ectx: Menu (examples)
 #: step/stepui.rc:19
@@ -978,7 +971,7 @@ msgstr "Ö&rnekler"
 #: step/stepui.rc:30
 #, kde-format
 msgid "&Simulation"
-msgstr "&Benzeştirim"
+msgstr "&Benzetim"
 
 #. i18n: ectx: Menu (speed)
 #: step/stepui.rc:33
@@ -1015,7 +1008,7 @@ msgstr "&Yatık"
 #: step/toolgraphics.cc:386
 #, kde-format
 msgid "&Underline"
-msgstr "&Altı çizili"
+msgstr "&Altı Çizili"
 
 #: step/toolgraphics.cc:389
 #, kde-format
@@ -1053,32 +1046,30 @@ msgid "Font &Size"
 msgstr "&Yazıtipi Boyutu"
 
 #: step/toolgraphics.cc:410
-#, fuzzy, kde-format
-#| msgid "Insert &Image"
+#, kde-format
 msgid "Insert &Image..."
-msgstr "Res&im Ekle"
+msgstr "Gör&sel Ekle..."
 
 #: step/toolgraphics.cc:415
-#, fuzzy, kde-format
-#| msgid "Insert &Formula"
+#, kde-format
 msgid "Insert &Formula..."
-msgstr "&Formül Ekle"
+msgstr "&Formül Ekle..."
 
 #: step/toolgraphics.cc:526
 #, kde-format
 msgid "Edit %1"
-msgstr "%1 ögesini Düzenle"
+msgstr "Düzenle: %1"
 
 #: step/toolgraphics.cc:631
 #, kde-format
 msgctxt "@title:window"
 msgid "Open Image File"
-msgstr ""
+msgstr "Görsel Dosyası Aç"
 
 #: step/toolgraphics.cc:631
 #, kde-format
 msgid "Images (*.png *.jpg *.jpeg)"
-msgstr ""
+msgstr "Görseller (*.png *.jpg *.jpeg)"
 
 #: step/toolgraphics.cc:649
 #, kde-format
@@ -1091,31 +1082,29 @@ msgid ""
 "Cannot find latex installation. You need 'latex', 'dvips' and 'gs' "
 "executables installed and accessible from $PATH"
 msgstr ""
-"Latex kurulumu bulunamadı. 'latex', 'dvips' ve 'gs' uygulamalarının kurulmuş "
+"LaTeX kurulumu bulunamadı. 'latex', 'dvips' ve 'gs' uygulamalarının kurulmuş "
 "ve $PATH üzerinden ulaşılabilir olması gerekmektedir"
 
 #: step/toolgraphics.cc:699
-#, fuzzy, kde-format
-#| msgid "LaTex Formula - Step"
+#, kde-format
 msgctxt "@title:window"
 msgid "LaTex Formula - Step"
-msgstr "LaTex Formülü - Step"
+msgstr "LaTeX Formülü - Step"
 
 #: step/toolgraphics.cc:700
-#, fuzzy, kde-format
-#| msgid "Enter LaTeX formula string"
+#, kde-format
 msgid "Enter LaTeX formula string:"
-msgstr "Latex formül ifadesini girin"
+msgstr "LaTeX formül dizisi girini:"
 
 #: step/toolgraphics.cc:709
 #, kde-format
 msgid "Cannot compile LaTeX formula: %1"
-msgstr "Latex formülü derlenemedi: %1"
+msgstr "LaTeX formülü derlenemedi: %1"
 
 #: step/toolgraphics.cc:715
 #, kde-format
 msgid "Cannot parse result image"
-msgstr "Sonuç resmi ayrıştırılamadı"
+msgstr "Sonuç görseli ayrıştırılamadı"
 
 #: step/toolgraphics.cc:776
 #, kde-format
@@ -1130,12 +1119,12 @@ msgstr "Özellik adı"
 #: step/toolgraphics.cc:787
 #, kde-format
 msgid "Vector index"
-msgstr "Vektör dizini"
+msgstr "Vektör indeksi"
 
 #: step/toolgraphics.cc:976 step/toolgraphics.cc:984 step/toolgraphics.cc:1477
 #, kde-format
 msgid "%1.%2"
-msgstr "%1.%2"
+msgstr "%1,%2"
 
 #: step/toolgraphics.cc:977 step/toolgraphics.cc:985 step/toolgraphics.cc:1478
 #, kde-format
@@ -1148,23 +1137,20 @@ msgid "[not configured]"
 msgstr "[yapılandırılmamış]"
 
 #: step/toolgraphics.cc:1077
-#, fuzzy, kde-format
-#| msgid "Clear graph"
+#, kde-format
 msgid "Clear Graph"
-msgstr "Grafiği temizle"
+msgstr "Grafiği Temizle"
 
 #: step/toolgraphics.cc:1078
-#, fuzzy, kde-format
-#| msgid "Configure graph..."
+#, kde-format
 msgid "Configure Graph..."
-msgstr "Grafiği yapılandır..."
+msgstr "Grafiği Yapılandır..."
 
 #: step/toolgraphics.cc:1096
-#, fuzzy, kde-format
-#| msgid "Configure graph"
+#, kde-format
 msgctxt "@title:window"
 msgid "Configure Graph"
-msgstr "Grafiği yapılandır"
+msgstr "Grafiği Yapılandır"
 
 #: step/toolgraphics.cc:1172 step/toolgraphics.cc:1371
 #: step/toolgraphics.cc:1709
@@ -1178,29 +1164,25 @@ msgid "Clear graph %1"
 msgstr "%1 grafiğini temizle"
 
 #: step/toolgraphics.cc:1305
-#, fuzzy, kde-format
-#| msgid "Configure meter..."
+#, kde-format
 msgid "Configure Meter..."
-msgstr "Ölçeği yapılandır..."
+msgstr "Ölçeri Yapılandır..."
 
 #: step/toolgraphics.cc:1323
-#, fuzzy, kde-format
-#| msgid "Configure meter"
+#, kde-format
 msgctxt "@title:window"
 msgid "Configure Meter"
-msgstr "Ölçeği yapılandır"
+msgstr "Ölçeri Yapılandır"
 
 #: step/toolgraphics.cc:1420 step/toolgraphics.cc:1617
-#, fuzzy, kde-format
-#| msgid "Increase value"
+#, kde-format
 msgid "Increase Value"
-msgstr "Değeri arttır"
+msgstr "Değeri Artır"
 
 #: step/toolgraphics.cc:1421 step/toolgraphics.cc:1618
-#, fuzzy, kde-format
-#| msgid "Decrease value"
+#, kde-format
 msgid "Decrease Value"
-msgstr "Değeri azalt"
+msgstr "Değeri Azalt"
 
 #: step/toolgraphics.cc:1451 step/toolgraphics.cc:1746
 #, kde-format
@@ -1210,7 +1192,7 @@ msgstr "%1 denetleyicisini azalt"
 #: step/toolgraphics.cc:1460 step/toolgraphics.cc:1755
 #, kde-format
 msgid "Increase controller %1"
-msgstr "%1 denetleyicisini arttır"
+msgstr "%1 denetleyicisini artır"
 
 #: step/toolgraphics.cc:1594
 #, kde-format
@@ -1218,34 +1200,30 @@ msgid "Change controller %1"
 msgstr "%1 denetleyicisini değiştir"
 
 #: step/toolgraphics.cc:1620
-#, fuzzy, kde-format
-#| msgid "Configure controller..."
+#, kde-format
 msgid "Configure Controller..."
-msgstr "Denetleyiciyi yapılandır..."
+msgstr "Denetleyiciyi Yapılandır..."
 
 #: step/toolgraphics.cc:1638
-#, fuzzy, kde-format
-#| msgid "Configure controller"
+#, kde-format
 msgctxt "@title:window"
 msgid "Configure Controller"
-msgstr "Denetleyiciyi yapılandır"
+msgstr "Denetleyiciyi Yapılandır"
 
 #: step/toolgraphics.cc:1899
-#, fuzzy, kde-format
-#| msgid "Clear trace"
+#, kde-format
 msgid "Clear Trace"
-msgstr "İzi temizle"
+msgstr "İzi Temizle"
 
 #: step/toolgraphics.cc:1908
 #, kde-format
 msgid "Clear tracer %1"
-msgstr "%1 izini temizle"
+msgstr "%1 izleyicisini temizle"
 
 #: step/undobrowser.cc:18
-#, fuzzy, kde-format
-#| msgid "Undo history"
+#, kde-format
 msgid "Undo History"
-msgstr "Geri alma geçmişi"
+msgstr "Geri Al Geçmişi"
 
 #: step/worldbrowser.cc:50
 #, kde-format
@@ -1259,18 +1237,18 @@ msgid ""
 "Press left mouse button to position first end of a %1\n"
 "then drag and release it to position the second end"
 msgstr ""
-"%1 için birinci ucu konumlandirmak üzere farenin sol tuşuna basın\n"
+"%1 için birinci ucu konumlandırmak üzere farenin sol düğmesine basın\n"
 "ve sonra sürükleyip ikinci ucu konumlandırmak için bırakın"
 
 #: step/worldgraphics.cc:118
 #, kde-format
 msgid "Release left mouse button to position second end of the %1"
-msgstr "%1 için ikinci ucu konumlandirmak üzere farenin sol tuşunu bırakın"
+msgstr "%1 için ikinci ucu konumlandırmak üzere farenin sol düğmesini bırakın"
 
 #: step/worldmodel.cc:629
 #, kde-format
 msgid "Delete %1"
-msgstr "Sil %1"
+msgstr "Sil: %1"
 
 #: step/worldmodel.cc:630
 #, kde-format
@@ -1285,7 +1263,7 @@ msgstr "<nesne yok>"
 #: step/worldmodel.cc:703
 #, kde-format
 msgid "<unnamed>"
-msgstr "<isimlendirilmemiş>"
+msgstr "<adsız>"
 
 #: step/worldmodel.cc:709
 #, kde-format
@@ -1305,12 +1283,12 @@ msgstr "<tr><td>%1&nbsp;&nbsp;</td><td>%2</td></tr>"
 #: step/worldmodel.cc:1007
 #, kde-format
 msgid "Simulate %1 → %2"
-msgstr "Benzeştirim yap %1 → %2"
+msgstr "Benzet: %1 → %2"
 
 #: step/worldmodel.cc:1060
 #, kde-format
 msgid "Cut %1"
-msgstr "%1 Kes"
+msgstr "Kes: %1"
 
 #: step/worldmodel.cc:1061
 #, kde-format

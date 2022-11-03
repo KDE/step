@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: step\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2022-10-26 00:42+0000\n"
-"PO-Revision-Date: 2022-11-01 20:30+0300\n"
+"PO-Revision-Date: 2022-11-02 10:48+0300\n"
 "Last-Translator: Emir SARI <emir_sari@icloud.com>\n"
 "Language-Team: Turkish <kde-l10n-tr@kde.org>\n"
 "Language: tr\n"
@@ -452,13 +452,13 @@ msgstr "<span style=\" font-size:large;\">n =</span>"
 #, kde-format
 msgctxt "name"
 msgid "meter1"
-msgstr "ölçü1"
+msgstr "ölçer1"
 
 #: examples/gas.step:270
 #, kde-format
 msgctxt "name"
 msgid "meter2"
-msgstr "ölçü2"
+msgstr "ölçer2"
 
 #: examples/gas.step:281 tutorials/tutorial1.step:53
 #: tutorials/tutorial2.step:102 tutorials/tutorial3.step:84
@@ -478,7 +478,7 @@ msgstr "T ="
 #, kde-format
 msgctxt "name"
 msgid "meter3"
-msgstr "ölçü3"
+msgstr "ölçer3"
 
 #: examples/gas.step:304 examples/graph.step:92 examples/lissajous.step:98
 #: examples/wave.step:468 tutorials/tutorial1.step:37
@@ -516,7 +516,7 @@ msgstr ""
 #, kde-format
 msgctxt "name"
 msgid "meter4"
-msgstr "ölçü4"
+msgstr "ölçer4"
 
 #: examples/gas.step:340 tutorials/tutorial1.step:69
 #: tutorials/tutorial2.step:119 tutorials/tutorial4.step:122
@@ -556,24 +556,26 @@ msgctxt "HTML:p"
 msgid ""
 "(run simulation for ~20 seconds and compare spring tension with pressure)"
 msgstr ""
+"(benzetimi yaklaşık 20 saniyeliğine çalıştır ve yay gerilimini basınçla "
+"karşılaştır)"
 
 #: examples/graph.step:59
 #, kde-format
 msgctxt "name"
 msgid "graph2"
-msgstr ""
+msgstr "çizelge2"
 
 #: examples/graph.step:88
 #, kde-format
 msgctxt "HTML:p"
 msgid "Phase diagram"
-msgstr ""
+msgstr "Faz diyagramı"
 
 #: examples/graph.step:101
 #, kde-format
 msgctxt "HTML:p"
 msgid "Position - time"
-msgstr ""
+msgstr "Konum - zaman"
 
 #: examples/liquid.step:196
 #, kde-format
@@ -583,25 +585,28 @@ msgid ""
 "potential as gas. Notice how sometimes a particle leaves the drop - it is "
 "evaporation."
 msgstr ""
+"Boş uzayda bu küçük sıvı damlasının bırakılması, gazla aynı potansiyel "
+"kullanılarak benzetilir. Bazen bir parçacığın damladan ayrıldığına dikkat "
+"edin - bu buharlaşmadır."
 
 #: examples/lissajous.step:39 examples/wave.step:423
 #, kde-format
 msgctxt "name"
 msgid "spring2"
-msgstr ""
+msgstr "yay2"
 
 #: examples/lissajous.step:71 examples/motor.step:51
 #: tutorials/tutorial2.step:39 tutorials/tutorial4.step:63
 #, kde-format
 msgctxt "name"
 msgid "controller1"
-msgstr ""
+msgstr "denetleyici1"
 
 #: examples/lissajous.step:94
 #, kde-format
 msgctxt "HTML:p"
 msgid "Lissajous curve"
-msgstr ""
+msgstr "Lissjous eğrisi"
 
 #: examples/lissajous.step:108
 #, kde-format
@@ -611,654 +616,657 @@ msgid ""
 "how the curve will change. Try the following values:<br></br>1, 2.25, "
 "1.7778, 1.5625, 0.6944"
 msgstr ""
+"Lütfen yay1'in sertliğini değiştirmeye çalışın ve eğrinin\n"
+"nice değişeceğini görün: Şu değerleri deneyin:<br></br> 1, 2,25, 1,7778, "
+"1,5625, 0,6944"
 
 #: examples/motor.step:43 examples/motor1.step:23 tutorials/tutorial4.step:47
 #, kde-format
 msgctxt "name"
 msgid "linearMotor1"
-msgstr ""
+msgstr "doğrusalMotor1"
 
 #: examples/motor1.step:31 tutorials/tutorial4.step:55
 #, kde-format
 msgctxt "name"
 msgid "linearMotor2"
-msgstr ""
+msgstr "doğrusalMotor2"
 
 #: examples/motor1.step:39
 #, kde-format
 msgctxt "name"
 msgid "linearMotor3"
-msgstr ""
+msgstr "doğrusalMotor3"
 
 #: examples/note.step:19
 #, kde-format
 msgctxt "HTML:p"
 msgid "Example formula:"
-msgstr ""
+msgstr "Örnek formül:"
 
 #: examples/note.step:20
 #, kde-format
 msgctxt "HTML:p"
 msgid "<img src=\"img:0\"></img>"
-msgstr ""
+msgstr "<img src=\"img:0\"></img>"
 
 #: examples/note.step:22
 #, kde-format
 msgctxt "HTML:p"
 msgid "Example image:"
-msgstr ""
+msgstr "Örnek görsel:"
 
 #: examples/note.step:23
 #, kde-format
 msgctxt "HTML:p"
 msgid "<img src=\"img:1\"></img>"
-msgstr ""
+msgstr "<img src=\"img:1\"></img>"
 
 #: examples/note.step:26
 #, kde-format
 msgctxt "name"
 msgid "img:0"
-msgstr ""
+msgstr "grs:0"
 
 #: examples/note.step:33
 #, kde-format
 msgctxt "name"
 msgid "img:1"
-msgstr ""
+msgstr "grs:1"
 
 #: examples/resonance.step:11
 #, kde-format
 msgctxt "name"
 msgid "LeftWall"
-msgstr ""
+msgstr "SolDuvar"
 
 #: examples/resonance.step:23
 #, kde-format
 msgctxt "name"
 msgid "Body"
-msgstr ""
+msgstr "Gövde"
 
 #: examples/resonance.step:35
 #, kde-format
 msgctxt "name"
 msgid "RightWall"
-msgstr ""
+msgstr "SağDuvar"
 
 #: examples/resonance.step:47
 #, kde-format
 msgctxt "name"
 msgid "Disk"
-msgstr ""
+msgstr "Disk"
 
 #: examples/resonance.step:59
 #, kde-format
 msgctxt "name"
 msgid "PinDisk"
-msgstr ""
+msgstr "PimDiski"
 
 #: examples/resonance.step:67
 #, kde-format
 msgctxt "name"
 msgid "Spring"
-msgstr ""
+msgstr "Yay"
 
 #: examples/resonance.step:79
 #, kde-format
 msgctxt "name"
 msgid "AnchorLeftWall"
-msgstr ""
+msgstr "ÇapaSolDuvar"
 
 #: examples/resonance.step:87
 #, kde-format
 msgctxt "name"
 msgid "AnchorRightWall"
-msgstr ""
+msgstr "ÇapaSağDuvar"
 
 #: examples/resonance.step:95
 #, kde-format
 msgctxt "name"
 msgid "Graph"
-msgstr ""
+msgstr "Çizelge"
 
 #: examples/resonance.step:115
 #, kde-format
 msgctxt "name"
 msgid "CircularMotor"
-msgstr ""
+msgstr "DaireselMotor"
 
 #: examples/resonance.step:123
 #, kde-format
 msgctxt "name"
 msgid "Velocity"
-msgstr ""
+msgstr "Hız"
 
 #: examples/resonance.step:137
 #, kde-format
 msgctxt "name"
 msgid "Acceleration"
-msgstr ""
+msgstr "İvme"
 
 #: examples/resonance.step:151
 #, kde-format
 msgctxt "name"
 msgid "Stiffness"
-msgstr ""
+msgstr "Sertlik"
 
 #: examples/resonance.step:165
 #, kde-format
 msgctxt "name"
 msgid "Damping"
-msgstr ""
+msgstr "Sönümleme"
 
 #: examples/softbody.step:11 examples/wave.step:11
 #, kde-format
 msgctxt "name"
 msgid "softBody1"
-msgstr ""
+msgstr "yumuşakGövde1"
 
 #: examples/softbody.step:21 examples/wave.step:21
 #, kde-format
 msgctxt "name"
 msgid "softBodyParticle1"
-msgstr ""
+msgstr "yumuşakGövdeParçacığı1"
 
 #: examples/softbody.step:29 examples/wave.step:29
 #, kde-format
 msgctxt "name"
 msgid "softBodyParticle2"
-msgstr ""
+msgstr "yumuşakGövdeParçacığı2"
 
 #: examples/softbody.step:37 examples/wave.step:37
 #, kde-format
 msgctxt "name"
 msgid "softBodyParticle3"
-msgstr ""
+msgstr "yumuşakGövdeParçacığı3"
 
 #: examples/softbody.step:45 examples/wave.step:45
 #, kde-format
 msgctxt "name"
 msgid "softBodyParticle4"
-msgstr ""
+msgstr "yumuşakGövdeParçacığı4"
 
 #: examples/softbody.step:53 examples/wave.step:53
 #, kde-format
 msgctxt "name"
 msgid "softBodyParticle5"
-msgstr ""
+msgstr "yumuşakGövdeParçacığı5"
 
 #: examples/softbody.step:61 examples/wave.step:61
 #, kde-format
 msgctxt "name"
 msgid "softBodyParticle6"
-msgstr ""
+msgstr "yumuşakGövdeParçacığı6"
 
 #: examples/softbody.step:69 examples/wave.step:69
 #, kde-format
 msgctxt "name"
 msgid "softBodyParticle7"
-msgstr ""
+msgstr "yumuşakGövdeParçacığı7"
 
 #: examples/softbody.step:77 examples/wave.step:77
 #, kde-format
 msgctxt "name"
 msgid "softBodyParticle8"
-msgstr ""
+msgstr "yumuşakGövdeParçacığı8"
 
 #: examples/softbody.step:85 examples/wave.step:85
 #, kde-format
 msgctxt "name"
 msgid "softBodyParticle9"
-msgstr ""
+msgstr "yumuşakGövdeParçacığı9"
 
 #: examples/softbody.step:93 examples/wave.step:93
 #, kde-format
 msgctxt "name"
 msgid "softBodyParticle10"
-msgstr ""
+msgstr "yumuşakGövdeParçacığı10"
 
 #: examples/softbody.step:101 examples/wave.step:101
 #, kde-format
 msgctxt "name"
 msgid "softBodyParticle11"
-msgstr ""
+msgstr "yumuşakGövdeParçacığı11"
 
 #: examples/softbody.step:109 examples/wave.step:109
 #, kde-format
 msgctxt "name"
 msgid "softBodyParticle12"
-msgstr ""
+msgstr "yumuşakGövdeParçacığı12"
 
 #: examples/softbody.step:117 examples/wave.step:117
 #, kde-format
 msgctxt "name"
 msgid "softBodyParticle13"
-msgstr ""
+msgstr "yumuşakGövdeParçacığı13"
 
 #: examples/softbody.step:125 examples/wave.step:125
 #, kde-format
 msgctxt "name"
 msgid "softBodyParticle14"
-msgstr ""
+msgstr "yumuşakGövdeParçacığı14"
 
 #: examples/softbody.step:133 examples/wave.step:133
 #, kde-format
 msgctxt "name"
 msgid "softBodyParticle15"
-msgstr ""
+msgstr "yumuşakGövdeParçacığı15"
 
 #: examples/softbody.step:141 examples/wave.step:141
 #, kde-format
 msgctxt "name"
 msgid "softBodyParticle16"
-msgstr ""
+msgstr "yumuşakGövdeParçacığı16"
 
 #: examples/softbody.step:149 examples/wave.step:181
 #, kde-format
 msgctxt "name"
 msgid "softBodySpring1"
-msgstr ""
+msgstr "yumuşakGövdeYayı1"
 
 #: examples/softbody.step:161 examples/wave.step:193
 #, kde-format
 msgctxt "name"
 msgid "softBodySpring2"
-msgstr ""
+msgstr "yumuşakGövdeYayı2"
 
 #: examples/softbody.step:173 examples/wave.step:205
 #, kde-format
 msgctxt "name"
 msgid "softBodySpring3"
-msgstr ""
+msgstr "yumuşakGövdeYayı3"
 
 #: examples/softbody.step:185 examples/wave.step:217
 #, kde-format
 msgctxt "name"
 msgid "softBodySpring4"
-msgstr ""
+msgstr "yumuşakGövdeYayı4"
 
 #: examples/softbody.step:197 examples/wave.step:229
 #, kde-format
 msgctxt "name"
 msgid "softBodySpring5"
-msgstr ""
+msgstr "yumuşakGövdeYayı5"
 
 #: examples/softbody.step:209 examples/wave.step:241
 #, kde-format
 msgctxt "name"
 msgid "softBodySpring6"
-msgstr ""
+msgstr "yumuşakGövdeYayı6"
 
 #: examples/softbody.step:221 examples/wave.step:253
 #, kde-format
 msgctxt "name"
 msgid "softBodySpring7"
-msgstr ""
+msgstr "yumuşakGövdeYayı7"
 
 #: examples/softbody.step:233 examples/wave.step:265
 #, kde-format
 msgctxt "name"
 msgid "softBodySpring8"
-msgstr ""
+msgstr "yumuşakGövdeYayı8"
 
 #: examples/softbody.step:245 examples/wave.step:277
 #, kde-format
 msgctxt "name"
 msgid "softBodySpring9"
-msgstr ""
+msgstr "yumuşakGövdeYayı9"
 
 #: examples/softbody.step:257 examples/wave.step:289
 #, kde-format
 msgctxt "name"
 msgid "softBodySpring10"
-msgstr ""
+msgstr "yumuşakGövdeYayı10"
 
 #: examples/softbody.step:269 examples/wave.step:301
 #, kde-format
 msgctxt "name"
 msgid "softBodySpring11"
-msgstr ""
+msgstr "yumuşakGövdeYayı11"
 
 #: examples/softbody.step:281 examples/wave.step:313
 #, kde-format
 msgctxt "name"
 msgid "softBodySpring12"
-msgstr ""
+msgstr "yumuşakGövdeYayı12"
 
 #: examples/softbody.step:293 examples/wave.step:325
 #, kde-format
 msgctxt "name"
 msgid "softBodySpring13"
-msgstr ""
+msgstr "yumuşakGövdeYayı13"
 
 #: examples/softbody.step:305 examples/wave.step:337
 #, kde-format
 msgctxt "name"
 msgid "softBodySpring14"
-msgstr ""
+msgstr "yumuşakGövdeYayı14"
 
 #: examples/softbody.step:317 examples/wave.step:349
 #, kde-format
 msgctxt "name"
 msgid "softBodySpring15"
-msgstr ""
+msgstr "yumuşakGövdeYayı15"
 
 #: examples/softbody.step:329 examples/wave.step:361
 #, kde-format
 msgctxt "name"
 msgid "softBodySpring16"
-msgstr ""
+msgstr "yumuşakGövdeYayı16"
 
 #: examples/softbody.step:341 examples/wave.step:373
 #, kde-format
 msgctxt "name"
 msgid "softBodySpring17"
-msgstr ""
+msgstr "yumuşakGövdeYayı17"
 
 #: examples/softbody.step:353 examples/wave.step:385
 #, kde-format
 msgctxt "name"
 msgid "softBodySpring18"
-msgstr ""
+msgstr "yumuşakGövdeYayı18"
 
 #: examples/softbody.step:365 examples/wave.step:397
 #, kde-format
 msgctxt "name"
 msgid "softBodySpring19"
-msgstr ""
+msgstr "yumuşakGövdeYayı19"
 
 #: examples/softbody.step:377
 #, kde-format
 msgctxt "name"
 msgid "softBodySpring20"
-msgstr ""
+msgstr "yumuşakGövdeYayı20"
 
 #: examples/softbody.step:389
 #, kde-format
 msgctxt "name"
 msgid "softBodySpring21"
-msgstr ""
+msgstr "yumuşakGövdeYayı21"
 
 #: examples/softbody.step:401
 #, kde-format
 msgctxt "name"
 msgid "softBodySpring22"
-msgstr ""
+msgstr "yumuşakGövdeYayı22"
 
 #: examples/softbody.step:413
 #, kde-format
 msgctxt "name"
 msgid "softBodySpring23"
-msgstr ""
+msgstr "yumuşakGövdeYayı23"
 
 #: examples/softbody.step:425
 #, kde-format
 msgctxt "name"
 msgid "softBodySpring24"
-msgstr ""
+msgstr "yumuşakGövdeYayı24"
 
 #: examples/softbody.step:437
 #, kde-format
 msgctxt "name"
 msgid "softBodySpring25"
-msgstr ""
+msgstr "yumuşakGövdeYayı25"
 
 #: examples/softbody.step:449
 #, kde-format
 msgctxt "name"
 msgid "softBodySpring26"
-msgstr ""
+msgstr "yumuşakGövdeYayı26"
 
 #: examples/softbody.step:461
 #, kde-format
 msgctxt "name"
 msgid "softBodySpring27"
-msgstr ""
+msgstr "yumuşakGövdeYayı27"
 
 #: examples/softbody.step:473
 #, kde-format
 msgctxt "name"
 msgid "softBodySpring28"
-msgstr ""
+msgstr "yumuşakGövdeYayı28"
 
 #: examples/softbody.step:485
 #, kde-format
 msgctxt "name"
 msgid "softBodySpring29"
-msgstr ""
+msgstr "yumuşakGövdeYayı29"
 
 #: examples/softbody.step:497
 #, kde-format
 msgctxt "name"
 msgid "softBodySpring30"
-msgstr ""
+msgstr "yumuşakGövdeYayı30"
 
 #: examples/softbody.step:509
 #, kde-format
 msgctxt "name"
 msgid "softBodySpring31"
-msgstr ""
+msgstr "yumuşakGövdeYayı31"
 
 #: examples/softbody.step:521
 #, kde-format
 msgctxt "name"
 msgid "softBodySpring32"
-msgstr ""
+msgstr "yumuşakGövdeYayı32"
 
 #: examples/softbody.step:533
 #, kde-format
 msgctxt "name"
 msgid "softBodySpring33"
-msgstr ""
+msgstr "yumuşakGövdeYayı33"
 
 #: examples/softbody.step:545
 #, kde-format
 msgctxt "name"
 msgid "softBodySpring34"
-msgstr ""
+msgstr "yumuşakGövdeYayı34"
 
 #: examples/softbody.step:557
 #, kde-format
 msgctxt "name"
 msgid "softBodySpring35"
-msgstr ""
+msgstr "yumuşakGövdeYayı35"
 
 #: examples/softbody.step:569
 #, kde-format
 msgctxt "name"
 msgid "softBodySpring36"
-msgstr ""
+msgstr "yumuşakGövdeYayı36"
 
 #: examples/softbody.step:581
 #, kde-format
 msgctxt "name"
 msgid "softBodySpring37"
-msgstr ""
+msgstr "yumuşakGövdeYayı37"
 
 #: examples/softbody.step:593
 #, kde-format
 msgctxt "name"
 msgid "softBodySpring38"
-msgstr ""
+msgstr "yumuşakGövdeYayı38"
 
 #: examples/softbody.step:605
 #, kde-format
 msgctxt "name"
 msgid "softBodySpring39"
-msgstr ""
+msgstr "yumuşakGövdeYayı39"
 
 #: examples/softbody.step:617
 #, kde-format
 msgctxt "name"
 msgid "softBodySpring40"
-msgstr ""
+msgstr "yumuşakGövdeYayı40"
 
 #: examples/softbody.step:629
 #, kde-format
 msgctxt "name"
 msgid "softBodySpring41"
-msgstr ""
+msgstr "yumuşakGövdeYayı41"
 
 #: examples/softbody.step:641
 #, kde-format
 msgctxt "name"
 msgid "softBodySpring42"
-msgstr ""
+msgstr "yumuşakGövdeYayı42"
 
 #: examples/solar.step:4
 #, kde-format
 msgctxt "name"
 msgid "Solar System"
-msgstr ""
+msgstr "Güneş Sistemi"
 
 #: examples/solar.step:11
 #, kde-format
 msgctxt "name"
 msgid "Sun"
-msgstr ""
+msgstr "Güneş"
 
 #: examples/solar.step:19
 #, kde-format
 msgctxt "name"
 msgid "Mercury"
-msgstr ""
+msgstr "Merkür"
 
 #: examples/solar.step:27
 #, kde-format
 msgctxt "name"
 msgid "Venus"
-msgstr ""
+msgstr "Venüs"
 
 #: examples/solar.step:35
 #, kde-format
 msgctxt "name"
 msgid "Earth"
-msgstr ""
+msgstr "Dünya"
 
 #: examples/solar.step:43
 #, kde-format
 msgctxt "name"
 msgid "Mars"
-msgstr ""
+msgstr "Mars"
 
 #: examples/solar.step:51
 #, kde-format
 msgctxt "name"
 msgid "Jupiter"
-msgstr ""
+msgstr "Jüpiter"
 
 #: examples/solar.step:59
 #, kde-format
 msgctxt "name"
 msgid "Saturn"
-msgstr ""
+msgstr "Satürn"
 
 #: examples/solar.step:67
 #, kde-format
 msgctxt "name"
 msgid "Uranus"
-msgstr ""
+msgstr "Uranüs"
 
 #: examples/solar.step:75
 #, kde-format
 msgctxt "name"
 msgid "Neptune"
-msgstr ""
+msgstr "Neptün"
 
 #: examples/solar.step:83
 #, kde-format
 msgctxt "name"
 msgid "Pluto"
-msgstr ""
+msgstr "Pluto"
 
 #: examples/springs.step:4
 #, kde-format
 msgctxt "name"
 msgid "World"
-msgstr ""
+msgstr "Dünya"
 
 #: examples/springs.step:11
 #, kde-format
 msgctxt "name"
 msgid "p1"
-msgstr ""
+msgstr "p1"
 
 #: examples/springs.step:19
 #, kde-format
 msgctxt "name"
 msgid "p2"
-msgstr ""
+msgstr "p2"
 
 #: examples/springs.step:27
 #, kde-format
 msgctxt "name"
 msgid "p3"
-msgstr ""
+msgstr "p3"
 
 #: examples/springs.step:35
 #, kde-format
 msgctxt "name"
 msgid "p4"
-msgstr ""
+msgstr "p4"
 
 #: examples/springs.step:43
 #, kde-format
 msgctxt "name"
 msgid "p5"
-msgstr ""
+msgstr "p5"
 
 #: examples/springs.step:51
 #, kde-format
 msgctxt "name"
 msgid "s1"
-msgstr ""
+msgstr "s1"
 
 #: examples/springs.step:63
 #, kde-format
 msgctxt "name"
 msgid "s2"
-msgstr ""
+msgstr "s2"
 
 #: examples/springs.step:75
 #, kde-format
 msgctxt "name"
 msgid "s3"
-msgstr ""
+msgstr "s3"
 
 #: examples/springs.step:87
 #, kde-format
 msgctxt "name"
 msgid "s4"
-msgstr ""
+msgstr "s4"
 
 #: examples/springs.step:99
 #, kde-format
 msgctxt "name"
 msgid "Solver"
-msgstr ""
+msgstr "Çözücü"
 
 #: examples/wave.step:149
 #, kde-format
 msgctxt "name"
 msgid "softBodyParticle17"
-msgstr ""
+msgstr "yumuşakGövdeParçacığı17"
 
 #: examples/wave.step:157
 #, kde-format
 msgctxt "name"
 msgid "softBodyParticle18"
-msgstr ""
+msgstr "yumuşakGövdeParçacığı18"
 
 #: examples/wave.step:165
 #, kde-format
 msgctxt "name"
 msgid "softBodyParticle19"
-msgstr ""
+msgstr "yumuşakGövdeParçacığı19"
 
 #: examples/wave.step:173
 #, kde-format
 msgctxt "name"
 msgid "softBodyParticle20"
-msgstr ""
+msgstr "yumuşakGövdeParçacığı20"
 
 #: examples/wave.step:444
 #, kde-format
