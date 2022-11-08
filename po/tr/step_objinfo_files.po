@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: step\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2022-10-26 00:42+0000\n"
-"PO-Revision-Date: 2022-11-04 10:24+0300\n"
+"PO-Revision-Date: 2022-11-07 18:53+0300\n"
 "Last-Translator: Emir SARI <emir_sari@icloud.com>\n"
 "Language-Team: Turkish <kde-l10n-tr@kde.org>\n"
 "Language: tr\n"
@@ -73,25 +73,24 @@ msgid ""
 "\t</ul>"
 msgstr ""
 "<ul>\n"
-"\t\t<li><b>position:</b> <a href=\"objinfo:World\">Dünyanın</a> merkezine "
+"\t\t<li><b>konum:</b> <a href=\"objinfo:World\">Dünyanın</a> merkezine "
 "göreceli olarak kutu kütlesi merkezinin X/Y konumu.</li>\n"
-"\t\t<li><b>angle:</b> Saat yönünde kutunun pozitif yönde ne kadar "
-"döndürüldüğü.</li>\n"
-"\t\t<li><b>velocity:</b> Kutu kütlesi merkezinin hızı. Birim: Metre/Saniye.</"
-"li>\n"
-"\t\t<li><b>angular velocity:</b> Saat yönünde kutunun pozitif yönde ne kadar "
-"hızlı döndüğü.</li>\n"
-"\t\t<li><b>mass:</b> Kutunun toplam kütlesi. Bu, kutunun diğer ögelerle "
-"etkileştiği kuvvetlere etki eder.</li>\n"
-"\t\t<li><b>inertia:</b> Kutunun dönmesini değiştirmenin ne kadar güç olduğu."
+"\t\t<li><b>açı:</b> Saat yönünde kutunun pozitif yönde ne kadar döndürüldüğü."
 "</li>\n"
+"\t\t<li><b>hız:</b> Kutu kütlesi merkezinin hızı. Birim: Metre/Saniye.</li>\n"
+"\t\t<li><b>açısal hız:</b> Saat yönünde kutunun pozitif yönde ne kadar hızlı "
+"döndüğü.</li>\n"
+"\t\t<li><b>kütle:</b> Kutunun toplam kütlesi. Bu, kutunun diğer ögelerle "
+"etkileştiği kuvvetlere etki eder.</li>\n"
+"\t\t<li><b>eylemsizlik:</b> Kutunun dönmesini değiştirmenin ne kadar güç "
+"olduğu.</li>\n"
 "\t\t<li><b>momentum:</b> Mekanikte dış kuvvetlerin yokluğunda korunan temel "
 "bir nicelik. Kütle ve hızın bir ürünü.</li>\n"
-"\t\t<li><b>angular momentum:</b> Dış bir tork tarafından etki edilmediği "
+"\t\t<li><b>açısal momentum:</b> Dış bir tork tarafından etki edilmediği "
 "sürece kutunun ne kadar dönmeyi sürdüreceğinin ölçüsü.</li>\n"
-"\t\t<li><b>kinetic energy:</b> Verilen bir gövdenin durgunluktan geçerli "
+"\t\t<li><b>devinimsel enerji:</b> Verilen bir gövdenin durgunluktan geçerli "
 "hızına ivmelenmesi için gereken iş.</li>\n"
-"\t\t<li><b>size:</b> Kutunun enini ve boyunu tanımlar.</li>\n"
+"\t\t<li><b>boyut:</b> Kutunun enini ve boyunu tanımlar.</li>\n"
 "\t</ul>"
 
 #: objectinfo/chargedparticle.html:6
@@ -128,13 +127,13 @@ msgid ""
 "\t</ul>"
 msgstr ""
 "<ul>\n"
-"\t\t<li><b>position:</b> <a href=\"objinfo:World\">Dünyanın</a> merkezine "
+"\t\t<li><b>konum:</b> <a href=\"objinfo:World\">Dünyanın</a> merkezine "
 "göreceli olarak parçacığın X/Y konumu.</li>\n"
-"\t\t<li><b>velocity:</b> Parçacığın hızı. Birim: Metre/Saniye.</li>\n"
-"\t\t<li><b>force:</b> Parçacığın ortalıkta birlikte dolandığı kuvvet.</li>\n"
-"\t\t<li><b>mass:</b> Parçacığın kütlesi. Bu, kutunun diğer ögelerle "
+"\t\t<li><b>hız:</b> Parçacığın hızı. Birim: Metre/Saniye.</li>\n"
+"\t\t<li><b>kuvvet:</b> Parçacığın ortalıkta birlikte dolandığı kuvvet.</li>\n"
+"\t\t<li><b>kütle:</b> Parçacığın kütlesi. Bu, kutunun diğer ögelerle "
 "etkileştiği kuvvetlere etki eder.</li>\n"
-" \t\t<li><b>charge:</b> Parçacıkta depolanan pozitif veya negatif enerjinin "
+" \t\t<li><b>yük:</b> Parçacıkta depolanan pozitif veya negatif enerjinin "
 "tutarı. Birim: Coulomb.</li>\n"
 "\t</ul>"
 
@@ -219,12 +218,32 @@ msgid ""
 "\t\t<li><b>radius:</b> Defines how big the disk is.</li>\n"
 "\t</ul>"
 msgstr ""
+"<ul>\n"
+"\t\t<li><b>konum:</b> <a href=\"objinfo:World\">Dünyanın</a> merkezine "
+"göreceli olarak disk kütlesi merkezinin X/Y konumu.</li>\n"
+"\t\t<li><b>açı:</b> Saat yönünde diskin pozitif yönde ne kadar döndürüldüğü."
+"</li>\n"
+"\t\t<li><b>hız:</b> Disk kütlesi merkezinin hızı. Birim: Metre/Saniye.</li>\n"
+"\t\t<li><b>açısal hız:</b> Saat yönünde diskin pozitif yönde ne kadar hızlı "
+"döndüğü.</li>\n"
+"\t\t<li><b>kütle:</b> Diskin toplam kütlesi. Bu, diskin diğer ögelerle "
+"etkileştiği kuvvetlere etki eder.</li>\n"
+"\t\t<li><b>eylemsizlik:</b> Diskin dönmesini değiştirmenin ne kadar güç "
+"olduğu.</li>\n"
+"\t\t<li><b>momentum:</b> Mekanikte dış kuvvetlerin yokluğunda korunan temel "
+"bir nicelik. Kütle ve hızın bir ürünü.</li>\n"
+"\t\t<li><b>açısal momentum:</b> Dış bir tork tarafından etki edilmediği "
+"sürece diskin ne kadar dönmeyi sürdüreceğinin ölçüsü.</li>\n"
+"\t\t<li><b>devinimsel enerji:</b> Verilen bir gövdenin durgunluktan geçerli "
+"hızına ivmelenmesi için gereken iş.</li>\n"
+"\t\t<li><b>yarıçap:</b> Diskin ne kadar büyük olduğunu tanımlar.</li>\n"
+"\t</ul>"
 
 #: objectinfo/gas.html:6
 #, kde-format
 msgctxt "gas.html:title"
 msgid "Gas"
-msgstr ""
+msgstr "Gaz"
 
 #: objectinfo/gas.html:9
 #, kde-format
@@ -234,6 +253,10 @@ msgid ""
 "a>. Associated with the gas is a <a href=\"objinfo:GasLJForce\">force</a>. "
 "To add gas particles right-click the gas and click on \"Create particles\"."
 msgstr ""
+"Gaz, <a href=\"objinfo:GasParticle\">benzin parçacıklarının</a> bir "
+"koleksiyonudur. Gazla ilişkili olan bir <a href=\"objinfo:GasLJForce"
+"\">kuvvet</a> vardır. Gaz parçacıkları eklemek için gaza sağ tıklayın ve "
+"\"Parçacıklar oluştur\"u seçin."
 
 #: objectinfo/gas.html:10
 #, kde-format
@@ -243,12 +266,15 @@ msgid ""
 "<a href=\"https://en.wikipedia.org/wiki/Lennard-Jones_potential\">Lennard-"
 "Jones potential</a>."
 msgstr ""
+"Kuvvetleri hesaplamak için kullanılan matematik ayrıntılarını görmek için <a "
+"href=\"https://en.wikipedia.org/wiki/Lennard-Jones_potential\">Lennard-Jones "
+"potansiyeli</a>'ne bir göz atın."
 
 #: objectinfo/gasljforce.html:6
 #, kde-format
 msgctxt "gasljforce.html:title"
 msgid "Force"
-msgstr ""
+msgstr "Kuvvet"
 
 #: objectinfo/gasljforce.html:9
 #, kde-format
@@ -258,6 +284,9 @@ msgid ""
 "Jones_potential\">Lennard-Jones potential</a>. There are three parameters "
 "for this force:"
 msgstr ""
+"Bu kuvvet, <a href=\"https://en.wikipedia.org/wiki/Lennard-Jones_potential"
+"\">Lennard-Jones potansiyeli</a>'ni benzetir. Bu kuvvet için üç adet "
+"parametre vardır:"
 
 #: objectinfo/gasljforce.html:14
 #, kde-format
@@ -272,6 +301,14 @@ msgid ""
 "potential is often truncated to save computational time</li>\n"
 "\t</ul>"
 msgstr ""
+"<ul>\n"
+"        <li><b>derinlik:</b> Lennard-Jones potansiyeli kuyusunun en düşük "
+"değeri</li>\n"
+"        <li><b>rmin:</b> Kökenden potansiyelin en küçük değerine olan "
+"uzaklık</li>\n"
+"        <li><b>kesim:</b> Lennard-Jones (LJ) potansiyelinin, hesaplama "
+"süresini kısa kesmek için genelde kısaltıldığı uzaklık</li>\n"
+"\t</ul>"
 
 #: objectinfo/gasljforce.html:15
 #, kde-format
@@ -280,12 +317,14 @@ msgid ""
 "These parameters are empirical and are usually obtained from experiment or "
 "some rough estimation."
 msgstr ""
+"Bu parametreler gözleme dayalıdır ve genelde deneylerden veya kaba "
+"tahminlerden elde edilirler."
 
 #: objectinfo/gasparticle.html:6
 #, kde-format
 msgctxt "gasparticle.html:title"
 msgid "Gas Particle"
-msgstr ""
+msgstr "Gaz Parçacığı"
 
 #: objectinfo/gasparticle.html:9
 #, kde-format
@@ -295,6 +334,9 @@ msgid ""
 "a gasoline system. Each particle is tracked individually and has a unique "
 "name and four parameters:"
 msgstr ""
+"Bir <a href=\"objinfo:Gas\">gaz</a> parçacığı, bir benzin sistemindeki tek "
+"bir parçacığı benzetir. Her parçacık bireysel olarak takip edilir ve "
+"benzersiz bir adı ve dört adet parametresi vardır:"
 
 #: objectinfo/gasparticle.html:15
 #, kde-format
@@ -311,12 +353,20 @@ msgid ""
 "which the particle interacts with other items.</li>\n"
 "\t</ul>"
 msgstr ""
+"<ul>\n"
+"\t\t<li><b>konum:</b> <a href=\"objinfo:World\">Dünyanın</a> merkezine "
+"göreceli olarak parçacık görecelisinin X/Y konumu.</li>\n"
+"\t\t<li><b>hız:</b> Parçacığın hızı. Birim: Metre/Saniye.</li>\n"
+"\t\t<li><b>kuvvet:</b> Parçacığın ortalıkta birlikte dolandığı kuvvet.</li>\n"
+"\t\t<li><b>kütle:</b> Parçacığın kütlesi. Bu, kutunun diğer ögelerle "
+"etkileştiği kuvvetlere etki eder.</li>\n"
+"\t</ul>"
 
 #: objectinfo/gravitationforce.html:6
 #, kde-format
 msgctxt "gravitationforce.html:title"
 msgid "Gravitation Force"
-msgstr ""
+msgstr "Yerçekimi Kuvveti"
 
 #: objectinfo/gravitationforce.html:9
 #, kde-format
@@ -325,12 +375,14 @@ msgid ""
 "Gravitational force is an attractive force that act between bodies having "
 "mass."
 msgstr ""
+"Yerçekimi kuvveti, kütlesi olan gövdeler arasında eyleme geçer bir çekici "
+"kuvvettir."
 
 #: objectinfo/gravitationforce.html:10
 #, kde-format
 msgctxt "gravitationforce.html:p"
 msgid "<b>Newton's law</b>"
-msgstr ""
+msgstr "<b>Newton'un Kanunu</b>"
 
 #: objectinfo/gravitationforce.html:11
 #, kde-format
@@ -340,12 +392,15 @@ msgid ""
 "is proportional to the product of the masses of the bodies and inversely "
 "proportional to square of the distance between them.</li>"
 msgstr ""
+"<li>Evrendeki her bir gövde, başka bir gövdeyi bir kuvvetle çeker; bu çekim, "
+"gövde kütlelerinin sonucuna bağlı olarak doğru oranlı, aralarındaki "
+"uzaklığın karesine ise ters oranlıdır.</li>"
 
 #: objectinfo/gravitationforce.html:12
 #, kde-format
 msgctxt "gravitationforce.html:p"
 msgid "<b>General relativity</b>"
-msgstr ""
+msgstr "<b>Genel Görelilik</b>"
 
 #: objectinfo/gravitationforce.html:13
 #, kde-format
@@ -354,6 +409,8 @@ msgid ""
 "<li>In general relativity gravitation is explained on the basis of curvature "
 "of space-time.</li>"
 msgstr ""
+"<li>Genel görelilikte yerçekimi, uzay-zaman'ın eğriliği temelinde açıklanır."
+"</li>"
 
 #: objectinfo/gravitationforce.html:14
 #, kde-format
@@ -362,18 +419,20 @@ msgid ""
 "For more details, please refer to the <a href=\"https://en.wikipedia.org/"
 "wiki/Gravitation\">Gravitation Force</a>."
 msgstr ""
+"Daha fazla ayrıntı için, lütfen <a href=\"https://en.wikipedia.org/wiki/"
+"Gravitation\">Yerçekimi Kuvveti</a>'ne bakın."
 
 #: objectinfo/linearmotor.html:6
 #, kde-format
 msgctxt "linearmotor.html:title"
 msgid "Linear Motor"
-msgstr ""
+msgstr "Doğrusal Motor"
 
 #: objectinfo/linearmotor.html:9
 #, kde-format
 msgctxt "linearmotor.html:p"
 msgid "A linear motor produces a linear force along its length."
-msgstr ""
+msgstr "Doğrusal bir motor, uzunluğu boyunca doğrusal bir kuvvet üretir."
 
 #: objectinfo/linearmotor.html:10
 #, kde-format
@@ -382,12 +441,14 @@ msgid ""
 "You can set the desired linear force for an object by changing the force "
 "value in the properties browser."
 msgstr ""
+"Bir nesne için arzu edilen doğrusal kuvveti, özellikler tarayıcısındaki "
+"kuvvet değerini değiştirerek ayarlayabilirsiniz."
 
 #: objectinfo/meter.html:6
 #, kde-format
 msgctxt "meter.html:title"
 msgid "Meter"
-msgstr ""
+msgstr "Ölçü"
 
 #: objectinfo/meter.html:9
 #, kde-format
@@ -396,30 +457,32 @@ msgid ""
 "A meter can show you values of properties. The meter can be configured to "
 "show property of any given object of the simulation."
 msgstr ""
+"Bir ölçü, size özelliklerin değerini gösterebilir. Ölçü, benzetimin herhangi "
+"bir nesnesi için özelliği gösterecek biçimde yapılandırılabilir."
 
 #: objectinfo/note.html:6
 #, kde-format
 msgctxt "note.html:title"
 msgid "Note"
-msgstr ""
+msgstr "Not"
 
 #: objectinfo/note.html:9
 #, kde-format
 msgctxt "note.html:p"
 msgid "You can use notes to place text on the canvas of Step."
-msgstr ""
+msgstr "Step'in tuvaline metin yerleştirmek için notları kullanabilirsiniz."
 
 #: objectinfo/particle.html:6
 #, kde-format
 msgctxt "particle.html:title"
 msgid "Particle"
-msgstr ""
+msgstr "Parçacık"
 
 #: objectinfo/particle.html:9
 #, kde-format
 msgctxt "particle.html:p"
 msgid "A zero-sized particle which has a unique name and four parameters:"
-msgstr ""
+msgstr "Benzersiz bir adı ve dört parametresi olan sıfır boyutlu bir parçacık:"
 
 #: objectinfo/particle.html:15
 #, kde-format
@@ -436,12 +499,20 @@ msgid ""
 "which the particle interacts with other items.</li>\n"
 "\t</ul>"
 msgstr ""
+"<ul>\n"
+"\t\t<li><b>konum:</b> <a href=\"objinfo:World\">Dünyanın</a> merkezine "
+"göreceli olarak parçacığın X/Y konumu.</li>\n"
+"\t\t<li><b>hız:</b> Parçacığın hızı. Birim: Metre/Saniye.</li>\n"
+"\t\t<li><b>kuvvet:</b> Parçacığın ortalıkta birlikte dolandığı kuvvet.</li>\n"
+"\t\t<li><b>kütle:</b> Parçacığın kütlesi. Bu, kutunun diğer ögelerle "
+"etkileştiği kuvvetlere etki eder.</li>\n"
+"\t</ul>"
 
 #: objectinfo/pin.html:6
 #, kde-format
 msgctxt "pin.html:title"
 msgid "Pin"
-msgstr ""
+msgstr "Pim"
 
 #: objectinfo/pin.html:9
 #, kde-format
@@ -450,18 +521,20 @@ msgid ""
 "A pin is a joint that fixes a particular point of the body, The body can "
 "still move around the pin."
 msgstr ""
+"Pim, gövdenin belirli bir noktasını düzelten bir eklemdir. Gövde yine de "
+"pimin çevresinde hareket edebilir."
 
 #: objectinfo/polygon.html:6
 #, kde-format
 msgctxt "polygon.html:title"
 msgid "Polygon"
-msgstr ""
+msgstr "Çokgen"
 
 #: objectinfo/polygon.html:9
 #, kde-format
 msgctxt "polygon.html:p"
 msgid "A rigid polygon with a unique name and the following parameters:"
-msgstr ""
+msgstr "Benzersiz bir adı ve aşağıdaki parametreleri olan sert bir çokgen:"
 
 #: objectinfo/polygon.html:21
 #, kde-format
@@ -493,12 +566,35 @@ msgid ""
 "center of mass of the polygon.</li>\n"
 "\t</ul>"
 msgstr ""
+"<ul>\n"
+"\t\t<li><b>konum:</b> <a href=\"objinfo:World\">Dünyanın</a> merkezine "
+"göreceli olarak çokgen kütlesi merkezinin X/Y konumu.</li>\n"
+"\t\t<li><b>açı:</b> Saat yönünde çokgenin pozitif yönde ne kadar "
+"döndürüldüğü.</li>\n"
+"\t\t<li><b>hız:</b> Çokgen kütlesi merkezinin hızı. Birim: Metre/Saniye.</"
+"li>\n"
+"\t\t<li><b>açısal hız:</b> Saat yönünde çokgenin pozitif yönde ne kadar "
+"hızlı döndüğü.</li>\n"
+"\t\t<li><b>kütle:</b> Çokgenin toplam kütlesi. Bu, çokgenin diğer ögelerle "
+"etkileştiği kuvvetlere etki eder.</li>\n"
+"\t\t<li><b>eylemsizlik:</b> Çokgenin dönmesini değiştirmenin ne kadar güç "
+"olduğu.</li>\n"
+"\t\t<li><b>momentum:</b> Mekanikte dış kuvvetlerin yokluğunda korunan temel "
+"bir nicelik. Kütle ve hızın bir ürünü.</li>\n"
+"\t\t<li><b>açısal momentum:</b> Dış bir tork tarafından etki edilmediği "
+"sürece çokgenin ne kadar dönmeyi sürdüreceğinin ölçüsü.</li>\n"
+"\t\t<li><b>devinimsel enerji:</b> Verilen bir gövdenin durgunluktan geçerli "
+"hızına ivmelenmesi için gereken iş.</li>\n"
+"\t\t<li><b>kesişme noktaları:</b> Çokgenin boyutunu ve şeklini tanımlayan "
+"doruklarının (köşelerinin) bir listesi. Her bir doruğun koordinatları, "
+"çokgenin merkezinin kütlesine görecelidir.</li>\n"
+"\t</ul>"
 
 #: objectinfo/softbody.html:6
 #, kde-format
 msgctxt "softbody.html:title"
 msgid "Soft body"
-msgstr ""
+msgstr "Yumuşak gövde"
 
 #: objectinfo/softbody.html:9
 #, kde-format
@@ -509,12 +605,17 @@ msgid ""
 "simulate an <a href=\"https://en.wikipedia.org/wiki/"
 "Elasticity_(physics)\">elastic</a> or viscoelastic body."
 msgstr ""
+"Yumuşak gövde, <a href=\"objinfo:particle\">parçacıkların</a> <a href="
+"\"objinfo:spring\">yaylar</a> tarafından birbirine bağlanan bir "
+"koleksiyonudur. Bu, bir <a href=\"https://en.wikipedia.org/wiki/"
+"Elasticity_(physics)\">esnek</a> veya ağdalı esnek bir gövdeyi benzetmek "
+"için kullanılabilir."
 
 #: objectinfo/spring.html:6
 #, kde-format
 msgctxt "spring.html:title"
 msgid "Spring"
-msgstr ""
+msgstr "Yay"
 
 #: objectinfo/spring.html:9
 #, kde-format
@@ -523,6 +624,8 @@ msgid ""
 "A flexible elastic object to store mechanical energy. It has a unique name "
 "and the following parameters:"
 msgstr ""
+"Mekanik enerjiyi depolamak için kullanılan esnek bir nesne. Benzersiz bir "
+"adı ve aşağıdaki parametreleri vardır:"
 
 #: objectinfo/spring.html:19
 #, kde-format
@@ -545,18 +648,32 @@ msgid ""
 "\t\t<li><b>force:</b> is the force that acts along the spring</li>\n"
 "\t</ul>"
 msgstr ""
+"<ul>\n"
+"\t\t<li><b>durağan boy:</b> Yayın sıkıştırılmadığı veya çekilmediği "
+"zamanlardaki uzunluğudur.</li>\n"
+"\t\t<li><b>boy:</b> Başlangıç yay uzunluğudur</li>\n"
+"\t\t<li><b>sertlik:</b> Sıkıştırmaya veya çekmeye olan yay direnci "
+"düzeyidir</li>\n"
+"\t\t<li><b>sönümlenme:</b> Yayın depolanan enerjiyi söndürebilme yeteneği "
+"düzeyi, bir iç ağdalılıktır</li>\n"
+"\t\t<li><b>gövde 1 ve 2:</b> Yayın sabitleştirildiği gövdelerdir</li>\n"
+"\t\t<li><b>yerel konum 1 ve 2:</b> Yayın bozulmamış durumundaki yay "
+"uçlarının merkezine göreceli olan yerel konumlarıdır</li>\n"
+"\t\t<li><b>konum 1 ve 2:</b> Yay uçlarının global konumlarıdır</li>\n"
+"\t\t<li><b>kuvvet:</b> Yayla birlikte devreye giren kuvvettir</li>\n"
+"\t</ul>"
 
 #: objectinfo/weightforce.html:6
 #, kde-format
 msgctxt "weightforce.html:title"
 msgid "Weight Force"
-msgstr ""
+msgstr "Ağırlık Kuvveti"
 
 #: objectinfo/weightforce.html:9
 #, kde-format
 msgctxt "weightforce.html:p"
 msgid "Weight of an object is the force exerted on it by gravity."
-msgstr ""
+msgstr "Bir nesnenin ağırlığı, yerçekimi tarafından ona uygulaman kuvvettir."
 
 #: objectinfo/weightforce.html:10
 #, kde-format
@@ -565,6 +682,8 @@ msgid ""
 "Weight is a vector quantity. It is often denoted by W and given by the "
 "relation W = mg."
 msgstr ""
+"Ağırlık, vektör bir niceliktir. Genelde W ile belirtilir ve W = mg ilişkisi "
+"ile verilir."
 
 #: objectinfo/weightforce.html:12
 #, kde-format
@@ -573,6 +692,8 @@ msgid ""
 "<li>Where, <b>m</b> is the mass of the body</li>\n"
 "<li>and <b>g</b> is the acceleration due to gravity.</li>"
 msgstr ""
+"<li>Bunlardan, <b>m</b> gövdenin kütlesi ve</li>\n"
+"<li><b>g</b> ise yerçekimi dolaylı ivmelenmedir.</li>"
 
 #: objectinfo/weightforce.html:13
 #, kde-format
@@ -581,12 +702,14 @@ msgid ""
 "For more details, please refer to the <a href=\"https://en.wikipedia.org/"
 "wiki/Weight\">Weight Force</a>."
 msgstr ""
+"Daha fazla ayrıntı için <a href=\"https://en.wikipedia.org/wiki/Weight"
+"\">Ağırlık Kuvveti</a>'ne bakın."
 
 #: objectinfo/world.html:6
 #, kde-format
 msgctxt "world.html:title"
 msgid "World"
-msgstr ""
+msgstr "Dünya"
 
 #: objectinfo/world.html:9
 #, kde-format
@@ -597,3 +720,7 @@ msgid ""
 "click on the <b>Simulate</b> button in toolbar and your scene will evolve "
 "according to the laws of physics."
 msgstr ""
+"Burası, dünya sahnesidir. Nesneler paletinden birkaç öge seçmeli ve onları "
+"tuvale yerleştirmelisiniz. Nesnelerin özelliklerini ayarladıktan sonra, araç "
+"çubuğunuzdaki <b>Benzet</b> düğmesine tıklayıp sahnenizin fizik kurallarına "
+"göre evrimleşmesini izleyebilirsiniz."

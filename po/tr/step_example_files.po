@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: step\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2022-10-26 00:42+0000\n"
-"PO-Revision-Date: 2022-11-02 10:48+0300\n"
+"PO-Revision-Date: 2022-11-07 19:13+0300\n"
 "Last-Translator: Emir SARI <emir_sari@icloud.com>\n"
 "Language-Team: Turkish <kde-l10n-tr@kde.org>\n"
 "Language: tr\n"
@@ -1277,36 +1277,41 @@ msgid ""
 "direction until the red particle reflects in again. After some time the wave "
 "will vanish because springs have damping."
 msgstr ""
+"Benzetimi başlattığınızda dalga kırmızı parçacıktan hareket etmeye başlar. "
+"Mavi parçacık dalgayı yansıtacak ve kırmızı parçacık tekrar yansıyana kadar "
+"ters yönde hareket edecektir. Yaylar sönümlendiği için bir süre sonra dalga "
+"kaybolacaktır."
 
 #: examples/wave.step:477
 #, kde-format
 msgctxt "HTML:p"
 msgid "The graph shows oscillations of the green particle"
-msgstr ""
+msgstr "Çizelge, yeşil parçacığın salınımlarını gösterir"
 
 #: tutorials/tutorial1.step:32
 #, kde-format
 msgctxt "HTML:p"
 msgid "<span style=\" font-size:14pt; font-weight:600;\">Tutorial 1</span>"
-msgstr ""
+msgstr "<span style=\" font-size:14pt; font-weight:600;\">Eğitmen 1</span>"
 
 #: tutorials/tutorial1.step:33
 #, kde-format
 msgctxt "HTML:p"
 msgid "<span style=\" font-size:12pt;\">Bodies and springs.</span>"
-msgstr ""
+msgstr "<span style=\" font-size:12pt;\">Gövdeler ve Yaylar</span>"
 
 #: tutorials/tutorial1.step:46
 #, kde-format
 msgctxt "HTML:p"
 msgid "<span style=\" font-weight:600;\">Position and velocity</span>"
-msgstr ""
+msgstr "<span style=\" font-weight:600;\">Konum ve Hız</span>"
 
 #: tutorials/tutorial1.step:47
 #, kde-format
 msgctxt "HTML:p"
 msgid "- You can change position of any body simply by dragging it."
 msgstr ""
+"- Herhangi bir gövdenin konumunu, onu sürükleyerek değiştirebilirsiniz."
 
 #: tutorials/tutorial1.step:48
 #, kde-format
@@ -1317,6 +1322,9 @@ msgid ""
 "can drag the little gray square at the end of the velocity arrow to change "
 "the velocity."
 msgstr ""
+"- Seçmek için disklerden birine tıklayın. Şimdi üzerinde iki ok "
+"görebilirsiniz: Mavi ok hızı, kırmızı ok ise ivmeyi gösterir. Hızı "
+"değiştirmek için hız okunun sonundaki küçük gri kareyi sürükleyebilirsiniz."
 
 #: tutorials/tutorial1.step:49 tutorials/tutorial1.step:63
 #, kde-format
@@ -1326,12 +1334,15 @@ msgid ""
 "set position and velocity (as well as all other properties) for the current "
 "body."
 msgstr ""
+"- Sağdaki Özellikler paneline bir göz atın. Burada, geçerli gövde için "
+"konumu ve hızı (diğer tüm özelliklerin yanı sıra) sayısal olarak "
+"ayarlayabilirsiniz."
 
 #: tutorials/tutorial1.step:62
 #, kde-format
 msgctxt "HTML:p"
 msgid "<span style=\" font-weight:600;\">Properties</span>"
-msgstr ""
+msgstr "<span style=\" font-weight:600;\">Özellikler</span>"
 
 #: tutorials/tutorial1.step:64
 #, kde-format
@@ -1340,12 +1351,14 @@ msgid ""
 "- Select a spring by clicking on it. Change its stiffness and see how it is "
 "affecting the simulation."
 msgstr ""
+"- Üzerine tıklayarak bir yay seçin. Sertliğini değiştirin ve benzetimi nasıl "
+"etkilediğini görün."
 
 #: tutorials/tutorial1.step:78 tutorials/tutorial5.step:78
 #, kde-format
 msgctxt "HTML:p"
 msgid "<span style=\" font-weight:600;\">Quest</span>"
-msgstr ""
+msgstr "<span style=\" font-weight:600;\">Macera</span>"
 
 #: tutorials/tutorial1.step:79
 #, kde-format
@@ -1354,6 +1367,8 @@ msgid ""
 "- Try to change the system in a way to make the disks spining around the "
 "center of the system."
 msgstr ""
+"- Sistemi, disklerin sistemin merkezi etrafında dönmesini sağlayacak biçimde "
+"değiştirmeye çalışın."
 
 #: tutorials/tutorial1.step:80
 #, kde-format
@@ -1362,12 +1377,14 @@ msgid ""
 "- Now try to change the properties of the spring in order to make its length "
 "constant while the disks are spinning."
 msgstr ""
+"- Şimdi, diskler dönerken yayın uzunluğunu sabit kılmak için yayın "
+"özelliklerini değiştirmeye çalışın."
 
 #: tutorials/tutorial1.step:93
 #, kde-format
 msgctxt "HTML:p"
 msgid "<span style=\" font-weight:600;\">More bodies</span>"
-msgstr ""
+msgstr "<span style=\" font-weight:600;\">Daha Fazla Gövde</span>"
 
 #: tutorials/tutorial1.step:94
 #, kde-format
@@ -1377,6 +1394,8 @@ msgid ""
 "follow the instructions given in the information widget in the top left "
 "corner of scene"
 msgstr ""
+"- Bir gövde oluşturmak için Palet panelindeki simgesine tıklayın ve sahnenin "
+"sol üst köşesindeki bilgi araç takımında verilen yönergeleri izleyin."
 
 #: tutorials/tutorial1.step:95
 #, kde-format
@@ -1385,12 +1404,14 @@ msgid ""
 "- Create one more disk and two more springs and connect all the items in the "
 "triangle. Now make them all spin around the center."
 msgstr ""
+"- Bir disk ve iki yay daha oluşturun ve üçgendeki tüm ögeleri bağlayın. "
+"Şimdi hepsini merkezin etrafında döndürün."
 
 #: tutorials/tutorial1.step:132
 #, kde-format
 msgctxt "HTML:p"
 msgid "<span style=\" font-weight:600;\">Simulation</span>"
-msgstr ""
+msgstr "<span style=\" font-weight:600;\">Benzetim</span>"
 
 #: tutorials/tutorial1.step:133
 #, kde-format
@@ -1399,6 +1420,8 @@ msgid ""
 "- Click on the \"Simulate\" button in the toolbar to start simulation. Click "
 "on the same button again to stop it."
 msgstr ""
+"- Benzetimi başlatmak için araç çubuğundaki \"Benzet\" düğmesine tıklayın. "
+"Durdurmak için aynı düğmeye yeniden tıklayın."
 
 #: tutorials/tutorial1.step:134
 #, kde-format
@@ -1407,24 +1430,26 @@ msgid ""
 "- After stopping the simulation you can revert to the initial state by "
 "pressing Undo button."
 msgstr ""
+"- Benzetimi durdurduktan sonra Geri Al düğmesine basarak başlangıç durumuna "
+"dönebilirsiniz."
 
 #: tutorials/tutorial2.step:82
 #, kde-format
 msgctxt "HTML:p"
 msgid "<span style=\" font-size:14pt; font-weight:600;\">Tutorial 2</span>"
-msgstr ""
+msgstr "<span style=\" font-size:14pt; font-weight:600;\">Eğitmen 2</span>"
 
 #: tutorials/tutorial2.step:83
 #, kde-format
 msgctxt "HTML:p"
 msgid "<span style=\" font-size:12pt;\">Controllers and Graphs</span>"
-msgstr ""
+msgstr "<span style=\" font-size:12pt;\">Denetleyiciler ve Çizelgeler</span>"
 
 #: tutorials/tutorial2.step:96
 #, kde-format
 msgctxt "HTML:p"
 msgid "<span style=\" font-weight:600;\">Try it</span>"
-msgstr ""
+msgstr "<span style=\" font-weight:600;\">Deneyin</span>"
 
 #: tutorials/tutorial2.step:97
 #, kde-format
@@ -1433,6 +1458,8 @@ msgid ""
 "- Change the stiffness of the spring by moving the slider just below the "
 "bodies. You can also change it by pressing \"Q\" and \"W\" keys!"
 msgstr ""
+"- Kaydırıcıyı gövdelerin hemen altına hareket ettirerek yayın sertliğini "
+"değiştirin. \"Q\" ve \"W\" düğmelerine basarak da değiştirebilirsiniz!"
 
 #: tutorials/tutorial2.step:98
 #, kde-format
@@ -1441,18 +1468,20 @@ msgid ""
 "- Try changing it while the simulation is active and see how the graph will "
 "change."
 msgstr ""
+"- Benzetim etkinken değiştirmeyi deneyin ve çizelgenin nasıl değişeceğini "
+"görün."
 
 #: tutorials/tutorial2.step:111
 #, kde-format
 msgctxt "HTML:p"
 msgid "<span style=\" font-weight:600;\">Controller</span>"
-msgstr ""
+msgstr "<span style=\" font-weight:600;\">Denetleyici</span>"
 
 #: tutorials/tutorial2.step:112
 #, kde-format
 msgctxt "HTML:p"
 msgid "- Create a new controller on the scene."
-msgstr ""
+msgstr "- Sahnede yeni bir denetleyici oluşturun."
 
 #: tutorials/tutorial2.step:113
 #, kde-format
@@ -1461,6 +1490,8 @@ msgid ""
 "- Click on it with the right mouse button and choose \"Configure controller"
 "\" from the context menu."
 msgstr ""
+"- Farenin sağ düğmesiyle üzerine tıklayın ve içerik menüsünden "
+"\"Denetleyiciyi Yapılandır\"ı seçin."
 
 #: tutorials/tutorial2.step:114
 #, kde-format
@@ -1469,6 +1500,8 @@ msgid ""
 "- Select mass of the particle1 as the data source, adjust the range and "
 "assign keyboard shortcuts."
 msgstr ""
+"- Veri kaynağı olarak parçacık1'in kütlesini seçin, aralığı ayarlayın ve "
+"klavye kısayollarını atayın."
 
 #: tutorials/tutorial2.step:115
 #, kde-format
@@ -1477,18 +1510,20 @@ msgid ""
 "- Now try moving the slider and pressing the selected shortcuts while "
 "simulation is active."
 msgstr ""
+"- Benzetim etkinken kaydırıcıyı hareket ettirmeyi ve seçilen kısayollara "
+"basmayı deneyin."
 
 #: tutorials/tutorial2.step:128
 #, kde-format
 msgctxt "HTML:p"
 msgid "<span style=\" font-weight:600;\">Graph</span>"
-msgstr ""
+msgstr "<span style=\" font-weight:600;\">Çizelge</span>"
 
 #: tutorials/tutorial2.step:129
 #, kde-format
 msgctxt "HTML:p"
 msgid "- Create a graph for the velocity of particle1."
-msgstr ""
+msgstr "- parçacık1'in hızı için bir grafik oluşturun."
 
 #: tutorials/tutorial2.step:130
 #, kde-format
@@ -1497,24 +1532,27 @@ msgid ""
 "- Place it below the position graph and make the ranges along X axis the "
 "same for the both graphs. See how the graphs relates to each other."
 msgstr ""
+"- Konum çizelgesinin altına yerleştirin ve X ekseni boyunca aralıkları her "
+"iki çizelge için de aynı yapın. Çizelgelerin birbiriyle nasıl ilişkili "
+"olduğunu görün."
 
 #: tutorials/tutorial3.step:64
 #, kde-format
 msgctxt "HTML:p"
 msgid "<span style=\" font-size:14pt; font-weight:600;\">Tutorial 3</span>"
-msgstr ""
+msgstr "<span style=\" font-size:14pt; font-weight:600;\">Eğitmen 3</span>"
 
 #: tutorials/tutorial3.step:65
 #, kde-format
 msgctxt "HTML:p"
 msgid "<span style=\" font-size:12pt;\">Rigid bodies and tracers</span>"
-msgstr ""
+msgstr "<span style=\" font-size:12pt;\">Sert Gövdeler ve İzleyiciler</span>"
 
 #: tutorials/tutorial3.step:79
 #, kde-format
 msgctxt "HTML:p"
 msgid "<span style=\" font-weight:600;\">Angle and angular velocity</span>"
-msgstr ""
+msgstr "<span style=\" font-weight:600;\">Açı ve Açısal Hız</span>"
 
 #: tutorials/tutorial3.step:80
 #, kde-format
@@ -1523,12 +1561,14 @@ msgid ""
 "- When the rigid body is selected you see three gray handlers on it. Using "
 "them you can change velocity, angle and angular velocity of the body."
 msgstr ""
+"- Sert gövde seçildiğinde üzerinde üç gri işleyici görürsünüz. Bunları "
+"kullanarak vücudun hızını, açısını ve açısal hızını değiştirebilirsiniz."
 
 #: tutorials/tutorial3.step:93
 #, kde-format
 msgctxt "HTML:p"
 msgid "<span style=\" font-weight:600;\">Tracer</span>"
-msgstr ""
+msgstr "<span style=\" font-weight:600;\">İzleyici</span>"
 
 #: tutorials/tutorial3.step:94
 #, kde-format
@@ -1537,6 +1577,8 @@ msgid ""
 "- Tracer is a tool to show trajectory of a given point on a rigid body. Turn "
 "on the simulation to see it in action."
 msgstr ""
+"- İzleyici, katı bir nesne üzerindeki belirli bir noktanın yörüngesini "
+"gösteren bir araçtır. Eylemde görmek için benzetimi açın."
 
 #: tutorials/tutorial3.step:95
 #, kde-format
@@ -1545,6 +1587,8 @@ msgid ""
 "- Change various properties like spring stiffness and see how they affect "
 "the trajectory."
 msgstr ""
+"- Yay sertliği gibi çeşitli özellikleri değiştirin ve yörüngeyi nasıl "
+"etkilediklerini görün."
 
 #: tutorials/tutorial3.step:96
 #, kde-format
@@ -1553,36 +1597,40 @@ msgid ""
 "- Attach one more tracer to the box and compare trajectories of different "
 "points."
 msgstr ""
+"- Kutuya bir izleyici daha ekleyin ve farklı noktaların yörüngelerini "
+"karşılaştırın."
 
 #: tutorials/tutorial4.step:77
 #, kde-format
 msgctxt "name"
 msgid "controller2"
-msgstr ""
+msgstr "denetleyici2"
 
 #: tutorials/tutorial4.step:100
 #, kde-format
 msgctxt "HTML:p"
 msgid "<span style=\" font-size:14pt; font-weight:600;\">Tutorial 4</span>"
-msgstr ""
+msgstr "<span style=\" font-size:14pt; font-weight:600;\">Eğitmen 4</span>"
 
 #: tutorials/tutorial4.step:101
 #, kde-format
 msgctxt "HTML:p"
 msgid "<span style=\" font-size:12pt;\">Motors and forces</span>"
-msgstr ""
+msgstr "<span style=\" font-size:12pt;\">Motorlar ve Kuvvetler</span>"
 
 #: tutorials/tutorial4.step:114
 #, kde-format
 msgctxt "HTML:p"
 msgid "<span style=\" font-weight:600;\">Linear motor</span>"
-msgstr ""
+msgstr "<span style=\" font-weight:600;\">Doğrusal Motor</span>"
 
 #: tutorials/tutorial4.step:115
 #, kde-format
 msgctxt "HTML:p"
 msgid "- A linear motor applies a constant force to a given point on a body."
 msgstr ""
+"- Doğrusal bir motor, bir gövde üzerinde belirli bir noktaya sabit bir "
+"kuvvet uygular."
 
 #: tutorials/tutorial4.step:116
 #, kde-format
@@ -1591,36 +1639,38 @@ msgid ""
 "- You can change the force by dragging its handler \n"
 "while the motor is selected."
 msgstr ""
+"- Motor seçiliyken işleyicisini sürükleyerek\n"
+"kuvveti değiştirebilirsiniz."
 
 #: tutorials/tutorial4.step:118
 #, kde-format
 msgctxt "HTML:p"
 msgid "- You can change the point of application by dragging the force"
-msgstr ""
+msgstr "- Kuvveti sürükleyerek uygulama noktasını değiştirebilirsiniz."
 
 #: tutorials/tutorial4.step:131
 #, kde-format
 msgctxt "HTML:p"
 msgid "<span style=\" font-weight:600;\">Circular motor</span>"
-msgstr ""
+msgstr "<span style=\" font-weight:600;\">Dairesel Motor</span>"
 
 #: tutorials/tutorial4.step:132
 #, kde-format
 msgctxt "HTML:p"
 msgid "- A circular motor applies a constant angular momentum to a body."
-msgstr ""
+msgstr "- Dairesel bir motor, bir gövdeye sabit bir açısal momentum uygular."
 
 #: tutorials/tutorial4.step:133
 #, kde-format
 msgctxt "HTML:p"
 msgid "- Try to attach a circular motor to the box and start simulation."
-msgstr ""
+msgstr "- Kutuya dairesel bir motor takmayı deneyin ve benzetimi başlatın."
 
 #: tutorials/tutorial4.step:146
 #, kde-format
 msgctxt "HTML:p"
 msgid "<span style=\" font-weight:600;\">Global forces</span>"
-msgstr ""
+msgstr "<span style=\" font-weight:600;\">Global Kuvvetler</span>"
 
 #: tutorials/tutorial4.step:147
 #, kde-format
@@ -1629,6 +1679,8 @@ msgid ""
 "<span style=\" font-weight:400;\">- Global forces are forces that act on all "
 "bodies of a specific kind, for example weight force.</span>"
 msgstr ""
+"<span style=\" font-weight:400;\">- Global kuvvetler, belirli bir türdeki "
+"tüm nesnelere etki eden kuvvetlerdir, örneğin ağırlık kuvveti.</span>"
 
 #: tutorials/tutorial4.step:148
 #, kde-format
@@ -1637,36 +1689,40 @@ msgid ""
 "- By default all global forces in Step are turned off. To turn them on, just "
 "add an object for appropriate force to the scene."
 msgstr ""
+"- Öntanımlı olarak Step içindeki tüm global kuvvetler kapalıdır. Bunları "
+"açmak için, sahneye uygun kuvvet için bir nesne eklemeniz yeterlidir."
 
 #: tutorials/tutorial4.step:149
 #, kde-format
 msgctxt "HTML:p"
 msgid "- Try to add WeightForce to the scene and start the simulation."
-msgstr ""
+msgstr "- Sahneye AğırlıkKuvveti eklemeyi deneyin ve benzetimi başlatın."
 
 #: tutorials/tutorial4.step:153
 #, kde-format
 msgctxt "name"
 msgid "box2"
-msgstr ""
+msgstr "kutu2"
 
 #: tutorials/tutorial5.step:63
 #, kde-format
 msgctxt "HTML:p"
 msgid "<span style=\" font-size:14pt; font-weight:600;\">Tutorial 5</span>"
-msgstr ""
+msgstr "<span style=\" font-size:14pt; font-weight:600;\">Eğitmen 5</span>"
 
 #: tutorials/tutorial5.step:64
 #, kde-format
 msgctxt "HTML:p"
 msgid "<span style=\" font-size:12pt;\">Joints</span>"
-msgstr ""
+msgstr "<span style=\" font-size:12pt;\">Eklemler</span>"
 
 #: tutorials/tutorial5.step:79
 #, kde-format
 msgctxt "HTML:p"
 msgid "- Create graphs to display coordinates of particles in double pendulum."
 msgstr ""
+"- Çift sarkaçtaki parçacıkların koordinatlarını görüntülemek için çizelgeler "
+"oluşturun."
 
 #: tutorials/tutorial5.step:80
 #, kde-format
@@ -1675,6 +1731,8 @@ msgid ""
 "- Create triple pendulum by attaching one more particle to the particle2 "
 "using the stick."
 msgstr ""
+"- Çubuğu kullanarak parçacık2'ye bir parçacık daha ekleyerek üçlü sarkaç "
+"oluşturun."
 
 #: tutorials/tutorial5.step:81
 #, kde-format
@@ -1683,12 +1741,14 @@ msgid ""
 "- Remove anchor1 that fixes position of the box and attach a pin to the "
 "corner of the box. Try starting the simulation."
 msgstr ""
+"- Kutunun konumunu sabitleyen çapa1'i çıkarın ve kutunun köşesine bir pim "
+"takın. Benzetimi başlatmayı deneyin."
 
 #: tutorials/tutorial5.step:114
 #, kde-format
 msgctxt "HTML:p"
 msgid "<span style=\" font-weight:600;\">Joints</span>"
-msgstr ""
+msgstr "<span style=\" font-weight:600;\">Eklemler</span>"
 
 #: tutorials/tutorial5.step:115
 #, kde-format
@@ -1697,18 +1757,20 @@ msgid ""
 "<span style=\" font-weight:400;\">- Joints are objects that attach bodies to "
 "each other or to the background.</span>"
 msgstr ""
+"<span style=\" font-weight:400;\">- Eklemler, gövdeleri birbirine veya arka "
+"plana bağlayan nesnelerdir.</span>"
 
 #: tutorials/tutorial5.step:116
 #, kde-format
 msgctxt "HTML:p"
 msgid "- An anchor is a joint that fixes the position of the body."
-msgstr ""
+msgstr "- Çapa, gövdenin konumunu sabitleyen bir eklemdir."
 
 #: tutorials/tutorial5.step:117
 #, kde-format
 msgctxt "HTML:p"
 msgid "- A pin is a joint that fixes one point of the body."
-msgstr ""
+msgstr "- Pim, gövdenin bir noktasını sabitleyen bir eklemdir."
 
 #: tutorials/tutorial5.step:118
 #, kde-format
@@ -1717,3 +1779,5 @@ msgid ""
 "- A stick is a joint that fixes the distance between two points on two "
 "bodies."
 msgstr ""
+"- Çubuk, iki nesne üzerindeki iki nokta arasındaki uzaklığı sabitleyen bir "
+"eklemdir."
