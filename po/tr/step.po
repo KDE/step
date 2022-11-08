@@ -12,7 +12,7 @@ msgstr ""
 "Project-Id-Version: kdeedu-kde4\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2022-10-27 00:42+0000\n"
-"PO-Revision-Date: 2022-11-02 10:36+0300\n"
+"PO-Revision-Date: 2022-11-07 19:00+0300\n"
 "Last-Translator: Emir SARI <emir_sari@icloud.com>\n"
 "Language-Team: Turkish <kde-l10n-tr@kde.org>\n"
 "Language: tr\n"
@@ -426,12 +426,12 @@ msgstr "İleri"
 #: step/infobrowser.cc:50
 #, kde-format
 msgid "Sync selection"
-msgstr "Seçimi eşzamanla"
+msgstr "Seçimi Eşzamanla"
 
 #: step/infobrowser.cc:52
 #, kde-format
 msgid "Follow selection"
-msgstr "Seçimi takip et"
+msgstr "Seçimi İzle"
 
 #: step/infobrowser.cc:57
 #, kde-format
@@ -853,7 +853,7 @@ msgstr "%1 ögesini %2 olarak yeniden adlandır"
 #: step/propertiesbrowser.cc:452
 #, kde-format
 msgid "Property"
-msgstr "Özellikr"
+msgstr "Özellik"
 
 #: step/propertiesbrowser.cc:453
 #, kde-format
@@ -1139,18 +1139,18 @@ msgstr "[yapılandırılmamış]"
 #: step/toolgraphics.cc:1077
 #, kde-format
 msgid "Clear Graph"
-msgstr "Grafiği Temizle"
+msgstr "Çizelgeyi Temizle"
 
 #: step/toolgraphics.cc:1078
 #, kde-format
 msgid "Configure Graph..."
-msgstr "Grafiği Yapılandır..."
+msgstr "Çizelgeyi Yapılandır..."
 
 #: step/toolgraphics.cc:1096
 #, kde-format
 msgctxt "@title:window"
 msgid "Configure Graph"
-msgstr "Grafiği Yapılandır"
+msgstr "Çizelgeyi Yapılandır"
 
 #: step/toolgraphics.cc:1172 step/toolgraphics.cc:1371
 #: step/toolgraphics.cc:1709
@@ -1161,7 +1161,7 @@ msgstr "%1 özelliklerini düzenle"
 #: step/toolgraphics.cc:1224
 #, kde-format
 msgid "Clear graph %1"
-msgstr "%1 grafiğini temizle"
+msgstr "%1 çizelgesini temizle"
 
 #: step/toolgraphics.cc:1305
 #, kde-format
@@ -1253,7 +1253,7 @@ msgstr "Sil: %1"
 #: step/worldmodel.cc:630
 #, kde-format
 msgid "Delete several items"
-msgstr "Çeşitli ögeleri sil"
+msgstr "Birkaç ögeyi sil"
 
 #: step/worldmodel.cc:701 step/worldmodel.cc:708
 #, kde-format
@@ -1293,17 +1293,17 @@ msgstr "Kes: %1"
 #: step/worldmodel.cc:1061
 #, kde-format
 msgid "Cut several items"
-msgstr "Birden fazla kes"
+msgstr "Birkaç ögeyi kes"
 
 #: step/worldmodel.cc:1083
 #, kde-format
 msgid "Pasted %1"
-msgstr "%1 Yapıştırıldı"
+msgstr "%1 yapıştırıldı"
 
 #: step/worldmodel.cc:1084
 #, kde-format
 msgid "Pasted several items"
-msgstr "Birden fazla yapıştırıldı"
+msgstr "Birkaç öge yapıştırıldı"
 
 #: step/worldscene.cc:248
 #, kde-format
