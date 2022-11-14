@@ -12,7 +12,7 @@ msgstr ""
 "Project-Id-Version: kdeedu-kde4\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2016-06-22 08:50+0000\n"
-"PO-Revision-Date: 2022-11-07 18:45+0300\n"
+"PO-Revision-Date: 2022-11-13 14:13+0300\n"
 "Last-Translator: Emir SARI <emir_sari@icloud.com>\n"
 "Language-Team: Turkish <kde-l10n-tr@kde.org>\n"
 "Language: tr\n"
@@ -21,7 +21,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
 "X-Qt-Contexts: true\n"
-"X-Generator: Lokalize 22.08.2\n"
+"X-Generator: Lokalize 22.08.3\n"
 
 #: body.cc:13
 msgctxt "ObjectClass|"
@@ -1835,22 +1835,22 @@ msgstr "metin"
 #: tool.cc:31
 msgctxt "ObjectClass|"
 msgid "Graph"
-msgstr "Çizelge"
+msgstr "Grafik"
 
 #: tool.cc:31
 msgctxt "ObjectDescription|"
 msgid "Graph: plots a graph of any properties"
-msgstr "Çizelge: Herhangi bir özelliğin grafiğini çizer"
+msgstr "Grafik: Herhangi bir özelliğin grafiğini çizer"
 
 #: tool.cc:33
 msgctxt "PropertyDescription|"
 msgid "Graph position on the scene"
-msgstr "Çizelgenin sahnedeki konumu"
+msgstr "Grafiğin sahnedeki konumu"
 
 #: tool.cc:34
 msgctxt "PropertyDescription|"
 msgid "Graph size on the scene"
-msgstr "Çizelgenin sahnedeki boyutu"
+msgstr "Grafiğin sahnedeki boyutu"
 
 #: tool.cc:35
 msgctxt "PropertyDescription|"
@@ -1955,7 +1955,7 @@ msgstr "limitY"
 #: tool.cc:45
 msgctxt "PropertyDescription|"
 msgid "Show points on the graph"
-msgstr "Çizelgede noktaları göster"
+msgstr "Grafikte noktaları göster"
 
 #: tool.cc:45
 msgctxt "PropertyName|"
@@ -1965,7 +1965,7 @@ msgstr "noktalarıGöster"
 #: tool.cc:46
 msgctxt "PropertyDescription|"
 msgid "Show lines on the graph"
-msgstr "Çizelgede çizgileri göster"
+msgstr "Grafike çizgileri göster"
 
 #: tool.cc:46
 msgctxt "PropertyName|"
