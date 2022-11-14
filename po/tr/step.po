@@ -12,7 +12,7 @@ msgstr ""
 "Project-Id-Version: kdeedu-kde4\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2022-10-27 00:42+0000\n"
-"PO-Revision-Date: 2022-11-07 19:00+0300\n"
+"PO-Revision-Date: 2022-11-13 14:11+0300\n"
 "Last-Translator: Emir SARI <emir_sari@icloud.com>\n"
 "Language-Team: Turkish <kde-l10n-tr@kde.org>\n"
 "Language: tr\n"
@@ -20,7 +20,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
-"X-Generator: Lokalize 22.08.2\n"
+"X-Generator: Lokalize 22.08.3\n"
 
 #, kde-format
 msgctxt "NAME OF TRANSLATORS"
@@ -1139,18 +1139,18 @@ msgstr "[yapılandırılmamış]"
 #: step/toolgraphics.cc:1077
 #, kde-format
 msgid "Clear Graph"
-msgstr "Çizelgeyi Temizle"
+msgstr "Grafiği Temizle"
 
 #: step/toolgraphics.cc:1078
 #, kde-format
 msgid "Configure Graph..."
-msgstr "Çizelgeyi Yapılandır..."
+msgstr "Grafiği Yapılandır..."
 
 #: step/toolgraphics.cc:1096
 #, kde-format
 msgctxt "@title:window"
 msgid "Configure Graph"
-msgstr "Çizelgeyi Yapılandır"
+msgstr "Grafiği Yapılandır"
 
 #: step/toolgraphics.cc:1172 step/toolgraphics.cc:1371
 #: step/toolgraphics.cc:1709
@@ -1161,7 +1161,7 @@ msgstr "%1 özelliklerini düzenle"
 #: step/toolgraphics.cc:1224
 #, kde-format
 msgid "Clear graph %1"
-msgstr "%1 çizelgesini temizle"
+msgstr "%1 grafiğini temizle"
 
 #: step/toolgraphics.cc:1305
 #, kde-format
