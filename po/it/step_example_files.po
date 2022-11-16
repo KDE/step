@@ -1,13 +1,13 @@
 # Copyright (C) YEAR This file is copyright:
 # This file is distributed under the same license as the step package.
-# Luigi Toscano <luigi.toscano@tiscali.it>, 2019, 2020.
+# Luigi Toscano <luigi.toscano@tiscali.it>, 2019, 2020, 2022.
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: step\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2022-10-26 00:42+0000\n"
-"PO-Revision-Date: 2020-10-26 01:02+0100\n"
+"PO-Revision-Date: 2022-11-13 00:06+0100\n"
 "Last-Translator: Luigi Toscano <luigi.toscano@tiscali.it>\n"
 "Language-Team: Italian <kde-i18n-it@kde.org>\n"
 "Language: it\n"
@@ -15,7 +15,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Generator: Lokalize 20.04.3\n"
+"X-Generator: Lokalize 23.03.70\n"
 
 #: examples/brownian.step:4 examples/doublependulum.step:4
 #: examples/fourpendula.step:4 examples/gas.step:4 examples/graph.step:4
@@ -1780,11 +1780,10 @@ msgid "- A pin is a joint that fixes one point of the body."
 msgstr "- Uno spillo è un giunto che fissa un punto del corpo."
 
 #: tutorials/tutorial5.step:118
-#, fuzzy, kde-format
-#| msgctxt "HTML:p"
-#| msgid "- A pin is a joint that fixes one point of the body."
+#, kde-format
 msgctxt "HTML:p"
 msgid ""
 "- A stick is a joint that fixes the distance between two points on two "
 "bodies."
-msgstr "- Uno spillo è un giunto che fissa un punto del corpo."
+msgstr ""
+"- Un'asta è un giunto che fissa la distanza tra due punti su due corpi."
