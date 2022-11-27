@@ -1,13 +1,13 @@
 # Copyright (C) YEAR This file is copyright:
 # This file is distributed under the same license as the step package.
 #
-# Łukasz Wojniłowicz <lukasz.wojnilowicz@gmail.com>, 2021.
+# Łukasz Wojniłowicz <lukasz.wojnilowicz@gmail.com>, 2021, 2022.
 msgid ""
 msgstr ""
 "Project-Id-Version: step\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2022-10-26 00:42+0000\n"
-"PO-Revision-Date: 2021-01-01 11:50+0100\n"
+"PO-Revision-Date: 2022-11-26 10:43+0100\n"
 "Last-Translator: Łukasz Wojniłowicz <lukasz.wojnilowicz@gmail.com>\n"
 "Language-Team: Polish <kde-i18n-doc@kde.org>\n"
 "Language: pl\n"
@@ -16,7 +16,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=(n==1 ? 0 : n%10>=2 && n%10<=4 && (n%100<10 "
 "|| n%100>=20) ? 1 : 2);\n"
-"X-Generator: Lokalize 20.08.1\n"
+"X-Generator: Lokalize 22.08.2\n"
 
 #: objectinfo/anchor.html:6
 #, kde-format
@@ -545,32 +545,7 @@ msgid "A rigid polygon with a unique name and the following parameters:"
 msgstr "Sztywny wielokąt o niepowtarzalnej nazwie z następującymi parametrami:"
 
 #: objectinfo/polygon.html:21
-#, fuzzy, kde-format
-#| msgctxt "box.html:body"
-#| msgid ""
-#| "<ul>\n"
-#| "\t\t<li><b>position:</b> The X/Y position of the center of mass of the "
-#| "box, relative to the center of the <a href=\"objinfo:World\">world</a>.</"
-#| "li>\n"
-#| "\t\t<li><b>angle:</b> By how much the box is rotated in positive "
-#| "direction, that is clock-wise.</li>\n"
-#| "\t\t<li><b>velocity:</b> The velocity of the center of mass of the box. "
-#| "Unit: meters/second.</li>\n"
-#| "\t\t<li><b>angular velocity:</b> How fast the box is spinning in positive "
-#| "direction, that is clock-wise.</li>\n"
-#| "\t\t<li><b>mass:</b> Total mass of the box. This influences forces with "
-#| "which the box interacts with other items.</li>\n"
-#| "\t\t<li><b>inertia:</b> How difficult it is to change the box's rotation."
-#| "</li>\n"
-#| "\t\t<li><b>momentum:</b> A fundamental quantity in mechanics that is "
-#| "conserved in the absence of external forces. A product of the mass and "
-#| "the velocity.</li>\n"
-#| "\t\t<li><b>angular momentum:</b> Measure of the extent to which the box "
-#| "will continue to rotate unless acted upon by an external torque.</li>\n"
-#| "\t\t<li><b>kinetic energy:</b> The work needed to accelerate the body of "
-#| "a given mass from rest to its current velocity.</li>\n"
-#| "\t\t<li><b>size:</b> Defines width and height of the box.</li>\n"
-#| "\t</ul>"
+#, kde-format
 msgctxt "polygon.html:body"
 msgid ""
 "<ul>\n"
@@ -617,14 +592,16 @@ msgstr ""
 "przy założeniu, że nie działa na niego żaden zewnętrzny moment.</li>\n"
 "\t\t<li><b>energia kinetyczna:</b> Praca potrzebna do przyspieszenia ciała o "
 "danej masie ze stanu spoczynku do jego bieżącej prędkości.</li>\n"
-"\t\t<li><b>rozmiar:</b> Określa szerokość i wysokość pudełka.</li>\n"
+"\t\t<li><b>wierzchołki:</b> Wykaz wierzchołków (narożników) wielokąta, które "
+"określają jego rozmiar i kształt. Współrzędne każdego wierzchołka są "
+"względne do środka ciężkości wielokąta.</li>\n"
 "\t</ul>"
 
 #: objectinfo/softbody.html:6
 #, kde-format
 msgctxt "softbody.html:title"
 msgid "Soft body"
-msgstr ""
+msgstr "Bryła podatna"
 
 #: objectinfo/softbody.html:9
 #, kde-format
@@ -635,22 +612,26 @@ msgid ""
 "simulate an <a href=\"https://en.wikipedia.org/wiki/"
 "Elasticity_(physics)\">elastic</a> or viscoelastic body."
 msgstr ""
+"Bryła podatna jest zbiorem <a href=\"objinfo:particle\">cząsteczek</a> "
+"połączonych <a href=\"objinfo:spring\">sprężynami</a>. Można jej użyć do "
+"zasymulowania bryły <a href=\"https://en.wikipedia.org/wiki/"
+"Elasticity_(physics)\">elastyczenej</a> lub lepkoelastycznej."
 
 #: objectinfo/spring.html:6
 #, kde-format
 msgctxt "spring.html:title"
 msgid "Spring"
-msgstr ""
+msgstr "Sprężyna"
 
 #: objectinfo/spring.html:9
-#, fuzzy, kde-format
-#| msgctxt "box.html:p"
-#| msgid "A rigid box with a unique name and the following parameters:"
+#, kde-format
 msgctxt "spring.html:p"
 msgid ""
 "A flexible elastic object to store mechanical energy. It has a unique name "
 "and the following parameters:"
-msgstr "Sztywne pudełko o niepowtarzalnej nazwie z następującymi parametrami:"
+msgstr ""
+"Elastycznopodatny obiekt do przechowywania energii mechanicznej. Ma "
+"niepowtarzalną nazwę i następujące parametry:"
 
 #: objectinfo/spring.html:19
 #, kde-format
@@ -673,18 +654,34 @@ msgid ""
 "\t\t<li><b>force:</b> is the force that acts along the spring</li>\n"
 "\t</ul>"
 msgstr ""
+"<ul>\n"
+"\t\t<li><b>długość swobodna:</b> jest długością sprężyny, która nie jest ani "
+"ściśnięta ani rozciągnięta.</li>\n"
+"\t\t<li><b>długość:</b> jest początkową długością sprężyny</li>\n"
+"\t\t<li><b>sztywność:</b> jest stopniem oporu sprężyny na jej ściskanie lub "
+"rozciąganie</li>\n"
+"\t\t<li><b>tłumienie:</b> jest stopniem tłumienia energii zgromadzonej przez "
+"sprężynę, coś jak wewnętrzna lepkość</li>\n"
+"\t\t<li><b>bryła 1 i 2:</b> są bryłami, do których zaczepiona jest sprężyna</"
+"li>\n"
+"\t\t<li><b>miejscowe położenie 1 i 2:</b> są miejscowymi położeniami końców "
+"sprężyny względem jej środka w nieodkształconym stanie</li>\n"
+"\t\t<li><b>położenie 1 i 2:</b> są globalnymi położeniami końców sprężyny </"
+"li>\n"
+"\t\t<li><b>siłą:</b> jest siłą, która działa wzdłuż sprężyny</li>\n"
+"\t</ul>"
 
 #: objectinfo/weightforce.html:6
 #, kde-format
 msgctxt "weightforce.html:title"
 msgid "Weight Force"
-msgstr ""
+msgstr "Siła ciążenia"
 
 #: objectinfo/weightforce.html:9
 #, kde-format
 msgctxt "weightforce.html:p"
 msgid "Weight of an object is the force exerted on it by gravity."
-msgstr ""
+msgstr "Ciężar obiektu jest siłą wywieraną na niego przez grawitację."
 
 #: objectinfo/weightforce.html:10
 #, kde-format
@@ -693,6 +690,8 @@ msgid ""
 "Weight is a vector quantity. It is often denoted by W and given by the "
 "relation W = mg."
 msgstr ""
+"Ciężar jest wielkością wektorową. Zazwyczaj jest zapisywany literą W i dany "
+"przez równanie W = mg."
 
 #: objectinfo/weightforce.html:12
 #, kde-format
@@ -701,26 +700,24 @@ msgid ""
 "<li>Where, <b>m</b> is the mass of the body</li>\n"
 "<li>and <b>g</b> is the acceleration due to gravity.</li>"
 msgstr ""
+"<li>Gdzie, <b>m</b> jest masą bryły</li>\n"
+"<li>a <b>g</b> jest przyspieszeniem ze względu na grawitację.</li>"
 
 #: objectinfo/weightforce.html:13
-#, fuzzy, kde-format
-#| msgctxt "gravitationforce.html:p"
-#| msgid ""
-#| "For more details, please refer to the <a href=\"https://en.wikipedia.org/"
-#| "wiki/Gravitation\">Gravitation Force</a>."
+#, kde-format
 msgctxt "weightforce.html:p"
 msgid ""
 "For more details, please refer to the <a href=\"https://en.wikipedia.org/"
 "wiki/Weight\">Weight Force</a>."
 msgstr ""
 "Po więcej szczegółów, przeczytaj o <a href=\"https://en.wikipedia.org/wiki/"
-"Gravitation\">sile grawitacji</a>."
+"Weight\">siła ciążenia</a>."
 
 #: objectinfo/world.html:6
 #, kde-format
 msgctxt "world.html:title"
 msgid "World"
-msgstr ""
+msgstr "Świat"
 
 #: objectinfo/world.html:9
 #, kde-format
@@ -731,3 +728,7 @@ msgid ""
 "click on the <b>Simulate</b> button in toolbar and your scene will evolve "
 "according to the laws of physics."
 msgstr ""
+"Jest to scena świata. Wybierz kilka rzeczy z palety obiektów i umieść je na "
+"płótnie. Po nadaniu właściwości obiektom, możesz nacisnąć przycisk "
+"<b>Symuluj</b> na pasku narzędzi, a twoja scena zachowa się zgodnie z "
+"prawami fizyki."
