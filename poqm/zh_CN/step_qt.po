@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: kdeorg\n"
-"PO-Revision-Date: 2022-12-01 06:53\n"
+"PO-Revision-Date: 2022-12-13 12:22\n"
 "Language-Team: Chinese Simplified\n"
 "Language: zh_CN\n"
 "MIME-Version: 1.0\n"
@@ -33,17 +33,17 @@ msgstr "碰撞求解"
 #: collisionsolver.cc:20 solver.cc:16
 msgctxt "PropertyDescription|"
 msgid "Allowed absolute tolerance"
-msgstr ""
+msgstr "允许绝对误差"
 
 #: collisionsolver.cc:20 solver.cc:16
 msgctxt "PropertyName|"
 msgid "toleranceAbs"
-msgstr ""
+msgstr "误差绝对值"
 
 #: collisionsolver.cc:21 solver.cc:19
 msgctxt "PropertyDescription|"
 msgid "Maximal local error during last step"
-msgstr ""
+msgstr "上一步中最大本地错误"
 
 #: collisionsolver.cc:21 solver.cc:19
 msgctxt "PropertyName|"
@@ -53,7 +53,7 @@ msgstr "本地错误"
 #: collisionsolver.cc:23
 msgctxt "ObjectClass|"
 msgid "GJKCollisionSolver"
-msgstr ""
+msgstr "GJK 碰撞求解"
 
 #: constraintsolver.cc:19
 msgctxt "ObjectClass|"
@@ -93,52 +93,52 @@ msgstr "库伦常量"
 #: coulombforce.cc:19
 msgctxt "ObjectClass|"
 msgid "CoulombForceErrors"
-msgstr ""
+msgstr "库伦力错误"
 
 #: coulombforce.cc:19
 msgctxt "ObjectDescription|"
 msgid "Errors class for CoulombForce"
-msgstr ""
+msgstr "库伦力错误类"
 
 #: coulombforce.cc:21
 msgctxt "PropertyName|"
 msgid "coulombConstVariance"
-msgstr ""
+msgstr "库伦常量变化量"
 
 #: coulombforce.cc:22
 msgctxt "PropertyDescription|"
 msgid "Coulomb constant variance"
-msgstr ""
+msgstr "库伦常量变化量"
 
 #: eulersolver.cc:15
 msgctxt "ObjectClass|"
 msgid "GenericEulerSolver"
-msgstr ""
+msgstr "常规欧拉求解"
 
 #: eulersolver.cc:15
 msgctxt "ObjectDescription|"
 msgid "Generic Euler solver"
-msgstr ""
+msgstr "常规欧拉求解"
 
 #: eulersolver.cc:16
 msgctxt "ObjectClass|"
 msgid "EulerSolver"
-msgstr ""
+msgstr "欧拉求解"
 
 #: eulersolver.cc:16
 msgctxt "ObjectDescription|"
 msgid "Non-adaptive Euler solver"
-msgstr ""
+msgstr "非适应性欧拉求解"
 
 #: eulersolver.cc:17
 msgctxt "ObjectClass|"
 msgid "AdaptiveEulerSolver"
-msgstr ""
+msgstr "适应性欧拉求解"
 
 #: eulersolver.cc:17
 msgctxt "ObjectDescription|"
 msgid "Adaptive Euler solver"
-msgstr ""
+msgstr "适应性欧拉求解"
 
 #: force.cc:14
 msgctxt "ObjectClass|"
@@ -163,17 +163,17 @@ msgstr "气体质点"
 #: gas.cc:17
 msgctxt "ObjectClass|"
 msgid "GasLJForce"
-msgstr ""
+msgstr "气体伦纳德-琼斯势"
 
 #: gas.cc:17
 msgctxt "ObjectDescription|"
 msgid "Lennard-Jones force"
-msgstr ""
+msgstr "伦纳德-琼斯势"
 
 #: gas.cc:19
 msgctxt "PropertyDescription|"
 msgid "Potential depth"
-msgstr ""
+msgstr "势能阱深度"
 
 #: gas.cc:19
 msgctxt "PropertyName|"
@@ -189,12 +189,12 @@ msgstr "J"
 #: gas.cc:20
 msgctxt "PropertyDescription|"
 msgid "Distance at which the force is zero"
-msgstr ""
+msgstr "到达零势的距离"
 
 #: gas.cc:20
 msgctxt "PropertyName|"
 msgid "rmin"
-msgstr ""
+msgstr "零势距离"
 
 #: gas.cc:20 gas.cc:21 gas.cc:27 gas.cc:33 gas.cc:35 joints.cc:17 joints.cc:23
 #: joints.cc:24 joints.cc:28 joints.cc:31 joints.cc:33 joints.cc:35
@@ -212,7 +212,7 @@ msgstr "m"
 #: gas.cc:21
 msgctxt "PropertyDescription|"
 msgid "Cut-off distance"
-msgstr ""
+msgstr "截止距离"
 
 #: gas.cc:21
 msgctxt "PropertyName|"
@@ -222,32 +222,32 @@ msgstr "剪切"
 #: gas.cc:23
 msgctxt "ObjectClass|"
 msgid "GasLJForceErrors"
-msgstr ""
+msgstr "气体伦纳德-琼斯势错误"
 
 #: gas.cc:23
 msgctxt "ObjectDescription|"
 msgid "Errors class for GasLJForce"
-msgstr ""
+msgstr "气体伦纳德-琼斯势错误类"
 
 #: gas.cc:25
 msgctxt "PropertyName|"
 msgid "depthVariance"
-msgstr ""
+msgstr "势能阱深速度"
 
 #: gas.cc:26
 msgctxt "PropertyDescription|"
 msgid "Potential depth variance"
-msgstr ""
+msgstr "势能阱深度速度"
 
 #: gas.cc:27
 msgctxt "PropertyName|"
 msgid "rminVariance"
-msgstr ""
+msgstr "零势速度"
 
 #: gas.cc:28
 msgctxt "PropertyDescription|"
 msgid "Variance of the distance at which the force is zero"
-msgstr ""
+msgstr "到达零势距离的速度"
 
 #: gas.cc:32
 msgctxt "ObjectClass|"
@@ -257,32 +257,32 @@ msgstr "气体"
 #: gas.cc:32
 msgctxt "ObjectDescription|"
 msgid "Particle gas"
-msgstr ""
+msgstr "气体质点"
 
 #: gas.cc:33
 msgctxt "PropertyName|"
 msgid "measureRectCenter"
-msgstr ""
+msgstr "测量矩形中心"
 
 #: gas.cc:34
 msgctxt "PropertyDescription|"
 msgid "Center of the rect for measurements"
-msgstr ""
+msgstr "用于测量的矩形中心"
 
 #: gas.cc:35
 msgctxt "PropertyName|"
 msgid "measureRectSize"
-msgstr ""
+msgstr "测量矩形大小"
 
 #: gas.cc:36
 msgctxt "PropertyDescription|"
 msgid "Size of the rect for measurements"
-msgstr ""
+msgstr "用于测量的矩形大小"
 
 #: gas.cc:37
 msgctxt "PropertyName|"
 msgid "rectVolume"
-msgstr ""
+msgstr "矩形体积"
 
 #: gas.cc:37
 msgctxt "Units|"
@@ -292,22 +292,22 @@ msgstr "平米"
 #: gas.cc:38
 msgctxt "PropertyDescription|"
 msgid "Volume of the measureRect"
-msgstr ""
+msgstr "测量矩形的体积"
 
 #: gas.cc:39
 msgctxt "PropertyName|"
 msgid "rectParticleCount"
-msgstr ""
+msgstr "矩形质点数目"
 
 #: gas.cc:40
 msgctxt "PropertyDescription|"
 msgid "Count of particles in the measureRect"
-msgstr ""
+msgstr "测量矩形中的质点数目"
 
 #: gas.cc:41
 msgctxt "PropertyName|"
 msgid "rectConcentration"
-msgstr ""
+msgstr "矩形密度"
 
 #: gas.cc:41
 msgctxt "Units|"
@@ -317,12 +317,12 @@ msgstr "1/米²"
 #: gas.cc:42
 msgctxt "PropertyDescription|"
 msgid "Concentration of particles in the measureRect"
-msgstr ""
+msgstr "测量矩形中的质点密度"
 
 #: gas.cc:43
 msgctxt "PropertyName|"
 msgid "rectPressure"
-msgstr ""
+msgstr "矩形压强"
 
 #: gas.cc:43 gas.cc:58
 msgctxt "Units|"
@@ -332,12 +332,12 @@ msgstr "帕"
 #: gas.cc:44
 msgctxt "PropertyDescription|"
 msgid "Pressure of particles in the measureRect"
-msgstr ""
+msgstr "测量矩形中的质点压强"
 
 #: gas.cc:45
 msgctxt "PropertyName|"
 msgid "rectTemperature"
-msgstr ""
+msgstr "矩形温度"
 
 #: gas.cc:45 gas.cc:60
 msgctxt "Units|"
@@ -347,22 +347,22 @@ msgstr "K"
 #: gas.cc:46
 msgctxt "PropertyDescription|"
 msgid "Temperature of particles in the measureRect"
-msgstr ""
+msgstr "测量矩形中的质点温度"
 
 #: gas.cc:47
 msgctxt "PropertyName|"
 msgid "rectMeanKineticEnergy"
-msgstr ""
+msgstr "矩形平均动能"
 
 #: gas.cc:48
 msgctxt "PropertyDescription|"
 msgid "Mean kinetic energy of particles in the measureRect"
-msgstr ""
+msgstr "测量矩形中的质点平均动能"
 
 #: gas.cc:49
 msgctxt "PropertyName|"
 msgid "rectMeanVelocity"
-msgstr ""
+msgstr "矩形平均速度"
 
 #: gas.cc:49 gas.cc:64 particle.cc:18 particle.cc:31 rigidbody.cc:19
 #: rigidbody.cc:46 softbody.cc:26
@@ -373,12 +373,12 @@ msgstr "米/秒"
 #: gas.cc:50
 msgctxt "PropertyDescription|"
 msgid "Mean velocity of particles in the measureRect"
-msgstr ""
+msgstr "测量矩形中的质点平均速度"
 
 #: gas.cc:51
 msgctxt "PropertyName|"
 msgid "rectMeanParticleMass"
-msgstr ""
+msgstr "矩形平均质点质量"
 
 #: gas.cc:51 gas.cc:53 gas.cc:66 gas.cc:68 particle.cc:22 particle.cc:37
 #: particle.cc:49 rigidbody.cc:30 rigidbody.cc:59 softbody.cc:38
@@ -389,17 +389,17 @@ msgstr "千克"
 #: gas.cc:52
 msgctxt "PropertyDescription|"
 msgid "Mean mass of particles in the measureRect"
-msgstr ""
+msgstr "测量矩形中的质点平均质量"
 
 #: gas.cc:53
 msgctxt "PropertyName|"
 msgid "rectMass"
-msgstr ""
+msgstr "矩形质量"
 
 #: gas.cc:54
 msgctxt "PropertyDescription|"
 msgid "Total mass of particles in the measureRect"
-msgstr ""
+msgstr "测量矩形中的质点总质量"
 
 #: gas.cc:57
 msgctxt "ObjectClass|"
@@ -409,7 +409,7 @@ msgstr "气体错误"
 #: gas.cc:57
 msgctxt "ObjectDescription|"
 msgid "Errors class for Gas"
-msgstr ""
+msgstr "气体错误类"
 
 #: gas.cc:58
 msgctxt "PropertyName|"
@@ -670,22 +670,22 @@ msgstr ""
 #: gslsolver.cc:43
 msgctxt "ObjectDescription|"
 msgid "Adaptive Runge-Kutta Cash-Karp (4,5) solver from GSL library"
-msgstr ""
+msgstr "GSL 库的适应性龙格-库塔 Cash-Karp 方法求解"
 
 #: gslsolver.cc:46
 msgctxt "ObjectClass|"
 msgid "GslRK8PDSolver"
-msgstr ""
+msgstr "Gsl 龙格-库塔 Prince-Dormand 方法(8,9)求解"
 
 #: gslsolver.cc:46
 msgctxt "ObjectDescription|"
 msgid "Runge-Kutta Prince-Dormand (8,9) solver from GSL library"
-msgstr ""
+msgstr "GSL 库的龙格-库塔 Prince-Dormand 方法(8,9)求解"
 
 #: gslsolver.cc:48
 msgctxt "ObjectClass|"
 msgid "GslAdaptiveRK8PDSolver"
-msgstr ""
+msgstr "Gsl 适应性龙格-库塔 Prince-Dormand 方法(8,9)求解"
 
 #: gslsolver.cc:48
 msgctxt "ObjectDescription|"
