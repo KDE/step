@@ -368,7 +368,7 @@ msgid ""
 "Move mouse and release left mouse button to position\n"
 "bottom right corner of the region for %1"
 msgstr ""
-"Moveu el ratolí i amolleu el botó esquerre per a situar\n"
+"Moveu el ratolí i deixeu anar el botó esquerre per a situar\n"
 "el cantó inferior dret de la regió per a %1"
 
 #: step/gasgraphics.cc:85
@@ -797,7 +797,8 @@ msgstr "Premeu el botó esquerre del ratolí per a situar el centre de %1"
 #: step/polygongraphics.cc:170
 #, kde-format
 msgid "Move mouse and release left mouse button to define a radius of the %1"
-msgstr "Moveu el ratolí i amolleu el botó esquerre per a definir el radi de %1"
+msgstr ""
+"Moveu el ratolí i deixeu anar el botó esquerre per a definir el radi de %1"
 
 #: step/polygongraphics.cc:283
 #, kde-format
@@ -814,7 +815,7 @@ msgid ""
 "Move mouse and release left mouse button to position\n"
 "bottom right corner of the %1"
 msgstr ""
-"Moveu el ratolí i amolleu el botó esquerre per a situar\n"
+"Moveu el ratolí i deixeu anar el botó esquerre per a situar\n"
 "el cantó inferior dret de %1"
 
 #: step/polygongraphics.cc:428
@@ -1241,7 +1242,8 @@ msgstr ""
 #, kde-format
 msgid "Release left mouse button to position second end of the %1"
 msgstr ""
-"Amolleu el botó esquerre del ratolí per a posicionar el segon extrem de %1"
+"Deixeu anar el botó esquerre del ratolí per a posicionar el segon extrem de "
+"%1"
 
 #: step/worldmodel.cc:629
 #, kde-format
