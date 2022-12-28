@@ -16,6 +16,8 @@ class TestForces: public QObject
 private Q_SLOTS:
     void testGravitationalForce();
     void testWeightForce();
+    void testRigidlyFixedLinearMotor_data();
+    void testRigidlyFixedLinearMotor();
 };
 
 #endif

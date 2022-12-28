@@ -52,6 +52,12 @@ public:
     /** Position of the motor */
     Vector2d position() const;
 
+    /** Whether the motor is rigidly fixed to the body */
+    bool isRigidlyFixed() const { return _rigidlyFixed; }
+    /** Sets whether the motor is rigidly fixed to the body, i.e. rotates the
+     *  force vector in sync with body rotation */
+    void setRigidlyFixed(bool fixed) { _rigidlyFixed = fixed; }
+
     /** Get force value */
     const Vector2d& forceValue() const { return _forceValue; }
     /** Set force value */
@@ -64,6 +70,8 @@ protected:
     Object*  _body;
     Vector2d _localPosition;
     Vector2d _forceValue;
+    double   _lastBodyAngle = 0;
+    bool     _rigidlyFixed = false;
 
     Particle*  _p;
     RigidBody* _r;

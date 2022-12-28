@@ -7,6 +7,7 @@
 #include "test_forces.h"
 
 #include "gravitation.h"
+#include "motor.h"
 #include "rigidbody.h"
 #include "particle.h"
 #include "vector.h"
@@ -85,6 +86,43 @@ void TestForces::testWeightForce()
     QCOMPARE(double(body->torque()), 0.0);
     QCOMPARE(double(body->rigidBodyErrors()->accelerationVariance()[0]), 0.0);
     QVERIFY(double(body->rigidBodyErrors()->accelerationVariance()[1]) < 1e-9);
+}
+
+void TestForces::testRigidlyFixedLinearMotor_data()
+{
+    QTest::addColumn<bool>("rigidlyFixed");
+    QTest::addColumn<Vector2d>("initialForce");
+    QTest::addColumn<double>("angle");
+    QTest::addColumn<Vector2d>("expectedForce");
+
+    QTest::addRow("not-fixed") << false << Vector2d(1, 0) << M_PI_2 << Vector2d(1, 0);
+    QTest::addRow("fixed")     << true  << Vector2d(1, 0) << M_PI_2 << Vector2d(0, 1);
+}
+
+void TestForces::testRigidlyFixedLinearMotor()
+{
+    QFETCH(bool, rigidlyFixed);
+    QFETCH(Vector2d, initialForce);
+    QFETCH(double, angle);
+    QFETCH(Vector2d, expectedForce);
+
+    // setup world
+    World fakeWorld;
+
+    RigidBody *body = new RigidBody;
+    body->setPosition(Vector2d::Zero());
+    fakeWorld.addItem(body);
+
+    LinearMotor motor;
+    motor.setBody(body);
+    motor.setForceValue(initialForce);
+    motor.setRigidlyFixed(rigidlyFixed);
+
+    body->setAngle(angle);
+    motor.calcForce(/*calcVariances:*/ false);
+
+    QCOMPARE(motor.forceValue()[0], expectedForce[0]);
+    QCOMPARE(motor.forceValue()[1], expectedForce[1]);
 }
 
 QTEST_MAIN(TestForces)
