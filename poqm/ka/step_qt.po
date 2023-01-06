@@ -11,7 +11,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Qt-Contexts: true\n"
-"X-Generator: Poedit 3.1.1\n"
+"X-Generator: Poedit 3.2.2\n"
 
 #: body.cc:13
 msgctxt "ObjectClass|"
@@ -773,7 +773,7 @@ msgstr ""
 #: joints.cc:14
 msgctxt "ObjectClass|"
 msgid "Anchor"
-msgstr ""
+msgstr "ბმული"
 
 #: joints.cc:14
 msgctxt "ObjectDescription|"
@@ -1035,52 +1035,52 @@ msgstr ""
 #: particle.cc:18
 msgctxt "PropertyDescription|"
 msgid "velocity"
-msgstr ""
+msgstr "სიჩქარე"
 
 #: particle.cc:18 rigidbody.cc:19 softbody.cc:26
 msgctxt "PropertyName|"
 msgid "velocity"
-msgstr ""
+msgstr "სიჩქარე"
 
 #: particle.cc:19 rigidbody.cc:22 softbody.cc:31
 msgctxt "PropertyName|"
 msgid "acceleration"
-msgstr ""
+msgstr "აჩქარება"
 
 #: particle.cc:20
 msgctxt "PropertyDescription|"
 msgid "acceleration"
-msgstr ""
+msgstr "აჩქარება"
 
 #: particle.cc:21
 msgctxt "PropertyDescription|"
 msgid "force"
-msgstr ""
+msgstr "ძალა"
 
 #: particle.cc:21 rigidbody.cc:27 softbody.cc:36 spring.cc:30
 msgctxt "PropertyName|"
 msgid "force"
-msgstr ""
+msgstr "ძალა"
 
 #: particle.cc:22
 msgctxt "PropertyDescription|"
 msgid "mass"
-msgstr ""
+msgstr "მასა"
 
 #: particle.cc:22 rigidbody.cc:30 softbody.cc:38
 msgctxt "PropertyName|"
 msgid "mass"
-msgstr ""
+msgstr "მასა"
 
 #: particle.cc:23 rigidbody.cc:33
 msgctxt "PropertyDescription|"
 msgid "momentum"
-msgstr ""
+msgstr "მომენტი"
 
 #: particle.cc:23 rigidbody.cc:33
 msgctxt "PropertyName|"
 msgid "momentum"
-msgstr ""
+msgstr "მომენტი"
 
 #: particle.cc:23 particle.cc:39 rigidbody.cc:33 rigidbody.cc:63
 msgctxt "Units|"
@@ -1090,7 +1090,7 @@ msgstr "კგ მ/წმ"
 #: particle.cc:25 rigidbody.cc:37
 msgctxt "PropertyDescription|"
 msgid "kinetic energy"
-msgstr ""
+msgstr "კინეტიკური ენერგია"
 
 #: particle.cc:25 rigidbody.cc:37
 msgctxt "PropertyName|"
@@ -1420,7 +1420,7 @@ msgstr ""
 #: rigidbody.cc:72
 msgctxt "PropertyName|"
 msgid "radius"
-msgstr ""
+msgstr "რადიუსი"
 
 #: rigidbody.cc:74
 msgctxt "ObjectClass|"
@@ -1565,7 +1565,7 @@ msgstr ""
 #: solver.cc:15 world.cc:23
 msgctxt "Units|"
 msgid "s"
-msgstr ""
+msgstr "წმ"
 
 #: solver.cc:17
 msgctxt "PropertyDescription|"
@@ -1585,7 +1585,7 @@ msgstr ""
 #: solver.cc:18
 msgctxt "PropertyName|"
 msgid "dimension"
-msgstr ""
+msgstr "განზომილება"
 
 #: solver.cc:20
 msgctxt "PropertyDescription|"
