@@ -8,18 +8,16 @@ msgstr ""
 "Project-Id-Version: step\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2022-10-27 00:42+0000\n"
-"PO-Revision-Date: 2011-07-24 16:18+0300\n"
-"Last-Translator: Yasen Pramatarov <yasen@lindeas.com>\n"
+"PO-Revision-Date: 2022-12-08 09:45+0200\n"
+"Last-Translator: Светослав Стефанов <svetlisashkov@yahoo.com>\n"
 "Language-Team: Bulgarian <dict@fsa-bg.org>\n"
 "Language: bg\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Poedit-Language: Bulgarian\n"
-"X-Poedit-Country: BULGARIA\n"
-"X-Poedit-SourceCharset: utf-8\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Lokalize 1.2\n"
+"X-Poedit-SourceCharset: utf-8\n"
+"X-Generator: Poedit 3.1.1\n"
 
 #, kde-format
 msgctxt "NAME OF TRANSLATORS"
@@ -29,7 +27,7 @@ msgstr "Светослав Стефанов"
 #, kde-format
 msgctxt "EMAIL OF TRANSLATORS"
 msgid "Your emails"
-msgstr "lfu.project@gmail.com"
+msgstr "lfu.project@gmail.com,svetlisashkov@yahoo.com"
 
 #. i18n: ectx: property (title), widget (QGroupBox, groupBox)
 #: step/configure_controller.ui:28 step/configure_graph.ui:28
@@ -131,13 +129,13 @@ msgstr "Обхвати"
 #: step/configure_graph.ui:83
 #, kde-format
 msgid "Min:"
-msgstr ""
+msgstr "Мин:"
 
 #. i18n: ectx: property (text), widget (QLabel, label_6)
 #: step/configure_graph.ui:99
 #, kde-format
 msgid "Max:"
-msgstr ""
+msgstr "Макс:"
 
 #. i18n: ectx: property (text), widget (QCheckBox, checkBoxAutoX)
 #. i18n: ectx: property (text), widget (QCheckBox, checkBoxAutoY)
@@ -205,9 +203,9 @@ msgstr "Отваряне на Уикипедия във външен брауз�
 
 #. i18n: ectx: property (text), widget (QLabel, label_5)
 #: step/create_gas_particles.ui:34
-#, fuzzy, kde-format
+#, kde-format
 msgid "Area:"
-msgstr "Площ"
+msgstr "Площ:"
 
 #. i18n: ectx: property (toolTip), widget (QLineEdit, lineEditVolume)
 #: step/create_gas_particles.ui:41
@@ -330,7 +328,7 @@ msgstr "0.3"
 #: step/create_softbody_items.ui:122
 #, kde-format
 msgid "Body split counts:"
-msgstr ""
+msgstr "Брой дялове на тялото:"
 
 #. i18n: ectx: property (text), widget (QLineEdit, lineEditSplit)
 #: step/create_softbody_items.ui:129
@@ -339,10 +337,10 @@ msgid "(4,4)"
 msgstr "(4,4)"
 
 #: step/gascreationdialog.cc:31
-#, fuzzy, kde-format
+#, kde-format
 msgctxt "@title:window"
 msgid "Create Gas Particles"
-msgstr "Създава газови частици"
+msgstr "Създаване на газови частици"
 
 #: step/gasgraphics.cc:31
 #, kde-format
@@ -384,7 +382,7 @@ msgid "%1 named '%2' created"
 msgstr "Създаден(а) е %1 с име '%2'"
 
 #: step/gasgraphics.cc:282
-#, fuzzy, kde-format
+#, kde-format
 msgid "Create Particles..."
 msgstr "Създаване на частици..."
 
@@ -408,7 +406,7 @@ msgid "Create particles for %1"
 msgstr "Създаване на частици за %1"
 
 #: step/infobrowser.cc:26
-#, fuzzy, kde-format
+#, kde-format
 msgid "Context Info"
 msgstr "Контекстна информация"
 
@@ -433,7 +431,7 @@ msgid "Follow selection"
 msgstr "Следване на селекцията"
 
 #: step/infobrowser.cc:57
-#, fuzzy, kde-format
+#, kde-format
 msgid "Open in Browser"
 msgstr "Отваряне в четеца"
 
@@ -458,7 +456,7 @@ msgid "Documentation for %1 not available. "
 msgstr "Документацията за %1 не е налична. "
 
 #: step/infobrowser.cc:165
-#, fuzzy, kde-format
+#, kde-format
 msgid ""
 "You can help <a href=\"https://edu.kde.org/step\">Step</a> by writing it!"
 msgstr ""
@@ -542,7 +540,7 @@ msgstr "(C) 2007 Vladimir Kuznetsov"
 #: step/main.cc:37
 #, kde-format
 msgid "https://edu.kde.org/step"
-msgstr ""
+msgstr "https://edu.kde.org/step"
 
 #: step/main.cc:42
 #, kde-format
@@ -552,7 +550,7 @@ msgstr "Първоначален автор"
 #: step/main.cc:43
 #, kde-format
 msgid "ks.vladimir@gmail.com"
-msgstr ""
+msgstr "ks.vladimir@gmail.com"
 
 #: step/main.cc:48
 #, kde-format
@@ -562,7 +560,7 @@ msgstr "Допринасяне в кода"
 #: step/main.cc:49
 #, kde-format
 msgid "cniehaus@kde.org"
-msgstr ""
+msgstr "cniehaus@kde.org"
 
 #: step/main.cc:59
 #, kde-format
@@ -587,7 +585,7 @@ msgstr "Отваряне на &изтеглен пример..."
 #: step/mainwindow.cc:158
 #, kde-format
 msgid "Share C&urrent Experiment..."
-msgstr "Споделяне на &текущия експеримент"
+msgstr "Споделяне на &текущия експеримент..."
 
 #: step/mainwindow.cc:161
 #, kde-format
@@ -669,12 +667,12 @@ msgstr "<нов файл>"
 #, kde-format
 msgctxt "@title:window"
 msgid "Open Step File"
-msgstr ""
+msgstr "Отваряне на файл на Step"
 
 #: step/mainwindow.cc:307 step/mainwindow.cc:337
-#, fuzzy, kde-format
+#, kde-format
 msgid "Step files (*.step)"
-msgstr "*.step|Файлове на Step (*.step)"
+msgstr "Файлове на Step (*.step)"
 
 #: step/mainwindow.cc:317
 #, kde-format
@@ -690,7 +688,7 @@ msgstr "<отваряне на файл: %1>"
 #, kde-format
 msgctxt "@title:window"
 msgid "Save Step File"
-msgstr ""
+msgstr "Запазване на файл на Step"
 
 #: step/mainwindow.cc:353
 #, kde-format
@@ -883,7 +881,7 @@ msgid "Please fill in the parameters for %1"
 msgstr "Попълнете параметрите за %1"
 
 #: step/softbodygraphics.cc:114
-#, fuzzy, kde-format
+#, kde-format
 msgctxt "@title:window"
 msgid "Create Soft Body Items"
 msgstr "Създаване на елементи тип меко тяло"
@@ -1042,14 +1040,14 @@ msgid "Font &Size"
 msgstr "&Размер на шрифта"
 
 #: step/toolgraphics.cc:410
-#, fuzzy, kde-format
+#, kde-format
 msgid "Insert &Image..."
-msgstr "Вмъкване на &изображение"
+msgstr "Вмъкване на &изображение..."
 
 #: step/toolgraphics.cc:415
-#, fuzzy, kde-format
+#, kde-format
 msgid "Insert &Formula..."
-msgstr "Вмъкване на &формула"
+msgstr "Вмъкване на &формула..."
 
 #: step/toolgraphics.cc:526
 #, kde-format
@@ -1060,12 +1058,12 @@ msgstr "Редактиране на %1"
 #, kde-format
 msgctxt "@title:window"
 msgid "Open Image File"
-msgstr ""
+msgstr "Отваряне на изображение"
 
 #: step/toolgraphics.cc:631
 #, kde-format
 msgid "Images (*.png *.jpg *.jpeg)"
-msgstr ""
+msgstr "Изображения (*.png *.jpg *.jpeg)"
 
 #: step/toolgraphics.cc:649
 #, kde-format
@@ -1082,15 +1080,15 @@ msgstr ""
 "изпълнимите файлове на 'latex', 'dvips' и 'gs' и да са достъпни от $PATH"
 
 #: step/toolgraphics.cc:699
-#, fuzzy, kde-format
+#, kde-format
 msgctxt "@title:window"
 msgid "LaTex Formula - Step"
 msgstr "Формула на LaTex - Step"
 
 #: step/toolgraphics.cc:700
-#, fuzzy, kde-format
+#, kde-format
 msgid "Enter LaTeX formula string:"
-msgstr "Въведете низа на формулата на LaTeX"
+msgstr "Въведете низа на формулата на LaTeX:"
 
 #: step/toolgraphics.cc:709
 #, kde-format
@@ -1100,7 +1098,7 @@ msgstr "Формулата LaTeX не може да се компилира: %1"
 #: step/toolgraphics.cc:715
 #, kde-format
 msgid "Cannot parse result image"
-msgstr ""
+msgstr "Полученото изображение не може да бъде обработено"
 
 #: step/toolgraphics.cc:776
 #, kde-format
@@ -1133,17 +1131,17 @@ msgid "[not configured]"
 msgstr "[не е настроено]"
 
 #: step/toolgraphics.cc:1077
-#, fuzzy, kde-format
+#, kde-format
 msgid "Clear Graph"
 msgstr "Изчистване на диаграмата"
 
 #: step/toolgraphics.cc:1078
-#, fuzzy, kde-format
+#, kde-format
 msgid "Configure Graph..."
 msgstr "Настройки на диаграмата..."
 
 #: step/toolgraphics.cc:1096
-#, fuzzy, kde-format
+#, kde-format
 msgctxt "@title:window"
 msgid "Configure Graph"
 msgstr "Настройки на диаграмата"
@@ -1160,23 +1158,23 @@ msgid "Clear graph %1"
 msgstr "Изчистване на диаграмата %1"
 
 #: step/toolgraphics.cc:1305
-#, fuzzy, kde-format
+#, kde-format
 msgid "Configure Meter..."
 msgstr "Настройка на брояч..."
 
 #: step/toolgraphics.cc:1323
-#, fuzzy, kde-format
+#, kde-format
 msgctxt "@title:window"
 msgid "Configure Meter"
 msgstr "Настройка на брояч"
 
 #: step/toolgraphics.cc:1420 step/toolgraphics.cc:1617
-#, fuzzy, kde-format
+#, kde-format
 msgid "Increase Value"
 msgstr "Увеличаване на стойността"
 
 #: step/toolgraphics.cc:1421 step/toolgraphics.cc:1618
-#, fuzzy, kde-format
+#, kde-format
 msgid "Decrease Value"
 msgstr "Намаляване на стойността"
 
@@ -1196,18 +1194,18 @@ msgid "Change controller %1"
 msgstr "Промяна на контролера %1"
 
 #: step/toolgraphics.cc:1620
-#, fuzzy, kde-format
+#, kde-format
 msgid "Configure Controller..."
 msgstr "Настройки на контролера..."
 
 #: step/toolgraphics.cc:1638
-#, fuzzy, kde-format
+#, kde-format
 msgctxt "@title:window"
 msgid "Configure Controller"
 msgstr "Настройки на контролера"
 
 #: step/toolgraphics.cc:1899
-#, fuzzy, kde-format
+#, kde-format
 msgid "Clear Trace"
 msgstr "Изчистване на трасирането"
 
@@ -1217,7 +1215,7 @@ msgid "Clear tracer %1"
 msgstr "Изчистване на индикатора %1"
 
 #: step/undobrowser.cc:18
-#, fuzzy, kde-format
+#, kde-format
 msgid "Undo History"
 msgstr "История на промените"
 
