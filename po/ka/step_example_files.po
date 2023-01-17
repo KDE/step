@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: step\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2022-10-26 00:42+0000\n"
-"PO-Revision-Date: 2023-01-05 07:13+0100\n"
+"PO-Revision-Date: 2023-01-17 00:36+0100\n"
 "Last-Translator: Temuri Doghonadze <temuri.doghonadze@gmail.com>\n"
 "Language-Team: Georgian <kde-i18n-doc@kde.org>\n"
 "Language: ka\n"
@@ -446,7 +446,7 @@ msgstr "აირისნაწილაკი20"
 #, kde-format
 msgctxt "HTML:p"
 msgid "<span style=\" font-size:large;\">n =</span>"
-msgstr ""
+msgstr "<span style=\" font-size:large;\">n =</span>"
 
 #: examples/gas.step:259
 #, kde-format
@@ -509,6 +509,8 @@ msgid ""
 "<span style=\" font-size:large;\">F</span><span style=\" font-size:large; "
 "vertical-align:sub;\">s</span><span style=\" font-size:large;\"> =</span>"
 msgstr ""
+"<span style=\" font-size:large;\">F</span><span style=\" font-size:large; "
+"vertical-align:sub;\">s</span><span style=\" font-size:large;\"> =</span>"
 
 #: examples/gas.step:329
 #, kde-format
@@ -527,7 +529,7 @@ msgstr ""
 #, kde-format
 msgctxt "HTML:p"
 msgid "<span style=\" font-size:medium;\">Macroscopic quantities:</span>"
-msgstr ""
+msgstr "<span style=\" font-size:medium;\">მაკროსკოპული რაოდენობები:</span>"
 
 #: examples/gas.step:353 tutorials/tutorial1.step:123
 #: tutorials/tutorial5.step:105
@@ -638,7 +640,7 @@ msgstr ""
 #, kde-format
 msgctxt "HTML:p"
 msgid "<img src=\"img:0\"></img>"
-msgstr ""
+msgstr "<img src=\"img:0\"></img>"
 
 #: examples/note.step:22
 #, kde-format
@@ -650,7 +652,7 @@ msgstr ""
 #, kde-format
 msgctxt "HTML:p"
 msgid "<img src=\"img:1\"></img>"
-msgstr ""
+msgstr "<img src=\"img:1\"></img>"
 
 #: examples/note.step:26
 #, kde-format
