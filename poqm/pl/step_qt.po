@@ -208,7 +208,7 @@ msgstr "rmin"
 
 #: gas.cc:20 gas.cc:21 gas.cc:27 gas.cc:33 gas.cc:35 joints.cc:17 joints.cc:23
 #: joints.cc:24 joints.cc:28 joints.cc:31 joints.cc:33 joints.cc:35
-#: joints.cc:36 motor.cc:18 motor.cc:24 particle.cc:17 particle.cc:29
+#: joints.cc:36 motor.cc:19 motor.cc:26 particle.cc:17 particle.cc:29
 #: rigidbody.cc:16 rigidbody.cc:41 rigidbody.cc:72 rigidbody.cc:77
 #: rigidbody.cc:80 softbody.cc:24 spring.cc:18 spring.cc:19 spring.cc:24
 #: spring.cc:26 spring.cc:28 spring.cc:29 spring.cc:35 spring.cc:37
@@ -815,12 +815,12 @@ msgctxt "ObjectDescription|"
 msgid "Anchor: fixes position of the body"
 msgstr "Kotwica: unieruchamia bryłę"
 
-#: joints.cc:16 joints.cc:22 motor.cc:17 motor.cc:23
+#: joints.cc:16 joints.cc:22 motor.cc:18 motor.cc:25
 msgctxt "PropertyDescription|"
 msgid "Body"
 msgstr "Bryła"
 
-#: joints.cc:16 joints.cc:22 motor.cc:17 motor.cc:23 tool.cc:85
+#: joints.cc:16 joints.cc:22 motor.cc:18 motor.cc:25 tool.cc:85
 msgctxt "PropertyName|"
 msgid "body"
 msgstr "bryła"
@@ -866,7 +866,7 @@ msgctxt "PropertyDescription|"
 msgid "Position on the body"
 msgstr "Położenie na powierzchni ciała"
 
-#: joints.cc:23 motor.cc:18 motor.cc:24 tool.cc:86
+#: joints.cc:23 motor.cc:19 motor.cc:26 tool.cc:86
 msgctxt "PropertyName|"
 msgid "localPosition"
 msgstr "lokalnePołożenie"
@@ -966,58 +966,71 @@ msgctxt "ObjectDescription|"
 msgid "Massless rope which can be connected to bodies"
 msgstr "Nieważka lina, która może być połączona z ciałami"
 
-#: motor.cc:15
+#: motor.cc:16
 msgctxt "ObjectClass|"
 msgid "LinearMotor"
 msgstr "Silnik liniowy"
 
-#: motor.cc:15
+#: motor.cc:16
 msgctxt "ObjectDescription|"
 msgid "Linear motor: applies a constant force to a given position of the body"
 msgstr "Silnik liniowy: przykłada stałą siłę do danego punktu ciała"
 
-#: motor.cc:18 motor.cc:24
+#: motor.cc:19 motor.cc:26
 msgctxt "PropertyDescription|"
 msgid "Position of the motor on a body"
 msgstr "Położenie silnika na ciele"
 
-#: motor.cc:19
+#: motor.cc:20
 msgctxt "PropertyDescription|"
 msgid "Value of the force, acting on the body"
 msgstr "Wartość siły działającej na bryłę"
 
-#: motor.cc:19
+#: motor.cc:20
 msgctxt "PropertyName|"
 msgid "forceValue"
 msgstr "wartośćSiły"
 
-#: motor.cc:19 particle.cc:21 particle.cc:35 rigidbody.cc:27 rigidbody.cc:56
+#: motor.cc:20 particle.cc:21 particle.cc:35 rigidbody.cc:27 rigidbody.cc:56
 #: softbody.cc:36 spring.cc:30 spring.cc:51
 msgctxt "Units|"
 msgid "N"
 msgstr "N"
 
 #: motor.cc:21
+#, fuzzy
+#| msgctxt "PropertyDescription|"
+#| msgid "Value of the force, acting on the body"
+msgctxt "PropertyDescription|"
+msgid "Rotate the force vector in sync with body rotation"
+msgstr "Wartość siły działającej na bryłę"
+
+#: motor.cc:21
+msgctxt "PropertyName|"
+msgid "rigidlyFixed"
+msgstr ""
+
+#: motor.cc:23
 msgctxt "ObjectClass|"
 msgid "CircularMotor"
 msgstr "Silnik kołowy"
 
-#: motor.cc:21
+#: motor.cc:23
 msgctxt "ObjectDescription|"
 msgid "Circular motor: applies a constant torque to the body"
 msgstr "Silnik kołowy: nadaje ciału stały moment obrotowy"
 
-#: motor.cc:25
+#: motor.cc:27
 msgctxt "PropertyDescription|"
 msgid "Value of the torque, acting on the body"
 msgstr "Wartość momentu obrotowego, działającego na bryłę"
 
-#: motor.cc:25
+#: motor.cc:27
 msgctxt "PropertyName|"
 msgid "torqueValue"
 msgstr "wartośćMomentuObrotowego"
 
-#: motor.cc:25 rigidbody.cc:28 rigidbody.cc:57 softbody.cc:37
+#: motor.cc:27 rigidbody.cc:28 rigidbody.cc:57 softbody.cc:37
 msgctxt "Units|"
 msgid "N m"
 msgstr "N m"
