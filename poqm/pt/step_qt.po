@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: step\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2016-06-22 08:50+0000\n"
-"PO-Revision-Date: 2019-08-29 21:37+0100\n"
+"PO-Revision-Date: 2023-01-19 09:53+0000\n"
 "Last-Translator: José Nuno Coelho Pires <zepires@gmail.com>\n"
 "Language-Team: pt <kde-i18n-pt@kde.org>\n"
 "Language: pt\n"
@@ -62,7 +62,7 @@ msgstr ""
 "X-POFile-SpellExtra: ResolucaoGenericaEuler ErrosGas\n"
 "X-POFile-SpellExtra: ResolucaoAdaptativaEuler varianciaConstantePeso\n"
 "X-POFile-SpellExtra: varianciaComprimento MotorCircular calculoErros\n"
-"X-POFile-SpellExtra: unidadesX vertices codigo ForcaPeso\n"
+"X-POFile-SpellExtra: unidadesX vertices codigo ForcaPeso fixoRigido\n"
 "X-Qt-Contexts: true\n"
 
 #: body.cc:13
@@ -1019,17 +1019,14 @@ msgid "N"
 msgstr "N"
 
 #: motor.cc:21
-#, fuzzy
-#| msgctxt "PropertyDescription|"
-#| msgid "Value of the force, acting on the body"
 msgctxt "PropertyDescription|"
 msgid "Rotate the force vector in sync with body rotation"
-msgstr "Valor da força que actua no corpo"
+msgstr "Roda o vector de força de forma sincronizada com a rotação do corpo"
 
 #: motor.cc:21
 msgctxt "PropertyName|"
 msgid "rigidlyFixed"
-msgstr ""
+msgstr "fixoRigido"
 
 #: motor.cc:23
 msgctxt "ObjectClass|"
