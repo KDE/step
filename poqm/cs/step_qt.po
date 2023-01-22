@@ -1,13 +1,13 @@
 # Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
 # This file is distributed under the same license as the PACKAGE package.
-# Vít Pelčák <vit@pelcak.org>, 2010, 2011, 2016, 2017, 2019.
+# Vít Pelčák <vit@pelcak.org>, 2010, 2011, 2016, 2017, 2019, 2023.
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: step_qt\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2016-06-22 08:50+0000\n"
-"PO-Revision-Date: 2019-09-06 17:49+0200\n"
+"PO-Revision-Date: 2023-01-13 09:37+0100\n"
 "Last-Translator: Vit Pelcak <vit@pelcak.org>\n"
 "Language-Team: Czech <kde-i18n-doc@kde.org>\n"
 "Language: cs\n"
@@ -15,7 +15,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=(n==1) ? 0 : (n>=2 && n<=4) ? 1 : 2;\n"
-"X-Generator: Lokalize 19.08.0\n"
+"X-Generator: Lokalize 22.12.1\n"
 "X-Qt-Contexts: true\n"
 
 #: body.cc:13
@@ -837,7 +837,7 @@ msgstr "rad"
 #: joints.cc:20
 msgctxt "ObjectClass|"
 msgid "Pin"
-msgstr "Pin"
+msgstr "Špendlík"
 
 #: joints.cc:20
 msgctxt "ObjectDescription|"
@@ -982,12 +982,9 @@ msgid "N"
 msgstr "S"
 
 #: motor.cc:21
-#, fuzzy
-#| msgctxt "PropertyDescription|"
-#| msgid "Value of the force, acting on the body"
 msgctxt "PropertyDescription|"
 msgid "Rotate the force vector in sync with body rotation"
-msgstr "Hodnota síly působící na těleso"
+msgstr ""
 
 #: motor.cc:21
 msgctxt "PropertyName|"
