@@ -1,17 +1,17 @@
 # Translation of step_qt.po to Catalan (Valencian)
-# Copyright (C) 2008-2022 This_file_is_part_of_KDE
+# Copyright (C) 2008-2023 This_file_is_part_of_KDE
 # This file is distributed under the license LGPL version 2 or later.
 #
 # Orestes Mas Casals <orestes@tsc.upc.edu>, 2008, 2011.
 # Manuel Tortosa <manutortosa@gmail.com>, 2009.
-# Josep M. Ferrer <txemaq@gmail.com>, 2009, 2010, 2012, 2015, 2016, 2017, 2018, 2019, 2021, 2022.
+# Josep M. Ferrer <txemaq@gmail.com>, 2009, 2010, 2012, 2015, 2016, 2017, 2018, 2019, 2021, 2022, 2023.
 # Antoni Bella Pérez <antonibella5@yahoo.com>, 2019, 2020.
 msgid ""
 msgstr ""
 "Project-Id-Version: step\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2016-06-22 08:50+0000\n"
-"PO-Revision-Date: 2022-05-11 13:19+0200\n"
+"PO-Revision-Date: 2023-01-19 14:26+0100\n"
 "Last-Translator: Josep M. Ferrer <txemaq@gmail.com>\n"
 "Language-Team: Catalan <kde-i18n-ca@kde.org>\n"
 "Language: ca@valencia\n"
@@ -986,17 +986,14 @@ msgid "N"
 msgstr "N"
 
 #: motor.cc:21
-#, fuzzy
-#| msgctxt "PropertyDescription|"
-#| msgid "Value of the force, acting on the body"
 msgctxt "PropertyDescription|"
 msgid "Rotate the force vector in sync with body rotation"
-msgstr "Valor de la força que actua sobre el cos"
+msgstr "Gira el vector de força en sincronia amb el gir del cos"
 
 #: motor.cc:21
 msgctxt "PropertyName|"
 msgid "rigidlyFixed"
-msgstr ""
+msgstr "FixeRígidament"
 
 #: motor.cc:23
 msgctxt "ObjectClass|"
