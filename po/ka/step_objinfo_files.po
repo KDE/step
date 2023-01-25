@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: step\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2022-10-26 00:42+0000\n"
-"PO-Revision-Date: 2022-08-28 05:43+0200\n"
+"PO-Revision-Date: 2023-01-24 09:06+0100\n"
 "Last-Translator: Temuri Doghonadze <temuri.doghonadze@gmail.com>\n"
 "Language-Team: Georgian <kde-i18n-doc@kde.org>\n"
 "Language: ka\n"
@@ -16,13 +16,13 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Generator: Poedit 3.1.1\n"
+"X-Generator: Poedit 3.2.2\n"
 
 #: objectinfo/anchor.html:6
 #, kde-format
 msgctxt "anchor.html:title"
 msgid "Anchor"
-msgstr ""
+msgstr "ბმული"
 
 #: objectinfo/anchor.html:9
 #, kde-format
@@ -76,7 +76,7 @@ msgstr ""
 #, kde-format
 msgctxt "chargedparticle.html:title"
 msgid "Charged Particle"
-msgstr ""
+msgstr "დამუხტული ნაწილაკი"
 
 #: objectinfo/chargedparticle.html:9
 #, kde-format
@@ -108,7 +108,7 @@ msgstr ""
 #, kde-format
 msgctxt "coulombforce.html:title"
 msgid "Coulomb Force"
-msgstr ""
+msgstr "კულონის კანონი"
 
 #: objectinfo/coulombforce.html:9
 #, kde-format
@@ -120,7 +120,7 @@ msgstr ""
 #, kde-format
 msgctxt "coulombforce.html:p"
 msgid "<b>Coulomb's law</b>"
-msgstr ""
+msgstr "<b>კულონის კანონი</b>"
 
 #: objectinfo/coulombforce.html:11
 #, kde-format

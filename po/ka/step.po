@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: step\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2022-10-27 00:42+0000\n"
-"PO-Revision-Date: 2022-09-12 20:22+0200\n"
+"PO-Revision-Date: 2023-01-24 09:06+0100\n"
 "Last-Translator: Temuri Doghonadze <temuri.doghonadze@gmail.com>\n"
 "Language-Team: Georgian <kde-i18n-doc@kde.org>\n"
 "Language: ka\n"
@@ -16,7 +16,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Generator: Poedit 3.1.1\n"
+"X-Generator: Poedit 3.2.2\n"
 
 #, kde-format
 msgctxt "NAME OF TRANSLATORS"
@@ -499,7 +499,7 @@ msgstr ""
 #: step/latexformula.cc:49
 #, kde-format
 msgid "%1 did not create output file"
-msgstr ""
+msgstr "%1-მა გამოსატანი ფაილი არ შექმნა"
 
 #: step/latexformula.cc:81
 #, kde-format
@@ -687,7 +687,7 @@ msgstr "ფაილის (%1) გახსნის შეცდომა"
 #: step/mainwindow.cc:359
 #, kde-format
 msgid "Cannot save file '%1': %2"
-msgstr ""
+msgstr "ფაილის (\"%1\") შენახვის შეცდომა: %2"
 
 #: step/mainwindow.cc:400
 #, kde-format
@@ -695,6 +695,8 @@ msgid ""
 "The experiment has been modified.\n"
 "Do you want to save your changes?"
 msgstr ""
+"ექსპერიმენტი შეიცვალა.\n"
+"გნებავთ ცვლილებების შენახვა?"
 
 #: step/mainwindow.cc:452
 #, kde-format
@@ -813,12 +815,12 @@ msgstr "ამომხსნელის ტიპის შეცვლა"
 #: step/stepgraphicsitem.cc:393 step/stepgraphicsitem.cc:538
 #, kde-format
 msgid "Change %1.%2"
-msgstr ""
+msgstr "%1.%2 ცვლილება"
 
 #: step/propertiesbrowser.cc:302
 #, kde-format
 msgid "Rename %1 to %2"
-msgstr ""
+msgstr "\"%1\"-ის სახელის \"%2\"-ად გადარქმევა"
 
 #: step/propertiesbrowser.cc:452
 #, kde-format
@@ -865,21 +867,21 @@ msgstr ""
 #: step/softbodygraphics.cc:175
 #, kde-format
 msgid "Create items for %1"
-msgstr ""
+msgstr "%1-სთვის ჩანაწერების შექმნა"
 
 #. i18n: ectx: label, entry (showCreationTips), group (General)
 #. i18n: ectx: whatsthis, entry (showCreationTips), group (General)
 #: step/step.kcfg:9 step/step.kcfg:10
 #, kde-format
 msgid "Show tips when creating items"
-msgstr ""
+msgstr "მინიშნებები ჩანაწერების შექმნისას"
 
 #. i18n: ectx: label, entry (showAxes), group (General)
 #. i18n: ectx: whatsthis, entry (showAxes), group (General)
 #: step/step.kcfg:14 step/step.kcfg:15
 #, kde-format
 msgid "Show axes on the scene"
-msgstr ""
+msgstr "სცენაზე ღერძების ჩვენება"
 
 #. i18n: ectx: label, entry (floatDisplayPrecision), group (General)
 #. i18n: ectx: whatsthis, entry (floatDisplayPrecision), group (General)
@@ -900,7 +902,7 @@ msgstr ""
 #: step/step.kcfg:33 step/step.kcfg:34
 #, kde-format
 msgid "Browse wikipedia in external browser"
-msgstr ""
+msgstr "ვიკიპედიის გარე ბრაუზერში გახსნა"
 
 #. i18n: ectx: label, entry (showButtonText), group (ItemPalette)
 #. i18n: ectx: whatsthis, entry (showButtonText), group (ItemPalette)
@@ -929,7 +931,7 @@ msgstr "ხელსაწყოთა მთავარი ზოლი"
 #: step/stepui.rc:10
 #, kde-format
 msgid "Simulation Toolbar"
-msgstr ""
+msgstr "სიმულაციის ზოლი"
 
 #. i18n: ectx: Menu (examples)
 #: step/stepui.rc:19
@@ -1072,7 +1074,7 @@ msgstr ""
 #: step/toolgraphics.cc:715
 #, kde-format
 msgid "Cannot parse result image"
-msgstr ""
+msgstr "შედეგი გამოსახულების დამუშავება შეუძლებელია"
 
 #: step/toolgraphics.cc:776
 #, kde-format
@@ -1102,7 +1104,7 @@ msgstr "[%1]"
 #: step/toolgraphics.cc:981 step/toolgraphics.cc:989 step/toolgraphics.cc:1482
 #, kde-format
 msgid "[not configured]"
-msgstr ""
+msgstr "[მორგებული არაა]"
 
 #: step/toolgraphics.cc:1077
 #, kde-format
@@ -1219,7 +1221,7 @@ msgstr "%1-ის წაშლა"
 #: step/worldmodel.cc:630
 #, kde-format
 msgid "Delete several items"
-msgstr ""
+msgstr "რამდენიმე ჩანაწერის წაშლა"
 
 #: step/worldmodel.cc:701 step/worldmodel.cc:708
 #, kde-format

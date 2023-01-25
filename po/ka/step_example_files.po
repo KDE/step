@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: step\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2022-10-26 00:42+0000\n"
-"PO-Revision-Date: 2022-08-28 05:47+0200\n"
+"PO-Revision-Date: 2023-01-24 09:06+0100\n"
 "Last-Translator: Temuri Doghonadze <temuri.doghonadze@gmail.com>\n"
 "Language-Team: Georgian <kde-i18n-doc@kde.org>\n"
 "Language: ka\n"
@@ -16,7 +16,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Generator: Poedit 3.1.1\n"
+"X-Generator: Poedit 3.2.2\n"
 
 #: examples/brownian.step:4 examples/doublependulum.step:4
 #: examples/fourpendula.step:4 examples/gas.step:4 examples/graph.step:4
@@ -144,14 +144,14 @@ msgstr "ნაწილაკი2"
 #, kde-format
 msgctxt "name"
 msgid "stick1"
-msgstr ""
+msgstr "ჯოხი1"
 
 #: examples/doublependulum.step:37 examples/eightpendula.step:83
 #: examples/fourpendula.step:81 tutorials/tutorial5.step:37
 #, kde-format
 msgctxt "name"
 msgid "stick2"
-msgstr ""
+msgstr "ჯოხი2"
 
 #: examples/doublependulum.step:47 examples/eightpendula.step:12
 #: examples/fourpendula.step:119 tutorials/tutorial5.step:47
@@ -200,7 +200,7 @@ msgstr "დისკი4"
 #, kde-format
 msgctxt "name"
 msgid "stick3"
-msgstr ""
+msgstr "ჯოხი3"
 
 #: examples/eightpendula.step:75 examples/fourpendula.step:111
 #: tutorials/tutorial4.step:165 tutorials/tutorial5.step:85
@@ -219,7 +219,7 @@ msgstr "დისკი5"
 #, kde-format
 msgctxt "name"
 msgid "stick4"
-msgstr ""
+msgstr "ჯოხი4"
 
 #: examples/eightpendula.step:115
 #, kde-format
@@ -231,7 +231,7 @@ msgstr "დისკი6"
 #, kde-format
 msgctxt "name"
 msgid "stick5"
-msgstr ""
+msgstr "ჯოხი5"
 
 #: examples/eightpendula.step:137
 #, kde-format
@@ -243,7 +243,7 @@ msgstr "დისკი7"
 #, kde-format
 msgctxt "name"
 msgid "stick6"
-msgstr ""
+msgstr "ჯოხი6"
 
 #: examples/eightpendula.step:159
 #, kde-format
@@ -255,7 +255,7 @@ msgstr "დისკი8"
 #, kde-format
 msgctxt "name"
 msgid "stick7"
-msgstr ""
+msgstr "ჯოხი7"
 
 #: examples/eightpendula.step:181
 #, kde-format
@@ -267,7 +267,7 @@ msgstr "დისკი9"
 #, kde-format
 msgctxt "name"
 msgid "stick8"
-msgstr ""
+msgstr "ჯოხი8"
 
 #: examples/eightpendula.step:219 examples/fourpendula.step:11
 #: tutorials/tutorial3.step:23 tutorials/tutorial4.step:23
@@ -308,13 +308,13 @@ msgstr ""
 #, kde-format
 msgctxt "name"
 msgid "solver"
-msgstr ""
+msgstr "ამომხსნელი"
 
 #: examples/fourpendula.step:47
 #, kde-format
 msgctxt "name"
 msgid "disk3"
-msgstr ""
+msgstr "დისკი3"
 
 #: examples/gas.step:65 examples/liquid.step:17
 #, kde-format
@@ -446,7 +446,7 @@ msgstr "აირისნაწილაკი20"
 #, kde-format
 msgctxt "HTML:p"
 msgid "<span style=\" font-size:large;\">n =</span>"
-msgstr ""
+msgstr "<span style=\" font-size:large;\">n =</span>"
 
 #: examples/gas.step:259
 #, kde-format
@@ -509,6 +509,8 @@ msgid ""
 "<span style=\" font-size:large;\">F</span><span style=\" font-size:large; "
 "vertical-align:sub;\">s</span><span style=\" font-size:large;\"> =</span>"
 msgstr ""
+"<span style=\" font-size:large;\">F</span><span style=\" font-size:large; "
+"vertical-align:sub;\">s</span><span style=\" font-size:large;\"> =</span>"
 
 #: examples/gas.step:329
 #, kde-format
@@ -527,7 +529,7 @@ msgstr ""
 #, kde-format
 msgctxt "HTML:p"
 msgid "<span style=\" font-size:medium;\">Macroscopic quantities:</span>"
-msgstr ""
+msgstr "<span style=\" font-size:medium;\">მაკროსკოპული რაოდენობები:</span>"
 
 #: examples/gas.step:353 tutorials/tutorial1.step:123
 #: tutorials/tutorial5.step:105
@@ -638,7 +640,7 @@ msgstr ""
 #, kde-format
 msgctxt "HTML:p"
 msgid "<img src=\"img:0\"></img>"
-msgstr ""
+msgstr "<img src=\"img:0\"></img>"
 
 #: examples/note.step:22
 #, kde-format
@@ -650,7 +652,7 @@ msgstr ""
 #, kde-format
 msgctxt "HTML:p"
 msgid "<img src=\"img:1\"></img>"
-msgstr ""
+msgstr "<img src=\"img:1\"></img>"
 
 #: examples/note.step:26
 #, kde-format
@@ -698,7 +700,7 @@ msgstr ""
 #, kde-format
 msgctxt "name"
 msgid "Spring"
-msgstr ""
+msgstr "გაზაფხული"
 
 #: examples/resonance.step:79
 #, kde-format
@@ -758,97 +760,97 @@ msgstr ""
 #, kde-format
 msgctxt "name"
 msgid "softBodyParticle1"
-msgstr ""
+msgstr "რბილისსხეულსნაწილაკი1"
 
 #: examples/softbody.step:29 examples/wave.step:29
 #, kde-format
 msgctxt "name"
 msgid "softBodyParticle2"
-msgstr ""
+msgstr "რბილისსხეულსნაწილაკი2"
 
 #: examples/softbody.step:37 examples/wave.step:37
 #, kde-format
 msgctxt "name"
 msgid "softBodyParticle3"
-msgstr ""
+msgstr "რბილისსხეულსნაწილაკი3"
 
 #: examples/softbody.step:45 examples/wave.step:45
 #, kde-format
 msgctxt "name"
 msgid "softBodyParticle4"
-msgstr ""
+msgstr "რბილისსხეულსნაწილაკი4"
 
 #: examples/softbody.step:53 examples/wave.step:53
 #, kde-format
 msgctxt "name"
 msgid "softBodyParticle5"
-msgstr ""
+msgstr "რბილისსხეულსნაწილაკი5"
 
 #: examples/softbody.step:61 examples/wave.step:61
 #, kde-format
 msgctxt "name"
 msgid "softBodyParticle6"
-msgstr ""
+msgstr "რბილისსხეულსნაწილაკი6"
 
 #: examples/softbody.step:69 examples/wave.step:69
 #, kde-format
 msgctxt "name"
 msgid "softBodyParticle7"
-msgstr ""
+msgstr "რბილისსხეულსნაწილაკი7"
 
 #: examples/softbody.step:77 examples/wave.step:77
 #, kde-format
 msgctxt "name"
 msgid "softBodyParticle8"
-msgstr ""
+msgstr "რბილისსხეულსნაწილაკი8"
 
 #: examples/softbody.step:85 examples/wave.step:85
 #, kde-format
 msgctxt "name"
 msgid "softBodyParticle9"
-msgstr ""
+msgstr "რბილისსხეულსნაწილაკი9"
 
 #: examples/softbody.step:93 examples/wave.step:93
 #, kde-format
 msgctxt "name"
 msgid "softBodyParticle10"
-msgstr ""
+msgstr "რბილისსხეულსნაწილაკი10"
 
 #: examples/softbody.step:101 examples/wave.step:101
 #, kde-format
 msgctxt "name"
 msgid "softBodyParticle11"
-msgstr ""
+msgstr "რბილისსხეულსნაწილაკი11"
 
 #: examples/softbody.step:109 examples/wave.step:109
 #, kde-format
 msgctxt "name"
 msgid "softBodyParticle12"
-msgstr ""
+msgstr "რბილისსხეულსნაწილაკი12"
 
 #: examples/softbody.step:117 examples/wave.step:117
 #, kde-format
 msgctxt "name"
 msgid "softBodyParticle13"
-msgstr ""
+msgstr "რბილისსხეულსნაწილაკი13"
 
 #: examples/softbody.step:125 examples/wave.step:125
 #, kde-format
 msgctxt "name"
 msgid "softBodyParticle14"
-msgstr ""
+msgstr "რბილისსხეულსნაწილაკი14"
 
 #: examples/softbody.step:133 examples/wave.step:133
 #, kde-format
 msgctxt "name"
 msgid "softBodyParticle15"
-msgstr ""
+msgstr "რბილისსხეულსნაწილაკი15"
 
 #: examples/softbody.step:141 examples/wave.step:141
 #, kde-format
 msgctxt "name"
 msgid "softBodyParticle16"
-msgstr ""
+msgstr "რბილისსხეულსნაწილაკი16"
 
 #: examples/softbody.step:149 examples/wave.step:181
 #, kde-format
@@ -1232,7 +1234,7 @@ msgstr "s4"
 #, kde-format
 msgctxt "name"
 msgid "Solver"
-msgstr ""
+msgstr "ამომხსნელი"
 
 #: examples/wave.step:149
 #, kde-format
