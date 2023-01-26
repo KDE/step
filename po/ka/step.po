@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: step\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2022-10-27 00:42+0000\n"
-"PO-Revision-Date: 2023-01-24 09:06+0100\n"
+"PO-Revision-Date: 2023-01-25 05:33+0100\n"
 "Last-Translator: Temuri Doghonadze <temuri.doghonadze@gmail.com>\n"
 "Language-Team: Georgian <kde-i18n-doc@kde.org>\n"
 "Language: ka\n"
@@ -366,7 +366,7 @@ msgstr ""
 #: step/gasgraphics.cc:85
 #, kde-format
 msgid "Please fill in the parameters for the gas particles."
-msgstr ""
+msgstr "შეიყვანეთ აირის ნაწილაკების პარამეტრები."
 
 #: step/gasgraphics.cc:94 step/polygongraphics.cc:196
 #: step/polygongraphics.cc:335 step/polygongraphics.cc:490
@@ -374,7 +374,7 @@ msgstr ""
 #: step/worldgraphics.cc:122 step/worldgraphics.cc:157
 #, kde-format
 msgid "%1 named '%2' created"
-msgstr ""
+msgstr "%1 სახელით '%2' შექმნილია"
 
 #: step/gasgraphics.cc:282
 #, kde-format
@@ -851,18 +851,18 @@ msgstr "თვისებები"
 #: step/worldgraphics.cc:94
 #, kde-format
 msgid "Click on the scene to create a %1"
-msgstr ""
+msgstr "%1-ის შესაქმნელად სცენაზე დააწკაპუნეთ"
 
 #: step/softbodygraphics.cc:54
 #, kde-format
 msgid "Please fill in the parameters for %1"
-msgstr ""
+msgstr "შეავსეთ პარამეტრები %1-სთვის"
 
 #: step/softbodygraphics.cc:114
 #, kde-format
 msgctxt "@title:window"
 msgid "Create Soft Body Items"
-msgstr ""
+msgstr "რბილი სხეულის ელემენტების შექმნა"
 
 #: step/softbodygraphics.cc:175
 #, kde-format
@@ -888,7 +888,7 @@ msgstr "სცენაზე ღერძების ჩვენება"
 #: step/step.kcfg:19 step/step.kcfg:20
 #, kde-format
 msgid "Display precision of double numbers"
-msgstr ""
+msgstr "მცურავმძიმიანი რიცხვების ჩვენების სიზუსტე"
 
 #. i18n: ectx: label, entry (enableOpenGL), group (General)
 #. i18n: ectx: whatsthis, entry (enableOpenGL), group (General)
@@ -1000,7 +1000,7 @@ msgstr "მარ&ჯვნივ სწორება"
 #: step/toolgraphics.cc:395
 #, kde-format
 msgid "Align &Justify"
-msgstr ""
+msgstr "სიგანეზე &სწორება"
 
 #: step/toolgraphics.cc:398
 #, kde-format
@@ -1064,7 +1064,7 @@ msgstr "LaTex-ის ფორმულა - Step"
 #: step/toolgraphics.cc:700
 #, kde-format
 msgid "Enter LaTeX formula string:"
-msgstr ""
+msgstr "შეიყვანეთ LaTeX-ის ფორმულის სტრიქონი:"
 
 #: step/toolgraphics.cc:709
 #, kde-format
@@ -1136,13 +1136,13 @@ msgstr "%1-ის გრაფიკის გასუფთავება"
 #: step/toolgraphics.cc:1305
 #, kde-format
 msgid "Configure Meter..."
-msgstr ""
+msgstr "მთვლელის მორგება..."
 
 #: step/toolgraphics.cc:1323
 #, kde-format
 msgctxt "@title:window"
 msgid "Configure Meter"
-msgstr ""
+msgstr "მთვლელის მორგება"
 
 #: step/toolgraphics.cc:1420 step/toolgraphics.cc:1617
 #, kde-format
@@ -1183,12 +1183,12 @@ msgstr "კონტროლერის მორგება"
 #: step/toolgraphics.cc:1899
 #, kde-format
 msgid "Clear Trace"
-msgstr ""
+msgstr "ტრაექტორიის გასუფთავება"
 
 #: step/toolgraphics.cc:1908
 #, kde-format
 msgid "Clear tracer %1"
-msgstr ""
+msgstr "%1 ტრაექტორიის გასუფთავება"
 
 #: step/undobrowser.cc:18
 #, kde-format
@@ -1226,7 +1226,7 @@ msgstr "რამდენიმე ჩანაწერის წაშლა"
 #: step/worldmodel.cc:701 step/worldmodel.cc:708
 #, kde-format
 msgid "<no object>"
-msgstr ""
+msgstr "<ობიექტის გარეშე>"
 
 #: step/worldmodel.cc:703
 #, kde-format
