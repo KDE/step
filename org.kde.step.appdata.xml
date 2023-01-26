@@ -160,6 +160,7 @@
       <li xml:lang="gl">Simulación de mecánica clásica en dúas dimensións.</li>
       <li xml:lang="id">Simulasi mekanis klasik dalam dua dimensi</li>
       <li xml:lang="it">Simulazioni di meccanica classica in due dimensioni</li>
+      <li xml:lang="ka">კლასიკური მექანიკური სიმულაცია ორ განზომილებაში</li>
       <li xml:lang="ko">2차원 고전 역학 시뮬레이션</li>
       <li xml:lang="nds">Klass'sch mechaansch Simuleren in twee Dimenschonen</li>
       <li xml:lang="nl">Simulatie in twee dimensies volgens de klassieke mechanica</li>
@@ -222,6 +223,7 @@
       <li xml:lang="gl">Corpos ríxidos</li>
       <li xml:lang="id">Tubuh kaku</li>
       <li xml:lang="it">Corpi rigidi</li>
+      <li xml:lang="ka">უხეში სხეულები</li>
       <li xml:lang="ko">강체</li>
       <li xml:lang="nds">Fast Körpers</li>
       <li xml:lang="nl">Stijve lichamen</li>
@@ -495,6 +497,7 @@
       <li xml:lang="gl">Ferramentas para visualizar os resultados: gráfico, metro, trazador.</li>
       <li xml:lang="id">Peralatan untuk memvisualkan hasil: grafik, meter, pengeblab</li>
       <li xml:lang="it">Strumenti per visualizzare i risultati: grafici, misuratori, traccianti</li>
+      <li xml:lang="ka">შედეგების ვიზუალიზაციის პროგრამები: გრაფიკები, გაზომვები, ტრაექტორიები</li>
       <li xml:lang="ko">결과 시각화 도구: 그래프, 측정기, 추적기</li>
       <li xml:lang="nds">Warktüüch, mit de sik de Resultaten ankieken laat: Diagramm, Meter, Spoor</li>
       <li xml:lang="nl">Hulpmiddelen voor het visualiseren van de resultaten: grafiek, meter, spoor</li>
@@ -526,6 +529,7 @@
       <li xml:lang="gl">Información de contexto para todos os obxectos, con navegador de Wikipedia integrado.</li>
       <li xml:lang="id">Informasi konteks untuk semua objek, penelusur wikipedia yang terintegrasi</li>
       <li xml:lang="it">Informazioni di contesto per tutti gli oggetti, browser per wikipedia integrato</li>
+      <li xml:lang="ka">კონტექსტური ინფორმაცია ყველა ობიექტისთვის. ინტეგრირებული ვიკიპედიის ბრაუზერი</li>
       <li xml:lang="ko">모든 객체의 콘텍스트 정보, 위키백과 탐색기 통합</li>
       <li xml:lang="nds">Kontextinformatschonen för all Objekten, inbuut Wikipedia-Kieker</li>
       <li xml:lang="nl">Contekstinformatie voor alle objecten, geïntegreerde wikipedia-browser</li>
