@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: step\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2022-10-27 00:42+0000\n"
-"PO-Revision-Date: 2023-01-25 05:33+0100\n"
+"PO-Revision-Date: 2023-01-27 10:18+0100\n"
 "Last-Translator: Temuri Doghonadze <temuri.doghonadze@gmail.com>\n"
 "Language-Team: Georgian <kde-i18n-doc@kde.org>\n"
 "Language: ka\n"
@@ -737,7 +737,7 @@ msgstr ""
 #: step/mainwindow.cc:504
 #, kde-format
 msgid "Cannot finish this step because of an unknown error."
-msgstr ""
+msgstr "ნაბიჯის დასრულება შეუძლებელია უცნობი მიზეზის გამო."
 
 #: step/mainwindow.cc:537
 #, kde-format
@@ -797,7 +797,7 @@ msgstr ""
 #: step/polygongraphics.cc:428
 #, kde-format
 msgid "Click on the scene to create a first vertex of %1"
-msgstr ""
+msgstr "%1-ის პირველი წვეროს შესაქმნელად სცენაზე დააწკაპუნეთ"
 
 #: step/polygongraphics.cc:476
 #, kde-format
