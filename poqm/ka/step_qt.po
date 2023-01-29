@@ -26,57 +26,57 @@ msgstr "სხეული"
 #: collisionsolver.cc:19
 msgctxt "ObjectClass|"
 msgid "CollisionSolver"
-msgstr ""
+msgstr "შეჯახებებისგამომთვლელი"
 
 #: collisionsolver.cc:20 solver.cc:16
 msgctxt "PropertyDescription|"
 msgid "Allowed absolute tolerance"
-msgstr ""
+msgstr "დაშვებული აბსოლუტური დაშვება"
 
 #: collisionsolver.cc:20 solver.cc:16
 msgctxt "PropertyName|"
 msgid "toleranceAbs"
-msgstr ""
+msgstr "აბსოლუტურიდაშვება"
 
 #: collisionsolver.cc:21 solver.cc:19
 msgctxt "PropertyDescription|"
 msgid "Maximal local error during last step"
-msgstr ""
+msgstr "მაქსიმალური ლოკალური შეცდომა ბოლო ნაბიჯისას"
 
 #: collisionsolver.cc:21 solver.cc:19
 msgctxt "PropertyName|"
 msgid "localError"
-msgstr ""
+msgstr "ლოკალურიცდომილება"
 
 #: collisionsolver.cc:23
 msgctxt "ObjectClass|"
 msgid "GJKCollisionSolver"
-msgstr ""
+msgstr "ცდომილებისგამომთვლელიGJK"
 
 #: constraintsolver.cc:19
 msgctxt "ObjectClass|"
 msgid "ConstraintSolver"
-msgstr ""
+msgstr "შეზღუდვებისგამომთვლელი"
 
 #: constraintsolver.cc:23
 msgctxt "ObjectClass|"
 msgid "CGConstraintSolver"
-msgstr ""
+msgstr "შეზღუდვებისგამომთვლელიCG"
 
 #: coulombforce.cc:14
 msgctxt "ObjectClass|"
 msgid "CoulombForce"
-msgstr ""
+msgstr "კულონისძალა"
 
 #: coulombforce.cc:14
 msgctxt "ObjectDescription|"
 msgid "Coulomb force"
-msgstr ""
+msgstr "კულონის ძალა"
 
 #: coulombforce.cc:16
 msgctxt "PropertyName|"
 msgid "coulombConst"
-msgstr ""
+msgstr "კულონისმუდმივა"
 
 #: coulombforce.cc:16 coulombforce.cc:21
 msgctxt "Units|"
@@ -86,12 +86,12 @@ msgstr "N m²/C²"
 #: coulombforce.cc:17
 msgctxt "PropertyDescription|"
 msgid "Coulomb constant"
-msgstr ""
+msgstr "კულონის მუდმივა"
 
 #: coulombforce.cc:19
 msgctxt "ObjectClass|"
 msgid "CoulombForceErrors"
-msgstr ""
+msgstr "კულონისძალისცდომილებები"
 
 #: coulombforce.cc:19
 msgctxt "ObjectDescription|"
@@ -151,12 +151,12 @@ msgstr "ძალა"
 #: gas.cc:15
 msgctxt "ObjectClass|"
 msgid "GasParticle"
-msgstr ""
+msgstr "აირისნაწილაკი"
 
 #: gas.cc:15
 msgctxt "ObjectDescription|"
 msgid "Gas particle"
-msgstr ""
+msgstr "აირის ნაწილაკი"
 
 #: gas.cc:17
 msgctxt "ObjectClass|"
@@ -402,7 +402,7 @@ msgstr ""
 #: gas.cc:57
 msgctxt "ObjectClass|"
 msgid "GasErrors"
-msgstr ""
+msgstr "აირისცდომილებები"
 
 #: gas.cc:57
 msgctxt "ObjectDescription|"
@@ -965,7 +965,7 @@ msgstr "ნ"
 #: motor.cc:21
 msgctxt "ObjectClass|"
 msgid "CircularMotor"
-msgstr ""
+msgstr "მოძრავიძრავა"
 
 #: motor.cc:21
 msgctxt "ObjectDescription|"
@@ -1625,7 +1625,7 @@ msgstr "ხანგრძლივობა"
 #: spring.cc:20
 msgctxt "PropertyDescription|"
 msgid "Stiffness"
-msgstr ""
+msgstr "სიმყიფე"
 
 #: spring.cc:20
 msgctxt "PropertyName|"
@@ -1640,7 +1640,7 @@ msgstr "ნ/მ"
 #: spring.cc:21
 msgctxt "PropertyDescription|"
 msgid "Damping"
-msgstr ""
+msgstr "ჩაქრობა"
 
 #: spring.cc:21
 msgctxt "PropertyName|"

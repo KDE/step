@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: step\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2022-10-26 00:42+0000\n"
-"PO-Revision-Date: 2023-01-17 00:36+0100\n"
+"PO-Revision-Date: 2023-01-28 11:34+0100\n"
 "Last-Translator: Temuri Doghonadze <temuri.doghonadze@gmail.com>\n"
 "Language-Team: Georgian <kde-i18n-doc@kde.org>\n"
 "Language: ka\n"
@@ -80,7 +80,7 @@ msgstr "დისკი1"
 #, kde-format
 msgctxt "name"
 msgid "tracer1"
-msgstr ""
+msgstr "ტრაექტორია1"
 
 #: examples/brownian.step:427 examples/doublependulum.step:66
 #: examples/eightpendula.step:203 examples/fourpendula.step:126
@@ -158,7 +158,7 @@ msgstr "ჯოხი2"
 #, kde-format
 msgctxt "name"
 msgid "weightForce1"
-msgstr ""
+msgstr "სიმძიმისძალა1"
 
 #: examples/doublependulum.step:54 examples/gas.step:247 examples/graph.step:79
 #: examples/liquid.step:187 examples/lissajous.step:85 examples/note.step:11
@@ -168,13 +168,13 @@ msgstr ""
 #, kde-format
 msgctxt "name"
 msgid "note1"
-msgstr ""
+msgstr "შენიშვნა1"
 
 #: examples/doublependulum.step:62
 #, kde-format
 msgctxt "HTML:p"
 msgid "Double pendulum example"
-msgstr ""
+msgstr "ორმაგი ქანქარის მაგალითი"
 
 #: examples/eightpendula.step:4
 #, kde-format
@@ -182,6 +182,7 @@ msgctxt "name"
 msgid ""
 "Pendule de Newton à 8 billes (http://fr.wikipedia.org/wiki/Pendule_de_Newton)"
 msgstr ""
+"ნიუტონის აკვანი 8 ბურთით (https://ka.wikipedia.org/wiki/ნიუტონის_აკვანი)"
 
 #: examples/eightpendula.step:41 examples/fourpendula.step:35
 #: tutorials/tutorial1.step:111
@@ -207,7 +208,7 @@ msgstr "ჯოხი3"
 #, kde-format
 msgctxt "name"
 msgid "anchor1"
-msgstr ""
+msgstr "სამაგრი1"
 
 #: examples/eightpendula.step:93
 #, kde-format
@@ -290,19 +291,19 @@ msgstr "სამყარო"
 #, kde-format
 msgctxt "name"
 msgid "spring1"
-msgstr ""
+msgstr "ზამბარა1"
 
 #: examples/first.step:39
 #, kde-format
 msgctxt "name"
 msgid "chargedParticle1"
-msgstr ""
+msgstr "დამუხტულინაწილაკი1"
 
 #: examples/first.step:48
 #, kde-format
 msgctxt "name"
 msgid "chargedParticle2"
-msgstr ""
+msgstr "დამუხტულინაწილაკი2"
 
 #: examples/first.step:64 examples/solar.step:98
 #, kde-format
@@ -320,7 +321,7 @@ msgstr "დისკი3"
 #, kde-format
 msgctxt "name"
 msgid "gasLJForce1"
-msgstr ""
+msgstr "ლენარდჯონსისძალა1"
 
 #: examples/gas.step:73 examples/liquid.step:25
 #, kde-format
@@ -452,13 +453,13 @@ msgstr "<span style=\" font-size:large;\">n =</span>"
 #, kde-format
 msgctxt "name"
 msgid "meter1"
-msgstr ""
+msgstr "მზომავი1"
 
 #: examples/gas.step:270
 #, kde-format
 msgctxt "name"
 msgid "meter2"
-msgstr ""
+msgstr "მზომავი2"
 
 #: examples/gas.step:281 tutorials/tutorial1.step:53
 #: tutorials/tutorial2.step:102 tutorials/tutorial3.step:84
@@ -466,7 +467,7 @@ msgstr ""
 #, kde-format
 msgctxt "name"
 msgid "note3"
-msgstr ""
+msgstr "შენიშვნა3"
 
 #: examples/gas.step:289
 #, kde-format
@@ -478,7 +479,7 @@ msgstr "T ="
 #, kde-format
 msgctxt "name"
 msgid "meter3"
-msgstr ""
+msgstr "მზომავი3"
 
 #: examples/gas.step:304 examples/graph.step:92 examples/lissajous.step:98
 #: examples/wave.step:468 tutorials/tutorial1.step:37
@@ -487,7 +488,7 @@ msgstr ""
 #, kde-format
 msgctxt "name"
 msgid "note2"
-msgstr ""
+msgstr "შენიშვნა2"
 
 #: examples/gas.step:312
 #, kde-format
@@ -500,7 +501,7 @@ msgstr "p ="
 #, kde-format
 msgctxt "name"
 msgid "note5"
-msgstr ""
+msgstr "შენიშვნა5"
 
 #: examples/gas.step:325
 #, kde-format
@@ -516,14 +517,14 @@ msgstr ""
 #, kde-format
 msgctxt "name"
 msgid "meter4"
-msgstr ""
+msgstr "მზომავი4"
 
 #: examples/gas.step:340 tutorials/tutorial1.step:69
 #: tutorials/tutorial2.step:119 tutorials/tutorial4.step:122
 #, kde-format
 msgctxt "name"
 msgid "note4"
-msgstr ""
+msgstr "შენიშვნა4"
 
 #: examples/gas.step:349
 #, kde-format
@@ -536,19 +537,19 @@ msgstr "<span style=\" font-size:medium;\">მაკროსკოპული 
 #, kde-format
 msgctxt "name"
 msgid "note6"
-msgstr ""
+msgstr "შენიშვნა6"
 
 #: examples/gas.step:362
 #, kde-format
 msgctxt "HTML:p"
 msgid "<span style=\" font-size:medium;\">Spring tension:</span>"
-msgstr ""
+msgstr "<span style=\" font-size:medium;\">ზამბარის დაჭიმულობა:</span>"
 
 #: examples/gas.step:366
 #, kde-format
 msgctxt "name"
 msgid "note7"
-msgstr ""
+msgstr "note7"
 
 #: examples/gas.step:375
 #, kde-format
@@ -561,19 +562,19 @@ msgstr ""
 #, kde-format
 msgctxt "name"
 msgid "graph2"
-msgstr ""
+msgstr "გრაფიკი2"
 
 #: examples/graph.step:88
 #, kde-format
 msgctxt "HTML:p"
 msgid "Phase diagram"
-msgstr ""
+msgstr "ფაზური დიაგრამა"
 
 #: examples/graph.step:101
 #, kde-format
 msgctxt "HTML:p"
 msgid "Position - time"
-msgstr ""
+msgstr "მდებარეობა - დრო"
 
 #: examples/liquid.step:196
 #, kde-format
@@ -588,20 +589,20 @@ msgstr ""
 #, kde-format
 msgctxt "name"
 msgid "spring2"
-msgstr ""
+msgstr "ზამბარა2"
 
 #: examples/lissajous.step:71 examples/motor.step:51
 #: tutorials/tutorial2.step:39 tutorials/tutorial4.step:63
 #, kde-format
 msgctxt "name"
 msgid "controller1"
-msgstr ""
+msgstr "კონტროლერი1"
 
 #: examples/lissajous.step:94
 #, kde-format
 msgctxt "HTML:p"
 msgid "Lissajous curve"
-msgstr ""
+msgstr "ლისაჟუს მრუდი"
 
 #: examples/lissajous.step:108
 #, kde-format
@@ -616,25 +617,25 @@ msgstr ""
 #, kde-format
 msgctxt "name"
 msgid "linearMotor1"
-msgstr ""
+msgstr "წრფივიძრავა1"
 
 #: examples/motor1.step:31 tutorials/tutorial4.step:55
 #, kde-format
 msgctxt "name"
 msgid "linearMotor2"
-msgstr ""
+msgstr "წრფივიძრავა2"
 
 #: examples/motor1.step:39
 #, kde-format
 msgctxt "name"
 msgid "linearMotor3"
-msgstr ""
+msgstr "წრფივიძრავა3"
 
 #: examples/note.step:19
 #, kde-format
 msgctxt "HTML:p"
 msgid "Example formula:"
-msgstr ""
+msgstr "მაგალითი ფორმულა:"
 
 #: examples/note.step:20
 #, kde-format
@@ -646,7 +647,7 @@ msgstr "<img src=\"img:0\"></img>"
 #, kde-format
 msgctxt "HTML:p"
 msgid "Example image:"
-msgstr ""
+msgstr "მაგალითი გამოსახულება:"
 
 #: examples/note.step:23
 #, kde-format
@@ -658,19 +659,19 @@ msgstr "<img src=\"img:1\"></img>"
 #, kde-format
 msgctxt "name"
 msgid "img:0"
-msgstr ""
+msgstr "img:0"
 
 #: examples/note.step:33
 #, kde-format
 msgctxt "name"
 msgid "img:1"
-msgstr ""
+msgstr "img:1"
 
 #: examples/resonance.step:11
 #, kde-format
 msgctxt "name"
 msgid "LeftWall"
-msgstr ""
+msgstr "მარცხენაკედელი"
 
 #: examples/resonance.step:23
 #, kde-format
@@ -682,7 +683,7 @@ msgstr "სხეული"
 #, kde-format
 msgctxt "name"
 msgid "RightWall"
-msgstr ""
+msgstr "მარჯვენაკედელი"
 
 #: examples/resonance.step:47
 #, kde-format
@@ -694,7 +695,7 @@ msgstr "დისკი"
 #, kde-format
 msgctxt "name"
 msgid "PinDisk"
-msgstr ""
+msgstr "დამაგრებულიდისკი"
 
 #: examples/resonance.step:67
 #, kde-format
@@ -724,7 +725,7 @@ msgstr "გრაფიკი"
 #, kde-format
 msgctxt "name"
 msgid "CircularMotor"
-msgstr ""
+msgstr "მოძრავიძრავა"
 
 #: examples/resonance.step:123
 #, kde-format
@@ -742,19 +743,19 @@ msgstr "აპარატურული აჩქარება"
 #, kde-format
 msgctxt "name"
 msgid "Stiffness"
-msgstr ""
+msgstr "სიმყიფე"
 
 #: examples/resonance.step:165
 #, kde-format
 msgctxt "name"
 msgid "Damping"
-msgstr ""
+msgstr "ჩაქრობა"
 
 #: examples/softbody.step:11 examples/wave.step:11
 #, kde-format
 msgctxt "name"
 msgid "softBody1"
-msgstr ""
+msgstr "რბილისხეული1"
 
 #: examples/softbody.step:21 examples/wave.step:21
 #, kde-format
@@ -856,253 +857,253 @@ msgstr "რბილისსხეულსნაწილაკი16"
 #, kde-format
 msgctxt "name"
 msgid "softBodySpring1"
-msgstr ""
+msgstr "რბილისხეულისზამბარა1"
 
 #: examples/softbody.step:161 examples/wave.step:193
 #, kde-format
 msgctxt "name"
 msgid "softBodySpring2"
-msgstr ""
+msgstr "რბილისხეულისზამბარა2"
 
 #: examples/softbody.step:173 examples/wave.step:205
 #, kde-format
 msgctxt "name"
 msgid "softBodySpring3"
-msgstr ""
+msgstr "რბილისხეულისზამბარა3"
 
 #: examples/softbody.step:185 examples/wave.step:217
 #, kde-format
 msgctxt "name"
 msgid "softBodySpring4"
-msgstr ""
+msgstr "რბილისხეულისზამბარა4"
 
 #: examples/softbody.step:197 examples/wave.step:229
 #, kde-format
 msgctxt "name"
 msgid "softBodySpring5"
-msgstr ""
+msgstr "რბილისხეულისზამბარა5"
 
 #: examples/softbody.step:209 examples/wave.step:241
 #, kde-format
 msgctxt "name"
 msgid "softBodySpring6"
-msgstr ""
+msgstr "რბილისხეულისზამბარა6"
 
 #: examples/softbody.step:221 examples/wave.step:253
 #, kde-format
 msgctxt "name"
 msgid "softBodySpring7"
-msgstr ""
+msgstr "რბილისხეულისზამბარა7"
 
 #: examples/softbody.step:233 examples/wave.step:265
 #, kde-format
 msgctxt "name"
 msgid "softBodySpring8"
-msgstr ""
+msgstr "რბილისხეულისზამბარა8"
 
 #: examples/softbody.step:245 examples/wave.step:277
 #, kde-format
 msgctxt "name"
 msgid "softBodySpring9"
-msgstr ""
+msgstr "რბილისხეულისზამბარა9"
 
 #: examples/softbody.step:257 examples/wave.step:289
 #, kde-format
 msgctxt "name"
 msgid "softBodySpring10"
-msgstr ""
+msgstr "რბილისხეულისზამბარა10"
 
 #: examples/softbody.step:269 examples/wave.step:301
 #, kde-format
 msgctxt "name"
 msgid "softBodySpring11"
-msgstr ""
+msgstr "რბილისხეულისზამბარა11"
 
 #: examples/softbody.step:281 examples/wave.step:313
 #, kde-format
 msgctxt "name"
 msgid "softBodySpring12"
-msgstr ""
+msgstr "რბილისხეულისზამბარა12"
 
 #: examples/softbody.step:293 examples/wave.step:325
 #, kde-format
 msgctxt "name"
 msgid "softBodySpring13"
-msgstr ""
+msgstr "რბილისხეულისზამბარა13"
 
 #: examples/softbody.step:305 examples/wave.step:337
 #, kde-format
 msgctxt "name"
 msgid "softBodySpring14"
-msgstr ""
+msgstr "რბილისხეულისზამბარა14"
 
 #: examples/softbody.step:317 examples/wave.step:349
 #, kde-format
 msgctxt "name"
 msgid "softBodySpring15"
-msgstr ""
+msgstr "რბილისხეულისზამბარა15"
 
 #: examples/softbody.step:329 examples/wave.step:361
 #, kde-format
 msgctxt "name"
 msgid "softBodySpring16"
-msgstr ""
+msgstr "რბილისხეულისზამბარა16"
 
 #: examples/softbody.step:341 examples/wave.step:373
 #, kde-format
 msgctxt "name"
 msgid "softBodySpring17"
-msgstr ""
+msgstr "რბილისხეულისზამბარა17"
 
 #: examples/softbody.step:353 examples/wave.step:385
 #, kde-format
 msgctxt "name"
 msgid "softBodySpring18"
-msgstr ""
+msgstr "რბილისხეულისზამბარა18"
 
 #: examples/softbody.step:365 examples/wave.step:397
 #, kde-format
 msgctxt "name"
 msgid "softBodySpring19"
-msgstr ""
+msgstr "რბილისხეულისზამბარა19"
 
 #: examples/softbody.step:377
 #, kde-format
 msgctxt "name"
 msgid "softBodySpring20"
-msgstr ""
+msgstr "რბილისხეულისზამბარა20"
 
 #: examples/softbody.step:389
 #, kde-format
 msgctxt "name"
 msgid "softBodySpring21"
-msgstr ""
+msgstr "რბილისხეულისზამბარა21"
 
 #: examples/softbody.step:401
 #, kde-format
 msgctxt "name"
 msgid "softBodySpring22"
-msgstr ""
+msgstr "რბილისხეულისზამბარა22"
 
 #: examples/softbody.step:413
 #, kde-format
 msgctxt "name"
 msgid "softBodySpring23"
-msgstr ""
+msgstr "რბილისხეულისზამბარა23"
 
 #: examples/softbody.step:425
 #, kde-format
 msgctxt "name"
 msgid "softBodySpring24"
-msgstr ""
+msgstr "რბილისხეულისზამბარა24"
 
 #: examples/softbody.step:437
 #, kde-format
 msgctxt "name"
 msgid "softBodySpring25"
-msgstr ""
+msgstr "რბილისხეულისზამბარა25"
 
 #: examples/softbody.step:449
 #, kde-format
 msgctxt "name"
 msgid "softBodySpring26"
-msgstr ""
+msgstr "რბილისხეულისზამბარა26"
 
 #: examples/softbody.step:461
 #, kde-format
 msgctxt "name"
 msgid "softBodySpring27"
-msgstr ""
+msgstr "რბილისხეულისზამბარა27"
 
 #: examples/softbody.step:473
 #, kde-format
 msgctxt "name"
 msgid "softBodySpring28"
-msgstr ""
+msgstr "რბილისხეულისზამბარა28"
 
 #: examples/softbody.step:485
 #, kde-format
 msgctxt "name"
 msgid "softBodySpring29"
-msgstr ""
+msgstr "რბილისხეულისზამბარა29"
 
 #: examples/softbody.step:497
 #, kde-format
 msgctxt "name"
 msgid "softBodySpring30"
-msgstr ""
+msgstr "რბილისხეულისზამბარა30"
 
 #: examples/softbody.step:509
 #, kde-format
 msgctxt "name"
 msgid "softBodySpring31"
-msgstr ""
+msgstr "რბილისხეულისზამბარა31"
 
 #: examples/softbody.step:521
 #, kde-format
 msgctxt "name"
 msgid "softBodySpring32"
-msgstr ""
+msgstr "რბილისხეულისზამბარა32"
 
 #: examples/softbody.step:533
 #, kde-format
 msgctxt "name"
 msgid "softBodySpring33"
-msgstr ""
+msgstr "რბილისხეულისზამბარა33"
 
 #: examples/softbody.step:545
 #, kde-format
 msgctxt "name"
 msgid "softBodySpring34"
-msgstr ""
+msgstr "რბილისხეულისზამბარა34"
 
 #: examples/softbody.step:557
 #, kde-format
 msgctxt "name"
 msgid "softBodySpring35"
-msgstr ""
+msgstr "რბილისხეულისზამბარა35"
 
 #: examples/softbody.step:569
 #, kde-format
 msgctxt "name"
 msgid "softBodySpring36"
-msgstr ""
+msgstr "რბილისხეულისზამბარა36"
 
 #: examples/softbody.step:581
 #, kde-format
 msgctxt "name"
 msgid "softBodySpring37"
-msgstr ""
+msgstr "რბილისხეულისზამბარა37"
 
 #: examples/softbody.step:593
 #, kde-format
 msgctxt "name"
 msgid "softBodySpring38"
-msgstr ""
+msgstr "რბილისხეულისზამბარა38"
 
 #: examples/softbody.step:605
 #, kde-format
 msgctxt "name"
 msgid "softBodySpring39"
-msgstr ""
+msgstr "რბილისხეულისზამბარა39"
 
 #: examples/softbody.step:617
 #, kde-format
 msgctxt "name"
 msgid "softBodySpring40"
-msgstr ""
+msgstr "რბილისხეულისზამბარა40"
 
 #: examples/softbody.step:629
 #, kde-format
 msgctxt "name"
 msgid "softBodySpring41"
-msgstr ""
+msgstr "რბილისხეულისზამბარა41"
 
 #: examples/softbody.step:641
 #, kde-format
 msgctxt "name"
 msgid "softBodySpring42"
-msgstr ""
+msgstr "რბილისხეულისზამბარა42"
 
 #: examples/solar.step:4
 #, kde-format
@@ -1240,25 +1241,25 @@ msgstr "ამომხსნელი"
 #, kde-format
 msgctxt "name"
 msgid "softBodyParticle17"
-msgstr ""
+msgstr "რბილისხეულისნაწილაკი17"
 
 #: examples/wave.step:157
 #, kde-format
 msgctxt "name"
 msgid "softBodyParticle18"
-msgstr ""
+msgstr "რბილისხეულისნაწილაკი18"
 
 #: examples/wave.step:165
 #, kde-format
 msgctxt "name"
 msgid "softBodyParticle19"
-msgstr ""
+msgstr "რბილისხეულისნაწილაკი19"
 
 #: examples/wave.step:173
 #, kde-format
 msgctxt "name"
 msgid "softBodyParticle20"
-msgstr ""
+msgstr "რბილისხეულისნაწილაკი20"
 
 #: examples/wave.step:444
 #, kde-format
@@ -1280,19 +1281,19 @@ msgstr ""
 #, kde-format
 msgctxt "HTML:p"
 msgid "<span style=\" font-size:14pt; font-weight:600;\">Tutorial 1</span>"
-msgstr ""
+msgstr "<span style=\" font-size:14pt; font-weight:600;\">გაკვეთილი 1</span>"
 
 #: tutorials/tutorial1.step:33
 #, kde-format
 msgctxt "HTML:p"
 msgid "<span style=\" font-size:12pt;\">Bodies and springs.</span>"
-msgstr ""
+msgstr "<span style=\" font-size:12pt;\">სხეულები და ზამბარები.</span>"
 
 #: tutorials/tutorial1.step:46
 #, kde-format
 msgctxt "HTML:p"
 msgid "<span style=\" font-weight:600;\">Position and velocity</span>"
-msgstr ""
+msgstr "<span style=\" font-weight:600;\">მდებარეობა და სიჩქარე</span>"
 
 #: tutorials/tutorial1.step:47
 #, kde-format
@@ -1323,7 +1324,7 @@ msgstr ""
 #, kde-format
 msgctxt "HTML:p"
 msgid "<span style=\" font-weight:600;\">Properties</span>"
-msgstr ""
+msgstr "<span style=\" font-weight:600;\">თვისებები</span>"
 
 #: tutorials/tutorial1.step:64
 #, kde-format
@@ -1337,7 +1338,7 @@ msgstr ""
 #, kde-format
 msgctxt "HTML:p"
 msgid "<span style=\" font-weight:600;\">Quest</span>"
-msgstr ""
+msgstr "<span style=\" font-weight:600;\">დავალება</span>"
 
 #: tutorials/tutorial1.step:79
 #, kde-format
@@ -1359,7 +1360,7 @@ msgstr ""
 #, kde-format
 msgctxt "HTML:p"
 msgid "<span style=\" font-weight:600;\">More bodies</span>"
-msgstr ""
+msgstr "<span style=\" font-weight:600;\">მეტი სხეული</span>"
 
 #: tutorials/tutorial1.step:94
 #, kde-format
@@ -1382,7 +1383,7 @@ msgstr ""
 #, kde-format
 msgctxt "HTML:p"
 msgid "<span style=\" font-weight:600;\">Simulation</span>"
-msgstr ""
+msgstr "<span style=\" font-weight:600;\">სიმულაცია</span>"
 
 #: tutorials/tutorial1.step:133
 #, kde-format
@@ -1404,19 +1405,19 @@ msgstr ""
 #, kde-format
 msgctxt "HTML:p"
 msgid "<span style=\" font-size:14pt; font-weight:600;\">Tutorial 2</span>"
-msgstr ""
+msgstr "<span style=\" font-size:14pt; font-weight:600;\">გაკვეთილი 2</span>"
 
 #: tutorials/tutorial2.step:83
 #, kde-format
 msgctxt "HTML:p"
 msgid "<span style=\" font-size:12pt;\">Controllers and Graphs</span>"
-msgstr ""
+msgstr "<span style=\" font-size:12pt;\">კონტროლერები და გრაფიკები</span>"
 
 #: tutorials/tutorial2.step:96
 #, kde-format
 msgctxt "HTML:p"
 msgid "<span style=\" font-weight:600;\">Try it</span>"
-msgstr ""
+msgstr "<span style=\" font-weight:600;\">სცადეთ</span>"
 
 #: tutorials/tutorial2.step:97
 #, kde-format
@@ -1438,7 +1439,7 @@ msgstr ""
 #, kde-format
 msgctxt "HTML:p"
 msgid "<span style=\" font-weight:600;\">Controller</span>"
-msgstr ""
+msgstr "<span style=\" font-weight:600;\">კონტროლერი</span>"
 
 #: tutorials/tutorial2.step:112
 #, kde-format
@@ -1474,7 +1475,7 @@ msgstr ""
 #, kde-format
 msgctxt "HTML:p"
 msgid "<span style=\" font-weight:600;\">Graph</span>"
-msgstr ""
+msgstr "<span style=\" font-weight:600;\">გრაფიკი</span>"
 
 #: tutorials/tutorial2.step:129
 #, kde-format
@@ -1494,19 +1495,19 @@ msgstr ""
 #, kde-format
 msgctxt "HTML:p"
 msgid "<span style=\" font-size:14pt; font-weight:600;\">Tutorial 3</span>"
-msgstr ""
+msgstr "<span style=\" font-size:14pt; font-weight:600;\">გაკვეთილი 3</span>"
 
 #: tutorials/tutorial3.step:65
 #, kde-format
 msgctxt "HTML:p"
 msgid "<span style=\" font-size:12pt;\">Rigid bodies and tracers</span>"
-msgstr ""
+msgstr "<span style=\" font-size:12pt;\">მყარი სხეულები და ტრაექტორიები</span>"
 
 #: tutorials/tutorial3.step:79
 #, kde-format
 msgctxt "HTML:p"
 msgid "<span style=\" font-weight:600;\">Angle and angular velocity</span>"
-msgstr ""
+msgstr "<span style=\" font-weight:600;\">კუთხე და კუთხური სიჩქარე</span>"
 
 #: tutorials/tutorial3.step:80
 #, kde-format
@@ -1520,7 +1521,7 @@ msgstr ""
 #, kde-format
 msgctxt "HTML:p"
 msgid "<span style=\" font-weight:600;\">Tracer</span>"
-msgstr ""
+msgstr "<span style=\" font-weight:600;\">ტრაექტორია</span>"
 
 #: tutorials/tutorial3.step:94
 #, kde-format
@@ -1550,25 +1551,25 @@ msgstr ""
 #, kde-format
 msgctxt "name"
 msgid "controller2"
-msgstr ""
+msgstr "კონტროლერი2"
 
 #: tutorials/tutorial4.step:100
 #, kde-format
 msgctxt "HTML:p"
 msgid "<span style=\" font-size:14pt; font-weight:600;\">Tutorial 4</span>"
-msgstr ""
+msgstr "<span style=\" font-size:14pt; font-weight:600;\">გაკვეთილი 4</span>"
 
 #: tutorials/tutorial4.step:101
 #, kde-format
 msgctxt "HTML:p"
 msgid "<span style=\" font-size:12pt;\">Motors and forces</span>"
-msgstr ""
+msgstr "<span style=\" font-size:12pt;\">ძრავები და ძალები</span>"
 
 #: tutorials/tutorial4.step:114
 #, kde-format
 msgctxt "HTML:p"
 msgid "<span style=\" font-weight:600;\">Linear motor</span>"
-msgstr ""
+msgstr "<span style=\" font-weight:600;\">წრფივი ძრავა</span>"
 
 #: tutorials/tutorial4.step:115
 #, kde-format
@@ -1594,7 +1595,7 @@ msgstr ""
 #, kde-format
 msgctxt "HTML:p"
 msgid "<span style=\" font-weight:600;\">Circular motor</span>"
-msgstr ""
+msgstr "<span style=\" font-weight:600;\">წრიული ძრავა</span>"
 
 #: tutorials/tutorial4.step:132
 #, kde-format
@@ -1612,7 +1613,7 @@ msgstr ""
 #, kde-format
 msgctxt "HTML:p"
 msgid "<span style=\" font-weight:600;\">Global forces</span>"
-msgstr ""
+msgstr "<span style=\" font-weight:600;\">გლობალური ძალები</span>"
 
 #: tutorials/tutorial4.step:147
 #, kde-format
@@ -1640,19 +1641,19 @@ msgstr ""
 #, kde-format
 msgctxt "name"
 msgid "box2"
-msgstr ""
+msgstr "ყუთი2"
 
 #: tutorials/tutorial5.step:63
 #, kde-format
 msgctxt "HTML:p"
 msgid "<span style=\" font-size:14pt; font-weight:600;\">Tutorial 5</span>"
-msgstr ""
+msgstr "<span style=\" font-size:14pt; font-weight:600;\">გაკვეთილი 5</span>"
 
 #: tutorials/tutorial5.step:64
 #, kde-format
 msgctxt "HTML:p"
 msgid "<span style=\" font-size:12pt;\">Joints</span>"
-msgstr ""
+msgstr "<span style=\" font-size:12pt;\">შემაერთებლები</span>"
 
 #: tutorials/tutorial5.step:79
 #, kde-format
@@ -1680,7 +1681,7 @@ msgstr ""
 #, kde-format
 msgctxt "HTML:p"
 msgid "<span style=\" font-weight:600;\">Joints</span>"
-msgstr ""
+msgstr "<span style=\" font-weight:600;\">შემაერთებლები</span>"
 
 #: tutorials/tutorial5.step:115
 #, kde-format
