@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: step\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2022-10-26 00:42+0000\n"
-"PO-Revision-Date: 2023-01-28 11:34+0100\n"
+"PO-Revision-Date: 2023-01-29 09:16+0100\n"
 "Last-Translator: Temuri Doghonadze <temuri.doghonadze@gmail.com>\n"
 "Language-Team: Georgian <kde-i18n-doc@kde.org>\n"
 "Language: ka\n"
@@ -1445,7 +1445,7 @@ msgstr "<span style=\" font-weight:600;\">კონტროლერი</span>"
 #, kde-format
 msgctxt "HTML:p"
 msgid "- Create a new controller on the scene."
-msgstr ""
+msgstr "- სცენაზე ახალი კონტროლერის შექმნა."
 
 #: tutorials/tutorial2.step:113
 #, kde-format

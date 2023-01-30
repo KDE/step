@@ -101,7 +101,7 @@ msgstr ""
 #: coulombforce.cc:21
 msgctxt "PropertyName|"
 msgid "coulombConstVariance"
-msgstr ""
+msgstr "კულონისმუდმივისცვლილება"
 
 #: coulombforce.cc:22
 msgctxt "PropertyDescription|"
@@ -111,7 +111,7 @@ msgstr ""
 #: eulersolver.cc:15
 msgctxt "ObjectClass|"
 msgid "GenericEulerSolver"
-msgstr ""
+msgstr "ეილერისზოგადიგამომთვლელი"
 
 #: eulersolver.cc:15
 msgctxt "ObjectDescription|"
@@ -121,7 +121,7 @@ msgstr ""
 #: eulersolver.cc:16
 msgctxt "ObjectClass|"
 msgid "EulerSolver"
-msgstr ""
+msgstr "ეილერისამომხსნელი"
 
 #: eulersolver.cc:16
 msgctxt "ObjectDescription|"
@@ -161,17 +161,17 @@ msgstr "აირის ნაწილაკი"
 #: gas.cc:17
 msgctxt "ObjectClass|"
 msgid "GasLJForce"
-msgstr ""
+msgstr "ლენარდჯონსისძალა"
 
 #: gas.cc:17
 msgctxt "ObjectDescription|"
 msgid "Lennard-Jones force"
-msgstr ""
+msgstr "ლენარდ-ჯონსის ძალა"
 
 #: gas.cc:19
 msgctxt "PropertyDescription|"
 msgid "Potential depth"
-msgstr ""
+msgstr "პოტენციური სიღრმე"
 
 #: gas.cc:19
 msgctxt "PropertyName|"
@@ -192,7 +192,7 @@ msgstr ""
 #: gas.cc:20
 msgctxt "PropertyName|"
 msgid "rmin"
-msgstr ""
+msgstr "ბრ/წთ"
 
 #: gas.cc:20 gas.cc:21 gas.cc:27 gas.cc:33 gas.cc:35 joints.cc:17 joints.cc:23
 #: joints.cc:24 joints.cc:28 joints.cc:31 joints.cc:33 joints.cc:35
@@ -255,7 +255,7 @@ msgstr "აირი"
 #: gas.cc:32
 msgctxt "ObjectDescription|"
 msgid "Particle gas"
-msgstr ""
+msgstr "აირის ნაწილაკი"
 
 #: gas.cc:33
 msgctxt "PropertyName|"
@@ -593,7 +593,7 @@ msgstr ""
 #: gslsolver.cc:26
 msgctxt "ObjectClass|"
 msgid "GslRK2Solver"
-msgstr ""
+msgstr "GslRK2ამომხსნელი"
 
 #: gslsolver.cc:26
 msgctxt "ObjectDescription|"
@@ -613,7 +613,7 @@ msgstr ""
 #: gslsolver.cc:31
 msgctxt "ObjectClass|"
 msgid "GslRK4Solver"
-msgstr ""
+msgstr "GslRK4ამომხსნელი"
 
 #: gslsolver.cc:31
 msgctxt "ObjectDescription|"
@@ -788,7 +788,7 @@ msgstr "სხეული"
 #: joints.cc:16 joints.cc:22 motor.cc:17 motor.cc:23 tool.cc:85
 msgctxt "PropertyName|"
 msgid "body"
-msgstr ""
+msgstr "სხეული"
 
 #: joints.cc:17 tool.cc:88
 msgctxt "PropertyDescription|"
@@ -799,7 +799,7 @@ msgstr "თანამდებობა"
 #: tool.cc:26 tool.cc:33 tool.cc:55 tool.cc:67 tool.cc:88
 msgctxt "PropertyName|"
 msgid "position"
-msgstr ""
+msgstr "მდებარეობა"
 
 #: joints.cc:18
 msgctxt "PropertyDescription|"
@@ -864,62 +864,62 @@ msgstr ""
 #: joints.cc:29 spring.cc:22
 msgctxt "PropertyDescription|"
 msgid "Body1"
-msgstr ""
+msgstr "სხეული1"
 
 #: joints.cc:29 spring.cc:22
 msgctxt "PropertyName|"
 msgid "body1"
-msgstr ""
+msgstr "სხეული1"
 
 #: joints.cc:30 spring.cc:23
 msgctxt "PropertyDescription|"
 msgid "Body2"
-msgstr ""
+msgstr "სხეული2"
 
 #: joints.cc:30 spring.cc:23
 msgctxt "PropertyName|"
 msgid "body2"
-msgstr ""
+msgstr "სხეული2"
 
 #: joints.cc:31 spring.cc:24
 msgctxt "PropertyName|"
 msgid "localPosition1"
-msgstr ""
+msgstr "ლოკალურიმდებარეობა1"
 
 #: joints.cc:32 spring.cc:25
 msgctxt "PropertyDescription|"
 msgid "Local position 1"
-msgstr ""
+msgstr "ლოკალური მდებარეობა 1"
 
 #: joints.cc:33 spring.cc:26
 msgctxt "PropertyName|"
 msgid "localPosition2"
-msgstr ""
+msgstr "ლოკალურიმდებარეობა2"
 
 #: joints.cc:34 spring.cc:27
 msgctxt "PropertyDescription|"
 msgid "Local position 2"
-msgstr ""
+msgstr "ლოკალური მდებარეობა 2"
 
 #: joints.cc:35 spring.cc:28
 msgctxt "PropertyDescription|"
 msgid "Position1"
-msgstr ""
+msgstr "მდებარეობა1"
 
 #: joints.cc:35 spring.cc:28
 msgctxt "PropertyName|"
 msgid "position1"
-msgstr ""
+msgstr "მდებარეობა1"
 
 #: joints.cc:36 spring.cc:29
 msgctxt "PropertyDescription|"
 msgid "Position2"
-msgstr ""
+msgstr "მდებარეობა2"
 
 #: joints.cc:36 spring.cc:29
 msgctxt "PropertyName|"
 msgid "position2"
-msgstr ""
+msgstr "მდებარეობა2"
 
 #: joints.cc:39
 msgctxt "ObjectClass|"
@@ -1460,17 +1460,17 @@ msgstr "მრავალკუთხედი"
 #: rigidbody.cc:79
 msgctxt "ObjectDescription|"
 msgid "Rigid polygon body"
-msgstr ""
+msgstr "უხეში მრავალკუთხა სხეული"
 
 #: rigidbody.cc:80
 msgctxt "PropertyDescription|"
 msgid "Vertex list"
-msgstr ""
+msgstr "წვეროების სია"
 
 #: rigidbody.cc:80
 msgctxt "PropertyName|"
 msgid "vertices"
-msgstr ""
+msgstr "წვეროები"
 
 #: softbody.cc:19
 msgctxt "ObjectClass|"
@@ -1545,22 +1545,22 @@ msgstr "ამომხსნელი"
 #: solver.cc:14
 msgctxt "PropertyDescription|"
 msgid "Solver type"
-msgstr ""
+msgstr "ამომხსნელის ტიპი"
 
 #: solver.cc:14
 msgctxt "PropertyName|"
 msgid "solverType"
-msgstr ""
+msgstr "ამომხსნელისტიპი"
 
 #: solver.cc:15
 msgctxt "PropertyDescription|"
 msgid "Step size"
-msgstr ""
+msgstr "ბიჯის ზომა"
 
 #: solver.cc:15
 msgctxt "PropertyName|"
 msgid "stepSize"
-msgstr ""
+msgstr "ბიჯისზომა"
 
 #: solver.cc:15 world.cc:23
 msgctxt "Units|"
@@ -1765,7 +1765,7 @@ msgstr ""
 #: tool.cc:16
 msgctxt "PropertyDescription|"
 msgid "Image data"
-msgstr ""
+msgstr "გამოსახულების მონაცემები"
 
 #: tool.cc:16
 msgctxt "PropertyName|"
@@ -1785,7 +1785,7 @@ msgstr ""
 #: tool.cc:21
 msgctxt "PropertyDescription|"
 msgid "Formula code"
-msgstr ""
+msgstr "ფორმულის კოდი"
 
 #: tool.cc:21
 msgctxt "PropertyName|"
@@ -1850,7 +1850,7 @@ msgstr ""
 #: tool.cc:35
 msgctxt "PropertyName|"
 msgid "objectX"
-msgstr ""
+msgstr "ობიექტიX"
 
 #: tool.cc:36
 msgctxt "PropertyDescription|"
@@ -1860,7 +1860,7 @@ msgstr ""
 #: tool.cc:36
 msgctxt "PropertyName|"
 msgid "propertyX"
-msgstr ""
+msgstr "თვისებაX"
 
 #: tool.cc:37
 msgctxt "PropertyDescription|"
@@ -1870,7 +1870,7 @@ msgstr ""
 #: tool.cc:37
 msgctxt "PropertyName|"
 msgid "indexX"
-msgstr ""
+msgstr "ინდექსიX"
 
 #: tool.cc:38
 msgctxt "PropertyDescription|"
@@ -1880,7 +1880,7 @@ msgstr ""
 #: tool.cc:38
 msgctxt "PropertyName|"
 msgid "objectY"
-msgstr ""
+msgstr "ობიექტიY"
 
 #: tool.cc:39
 msgctxt "PropertyDescription|"
@@ -1890,7 +1890,7 @@ msgstr ""
 #: tool.cc:39
 msgctxt "PropertyName|"
 msgid "propertyY"
-msgstr ""
+msgstr "თვისებაY"
 
 #: tool.cc:40
 msgctxt "PropertyDescription|"
@@ -1900,7 +1900,7 @@ msgstr ""
 #: tool.cc:40
 msgctxt "PropertyName|"
 msgid "indexY"
-msgstr ""
+msgstr "ინდექსიY"
 
 #: tool.cc:41
 msgctxt "PropertyDescription|"
@@ -1970,7 +1970,7 @@ msgstr "მიმდინარე მნიშვნელობა"
 #: tool.cc:47
 msgctxt "PropertyName|"
 msgid "currentValue"
-msgstr ""
+msgstr "მიმდინარემნიშვნელობა"
 
 #: tool.cc:48 tool.cc:89
 msgctxt "PropertyDescription|"
@@ -1985,7 +1985,7 @@ msgstr "წერტილი"
 #: tool.cc:49
 msgctxt "PropertyName|"
 msgid "unitsX"
-msgstr ""
+msgstr "ერთეულებიX"
 
 #: tool.cc:49
 msgctxt "PropertyName|"
@@ -1995,7 +1995,7 @@ msgstr ""
 #: tool.cc:50
 msgctxt "PropertyName|"
 msgid "unitsY"
-msgstr ""
+msgstr "ერთეულებიY"
 
 #: tool.cc:50
 msgctxt "PropertyName|"
@@ -2055,7 +2055,7 @@ msgstr "ინდექსი"
 #: tool.cc:60
 msgctxt "PropertyDescription|"
 msgid "Display digits"
-msgstr ""
+msgstr "ციფრების ჩვენება"
 
 #: tool.cc:60
 msgctxt "PropertyName|"
@@ -2065,7 +2065,7 @@ msgstr "ციფრები"
 #: tool.cc:61 tool.cc:78
 msgctxt "PropertyDescription|"
 msgid "Value"
-msgstr ""
+msgstr "მნიშვნელობა"
 
 #: tool.cc:61 tool.cc:78
 msgctxt "PropertyName|"
