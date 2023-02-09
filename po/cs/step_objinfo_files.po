@@ -1,13 +1,13 @@
 # Copyright (C) YEAR This file is copyright:
 # This file is distributed under the same license as the step package.
-# Vit Pelcak <vit@pelcak.org>, 2020.
+# Vit Pelcak <vit@pelcak.org>, 2020, 2023.
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: step\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2022-10-26 00:42+0000\n"
-"PO-Revision-Date: 2020-02-14 10:29+0100\n"
+"PO-Revision-Date: 2023-02-07 09:45+0100\n"
 "Last-Translator: Vit Pelcak <vit@pelcak.org>\n"
 "Language-Team: Czech <kde-i18n-doc@kde.org>\n"
 "Language: cs\n"
@@ -15,7 +15,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=(n==1) ? 0 : (n>=2 && n<=4) ? 1 : 2;\n"
-"X-Generator: Lokalize 19.12.2\n"
+"X-Generator: Lokalize 22.12.2\n"
 
 #: objectinfo/anchor.html:6
 #, kde-format
@@ -107,7 +107,7 @@ msgstr ""
 #, kde-format
 msgctxt "coulombforce.html:title"
 msgid "Coulomb Force"
-msgstr ""
+msgstr "Coulombova síla"
 
 #: objectinfo/coulombforce.html:9
 #, kde-format
@@ -244,7 +244,7 @@ msgstr ""
 #, kde-format
 msgctxt "gasparticle.html:title"
 msgid "Gas Particle"
-msgstr ""
+msgstr "Plynová částice"
 
 #: objectinfo/gasparticle.html:9
 #, kde-format
@@ -275,7 +275,7 @@ msgstr ""
 #, kde-format
 msgctxt "gravitationforce.html:title"
 msgid "Gravitation Force"
-msgstr ""
+msgstr "Gravitační síla"
 
 #: objectinfo/gravitationforce.html:9
 #, kde-format
@@ -346,7 +346,7 @@ msgstr ""
 #, kde-format
 msgctxt "meter.html:title"
 msgid "Meter"
-msgstr ""
+msgstr "Měřič"
 
 #: objectinfo/meter.html:9
 #, kde-format
@@ -360,7 +360,7 @@ msgstr ""
 #, kde-format
 msgctxt "note.html:title"
 msgid "Note"
-msgstr ""
+msgstr "Poznámka"
 
 #: objectinfo/note.html:9
 #, kde-format
@@ -414,7 +414,7 @@ msgstr ""
 #, kde-format
 msgctxt "polygon.html:title"
 msgid "Polygon"
-msgstr ""
+msgstr "Mnohoúhelník"
 
 #: objectinfo/polygon.html:9
 #, kde-format
@@ -473,7 +473,7 @@ msgstr ""
 #, kde-format
 msgctxt "spring.html:title"
 msgid "Spring"
-msgstr ""
+msgstr "Pružina"
 
 #: objectinfo/spring.html:9
 #, kde-format
@@ -509,7 +509,7 @@ msgstr ""
 #, kde-format
 msgctxt "weightforce.html:title"
 msgid "Weight Force"
-msgstr ""
+msgstr "Síla tíhy"
 
 #: objectinfo/weightforce.html:9
 #, kde-format
@@ -540,12 +540,14 @@ msgid ""
 "For more details, please refer to the <a href=\"https://en.wikipedia.org/"
 "wiki/Weight\">Weight Force</a>."
 msgstr ""
+"Podrobnosti hledejte na <a href=\"https://cs.wikipedia.org/wiki/T%C3%ADha"
+"\">Síla tíhy</a>"
 
 #: objectinfo/world.html:6
 #, kde-format
 msgctxt "world.html:title"
 msgid "World"
-msgstr ""
+msgstr "Svět"
 
 #: objectinfo/world.html:9
 #, kde-format
