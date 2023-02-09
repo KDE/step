@@ -1,13 +1,13 @@
 # Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
 # This file is distributed under the same license as the PACKAGE package.
-# Vít Pelčák <vit@pelcak.org>, 2011, 2013, 2014, 2015, 2017, 2019.
+# Vít Pelčák <vit@pelcak.org>, 2011, 2013, 2014, 2015, 2017, 2019, 2023.
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: step\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2022-10-27 00:42+0000\n"
-"PO-Revision-Date: 2019-11-15 17:14+0100\n"
+"PO-Revision-Date: 2023-02-07 09:42+0100\n"
 "Last-Translator: Vit Pelcak <vit@pelcak.org>\n"
 "Language-Team: Czech <kde-i18n-doc@kde.org>\n"
 "Language: cs\n"
@@ -15,7 +15,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=(n==1) ? 0 : (n>=2 && n<=4) ? 1 : 2;\n"
-"X-Generator: Lokalize 19.08.2\n"
+"X-Generator: Lokalize 22.12.2\n"
 
 #, kde-format
 msgctxt "NAME OF TRANSLATORS"
@@ -338,7 +338,7 @@ msgstr "(4,4)"
 #, kde-format
 msgctxt "@title:window"
 msgid "Create Gas Particles"
-msgstr ""
+msgstr "Vytvořit plynné částice"
 
 #: step/gasgraphics.cc:31
 #, kde-format
@@ -382,7 +382,7 @@ msgstr "%1 nazvaný '%2' vytvořen"
 #: step/gasgraphics.cc:282
 #, kde-format
 msgid "Create Particles..."
-msgstr ""
+msgstr "Vytvořit částice..."
 
 #: step/gasgraphics.cc:352
 #, kde-format
@@ -406,7 +406,7 @@ msgstr "Vytvořit částice pro %1"
 #: step/infobrowser.cc:26
 #, kde-format
 msgid "Context Info"
-msgstr ""
+msgstr "Související informace"
 
 #: step/infobrowser.cc:44
 #, kde-format
@@ -665,7 +665,7 @@ msgstr "<new file>"
 #, kde-format
 msgctxt "@title:window"
 msgid "Open Step File"
-msgstr ""
+msgstr "Otevřít soubor Step"
 
 #: step/mainwindow.cc:307 step/mainwindow.cc:337
 #, kde-format
@@ -686,7 +686,7 @@ msgstr "<open file: %1>"
 #, kde-format
 msgctxt "@title:window"
 msgid "Save Step File"
-msgstr ""
+msgstr "Uložit soubor Step"
 
 #: step/mainwindow.cc:353
 #, kde-format
@@ -886,7 +886,7 @@ msgstr "Prosím, vyplňte parametry pro %1"
 #, kde-format
 msgctxt "@title:window"
 msgid "Create Soft Body Items"
-msgstr ""
+msgstr "Vytvořit položky měkkých tělísek"
 
 #: step/softbodygraphics.cc:175
 #, kde-format
@@ -1044,12 +1044,12 @@ msgstr "Velikost &písma"
 #: step/toolgraphics.cc:410
 #, kde-format
 msgid "Insert &Image..."
-msgstr ""
+msgstr "Vložit &obrázek..."
 
 #: step/toolgraphics.cc:415
 #, kde-format
 msgid "Insert &Formula..."
-msgstr ""
+msgstr "Vložit vzo&rec..."
 
 #: step/toolgraphics.cc:526
 #, kde-format
@@ -1060,7 +1060,7 @@ msgstr "Upravit %1"
 #, kde-format
 msgctxt "@title:window"
 msgid "Open Image File"
-msgstr ""
+msgstr "Otevřít soubor obrázku"
 
 #: step/toolgraphics.cc:631
 #, kde-format
@@ -1085,12 +1085,12 @@ msgstr ""
 #, kde-format
 msgctxt "@title:window"
 msgid "LaTex Formula - Step"
-msgstr ""
+msgstr "Step - LaTeX vzorce"
 
 #: step/toolgraphics.cc:700
 #, kde-format
 msgid "Enter LaTeX formula string:"
-msgstr ""
+msgstr "Zadat řetězec vzorce LaTeX:"
 
 #: step/toolgraphics.cc:709
 #, kde-format
@@ -1135,18 +1135,18 @@ msgstr "[nenastaveno]"
 #: step/toolgraphics.cc:1077
 #, kde-format
 msgid "Clear Graph"
-msgstr ""
+msgstr "Smazat graf"
 
 #: step/toolgraphics.cc:1078
 #, kde-format
 msgid "Configure Graph..."
-msgstr ""
+msgstr "Přizpůsobit graf..."
 
 #: step/toolgraphics.cc:1096
 #, kde-format
 msgctxt "@title:window"
 msgid "Configure Graph"
-msgstr ""
+msgstr "Přizpůsobit graf"
 
 #: step/toolgraphics.cc:1172 step/toolgraphics.cc:1371
 #: step/toolgraphics.cc:1709
@@ -1162,13 +1162,13 @@ msgstr "Smazat graf %1"
 #: step/toolgraphics.cc:1305
 #, kde-format
 msgid "Configure Meter..."
-msgstr ""
+msgstr "Přizpůsobit měřidlo..."
 
 #: step/toolgraphics.cc:1323
 #, kde-format
 msgctxt "@title:window"
 msgid "Configure Meter"
-msgstr ""
+msgstr "Přizpůsobit měřidlo"
 
 #: step/toolgraphics.cc:1420 step/toolgraphics.cc:1617
 #, kde-format
@@ -1198,18 +1198,18 @@ msgstr "Ovladač změn %1"
 #: step/toolgraphics.cc:1620
 #, kde-format
 msgid "Configure Controller..."
-msgstr ""
+msgstr "Přizpůsobit ovladač..."
 
 #: step/toolgraphics.cc:1638
 #, kde-format
 msgctxt "@title:window"
 msgid "Configure Controller"
-msgstr ""
+msgstr "Přizpůsobit ovladač"
 
 #: step/toolgraphics.cc:1899
 #, kde-format
 msgid "Clear Trace"
-msgstr ""
+msgstr "Smazat stopu"
 
 #: step/toolgraphics.cc:1908
 #, kde-format
