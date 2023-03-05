@@ -346,7 +346,7 @@ msgstr ""
 #: gas.cc:45 gas.cc:60
 msgctxt "Units|"
 msgid "K"
-msgstr "كلڤن"
+msgstr "كلفن"
 
 #: gas.cc:46
 msgctxt "PropertyDescription|"
