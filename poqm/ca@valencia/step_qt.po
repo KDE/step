@@ -1713,7 +1713,7 @@ msgstr "Variància de la llargària en repòs"
 #: spring.cc:37
 msgctxt "PropertyName|"
 msgid "lengthVariance"
-msgstr "variànciaLongitud"
+msgstr "variànciaLlargària"
 
 #: spring.cc:38
 msgctxt "PropertyDescription|"
