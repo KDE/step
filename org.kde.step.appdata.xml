@@ -13,6 +13,7 @@
   <name xml:lang="de">Step</name>
   <name xml:lang="el">Step</name>
   <name xml:lang="en-GB">Step</name>
+  <name xml:lang="eo">Step</name>
   <name xml:lang="es">Step</name>
   <name xml:lang="et">Step</name>
   <name xml:lang="eu">Step</name>
@@ -49,6 +50,7 @@
   <summary xml:lang="de">Interaktiver Physiksimulator</summary>
   <summary xml:lang="el">Διαδραστικός προσομοιωτής του φυσικού κόσμου</summary>
   <summary xml:lang="en-GB">Interactive Physical Simulator</summary>
+  <summary xml:lang="eo">Interaga Fizika Simulilo</summary>
   <summary xml:lang="es">Simulador físico interactivo</summary>
   <summary xml:lang="et">Interaktiivne füüsikasimulaator</summary>
   <summary xml:lang="eu">Fisika simulatzaile interaktiboa</summary>
@@ -85,6 +87,7 @@
     <p xml:lang="de">Step ist ein interaktiver Physiksimulator, mit dem Sie die Welt der Physik durch Simulationen erforschen können. Dazu platzieren Sie einige Körper im Versuchsfenster und fügen Kräfte wie die Gravitation oder Federn hinzu. Klicken Sie dann auf den Knopf „Simulation starten“ und beobachten Sie, wie sich Ihr Experiment nach den Gesetzen der Physik verändert. Jede Eigenschaft von Körpern oder Kräften lässt sich sogar in der laufenden Simulation ändern. Mit Step können Sie erfahren, wie die Physik in der Welt funktioniert.</p>
     <p xml:lang="el">Το step είναι ένας διαδραστικός προσομοιωτής της φύσης. Με αυτόν εξερευνάτε το φυσικό κόσμο μέσα από προσομοιώσεις. Λειτουργεί ως εξής: τοποθετείτε κάποια σώματα στο σκηνικό και ορισμένες δυνάμεις όπως η βαρύτητα τα ελατήρια, και με κλικ στο Προσομοίωσε με το Step παρατηρείτε πώς το σκηνικό σσς θα εξελιχθεί σύμφωνα με τους φυσικούς νόμους. Μπορείτε να αλλάξετε κάθε ιδιότητα των σωμάτων ή δυνάμεων στο πείραμά σας (ακόμη και κατά τη διάρκεια της προσομοίωσης) για να δείτε πώς μεταβάλλεται η πορεία του πειράματος. Με το step δεν μαθαίνετε μόνο αλλά έχετε και την αίσθηση πώς λειτουργεί η φύση!</p>
     <p xml:lang="en-GB">Step is an interactive physical simulator. It allows you to explore the physical world through simulations. It works like this: you place some bodies on the scene, add some forces such as gravity or springs, then click Simulate and Step shows you how your scene will evolve according to the laws of physics. You can change every property of the bodies/forces in your experiment (even during simulation) and see how this will change evolution of the experiment. With Step you cannot only learn but feel how physics works!</p>
+    <p xml:lang="eo">Step estas interaga fizika simulilo. Ĝi permesas vin esplori la fizikan mondon per simulaĵoj. Ĝi funkcias jene: vi metas iujn korpojn sur la scenon, aldonas iujn fortojn kiel graviton aŭ risortojn, poste alklaku Simuli kaj Step montras al vi kiel via sceno evoluos laŭ la leĝoj de fiziko. Vi povas ŝanĝi ĉiun posedaĵon de la korpoj/fortoj en via eksperimento (eĉ dum simulado) kaj vidi kiel ĉi tio ŝanĝos evoluon de la eksperimento. Kun Step vi ne nur lernas sed sentas kiel fiziko funkcias!</p>
     <p xml:lang="es">Step es un simulador físico interactivo. Le permite explorar el mundo físico mediante simulaciones. Su funcionamiento es sencillo: sitúe algunos cuerpos en la escena, añada fuerzas (como la gravedad) o muelles, y luego pulse el botón «Simular» para que Step le muestre la evolución de la escena según las leyes físicas. Puede cambiar cualquier propiedad de los cuerpos o de las fuerzas del experimento (incluso durante la simulación) para observar cómo se modifica la evolución del experimento. Con Step no solo aprenderá, sino que podrá sentir cómo funciona la Física.</p>
     <p xml:lang="et">Step on interaktiivne füüsikasimulaator. See võimaldab uurida füüsikamaailma reaalsust matkides. Asi käib nii: sina sead stseenile mõned kehad, määrad kindlaks teatud jõud, näiteks gravitatsiooni või vedrud, seejärel klõpsad nupule Simuleeri ning Step näitab, mis vastavalt füüsikaseadustele stseenil juhtuma hakkab. Katses võib muuta kõigi kehade jõudude kõiki omadusi (isegi simulatsiooni ajal), et uurida, kuidas miski täpselt katset mõjutab. Stepiga ei saa ainult füüsikat õppida, vaid ka ise otse läbi elada!</p>
     <p xml:lang="fi">Step on vuorovaikutteinen fysiikkasimulaattori. Sen avulla voit tutkia fyysistä maailmaa simuloinnein. Se toimii näin: asetat joitakin kappaleita näkymään, lisäät voimia kuten painovoiman tai jousia ja painat Simuloi. Step näyttää sinulle, miten näkymä muuttuu fysiikan lakien mukaan. Voit muuttaa kaikkien kokeesi kappaleiden ja voimien ominaisuuksia jopa simuloinnin aikana ja nähdä, miten tämä vaikuttaa kokeesi etenemiseen. Stepillä et vain opi vaan tunnet, miten fysiikka toimii!</p>
@@ -116,6 +119,7 @@
     <p xml:lang="de">Funktionen:</p>
     <p xml:lang="el">Χαρακτηριστικά:</p>
     <p xml:lang="en-GB">Features:</p>
+    <p xml:lang="eo">Trajtoj:</p>
     <p xml:lang="es">Funcionalidades:</p>
     <p xml:lang="et">Omadused:</p>
     <p xml:lang="eu">Ezaugarriak:</p>
@@ -152,6 +156,7 @@
       <li xml:lang="de">Simulation klassischer Mechanik in zwei Dimensionen</li>
       <li xml:lang="el">Κλασική μηχανική προσομοίωση σε δύο διαστάσεις</li>
       <li xml:lang="en-GB">Classical mechanical simulation in two dimensions</li>
+      <li xml:lang="eo">Klasika mekanika simulado en du dimensioj</li>
       <li xml:lang="es">Simulación mecánica clásica en dos dimensiones</li>
       <li xml:lang="et">Klassikaline mehaaniline kahemõõtmeline simulatsioon</li>
       <li xml:lang="eu">Mekanika klasikoaren simulazioa bi dimentsiotan</li>
@@ -184,6 +189,7 @@
       <li xml:lang="de">Teilchen, Federn mit Dämpfung, Gravitations- und Coulombkräfte</li>
       <li xml:lang="el">Σωματίδια, ελάσματα με απόσβεση, βαρυτικές και δυνάμεις coulomb</li>
       <li xml:lang="en-GB">Particles, springs with damping, gravitational and coulomb forces</li>
+      <li xml:lang="eo">Partikloj, risortoj kun malseketigado, gravita kaj kulombfortoj</li>
       <li xml:lang="es">Partículas, muelles con amortiguación, fuerzas gravitatorias y de Coulomb</li>
       <li xml:lang="et">Osakesed, vedrud, mis arvestavad sumbuvusega, gravitatsiooni- ja Coulomb'i jõuga</li>
       <li xml:lang="eu">Partikulak, moteltzea duten malgukiak, grabitazio- eta coulomb-indarrak</li>
@@ -215,6 +221,7 @@
       <li xml:lang="de">Starre Körper</li>
       <li xml:lang="el">Άκαμπτα σώματα</li>
       <li xml:lang="en-GB">Rigid bodies</li>
+      <li xml:lang="eo">Rigidaj korpoj</li>
       <li xml:lang="es">Cuerpos rígidos</li>
       <li xml:lang="et">Mitteelastsed kehad</li>
       <li xml:lang="eu">Gorputz zurrunak</li>
@@ -247,6 +254,7 @@
       <li xml:lang="de">Kollisionserkennung (zurzeit nur diskret) und -bearbeitung</li>
       <li xml:lang="el">Ανίχνευση σύγκρουσης (προς το παρόν μόνο διακριτή) και χειρισμός</li>
       <li xml:lang="en-GB">Collision detection (currently only discrete) and handling</li>
+      <li xml:lang="eo">Koliziodetekto (nuntempe nur diskreta) kaj uzado</li>
       <li xml:lang="es">Detección de colisiones (solo discretas en la actualidad) y su manejo</li>
       <li xml:lang="et">Kokkupõrgete tuvastamine (praegu ainult diskreetne) ja käitlemine</li>
       <li xml:lang="fi">Törmäysten tarkastelu (tällä hetkellä vain diskreetti) sekä käsittely</li>
@@ -277,6 +285,7 @@
       <li xml:lang="de">Elastische verformbare Körper als editierbare Systeme aus Teilchen und Federn, Schallwellen</li>
       <li xml:lang="el">Μαλακά (παραμορφώσιμα) σώματα σε προσομοίωση ως επεξεργάσιμο από το χρήστη σύστημα σωματιδίων-ελασμάτων, ηχητικά κύματα</li>
       <li xml:lang="en-GB">Soft (deformable) bodies simulated as user-editable particles-springs system, sound waves</li>
+      <li xml:lang="eo">Molaj (deformeblaj) korpoj simulitaj kiel uzant-redakteblaj partikloj-risortoj sistemo, sonondoj</li>
       <li xml:lang="es">Cuerpos blandos (deformables) simulados como sistemas de partículas y muelles, ondas de sonido, que el usuario puede editar</li>
       <li xml:lang="et">Elastsed (deformeeritavad) kehad kasutaja muudetava osakeste-vedrude süsteemina, helilained</li>
       <li xml:lang="fi">Pehmeät (deformoituvat) kappaleet simuloidaan käyttäjän muokattavissa olevina hiukkas-jousisysteemeinä (englanniksi particle-spring system), ääniaaltoina</li>
@@ -307,6 +316,7 @@
       <li xml:lang="de">Molekulare Dynamik mithilfe des Lennard-Jones-Potentials: Gase und Flüssigkeiten, Kondensation und Verdunstung, Berechnung der makroskopischen Werte und ihrer Abweichungen</li>
       <li xml:lang="el">Μοριακές δυνάμεις (προς το παρόν με χρήση δυναμικού Lennard-Jones): αέριο και υγρό, συμπύκνωση και εξάτμιση, υπολογισμός των μακροσκοπικών ποσοτήτων και των διακυμάνσεών τους</li>
       <li xml:lang="en-GB">Molecular dynamics (currently using Lennard-Jones potential): gas and liquid, condensation and evaporation, calculation of macroscopic quantities and their variances</li>
+      <li xml:lang="eo">Molekula dinamiko (nuntempe uzante Lennard-Jones potencialon): gaso kaj likvaĵo, kondensado kaj vaporiĝo, kalkulo de makroskopaj kvantoj kaj iliaj variancoj</li>
       <li xml:lang="es">Dinámica molecular (en la actualidad, usando el potencial de Lennard-Jones): gases y líquidos, condensación y evaporación, cálculo de cantidades macroscópicas y sus varianzas</li>
       <li xml:lang="et">Molekulaardünaamika (praegu Lenard-Jonesi potentsiaali abil): gaas ja vedelik, kondenseerimine ja aurustumine, makroskoopiliste koguste ja nende variatsioonide arvutamine</li>
       <li xml:lang="fi">Molekyylidynamiikka (käyttää nykyisellään Lennard-Jones-potentiaalia): kaasu ja neste, tiivistyminen ja höyrystyminen, makroskooppisten määrien sekä niiden varianssin laskenta</li>
@@ -337,6 +347,7 @@
       <li xml:lang="de">Umwandlung von Einheiten und Berechnung von Ausdrücken: Sie können zum Beispiel „(2 days + 3 hours) * 80 km/h“ eingeben, daraus wird der Wert der Entfernung berechnet. Dazu ist die Bibliothek libqalculate erforderlich.</li>
       <li xml:lang="el">Μετατροπή μονάδων και υπολογισμός εκφράσεων: μπορείτε να δώσετε π.χ. "(2 ημέρες + 3 ώρες) * 80 km/h" και θα γίνει δεκτό ως τιμή απόστασης (απαιτεί το libqalculate)</li>
       <li xml:lang="en-GB">Units conversion and expression calculation: you can enter something like "(2 days + 3 hours) * 80 km/h" and it will be accepted as distance value (requires libqalculate)</li>
+      <li xml:lang="eo">Konverto de unuoj kaj kalkulo de esprimoj: vi povas enigi ion kiel "(2 tagoj + 3 horoj) * 80 km/h" kaj ĝi estos akceptita kiel distancvaloro (postulas libqalculate)</li>
       <li xml:lang="es">Conversión de unidades y cálculo de expresiones: puede introducir algo como «(2 días + 3 horas) * 80 km/h» y se aceptará como un valor de distancia (necesita «libqalculate»)</li>
       <li xml:lang="et">Ühikute teisendamine ja avaldiste arvutamine: võid sisestada näiteks "(2 päeva + 3 tundi) * 80 km/h" ning seda arvestatakse vahemaana (selleks on vajalik libqalculate)</li>
       <li xml:lang="eu">Unitateen konbertsioa eta adierazpenen kalkulua: "(2 egun + 3 ordu) * 80km/h" antzeko zeozer sartzeko aukera duzu eta distantzia balio moduan onartuko da ( libqalculate beharrezkoa da)</li>
@@ -368,6 +379,7 @@
       <li xml:lang="de">Fehlerberechnung und -weiterleitung: Sie können Werte wie „1,3± 0,2“ für jede beliebige Eigenschaft eingeben. Dann werden die sich daraus ergebenden Fehler für alle abhängigen Eigenschaften mit statistischen Formeln berechnet.</li>
       <li xml:lang="el">Υπολογισμός και διάδοση σφαλμάτων: μπορείτε να δώσετε τιμές όπως "1.3 ± 0.2" για κάθε ιδιότητα και τα σφάλματα για όλες τις εξαρτημένες ιδιότητες θα υπολογιστούν με στατιστικούς τύπους</li>
       <li xml:lang="en-GB">Errors calculation and propagation: you can enter values like "1.3 ± 0.2" for any property and errors for all dependent properties will be calculated using statistical formulas</li>
+      <li xml:lang="eo">Kalkulo kaj disvastigo de eraroj: vi povas enigi valorojn kiel "1.3 ± 0.2" por ajna propraĵo kaj eraroj por ĉiuj dependaj propraĵoj estos kalkulitaj per statistikaj formuloj.</li>
       <li xml:lang="es">Cálculo y propagación de errores: puede introducir valores como «1,3 ± 0,2» para cualquier propiedad y se calcularán los errores para todas las propiedades dependientes usando fórmulas estadísticas</li>
       <li xml:lang="et">Vigade arvutamine ja kasutamine: võid sisestada mis tahes omadusele näiteks väärtuse "1.3 ± 0.2" ning statistilisi valemeid kasutades arvestatakse välja kõigi sõltuvate omaduste viga</li>
       <li xml:lang="fi">Virheiden laskenta ja leviäminen: voit kirjoittaa arvoja kuten ”1.3 ± 0.2” mille tahansa ominaisuudelle, ja kaikkien siitä riippuvien ominaisuuksien virheet lasketaan käyttäen tilastollisia malleja</li>
@@ -398,6 +410,7 @@
       <li xml:lang="de">Abschätzung der Fehler der Gleichungslösungssysteme: Die daraus entstehenden Fehler werden berechnet und zu den vom Benutzer eingegeben Fehlern addiert</li>
       <li xml:lang="el">Εκτίμηση σφάλματος επίλυσης: τα σφάλματα που εισήχθησαν από την επίλυση υπολογίζονται και προστίθενται στα σφάλματα του χρήστη</li>
       <li xml:lang="en-GB">Solver error estimation: errors introduced by the solver is calculated and added to user-entered errors</li>
+      <li xml:lang="eo">Takso de eraroj de solvanto: eraroj enkondukitaj de la solvanto estas kalkulitaj kaj aldonitaj al eraroj enmetitaj de la uzanto</li>
       <li xml:lang="es">Estimación de errores de cálculo: los errores introducidos por la resolución se calculan y se añaden a los introducidos por el usuario</li>
       <li xml:lang="et">Lahendaja veahinnang: lahendaja lisatud vead arvutatakse välja ja lisatakse kasutaja sisestatud vigadele</li>
       <li xml:lang="fi">Ratkaisinvirheiden arviointi: ratkaisimen aiheuttamat virheet lasketaan ja lisätään käyttäjän syöttämiin virheisiin</li>
@@ -428,6 +441,7 @@
       <li xml:lang="de">Mehrere verschiedene Gleichungslösungssysteme: bis zur achten Ordnung, explizit und implizit, mit oder ohne angepassten Zeitschritten. Die meisten Gleichungslösungssysteme benötigen die GSL-Bibliothek.</li>
       <li xml:lang="el">Διάφοροι διαλύτες: μέχρι 8ης τάξης, εξωτερικοί και εσωτερικοί, με ή χωρίς προσαρμοσμένο χρονικό βήμα (οι περισσότεροι διαλύτες απαιτούν τη βιβλιοθήκη GSL)</li>
       <li xml:lang="en-GB">Several different solvers: up to 8th order, explicit and implicit, with or without adaptive timestep (most of the solvers require GSL library)</li>
+      <li xml:lang="eo">Pluraj malsamaj solviloj: ĝis 8-a ordo, eksplicita kaj implica, kun aŭ sen adapta tempopaŝo (la plej multaj el la solviloj postulas GSL-bibliotekon)</li>
       <li xml:lang="es">Diversas calculadoras: hasta el octavo orden, explícita e implícita, con o sin pasos de tiempo adaptativos (la mayoría necesitan la biblioteca GSL)</li>
       <li xml:lang="et">Mitu erinevat lahendajat: kuni 8. astmeni, eksplitsiitsed ja implitsiitsed, adaptiivse ajasammuga või ilma selleta (enamik lahendajaid vajab GSL teeki)</li>
       <li xml:lang="fi">Useita eri ratkaisimia: kahdeksanteen asteeseen asti, eksplisiittisiä sekä implisiittisiä, adaptive timestep -menetelmällä tai ilman sitä (useimmat ratkaisimet tarvitsevat GSL-kirjaston)</li>
@@ -458,6 +472,7 @@
       <li xml:lang="de">Werkzeuge zur Kontrolle der Objekteigenschaften während der Simulation, auch mit benutzerdefinierten Kurzbefehlen.</li>
       <li xml:lang="el">Ελεγκτής για χειροκίνητο έλεγχο ιδιοτήτων στην προσομοίωση (ακόμη και με προσαρμοσμένες συντομεύσεις πληκτρολογίου)</li>
       <li xml:lang="en-GB">Controller tool to easily control properties during simulation (even with custom keyboard shortcuts)</li>
+      <li xml:lang="eo">Regila ilo por facile kontroli trajtojn dum simulado (eĉ kun kutimaj klavarvojoj)</li>
       <li xml:lang="es">Herramienta de control para supervisar fácilmente las propiedades durante la simulación (incluso con accesos rápidos de teclado personalizados)</li>
       <li xml:lang="et">Kontroller omaduste juhtimiseks simulatsiooni ajal (sealhulgas enda määratud kiirklahvidega)</li>
       <li xml:lang="eu">Aginte erreminta simulazioa den bitartean propietateak kontrolatu ahal izateko (norberak finkatutako laster-teklak erabiliz ere)</li>
@@ -489,6 +504,7 @@
       <li xml:lang="de">Grafische Darstellung der Ergebnisse durch Diagramme, Messwertanzeigen und Spuren von Bewegungen</li>
       <li xml:lang="el">Εργαλεία οπτικοποίησης αποτελεσμάτων: γράφος, μέτρητής, ιχνηλάτης</li>
       <li xml:lang="en-GB">Tools to visualise results: graph, meter, tracer</li>
+      <li xml:lang="eo">Iloj por bildigi rezultojn: grafikaĵo, mezurilo, spurilo</li>
       <li xml:lang="es">Herramientas para visualizar resultados: gráficas, medidores, seguimiento</li>
       <li xml:lang="et">Tööriistad tulemuste visualiseerimiseks: graafik, mõõdik, jäljekütt</li>
       <li xml:lang="eu">Emaitzak bistaratzeko erremintak: Grafikoa, neurketa, aztarnaria</li>
@@ -521,6 +537,7 @@
       <li xml:lang="de">Kontextinformationen für alle Objekte, eingebauter Wikipedia-Browser</li>
       <li xml:lang="el">Πληροφορίες για όλα τα αντικείμενα, ενσωματωμένος περιηγητής βικιπαίδειας</li>
       <li xml:lang="en-GB">Context information for all objects, integrated wikipedia browser</li>
+      <li xml:lang="eo">Kunteksta informo por ĉiuj objektoj, integra vikipedia retumilo</li>
       <li xml:lang="es">Información de contexto para todos los objetos, con explorador integrado para la Wikipedia</li>
       <li xml:lang="et">Kõigi objektide kontekstiteave, põimitud Wikipedia brauser</li>
       <li xml:lang="eu">Objektu guztientzako testuinguru-informazioa, wikipedia-arakatzailea integraturik.</li>
@@ -553,6 +570,7 @@
       <li xml:lang="de">Sammlung von Beispielexperimenten, weitere Experimente können zusätzlich heruntergeladen werden</li>
       <li xml:lang="el">Συλλογή δειγματικών πειραμάτων, λήψη περισσότερων με το KNewStuff</li>
       <li xml:lang="en-GB">Collection of example experiments, more can be downloaded with KNewStuff</li>
+      <li xml:lang="eo">Kolekto de ekzemplaj eksperimentoj, pli elŝuteblas per KNewStuff</li>
       <li xml:lang="es">Colección de experimentos de ejemplo; puede descargar más con KNewStuff</li>
       <li xml:lang="et">Valik näidiskatseid, rohkem saab alla laadida KNewStuffi vahendusel</li>
       <li xml:lang="eu">Adibideko saiakuntza bilduma, gehiago zama-jaitsi daitezke KNewStuff erabiliz</li>
@@ -584,6 +602,7 @@
       <li xml:lang="de">Integrierte Anleitungen</li>
       <li xml:lang="el">Ενσωματωμένο εκπαιδευτικό υλικό</li>
       <li xml:lang="en-GB">Integrated tutorials</li>
+      <li xml:lang="eo">Integritaj lerniloj</li>
       <li xml:lang="es">Tutoriales integrados</li>
       <li xml:lang="et">Põimitud õppematerjalid</li>
       <li xml:lang="eu">Tutoretza integratuak</li>
@@ -625,6 +644,7 @@
       <caption xml:lang="de">Physiksimulation mit Step</caption>
       <caption xml:lang="el">Προσομοίωση του φυσικού κόσμου στο Step</caption>
       <caption xml:lang="en-GB">Physical simulation in Step</caption>
+      <caption xml:lang="eo">Fizika simulado en Step</caption>
       <caption xml:lang="es">Simulación física en Step</caption>
       <caption xml:lang="et">Füüsikasimulatsioon Stepis</caption>
       <caption xml:lang="eu">Fisika simulatzea Step-en</caption>
