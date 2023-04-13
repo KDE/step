@@ -10,9 +10,9 @@ project(step VERSION ${RELEASE_SERVICE_VERSION})
 
 set(KDE_COMPILERSETTINGS_LEVEL "5.84")
 set(QT_MIN_VERSION "5.15.2")
-set(KF5_MIN_VERSION "5.90.0")
+set(KF_MIN_VERSION "5.90.0")
 
-find_package(ECM ${KF5_MIN_VERSION} REQUIRED NO_MODULE)
+find_package(ECM ${KF_MIN_VERSION} REQUIRED NO_MODULE)
 set(CMAKE_MODULE_PATH ${CMAKE_MODULE_PATH} ${ECM_MODULE_PATH} )
 set(CMAKE_MODULE_PATH "${CMAKE_CURRENT_SOURCE_DIR}/cmake/modules" ${CMAKE_MODULE_PATH})
 
@@ -34,7 +34,7 @@ if (QT_MAJOR_VERSION STREQUAL "6")
     find_package(Qt6 REQUIRED NO_MODULE COMPONENTS OpenGLWidgets)
 endif()
 
-find_package(KF5 ${KF5_MIN_VERSION} REQUIRED COMPONENTS
+find_package(KF${QT_MAJOR_VERSION} ${KF_MIN_VERSION} REQUIRED COMPONENTS
     Crash
     Config
     I18n
@@ -43,8 +43,9 @@ find_package(KF5 ${KF5_MIN_VERSION} REQUIRED COMPONENTS
     NewStuff
     Plotting
     TextWidgets
+    XmlGui
 )
-find_package(KF5DocTools ${KF5_MIN_VERSION})
+find_package(KF${QT_MAJOR_VERSION}DocTools ${KF_MIN_VERSION})
 find_package(Eigen3 3.2.2 REQUIRED)
 find_package(GSL)
 find_package(Qalculate)
@@ -88,7 +89,7 @@ else()
     # Some other compiler
 endif()
 
-if(KF5DocTools_FOUND)
+if(KF${QT_MAJOR_VERSION}DocTools_FOUND)
     ecm_optional_add_subdirectory(doc)
 endif()
 add_subdirectory(stepcore)
@@ -97,7 +98,7 @@ add_subdirectory(autotests)
 
 ecm_install_po_files_as_qm(poqm)
 ki18n_install(po)
-if (KF5DocTools_FOUND)
+if (KF${QT_MAJOR_VERSION}DocTools_FOUND)
     kdoctools_install(po)
 endif()
 install(FILES org.kde.step.appdata.xml DESTINATION ${KDE_INSTALL_METAINFODIR})

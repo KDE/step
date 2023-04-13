@@ -64,14 +64,15 @@ target_include_directories(step PUBLIC ${CMAKE_SOURCE_DIR})
 
 target_link_libraries(step
     stepcore
-    KF5::Crash
-    KF5::I18n
-    KF5::IconThemes
-    KF5::KIOCore
-    KF5::KIOWidgets
-    KF5::TextWidgets
-    KF5::Plotting
-    KF5::NewStuffWidgets
+    KF${QT_MAJOR_VERSION}::Crash
+    KF${QT_MAJOR_VERSION}::I18n
+    KF${QT_MAJOR_VERSION}::IconThemes
+    KF${QT_MAJOR_VERSION}::KIOCore
+    KF${QT_MAJOR_VERSION}::KIOWidgets
+    KF${QT_MAJOR_VERSION}::TextWidgets
+    KF${QT_MAJOR_VERSION}::Plotting
+    KF${QT_MAJOR_VERSION}::NewStuffWidgets
+    KF${QT_MAJOR_VERSION}::XmlGui
     Qt::Widgets
 )
 if (QT_MAJOR_VERSION STREQUAL "6")
