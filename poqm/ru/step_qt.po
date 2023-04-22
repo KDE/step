@@ -5,20 +5,20 @@
 # Alexander Potashev <aspotashev@gmail.com>, 2009.
 # Alexander Wolf <alex.v.wolf@gmail.com>, 2010.
 # Julia Dronova <juliette.tux@gmail.com>, 2012.
-# Мария Шикунова <translation-team@basealt.ru>, 2021.
+# Мария Шикунова <translation-team@basealt.ru>, 2021, 2023.
 msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2016-06-22 08:50+0000\n"
-"PO-Revision-Date: 2021-06-18 17:32+0300\n"
+"PO-Revision-Date: 2023-04-21 16:59+0300\n"
 "Last-Translator: Olesya Gerasimenko <translation-team@basealt.ru>\n"
 "Language-Team: Basealt Translation Team\n"
 "Language: ru\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Lokalize 19.12.3\n"
+"X-Generator: Lokalize 22.12.3\n"
 "Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n"
 "%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
 "X-Environment: kde\n"
@@ -987,17 +987,14 @@ msgid "N"
 msgstr "Н"
 
 #: motor.cc:21
-#, fuzzy
-#| msgctxt "PropertyDescription|"
-#| msgid "Value of the force, acting on the body"
 msgctxt "PropertyDescription|"
 msgid "Rotate the force vector in sync with body rotation"
-msgstr "Значение силы, действующей на тело"
+msgstr "Вращать вектор силы в соответствии с вращением тела"
 
 #: motor.cc:21
 msgctxt "PropertyName|"
 msgid "rigidlyFixed"
-msgstr ""
+msgstr "жёсткаяФиксация"
 
 #: motor.cc:23
 msgctxt "ObjectClass|"
