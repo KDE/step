@@ -1,13 +1,13 @@
 # Copyright (C) YEAR This file is copyright:
 # This file is distributed under the same license as the step package.
 #
-# Emir SARI <emir_sari@icloud.com>, 2022.
+# Emir SARI <emir_sari@icloud.com>, 2022, 2023.
 msgid ""
 msgstr ""
 "Project-Id-Version: step\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2022-10-26 00:42+0000\n"
-"PO-Revision-Date: 2022-11-13 14:14+0300\n"
+"PO-Revision-Date: 2023-05-15 22:06+0300\n"
 "Last-Translator: Emir SARI <emir_sari@icloud.com>\n"
 "Language-Team: Turkish <kde-l10n-tr@kde.org>\n"
 "Language: tr\n"
@@ -15,7 +15,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
-"X-Generator: Lokalize 22.08.3\n"
+"X-Generator: Lokalize 23.03.70\n"
 
 #: examples/brownian.step:4 examples/doublependulum.step:4
 #: examples/fourpendula.step:4 examples/gas.step:4 examples/graph.step:4
@@ -79,7 +79,7 @@ msgstr "disk1"
 #, kde-format
 msgctxt "name"
 msgid "tracer1"
-msgstr "izleyici1"
+msgstr "izci1"
 
 #: examples/brownian.step:427 examples/doublependulum.step:66
 #: examples/eightpendula.step:203 examples/fourpendula.step:126
@@ -1546,7 +1546,7 @@ msgstr "<span style=\" font-size:14pt; font-weight:600;\">Eğitmen 3</span>"
 #, kde-format
 msgctxt "HTML:p"
 msgid "<span style=\" font-size:12pt;\">Rigid bodies and tracers</span>"
-msgstr "<span style=\" font-size:12pt;\">Sert Gövdeler ve İzleyiciler</span>"
+msgstr "<span style=\" font-size:12pt;\">Sert Gövdeler ve İzciler</span>"
 
 #: tutorials/tutorial3.step:79
 #, kde-format
@@ -1568,7 +1568,7 @@ msgstr ""
 #, kde-format
 msgctxt "HTML:p"
 msgid "<span style=\" font-weight:600;\">Tracer</span>"
-msgstr "<span style=\" font-weight:600;\">İzleyici</span>"
+msgstr "<span style=\" font-weight:600;\">İzci</span>"
 
 #: tutorials/tutorial3.step:94
 #, kde-format
@@ -1577,8 +1577,8 @@ msgid ""
 "- Tracer is a tool to show trajectory of a given point on a rigid body. Turn "
 "on the simulation to see it in action."
 msgstr ""
-"- İzleyici, katı bir nesne üzerindeki belirli bir noktanın yörüngesini "
-"gösteren bir araçtır. Eylemde görmek için benzetimi açın."
+"- İzci, katı bir nesne üzerindeki belirli bir noktanın yörüngesini gösteren "
+"bir araçtır. Eylemde görmek için benzetimi açın."
 
 #: tutorials/tutorial3.step:95
 #, kde-format
@@ -1597,7 +1597,7 @@ msgid ""
 "- Attach one more tracer to the box and compare trajectories of different "
 "points."
 msgstr ""
-"- Kutuya bir izleyici daha ekleyin ve farklı noktaların yörüngelerini "
+"- Kutuya bir izci daha iliştirin ve farklı noktaların yörüngelerini "
 "karşılaştırın."
 
 #: tutorials/tutorial4.step:77
@@ -1758,7 +1758,7 @@ msgid ""
 "each other or to the background.</span>"
 msgstr ""
 "<span style=\" font-weight:400;\">- Eklemler, gövdeleri birbirine veya arka "
-"plana bağlayan nesnelerdir.</span>"
+"plana iliştiren nesnelerdir.</span>"
 
 #: tutorials/tutorial5.step:116
 #, kde-format
