@@ -1,17 +1,17 @@
 # translation of step_qt.po to galician
 # Copyright (C) YEAR This_file_is_part_of_KDE
 # This file is distributed under the same license as the PACKAGE package.
-#
 # mvillarino <mvillarino@users.sourceforge.net>, 2007, 2008, 2009.
 # Marce Villarino <mvillarino@users.sourceforge.net>, 2008, 2013.
 # Xosé <xosecalvo@gmail.com>, 2009, 2012.
-# Adrian Chaves <adrian@chaves.io>, 2018, 2019.
+# Adrian Chaves <adrian@chaves.io>, 2018, 2019, 2023.
+#
 msgid ""
 msgstr ""
 "Project-Id-Version: step_qt\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2016-06-22 08:50+0000\n"
-"PO-Revision-Date: 2019-09-01 09:55+0200\n"
+"PO-Revision-Date: 2023-06-18 21:25+0200\n"
 "Last-Translator: Adrián Chaves (Gallaecio) <adrian@chaves.io>\n"
 "Language-Team: Galician <proxecto@trasno.gal>\n"
 "Language: gl\n"
@@ -19,7 +19,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Lokalize 19.04.3\n"
+"X-Generator: Lokalize 23.04.2\n"
 "X-Qt-Contexts: true\n"
 
 #: body.cc:13
@@ -35,7 +35,7 @@ msgstr "Corpo"
 #: collisionsolver.cc:19
 msgctxt "ObjectClass|"
 msgid "CollisionSolver"
-msgstr "ResolvedorDeColisións"
+msgstr "ResolventeDeColisións"
 
 #: collisionsolver.cc:20 solver.cc:16
 msgctxt "PropertyDescription|"
@@ -60,17 +60,17 @@ msgstr "erroLocal"
 #: collisionsolver.cc:23
 msgctxt "ObjectClass|"
 msgid "GJKCollisionSolver"
-msgstr "ResolvedorDeColisiónsDeGJK"
+msgstr "ResolventeDeColisiónsDeGJK"
 
 #: constraintsolver.cc:19
 msgctxt "ObjectClass|"
 msgid "ConstraintSolver"
-msgstr "ResolvedorDeRestricións"
+msgstr "ResolventeDeRestricións"
 
 #: constraintsolver.cc:23
 msgctxt "ObjectClass|"
 msgid "CGConstraintSolver"
-msgstr "ResolvedorDeRestriciónsCG"
+msgstr "ResolventeDeRestriciónsCG"
 
 #: coulombforce.cc:14
 msgctxt "ObjectClass|"
@@ -120,32 +120,32 @@ msgstr "Varianza da constante de Coulomb"
 #: eulersolver.cc:15
 msgctxt "ObjectClass|"
 msgid "GenericEulerSolver"
-msgstr "ResolvedorXenéricoDeEuler"
+msgstr "ResolventeXenéricoDeEuler"
 
 #: eulersolver.cc:15
 msgctxt "ObjectDescription|"
 msgid "Generic Euler solver"
-msgstr "Resolvedor xenérico de Euler"
+msgstr "Resolvente xenérico de Euler"
 
 #: eulersolver.cc:16
 msgctxt "ObjectClass|"
 msgid "EulerSolver"
-msgstr "ResolvedorDeEuler"
+msgstr "ResolventeDeEuler"
 
 #: eulersolver.cc:16
 msgctxt "ObjectDescription|"
 msgid "Non-adaptive Euler solver"
-msgstr "Resolvedor non adaptativo de Euler"
+msgstr "Resolvente non adaptativo de Euler"
 
 #: eulersolver.cc:17
 msgctxt "ObjectClass|"
 msgid "AdaptiveEulerSolver"
-msgstr "ResolvedorAdaptativoDeEuler"
+msgstr "ResolventeAdaptativoDeEuler"
 
 #: eulersolver.cc:17
 msgctxt "ObjectDescription|"
 msgid "Adaptive Euler solver"
-msgstr "Resolvedor adaptativo de Euler"
+msgstr "Resolvente adaptativo de Euler"
 
 #: force.cc:14
 msgctxt "ObjectClass|"
@@ -575,178 +575,178 @@ msgstr "Varianza da constante do peso"
 #: gslsolver.cc:18
 msgctxt "ObjectClass|"
 msgid "GslGenericSolver"
-msgstr "ResolvedorXenéricoDeGsl"
+msgstr "ResolventeXenéricoDeGsl"
 
 #: gslsolver.cc:18
 msgctxt "ObjectDescription|"
 msgid "GSL generic solver"
-msgstr "Resolvedor xenérico de GSL"
+msgstr "Resolvente xenérico de GSL"
 
 #: gslsolver.cc:20
 msgctxt "ObjectClass|"
 msgid "GslSolver"
-msgstr "ResolvedorDeGsl"
+msgstr "ResolventeDeGsl"
 
 #: gslsolver.cc:20
 msgctxt "ObjectDescription|"
 msgid "GSL non-adaptive solver"
-msgstr "Resolvedor de GSL non adaptativo"
+msgstr "Resolvente de GSL non adaptativo"
 
 #: gslsolver.cc:23
 msgctxt "ObjectClass|"
 msgid "GslAdaptiveSolver"
-msgstr "ResolvedorAdaptativoDeGsl"
+msgstr "ResolventeAdaptativoDeGsl"
 
 #: gslsolver.cc:23
 msgctxt "ObjectDescription|"
 msgid "GSL adaptive solver"
-msgstr "Resolvedor adaptativo de GSL"
+msgstr "Resolvente adaptativo de GSL"
 
 #: gslsolver.cc:26
 msgctxt "ObjectClass|"
 msgid "GslRK2Solver"
-msgstr "ResolvedorDeRK2DeGsl"
+msgstr "ResolventeDeRK2DeGsl"
 
 #: gslsolver.cc:26
 msgctxt "ObjectDescription|"
 msgid "Runge-Kutta second-order solver from GSL library"
-msgstr "Resolvedor de Runge-Kutta de segunda orde da biblioteca GSL"
+msgstr "Resolvente de Runge-Kutta de segunda orde da biblioteca GSL"
 
 #: gslsolver.cc:28
 msgctxt "ObjectClass|"
 msgid "GslAdaptiveRK2Solver"
-msgstr "ResolvedorAdaptativoDeRK2DeGsl"
+msgstr "ResolventeAdaptativoDeRK2DeGsl"
 
 #: gslsolver.cc:28
 msgctxt "ObjectDescription|"
 msgid "Adaptive Runge-Kutta second-order solver from GSL library"
-msgstr "Resolvedor adaptativo de Runge-Kutta de segunda orde da biblioteca GSL"
+msgstr "Resolvente adaptativo de Runge-Kutta de segunda orde da biblioteca GSL"
 
 #: gslsolver.cc:31
 msgctxt "ObjectClass|"
 msgid "GslRK4Solver"
-msgstr "ResolvedorDeRK4DeGsl"
+msgstr "ResolventeDeRK4DeGsl"
 
 #: gslsolver.cc:31
 msgctxt "ObjectDescription|"
 msgid "Runge-Kutta classical fourth-order solver from GSL library"
-msgstr "Resolvedor clásico de Runge-Kutta de cuarta orden da biblioteca GSL"
+msgstr "Resolvente clásico de Runge-Kutta de cuarta orden da biblioteca GSL"
 
 #: gslsolver.cc:33
 msgctxt "ObjectClass|"
 msgid "GslAdaptiveRK4Solver"
-msgstr "ResolvedorAdaptativoDeRK4DeGsl"
+msgstr "ResolventeAdaptativoDeRK4DeGsl"
 
 #: gslsolver.cc:33
 msgctxt "ObjectDescription|"
 msgid "Adaptive Runge-Kutta classical fourth-order solver from GSL library"
 msgstr ""
-"Resolvedor adaptativo clásico de Runge-Kutta de cuarta orden da biblioteca "
+"Resolvente adaptativo clásico de Runge-Kutta de cuarta orden da biblioteca "
 "GSL"
 
 #: gslsolver.cc:36
 msgctxt "ObjectClass|"
 msgid "GslRKF45Solver"
-msgstr "ResolvedorDeRKF45DeGsl"
+msgstr "ResolventeDeRKF45DeGsl"
 
 #: gslsolver.cc:36
 msgctxt "ObjectDescription|"
 msgid "Runge-Kutta-Fehlberg (4,5) solver from GSL library"
-msgstr "Resolvedor de Runge-Kutta-Fehlberg (4,5) da biblioteca GSL"
+msgstr "Resolvente de Runge-Kutta-Fehlberg (4,5) da biblioteca GSL"
 
 #: gslsolver.cc:38
 msgctxt "ObjectClass|"
 msgid "GslAdaptiveRKF45Solver"
-msgstr "ResolvedorAdaptativoDeRKF45DeGsl"
+msgstr "ResolventeAdaptativoDeRKF45DeGsl"
 
 #: gslsolver.cc:38
 msgctxt "ObjectDescription|"
 msgid "Adaptive Runge-Kutta-Fehlberg (4,5) solver from GSL library"
-msgstr "Resolvedor adaptativo de Runge-Kutta-Fehlberg (4,5) da biblioteca GSL"
+msgstr "Resolvente adaptativo de Runge-Kutta-Fehlberg (4,5) da biblioteca GSL"
 
 #: gslsolver.cc:41
 msgctxt "ObjectClass|"
 msgid "GslRKCKSolver"
-msgstr "ResolvedorDeRKCKDeGsl"
+msgstr "ResolventeDeRKCKDeGsl"
 
 #: gslsolver.cc:41
 msgctxt "ObjectDescription|"
 msgid "Runge-Kutta Cash-Karp (4,5) solver from GSL library"
-msgstr "Resolvedor de Runge-Kutta Cash-Karp (4,5) da biblioteca GSL"
+msgstr "Resolvente de Runge-Kutta Cash-Karp (4,5) da biblioteca GSL"
 
 #: gslsolver.cc:43
 msgctxt "ObjectClass|"
 msgid "GslAdaptiveRKCKSolver"
-msgstr "ResolvedorAdaptativoDeRKCKDeGsl"
+msgstr "ResolventeAdaptativoDeRKCKDeGsl"
 
 #: gslsolver.cc:43
 msgctxt "ObjectDescription|"
 msgid "Adaptive Runge-Kutta Cash-Karp (4,5) solver from GSL library"
-msgstr "Resolvedor adaptativo de Runge-Kutta Cash-Karp (4,5) da biblioteca GSL"
+msgstr "Resolvente adaptativo de Runge-Kutta Cash-Karp (4,5) da biblioteca GSL"
 
 #: gslsolver.cc:46
 msgctxt "ObjectClass|"
 msgid "GslRK8PDSolver"
-msgstr "ResolvedorDeRK8PDDeGsl"
+msgstr "ResolventeDeRK8PDDeGsl"
 
 #: gslsolver.cc:46
 msgctxt "ObjectDescription|"
 msgid "Runge-Kutta Prince-Dormand (8,9) solver from GSL library"
-msgstr "Resolvedor de Runge-Kutta Prince-Dormand (8,9) da biblioteca GSL"
+msgstr "Resolvente de Runge-Kutta Prince-Dormand (8,9) da biblioteca GSL"
 
 #: gslsolver.cc:48
 msgctxt "ObjectClass|"
 msgid "GslAdaptiveRK8PDSolver"
-msgstr "ResolvedorAdaptativoRK8PDDeGsl"
+msgstr "ResolventeAdaptativoRK8PDDeGsl"
 
 #: gslsolver.cc:48
 msgctxt "ObjectDescription|"
 msgid "Adaptive Runge-Kutta Prince-Dormand (8,9) solver from GSL library"
 msgstr ""
-"Resolvedor adaptativo de Runge-Kutta Prince-Dormand (8,9) da biblioteca GSL"
+"Resolvente adaptativo de Runge-Kutta Prince-Dormand (8,9) da biblioteca GSL"
 
 #: gslsolver.cc:51
 msgctxt "ObjectClass|"
 msgid "GslRK2IMPSolver"
-msgstr "ResolvedorDeRK2IMPDeGsl"
+msgstr "ResolventeDeRK2IMPDeGsl"
 
 #: gslsolver.cc:51
 msgctxt "ObjectDescription|"
 msgid "Runge-Kutta implicit second-order solver from GSL library"
-msgstr "Resolvedor de Runge-Kutta de segunda orde implícita da biblioteca GSL"
+msgstr "Resolvente de Runge-Kutta de segunda orde implícita da biblioteca GSL"
 
 #: gslsolver.cc:53
 msgctxt "ObjectClass|"
 msgid "GslAdaptiveRK2IMPSolver"
-msgstr "ResolvedorAdaptativoDeRK2IMPDeGsl"
+msgstr "ResolventeAdaptativoDeRK2IMPDeGsl"
 
 #: gslsolver.cc:53
 msgctxt "ObjectDescription|"
 msgid "Adaptive Runge-Kutta implicit second-order solver from GSL library"
 msgstr ""
-"Resolvedor adaptativa de Runge-Kutta de segunda orde implícita da biblioteca "
+"Resolvente adaptativa de Runge-Kutta de segunda orde implícita da biblioteca "
 "GSL"
 
 #: gslsolver.cc:56
 msgctxt "ObjectClass|"
 msgid "GslRK4IMPSolver"
-msgstr "ResolvedorDeRK4IMPDeGsl"
+msgstr "ResolventeDeRK4IMPDeGsl"
 
 #: gslsolver.cc:56
 msgctxt "ObjectDescription|"
 msgid "Runge-Kutta implicit fourth-order solver from GSL library"
-msgstr "Resolvedor de Runge-Kutta de cuarta orde implícita da biblioteca GSL"
+msgstr "Resolvente de Runge-Kutta de cuarta orde implícita da biblioteca GSL"
 
 #: gslsolver.cc:58
 msgctxt "ObjectClass|"
 msgid "GslAdaptiveRK4IMPSolver"
-msgstr "ResolvedorAdaptativoDeRK4IMPDeGsl"
+msgstr "ResolventeAdaptativoDeRK4IMPDeGsl"
 
 #: gslsolver.cc:58
 msgctxt "ObjectDescription|"
 msgid "Adaptive Runge-Kutta implicit fourth-order solver from GSL library"
 msgstr ""
-"Resolvedor adaptábel de Runge-Kutta de cuarta orde implícita da biblioteca "
+"Resolvente adaptábel de Runge-Kutta de cuarta orde implícita da biblioteca "
 "GSL"
 
 #: item.cc:15
@@ -982,17 +982,15 @@ msgid "N"
 msgstr "N"
 
 #: motor.cc:21
-#, fuzzy
-#| msgctxt "PropertyDescription|"
-#| msgid "Value of the force, acting on the body"
 msgctxt "PropertyDescription|"
 msgid "Rotate the force vector in sync with body rotation"
-msgstr "O valor da forza a actuar sobre o corpo"
+msgstr "Rotar o vector de forza en sincronía coa rotación do corpo."
 
+# well-spelled: fixadoRixidamente
 #: motor.cc:21
 msgctxt "PropertyName|"
 msgid "rigidlyFixed"
-msgstr ""
+msgstr "fixadoRixidamente"
 
 #: motor.cc:23
 msgctxt "ObjectClass|"
@@ -1537,12 +1535,12 @@ msgstr "CorpoBrando deformábel"
 #: softbody.cc:22
 msgctxt "PropertyDescription|"
 msgid "Show internal items"
-msgstr "Mostra os elementos internos"
+msgstr "Amosa os elementos internos"
 
 #: softbody.cc:22
 msgctxt "PropertyName|"
 msgid "showInternalItems"
-msgstr "mostrarOsElementosInternos"
+msgstr "amosarOsElementosInternos"
 
 #: softbody.cc:28
 msgctxt "Units|"
@@ -1567,22 +1565,22 @@ msgstr "Nomes das partículas de bordo (propiedade temporal)"
 #: solver.cc:13
 msgctxt "ObjectClass|"
 msgid "Solver"
-msgstr "Resolvedor"
+msgstr "Resolvente"
 
 #: solver.cc:13
 msgctxt "ObjectDescription|"
 msgid "Solver"
-msgstr "Resolvedor"
+msgstr "Resolvente"
 
 #: solver.cc:14
 msgctxt "PropertyDescription|"
 msgid "Solver type"
-msgstr "Tipo do resolvedor"
+msgstr "Tipo do resolvente"
 
 #: solver.cc:14
 msgctxt "PropertyName|"
 msgid "solverType"
-msgstr "tipoDeResolvedor"
+msgstr "tipoDeResolvente"
 
 #: solver.cc:15
 msgctxt "PropertyDescription|"
@@ -1832,7 +1830,7 @@ msgstr "Nota"
 #: tool.cc:24
 msgctxt "ObjectDescription|"
 msgid "Note: displays a textual note on the scene"
-msgstr "Nota: mostra unha anotación na escena"
+msgstr "Nota: amosa unha anotación na escena"
 
 #: tool.cc:26
 msgctxt "PropertyDescription|"
@@ -1977,22 +1975,22 @@ msgstr "límitesEnY"
 #: tool.cc:45
 msgctxt "PropertyDescription|"
 msgid "Show points on the graph"
-msgstr "Mostrar os puntos no gráfico"
+msgstr "Amosar os puntos no gráfico"
 
 #: tool.cc:45
 msgctxt "PropertyName|"
 msgid "showPoints"
-msgstr "mostrarOsPuntos"
+msgstr "amosarOsPuntos"
 
 #: tool.cc:46
 msgctxt "PropertyDescription|"
 msgid "Show lines on the graph"
-msgstr "Mostrar as liñas no gráfico"
+msgstr "Amosar as liñas no gráfico"
 
 #: tool.cc:46
 msgctxt "PropertyName|"
 msgid "showLines"
-msgstr "mostrarAsLiñas"
+msgstr "amosarAsLiñas"
 
 #: tool.cc:47
 msgctxt "PropertyDescription|"
@@ -2042,7 +2040,7 @@ msgstr "Metro"
 #: tool.cc:53
 msgctxt "ObjectDescription|"
 msgid "Meter: displays any property on the scene"
-msgstr "Metro: mostra calquera propiedade na escena"
+msgstr "Metro: amosa calquera propiedade na escena"
 
 #: tool.cc:55
 msgctxt "PropertyDescription|"
@@ -2087,7 +2085,7 @@ msgstr "índice"
 #: tool.cc:60
 msgctxt "PropertyDescription|"
 msgid "Display digits"
-msgstr "Mostrar os díxitos"
+msgstr "Amosar os díxitos"
 
 #: tool.cc:60
 msgctxt "PropertyName|"
@@ -2274,19 +2272,19 @@ msgstr "Descoñécese o tipo de elemento «%1»"
 #, qt-format
 msgctxt "QObject|"
 msgid "Unknown solver type \"%1\""
-msgstr "Descoñécese o tipo de resolvedor «%1»"
+msgstr "Descoñécese o tipo de resolvente «%1»"
 
 #: xmlfile.cc:270
 #, qt-format
 msgctxt "QObject|"
 msgid "Unknown collisionSolver type \"%1\""
-msgstr "Descoñécese o tipo de resolvedorDeColisión «%1»"
+msgstr "Descoñécese o tipo de resolventeDeColisión «%1»"
 
 #: xmlfile.cc:284
 #, qt-format
 msgctxt "QObject|"
 msgid "Unknown constraint solver type \"%1\""
-msgstr "Descoñécese o tipo de resolvedor de restricións «%1»"
+msgstr "Descoñécese o tipo de resolvente de restricións «%1»"
 
 #: xmlfile.cc:312
 #, qt-format
