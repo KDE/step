@@ -161,13 +161,13 @@ msgstr "Opcións"
 #: step/configure_graph.ui:222
 #, kde-format
 msgid "Show lines"
-msgstr "Mostrar as liñas"
+msgstr "Amosar as liñas"
 
 #. i18n: ectx: property (text), widget (QCheckBox, checkBoxShowPoints)
 #: step/configure_graph.ui:229
 #, kde-format
 msgid "Show points"
-msgstr "Mostrar os puntos"
+msgstr "Amosar os puntos"
 
 #. i18n: ectx: property (text), widget (QLabel, label)
 #: step/configure_meter.ui:53
@@ -185,13 +185,13 @@ msgstr "Precisión en pantalla:"
 #: step/configure_step_general.ui:52
 #, kde-format
 msgid "Show scene axes"
-msgstr "Mostrar os eixos da escena"
+msgstr "Amosar os eixos da escena"
 
 #. i18n: ectx: property (text), widget (QCheckBox, kcfg_showCreationTips)
 #: step/configure_step_general.ui:59
 #, kde-format
 msgid "Show tips when creating objects"
-msgstr "Mostrar axudiñas ao crear obxectos"
+msgstr "Amosar axudiñas ao crear obxectos"
 
 #. i18n: ectx: property (text), widget (QCheckBox, kcfg_enableOpenGL)
 #: step/configure_step_general.ui:66
@@ -491,7 +491,7 @@ msgstr "Punteiro de selección"
 #: step/itempalette.cc:220
 #, kde-format
 msgid "Show text"
-msgstr "Mostrar o texto"
+msgstr "Amosar o texto"
 
 #: step/jointgraphics.cc:158 step/springgraphics.cc:30
 #, kde-format
@@ -909,14 +909,14 @@ msgstr "Crear os elementos de %1"
 #: step/step.kcfg:9 step/step.kcfg:10
 #, kde-format
 msgid "Show tips when creating items"
-msgstr "Mostrar axudiñas ao crear elementos"
+msgstr "Amosar axudiñas ao crear elementos"
 
 #. i18n: ectx: label, entry (showAxes), group (General)
 #. i18n: ectx: whatsthis, entry (showAxes), group (General)
 #: step/step.kcfg:14 step/step.kcfg:15
 #, kde-format
 msgid "Show axes on the scene"
-msgstr "Mostrar os eixos na escena"
+msgstr "Amosar os eixos na escena"
 
 #. i18n: ectx: label, entry (floatDisplayPrecision), group (General)
 #. i18n: ectx: whatsthis, entry (floatDisplayPrecision), group (General)
@@ -930,7 +930,7 @@ msgstr "Precisión en pantalla dos números dobres:"
 #: step/step.kcfg:26 step/step.kcfg:27
 #, kde-format
 msgid "Use OpenGL to accelerate drawing whenever possible"
-msgstr "Empregar OpenGL sempre que sexa posíbel para acelerar os debuxos"
+msgstr "Usar OpenGL sempre que sexa posíbel para acelerar os debuxos"
 
 #. i18n: ectx: label, entry (wikiExternal), group (InfoBrowser)
 #. i18n: ectx: whatsthis, entry (wikiExternal), group (InfoBrowser)
@@ -944,7 +944,7 @@ msgstr "Abrir a wikipedia nun navegador externo"
 #: step/step.kcfg:40 step/step.kcfg:41
 #, kde-format
 msgid "Show text beside icon"
-msgstr "Mostrar o texto a carón da icona"
+msgstr "Amosar o texto a carón da icona"
 
 #: step/stepgraphicsitem.cc:210
 #, kde-format
