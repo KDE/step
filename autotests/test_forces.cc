@@ -126,3 +126,5 @@ void TestForces::testRigidlyFixedLinearMotor()
 }
 
 QTEST_MAIN(TestForces)
+
+#include "moc_test_forces.cpp"

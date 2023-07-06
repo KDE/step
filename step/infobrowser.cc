@@ -242,3 +242,5 @@ void InfoBrowser::openInBrowser()
         QDesktopServices::openUrl(_htmlBrowser->source());
     }
 }
+
+#include "moc_infobrowser.cpp"

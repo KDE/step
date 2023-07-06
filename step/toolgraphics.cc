@@ -1911,3 +1911,4 @@ void TracerMenuHandler::clearTracer()
     _worldModel->endMacro();
 }
 
+#include "moc_toolgraphics.cpp"

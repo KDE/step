@@ -188,3 +188,5 @@ void ItemMenuHandler::populateMenu(QMenu* menu, KActionCollection* actions)
         menu->addAction(actions->action(QStringLiteral("edit_delete")));
     }
 }
+
+#include "moc_worldgraphics.cpp"

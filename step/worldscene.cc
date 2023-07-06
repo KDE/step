@@ -722,3 +722,4 @@ void WorldGraphicsView::updateSceneRect()
     setSceneRect(sceneRect.united(viewportRect));
 }
 
+#include "moc_worldscene.cpp"

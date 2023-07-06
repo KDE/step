@@ -39,3 +39,4 @@ void UndoBrowser::setUndoEnabled(bool enabled)
     _undoView->setEnabled(enabled);
 }
 
+#include "moc_undobrowser.cpp"

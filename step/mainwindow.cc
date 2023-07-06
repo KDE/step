@@ -635,3 +635,5 @@ void MainWindow::on_actionAboutStep_triggered(bool checked)
                 "(C) 2006-2007 Kuznetsov Vladimir.</center>"));
 }
 */
+
+#include "moc_mainwindow.cpp"

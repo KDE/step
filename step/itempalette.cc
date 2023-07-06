@@ -288,3 +288,4 @@ bool ItemPalette::event(QEvent* event)
     return QDockWidget::event(event);
 }
 
+#include "moc_itempalette.cpp"

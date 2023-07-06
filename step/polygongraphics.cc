@@ -666,3 +666,4 @@ void PolygonGraphicsItem::changePolygonVertex(WorldModel* worldModel,
     worldModel->setProperty(item, QStringLiteral("vertexes"), QVariant::fromValue(vertexes));
 }
 
+#include "moc_polygongraphics.cpp"

@@ -232,3 +232,5 @@ void TestContacts::testCollisionDetection()
 }
 
 QTEST_MAIN(TestContacts)
+
+#include "moc_test_contacts.cpp"

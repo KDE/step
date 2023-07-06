@@ -131,3 +131,5 @@ void MainTest::testWorldCopy()
 }
 
 QTEST_MAIN(TestWorldCopy)
+
+#include "moc_test_worldcopy.cpp"

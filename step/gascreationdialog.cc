@@ -71,3 +71,5 @@ Ui::WidgetCreateGasParticles *GasCreationDialog::ui()
 {
     return _ui;
 }
+
+#include "moc_gascreationdialog.cpp"

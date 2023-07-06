@@ -1095,3 +1095,5 @@ void WorldModel::pasteItems()
     }
     endMacro();
 }
+
+#include "moc_worldmodel.cpp"

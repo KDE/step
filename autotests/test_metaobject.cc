@@ -208,3 +208,5 @@ void TestMetaobject::testMetaObject()
 }
 
 QTEST_MAIN(TestMetaobject)
+
+#include "moc_test_metaobject.cpp"

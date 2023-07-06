@@ -387,3 +387,4 @@ void GasMenuHandler::clearGas()
 }
 */
 
+#include "moc_gasgraphics.cpp"

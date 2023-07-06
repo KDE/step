@@ -623,3 +623,4 @@ void OnHoverHandlerGraphicsItem::hoverLeaveEvent(QGraphicsSceneHoverEvent* event
     ArrowHandlerGraphicsItem::hoverLeaveEvent(event);
 }
 
+#include "moc_stepgraphicsitem.cpp"

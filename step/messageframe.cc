@@ -133,3 +133,4 @@ void MessageFrame::messageCloseClicked(QWidget* widget)
     if(_layout->count() == 0) hide();
 }
 
+#include "moc_messageframe.cpp"

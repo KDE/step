@@ -180,3 +180,5 @@ bool Clipboard::hasData() const
     
     return mimedata->hasFormat(QStringLiteral("application/x-step"));
 }
+
+#include "moc_clipboard.cpp"

@@ -115,3 +115,4 @@ void WorldBrowserView::drawBranches(QPainter *painter, const QRect &rect, const 
     }
 }
 
+#include "moc_worldbrowser.cpp"

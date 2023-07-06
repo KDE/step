@@ -55,3 +55,5 @@ SimulationThread::~SimulationThread()
     _waitCondition.wakeOne();
     wait();
 }
+
+#include "moc_simulationthread.cpp"

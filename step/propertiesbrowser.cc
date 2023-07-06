@@ -803,4 +803,4 @@ void PropertiesBrowser::settingsChanged()
     _propertiesBrowserModel->emitDataChanged(false);
 }
 
-
+#include "moc_propertiesbrowser.cpp"

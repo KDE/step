@@ -328,3 +328,4 @@ void SoftBodySpringGraphicsItem::worldDataChanged(bool dynamicOnly)
     }
 }
 
+#include "moc_softbodygraphics.cpp"
