@@ -84,8 +84,8 @@ bool UnitsCalc::parseNumber(const QString& expression, const QString& units, dou
     expr.eval(d->eo);
 
     if(!units.isEmpty()) {
-        CompositeUnit *cu = NULL;
-        Unit *u = NULL;
+        CompositeUnit *cu = nullptr;
+        Unit *u = nullptr;
         std::string strUnits(units.toUtf8().constData());
         u = CALCULATOR->getUnit(strUnits);
         if(!u) {
