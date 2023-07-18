@@ -5,7 +5,7 @@
 
 # SPDX-FileCopyrightText: 2008 Allen Winter <winter@kde.org>
 #
-# SPDX-License-Identifier: BSD-3-Clause.
+# SPDX-License-Identifier: BSD-3-Clause
 
 if (GSL_INCLUDE_DIR AND GSL_LIBRARIES AND GSL_CBLAS_LIBRARIES)
 

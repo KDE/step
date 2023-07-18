@@ -12,7 +12,7 @@
 #
 # SPDX-FileCopyrightText: 2007 Vladimir Kuznetsov <ks.vladimir@gmail.com>
 #
-# SPDX-License-Identifier: BSD-3-Clause.
+# SPDX-License-Identifier: BSD-3-Clause
 
 if(QALCULATE_CFLAGS AND QALCULATE_LIBRARIES)
 

@@ -1,6 +1,6 @@
 # SPDX-FileCopyrightText: 2014-2015 Andreas Cord-Landwehr <cordlandwehr@kde.org>
 #
-# SPDX-License-Identifier: BSD-2-Clause.
+# SPDX-License-Identifier: BSD-2-Clause
 
 include(ECMMarkAsTest)
 
