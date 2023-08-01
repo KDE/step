@@ -47,7 +47,6 @@
 #include <KNSWidgets/Action>
 #include <KRecentFilesAction>
 #include <KStandardAction>
-#include <KToolBarPopupAction>
 
 #include <QActionGroup>
 #include <cstdlib>
@@ -197,10 +196,11 @@ void MainWindow::setupActions()
     QActionGroup* runSpeedGroup = new QActionGroup(this);
 
     // The run action collection, this is used in the toolbar to create a dropdown menu on the run button
-    runSpeedAction = new KToolBarPopupAction(QIcon::fromTheme(QStringLiteral("media-playback-start")), i18n("&Run"), this);
+    runSpeedAction = new QAction(QIcon::fromTheme(QStringLiteral("media-playback-start")), i18n("&Run"), this);
     connect(runSpeedAction, &QAction::triggered, 
             this, &MainWindow::simulationStartStop);
-    QMenu* runSpeedActionMenu = runSpeedAction->menu();
+    QMenu* runSpeedActionMenu = new QMenu(this);
+    runSpeedAction->setMenu(runSpeedActionMenu);
     actionCollection()->addAction(QStringLiteral("run_speed"), runSpeedAction);
     runSpeedActionMenu->setStatusTip(i18n("Execute the program"));
     runSpeedActionMenu->setWhatsThis(i18n("Run: Execute the program"));

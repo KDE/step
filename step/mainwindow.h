@@ -20,7 +20,6 @@ class InfoBrowser;
 class UndoBrowser;
 class ItemPalette;
 
-class KToolBarPopupAction;
 class KRecentFilesAction;
 
 class QAction;
@@ -110,7 +109,7 @@ protected:
 
     //The following members are needed for the setting of the timeScale
     int runSpeed;
-    KToolBarPopupAction *runSpeedAction;
+    QAction *runSpeedAction;
     QAction *fullSpeedAct;
     QAction *slowSpeedAct;
     QAction *slowerSpeedAct;
