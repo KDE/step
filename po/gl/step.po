@@ -6,14 +6,14 @@
 # Xosé <xosecalvo@gmail.com>, 2009, 2012.
 # Marce Villarino <mvillarino@kde-espana.es>, 2012, 2014.
 # Adrián Chaves Fernández <adriyetichaves@gmail.com>, 2015, 2017.
-# Adrián Chaves (Gallaecio) <adrian@chaves.io>, 2017, 2018, 2019.
+# Adrián Chaves (Gallaecio) <adrian@chaves.io>, 2017, 2018, 2019, 2023.
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: step\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2022-10-27 00:42+0000\n"
-"PO-Revision-Date: 2019-11-17 09:23+0100\n"
+"PO-Revision-Date: 2023-08-06 07:17+0200\n"
 "Last-Translator: Adrián Chaves (Gallaecio) <adrian@chaves.io>\n"
 "Language-Team: Galician <proxecto@trasno.gal>\n"
 "Language: gl\n"
@@ -21,7 +21,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Lokalize 20.03.70\n"
+"X-Generator: Lokalize 23.04.3\n"
 
 #, kde-format
 msgctxt "NAME OF TRANSLATORS"
@@ -133,20 +133,20 @@ msgstr "Intervalos"
 #: step/configure_graph.ui:83
 #, kde-format
 msgid "Min:"
-msgstr ""
+msgstr "Mínimo:"
 
 #. i18n: ectx: property (text), widget (QLabel, label_6)
 #: step/configure_graph.ui:99
 #, kde-format
 msgid "Max:"
-msgstr ""
+msgstr "Máximo:"
 
 #. i18n: ectx: property (text), widget (QCheckBox, checkBoxAutoX)
 #. i18n: ectx: property (text), widget (QCheckBox, checkBoxAutoY)
 #: step/configure_graph.ui:122 step/configure_graph.ui:174
 #, kde-format
 msgid "auto"
-msgstr "automático"
+msgstr "Automático."
 
 #. i18n: ectx: property (title), widget (QGroupBox, groupBox_2)
 #. i18n: ectx: property (title), widget (QGroupBox, groupBox)
@@ -161,13 +161,13 @@ msgstr "Opcións"
 #: step/configure_graph.ui:222
 #, kde-format
 msgid "Show lines"
-msgstr "Amosar as liñas"
+msgstr "Amosar as liñas."
 
 #. i18n: ectx: property (text), widget (QCheckBox, checkBoxShowPoints)
 #: step/configure_graph.ui:229
 #, kde-format
 msgid "Show points"
-msgstr "Amosar os puntos"
+msgstr "Amosar os puntos."
 
 #. i18n: ectx: property (text), widget (QLabel, label)
 #: step/configure_meter.ui:53
@@ -185,38 +185,37 @@ msgstr "Precisión en pantalla:"
 #: step/configure_step_general.ui:52
 #, kde-format
 msgid "Show scene axes"
-msgstr "Amosar os eixos da escena"
+msgstr "Amosar os eixes da escena."
 
 #. i18n: ectx: property (text), widget (QCheckBox, kcfg_showCreationTips)
 #: step/configure_step_general.ui:59
 #, kde-format
 msgid "Show tips when creating objects"
-msgstr "Amosar axudiñas ao crear obxectos"
+msgstr "Amosar axudiñas ao crear obxectos."
 
 #. i18n: ectx: property (text), widget (QCheckBox, kcfg_enableOpenGL)
 #: step/configure_step_general.ui:66
 #, kde-format
 msgid "Enable OpenGL (EXPERIMENTAL)"
-msgstr "Activar OpenGL (EXPERIMENTAL)"
+msgstr "Activar OpenGL (EXPERIMENTAL)."
 
 #. i18n: ectx: property (text), widget (QCheckBox, kcfg_wikiExternal)
 #: step/configure_step_general.ui:73
 #, kde-format
 msgid "Open wikipedia in external browser"
-msgstr "Abrir a wikipedia nun navegador externo"
+msgstr "Abrir a wikipedia nun navegador externo."
 
 #. i18n: ectx: property (text), widget (QLabel, label_5)
 #: step/create_gas_particles.ui:34
-#, fuzzy, kde-format
-#| msgid "Area"
+#, kde-format
 msgid "Area:"
-msgstr "Área"
+msgstr "Área:"
 
 #. i18n: ectx: property (toolTip), widget (QLineEdit, lineEditVolume)
 #: step/create_gas_particles.ui:41
 #, kde-format
 msgid "The area the gas takes"
-msgstr "A área que ocupa o gas"
+msgstr "A área que ocupa o gas."
 
 #. i18n: ectx: property (text), widget (QLabel, label)
 #: step/create_gas_particles.ui:61
@@ -254,7 +253,7 @@ msgstr "Masa da partícula:"
 #: step/create_gas_particles.ui:119 step/create_gas_particles.ui:122
 #, kde-format
 msgid "The mass of one particle"
-msgstr "A masa dunha partícula"
+msgstr "A masa dunha partícula."
 
 #. i18n: ectx: property (text), widget (QLabel, label_3)
 #: step/create_gas_particles.ui:142
@@ -342,8 +341,7 @@ msgid "(4,4)"
 msgstr "(4,4)"
 
 #: step/gascreationdialog.cc:31
-#, fuzzy, kde-format
-#| msgid "Create gas particles"
+#, kde-format
 msgctxt "@title:window"
 msgid "Create Gas Particles"
 msgstr "Crear partículas de gas"
@@ -388,8 +386,7 @@ msgid "%1 named '%2' created"
 msgstr "Creouse o %1 chamado \"%2\""
 
 #: step/gasgraphics.cc:282
-#, fuzzy, kde-format
-#| msgid "Create particles..."
+#, kde-format
 msgid "Create Particles..."
 msgstr "Crear as partículas…"
 
@@ -405,7 +402,7 @@ msgstr ""
 #: step/gasgraphics.cc:354 step/mainwindow.cc:401
 #, kde-format
 msgid "Warning - Step"
-msgstr "Aviso - Step"
+msgstr "Aviso — Step"
 
 #: step/gasgraphics.cc:365
 #, kde-format
@@ -413,8 +410,7 @@ msgid "Create particles for %1"
 msgstr "Crear as partículas de %1"
 
 #: step/infobrowser.cc:26
-#, fuzzy, kde-format
-#| msgid "Context info"
+#, kde-format
 msgid "Context Info"
 msgstr "Información de contexto"
 
@@ -439,10 +435,9 @@ msgid "Follow selection"
 msgstr "Seguir a escolla"
 
 #: step/infobrowser.cc:57
-#, fuzzy, kde-format
-#| msgid "Open in browser"
+#, kde-format
 msgid "Open in Browser"
-msgstr "Abrir nun navegador"
+msgstr "Abrir no navegador"
 
 #: step/infobrowser.cc:132
 #, kde-format
@@ -465,13 +460,11 @@ msgid "Documentation for %1 not available. "
 msgstr "Non hai documentación dispoñíbel sobre %1."
 
 #: step/infobrowser.cc:165
-#, fuzzy, kde-format
-#| msgid ""
-#| "You can help <a href=\"http://edu.kde.org/step\">Step</a> by writing it!"
+#, kde-format
 msgid ""
 "You can help <a href=\"https://edu.kde.org/step\">Step</a> by writing it!"
 msgstr ""
-"Pode axudar con <a href=\"http://edu.kde.org/step\">Step</a> escribíndoa!"
+"Pode axudar con <a href=\"https://edu.kde.org/step\">Step</a> escribíndoa!"
 
 #: step/itempalette.cc:177
 #, kde-format
@@ -548,15 +541,14 @@ msgid "(C) 2007 Vladimir Kuznetsov"
 msgstr "© 2007 Vladimir Kuznetsov"
 
 #: step/main.cc:37
-#, fuzzy, kde-format
-#| msgid "http://edu.kde.org/step"
+#, kde-format
 msgid "https://edu.kde.org/step"
-msgstr "http://edu.kde.org/step"
+msgstr "https://edu.kde.org/step"
 
 #: step/main.cc:42
 #, kde-format
 msgid "Original author"
-msgstr "Autor orixinal"
+msgstr "Autoría orixinal."
 
 #: step/main.cc:43
 #, kde-format
@@ -667,7 +659,7 @@ msgstr "Velocidade 16x"
 #, kde-format
 msgctxt "filename"
 msgid "untitled.step"
-msgstr "sentitulo.step"
+msgstr "sen-título.step"
 
 #: step/mainwindow.cc:293
 #, kde-format
@@ -675,8 +667,7 @@ msgid "<new file>"
 msgstr "<novo ficheiro>"
 
 #: step/mainwindow.cc:307
-#, fuzzy, kde-format
-#| msgid "Open Step File"
+#, kde-format
 msgctxt "@title:window"
 msgid "Open Step File"
 msgstr "Abrir un ficheiro de Step"
@@ -697,8 +688,7 @@ msgid "<open file: %1>"
 msgstr "<abrir o ficheiro: %1>"
 
 #: step/mainwindow.cc:337
-#, fuzzy, kde-format
-#| msgid "Save Step File"
+#, kde-format
 msgctxt "@title:window"
 msgid "Save Step File"
 msgstr "Gardar o ficheiro de Step"
@@ -730,7 +720,7 @@ msgstr "Os envíos aínda non son posíbeis nas kdelibs."
 #: step/mainwindow.cc:453
 #, kde-format
 msgid "Sorry - Step"
-msgstr "Aviso - Step"
+msgstr "Aviso — Step"
 
 #: step/mainwindow.cc:480
 #, kde-format
@@ -751,7 +741,7 @@ msgid ""
 msgstr ""
 "Non se pode rematar con este paso debido a que o erro local é maior do que a "
 "tolerancia local.\n"
-"Revise a configuración do resolvedor e inténteo de novo."
+"Revise a configuración do resolvente e inténteo de novo."
 
 #: step/mainwindow.cc:500
 #, kde-format
@@ -841,7 +831,7 @@ msgstr "Prema o escenario para engadir un vértice ou Intro para acabar"
 #: step/propertiesbrowser.cc:267
 #, kde-format
 msgid "Change solver type"
-msgstr "Cambiar o tipo de resolvedor"
+msgstr "Cambiar o tipo de resolvente"
 
 #: step/propertiesbrowser.cc:282 step/propertiesbrowser.cc:288
 #: step/propertiesbrowser.cc:295 step/propertiesbrowser.cc:304
@@ -893,8 +883,7 @@ msgid "Please fill in the parameters for %1"
 msgstr "Encha os parámetros de %1"
 
 #: step/softbodygraphics.cc:114
-#, fuzzy, kde-format
-#| msgid "Create soft body items"
+#, kde-format
 msgctxt "@title:window"
 msgid "Create Soft Body Items"
 msgstr "Crear elementos de corpo brando"
@@ -916,14 +905,14 @@ msgstr "Amosar axudiñas ao crear elementos"
 #: step/step.kcfg:14 step/step.kcfg:15
 #, kde-format
 msgid "Show axes on the scene"
-msgstr "Amosar os eixos na escena"
+msgstr "Amosar os eixes na escena"
 
 #. i18n: ectx: label, entry (floatDisplayPrecision), group (General)
 #. i18n: ectx: whatsthis, entry (floatDisplayPrecision), group (General)
 #: step/step.kcfg:19 step/step.kcfg:20
 #, kde-format
 msgid "Display precision of double numbers"
-msgstr "Precisión en pantalla dos números dobres:"
+msgstr "Precisión en pantalla dos números dobres."
 
 #. i18n: ectx: label, entry (enableOpenGL), group (General)
 #. i18n: ectx: whatsthis, entry (enableOpenGL), group (General)
@@ -1053,16 +1042,14 @@ msgid "Font &Size"
 msgstr "Tama&ño de letra"
 
 #: step/toolgraphics.cc:410
-#, fuzzy, kde-format
-#| msgid "Insert &Image"
+#, kde-format
 msgid "Insert &Image..."
-msgstr "Inserir unha &imaxe"
+msgstr "Inserir unha &imaxe..."
 
 #: step/toolgraphics.cc:415
-#, fuzzy, kde-format
-#| msgid "Insert &Formula"
+#, kde-format
 msgid "Insert &Formula..."
-msgstr "Inserir unha &fórmula"
+msgstr "Inserir unha &fórmula…"
 
 #: step/toolgraphics.cc:526
 #, kde-format
@@ -1070,8 +1057,7 @@ msgid "Edit %1"
 msgstr "Editar %1"
 
 #: step/toolgraphics.cc:631
-#, fuzzy, kde-format
-#| msgid "Open Image File"
+#, kde-format
 msgctxt "@title:window"
 msgid "Open Image File"
 msgstr "Abrir un ficheiro de imaxe"
@@ -1096,17 +1082,15 @@ msgstr ""
 "«latex», «dvips» e «gs» e seren accesíbeis desde $PATH"
 
 #: step/toolgraphics.cc:699
-#, fuzzy, kde-format
-#| msgid "LaTex Formula - Step"
+#, kde-format
 msgctxt "@title:window"
 msgid "LaTex Formula - Step"
-msgstr "Fórmula de LaTex - Step"
+msgstr "Fórmula de LaTex — Step"
 
 #: step/toolgraphics.cc:700
-#, fuzzy, kde-format
-#| msgid "Enter LaTeX formula string"
+#, kde-format
 msgid "Enter LaTeX formula string:"
-msgstr "Insira a cadea da fórmula de LaTex"
+msgstr "Insira a cadea da fórmula de LaTex:"
 
 #: step/toolgraphics.cc:709
 #, kde-format
@@ -1149,20 +1133,17 @@ msgid "[not configured]"
 msgstr "[non configurado]"
 
 #: step/toolgraphics.cc:1077
-#, fuzzy, kde-format
-#| msgid "Clear graph"
+#, kde-format
 msgid "Clear Graph"
-msgstr "Limpar o gráfico"
+msgstr "Baleirar o gráfico"
 
 #: step/toolgraphics.cc:1078
-#, fuzzy, kde-format
-#| msgid "Configure graph..."
+#, kde-format
 msgid "Configure Graph..."
 msgstr "Configurar o gráfico…"
 
 #: step/toolgraphics.cc:1096
-#, fuzzy, kde-format
-#| msgid "Configure graph"
+#, kde-format
 msgctxt "@title:window"
 msgid "Configure Graph"
 msgstr "Configurar o gráfico"
@@ -1176,32 +1157,28 @@ msgstr "Editar as propiedades de %1"
 #: step/toolgraphics.cc:1224
 #, kde-format
 msgid "Clear graph %1"
-msgstr "Limpar o gráfico %1"
+msgstr "Baleirar o gráfico %1"
 
 #: step/toolgraphics.cc:1305
-#, fuzzy, kde-format
-#| msgid "Configure meter..."
+#, kde-format
 msgid "Configure Meter..."
-msgstr "Configurar o metro…"
+msgstr "Configurar o metro"
 
 #: step/toolgraphics.cc:1323
-#, fuzzy, kde-format
-#| msgid "Configure meter"
+#, kde-format
 msgctxt "@title:window"
 msgid "Configure Meter"
 msgstr "Configurar o metro"
 
 #: step/toolgraphics.cc:1420 step/toolgraphics.cc:1617
-#, fuzzy, kde-format
-#| msgid "Increase value"
+#, kde-format
 msgid "Increase Value"
-msgstr "Incrementar o valor"
+msgstr "Aumentar o valor"
 
 #: step/toolgraphics.cc:1421 step/toolgraphics.cc:1618
-#, fuzzy, kde-format
-#| msgid "Decrease value"
+#, kde-format
 msgid "Decrease Value"
-msgstr "Reducir o valor"
+msgstr "Diminuír o valor"
 
 #: step/toolgraphics.cc:1451 step/toolgraphics.cc:1746
 #, kde-format
@@ -1219,21 +1196,18 @@ msgid "Change controller %1"
 msgstr "Cambiar o controlador %1"
 
 #: step/toolgraphics.cc:1620
-#, fuzzy, kde-format
-#| msgid "Configure controller..."
+#, kde-format
 msgid "Configure Controller..."
-msgstr "Configurar o controlador…"
+msgstr "Configurar o controlador"
 
 #: step/toolgraphics.cc:1638
-#, fuzzy, kde-format
-#| msgid "Configure controller"
+#, kde-format
 msgctxt "@title:window"
 msgid "Configure Controller"
 msgstr "Configurar o controlador"
 
 #: step/toolgraphics.cc:1899
-#, fuzzy, kde-format
-#| msgid "Clear trace"
+#, kde-format
 msgid "Clear Trace"
 msgstr "Limpar o trazado"
 
@@ -1243,10 +1217,9 @@ msgid "Clear tracer %1"
 msgstr "Limpar o trazador %1"
 
 #: step/undobrowser.cc:18
-#, fuzzy, kde-format
-#| msgid "Undo history"
+#, kde-format
 msgid "Undo History"
-msgstr "Desfacer o historial"
+msgstr "Historial para desfacer"
 
 #: step/worldbrowser.cc:50
 #, kde-format
