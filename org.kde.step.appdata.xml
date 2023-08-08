@@ -56,7 +56,7 @@
   <summary xml:lang="eu">Fisika simulatzaile interaktiboa</summary>
   <summary xml:lang="fi">Vuorovaikutteinen fysiikkasimulaattori</summary>
   <summary xml:lang="fr">Simulateur physique interactif</summary>
-  <summary xml:lang="gl">Simulador físico interactivo</summary>
+  <summary xml:lang="gl">Simulador físico interactivo.</summary>
   <summary xml:lang="ia">Simulator Physic Interactive</summary>
   <summary xml:lang="id">Simulator Fisik Interaktif</summary>
   <summary xml:lang="it">Simulatore interattivo di fisica</summary>
@@ -649,7 +649,7 @@
       <caption xml:lang="et">Füüsikasimulatsioon Stepis</caption>
       <caption xml:lang="eu">Fisika simulatzea Step-en</caption>
       <caption xml:lang="fr">Simulation physique sur Step</caption>
-      <caption xml:lang="gl">Simulación física en Step</caption>
+      <caption xml:lang="gl">Simulación física en Step.</caption>
       <caption xml:lang="id">Simulasi fisik di Step</caption>
       <caption xml:lang="it">Simulazione di fisica in Step</caption>
       <caption xml:lang="ko">Step의 물리 시뮬레이션</caption>
