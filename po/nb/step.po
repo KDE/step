@@ -5,7 +5,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: step\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2022-10-27 00:42+0000\n"
+"POT-Creation-Date: 2023-08-06 00:42+0000\n"
 "PO-Revision-Date: 2011-05-12 22:20+0200\n"
 "Last-Translator: Bjørn Steensrud <bjornst@skogkatt.homelinux.org>\n"
 "Language-Team: Norwegian Bokmål <l10n-no@lister.huftis.org>\n"
@@ -565,47 +565,47 @@ msgstr ""
 msgid "Document to open"
 msgstr "Dokument som skal åpnes"
 
-#: step/mainwindow.cc:143
+#: step/mainwindow.cc:142
 #, kde-format
 msgid "&Open Tutorial..."
 msgstr "&Åpne veiledning …"
 
-#: step/mainwindow.cc:148
+#: step/mainwindow.cc:147
 #, kde-format
 msgid "&Open Example..."
 msgstr "&Åpne eksempel …"
 
-#: step/mainwindow.cc:153
+#: step/mainwindow.cc:152
 #, kde-format
 msgid "Open Down&loaded Example..."
 msgstr "Åpne ned&lastet eksempel …"
 
-#: step/mainwindow.cc:158
+#: step/mainwindow.cc:157
 #, kde-format
 msgid "Share C&urrent Experiment..."
 msgstr "Del &dette eksperimentet …"
 
-#: step/mainwindow.cc:161
+#: step/mainwindow.cc:160
 #, kde-format
 msgid "&Download New Experiments..."
 msgstr "&Last ned nye eksperimenter …"
 
-#: step/mainwindow.cc:168
+#: step/mainwindow.cc:167
 #, kde-format
 msgid "Redo"
 msgstr "Gjør om"
 
-#: step/mainwindow.cc:168
+#: step/mainwindow.cc:167
 #, kde-format
 msgid "Undo"
 msgstr "Angre"
 
-#: step/mainwindow.cc:190
+#: step/mainwindow.cc:189
 #, kde-format
 msgid "&Delete"
 msgstr "&Slett"
 
-#: step/mainwindow.cc:200
+#: step/mainwindow.cc:199
 #, kde-format
 msgid "&Run"
 msgstr "Kjø&r"
