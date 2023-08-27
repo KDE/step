@@ -1,7 +1,9 @@
-find_package(PythonInterp)
+find_package(Python3 COMPONENTS Interpreter)
+
 set(EXTRACTXML_EXECUTABLE ${CMAKE_CURRENT_SOURCE_DIR}/extractxml)
 
-if(PYTHON_EXECUTABLE)
+if (TARGET Python3::Interpreter)
+
 
     macro(STEP_PROCESS_XML_TRANSLATION _lang _po_file _extractxml_args)
     set(_xmlfiles_tr)
@@ -37,7 +39,7 @@ if(PYTHON_EXECUTABLE)
         separate_arguments(_extractxml_args_copy)
         file(MAKE_DIRECTORY ${CMAKE_CURRENT_BINARY_DIR}/${_lang})
         add_custom_command(OUTPUT ${_xmlfile_tr}
-            COMMAND ${PYTHON_EXECUTABLE} ${EXTRACTXML_EXECUTABLE} --translate --mo-file=${_mo_file} --output-dir=${CMAKE_CURRENT_BINARY_DIR}/${_lang} ${_extractxml_args_copy} ${_xmlfile}
+            COMMAND ${Python3_EXECUTABLE} ${EXTRACTXML_EXECUTABLE} --translate --mo-file=${_mo_file} --output-dir=${CMAKE_CURRENT_BINARY_DIR}/${_lang} ${_extractxml_args_copy} ${_xmlfile}
             WORKING_DIRECTORY "${CMAKE_CURRENT_SOURCE_DIR}"
             DEPENDS ${_xmlfile} ${_mo_file}
         )
