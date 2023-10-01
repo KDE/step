@@ -494,7 +494,7 @@ msgstr "Mover o extremo de %1"
 #: step/latexformula.cc:30
 #, kde-format
 msgid "can not launch %1"
-msgstr "non se pode iniciar %1"
+msgstr "non é posíbel iniciar %1"
 
 #: step/latexformula.cc:40
 #, kde-format
@@ -518,12 +518,12 @@ msgstr "%1 non creou un ficheiro de saída"
 #: step/latexformula.cc:81
 #, kde-format
 msgid "can not open temporary file"
-msgstr "non se pode abrir o ficheiro temporal"
+msgstr "non é posíbel abrir o ficheiro temporal"
 
 #: step/latexformula.cc:115
 #, kde-format
 msgid "can not open result file"
-msgstr "non se pode abrir o ficheiro de resultado"
+msgstr "non é posíbel abrir o ficheiro de resultado"
 
 #: step/main.cc:31
 #, kde-format
@@ -680,7 +680,7 @@ msgstr "Ficheiros de Step (*.step)"
 #: step/mainwindow.cc:317
 #, kde-format
 msgid "Cannot parse file '%1': %2"
-msgstr "Non se pode procesar o ficheiro «%1»: %2"
+msgstr "Non é posíbel procesar o ficheiro «%1»: %2"
 
 #: step/mainwindow.cc:326
 #, kde-format
@@ -696,12 +696,12 @@ msgstr "Gardar o ficheiro de Step"
 #: step/mainwindow.cc:353
 #, kde-format
 msgid "Cannot open file '%1'"
-msgstr "Non se pode abrir o ficheiro «%1»"
+msgstr "Non é posíbel abrir o ficheiro «%1»"
 
 #: step/mainwindow.cc:359
 #, kde-format
 msgid "Cannot save file '%1': %2"
-msgstr "Non se pode gardar o ficheiro «%1»: %2"
+msgstr "Non é posíbel gardar o ficheiro «%1»: %2"
 
 #: step/mainwindow.cc:400
 #, kde-format
@@ -739,8 +739,8 @@ msgid ""
 "tolerance.\n"
 "Please check solver settings and try again."
 msgstr ""
-"Non se pode rematar con este paso debido a que o erro local é maior do que a "
-"tolerancia local.\n"
+"Non é posíbel rematar con este paso debido a que o erro local é maior do que "
+"a tolerancia local.\n"
 "Revise a configuración do resolvente e inténteo de novo."
 
 #: step/mainwindow.cc:500
@@ -750,14 +750,14 @@ msgid ""
 "resolved automatically.\n"
 "Please move colliding objects apart and try again."
 msgstr ""
-"Non se pode rematar este paso debido a que hai colisións que non poden ser "
+"Non é posíbel rematar este paso debido a que hai colisións que non poden ser "
 "resoltas automaticamente.\n"
 "Aparte os obxectos que choquen e inténteo de novo."
 
 #: step/mainwindow.cc:504
 #, kde-format
 msgid "Cannot finish this step because of an unknown error."
-msgstr "Non se pode rematar con este paso debido a un erro descoñecido."
+msgstr "Non é posíbel rematar con este paso debido a un erro descoñecido."
 
 #: step/mainwindow.cc:537
 #, kde-format
@@ -1070,7 +1070,7 @@ msgstr "Imaxes (*.png *.jpg *.jpeg)"
 #: step/toolgraphics.cc:649
 #, kde-format
 msgid "Cannot parse file '%1'"
-msgstr "Non se pode procesar o ficheiro «%1»"
+msgstr "Non é posíbel procesar o ficheiro «%1»"
 
 #: step/toolgraphics.cc:693
 #, kde-format
@@ -1078,8 +1078,8 @@ msgid ""
 "Cannot find latex installation. You need 'latex', 'dvips' and 'gs' "
 "executables installed and accessible from $PATH"
 msgstr ""
-"Non se pode atopar a instalación de LaTex. Debe ter instalados os programas "
-"«latex», «dvips» e «gs» e seren accesíbeis desde $PATH"
+"Non é posíbel atopar a instalación de LaTex. Debe ter instalados os "
+"programas «latex», «dvips» e «gs» e seren accesíbeis desde $PATH"
 
 #: step/toolgraphics.cc:699
 #, kde-format
@@ -1095,12 +1095,12 @@ msgstr "Insira a cadea da fórmula de LaTex:"
 #: step/toolgraphics.cc:709
 #, kde-format
 msgid "Cannot compile LaTeX formula: %1"
-msgstr "Non se pode compilar a fórmula de LaTeX: %1"
+msgstr "Non é posíbel compilar a fórmula de LaTeX: %1"
 
 #: step/toolgraphics.cc:715
 #, kde-format
 msgid "Cannot parse result image"
-msgstr "Non se pode procesar a imaxe resultado"
+msgstr "Non é posíbel procesar a imaxe resultado"
 
 #: step/toolgraphics.cc:776
 #, kde-format
