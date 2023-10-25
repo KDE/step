@@ -714,7 +714,7 @@ msgstr ""
 #: step/mainwindow.cc:452
 #, kde-format
 msgid "Uploading is still not implemented in kdelibs."
-msgstr "La pujada encara no està implementada en kdelibs."
+msgstr "La pujada encara no està implementada en la kdelibs."
 
 #: step/mainwindow.cc:453
 #, kde-format
