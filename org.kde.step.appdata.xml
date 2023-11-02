@@ -101,7 +101,7 @@
     <p xml:lang="pl">Krok jest interaktywnym symulatorem fizyki. Umożliwia poznawanie świata fizycznego poprzez symulacje. Działa w następujący sposób: umieszczasz jakieś bryły na scenie, dodajesz jakieś siły jako grawitacja lub sprężyny, a następnie naciskasz na Symulacja i Krok pokaże jak scena się zmieni według praw fizyki. Można zmienić każdą właściwość brył/sił w eksperymencie (nawet podczas symulacji) i zobaczyć jak zmieni się przebieg eksperymentu. Dzięki Krokowi nie tylko można się nauczyć, ale także poczuć jak działa fizyka!</p>
     <p xml:lang="pt">O Step é um simulador de física interactiva. Permite-lhe explorar o mundo da física através de simulações. Funciona da seguinte forma: poderá colocar alguns corpos na cena, adicionar algumas forças, como a gravidade ou algumas molas, e depois carregar em Simular ou Passo, que lhe mostra como a sua cena irá evoluir de acordo com as leis da física. Poderá mudar todas as propriedades dos corpos/forças da sua experiência (mesmo durante a simulação) e ver como isto irá mudar a evolução da experiência. Com o Passo, poderá não só aprender como também sentir como funciona a física!</p>
     <p xml:lang="pt-BR">Step é um simulador de física interativo. Permite-lhe explorar o mundo da física através de simulações. Funciona da seguinte forma: Você coloca alguns corpos no cenário, adiciona algumas forças como a gravidade ou molas e então clica em Simular, para que o Step lhe mostre como o seu cenário irá evoluir de acordo com as leis da física. Você poderá alterar qualquer propriedade dos corpos/forças da sua experiência (inclusive durante a simulação) para ver como isso irá mudar a evolução da experiência. Com o Step você poderá não só aprender, mas também sentir como funciona a física!</p>
-    <p xml:lang="ru">Step — это интерактивный симулятор физических процессов. Он позволяет изучать физические явления с помощью их имитации. Пользователь располагает в исследовательской области (сцене) некоторые тела, включает силы (гравитационные силы и силы натяжения от пружин), а потом нажимает кнопку «Симулировать», — Step покажет, как согласно законам физики будут развиваться события в построенной пользователем системе. Возможно менять все свойства тел или сил в эксперименте (даже во время симуляции), чтобы увидеть, как такие изменения влияют на ход эксперимента. Step поможет не просто изучить физику, а прочувствовать, как работают физические законы.</p>
+    <p xml:lang="ru">Step — это интерактивный симулятор физических процессов. Он позволяет изучать физические явления с помощью их имитации. Чтобы это сделать, необходимо расположить в исследовательской области (сцене) некоторые тела, включить силы (гравитационные силы и силы натяжения от пружин), а затем нажать кнопку «Симулировать»: Step покажет, как согласно законам физики будут развиваться события в построенной системе. Возможно менять все свойства тел или сил в эксперименте (даже во время симуляции), чтобы увидеть, как такие изменения влияют на ход эксперимента. Step поможет не просто изучить физику, а прочувствовать, как работают физические законы.</p>
     <p xml:lang="sk">Step je interaktívny fyzikálny simulátor. Umožňuje vám objaviť fyzikálny svet cez simulácie. Funguje takto: umiestnite nejaké telesá na scénu, pridáte nejaké sily ako gravitáciu alebo pružiny, potom kliknete na Simulácia a Step vám ukáže, ako sa vaša scéna bude vyvíjať podľa zákonov fyziky. Môžete zmeniť každú vlastnosť telies/síl vo vašom experimente (aj  počas simulácie) a vidieť, ako to zmení vývoj experimentu. S programom Step sa nielen učíte, ale aj cítite, ako fyzika funguje!</p>
     <p xml:lang="sl">Step je interaktivni fizikalni simulator. Omogoča vam raziskovati svet fizike preko simulacij. Deluje pa na naslednji način: v sceno postavite nekaj teles ter dodate sile kot npr. težnost ali vzmeti. Nato kliknete na Simuliraj in Step vam pokaže, kako bi se scena odvila glede na fizikalne zakone. V poskusu lahko spremenite katerokoli lastnost teles/sil (celo med simulacijo) in si ogledate, kako bi to vplivalo na razvoj poskusa. S programom Step se ne le naučite, ampak tudi občutite kako fizikalni zakoni delujejo!</p>
     <p xml:lang="sv">Step är en interaktiv fysiksimulator. Den låter dig utforska den fysiska värden genom simuleringar. Den fungerar så här: Du placerar några kroppar i diagrammet, lägger till några krafter som gravitation eller fjädrar, och klickar därefter på Simulera så visar Step dig hur diagrammet förändras enligt fysikens lagar. Du kan ändra alla egenskaper hos kropparna och krafterna i experimentet (till och med under simuleringen) och se hur det påverkar experimentets förlopp. Med Step kan du inte bara lära dig hur fysiken fungerar, utan också få en känsla för det.</p>
@@ -172,7 +172,7 @@
       <li xml:lang="pl">Klasyczna symulacja mechaniczna w dwóch wymiarach</li>
       <li xml:lang="pt">Simulação mecânica clássica a duas dimensões</li>
       <li xml:lang="pt-BR">Simulação mecânica clássica em duas dimensões</li>
-      <li xml:lang="ru">Имитация классического механического взаимодействия в двух  измерениях</li>
+      <li xml:lang="ru">Имитация классического механического взаимодействия в двух измерениях</li>
       <li xml:lang="sk">Simulácie klasickej mechaniky v dvoch rozmeroch</li>
       <li xml:lang="sl">Klasične mehanske simulacije v dveh dimenzijah</li>
       <li xml:lang="sv">Simulering av klassisk mekanik i två dimensioner</li>
@@ -204,7 +204,7 @@
       <li xml:lang="pl">Cząstki, sprężyny z tłumieniem, siły grawitacyjne i kulombowskie</li>
       <li xml:lang="pt">Partículas, molas com forças potenciais, gravíticas e de Coulomb</li>
       <li xml:lang="pt-BR">Partículas, molas com forças potenciais, gravitacionais e de Coulomb</li>
-      <li xml:lang="ru">Частицы, пружины с диссипацией, гравитационные и электростатические силы</li>
+      <li xml:lang="ru">Частицы, пружины с вязкостью, гравитационные и электростатические силы</li>
       <li xml:lang="sk">Častice, pružiny s tlakom, gravitačné a coulombove sily</li>
       <li xml:lang="sl">Delci, vzmeti z dušenjem, težnostne in električne sile</li>
       <li xml:lang="sv">Partiklar, dämpade fjädrar, gravitationskrafter och coulombkrafter</li>
@@ -299,7 +299,7 @@
       <li xml:lang="pl">Miękkie (odkształcalne) bryły symulowane jako systemy cząsteczek-sprężyn edytowanych przez użytkownika, fale dźwiękowe</li>
       <li xml:lang="pt">Corpos suaves (deformáveis) simulados como um sistema de partículas-ondas editáveis pelo utilizador, ondas sonoras</li>
       <li xml:lang="pt-BR">Corpos suaves (deformáveis) simulados como um sistema de partículas-ondas editáveis pelo usuário, ondas sonoras</li>
-      <li xml:lang="ru">Мягкие (деформируемые) тела, моделируемые как системы частиц, задаваемые пользователем, звуковые волны</li>
+      <li xml:lang="ru">Мягкие (деформируемые) тела имитируются как система из частиц и пружин с возможностью изменения её параметров, звуковые волны</li>
       <li xml:lang="sk">Mäkké (deformovateľné) telesá simulované ako používateľom upraviteľné systémy častíc-pružín, zvukové vlny</li>
       <li xml:lang="sl">Simulacija mehkih teles kot sistem delcev/vzmeti, ki jih lahko uredi uporabnik; zvočni valovi</li>
       <li xml:lang="sv">Mjuka (deformerbara) kroppar simulerade som system med partiklar och fjädrar redigerbara av användaren, ljudvågor</li>
@@ -330,7 +330,7 @@
       <li xml:lang="pl">Dynamika molekularna (obecnie przy użyciu potencjału Lennard-Jones): gaz i ciecz, kondensacja i parowanie, obliczanie wielkości makroskopowych i ich wariancji</li>
       <li xml:lang="pt">Dinâmica molecular (usando o potencial de Lennard-Jones de momento): gases e líquidos, condensação e evaporação, cálculo de quantidades macroscópicas e as suas variâncias</li>
       <li xml:lang="pt-BR">Dinâmica molecular (usando o potencial de Lennard-Jones atualmente): gases e líquidos, condensação e evaporação, cálculo de quantidades macroscópicas e as suas variâncias</li>
-      <li xml:lang="ru">Молекулярная динамика (на данный момент используется потенциал Леннард-Джонса, также известный как потенциал 6-12): газы и жидкости, конденсация и испарение, вычисление значений термодинамических величин и их изменений</li>
+      <li xml:lang="ru">Молекулярная динамика (в текущей версии используется потенциал Леннард-Джонса): газы и жидкости, конденсация и испарение, вычисление значений термодинамических величин и их изменений</li>
       <li xml:lang="sk">Molekulárna dynamika (aktuálne používa Lennardov-Jonesov potenciál): plyn a kvapalina, kondenzácia a vyparovanie, výpočet makroskopických kvantít a ich odchýliek</li>
       <li xml:lang="sl">Molekulska dinamika (trenutno uporablja Lennard-Jonesov potencial): plini in tekočine, kondenzacija in izparevanje, izračun makroskopskih količin in njihovih varianc</li>
       <li xml:lang="sv">Molekyldynamik (för närvarande med användning av Lennard-Jones potentialen): gaser och vätskor, kondensering och avdunstning, beräkning av makroskopiska kvantiteter och deras varians</li>
@@ -424,7 +424,7 @@
       <li xml:lang="pl">Oszacowanie błędu solvera: błędy wprowadzone przez solver są obliczane i dodawane do błędów podanych przez użytkownika</li>
       <li xml:lang="pt">Estimativa do erro da resolução: os erros introduzidos pela resolução são calculados e adicionados aos erros introduzidos pelo utilizador</li>
       <li xml:lang="pt-BR">Estimativa do erro da resolução: os erros introduzidos pela resolução são calculados e adicionados aos erros adicionados pelo usuário</li>
-      <li xml:lang="ru">Вычислитель погрешностей при решении уравнений: программа рассчитывает погрешности вычислений и складывает их с погрешностями, введёнными пользователем</li>
+      <li xml:lang="ru">Расчёт погрешностей вычислителя: программа рассчитывает погрешности вычислений и складывает их с погрешностями, введёнными пользователем</li>
       <li xml:lang="sk">Odhad chýb riešiteľa: chyby spôsobené riešiteľom sa počítajú a pridávajú do používateľom zadaných chýb</li>
       <li xml:lang="sl">Ocena napake reševalnika: napake, ki so posledica računanja reševalnika, se izračunajo in dodajo k uporabniško vnesenim napakam</li>
       <li xml:lang="sv">Feluppskattning av evalueringsenheten: fel som införs av evalueringsenheten beräknas och läggs till användarinmatade fel</li>
@@ -520,7 +520,7 @@
       <li xml:lang="pl">Narzędzia do wizualizacji wyników: wykres, miara, wskaźnik</li>
       <li xml:lang="pt">Ferramentas para visualização dos resultados: gráficos, medidores, impressão</li>
       <li xml:lang="pt-BR">Ferramentas para visualização dos resultados: gráficos, medidores, impressão</li>
-      <li xml:lang="ru">Средства визуализации результатов: графики, измерители, траектории</li>
+      <li xml:lang="ru">Средства визуализации результатов: график, измеритель, траектория</li>
       <li xml:lang="sk">Nástroje na vizualizáciu výsledkov: graf, meter, stopár</li>
       <li xml:lang="sl">Orodja za prikaz rezultatov: graf, merilnik, sledilnik</li>
       <li xml:lang="sv">Verktyg för att åskådliggöra resultat: grafer, mätare, spår</li>
