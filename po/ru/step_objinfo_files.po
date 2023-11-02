@@ -9,8 +9,8 @@ msgstr ""
 "Project-Id-Version: step\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2022-10-26 00:42+0000\n"
-"PO-Revision-Date: 2023-04-21 16:55+0300\n"
-"Last-Translator: Olesya Gerasimenko <translation-team@basealt.ru>\n"
+"PO-Revision-Date: 2023-11-01 14:31+0300\n"
+"Last-Translator: Мария Шикунова <translation-team@basealt.ru>\n"
 "Language-Team: Basealt Translation Team\n"
 "Language: ru\n"
 "MIME-Version: 1.0\n"
@@ -18,13 +18,13 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=4; plural=n==1 ? 3 : n%10==1 && n%100!=11 ? 0 : n"
 "%10>=2 && n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2;\n"
-"X-Generator: Lokalize 22.12.3\n"
+"X-Generator: Lokalize 23.04.3\n"
 
 #: objectinfo/anchor.html:6
 #, kde-format
 msgctxt "anchor.html:title"
 msgid "Anchor"
-msgstr "Фиксатор"
+msgstr "Якорь"
 
 #: objectinfo/anchor.html:9
 #, kde-format
@@ -33,7 +33,7 @@ msgid ""
 "Anchor is a joint that fixes position of the body. The body can not move "
 "when it has an anchor."
 msgstr ""
-"Фиксатор закрепляет положение тела. Тело не может двигаться, если оно "
+"Якорь закрепляет положение тела. Тело не может двигаться, если оно "
 "зафиксировано."
 
 #: objectinfo/box.html:6
@@ -76,10 +76,9 @@ msgid ""
 "\t</ul>"
 msgstr ""
 "<ul>\n"
-"\t\t<li><b>позиция:</b> координаты центра масс блока относительно центра <a "
-"href=\"objinfo:World\">мира</a>;</li>\n"
-"\t\t<li><b>угол поворота:</b> величина угла поворота блока по часовой "
-"стрелке;</li>\n"
+"\t\t<li><b>позиция:</b> X/Y координаты центра масс блока относительно центра "
+"<a href=\"objinfo:World\">мира</a>;</li>\n"
+"\t\t<li><b>угол:</b> величина угла поворота блока по часовой стрелке;</li>\n"
 "\t\t<li><b>скорость:</b> скорость центра масс блока (метры в секунду);</li>\n"
 "\t\t<li><b>угловая скорость:</b> скорость, с которой блок вращается по "
 "часовой стрелке;</li>\n"
@@ -110,8 +109,8 @@ msgid ""
 "A zero-sized particle which carries an electric charge. It has a unique name "
 "and five parameters:"
 msgstr ""
-"Точечная частица, переносящая электрический заряд. Имеет уникальное имя и "
-"пять параметров:"
+"Частица с нулевым размером, переносящая электрический заряд. Имеет "
+"уникальное имя и пять параметров:"
 
 #: objectinfo/chargedparticle.html:16
 #, kde-format
@@ -257,9 +256,10 @@ msgid ""
 "a>. Associated with the gas is a <a href=\"objinfo:GasLJForce\">force</a>. "
 "To add gas particles right-click the gas and click on \"Create particles\"."
 msgstr ""
-"Газ — это совокупность <a href=\"objinfo:GasParticle\">частиц</a>. С газом "
-"ассоциируется <a href=\"objinfo:GasLJForce\">сила</a>. Чтобы добавить "
-"частицы, нажмите правой кнопкой по газу и выберите «Создать частицы»."
+"Газ — это совокупность <a href=\"objinfo:GasParticle\">частиц</a>. Одна из "
+"характеристик газа — <a href=\"objinfo:GasLJForce\">сила</a>. Чтобы добавить "
+"частицы, щёлкните правой кнопкой мыши по области газа и в открывшемся "
+"контекстном меню выберите пункт «Создать частицы»."
 
 #: objectinfo/gas.html:10
 #, kde-format
@@ -319,7 +319,7 @@ msgid ""
 "some rough estimation."
 msgstr ""
 "Эти параметры являются условными и, как правило, получаются экспериментально "
-"или грубо оцениваются."
+"или посредством грубой оценки."
 
 #: objectinfo/gasparticle.html:6
 #, kde-format
@@ -367,7 +367,7 @@ msgstr ""
 #, kde-format
 msgctxt "gravitationforce.html:title"
 msgid "Gravitation Force"
-msgstr "Сила гравитации"
+msgstr "Сила тяжести"
 
 #: objectinfo/gravitationforce.html:9
 #, kde-format
@@ -376,8 +376,8 @@ msgid ""
 "Gravitational force is an attractive force that act between bodies having "
 "mass."
 msgstr ""
-"Сила гравитации — сила притяжения, возникающая в результате взаимодействия "
-"двух тел, обладающих массой."
+"Сила тяжести возникает в результате взаимодействия двух тел, обладающих "
+"массой."
 
 #: objectinfo/gravitationforce.html:10
 #, kde-format
@@ -421,7 +421,7 @@ msgid ""
 "wiki/Gravitation\">Gravitation Force</a>."
 msgstr ""
 "Более подробная информация: <a href=\"https://ru.wikipedia.org/wiki/"
-"Гравитация\">Сила гравитации</a>."
+"Гравитация\">Сила притяжения</a>."
 
 #: objectinfo/linearmotor.html:6
 #, kde-format
@@ -441,8 +441,7 @@ msgctxt "linearmotor.html:p"
 msgid ""
 "You can set the desired linear force for an object by changing the force "
 "value in the properties browser."
-msgstr ""
-"Возможно приложить любую силу к телу, изменив значение силы в свойствах."
+msgstr "Чтобы приложить любую силу к телу, измените значение силы в свойствах."
 
 #: objectinfo/meter.html:6
 #, kde-format
@@ -457,8 +456,8 @@ msgid ""
 "A meter can show you values of properties. The meter can be configured to "
 "show property of any given object of the simulation."
 msgstr ""
-"Измеритель показывает характеристики объекта. Измеритель также может "
-"показывать информацию о любом объекте."
+"Измеритель показывает характеристики объекта. Он также может показывать "
+"информацию о любом объекте."
 
 #: objectinfo/note.html:6
 #, kde-format
@@ -569,8 +568,8 @@ msgstr ""
 "<ul>\n"
 "\t\t<li><b>позиция:</b> координаты центра масс многоугольника относительно "
 "центра <a href=\"objinfo:World\">мира</a>;</li>\n"
-"\t\t<li><b>угол поворота:</b> величина угла поворота многоугольника по "
-"часовой стрелке;</li>\n"
+"\t\t<li><b>угол:</b> величина угла поворота многоугольника по часовой "
+"стрелке;</li>\n"
 "\t\t<li><b>скорость:</b> скорость центра масс многоугольника (м/с);</li>\n"
 "\t\t<li><b>угловая скорость:</b> скорость, с которой многоугольник вращается "
 "по часовой стрелке;</li>\n"
@@ -606,7 +605,7 @@ msgid ""
 msgstr ""
 "Мягкое тело — это совокупность <a href=\"objinfo:particle\">частиц</a>, "
 "соединённых <a href=\"objinfo:spring\">пружинами</a>. Может использоваться "
-"для моделирования <a href=\"https://ru.wikipedia.org/wiki/Упругость"
+"для моделирования <a href=\"https://ru.wikipedia.org/wiki/Упругость_"
 "\">эластичного</a> или вязкоэластичного тела."
 
 #: objectinfo/spring.html:6
@@ -652,8 +651,8 @@ msgstr ""
 "\t\t<li><b>длина:</b> начальная длина пружины;</li>\n"
 "\t\t<li><b>жёсткость:</b> степень сопротивления пружины сжатию или "
 "растяжению;</li>\n"
-"\t\t<li><b>демпфирование:</b> степень способности пружины рассеивать "
-"запасаемую энергию, внутренняя вязкость;</li>\n"
+"\t\t<li><b>вязкость:</b> степень способности пружины рассеивать запасаемую "
+"энергию, внутренняя вязкость;</li>\n"
 "\t\t<li><b>тела 1 и 2:</b> тела, к которым прикреплена пружина;</li>\n"
 "\t\t<li><b>относительные позиции 1 и 2:</b> координаты концов пружины "
 "относительно её центра в недеформированном состоянии;</li>\n"
