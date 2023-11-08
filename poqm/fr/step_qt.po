@@ -8,7 +8,7 @@
 # Stanislas Zeller <uncensored.assault@gmail.com>, 2008.
 # Sébastien Renard <Sebastien.Renard@digitalfox.org>, 2008.
 # Olivier Delaune <olivier.delaune@wanadoo.fr>, 2008, 2009.
-# xavier <xavier.besnard@neuf.fr>, 2012, 2013.
+# SPDX-FileCopyrightText: 2012, 2013, 2023 xavier <xavier.besnard@neuf.fr>
 # Simon Depiets <sdepiets@gmail.com>, 2018, 2019.
 # Xavier BESNARD <xavier.besnard@neuf.fr>, 2023.
 #
@@ -18,8 +18,8 @@ msgstr ""
 "Project-Id-Version: step_qt\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2016-06-22 08:50+0000\n"
-"PO-Revision-Date: 2023-01-20 18:59+0100\n"
-"Last-Translator: Xavier BESNARD <xavier.besnard]neuf.fr>\n"
+"PO-Revision-Date: 2023-11-06 14:20+0100\n"
+"Last-Translator: Xavier BESNARD <xavier.besnard@neuf.fr>\n"
 "Language-Team: fr\n"
 "Language: fr\n"
 "MIME-Version: 1.0\n"
@@ -29,7 +29,7 @@ msgstr ""
 "X-Environment: kde\n"
 "X-Accelerator-Marker: &\n"
 "X-Text-Markup: qtrich\n"
-"X-Generator: Lokalize 22.12.1\n"
+"X-Generator: Lokalize 23.08.2\n"
 "X-Qt-Contexts: true\n"
 
 #: body.cc:13
@@ -631,7 +631,7 @@ msgstr "Résolveur adaptatif « GSL »"
 #: gslsolver.cc:26
 msgctxt "ObjectClass|"
 msgid "GslRK2Solver"
-msgstr "RésolveurRK2Gsl"
+msgstr "RésolveurRK2GSL"
 
 #: gslsolver.cc:26
 msgctxt "ObjectDescription|"
@@ -641,7 +641,7 @@ msgstr "Résolveur « Runge-Kutta » au deuxième ordre de la bibliothèque «
 #: gslsolver.cc:28
 msgctxt "ObjectClass|"
 msgid "GslAdaptiveRK2Solver"
-msgstr "RésolveurRK2AdaptatifGsl"
+msgstr "RésolveurRK2AdaptatifGSL"
 
 #: gslsolver.cc:28
 msgctxt "ObjectDescription|"
@@ -653,7 +653,7 @@ msgstr ""
 #: gslsolver.cc:31
 msgctxt "ObjectClass|"
 msgid "GslRK4Solver"
-msgstr "RésolveurRK4Gsl"
+msgstr "RésolveurRK4GSL"
 
 #: gslsolver.cc:31
 msgctxt "ObjectDescription|"
@@ -665,7 +665,7 @@ msgstr ""
 #: gslsolver.cc:33
 msgctxt "ObjectClass|"
 msgid "GslAdaptiveRK4Solver"
-msgstr "RésolveurRK4AdaptatifGsl"
+msgstr "RésolveurRK4AdaptatifGSL"
 
 #: gslsolver.cc:33
 msgctxt "ObjectDescription|"
@@ -677,7 +677,7 @@ msgstr ""
 #: gslsolver.cc:36
 msgctxt "ObjectClass|"
 msgid "GslRKF45Solver"
-msgstr "RésolveurRKF45Gsl"
+msgstr "RésolveurRKF45GSL"
 
 #: gslsolver.cc:36
 msgctxt "ObjectDescription|"
@@ -687,7 +687,7 @@ msgstr "Résolveur « Runge-Kutta-Fehlberg » (4,5) de la bibliothèque « GS
 #: gslsolver.cc:38
 msgctxt "ObjectClass|"
 msgid "GslAdaptiveRKF45Solver"
-msgstr "RésolveurRKF45AdaptatifGsl"
+msgstr "RésolveurRKF45AdaptatifGSL"
 
 #: gslsolver.cc:38
 msgctxt "ObjectDescription|"
@@ -720,7 +720,7 @@ msgstr ""
 #: gslsolver.cc:46
 msgctxt "ObjectClass|"
 msgid "GslRK8PDSolver"
-msgstr "RésolveurRK8PDGsl"
+msgstr "RésolveurRK8PDGSL"
 
 #: gslsolver.cc:46
 msgctxt "ObjectDescription|"
@@ -731,7 +731,7 @@ msgstr ""
 #: gslsolver.cc:48
 msgctxt "ObjectClass|"
 msgid "GslAdaptiveRK8PDSolver"
-msgstr "RésolveurRK8PDAdaptatifGsl"
+msgstr "RésolveurRK8PDAdaptatifGSL"
 
 #: gslsolver.cc:48
 msgctxt "ObjectDescription|"
@@ -743,7 +743,7 @@ msgstr ""
 #: gslsolver.cc:51
 msgctxt "ObjectClass|"
 msgid "GslRK2IMPSolver"
-msgstr "RésolveurRK2IMPGsl"
+msgstr "RésolveurRK2IMPGSL"
 
 #: gslsolver.cc:51
 msgctxt "ObjectDescription|"
@@ -755,7 +755,7 @@ msgstr ""
 #: gslsolver.cc:53
 msgctxt "ObjectClass|"
 msgid "GslAdaptiveRK2IMPSolver"
-msgstr "RésolveurRK2IMPAdaptatifGsl"
+msgstr "RésolveurRK2IMPAdaptatifGSL"
 
 #: gslsolver.cc:53
 msgctxt "ObjectDescription|"
@@ -767,7 +767,7 @@ msgstr ""
 #: gslsolver.cc:56
 msgctxt "ObjectClass|"
 msgid "GslRK4IMPSolver"
-msgstr "RésolveurRK4IMPGsl"
+msgstr "RésolveurRK4IMPGSL"
 
 #: gslsolver.cc:56
 msgctxt "ObjectDescription|"
@@ -779,7 +779,7 @@ msgstr ""
 #: gslsolver.cc:58
 msgctxt "ObjectClass|"
 msgid "GslAdaptiveRK4IMPSolver"
-msgstr "RésolveurRK4IMPAdaptatifGsl"
+msgstr "RésolveurRK4IMPAdaptatifGSL"
 
 #: gslsolver.cc:58
 msgctxt "ObjectDescription|"
@@ -1946,7 +1946,7 @@ msgstr "Axe X : objet"
 #: tool.cc:35
 msgctxt "PropertyName|"
 msgid "objectX"
-msgstr "objetX"
+msgstr "ObjetX"
 
 #: tool.cc:36
 msgctxt "PropertyDescription|"
@@ -1976,7 +1976,7 @@ msgstr "Axe Y : objet"
 #: tool.cc:38
 msgctxt "PropertyName|"
 msgid "objectY"
-msgstr "objetY"
+msgstr "ObjetY"
 
 #: tool.cc:39
 msgctxt "PropertyDescription|"
