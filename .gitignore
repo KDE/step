@@ -1,12 +1,11 @@
-# Ignore build directory
-build*/
-
-# Ignore IDE project files
+# Ignore the following files
 .kdev4/
-step.kdev4
+*.kdev4
+/build*/
+CMakeLists.txt.user*
 /.clang-format
 /compile_commands.json
 .clangd
-.cache
 .idea
 /cmake-build*
+.cache
