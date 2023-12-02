@@ -121,7 +121,10 @@ template<> inline Vector2dList stringToType(const QString& s, bool *ok)
     Vector2dList ret;
     if(ok) *ok = false;
     QString s1 = s.trimmed();
-    if (s1.isEmpty()) return ret;
+    if (s1.isEmpty()) {
+        if(ok) *ok = true;
+        return ret;
+    }
     //if(!s1.startsWith('(') || !s1.endsWith(')')) return ret;
     //s1 = s1.mid(1, s1.size()-2).trimmed();
     while(s1[0] == '(' && s1.contains(')')) {
