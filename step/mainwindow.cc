@@ -312,6 +312,11 @@ bool MainWindow::openFile(const QUrl& url, const QUrl& startUrl)
     newFile();
 
     QFile file(fileUrl.path());
+
+    if(!file.open(QIODevice::ReadOnly | QIODevice::Text)) {
+        KMessageBox::error(this, i18n("Cannot open file '%1'", file.fileName()));
+        return false;
+    }
     
     if(!worldModel->loadXml(&file)) {
         KMessageBox::error(this, i18n("Cannot parse file '%1': %2", fileUrl.url(QUrl::PreferLocalFile),

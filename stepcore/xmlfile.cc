@@ -180,6 +180,8 @@ StepDomDocument::StepDomDocument(World* world, const StepCore::Factory* factory)
 
 bool StepDomDocument::parse(QIODevice* device)
 {
+    Q_ASSERT(device->isOpen() && device->isReadable());
+
     if (!_document.setContent(device, &_errorMsg, &_errorLine, &_errorCount)) {
         return false;
     }
