@@ -2326,54 +2326,54 @@ msgctxt "PropertyDescription|"
 msgid "Enable global error calculation"
 msgstr "Activer le calcul de l'erreur globale"
 
-#: xmlfile.cc:189
+#: xmlfile.cc:191
 msgctxt "QObject|"
 msgid "The file is not a StepCoreXML file."
 msgstr "Le fichier n'est pas au format « SetCoreXML »."
 
-#: xmlfile.cc:235
+#: xmlfile.cc:237
 #, qt-format
 msgctxt "QObject|"
 msgid "Unknown item type \"%1\""
 msgstr "Le type d'objet « %1 » est inconnu"
 
-#: xmlfile.cc:256
+#: xmlfile.cc:258
 #, qt-format
 msgctxt "QObject|"
 msgid "Unknown solver type \"%1\""
 msgstr "Le type de résolveur « %1 » est inconnu"
 
-#: xmlfile.cc:270
+#: xmlfile.cc:272
 #, qt-format
 msgctxt "QObject|"
 msgid "Unknown collisionSolver type \"%1\""
 msgstr "Le type de résolveur de collisions « %1 » est inconnu"
 
-#: xmlfile.cc:284
+#: xmlfile.cc:286
 #, qt-format
 msgctxt "QObject|"
 msgid "Unknown constraint solver type \"%1\""
 msgstr "Le type de résolveur de contraintes « %1 » est inconnu"
 
-#: xmlfile.cc:312
+#: xmlfile.cc:314
 #, qt-format
 msgctxt "QObject|"
 msgid "Wrong ID attribute value for %1"
 msgstr "Attribut d'identifiant non valable pour %1"
 
-#: xmlfile.cc:317
+#: xmlfile.cc:319
 #, qt-format
 msgctxt "QObject|"
 msgid "Non-unique ID attribute value for %1"
 msgstr "Attribut d'identifiant non unique pour %1"
 
-#: xmlfile.cc:345 xmlfile.cc:359
+#: xmlfile.cc:347 xmlfile.cc:361
 #, qt-format
 msgctxt "QObject|"
 msgid "Property \"%1\" of \"%2\" has illegal value"
 msgstr "La propriété « %1 » de « %2 » a une valeur incorrecte"
 
-#: xmlfile.cc:372
+#: xmlfile.cc:374
 msgctxt "QObject|"
 msgid "File is not writable."
 msgstr "Le fichier n'est pas accessible en écriture."

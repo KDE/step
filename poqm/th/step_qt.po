@@ -3109,61 +3109,61 @@ msgctxt "PropertyDescription|"
 msgid "Enable global error calculation"
 msgstr "เปิดใช้งานการคำนวณค่าความคลาดเคลื่อนรวม"
 
-#: xmlfile.cc:189
+#: xmlfile.cc:191
 #, fuzzy
 #| msgid "The file is not a StepCoreXML file."
 msgctxt "QObject|"
 msgid "The file is not a StepCoreXML file."
 msgstr "แฟ้มนี้ไม่ใช่แฟ้ม StepCoreXML"
 
-#: xmlfile.cc:235
+#: xmlfile.cc:237
 #, fuzzy, qt-format
 #| msgid "Unknown item type \"%1\""
 msgctxt "QObject|"
 msgid "Unknown item type \"%1\""
 msgstr "ไม่รู้จักประเภทรายการ \"%1\""
 
-#: xmlfile.cc:256
+#: xmlfile.cc:258
 #, fuzzy, qt-format
 #| msgid "Unknown solver type \"%1\""
 msgctxt "QObject|"
 msgid "Unknown solver type \"%1\""
 msgstr "ไม่รู้จักชนิดตัวแก้ \"%1\""
 
-#: xmlfile.cc:270
+#: xmlfile.cc:272
 #, fuzzy, qt-format
 #| msgid "Unknown collisionSolver type \"%1\""
 msgctxt "QObject|"
 msgid "Unknown collisionSolver type \"%1\""
 msgstr "ชนิดของตัวแก้การชนที่ไม่รู้จัก \"%1\""
 
-#: xmlfile.cc:284
+#: xmlfile.cc:286
 #, fuzzy, qt-format
 #| msgid "Unknown collisionSolver type \"%1\""
 msgctxt "QObject|"
 msgid "Unknown constraint solver type \"%1\""
 msgstr "ชนิดของตัวแก้การชนที่ไม่รู้จัก \"%1\""
 
-#: xmlfile.cc:312
+#: xmlfile.cc:314
 #, qt-format
 msgctxt "QObject|"
 msgid "Wrong ID attribute value for %1"
 msgstr ""
 
-#: xmlfile.cc:317
+#: xmlfile.cc:319
 #, qt-format
 msgctxt "QObject|"
 msgid "Non-unique ID attribute value for %1"
 msgstr ""
 
-#: xmlfile.cc:345 xmlfile.cc:359
+#: xmlfile.cc:347 xmlfile.cc:361
 #, fuzzy, qt-format
 #| msgid "Property \"%1\" of \"%2\" has illegal value"
 msgctxt "QObject|"
 msgid "Property \"%1\" of \"%2\" has illegal value"
 msgstr "คุณสมบัติ \"%1\" ของ \"%2\" มีค่าไม่ถูกต้อง"
 
-#: xmlfile.cc:372
+#: xmlfile.cc:374
 #, fuzzy
 #| msgid "File is not writable."
 msgctxt "QObject|"

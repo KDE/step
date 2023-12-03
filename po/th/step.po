@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2023-11-05 12:24+0000\n"
+"POT-Creation-Date: 2023-12-03 00:39+0000\n"
 "PO-Revision-Date: 2011-05-12 22:36+0700\n"
 "Last-Translator: Phuwanat Sakornsakolpat <narachai@gmail.com>\n"
 "Language-Team: Thai <thai-l10n@googlegroups.com>\n"
@@ -395,7 +395,7 @@ msgid ""
 msgstr ""
 "คุณกำลังจะสร้างอนุภาคจำนวนมหาศาล ซึ่งจะทำให้การจำลองช้ามาก ต้องการดำเนินการต่อไปหรือไม่?"
 
-#: step/gasgraphics.cc:354 step/mainwindow.cc:401
+#: step/gasgraphics.cc:354 step/mainwindow.cc:406
 #, kde-format
 msgid "Warning - Step"
 msgstr "คำเตือน - Step"
@@ -671,39 +671,39 @@ msgctxt "@title:window"
 msgid "Open Step File"
 msgstr ""
 
-#: step/mainwindow.cc:307 step/mainwindow.cc:337
+#: step/mainwindow.cc:307 step/mainwindow.cc:342
 #, fuzzy, kde-format
 #| msgid "*.step|Step files (*.step)"
 msgid "Step files (*.step)"
 msgstr "*.step|แฟ้มของ Step (*.step)"
 
-#: step/mainwindow.cc:317
+#: step/mainwindow.cc:317 step/mainwindow.cc:358
+#, kde-format
+msgid "Cannot open file '%1'"
+msgstr "ไม่สามารถเปิดแฟ้ม '%1' ได้"
+
+#: step/mainwindow.cc:322
 #, kde-format
 msgid "Cannot parse file '%1': %2"
 msgstr "ไม่สามารถแจงแฟ้ม '%1': %2"
 
-#: step/mainwindow.cc:326
+#: step/mainwindow.cc:331
 #, kde-format
 msgid "<open file: %1>"
 msgstr "<เปิดแฟ้ม: %1>"
 
-#: step/mainwindow.cc:337
+#: step/mainwindow.cc:342
 #, kde-format
 msgctxt "@title:window"
 msgid "Save Step File"
 msgstr ""
 
-#: step/mainwindow.cc:353
-#, kde-format
-msgid "Cannot open file '%1'"
-msgstr "ไม่สามารถเปิดแฟ้ม '%1' ได้"
-
-#: step/mainwindow.cc:359
+#: step/mainwindow.cc:364
 #, kde-format
 msgid "Cannot save file '%1': %2"
 msgstr "ไม่สามารถบันทกแฟ้ม '%1': %2"
 
-#: step/mainwindow.cc:400
+#: step/mainwindow.cc:405
 #, kde-format
 msgid ""
 "The experiment has been modified.\n"
@@ -712,27 +712,27 @@ msgstr ""
 "มีการแก้ไขการทดลอง\n"
 "คุณต้องการที่จะบันทึกการเปลี่ยนแปลงหรือไม่?"
 
-#: step/mainwindow.cc:452
+#: step/mainwindow.cc:457
 #, kde-format
 msgid "Uploading is still not implemented in kdelibs."
 msgstr "การอัพโหลดยังไม่ถูกรวมใน kdelibs"
 
-#: step/mainwindow.cc:453
+#: step/mainwindow.cc:458
 #, kde-format
 msgid "Sorry - Step"
 msgstr "ข้ออภัย - Step"
 
-#: step/mainwindow.cc:480
+#: step/mainwindow.cc:485
 #, kde-format
 msgid "&Stop"
 msgstr "หยุ&ด"
 
-#: step/mainwindow.cc:490
+#: step/mainwindow.cc:495
 #, kde-format
 msgid "&Simulate"
 msgstr "จำ&ลอง"
 
-#: step/mainwindow.cc:495
+#: step/mainwindow.cc:500
 #, kde-format
 msgid ""
 "Cannot finish this step because local error is greater than local "
@@ -742,7 +742,7 @@ msgstr ""
 "ทำขั้นตอนนี้ไม่สำเร็จเนื่องจากความผิดพลาดภายในมากกว่าคามทนภายใน\n"
 "กรุณาตรวจสอบการตั้งค่าตัวแก้และลองอีกครั้ง"
 
-#: step/mainwindow.cc:500
+#: step/mainwindow.cc:505
 #, kde-format
 msgid ""
 "Cannot finish this step because there are collisions which cannot be "
@@ -752,32 +752,32 @@ msgstr ""
 "ทำขั้นตอนนี้ไม่สำเร็จเนื่องจากเกิดการชนที่แก้ไขด้วยระบบอัตโนมัติไม่ได้\n"
 "กรุณาแยกวัตถุที่ชนกันและลองอีกครั้ง"
 
-#: step/mainwindow.cc:504
+#: step/mainwindow.cc:509
 #, kde-format
 msgid "Cannot finish this step because of an unknown error."
 msgstr "ทำขั้นตอนนี้ไม่สำเร็จเนื่องจากพบข้อผิดพลาดที่ไม่ทราบสาเหตุ"
 
-#: step/mainwindow.cc:537
+#: step/mainwindow.cc:542
 #, kde-format
 msgid "&Undo"
 msgstr "เรีย&กคืน"
 
-#: step/mainwindow.cc:538
+#: step/mainwindow.cc:543
 #, kde-format
 msgid "&Undo: %1"
 msgstr "เรีย&กคืน: %1"
 
-#: step/mainwindow.cc:543
+#: step/mainwindow.cc:548
 #, kde-format
 msgid "Re&do"
 msgstr "ทำ&ซ้ำ"
 
-#: step/mainwindow.cc:544
+#: step/mainwindow.cc:549
 #, kde-format
 msgid "Re&do: %1"
 msgstr "ทำ&ซ้ำ: %1"
 
-#: step/mainwindow.cc:575
+#: step/mainwindow.cc:580
 #, kde-format
 msgid "General"
 msgstr "ทั่วไป"

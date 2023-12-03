@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: step\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2023-11-05 12:24+0000\n"
+"POT-Creation-Date: 2023-12-03 00:39+0000\n"
 "PO-Revision-Date: 2021-10-25 17:01+0200\n"
 "Last-Translator: Stefan Asserhäll <stefan.asserhall@bredband.net>\n"
 "Language-Team: Swedish <kde-i18n-doc@kde.org>\n"
@@ -395,7 +395,7 @@ msgstr ""
 "Du försöker skapa ett mycket stort antal partiklar. Det kommer att göra "
 "simuleringen mycket långsam. Vill du fortsätta?"
 
-#: step/gasgraphics.cc:354 step/mainwindow.cc:401
+#: step/gasgraphics.cc:354 step/mainwindow.cc:406
 #, kde-format
 msgid "Warning - Step"
 msgstr "Varning - Step"
@@ -669,38 +669,38 @@ msgctxt "@title:window"
 msgid "Open Step File"
 msgstr "Öppna Step-fil"
 
-#: step/mainwindow.cc:307 step/mainwindow.cc:337
+#: step/mainwindow.cc:307 step/mainwindow.cc:342
 #, kde-format
 msgid "Step files (*.step)"
 msgstr "Step-filer (*.step)"
 
-#: step/mainwindow.cc:317
+#: step/mainwindow.cc:317 step/mainwindow.cc:358
+#, kde-format
+msgid "Cannot open file '%1'"
+msgstr "Kan inte öppna filen '%1'"
+
+#: step/mainwindow.cc:322
 #, kde-format
 msgid "Cannot parse file '%1': %2"
 msgstr "Kan inte tolka filen '%1': %2"
 
-#: step/mainwindow.cc:326
+#: step/mainwindow.cc:331
 #, kde-format
 msgid "<open file: %1>"
 msgstr "<öppna fil: '%1'>"
 
-#: step/mainwindow.cc:337
+#: step/mainwindow.cc:342
 #, kde-format
 msgctxt "@title:window"
 msgid "Save Step File"
 msgstr "Spara Step-fil"
 
-#: step/mainwindow.cc:353
-#, kde-format
-msgid "Cannot open file '%1'"
-msgstr "Kan inte öppna filen '%1'"
-
-#: step/mainwindow.cc:359
+#: step/mainwindow.cc:364
 #, kde-format
 msgid "Cannot save file '%1': %2"
 msgstr "Kan inte spara filen '%1': %2"
 
-#: step/mainwindow.cc:400
+#: step/mainwindow.cc:405
 #, kde-format
 msgid ""
 "The experiment has been modified.\n"
@@ -709,27 +709,27 @@ msgstr ""
 "Experimentet har ändrats.\n"
 "Vill du spara dina ändringar?"
 
-#: step/mainwindow.cc:452
+#: step/mainwindow.cc:457
 #, kde-format
 msgid "Uploading is still not implemented in kdelibs."
 msgstr "Uppladdning är fortfarande inte implementerad i KDE:s bibliotek."
 
-#: step/mainwindow.cc:453
+#: step/mainwindow.cc:458
 #, kde-format
 msgid "Sorry - Step"
 msgstr "Tyvärr - Step"
 
-#: step/mainwindow.cc:480
+#: step/mainwindow.cc:485
 #, kde-format
 msgid "&Stop"
 msgstr "&Stoppa"
 
-#: step/mainwindow.cc:490
+#: step/mainwindow.cc:495
 #, kde-format
 msgid "&Simulate"
 msgstr "&Simulera"
 
-#: step/mainwindow.cc:495
+#: step/mainwindow.cc:500
 #, kde-format
 msgid ""
 "Cannot finish this step because local error is greater than local "
@@ -740,7 +740,7 @@ msgstr ""
 "toleransen.\n"
 "Kontrollera evalueringsinställningarna och försök igen."
 
-#: step/mainwindow.cc:500
+#: step/mainwindow.cc:505
 #, kde-format
 msgid ""
 "Cannot finish this step because there are collisions which cannot be "
@@ -751,32 +751,32 @@ msgstr ""
 "automatiskt.\n"
 "Flytta isär kolliderande objekt och försök igen."
 
-#: step/mainwindow.cc:504
+#: step/mainwindow.cc:509
 #, kde-format
 msgid "Cannot finish this step because of an unknown error."
 msgstr "Kan inte avsluta steget på grund av ett okänt fel."
 
-#: step/mainwindow.cc:537
+#: step/mainwindow.cc:542
 #, kde-format
 msgid "&Undo"
 msgstr "Å&ngra"
 
-#: step/mainwindow.cc:538
+#: step/mainwindow.cc:543
 #, kde-format
 msgid "&Undo: %1"
 msgstr "Å&ngra: %1"
 
-#: step/mainwindow.cc:543
+#: step/mainwindow.cc:548
 #, kde-format
 msgid "Re&do"
 msgstr "&Gör om"
 
-#: step/mainwindow.cc:544
+#: step/mainwindow.cc:549
 #, kde-format
 msgid "Re&do: %1"
 msgstr "&Gör om: %1"
 
-#: step/mainwindow.cc:575
+#: step/mainwindow.cc:580
 #, kde-format
 msgid "General"
 msgstr "Allmänt"

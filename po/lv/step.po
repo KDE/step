@@ -10,7 +10,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: step\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2023-11-05 12:24+0000\n"
+"POT-Creation-Date: 2023-12-03 00:39+0000\n"
 "PO-Revision-Date: 2009-10-22 20:22+0300\n"
 "Last-Translator: Viesturs Zariņš <viesturs.zarins@mii.lu.lv>\n"
 "Language-Team: Latvian <locale@laka.lv>\n"
@@ -401,7 +401,7 @@ msgstr ""
 "Jūs mēģinat simulēt ļoti lielu daļiņu daudzumu. Tas padarīs simulāciju ļoti "
 "lēnu. Vai vēlaties turpināt?"
 
-#: step/gasgraphics.cc:354 step/mainwindow.cc:401
+#: step/gasgraphics.cc:354 step/mainwindow.cc:406
 #, kde-format
 msgid "Warning - Step"
 msgstr "Brīdinājums - Step"
@@ -678,39 +678,39 @@ msgctxt "@title:window"
 msgid "Open Step File"
 msgstr ""
 
-#: step/mainwindow.cc:307 step/mainwindow.cc:337
+#: step/mainwindow.cc:307 step/mainwindow.cc:342
 #, fuzzy, kde-format
 #| msgid "*.step|Step files (*.step)"
 msgid "Step files (*.step)"
 msgstr "*.step|Step faili (*.step)"
 
-#: step/mainwindow.cc:317
+#: step/mainwindow.cc:317 step/mainwindow.cc:358
+#, kde-format
+msgid "Cannot open file '%1'"
+msgstr "Neizdevās atvērt failu '%1'"
+
+#: step/mainwindow.cc:322
 #, kde-format
 msgid "Cannot parse file '%1': %2"
 msgstr "Neizvevās analizēt failu '%1': %2"
 
-#: step/mainwindow.cc:326
+#: step/mainwindow.cc:331
 #, kde-format
 msgid "<open file: %1>"
 msgstr "<atvērt failu: %1>"
 
-#: step/mainwindow.cc:337
+#: step/mainwindow.cc:342
 #, kde-format
 msgctxt "@title:window"
 msgid "Save Step File"
 msgstr ""
 
-#: step/mainwindow.cc:353
-#, kde-format
-msgid "Cannot open file '%1'"
-msgstr "Neizdevās atvērt failu '%1'"
-
-#: step/mainwindow.cc:359
+#: step/mainwindow.cc:364
 #, kde-format
 msgid "Cannot save file '%1': %2"
 msgstr "Neizdevās saglabāt failu '%1': %2"
 
-#: step/mainwindow.cc:400
+#: step/mainwindow.cc:405
 #, kde-format
 msgid ""
 "The experiment has been modified.\n"
@@ -719,27 +719,27 @@ msgstr ""
 "Eksperiments ir mainīts.\n"
 "Vai vēlaties saglabāt izmaiņas?"
 
-#: step/mainwindow.cc:452
+#: step/mainwindow.cc:457
 #, kde-format
 msgid "Uploading is still not implemented in kdelibs."
 msgstr "Augšupielādei vēl nav atbalsta no kdelibs."
 
-#: step/mainwindow.cc:453
+#: step/mainwindow.cc:458
 #, kde-format
 msgid "Sorry - Step"
 msgstr "Atvainojiet - Step"
 
-#: step/mainwindow.cc:480
+#: step/mainwindow.cc:485
 #, kde-format
 msgid "&Stop"
 msgstr "&Apturēt"
 
-#: step/mainwindow.cc:490
+#: step/mainwindow.cc:495
 #, kde-format
 msgid "&Simulate"
 msgstr "&Simulēt"
 
-#: step/mainwindow.cc:495
+#: step/mainwindow.cc:500
 #, kde-format
 msgid ""
 "Cannot finish this step because local error is greater than local "
@@ -749,7 +749,7 @@ msgstr ""
 "Nevar pabeigt šo soli, jo lokālā kļūda ir lielāka par lokālo tolderanci.\n"
 "Lūdzu pārbaudiet risinātāja iestatījumus un mēģiniet vēlreiz."
 
-#: step/mainwindow.cc:500
+#: step/mainwindow.cc:505
 #, kde-format
 msgid ""
 "Cannot finish this step because there are collisions which cannot be "
@@ -759,32 +759,32 @@ msgstr ""
 "Nevar pabeigt šo soli, jo ir sadursmes, ko nevar automātiski atrisināt.\n"
 "Lūdzu pārvietojiet sadūrušos objektus nostāk un mēģiniet vēlreiz."
 
-#: step/mainwindow.cc:504
+#: step/mainwindow.cc:509
 #, kde-format
 msgid "Cannot finish this step because of an unknown error."
 msgstr "Nevar pabeigt šo soli, nezināma kļūda."
 
-#: step/mainwindow.cc:537
+#: step/mainwindow.cc:542
 #, kde-format
 msgid "&Undo"
 msgstr "&Atsaukt"
 
-#: step/mainwindow.cc:538
+#: step/mainwindow.cc:543
 #, kde-format
 msgid "&Undo: %1"
 msgstr "&Atskaut: %1"
 
-#: step/mainwindow.cc:543
+#: step/mainwindow.cc:548
 #, kde-format
 msgid "Re&do"
 msgstr "Pār&darīt"
 
-#: step/mainwindow.cc:544
+#: step/mainwindow.cc:549
 #, kde-format
 msgid "Re&do: %1"
 msgstr "Pār&darīt: %1"
 
-#: step/mainwindow.cc:575
+#: step/mainwindow.cc:580
 #, kde-format
 msgid "General"
 msgstr "Pamata"

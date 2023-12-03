@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: step-gu\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2023-11-05 12:24+0000\n"
+"POT-Creation-Date: 2023-12-03 00:39+0000\n"
 "PO-Revision-Date: 2008-11-26 09:38+0530\n"
 "Last-Translator: Kartik Mistry <kartik.mistry@gmail.com>\n"
 "Language-Team: Gujarati <kde-i18n-doc@kde.org>\n"
@@ -402,7 +402,7 @@ msgstr ""
 "તમે ઘણી મોટી સંખ્યામાં અણુઓ બનાવવાનો પ્રયત્ન કરી રહ્યા છો. તે સિમ્યુલેશન ઘણું ધીમું બનાવી "
 "દેશે. તમે ચાલુ રાખવા માંગો છો?"
 
-#: step/gasgraphics.cc:354 step/mainwindow.cc:401
+#: step/gasgraphics.cc:354 step/mainwindow.cc:406
 #, kde-format
 msgid "Warning - Step"
 msgstr "ચેતવણી - સ્ટેપ"
@@ -680,39 +680,39 @@ msgctxt "@title:window"
 msgid "Open Step File"
 msgstr ""
 
-#: step/mainwindow.cc:307 step/mainwindow.cc:337
+#: step/mainwindow.cc:307 step/mainwindow.cc:342
 #, fuzzy, kde-format
 #| msgid "*.step|Step files (*.step)"
 msgid "Step files (*.step)"
 msgstr "*.step|સ્ટેપ ફાઇલ્સ (*.step)"
 
-#: step/mainwindow.cc:317
+#: step/mainwindow.cc:317 step/mainwindow.cc:358
+#, kde-format
+msgid "Cannot open file '%1'"
+msgstr "'%1' ફાઇલ ખોલી શકાતી નથી"
+
+#: step/mainwindow.cc:322
 #, kde-format
 msgid "Cannot parse file '%1': %2"
 msgstr "'%1': %2 ફાઇલ જોઇ શકાતી નથી"
 
-#: step/mainwindow.cc:326
+#: step/mainwindow.cc:331
 #, kde-format
 msgid "<open file: %1>"
 msgstr "<આ ફાઇલ ખોલો: %1>"
 
-#: step/mainwindow.cc:337
+#: step/mainwindow.cc:342
 #, kde-format
 msgctxt "@title:window"
 msgid "Save Step File"
 msgstr ""
 
-#: step/mainwindow.cc:353
-#, kde-format
-msgid "Cannot open file '%1'"
-msgstr "'%1' ફાઇલ ખોલી શકાતી નથી"
-
-#: step/mainwindow.cc:359
+#: step/mainwindow.cc:364
 #, kde-format
 msgid "Cannot save file '%1': %2"
 msgstr "'%1': %2 ફાઇલ સંગ્રહ કરી શકાતી નથી"
 
-#: step/mainwindow.cc:400
+#: step/mainwindow.cc:405
 #, kde-format
 msgid ""
 "The experiment has been modified.\n"
@@ -721,27 +721,27 @@ msgstr ""
 "આ પ્રયોગ બદલવામાં આવેલ છે.\n"
 "શું તમે તમારા ફેરફારો સંગ્રહ કરવા માંગો છો?"
 
-#: step/mainwindow.cc:452
+#: step/mainwindow.cc:457
 #, kde-format
 msgid "Uploading is still not implemented in kdelibs."
 msgstr "kdelibs માં અપલોડ હજી સુધી મૂકવામાં આવ્યું નથી."
 
-#: step/mainwindow.cc:453
+#: step/mainwindow.cc:458
 #, kde-format
 msgid "Sorry - Step"
 msgstr "માફ કરશો - સ્ટેપ"
 
-#: step/mainwindow.cc:480
+#: step/mainwindow.cc:485
 #, kde-format
 msgid "&Stop"
 msgstr "બંધ (&S)"
 
-#: step/mainwindow.cc:490
+#: step/mainwindow.cc:495
 #, kde-format
 msgid "&Simulate"
 msgstr "સિમ્યુલેટ (&S)"
 
-#: step/mainwindow.cc:495
+#: step/mainwindow.cc:500
 #, kde-format
 msgid ""
 "Cannot finish this step because local error is greater than local "
@@ -751,7 +751,7 @@ msgstr ""
 "આ પગથિયું પુરૂં કરી શકાતું નથી કારણ કે સ્થાનિક ક્ષતિ એ સ્થાનિક ક્ષમતા કરતાં મોટી છે.\n"
 "મહેરબાની કરી ઉકેલ ગોઠવણીઓ ચકાસો અને ફરી પ્રયત્ન કરો."
 
-#: step/mainwindow.cc:500
+#: step/mainwindow.cc:505
 #, kde-format
 msgid ""
 "Cannot finish this step because there are collisions which cannot be "
@@ -761,32 +761,32 @@ msgstr ""
 "આ પગથિયું પૂરૂં કરી શકાયું નહી કારણકે અહીં અથડામણો છે જે આપમેળે ઉકેલી શકાશે નહી.\n"
 "મહેરબાની કરીને અથડાતી વસ્તુઓ ખસેડો અને ફરી પ્રયત્ન કરો."
 
-#: step/mainwindow.cc:504
+#: step/mainwindow.cc:509
 #, kde-format
 msgid "Cannot finish this step because of an unknown error."
 msgstr "અજાણી ક્ષતિને કારણે આ પગથિયું પૂરુ કરી શકાતું નથી."
 
-#: step/mainwindow.cc:537
+#: step/mainwindow.cc:542
 #, kde-format
 msgid "&Undo"
 msgstr "પાછું લાવો (&U)"
 
-#: step/mainwindow.cc:538
+#: step/mainwindow.cc:543
 #, kde-format
 msgid "&Undo: %1"
 msgstr "પાછું લાવો (&U): %1"
 
-#: step/mainwindow.cc:543
+#: step/mainwindow.cc:548
 #, kde-format
 msgid "Re&do"
 msgstr "ફરી કરો (&d)"
 
-#: step/mainwindow.cc:544
+#: step/mainwindow.cc:549
 #, kde-format
 msgid "Re&do: %1"
 msgstr "ફરી કરો (&d): %1"
 
-#: step/mainwindow.cc:575
+#: step/mainwindow.cc:580
 #, kde-format
 msgid "General"
 msgstr "સામાન્ય"

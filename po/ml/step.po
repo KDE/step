@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: step\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2023-11-05 12:24+0000\n"
+"POT-Creation-Date: 2023-12-03 00:39+0000\n"
 "PO-Revision-Date: 2019-12-12 21:37+0000\n"
 "Last-Translator: Vivek KJ Pazhedath <vivekkj2004@gmail.com>\n"
 "Language-Team: Swathanthra|സ്വതന്ത്ര Malayalam|മലയാളം Computing|കമ്പ്യൂട്ടിങ്ങ് <smc-"
@@ -398,7 +398,7 @@ msgstr ""
 "വലിയഅളവില്‍ കണങ്ങള്‍ നിര്‍മ്മിക്കാനാണു് നിങ്ങള്‍ ശ്രമിക്കുന്നതു്. ഇതു് പരീക്ഷണം മന്ദഗതിയിലാക്കും. "
 "തുടരാനുദ്ദേശമുണ്ടോ?"
 
-#: step/gasgraphics.cc:354 step/mainwindow.cc:401
+#: step/gasgraphics.cc:354 step/mainwindow.cc:406
 #, kde-format
 msgid "Warning - Step"
 msgstr "താക്കീത് - പടി"
@@ -674,38 +674,38 @@ msgctxt "@title:window"
 msgid "Open Step File"
 msgstr "പടി"
 
-#: step/mainwindow.cc:307 step/mainwindow.cc:337
+#: step/mainwindow.cc:307 step/mainwindow.cc:342
 #, kde-format
 msgid "Step files (*.step)"
 msgstr ""
 
-#: step/mainwindow.cc:317
+#: step/mainwindow.cc:317 step/mainwindow.cc:358
+#, kde-format
+msgid "Cannot open file '%1'"
+msgstr "%1 ശേഖരം തുറക്കാന്‍ കഴിയില്ല"
+
+#: step/mainwindow.cc:322
 #, kde-format
 msgid "Cannot parse file '%1': %2"
 msgstr "'%1': %2 ശേഖരങ്ങളെ വ്യാകരിക്കുവാന്‍ കഴിയില്ല"
 
-#: step/mainwindow.cc:326
+#: step/mainwindow.cc:331
 #, kde-format
 msgid "<open file: %1>"
 msgstr "<ശേഖരം തുറക്കുക: %1>"
 
-#: step/mainwindow.cc:337
+#: step/mainwindow.cc:342
 #, fuzzy, kde-format
 msgctxt "@title:window"
 msgid "Save Step File"
 msgstr "പടി"
 
-#: step/mainwindow.cc:353
-#, kde-format
-msgid "Cannot open file '%1'"
-msgstr "%1 ശേഖരം തുറക്കാന്‍ കഴിയില്ല"
-
-#: step/mainwindow.cc:359
+#: step/mainwindow.cc:364
 #, kde-format
 msgid "Cannot save file '%1': %2"
 msgstr "%1 ശേഖരം സൂക്ഷിക്കാനായില്ല: %2"
 
-#: step/mainwindow.cc:400
+#: step/mainwindow.cc:405
 #, kde-format
 msgid ""
 "The experiment has been modified.\n"
@@ -714,27 +714,27 @@ msgstr ""
 "പരീക്ഷണം പരിഷ്കരിക്കപ്പെട്ടിരിക്കുന്നു.\n"
 "മാറ്റങ്ങള്‍ സുരകഷിതമാക്കണോ?"
 
-#: step/mainwindow.cc:452
+#: step/mainwindow.cc:457
 #, kde-format
 msgid "Uploading is still not implemented in kdelibs."
 msgstr "കെഡിഈ ഗ്രന്ധശാലയില്‍ കയറ്റുമതി ഇനിയും നടപ്പിലാക്കിയിട്ടില്ല"
 
-#: step/mainwindow.cc:453
+#: step/mainwindow.cc:458
 #, kde-format
 msgid "Sorry - Step"
 msgstr "ക്ഷമിക്കണം - പടി"
 
-#: step/mainwindow.cc:480
+#: step/mainwindow.cc:485
 #, kde-format
 msgid "&Stop"
 msgstr "&നിര്‍ത്തുക"
 
-#: step/mainwindow.cc:490
+#: step/mainwindow.cc:495
 #, kde-format
 msgid "&Simulate"
 msgstr "&പരീക്ഷിച്ചുനോക്കുക"
 
-#: step/mainwindow.cc:495
+#: step/mainwindow.cc:500
 #, kde-format
 msgid ""
 "Cannot finish this step because local error is greater than local "
@@ -744,7 +744,7 @@ msgstr ""
 "ഈ ഘട്ടം മുഴുമിക്കാനായില്ല കാരണം താങ്ങാവുന്നതിലധികം പിശകുകളുണ്ടിവിടെ \n"
 "ദയവായി സോള് വര് വിതാനങ്ങള് പരിശോധിക്കൂ"
 
-#: step/mainwindow.cc:500
+#: step/mainwindow.cc:505
 #, fuzzy, kde-format
 msgid ""
 "Cannot finish this step because there are collisions which cannot be "
@@ -752,32 +752,32 @@ msgid ""
 "Please move colliding objects apart and try again."
 msgstr "ഈ ഘട്ടം മുഴുമിക്കാനായില്ല കാരണം സ്വയം പരിഹരിക്കാന്‍ കഴിയാത്തത്ത വൈവരുദ്ധ്യങ്ങളുണ്ടു്"
 
-#: step/mainwindow.cc:504
+#: step/mainwindow.cc:509
 #, kde-format
 msgid "Cannot finish this step because of an unknown error."
 msgstr "അറിയപ്പെടാത്ത പിശക്മൂലം ഈ ഘട്ടം മുഴുമിക്കാനായില്ല."
 
-#: step/mainwindow.cc:537
+#: step/mainwindow.cc:542
 #, kde-format
 msgid "&Undo"
 msgstr "&തിരിച്ച് ചെയ്യുക"
 
-#: step/mainwindow.cc:538
+#: step/mainwindow.cc:543
 #, kde-format
 msgid "&Undo: %1"
 msgstr "&തിരിച്ച് ചെയ്യുക: %1"
 
-#: step/mainwindow.cc:543
+#: step/mainwindow.cc:548
 #, kde-format
 msgid "Re&do"
 msgstr "&ആവര്‍ത്തിക്കുക"
 
-#: step/mainwindow.cc:544
+#: step/mainwindow.cc:549
 #, kde-format
 msgid "Re&do: %1"
 msgstr "&ആവര്‍ത്തിക്കുക: %1"
 
-#: step/mainwindow.cc:575
+#: step/mainwindow.cc:580
 #, kde-format
 msgid "General"
 msgstr "സാമാന്യം"

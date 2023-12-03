@@ -3254,63 +3254,63 @@ msgctxt "PropertyDescription|"
 msgid "Enable global error calculation"
 msgstr "errorsCalculation"
 
-#: xmlfile.cc:189
+#: xmlfile.cc:191
 #, fuzzy
 #| msgid "The file is not a StepCoreXML file."
 msgctxt "QObject|"
 msgid "The file is not a StepCoreXML file."
 msgstr "ファイルは StepCoreXML ファイルではありません。"
 
-#: xmlfile.cc:235
+#: xmlfile.cc:237
 #, fuzzy, qt-format
 #| msgid "Unknown item type \"%1\""
 msgctxt "QObject|"
 msgid "Unknown item type \"%1\""
 msgstr "不明なアイテムのタイプ “%1”"
 
-#: xmlfile.cc:256
+#: xmlfile.cc:258
 #, fuzzy, qt-format
 #| msgid "Unknown solver type \"%1\""
 msgctxt "QObject|"
 msgid "Unknown solver type \"%1\""
 msgstr "不明なソルバーのタイプ “%1”"
 
-#: xmlfile.cc:270
+#: xmlfile.cc:272
 #, fuzzy, qt-format
 #| msgid "Unknown collisionSolver type \"%1\""
 msgctxt "QObject|"
 msgid "Unknown collisionSolver type \"%1\""
 msgstr "不明な collisionSolver のタイプ “%1”"
 
-#: xmlfile.cc:284
+#: xmlfile.cc:286
 #, fuzzy, qt-format
 #| msgid "Unknown constraint solver type \"%1\""
 msgctxt "QObject|"
 msgid "Unknown constraint solver type \"%1\""
 msgstr "不明な constraintSolver のタイプ “%1”"
 
-#: xmlfile.cc:312
+#: xmlfile.cc:314
 #, fuzzy, qt-format
 #| msgid "Wrong ID attribute value for %1"
 msgctxt "QObject|"
 msgid "Wrong ID attribute value for %1"
 msgstr "%1 の ID 属性値が不正です"
 
-#: xmlfile.cc:317
+#: xmlfile.cc:319
 #, fuzzy, qt-format
 #| msgid "Non-unique ID attribute value for %1"
 msgctxt "QObject|"
 msgid "Non-unique ID attribute value for %1"
 msgstr "%1 の ID 属性値が一意ではありません"
 
-#: xmlfile.cc:345 xmlfile.cc:359
+#: xmlfile.cc:347 xmlfile.cc:361
 #, fuzzy, qt-format
 #| msgid "Property \"%1\" of \"%2\" has illegal value"
 msgctxt "QObject|"
 msgid "Property \"%1\" of \"%2\" has illegal value"
 msgstr "“%2” のプロパティ “%1” の値が不正です"
 
-#: xmlfile.cc:372
+#: xmlfile.cc:374
 #, fuzzy
 #| msgid "File is not writable."
 msgctxt "QObject|"
