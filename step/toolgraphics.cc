@@ -52,6 +52,7 @@
 #include <KFontSizeAction>
 #include <KIO/CopyJob>
 #include <KIO/Job>
+#include <KIO/FileCopyJob>
 #include <KJobWidgets>
 #include <KLocalizedString>
 #include <KMessageBox>
