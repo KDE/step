@@ -10,7 +10,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: step\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2023-12-03 00:39+0000\n"
+"POT-Creation-Date: 2024-01-04 00:38+0000\n"
 "PO-Revision-Date: 2022-04-20 15:36+0200\n"
 "Last-Translator: Antoni Bella Pérez <antonibella5@yahoo.com>\n"
 "Language-Team: Catalan <kde-i18n-ca@kde.org>\n"
@@ -398,7 +398,7 @@ msgstr ""
 "Esteu provant de crear un nombre molt gran de partícules. Açò farà molt "
 "lenta la simulació. Voleu continuar?"
 
-#: step/gasgraphics.cc:354 step/mainwindow.cc:406
+#: step/gasgraphics.cc:354 step/mainwindow.cc:407
 #, kde-format
 msgid "Warning - Step"
 msgstr "Atenció - Step"
@@ -569,140 +569,140 @@ msgstr "cniehaus@kde.org"
 msgid "Document to open"
 msgstr "Document que s'ha d'obrir"
 
-#: step/mainwindow.cc:142
+#: step/mainwindow.cc:143
 #, kde-format
 msgid "&Open Tutorial..."
 msgstr "O&bri la guia d'aprenentatge..."
 
-#: step/mainwindow.cc:147
+#: step/mainwindow.cc:148
 #, kde-format
 msgid "&Open Example..."
 msgstr "Obri un e&xemple..."
 
-#: step/mainwindow.cc:152
+#: step/mainwindow.cc:153
 #, kde-format
 msgid "Open Down&loaded Example..."
 msgstr "Obri un exemple de&scarregat..."
 
-#: step/mainwindow.cc:157
+#: step/mainwindow.cc:158
 #, kde-format
 msgid "Share C&urrent Experiment..."
 msgstr "Com&partix l'experiment actual..."
 
-#: step/mainwindow.cc:160
+#: step/mainwindow.cc:161
 #, kde-format
 msgid "&Download New Experiments..."
 msgstr "&Descarrega nous experiments..."
 
-#: step/mainwindow.cc:167
+#: step/mainwindow.cc:168
 #, kde-format
 msgid "Redo"
 msgstr "Refés"
 
-#: step/mainwindow.cc:167
+#: step/mainwindow.cc:168
 #, kde-format
 msgid "Undo"
 msgstr "Desfés"
 
-#: step/mainwindow.cc:189
+#: step/mainwindow.cc:190
 #, kde-format
 msgid "&Delete"
 msgstr "Sup&rimix"
 
-#: step/mainwindow.cc:199
+#: step/mainwindow.cc:200
 #, kde-format
 msgid "&Run"
 msgstr "&Executa"
 
-#: step/mainwindow.cc:205
+#: step/mainwindow.cc:206
 #, kde-format
 msgid "Execute the program"
 msgstr "Executa el programa"
 
-#: step/mainwindow.cc:206
+#: step/mainwindow.cc:207
 #, kde-format
 msgid "Run: Execute the program"
 msgstr "Executa: Executa el programa"
 
-#: step/mainwindow.cc:208
+#: step/mainwindow.cc:209
 #, kde-format
 msgctxt "@option:radio"
 msgid "1x Speed"
 msgstr "Velocitat 1x"
 
-#: step/mainwindow.cc:216
+#: step/mainwindow.cc:217
 #, kde-format
 msgctxt "@option:radio choose the slow speed"
 msgid "2x Speed"
 msgstr "Velocitat 2x"
 
-#: step/mainwindow.cc:223
+#: step/mainwindow.cc:224
 #, kde-format
 msgctxt "@option:radio"
 msgid "4x Speed"
 msgstr "Velocitat 4x"
 
-#: step/mainwindow.cc:230
+#: step/mainwindow.cc:231
 #, kde-format
 msgctxt "@option:radio"
 msgid "8x Speed"
 msgstr "Velocitat 8x"
 
-#: step/mainwindow.cc:237
+#: step/mainwindow.cc:238
 #, kde-format
 msgctxt "@option:radio"
 msgid "16x Speed"
 msgstr "Velocitat 16x"
 
-#: step/mainwindow.cc:267
+#: step/mainwindow.cc:268
 #, kde-format
 msgctxt "filename"
 msgid "untitled.step"
 msgstr "sense_nom.step"
 
-#: step/mainwindow.cc:293
+#: step/mainwindow.cc:294
 #, kde-format
 msgid "<new file>"
 msgstr "<fitxer nou>"
 
-#: step/mainwindow.cc:307
+#: step/mainwindow.cc:308
 #, kde-format
 msgctxt "@title:window"
 msgid "Open Step File"
 msgstr "Obri un fitxer Step"
 
-#: step/mainwindow.cc:307 step/mainwindow.cc:342
+#: step/mainwindow.cc:308 step/mainwindow.cc:343
 #, kde-format
 msgid "Step files (*.step)"
 msgstr "Fitxers Step (*.step)"
 
-#: step/mainwindow.cc:317 step/mainwindow.cc:358
+#: step/mainwindow.cc:318 step/mainwindow.cc:359
 #, kde-format
 msgid "Cannot open file '%1'"
 msgstr "No s'ha pogut obrir el fitxer «%1»"
 
-#: step/mainwindow.cc:322
+#: step/mainwindow.cc:323
 #, kde-format
 msgid "Cannot parse file '%1': %2"
 msgstr "No s'ha pogut interpretar el fitxer «%1»: %2"
 
-#: step/mainwindow.cc:331
+#: step/mainwindow.cc:332
 #, kde-format
 msgid "<open file: %1>"
 msgstr "<obri fitxer: %1>"
 
-#: step/mainwindow.cc:342
+#: step/mainwindow.cc:343
 #, kde-format
 msgctxt "@title:window"
 msgid "Save Step File"
 msgstr "Guarda el fitxer Step"
 
-#: step/mainwindow.cc:364
+#: step/mainwindow.cc:365
 #, kde-format
 msgid "Cannot save file '%1': %2"
 msgstr "No s'ha pogut guardar el fitxer «%1»: %2"
 
-#: step/mainwindow.cc:405
+#: step/mainwindow.cc:406
 #, kde-format
 msgid ""
 "The experiment has been modified.\n"
@@ -711,27 +711,27 @@ msgstr ""
 "L'experiment s'ha modificat.\n"
 "Voleu guardar els vostres canvis?"
 
-#: step/mainwindow.cc:457
+#: step/mainwindow.cc:458
 #, kde-format
 msgid "Uploading is still not implemented in kdelibs."
 msgstr "La pujada encara no està implementada en la kdelibs."
 
-#: step/mainwindow.cc:458
+#: step/mainwindow.cc:459
 #, kde-format
 msgid "Sorry - Step"
 msgstr "Ho sentim - Step"
 
-#: step/mainwindow.cc:485
+#: step/mainwindow.cc:486
 #, kde-format
 msgid "&Stop"
 msgstr "&Para"
 
-#: step/mainwindow.cc:495
+#: step/mainwindow.cc:496
 #, kde-format
 msgid "&Simulate"
 msgstr "&Simula"
 
-#: step/mainwindow.cc:500
+#: step/mainwindow.cc:501
 #, kde-format
 msgid ""
 "Cannot finish this step because local error is greater than local "
@@ -742,7 +742,7 @@ msgstr ""
 "tolerància local.\n"
 "Reviseu les configuracions del solucionador i torneu-ho a provar."
 
-#: step/mainwindow.cc:505
+#: step/mainwindow.cc:506
 #, kde-format
 msgid ""
 "Cannot finish this step because there are collisions which cannot be "
@@ -753,32 +753,32 @@ msgstr ""
 "resoldre automàticament.\n"
 "Per favor, aparteu els objectes que col·lisionen i torneu-ho a provar."
 
-#: step/mainwindow.cc:509
+#: step/mainwindow.cc:510
 #, kde-format
 msgid "Cannot finish this step because of an unknown error."
 msgstr "No s'ha pogut acabar este pas a causa d'un error desconegut."
 
-#: step/mainwindow.cc:542
+#: step/mainwindow.cc:543
 #, kde-format
 msgid "&Undo"
 msgstr "&Desfés"
 
-#: step/mainwindow.cc:543
+#: step/mainwindow.cc:544
 #, kde-format
 msgid "&Undo: %1"
 msgstr "&Desfés: %1"
 
-#: step/mainwindow.cc:548
+#: step/mainwindow.cc:549
 #, kde-format
 msgid "Re&do"
 msgstr "Re&fés"
 
-#: step/mainwindow.cc:549
+#: step/mainwindow.cc:550
 #, kde-format
 msgid "Re&do: %1"
 msgstr "Re&fés: %1"
 
-#: step/mainwindow.cc:580
+#: step/mainwindow.cc:581
 #, kde-format
 msgid "General"
 msgstr "General"
@@ -983,98 +983,98 @@ msgstr "&Velocitat d'execució"
 msgid "&Panels"
 msgstr "&Quadros"
 
-#: step/toolgraphics.cc:255
+#: step/toolgraphics.cc:256
 #, kde-format
 msgid "Click to enter text"
 msgstr "Cliqueu per a introduir un text"
 
-#: step/toolgraphics.cc:380
+#: step/toolgraphics.cc:381
 #, kde-format
 msgid "&Color"
 msgstr "&Color"
 
-#: step/toolgraphics.cc:382
+#: step/toolgraphics.cc:383
 #, kde-format
 msgid "&Bold"
 msgstr "&Negreta"
 
-#: step/toolgraphics.cc:384
+#: step/toolgraphics.cc:385
 #, kde-format
 msgid "&Italic"
 msgstr "&Cursiva"
 
-#: step/toolgraphics.cc:386
+#: step/toolgraphics.cc:387
 #, kde-format
 msgid "&Underline"
 msgstr "&Subratllat"
 
-#: step/toolgraphics.cc:389
+#: step/toolgraphics.cc:390
 #, kde-format
 msgid "Align &Left"
 msgstr "Alinea a l'es&querra"
 
-#: step/toolgraphics.cc:391
+#: step/toolgraphics.cc:392
 #, kde-format
 msgid "Align C&enter"
 msgstr "Alinea al &centre"
 
-#: step/toolgraphics.cc:393
+#: step/toolgraphics.cc:394
 #, kde-format
 msgid "Align &Right"
 msgstr "Alinea a la &dreta"
 
-#: step/toolgraphics.cc:395
+#: step/toolgraphics.cc:396
 #, kde-format
 msgid "Align &Justify"
 msgstr "&Justifica"
 
-#: step/toolgraphics.cc:398
+#: step/toolgraphics.cc:399
 #, kde-format
 msgid "&Align"
 msgstr "&Alinea"
 
-#: step/toolgraphics.cc:407
+#: step/toolgraphics.cc:408
 #, kde-format
 msgid "&Font"
 msgstr "&Tipus de lletra"
 
-#: step/toolgraphics.cc:408
+#: step/toolgraphics.cc:409
 #, kde-format
 msgid "Font &Size"
 msgstr "&Mida de la lletra"
 
-#: step/toolgraphics.cc:410
+#: step/toolgraphics.cc:411
 #, kde-format
 msgid "Insert &Image..."
 msgstr "Inserix una &imatge..."
 
-#: step/toolgraphics.cc:415
+#: step/toolgraphics.cc:416
 #, kde-format
 msgid "Insert &Formula..."
 msgstr "Inserix una &fórmula..."
 
-#: step/toolgraphics.cc:526
+#: step/toolgraphics.cc:527
 #, kde-format
 msgid "Edit %1"
 msgstr "Edita %1"
 
-#: step/toolgraphics.cc:631
+#: step/toolgraphics.cc:632
 #, kde-format
 msgctxt "@title:window"
 msgid "Open Image File"
 msgstr "Obri un fitxer d'imatge"
 
-#: step/toolgraphics.cc:631
+#: step/toolgraphics.cc:632
 #, kde-format
 msgid "Images (*.png *.jpg *.jpeg)"
 msgstr "Imatges (*.png *.jpg *.jpeg)"
 
-#: step/toolgraphics.cc:649
+#: step/toolgraphics.cc:650
 #, kde-format
 msgid "Cannot parse file '%1'"
 msgstr "No s'ha pogut interpretar el fitxer «%1»"
 
-#: step/toolgraphics.cc:693
+#: step/toolgraphics.cc:694
 #, kde-format
 msgid ""
 "Cannot find latex installation. You need 'latex', 'dvips' and 'gs' "
@@ -1083,137 +1083,137 @@ msgstr ""
 "No s'ha trobat cap instal·lació de LaTeX. Cal tindre els executables "
 "«latex», «dvips» i «gs» instal·lats i accessibles des de la $PATH"
 
-#: step/toolgraphics.cc:699
+#: step/toolgraphics.cc:700
 #, kde-format
 msgctxt "@title:window"
 msgid "LaTex Formula - Step"
 msgstr "Fórmula de LaTeX - Step"
 
-#: step/toolgraphics.cc:700
+#: step/toolgraphics.cc:701
 #, kde-format
 msgid "Enter LaTeX formula string:"
 msgstr "Introduïu una fórmula de LaTeX:"
 
-#: step/toolgraphics.cc:709
+#: step/toolgraphics.cc:710
 #, kde-format
 msgid "Cannot compile LaTeX formula: %1"
 msgstr "No s'ha pogut compilar la fórmula de LaTeX: %1"
 
-#: step/toolgraphics.cc:715
+#: step/toolgraphics.cc:716
 #, kde-format
 msgid "Cannot parse result image"
 msgstr "No s'ha pogut interpretar la imatge resultant"
 
-#: step/toolgraphics.cc:776
+#: step/toolgraphics.cc:777
 #, kde-format
 msgid "Object name"
 msgstr "Nom de l'objecte"
 
-#: step/toolgraphics.cc:781
+#: step/toolgraphics.cc:782
 #, kde-format
 msgid "Property name"
 msgstr "Nom de la propietat"
 
-#: step/toolgraphics.cc:787
+#: step/toolgraphics.cc:788
 #, kde-format
 msgid "Vector index"
 msgstr "Índex de vector"
 
-#: step/toolgraphics.cc:976 step/toolgraphics.cc:984 step/toolgraphics.cc:1477
+#: step/toolgraphics.cc:977 step/toolgraphics.cc:985 step/toolgraphics.cc:1478
 #, kde-format
 msgid "%1.%2"
 msgstr "%1.%2"
 
-#: step/toolgraphics.cc:977 step/toolgraphics.cc:985 step/toolgraphics.cc:1478
+#: step/toolgraphics.cc:978 step/toolgraphics.cc:986 step/toolgraphics.cc:1479
 #, kde-format
 msgid "[%1]"
 msgstr "[%1]"
 
-#: step/toolgraphics.cc:981 step/toolgraphics.cc:989 step/toolgraphics.cc:1482
+#: step/toolgraphics.cc:982 step/toolgraphics.cc:990 step/toolgraphics.cc:1483
 #, kde-format
 msgid "[not configured]"
 msgstr "[sense configurar]"
 
-#: step/toolgraphics.cc:1077
+#: step/toolgraphics.cc:1078
 #, kde-format
 msgid "Clear Graph"
 msgstr "Neteja el gràfic"
 
-#: step/toolgraphics.cc:1078
+#: step/toolgraphics.cc:1079
 #, kde-format
 msgid "Configure Graph..."
 msgstr "Configura el gràfic..."
 
-#: step/toolgraphics.cc:1096
+#: step/toolgraphics.cc:1097
 #, kde-format
 msgctxt "@title:window"
 msgid "Configure Graph"
 msgstr "Configura el gràfic"
 
-#: step/toolgraphics.cc:1172 step/toolgraphics.cc:1371
-#: step/toolgraphics.cc:1709
+#: step/toolgraphics.cc:1173 step/toolgraphics.cc:1372
+#: step/toolgraphics.cc:1710
 #, kde-format
 msgid "Edit properties of %1"
 msgstr "Edita les propietats de %1"
 
-#: step/toolgraphics.cc:1224
+#: step/toolgraphics.cc:1225
 #, kde-format
 msgid "Clear graph %1"
 msgstr "Neteja el gràfic %1"
 
-#: step/toolgraphics.cc:1305
+#: step/toolgraphics.cc:1306
 #, kde-format
 msgid "Configure Meter..."
 msgstr "Configura el mesurador..."
 
-#: step/toolgraphics.cc:1323
+#: step/toolgraphics.cc:1324
 #, kde-format
 msgctxt "@title:window"
 msgid "Configure Meter"
 msgstr "Configura el mesurador"
 
-#: step/toolgraphics.cc:1420 step/toolgraphics.cc:1617
+#: step/toolgraphics.cc:1421 step/toolgraphics.cc:1618
 #, kde-format
 msgid "Increase Value"
 msgstr "Augmenta el valor"
 
-#: step/toolgraphics.cc:1421 step/toolgraphics.cc:1618
+#: step/toolgraphics.cc:1422 step/toolgraphics.cc:1619
 #, kde-format
 msgid "Decrease Value"
 msgstr "Disminuïx el valor"
 
-#: step/toolgraphics.cc:1451 step/toolgraphics.cc:1746
+#: step/toolgraphics.cc:1452 step/toolgraphics.cc:1747
 #, kde-format
 msgid "Decrease controller %1"
 msgstr "Disminuïx el controlador %1"
 
-#: step/toolgraphics.cc:1460 step/toolgraphics.cc:1755
+#: step/toolgraphics.cc:1461 step/toolgraphics.cc:1756
 #, kde-format
 msgid "Increase controller %1"
 msgstr "Augmenta el controlador %1"
 
-#: step/toolgraphics.cc:1594
+#: step/toolgraphics.cc:1595
 #, kde-format
 msgid "Change controller %1"
 msgstr "Canvia el controlador %1"
 
-#: step/toolgraphics.cc:1620
+#: step/toolgraphics.cc:1621
 #, kde-format
 msgid "Configure Controller..."
 msgstr "Configura el controlador..."
 
-#: step/toolgraphics.cc:1638
+#: step/toolgraphics.cc:1639
 #, kde-format
 msgctxt "@title:window"
 msgid "Configure Controller"
 msgstr "Configura el controlador"
 
-#: step/toolgraphics.cc:1899
+#: step/toolgraphics.cc:1900
 #, kde-format
 msgid "Clear Trace"
 msgstr "Esborra la traça"
 
-#: step/toolgraphics.cc:1908
+#: step/toolgraphics.cc:1909
 #, kde-format
 msgid "Clear tracer %1"
 msgstr "Esborra la traça %1"

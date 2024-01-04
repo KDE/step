@@ -9,7 +9,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: step\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2023-12-03 00:39+0000\n"
+"POT-Creation-Date: 2024-01-04 00:38+0000\n"
 "PO-Revision-Date: 2013-01-08 11:33+0700\n"
 "Last-Translator: sutha <sutha@khmeros.info>\n"
 "Language-Team: Khmer <support@khmeros>\n"
@@ -399,7 +399,7 @@ msgid ""
 msgstr ""
 "អ្នក​កំពុង​សាកល្បង​បង្កើត​ចំនួន​​ភាគ​ល្អិត​ជា​ច្រើន ។ វា​នឹង​ធ្វើ​ឲ្យ​ការ​ក្លែង​ធ្វើ​​យឺត ។ តើ​អ្នក​ចង់​បន្ត​ឬ ?"
 
-#: step/gasgraphics.cc:354 step/mainwindow.cc:406
+#: step/gasgraphics.cc:354 step/mainwindow.cc:407
 #, kde-format
 msgid "Warning - Step"
 msgstr "ព្រមាន - ជំហាន"
@@ -573,141 +573,141 @@ msgstr ""
 msgid "Document to open"
 msgstr "ឯកសារ​ត្រូវ​បើក"
 
-#: step/mainwindow.cc:142
+#: step/mainwindow.cc:143
 #, kde-format
 msgid "&Open Tutorial..."
 msgstr "បើក​មេរៀន..."
 
-#: step/mainwindow.cc:147
+#: step/mainwindow.cc:148
 #, kde-format
 msgid "&Open Example..."
 msgstr "បើក​ឧទាហរណ៍..."
 
-#: step/mainwindow.cc:152
+#: step/mainwindow.cc:153
 #, kde-format
 msgid "Open Down&loaded Example..."
 msgstr "បើក​ឧទាហរណ៍​ដែល​បាន​ទាញយក..."
 
-#: step/mainwindow.cc:157
+#: step/mainwindow.cc:158
 #, kde-format
 msgid "Share C&urrent Experiment..."
 msgstr "ចែក​រំលែក​ការ​ពិសោធ​បច្ចុប្បន្ន..."
 
-#: step/mainwindow.cc:160
+#: step/mainwindow.cc:161
 #, kde-format
 msgid "&Download New Experiments..."
 msgstr "ទាញយក​ការ​ពិសោធ​ថ្មី"
 
-#: step/mainwindow.cc:167
+#: step/mainwindow.cc:168
 #, kde-format
 msgid "Redo"
 msgstr "ធ្វើ​វិញ"
 
-#: step/mainwindow.cc:167
+#: step/mainwindow.cc:168
 #, kde-format
 msgid "Undo"
 msgstr "មិន​ធ្វើ​វិញ"
 
-#: step/mainwindow.cc:189
+#: step/mainwindow.cc:190
 #, kde-format
 msgid "&Delete"
 msgstr "លុប"
 
-#: step/mainwindow.cc:199
+#: step/mainwindow.cc:200
 #, kde-format
 msgid "&Run"
 msgstr "រត់"
 
-#: step/mainwindow.cc:205
+#: step/mainwindow.cc:206
 #, kde-format
 msgid "Execute the program"
 msgstr "ប្រតិបត្តិ​កម្មវិធី"
 
-#: step/mainwindow.cc:206
+#: step/mainwindow.cc:207
 #, kde-format
 msgid "Run: Execute the program"
 msgstr "រត់ ៖ ប្រតិបត្តិ​កម្មវិធី"
 
-#: step/mainwindow.cc:208
+#: step/mainwindow.cc:209
 #, kde-format
 msgctxt "@option:radio"
 msgid "1x Speed"
 msgstr "ល្បឿន 1x"
 
-#: step/mainwindow.cc:216
+#: step/mainwindow.cc:217
 #, kde-format
 msgctxt "@option:radio choose the slow speed"
 msgid "2x Speed"
 msgstr "ល្បឿន 2x"
 
-#: step/mainwindow.cc:223
+#: step/mainwindow.cc:224
 #, kde-format
 msgctxt "@option:radio"
 msgid "4x Speed"
 msgstr "ល្បឿន 4x"
 
-#: step/mainwindow.cc:230
+#: step/mainwindow.cc:231
 #, kde-format
 msgctxt "@option:radio"
 msgid "8x Speed"
 msgstr "ល្បឿន 8x"
 
-#: step/mainwindow.cc:237
+#: step/mainwindow.cc:238
 #, kde-format
 msgctxt "@option:radio"
 msgid "16x Speed"
 msgstr "ល្បឿន 16x"
 
-#: step/mainwindow.cc:267
+#: step/mainwindow.cc:268
 #, kde-format
 msgctxt "filename"
 msgid "untitled.step"
 msgstr "untitled.step"
 
-#: step/mainwindow.cc:293
+#: step/mainwindow.cc:294
 #, kde-format
 msgid "<new file>"
 msgstr "<ឯកសារ​ថ្មី>"
 
-#: step/mainwindow.cc:307
+#: step/mainwindow.cc:308
 #, kde-format
 msgctxt "@title:window"
 msgid "Open Step File"
 msgstr ""
 
-#: step/mainwindow.cc:307 step/mainwindow.cc:342
+#: step/mainwindow.cc:308 step/mainwindow.cc:343
 #, fuzzy, kde-format
 #| msgid "*.step|Step files (*.step)"
 msgid "Step files (*.step)"
 msgstr "ឯកសារ *.step|Step (*.step)"
 
-#: step/mainwindow.cc:317 step/mainwindow.cc:358
+#: step/mainwindow.cc:318 step/mainwindow.cc:359
 #, kde-format
 msgid "Cannot open file '%1'"
 msgstr "មិន​អាច​បើក​ឯកសារ '%1'"
 
-#: step/mainwindow.cc:322
+#: step/mainwindow.cc:323
 #, kde-format
 msgid "Cannot parse file '%1': %2"
 msgstr "មិន​អាច​ញែក​ឯកសារ '%1' ៖ %2"
 
-#: step/mainwindow.cc:331
+#: step/mainwindow.cc:332
 #, kde-format
 msgid "<open file: %1>"
 msgstr "<បើក​ឯកសារ ៖ %1>"
 
-#: step/mainwindow.cc:342
+#: step/mainwindow.cc:343
 #, kde-format
 msgctxt "@title:window"
 msgid "Save Step File"
 msgstr ""
 
-#: step/mainwindow.cc:364
+#: step/mainwindow.cc:365
 #, kde-format
 msgid "Cannot save file '%1': %2"
 msgstr "មិន​អាច​រក្សា​ទុក​ឯកសារ '%1' ៖ %2"
 
-#: step/mainwindow.cc:405
+#: step/mainwindow.cc:406
 #, kde-format
 msgid ""
 "The experiment has been modified.\n"
@@ -716,27 +716,27 @@ msgstr ""
 "ការ​ពិសោធ​ត្រូវបាន​កែប្រែ ។\n"
 "តើ​អ្នក​ចង់​រក្សាទុក​ការ​ផ្លាស់ប្ដូរ​របស់​អ្នក​ឬ ?"
 
-#: step/mainwindow.cc:457
+#: step/mainwindow.cc:458
 #, kde-format
 msgid "Uploading is still not implemented in kdelibs."
 msgstr "ការ​ផ្ទុកឡើង គឺ​នៅ​តែ​មិនត្រូវបាន​ប្រតិបត្តិ​នៅ​ក្នុង kdelibs ដដែល ។"
 
-#: step/mainwindow.cc:458
+#: step/mainwindow.cc:459
 #, kde-format
 msgid "Sorry - Step"
 msgstr "សូមអភ័យទោស - ជំហាន"
 
-#: step/mainwindow.cc:485
+#: step/mainwindow.cc:486
 #, kde-format
 msgid "&Stop"
 msgstr "បញ្ឈប់"
 
-#: step/mainwindow.cc:495
+#: step/mainwindow.cc:496
 #, kde-format
 msgid "&Simulate"
 msgstr "ក្លែង​ធ្វើតាម"
 
-#: step/mainwindow.cc:500
+#: step/mainwindow.cc:501
 #, kde-format
 msgid ""
 "Cannot finish this step because local error is greater than local "
@@ -746,7 +746,7 @@ msgstr ""
 "មិនអាច​បញ្ចប់​ជំហាន​នេះ​ទេ ព្រោះ​កំហុស​មូលដ្ឋាន​គឺ​ធំជាង​​កង្វះខាត ។\n"
 "សូម​ពិនិត្យ​មើល​ការ​កំណត់​កញ្ចប់​ដោះស្រាយ ហើយ​ព្យាយាម​ម្ដងទៀត ។"
 
-#: step/mainwindow.cc:505
+#: step/mainwindow.cc:506
 #, kde-format
 msgid ""
 "Cannot finish this step because there are collisions which cannot be "
@@ -757,32 +757,32 @@ msgstr ""
 "។\n"
 "សូម​ផ្លាស់​ទី​ការ​ប៉ះទង្គិច​​នេះ​ហើយ​​ព្យាយាម​ម្តងទៀត ។ "
 
-#: step/mainwindow.cc:509
+#: step/mainwindow.cc:510
 #, kde-format
 msgid "Cannot finish this step because of an unknown error."
 msgstr "មិនអាច​បញ្ចប់​ជំហាន​នេះ​បាន​ទេ ព្រោះ​កំហុស​មិនស្គាល់ ។"
 
-#: step/mainwindow.cc:542
+#: step/mainwindow.cc:543
 #, kde-format
 msgid "&Undo"
 msgstr "មិន​ធ្វើ​វិញ"
 
-#: step/mainwindow.cc:543
+#: step/mainwindow.cc:544
 #, kde-format
 msgid "&Undo: %1"
 msgstr "មិន​ធ្វើ​វិញ ៖ %1"
 
-#: step/mainwindow.cc:548
+#: step/mainwindow.cc:549
 #, kde-format
 msgid "Re&do"
 msgstr "ធ្វើ​វិញ"
 
-#: step/mainwindow.cc:549
+#: step/mainwindow.cc:550
 #, kde-format
 msgid "Re&do: %1"
 msgstr "ធ្វើ​ឡើងវិញ ៖ %1"
 
-#: step/mainwindow.cc:580
+#: step/mainwindow.cc:581
 #, kde-format
 msgid "General"
 msgstr "ទូទៅ"
@@ -985,100 +985,100 @@ msgstr "ល្បឿន​រត់"
 msgid "&Panels"
 msgstr "បន្ទះ"
 
-#: step/toolgraphics.cc:255
+#: step/toolgraphics.cc:256
 #, kde-format
 msgid "Click to enter text"
 msgstr "ចុច​ដើម្បី​បញ្ចូល​អត្ថបទ"
 
-#: step/toolgraphics.cc:380
+#: step/toolgraphics.cc:381
 #, kde-format
 msgid "&Color"
 msgstr "ពណ៌"
 
-#: step/toolgraphics.cc:382
+#: step/toolgraphics.cc:383
 #, kde-format
 msgid "&Bold"
 msgstr "ដិត"
 
-#: step/toolgraphics.cc:384
+#: step/toolgraphics.cc:385
 #, kde-format
 msgid "&Italic"
 msgstr "ទ្រេត"
 
-#: step/toolgraphics.cc:386
+#: step/toolgraphics.cc:387
 #, kde-format
 msgid "&Underline"
 msgstr "គូស​បន្ទាត់​ក្រោម"
 
-#: step/toolgraphics.cc:389
+#: step/toolgraphics.cc:390
 #, kde-format
 msgid "Align &Left"
 msgstr "តម្រឹម​ឆ្វេង​"
 
-#: step/toolgraphics.cc:391
+#: step/toolgraphics.cc:392
 #, kde-format
 msgid "Align C&enter"
 msgstr "តម្រឹម​កណ្ដាល"
 
-#: step/toolgraphics.cc:393
+#: step/toolgraphics.cc:394
 #, kde-format
 msgid "Align &Right"
 msgstr "តម្រឹម​ស្ដាំ"
 
-#: step/toolgraphics.cc:395
+#: step/toolgraphics.cc:396
 #, kde-format
 msgid "Align &Justify"
 msgstr "តម្រឹម​សង​ខាង"
 
-#: step/toolgraphics.cc:398
+#: step/toolgraphics.cc:399
 #, kde-format
 msgid "&Align"
 msgstr "តម្រឹម"
 
-#: step/toolgraphics.cc:407
+#: step/toolgraphics.cc:408
 #, kde-format
 msgid "&Font"
 msgstr "ពុម្ព​អក្សរ"
 
-#: step/toolgraphics.cc:408
+#: step/toolgraphics.cc:409
 #, kde-format
 msgid "Font &Size"
 msgstr "ទំហំ​ពុម្ពអក្សរ"
 
-#: step/toolgraphics.cc:410
+#: step/toolgraphics.cc:411
 #, fuzzy, kde-format
 #| msgid "Insert &Image"
 msgid "Insert &Image..."
 msgstr "បញ្ចូល​រូបភាព"
 
-#: step/toolgraphics.cc:415
+#: step/toolgraphics.cc:416
 #, fuzzy, kde-format
 #| msgid "Insert &Formula"
 msgid "Insert &Formula..."
 msgstr "បញ្ចូល​រូបមន្ត"
 
-#: step/toolgraphics.cc:526
+#: step/toolgraphics.cc:527
 #, kde-format
 msgid "Edit %1"
 msgstr "កែ​សម្រួល %1"
 
-#: step/toolgraphics.cc:631
+#: step/toolgraphics.cc:632
 #, kde-format
 msgctxt "@title:window"
 msgid "Open Image File"
 msgstr ""
 
-#: step/toolgraphics.cc:631
+#: step/toolgraphics.cc:632
 #, kde-format
 msgid "Images (*.png *.jpg *.jpeg)"
 msgstr ""
 
-#: step/toolgraphics.cc:649
+#: step/toolgraphics.cc:650
 #, kde-format
 msgid "Cannot parse file '%1'"
 msgstr "មិន​អាច​ញែក​ឯកសារ '%1'"
 
-#: step/toolgraphics.cc:693
+#: step/toolgraphics.cc:694
 #, kde-format
 msgid ""
 "Cannot find latex installation. You need 'latex', 'dvips' and 'gs' "
@@ -1087,149 +1087,149 @@ msgstr ""
 "មិន​អាច​រក​​ឃើញ​ការ​ដំឡើង latex បាន​ទេ ។ អ្នក​ត្រូវ​តែ​​ដំឡើង 'latex', 'dvips' និង 'gs' ហើយ​ចូល​"
 "ដំណើរការ​​ពី $PATH"
 
-#: step/toolgraphics.cc:699
+#: step/toolgraphics.cc:700
 #, fuzzy, kde-format
 #| msgid "LaTex Formula - Step"
 msgctxt "@title:window"
 msgid "LaTex Formula - Step"
 msgstr "រូបមន្ត​ LaTex"
 
-#: step/toolgraphics.cc:700
+#: step/toolgraphics.cc:701
 #, fuzzy, kde-format
 #| msgid "Enter LaTeX formula string"
 msgid "Enter LaTeX formula string:"
 msgstr "បញ្ចូល​រូបមន្ត LaTeX"
 
-#: step/toolgraphics.cc:709
+#: step/toolgraphics.cc:710
 #, kde-format
 msgid "Cannot compile LaTeX formula: %1"
 msgstr "មិន​អាច​ចងក្រង​រូបមន្ត LaTeX បាន​ទេ ៖ %1"
 
-#: step/toolgraphics.cc:715
+#: step/toolgraphics.cc:716
 #, kde-format
 msgid "Cannot parse result image"
 msgstr "មិន​អាច​ញែក​រូបភាព​លទ្ធផល"
 
-#: step/toolgraphics.cc:776
+#: step/toolgraphics.cc:777
 #, kde-format
 msgid "Object name"
 msgstr "ឈ្មោះ​វត្ថុ"
 
-#: step/toolgraphics.cc:781
+#: step/toolgraphics.cc:782
 #, kde-format
 msgid "Property name"
 msgstr "លក្ខណៈ​សម្បត្តិ"
 
-#: step/toolgraphics.cc:787
+#: step/toolgraphics.cc:788
 #, kde-format
 msgid "Vector index"
 msgstr "លិបិក្រម​វ៉ិចទ័រ"
 
-#: step/toolgraphics.cc:976 step/toolgraphics.cc:984 step/toolgraphics.cc:1477
+#: step/toolgraphics.cc:977 step/toolgraphics.cc:985 step/toolgraphics.cc:1478
 #, kde-format
 msgid "%1.%2"
 msgstr "%1.%2"
 
-#: step/toolgraphics.cc:977 step/toolgraphics.cc:985 step/toolgraphics.cc:1478
+#: step/toolgraphics.cc:978 step/toolgraphics.cc:986 step/toolgraphics.cc:1479
 #, kde-format
 msgid "[%1]"
 msgstr "[%1]"
 
-#: step/toolgraphics.cc:981 step/toolgraphics.cc:989 step/toolgraphics.cc:1482
+#: step/toolgraphics.cc:982 step/toolgraphics.cc:990 step/toolgraphics.cc:1483
 #, kde-format
 msgid "[not configured]"
 msgstr "[មិន​បាន​កំណត់​រចនា​សម្ព័ន្ធ]"
 
-#: step/toolgraphics.cc:1077
+#: step/toolgraphics.cc:1078
 #, fuzzy, kde-format
 #| msgid "Clear graph"
 msgid "Clear Graph"
 msgstr "សម្អាត​​ក្រាហ្វ"
 
-#: step/toolgraphics.cc:1078
+#: step/toolgraphics.cc:1079
 #, fuzzy, kde-format
 #| msgid "Configure graph..."
 msgid "Configure Graph..."
 msgstr "កំណត់​រចនា​សម្ព័ន្ធ​ក្រាប"
 
-#: step/toolgraphics.cc:1096
+#: step/toolgraphics.cc:1097
 #, fuzzy, kde-format
 #| msgid "Configure graph"
 msgctxt "@title:window"
 msgid "Configure Graph"
 msgstr "កំណត់​រចនា​សម្ព័ន្ធ​ក្រាប"
 
-#: step/toolgraphics.cc:1172 step/toolgraphics.cc:1371
-#: step/toolgraphics.cc:1709
+#: step/toolgraphics.cc:1173 step/toolgraphics.cc:1372
+#: step/toolgraphics.cc:1710
 #, kde-format
 msgid "Edit properties of %1"
 msgstr "កែ​សម្រួល​លក្ខណៈ​សម្បត្តិ​នៃ %1"
 
-#: step/toolgraphics.cc:1224
+#: step/toolgraphics.cc:1225
 #, kde-format
 msgid "Clear graph %1"
 msgstr "សម្អាត​​ក្រាប %1"
 
-#: step/toolgraphics.cc:1305
+#: step/toolgraphics.cc:1306
 #, fuzzy, kde-format
 #| msgid "Configure meter..."
 msgid "Configure Meter..."
 msgstr "កំណត់​រចនាសម្ព័ន្ធ​ម៉ែត្រ..."
 
-#: step/toolgraphics.cc:1323
+#: step/toolgraphics.cc:1324
 #, fuzzy, kde-format
 #| msgid "Configure meter"
 msgctxt "@title:window"
 msgid "Configure Meter"
 msgstr "កំណត់​រចនាសម្ព័ន្ធ​ម៉ែត្រ"
 
-#: step/toolgraphics.cc:1420 step/toolgraphics.cc:1617
+#: step/toolgraphics.cc:1421 step/toolgraphics.cc:1618
 #, fuzzy, kde-format
 #| msgid "Increase value"
 msgid "Increase Value"
 msgstr "បង្កើន​តម្លៃ"
 
-#: step/toolgraphics.cc:1421 step/toolgraphics.cc:1618
+#: step/toolgraphics.cc:1422 step/toolgraphics.cc:1619
 #, fuzzy, kde-format
 #| msgid "Decrease value"
 msgid "Decrease Value"
 msgstr "បន្ថយ​តម្លៃ"
 
-#: step/toolgraphics.cc:1451 step/toolgraphics.cc:1746
+#: step/toolgraphics.cc:1452 step/toolgraphics.cc:1747
 #, kde-format
 msgid "Decrease controller %1"
 msgstr "បន្ថយ​ឧបករណ៍​បញ្ជា %1"
 
-#: step/toolgraphics.cc:1460 step/toolgraphics.cc:1755
+#: step/toolgraphics.cc:1461 step/toolgraphics.cc:1756
 #, kde-format
 msgid "Increase controller %1"
 msgstr "បង្កើន​ឧបករណ៍​បញ្ជា %1"
 
-#: step/toolgraphics.cc:1594
+#: step/toolgraphics.cc:1595
 #, kde-format
 msgid "Change controller %1"
 msgstr "ប្ដូរ​ឧបករណ៍​បញ្ជា %1"
 
-#: step/toolgraphics.cc:1620
+#: step/toolgraphics.cc:1621
 #, fuzzy, kde-format
 #| msgid "Configure controller..."
 msgid "Configure Controller..."
 msgstr "កំណត់​រចនា​សម្ព័ន្ធ​ឧបករណ៍​បញ្ជា..."
 
-#: step/toolgraphics.cc:1638
+#: step/toolgraphics.cc:1639
 #, fuzzy, kde-format
 #| msgid "Configure controller"
 msgctxt "@title:window"
 msgid "Configure Controller"
 msgstr "កំណត់​រចនាសម្ព័ន្ធ​ឧបករណ៍​បញ្ជា"
 
-#: step/toolgraphics.cc:1899
+#: step/toolgraphics.cc:1900
 #, fuzzy, kde-format
 #| msgid "Clear trace"
 msgid "Clear Trace"
 msgstr "សម្អាត​ដាន"
 
-#: step/toolgraphics.cc:1908
+#: step/toolgraphics.cc:1909
 #, kde-format
 msgid "Clear tracer %1"
 msgstr "សម្អាត​កម្មវិធី​តាម​ដាន %1"

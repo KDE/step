@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: step-gu\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2023-12-03 00:39+0000\n"
+"POT-Creation-Date: 2024-01-04 00:38+0000\n"
 "PO-Revision-Date: 2008-11-26 09:38+0530\n"
 "Last-Translator: Kartik Mistry <kartik.mistry@gmail.com>\n"
 "Language-Team: Gujarati <kde-i18n-doc@kde.org>\n"
@@ -402,7 +402,7 @@ msgstr ""
 "તમે ઘણી મોટી સંખ્યામાં અણુઓ બનાવવાનો પ્રયત્ન કરી રહ્યા છો. તે સિમ્યુલેશન ઘણું ધીમું બનાવી "
 "દેશે. તમે ચાલુ રાખવા માંગો છો?"
 
-#: step/gasgraphics.cc:354 step/mainwindow.cc:406
+#: step/gasgraphics.cc:354 step/mainwindow.cc:407
 #, kde-format
 msgid "Warning - Step"
 msgstr "ચેતવણી - સ્ટેપ"
@@ -578,141 +578,141 @@ msgstr ""
 msgid "Document to open"
 msgstr "ખોલવા માટેનો દસ્તાવેજ"
 
-#: step/mainwindow.cc:142
+#: step/mainwindow.cc:143
 #, kde-format
 msgid "&Open Tutorial..."
 msgstr "માર્ગદર્શક ખોલો (&O)..."
 
-#: step/mainwindow.cc:147
+#: step/mainwindow.cc:148
 #, kde-format
 msgid "&Open Example..."
 msgstr "ઉદાહરણ ખોલો (&O)..."
 
-#: step/mainwindow.cc:152
+#: step/mainwindow.cc:153
 #, kde-format
 msgid "Open Down&loaded Example..."
 msgstr "ડાઉનલોડ કરેલ ઉદાહરણ ખોલો (&l)..."
 
-#: step/mainwindow.cc:157
+#: step/mainwindow.cc:158
 #, kde-format
 msgid "Share C&urrent Experiment..."
 msgstr "હાલનાં પ્રયોગોને વહેંચો (&u)..."
 
-#: step/mainwindow.cc:160
+#: step/mainwindow.cc:161
 #, kde-format
 msgid "&Download New Experiments..."
 msgstr "નવા પ્રયોગો ડાઉનલોડ કરો (&D)..."
 
-#: step/mainwindow.cc:167
+#: step/mainwindow.cc:168
 #, kde-format
 msgid "Redo"
 msgstr " ફરી કરો"
 
-#: step/mainwindow.cc:167
+#: step/mainwindow.cc:168
 #, kde-format
 msgid "Undo"
 msgstr "પાછું લાવો"
 
-#: step/mainwindow.cc:189
+#: step/mainwindow.cc:190
 #, kde-format
 msgid "&Delete"
 msgstr "દૂર કરો (&D)"
 
-#: step/mainwindow.cc:199
+#: step/mainwindow.cc:200
 #, kde-format
 msgid "&Run"
 msgstr "ચલાવો (&R)"
 
-#: step/mainwindow.cc:205
+#: step/mainwindow.cc:206
 #, kde-format
 msgid "Execute the program"
 msgstr "કાર્યક્રમ ચલાવો"
 
-#: step/mainwindow.cc:206
+#: step/mainwindow.cc:207
 #, kde-format
 msgid "Run: Execute the program"
 msgstr "ચલાવો: કાર્યક્રમ ચલાવો"
 
-#: step/mainwindow.cc:208
+#: step/mainwindow.cc:209
 #, kde-format
 msgctxt "@option:radio"
 msgid "1x Speed"
 msgstr "૧ ગણી ઝડપ"
 
-#: step/mainwindow.cc:216
+#: step/mainwindow.cc:217
 #, kde-format
 msgctxt "@option:radio choose the slow speed"
 msgid "2x Speed"
 msgstr "૨ ગણી ઝડપ"
 
-#: step/mainwindow.cc:223
+#: step/mainwindow.cc:224
 #, kde-format
 msgctxt "@option:radio"
 msgid "4x Speed"
 msgstr "૪ ગણી ઝડપ"
 
-#: step/mainwindow.cc:230
+#: step/mainwindow.cc:231
 #, kde-format
 msgctxt "@option:radio"
 msgid "8x Speed"
 msgstr "૮ ગણી ઝડપ"
 
-#: step/mainwindow.cc:237
+#: step/mainwindow.cc:238
 #, kde-format
 msgctxt "@option:radio"
 msgid "16x Speed"
 msgstr "૧૬ ગણી ઝડપ"
 
-#: step/mainwindow.cc:267
+#: step/mainwindow.cc:268
 #, kde-format
 msgctxt "filename"
 msgid "untitled.step"
 msgstr "શીર્ષકવગરનું.step"
 
-#: step/mainwindow.cc:293
+#: step/mainwindow.cc:294
 #, kde-format
 msgid "<new file>"
 msgstr "<નવી ફાઇલ>"
 
-#: step/mainwindow.cc:307
+#: step/mainwindow.cc:308
 #, kde-format
 msgctxt "@title:window"
 msgid "Open Step File"
 msgstr ""
 
-#: step/mainwindow.cc:307 step/mainwindow.cc:342
+#: step/mainwindow.cc:308 step/mainwindow.cc:343
 #, fuzzy, kde-format
 #| msgid "*.step|Step files (*.step)"
 msgid "Step files (*.step)"
 msgstr "*.step|સ્ટેપ ફાઇલ્સ (*.step)"
 
-#: step/mainwindow.cc:317 step/mainwindow.cc:358
+#: step/mainwindow.cc:318 step/mainwindow.cc:359
 #, kde-format
 msgid "Cannot open file '%1'"
 msgstr "'%1' ફાઇલ ખોલી શકાતી નથી"
 
-#: step/mainwindow.cc:322
+#: step/mainwindow.cc:323
 #, kde-format
 msgid "Cannot parse file '%1': %2"
 msgstr "'%1': %2 ફાઇલ જોઇ શકાતી નથી"
 
-#: step/mainwindow.cc:331
+#: step/mainwindow.cc:332
 #, kde-format
 msgid "<open file: %1>"
 msgstr "<આ ફાઇલ ખોલો: %1>"
 
-#: step/mainwindow.cc:342
+#: step/mainwindow.cc:343
 #, kde-format
 msgctxt "@title:window"
 msgid "Save Step File"
 msgstr ""
 
-#: step/mainwindow.cc:364
+#: step/mainwindow.cc:365
 #, kde-format
 msgid "Cannot save file '%1': %2"
 msgstr "'%1': %2 ફાઇલ સંગ્રહ કરી શકાતી નથી"
 
-#: step/mainwindow.cc:405
+#: step/mainwindow.cc:406
 #, kde-format
 msgid ""
 "The experiment has been modified.\n"
@@ -721,27 +721,27 @@ msgstr ""
 "આ પ્રયોગ બદલવામાં આવેલ છે.\n"
 "શું તમે તમારા ફેરફારો સંગ્રહ કરવા માંગો છો?"
 
-#: step/mainwindow.cc:457
+#: step/mainwindow.cc:458
 #, kde-format
 msgid "Uploading is still not implemented in kdelibs."
 msgstr "kdelibs માં અપલોડ હજી સુધી મૂકવામાં આવ્યું નથી."
 
-#: step/mainwindow.cc:458
+#: step/mainwindow.cc:459
 #, kde-format
 msgid "Sorry - Step"
 msgstr "માફ કરશો - સ્ટેપ"
 
-#: step/mainwindow.cc:485
+#: step/mainwindow.cc:486
 #, kde-format
 msgid "&Stop"
 msgstr "બંધ (&S)"
 
-#: step/mainwindow.cc:495
+#: step/mainwindow.cc:496
 #, kde-format
 msgid "&Simulate"
 msgstr "સિમ્યુલેટ (&S)"
 
-#: step/mainwindow.cc:500
+#: step/mainwindow.cc:501
 #, kde-format
 msgid ""
 "Cannot finish this step because local error is greater than local "
@@ -751,7 +751,7 @@ msgstr ""
 "આ પગથિયું પુરૂં કરી શકાતું નથી કારણ કે સ્થાનિક ક્ષતિ એ સ્થાનિક ક્ષમતા કરતાં મોટી છે.\n"
 "મહેરબાની કરી ઉકેલ ગોઠવણીઓ ચકાસો અને ફરી પ્રયત્ન કરો."
 
-#: step/mainwindow.cc:505
+#: step/mainwindow.cc:506
 #, kde-format
 msgid ""
 "Cannot finish this step because there are collisions which cannot be "
@@ -761,32 +761,32 @@ msgstr ""
 "આ પગથિયું પૂરૂં કરી શકાયું નહી કારણકે અહીં અથડામણો છે જે આપમેળે ઉકેલી શકાશે નહી.\n"
 "મહેરબાની કરીને અથડાતી વસ્તુઓ ખસેડો અને ફરી પ્રયત્ન કરો."
 
-#: step/mainwindow.cc:509
+#: step/mainwindow.cc:510
 #, kde-format
 msgid "Cannot finish this step because of an unknown error."
 msgstr "અજાણી ક્ષતિને કારણે આ પગથિયું પૂરુ કરી શકાતું નથી."
 
-#: step/mainwindow.cc:542
+#: step/mainwindow.cc:543
 #, kde-format
 msgid "&Undo"
 msgstr "પાછું લાવો (&U)"
 
-#: step/mainwindow.cc:543
+#: step/mainwindow.cc:544
 #, kde-format
 msgid "&Undo: %1"
 msgstr "પાછું લાવો (&U): %1"
 
-#: step/mainwindow.cc:548
+#: step/mainwindow.cc:549
 #, kde-format
 msgid "Re&do"
 msgstr "ફરી કરો (&d)"
 
-#: step/mainwindow.cc:549
+#: step/mainwindow.cc:550
 #, kde-format
 msgid "Re&do: %1"
 msgstr "ફરી કરો (&d): %1"
 
-#: step/mainwindow.cc:580
+#: step/mainwindow.cc:581
 #, kde-format
 msgid "General"
 msgstr "સામાન્ય"
@@ -995,101 +995,101 @@ msgstr "ચલાવવાની ઝડપ (&R)"
 msgid "&Panels"
 msgstr "પેનલો (&P)"
 
-#: step/toolgraphics.cc:255
+#: step/toolgraphics.cc:256
 #, fuzzy, kde-format
 #| msgid "Click to enter a text"
 msgid "Click to enter text"
 msgstr "લખાણ દાખલ કરવા માટે ક્લિક કરો"
 
-#: step/toolgraphics.cc:380
+#: step/toolgraphics.cc:381
 #, kde-format
 msgid "&Color"
 msgstr "રંગ (&C)"
 
-#: step/toolgraphics.cc:382
+#: step/toolgraphics.cc:383
 #, kde-format
 msgid "&Bold"
 msgstr "ઘાટાં (&B)"
 
-#: step/toolgraphics.cc:384
+#: step/toolgraphics.cc:385
 #, kde-format
 msgid "&Italic"
 msgstr "ત્રાંસાં (&I)"
 
-#: step/toolgraphics.cc:386
+#: step/toolgraphics.cc:387
 #, kde-format
 msgid "&Underline"
 msgstr "નીચે લીટી (&U)"
 
-#: step/toolgraphics.cc:389
+#: step/toolgraphics.cc:390
 #, kde-format
 msgid "Align &Left"
 msgstr "ડાબે ગોઠવો (&L)"
 
-#: step/toolgraphics.cc:391
+#: step/toolgraphics.cc:392
 #, kde-format
 msgid "Align C&enter"
 msgstr "મધ્યમાં ગોઠવો (&e)"
 
-#: step/toolgraphics.cc:393
+#: step/toolgraphics.cc:394
 #, kde-format
 msgid "Align &Right"
 msgstr "જમણે ગોઠવો (&R)"
 
-#: step/toolgraphics.cc:395
+#: step/toolgraphics.cc:396
 #, kde-format
 msgid "Align &Justify"
 msgstr "બરાબર ગોઠવો (&J)"
 
-#: step/toolgraphics.cc:398
+#: step/toolgraphics.cc:399
 #, kde-format
 msgid "&Align"
 msgstr "ગોઠવો (&A)"
 
-#: step/toolgraphics.cc:407
+#: step/toolgraphics.cc:408
 #, kde-format
 msgid "&Font"
 msgstr "ફોન્ટ (&F)"
 
-#: step/toolgraphics.cc:408
+#: step/toolgraphics.cc:409
 #, kde-format
 msgid "Font &Size"
 msgstr "ફોન્ટ માપ &S"
 
-#: step/toolgraphics.cc:410
+#: step/toolgraphics.cc:411
 #, fuzzy, kde-format
 #| msgid "Insert &Image"
 msgid "Insert &Image..."
 msgstr "ચિત્ર ઉમેરો (&I)"
 
-#: step/toolgraphics.cc:415
+#: step/toolgraphics.cc:416
 #, fuzzy, kde-format
 #| msgid "Insert &Formula"
 msgid "Insert &Formula..."
 msgstr "સૂત્ર ઉમેરો (&F)"
 
-#: step/toolgraphics.cc:526
+#: step/toolgraphics.cc:527
 #, kde-format
 msgid "Edit %1"
 msgstr "%1 ફેરફાર કરો"
 
-#: step/toolgraphics.cc:631
+#: step/toolgraphics.cc:632
 #, kde-format
 msgctxt "@title:window"
 msgid "Open Image File"
 msgstr ""
 
-#: step/toolgraphics.cc:631
+#: step/toolgraphics.cc:632
 #, kde-format
 msgid "Images (*.png *.jpg *.jpeg)"
 msgstr ""
 
-#: step/toolgraphics.cc:649
+#: step/toolgraphics.cc:650
 #, kde-format
 msgid "Cannot parse file '%1'"
 msgstr "ફાઇલ '%1' જોઇ શકાતી નથી"
 
-#: step/toolgraphics.cc:693
+#: step/toolgraphics.cc:694
 #, kde-format
 msgid ""
 "Cannot find latex installation. You need 'latex', 'dvips' and 'gs' "
@@ -1098,149 +1098,149 @@ msgstr ""
 "લેટેક સ્થાપન મળી શક્યું નહી. તમારે 'latex', 'dvips' અને 'gs' ચલાવનાર સ્થાપિત થયેલ અને "
 "$PATH માંથી ઉપયોગ કરી શકાય તેવા હોવા જોઇએ"
 
-#: step/toolgraphics.cc:699
+#: step/toolgraphics.cc:700
 #, fuzzy, kde-format
 #| msgid "LaTex Formula - Step"
 msgctxt "@title:window"
 msgid "LaTex Formula - Step"
 msgstr "લેટેક સૂત્ર - સ્ટેપ"
 
-#: step/toolgraphics.cc:700
+#: step/toolgraphics.cc:701
 #, fuzzy, kde-format
 #| msgid "Enter LaTeX formula string"
 msgid "Enter LaTeX formula string:"
 msgstr "લેટેક સૂત્ર વાક્ય દાખલ કરો"
 
-#: step/toolgraphics.cc:709
+#: step/toolgraphics.cc:710
 #, kde-format
 msgid "Cannot compile LaTeX formula: %1"
 msgstr "લેટેક સૂત્ર ને કમ્પાઇલ કરી શકાતું નથી: %1"
 
-#: step/toolgraphics.cc:715
+#: step/toolgraphics.cc:716
 #, kde-format
 msgid "Cannot parse result image"
 msgstr "પરિણામ ચિત્ર જોઇ શકાતું નથી"
 
-#: step/toolgraphics.cc:776
+#: step/toolgraphics.cc:777
 #, kde-format
 msgid "Object name"
 msgstr "વસ્તુ નામ"
 
-#: step/toolgraphics.cc:781
+#: step/toolgraphics.cc:782
 #, kde-format
 msgid "Property name"
 msgstr "ગુણધર્મ નામ"
 
-#: step/toolgraphics.cc:787
+#: step/toolgraphics.cc:788
 #, kde-format
 msgid "Vector index"
 msgstr "સદિશ અનુક્રમણિકા"
 
-#: step/toolgraphics.cc:976 step/toolgraphics.cc:984 step/toolgraphics.cc:1477
+#: step/toolgraphics.cc:977 step/toolgraphics.cc:985 step/toolgraphics.cc:1478
 #, kde-format
 msgid "%1.%2"
 msgstr "%1.%2"
 
-#: step/toolgraphics.cc:977 step/toolgraphics.cc:985 step/toolgraphics.cc:1478
+#: step/toolgraphics.cc:978 step/toolgraphics.cc:986 step/toolgraphics.cc:1479
 #, kde-format
 msgid "[%1]"
 msgstr "[%1]"
 
-#: step/toolgraphics.cc:981 step/toolgraphics.cc:989 step/toolgraphics.cc:1482
+#: step/toolgraphics.cc:982 step/toolgraphics.cc:990 step/toolgraphics.cc:1483
 #, kde-format
 msgid "[not configured]"
 msgstr "[રૂપરેખાંકિત નથી]"
 
-#: step/toolgraphics.cc:1077
+#: step/toolgraphics.cc:1078
 #, fuzzy, kde-format
 #| msgid "Clear graph"
 msgid "Clear Graph"
 msgstr "આલેખ સાફ કરો"
 
-#: step/toolgraphics.cc:1078
+#: step/toolgraphics.cc:1079
 #, fuzzy, kde-format
 #| msgid "Configure graph..."
 msgid "Configure Graph..."
 msgstr "આલેખ રૂપરેખાંકિત કરો..."
 
-#: step/toolgraphics.cc:1096
+#: step/toolgraphics.cc:1097
 #, fuzzy, kde-format
 #| msgid "Configure graph"
 msgctxt "@title:window"
 msgid "Configure Graph"
 msgstr "આલેખ રૂપરેખાંકિત કરો"
 
-#: step/toolgraphics.cc:1172 step/toolgraphics.cc:1371
-#: step/toolgraphics.cc:1709
+#: step/toolgraphics.cc:1173 step/toolgraphics.cc:1372
+#: step/toolgraphics.cc:1710
 #, kde-format
 msgid "Edit properties of %1"
 msgstr "%1 માટે ગુણધર્મો ફેરફાર કરો"
 
-#: step/toolgraphics.cc:1224
+#: step/toolgraphics.cc:1225
 #, kde-format
 msgid "Clear graph %1"
 msgstr "આલેખ %1 સાફ કરો"
 
-#: step/toolgraphics.cc:1305
+#: step/toolgraphics.cc:1306
 #, fuzzy, kde-format
 #| msgid "Configure meter..."
 msgid "Configure Meter..."
 msgstr "મીટર રૂપરેખાંકિત કરો..."
 
-#: step/toolgraphics.cc:1323
+#: step/toolgraphics.cc:1324
 #, fuzzy, kde-format
 #| msgid "Configure meter"
 msgctxt "@title:window"
 msgid "Configure Meter"
 msgstr "મીટર રૂપરેખાંકિત કરો"
 
-#: step/toolgraphics.cc:1420 step/toolgraphics.cc:1617
+#: step/toolgraphics.cc:1421 step/toolgraphics.cc:1618
 #, fuzzy, kde-format
 #| msgid "Increase value"
 msgid "Increase Value"
 msgstr "કિંમત વધારો"
 
-#: step/toolgraphics.cc:1421 step/toolgraphics.cc:1618
+#: step/toolgraphics.cc:1422 step/toolgraphics.cc:1619
 #, fuzzy, kde-format
 #| msgid "Decrease value"
 msgid "Decrease Value"
 msgstr "કિંમત ઘટાડો"
 
-#: step/toolgraphics.cc:1451 step/toolgraphics.cc:1746
+#: step/toolgraphics.cc:1452 step/toolgraphics.cc:1747
 #, kde-format
 msgid "Decrease controller %1"
 msgstr "નિયંત્રક %1 ઘટાડો"
 
-#: step/toolgraphics.cc:1460 step/toolgraphics.cc:1755
+#: step/toolgraphics.cc:1461 step/toolgraphics.cc:1756
 #, kde-format
 msgid "Increase controller %1"
 msgstr "નિયંત્રક %1 વધારો"
 
-#: step/toolgraphics.cc:1594
+#: step/toolgraphics.cc:1595
 #, kde-format
 msgid "Change controller %1"
 msgstr "નિયંત્રક %1 બદલો"
 
-#: step/toolgraphics.cc:1620
+#: step/toolgraphics.cc:1621
 #, fuzzy, kde-format
 #| msgid "Configure controller..."
 msgid "Configure Controller..."
 msgstr "નિયંત્રક રૂપરેખાંકિત કરો..."
 
-#: step/toolgraphics.cc:1638
+#: step/toolgraphics.cc:1639
 #, fuzzy, kde-format
 #| msgid "Configure controller"
 msgctxt "@title:window"
 msgid "Configure Controller"
 msgstr "નિયંત્રક રૂપરેખાંકિત કરો"
 
-#: step/toolgraphics.cc:1899
+#: step/toolgraphics.cc:1900
 #, fuzzy, kde-format
 #| msgid "Clear trace"
 msgid "Clear Trace"
 msgstr "નિશાની સાફ કરો"
 
-#: step/toolgraphics.cc:1908
+#: step/toolgraphics.cc:1909
 #, kde-format
 msgid "Clear tracer %1"
 msgstr "નિશાની રાખનાર %1 સાફ કરો"
