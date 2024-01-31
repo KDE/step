@@ -1,17 +1,17 @@
 # Translation of step_objinfo_files.po to Catalan
-# Copyright (C) 2019-2022 This_file_is_part_of_KDE
+# Copyright (C) 2019-2024 This_file_is_part_of_KDE
 # This file is distributed under the license LGPL version 2.1 or
 # version 3 or later versions approved by the membership of KDE e.V.
 #
-# Josep M. Ferrer <txemaq@gmail.com>, 2019, 2020, 2021, 2022.
+# Josep M. Ferrer <txemaq@gmail.com>, 2019, 2020, 2021, 2022, 2024.
 # Antoni Bella Pérez <antonibella5@yahoo.com>, 2020, 2022.
 msgid ""
 msgstr ""
 "Project-Id-Version: step\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2022-10-26 00:42+0000\n"
-"PO-Revision-Date: 2022-10-26 20:12+0200\n"
-"Last-Translator: Antoni Bella <antonibella5@yahoo.com>\n"
+"PO-Revision-Date: 2024-01-30 13:28+0100\n"
+"Last-Translator: Josep M. Ferrer <txemaq@gmail.com>\n"
 "Language-Team: Catalan <kde-i18n-ca@kde.org>\n"
 "Language: ca\n"
 "MIME-Version: 1.0\n"
@@ -19,7 +19,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
 "X-Accelerator-Marker: &\n"
-"X-Generator: Lokalize 20.12.0\n"
+"X-Generator: Lokalize 22.12.3\n"
 
 #: objectinfo/anchor.html:6
 #, kde-format
@@ -667,7 +667,7 @@ msgstr ""
 "\t\t<li><b>longitud:</b> és la longitud inicial de la molla.</li>\n"
 "\t\t<li><b>rigidesa:</b> és el nivell de la resistència de la molla a la "
 "compressió o l'estirament.</li>\n"
-"\t\t<li><b>esmorteïment:</b> és el nivell de la capacitat de la molla per "
+"\t\t<li><b>esmorteïment:</b> és el nivell de la capacitat de la molla per a "
 "dispersar l'energia emmagatzemada, una viscositat interna.</li>\n"
 "\t\t<li><b>cos 1 i 2:</b> són els cossos als quals està fixada la molla.</"
 "li>\n"
@@ -697,8 +697,8 @@ msgid ""
 "Weight is a vector quantity. It is often denoted by W and given by the "
 "relation W = mg."
 msgstr ""
-"El pes és una quantitat vectorial. Sovint se'n fa referència amb F i ve "
-"donat per la relació F = mg."
+"El pes és una quantitat vectorial. Sovint se'n fa referència amb F i "
+"s'expressa amb la relació F = mg."
 
 #: objectinfo/weightforce.html:12
 #, kde-format
