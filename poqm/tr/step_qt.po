@@ -6,13 +6,13 @@
 # Muhammet Kara <muhammetk@gmail.com>, 2009.
 # obsoleteman <tulliana@gmail.com>, 2008-2009.
 # Volkan Gezer <volkangezer@gmail.com>, 2013-2014.
-# Emir SARI <emir_sari@icloud.com>, 2022, 2023.
+# SPDX-FileCopyrightText: 2022, 2023, 2024 Emir SARI <emir_sari@icloud.com>
 msgid ""
 msgstr ""
 "Project-Id-Version: kdeedu-kde4\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2016-06-22 08:50+0000\n"
-"PO-Revision-Date: 2023-01-19 22:05+0300\n"
+"PO-Revision-Date: 2024-02-08 17:27+0300\n"
 "Last-Translator: Emir SARI <emir_sari@icloud.com>\n"
 "Language-Team: Turkish <kde-l10n-tr@kde.org>\n"
 "Language: tr\n"
@@ -21,7 +21,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
 "X-Qt-Contexts: true\n"
-"X-Generator: Lokalize 22.12.1\n"
+"X-Generator: Lokalize 24.01.95\n"
 
 #: body.cc:13
 msgctxt "ObjectClass|"
@@ -136,17 +136,17 @@ msgstr "EulerÇözücü"
 #: eulersolver.cc:16
 msgctxt "ObjectDescription|"
 msgid "Non-adaptive Euler solver"
-msgstr "Uyarlamasız Euler çözücü"
+msgstr "Uyarlanmaz Euler çözücüsü"
 
 #: eulersolver.cc:17
 msgctxt "ObjectClass|"
 msgid "AdaptiveEulerSolver"
-msgstr "UyarlamalıEulerÇözücü"
+msgstr "UyarlanırEulerÇözücüsü"
 
 #: eulersolver.cc:17
 msgctxt "ObjectDescription|"
 msgid "Adaptive Euler solver"
-msgstr "Uyarlamalı Euler çözücü"
+msgstr "Uyarlanır Euler çözücüsü"
 
 #: force.cc:14
 msgctxt "ObjectClass|"
@@ -588,17 +588,17 @@ msgstr "GslÇözücü"
 #: gslsolver.cc:20
 msgctxt "ObjectDescription|"
 msgid "GSL non-adaptive solver"
-msgstr "GSL uyarlamasız çözücü"
+msgstr "GSL uyarlanmaz çözücüsü"
 
 #: gslsolver.cc:23
 msgctxt "ObjectClass|"
 msgid "GslAdaptiveSolver"
-msgstr "GSLUyarlamalıÇözücü"
+msgstr "GSLUyarlanırÇözücüsü"
 
 #: gslsolver.cc:23
 msgctxt "ObjectDescription|"
 msgid "GSL adaptive solver"
-msgstr "GSL uyarlamalı çözücü"
+msgstr "GSL uyarlanır çözücüsü"
 
 #: gslsolver.cc:26
 msgctxt "ObjectClass|"
@@ -613,12 +613,12 @@ msgstr "GLS kitaplığından ikinci derece Runge-Kutta çözücü"
 #: gslsolver.cc:28
 msgctxt "ObjectClass|"
 msgid "GslAdaptiveRK2Solver"
-msgstr "GSLUyarlamalıRK2Çözücü"
+msgstr "GSLUyarlanırRK2Çözücüsü"
 
 #: gslsolver.cc:28
 msgctxt "ObjectDescription|"
 msgid "Adaptive Runge-Kutta second-order solver from GSL library"
-msgstr "GLS kitaplığından uyarlamalı ikinci derece Runge-Kutta çözücü"
+msgstr "GSL kitaplığından Uyarlanır Runge-Kutta ikinci dereceden çözücü"
 
 #: gslsolver.cc:31
 msgctxt "ObjectClass|"
@@ -633,12 +633,13 @@ msgstr "GLS kitaplığından dördüncü derece klasik Runge-Kutta çözücü"
 #: gslsolver.cc:33
 msgctxt "ObjectClass|"
 msgid "GslAdaptiveRK4Solver"
-msgstr "GslUyarlamalıRK4Çözücü"
+msgstr "GslUyarlanırRK4Çözücüsü"
 
 #: gslsolver.cc:33
 msgctxt "ObjectDescription|"
 msgid "Adaptive Runge-Kutta classical fourth-order solver from GSL library"
-msgstr "GLS kitaplığından uyarlamalı dördüncü-derece klasik Runge-Kutta çözücü"
+msgstr ""
+"GSL kitaplığından Uyarlanır Runge-Kutta klasik dördüncü dereceden çözücü"
 
 #: gslsolver.cc:36
 msgctxt "ObjectClass|"
@@ -653,12 +654,12 @@ msgstr "GLS kitaplığından Runge-Kutta-Fehlberg (4,5) çözücü"
 #: gslsolver.cc:38
 msgctxt "ObjectClass|"
 msgid "GslAdaptiveRKF45Solver"
-msgstr "GslUyarlamalıRKF45Çözücü"
+msgstr "GslUyarlanırRKF45Çözücüsü"
 
 #: gslsolver.cc:38
 msgctxt "ObjectDescription|"
 msgid "Adaptive Runge-Kutta-Fehlberg (4,5) solver from GSL library"
-msgstr "GLS kitaplığından uyarlamalı Runge-Kutta-Fehlberg (4,5) çözücü"
+msgstr "GLS kitaplığından Uyarlanır Runge-Kutta-Fehlberg (4,5) çözücüsü"
 
 #: gslsolver.cc:41
 msgctxt "ObjectClass|"
@@ -673,12 +674,12 @@ msgstr "GLS kitaplığından Runge-Kutta Cash-Karp (4,5) çözücü"
 #: gslsolver.cc:43
 msgctxt "ObjectClass|"
 msgid "GslAdaptiveRKCKSolver"
-msgstr "GslUyarlamalıRKCKÇözücü"
+msgstr "GslUyarlanırRKCKÇözücüsü"
 
 #: gslsolver.cc:43
 msgctxt "ObjectDescription|"
 msgid "Adaptive Runge-Kutta Cash-Karp (4,5) solver from GSL library"
-msgstr "GLS kitaplığından uyarlamalı Runge-Kutta Cash-Karp (4,5) çözücü"
+msgstr "GLS kitaplığından Uyarlanır Runge-Kutta Cash-Karp (4,5) çözücüsü"
 
 #: gslsolver.cc:46
 msgctxt "ObjectClass|"
@@ -693,12 +694,12 @@ msgstr "GLS kitaplığından Runge-Kutta Prince-Dormand (8,9) çözücü"
 #: gslsolver.cc:48
 msgctxt "ObjectClass|"
 msgid "GslAdaptiveRK8PDSolver"
-msgstr "GslUyarlamalıRK8PDÇözücü"
+msgstr "GslUyarlanırRK8PDÇözücüsü"
 
 #: gslsolver.cc:48
 msgctxt "ObjectDescription|"
 msgid "Adaptive Runge-Kutta Prince-Dormand (8,9) solver from GSL library"
-msgstr "GLS kitaplığından uyarlamalı Runge-Kutta Prince-Dormand (8,9) çözücü"
+msgstr "GLS kitaplığından Uyarlanır Runge-Kutta Prince-Dormand (8,9) çözücüsü"
 
 #: gslsolver.cc:51
 msgctxt "ObjectClass|"
@@ -713,12 +714,12 @@ msgstr "GLS kitaplığından ikinci-derece tam Runge-Kutta çözücü"
 #: gslsolver.cc:53
 msgctxt "ObjectClass|"
 msgid "GslAdaptiveRK2IMPSolver"
-msgstr "GslUyarlamalıRK2IMPÇözücü"
+msgstr "GslUyarlanırRK2IMPÇözücüsü"
 
 #: gslsolver.cc:53
 msgctxt "ObjectDescription|"
 msgid "Adaptive Runge-Kutta implicit second-order solver from GSL library"
-msgstr "GLS kitaplığından uyarlamalı ikinci derece tam Runge-Kutta çözücü"
+msgstr "GSL kitaplığından Uyarlanır Runge-Kutta örtülü ikinci dereceden çözücü"
 
 #: gslsolver.cc:56
 msgctxt "ObjectClass|"
@@ -733,12 +734,13 @@ msgstr "GLS kitaplığından dördüncü derece tam Runge-Kutta çözücü"
 #: gslsolver.cc:58
 msgctxt "ObjectClass|"
 msgid "GslAdaptiveRK4IMPSolver"
-msgstr "GslUyarlamalıRK4IMPÇözücü"
+msgstr "GslUyarlanırRK4IMPÇözücüsü"
 
 #: gslsolver.cc:58
 msgctxt "ObjectDescription|"
 msgid "Adaptive Runge-Kutta implicit fourth-order solver from GSL library"
-msgstr "GLS kitaplığından uyarlamalı dördüncü derece tam Runge-Kutta çözücü"
+msgstr ""
+"GSL kitaplığından Uyarlanır Runge-Kutta örtülü dördüncü dereceden çözücü"
 
 #: item.cc:15
 msgctxt "ObjectClass|"
