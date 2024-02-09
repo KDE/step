@@ -459,7 +459,7 @@
       <li xml:lang="sk">Niekoľko rôznych riešiteľov: do 8. úrovne, explicitné a implicitné, s alebo bez adaptívnej časovej pečiatky (väčšina riešiteľov vyžaduje knižnicu GSL)</li>
       <li xml:lang="sl">Različni reševalniki: do osmega reda, eksplicitni in implicitni, brez ali z prilagodljivim časovnim korakom (večina reševalnikov zahteva knjižnico GSL)</li>
       <li xml:lang="sv">Flera olika evalueringsenheter: Upp till 8:e ordningens, explicit eller implicit, med eller utan adaptivt tidssteg (de flesta evalueringsenheter kräver GSL-biblioteket)</li>
-      <li xml:lang="tr">Çeşitli farklı çözücüler: 8. dereceye kadar, açık ve kapalı, uyarlanabilir zamanlama varken ve yokken (çözücülerin çoğu GSL kitaplığını gerektirir)</li>
+      <li xml:lang="tr">Çeşitli farklı çözücüler: 8. dereceye kadar, açık ve kapalı, uyarlanır zamanlama varken ve yokken (çözücülerin çoğu GSL kitaplığını gerektirir)</li>
       <li xml:lang="uk">Декілька різних розв’язувачів: аж до восьмого порядку, явні і неявні, з та без зміни кроку за часом (більшість з розв’язувачів потребують бібліотеки GSL)</li>
       <li xml:lang="x-test">xxSeveral different solvers: up to 8th order, explicit and implicit, with or without adaptive timestep (most of the solvers require GSL library)xx</li>
       <li xml:lang="zh-CN">几种不同的求解器：高达8阶，显式和隐式，带或不带自适应时间步长（大多数求解器需要GSL库）</li>
