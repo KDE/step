@@ -415,7 +415,7 @@
       <li xml:lang="et">Lahendaja veahinnang: lahendaja lisatud vead arvutatakse välja ja lisatakse kasutaja sisestatud vigadele</li>
       <li xml:lang="fi">Ratkaisinvirheiden arviointi: ratkaisimen aiheuttamat virheet lasketaan ja lisätään käyttäjän syöttämiin virheisiin</li>
       <li xml:lang="fr">Estimation des erreurs du solveur : les erreurs introduites par le solveur sont calculées et ajoutées aux erreurs saisies par l'utilisateur</li>
-      <li xml:lang="gl">Estimación do erro da solución: os erros inseridos polo resolvedor son calculados e engadidos aos erros inseridos polo usuario.</li>
+      <li xml:lang="gl">Estimación do erro da solución: os erros inseridos polo resolvente son calculados e engadidos aos erros inseridos polo usuario.</li>
       <li xml:lang="id">Estimasi kesalahan pemecah: kesalahan yang diperkenalkan oleh pemecah dihitung dan ditambahkan ke kesalahan yang dimasukkan pengguna</li>
       <li xml:lang="it">Stima degli errori del solutore: gli errori introdotti dal solutore sono calcolati e aggiunti al valore dell'errore inserito dall'utente</li>
       <li xml:lang="ko">해 찾기 오류 추정: 해 찾기 도구의 오류를 계산하여 사용자가 입력한 오류에 추가합니다</li>
@@ -446,7 +446,7 @@
       <li xml:lang="et">Mitu erinevat lahendajat: kuni 8. astmeni, eksplitsiitsed ja implitsiitsed, adaptiivse ajasammuga või ilma selleta (enamik lahendajaid vajab GSL teeki)</li>
       <li xml:lang="fi">Useita eri ratkaisimia: kahdeksanteen asteeseen asti, eksplisiittisiä sekä implisiittisiä, adaptive timestep -menetelmällä tai ilman sitä (useimmat ratkaisimet tarvitsevat GSL-kirjaston)</li>
       <li xml:lang="fr">Plusieurs solveurs différents :jusqu'à l'ordre 8, explicite et implicite, avec ou sans pas adaptatif (la plupart des solveurs nécessite la bibliothèque GSL)</li>
-      <li xml:lang="gl">Varios tipos distintos de resolvedores: ata a 8ª orde, explícitos e implícitos, con ou sen paso adaptábel de tempo (a maioría dos resolvedores requiren da biblioteca GSL).</li>
+      <li xml:lang="gl">Varios tipos distintos de resolventes: ata a 8ª orde, explícitos e implícitos, con ou sen paso adaptábel de tempo (a maioría dos resolvedores requiren da biblioteca GSL).</li>
       <li xml:lang="id">Beberapa pemecah yang berbeda: hingga urutan ke 8, eksplisit dan implisit, dengan atau tanpa catatan waktu adaptif (sebagian besar pemecah memerlukan pustaka GSL)</li>
       <li xml:lang="it">Diversi tipi di solutori: fino all'ottavo ordine, espliciti ed impliciti, con o senza un passo temporale adattivo (la maggior parte dei solutori richiedono la libreria GSL)</li>
       <li xml:lang="ko">다양한 해결 도구: 최대 8차식, 명시적 및 암시적, 적응형 시간 단위 사용 여부(대부분의 해결 도구에는 GSL 라이브러리 필요)</li>
