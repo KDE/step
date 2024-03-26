@@ -1,0 +1,251 @@
+<chapter id="tutorials">
+<title
+>Spoznavanje &step;: vadnice</title>
+
+<para
+>Element menija <menuchoice
+><guimenu
+>Datoteka</guimenu
+><guimenuitem
+>Odpri vadnico...</guimenuitem
+></menuchoice
+> vam prinese pogovorno okno datoteke, kjer lahko naložite &step; vgrajene vadnice. Obstaja pet vadnic in postopoma se boste naučili interakcije z vsakim od elementov &step;a. Najbolje je, da začnete s prvo vadnico s klikom na datoteko <filename
+>tutorial1.step</filename
+>. To bo prikazalo vadnico 1 v &step;. </para>
+
+<note
+><para
+>Če vadnice ne vidite pravilno, jo lahko poskusite povečati za boljši prikaz.</para
+></note>
+
+<para
+>Na plošči <guilabel
+>Svet</guilabel
+> na desni so navedeni vsi predmeti, ki jih imate na svoji sceni. Če tukaj kliknete predmet, spodnja plošča <guilabel
+>Lastnosti</guilabel
+> prikaže lastnosti tega predmeta. Tukaj lahko spremenite lastnosti s klikom na tisto, ki jo želite spremeniti. </para>
+
+<para
+>Vsaka vadnica je sestavljena iz besedila, ki predstavlja nove elemente in razlaga njihove lastnosti. Nato morate spremeniti nekatere lastnosti elementov, da dosežete nov rezultat poskusa. </para>
+
+<sect1 id="tutorial1">
+<title
+>Vadnica 1: Telesa in vzmeti</title>
+
+<para
+>Ta vadnica vam predstavlja telesa in vzmeti ter kako začeti svojo prvo simulacijo. </para>
+
+<para
+>Fizično telo ali na kratko telo je predmet, ki ga lahko opišemo s teorijami klasične ali kvantne mehanike in na njem eksperimentiramo s fizikalnimi instrumenti. To vključuje določanje položaja in v nekaterih primerih orientacije v prostoru, pa tudi načine za spreminjanje le-teh s pomočjo sile. </para>
+
+<para
+>Vzmet je prožen elastičen predmet, ki se uporablja za shranjevanje mehanske energije. </para>
+
+<screenshot>
+  <screeninfo
+>Vadnica 1 poskus</screeninfo>
+  <mediaobject>
+    <imageobject
+><imagedata fileref="tutorial1.png" format="PNG"/></imageobject>
+    <textobject
+><phrase
+>Vadnica 1 poskus</phrase
+></textobject>
+  </mediaobject>
+</screenshot>
+
+<para
+>Fizični poskus v tej vadnici predstavlja dva diska, povezana z vzmetjo. Diski imajo začetno hitrost v tangencialni smeri (mala modra puščica) in pospešek (rdeča puščica), vzmeti pa imajo togost in dolžino je mogoče spreminjati. Med izvajanjem poskusa lahko vidite diske, ki jih vzmet vleče in potiska. Vadnica vas vabi, da spremenite togost vzmeti in poskusite spremeniti poskus sistema. </para>
+
+<para
+>Na koncu te vadnice bi morali bolje poznati vmesnik &step;a, prav tako pa bi morali imeti možnost enostavno spreminjati lastnosti teles. </para>
+</sect1>
+
+<sect1 id="tutorial2">
+<title
+>Vadnica 2: Krmilniki in grafi</title>
+
+<para
+>V tej vadnici boste izvedeli več o krmilnikih in grafih. </para>
+
+<para
+>Krmilnik je naprava, ki vam omogoča grafično spreminjanje lastnosti telesa ali vzmeti. V vadnici vam krmilnik omogoča spreminjanje togosti vzmeti <quote
+>spring1</quote
+>. S premikanjem drsnika v desno ali uporabo tipke <keycap
+>W</keycap
+> lahko povečate vrednost togosti vzmeti spring1, s premikanjem drsnika v levo ali uporabo tipke <keycap
+>Q</keycap
+> pa jo zmanjšate. Desni klik na krmilnik vam prinese več kontekstnih dejanj in element <guimenuitem
+>Konfiguriraj krmilnik...</guimenuitem
+> prikaže pogovorno okno, v katerem lahko spremenite vsako lastnost krmilnika. </para>
+
+<screenshot>
+  <screeninfo
+>Vadnica 2 poskus</screeninfo>
+  <mediaobject>
+    <imageobject
+><imagedata fileref="tutorial2.png" format="PNG"/></imageobject>
+    <textobject
+><phrase
+>Vadnica 2 poskus</phrase
+></textobject>
+  </mediaobject>
+</screenshot>
+
+<para
+>Grafi vam omogočajo grafično vizualizacijo odnosa med dvema spremenljivkama. Primer v vadnici natisne razvoj položaja delca particle1, medtem ko čas napreduje v world1. Z desnim klikom na graf lahko počistite ali izbrišete graf ter uredite konfiguracijsko pogovorno okno in tukaj spremenite vse lastnosti za ta graf. </para>
+
+<para
+>Na koncu te vadnice lahko uporabite krmilnike za delovanje na lastnosti svojih teles in grafe za spremljanje določenih lastnosti v vašem poskusu. </para>
+</sect1>
+
+<sect1 id="tutorial3">
+<title
+>Vadnica 3: Toga telesa in sledilniki</title>
+
+<para
+>Vadnica 3 vam predstavlja toga telesa in sledilnike. </para>
+
+<para
+>Togo telo je idealizacija trdnega telesa končne velikosti, pri katerem je zanemarjena deformacija. Z drugimi besedami, razdalja med katerima koli dvema danima točkama togega telesa ostane konstantna v času ne glede na zunanje sile, ki delujejo nanj. </para>
+
+<para
+>Sledilnik je orodje, ki prikazuje trajektorijo dane točke na togem telesu. </para>
+
+<screenshot>
+  <screeninfo
+>Lastnosti diska</screeninfo>
+  <mediaobject>
+    <imageobject
+><imagedata fileref="disk-properties.png" format="PNG"/></imageobject>
+    <textobject
+><phrase
+>Lastnosti diska</phrase
+></textobject>
+  </mediaobject>
+</screenshot>
+
+<para
+>Ko izberete togo telo (tukaj disk), vidite na njem tri sive ročice. Z njimi lahko s klikom nanje in premikanjem spreminjate hitrost, kot in kotno hitrost telesa. </para>
+
+<screenshot>
+  <screeninfo
+>3. vadnica: 2 sledilnika</screeninfo>
+  <mediaobject>
+    <imageobject
+><imagedata fileref="tutorial3.png" format="PNG"/></imageobject>
+    <textobject
+><phrase
+>Vadnica 3: 2 sledilnika</phrase
+></textobject>
+  </mediaobject>
+</screenshot>
+
+<para
+>Poskus v vadnici 3 prikazuje disk in škatlo, povezana z vzmetjo. Sledilnik (tisti modri) je že na škatli. Dodate lahko drugega: izberite gumb <guibutton
+>Sledilnik</guibutton
+> na plošči <guilabel
+>Paleta</guilabel
+> in nato kliknite polje na točki, kjer želite, da je sledilnik. Na plošči <guilabel
+>Lastnosti</guilabel
+> kliknite vrstico <guilabel
+>barva</guilabel
+> in na desni strani te vrstice lahko kliknete modri kvadrat in prikaže se barvna paleta: izberete lahko novo barvo za sledilnik. Zgornji posnetek zaslona prikazuje dva sledilnika po tem, ko se simulacija izvaja nekaj sekund. </para>
+</sect1>
+
+<sect1 id="tutorial4">
+<title
+>Vadnica 4: Motorji in sile</title>
+
+<para
+>V &step; imate na voljo dve vrsti motorjev: linearne motorje in krožne motorje. Linearni motor deluje s konstantno silo na določeno točko na telesu, medtem ko krožni motor deluje na telo s konstantnim navorom. </para>
+
+<para
+>Telesom lahko dodamo tri različne sile: silo teže, gravitacijsko silo in Coulombovo silo. Privzeto so vse sile izklopljene v &step;. Coulombova sila je sila, ki obstaja med dvema nabojema. </para>
+
+<screenshot>
+  <screeninfo
+>Vadnica 4: Motorji</screeninfo>
+  <mediaobject>
+    <imageobject
+><imagedata fileref="tutorial4.png" format="PNG"/></imageobject>
+    <textobject
+><phrase
+>Vadnica 4: Motorji</phrase
+></textobject>
+  </mediaobject>
+</screenshot>
+
+<para
+>V poskusu imate disk in škatlo, ki ju povezuje vzmet. Ravna škatla na dnu bo tvorila mejo. Disk in škatla imata nameščen linearni motor. Dva krmilnika omogočata spreminjanje vrednosti sile vsakega motorja. Zaženite simulacijo in se igrajte s krmilniki. Nato ustavite simulacijo in dodajte utežno silo v svetu (sile so globalne in veljajo za ves svet). Ponovno zaženite simulacijo in analizirajte razliko. </para>
+
+<para
+>Prav tako lahko odstranite linearni motor na škatli in namesto njega dodate krožni motor. Pritisnite gumb <inlinemediaobject
+><imageobject
+><imagedata fileref="step_object_CircularMotor.png" format="PNG"/></imageobject
+></inlinemediaobject
+> <guibutton
+>CircularMotor</guibutton
+> v <guilabel
+>Paleti</guilabel
+> in nato kliknite polje. Krožni motor je nameščen na škatli. Nato morate nastaviti vrednost navora, tako da kliknete in premaknete sivo ročko motorja. </para>
+
+<screenshot>
+  <screeninfo
+>Krožni motor</screeninfo>
+  <mediaobject>
+    <imageobject
+><imagedata fileref="circular-motor.png" format="PNG"/></imageobject>
+    <textobject
+><phrase
+>Krožni motor</phrase
+></textobject>
+  </mediaobject>
+</screenshot>
+
+<para
+>Ta vadnica vas je seznanila z motorji in silami in zdaj bi jih morali dodati telesom.</para>
+</sect1>
+
+<sect1 id="tutorial5">
+<title
+>Vadnica 5: Spoji</title>
+
+<para
+>Spoji so predmeti, ki pritrjujejo telesa med seboj ali na ozadje. V &step; imate naslednje spoje: sidra, zatiče in palice. Sidro je sklep, ki fiksira položaj telesa. Telo se ne more premikati, ko ima sidro. Zatič je sklep, ki fiksira eno točko telesa, telo se lahko še vedno premika okoli zatiča. Palica je sklep, ki določa razdaljo med dvema točkama na dveh telesih. </para>
+
+<screenshot>
+  <screeninfo
+>Vadnica 5: dvojno nihalo</screeninfo>
+  <mediaobject>
+    <imageobject
+><imagedata fileref="tutorial5.png" format="PNG"/></imageobject>
+    <textobject
+><phrase
+>Vadnica 5: dvojno nihalo</phrase
+></textobject>
+  </mediaobject>
+</screenshot>
+
+<para
+>Vadnica 5 opisuje dvojno nihalo. </para>
+
+<para
+>Prizoru dodajte <inlinemediaobject
+><imageobject
+><imagedata fileref="step_object_Particle.png" format="PNG"/></imageobject
+></inlinemediaobject
+> <guibutton
+>delec</guibutton
+>, nato ta delec pridružite delcu Particle2 s palico. Pritisnite gumb <inlinemediaobject
+><imageobject
+><imagedata fileref="step_object_Stick.png" format="PNG"/></imageobject
+></inlinemediaobject
+> <guibutton
+>Palica</guibutton
+> na <guilabel
+>paleti</guilabel 
+> plošče. Nato morate z levim gumbom miške izbrati prvi predmet, ki je pritrjen na palico (particle2), nato povlecite miško na drugi predmet (particle3) in spustite tipko miške na particle3. Zdaj imate trojno nihalo! </para>
+</sect1>
+
+</chapter>
