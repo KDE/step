@@ -1,0 +1,310 @@
+<chapter id="examples">
+<title
+>&step; primeri</title>
+
+<para
+>&step; paket vsebuje več poučnih primerov, ki vam bodo pomagali razumeti načela delovanja aplikacije: </para>
+
+<variablelist>
+  <varlistentry>
+    <term
+><menuchoice
+><guimenu
+>Datoteka</guimenu
+> <guisubmenu
+>Primeri</guisubmenu
+></menuchoice
+></term>
+    <listitem
+><para
+><action
+>Odpre podmeni</action
+> z različnimi elementi dejanj.</para>
+    <variablelist>
+      <varlistentry>
+        <term
+><guimenuitem
+>Odpri primer...</guimenuitem
+></term>
+        <listitem
+><para
+><action
+>Odpre primer</action
+> iz privzetega nabora</para
+></listitem>
+      </varlistentry>
+      <varlistentry>
+        <term
+><guimenuitem
+>Odpri preneseni primer...</guimenuitem
+></term>
+        <listitem
+><para
+><action
+>Odpre prenesene primere.</action
+></para
+></listitem>
+      </varlistentry>
+      <varlistentry>
+        <term
+><guimenuitem
+>Prenesite nove poskuse...</guimenuitem
+></term>
+        <listitem
+><para
+><action
+>Prenesi primere</action
+>, ki so jih delili drugi uporabniki.</para
+></listitem>
+      </varlistentry>
+      <varlistentry>
+        <term
+><guimenuitem
+>Deli trenutni poskus...</guimenuitem
+></term>
+        <listitem
+><para
+><action
+>Lahko delite svoje primere.</action
+></para
+></listitem>
+      </varlistentry>
+    </variablelist>
+    </listitem>
+  </varlistentry>
+</variablelist>
+
+<para
+>Spodaj najdete opise privzetih primerov datotek. </para>
+
+<variablelist>
+  <varlistentry id="brownian">
+    <term
+><filename
+>brownian.step</filename
+></term>
+    <listitem
+><para
+>Nariše trajektorijo togega diska v interakciji s 40 delci, ki naključno lebdijo v škatli. Ta primer simulira <ulink url="https://en.wikipedia.org/wiki/Brownian_motion"
+>Brownovo gibanje</ulink
+> delcev idealnega plina.</para
+></listitem>
+  </varlistentry>
+
+  <varlistentry id="pendulum">
+    <term
+><filename
+>doublependulum.step</filename
+></term>
+    <listitem
+><para
+>Ta primer simulira <ulink url="https://en.wikipedia.org/wiki/Double_pendulum"
+>gibanje dvojnega nihala</ulink
+> z uporabo dveh masivnih delcev in dveh palic.</para
+></listitem>
+  </varlistentry>
+
+  <varlistentry id="eightpendulum">
+    <term
+><filename
+>eightpendulum.step</filename
+></term>
+    <listitem
+><para
+>Ta primer je preprosta predstavitev slavne <ulink url="https://en.wikipedia.org/wiki/Newton%27s_cradle"
+>Newtonove zibelke</ulink
+>. Izvede se v &step; z uporabo palic, 8 diskov in škatle. Šest kroglic na sredini se ne premika, ker le prenašajo zagon in energijo, ne pa gibanja.</para
+></listitem>
+  </varlistentry>
+
+  <varlistentry id="first">
+    <term
+><filename
+>first.step</filename
+>: Prvi primer</term>
+    <listitem
+><para
+>Ta primer ima dva dela. Prvi del vsebuje dva delca, povezana z vzmetjo, drugi del pa dva nabita delca. </para>
+    <variablelist>
+      <varlistentry id="first-two-particles">
+        <term
+>Dva delca, povezana z vzmetjo</term>
+        <listitem
+><para
+>V tem primeru sta na sceno dodana dva delca in med njima je povezana vzmet. Lastnosti obeh delcev, kot so hitrost, zagon, položaj &etc; je nastavljen v brskalniku lastnosti. Lastnosti vzmeti, kot so togost, dolžina mirovanja, dušenje &etc; nastavljen tudi v brskalniku lastnosti. </para>
+
+        <para
+><emphasis
+>Razlaga simulacije:</emphasis>
+        </para>
+
+        <para
+>To je dober primer preprostega harmoničnega gibanja. Tukaj je pospešek enega delca nastavljen v smeri pozitivne osi x, pospešek drugega delca pa vzdolž negativne osi x. Posledica tega je, da oba delca vlečeta vzmet v nasprotni smeri, kjer vzmet skuša oba delca vrniti v prvotni položaj. Tako sistem izvaja preprosto harmonično gibanje. Simulacija delcev in vzmeti pod temi pogoji je vidna na prizorišču. </para
+></listitem>
+      </varlistentry>
+
+      <varlistentry id="first-two-charged">
+        <term
+>Dva nabita delca</term>
+        <listitem
+><para
+>Hitrost vsakega nabitega delca je nastavljena v določeni smeri, tako da se nabiti delci gibljejo v ustrezni smeri svoje hitrosti, vendar je vsakemu delcu dodeljen enak in nasproten naboj, tako da se delci poskušajo pritegniti. Posledično je na prizorišču mogoče videti simulacijo nabitih delcev pod temi pogoji.</para
+></listitem>
+      </varlistentry>
+    </variablelist>
+    </listitem>
+  </varlistentry>
+
+  <varlistentry id="fourpendula">
+    <term
+><filename
+>fourpendula.step</filename
+></term>
+    <listitem
+><para
+>Ta primer je pravilna predstavitev <ulink url="https://en.wikipedia.org/wiki/Newton%27s_cradle"
+>Newtonove zibelke</ulink
+>. Ker je sistem nepopoln, se dva diska na sredini s časom vizualno premikata.</para
+></listitem>
+  </varlistentry>
+
+  <varlistentry id="gas">
+    <term
+><filename
+>gas.step</filename
+></term>
+    <listitem
+><para
+>Ta primer simulira idealni plinski tlak, ki ga povzroča <ulink url="https://en.wikipedia.org/wiki/Brownian_motion"
+>Brownovo gibanje</ulink
+>.</para
+></listitem>
+  </varlistentry>
+
+  <varlistentry id="graph">
+    <term
+><filename
+>graph.step</filename
+></term>
+    <listitem
+><para
+>Izriše graf hitrosti v odvisnosti od položaja za particle1 v sistemu dveh delcev, povezanih z vzmetjo.</para
+></listitem>
+  </varlistentry>
+
+  <varlistentry id="liquid">
+    <term
+><filename
+>liquid.step</filename
+></term>
+    <listitem
+><para
+>Ta primer simulira monoatomsko tekočino.</para
+></listitem>
+  </varlistentry>
+
+  <varlistentry id="lissajous">
+    <term
+><filename
+>lissajous.step</filename
+></term>
+    <listitem
+><para
+>Ta primer simulira <ulink url="https://en.wikipedia.org/wiki/Lissajous_curve"
+>Lissajousovo krivuljo</ulink
+> z uporabo modela dveh delcev. Parametre na modelu je mogoče spreminjati s pomočjo krmilnika v središču sveta.</para
+></listitem>
+  </varlistentry>
+
+  <varlistentry id="motor1">
+    <term
+><filename
+>motor1.step</filename
+></term>
+    <listitem
+><para
+>Simulira trikotno togo telo pod obremenitvijo treh linearnih motorjev.</para
+></listitem>
+  </varlistentry>
+
+  <varlistentry id="motor-example">
+    <term
+><filename
+>motor.step</filename
+></term>
+    <listitem
+><para
+>Simulira interakcijo linearnega motorja s togim pravokotnim telesom na vzmeti.</para
+></listitem>
+  </varlistentry>
+
+  <varlistentry id="note-example">
+    <term
+><filename
+>note.step</filename
+></term>
+    <listitem
+><para
+>Primer z &latex; formula (<ulink url="https://en.wikipedia.org/wiki/Divergence_theorem"
+>divergenčni izrek</ulink
+>) in vdelana slika.</para
+></listitem>
+  </varlistentry>
+
+  <varlistentry id="resonance">
+    <term
+><filename
+>resonance.step</filename
+></term>
+    <listitem
+><para
+>Ta primer simulira resonanco v sistemu s kotnim motorjem.</para
+></listitem>
+  </varlistentry>
+
+  <varlistentry id="softbody">
+    <term
+><filename
+>softbody.step</filename
+></term>
+    <listitem
+><para
+>Ta primer simulira interakcijo dveh togih teles z mehkim telesom med njima.</para
+></listitem>
+  </varlistentry>
+
+  <varlistentry id="solar">
+    <term
+><filename
+>solar.step</filename
+></term>
+    <listitem
+><para
+>Ta primer simulira gibanje glavnih teles Osončja (Sonce in planeti).</para
+></listitem>
+  </varlistentry>
+
+  <varlistentry id="springs">
+    <term
+><filename
+>springs.step</filename
+></term>
+    <listitem
+><para
+>Ta primer simulira gibanje ravninskega sistema petih delcev, povezanih s štirimi vzmetmi.</para
+></listitem>
+  </varlistentry>
+
+  <varlistentry id="wave">
+    <term
+><filename
+>wave.step</filename
+></term>
+    <listitem
+><para
+>Graf na sceni prikazuje nihanje zelenega delca. Ko začnete s simulacijo, val začne potovati od rdečega delca. Modri delec bo odbijal val in potoval v obratni smeri, dokler se rdeči delec ponovno ne odbije. Čez nekaj časa bo val izginil, ker imajo vzmeti dušenje.</para
+></listitem>
+  </varlistentry>
+</variablelist>
+
+</chapter>
