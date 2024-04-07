@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: kdeorg\n"
-"PO-Revision-Date: 2024-04-04 19:53\n"
+"PO-Revision-Date: 2024-04-07 00:34\n"
 "Language-Team: Chinese Simplified\n"
 "Language: zh_CN\n"
 "MIME-Version: 1.0\n"
@@ -1097,7 +1097,7 @@ msgstr "动量"
 #: particle.cc:23 particle.cc:39 rigidbody.cc:33 rigidbody.cc:63
 msgctxt "Units|"
 msgid "kg m/s"
-msgstr "千克 米/秒"
+msgstr "千克·米/秒"
 
 #: particle.cc:25 rigidbody.cc:37
 msgctxt "PropertyDescription|"
@@ -1527,7 +1527,7 @@ msgstr "显示内部项目"
 #: softbody.cc:28
 msgctxt "Units|"
 msgid "kg m²/s"
-msgstr "千克 米²/秒"
+msgstr "千克·米²/秒"
 
 #: softbody.cc:29
 msgctxt "PropertyDescription|"
