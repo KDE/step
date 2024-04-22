@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: kdeorg\n"
-"PO-Revision-Date: 2024-03-30 19:46\n"
+"PO-Revision-Date: 2024-04-21 04:52\n"
 "Language-Team: Chinese Simplified\n"
 "Language: zh_CN\n"
 "MIME-Version: 1.0\n"
@@ -12,8 +12,8 @@ msgstr ""
 "X-Crowdin-Project: kdeorg\n"
 "X-Crowdin-Project-ID: 269464\n"
 "X-Crowdin-Language: zh-CN\n"
-"X-Crowdin-File: /kf5-stable/messages/step/step_qt.pot\n"
-"X-Crowdin-File-ID: 4270\n"
+"X-Crowdin-File: /kf5-trunk/messages/step/step_qt.pot\n"
+"X-Crowdin-File-ID: 5054\n"
 
 #: body.cc:13
 msgctxt "ObjectClass|"
@@ -1097,7 +1097,7 @@ msgstr "动量"
 #: particle.cc:23 particle.cc:39 rigidbody.cc:33 rigidbody.cc:63
 msgctxt "Units|"
 msgid "kg m/s"
-msgstr "千克 米/秒"
+msgstr "千克·米/秒"
 
 #: particle.cc:25 rigidbody.cc:37
 msgctxt "PropertyDescription|"
@@ -1527,7 +1527,7 @@ msgstr "显示内部项目"
 #: softbody.cc:28
 msgctxt "Units|"
 msgid "kg m²/s"
-msgstr "千克 米²/秒"
+msgstr "千克·米²/秒"
 
 #: softbody.cc:29
 msgctxt "PropertyDescription|"

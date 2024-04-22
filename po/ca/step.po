@@ -1315,3 +1315,36 @@ msgid "... (1 more item)"
 msgid_plural "... (%1 more items)"
 msgstr[0] "... (1 element més)"
 msgstr[1] "... (%1 elements més)"
+
+#~ msgid "Wikipedia"
+#~ msgstr "Viquipèdia"
+
+#~ msgid "Fetching Wikipedia Information..."
+#~ msgstr "S'està cercant informació a la Viquipèdia..."
+
+#~ msgid "Wikipedia error"
+#~ msgstr "Error de la Viquipèdia"
+
+#~ msgid ""
+#~ "Information could not be retrieved because the server was not reachable."
+#~ msgstr ""
+#~ "No s'ha pogut recuperar la informació perquè el servidor no estava "
+#~ "disponible."
+
+#~ msgid "Wikipedia Information"
+#~ msgstr "Informació de la Viquipèdia"
+
+#~ msgid "Wikipedia Other Languages"
+#~ msgstr "Viquipèdia en altres llengües"
+
+#~ msgid "The file \"%1\" already exists. Do you wish to overwrite it?"
+#~ msgstr "El fitxer «%1» ja existeix. Voleu sobreescriure'l?"
+
+#~ msgid "Vladimir Kuznetsov"
+#~ msgstr "Vladimir Kuznetsov"
+
+#~ msgid "Carsten Niehaus"
+#~ msgstr "Carsten Niehaus"
+
+#~ msgid "Create items..."
+#~ msgstr "Crea ítems..."
