@@ -1,13 +1,13 @@
-# Copyright (C) YEAR This file is copyright:
+# Copyright (C) 2024 This file is copyright:
 # This file is distributed under the same license as the step package.
 #
-# Emir SARI <emir_sari@icloud.com>, 2022, 2023.
+# SPDX-FileCopyrightText: 2022, 2023, 2024 Emir SARI <emir_sari@icloud.com>
 msgid ""
 msgstr ""
 "Project-Id-Version: step\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2023-11-05 12:24+0000\n"
-"PO-Revision-Date: 2023-06-04 02:06+0300\n"
+"PO-Revision-Date: 2024-04-23 00:49+0300\n"
 "Last-Translator: Emir SARI <emir_sari@icloud.com>\n"
 "Language-Team: Turkish <kde-l10n-tr@kde.org>\n"
 "Language: tr\n"
@@ -15,7 +15,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
-"X-Generator: Lokalize 23.07.70\n"
+"X-Generator: Lokalize 24.07.70\n"
 
 #: examples/brownian.step:4 examples/doublependulum.step:4
 #: examples/fourpendula.step:4 examples/gas.step:4 examples/graph.step:4
@@ -1458,7 +1458,7 @@ msgid ""
 "- Change the stiffness of the spring by moving the slider just below the "
 "bodies. You can also change it by pressing \"Q\" and \"W\" keys!"
 msgstr ""
-"- Kaydırıcıyı gövdelerin hemen altına hareket ettirerek yayın sertliğini "
+"- Sürgüyü gövdelerin hemen altına hareket ettirerek yayın sertliğini "
 "değiştirin. \"Q\" ve \"W\" düğmelerine basarak da değiştirebilirsiniz!"
 
 #: tutorials/tutorial2.step:98
@@ -1510,8 +1510,8 @@ msgid ""
 "- Now try moving the slider and pressing the selected shortcuts while "
 "simulation is active."
 msgstr ""
-"- Benzetim etkinken kaydırıcıyı hareket ettirmeyi ve seçilen kısayollara "
-"basmayı deneyin."
+"- Benzetim etkinken sürgüyü hareket ettirmeyi ve seçilen kısayollara basmayı "
+"deneyin."
 
 #: tutorials/tutorial2.step:128
 #, kde-format
