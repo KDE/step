@@ -387,7 +387,7 @@ msgstr "S'ha creat %1 anomenat «%2»"
 #: step/gasgraphics.cc:282
 #, kde-format
 msgid "Create Particles..."
-msgstr "Crea partícules..."
+msgstr "Crea partícules…"
 
 #: step/gasgraphics.cc:352
 #, kde-format
@@ -572,27 +572,27 @@ msgstr "Document que s'ha d'obrir"
 #: step/mainwindow.cc:143
 #, kde-format
 msgid "&Open Tutorial..."
-msgstr "O&bri la guia d'aprenentatge..."
+msgstr "O&bri la guia d'aprenentatge…"
 
 #: step/mainwindow.cc:148
 #, kde-format
 msgid "&Open Example..."
-msgstr "Obri un e&xemple..."
+msgstr "Obri un e&xemple…"
 
 #: step/mainwindow.cc:153
 #, kde-format
 msgid "Open Down&loaded Example..."
-msgstr "Obri un exemple de&scarregat..."
+msgstr "Obri un exemple de&scarregat…"
 
 #: step/mainwindow.cc:158
 #, kde-format
 msgid "Share C&urrent Experiment..."
-msgstr "Com&partix l'experiment actual..."
+msgstr "Com&partix l'experiment actual…"
 
 #: step/mainwindow.cc:161
 #, kde-format
 msgid "&Download New Experiments..."
-msgstr "&Descarrega nous experiments..."
+msgstr "&Descarrega nous experiments…"
 
 #: step/mainwindow.cc:168
 #, kde-format
@@ -1046,12 +1046,12 @@ msgstr "&Mida de la lletra"
 #: step/toolgraphics.cc:411
 #, kde-format
 msgid "Insert &Image..."
-msgstr "Inserix una &imatge..."
+msgstr "Inserix una &imatge…"
 
 #: step/toolgraphics.cc:416
 #, kde-format
 msgid "Insert &Formula..."
-msgstr "Inserix una &fórmula..."
+msgstr "Inserix una &fórmula…"
 
 #: step/toolgraphics.cc:527
 #, kde-format
@@ -1142,7 +1142,7 @@ msgstr "Neteja el gràfic"
 #: step/toolgraphics.cc:1079
 #, kde-format
 msgid "Configure Graph..."
-msgstr "Configura el gràfic..."
+msgstr "Configura el gràfic…"
 
 #: step/toolgraphics.cc:1097
 #, kde-format
@@ -1164,7 +1164,7 @@ msgstr "Neteja el gràfic %1"
 #: step/toolgraphics.cc:1306
 #, kde-format
 msgid "Configure Meter..."
-msgstr "Configura el mesurador..."
+msgstr "Configura el mesurador…"
 
 #: step/toolgraphics.cc:1324
 #, kde-format
@@ -1200,7 +1200,7 @@ msgstr "Canvia el controlador %1"
 #: step/toolgraphics.cc:1621
 #, kde-format
 msgid "Configure Controller..."
-msgstr "Configura el controlador..."
+msgstr "Configura el controlador…"
 
 #: step/toolgraphics.cc:1639
 #, kde-format
@@ -1314,5 +1314,5 @@ msgstr "Objectes baix el cursor:"
 #, kde-format
 msgid "... (1 more item)"
 msgid_plural "... (%1 more items)"
-msgstr[0] "... (1 element més)"
-msgstr[1] "... (%1 elements més)"
+msgstr[0] "… (1 element més)"
+msgstr[1] "… (%1 elements més)"
