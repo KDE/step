@@ -1,242 +1,311 @@
 <chapter id="examples">
 <title
->Exemples de &step;</title
-> 
-<para
->Le paquet &step; contient plusieurs exemples instructifs pour vous aider à comprendre les principes de travail de l'application. Pour ouvrir un exemple parmi ceux par défaut, cliquez sur <menuchoice
-><guimenu
->Fichier</guimenu
-> <guisubmenu
->Exemples</guisubmenu
-> <guimenuitem
->Ouvrir un exemple...</guimenuitem
-></menuchoice
-> depuis le menu de la fenêtre principale. </para>
+>Exemples de &step;</title>
 
 <para
->Vous pouvez partager vos propres exemples avec <menuchoice
+>Le paquet de &step; contient plusieurs exemples instructifs pour vous aider à comprendre les principes du fonctionnement de l'application : </para>
+
+<variablelist>
+  <varlistentry>
+    <term
+><menuchoice
 ><guimenu
 >Fichier</guimenu
 > <guisubmenu
 >Exemples</guisubmenu
-> <guimenuitem
->Partager l'expérience actuelle...</guimenuitem
 ></menuchoice
-> ou télécharger des exemples partagés par d'autres utilisateurs avec <menuchoice
-><guimenu
->Fichier</guimenu
-><guisubmenu
->Exemples</guisubmenu
-> <guimenuitem
->Télécharger de nouvelles expériences...</guimenuitem
-></menuchoice
->. Les exemples téléchargés peuvent être ouvert en utilisant l'élément de menu <menuchoice
-><guimenu
->Fichier</guimenu
-> <guisubmenu
->Exemples</guisubmenu
-> <guimenuitem
+></term>
+    <listitem
+><para
+><action
+>Ouvre un sous-menu</action
+> avec différents éléments d'action.</para>
+    <variablelist>
+      <varlistentry>
+        <term
+><guimenuitem
+>Ouvrir un exemple...</guimenuitem
+></term>
+        <listitem
+><para
+><action
+>Ouvre un exemple</action
+> à partir de l'ensemble par défaut</para
+></listitem>
+      </varlistentry>
+      <varlistentry>
+        <term
+><guimenuitem
 >Ouvrir un exemple téléchargé...</guimenuitem
-></menuchoice
->. </para>
+></term>
+        <listitem
+><para
+><action
+>Ouvre les exemples téléchargés.</action
+></para
+></listitem>
+      </varlistentry>
+      <varlistentry>
+        <term
+><guimenuitem
+>Télécharger de nouvelles expériences...</guimenuitem
+></term>
+        <listitem
+><para
+><action
+>Téléchargez des exemples</action
+> partagés par d'autres utilisateurs.</para
+></listitem>
+      </varlistentry>
+      <varlistentry>
+        <term
+><guimenuitem
+>Partager l'expérience courante...</guimenuitem
+></term>
+        <listitem
+><para
+><action
+>Vous pouvez partager vos propres exemples.</action
+></para
+></listitem>
+      </varlistentry>
+    </variablelist>
+    </listitem>
+  </varlistentry>
+</variablelist>
 
 <para
 >Vous pouvez trouver les descriptions des fichiers d'exemple par défaut ci-dessous. </para>
 
 <variablelist>
-<varlistentry id="brownian">
-<term
->brownian.step</term>
-<listitem
+  <varlistentry id="brownian">
+    <term
+><filename
+>brownian.step</filename
+></term>
+    <listitem
 ><para
->Trace la trajectoire d'un disque rigide interagissant avec 40 particules qui évolue aléatoirement dans une boite.Cet exemple simule <ulink url="https://fr.wikipedia.org/wiki/Mouvement_brownien"
+>Trace la trajectoire d'un disque rigide interagissant avec 40 particules évoluant aléatoirement dans une boite. Cet exemple simule un <ulink url="https://fr.wikipedia.org/wiki/Mouvement_brownien"
 >mouvement brownien</ulink
-> des particules de gaz parfait.</para
+> de particules dans un gaz parfait.</para
 ></listitem>
-</varlistentry>
+  </varlistentry>
 
-<varlistentry id="pendulum">
-<term
->doublependulum.step</term>
-<listitem
+  <varlistentry id="pendulum">
+    <term
+><filename
+>doublependulum.step</filename
+></term>
+    <listitem
 ><para
->Cet exemple simule <ulink url="https://fr.wikipedia.org/wiki/Pendule_double"
->le mouvement d'un pendule double</ulink
+>Cet exemple simule le <ulink url="https://fr.wikipedia.org/wiki/Pendule_double"
+>mouvement d'un pendule double</ulink
 > en utilisant 2 particules massives et deux barres.</para
 ></listitem>
-</varlistentry>
+  </varlistentry>
 
-<varlistentry id="eightpendulum">
-<term
->eightpendulum.step</term>
-<listitem
+  <varlistentry id="eightpendulum">
+    <term
+><filename
+>eightpendulum.step</filename
+></term>
+    <listitem
 ><para
 >Cet exemple est une simple démonstration du célèbre <ulink url="https://fr.wikipedia.org/wiki/Pendule_de_Newton"
 >pendule de Newton</ulink
->. Il est réalisé dans &step; grâce à des barres, 8 disques et une boite. Les six boules dans le milieu n'ont pas de mouvement parce qu'elles transfèrent uniquement de l'énergie et de l'impulsion, pas un mouvement.</para
+>. Il est réalisé dans &step; grâce à des barres, 8 disques et une boite. Les six boules dans le milieu n'ont aucun mouvement parce qu'elles transfèrent uniquement du mouvement et de l'énergie, sans déplacement.</para
 ></listitem>
-</varlistentry>
+  </varlistentry>
 
-<varlistentry id="first">
-<term
->first.step : premier exemple</term>
-<listitem
+  <varlistentry id="first">
+    <term
+><filename
+>premier.exemple</filename
+> : premier exemple</term>
+    <listitem
 ><para
->Cet exemple a deux parties. La première partie contient deux particules reliées par un ressort et la seconde partie contient deux particules chargées.</para>
-
-<variablelist>
-<varlistentry id="first-two-particles">
-<term
+>Cet exemple a deux parties. La première partie contient deux particules reliées par un ressort et la seconde partie contient deux particules chargées. </para>
+    <variablelist>
+      <varlistentry id="first-two-particles">
+        <term
 >Deux particules reliées par un ressort</term>
-<listitem>
-  <para
+        <listitem
+><para
 >Dans cet exemple, deux particules sont ajoutées à l'espace de travail et un ressort les relie. Les propriétés des deux particules telles que leur vitesse, leur quantité de mouvement, leur position &etc; ont été définies dans le navigateur de propriétés. Les propriétés du ressort telles que sa raideur, sa longueur de relaxation, son amortissement &etc; ont également été définies dans ce navigateur. </para>
- <para>
-   <emphasis
+
+        <para
+><emphasis
 >Explication de la simulation :</emphasis>
- </para>
- <para
->C'est un bon exemple d'un mouvement harmonique simple. Ici, l'accélération de la première particule est définie dans la direction de l'axe x positif et l'accélération de l'autre particule est définie le long de l'axe x négatif. Ainsi, les deux particules étirent le ressort dans des directions opposées, tandis que le ressort essaie de faire revenir les deux particules à leur position initiale. Ainsi, le système exécute un mouvement harmonique simple. La simulation des particules et du ressort sous ces conditions peut être visualisée dans l'espace de travail. </para>
-</listitem>
-</varlistentry>
+        </para>
 
-<varlistentry id="first-two-charged">
-<term
+        <para
+>C'est un bon exemple d'un mouvement harmonique simple. Ici, l'accélération de la première particule est définie dans la direction de l'axe x positif et l'accélération de l'autre particule est définie le long de l'axe x négatif. Ainsi, les deux particules étirent le ressort dans des directions opposées, tandis que le ressort essaie de faire revenir les deux particules à leur position initiale. Ainsi, le système exécute un mouvement harmonique simple. La simulation des particules et du ressort sous ces conditions peut être affichée dans l'espace de travail. </para
+></listitem>
+      </varlistentry>
+
+      <varlistentry id="first-two-charged">
+        <term
 >Deux particules chargées</term>
-<listitem>
-  <para
->La vitesse de chaque particules chargées est ainsi définie dans une certaine direction, ainsi les particules chargées se déplacent dans une direction respective à leur vitesse mais chaque particule dispose d'une charge égale et opposée ce qui induit que les particules essaient de s'attirer l'une l'autre. Ainsi la simulation des particules chargées sous ces conditions peut être visualisée dans l'espace de travail. </para>
-</listitem>
-</varlistentry>
-</variablelist>
-</listitem>
-</varlistentry>
+        <listitem
+><para
+>La vitesse de chaque particules chargées est ainsi définie dans une certaine direction, ainsi les particules chargées se déplacent dans une direction respective à leur vitesse mais chaque particule dispose d'une charge égale et opposée ce qui induit que les particules essaient de s'attirer l'une l'autre. Ainsi, la simulation des particules chargées sous ces conditions peut être affichée dans l'espace de travail.</para
+></listitem>
+      </varlistentry>
+    </variablelist>
+    </listitem>
+  </varlistentry>
 
-<varlistentry id="fourpendula">
-<term
->fourpendula.step</term>
-<listitem
+  <varlistentry id="fourpendula">
+    <term
+><filename
+>fourpendula.step</filename
+></term>
+    <listitem
 ><para
 >Cet exemple est une démonstration correcte du <ulink url="https://fr.wikipedia.org/wiki/Pendule_de_Newton"
 >pendule de Newton</ulink
->.  Comme le système est imparfait, deux disques au milieu ont un mouvement visuel avec le temps.</para
+>. Comme le système est imparfait, les deux disques au milieu se déplace visiblement avec le temps.</para
 ></listitem>
-</varlistentry>
+  </varlistentry>
 
-<varlistentry id="gas">
-<term
->gas.step</term>
-<listitem
+  <varlistentry id="gas">
+    <term
+><filename
+>gas.step</filename
+></term>
+    <listitem
 ><para
 >Cet exemple simule la pression d'un gaz parfait provoquée par le <ulink url="https://fr.wikipedia.org/wiki/Mouvement_brownien"
 >mouvement brownien</ulink
 >.</para
 ></listitem>
-</varlistentry>
+  </varlistentry>
 
-<varlistentry id="graph">
-<term
->graph.step</term>
-<listitem
+  <varlistentry id="graph">
+    <term
+><filename
+>graph.step</filename
+></term>
+    <listitem
 ><para
 >Trace un graphe de la vitesse en fonction de la position pour la particule 1 dans le système de deux particules reliées par un ressort.</para
 ></listitem>
-</varlistentry>
+  </varlistentry>
 
-<varlistentry id="liquid">
-<term
->liquid.step</term>
-<listitem
+  <varlistentry id="liquid">
+    <term
+><filename
+>liquid.step</filename
+></term>
+    <listitem
 ><para
 >Cet exemple simule un liquide monoatomique.</para
 ></listitem>
-</varlistentry>
+  </varlistentry>
 
-<varlistentry id="lissajous">
-<term
->lissajous.step</term>
-<listitem
+  <varlistentry id="lissajous">
+    <term
+><filename
+>lissajous.step</filename
+></term>
+    <listitem
 ><para
 >Cet exemple simule une <ulink url="https://fr.wikipedia.org/wiki/Courbe_de_Lissajous"
 >courbe de Lissajous</ulink
-> en utilisant le modèle à deux particules. Les paramètres du modèle peuvent être changé en utilisant le contrôleur au centre de l'espace de travail.</para
+> en utilisant un modèle à deux particules. Les paramètres du modèle peuvent être modifiés en utilisant le contrôleur au centre de l'espace de travail.</para
 ></listitem>
-</varlistentry>
+  </varlistentry>
 
-<varlistentry id="motor1">
-<term
->motor1.step</term>
-<listitem
+  <varlistentry id="motor1">
+    <term
+><filename
+>motor1.step</filename
+></term>
+    <listitem
 ><para
 >Simule un corps dur triangulaire sous la charge de trois moteurs linéaires.</para
 ></listitem>
-</varlistentry>
+  </varlistentry>
 
-<varlistentry id="motor-example">
-<term
->motor.step</term>
-<listitem
+  <varlistentry id="motor-example">
+    <term
+><filename
+>motor.step</filename
+></term>
+    <listitem
 ><para
 >Simule l'interaction d'un moteur linéaire avec un corps dur rectangulaire sur un ressort.</para
 ></listitem>
-</varlistentry>
+  </varlistentry>
 
-<varlistentry id="note-example">
-<term
->note.step</term>
-<listitem
+  <varlistentry id="note-example">
+    <term
+><filename
+>note.step</filename
+></term>
+    <listitem
 ><para
->Exemple avec une formule LaTeX(<ulink url="https://fr.wikipedia.org/wiki/Th%C3%A9or%C3%A8me_de_flux-divergence"
+>Exemple avec une formule &latex; ((<ulink url="https://fr.wikipedia.org/wiki/Th%C3%A9or%C3%A8me_de_la_divergence"
 >théorème de flux-divergence</ulink
->) et une image embarquée.</para
+>) </ulink
+>) et une image intégrée.</para
 ></listitem>
-</varlistentry>
+  </varlistentry>
 
-<varlistentry id="resonance">
-<term
->resonance.step</term>
-<listitem
+  <varlistentry id="resonance">
+    <term
+><filename
+>resonance.step</filename
+></term>
+    <listitem
 ><para
 >Cet exemple simule une résonance dans un système avec un moteur angulaire.</para
 ></listitem>
-</varlistentry>
+  </varlistentry>
 
-<varlistentry id="softbody">
-<term
->softbody.step</term>
-<listitem
+  <varlistentry id="softbody">
+    <term
+><filename
+>softbody.step</filename
+></term>
+    <listitem
 ><para
 >Cet exemple simule une interaction de deux corps durs avec un corps mou entre eux.</para
 ></listitem>
-</varlistentry>
+  </varlistentry>
 
-<varlistentry id="solar">
-<term
->solar.step</term>
-<listitem
+  <varlistentry id="solar">
+    <term
+><filename
+>solar.step</filename
+></term>
+    <listitem
 ><para
 >Cet exemple simule le mouvement des principaux corps du système solaire (le Soleil et les planètes).</para
 ></listitem>
-</varlistentry>
+  </varlistentry>
 
-<varlistentry id="springs">
-<term
->springs.step</term>
-<listitem
+  <varlistentry id="springs">
+    <term
+><filename
+>springs.step</filename
+></term>
+    <listitem
 ><para
 >Cet exemple simule le mouvement d système planaire de cinq particules reliées par quatre ressorts.</para
 ></listitem>
-</varlistentry>
+  </varlistentry>
 
-<varlistentry id="wave">
-<term
->wave.step</term>
-<listitem
+  <varlistentry id="wave">
+    <term
+><filename
+>wave.step</filename
+></term>
+    <listitem
 ><para
 >Le graphe de l'espace de travail expose les oscillations de la particule verte. Lorsque vous démarrez la simulation, l'onde commence à voyager à partir de la particule rouge. La particule bleue réfléchira l'onde et voyagera dans la direction inverse jusqu'à ce que la particule rouge la réfléchisse de nouveau. Après un certain temps, l'onde disparaîtra due à l'amortissement des ressorts.</para
 ></listitem>
-</varlistentry>
-
+  </varlistentry>
 </variablelist>
 
 </chapter>
