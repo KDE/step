@@ -6,13 +6,13 @@
 # Muhammet Kara <muhammetk@gmail.com>, 2009.
 # obsoleteman <tulliana@gmail.com>, 2008-2009,2012.
 # Volkan Gezer <volkangezer@gmail.com>, 2013, 2019.
-# Emir SARI <emir_sari@icloud.com>, 2022, 2023.
+# SPDX-FileCopyrightText: 2022, 2023, 2024 Emir SARI <emir_sari@icloud.com>
 msgid ""
 msgstr ""
 "Project-Id-Version: kdeedu-kde4\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2024-01-04 00:38+0000\n"
-"PO-Revision-Date: 2023-06-04 01:40+0300\n"
+"PO-Revision-Date: 2024-07-11 01:01+0300\n"
 "Last-Translator: Emir SARI <emir_sari@icloud.com>\n"
 "Language-Team: Turkish <kde-l10n-tr@kde.org>\n"
 "Language: tr\n"
@@ -20,7 +20,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
-"X-Generator: Lokalize 23.07.70\n"
+"X-Generator: Lokalize 24.07.70\n"
 
 #, kde-format
 msgctxt "NAME OF TRANSLATORS"
@@ -113,14 +113,14 @@ msgstr "0.1"
 #: step/configure_graph.ui:34 step/configure_graph.ui:109
 #, kde-format
 msgid "X :"
-msgstr "X :"
+msgstr "X:"
 
 #. i18n: ectx: property (text), widget (QLabel, label_2)
 #. i18n: ectx: property (text), widget (QLabel, label_4)
 #: step/configure_graph.ui:51 step/configure_graph.ui:161
 #, kde-format
 msgid "Y :"
-msgstr "Y :"
+msgstr "Y:"
 
 #. i18n: ectx: property (title), widget (QGroupBox, groupBox_2)
 #: step/configure_graph.ui:71
@@ -196,13 +196,13 @@ msgstr "Nesneleri oluştururken ipucu göster"
 #: step/configure_step_general.ui:66
 #, kde-format
 msgid "Enable OpenGL (EXPERIMENTAL)"
-msgstr "OpenGL'yi Etkinleştir (DENEYSEL)"
+msgstr "OpenGL’yi Etkinleştir (DENEYSEL)"
 
 #. i18n: ectx: property (text), widget (QCheckBox, kcfg_wikiExternal)
 #: step/configure_step_general.ui:73
 #, kde-format
 msgid "Open wikipedia in external browser"
-msgstr "Dış tarayıcıda Vikipedi'yi aç"
+msgstr "Dış tarayıcıda Vikipedi’yi aç"
 
 #. i18n: ectx: property (text), widget (QLabel, label_5)
 #: step/create_gas_particles.ui:34
@@ -382,12 +382,12 @@ msgstr "Lütfen gaz parçacıkları için değişkenleri girin."
 #: step/worldgraphics.cc:122 step/worldgraphics.cc:157
 #, kde-format
 msgid "%1 named '%2' created"
-msgstr "%1 adlı \"%2\" oluşturuldu"
+msgstr "%1 adlı “%2” oluşturuldu"
 
 #: step/gasgraphics.cc:282
 #, kde-format
 msgid "Create Particles..."
-msgstr "Parçacıklar Oluştur..."
+msgstr "Parçacıklar Oluştur…"
 
 #: step/gasgraphics.cc:352
 #, kde-format
@@ -401,7 +401,7 @@ msgstr ""
 #: step/gasgraphics.cc:354 step/mainwindow.cc:407
 #, kde-format
 msgid "Warning - Step"
-msgstr "Uyarı - Step"
+msgstr "Uyarı — Step"
 
 #: step/gasgraphics.cc:365
 #, kde-format
@@ -463,8 +463,8 @@ msgstr "%1 için belgelendirme yok. "
 msgid ""
 "You can help <a href=\"https://edu.kde.org/step\">Step</a> by writing it!"
 msgstr ""
-"<a href=\"http://edu.kde.org/step\">Step</a>'e, onu yazarak yardım "
-"edebilirsiniz !"
+"<a href=\"http://edu.kde.org/step\">Step</a>’e, onu yazarak yardım "
+"edebilirsiniz!"
 
 #: step/itempalette.cc:177
 #, kde-format
@@ -573,27 +573,27 @@ msgstr "Açılacak belge"
 #: step/mainwindow.cc:143
 #, kde-format
 msgid "&Open Tutorial..."
-msgstr "Öğreticiyi &Aç..."
+msgstr "Öğreticiyi &Aç…"
 
 #: step/mainwindow.cc:148
 #, kde-format
 msgid "&Open Example..."
-msgstr "Ö&rnek Aç..."
+msgstr "Ö&rnek Aç…"
 
 #: step/mainwindow.cc:153
 #, kde-format
 msgid "Open Down&loaded Example..."
-msgstr "İndiri&lmiş Örneği Aç..."
+msgstr "İndiri&lmiş Örneği Aç…"
 
 #: step/mainwindow.cc:158
 #, kde-format
 msgid "Share C&urrent Experiment..."
-msgstr "Geçerli &Deneyi Paylaş..."
+msgstr "Geçerli &Deneyi Paylaş…"
 
 #: step/mainwindow.cc:161
 #, kde-format
 msgid "&Download New Experiments..."
-msgstr "&Yeni Deneyler İndir..."
+msgstr "&Yeni Deneyler İndir…"
 
 #: step/mainwindow.cc:168
 #, kde-format
@@ -629,31 +629,31 @@ msgstr "Çalıştır: Uygulamayı yürüt"
 #, kde-format
 msgctxt "@option:radio"
 msgid "1x Speed"
-msgstr "1x Hız"
+msgstr "1× hız"
 
 #: step/mainwindow.cc:217
 #, kde-format
 msgctxt "@option:radio choose the slow speed"
 msgid "2x Speed"
-msgstr "2x Hız"
+msgstr "2× hız"
 
 #: step/mainwindow.cc:224
 #, kde-format
 msgctxt "@option:radio"
 msgid "4x Speed"
-msgstr "4x Hız"
+msgstr "4× hız"
 
 #: step/mainwindow.cc:231
 #, kde-format
 msgctxt "@option:radio"
 msgid "8x Speed"
-msgstr "8x Hız"
+msgstr "8× hız"
 
 #: step/mainwindow.cc:238
 #, kde-format
 msgctxt "@option:radio"
 msgid "16x Speed"
-msgstr "16x Hız"
+msgstr "16× hız"
 
 #: step/mainwindow.cc:268
 #, kde-format
@@ -680,12 +680,12 @@ msgstr "Step dosyaları (*.step)"
 #: step/mainwindow.cc:318 step/mainwindow.cc:359
 #, kde-format
 msgid "Cannot open file '%1'"
-msgstr "'%1' dosyası açılamıyor"
+msgstr "“%1” dosyası açılamıyor"
 
 #: step/mainwindow.cc:323
 #, kde-format
 msgid "Cannot parse file '%1': %2"
-msgstr "'%1' dosyası ayrıştırılamadı: %2"
+msgstr "“%1” dosyası ayrıştırılamıyor: %2"
 
 #: step/mainwindow.cc:332
 #, kde-format
@@ -701,7 +701,7 @@ msgstr "Step Dosyasını Kaydet"
 #: step/mainwindow.cc:365
 #, kde-format
 msgid "Cannot save file '%1': %2"
-msgstr "'%1' dosyası kaydedilemedi: %2"
+msgstr "“%1” dosyası kaydedilemiyor: %2"
 
 #: step/mainwindow.cc:406
 #, kde-format
@@ -720,7 +720,7 @@ msgstr "Karşıya yükleme özelliği henüz kdelibs içerisine eklenmedi."
 #: step/mainwindow.cc:459
 #, kde-format
 msgid "Sorry - Step"
-msgstr "Üzgünüm - Step"
+msgstr "Üzgünüm — Step"
 
 #: step/mainwindow.cc:486
 #, kde-format
@@ -830,7 +830,7 @@ msgstr "%1 için birinci kesişme noktasını oluşturmak üzere ekrana tıklay�
 msgid "Click on the scene to add new vertex or press Enter to finish"
 msgstr ""
 "Yeni bir kesişme noktası eklemek için ekrana tıklayın veya bitirmek için "
-"Giriş'e basın"
+"“Giriş”e basın"
 
 #: step/propertiesbrowser.cc:267
 #, kde-format
@@ -930,7 +930,7 @@ msgstr "Olabilen her yerde çizimi hızlandırmak için OpenGL kullan"
 #: step/step.kcfg:33 step/step.kcfg:34
 #, kde-format
 msgid "Browse wikipedia in external browser"
-msgstr "Dış tarayıcıda Vikipedi'yi aç"
+msgstr "Dış tarayıcıda Vikipedi’yi aç"
 
 #. i18n: ectx: label, entry (showButtonText), group (ItemPalette)
 #. i18n: ectx: whatsthis, entry (showButtonText), group (ItemPalette)
@@ -1048,12 +1048,12 @@ msgstr "&Yazıtipi Boyutu"
 #: step/toolgraphics.cc:411
 #, kde-format
 msgid "Insert &Image..."
-msgstr "Gö&rsel Ekle..."
+msgstr "Gö&rsel Ekle…"
 
 #: step/toolgraphics.cc:416
 #, kde-format
 msgid "Insert &Formula..."
-msgstr "&Formül Ekle..."
+msgstr "&Formül Ekle…"
 
 #: step/toolgraphics.cc:527
 #, kde-format
@@ -1074,7 +1074,7 @@ msgstr "Görseller (*.png *.jpg *.jpeg)"
 #: step/toolgraphics.cc:650
 #, kde-format
 msgid "Cannot parse file '%1'"
-msgstr "'%1' dosyası ayrıştırılamadı"
+msgstr "“%1” dosyası ayrıştırılamıyor"
 
 #: step/toolgraphics.cc:694
 #, kde-format
@@ -1082,14 +1082,14 @@ msgid ""
 "Cannot find latex installation. You need 'latex', 'dvips' and 'gs' "
 "executables installed and accessible from $PATH"
 msgstr ""
-"LaTeX kurulumu bulunamadı. 'latex', 'dvips' ve 'gs' uygulamalarının kurulmuş "
+"LaTeX kurulumu bulunamadı. “latex”, “dvips” ve “gs” uygulamalarının kurulmuş "
 "ve $PATH üzerinden ulaşılabilir olması gerekmektedir"
 
 #: step/toolgraphics.cc:700
 #, kde-format
 msgctxt "@title:window"
 msgid "LaTex Formula - Step"
-msgstr "LaTeX Formülü - Step"
+msgstr "LaTeX Formülü — Step"
 
 #: step/toolgraphics.cc:701
 #, kde-format
@@ -1144,7 +1144,7 @@ msgstr "Grafiği Temizle"
 #: step/toolgraphics.cc:1079
 #, kde-format
 msgid "Configure Graph..."
-msgstr "Grafiği Yapılandır..."
+msgstr "Grafiği Yapılandır…"
 
 #: step/toolgraphics.cc:1097
 #, kde-format
@@ -1166,7 +1166,7 @@ msgstr "%1 grafiğini temizle"
 #: step/toolgraphics.cc:1306
 #, kde-format
 msgid "Configure Meter..."
-msgstr "Ölçeri Yapılandır..."
+msgstr "Ölçeri Yapılandır…"
 
 #: step/toolgraphics.cc:1324
 #, kde-format
@@ -1202,7 +1202,7 @@ msgstr "%1 denetleyicisini değiştir"
 #: step/toolgraphics.cc:1621
 #, kde-format
 msgid "Configure Controller..."
-msgstr "Denetleyiciyi Yapılandır..."
+msgstr "Denetleyiciyi Yapılandır…"
 
 #: step/toolgraphics.cc:1639
 #, kde-format
@@ -1314,5 +1314,5 @@ msgstr "Farenin altındaki nesneler:"
 #, kde-format
 msgid "... (1 more item)"
 msgid_plural "... (%1 more items)"
-msgstr[0] "... (%1 daha fazla öge)"
-msgstr[1] "... (%1 daha fazla öge)"
+msgstr[0] "… (%1 daha fazla öge)"
+msgstr[1] "… (%1 daha fazla öge)"
