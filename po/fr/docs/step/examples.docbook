@@ -85,7 +85,7 @@
 ></term>
     <listitem
 ><para
->Trace la trajectoire d'un disque rigide interagissant avec 40 particules évoluant aléatoirement dans une boite. Cet exemple simule un <ulink url="https://fr.wikipedia.org/wiki/Mouvement_brownien"
+>Trace la trajectoire d'un disque rigide interagissant avec 40 particules évoluant aléatoirement dans une boîte. Cet exemple simule un <ulink url="https://fr.wikipedia.org/wiki/Mouvement_brownien"
 >mouvement brownien</ulink
 > de particules dans un gaz parfait.</para
 ></listitem>
@@ -113,7 +113,7 @@
 ><para
 >Cet exemple est une simple démonstration du célèbre <ulink url="https://fr.wikipedia.org/wiki/Pendule_de_Newton"
 >pendule de Newton</ulink
->. Il est réalisé dans &step; grâce à des barres, 8 disques et une boite. Les six boules dans le milieu n'ont aucun mouvement parce qu'elles transfèrent uniquement du mouvement et de l'énergie, sans déplacement.</para
+>. Il est réalisé dans &step; grâce à des barres, 8 disques et une boîte. Les six boules dans le milieu n'ont aucun mouvement parce qu'elles transfèrent uniquement du mouvement et de l'énergie, sans déplacement.</para
 ></listitem>
   </varlistentry>
 

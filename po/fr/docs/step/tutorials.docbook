@@ -235,7 +235,7 @@
 ></inlinemediaobject
 > <guibutton
 >Particule</guibutton
-> sur l'espace de travail puis reliez cette particule à « Particle-2 » avec une barre. Veuillez ensuite cliquer sur la <inlinemediaobject
+> sur l'espace de travail puis reliez cette particule à « Particule-2 » avec une barre. Veuillez ensuite cliquer sur la <inlinemediaobject
 ><imageobject
 ><imagedata fileref="step_object_Stick.png" format="PNG"/></imageobject
 ></inlinemediaobject
@@ -243,7 +243,7 @@
 >Barre</guibutton
 > sur le panneau <guilabel
 >Palette</guilabel
->. Ensuite, vous devez sélectionner le premier objet à attacher à la barre (Particle-2) avec le bouton gauche de la souris puis faire glisser jusqu'au deuxième objet (Particule-3) et relâcher le bouton de la souris sur « Particle-3 ». Vous venez de créer un pendule triple ! </para>
+>. Ensuite, vous devez sélectionner le premier objet à attacher à la barre (Particule-2) avec le bouton gauche de la souris puis faire glisser jusqu'au deuxième objet (Particule-3) et relâcher le bouton de la souris sur « Particule-3 ». Vous venez de créer un pendule triple ! </para>
 </sect1>
 
 </chapter>
