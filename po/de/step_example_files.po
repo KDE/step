@@ -5,7 +5,7 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: step\n"
+"Project-Id-Version: step_example_files\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2023-11-05 12:24+0000\n"
 "PO-Revision-Date: 2021-06-12 06:43+0200\n"
