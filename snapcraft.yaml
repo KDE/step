@@ -37,6 +37,8 @@ parts:
     plugin: cmake
     source: .
     source-type: local
+    build-packages:
+      - libeigen3-dev
     cmake-parameters:
       - -DCMAKE_INSTALL_PREFIX=/usr
       - -DCMAKE_BUILD_TYPE=Release
