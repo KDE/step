@@ -475,7 +475,7 @@ msgstr "指针选择"
 #: step/itempalette.cc:220
 #, kde-format
 msgid "Show text"
-msgstr "显示文本"
+msgstr "显示文字"
 
 #: step/jointgraphics.cc:158 step/springgraphics.cc:30
 #, kde-format
