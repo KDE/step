@@ -1,18 +1,17 @@
 <chapter id="tutorials">
 <title
->Toma de contacto con &step;: los cursillos</title>
-
+>Toma de contacto con &step;: los cursillos</title
+> 
 <para
->El elemento del menú <menuchoice
+>The <menuchoice
 ><guimenu
->Archivo</guimenu
+>File</guimenu
 ><guimenuitem
->Abrir tutorial...</guimenuitem
+>Open Tutorial...</guimenuitem
 ></menuchoice
-> abre un diálogo de archivos donde puede cargar los tutoriales integrados en &step;. Existen cinco tutoriales con los que aprenderá progresivamente cómo interactuar con cada elemento de &step;. Lo más aconsejable es comenzar por el primer tutorial pulsando sobre el archivo <filename
+> menu action brings you a file dialog where you can load &step; built-in tutorials. There are five tutorials and you will progressively learn how to interact with each of &step; element. The best is to start with the first tutorial by clicking on the file <filename
 >tutorial1.step</filename
->. Esto mostrará el «Tutorial 1» de &step;. </para>
-
+>. This will display Tutorial 1 in &step;.</para>
 <note
 ><para
 >Si no puede ver bien el tutorial, puede tratar de ampliar la ventana para que sea más legible.</para
@@ -23,7 +22,7 @@
 >Mundo</guilabel
 > que hay a la derecha lista todos los objetos que tiene en su escena. Si pulsa aquí sobre un objeto, el panel <guilabel
 >Propiedades</guilabel
-> que hay debajo mostrará las propiedades de dicho objeto. En este panel puede también cambiar estas propiedades pulsando sobre la que quiera modificar. </para>
+> que hay debajo mostrará las propiedades de dicho objeto. En este panel puede también cambiar estas propiedades pulsando sobre la que quiera modificar.</para>
 
 <para
 >Cada tutorial contiene algo de texto con una descripción de los nuevos elementos y sus propiedades. Luego se le pedirá que modifique algunas propiedades de los elementos para variar el resultado del experimento. </para>
@@ -31,176 +30,149 @@
 <sect1 id="tutorial1">
 <title
 >Tutorial 1: cuerpos y muelles</title>
-
 <para
->Este tutorial le presenta los cuerpos y los muelles, además de cómo comenzar su primera simulación. </para>
-
+>Este tutorial le presenta los cuerpos y los muelles, además de cómo comenzar su primera simulación.</para>
 <para
->Un cuerpo físico (o simplemente cuerpo) es un objeto que se puede describir por las teorías de la mecánica clásica, o de la mecánica cuántica, y sobre el que se puede experimentar con instrumentos físicos. Esto incluye la determinación de su posición y, en algunos casos, su orientación en el espacio, así como los medios para cambiarlas ejerciendo fuerzas. </para>
-
+>Un cuerpo físico (o simplemente cuerpo) es un objeto que se puede describir por las teorías de la mecánica clásica, o de la mecánica cuántica, y sobre el que se puede experimentar con instrumentos físicos. Esto incluye la determinación de su posición y, en algunos casos, su orientación en el espacio, así como los medios para cambiarlas ejerciendo fuerzas.</para>
 <para
->Un muelle es un objeto elástico flexible que se usa para almacenar energía mecánica. </para>
-
+>Un muelle es un objeto elástico flexible que se usa para almacenar energía mecánica.</para>
 <screenshot>
-  <screeninfo
+     <screeninfo
 >Experimento del tutorial 1</screeninfo>
-  <mediaobject>
-    <imageobject
-><imagedata fileref="tutorial1.png" format="PNG"/></imageobject>
-    <textobject
-><phrase
->Experimento del tutorial 1</phrase
-></textobject>
-  </mediaobject>
+	<mediaobject>
+	  <imageobject>
+	    <imagedata fileref="tutorial1.png" format="PNG"/>
+	  </imageobject>
+	    <textobject>
+	    <phrase
+>Experimento del tutorial 1</phrase>
+	  </textobject>
+	</mediaobject>
 </screenshot>
-
 <para
->El experimento físico de este tutorial representa dos discos unidos por un muelle. Los discos tienen una velocidad inicial en una dirección tangencial (la flecha pequeña azul) y una aceleración (la flecha roja), mientras que el muelle posee una rigidez y su longitud se puede modificar. Al ejecutar el experimento podrá ver cómo los discos son empujados y atraídos por el muelle. El ejemplo le invita a modificar la rigidez del muelle, así como a intentar modificar el experimento del sistema. </para>
-
+>El experimento físico de este tutorial representa dos discos unidos por un muelle. Los discos tienen una velocidad inicial en una dirección tangencial (la flecha pequeña azul) y una aceleración (la flecha roja), mientras que el muelle posee una rigidez y su longitud se puede modificar. Al ejecutar el experimento podrá ver cómo los discos son empujados y atraídos por el muelle. El ejemplo le invita a modificar la rigidez del muelle, así como a intentar modificar el experimento del sistema.</para>
 <para
->Al final de este tutorial debería estar más familiarizado con la interfaz de &step; y ser capaz de cambiar fácilmente las propiedades del los cuerpos. </para>
+>Al final de este tutorial debería estar más familiarizado con la interfaz de &step; y ser capaz de cambiar fácilmente las propiedades del los cuerpos.</para>
 </sect1>
 
 <sect1 id="tutorial2">
 <title
 >Tutorial 2: controladores y gráficas</title>
-
 <para
->En este tutorial aprenderá más sobre controladores y gráficas. </para>
-
+>En este tutorial aprenderá más sobre controladores y gráficas.</para>
 <para
->Un controlador es un dispositivo que le permite modificar gráficamente una propiedad de un cuerpo o un muelle. En el tutorial, el controlador le permite cambiar la rigidez del muelle «muelle1». Si mueve el deslizador hacia la derecha o usa la tecla <keycap
->W</keycap
->, aumentará la rigidez del muelle, y si desplaza el deslizador hacia la izquierda o usa la tecla <keycap
->Q</keycap
->, la disminuirá. Si pulsa sobre el controlador con el botón derecho del ratón tendrá acceso a varias acciones de contexto, y el elemento <guimenuitem
->Configurar el controlador...</guimenuitem
-> muestra un diálogo que le permitirá cambiar cualquier propiedad del controlador. </para>
-
+>A controller is a device which allows you to graphically modify a property of a body or a spring. In the tutorial, the controller allows you to change the stiffness of the spring "spring1". By moving the slider to the right or using the W key you can increase spring1 stiffness value and by moving the slider to the left or using the Q key you can decrease it. Right-clicking on the controller brings you several context actions and the <guilabel
+>Configure Controller...</guilabel
+> dialog allows you to change each property of the controller.</para>
 <screenshot>
-  <screeninfo
+     <screeninfo
 >Experimento del tutorial 2</screeninfo>
-  <mediaobject>
-    <imageobject
-><imagedata fileref="tutorial2.png" format="PNG"/></imageobject>
-    <textobject
-><phrase
->Experimento del tutorial 2</phrase
-></textobject>
-  </mediaobject>
+	<mediaobject>
+	  <imageobject>
+	    <imagedata fileref="tutorial2.png" format="PNG"/>
+	  </imageobject>
+	    <textobject>
+	    <phrase
+>Experimento del tutorial 2</phrase>
+	  </textobject>
+	</mediaobject>
 </screenshot>
-
 <para
->Las gráficas le permiten visualizar gráficamente la relación entre dos variables. El ejemplo del tutorial le muestra la evolución de la posición de la primera partícula a medida que avanza el tiempo en el mundo. Puede borrar o eliminar la gráfica pulsando sobre ella con el botón derecho del ratón, así como editar el diálogo de configuración y cambiar ahí todas las propiedades de la gráfica. </para>
-
+>Las gráficas le permiten visualizar gráficamente la relación entre dos variables. El ejemplo del tutorial le muestra la evolución de la posición de la primera partícula a medida que avanza el tiempo en el mundo. Puede borrar o eliminar la gráfica pulsando sobre ella con el botón derecho del ratón, así como editar el diálogo de configuración y cambiar ahí todas las propiedades de la gráfica.</para>
 <para
->Al final de este tutorial sabrá cómo usar los controladores para actuar sobre las propiedades de los cuerpos, así como usar las gráficas para observar las propiedades específicas de su experimento.  </para>
+>Al final de este tutorial sabrá cómo usar los controladores para actuar sobre las propiedades de los cuerpos, así como usar las gráficas para observar las propiedades específicas de su experimento. </para>
 </sect1>
 
 <sect1 id="tutorial3">
 <title
 >Tutorial 3: cuerpos rígidos y trazadores</title>
-
 <para
->Este tutorial 3 es una introducción a los cuerpos rígidos y los trazadores. </para>
-
+>Este tutorial 3 es una introducción a los cuerpos rígidos y los trazadores.</para>
 <para
->Un cuerpo rígido es una idealización de un cuerpo sólido con un tamaño finito al que no se le permite deformarse. En otras palabras, la distancia entre dos puntos cualquiera de un cuerpo rígido permanece constante con el tiempo a pesar de las fuerzas externas que actúan sobre él. </para>
-
+>Un cuerpo rígido es una idealización de un cuerpo sólido con un tamaño finito al que no se le permite deformarse. En otras palabras, la distancia entre dos puntos cualquiera de un cuerpo rígido permanece constante con el tiempo a pesar de las fuerzas externas que actúan sobre él.</para>
 <para
->Un trazador es una herramienta que muestra la trayectoria de un punto dado sobre un objeto rígido. </para>
-
+>Un trazador es una herramienta que muestra la trayectoria de un punto dado sobre un objeto rígido.</para>
 <screenshot>
-  <screeninfo
+     <screeninfo
 >Propiedades del disco</screeninfo>
-  <mediaobject>
-    <imageobject
-><imagedata fileref="disk-properties.png" format="PNG"/></imageobject>
-    <textobject
-><phrase
->Propiedades del disco</phrase
-></textobject>
-  </mediaobject>
+	<mediaobject>
+	  <imageobject>
+	    <imagedata fileref="disk-properties.png" format="PNG"/>
+	  </imageobject>
+	    <textobject>
+	    <phrase
+>Propiedades del disco</phrase>
+	  </textobject>
+	</mediaobject>
 </screenshot>
-
 <para
->Cuando se selecciona un cuerpo rígido (en este caso un disco), pueden apreciarse sobre él tres controladores de color gris. Si pulsa sobre ellos y los desplaza, podrá modificar la velocidad, el ángulo y la velocidad angular del cuerpo.  </para>
-
+>Cuando se selecciona un cuerpo rígido (en este caso un disco), pueden apreciarse sobre él tres controladores de color gris. Si pulsa sobre ellos y los desplaza, podrá modificar la velocidad, el ángulo y la velocidad angular del cuerpo. </para>
 <screenshot>
-  <screeninfo
+     <screeninfo
 >Tutorial 3: dos trazadores</screeninfo>
-  <mediaobject>
-    <imageobject
-><imagedata fileref="tutorial3.png" format="PNG"/></imageobject>
-    <textobject
-><phrase
->Tutorial 3: dos trazadores</phrase
-></textobject>
-  </mediaobject>
+	<mediaobject>
+	  <imageobject>
+	    <imagedata fileref="tutorial3.png" format="PNG"/>
+	  </imageobject>
+	    <textobject>
+	    <phrase
+>Tutorial 3: dos trazadores</phrase>
+	  </textobject>
+	</mediaobject>
 </screenshot>
-
 <para
->El experimento del tutorial 3 muestra un disco y una caja unidos por un muelle. Existe ya un trazador (de color azul) sobre la caja. Para añadir un segundo trazador seleccione el botón <guibutton
->Trazador</guibutton
-> del panel <guilabel
->Paleta</guilabel
-> y luego pulse sobre la caja en el punto donde desea colocar el trazador. En el panel  <guilabel
->Propiedades</guilabel
-> pulse sobre la línea <guilabel
+>The experiment in Tutorial 3 shows a disk and a box linked by a spring. A tracer (the blue one) is already on the box. You can add a second one: select <guilabel
+>Tracer</guilabel
+> in the <guilabel
+>Palette</guilabel
+> panel then click on the box on the point where you want the tracer to be. In the <guilabel
+>Properties</guilabel
+> panel, click on the <guilabel
 >color</guilabel
->, y a la derecha de esta línea pulse sobre el cuadrado azul; aparecerá una paleta de color con la que podrá elegir un nuevo color para el trazador. La captura de pantalla superior muestra dos trazadores tras una simulación de varios segundos. </para>
+> line and on the right of this line you can click on the blue square and a color palette appears: you can choose a new color for the tracer. The screenshot above shows two tracers after the simulation is run for a few seconds.</para>
 </sect1>
 
 <sect1 id="tutorial4">
 <title
 >Tutorial 4: motores y fuerzas</title>
-
 <para
->Dispone de dos tipos de motores en &step;: motores lineales y motores circulares. Un motor lineal aplica un fuerza constante a un punto dado sobre un cuerpo, mientras que un motor circular aplica un momento angular constante a un cuerpo. </para>
-
+>Dispone de dos tipos de motores en &step;: motores lineales y motores circulares. Un motor lineal aplica un fuerza constante a un punto dado sobre un cuerpo, mientras que un motor circular aplica un momento angular constante a un cuerpo.</para>
 <para
->Pueden añadirse tres fuerzas diferentes a los cuerpos: la fuerza del peso, la fuerza gravitatoria y la fuerza de Coulomb. Por defecto, todas las fuerzas están desactivadas en &step;. La fuerza de Coulomb es una fuerza que existe intrínsecamente entre dos cargas. </para>
-
+>Pueden añadirse tres fuerzas diferentes a los cuerpos: la fuerza del peso, la fuerza gravitatoria y la fuerza de Coulomb. Por defecto, todas las fuerzas están desactivadas en &step;. La fuerza de Coulomb es una fuerza que existe intrínsecamente entre dos cargas.</para>
 <screenshot>
-  <screeninfo
+     <screeninfo
 >Tutorial 4: motores</screeninfo>
-  <mediaobject>
-    <imageobject
-><imagedata fileref="tutorial4.png" format="PNG"/></imageobject>
-    <textobject
-><phrase
->Tutorial 4: motores</phrase
-></textobject>
-  </mediaobject>
+	<mediaobject>
+	  <imageobject>
+	    <imagedata fileref="tutorial4.png" format="PNG"/>
+	  </imageobject>
+	    <textobject>
+	    <phrase
+>Tutorial 4: motores</phrase>
+	  </textobject>
+	</mediaobject>
 </screenshot>
-
 <para
->En el experimento tiene un disco y una caja unidos por un muelle, mientras que una caja alargada en la base hace de frontera. Tanto al disco como a la caja se les ha aplicado un motor lineal. Dos controladores le permiten modificar el valor de la fuerza de cada motor. Comience la simulación y juegue con los controladores. Pare luego la simulación y añada una fuerza del peso al mundo (las fuerzas son globales y se aplican a todo el mundo). Reinicie la simulación y analice la diferencia. </para>
-
+>En el experimento tiene un disco y una caja unidos por un muelle, mientras que una caja alargada en la base hace de frontera. Tanto al disco como a la caja se les ha aplicado un motor lineal. Dos controladores le permiten modificar el valor de la fuerza de cada motor. Comience la simulación y juegue con los controladores. Pare luego la simulación y añada una fuerza del peso al mundo (las fuerzas son globales y se aplican a todo el mundo). Reinicie la simulación y analice la diferencia.</para>
 <para
->Puede también eliminar el motor lineal que actúa sobre la caja y añadir un motor circular. Pulse el botón  <inlinemediaobject
-><imageobject
-><imagedata fileref="step_object_CircularMotor.png" format="PNG"/></imageobject
-></inlinemediaobject
-> <guibutton
->MotorCircular</guibutton
-> del panel <guilabel
->Paleta</guilabel
-> y a continuación pulse sobre la caja. Se aplicará un motor circular sobre la caja. Ahora necesita fijar el valor del par motor, para lo que tendrá que pulsar y desplazar el controlador gris del motor. </para>
-
+>You can also remove the linear motor on the box and add a circular motor instead. Click on <guilabel
+>CircularMotor</guilabel
+> in the <guilabel
+>Palette</guilabel
+> panel and then click on the box. The circular motor is applied to the box. You then need to set the torque value by clicking and moving the grey handler of the motor.</para>
 <screenshot>
-  <screeninfo
+     <screeninfo
 >Motor circular</screeninfo>
-  <mediaobject>
-    <imageobject
-><imagedata fileref="circular-motor.png" format="PNG"/></imageobject>
-    <textobject
-><phrase
->Motor circular</phrase
-></textobject>
-  </mediaobject>
+	<mediaobject>
+	  <imageobject>
+	    <imagedata fileref="circular-motor.png" format="PNG"/>
+	  </imageobject>
+	    <textobject>
+	    <phrase
+>Motor circular</phrase>
+	  </textobject>
+	</mediaobject>
 </screenshot>
-
 <para
 >Este tutorial ha sido una introducción a los motores y las fuerzas, por lo que ahora debería ser capaz de añadir estos a los cuerpos.</para>
 </sect1>
@@ -208,42 +180,29 @@
 <sect1 id="tutorial5">
 <title
 >Tutorial 5: uniones</title>
-
 <para
->Las uniones son objetos que conectan unos cuerpos con otros o con el fondo. Dispone de las siguientes uniones en &step;: anclas, alfileres y palos. Un ancla es una unión que fija la posición del cuerpo. El cuerpo no puede moverse cuando tiene un ancla. Un alfiler es una unión que fija un punto del cuerpo; el cuerpo puede todavía moverse alrededor del alfiler. Un palo es una unión que fija la distancia entre dos puntos de dos cuerpos. </para>
-
+>Las uniones son objetos que conectan unos cuerpos con otros o con el fondo. Dispone de las siguientes uniones en &step;: anclas, alfileres y palos. Un ancla es una unión que fija la posición del cuerpo. El cuerpo no puede moverse cuando tiene un ancla. Un alfiler es una unión que fija un punto del cuerpo; el cuerpo puede todavía moverse alrededor del alfiler. Un palo es una unión que fija la distancia entre dos puntos de dos cuerpos.</para>
 <screenshot>
-  <screeninfo
+     <screeninfo
 >Tutorial 5: péndulo doble</screeninfo>
-  <mediaobject>
-    <imageobject
-><imagedata fileref="tutorial5.png" format="PNG"/></imageobject>
-    <textobject
-><phrase
->Tutorial 5: péndulo doble</phrase
-></textobject>
-  </mediaobject>
+	<mediaobject>
+	  <imageobject>
+	    <imagedata fileref="tutorial5.png" format="PNG"/>
+	  </imageobject>
+	    <textobject>
+	    <phrase
+>Tutorial 5: péndulo doble</phrase>
+	  </textobject>
+	</mediaobject>
 </screenshot>
-
 <para
->El tutorial 5 describe un péndulo doble. </para>
-
+>El tutorial 5 describe un péndulo doble.</para>
 <para
->Añada una <inlinemediaobject
-><imageobject
-><imagedata fileref="step_object_Particle.png" format="PNG"/></imageobject
-></inlinemediaobject
-> <guibutton
->Partícula</guibutton
-> a la escena y a continuación una dicha partícula a una segunda mediante una varilla. Pulse el botón <inlinemediaobject
-><imageobject
-><imagedata fileref="step_object_Stick.png" format="PNG"/></imageobject
-></inlinemediaobject
-> <guibutton
->Varilla</guibutton
-> del panel <guilabel
->Paleta</guilabel
->. Primero debe seleccionar el primer objeto que va a conectar al palo (la segunda partícula) con el botón izquierdo del ratón y luego arrastrar el ratón hasta el segundo objeto (la tercera partícula); finalmente libere el botón del ratón cuando se encuentre sobre esta tercera partícula. ¡Ahora tiene un péndulo triple!  </para>
+>Add a <guilabel
+>Particle</guilabel
+> to the scene then join this particle to Particle2 with a stick. Click on Stick on the <guilabel
+>Palette</guilabel
+> panel. You then need to select the first object attached to the stick (particle2) with the left mouse button then drag the mouse to the second object (particle3) and release the mouse button on particle3. You now have a triple pendulum!</para>
 </sect1>
 
 </chapter>
