@@ -73,10 +73,6 @@ set_package_properties(GSL PROPERTIES
 set(STEPCORE_WITH_GSL ${GSL_FOUND} CACHE BOOL "Enable GSL-powered features for StepCore")
 set(STEPCORE_WITH_QT ON) # CACHE BOOL "Enable QT-powered features for StepCore")
 set(STEP_WITH_QALCULATE ${QALCULATE_FOUND} CACHE BOOL "Enable unit conversion support using libqalculate")
-if (QT_MAJOR_VERSION STREQUAL "6")
-    MESSAGE(STATUS "QALCULATE was not ported to QT6 yet")
-    set(STEP_WITH_QALCULATE false)
-endif()
 
 # Compiler specific options
 if ("${CMAKE_CXX_COMPILER_ID}" STREQUAL "Clang")
