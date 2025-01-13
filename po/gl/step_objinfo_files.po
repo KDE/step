@@ -1,13 +1,13 @@
 # Copyright (C) 2024 This file is copyright:
 # This file is distributed under the same license as the step package.
 #
-# SPDX-FileCopyrightText: 2024 Adrián Chaves (Gallaecio)
+# SPDX-FileCopyrightText: 2024, 2025 Adrián Chaves (Gallaecio)
 msgid ""
 msgstr ""
 "Project-Id-Version: step\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2023-11-05 12:24+0000\n"
-"PO-Revision-Date: 2024-07-06 08:52+0200\n"
+"PO-Revision-Date: 2025-01-12 16:39+0100\n"
 "Last-Translator: Adrián Chaves (Gallaecio) <adrian@chaves.io>\n"
 "Language-Team: Proxecto Trasno (proxecto@trasno.gal)\n"
 "Language: gl\n"
@@ -15,7 +15,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Lokalize 24.05.1\n"
+"X-Generator: Lokalize 24.12.0\n"
 
 #: objectinfo/anchor.html:6
 #, kde-format
@@ -692,8 +692,8 @@ msgid ""
 "Weight is a vector quantity. It is often denoted by W and given by the "
 "relation W = mg."
 msgstr ""
-"O peso é unha cantidade vectorial. Adoita identificarse con W e ter a "
-"relación W = mg."
+"O peso é unha cantidade vectorial. Adoita denotarse con W e ter a relación W "
+"= mg."
 
 #: objectinfo/weightforce.html:12
 #, kde-format
