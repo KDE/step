@@ -1532,7 +1532,7 @@ msgid ""
 "- Place it below the position graph and make the ranges along X axis the "
 "same for the both graphs. See how the graphs relates to each other."
 msgstr ""
-"- Colóqueo baixo o gráfico de posición e faga que o alcance no eixo X "
+"- Colóqueo baixo o gráfico de posición e faga que o alcance no eixe X "
 "coincida nos dous gráficos. Observe a relación entre os gráficos."
 
 #: tutorials/tutorial3.step:64
