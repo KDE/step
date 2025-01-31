@@ -1875,7 +1875,7 @@ msgstr "Tamaño do gráfico na escena"
 #: tool.cc:35
 msgctxt "PropertyDescription|"
 msgid "X axis: object"
-msgstr "Eixo de X: obxecto"
+msgstr "Eixe de X: obxecto"
 
 #: tool.cc:35
 msgctxt "PropertyName|"
@@ -1885,7 +1885,7 @@ msgstr "obxectoDeX"
 #: tool.cc:36
 msgctxt "PropertyDescription|"
 msgid "X axis: object property"
-msgstr "Eixo de X: propiedade de obxecto"
+msgstr "Eixe de X: propiedade de obxecto"
 
 #: tool.cc:36
 msgctxt "PropertyName|"
@@ -1895,7 +1895,7 @@ msgstr "propiedadeEnX"
 #: tool.cc:37
 msgctxt "PropertyDescription|"
 msgid "X axis: vector index"
-msgstr "Eixo de X: índice de vector"
+msgstr "Eixe de X: índice de vector"
 
 #: tool.cc:37
 msgctxt "PropertyName|"
@@ -1905,7 +1905,7 @@ msgstr "índiceDeX"
 #: tool.cc:38
 msgctxt "PropertyDescription|"
 msgid "Y axis: object"
-msgstr "Eixo de Y: obxecto"
+msgstr "Eixe de Y: obxecto"
 
 #: tool.cc:38
 msgctxt "PropertyName|"
@@ -1915,7 +1915,7 @@ msgstr "obxectoDeY"
 #: tool.cc:39
 msgctxt "PropertyDescription|"
 msgid "Y axis: property"
-msgstr "Eixo de Y: propiedade"
+msgstr "Eixe de Y: propiedade"
 
 #: tool.cc:39
 msgctxt "PropertyName|"
@@ -1925,7 +1925,7 @@ msgstr "propiedadeDeY"
 #: tool.cc:40
 msgctxt "PropertyDescription|"
 msgid "Y axis: vector index"
-msgstr "Eixo de Y: índice de vector"
+msgstr "Eixe de Y: índice de vector"
 
 #: tool.cc:40
 msgctxt "PropertyName|"
@@ -1935,7 +1935,7 @@ msgstr "índiceDeY"
 #: tool.cc:41
 msgctxt "PropertyDescription|"
 msgid "Auto-limits along X axis"
-msgstr "Pon límites automáticos no eixo de X"
+msgstr "Pon límites automáticos no eixe de X"
 
 #: tool.cc:41
 msgctxt "PropertyName|"
@@ -1945,7 +1945,7 @@ msgstr "límitesAutomáticosEnX"
 #: tool.cc:42
 msgctxt "PropertyDescription|"
 msgid "Auto-limits along Y axis"
-msgstr "Pon límites automáticos no eixo de Y"
+msgstr "Pon límites automáticos no eixe de Y"
 
 #: tool.cc:42
 msgctxt "PropertyName|"
@@ -1955,7 +1955,7 @@ msgstr "límitesAutomáticosEnY"
 #: tool.cc:43
 msgctxt "PropertyDescription|"
 msgid "Limits along X axis"
-msgstr "Límites no eixo de X"
+msgstr "Límites no eixe de X"
 
 #: tool.cc:43
 msgctxt "PropertyName|"
@@ -1965,7 +1965,7 @@ msgstr "límitesDeX"
 #: tool.cc:44
 msgctxt "PropertyDescription|"
 msgid "Limits along Y axis"
-msgstr "Límites no eixo de Y"
+msgstr "Límites no eixe de Y"
 
 #: tool.cc:44
 msgctxt "PropertyName|"
@@ -2020,7 +2020,7 @@ msgstr "unidadesEnX"
 #: tool.cc:49
 msgctxt "PropertyName|"
 msgid "Units along X axis"
-msgstr "Unidades do eixo en X"
+msgstr "Unidades do eixe en X"
 
 #: tool.cc:50
 msgctxt "PropertyName|"
@@ -2030,7 +2030,7 @@ msgstr "unidadesEnY"
 #: tool.cc:50
 msgctxt "PropertyName|"
 msgid "Units along Y axis"
-msgstr "Unidades do eixo en Y"
+msgstr "Unidades do eixe en Y"
 
 #: tool.cc:53
 msgctxt "ObjectClass|"
