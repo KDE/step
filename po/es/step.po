@@ -1,27 +1,26 @@
 # Translation of step.po to Spanish
-# translation of step.po to Spanish
-# Copyright (C) YEAR This_file_is_part_of_KDE
-# This file is distributed under the same license as the PACKAGE package.
+# Copyright (C) 2008-2025 This_file_is_part_of_KDE
+# This file is distributed under the same license as the step package.
 #
-# Jaime Robles <jaime@kde.org>, 2008.
-# Aitor Moreno <aitormoreno@gmail.com>, 2008.
-# Ignacio Poggi <ignaciop.3@gmail.com>, 2008.
-# Santi <santi@kde-es.org>, 2008.
-# Eloy Cuadra <ecuadra@eloihr.net>, 2008, 2009, 2011, 2013, 2014, 2016, 2018, 2019, 2021.
-# Enrique Matias Sanchez (Quique) <cronopios@gmail.com>, 2009.
+# SPDX-FileCopyrightText: 2008 Jaime Robles <jaime@kde.org>
+# SPDX-FileCopyrightText: 2008 Aitor Moreno <aitormoreno@gmail.com>
+# SPDX-FileCopyrightText: 2008 Ignacio Poggi <ignaciop.3@gmail.com>
+# SPDX-FileCopyrightText: 2008 Santi <santi@kde-es.org>
+# SPDX-FileCopyrightText: 2008, 2009, 2011, 2013, 2014, 2016, 2018, 2019, 2021, 2025 Eloy Cuadra <ecuadra@eloihr.net>
+# SPDX-FileCopyrightText: 2009 Enrique Matias Sanchez (Quique) <cronopios@gmail.com>
 msgid ""
 msgstr ""
 "Project-Id-Version: step\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2024-01-04 00:38+0000\n"
-"PO-Revision-Date: 2021-10-25 18:21+0200\n"
+"PO-Revision-Date: 2025-02-25 12:42+0100\n"
 "Last-Translator: Eloy Cuadra <ecuadra@eloihr.net>\n"
 "Language-Team: Spanish <kde-l10n-es@kde.org>\n"
 "Language: es\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Lokalize 21.08.2\n"
+"X-Generator: Lokalize 24.12.2\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
 
 #, kde-format
@@ -389,7 +388,7 @@ msgstr "Creado %1 llamado «%2»"
 #: step/gasgraphics.cc:282
 #, kde-format
 msgid "Create Particles..."
-msgstr "Crear partículas..."
+msgstr "Crear partículas…"
 
 #: step/gasgraphics.cc:352
 #, kde-format
@@ -575,27 +574,27 @@ msgstr "Documento a abrir"
 #: step/mainwindow.cc:143
 #, kde-format
 msgid "&Open Tutorial..."
-msgstr "Abrir tut&orial..."
+msgstr "Abrir tut&orial…"
 
 #: step/mainwindow.cc:148
 #, kde-format
 msgid "&Open Example..."
-msgstr "Abrir un ejempl&o..."
+msgstr "Abrir un ejempl&o…"
 
 #: step/mainwindow.cc:153
 #, kde-format
 msgid "Open Down&loaded Example..."
-msgstr "Abrir un ejemp&lo descargado..."
+msgstr "Abrir un ejemp&lo descargado…"
 
 #: step/mainwindow.cc:158
 #, kde-format
 msgid "Share C&urrent Experiment..."
-msgstr "Compartir el experimento act&ual..."
+msgstr "Compartir el experimento act&ual…"
 
 #: step/mainwindow.cc:161
 #, kde-format
 msgid "&Download New Experiments..."
-msgstr "&Descargar nuevos experimentos..."
+msgstr "&Descargar nuevos experimentos…"
 
 #: step/mainwindow.cc:168
 #, kde-format
@@ -1048,12 +1047,12 @@ msgstr "&Tamaño de letra"
 #: step/toolgraphics.cc:411
 #, kde-format
 msgid "Insert &Image..."
-msgstr "Insertar &imagen..."
+msgstr "Insertar &imagen…"
 
 #: step/toolgraphics.cc:416
 #, kde-format
 msgid "Insert &Formula..."
-msgstr "Insertar &fórmula..."
+msgstr "Insertar &fórmula…"
 
 #: step/toolgraphics.cc:527
 #, kde-format
@@ -1144,7 +1143,7 @@ msgstr "Borrar grafo"
 #: step/toolgraphics.cc:1079
 #, kde-format
 msgid "Configure Graph..."
-msgstr "Configurar grafo..."
+msgstr "Configurar grafo…"
 
 #: step/toolgraphics.cc:1097
 #, kde-format
@@ -1166,7 +1165,7 @@ msgstr "Borrar el grafo %1"
 #: step/toolgraphics.cc:1306
 #, kde-format
 msgid "Configure Meter..."
-msgstr "Configurar el medidor..."
+msgstr "Configurar el medidor…"
 
 #: step/toolgraphics.cc:1324
 #, kde-format
@@ -1202,7 +1201,7 @@ msgstr "Cambiar el controlador %1"
 #: step/toolgraphics.cc:1621
 #, kde-format
 msgid "Configure Controller..."
-msgstr "Configurar el controlador..."
+msgstr "Configurar el controlador…"
 
 #: step/toolgraphics.cc:1639
 #, kde-format
@@ -1315,35 +1314,5 @@ msgstr "Objetos debajo del ratón:"
 #, kde-format
 msgid "... (1 more item)"
 msgid_plural "... (%1 more items)"
-msgstr[0] "... (1 elemento más)"
-msgstr[1] "... (%1 elementos más)"
-
-#~ msgid "Wikipedia"
-#~ msgstr "Wikipedia"
-
-#~ msgid "Fetching Wikipedia Information..."
-#~ msgstr "Obteniendo información de la Wikipedia..."
-
-#~ msgid "Wikipedia error"
-#~ msgstr "Error con la Wikipedia"
-
-#~ msgid ""
-#~ "Information could not be retrieved because the server was not reachable."
-#~ msgstr ""
-#~ "La información no se pudo obtener debido a que el servidor no está "
-#~ "accesible en estos momentos."
-
-#~ msgid "Wikipedia Information"
-#~ msgstr "Información de Wikipedia"
-
-#~ msgid "Wikipedia Other Languages"
-#~ msgstr "Wikipedia en otros idiomas"
-
-#~ msgid "The file \"%1\" already exists. Do you wish to overwrite it?"
-#~ msgstr "El archivo «%1» ya existe. ¿Desea sobrescribirlo?"
-
-#~ msgid "Vladimir Kuznetsov"
-#~ msgstr "Vladimir Kuznetsov"
-
-#~ msgid "Carsten Niehaus"
-#~ msgstr "Carsten Niehaus"
+msgstr[0] "… (1 elemento más)"
+msgstr[1] "… (%1 elementos más)"
