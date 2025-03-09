@@ -88,12 +88,8 @@ void WorldBrowserView::drawBranches(QPainter *painter, const QRect &rect, const 
 {
     // Inspired by qt-designer code in src/components/propertyeditor/qpropertyeditor.cpp
     if(!index.parent().isValid()) return;
-#if QT_VERSION >= QT_VERSION_CHECK(6, 0, 0)
     QStyleOptionViewItem opt;
     initViewItemOption(&opt);
-#else
-    QStyleOptionViewItem opt = viewOptions();
-#endif
 
     if(model()->hasChildren(index)) {
         opt.state |= QStyle::State_Children;

@@ -4,9 +4,9 @@
 
 include(ECMMarkAsTest)
 
-find_package(Qt${QT_MAJOR_VERSION}Test ${QT_MIN_VERSION} CONFIG QUIET)
+find_package(Qt6Test ${QT_MIN_VERSION} CONFIG QUIET)
 
-if(NOT Qt${QT_MAJOR_VERSION}Test_FOUND)
+if(NOT Qt6Test_FOUND)
     message(STATUS "Qt5Test not found, autotests will not be built.")
     return()
 endif()

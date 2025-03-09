@@ -64,20 +64,18 @@ target_include_directories(step PUBLIC ${CMAKE_SOURCE_DIR})
 
 target_link_libraries(step
     stepcore
-    KF${QT_MAJOR_VERSION}::Crash
-    KF${QT_MAJOR_VERSION}::I18n
-    KF${QT_MAJOR_VERSION}::IconThemes
-    KF${QT_MAJOR_VERSION}::KIOCore
-    KF${QT_MAJOR_VERSION}::KIOWidgets
-    KF${QT_MAJOR_VERSION}::TextWidgets
-    KF${QT_MAJOR_VERSION}::Plotting
-    KF${QT_MAJOR_VERSION}::NewStuffWidgets
-    KF${QT_MAJOR_VERSION}::XmlGui
+    KF6::Crash
+    KF6::I18n
+    KF6::IconThemes
+    KF6::KIOCore
+    KF6::KIOWidgets
+    KF6::TextWidgets
+    KF6::Plotting
+    KF6::NewStuffWidgets
+    KF6::XmlGui
     Qt::Widgets
+    Qt::OpenGLWidgets
 )
-if (QT_MAJOR_VERSION STREQUAL "6")
-    target_link_libraries(step Qt6::OpenGLWidgets)
-endif()
 
 install(TARGETS step ${KDE_INSTALL_TARGETS_DEFAULT_ARGS})
 install(FILES step.kcfg DESTINATION  ${KDE_INSTALL_KCFGDIR})
