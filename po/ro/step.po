@@ -10,7 +10,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: step\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2024-01-04 00:38+0000\n"
+"POT-Creation-Date: 2025-03-11 00:38+0000\n"
 "PO-Revision-Date: 2012-12-22 11:46+0200\n"
 "Last-Translator: Sergiu Bivol <sergiu@ase.md>\n"
 "Language-Team: Romanian <kde-i18n-ro@kde.org>\n"
@@ -400,7 +400,7 @@ msgstr ""
 "Încercați să creați un număr foarte mare de particule. Acest lucru va face "
 "simularea foarte lentă. Doriți să continuați?"
 
-#: step/gasgraphics.cc:354 step/mainwindow.cc:407
+#: step/gasgraphics.cc:354 step/mainwindow.cc:402
 #, kde-format
 msgid "Warning - Step"
 msgstr "Avertisment - Pas"
@@ -576,141 +576,141 @@ msgstr ""
 msgid "Document to open"
 msgstr "Document de deschis"
 
-#: step/mainwindow.cc:143
+#: step/mainwindow.cc:142
 #, kde-format
 msgid "&Open Tutorial..."
 msgstr "Deschidere tut&orial..."
 
-#: step/mainwindow.cc:148
+#: step/mainwindow.cc:147
 #, kde-format
 msgid "&Open Example..."
 msgstr "&Deschide exemplu..."
 
-#: step/mainwindow.cc:153
+#: step/mainwindow.cc:152
 #, kde-format
 msgid "Open Down&loaded Example..."
 msgstr "Deschidere exe&mplu descărcat..."
 
-#: step/mainwindow.cc:158
+#: step/mainwindow.cc:157
 #, kde-format
 msgid "Share C&urrent Experiment..."
 msgstr "Partajare experiment c&urent..."
 
-#: step/mainwindow.cc:161
+#: step/mainwindow.cc:160
 #, kde-format
 msgid "&Download New Experiments..."
 msgstr "&Descărcare experimente noi..."
 
-#: step/mainwindow.cc:168
+#: step/mainwindow.cc:167
 #, kde-format
 msgid "Redo"
 msgstr "Refă"
 
-#: step/mainwindow.cc:168
+#: step/mainwindow.cc:167
 #, kde-format
 msgid "Undo"
 msgstr "Desfă"
 
-#: step/mainwindow.cc:190
+#: step/mainwindow.cc:189
 #, kde-format
 msgid "&Delete"
 msgstr "Șt&erge"
 
-#: step/mainwindow.cc:200
+#: step/mainwindow.cc:199
 #, kde-format
 msgid "&Run"
 msgstr "Po&rnește"
 
-#: step/mainwindow.cc:206
+#: step/mainwindow.cc:205
 #, kde-format
 msgid "Execute the program"
 msgstr "Execută programul"
 
-#: step/mainwindow.cc:207
+#: step/mainwindow.cc:206
 #, kde-format
 msgid "Run: Execute the program"
 msgstr "Pornește: execută programul"
 
-#: step/mainwindow.cc:209
+#: step/mainwindow.cc:208
 #, kde-format
 msgctxt "@option:radio"
 msgid "1x Speed"
 msgstr "Viteză 1x"
 
-#: step/mainwindow.cc:217
+#: step/mainwindow.cc:216
 #, kde-format
 msgctxt "@option:radio choose the slow speed"
 msgid "2x Speed"
 msgstr "Viteză 2x"
 
-#: step/mainwindow.cc:224
+#: step/mainwindow.cc:223
 #, kde-format
 msgctxt "@option:radio"
 msgid "4x Speed"
 msgstr "Viteză 4x"
 
-#: step/mainwindow.cc:231
+#: step/mainwindow.cc:230
 #, kde-format
 msgctxt "@option:radio"
 msgid "8x Speed"
 msgstr "Viteză 8x"
 
-#: step/mainwindow.cc:238
+#: step/mainwindow.cc:237
 #, kde-format
 msgctxt "@option:radio"
 msgid "16x Speed"
 msgstr "Viteză 16x"
 
-#: step/mainwindow.cc:268
+#: step/mainwindow.cc:267
 #, kde-format
 msgctxt "filename"
 msgid "untitled.step"
 msgstr "fărătitlu.step"
 
-#: step/mainwindow.cc:294
+#: step/mainwindow.cc:293
 #, kde-format
 msgid "<new file>"
 msgstr "<new file>"
 
-#: step/mainwindow.cc:308
+#: step/mainwindow.cc:307
 #, kde-format
 msgctxt "@title:window"
 msgid "Open Step File"
 msgstr ""
 
-#: step/mainwindow.cc:308 step/mainwindow.cc:343
+#: step/mainwindow.cc:307 step/mainwindow.cc:342
 #, fuzzy, kde-format
 #| msgid "*.step|Step files (*.step)"
 msgid "Step files (*.step)"
 msgstr "*.step|fișiere Pas (*.step)"
 
-#: step/mainwindow.cc:318 step/mainwindow.cc:359
+#: step/mainwindow.cc:317 step/mainwindow.cc:358
 #, kde-format
 msgid "Cannot open file '%1'"
 msgstr "Nu se poate deschide ”%1”"
 
-#: step/mainwindow.cc:323
+#: step/mainwindow.cc:322
 #, kde-format
 msgid "Cannot parse file '%1': %2"
 msgstr "Nu se poate analiza fișierul  ”%1”: %2"
 
-#: step/mainwindow.cc:332
+#: step/mainwindow.cc:331
 #, kde-format
 msgid "<open file: %1>"
 msgstr "<open file: %1>"
 
-#: step/mainwindow.cc:343
+#: step/mainwindow.cc:342
 #, kde-format
 msgctxt "@title:window"
 msgid "Save Step File"
 msgstr ""
 
-#: step/mainwindow.cc:365
+#: step/mainwindow.cc:364
 #, kde-format
 msgid "Cannot save file '%1': %2"
 msgstr "Nu se poate salva fișierul ”%1”: %2"
 
-#: step/mainwindow.cc:406
+#: step/mainwindow.cc:401
 #, kde-format
 msgid ""
 "The experiment has been modified.\n"
@@ -719,27 +719,27 @@ msgstr ""
 "Experimentul a fost modificat. \n"
 "Doriți să salvați modificările?"
 
-#: step/mainwindow.cc:458
+#: step/mainwindow.cc:449
 #, kde-format
 msgid "Uploading is still not implemented in kdelibs."
 msgstr "Încărcarea nu este încă implementată în kdelibs."
 
-#: step/mainwindow.cc:459
+#: step/mainwindow.cc:450
 #, kde-format
 msgid "Sorry - Step"
 msgstr "Îmi pare rău - Pas"
 
-#: step/mainwindow.cc:486
+#: step/mainwindow.cc:477
 #, kde-format
 msgid "&Stop"
 msgstr "&Oprește"
 
-#: step/mainwindow.cc:496
+#: step/mainwindow.cc:487
 #, kde-format
 msgid "&Simulate"
 msgstr "&Simulează"
 
-#: step/mainwindow.cc:501
+#: step/mainwindow.cc:492
 #, kde-format
 msgid ""
 "Cannot finish this step because local error is greater than local "
@@ -750,7 +750,7 @@ msgstr ""
 "toleranța locală.\n"
 "Verificați setările rezolvatorului și încercați din nou."
 
-#: step/mainwindow.cc:506
+#: step/mainwindow.cc:497
 #, kde-format
 msgid ""
 "Cannot finish this step because there are collisions which cannot be "
@@ -761,38 +761,38 @@ msgstr ""
 "rezolvate automat.\n"
 "Mutați la o parte obiectele care se ciocnesc și încercați din nou."
 
-#: step/mainwindow.cc:510
+#: step/mainwindow.cc:501
 #, kde-format
 msgid "Cannot finish this step because of an unknown error."
 msgstr "Nu se poate termina acest pas din cauza unei erori necunoscute."
 
-#: step/mainwindow.cc:543
+#: step/mainwindow.cc:534
 #, kde-format
 msgid "&Undo"
 msgstr "&Desfă"
 
-#: step/mainwindow.cc:544
+#: step/mainwindow.cc:535
 #, kde-format
 msgid "&Undo: %1"
 msgstr "An&ulează: %1"
 
-#: step/mainwindow.cc:549
+#: step/mainwindow.cc:540
 #, kde-format
 msgid "Re&do"
 msgstr "&Refă"
 
-#: step/mainwindow.cc:550
+#: step/mainwindow.cc:541
 #, kde-format
 msgid "Re&do: %1"
 msgstr "&Refă: %1"
 
-#: step/mainwindow.cc:581
+#: step/mainwindow.cc:572
 #, kde-format
 msgid "General"
 msgstr "General"
 
 #: step/motorgraphics.cc:100 step/motorgraphics.cc:278
-#: step/stepgraphicsitem.cc:198 step/stepgraphicsitem.cc:210
+#: step/stepgraphicsitem.cc:194 step/stepgraphicsitem.cc:206
 #, kde-format
 msgid "Move %1"
 msgstr "Mută %1"
@@ -847,7 +847,7 @@ msgstr "Schimbă tipul de rezolvator"
 #: step/propertiesbrowser.cc:282 step/propertiesbrowser.cc:288
 #: step/propertiesbrowser.cc:295 step/propertiesbrowser.cc:304
 #: step/propertiesbrowser.cc:388 step/propertiesbrowser.cc:405
-#: step/stepgraphicsitem.cc:393 step/stepgraphicsitem.cc:538
+#: step/stepgraphicsitem.cc:389 step/stepgraphicsitem.cc:534
 #, kde-format
 msgid "Change %1.%2"
 msgstr "Schimbă %1.%2"
@@ -877,7 +877,7 @@ msgstr "fals"
 msgid "true"
 msgstr "adevărat"
 
-#: step/propertiesbrowser.cc:683
+#: step/propertiesbrowser.cc:666
 #, kde-format
 msgid "Properties"
 msgstr "Proprietăți"
@@ -948,12 +948,12 @@ msgstr "Navigați wikipedia într-un navigator de internet extern"
 msgid "Show text beside icon"
 msgstr "Afișează text lângă pictogramă"
 
-#: step/stepgraphicsitem.cc:210
+#: step/stepgraphicsitem.cc:206
 #, kde-format
 msgid "several objects"
 msgstr "mai multe obiecte"
 
-#: step/stepgraphicsitem.cc:394 step/stepgraphicsitem.cc:540
+#: step/stepgraphicsitem.cc:390 step/stepgraphicsitem.cc:536
 #, kde-format
 msgid "Change %1"
 msgstr "Schimbă %1"

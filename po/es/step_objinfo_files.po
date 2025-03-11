@@ -1,9 +1,9 @@
 # Spanish translations for step_objinfo_files.po package.
-# Copyright (C) 2019 This file is copyright:
+# Copyright (C) 2019-2025 This file is copyright:
 # This file is distributed under the same license as the step package.
 #
 # Automatically generated, 2019.
-# Eloy Cuadra <ecuadra@eloihr.net>, 2019, 2020.
+# SPDX-FileCopyrightText: 2019, 2020 Eloy Cuadra <ecuadra@eloihr.net>
 msgid ""
 msgstr ""
 "Project-Id-Version: step_objinfo_files\n"
