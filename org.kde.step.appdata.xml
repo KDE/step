@@ -95,6 +95,7 @@
     <p xml:lang="gl">Step é un simulador interactivo de física. Permite explorar o mundo físico mediante simulacións. Funciona deste xeito: sitúanse algúns corpos na escena, engádense forzas como a gravidade ou molas, logo prémese Simular e Step amósase a evolución da escena segundo as leis da física. Pódese cambiar cada propiedade dos corpos/forzas no experimento (mesmo durante a simulación) e ver como isto cambiará a evolución do experimento. Con Step non só podes aprender, senón que sentirás como funciona a física!</p>
     <p xml:lang="id">Step adalah simulator fisik interaktif. Ini memungkinkan kamu untuk menjelajahi dunia fisik melalui simulasi. Ini bekerja seperti ini: Kamu menempatkan beberapa benda di tempat kejadian, menambahkan beberapa kekuatan seperti gravitasi atau mata air, lalu klik Simulasikan dan Step menunjukkan kepada kamu bagaimana adegan kamu akan berkembang sesuai dengan hukum fisika. Kamu bisa mengubah setiap properti benda/kekuatan dalam percobaanmu (bahkan selama simulasi) dan melihat bagaimana ini akan mengubah evolusi percobaan. Dengan Step kamu tidak hanya bisa belajar tetapi merasakan bagaimana fisika bekerja!</p>
     <p xml:lang="it">Step è un simulatore interattivo di fisica. Ti consente di esplorare il mondo fisico tramite simulazioni. Funziona in questo modo: posizioni alcuni corpi nella scena, aggiungi delle forze come quella gravitazionale o la forza elastica, quindi fai clic su Simula e Step mostrerà l'evoluzione della scena secondo le leggi della fisica. Puoi cambiare ogni proprietà dei corpi e delle forze nel tuo esperimento (anche durante la simulazione) e vedere come questo ne influenza l'evoluzione. Con Step puoi non solo imparare ma anche "toccare con mano" il funzionamento della fisica!</p>
+    <p xml:lang="ka">Step ინტერაქტიული ფიზიკური სიმულატორია. ის საშუალებას გაძლევთ, გამოიკვლიოთ ფიზიკური სამყარო სიმულაციებით. ის ასე მუშაობს: თქვენა ათავსებთ სხეულებს სცენაზე, ამატებთ რაღაც ძალებს (მაგ: გრავიტაცია ან ზამბარები) შემდეგ დააწკაპუნეთ სიმულაციაზე და Step გაჩვენებთ, როგორ ვითარდება მოვლენები ფიზიკის კანონების მიხედვით. თქვენ ექსპერიმენტში ნებისმიერი სხეულის/ძალის თვისება შეგიძლიათ (სიმულაციის მიმდინარეობისასაც კი) შეცვალოთ და ნახოთ, როგორ შეიცვლება სცენა. Step-თან ერთად შეგიძლიათ, გაიგოთ, როგორ მუშაობს ფიზიკა!</p>
     <p xml:lang="ko">Step은 인터랙티브 물리학 시뮬레이터입니다. 시뮬레이션으로 물리 세계를 탐험할 수 있습니다. 장면에 물체를 놓고, 중력이나 스프링 같은 힘을 추가하고, 시뮬레이션을 클릭하면 물리 법칙에 따라서 장면이 변하는 과정을 시뮬레이션합니다. 실험에 추가된 물체/힘의 속성은 시뮬레이션 진행 중에도 변경할 수 있으며 변경함에 따라서 시뮬레이션이 변경되는 과정도 볼 수 있습니다. Step을 사용하여 물리학을 배울 수 있을뿐만 아니라 체험할 수도 있습니다!</p>
     <p xml:lang="nds">Step is en brukerstüert Physik-Simulater. Du kannst dor de physikaalsche Welt mit över Simuleren bekieken. Dat geiht so: Du leggst en poor Körpers hen, föögst en poor Kräft to, so as de Swoorkraft oder en Fedder, denn klickst Du op „Simuleren“ un Step wiest Di, wodennig sik dat na de physikaalschen Gesetten utwickeln deit. Du kannst all Egenschappen vun Dien Körpers un Kräft ännern (ok bides de Simuleren löppt) un Di ankieken wodennig dat den Afloop vun't Experiment ännert. Mit Step kannst Du nich bloots lehren, man meist föhlen, wodennig Physik funkscheneert.</p>
     <p xml:lang="nl">Step is een interactief natuurkundig simulatieprogramma. U kunt er natuurkundige experimenten mee doen door middel van simulaties. Het werkt zo: u neemt enige lichamen, voegt er wat krachten aan toe zoals de zwaartekracht en wat veren, en klikt daarna op de knop Simuleren, waarna Step u laat zien hoe dit stelsel evolueert volgens de natuurkundige wetten. U kunt elke eigenschap van de lichamen en krachten in uw experiment wijzigen (zelfs tijdens de simulatie) en zien wat daarvan de gevolgen zijn. Met Step leert u niet alleen natuurkunde, maar krijgt u er gevoel voor!</p>
@@ -198,6 +199,7 @@
       <li xml:lang="gl">Partículas, resortes con forzas de amortecemento, gravidade e Coulomb.</li>
       <li xml:lang="id">Partikel, pegas dengan kekuatan redaman, gravitasi dan kulom</li>
       <li xml:lang="it">Particelle, molle smorzate, forze gravitazionali e coulombiane</li>
+      <li xml:lang="ka">ნაწილაკები, ზამბარები სიბლანტით, მიზიდულობის და კოლუმბის ზალები</li>
       <li xml:lang="ko">입자, 감쇠가 있는 스프링, 중력 및 쿨롱 힘</li>
       <li xml:lang="nds">Deeltjes, Feddern mit Dämpen, Swoor- un Coulomb-Kräft</li>
       <li xml:lang="nl">Deeltjes, veren met demping, zwaarte- en elektrische krachten</li>
@@ -262,6 +264,7 @@
       <li xml:lang="gl">Detección e xestión de colisións (por agora só discreta).</li>
       <li xml:lang="id">Deteksi tabrakan (saat ini hanya diskrit) dan penanganan</li>
       <li xml:lang="it">Rilevamento e gestione delle collisioni (al momento solo discrete)</li>
+      <li xml:lang="ka">შეჯახების დადგენა (ამჟამად, მხოლოდ, დისკრეტული) და მართვა</li>
       <li xml:lang="ko">충돌 감지(현재는 단일 물체만 가능) 및 취급</li>
       <li xml:lang="nds">Tosamenstoot-Opdecken (opstunns bloots schrittwies) un -Behanneln</li>
       <li xml:lang="nl">Botsingdetectie (nu nog alleen discreet) en afhandeling</li>
@@ -293,6 +296,7 @@
       <li xml:lang="gl">Simulación de corpos brandos (deformábeis) como sistemas de partículas e molas editábeis polo usuario, ondas de son.</li>
       <li xml:lang="id">Tubuh lemas (cacat) yang disimulasikan sebagai sistem pegas partikel yang dapat diedit pengguna, gelombang suara</li>
       <li xml:lang="it">Corpi morbidi (deformabili) simulati come sistemi di particelle elastiche modificabili dall'utente, onde sonore</li>
+      <li xml:lang="ka">რბილი (დეფორმირებადი) სხეულების სიმულაცია მომხმარებლის მიერ ჩასწორებადი ნაწილაკი-ზამბარის სისტემის სახით ხმის ტალებით</li>
       <li xml:lang="ko">사용자가 편집 가능한 입자 스프링계로 부드러운(변형 가능한) 물체 시뮬레이션, 음파</li>
       <li xml:lang="nds">Week (verformbor) Körpers simuleert as för den Bruker bewerkbor Deeltjes-Feddern-Systeem, Klangbülgen</li>
       <li xml:lang="nl">Zachte (vervormbare) lichamen gesimuleerd als een deeltjes-veersysteem dat door de gebruiker kan worden bewerkt, geluidsgolven</li>
@@ -324,6 +328,7 @@
       <li xml:lang="gl">Dinámica molecular (por agora usando o potencial de Lennard e Jones): gases e líquidos, condensación e evaporación, calculo de cantidades macroscópicas e as súas varianzas.</li>
       <li xml:lang="id">Dinamis molekuler (saat ini menggunakan potensi Lennard-Jones): gas dan cairan, kondensasi dan penguapan, perhitungan jumlah makroskopik dan variansnya</li>
       <li xml:lang="it">Dinamica molecolare (al momento con l'utilizzo del potenziale di Lennard-Jones): gas e liquidi, condensazione ed evaporazione, calcolo delle grandezze macroscopiche e loro variazione</li>
+      <li xml:lang="ka">მოლეკულური დინამიკა (ამჟამად გამოიყენება ლენარდ-ჯოუნსის პოტენციალი): აირი და სითხე, კონდენსაცია და აორთქლება, მიკროსკოპული რაოდენობების ანგარიში და მათი ცვალებადობები</li>
       <li xml:lang="ko">분자 동력학(현재 Lennard-Jones 포텐셜 사용): 기체 및 액체, 응축 및 증발, 거시적인 양 및 분산 계산</li>
       <li xml:lang="nds">Molekööldünamik  (opstunns mit Lennard-Jones-Potenschaal): Gas un Flaat, kondenseren un verdampen, utreken vun makroskoopsch Mengden un ehr Varianten</li>
       <li xml:lang="nl">Moleculaire dynamica (thans wordt de Lennard-Jones potentiaal gebruikt): gas en vloeistof, condensatie en verdamping, berekening van macroscopische hoeveelheden en hun varianties</li>
@@ -356,6 +361,7 @@
       <li xml:lang="gl">Conversión de unidades e cálculo de expresións: pode inserir algo como «(2 día + 3 horas) * 80 km/h» e aceitarase como un valor de distancia (require de libqalculate).</li>
       <li xml:lang="id">Menghitung konversi dan ekspresi unit: kamu bisa memasukkan sesuatu seperti "(2 hari + 3 jam) * 80 km/jam" dan itu akan diterima sebagai nilai jarak (memerlukan libqalculate)</li>
       <li xml:lang="it">Conversione di unità e calcolo di espressioni: puoi inserire ad esempio "(2 days + 3 hours) * 80 km/h" e sarà accettato come valore di distanza (richiede libqalculate)</li>
+      <li xml:lang="ka">ერთეულების გადაყვანა და განტოლებების ამოხსნა: შეგიძლიათ ქნათ რამე მსგავსი "(2 დღეს + 3 საათი) * 80 კმ/სთ" და ის მიღებული იქნება, როგორც მანძილის მნიშვნელობა (სჭირდება ბიბლიოთეკა libqalculate)</li>
       <li xml:lang="ko">단위 변환 및 표현식 계산: "(2일+3시간) * 80km/h"와 같이 입력할 수 있으며 거리 값으로 간주됩니다(libqalculate 필요)</li>
       <li xml:lang="nds">Eenheiten ümreken un Utdrück utreken: Di giffst wat in as „(2 Daag + 3 Stünnen) * 80 km/h“ un dat gellt denn as Längdenweert (bruukt „libqalculate“)</li>
       <li xml:lang="nl">Conversie van eenheden en berekening van expressies zoals "(2 dagen + 3 uren) * 80 km/h", waarna dit zal worden beschouwd als een afstand (vereist libqalculate)</li>
@@ -387,6 +393,7 @@
       <li xml:lang="gl">Cálculo e propagación de erros: pode inserir valores como "1,3 ± 0,2" en calquera propiedade e erro de calquera propiedade dependente calcularase mediante fórmulas estatísticas.</li>
       <li xml:lang="id">Perhitungan dan propagasi kesalahan: kamu bisa memasukkan nilai seperti "1,3 ± 0,2 " untuk properti apa pun dan semua properti yang bergantung akan dihitung menggunakan rumus statistik</li>
       <li xml:lang="it">Calcolo e propagazione degli errori: puoi inserire valori come "1.3 ± 0.2" per ogni proprietà e gli errori per le proprietà dipendenti saranno calcolati tramite formule statistiche</li>
+      <li xml:lang="ka">შეცდომების გამოთვლა და გავრცელება: შეგიძლიათ შეიყვანოთ მნიშვნელობები, როგორიცაა "1.3 ± 0.2" ნებისმიერი თვისებისთვის და შეცდომები ყველა დამოკიდებული თვისებისთვის სტატისტიკური ფორმულებით იქნება გამოთვლილი</li>
       <li xml:lang="ko">오류 계산 및 전파: 모든 속성에 "1.3 ± 0.2"처럼 입력할 수 있으며, 여기에 의존하는 다른 모든 속성은 통계 공식을 사용하여 오류를 계산합니다</li>
       <li xml:lang="nds">Fehlerreken: Du kannst wat as „1,3 ± 0,2“ för jichtenseen Egenschap ingeven, denn reekt Step för all afhangen Weerten över statistische Formeln de Fehlers ut.</li>
       <li xml:lang="nl">Foutenberekening en -voortplanting: u kunt voor elke eigenschap zoiets invullen als "1,3 ± 0,2", waarna voor elke daarvan afhankelijke eigenschap de fouten zullen worden berekend met gebruik van statistische formules</li>
@@ -418,6 +425,7 @@
       <li xml:lang="gl">Estimación do erro da solución: os erros inseridos polo resolvente son calculados e engadidos aos erros inseridos polo usuario.</li>
       <li xml:lang="id">Estimasi kesalahan pemecah: kesalahan yang diperkenalkan oleh pemecah dihitung dan ditambahkan ke kesalahan yang dimasukkan pengguna</li>
       <li xml:lang="it">Stima degli errori del solutore: gli errori introdotti dal solutore sono calcolati e aggiunti al valore dell'errore inserito dall'utente</li>
+      <li xml:lang="ka">ამომხსნელის შეცდომის შეფასება: შეცდომები, რომლებსაც ამომხსნელი შემოიტანს, გამოითვლება და დაემატება მომხმარებლის შეყვანილ შეცდომებს</li>
       <li xml:lang="ko">해 찾기 오류 추정: 해 찾기 도구의 오류를 계산하여 사용자가 입력한 오류에 추가합니다</li>
       <li xml:lang="nds">Löserfehler-Estemeren: Vun den Löser inbuut Fehlers warrt estemeert un de vun den Bruker ingeven Fehlers toföögt</li>
       <li xml:lang="nl">Het afschatten van fouten veroorzaakt door de oplossingsmethode: fouten die bij het oplossen zijn ontstaan worden berekend en opgeteld bij de fouten die door de gebruiker zijn ingevoerd</li>
@@ -449,6 +457,7 @@
       <li xml:lang="gl">Varios tipos distintos de resolventes: ata a 8ª orde, explícitos e implícitos, con ou sen paso adaptábel de tempo (a maioría dos resolventes requiren da biblioteca GSL).</li>
       <li xml:lang="id">Beberapa pemecah yang berbeda: hingga urutan ke 8, eksplisit dan implisit, dengan atau tanpa catatan waktu adaptif (sebagian besar pemecah memerlukan pustaka GSL)</li>
       <li xml:lang="it">Diversi tipi di solutori: fino all'ottavo ordine, espliciti ed impliciti, con o senza un passo temporale adattivo (la maggior parte dei solutori richiedono la libreria GSL)</li>
+      <li xml:lang="ka">რამდენიმე სხვადასხვა ამომხსნელი: მერვე დონემდე, აშკარა და არააშკარა, ადაპიური დროის ნაბიჯით ან მის გარეშე (ამომხსნელების უმრავლესობას GSL ბიბლიოთეკა სჭირდება)</li>
       <li xml:lang="ko">다양한 해결 도구: 최대 8차식, 명시적 및 암시적, 적응형 시간 단위 사용 여부(대부분의 해결 도구에는 GSL 라이브러리 필요)</li>
       <li xml:lang="nds">En Reeg verscheden Lösers: bet to de 8. Orden, ex- un implizit, mit un ahn topassen Tietschreed (de mehrsten Lösers bruukt de GSL-Bibliotheek)</li>
       <li xml:lang="nl">Er zijn diverse oplossingsmethoden: tot aan de 8e orde, expliciet en impliciet, met of zonder een adaptieve tijdstap (voor de meesten is de GSL-bibliotheek nodig)</li>
@@ -481,6 +490,7 @@
       <li xml:lang="gl">Ferramenta de control para controlar facilmente as propiedades durante a simulación (mesmo con atallos de teclado personalizado).</li>
       <li xml:lang="id">Alat pengendali untuk mengendalikan properti dengan mudah selama simulasi (bahkan dengan pintasan keyboard khusus)</li>
       <li xml:lang="it">Strumenti per controllare facilmente le proprietà durante la simulazione (anche con scorciatoie di tastiera personalizzate)</li>
+      <li xml:lang="ka">კონტროლერის ხელსაწყო თვისებების იოლად სამართავად სიმულაციის მიმდევრობისას (აქვს კლავიატურის მალსახმობებიც)</li>
       <li xml:lang="ko">시뮬레이션 중에 속성을 쉽게 제어할 수 있는 컨트롤러 도구(사용자 정의 키보드 단축키 포함)</li>
       <li xml:lang="nds">Kuntrullwarktüüch för't Bekieken vun Egenschappen binnen de Simuleren (ok mit topasst Tastkombinatschoon)</li>
       <li xml:lang="nl">Hulpmiddel voor het eenvoudig beheersen van eigenschappen tijdens een simulatie (zelfs met aangepaste sneltoetsen)</li>
@@ -579,6 +589,7 @@
       <li xml:lang="gl">Colección de experimentos de exemplo; pódense descargar máis con KNewStuff.</li>
       <li xml:lang="id">Koleksi contoh eksperimen, selebihnya bisa diunduh dengan KNewStuff</li>
       <li xml:lang="it">Collezione di esperimenti di esempio, altri possono essere scaricati con KNewStuff2</li>
+      <li xml:lang="ka">მაგალითი ექსპერიმენტების კოლექცია. მეტი, შეგიძლიათ, KnewStuff-ით გადმოწეროთ</li>
       <li xml:lang="ko">예제 실험 모음, KNewStuff로 더 많은 다운로드 가능</li>
       <li xml:lang="nds">Sammeln vun Bispill-Experimenten, mehr laat sik vun KNewStuff daalladen</li>
       <li xml:lang="nl">Verzameling van voorbeeldexperimenten, meer kunnen er worden opgehaald met KNewStuff</li>
@@ -652,6 +663,7 @@
       <caption xml:lang="gl">Simulación física en Step.</caption>
       <caption xml:lang="id">Simulasi fisik di Step</caption>
       <caption xml:lang="it">Simulazione di fisica in Step</caption>
+      <caption xml:lang="ka">ფიზიკის სიმულაცია Step-ში</caption>
       <caption xml:lang="ko">Step의 물리 시뮬레이션</caption>
       <caption xml:lang="nl">Fysieke simulatie in Step</caption>
       <caption xml:lang="pl">Symulacja fizyczna w Step</caption>
