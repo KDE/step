@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: step\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2023-11-05 12:24+0000\n"
-"PO-Revision-Date: 2023-01-25 05:50+0100\n"
+"PO-Revision-Date: 2025-03-11 04:38+0100\n"
 "Last-Translator: Temuri Doghonadze <temuri.doghonadze@gmail.com>\n"
 "Language-Team: Georgian <kde-i18n-doc@kde.org>\n"
 "Language: ka\n"
@@ -16,7 +16,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Generator: Poedit 3.2.2\n"
+"X-Generator: Poedit 3.5\n"
 
 #: objectinfo/anchor.html:6
 #, kde-format
@@ -31,6 +31,8 @@ msgid ""
 "Anchor is a joint that fixes position of the body. The body can not move "
 "when it has an anchor."
 msgstr ""
+"ღუზა არის შეერთება, რომელიც სხეულის მდებარეობას ამაგრებს. სხეულს ვერ "
+"გადაიტანთ, როცა მას ღუზა აქვს."
 
 #: objectinfo/box.html:6
 #, kde-format
@@ -42,7 +44,7 @@ msgstr "ყუთი"
 #, kde-format
 msgctxt "box.html:p"
 msgid "A rigid box with a unique name and the following parameters:"
-msgstr ""
+msgstr "ხისტი ყუთი უნიკალური სახელით და შემდეგი პარამეტრებით:"
 
 #: objectinfo/box.html:21
 #, kde-format
@@ -71,6 +73,26 @@ msgid ""
 "\t\t<li><b>size:</b> Defines width and height of the box.</li>\n"
 "\t</ul>"
 msgstr ""
+"<ul>\n"
+"\t\t<li><b>პოზიცია:</b> ყუთის მასის ცენტრის X/Y პოზიცია, <a href=\"objinfo:"
+"World\">მსოფლიოს</a> ცენტრთან შედარებით.</li>\n"
+"\t\t<li><b>კუთხე:</b> რამდენად ბრუნავს ყუთი პოზიტიური მიმართულებით, ეს არის "
+"საათის ბრძენი.</li>\n"
+"\t\t<li><b>სიჩქარე:</b> ყუთის მასის ცენტრის სიჩქარე. განყოფილება: მეტრი/წამი."
+"</li>\n"
+"\t\t<li><b>კუთხის სიჩქარე:</b> რამდენად სწრაფად ტრიალებს ყუთი პოზიტიური "
+"მიმართულებით, ეს არის საათის ბრძენი.</li>\n"
+"\t\t<li><b>მასა:</b> ყუთის მთლიანი მასა. ეს გავლენას ახდენს იმ ძალებზე, "
+"რომლებთანაც ყუთი ურთიერთქმედებს სხვა ნივთებთან.</li>\n"
+"\t\t<li><b>ინერცია:</b> რამდენად რთულია ყუთის როტაციის შეცვლა.</li>\n"
+"\t\t<li><b>იმპულსი:</b> ფუნდამენტური რაოდენობა მექანიკაში, რომელიც ინახება "
+"გარე ძალების არარსებობის შემთხვევაში. მასის პროდუქტი და სიჩქარე.</li>\n"
+"\t\t<li><b>კუთხის იმპულსი:</b> გაზომეთ რამდენად გააგრძელებს ყუთი როტაციას, "
+"თუ არ იმოქმედებს გარე ბრუნვის მიერ.</li>\n"
+"\t\t<li><b>კინეტიკური ენერგია:</b> სამუშაო საჭიროა მოცემული მასის სხეულის "
+"დასაჩქარებლად დანარჩენიდან მის ამჟამინდელ სიჩქარემდე.</li>\n"
+"\t\t<li><b>ზომა:</b> განსაზღვრავს ყუთის სიგანეს და სიმაღლეს.</li>\n"
+"\t</ul>"
 
 #: objectinfo/chargedparticle.html:6
 #, kde-format
@@ -85,6 +107,8 @@ msgid ""
 "A zero-sized particle which carries an electric charge. It has a unique name "
 "and five parameters:"
 msgstr ""
+"ნულოვანი ზომის ნაწილაკი, რომელსაც ელექტრული მუხტი გადააქვს. მას აქვს "
+"უნიკალური სახელი და ხუთი პარამეტრი:"
 
 #: objectinfo/chargedparticle.html:16
 #, kde-format
@@ -103,6 +127,16 @@ msgid ""
 "deposited on the particle. Unit: Coulomb.</li>\n"
 "\t</ul>"
 msgstr ""
+"<ul>\n"
+"\t\t<li><b>პოზიცია:</b> ნაწილაკების X/Y პოზიცია, <a href=\"objinfo:World"
+"\">მსოფლიოს</a> ცენტრთან შედარებით.</li>\n"
+"\t\t<li><b>სიჩქარე:</b> ნაწილაკების სიჩქარე. განყოფილება: მეტრი/წამი.</li>\n"
+"\t\t<li><b>ძალა:</b> ძალა, რომლითაც ნაწილაკი მოძრაობს.</li>\n"
+"\t\t<li><b>მასა:</b> ნაწილაკების მასა. ეს გავლენას ახდენს ძალებზე, "
+"რომელთანაც ნაწილაკი ურთიერთქმედებს სხვა ნივთებთან.</li>\n"
+" \t\t<li><b>ბრალი:</b> ნაწილაკზე დეპონირებული დადებითი ან უარყოფითი "
+"ელექტროენერგიის რაოდენობა. განყოფილება: Coulomb.</li>\n"
+"\t</ul>"
 
 #: objectinfo/coulombforce.html:6
 #, kde-format
@@ -114,7 +148,7 @@ msgstr "კულონის კანონი"
 #, kde-format
 msgctxt "coulombforce.html:p"
 msgid "Coulomb force is a force of interaction between charged particles."
-msgstr ""
+msgstr "კოლუმბის ძალა დამუხტულ ნაწილაკებს შორის მოქმედი ძალაა."
 
 #: objectinfo/coulombforce.html:10
 #, kde-format
@@ -131,6 +165,9 @@ msgid ""
 "the charges and inversely proportional to the square of the distance between "
 "the two charges.</li>"
 msgstr ""
+"<li>ელექტროსტატიკური ძალის სიდიდე ორპუნქტიან ელექტრულ მუხტს შორის პირდაპირ "
+"პროპორციულია თითოეული ბრალდების მასშტაბის პროდუქტისა და ორ ბრალდებას შორის "
+"მანძილის კვადრატის პროპორციულად.</li>"
 
 #: objectinfo/coulombforce.html:12
 #, kde-format
@@ -139,6 +176,8 @@ msgid ""
 "For more details, please refer to the <a href=\"https://en.wikipedia.org/"
 "wiki/Coulomb's_law\">Coulomb Force</a>."
 msgstr ""
+"მეტი დეტალებისთვის იხილთ <a href=\"https://en.wikipedia.org/wiki/"
+"Coulomb's_law\">კოლუმბის ძალა</a>."
 
 #: objectinfo/disk.html:6
 #, kde-format
@@ -150,7 +189,7 @@ msgstr "დისკი"
 #, kde-format
 msgctxt "disk.html:p"
 msgid "A rigid disk with a unique name and the following parameters:"
-msgstr ""
+msgstr "ხისტ დისკს აქვს უნიკალური სახელი და შემდეგი პარამეტრები:"
 
 #: objectinfo/disk.html:21
 #, kde-format
@@ -179,6 +218,26 @@ msgid ""
 "\t\t<li><b>radius:</b> Defines how big the disk is.</li>\n"
 "\t</ul>"
 msgstr ""
+"<ul>\n"
+"\t\t<li><b>პოზიცია:</b> დისკის მასის ცენტრის X/Y პოზიცია, <a href=\"objinfo:"
+"World\">მსოფლიოს</a> ცენტრთან შედარებით.</li>\n"
+"\t\t<li><b>კუთხე:</b> რამდენად ბრუნავს დისკი პოზიტიური მიმართულებით, ეს არის "
+"საათის ბრძენი.</li>\n"
+"\t\t<li><b>სიჩქარე:</b> დისკის მასის ცენტრის სიჩქარე. განყოფილება: მეტრი/"
+"წამი.</li>\n"
+"\t\t<li><b>კუთხის სიჩქარე:</b> რამდენად სწრაფად ტრიალებს დისკი პოზიტიური "
+"მიმართულებით, ეს არის საათის ბრძენი.</li>\n"
+"\t\t<li><b>მასა:</b> დისკის მთლიანი მასა. ეს გავლენას ახდენს იმ ძალებზე, "
+"რომლებთანაც დისკი ურთიერთქმედებს სხვა ნივთებთან.</li>\n"
+"\t\t<li><b>ინერცია:</b> რამდენად რთულია დისკის როტაციის შეცვლა.</li>\n"
+"\t\t<li><b>იმპულსი:</b> ფუნდამენტური რაოდენობა მექანიკაში, რომელიც ინახება "
+"გარე ძალების არარსებობის შემთხვევაში. მასის პროდუქტი და სიჩქარე.</li>\n"
+"\t\t<li><b>კუთხის იმპულსი:</b> გაზომეთ რამდენად გააგრძელებს დისკი როტაციას, "
+"თუ არ იმოქმედებს გარე ბრუნვის მიერ.</li>\n"
+"\t\t<li><b>კინეტიკური ენერგია:</b> სამუშაო საჭიროა მოცემული მასის სხეულის "
+"დასაჩქარებლად დანარჩენიდან მის ამჟამინდელ სიჩქარემდე.</li>\n"
+"\t\t<li><b>რადიუსი:</b> განსაზღვრავს რამდენად დიდია დისკი.</li>\n"
+"\t</ul>"
 
 #: objectinfo/gas.html:6
 #, kde-format
@@ -194,6 +253,9 @@ msgid ""
 "a>. Associated with the gas is a <a href=\"objinfo:GasLJForce\">force</a>. "
 "To add gas particles right-click the gas and click on \"Create particles\"."
 msgstr ""
+"აირი არის <a href=\"objinfo:GasParticle\">ბენზინის ნაწილაკების</a> კოლექცია. "
+"აირთან ასოცირებულია <a href=\"objinfo:GasLJForce\">ძალა</a>. ნაწილაკების "
+"დასამატებლად მარჯვენა წკაპი აირზე და დააწკაპუნეთ \"ნაწილაკების შექმნაზე\"."
 
 #: objectinfo/gas.html:10
 #, kde-format
@@ -203,6 +265,9 @@ msgid ""
 "<a href=\"https://en.wikipedia.org/wiki/Lennard-Jones_potential\">Lennard-"
 "Jones potential</a>."
 msgstr ""
+"დეტალებისთვის მათემატიკაზე, რომელიც ძალების გამოსათვლელად გამოიყენება, "
+"იხილეთ <a href=\"https://en.wikipedia.org/wiki/Lennard-Jones_potential"
+"\">ლენარდ-ჯოუნსის პოტენციალი</a>."
 
 #: objectinfo/gasljforce.html:6
 #, kde-format
@@ -218,6 +283,9 @@ msgid ""
 "Jones_potential\">Lennard-Jones potential</a>. There are three parameters "
 "for this force:"
 msgstr ""
+"ეს ძალა <a href=\"https://en.wikipedia.org/wiki/Lennard-Jones_potential"
+"\">ლენარდ-ჯოუნსის პოტენციალის</a> სიმულაციას ახდენს. არსებობს სამი პარამეტრი "
+"ამ ძალისთვის:"
 
 #: objectinfo/gasljforce.html:14
 #, kde-format
@@ -232,6 +300,13 @@ msgid ""
 "potential is often truncated to save computational time</li>\n"
 "\t</ul>"
 msgstr ""
+"<ul>\n"
+"        <li><b>სიღრმე:</b> ლენარდ-ჯონსის პოტენციალის მინიმალური ღირებულება</"
+"li>\n"
+"        <li><b>რმინ:</b> მანძილი წარმოშობიდან მინიმუმ პოტენციალზე</li>\n"
+"        <li><b>ამოჭრა:</b> მანძილი, სადაც ლენარდ-ჯონსის (LJ) პოტენციალი "
+"ხშირად იცვლება გამოთვლითი დროის დაზოგვის მიზნით</li>\n"
+"\t</ul>"
 
 #: objectinfo/gasljforce.html:15
 #, kde-format
@@ -240,6 +315,8 @@ msgid ""
 "These parameters are empirical and are usually obtained from experiment or "
 "some rough estimation."
 msgstr ""
+"ეს პარამეტრები ემპირიულია და ჩვეულებრივ ექსპერიმენტიდან, უხეში შეფასებით "
+"მიიღება."
 
 #: objectinfo/gasparticle.html:6
 #, kde-format
@@ -255,6 +332,9 @@ msgid ""
 "a gasoline system. Each particle is tracked individually and has a unique "
 "name and four parameters:"
 msgstr ""
+"<a href=\"objinfo:Gas\">აირის</a> ნაწილაკი ერთი ნაწილაკის სიმულაციას ახდენს "
+"ბენზინის სისტემაში. თითოეული ნაწილაკის ტრეკინგი ცალ-ცალკე ხდება და აქვს "
+"უნიკალური სახელი და ოთხი პარამეტრი:"
 
 #: objectinfo/gasparticle.html:15
 #, kde-format
@@ -271,6 +351,14 @@ msgid ""
 "which the particle interacts with other items.</li>\n"
 "\t</ul>"
 msgstr ""
+"<ul>\n"
+"\t\t<li><b>პოზიცია:</b> ნაწილაკების ნათესავის X / Y პოზიცია, <a href="
+"\"objinfo:World\">მსოფლიოს</a> ცენტრში.</li>\n"
+"\t\t<li><b>სიჩქარე:</b> ნაწილაკების სიჩქარე. განყოფილება: მეტრი/წამი.</li>\n"
+"\t\t<li><b>ძალა:</b> ძალა, რომლითაც ნაწილაკი მოძრაობს.</li>\n"
+"\t\t<li><b>მასა:</b> ნაწილაკების მასა. ეს გავლენას ახდენს ძალებზე, "
+"რომელთანაც ნაწილაკი ურთიერთქმედებს სხვა ნივთებთან.</li>\n"
+"\t</ul>"
 
 #: objectinfo/gravitationforce.html:6
 #, kde-format
@@ -285,6 +373,8 @@ msgid ""
 "Gravitational force is an attractive force that act between bodies having "
 "mass."
 msgstr ""
+"გრავიტაციული ძალა მიზიდულობის ძალაა, რომელიც ორი მასის მქონე სხეულს შორის "
+"მოქმედებს."
 
 #: objectinfo/gravitationforce.html:10
 #, kde-format
@@ -300,12 +390,14 @@ msgid ""
 "is proportional to the product of the masses of the bodies and inversely "
 "proportional to square of the distance between them.</li>"
 msgstr ""
+"<li>სამყაროში ყველა სხეული იზიდავს ყველა სხვა სხეულს ძალით, რაც პროპორციულია "
+"სხეულის მასების პროდუქტისა და მათ შორის მანძილის კვადრატის საპირისპიროდ.</li>"
 
 #: objectinfo/gravitationforce.html:12
 #, kde-format
 msgctxt "gravitationforce.html:p"
 msgid "<b>General relativity</b>"
-msgstr ""
+msgstr "<b>ზოგადი ფარდობითობა</b>"
 
 #: objectinfo/gravitationforce.html:13
 #, kde-format
@@ -314,6 +406,8 @@ msgid ""
 "<li>In general relativity gravitation is explained on the basis of curvature "
 "of space-time.</li>"
 msgstr ""
+"<li>ზოგადად ფარდობითობის გრავიტაცია აიხსნება სივრცის დროის მრუდის საფუძველზე."
+"</li>"
 
 #: objectinfo/gravitationforce.html:14
 #, kde-format
@@ -322,6 +416,8 @@ msgid ""
 "For more details, please refer to the <a href=\"https://en.wikipedia.org/"
 "wiki/Gravitation\">Gravitation Force</a>."
 msgstr ""
+"მეტი დეტალებისთვის იხილეთ <a href=\"https://en.wikipedia.org/wiki/Gravitation"
+"\">მიზიდულობის ძალა</a>."
 
 #: objectinfo/linearmotor.html:6
 #, kde-format
@@ -333,7 +429,7 @@ msgstr "წრფივი ძრავა"
 #, kde-format
 msgctxt "linearmotor.html:p"
 msgid "A linear motor produces a linear force along its length."
-msgstr ""
+msgstr "წრფივი ძრავა თავისი სიგრძის გასწვრივ წრფივ ძალას იყენებს."
 
 #: objectinfo/linearmotor.html:10
 #, kde-format
@@ -342,6 +438,8 @@ msgid ""
 "You can set the desired linear force for an object by changing the force "
 "value in the properties browser."
 msgstr ""
+"სასურველი ხაზოვანი ძალის დაყენება ობიექტისთვის თვისებების ბრაუზერში ძალის "
+"მნიშვნელობის შეცვლით შეგიძლიათ."
 
 #: objectinfo/meter.html:6
 #, kde-format
@@ -356,6 +454,8 @@ msgid ""
 "A meter can show you values of properties. The meter can be configured to "
 "show property of any given object of the simulation."
 msgstr ""
+"სახაზავს თვისების მნიშვნელობების ჩვენება შეუძლია. სახაზავი შეგიძლიათ, ისე "
+"მოირგოთ, რომ სიმულაციის ნებისმიერი ობიექტის თვისება გაჩვენოთ."
 
 #: objectinfo/note.html:6
 #, kde-format
@@ -367,7 +467,7 @@ msgstr "შენიშვნა"
 #, kde-format
 msgctxt "note.html:p"
 msgid "You can use notes to place text on the canvas of Step."
-msgstr ""
+msgstr "შეგიძლიათ გამოიყენოთ შენიშვნები ტექსტის Step-ის ტილოზე დასადებად."
 
 #: objectinfo/particle.html:6
 #, kde-format
@@ -380,6 +480,7 @@ msgstr "ნაწილაკი"
 msgctxt "particle.html:p"
 msgid "A zero-sized particle which has a unique name and four parameters:"
 msgstr ""
+"ნულოვანი ზომის ნაწილაკი, რომელსაც აქვს უნიკალური სახელი და ოთხი პარამეტრი:"
 
 #: objectinfo/particle.html:15
 #, kde-format
@@ -396,6 +497,14 @@ msgid ""
 "which the particle interacts with other items.</li>\n"
 "\t</ul>"
 msgstr ""
+"<ul>\n"
+"\t\t<li><b>პოზიცია:</b> ნაწილაკების X/Y პოზიცია, <a href=\"objinfo:World"
+"\">მსოფლიოს</a> ცენტრთან შედარებით.</li>\n"
+"\t\t<li><b>სიჩქარე:</b> ნაწილაკების სიჩქარე. განყოფილება: მეტრი/წამი.</li>\n"
+"\t\t<li><b>ძალა:</b> ძალა, რომლითაც ნაწილაკი მოძრაობს.</li>\n"
+"\t\t<li><b>მასა:</b> ნაწილაკების მასა. ეს გავლენას ახდენს ძალებზე, "
+"რომელთანაც ნაწილაკი ურთიერთქმედებს სხვა ნივთებთან.</li>\n"
+"\t</ul>"
 
 #: objectinfo/pin.html:6
 #, kde-format
@@ -410,6 +519,8 @@ msgid ""
 "A pin is a joint that fixes a particular point of the body, The body can "
 "still move around the pin."
 msgstr ""
+"ჭიკარტი სახსარია, რომელიც სხეულის გარკვეულ წერტილს ადგილზე ამაგრებს. სხეულს "
+"შეუძლია, ჭიკარტის გარშემო იმოძრაოს."
 
 #: objectinfo/polygon.html:6
 #, kde-format
@@ -421,7 +532,7 @@ msgstr "მრავალკუთხედი"
 #, kde-format
 msgctxt "polygon.html:p"
 msgid "A rigid polygon with a unique name and the following parameters:"
-msgstr ""
+msgstr "ხისტი მრავალკუთხედი უნიკალური სახელით და შემდეგი პარამეტრებით:"
 
 #: objectinfo/polygon.html:21
 #, kde-format
@@ -453,6 +564,28 @@ msgid ""
 "center of mass of the polygon.</li>\n"
 "\t</ul>"
 msgstr ""
+"<ul>\n"
+"\t\t<li><b>პოზიცია:</b> პოლიგონის მასის ცენტრის X/Y პოზიცია, <a href="
+"\"objinfo:World\">მსოფლიოს</a> ცენტრთან შედარებით.</li>\n"
+"\t\t<li><b>კუთხე:</b> რამდენად პოლიგონი ბრუნავს პოზიტიური მიმართულებით, ეს "
+"არის საათის ბრძენი.</li>\n"
+"\t\t<li><b>სიჩქარე:</b> პოლიგონის მასის ცენტრის სიჩქარე. განყოფილება: მეტრი/"
+"წამი.</li>\n"
+"\t\t<li><b>კუთხის სიჩქარე:</b> რამდენად სწრაფად ტრიალებს პოლიგონი პოზიტიური "
+"მიმართულებით, ეს არის საათის ბრძენი.</li>\n"
+"\t\t<li><b>მასა:</b> პოლიგონის საერთო მასა. ეს გავლენას ახდენს იმ ძალებზე, "
+"რომლებთანაც პოლიგონი ურთიერთქმედებს სხვა ნივთებთან.</li>\n"
+"\t\t<li><b>ინერცია:</b> რამდენად რთულია პოლიგონის როტაციის შეცვლა.</li>\n"
+"\t\t<li><b>იმპულსი:</b> ფუნდამენტური რაოდენობა მექანიკაში, რომელიც ინახება "
+"გარე ძალების არარსებობის შემთხვევაში. მასის პროდუქტი და სიჩქარე.</li>\n"
+"\t\t<li><b>კუთხის იმპულსი:</b> ზომა, თუ რამდენად პოლიგონი გააგრძელებს "
+"როტაციას, თუ არ იმოქმედებს გარე ბრუნვის მიერ.</li>\n"
+"\t\t<li><b>კინეტიკური ენერგია:</b> სამუშაო საჭიროა მოცემული მასის სხეულის "
+"დასაჩქარებლად დანარჩენიდან მის ამჟამინდელ სიჩქარემდე.</li>\n"
+"\t\t<li><b>vertexes:</b> პოლიგონის ვერტექსის (კუთხეების) სია, რომელიც "
+"განსაზღვრავს მის ზომას და ფორმას. თითოეული ვერტექსის კოორდინატები პოლიგონის "
+"მასის ცენტრთან შედარებით.</li>\n"
+"\t</ul>"
 
 #: objectinfo/softbody.html:6
 #, kde-format
@@ -469,6 +602,10 @@ msgid ""
 "simulate an <a href=\"https://en.wikipedia.org/wiki/"
 "Elasticity_(physics)\">elastic</a> or viscoelastic body."
 msgstr ""
+"რბილი სხეული არის <a href=\"objinfo:spring\">ზამბარებით</a> დაკავშირებული <a "
+"href=\"objinfo:particle\">ნაწილაკების</a> კოლექცია. ეს შეიძლება გამოყენებულ "
+"იქნას <a href=\"https://en.wikipedia.org/wiki/"
+"Elasticity_(physics)\">ელასტიური</a> ან viscoelastic სხეულის სიმულაციისთვის."
 
 #: objectinfo/spring.html:6
 #, kde-format
@@ -483,6 +620,8 @@ msgid ""
 "A flexible elastic object to store mechanical energy. It has a unique name "
 "and the following parameters:"
 msgstr ""
+"მოქნილი ელასტიკური ობიექტი მექანიკური ენერგიის შესანახად. მას აქვს უნიკალური "
+"სახელი და შემდეგი პარამეტრები:"
 
 #: objectinfo/spring.html:19
 #, kde-format
@@ -505,6 +644,22 @@ msgid ""
 "\t\t<li><b>force:</b> is the force that acts along the spring</li>\n"
 "\t</ul>"
 msgstr ""
+"<ul>\n"
+"\t\t<li><b>დანარჩენი სიგრძე:</b> არის გაზაფხულის სიგრძე, რადგან ის არ არის "
+"შეკუმშული ან გადაჭიმული.</li>\n"
+"\t\t<li><b>სიგრძე:</b> არის საწყისი გაზაფხულის სიგრძე</li>\n"
+"\t\t<li><b>სიმტკიცე:</b> არის გაზაფხულის წინააღმდეგობის დონე შეკუმშვის ან "
+"გაჭიმვის მიმართ</li>\n"
+"\t\t<li><b>damping:</b> არის გაზაფხულის უნარი დაარბია შენახული ენერგია, შიდა "
+"სიბლანტის</li>\n"
+"\t\t<li><b>სხეული 1 და 2:</b> არის ორგანოები, რომლებზეც გაზაფხული "
+"ფიქსირდება</li>\n"
+"\t\t<li><b>ადგილობრივი პოზიცია 1 და 2:</b> არის გაზაფხულის ადგილობრივი "
+"პოზიციები მის ცენტრთან შედარებით არა დეფორმირებულ მდგომარეობაში</li>\n"
+"\t\t<li><b>პოზიცია 1 და 2:</b> არის გაზაფხულის ბოლოების გლობალური პოზიციები</"
+"li>\n"
+"\t\t<li><b>ძალა:</b> არის ძალა, რომელიც მოქმედებს გაზაფხულის გასწვრივ</li>\n"
+"\t</ul>"
 
 #: objectinfo/weightforce.html:6
 #, kde-format
@@ -516,7 +671,7 @@ msgstr "სიმძიმის ძალა"
 #, kde-format
 msgctxt "weightforce.html:p"
 msgid "Weight of an object is the force exerted on it by gravity."
-msgstr ""
+msgstr "სხეულის წონა ძალაა, რომელიც მასზე გრავიტაციის გამო მოქმედებს."
 
 #: objectinfo/weightforce.html:10
 #, kde-format
@@ -525,6 +680,8 @@ msgid ""
 "Weight is a vector quantity. It is often denoted by W and given by the "
 "relation W = mg."
 msgstr ""
+"წონა ვექტორული მნიშვნელობაა. ის ხშირად აღინიშნება სიმბოლოთი W და აქვს "
+"კავშირი W = მგ."
 
 #: objectinfo/weightforce.html:12
 #, kde-format
@@ -533,6 +690,8 @@ msgid ""
 "<li>Where, <b>m</b> is the mass of the body</li>\n"
 "<li>and <b>g</b> is the acceleration due to gravity.</li>"
 msgstr ""
+"<li>სადაც, <b>m</b> სხეულის მასაა</li>\n"
+"<li>და <b>g</b> მისი აჩქარებაა გრავიტაციის გამო.</li>"
 
 #: objectinfo/weightforce.html:13
 #, kde-format
@@ -541,6 +700,8 @@ msgid ""
 "For more details, please refer to the <a href=\"https://en.wikipedia.org/"
 "wiki/Weight\">Weight Force</a>."
 msgstr ""
+"მეტი დეტალებისტვის იხილეთ <a href=\"https://en.wikipedia.org/wiki/Weight"
+"\">წონის ძალა</a>."
 
 #: objectinfo/world.html:6
 #, kde-format
@@ -557,3 +718,7 @@ msgid ""
 "click on the <b>Simulate</b> button in toolbar and your scene will evolve "
 "according to the laws of physics."
 msgstr ""
+"ეს სამყაროს სცენაა. ობიექტების პალიტრიდან აიღეთ რამდენიმე ელემენტი და "
+"მოათავსეთ ტილოზე. მას შემდეგ, რაც ობიექტის თვისებებს დააყენებთ, შეგიძლიათ, "
+"დააჭიროთ ღილაკს <b>სიმულაცია</b> და თქვენი სცენაზე მოვლენები ფიზიკის "
+"კანონებით განვითარდება."

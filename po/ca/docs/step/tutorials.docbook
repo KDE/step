@@ -69,13 +69,9 @@
 >En aquesta guia d'aprenentatge aprendreu més sobre els controladors i els grafs. </para>
 
 <para
->Un controlador és un dispositiu que permet modificar gràficament una propietat d'un cos o d'una molla. A la guia d'aprenentatge, el controlador us permet canviar la rigidesa de la molla <quote
->spring1</quote
->. En moure el control lliscant cap a la dreta o utilitzant la tecla <keycap
+>Un controlador és un dispositiu que permet modificar gràficament una propietat d'un cos o d'una molla. A la guia d'aprenentatge, el controlador us permet canviar la rigidesa de la molla «spring1». En moure el control lliscant cap a la dreta o utilitzant la tecla <keycap
 >W</keycap
-> podreu augmentar el valor de la rigidesa de la molla <quote
->spring1</quote
-> i movent el botó lliscant cap a l'esquerra o utilitzant la tecla <keycap
+> podreu augmentar el valor de la rigidesa de la molla «spring1» i movent el botó lliscant cap a l'esquerra o utilitzant la tecla <keycap
 >Q</keycap
 > podreu fer-lo disminuir. Fent clic dret sobre el controlador obtindreu diverses accions de contextuals i l'element <guilabel
 >Configura el controlador...</guilabel
@@ -239,9 +235,7 @@
 ></inlinemediaobject
 > <guibutton
 >Partícula</guibutton
-> a l'escena i després uniu aquesta partícula a <quote
->Particle2</quote
-> amb un bastó. Premeu el botó <inlinemediaobject
+> a l'escena i després uniu aquesta partícula a «Particle2» amb un bastó. Premeu el botó <inlinemediaobject
 ><imageobject
 ><imagedata fileref="step_object_Stick.png" format="PNG"/></imageobject
 ></inlinemediaobject

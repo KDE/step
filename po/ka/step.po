@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: step\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2025-03-11 00:38+0000\n"
-"PO-Revision-Date: 2023-01-27 10:18+0100\n"
+"PO-Revision-Date: 2025-03-11 04:00+0100\n"
 "Last-Translator: Temuri Doghonadze <temuri.doghonadze@gmail.com>\n"
 "Language-Team: Georgian <kde-i18n-doc@kde.org>\n"
 "Language: ka\n"
@@ -16,7 +16,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Generator: Poedit 3.2.2\n"
+"X-Generator: Poedit 3.5\n"
 
 #, kde-format
 msgctxt "NAME OF TRANSLATORS"
@@ -347,6 +347,8 @@ msgid ""
 "Press left mouse button to position\n"
 "top left corner of a region for %1"
 msgstr ""
+"დააწკაპუნეთ მარცხენა თაგუნას ღილაკს, რომ\n"
+"მოათავსოთ რეგიონის ზედა მარცხენა კუთხე %1-სთვის"
 
 #: step/gasgraphics.cc:43 step/motorgraphics.cc:30 step/motorgraphics.cc:211
 #: step/polygongraphics.cc:161 step/polygongraphics.cc:295
@@ -362,6 +364,8 @@ msgid ""
 "Move mouse and release left mouse button to position\n"
 "bottom right corner of the region for %1"
 msgstr ""
+"გადაიტანეთ ტაგუნა და გაუშვით მარცხენა თაგუნას ღილაკს, რომ მოათავსოთ\n"
+"რეგიონის ქვედა მარჯვენა კუთხე %1-სთვის"
 
 #: step/gasgraphics.cc:85
 #, kde-format
@@ -387,6 +391,8 @@ msgid ""
 "You are trying to create a very large number of particles. This will make "
 "simulation very slow. Do you want to continue?"
 msgstr ""
+"ცდილობთ მეტისმეტად დიდი რაოდენობის ნაწილაკების შექმნას. ეს სიმულაციას ძალიან "
+"შეანელებს. გნებავთ გაგრძელება?"
 
 #: step/gasgraphics.cc:354 step/mainwindow.cc:402
 #, kde-format
@@ -453,6 +459,8 @@ msgstr "%1-სთვის დოკუმენტაცია მიუწვ�
 msgid ""
 "You can help <a href=\"https://edu.kde.org/step\">Step</a> by writing it!"
 msgstr ""
+"შეგიძლიათ, დაეხმაროთ <a href=\"https://edu.kde.org/step\">Step</a>-ს მისი "
+"დაწერით!"
 
 #: step/itempalette.cc:177
 #, kde-format
@@ -495,6 +503,8 @@ msgid ""
 "%1 reported an error (exit status %2):\n"
 "%3"
 msgstr ""
+"%1-მა შეცდომა დააბრუნა (გასვლის სტატუსი %2):\n"
+"%3"
 
 #: step/latexformula.cc:49
 #, kde-format
@@ -701,7 +711,7 @@ msgstr ""
 #: step/mainwindow.cc:449
 #, kde-format
 msgid "Uploading is still not implemented in kdelibs."
-msgstr ""
+msgstr "ატვირთვა kdelibs-ში ჯერ განხორციელებული არაა."
 
 #: step/mainwindow.cc:450
 #, kde-format
@@ -725,6 +735,9 @@ msgid ""
 "tolerance.\n"
 "Please check solver settings and try again."
 msgstr ""
+"ამ ნაბიჯის დასრულება შეუძლებელია, რადგან ლოკალური შეცდომა ლოკალურ აცდენაზე "
+"დიდია.\n"
+"შეამოწმეთ ამომხსნელის პარამეტრები და თავიდან სცადეთ."
 
 #: step/mainwindow.cc:497
 #, kde-format
@@ -733,6 +746,9 @@ msgid ""
 "resolved automatically.\n"
 "Please move colliding objects apart and try again."
 msgstr ""
+"ამ ნაბიჯის დასრულება შეუძლებელია, რადგან არსებობს შეჯახებები, რომლების "
+"ავტომატურად გადაწყვეტა შეუძლებელია.\n"
+"განაცალკევეთ ობიექტები, რომლებიც ერთმანეთს ეჯახება და თავიდან სცადეთ."
 
 #: step/mainwindow.cc:501
 #, kde-format
@@ -773,12 +789,14 @@ msgstr "%1-ის გადატანა"
 #: step/polygongraphics.cc:149
 #, kde-format
 msgid "Press left mouse button to position a center of a %1"
-msgstr ""
+msgstr "დააჭირეთ მარცხენა თაგუნას ღილაკზე, %1-ის ცენტრის მოსათავსებლად"
 
 #: step/polygongraphics.cc:170
 #, kde-format
 msgid "Move mouse and release left mouse button to define a radius of the %1"
 msgstr ""
+"გადაიტანეთ თაგუნა და გაუშვით მარცხენა თაგუნას ღილაკს, რომ %1-ის რადიუსი "
+"განსაზღვროთ"
 
 #: step/polygongraphics.cc:283
 #, kde-format
@@ -786,6 +804,8 @@ msgid ""
 "Press left mouse button to position\n"
 "top left corner of a %1"
 msgstr ""
+"დააჭირეთ მარცხენა თაგუნას ღილაკს, რომ\n"
+"%1-ის ზედა მარცხენა კუთხე მოათავსოთ"
 
 #: step/polygongraphics.cc:305
 #, kde-format
@@ -793,6 +813,8 @@ msgid ""
 "Move mouse and release left mouse button to position\n"
 "bottom right corner of the %1"
 msgstr ""
+"გადაიტანეთ თაგუნა და გაუშვით მარცხენა თაგუნას ღილაკს, რომ\n"
+"%1-ის ქვედა მარჯვენა კუთხე მოათავსოთ"
 
 #: step/polygongraphics.cc:428
 #, kde-format
@@ -803,6 +825,8 @@ msgstr "%1-ის პირველი წვეროს შესაქმნ
 #, kde-format
 msgid "Click on the scene to add new vertex or press Enter to finish"
 msgstr ""
+"დააწკაპუნეთ სცენაზე ახალი წვეროს დასამატებლად ან დააჭირეთ Enter-ს "
+"დასასრულებლად"
 
 #: step/propertiesbrowser.cc:267
 #, kde-format
@@ -895,7 +919,7 @@ msgstr "მცურავმძიმიანი რიცხვების �
 #: step/step.kcfg:26 step/step.kcfg:27
 #, kde-format
 msgid "Use OpenGL to accelerate drawing whenever possible"
-msgstr ""
+msgstr "OpenGL-ის გამოყენება ხატვის აჩქარებისთვის, როცა ეს შესაძლებელია"
 
 #. i18n: ectx: label, entry (wikiExternal), group (InfoBrowser)
 #. i18n: ectx: whatsthis, entry (wikiExternal), group (InfoBrowser)
@@ -1054,6 +1078,8 @@ msgid ""
 "Cannot find latex installation. You need 'latex', 'dvips' and 'gs' "
 "executables installed and accessible from $PATH"
 msgstr ""
+"Latex-ის ფაილები აღმოჩენილი არაა. საჭიროა, დაყენებული და $PATH-ში "
+"ხელმისაწვდომი იყოს გამშვები ფაილები 'latex', 'dvips' და 'gs'"
 
 #: step/toolgraphics.cc:700
 #, kde-format
@@ -1069,7 +1095,7 @@ msgstr "შეიყვანეთ LaTeX-ის ფორმულის სტ
 #: step/toolgraphics.cc:710
 #, kde-format
 msgid "Cannot compile LaTeX formula: %1"
-msgstr ""
+msgstr "LaTeX-ის ფორმულის გამოთვლა შეუძლებელია: %1"
 
 #: step/toolgraphics.cc:716
 #, kde-format
@@ -1207,11 +1233,13 @@ msgid ""
 "Press left mouse button to position first end of a %1\n"
 "then drag and release it to position the second end"
 msgstr ""
+"დააჭირეთ მარცხენა თაგუნას ღილაკს, რომ დაადგინოთ %1-ის პირველი ბოლო\n"
+"შემდეგ გადაათრიეთ და გაუშვით იქ, სადაც მეორე ბოლო გნებავთ, იყოს"
 
 #: step/worldgraphics.cc:118
 #, kde-format
 msgid "Release left mouse button to position second end of the %1"
-msgstr ""
+msgstr "გაუშვით მარცხენა თაგუნას ღილაკს, რომ %1-ის მეორე ბოლო დაადგინოთ"
 
 #: step/worldmodel.cc:629
 #, kde-format

@@ -11,7 +11,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Qt-Contexts: true\n"
-"X-Generator: Poedit 3.2.2\n"
+"X-Generator: Poedit 3.5\n"
 
 #: body.cc:13
 msgctxt "ObjectClass|"
@@ -96,47 +96,47 @@ msgstr "კულონისძალისცდომილებები"
 #: coulombforce.cc:19
 msgctxt "ObjectDescription|"
 msgid "Errors class for CoulombForce"
-msgstr ""
+msgstr "შეცდომების კლასი კოლუმბის ძალისთვის"
 
 #: coulombforce.cc:21
 msgctxt "PropertyName|"
 msgid "coulombConstVariance"
-msgstr ""
+msgstr "კულონის მუდმივის ცვლილება"
 
 #: coulombforce.cc:22
 msgctxt "PropertyDescription|"
 msgid "Coulomb constant variance"
-msgstr ""
+msgstr "კულონის მუდმივის ცვლილება"
 
 #: eulersolver.cc:15
 msgctxt "ObjectClass|"
 msgid "GenericEulerSolver"
-msgstr ""
+msgstr "ეილერისზოგადიგამომთვლელი"
 
 #: eulersolver.cc:15
 msgctxt "ObjectDescription|"
 msgid "Generic Euler solver"
-msgstr ""
+msgstr "ეილერის ზოგადი გამომთვლელი"
 
 #: eulersolver.cc:16
 msgctxt "ObjectClass|"
 msgid "EulerSolver"
-msgstr ""
+msgstr "ეილერისამომხსნელი"
 
 #: eulersolver.cc:16
 msgctxt "ObjectDescription|"
 msgid "Non-adaptive Euler solver"
-msgstr ""
+msgstr "არაადაპტიური ეილერის ამომხსნელი"
 
 #: eulersolver.cc:17
 msgctxt "ObjectClass|"
 msgid "AdaptiveEulerSolver"
-msgstr ""
+msgstr "ადაპტიური ეილერის ამომხსნელი"
 
 #: eulersolver.cc:17
 msgctxt "ObjectDescription|"
 msgid "Adaptive Euler solver"
-msgstr ""
+msgstr "ადაპტიური ეილერის ამომხსნელი"
 
 #: force.cc:14
 msgctxt "ObjectClass|"
@@ -161,17 +161,17 @@ msgstr "აირის ნაწილაკი"
 #: gas.cc:17
 msgctxt "ObjectClass|"
 msgid "GasLJForce"
-msgstr ""
+msgstr "ლენარდჯონსისძალა"
 
 #: gas.cc:17
 msgctxt "ObjectDescription|"
 msgid "Lennard-Jones force"
-msgstr ""
+msgstr "ლენარდ-ჯონსის ძალა"
 
 #: gas.cc:19
 msgctxt "PropertyDescription|"
 msgid "Potential depth"
-msgstr ""
+msgstr "პოტენციური სიღრმე"
 
 #: gas.cc:19
 msgctxt "PropertyName|"
@@ -187,12 +187,12 @@ msgstr "J"
 #: gas.cc:20
 msgctxt "PropertyDescription|"
 msgid "Distance at which the force is zero"
-msgstr ""
+msgstr "მანძილი, როცა ძალა ნულოვანია"
 
 #: gas.cc:20
 msgctxt "PropertyName|"
 msgid "rmin"
-msgstr ""
+msgstr "ბრ/წთ"
 
 #: gas.cc:20 gas.cc:21 gas.cc:27 gas.cc:33 gas.cc:35 joints.cc:17 joints.cc:23
 #: joints.cc:24 joints.cc:28 joints.cc:31 joints.cc:33 joints.cc:35
@@ -210,42 +210,42 @@ msgstr "წთ"
 #: gas.cc:21
 msgctxt "PropertyDescription|"
 msgid "Cut-off distance"
-msgstr ""
+msgstr "გათიშვის მანძილი"
 
 #: gas.cc:21
 msgctxt "PropertyName|"
 msgid "cutoff"
-msgstr ""
+msgstr "გათიშვა"
 
 #: gas.cc:23
 msgctxt "ObjectClass|"
 msgid "GasLJForceErrors"
-msgstr ""
+msgstr "GasLJForce-ისაცდენები"
 
 #: gas.cc:23
 msgctxt "ObjectDescription|"
 msgid "Errors class for GasLJForce"
-msgstr ""
+msgstr "შეცდომების კლასი GasLJForce-ისთვის"
 
 #: gas.cc:25
 msgctxt "PropertyName|"
 msgid "depthVariance"
-msgstr ""
+msgstr "სიღრმისცვლილება"
 
 #: gas.cc:26
 msgctxt "PropertyDescription|"
 msgid "Potential depth variance"
-msgstr ""
+msgstr "პოტენციური სიღრმის ცვლილება"
 
 #: gas.cc:27
 msgctxt "PropertyName|"
 msgid "rminVariance"
-msgstr ""
+msgstr "ბრუნ/წთ-ისცვლილება"
 
 #: gas.cc:28
 msgctxt "PropertyDescription|"
 msgid "Variance of the distance at which the force is zero"
-msgstr ""
+msgstr "ცვალებადობა მანძილისთვის, როცა ძალა ნულის ტოლია"
 
 #: gas.cc:32
 msgctxt "ObjectClass|"
@@ -255,32 +255,32 @@ msgstr "აირი"
 #: gas.cc:32
 msgctxt "ObjectDescription|"
 msgid "Particle gas"
-msgstr ""
+msgstr "აირის ნაწილაკი"
 
 #: gas.cc:33
 msgctxt "PropertyName|"
 msgid "measureRectCenter"
-msgstr ""
+msgstr "მართკუთხედისცენტრიგაზომვებისთვის"
 
 #: gas.cc:34
 msgctxt "PropertyDescription|"
 msgid "Center of the rect for measurements"
-msgstr ""
+msgstr "მართკუთხედის ცენტრი გაზომვებისთვის"
 
 #: gas.cc:35
 msgctxt "PropertyName|"
 msgid "measureRectSize"
-msgstr ""
+msgstr "მართხკუთხედისზომაგასაზომად"
 
 #: gas.cc:36
 msgctxt "PropertyDescription|"
 msgid "Size of the rect for measurements"
-msgstr ""
+msgstr "მართკუთხედის ზომა გასაზომად"
 
 #: gas.cc:37
 msgctxt "PropertyName|"
 msgid "rectVolume"
-msgstr ""
+msgstr "მართკუთხედისმოცულობა"
 
 #: gas.cc:37
 msgctxt "Units|"
@@ -290,22 +290,22 @@ msgstr "მ²"
 #: gas.cc:38
 msgctxt "PropertyDescription|"
 msgid "Volume of the measureRect"
-msgstr ""
+msgstr "მართკუთხედის მოცულობა"
 
 #: gas.cc:39
 msgctxt "PropertyName|"
 msgid "rectParticleCount"
-msgstr ""
+msgstr "მართკუთხედისნაწილაკებისრაოდენობა"
 
 #: gas.cc:40
 msgctxt "PropertyDescription|"
 msgid "Count of particles in the measureRect"
-msgstr ""
+msgstr "მართკუთხედისნაწილაკებისრაოდენობა"
 
 #: gas.cc:41
 msgctxt "PropertyName|"
 msgid "rectConcentration"
-msgstr ""
+msgstr "მართკუთხედისკონცეტრაცია"
 
 #: gas.cc:41
 msgctxt "Units|"
@@ -315,12 +315,12 @@ msgstr "1/მ²"
 #: gas.cc:42
 msgctxt "PropertyDescription|"
 msgid "Concentration of particles in the measureRect"
-msgstr ""
+msgstr "ნაწილაკების რაოდენობა მართკუთხედში გასაზომად"
 
 #: gas.cc:43
 msgctxt "PropertyName|"
 msgid "rectPressure"
-msgstr ""
+msgstr "მართკუთხედისწნევა"
 
 #: gas.cc:43 gas.cc:58
 msgctxt "Units|"
@@ -330,12 +330,12 @@ msgstr "პა"
 #: gas.cc:44
 msgctxt "PropertyDescription|"
 msgid "Pressure of particles in the measureRect"
-msgstr ""
+msgstr "ნაწილაკების წნევა მართკუთხედში გასაზომად"
 
 #: gas.cc:45
 msgctxt "PropertyName|"
 msgid "rectTemperature"
-msgstr ""
+msgstr "მართკუთხედისტემპერატურა"
 
 #: gas.cc:45 gas.cc:60
 msgctxt "Units|"
@@ -345,22 +345,22 @@ msgstr "K"
 #: gas.cc:46
 msgctxt "PropertyDescription|"
 msgid "Temperature of particles in the measureRect"
-msgstr ""
+msgstr "ნაწილაკების ტემპერატურა გასაზომ მართკუთხედში"
 
 #: gas.cc:47
 msgctxt "PropertyName|"
 msgid "rectMeanKineticEnergy"
-msgstr ""
+msgstr "მართკუთხედისსაშუალოკინეტიკურიენერგია"
 
 #: gas.cc:48
 msgctxt "PropertyDescription|"
 msgid "Mean kinetic energy of particles in the measureRect"
-msgstr ""
+msgstr "ნაწილაკების საშუალო კინეტიკური ენერგია მართკუთხედში გასაზომად"
 
 #: gas.cc:49
 msgctxt "PropertyName|"
 msgid "rectMeanVelocity"
-msgstr ""
+msgstr "მართკუთხედის საშუალო სიჩქარე"
 
 #: gas.cc:49 gas.cc:64 particle.cc:18 particle.cc:31 rigidbody.cc:19
 #: rigidbody.cc:46 softbody.cc:26
@@ -371,12 +371,12 @@ msgstr "მ/წმ"
 #: gas.cc:50
 msgctxt "PropertyDescription|"
 msgid "Mean velocity of particles in the measureRect"
-msgstr ""
+msgstr "ნაწილაკების საშუალო სიჩქარე მართკუთხედში გასაზომად"
 
 #: gas.cc:51
 msgctxt "PropertyName|"
 msgid "rectMeanParticleMass"
-msgstr ""
+msgstr "ნაწილაკების საშუალო ზომა მართკუთხედში"
 
 #: gas.cc:51 gas.cc:53 gas.cc:66 gas.cc:68 particle.cc:22 particle.cc:37
 #: particle.cc:49 rigidbody.cc:30 rigidbody.cc:59 softbody.cc:38
@@ -387,17 +387,17 @@ msgstr "კგ"
 #: gas.cc:52
 msgctxt "PropertyDescription|"
 msgid "Mean mass of particles in the measureRect"
-msgstr ""
+msgstr "ნაწილაკების საშუალო ზომა მართკუთხედში გასაზომად"
 
 #: gas.cc:53
 msgctxt "PropertyName|"
 msgid "rectMass"
-msgstr ""
+msgstr "მართკუთხედისმასა"
 
 #: gas.cc:54
 msgctxt "PropertyDescription|"
 msgid "Total mass of particles in the measureRect"
-msgstr ""
+msgstr "ნაწილაკების ჯამური ზომა მართკუთხედში გასაზომად"
 
 #: gas.cc:57
 msgctxt "ObjectClass|"
@@ -407,82 +407,83 @@ msgstr "აირისცდომილებები"
 #: gas.cc:57
 msgctxt "ObjectDescription|"
 msgid "Errors class for Gas"
-msgstr ""
+msgstr "შეცდომის კლასი აირისთვის"
 
 #: gas.cc:58
 msgctxt "PropertyName|"
 msgid "rectPressureVariance"
-msgstr ""
+msgstr "მართკუთხედისწნევისცვლილება"
 
 #: gas.cc:59
 msgctxt "PropertyDescription|"
 msgid "Variance of pressure of particles in the measureRect"
-msgstr ""
+msgstr "ნაწილაკების წნევის ცვლილება მართკუთხედში გასაზომად"
 
 #: gas.cc:60
 msgctxt "PropertyName|"
 msgid "rectTemperatureVariance"
-msgstr ""
+msgstr "მართკუთხედისტემპერატურისცვლილება"
 
 #: gas.cc:61
 msgctxt "PropertyDescription|"
 msgid "Variance of temperature of particles in the measureRect"
-msgstr ""
+msgstr "ნაწილაკების ტემპერატურის ცვლილება მართკუთხედში გასაზომად"
 
 #: gas.cc:62
 msgctxt "PropertyName|"
 msgid "rectMeanKineticEnergyVariance"
-msgstr ""
+msgstr "საშუალოკინეტიკურიენერგიისცვლილება"
 
 #: gas.cc:63
 msgctxt "PropertyDescription|"
 msgid "Variance of mean kinetic energy of particles in the measureRect"
 msgstr ""
+"ნაწილაკების საშუალო კინეტიკური ენერგიის ცვლილება მართკუთხედში გასაზომად"
 
 #: gas.cc:64
 msgctxt "PropertyName|"
 msgid "rectMeanVelocityVariance"
-msgstr ""
+msgstr "საშუალოსიჩქარისცვლილება"
 
 #: gas.cc:65
 msgctxt "PropertyDescription|"
 msgid "Variance of mean velocity of particles in the measureRect"
-msgstr ""
+msgstr "ნაწილაკების საშუალო სიჩქარის ცვლილება მართკუთხედში გასაზომად"
 
 #: gas.cc:66
 msgctxt "PropertyName|"
 msgid "rectMeanParticleMassVariance"
-msgstr ""
+msgstr "ნაწილაკებისსაშუალოწონისცვლილება"
 
 #: gas.cc:67
 msgctxt "PropertyDescription|"
 msgid "Variance of mean mass of particles in the measureRect"
-msgstr ""
+msgstr "ნაწილაკების საშუალო მასის ცვლილება მართკუთხედში გასაზომად"
 
 #: gas.cc:68
 msgctxt "PropertyName|"
 msgid "rectMassVariance"
-msgstr ""
+msgstr "მართკუთხედისმასისცვლილება"
 
 #: gas.cc:69
 msgctxt "PropertyDescription|"
 msgid "Variance of total mass of particles in the measureRect"
-msgstr ""
+msgstr "ნაწილაკების ჯამური მასის ცვლილება მართკუთხედში გასაზომად"
 
 #: gravitation.cc:15
 msgctxt "ObjectClass|"
 msgid "GravitationForce"
-msgstr ""
+msgstr "მიზიდულობისძალა"
 
 #: gravitation.cc:15
 msgctxt "ObjectDescription|"
 msgid "Gravitation force"
-msgstr ""
+msgstr "მიზიდულობის ძალა"
 
 #: gravitation.cc:17
 msgctxt "PropertyName|"
 msgid "gravitationConst"
-msgstr ""
+msgstr "გრავიტაციის მუდმივა"
 
 #: gravitation.cc:17 gravitation.cc:22
 msgctxt "Units|"
@@ -492,47 +493,47 @@ msgstr "N მ²/კგ²"
 #: gravitation.cc:18
 msgctxt "PropertyDescription|"
 msgid "Gravitation constant"
-msgstr ""
+msgstr "გრავიტაციის მუდმივა"
 
 #: gravitation.cc:20
 msgctxt "ObjectClass|"
 msgid "GravitationForceErrors"
-msgstr ""
+msgstr "მიზიდულობისძალისშეცდომები"
 
 #: gravitation.cc:20
 msgctxt "ObjectDescription|"
 msgid "Errors class for GravitationForce"
-msgstr ""
+msgstr "შეცდომის კლასი მიზიდულობის ძალისთვის"
 
 #: gravitation.cc:22
 msgctxt "PropertyName|"
 msgid "gravitationConstVariance"
-msgstr ""
+msgstr "მიზიდულობისძალისმუდიმივისცვლილება"
 
 #: gravitation.cc:23
 msgctxt "PropertyDescription|"
 msgid "Gravitation constant variance"
-msgstr ""
+msgstr "მიზიდულობის ძალის მუდმივის ცვლილება"
 
 #: gravitation.cc:25
 msgctxt "ObjectClass|"
 msgid "WeightForce"
-msgstr ""
+msgstr "წონის ძალა"
 
 #: gravitation.cc:25
 msgctxt "ObjectDescription|"
 msgid "Weight force"
-msgstr ""
+msgstr "წონის ძლა"
 
 #: gravitation.cc:27
 msgctxt "PropertyDescription|"
 msgid "Weight constant"
-msgstr ""
+msgstr "წონის მუდმივა"
 
 #: gravitation.cc:27
 msgctxt "PropertyName|"
 msgid "weightConst"
-msgstr ""
+msgstr "წონისმუდმივა"
 
 #: gravitation.cc:27 gravitation.cc:32 particle.cc:19 particle.cc:33
 #: rigidbody.cc:22 rigidbody.cc:51 softbody.cc:31
@@ -543,192 +544,201 @@ msgstr "მ/წმ²"
 #: gravitation.cc:30
 msgctxt "ObjectClass|"
 msgid "WeightForceErrors"
-msgstr ""
+msgstr "წონისძალისშეცდომები"
 
 #: gravitation.cc:30
 msgctxt "ObjectDescription|"
 msgid "Errors class for WeightForce"
-msgstr ""
+msgstr "შეცდომის კლასი წონის ძალისთვის"
 
 #: gravitation.cc:32
 msgctxt "PropertyName|"
 msgid "weightConstVariance"
-msgstr ""
+msgstr "მასის მუდმივის ცვლილება"
 
 #: gravitation.cc:33
 msgctxt "PropertyDescription|"
 msgid "Weight constant variance"
-msgstr ""
+msgstr "მასის მუდმივის ცვლილება"
 
 #: gslsolver.cc:18
 msgctxt "ObjectClass|"
 msgid "GslGenericSolver"
-msgstr ""
+msgstr "ზოგადიამომხსნელიGsl"
 
 #: gslsolver.cc:18
 msgctxt "ObjectDescription|"
 msgid "GSL generic solver"
-msgstr ""
+msgstr "GSL ზოგადი ამომხსნელი"
 
 #: gslsolver.cc:20
 msgctxt "ObjectClass|"
 msgid "GslSolver"
-msgstr ""
+msgstr "Gslამომხსნელი"
 
 #: gslsolver.cc:20
 msgctxt "ObjectDescription|"
 msgid "GSL non-adaptive solver"
-msgstr ""
+msgstr "GSL არაადაპტიური ამომხსნელი"
 
 #: gslsolver.cc:23
 msgctxt "ObjectClass|"
 msgid "GslAdaptiveSolver"
-msgstr ""
+msgstr "ადაპტიურიამომხსნელიGsl"
 
 #: gslsolver.cc:23
 msgctxt "ObjectDescription|"
 msgid "GSL adaptive solver"
-msgstr ""
+msgstr "GSL ადაპტიური ამომხსნელი"
 
 #: gslsolver.cc:26
 msgctxt "ObjectClass|"
 msgid "GslRK2Solver"
-msgstr ""
+msgstr "GslRK2ამომხსნელი"
 
 #: gslsolver.cc:26
 msgctxt "ObjectDescription|"
 msgid "Runge-Kutta second-order solver from GSL library"
-msgstr ""
+msgstr "რუნგე-კუტას მეორე რიგის ამომხსნელი GSL ბიბლიოთეკიდან"
 
 #: gslsolver.cc:28
 msgctxt "ObjectClass|"
 msgid "GslAdaptiveRK2Solver"
-msgstr ""
+msgstr "GslAdaptiveRK2ამომხსნელი"
 
 #: gslsolver.cc:28
 msgctxt "ObjectDescription|"
 msgid "Adaptive Runge-Kutta second-order solver from GSL library"
-msgstr ""
+msgstr "ადაპტიური რუნგე-კუტას მეორე რიგის ამომხსნელი GSL ბიბლიოთეკიდან"
 
 #: gslsolver.cc:31
 msgctxt "ObjectClass|"
 msgid "GslRK4Solver"
-msgstr ""
+msgstr "GslRK4ამომხსნელი"
 
 #: gslsolver.cc:31
 msgctxt "ObjectDescription|"
 msgid "Runge-Kutta classical fourth-order solver from GSL library"
-msgstr ""
+msgstr "რუნგე-კუტას მეოთხე რიგის ამომხსნელი GSL ბიბლიოთეკიდან"
 
 #: gslsolver.cc:33
 msgctxt "ObjectClass|"
 msgid "GslAdaptiveRK4Solver"
-msgstr ""
+msgstr "GslAdaptiveRK4ამომხსნელი"
 
 #: gslsolver.cc:33
 msgctxt "ObjectDescription|"
 msgid "Adaptive Runge-Kutta classical fourth-order solver from GSL library"
-msgstr ""
+msgstr "ადაპტიური რუნგე-კუტას მეოთხე რიგის ამომხსნელი GSL ბიბლიოთეკიდან"
 
 #: gslsolver.cc:36
 msgctxt "ObjectClass|"
 msgid "GslRKF45Solver"
-msgstr ""
+msgstr "GslRKF45ამომხსნელი"
 
 #: gslsolver.cc:36
 msgctxt "ObjectDescription|"
 msgid "Runge-Kutta-Fehlberg (4,5) solver from GSL library"
-msgstr ""
+msgstr "რუნგე-კუტა-ფალბერგის (4,5) რიგის ამომხსნელი GSL ბიბლიოთეკიდან"
 
 #: gslsolver.cc:38
 msgctxt "ObjectClass|"
 msgid "GslAdaptiveRKF45Solver"
-msgstr ""
+msgstr "GslAdaptiveRKF45ამომხსნელი"
 
 #: gslsolver.cc:38
 msgctxt "ObjectDescription|"
 msgid "Adaptive Runge-Kutta-Fehlberg (4,5) solver from GSL library"
 msgstr ""
+"ადაპტიური რუნგე-კუტა-ფალბერგის (4,5) რიგის ამომხსნელი GSL ბიბლიოთეკიდან"
 
 #: gslsolver.cc:41
 msgctxt "ObjectClass|"
 msgid "GslRKCKSolver"
-msgstr ""
+msgstr "GslRKCKამომხსნელი"
 
 #: gslsolver.cc:41
 msgctxt "ObjectDescription|"
 msgid "Runge-Kutta Cash-Karp (4,5) solver from GSL library"
 msgstr ""
+"რუნგე-კუტა-ფალბერგი-კეში-კარპის (4,5) რიგის ამომხსნელი GSL ბიბლიოთეკიდან"
 
 #: gslsolver.cc:43
 msgctxt "ObjectClass|"
 msgid "GslAdaptiveRKCKSolver"
-msgstr ""
+msgstr "GslAdaptiveRKCKამომხსნელი"
 
 #: gslsolver.cc:43
 msgctxt "ObjectDescription|"
 msgid "Adaptive Runge-Kutta Cash-Karp (4,5) solver from GSL library"
 msgstr ""
+"ადაპტიური რუნგე-კუტა-ფალბერგი-კეში-კარპის (4,5) რიგის ამომხსნელი GSL "
+"ბიბლიოთეკიდან"
 
 #: gslsolver.cc:46
 msgctxt "ObjectClass|"
 msgid "GslRK8PDSolver"
-msgstr ""
+msgstr "GslRK8PDამომხსნელი"
 
 #: gslsolver.cc:46
 msgctxt "ObjectDescription|"
 msgid "Runge-Kutta Prince-Dormand (8,9) solver from GSL library"
 msgstr ""
+"რუნგე-კუტა-ფალბერგი-პრინც-დორმანდის (8.9) რიგის ამომხსნელი GSL ბიბლიოთეკიდან"
 
 #: gslsolver.cc:48
 msgctxt "ObjectClass|"
 msgid "GslAdaptiveRK8PDSolver"
-msgstr ""
+msgstr "GslAdaptiveRK8PDამომხსნელი"
 
 #: gslsolver.cc:48
 msgctxt "ObjectDescription|"
 msgid "Adaptive Runge-Kutta Prince-Dormand (8,9) solver from GSL library"
 msgstr ""
+"ადაპტიური რუნგე-კუტა-ფალბერგი-პრინც-დორმანდის (8.9) რიგის ამომხსნელი GSL "
+"ბიბლიოთეკიდან"
 
 #: gslsolver.cc:51
 msgctxt "ObjectClass|"
 msgid "GslRK2IMPSolver"
-msgstr ""
+msgstr "GslRK2IMPამომხსნელი"
 
 #: gslsolver.cc:51
 msgctxt "ObjectDescription|"
 msgid "Runge-Kutta implicit second-order solver from GSL library"
-msgstr ""
+msgstr "რუნგე-კუტას არააშკარა მეორე რიგის ამომხსნელი GSL ბიბლიოთეკიდან"
 
 #: gslsolver.cc:53
 msgctxt "ObjectClass|"
 msgid "GslAdaptiveRK2IMPSolver"
-msgstr ""
+msgstr "GslAdaptiveRK2IMPამომხსნელი"
 
 #: gslsolver.cc:53
 msgctxt "ObjectDescription|"
 msgid "Adaptive Runge-Kutta implicit second-order solver from GSL library"
 msgstr ""
+"ადაპტიური რუნგე-კუტას არააშკარა მეორე რიგის ამომხსნელი GSL ბიბლიოთეკიდან"
 
 #: gslsolver.cc:56
 msgctxt "ObjectClass|"
 msgid "GslRK4IMPSolver"
-msgstr ""
+msgstr "GslRK4IMPამომხსნელი"
 
 #: gslsolver.cc:56
 msgctxt "ObjectDescription|"
 msgid "Runge-Kutta implicit fourth-order solver from GSL library"
-msgstr ""
+msgstr "რუნგე-კუტას არააშკარა მეოთხე რიგის ამომხსნელი GSL ბიბლიოთეკიდან"
 
 #: gslsolver.cc:58
 msgctxt "ObjectClass|"
 msgid "GslAdaptiveRK4IMPSolver"
-msgstr ""
+msgstr "GslAdaptiveRK4IMPამომხსნელი"
 
 #: gslsolver.cc:58
 msgctxt "ObjectDescription|"
 msgid "Adaptive Runge-Kutta implicit fourth-order solver from GSL library"
 msgstr ""
+"ადაპტიური რუნგე-კუტას არააშკარა მეოთხე რიგის ამომხსნელი GSL ბიბლიოთეკიდან"
 
 #: item.cc:15
 msgctxt "ObjectClass|"
@@ -748,27 +758,27 @@ msgstr "ფერი"
 #: item.cc:18
 msgctxt "PropertyDescription|"
 msgid "Item color"
-msgstr ""
+msgstr "ელემენტის ფერი"
 
 #: itemgroup.cc:15
 msgctxt "ObjectClass|"
 msgid "ItemGroup"
-msgstr ""
+msgstr "ელემენტებისჯგუფი"
 
 #: itemgroup.cc:15
 msgctxt "ObjectDescription|"
 msgid "ItemGroup"
-msgstr ""
+msgstr "ელემენტებისჯგუფი"
 
 #: joint.cc:14
 msgctxt "ObjectClass|"
 msgid "Joint"
-msgstr ""
+msgstr "შეერთება"
 
 #: joint.cc:14
 msgctxt "ObjectDescription|"
 msgid "Joint"
-msgstr ""
+msgstr "შეერთება"
 
 #: joints.cc:14
 msgctxt "ObjectClass|"
@@ -778,7 +788,7 @@ msgstr "ბმული"
 #: joints.cc:14
 msgctxt "ObjectDescription|"
 msgid "Anchor: fixes position of the body"
-msgstr ""
+msgstr "ღუზა: ამაგრებს სხეულს მდებარეობაზე"
 
 #: joints.cc:16 joints.cc:22 motor.cc:18 motor.cc:25
 msgctxt "PropertyDescription|"
@@ -788,7 +798,7 @@ msgstr "სხეული"
 #: joints.cc:16 joints.cc:22 motor.cc:18 motor.cc:25 tool.cc:85
 msgctxt "PropertyName|"
 msgid "body"
-msgstr ""
+msgstr "სხეული"
 
 #: joints.cc:17 tool.cc:88
 msgctxt "PropertyDescription|"
@@ -799,7 +809,7 @@ msgstr "თანამდებობა"
 #: tool.cc:26 tool.cc:33 tool.cc:55 tool.cc:67 tool.cc:88
 msgctxt "PropertyName|"
 msgid "position"
-msgstr ""
+msgstr "მდებარეობა"
 
 #: joints.cc:18
 msgctxt "PropertyDescription|"
@@ -824,22 +834,22 @@ msgstr "მიმაგრება"
 #: joints.cc:20
 msgctxt "ObjectDescription|"
 msgid "Pin: fixes position of a given point on the body"
-msgstr ""
+msgstr "ჭიკარტი: ამაგრებს მითითებული წერტილის მდებარეობას სხეულზე"
 
 #: joints.cc:23
 msgctxt "PropertyDescription|"
 msgid "Position on the body"
-msgstr ""
+msgstr "მდებარეობა სხეულზე"
 
 #: joints.cc:23 motor.cc:19 motor.cc:26 tool.cc:86
 msgctxt "PropertyName|"
 msgid "localPosition"
-msgstr ""
+msgstr "ლოკალურიმდებარეობა"
 
 #: joints.cc:24
 msgctxt "PropertyDescription|"
 msgid "Position in the world"
-msgstr ""
+msgstr "მდებარეობა მსოფლიოში"
 
 #: joints.cc:26
 msgctxt "ObjectClass|"
@@ -849,77 +859,77 @@ msgstr "დაწებება"
 #: joints.cc:26
 msgctxt "ObjectDescription|"
 msgid "Massless stick which can be connected to bodies"
-msgstr ""
+msgstr "უწონო ჯოხი, რომელიც სხეულებს შეიძლება, დაუკავშირდეს"
 
 #: joints.cc:28
 msgctxt "PropertyDescription|"
 msgid "Rest length of the stick"
-msgstr ""
+msgstr "ჯოხის მოსვენების სიგრძე"
 
 #: joints.cc:28 spring.cc:18
 msgctxt "PropertyName|"
 msgid "restLength"
-msgstr ""
+msgstr "მოსვენებისსიგრძე"
 
 #: joints.cc:29 spring.cc:22
 msgctxt "PropertyDescription|"
 msgid "Body1"
-msgstr ""
+msgstr "სხეული1"
 
 #: joints.cc:29 spring.cc:22
 msgctxt "PropertyName|"
 msgid "body1"
-msgstr ""
+msgstr "სხეული1"
 
 #: joints.cc:30 spring.cc:23
 msgctxt "PropertyDescription|"
 msgid "Body2"
-msgstr ""
+msgstr "სხეული2"
 
 #: joints.cc:30 spring.cc:23
 msgctxt "PropertyName|"
 msgid "body2"
-msgstr ""
+msgstr "სხეული2"
 
 #: joints.cc:31 spring.cc:24
 msgctxt "PropertyName|"
 msgid "localPosition1"
-msgstr ""
+msgstr "ლოკალურიმდებარეობა1"
 
 #: joints.cc:32 spring.cc:25
 msgctxt "PropertyDescription|"
 msgid "Local position 1"
-msgstr ""
+msgstr "ლოკალური მდებარეობა 1"
 
 #: joints.cc:33 spring.cc:26
 msgctxt "PropertyName|"
 msgid "localPosition2"
-msgstr ""
+msgstr "ლოკალურიმდებარეობა2"
 
 #: joints.cc:34 spring.cc:27
 msgctxt "PropertyDescription|"
 msgid "Local position 2"
-msgstr ""
+msgstr "ლოკალური მდებარეობა 2"
 
 #: joints.cc:35 spring.cc:28
 msgctxt "PropertyDescription|"
 msgid "Position1"
-msgstr ""
+msgstr "მდებარეობა1"
 
 #: joints.cc:35 spring.cc:28
 msgctxt "PropertyName|"
 msgid "position1"
-msgstr ""
+msgstr "მდებარეობა1"
 
 #: joints.cc:36 spring.cc:29
 msgctxt "PropertyDescription|"
 msgid "Position2"
-msgstr ""
+msgstr "მდებარეობა2"
 
 #: joints.cc:36 spring.cc:29
 msgctxt "PropertyName|"
 msgid "position2"
-msgstr ""
+msgstr "მდებარეობა2"
 
 #: joints.cc:39
 msgctxt "ObjectClass|"
@@ -929,32 +939,32 @@ msgstr "თოკი"
 #: joints.cc:39
 msgctxt "ObjectDescription|"
 msgid "Massless rope which can be connected to bodies"
-msgstr ""
+msgstr "უწონო თოკი, რომელიც სხეულებს შეიძლება, დაუკავშირდეს"
 
 #: motor.cc:16
 msgctxt "ObjectClass|"
 msgid "LinearMotor"
-msgstr ""
+msgstr "წფივი ძრავი"
 
 #: motor.cc:16
 msgctxt "ObjectDescription|"
 msgid "Linear motor: applies a constant force to a given position of the body"
-msgstr ""
+msgstr "წრფივი ძრავა: იყენებს მუდმივ ძალას სხეულის მითითებულ მდებარეობაზე"
 
 #: motor.cc:19 motor.cc:26
 msgctxt "PropertyDescription|"
 msgid "Position of the motor on a body"
-msgstr ""
+msgstr "ძრავას მდებარეობა სხეულზე"
 
 #: motor.cc:20
 msgctxt "PropertyDescription|"
 msgid "Value of the force, acting on the body"
-msgstr ""
+msgstr "სხეულზე მოქმედი ძალის მნიშვნელობა"
 
 #: motor.cc:20
 msgctxt "PropertyName|"
 msgid "forceValue"
-msgstr ""
+msgstr "ძალის მნიშვნელობა"
 
 #: motor.cc:20 particle.cc:21 particle.cc:35 rigidbody.cc:27 rigidbody.cc:56
 #: softbody.cc:36 spring.cc:30 spring.cc:51
@@ -965,12 +975,12 @@ msgstr "ნ"
 #: motor.cc:21
 msgctxt "PropertyDescription|"
 msgid "Rotate the force vector in sync with body rotation"
-msgstr ""
+msgstr "ძალის ვექტორის მობრუნება სხეულთან ერთად"
 
 #: motor.cc:21
 msgctxt "PropertyName|"
 msgid "rigidlyFixed"
-msgstr ""
+msgstr "მყარად დამაგრებული"
 
 #: motor.cc:23
 msgctxt "ObjectClass|"
@@ -980,17 +990,17 @@ msgstr "მოძრავიძრავა"
 #: motor.cc:23
 msgctxt "ObjectDescription|"
 msgid "Circular motor: applies a constant torque to the body"
-msgstr ""
+msgstr "წრიული ძრავა: იყენებს მუდმივ მბრუნავ ძალას სხეულზე"
 
 #: motor.cc:27
 msgctxt "PropertyDescription|"
 msgid "Value of the torque, acting on the body"
-msgstr ""
+msgstr "სხეულზე მოქმედი მბრუნავი ძალის მნიშვნელობა"
 
 #: motor.cc:27
 msgctxt "PropertyName|"
 msgid "torqueValue"
-msgstr ""
+msgstr "მომენტისმნიშვნელობა"
 
 #: motor.cc:27 rigidbody.cc:28 rigidbody.cc:57 softbody.cc:37
 msgctxt "Units|"
@@ -1020,12 +1030,12 @@ msgstr "სახელი"
 #: objecterrors.cc:14
 msgctxt "ObjectClass|"
 msgid "ObjectErrors"
-msgstr ""
+msgstr "ობიექტისშეცდომები"
 
 #: objecterrors.cc:14
 msgctxt "ObjectDescription|"
 msgid "ObjectErrors"
-msgstr ""
+msgstr "ობიექტისშეცდომები"
 
 #: particle.cc:15
 msgctxt "ObjectClass|"
@@ -1035,12 +1045,12 @@ msgstr "ნაწილაკი"
 #: particle.cc:15
 msgctxt "ObjectDescription|"
 msgid "Simple zero-size particle"
-msgstr ""
+msgstr "მარტივი ნულოვანი ზომის მქონე ნაწილაკი"
 
 #: particle.cc:17
 msgctxt "PropertyDescription|"
 msgid "position"
-msgstr ""
+msgstr "მდებარეობა"
 
 #: particle.cc:18
 msgctxt "PropertyDescription|"
@@ -1105,107 +1115,107 @@ msgstr "კინეტიკური ენერგია"
 #: particle.cc:25 rigidbody.cc:37
 msgctxt "PropertyName|"
 msgid "kineticEnergy"
-msgstr ""
+msgstr "კინეტიკურიენერგია"
 
 #: particle.cc:28
 msgctxt "ObjectClass|"
 msgid "ParticleErrors"
-msgstr ""
+msgstr "ნაწილაკისშეცდომები"
 
 #: particle.cc:28
 msgctxt "ObjectDescription|"
 msgid "Errors class for Particle"
-msgstr ""
+msgstr "შეცდომების კლასი ნაწილაკისთვის"
 
 #: particle.cc:29 rigidbody.cc:41
 msgctxt "PropertyName|"
 msgid "positionVariance"
-msgstr ""
+msgstr "მდებარეობისცვლილება"
 
 #: particle.cc:30 rigidbody.cc:42
 msgctxt "PropertyDescription|"
 msgid "position variance"
-msgstr ""
+msgstr "მდებარეობის ცვლილება"
 
 #: particle.cc:31 rigidbody.cc:46
 msgctxt "PropertyName|"
 msgid "velocityVariance"
-msgstr ""
+msgstr "სიჩქარისცვლილება"
 
 #: particle.cc:32 rigidbody.cc:47
 msgctxt "PropertyDescription|"
 msgid "velocity variance"
-msgstr ""
+msgstr "სიჩქარის ცვლილება"
 
 #: particle.cc:33 rigidbody.cc:51
 msgctxt "PropertyName|"
 msgid "accelerationVariance"
-msgstr ""
+msgstr "აჩქარებისცვლილება"
 
 #: particle.cc:34 rigidbody.cc:52
 msgctxt "PropertyDescription|"
 msgid "acceleration variance"
-msgstr ""
+msgstr "აჩქარების ცვლილება"
 
 #: particle.cc:35 rigidbody.cc:56 spring.cc:51
 msgctxt "PropertyName|"
 msgid "forceVariance"
-msgstr ""
+msgstr "ძალისცვლილება"
 
 #: particle.cc:36 rigidbody.cc:56
 msgctxt "PropertyDescription|"
 msgid "force variance"
-msgstr ""
+msgstr "ძალის ცვლილება"
 
 #: particle.cc:37 rigidbody.cc:59
 msgctxt "PropertyName|"
 msgid "massVariance"
-msgstr ""
+msgstr "მასისცვლილება"
 
 #: particle.cc:38 rigidbody.cc:60
 msgctxt "PropertyDescription|"
 msgid "mass variance"
-msgstr ""
+msgstr "მასის ცვლილება"
 
 #: particle.cc:39 rigidbody.cc:63
 msgctxt "PropertyName|"
 msgid "momentumVariance"
-msgstr ""
+msgstr "მომენტისცვლილება"
 
 #: particle.cc:40 rigidbody.cc:64
 msgctxt "PropertyDescription|"
 msgid "momentum variance"
-msgstr ""
+msgstr "მომენტის ცვლილება"
 
 #: particle.cc:41 rigidbody.cc:68
 msgctxt "PropertyName|"
 msgid "kineticEnergyVariance"
-msgstr ""
+msgstr "კინეტიკურიენერგიისცვლილება"
 
 #: particle.cc:42 rigidbody.cc:69
 msgctxt "PropertyDescription|"
 msgid "kinetic energy variance"
-msgstr ""
+msgstr "კინეტიკური ენერგიის ცვლილება"
 
 #: particle.cc:44
 msgctxt "ObjectClass|"
 msgid "ChargedParticle"
-msgstr ""
+msgstr "დამუხტულინაწილაკი"
 
 #: particle.cc:44
 msgctxt "ObjectDescription|"
 msgid "Charged zero-size particle"
-msgstr ""
+msgstr "დამუხტული ნულოვანი ზომის მქონე ნაწილაკი"
 
 #: particle.cc:45
 msgctxt "PropertyDescription|"
 msgid "charge"
-msgstr ""
+msgstr "მუხტი"
 
 #: particle.cc:45
 msgctxt "PropertyName|"
 msgid "charge"
-msgstr ""
+msgstr "მუხტი"
 
 #: particle.cc:45
 msgctxt "Units|"
@@ -1215,57 +1225,57 @@ msgstr "C"
 #: particle.cc:47
 msgctxt "ObjectClass|"
 msgid "ChargedParticleErrors"
-msgstr ""
+msgstr "დამუხტულინაწილაკისშეცდომები"
 
 #: particle.cc:47
 msgctxt "ObjectDescription|"
 msgid "Errors class for ChargedParticle"
-msgstr ""
+msgstr "შეცდომების კლასი დამუხტული ნაწილაკისთვის"
 
 #: particle.cc:49
 msgctxt "PropertyName|"
 msgid "chargeVariance"
-msgstr ""
+msgstr "მუხტისცვლილება"
 
 #: particle.cc:50
 msgctxt "PropertyDescription|"
 msgid "charge variance"
-msgstr ""
+msgstr "მუხტის ცვლილება"
 
 #: rigidbody.cc:15
 msgctxt "ObjectClass|"
 msgid "RigidBody"
-msgstr ""
+msgstr "ხისტი სხეული"
 
 #: rigidbody.cc:15
 msgctxt "ObjectDescription|"
 msgid "Generic rigid body"
-msgstr ""
+msgstr "ზოგადი ხისტი სხეული"
 
 #: rigidbody.cc:16 softbody.cc:24
 msgctxt "PropertyDescription|"
 msgid "Position of the center of mass"
-msgstr ""
+msgstr "მასის ცენტრის მდებარეობა"
 
 #: rigidbody.cc:17
 msgctxt "PropertyDescription|"
 msgid "Rotation angle"
-msgstr ""
+msgstr "ბრუნვის კუთხე"
 
 #: rigidbody.cc:19 softbody.cc:26
 msgctxt "PropertyDescription|"
 msgid "Velocity of the center of mass"
-msgstr ""
+msgstr "მასის ცენტრის სიჩქარე"
 
 #: rigidbody.cc:20 softbody.cc:27
 msgctxt "PropertyDescription|"
 msgid "Angular velocity of the body"
-msgstr ""
+msgstr "სხეულის კუთხოვანი სიჩქარე"
 
 #: rigidbody.cc:20 softbody.cc:27
 msgctxt "PropertyName|"
 msgid "angularVelocity"
-msgstr ""
+msgstr "კუთხოვანი სიჩქარე"
 
 #: rigidbody.cc:20 rigidbody.cc:48 softbody.cc:27
 msgctxt "Units|"
@@ -1275,12 +1285,12 @@ msgstr "რად/წმ"
 #: rigidbody.cc:23 softbody.cc:32
 msgctxt "PropertyDescription|"
 msgid "Acceleration of the center of mass"
-msgstr ""
+msgstr "წონის ცენტრის აჩქარება"
 
 #: rigidbody.cc:24 softbody.cc:33
 msgctxt "PropertyName|"
 msgid "angularAcceleration"
-msgstr ""
+msgstr "კუთხოვანიაჩქარება"
 
 #: rigidbody.cc:24 rigidbody.cc:53 softbody.cc:33
 msgctxt "Units|"
@@ -1290,32 +1300,32 @@ msgstr "რად/წმ²"
 #: rigidbody.cc:25 softbody.cc:34
 msgctxt "PropertyDescription|"
 msgid "Angular acceleration of the body"
-msgstr ""
+msgstr "სხეულის კუთხოვანი აჩქარება"
 
 #: rigidbody.cc:27 softbody.cc:36
 msgctxt "PropertyDescription|"
 msgid "Force that acts upon the body"
-msgstr ""
+msgstr "ძალა, რომელიც სხეულზე მოქმედებს"
 
 #: rigidbody.cc:28 softbody.cc:37
 msgctxt "PropertyDescription|"
 msgid "Torque that acts upon the body"
-msgstr ""
+msgstr "მბრუნავი მომენტი, რომელის სხეულზე მოქმედებს"
 
 #: rigidbody.cc:28 softbody.cc:37
 msgctxt "PropertyName|"
 msgid "torque"
-msgstr ""
+msgstr "მბრუნავი მომენტი"
 
 #: rigidbody.cc:30 softbody.cc:38
 msgctxt "PropertyDescription|"
 msgid "Total mass of the body"
-msgstr ""
+msgstr "სხეულსი ჯამური მასა"
 
 #: rigidbody.cc:31 softbody.cc:39
 msgctxt "PropertyName|"
 msgid "inertia"
-msgstr ""
+msgstr "ინერცია"
 
 #: rigidbody.cc:31 rigidbody.cc:61 softbody.cc:39
 msgctxt "Units|"
@@ -1325,17 +1335,17 @@ msgstr "კგ მ²"
 #: rigidbody.cc:32 softbody.cc:40
 msgctxt "PropertyDescription|"
 msgid "Inertia \"tensor\" of the body"
-msgstr ""
+msgstr "სხეულის ინერციის ტენზორი"
 
 #: rigidbody.cc:35
 msgctxt "PropertyDescription|"
 msgid "angular momentum"
-msgstr ""
+msgstr "კუთხის იმპულსი"
 
 #: rigidbody.cc:35 softbody.cc:28
 msgctxt "PropertyName|"
 msgid "angularMomentum"
-msgstr ""
+msgstr "კუთხის იმპულსი"
 
 #: rigidbody.cc:35 rigidbody.cc:65
 msgctxt "Units|"
@@ -1345,72 +1355,72 @@ msgstr "კგ მ² რად/წმ"
 #: rigidbody.cc:40
 msgctxt "ObjectClass|"
 msgid "RigidBodyErrors"
-msgstr ""
+msgstr "ხისტი სხეულის შეცდომები"
 
 #: rigidbody.cc:40
 msgctxt "ObjectDescription|"
 msgid "Errors class for RigidBody"
-msgstr ""
+msgstr "შეცდომების კლასი ხისტი სხეულისთვის"
 
 #: rigidbody.cc:43
 msgctxt "PropertyName|"
 msgid "angleVariance"
-msgstr ""
+msgstr "კუთხისცვლილება"
 
 #: rigidbody.cc:44
 msgctxt "PropertyDescription|"
 msgid "angle variance"
-msgstr ""
+msgstr "კუთხის ცვლილება"
 
 #: rigidbody.cc:48
 msgctxt "PropertyName|"
 msgid "angularVelocityVariance"
-msgstr ""
+msgstr "კუთხურისიჩქარისცვლილება"
 
 #: rigidbody.cc:49
 msgctxt "PropertyDescription|"
 msgid "angularVelocity variance"
-msgstr ""
+msgstr "კუთხური სიჩქარის ცვლილება"
 
 #: rigidbody.cc:53
 msgctxt "PropertyName|"
 msgid "angularAccelerationVariance"
-msgstr ""
+msgstr "კუთხურიაჩქარებისცვლილება"
 
 #: rigidbody.cc:54
 msgctxt "PropertyDescription|"
 msgid "angularAcceleration variance"
-msgstr ""
+msgstr "კუთხური აჩქარების ცვლილება"
 
 #: rigidbody.cc:57
 msgctxt "PropertyDescription|"
 msgid "torque variance"
-msgstr ""
+msgstr "ბრუნვის მომენტის ცვლილება"
 
 #: rigidbody.cc:57
 msgctxt "PropertyName|"
 msgid "torqueVariance"
-msgstr ""
+msgstr "ბრუნვისმომენტისცვლილება"
 
 #: rigidbody.cc:61
 msgctxt "PropertyName|"
 msgid "inertiaVariance"
-msgstr ""
+msgstr "ინერციისცვლილება"
 
 #: rigidbody.cc:62
 msgctxt "PropertyDescription|"
 msgid "inertia variance"
-msgstr ""
+msgstr "ინერციის ცვლილება"
 
 #: rigidbody.cc:65
 msgctxt "PropertyName|"
 msgid "angularMomentumVariance"
-msgstr ""
+msgstr "მოძრაობისმომენტისიმპულსისცვლილება"
 
 #: rigidbody.cc:66
 msgctxt "PropertyDescription|"
 msgid "angular momentum variance"
-msgstr ""
+msgstr "მოძრაობის მომენტის იმპულსის ცვლილება"
 
 #: rigidbody.cc:71
 msgctxt "ObjectClass|"
@@ -1420,12 +1430,12 @@ msgstr "დისკი"
 #: rigidbody.cc:71
 msgctxt "ObjectDescription|"
 msgid "Rigid disk"
-msgstr ""
+msgstr "ხისტი დისკი"
 
 #: rigidbody.cc:72
 msgctxt "PropertyDescription|"
 msgid "Radius of the disk"
-msgstr ""
+msgstr "დისკის რადიუსი"
 
 #: rigidbody.cc:72
 msgctxt "PropertyName|"
@@ -1435,12 +1445,12 @@ msgstr "რადიუსი"
 #: rigidbody.cc:74
 msgctxt "ObjectClass|"
 msgid "BasePolygon"
-msgstr ""
+msgstr "მრავალკუთხამრავალკუთხედი"
 
 #: rigidbody.cc:74
 msgctxt "ObjectDescription|"
 msgid "Base polygon body"
-msgstr ""
+msgstr "მრავალკუთხა მრავალკუთხედი სხეული"
 
 #: rigidbody.cc:76
 msgctxt "ObjectClass|"
@@ -1450,12 +1460,12 @@ msgstr "ყუთი"
 #: rigidbody.cc:76
 msgctxt "ObjectDescription|"
 msgid "Rigid box"
-msgstr ""
+msgstr "ხისტი ყუთი"
 
 #: rigidbody.cc:77
 msgctxt "PropertyDescription|"
 msgid "Size of the box"
-msgstr ""
+msgstr "ყუთის ზომა"
 
 #: rigidbody.cc:77 tool.cc:27 tool.cc:34 tool.cc:56 tool.cc:68
 msgctxt "PropertyName|"
@@ -1470,57 +1480,57 @@ msgstr "მრავალკუთხედი"
 #: rigidbody.cc:79
 msgctxt "ObjectDescription|"
 msgid "Rigid polygon body"
-msgstr ""
+msgstr "უხეში მრავალკუთხა სხეული"
 
 #: rigidbody.cc:80
 msgctxt "PropertyDescription|"
 msgid "Vertex list"
-msgstr ""
+msgstr "წვეროების სია"
 
 #: rigidbody.cc:80
 msgctxt "PropertyName|"
 msgid "vertices"
-msgstr ""
+msgstr "წვეროები"
 
 #: softbody.cc:19
 msgctxt "ObjectClass|"
 msgid "SoftBodyParticle"
-msgstr ""
+msgstr "რბილისხეულისნაწილაკი"
 
 #: softbody.cc:19
 msgctxt "ObjectDescription|"
 msgid "SoftBody particle"
-msgstr ""
+msgstr "რბილი სხეულის ნაწილაკი"
 
 #: softbody.cc:20
 msgctxt "ObjectClass|"
 msgid "SoftBodySpring"
-msgstr ""
+msgstr "რბილისხეულისზამბარა"
 
 #: softbody.cc:20
 msgctxt "ObjectDescription|"
 msgid "SoftBody spring"
-msgstr ""
+msgstr "რბილი სხეულის ზამბარა"
 
 #: softbody.cc:21
 msgctxt "ObjectClass|"
 msgid "SoftBody"
-msgstr ""
+msgstr "რბილისხეული"
 
 #: softbody.cc:21
 msgctxt "ObjectDescription|"
 msgid "Deformable SoftBody"
-msgstr ""
+msgstr "დეფორმირებადი რბილი სხეული"
 
 #: softbody.cc:22
 msgctxt "PropertyDescription|"
 msgid "Show internal items"
-msgstr ""
+msgstr "შიდა ელემენტების ცვლილება"
 
 #: softbody.cc:22
 msgctxt "PropertyName|"
 msgid "showInternalItems"
-msgstr ""
+msgstr "შიდაელემენტებისჩვენება"
 
 #: softbody.cc:28
 msgctxt "Units|"
@@ -1530,17 +1540,17 @@ msgstr "კგ მ²/წმ"
 #: softbody.cc:29
 msgctxt "PropertyDescription|"
 msgid "Angular momentum of the body"
-msgstr ""
+msgstr "სხეულის მოძრაობის იმპულსის მომენტი"
 
 #: softbody.cc:41
 msgctxt "PropertyName|"
 msgid "borderParticleNames"
-msgstr ""
+msgstr "საზღვრისნაწილაკისსახელები"
 
 #: softbody.cc:42
 msgctxt "PropertyDescription|"
 msgid "Border particle names (temporal property)"
-msgstr ""
+msgstr "საზღვრის ნაწილაკის სახელები (დროებითი თვისება)"
 
 #: solver.cc:13
 msgctxt "ObjectClass|"
@@ -1555,42 +1565,42 @@ msgstr "ამომხსნელი"
 #: solver.cc:14
 msgctxt "PropertyDescription|"
 msgid "Solver type"
-msgstr ""
+msgstr "ამომხსნელის ტიპი"
 
 #: solver.cc:14
 msgctxt "PropertyName|"
 msgid "solverType"
-msgstr ""
+msgstr "ამომხსნელისტიპი"
 
 #: solver.cc:15
 msgctxt "PropertyDescription|"
 msgid "Step size"
-msgstr ""
+msgstr "ბიჯის ზომა"
 
 #: solver.cc:15
 msgctxt "PropertyName|"
 msgid "stepSize"
-msgstr ""
+msgstr "ბიჯისზომა"
 
 #: solver.cc:15 world.cc:23
 msgctxt "Units|"
 msgid "s"
-msgstr ""
+msgstr "წმ"
 
 #: solver.cc:17
 msgctxt "PropertyDescription|"
 msgid "Allowed relative tolerance"
-msgstr ""
+msgstr "დაშვებული შედარებითი აცდენა"
 
 #: solver.cc:17
 msgctxt "PropertyName|"
 msgid "toleranceRel"
-msgstr ""
+msgstr "შედარებითიდაშვება"
 
 #: solver.cc:18
 msgctxt "PropertyDescription|"
 msgid "Count of dynamic variables"
-msgstr ""
+msgstr "დინამიკური ცვლადების რაოდენობა"
 
 #: solver.cc:18
 msgctxt "PropertyName|"
@@ -1600,12 +1610,12 @@ msgstr "განზომილება"
 #: solver.cc:20
 msgctxt "PropertyDescription|"
 msgid "Maximal local error ratio during last step"
-msgstr ""
+msgstr "მაქსიმალური ლოკალური შეცდომის კოეფიციენტი ბოლო ნაბიჯის მიმდინარეობისას"
 
 #: solver.cc:20
 msgctxt "PropertyName|"
 msgid "localErrorRatio"
-msgstr ""
+msgstr "ლოკალურიშეცდომისკოეფიციენტი"
 
 #: spring.cc:16
 msgctxt "ObjectClass|"
@@ -1615,17 +1625,17 @@ msgstr "გაზაფხული"
 #: spring.cc:16
 msgctxt "ObjectDescription|"
 msgid "Massless spring which can be connected to bodies"
-msgstr ""
+msgstr "უწონო ზამბარა, რომელიც შეიძლება, სხეულებს მიუერთდეს"
 
 #: spring.cc:18
 msgctxt "PropertyDescription|"
 msgid "Rest length"
-msgstr ""
+msgstr "მოსვენების სიგრძე"
 
 #: spring.cc:19
 msgctxt "PropertyDescription|"
 msgid "Current length"
-msgstr ""
+msgstr "მიმდინარე სიგრძე"
 
 #: spring.cc:19
 msgctxt "PropertyName|"
@@ -1640,7 +1650,7 @@ msgstr "სიმყიფე"
 #: spring.cc:20
 msgctxt "PropertyName|"
 msgid "stiffness"
-msgstr ""
+msgstr "სიხისტე"
 
 #: spring.cc:20 spring.cc:39 spring.cc:41
 msgctxt "Units|"
@@ -1655,7 +1665,7 @@ msgstr "ჩაქრობა"
 #: spring.cc:21
 msgctxt "PropertyName|"
 msgid "damping"
-msgstr ""
+msgstr "სიბლანტე"
 
 #: spring.cc:21
 msgctxt "Units|"
@@ -1665,117 +1675,117 @@ msgstr "ნ წმ/მ"
 #: spring.cc:30
 msgctxt "PropertyDescription|"
 msgid "Spring tension force"
-msgstr ""
+msgstr "ზამბარის დაჭიმულობის ძალა"
 
 #: spring.cc:33
 msgctxt "ObjectClass|"
 msgid "SpringErrors"
-msgstr ""
+msgstr "ზამბარისშეცდომები"
 
 #: spring.cc:33
 msgctxt "ObjectDescription|"
 msgid "Errors class for Spring"
-msgstr ""
+msgstr "შეცდომების კლასი ზამბარისთვის"
 
 #: spring.cc:35
 msgctxt "PropertyName|"
 msgid "restLengthVariance"
-msgstr ""
+msgstr "მოსვენებისსიგრძისცვლილება"
 
 #: spring.cc:36
 msgctxt "PropertyDescription|"
 msgid "Rest length variance"
-msgstr ""
+msgstr "მოსვენების სიგრძის თვისება"
 
 #: spring.cc:37
 msgctxt "PropertyName|"
 msgid "lengthVariance"
-msgstr ""
+msgstr "სიგრძის ცვლილება"
 
 #: spring.cc:38
 msgctxt "PropertyDescription|"
 msgid "Current length variance"
-msgstr ""
+msgstr "მიმდინარე სიგრძის ცვლილება"
 
 #: spring.cc:39
 msgctxt "PropertyName|"
 msgid "stiffnessVariance"
-msgstr ""
+msgstr "სიმყიფისცვლილება"
 
 #: spring.cc:40
 msgctxt "PropertyDescription|"
 msgid "Stiffness variance"
-msgstr ""
+msgstr "სიმყიფის ცვლილება"
 
 #: spring.cc:41
 msgctxt "PropertyName|"
 msgid "dampingVariance"
-msgstr ""
+msgstr "სიბლანტისცვლილება"
 
 #: spring.cc:42
 msgctxt "PropertyDescription|"
 msgid "Damping variance"
-msgstr ""
+msgstr "სიბლანტის ცვლილება"
 
 #: spring.cc:43
 msgctxt "PropertyName|"
 msgid "localPosition1Variance"
-msgstr ""
+msgstr "ლოკალურიმდებარეობა1-ისცვლილება"
 
 #: spring.cc:44
 msgctxt "PropertyDescription|"
 msgid "Local position 1 variance"
-msgstr ""
+msgstr "ლოკალური მდებარეობა 1-ის ცვლილება"
 
 #: spring.cc:45
 msgctxt "PropertyName|"
 msgid "localPosition2Variance"
-msgstr ""
+msgstr "ლოკალურიმდებარეობა2-ისცვლილება"
 
 #: spring.cc:46
 msgctxt "PropertyDescription|"
 msgid "Local position 2 variance"
-msgstr ""
+msgstr "ლოკალური მდებარეობა 2-ის ცვლილება"
 
 #: spring.cc:47
 msgctxt "PropertyName|"
 msgid "position1Variance"
-msgstr ""
+msgstr "მდებარეობა1-ისცვლილება"
 
 #: spring.cc:48
 msgctxt "PropertyDescription|"
 msgid "Position1 variance"
-msgstr ""
+msgstr "მდებარეობა1-ის ცვლილება"
 
 #: spring.cc:49
 msgctxt "PropertyName|"
 msgid "position2Variance"
-msgstr ""
+msgstr "მდებარეობა2-ისცვლილება"
 
 #: spring.cc:50
 msgctxt "PropertyDescription|"
 msgid "Position2 variance"
-msgstr ""
+msgstr "მდებარეობა2-ის ცვლილება"
 
 #: spring.cc:52
 msgctxt "PropertyDescription|"
 msgid "Spring tension force variance"
-msgstr ""
+msgstr "ზამბარის დაძაბულობის ძალის ცვლილება"
 
 #: tool.cc:14
 msgctxt "ObjectClass|"
 msgid "NoteImage"
-msgstr ""
+msgstr "შენიშვნისგამოსახულება"
 
 #: tool.cc:14
 msgctxt "ObjectDescription|"
 msgid "NoteImage: an image embedded in Note"
-msgstr ""
+msgstr "შენიშვნისგამოსახულება: შენიშვნაში ჩაშენებული სურათი"
 
 #: tool.cc:16
 msgctxt "PropertyDescription|"
 msgid "Image data"
-msgstr ""
+msgstr "გამოსახულების მონაცემები"
 
 #: tool.cc:16
 msgctxt "PropertyName|"
@@ -1785,17 +1795,17 @@ msgstr "ნახატი"
 #: tool.cc:19
 msgctxt "ObjectClass|"
 msgid "NoteFormula"
-msgstr ""
+msgstr "შენიშვნისფორმულა"
 
 #: tool.cc:19
 msgctxt "ObjectDescription|"
 msgid "NoteFormula: a formula embedded in Note"
-msgstr ""
+msgstr "შენიშვნისფორმულა: შენიშვნაში ჩაშენებული ფორმულა"
 
 #: tool.cc:21
 msgctxt "PropertyDescription|"
 msgid "Formula code"
-msgstr ""
+msgstr "ფორმულის კოდი"
 
 #: tool.cc:21
 msgctxt "PropertyName|"
@@ -1810,17 +1820,17 @@ msgstr "შენიშვნა"
 #: tool.cc:24
 msgctxt "ObjectDescription|"
 msgid "Note: displays a textual note on the scene"
-msgstr ""
+msgstr "სენიშვნა: აჩვენებს სცენის ტექსტურ შენიშვნას"
 
 #: tool.cc:26
 msgctxt "PropertyDescription|"
 msgid "Note position on the scene"
-msgstr ""
+msgstr "შენიშვნის მდებარეობა სცენაზე"
 
 #: tool.cc:27
 msgctxt "PropertyDescription|"
 msgid "Note size on the scene"
-msgstr ""
+msgstr "შენიშვნის ზომა სცენაზე"
 
 #: tool.cc:28
 msgctxt "PropertyDescription|"
@@ -1840,137 +1850,137 @@ msgstr "გრაფიკი"
 #: tool.cc:31
 msgctxt "ObjectDescription|"
 msgid "Graph: plots a graph of any properties"
-msgstr ""
+msgstr "გრაფიკი: ხატავს ნებისმიერი თვისების გრაფიკს"
 
 #: tool.cc:33
 msgctxt "PropertyDescription|"
 msgid "Graph position on the scene"
-msgstr ""
+msgstr "გრაფიკის მდებარეობა სცენაზე"
 
 #: tool.cc:34
 msgctxt "PropertyDescription|"
 msgid "Graph size on the scene"
-msgstr ""
+msgstr "გრაფიკის ზომა სცენაზე"
 
 #: tool.cc:35
 msgctxt "PropertyDescription|"
 msgid "X axis: object"
-msgstr ""
+msgstr "X ღერძი: ობიექტი"
 
 #: tool.cc:35
 msgctxt "PropertyName|"
 msgid "objectX"
-msgstr ""
+msgstr "ობიექტიX"
 
 #: tool.cc:36
 msgctxt "PropertyDescription|"
 msgid "X axis: object property"
-msgstr ""
+msgstr "X ღერძი: ობიექტის თვისება"
 
 #: tool.cc:36
 msgctxt "PropertyName|"
 msgid "propertyX"
-msgstr ""
+msgstr "თვისებაX"
 
 #: tool.cc:37
 msgctxt "PropertyDescription|"
 msgid "X axis: vector index"
-msgstr ""
+msgstr "X ღერძი: ვექტორის ინდექსი"
 
 #: tool.cc:37
 msgctxt "PropertyName|"
 msgid "indexX"
-msgstr ""
+msgstr "ინდექსიX"
 
 #: tool.cc:38
 msgctxt "PropertyDescription|"
 msgid "Y axis: object"
-msgstr ""
+msgstr "Y ღერძი: ობიექტი"
 
 #: tool.cc:38
 msgctxt "PropertyName|"
 msgid "objectY"
-msgstr ""
+msgstr "ობიექტიY"
 
 #: tool.cc:39
 msgctxt "PropertyDescription|"
 msgid "Y axis: property"
-msgstr ""
+msgstr "Y ღერძი: თვისება"
 
 #: tool.cc:39
 msgctxt "PropertyName|"
 msgid "propertyY"
-msgstr ""
+msgstr "თვისებაY"
 
 #: tool.cc:40
 msgctxt "PropertyDescription|"
 msgid "Y axis: vector index"
-msgstr ""
+msgstr "Y ღერძი: ვექტორის ინდექსი"
 
 #: tool.cc:40
 msgctxt "PropertyName|"
 msgid "indexY"
-msgstr ""
+msgstr "ინდექსიY"
 
 #: tool.cc:41
 msgctxt "PropertyDescription|"
 msgid "Auto-limits along X axis"
-msgstr ""
+msgstr "ავტოლიმიტები X ღერძის გასწვრივ"
 
 #: tool.cc:41
 msgctxt "PropertyName|"
 msgid "autoLimitsX"
-msgstr ""
+msgstr "Xავტოლიმიტები"
 
 #: tool.cc:42
 msgctxt "PropertyDescription|"
 msgid "Auto-limits along Y axis"
-msgstr ""
+msgstr "ავტოლიმიტები Y ღერძის გასწვრივ"
 
 #: tool.cc:42
 msgctxt "PropertyName|"
 msgid "autoLimitsY"
-msgstr ""
+msgstr "Yავტოლიმიტები"
 
 #: tool.cc:43
 msgctxt "PropertyDescription|"
 msgid "Limits along X axis"
-msgstr ""
+msgstr "ლიმიტები X ღერძის გასწვრივ"
 
 #: tool.cc:43
 msgctxt "PropertyName|"
 msgid "limitsX"
-msgstr ""
+msgstr "Xლიმიტები"
 
 #: tool.cc:44
 msgctxt "PropertyDescription|"
 msgid "Limits along Y axis"
-msgstr ""
+msgstr "ლიმიტები Y ღერძის გასწვრივ"
 
 #: tool.cc:44
 msgctxt "PropertyName|"
 msgid "limitsY"
-msgstr ""
+msgstr "Yლიმიტები"
 
 #: tool.cc:45
 msgctxt "PropertyDescription|"
 msgid "Show points on the graph"
-msgstr ""
+msgstr "წერტილების ჩვენება გრაფიკზე"
 
 #: tool.cc:45
 msgctxt "PropertyName|"
 msgid "showPoints"
-msgstr ""
+msgstr "წერილებისჩვენება"
 
 #: tool.cc:46
 msgctxt "PropertyDescription|"
 msgid "Show lines on the graph"
-msgstr ""
+msgstr "ხაზების ჩვენება გრაფიკზე"
 
 #: tool.cc:46
 msgctxt "PropertyName|"
 msgid "showLines"
-msgstr ""
+msgstr "ხაზებისჩვენება"
 
 #: tool.cc:47
 msgctxt "PropertyDescription|"
@@ -1980,7 +1990,7 @@ msgstr "მიმდინარე მნიშვნელობა"
 #: tool.cc:47
 msgctxt "PropertyName|"
 msgid "currentValue"
-msgstr ""
+msgstr "მიმდინარემნიშვნელობა"
 
 #: tool.cc:48 tool.cc:89
 msgctxt "PropertyDescription|"
@@ -1995,22 +2005,22 @@ msgstr "წერტილი"
 #: tool.cc:49
 msgctxt "PropertyName|"
 msgid "unitsX"
-msgstr ""
+msgstr "ერთეულებიX"
 
 #: tool.cc:49
 msgctxt "PropertyName|"
 msgid "Units along X axis"
-msgstr ""
+msgstr "ერთეული X ღერძის გასწვრივ"
 
 #: tool.cc:50
 msgctxt "PropertyName|"
 msgid "unitsY"
-msgstr ""
+msgstr "ერთეულებიY"
 
 #: tool.cc:50
 msgctxt "PropertyName|"
 msgid "Units along Y axis"
-msgstr ""
+msgstr "ერთეული Y ღერძის გასწვრივ"
 
 #: tool.cc:53
 msgctxt "ObjectClass|"
@@ -2020,22 +2030,22 @@ msgstr "მთვლელი"
 #: tool.cc:53
 msgctxt "ObjectDescription|"
 msgid "Meter: displays any property on the scene"
-msgstr ""
+msgstr "სახაზავი: აჩვენებს ნებისმიერ თვისებას სცენაზე"
 
 #: tool.cc:55
 msgctxt "PropertyDescription|"
 msgid "Meter position on the scene"
-msgstr ""
+msgstr "სახაზავის მდებარეობა სცენაზე"
 
 #: tool.cc:56
 msgctxt "PropertyDescription|"
 msgid "Meter size on the scene"
-msgstr ""
+msgstr "სახაზავის ზომა სცენაზე"
 
 #: tool.cc:57
 msgctxt "PropertyDescription|"
 msgid "Observed object"
-msgstr ""
+msgstr "დაკვირვებული ობიექტი"
 
 #: tool.cc:57 tool.cc:69
 msgctxt "PropertyName|"
@@ -2045,7 +2055,7 @@ msgstr "ობიექტი"
 #: tool.cc:58
 msgctxt "PropertyDescription|"
 msgid "Observed property"
-msgstr ""
+msgstr "დაკვირვებული თვისება"
 
 #: tool.cc:58 tool.cc:70
 msgctxt "PropertyName|"
@@ -2065,7 +2075,7 @@ msgstr "ინდექსი"
 #: tool.cc:60
 msgctxt "PropertyDescription|"
 msgid "Display digits"
-msgstr ""
+msgstr "ციფრების ჩვენება"
 
 #: tool.cc:60
 msgctxt "PropertyName|"
@@ -2075,7 +2085,7 @@ msgstr "ციფრები"
 #: tool.cc:61 tool.cc:78
 msgctxt "PropertyDescription|"
 msgid "Value"
-msgstr ""
+msgstr "მნიშვნელობა"
 
 #: tool.cc:61 tool.cc:78
 msgctxt "PropertyName|"
@@ -2085,7 +2095,7 @@ msgstr "მნიშვნელობა"
 #: tool.cc:62
 msgctxt "PropertyDescription|"
 msgid "Units of measured property"
-msgstr ""
+msgstr "გაზომვადი თვისების ერთეულები"
 
 #: tool.cc:62 tool.cc:80
 msgctxt "PropertyName|"
@@ -2100,27 +2110,27 @@ msgstr "კონტროლერი"
 #: tool.cc:65
 msgctxt "ObjectDescription|"
 msgid "Controller: allows to easily control any property"
-msgstr ""
+msgstr "მმართველი: საშუალებას გაძლევთ, იოლად მართოთ ყველა თვისება"
 
 #: tool.cc:67
 msgctxt "PropertyDescription|"
 msgid "Controller position on the scene"
-msgstr ""
+msgstr "მმართველის მდებარეობა სცენაზე"
 
 #: tool.cc:68
 msgctxt "PropertyDescription|"
 msgid "Controller size on the scene"
-msgstr ""
+msgstr "მმართველის ზომა სცენაზე"
 
 #: tool.cc:69
 msgctxt "PropertyDescription|"
 msgid "Controlled object"
-msgstr ""
+msgstr "მართვადი ობიექტი"
 
 #: tool.cc:70
 msgctxt "PropertyDescription|"
 msgid "Controlled property"
-msgstr ""
+msgstr "მართვადი თვისება"
 
 #: tool.cc:72
 msgctxt "PropertyDescription|"
@@ -2130,32 +2140,32 @@ msgstr "ლიმიტები"
 #: tool.cc:72
 msgctxt "PropertyName|"
 msgid "limits"
-msgstr ""
+msgstr "ლიმიტები"
 
 #: tool.cc:73
 msgctxt "PropertyName|"
 msgid "increaseShortcut"
-msgstr ""
+msgstr "გაზრდისმალსახმობი"
 
 #: tool.cc:74
 msgctxt "PropertyDescription|"
 msgid "Shortcut to increase the value"
-msgstr ""
+msgstr "მალსახმობი მნიშვნელობის გასაზრდელად"
 
 #: tool.cc:75
 msgctxt "PropertyName|"
 msgid "decreaseShortcut"
-msgstr ""
+msgstr "შემცირებისმალსახმობი"
 
 #: tool.cc:76
 msgctxt "PropertyDescription|"
 msgid "Shortcut to decrease the value"
-msgstr ""
+msgstr "მალსახმობი მნიშვნელობის შესამცირებლად"
 
 #: tool.cc:77
 msgctxt "PropertyDescription|"
 msgid "Increment value"
-msgstr ""
+msgstr "ზრდის მნიშვნელობა"
 
 #: tool.cc:77
 msgctxt "PropertyName|"
@@ -2165,27 +2175,27 @@ msgstr "გაზრდა"
 #: tool.cc:80
 msgctxt "PropertyDescription|"
 msgid "Units of controlled property"
-msgstr ""
+msgstr "მართვადი თვისების ერთეულები"
 
 #: tool.cc:83
 msgctxt "ObjectClass|"
 msgid "Tracer"
-msgstr ""
+msgstr "ტრეისერი"
 
 #: tool.cc:83
 msgctxt "ObjectDescription|"
 msgid "Tracer: traces trajectory of a point on a body"
-msgstr ""
+msgstr "ტრეისერი: სხეულზე წერტილის ტრაექტორიის მიყოლა"
 
 #: tool.cc:85
 msgctxt "PropertyDescription|"
 msgid "Traced body"
-msgstr ""
+msgstr "სხეული, რომლის ტრეისინგიც ხდება"
 
 #: tool.cc:87
 msgctxt "PropertyDescription|"
 msgid "Local position"
-msgstr ""
+msgstr "ლოკალური მდებარეობა"
 
 #: world.cc:20
 msgctxt "ObjectClass|"
@@ -2220,71 +2230,71 @@ msgstr "დრო"
 #: world.cc:24
 msgctxt "PropertyDescription|"
 msgid "Simulation speed scale"
-msgstr ""
+msgstr "სიმულაციის სიჩქარის შკალა"
 
 #: world.cc:24
 msgctxt "PropertyName|"
 msgid "timeScale"
-msgstr ""
+msgstr "დროის შკალა"
 
 #: world.cc:25
 msgctxt "PropertyName|"
 msgid "errorsCalculation"
-msgstr ""
+msgstr "აცდენისგამოთვლა"
 
 #: world.cc:26
 msgctxt "PropertyDescription|"
 msgid "Enable global error calculation"
-msgstr ""
+msgstr "გლობალური შეცდომის გამოთვლის ჩართვა"
 
 #: xmlfile.cc:191
 msgctxt "QObject|"
 msgid "The file is not a StepCoreXML file."
-msgstr ""
+msgstr "ეს ფაილი StepCoreXML ფაილი არაა."
 
 #: xmlfile.cc:237
 #, qt-format
 msgctxt "QObject|"
 msgid "Unknown item type \"%1\""
-msgstr ""
+msgstr "უცნობი ელემენტის ტიპი \"%1\""
 
 #: xmlfile.cc:258
 #, qt-format
 msgctxt "QObject|"
 msgid "Unknown solver type \"%1\""
-msgstr ""
+msgstr "უცნობი ამომხსნელის ტიპი \"%1\""
 
 #: xmlfile.cc:272
 #, qt-format
 msgctxt "QObject|"
 msgid "Unknown collisionSolver type \"%1\""
-msgstr ""
+msgstr "უცნობი collisionSolver-ის ტიპი \"%1\""
 
 #: xmlfile.cc:286
 #, qt-format
 msgctxt "QObject|"
 msgid "Unknown constraint solver type \"%1\""
-msgstr ""
+msgstr "უცნობი შეზღუდვის ამომხსნელის ტიპი \"%1\""
 
 #: xmlfile.cc:314
 #, qt-format
 msgctxt "QObject|"
 msgid "Wrong ID attribute value for %1"
-msgstr ""
+msgstr "არასწორი ID ატრიბუტის მნიშვნელობა ელემენტისთვის %1"
 
 #: xmlfile.cc:319
 #, qt-format
 msgctxt "QObject|"
 msgid "Non-unique ID attribute value for %1"
-msgstr ""
+msgstr "არაუნიკალური ID ატრიბუტი ელემენტისთვის %1"
 
 #: xmlfile.cc:347 xmlfile.cc:361
 #, qt-format
 msgctxt "QObject|"
 msgid "Property \"%1\" of \"%2\" has illegal value"
-msgstr ""
+msgstr "თვისებას \"%1\" ელემენტისთვის \"%2\" დაუშვებელი მნიშვნელობა გააჩნია"
 
 #: xmlfile.cc:374
 msgctxt "QObject|"
 msgid "File is not writable."
-msgstr ""
+msgstr "ფაილი ჩაწერადი არაა."

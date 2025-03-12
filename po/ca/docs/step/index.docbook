@@ -105,18 +105,12 @@
 
   <listitem
 ><para
->Conversió d'unitats i càlcul d'expressions: podeu introduir alguna cosa com <quote
->(2 dies + 3 hores) * 80 km/h</quote
-> i s'accepta com a valor de distància (requereix <quote
->libqalculate</quote
->)</para
+>Conversió d'unitats i càlcul d'expressions: podeu introduir alguna cosa com «(2 dies + 3 hores) * 80 km/h» i s'accepta com a valor de distància (requereix «libqalculate»)</para
 ></listitem>
 
   <listitem
 ><para
->Errors de càlcul i propagació: podeu introduir valors com <quote
->1,3 ± 0,2</quote
-> per a qualsevol propietat i error per a totes les propietats dependents que es calculin utilitzant fórmules estadístiques</para
+>Errors de càlcul i propagació: podeu introduir valors com «1,3 ± 0,2» per a qualsevol propietat i error per a totes les propietats dependents que es calculin utilitzant fórmules estadístiques</para
 ></listitem>
 
   <listitem

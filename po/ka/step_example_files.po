@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: step\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2023-11-05 12:24+0000\n"
-"PO-Revision-Date: 2023-01-25 05:48+0100\n"
+"PO-Revision-Date: 2025-03-11 08:25+0100\n"
 "Last-Translator: Temuri Doghonadze <temuri.doghonadze@gmail.com>\n"
 "Language-Team: Georgian <kde-i18n-doc@kde.org>\n"
 "Language: ka\n"
@@ -16,7 +16,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Generator: Poedit 3.2.2\n"
+"X-Generator: Poedit 3.5\n"
 
 #: examples/brownian.step:4 examples/doublependulum.step:4
 #: examples/fourpendula.step:4 examples/gas.step:4 examples/graph.step:4
@@ -556,7 +556,7 @@ msgstr "note7"
 msgctxt "HTML:p"
 msgid ""
 "(run simulation for ~20 seconds and compare spring tension with pressure)"
-msgstr ""
+msgstr "(გაუშვით სიმულაცია ~20 წამით და შეადარებით ზამბარის დაძაბულობა წნევას)"
 
 #: examples/graph.step:59
 #, kde-format
@@ -584,6 +584,9 @@ msgid ""
 "potential as gas. Notice how sometimes a particle leaves the drop - it is "
 "evaporation."
 msgstr ""
+"ეს სითხის პატარა წვეთი თავისუფალ სივრცეში სიმულირდება იგივე პოტენციალით, "
+"როგორც აირის. დააკვირდით, როგორ სცილდება ხანდახან წვეთს ნაწილაკები - ის "
+"ორთქლდება."
 
 #: examples/lissajous.step:39 examples/wave.step:423
 #, kde-format
@@ -612,6 +615,9 @@ msgid ""
 "how the curve will change. Try the following values:<br></br>1, 2.25, "
 "1.7778, 1.5625, 0.6944"
 msgstr ""
+"სცადეთ, შეცვალოთ ზამბარა1-ის სიმაგრე და ნახეთ,\n"
+"როგორ შეიცვლება მრუდი. სცადეთ, მიჰყვეთ შემდეგ მნიშვნელობებს:<br></br>1, "
+"2.25, 1.7778, 1.5625, 0.6944"
 
 #: examples/motor.step:43 examples/motor1.step:23 tutorials/tutorial4.step:47
 #, kde-format
@@ -707,13 +713,13 @@ msgstr "გაზაფხული"
 #, kde-format
 msgctxt "name"
 msgid "AnchorLeftWall"
-msgstr ""
+msgstr "AnchorLeftWall"
 
 #: examples/resonance.step:87
 #, kde-format
 msgctxt "name"
 msgid "AnchorRightWall"
-msgstr ""
+msgstr "AnchorRightWall"
 
 #: examples/resonance.step:95
 #, kde-format
@@ -1270,12 +1276,16 @@ msgid ""
 "direction until the red particle reflects in again. After some time the wave "
 "will vanish because springs have damping."
 msgstr ""
+"როცა სიმულაციას იწყებთ, ტალღა მოძრაობას იწყებს წითელი ნაწილაკიდან. ლურჯი "
+"ნაწილაკი აირეკლავს ტალღას და ის უკუმიმართულებით იმოძრავებს, სანამ ისევ წითელ "
+"ნაწილაკს არ დაეჯახება. რაღაც დროის შემდეგ ტალღა ჩაქრება, რადგან ზამბარები "
+"განიმუხტება."
 
 #: examples/wave.step:477
 #, kde-format
 msgctxt "HTML:p"
 msgid "The graph shows oscillations of the green particle"
-msgstr ""
+msgstr "გრაფიკი მწვანე ნაწილაკის რხევას აჩვენებს"
 
 #: tutorials/tutorial1.step:32
 #, kde-format
@@ -1300,6 +1310,8 @@ msgstr "<span style=\" font-weight:600;\">მდებარეობა და 
 msgctxt "HTML:p"
 msgid "- You can change position of any body simply by dragging it."
 msgstr ""
+"- შეგიძლიათ, ნებისმიერი სხეულის მდებარეობის შეცვლა, მარტივად, მათი "
+"გადათრევით."
 
 #: tutorials/tutorial1.step:48
 #, kde-format
@@ -1310,6 +1322,9 @@ msgid ""
 "can drag the little gray square at the end of the velocity arrow to change "
 "the velocity."
 msgstr ""
+"- დააწკაპუნეთ ერთ-ერთ დისკს, რომ მონიშნოთ ის. ახლა მასზე დაინახავთ ორ ისარს: "
+"ლურჯი ისარი გამოხატავს სიჩქარეს და წითელი აჩქარებას. შეგიძლიათ, გადაათრიოთ "
+"პატარა ნაცრისფერი კვადრატი სიჩქარის ბოლოში, რომ ის შეცვალოთ."
 
 #: tutorials/tutorial1.step:49 tutorials/tutorial1.step:63
 #, kde-format
@@ -1319,6 +1334,8 @@ msgid ""
 "set position and velocity (as well as all other properties) for the current "
 "body."
 msgstr ""
+"- შეხედეთ თვისებების პანელს მარჯვენა მხარეს. აქ შეგიძლიათ, რიცხვებით "
+"დააყენოთ მდებარეობა და სიჩქარე (და სხვა თვისებებიც) მიმდინარე სხეულისთვის."
 
 #: tutorials/tutorial1.step:62
 #, kde-format
@@ -1333,6 +1350,8 @@ msgid ""
 "- Select a spring by clicking on it. Change its stiffness and see how it is "
 "affecting the simulation."
 msgstr ""
+"- აირჩიეთ ზამბარა მასზე დაწკაპუნებით. შეცვალეთ მისი სიხისტე და ნახეთ, რა "
+"გავლენა აქვს მას სიმულაციაზე."
 
 #: tutorials/tutorial1.step:78 tutorials/tutorial5.step:78
 #, kde-format
@@ -1347,6 +1366,7 @@ msgid ""
 "- Try to change the system in a way to make the disks spining around the "
 "center of the system."
 msgstr ""
+"- სცადეთ, შეცვალოთ სისტემა, რომ დისკები სისტემის ცენტრის გარშემო ტრიალებდეს."
 
 #: tutorials/tutorial1.step:80
 #, kde-format
@@ -1355,6 +1375,8 @@ msgid ""
 "- Now try to change the properties of the spring in order to make its length "
 "constant while the disks are spinning."
 msgstr ""
+"- ახლა სცადეთ, ზამბარის თვისებები შეცვალოთ, რომ მისი სიგრძე მუდმივი დარჩეს, "
+"როცა დისკები ტრიალებენ."
 
 #: tutorials/tutorial1.step:93
 #, kde-format
@@ -1370,6 +1392,9 @@ msgid ""
 "follow the instructions given in the information widget in the top left "
 "corner of scene"
 msgstr ""
+"- იმისათვის, რომ შექმნათ სხეული, დააწკაპუნეთ მის ხატულაზე პალიტრის პანელზე "
+"და მიჰყევით ინსტრუქციებს, რომელსაც სცენის ზედა მარცხენა კუთხეში, ინფორმაციის "
+"ვიჯეტზეა გამოტანილი"
 
 #: tutorials/tutorial1.step:95
 #, kde-format
@@ -1378,6 +1403,8 @@ msgid ""
 "- Create one more disk and two more springs and connect all the items in the "
 "triangle. Now make them all spin around the center."
 msgstr ""
+"- შექმენით კიდევ ერთი დისკი, კიდევ ორი ზამბარა და შეაერთეთ ისინი "
+"სამკუთხედში. ახლა ქენით ისე, რომ მათმა ცენტრის გარშემო იტრიალონ."
 
 #: tutorials/tutorial1.step:132
 #, kde-format
@@ -1392,6 +1419,8 @@ msgid ""
 "- Click on the \"Simulate\" button in the toolbar to start simulation. Click "
 "on the same button again to stop it."
 msgstr ""
+"- დააწკაპუნეთ \"სიმულაციის\" ღილაკზე ხელსაწყოების პანელში სიმულაციის "
+"დასაწყებად. გასაჩერებლად იგივე ღილაკზე დააწკაპუნეთ."
 
 #: tutorials/tutorial1.step:134
 #, kde-format
@@ -1400,6 +1429,8 @@ msgid ""
 "- After stopping the simulation you can revert to the initial state by "
 "pressing Undo button."
 msgstr ""
+"- სიმულაციის შემდეგ საწყის მდგომარეობაზე დაბრუნება 'დაბრუნების' ღილაკით "
+"შეგიძლიათ."
 
 #: tutorials/tutorial2.step:82
 #, kde-format
@@ -1426,6 +1457,8 @@ msgid ""
 "- Change the stiffness of the spring by moving the slider just below the "
 "bodies. You can also change it by pressing \"Q\" and \"W\" keys!"
 msgstr ""
+"- შეცვალეთ ზამბარის სიხისტე სხეულების ქვეშ არსებული სლაიდერის გადათრევით. "
+"მისი შეცვლა \"Q\" და \"W\" ღილაკებზე დაჭერითაც შეგიძლიათ!"
 
 #: tutorials/tutorial2.step:98
 #, kde-format
@@ -1434,6 +1467,8 @@ msgid ""
 "- Try changing it while the simulation is active and see how the graph will "
 "change."
 msgstr ""
+"- სცადეთ, შეცვალოთ ის მაშინ, როცა სიმულაცია აქტიურია და ნახეთ, როგორ "
+"შეიცვლება გრაფიკი."
 
 #: tutorials/tutorial2.step:111
 #, kde-format
@@ -1445,7 +1480,7 @@ msgstr "<span style=\" font-weight:600;\">კონტროლერი</span>"
 #, kde-format
 msgctxt "HTML:p"
 msgid "- Create a new controller on the scene."
-msgstr ""
+msgstr "- სცენაზე ახალი კონტროლერის შექმნა."
 
 #: tutorials/tutorial2.step:113
 #, kde-format
@@ -1454,6 +1489,8 @@ msgid ""
 "- Click on it with the right mouse button and choose \"Configure controller"
 "\" from the context menu."
 msgstr ""
+"- დააწკაპუნეთ მასზე მარჯვენა თაგუნას ღილაკით და აირჩიეთ კონტექსტური მენიუდან "
+"\"კონტროლერის მორგება\"."
 
 #: tutorials/tutorial2.step:114
 #, kde-format
@@ -1462,6 +1499,8 @@ msgid ""
 "- Select mass of the particle1 as the data source, adjust the range and "
 "assign keyboard shortcuts."
 msgstr ""
+"- აირჩიეთ ნაწილაკი1-ის მასა მონაცემების წყაროდ. გაასწორეთ შუალედი და "
+"მიანიჭეთ კლავიატურის მალსახმობები."
 
 #: tutorials/tutorial2.step:115
 #, kde-format
@@ -1470,6 +1509,8 @@ msgid ""
 "- Now try moving the slider and pressing the selected shortcuts while "
 "simulation is active."
 msgstr ""
+"- ახლა სცადეთ, გადაათრიოთ სლაიდერი და დააჭიროთ არჩეულ მალსახმობებს, სანამ "
+"სიმულაცია აქტიურია."
 
 #: tutorials/tutorial2.step:128
 #, kde-format
@@ -1481,7 +1522,7 @@ msgstr "<span style=\" font-weight:600;\">გრაფიკი</span>"
 #, kde-format
 msgctxt "HTML:p"
 msgid "- Create a graph for the velocity of particle1."
-msgstr ""
+msgstr "- გრაფიკის შექმნა ნაწილაკი1-ის სიჩქარისთვის."
 
 #: tutorials/tutorial2.step:130
 #, kde-format
@@ -1490,6 +1531,9 @@ msgid ""
 "- Place it below the position graph and make the ranges along X axis the "
 "same for the both graphs. See how the graphs relates to each other."
 msgstr ""
+"- მოათავსეთ ის მდებარეობის გრაფიკის ქვეშ და შეცვალეთ შუალედები X ღერძის "
+"გასწვრივ ორივე გრაფიკისთვის ტოლზე. ნახეთ, როგორ შეიცვლებიან გრაფიკები "
+"ერთმანეთთან შედარებით."
 
 #: tutorials/tutorial3.step:64
 #, kde-format
@@ -1516,6 +1560,8 @@ msgid ""
 "- When the rigid body is selected you see three gray handlers on it. Using "
 "them you can change velocity, angle and angular velocity of the body."
 msgstr ""
+"- როცა ხისტი სხეულია არჩეული, მასზე დაინახავთ სამ ყავისფერ სახელურს. მათი "
+"გამოყენებით, შეგიძლიათ, შეცვალოთ სხეულის სიჩქარე, კუთხე და კუთხოვანი სიჩქარე."
 
 #: tutorials/tutorial3.step:93
 #, kde-format
@@ -1530,6 +1576,8 @@ msgid ""
 "- Tracer is a tool to show trajectory of a given point on a rigid body. Turn "
 "on the simulation to see it in action."
 msgstr ""
+"- ტრეისერი ხელსაწყოა ხისტი სხეულის ტრაექტორიის საჩვენებლად. ჩართეთ "
+"სიმულაცია, რომ ნახოთ, როგორ მუშაობს ის."
 
 #: tutorials/tutorial3.step:95
 #, kde-format
@@ -1538,6 +1586,8 @@ msgid ""
 "- Change various properties like spring stiffness and see how they affect "
 "the trajectory."
 msgstr ""
+"- შეცვალეთ სხვადსხვა თვისებები, მაგალითად, ზამბარის სიხისტე, რომ ნახოთ, რა "
+"გავლენა აქვს მას ტრაექტორიაზე."
 
 #: tutorials/tutorial3.step:96
 #, kde-format
@@ -1546,6 +1596,8 @@ msgid ""
 "- Attach one more tracer to the box and compare trajectories of different "
 "points."
 msgstr ""
+"- მიამაგრეთ კიდევ ერთი ტრეისერი ყუთს და შეადარეთ სხვადასხვა წერტილის "
+"ტრაექტორიები."
 
 #: tutorials/tutorial4.step:77
 #, kde-format
@@ -1575,7 +1627,7 @@ msgstr "<span style=\" font-weight:600;\">წრფივი ძრავა</sp
 #, kde-format
 msgctxt "HTML:p"
 msgid "- A linear motor applies a constant force to a given point on a body."
-msgstr ""
+msgstr "- წრფივი ძრავა სხეულის მითითებულ წერტილს მუდმივი ძალით აწვება."
 
 #: tutorials/tutorial4.step:116
 #, kde-format
@@ -1584,12 +1636,14 @@ msgid ""
 "- You can change the force by dragging its handler \n"
 "while the motor is selected."
 msgstr ""
+"- ძალის შესვლა მისი სახელურის გადათრევით შეგიძლიათ,\n"
+"როცა ძრავა მონიშნულია."
 
 #: tutorials/tutorial4.step:118
 #, kde-format
 msgctxt "HTML:p"
 msgid "- You can change the point of application by dragging the force"
-msgstr ""
+msgstr "- ძალის წერტილის შეცვლა მისი გადათრევით შეგიძლიათ"
 
 #: tutorials/tutorial4.step:131
 #, kde-format
@@ -1601,13 +1655,13 @@ msgstr "<span style=\" font-weight:600;\">წრიული ძრავა</sp
 #, kde-format
 msgctxt "HTML:p"
 msgid "- A circular motor applies a constant angular momentum to a body."
-msgstr ""
+msgstr "- წრიული ძრავი სხეულზე მუდმივ მბრუნავ მომენტს იყენებს."
 
 #: tutorials/tutorial4.step:133
 #, kde-format
 msgctxt "HTML:p"
 msgid "- Try to attach a circular motor to the box and start simulation."
-msgstr ""
+msgstr "- სცადეთ, მიამაგროთ წრიული ძრავი ყუთს და გაუშვით სიმულაცია."
 
 #: tutorials/tutorial4.step:146
 #, kde-format
@@ -1622,6 +1676,8 @@ msgid ""
 "<span style=\" font-weight:400;\">- Global forces are forces that act on all "
 "bodies of a specific kind, for example weight force.</span>"
 msgstr ""
+"<span style=\" font-weight:400;\">- გლობალური ძალები ის ძალებია, რომლებიც "
+"აწვება ყველა სპეციფიკური ტიპის სხეულს. მაგალითად: წონის ძალა.</span>"
 
 #: tutorials/tutorial4.step:148
 #, kde-format
@@ -1630,12 +1686,14 @@ msgid ""
 "- By default all global forces in Step are turned off. To turn them on, just "
 "add an object for appropriate force to the scene."
 msgstr ""
+"- ნაგულისხმევად, Step-ში გლობალური ძალები გამორთულია. ჩასართავად უბრალოდ "
+"დაამატეთ ობიექტი შესაბამისი ძალისთვის სცენას."
 
 #: tutorials/tutorial4.step:149
 #, kde-format
 msgctxt "HTML:p"
 msgid "- Try to add WeightForce to the scene and start the simulation."
-msgstr ""
+msgstr "- სცადეთ, სცენაზე დაამატოთ სიმძიმის ძალა და გაუშვით სიმულაცია."
 
 #: tutorials/tutorial4.step:153
 #, kde-format
@@ -1660,6 +1718,7 @@ msgstr "<span style=\" font-size:12pt;\">შემაერთებლები
 msgctxt "HTML:p"
 msgid "- Create graphs to display coordinates of particles in double pendulum."
 msgstr ""
+"- შექმენით გრაფიკები, რომ აჩვენოთ ნაწილაკების კოორდინატები ორმაგი ქანქარით."
 
 #: tutorials/tutorial5.step:80
 #, kde-format
@@ -1668,6 +1727,8 @@ msgid ""
 "- Create triple pendulum by attaching one more particle to the particle2 "
 "using the stick."
 msgstr ""
+"- შექმენით სამმაგი ქანქარა კიდევ ერთი ნაწილაკის მიმაგრებით ნაწილაკი2-ზე "
+"ჯოხით."
 
 #: tutorials/tutorial5.step:81
 #, kde-format
@@ -1676,6 +1737,8 @@ msgid ""
 "- Remove anchor1 that fixes position of the box and attach a pin to the "
 "corner of the box. Try starting the simulation."
 msgstr ""
+"- წაშალეთ ღუზა1, რომელიც ამაგრებს ყუთს ადგილს და მიამაგრეთ ჭიკარტი ყუთის "
+"კუთხეში. სცადეთ, გაუშვათ სიმულაცია."
 
 #: tutorials/tutorial5.step:114
 #, kde-format
@@ -1690,18 +1753,20 @@ msgid ""
 "<span style=\" font-weight:400;\">- Joints are objects that attach bodies to "
 "each other or to the background.</span>"
 msgstr ""
+"<span style=\" font-weight:400;\">- შეერთებები ობიექტებია, რომლებსაც "
+"სხეულების ერთმანეთთან ან ფონთან მიერთება შეუძლიათ.</span>"
 
 #: tutorials/tutorial5.step:116
 #, kde-format
 msgctxt "HTML:p"
 msgid "- An anchor is a joint that fixes the position of the body."
-msgstr ""
+msgstr "- ღუზა შეერთებაა, რომელიც სხეულის მდებარეობას უცვლელს ხდის."
 
 #: tutorials/tutorial5.step:117
 #, kde-format
 msgctxt "HTML:p"
 msgid "- A pin is a joint that fixes one point of the body."
-msgstr ""
+msgstr "- ჭიკარტი შეერთებაა, რომელიც სხეულის ერთ წერტილს ამაგრებს ადგილზე."
 
 #: tutorials/tutorial5.step:118
 #, kde-format
@@ -1710,3 +1775,5 @@ msgid ""
 "- A stick is a joint that fixes the distance between two points on two "
 "bodies."
 msgstr ""
+"- ჯოხი შეერთებაა, რომელიც მუდმივს ხდის დაშორებას ორ წერტილს ან ორ სხეულს "
+"შორის."
