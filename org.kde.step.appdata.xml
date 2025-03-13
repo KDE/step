@@ -307,7 +307,7 @@
       <li xml:lang="sk">Mäkké (deformovateľné) telesá simulované ako používateľom upraviteľné systémy častíc-pružín, zvukové vlny</li>
       <li xml:lang="sl">Simulacija mehkih teles kot sistem delcev/vzmeti, ki jih lahko uredi uporabnik; zvočni valovi</li>
       <li xml:lang="sv">Mjuka (deformerbara) kroppar simulerade som system med partiklar och fjädrar redigerbara av användaren, ljudvågor</li>
-      <li xml:lang="tr">Yumuşak (form değiştirebilen), kullanıcının düzenleyebildiği parçacık-yay sistemleri, ses dalgaları</li>
+      <li xml:lang="tr">Yumuşak (form değiştirebilen), kullanıcının düzenleyebildiği parçacık–yay sistemleri, ses dalgaları</li>
       <li xml:lang="uk">М’які (пружні) тіла імітуються як система з часточок і пружин, з можливістю зміни її параметрів користувачем, рух якої описують гармонічні функції</li>
       <li xml:lang="x-test">xxSoft (deformable) bodies simulated as user-editable particles-springs system, sound wavesxx</li>
       <li xml:lang="zh-CN">柔（可变形）体模拟为用户可编辑的粒子弹簧系统，声波</li>
@@ -372,7 +372,7 @@
       <li xml:lang="sk">Konverzie jednotiek a výpočet výrazov: môžete zadať niečo ako "(2 dni + 3 hodiny) * 80 km/h" a bude to prijaté ako hodnota vzdialenosti (vyžaduje libqalculate)</li>
       <li xml:lang="sl">Pretvorbe enot in izračuni izrazov: če vnesete npr. "(2 dni + 3 ure) * 80 km/h", bo to obravnavano kot dolžinska vrednost (zahteva libqalculate)</li>
       <li xml:lang="sv">Enhetskonvertering och uttrycksberäkning: Du kan skriva in någonting i stil med "(2 dagar + 3 timmar) * 80 km/h", vilket accepteras som ett avståndsvärde (kräver libqalculate)</li>
-      <li xml:lang="tr">Birim dönüştürme ve ifade hesaplama: "(2 gün + 3 saat) * 80 km/sa" gibi bir ifade girebilirsiniz ve bu mesafe değeri (libqalculate gerektirir) olarak kabul edilecektir</li>
+      <li xml:lang="tr">Birim dönüştürme ve ifade hesaplama: “(2 gün + 3 saat) * 80 km/sa” gibi bir ifade girebilirsiniz ve bu mesafe değeri (libqalculate gerektirir) olarak kabul edilecektir</li>
       <li xml:lang="uk">Перетворення одиниць і обчислення виразів: ви можете ввести щось на зразок «(2 дні + 3 години) * 80 км/г» і цю величину буде прийнято як значення відстані (для того, щоб це працювало слід встановити libqalculate)</li>
       <li xml:lang="x-test">xxUnits conversion and expression calculation: you can enter something like "(2 days + 3 hours) * 80 km/h" and it will be accepted as distance value (requires libqalculate)xx</li>
       <li xml:lang="zh-CN">单位转换和表达式计算：您可以输入类似“（2天+3小时）*80公里/小时”的内容，它将被视为距离值（需要libqalculate库）</li>
@@ -404,7 +404,7 @@
       <li xml:lang="sk">Výpočet a šírenie chýb: môžete zadať hodnoty ako "1,3 ± 0,2" pre ľubovoľnú vlastnosť a chyby pre všetky závislé vlastnosti sa prepočítajú pomocou štatistických vzorcov</li>
       <li xml:lang="sl">Izračun napak in njihov prenos: vnesete lahko npr. "1.3 ± 0.2" za katerokoli vrednost in napake za vse odvisne lastnosti bodo izračunane s pomočjo statističnih enačb</li>
       <li xml:lang="sv">Felberäkning och felpropagering: Du kan skriva in värden som "1,3 ± 0,2" för alla egenskaper, och fel för alla beroende egenskaper beräknas med statistiska formler</li>
-      <li xml:lang="tr">Hata hesaplama ve yayılım: Her özellik için "1.3 ± 0.2" gibi değerler girebilirsiniz ve tüm bağımlı özelliklerin hataları istatistik formülleri kullanılarak hesaplanır</li>
+      <li xml:lang="tr">Hata hesaplama ve yayılım: Her özellik için “1,3 ± 0,2” gibi değerler girebilirsiniz ve tüm bağımlı özelliklerin hataları istatistik formülleri kullanılarak hesaplanır</li>
       <li xml:lang="uk">Обчислення і поширення похибок: ви можете вводити значення на зразок «1.3 ± 0.2» для будь-якої з властивостей, і похибки для всіх властивостей, що залежать від вказаної властивості, буде обчислено за статистичними формулами</li>
       <li xml:lang="x-test">xxErrors calculation and propagation: you can enter values like "1.3 ± 0.2" for any property and errors for all dependent properties will be calculated using statistical formulasxx</li>
       <li xml:lang="zh-CN">误差计算和传递：您可以对任何属性使用这种值，如“1.3±0.2”，所有相关属性的误差将使用统计公式计算</li>
