@@ -1,13 +1,13 @@
 # Copyright (C) 2024 This file is copyright:
 # This file is distributed under the same license as the step package.
 #
-# SPDX-FileCopyrightText: 2022, 2023, 2024 Emir SARI <emir_sari@icloud.com>
+# SPDX-FileCopyrightText: 2022, 2023, 2024, 2025 Emir SARI <emir_sari@icloud.com>
 msgid ""
 msgstr ""
 "Project-Id-Version: step\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2023-11-05 12:24+0000\n"
-"PO-Revision-Date: 2024-04-23 00:49+0300\n"
+"PO-Revision-Date: 2025-03-12 13:13+0300\n"
 "Last-Translator: Emir SARI <emir_sari@icloud.com>\n"
 "Language-Team: Turkish <kde-l10n-tr@kde.org>\n"
 "Language: tr\n"
@@ -15,7 +15,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
-"X-Generator: Lokalize 24.07.70\n"
+"X-Generator: Lokalize 25.07.70\n"
 
 #: examples/brownian.step:4 examples/doublependulum.step:4
 #: examples/fourpendula.step:4 examples/gas.step:4 examples/graph.step:4
@@ -575,7 +575,7 @@ msgstr "Faz diyagramı"
 #, kde-format
 msgctxt "HTML:p"
 msgid "Position - time"
-msgstr "Konum - zaman"
+msgstr "Konum–Zaman"
 
 #: examples/liquid.step:196
 #, kde-format
@@ -587,7 +587,7 @@ msgid ""
 msgstr ""
 "Boş uzayda bu küçük sıvı damlasının bırakılması, gazla aynı potansiyel "
 "kullanılarak benzetilir. Bazen bir parçacığın damladan ayrıldığına dikkat "
-"edin - bu buharlaşmadır."
+"edin — bu buharlaşmadır."
 
 #: examples/lissajous.step:39 examples/wave.step:423
 #, kde-format
@@ -616,8 +616,8 @@ msgid ""
 "how the curve will change. Try the following values:<br></br>1, 2.25, "
 "1.7778, 1.5625, 0.6944"
 msgstr ""
-"Lütfen yay1'in sertliğini değiştirmeye çalışın ve eğrinin\n"
-"nice değişeceğini görün: Şu değerleri deneyin:<br></br> 1, 2,25, 1,7778, "
+"Lütfen yay1’in sertliğini değiştirmeye çalışın ve eğrinin\n"
+"nice değişeceğini görün: Şu değerleri deneyin:<br></br>1, 2,25, 1,7778, "
 "1,5625, 0,6944"
 
 #: examples/motor.step:43 examples/motor1.step:23 tutorials/tutorial4.step:47
@@ -1420,7 +1420,7 @@ msgid ""
 "- Click on the \"Simulate\" button in the toolbar to start simulation. Click "
 "on the same button again to stop it."
 msgstr ""
-"- Benzetimi başlatmak için araç çubuğundaki \"Benzet\" düğmesine tıklayın. "
+"- Benzetimi başlatmak için araç çubuğundaki “Benzet” düğmesine tıklayın. "
 "Durdurmak için aynı düğmeye yeniden tıklayın."
 
 #: tutorials/tutorial1.step:134
@@ -1430,8 +1430,8 @@ msgid ""
 "- After stopping the simulation you can revert to the initial state by "
 "pressing Undo button."
 msgstr ""
-"- Benzetimi durdurduktan sonra Geri Al düğmesine basarak başlangıç durumuna "
-"dönebilirsiniz."
+"- Benzetimi durdurduktan sonra “Geri Al” düğmesine basarak başlangıç "
+"durumuna dönebilirsiniz."
 
 #: tutorials/tutorial2.step:82
 #, kde-format
@@ -1459,7 +1459,7 @@ msgid ""
 "bodies. You can also change it by pressing \"Q\" and \"W\" keys!"
 msgstr ""
 "- Sürgüyü gövdelerin hemen altına hareket ettirerek yayın sertliğini "
-"değiştirin. \"Q\" ve \"W\" düğmelerine basarak da değiştirebilirsiniz!"
+"değiştirin. “Q” ve “W” düğmelerine basarak da değiştirebilirsiniz!"
 
 #: tutorials/tutorial2.step:98
 #, kde-format
@@ -1491,7 +1491,7 @@ msgid ""
 "\" from the context menu."
 msgstr ""
 "- Farenin sağ düğmesiyle üzerine tıklayın ve bağlam menüsünden "
-"\"Denetleyiciyi Yapılandır\"ı seçin."
+"“Denetleyiciyi Yapılandır”ı seçin."
 
 #: tutorials/tutorial2.step:114
 #, kde-format
@@ -1500,7 +1500,7 @@ msgid ""
 "- Select mass of the particle1 as the data source, adjust the range and "
 "assign keyboard shortcuts."
 msgstr ""
-"- Veri kaynağı olarak parçacık1'in kütlesini seçin, aralığı ayarlayın ve "
+"- Veri kaynağı olarak parçacık1’in kütlesini seçin, aralığı ayarlayın ve "
 "klavye kısayollarını atayın."
 
 #: tutorials/tutorial2.step:115
@@ -1523,7 +1523,7 @@ msgstr "<span style=\" font-weight:600;\">Grafik</span>"
 #, kde-format
 msgctxt "HTML:p"
 msgid "- Create a graph for the velocity of particle1."
-msgstr "- parçacık1'in hızı için bir grafik oluşturun."
+msgstr "- parçacık1’in hızı için bir grafik oluşturun."
 
 #: tutorials/tutorial2.step:130
 #, kde-format
@@ -1680,7 +1680,7 @@ msgid ""
 "bodies of a specific kind, for example weight force.</span>"
 msgstr ""
 "<span style=\" font-weight:400;\">- Global kuvvetler, belirli bir türdeki "
-"tüm nesnelere etki eden kuvvetlerdir, örneğin ağırlık kuvveti.</span>"
+"tüm nesnelere etki eden kuvvetlerdir; örneğin, ağırlık kuvveti.</span>"
 
 #: tutorials/tutorial4.step:148
 #, kde-format
@@ -1690,7 +1690,7 @@ msgid ""
 "add an object for appropriate force to the scene."
 msgstr ""
 "- Öntanımlı olarak Step içindeki tüm global kuvvetler kapalıdır. Bunları "
-"açmak için, sahneye uygun kuvvet için bir nesne eklemeniz yeterlidir."
+"açmak için sahneye uygun kuvvet için bir nesne eklemeniz yeterlidir."
 
 #: tutorials/tutorial4.step:149
 #, kde-format
@@ -1731,7 +1731,7 @@ msgid ""
 "- Create triple pendulum by attaching one more particle to the particle2 "
 "using the stick."
 msgstr ""
-"- Çubuğu kullanarak parçacık2'ye bir parçacık daha ekleyerek üçlü sarkaç "
+"- Çubuğu kullanarak parçacık2’ye bir parçacık daha ekleyerek üçlü sarkaç "
 "oluşturun."
 
 #: tutorials/tutorial5.step:81
@@ -1741,7 +1741,7 @@ msgid ""
 "- Remove anchor1 that fixes position of the box and attach a pin to the "
 "corner of the box. Try starting the simulation."
 msgstr ""
-"- Kutunun konumunu sabitleyen çapa1'i çıkarın ve kutunun köşesine bir pim "
+"- Kutunun konumunu sabitleyen çapa1’i çıkarın ve kutunun köşesine bir pim "
 "takın. Benzetimi başlatmayı deneyin."
 
 #: tutorials/tutorial5.step:114

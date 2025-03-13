@@ -6,13 +6,13 @@
 # Muhammet Kara <muhammetk@gmail.com>, 2009.
 # obsoleteman <tulliana@gmail.com>, 2008-2009.
 # Volkan Gezer <volkangezer@gmail.com>, 2013-2014.
-# SPDX-FileCopyrightText: 2022, 2023, 2024 Emir SARI <emir_sari@icloud.com>
+# SPDX-FileCopyrightText: 2022, 2023, 2024, 2025 Emir SARI <emir_sari@icloud.com>
 msgid ""
 msgstr ""
 "Project-Id-Version: kdeedu-kde4\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2016-06-22 08:50+0000\n"
-"PO-Revision-Date: 2024-02-08 17:27+0300\n"
+"PO-Revision-Date: 2025-03-12 13:05+0300\n"
 "Last-Translator: Emir SARI <emir_sari@icloud.com>\n"
 "Language-Team: Turkish <kde-l10n-tr@kde.org>\n"
 "Language: tr\n"
@@ -21,7 +21,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
 "X-Qt-Contexts: true\n"
-"X-Generator: Lokalize 24.01.95\n"
+"X-Generator: Lokalize 25.07.70\n"
 
 #: body.cc:13
 msgctxt "ObjectClass|"
@@ -325,7 +325,7 @@ msgstr "1/m²"
 #: gas.cc:42
 msgctxt "PropertyDescription|"
 msgid "Concentration of particles in the measureRect"
-msgstr "dörtgenÖlçümü'ndeki parçacıkların yoğunluğu"
+msgstr "dörtgenÖlçümü’ndeki parçacıkların yoğunluğu"
 
 #: gas.cc:43
 msgctxt "PropertyName|"
@@ -340,7 +340,7 @@ msgstr "Pa"
 #: gas.cc:44
 msgctxt "PropertyDescription|"
 msgid "Pressure of particles in the measureRect"
-msgstr "dörtgenÖlçümü'ndeki parçacıkların basıncı"
+msgstr "dörtgenÖlçümü’ndeki parçacıkların basıncı"
 
 #: gas.cc:45
 msgctxt "PropertyName|"
@@ -365,7 +365,7 @@ msgstr "dörtgenOrtalamaDevinimselEnerjisi"
 #: gas.cc:48
 msgctxt "PropertyDescription|"
 msgid "Mean kinetic energy of particles in the measureRect"
-msgstr "dörtgenÖlçümü'ndeki parçacıkların ortalama devinimsel enerjisi"
+msgstr "dörtgenÖlçümü’ndeki parçacıkların ortalama devinimsel enerjisi"
 
 #: gas.cc:49
 msgctxt "PropertyName|"
@@ -381,7 +381,7 @@ msgstr "m/sn"
 #: gas.cc:50
 msgctxt "PropertyDescription|"
 msgid "Mean velocity of particles in the measureRect"
-msgstr "dörtgenÖlçümü'ndeki parçacıkların ortalama hızı"
+msgstr "dörtgenÖlçümü’ndeki parçacıkların ortalama hızı"
 
 #: gas.cc:51
 msgctxt "PropertyName|"
@@ -397,7 +397,7 @@ msgstr "kg"
 #: gas.cc:52
 msgctxt "PropertyDescription|"
 msgid "Mean mass of particles in the measureRect"
-msgstr "dörtgenÖlçümü'ndeki parçacıkların ortalama kütlesi"
+msgstr "dörtgenÖlçümü’ndeki parçacıkların ortalama kütlesi"
 
 #: gas.cc:53
 msgctxt "PropertyName|"
@@ -407,7 +407,7 @@ msgstr "dörtgenKütlesi"
 #: gas.cc:54
 msgctxt "PropertyDescription|"
 msgid "Total mass of particles in the measureRect"
-msgstr "dörtgenÖlçümü'ndeki parçacıkların toplam kütlesi"
+msgstr "dörtgenÖlçümü’ndeki parçacıkların toplam kütlesi"
 
 #: gas.cc:57
 msgctxt "ObjectClass|"
@@ -427,7 +427,7 @@ msgstr "dörtgenBasınçSapması"
 #: gas.cc:59
 msgctxt "PropertyDescription|"
 msgid "Variance of pressure of particles in the measureRect"
-msgstr "dörtgenÖlçümü'ndeki parçacıkların basıncındaki sapma"
+msgstr "dörtgenÖlçümü’ndeki parçacıkların basıncındaki sapma"
 
 #: gas.cc:60
 msgctxt "PropertyName|"
@@ -437,7 +437,7 @@ msgstr "dörtgenSıcaklıkSapması"
 #: gas.cc:61
 msgctxt "PropertyDescription|"
 msgid "Variance of temperature of particles in the measureRect"
-msgstr "dörtgenÖlçümü'ndeki parçacıkların sıcaklığındaki sapma"
+msgstr "dörtgenÖlçümü’ndeki parçacıkların sıcaklığındaki sapma"
 
 #: gas.cc:62
 msgctxt "PropertyName|"
@@ -447,7 +447,7 @@ msgstr "dörtgenOrtalamaKinetikEnerjiSapması"
 #: gas.cc:63
 msgctxt "PropertyDescription|"
 msgid "Variance of mean kinetic energy of particles in the measureRect"
-msgstr "dörtgenÖlçümü'ndeki parçacıkların ortalama kinetik enerjisindeki sapma"
+msgstr "dörtgenÖlçümü’ndeki parçacıkların ortalama kinetik enerjisindeki sapma"
 
 #: gas.cc:64
 msgctxt "PropertyName|"
@@ -457,7 +457,7 @@ msgstr "dörtgenOrtalamaHızSapması"
 #: gas.cc:65
 msgctxt "PropertyDescription|"
 msgid "Variance of mean velocity of particles in the measureRect"
-msgstr "dörtgenÖlçümü'ndeki parçacıkların ortalama hızlarındaki sapma"
+msgstr "dörtgenÖlçümü’ndeki parçacıkların ortalama hızlarındaki sapma"
 
 #: gas.cc:66
 msgctxt "PropertyName|"
@@ -467,7 +467,7 @@ msgstr "dörtgenOrtalamaParçacıkKütlesiSapması"
 #: gas.cc:67
 msgctxt "PropertyDescription|"
 msgid "Variance of mean mass of particles in the measureRect"
-msgstr "dörtgenÖlçümü'ndeki parçacıkların ortalama kütlelerindeki sapma"
+msgstr "dörtgenÖlçümü’ndeki parçacıkların ortalama kütlelerindeki sapma"
 
 #: gas.cc:68
 msgctxt "PropertyName|"
@@ -477,7 +477,7 @@ msgstr "dörtgenKütleSapması"
 #: gas.cc:69
 msgctxt "PropertyDescription|"
 msgid "Variance of total mass of particles in the measureRect"
-msgstr "dörtgenÖlçümü'ndeki parçacıkların toplam kütlelerindeki sapma"
+msgstr "dörtgenÖlçümü’ndeki parçacıkların toplam kütlelerindeki sapma"
 
 #: gravitation.cc:15
 msgctxt "ObjectClass|"
@@ -1337,7 +1337,7 @@ msgstr "kg m²"
 #: rigidbody.cc:32 softbody.cc:40
 msgctxt "PropertyDescription|"
 msgid "Inertia \"tensor\" of the body"
-msgstr "Gövdenin eylemsizlik \"tensörü\""
+msgstr "Gövdenin eylemsizlik “tensörü”"
 
 #: rigidbody.cc:35
 msgctxt "PropertyDescription|"
@@ -2258,25 +2258,25 @@ msgstr "Dosya, bir StepCoreXML dosyası değil."
 #, qt-format
 msgctxt "QObject|"
 msgid "Unknown item type \"%1\""
-msgstr "Bilinmeyen öge türü \"%1\" "
+msgstr "Bilinmeyen öge türü “%1”"
 
 #: xmlfile.cc:258
 #, qt-format
 msgctxt "QObject|"
 msgid "Unknown solver type \"%1\""
-msgstr "Bilinmeyen çözücü türü \"%1\""
+msgstr "Bilinmeyen çözücü türü “%1”"
 
 #: xmlfile.cc:272
 #, qt-format
 msgctxt "QObject|"
 msgid "Unknown collisionSolver type \"%1\""
-msgstr "Bilinmeyen çarpışmaÇözücüsü türü \"%1\""
+msgstr "Bilinmeyen çarpışmaÇözücüsü türü “%1”"
 
 #: xmlfile.cc:286
 #, qt-format
 msgctxt "QObject|"
 msgid "Unknown constraint solver type \"%1\""
-msgstr "Bilinmeyen kısıtlama çözücüsü türü \"%1\""
+msgstr "Bilinmeyen kısıtlama çözücüsü türü “%1”"
 
 #: xmlfile.cc:314
 #, qt-format
@@ -2294,7 +2294,7 @@ msgstr "%1 için benzersiz olmayan kimlik özniteliği değeri"
 #, qt-format
 msgctxt "QObject|"
 msgid "Property \"%1\" of \"%2\" has illegal value"
-msgstr "\"%2\" için \"%1\" özelliğinde izin verilmeyen değer var"
+msgstr "“%2” için “%1” özelliğinde izin verilmeyen değer var"
 
 #: xmlfile.cc:374
 msgctxt "QObject|"
