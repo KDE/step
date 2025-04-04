@@ -6,31 +6,32 @@
 # Viesturs Zarins <viesturs.zarins@mii.lu.lv>, 2008.
 # Maris Nartiss <maris.kde@gmail.com>, 2008.
 # Viesturs Zariņš <viesturs.zarins@mii.lu.lv>, 2009.
+# SPDX-FileCopyrightText: 2025 Toms Trasuns <toms.trasuns@posteo.net>
 msgid ""
 msgstr ""
 "Project-Id-Version: step\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2025-03-11 00:38+0000\n"
-"PO-Revision-Date: 2009-10-22 20:22+0300\n"
-"Last-Translator: Viesturs Zariņš <viesturs.zarins@mii.lu.lv>\n"
-"Language-Team: Latvian <locale@laka.lv>\n"
+"PO-Revision-Date: 2025-04-01 19:20+0300\n"
+"Last-Translator: Toms Trasuns <toms.trasuns@posteo.net>\n"
+"Language-Team: Latvian <kde-i18n-doc@kde.org>\n"
 "Language: lv\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Lokalize 1.0\n"
+"X-Generator: Lokalize 24.12.3\n"
 "Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n != 0 ? 1 : "
 "2);\n"
 
 #, kde-format
 msgctxt "NAME OF TRANSLATORS"
 msgid "Your names"
-msgstr "Viesturs Zariņš"
+msgstr "Viesturs Zariņš, Toms Trasūns"
 
 #, kde-format
 msgctxt "EMAIL OF TRANSLATORS"
 msgid "Your emails"
-msgstr "viesturs.zarins@mii.lu.lv"
+msgstr "viesturs.zarins@mii.lu.lv, toms.trasuns@posteo.net"
 
 #. i18n: ectx: property (title), widget (QGroupBox, groupBox)
 #: step/configure_controller.ui:28 step/configure_graph.ui:28
@@ -49,13 +50,13 @@ msgstr "Diapazons"
 #: step/configure_controller.ui:59
 #, kde-format
 msgid "min:"
-msgstr "min:"
+msgstr "min.:"
 
 #. i18n: ectx: property (text), widget (QLabel, label_6)
 #: step/configure_controller.ui:75
 #, kde-format
 msgid "max:"
-msgstr "maks:"
+msgstr "maks.:"
 
 #. i18n: ectx: property (text), widget (QLineEdit, lineEditMinX)
 #. i18n: ectx: property (text), widget (QLineEdit, lineEditMinY)
@@ -82,7 +83,7 @@ msgstr "1"
 #: step/configure_controller.ui:132
 #, kde-format
 msgid "Shortcuts"
-msgstr "Īsceļi"
+msgstr "Saīsnes"
 
 #. i18n: ectx: property (text), widget (QLabel, label)
 #: step/configure_controller.ui:138
@@ -106,21 +107,21 @@ msgstr "Solis:"
 #: step/configure_controller.ui:192
 #, kde-format
 msgid "0.1"
-msgstr "0.1"
+msgstr "0,1"
 
 #. i18n: ectx: property (text), widget (QLabel, label)
 #. i18n: ectx: property (text), widget (QLabel, label_3)
 #: step/configure_graph.ui:34 step/configure_graph.ui:109
 #, kde-format
 msgid "X :"
-msgstr "X :"
+msgstr "X:"
 
 #. i18n: ectx: property (text), widget (QLabel, label_2)
 #. i18n: ectx: property (text), widget (QLabel, label_4)
 #: step/configure_graph.ui:51 step/configure_graph.ui:161
 #, kde-format
 msgid "Y :"
-msgstr "Y :"
+msgstr "Y:"
 
 #. i18n: ectx: property (title), widget (QGroupBox, groupBox_2)
 #: step/configure_graph.ui:71
@@ -132,20 +133,20 @@ msgstr "Diapazoni"
 #: step/configure_graph.ui:83
 #, kde-format
 msgid "Min:"
-msgstr ""
+msgstr "Min.:"
 
 #. i18n: ectx: property (text), widget (QLabel, label_6)
 #: step/configure_graph.ui:99
 #, kde-format
 msgid "Max:"
-msgstr ""
+msgstr "Maks.:"
 
 #. i18n: ectx: property (text), widget (QCheckBox, checkBoxAutoX)
 #. i18n: ectx: property (text), widget (QCheckBox, checkBoxAutoY)
 #: step/configure_graph.ui:122 step/configure_graph.ui:174
 #, kde-format
 msgid "auto"
-msgstr "auto"
+msgstr "autom."
 
 #. i18n: ectx: property (title), widget (QGroupBox, groupBox_2)
 #. i18n: ectx: property (title), widget (QGroupBox, groupBox)
@@ -184,32 +185,31 @@ msgstr "Attēlošanas precizitāte:"
 #: step/configure_step_general.ui:52
 #, kde-format
 msgid "Show scene axes"
-msgstr "Rādīt scēnas asis"
+msgstr "Rādīt ainas asis"
 
 #. i18n: ectx: property (text), widget (QCheckBox, kcfg_showCreationTips)
 #: step/configure_step_general.ui:59
 #, kde-format
 msgid "Show tips when creating objects"
-msgstr "Rādīt padomus veidojot objektus"
+msgstr "Rādīt padomus, veidojot objektus"
 
 #. i18n: ectx: property (text), widget (QCheckBox, kcfg_enableOpenGL)
 #: step/configure_step_general.ui:66
 #, kde-format
 msgid "Enable OpenGL (EXPERIMENTAL)"
-msgstr "Ieslēgt OpenGL (EKSERIMENTĀLS)"
+msgstr "Ieslēgt „OpenGL“ (EKSPERIMENTĀLI)"
 
 #. i18n: ectx: property (text), widget (QCheckBox, kcfg_wikiExternal)
 #: step/configure_step_general.ui:73
 #, kde-format
 msgid "Open wikipedia in external browser"
-msgstr "Atvērt Wikipēdiju ārējā pārlūkā"
+msgstr "Atvērt Vikipēdiju ārējā pārlūkā"
 
 #. i18n: ectx: property (text), widget (QLabel, label_5)
 #: step/create_gas_particles.ui:34
-#, fuzzy, kde-format
-#| msgid "Area"
+#, kde-format
 msgid "Area:"
-msgstr "Laukums"
+msgstr "Laukums:"
 
 #. i18n: ectx: property (toolTip), widget (QLineEdit, lineEditVolume)
 #: step/create_gas_particles.ui:41
@@ -240,7 +240,7 @@ msgstr "20"
 #: step/create_gas_particles.ui:91
 #, kde-format
 msgid "Concentration:"
-msgstr "Koncentrācija"
+msgstr "Koncentrācija:"
 
 #. i18n: ectx: property (text), widget (QLabel, label_2)
 #: step/create_gas_particles.ui:112
@@ -290,7 +290,7 @@ msgstr "Pozīcija:"
 #: step/create_softbody_items.ui:54
 #, kde-format
 msgid "Body size:"
-msgstr "Izmērs:"
+msgstr "Ķermeņa izmērs:"
 
 #. i18n: ectx: property (text), widget (QLineEdit, lineEditSize)
 #: step/create_softbody_items.ui:61
@@ -326,7 +326,7 @@ msgstr "Ķermeņa mīkstums:"
 #: step/create_softbody_items.ui:112
 #, kde-format
 msgid "0.3"
-msgstr "0.3"
+msgstr "0,3"
 
 #. i18n: ectx: property (text), widget (QLabel, label2)
 #: step/create_softbody_items.ui:122
@@ -341,8 +341,7 @@ msgid "(4,4)"
 msgstr "(4,4)"
 
 #: step/gascreationdialog.cc:31
-#, fuzzy, kde-format
-#| msgid "Create gas particles"
+#, kde-format
 msgctxt "@title:window"
 msgid "Create Gas Particles"
 msgstr "Izveidot gāzes daļiņas"
@@ -353,7 +352,7 @@ msgid ""
 "Press left mouse button to position\n"
 "top left corner of a region for %1"
 msgstr ""
-"Nospiediet peles kreiso pogu, lai\n"
+"Klikšķini peles kreiso pogu, lai\n"
 "novietotu %1 reģiona augšējo kreiso stūri"
 
 #: step/gasgraphics.cc:43 step/motorgraphics.cc:30 step/motorgraphics.cc:211
@@ -370,13 +369,13 @@ msgid ""
 "Move mouse and release left mouse button to position\n"
 "bottom right corner of the region for %1"
 msgstr ""
-"Pārvietojiet peli un atlaidiet peles kreiso pogu, lai\n"
-"novietotu %1 reģione apakšējo labo stūri"
+"Pārvieto peli un atlaid peles kreiso pogu, lai\n"
+"novietotu %1 reģiona apakšējo labo stūri"
 
 #: step/gasgraphics.cc:85
 #, kde-format
 msgid "Please fill in the parameters for the gas particles."
-msgstr "Lūdzu aizpildiet gāzes daļiņu parametrus."
+msgstr "Aizpildi gāzes daļiņu parametrus."
 
 #: step/gasgraphics.cc:94 step/polygongraphics.cc:196
 #: step/polygongraphics.cc:335 step/polygongraphics.cc:490
@@ -384,11 +383,10 @@ msgstr "Lūdzu aizpildiet gāzes daļiņu parametrus."
 #: step/worldgraphics.cc:122 step/worldgraphics.cc:157
 #, kde-format
 msgid "%1 named '%2' created"
-msgstr "Izveidots %1 saukts par '%2'"
+msgstr "Izveidots „%1“, kas nosaukts „%2“"
 
 #: step/gasgraphics.cc:282
-#, fuzzy, kde-format
-#| msgid "Create particles..."
+#, kde-format
 msgid "Create Particles..."
 msgstr "Izveidot daļiņas..."
 
@@ -398,22 +396,21 @@ msgid ""
 "You are trying to create a very large number of particles. This will make "
 "simulation very slow. Do you want to continue?"
 msgstr ""
-"Jūs mēģinat simulēt ļoti lielu daļiņu daudzumu. Tas padarīs simulāciju ļoti "
+"Jūs mēģināt simulēt ļoti lielu daļiņu daudzumu. Tas padarīs simulāciju ļoti "
 "lēnu. Vai vēlaties turpināt?"
 
 #: step/gasgraphics.cc:354 step/mainwindow.cc:402
 #, kde-format
 msgid "Warning - Step"
-msgstr "Brīdinājums - Step"
+msgstr "Brīdinājums — „Step“"
 
 #: step/gasgraphics.cc:365
 #, kde-format
 msgid "Create particles for %1"
-msgstr "Izveidot %1 daļiņas"
+msgstr "Izveidot „%1“ daļiņas"
 
 #: step/infobrowser.cc:26
-#, fuzzy, kde-format
-#| msgid "Context info"
+#, kde-format
 msgid "Context Info"
 msgstr "Konteksta informācija"
 
@@ -430,16 +427,15 @@ msgstr "Uz priekšu"
 #: step/infobrowser.cc:50
 #, kde-format
 msgid "Sync selection"
-msgstr "Sinhrozinēt izvēlētos"
+msgstr "Sinhronizēt izvēlētos"
 
 #: step/infobrowser.cc:52
 #, kde-format
 msgid "Follow selection"
-msgstr "Sekot izvēlētajiem"
+msgstr "Sekot atlasei"
 
 #: step/infobrowser.cc:57
-#, fuzzy, kde-format
-#| msgid "Open in browser"
+#, kde-format
 msgid "Open in Browser"
 msgstr "Atvērt pārlūkā"
 
@@ -461,16 +457,15 @@ msgstr "Dokumentācijas kļūda"
 #: step/infobrowser.cc:164
 #, kde-format
 msgid "Documentation for %1 not available. "
-msgstr "Nav pieejama %1 dokumentācija. "
+msgstr "Nav pieejama „%1“ dokumentācija. "
 
 #: step/infobrowser.cc:165
-#, fuzzy, kde-format
-#| msgid ""
-#| "You can help <a href=\"http://edu.kde.org/step\">Step</a> by writing it!"
+#, kde-format
 msgid ""
 "You can help <a href=\"https://edu.kde.org/step\">Step</a> by writing it!"
 msgstr ""
-"Jūs varat palīdzēt <a href=\"http://edu.kde.org/step\">Step</a> to uzrakstīt!"
+"Varat palīdzēt „<a href=\"http://edu.kde.org/step\">Step</a>“ izstrādē un to "
+"uzrakstīt!"
 
 #: step/itempalette.cc:177
 #, kde-format
@@ -480,12 +475,12 @@ msgstr "Palete"
 #: step/itempalette.cc:196
 #, kde-format
 msgid "Pointer"
-msgstr "Kursors"
+msgstr "Rādītājs"
 
 #: step/itempalette.cc:197
 #, kde-format
 msgid "Selection pointer"
-msgstr "Iezīmēšanas kursors"
+msgstr "Iezīmēšanas rādītājs"
 
 #: step/itempalette.cc:220
 #, kde-format
@@ -495,17 +490,17 @@ msgstr "Rādīt tekstu"
 #: step/jointgraphics.cc:158 step/springgraphics.cc:30
 #, kde-format
 msgid "Move end of %1"
-msgstr "Pārvietot %1 galu"
+msgstr "Pārvietot „%1“ galu"
 
 #: step/latexformula.cc:30
 #, kde-format
 msgid "can not launch %1"
-msgstr "neizdevās palaist %1"
+msgstr "neizdevās palaist „%1“"
 
 #: step/latexformula.cc:40
 #, kde-format
 msgid "error running %1"
-msgstr "kļūda darbinot %1"
+msgstr "kļūda darbinot „%1“"
 
 #: step/latexformula.cc:44
 #, kde-format
@@ -519,17 +514,17 @@ msgstr ""
 #: step/latexformula.cc:49
 #, kde-format
 msgid "%1 did not create output file"
-msgstr "%1 neizveidoja izvada failu"
+msgstr "%1 neizveidoja izvades datni"
 
 #: step/latexformula.cc:81
 #, kde-format
 msgid "can not open temporary file"
-msgstr "neizdevās atvērt pagaidu failu"
+msgstr "neizdevās atvērt pagaidu datni"
 
 #: step/latexformula.cc:115
 #, kde-format
 msgid "can not open result file"
-msgstr "neizdevās atvērt rezultātu failu"
+msgstr "neizdevās atvērt rezultātu datni"
 
 #: step/main.cc:31
 #, kde-format
@@ -549,27 +544,27 @@ msgstr "(C) 2007 Vladimir Kuznetsov"
 #: step/main.cc:37
 #, kde-format
 msgid "https://edu.kde.org/step"
-msgstr ""
+msgstr "https://edu.kde.org/step"
 
 #: step/main.cc:42
 #, kde-format
 msgid "Original author"
-msgstr "Sākotnējais autors"
+msgstr "Sākotnējās versijas autors"
 
 #: step/main.cc:43
 #, kde-format
 msgid "ks.vladimir@gmail.com"
-msgstr ""
+msgstr "ks.vladimir@gmail.com"
 
 #: step/main.cc:48
 #, kde-format
 msgid "Code contributions"
-msgstr "Koda devumi"
+msgstr "Koda pienesumi"
 
 #: step/main.cc:49
 #, kde-format
 msgid "cniehaus@kde.org"
-msgstr ""
+msgstr "cniehaus@kde.org"
 
 #: step/main.cc:59
 #, kde-format
@@ -599,12 +594,12 @@ msgstr "Dalīties ar a&ktīvo eksperimentu..."
 #: step/mainwindow.cc:160
 #, kde-format
 msgid "&Download New Experiments..."
-msgstr "Lejpupielā&dēt jaunus eksperimentus..."
+msgstr "Lejupielā&dēt jaunus eksperimentus..."
 
 #: step/mainwindow.cc:167
 #, kde-format
 msgid "Redo"
-msgstr "Pārdarīt"
+msgstr "Atatsaukt"
 
 #: step/mainwindow.cc:167
 #, kde-format
@@ -629,37 +624,37 @@ msgstr "Palaist programmu"
 #: step/mainwindow.cc:206
 #, kde-format
 msgid "Run: Execute the program"
-msgstr "Darbināt: Palaist programmu"
+msgstr "Darbināt: palaist programmu"
 
 #: step/mainwindow.cc:208
 #, kde-format
 msgctxt "@option:radio"
 msgid "1x Speed"
-msgstr "1x ātrums"
+msgstr "1✕ ātrums"
 
 #: step/mainwindow.cc:216
 #, kde-format
 msgctxt "@option:radio choose the slow speed"
 msgid "2x Speed"
-msgstr "2x ātrums"
+msgstr "2✕ ātrums"
 
 #: step/mainwindow.cc:223
 #, kde-format
 msgctxt "@option:radio"
 msgid "4x Speed"
-msgstr "4x ātrums"
+msgstr "4✕ ātrums"
 
 #: step/mainwindow.cc:230
 #, kde-format
 msgctxt "@option:radio"
 msgid "8x Speed"
-msgstr "8x ātrums"
+msgstr "8✕ ātrums"
 
 #: step/mainwindow.cc:237
 #, kde-format
 msgctxt "@option:radio"
 msgid "16x Speed"
-msgstr "16x ātrums"
+msgstr "16✕ ātrums"
 
 #: step/mainwindow.cc:267
 #, kde-format
@@ -670,45 +665,44 @@ msgstr "nenosaukts.step"
 #: step/mainwindow.cc:293
 #, kde-format
 msgid "<new file>"
-msgstr "<jauns fails>"
+msgstr "<jauna datne>"
 
 #: step/mainwindow.cc:307
 #, kde-format
 msgctxt "@title:window"
 msgid "Open Step File"
-msgstr ""
+msgstr "Atvērt „Step“ datni"
 
 #: step/mainwindow.cc:307 step/mainwindow.cc:342
-#, fuzzy, kde-format
-#| msgid "*.step|Step files (*.step)"
+#, kde-format
 msgid "Step files (*.step)"
-msgstr "*.step|Step faili (*.step)"
+msgstr "„Step“ datnes (*.step)"
 
 #: step/mainwindow.cc:317 step/mainwindow.cc:358
 #, kde-format
 msgid "Cannot open file '%1'"
-msgstr "Neizdevās atvērt failu '%1'"
+msgstr "Neizdevās atvērt datni „%1“"
 
 #: step/mainwindow.cc:322
 #, kde-format
 msgid "Cannot parse file '%1': %2"
-msgstr "Neizvevās analizēt failu '%1': %2"
+msgstr "Neizdevās parsēt datni „%1“: %2"
 
 #: step/mainwindow.cc:331
 #, kde-format
 msgid "<open file: %1>"
-msgstr "<atvērt failu: %1>"
+msgstr "<atvērt datni: %1>"
 
 #: step/mainwindow.cc:342
 #, kde-format
 msgctxt "@title:window"
 msgid "Save Step File"
-msgstr ""
+msgstr "Saglabāt „Step“ datni"
 
 #: step/mainwindow.cc:364
 #, kde-format
 msgid "Cannot save file '%1': %2"
-msgstr "Neizdevās saglabāt failu '%1': %2"
+msgstr "Neizdevās saglabāt datni „%1“: %2"
 
 #: step/mainwindow.cc:401
 #, kde-format
@@ -722,12 +716,12 @@ msgstr ""
 #: step/mainwindow.cc:449
 #, kde-format
 msgid "Uploading is still not implemented in kdelibs."
-msgstr "Augšupielādei vēl nav atbalsta no kdelibs."
+msgstr "„kdelibs“ vēl nespēj nodrošināt augšupielādi."
 
 #: step/mainwindow.cc:450
 #, kde-format
 msgid "Sorry - Step"
-msgstr "Atvainojiet - Step"
+msgstr "Atvainojamies — „Step“"
 
 #: step/mainwindow.cc:477
 #, kde-format
@@ -746,8 +740,8 @@ msgid ""
 "tolerance.\n"
 "Please check solver settings and try again."
 msgstr ""
-"Nevar pabeigt šo soli, jo lokālā kļūda ir lielāka par lokālo tolderanci.\n"
-"Lūdzu pārbaudiet risinātāja iestatījumus un mēģiniet vēlreiz."
+"Šo soli neizdodas pabeigt, jo lokālā kļūda pārsniedz lokālo pielaidi.\n"
+"Pārbaudi risinātāja iestatījumus un mēģini vēlreiz."
 
 #: step/mainwindow.cc:497
 #, kde-format
@@ -756,13 +750,13 @@ msgid ""
 "resolved automatically.\n"
 "Please move colliding objects apart and try again."
 msgstr ""
-"Nevar pabeigt šo soli, jo ir sadursmes, ko nevar automātiski atrisināt.\n"
-"Lūdzu pārvietojiet sadūrušos objektus nostāk un mēģiniet vēlreiz."
+"Šo soli neizdodas pabeigt, jo nav automātiski atrisināmu sadursmju.\n"
+"Pārvieto objektus, kas saduras, tālāk vienu no otra un mēģini vēlreiz."
 
 #: step/mainwindow.cc:501
 #, kde-format
 msgid "Cannot finish this step because of an unknown error."
-msgstr "Nevar pabeigt šo soli, nezināma kļūda."
+msgstr "Nevar pabeigt šo soli — nezināma kļūda."
 
 #: step/mainwindow.cc:534
 #, kde-format
@@ -772,17 +766,17 @@ msgstr "&Atsaukt"
 #: step/mainwindow.cc:535
 #, kde-format
 msgid "&Undo: %1"
-msgstr "&Atskaut: %1"
+msgstr "&Atsaukt: %1"
 
 #: step/mainwindow.cc:540
 #, kde-format
 msgid "Re&do"
-msgstr "Pār&darīt"
+msgstr "A&tatsaukt"
 
 #: step/mainwindow.cc:541
 #, kde-format
 msgid "Re&do: %1"
-msgstr "Pār&darīt: %1"
+msgstr "A&tatsaukt: %1"
 
 #: step/mainwindow.cc:572
 #, kde-format
@@ -793,17 +787,17 @@ msgstr "Pamata"
 #: step/stepgraphicsitem.cc:194 step/stepgraphicsitem.cc:206
 #, kde-format
 msgid "Move %1"
-msgstr "Pārvietot %1"
+msgstr "Pārvietoja „%1“"
 
 #: step/polygongraphics.cc:149
 #, kde-format
 msgid "Press left mouse button to position a center of a %1"
-msgstr "Nospiediet peles kreiso pogu, lai novietotu %1 centru"
+msgstr "Klikšķini peles kreiso pogu, lai novietotu „%1“ centru"
 
 #: step/polygongraphics.cc:170
 #, kde-format
 msgid "Move mouse and release left mouse button to define a radius of the %1"
-msgstr "Velciet peli un atlaidiet peles kreiso pogu, lai uzstādītu %1 rādiusu"
+msgstr "Velc peli un atlaid peles kreiso pogu, lai noteiktu „%1“ rādiusu"
 
 #: step/polygongraphics.cc:283
 #, kde-format
@@ -811,8 +805,8 @@ msgid ""
 "Press left mouse button to position\n"
 "top left corner of a %1"
 msgstr ""
-"Nospiediet peles kreiso pogu, lai novietotu\n"
-"%1 augšējo kreiso stūri"
+"Klikšķini peles kreiso pogu, lai novietotu\n"
+"„%1“ augšējo kreiso stūri"
 
 #: step/polygongraphics.cc:305
 #, kde-format
@@ -820,20 +814,20 @@ msgid ""
 "Move mouse and release left mouse button to position\n"
 "bottom right corner of the %1"
 msgstr ""
-"Velciet peli un atlaidiet kreiso pogu, lai\n"
-"%1 novietotu apakšējo kreiso stūri"
+"Velc peli un atlaid peles kreiso pogu, lai\n"
+"novietotu „%1“ apakšējo kreiso stūri"
 
 #: step/polygongraphics.cc:428
 #, kde-format
 msgid "Click on the scene to create a first vertex of %1"
-msgstr "Nospiediet uz scēnas, lai izveidotu pirmo %1 virsotni"
+msgstr "Klikšķini uz ainas, lai izveidotu pirmo „%1“ virsotni"
 
 #: step/polygongraphics.cc:476
 #, kde-format
 msgid "Click on the scene to add new vertex or press Enter to finish"
 msgstr ""
-"Nospiediet uz scēnas, lai pievienotu jaunu virsotni, vai nospiediet Enter, "
-"lai beigtu"
+"Klikšķini uz ainas, lai pievienotu jaunu virsotni, vai spied „Enter“ "
+"taustiņu, lai beigtu"
 
 #: step/propertiesbrowser.cc:267
 #, kde-format
@@ -851,7 +845,7 @@ msgstr "Mainīt %1.%2"
 #: step/propertiesbrowser.cc:302
 #, kde-format
 msgid "Rename %1 to %2"
-msgstr "Pārdēvēt %1 par %2"
+msgstr "Pārdēvēt „%1“ par „%2“"
 
 #: step/propertiesbrowser.cc:452
 #, kde-format
@@ -882,25 +876,23 @@ msgstr "Īpašības"
 #: step/worldgraphics.cc:94
 #, kde-format
 msgid "Click on the scene to create a %1"
-msgstr "Nospiediet uz scēnas, lai izveidotu %1"
+msgstr "Klikšķini uz ainas, lai izveidotu „%1“"
 
 #: step/softbodygraphics.cc:54
-#, fuzzy, kde-format
-#| msgid "Please fill in the parameters for the gas particles."
+#, kde-format
 msgid "Please fill in the parameters for %1"
-msgstr "Lūdzu aizpildiet gāzes daļiņu parametrus."
+msgstr "Aizpildi „%1“ parametrus."
 
 #: step/softbodygraphics.cc:114
-#, fuzzy, kde-format
-#| msgid "Create soft body items"
+#, kde-format
 msgctxt "@title:window"
 msgid "Create Soft Body Items"
-msgstr "Izveidot mīkstķermeņa objektus"
+msgstr "Izveidot mīkstus objektus"
 
 #: step/softbodygraphics.cc:175
 #, kde-format
 msgid "Create items for %1"
-msgstr "Izveidot %1 objektus"
+msgstr "Izveidot „%1“ objektus"
 
 #. i18n: ectx: label, entry (showCreationTips), group (General)
 #. i18n: ectx: whatsthis, entry (showCreationTips), group (General)
@@ -914,21 +906,21 @@ msgstr "Rādīt padomus, veidojot objektus"
 #: step/step.kcfg:14 step/step.kcfg:15
 #, kde-format
 msgid "Show axes on the scene"
-msgstr "Rādīt scēnas asis"
+msgstr "Rādīt ainas asis"
 
 #. i18n: ectx: label, entry (floatDisplayPrecision), group (General)
 #. i18n: ectx: whatsthis, entry (floatDisplayPrecision), group (General)
 #: step/step.kcfg:19 step/step.kcfg:20
 #, kde-format
 msgid "Display precision of double numbers"
-msgstr "Rādīt double skaitļu precizitāti"
+msgstr "Rādīt „double“ skaitļu precizitāti"
 
 #. i18n: ectx: label, entry (enableOpenGL), group (General)
 #. i18n: ectx: whatsthis, entry (enableOpenGL), group (General)
 #: step/step.kcfg:26 step/step.kcfg:27
 #, kde-format
 msgid "Use OpenGL to accelerate drawing whenever possible"
-msgstr "Lietot OpenGL, lai paātrinātu zīmēšanu"
+msgstr "Lietot „OpenGL“, lai paātrinātu zīmēšanu"
 
 #. i18n: ectx: label, entry (wikiExternal), group (InfoBrowser)
 #. i18n: ectx: whatsthis, entry (wikiExternal), group (InfoBrowser)
@@ -942,7 +934,7 @@ msgstr "Atvērt Vikipēdiju ārējā pārlūkā"
 #: step/step.kcfg:40 step/step.kcfg:41
 #, kde-format
 msgid "Show text beside icon"
-msgstr "Rādīt tekstu blakus ikonai"
+msgstr "Blakus ikonai rādīt tekstu"
 
 #: step/stepgraphicsitem.cc:206
 #, kde-format
@@ -993,7 +985,7 @@ msgstr "&Paneļi"
 #: step/toolgraphics.cc:256
 #, kde-format
 msgid "Click to enter text"
-msgstr "Nospiediet, lai ievadītu tekstu"
+msgstr "Klikšķini, lai rakstītu"
 
 #: step/toolgraphics.cc:381
 #, kde-format
@@ -1051,37 +1043,35 @@ msgid "Font &Size"
 msgstr "Fonta &izmērs"
 
 #: step/toolgraphics.cc:411
-#, fuzzy, kde-format
-#| msgid "Insert &Image"
+#, kde-format
 msgid "Insert &Image..."
-msgstr "&Ievietot attēlu"
+msgstr "Ievietot &attēlu..."
 
 #: step/toolgraphics.cc:416
-#, fuzzy, kde-format
-#| msgid "Insert &Formula"
+#, kde-format
 msgid "Insert &Formula..."
-msgstr "Ievietot &formulu"
+msgstr "Ievietot &formulu..."
 
 #: step/toolgraphics.cc:527
 #, kde-format
 msgid "Edit %1"
-msgstr "Rediģēt %1"
+msgstr "Rediģēt „%1“"
 
 #: step/toolgraphics.cc:632
 #, kde-format
 msgctxt "@title:window"
 msgid "Open Image File"
-msgstr ""
+msgstr "Atvērt attēla datni"
 
 #: step/toolgraphics.cc:632
 #, kde-format
 msgid "Images (*.png *.jpg *.jpeg)"
-msgstr ""
+msgstr "Attēli (*.png *.jpg *.jpeg)"
 
 #: step/toolgraphics.cc:650
 #, kde-format
 msgid "Cannot parse file '%1'"
-msgstr "Neizdevās analizēt failu '%1'"
+msgstr "Neizdevās parsēt datni „%1“"
 
 #: step/toolgraphics.cc:694
 #, kde-format
@@ -1089,26 +1079,24 @@ msgid ""
 "Cannot find latex installation. You need 'latex', 'dvips' and 'gs' "
 "executables installed and accessible from $PATH"
 msgstr ""
-"Neizdevās atrast latex instalāciju. Nepieciešami 'latex', 'dvips' un 'gs' "
-"izpildfaili un tiem jābūt pieejamiem no $PATH"
+"Neizdevās atrast „latex“ instalāciju. Nepieciešamas „latex“, „dvips“ un „gs“ "
+"izpilddatnes un tām jābūt pieejamām no $PATH"
 
 #: step/toolgraphics.cc:700
-#, fuzzy, kde-format
-#| msgid "LaTex Formula - Step"
+#, kde-format
 msgctxt "@title:window"
 msgid "LaTex Formula - Step"
-msgstr "LaTex formula - Step"
+msgstr "„LaTex“ formula — „Step“"
 
 #: step/toolgraphics.cc:701
-#, fuzzy, kde-format
-#| msgid "Enter LaTeX formula string"
+#, kde-format
 msgid "Enter LaTeX formula string:"
-msgstr "Ievadiet LaTeX formulas virkni"
+msgstr "Ievadi „LaTeX“ formulas virkni:"
 
 #: step/toolgraphics.cc:710
 #, kde-format
 msgid "Cannot compile LaTeX formula: %1"
-msgstr "Neizdevās kompilēt LaTeX formulu: %1"
+msgstr "Neizdevās kompilēt „LaTeX“ formulu: %1"
 
 #: step/toolgraphics.cc:716
 #, kde-format
@@ -1146,20 +1134,17 @@ msgid "[not configured]"
 msgstr "[nav konfigurēts]"
 
 #: step/toolgraphics.cc:1078
-#, fuzzy, kde-format
-#| msgid "Clear graph"
+#, kde-format
 msgid "Clear Graph"
-msgstr "Tīrīt grafiku"
+msgstr "Notīrīt grafiku"
 
 #: step/toolgraphics.cc:1079
-#, fuzzy, kde-format
-#| msgid "Configure graph..."
+#, kde-format
 msgid "Configure Graph..."
 msgstr "Konfigurēt grafiku..."
 
 #: step/toolgraphics.cc:1097
-#, fuzzy, kde-format
-#| msgid "Configure graph"
+#, kde-format
 msgctxt "@title:window"
 msgid "Configure Graph"
 msgstr "Konfigurēt grafiku"
@@ -1168,35 +1153,31 @@ msgstr "Konfigurēt grafiku"
 #: step/toolgraphics.cc:1710
 #, kde-format
 msgid "Edit properties of %1"
-msgstr "Rediģēt %1 īpašības"
+msgstr "Rediģēt „%1“ īpašības"
 
 #: step/toolgraphics.cc:1225
 #, kde-format
 msgid "Clear graph %1"
-msgstr "Tīrīt grafiku %1"
+msgstr "Notīrīt grafiku %1"
 
 #: step/toolgraphics.cc:1306
-#, fuzzy, kde-format
-#| msgid "Configure meter..."
+#, kde-format
 msgid "Configure Meter..."
 msgstr "Konfigurēt mērītāju..."
 
 #: step/toolgraphics.cc:1324
-#, fuzzy, kde-format
-#| msgid "Configure meter"
+#, kde-format
 msgctxt "@title:window"
 msgid "Configure Meter"
 msgstr "Konfigurēt mērītāju"
 
 #: step/toolgraphics.cc:1421 step/toolgraphics.cc:1618
-#, fuzzy, kde-format
-#| msgid "Increase value"
+#, kde-format
 msgid "Increase Value"
 msgstr "Palielināt vērtību"
 
 #: step/toolgraphics.cc:1422 step/toolgraphics.cc:1619
-#, fuzzy, kde-format
-#| msgid "Decrease value"
+#, kde-format
 msgid "Decrease Value"
 msgstr "Samazināt vērtību"
 
@@ -1216,32 +1197,28 @@ msgid "Change controller %1"
 msgstr "Mainīt kontrolieri %1"
 
 #: step/toolgraphics.cc:1621
-#, fuzzy, kde-format
-#| msgid "Configure controller..."
+#, kde-format
 msgid "Configure Controller..."
 msgstr "Konfigurēt kontrolieri..."
 
 #: step/toolgraphics.cc:1639
-#, fuzzy, kde-format
-#| msgid "Configure controller"
+#, kde-format
 msgctxt "@title:window"
 msgid "Configure Controller"
 msgstr "Konfigurēt kontrolieri"
 
 #: step/toolgraphics.cc:1900
-#, fuzzy, kde-format
-#| msgid "Clear trace"
+#, kde-format
 msgid "Clear Trace"
-msgstr "Tīrīt pēdas"
+msgstr "Notīrīt pēdas"
 
 #: step/toolgraphics.cc:1909
 #, kde-format
 msgid "Clear tracer %1"
-msgstr "Tīrīt pēdas %1"
+msgstr "Notīrīt pēdas %1"
 
 #: step/undobrowser.cc:18
-#, fuzzy, kde-format
-#| msgid "Undo history"
+#, kde-format
 msgid "Undo History"
 msgstr "Atsaukšanas vēsture"
 
@@ -1257,13 +1234,13 @@ msgid ""
 "Press left mouse button to position first end of a %1\n"
 "then drag and release it to position the second end"
 msgstr ""
-"Vispirms nospiediet peles keiso pogu %1 vienā galā\n"
-"tad velciet un atlaidiet peli otrā galā"
+"Vispirms klikšķini peles kreiso pogu, lai norādītu %1 pirmo galu,\n"
+"tad velc un atlaid peles kreiso pogu, lai noteiktu otra gala novietojumu"
 
 #: step/worldgraphics.cc:118
 #, kde-format
 msgid "Release left mouse button to position second end of the %1"
-msgstr "Atlaidiet pieles kreiso pogu, lai novietotu %1 otru galu"
+msgstr "Atlaid peles kreiso pogu, lai novietotu „%1“ otru galu"
 
 #: step/worldmodel.cc:629
 #, kde-format
@@ -1303,31 +1280,27 @@ msgstr "<tr><td>%1&nbsp;&nbsp;</td><td>%2</td></tr>"
 #: step/worldmodel.cc:1007
 #, kde-format
 msgid "Simulate %1 → %2"
-msgstr "Simulēt %1 → %2"
+msgstr "Simulēja %1 → %2"
 
 #: step/worldmodel.cc:1060
-#, fuzzy, kde-format
-#| msgid "Create %1"
+#, kde-format
 msgid "Cut %1"
-msgstr "Izveidot %1"
+msgstr "Izgrieza %1"
 
 #: step/worldmodel.cc:1061
-#, fuzzy, kde-format
-#| msgid "Delete several items"
+#, kde-format
 msgid "Cut several items"
-msgstr "Dzēst vairākus objektus"
+msgstr "Dzēsa vairākus objektus"
 
 #: step/worldmodel.cc:1083
-#, fuzzy, kde-format
-#| msgid "Create %1"
+#, kde-format
 msgid "Pasted %1"
-msgstr "Izveidot %1"
+msgstr "Ielīmēja „%1“"
 
 #: step/worldmodel.cc:1084
-#, fuzzy, kde-format
-#| msgid "Delete several items"
+#, kde-format
 msgid "Pasted several items"
-msgstr "Dzēst vairākus objektus"
+msgstr "Ielīmēja vairākus objektus"
 
 #: step/worldscene.cc:248
 #, kde-format
