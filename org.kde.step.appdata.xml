@@ -26,6 +26,7 @@
   <name xml:lang="ka">ბიჯი</name>
   <name xml:lang="ko">Step</name>
   <name xml:lang="lt">Step</name>
+  <name xml:lang="lv">Step</name>
   <name xml:lang="nds">Step</name>
   <name xml:lang="nl">Step</name>
   <name xml:lang="nn">Step</name>
@@ -63,6 +64,7 @@
   <summary xml:lang="ka">ინტერაქტიური ფიზიკური სიმულატორი</summary>
   <summary xml:lang="ko">인터랙티브 물리학 시뮬레이터</summary>
   <summary xml:lang="lt">Interaktyvus fizikos modeliatorius</summary>
+  <summary xml:lang="lv">Interaktīvs fizikas simulators</summary>
   <summary xml:lang="nds">Brukerstüert Physiksimuleren</summary>
   <summary xml:lang="nl">Interactieve natuurkundige simulaties</summary>
   <summary xml:lang="nn">Interaktiv fysikksimulator</summary>
@@ -97,6 +99,7 @@
     <p xml:lang="it">Step è un simulatore interattivo di fisica. Ti consente di esplorare il mondo fisico tramite simulazioni. Funziona in questo modo: posizioni alcuni corpi nella scena, aggiungi delle forze come quella gravitazionale o la forza elastica, quindi fai clic su Simula e Step mostrerà l'evoluzione della scena secondo le leggi della fisica. Puoi cambiare ogni proprietà dei corpi e delle forze nel tuo esperimento (anche durante la simulazione) e vedere come questo ne influenza l'evoluzione. Con Step puoi non solo imparare ma anche "toccare con mano" il funzionamento della fisica!</p>
     <p xml:lang="ka">Step ინტერაქტიული ფიზიკური სიმულატორია. ის საშუალებას გაძლევთ, გამოიკვლიოთ ფიზიკური სამყარო სიმულაციებით. ის ასე მუშაობს: თქვენა ათავსებთ სხეულებს სცენაზე, ამატებთ რაღაც ძალებს (მაგ: გრავიტაცია ან ზამბარები) შემდეგ დააწკაპუნეთ სიმულაციაზე და Step გაჩვენებთ, როგორ ვითარდება მოვლენები ფიზიკის კანონების მიხედვით. თქვენ ექსპერიმენტში ნებისმიერი სხეულის/ძალის თვისება შეგიძლიათ (სიმულაციის მიმდინარეობისასაც კი) შეცვალოთ და ნახოთ, როგორ შეიცვლება სცენა. Step-თან ერთად შეგიძლიათ, გაიგოთ, როგორ მუშაობს ფიზიკა!</p>
     <p xml:lang="ko">Step은 인터랙티브 물리학 시뮬레이터입니다. 시뮬레이션으로 물리 세계를 탐험할 수 있습니다. 장면에 물체를 놓고, 중력이나 스프링 같은 힘을 추가하고, 시뮬레이션을 클릭하면 물리 법칙에 따라서 장면이 변하는 과정을 시뮬레이션합니다. 실험에 추가된 물체/힘의 속성은 시뮬레이션 진행 중에도 변경할 수 있으며 변경함에 따라서 시뮬레이션이 변경되는 과정도 볼 수 있습니다. Step을 사용하여 물리학을 배울 수 있을뿐만 아니라 체험할 수도 있습니다!</p>
+    <p xml:lang="lv">„Step“ ir interaktīvs fizikas simulators. Tas ļauj izpētīt fizikas likumus, izmantojot simulācijas. Šī programma strādā šādi: lietotājs ainā novieto objektus, pievieno spēkus, piemēram, gravitāciju vai atsperes, bet tas klikšķina uz „Simulēt“. Pēc tam „Step“ parāda, kas ainā notiek, ievērojot fizikas likumus. Katra ķermeņa/spēka īpašības lietotājs var mainīt un eksperimentēt (arī simulācijas laikā), lai redzētu, kā tas izmaina notikumus. „Step“ ne vien māca, bet ļauj arī izjust fiziku darbībā!</p>
     <p xml:lang="nds">Step is en brukerstüert Physik-Simulater. Du kannst dor de physikaalsche Welt mit över Simuleren bekieken. Dat geiht so: Du leggst en poor Körpers hen, föögst en poor Kräft to, so as de Swoorkraft oder en Fedder, denn klickst Du op „Simuleren“ un Step wiest Di, wodennig sik dat na de physikaalschen Gesetten utwickeln deit. Du kannst all Egenschappen vun Dien Körpers un Kräft ännern (ok bides de Simuleren löppt) un Di ankieken wodennig dat den Afloop vun't Experiment ännert. Mit Step kannst Du nich bloots lehren, man meist föhlen, wodennig Physik funkscheneert.</p>
     <p xml:lang="nl">Step is een interactief natuurkundig simulatieprogramma. U kunt er natuurkundige experimenten mee doen door middel van simulaties. Het werkt zo: u neemt enige lichamen, voegt er wat krachten aan toe zoals de zwaartekracht en wat veren, en klikt daarna op de knop Simuleren, waarna Step u laat zien hoe dit stelsel evolueert volgens de natuurkundige wetten. U kunt elke eigenschap van de lichamen en krachten in uw experiment wijzigen (zelfs tijdens de simulatie) en zien wat daarvan de gevolgen zijn. Met Step leert u niet alleen natuurkunde, maar krijgt u er gevoel voor!</p>
     <p xml:lang="pl">Krok jest interaktywnym symulatorem fizyki. Umożliwia poznawanie świata fizycznego poprzez symulacje. Działa w następujący sposób: umieszczasz jakieś bryły na scenie, dodajesz jakieś siły jako grawitacja lub sprężyny, a następnie naciskasz na Symulacja i Krok pokaże jak scena się zmieni według praw fizyki. Można zmienić każdą właściwość brył/sił w eksperymencie (nawet podczas symulacji) i zobaczyć jak zmieni się przebieg eksperymentu. Dzięki Krokowi nie tylko można się nauczyć, ale także poczuć jak działa fizyka!</p>
@@ -133,6 +136,7 @@
     <p xml:lang="ka">თვისებები:</p>
     <p xml:lang="ko">기능:</p>
     <p xml:lang="lt">Ypatybės:</p>
+    <p xml:lang="lv">Iespējas:</p>
     <p xml:lang="nds">Markmalen:</p>
     <p xml:lang="nl">Kenmerken:</p>
     <p xml:lang="nn">Funksjonar:</p>
@@ -168,6 +172,7 @@
       <li xml:lang="it">Simulazioni di meccanica classica in due dimensioni</li>
       <li xml:lang="ka">კლასიკური მექანიკური სიმულაცია ორ განზომილებაში</li>
       <li xml:lang="ko">2차원 고전 역학 시뮬레이션</li>
+      <li xml:lang="lv">Klasiska mehānikas simulācija divās dimensijās</li>
       <li xml:lang="nds">Klass'sch mechaansch Simuleren in twee Dimenschonen</li>
       <li xml:lang="nl">Simulatie in twee dimensies volgens de klassieke mechanica</li>
       <li xml:lang="pl">Klasyczna symulacja mechaniczna w dwóch wymiarach</li>
@@ -201,6 +206,7 @@
       <li xml:lang="it">Particelle, molle smorzate, forze gravitazionali e coulombiane</li>
       <li xml:lang="ka">ნაწილაკები, ზამბარები სიბლანტით, მიზიდულობის და კოლუმბის ზალები</li>
       <li xml:lang="ko">입자, 감쇠가 있는 스프링, 중력 및 쿨롱 힘</li>
+      <li xml:lang="lv">Daļiņas, atsperes ar slāpēšanu, gravitācijas un kulona spēki</li>
       <li xml:lang="nds">Deeltjes, Feddern mit Dämpen, Swoor- un Coulomb-Kräft</li>
       <li xml:lang="nl">Deeltjes, veren met demping, zwaarte- en elektrische krachten</li>
       <li xml:lang="pl">Cząstki, sprężyny z tłumieniem, siły grawitacyjne i kulombowskie</li>
@@ -234,6 +240,7 @@
       <li xml:lang="it">Corpi rigidi</li>
       <li xml:lang="ka">უხეში სხეულები</li>
       <li xml:lang="ko">강체</li>
+      <li xml:lang="lv">Cieti ķemeņi</li>
       <li xml:lang="nds">Fast Körpers</li>
       <li xml:lang="nl">Stijve lichamen</li>
       <li xml:lang="pl">Bryły sztywne</li>
@@ -266,6 +273,7 @@
       <li xml:lang="it">Rilevamento e gestione delle collisioni (al momento solo discrete)</li>
       <li xml:lang="ka">შეჯახების დადგენა (ამჟამად, მხოლოდ, დისკრეტული) და მართვა</li>
       <li xml:lang="ko">충돌 감지(현재는 단일 물체만 가능) 및 취급</li>
+      <li xml:lang="lv">Sadursmju noteikšana (šobrīd tikai diskrēta) un apstrāde</li>
       <li xml:lang="nds">Tosamenstoot-Opdecken (opstunns bloots schrittwies) un -Behanneln</li>
       <li xml:lang="nl">Botsingdetectie (nu nog alleen discreet) en afhandeling</li>
       <li xml:lang="pl">Wykrywanie i obsługa kolizji (obecnie tylko dyskretnie)</li>
@@ -298,6 +306,7 @@
       <li xml:lang="it">Corpi morbidi (deformabili) simulati come sistemi di particelle elastiche modificabili dall'utente, onde sonore</li>
       <li xml:lang="ka">რბილი (დეფორმირებადი) სხეულების სიმულაცია მომხმარებლის მიერ ჩასწორებადი ნაწილაკი-ზამბარის სისტემის სახით ხმის ტალებით</li>
       <li xml:lang="ko">사용자가 편집 가능한 입자 스프링계로 부드러운(변형 가능한) 물체 시뮬레이션, 음파</li>
+      <li xml:lang="lv">Mīkstus (deformējamus) ķermeņus „Step“ simulē kā lietotāja rediģējamu daļiņu un atsperu sistēmu, skaņas viļņus</li>
       <li xml:lang="nds">Week (verformbor) Körpers simuleert as för den Bruker bewerkbor Deeltjes-Feddern-Systeem, Klangbülgen</li>
       <li xml:lang="nl">Zachte (vervormbare) lichamen gesimuleerd als een deeltjes-veersysteem dat door de gebruiker kan worden bewerkt, geluidsgolven</li>
       <li xml:lang="pl">Miękkie (odkształcalne) bryły symulowane jako systemy cząsteczek-sprężyn edytowanych przez użytkownika, fale dźwiękowe</li>
@@ -330,6 +339,7 @@
       <li xml:lang="it">Dinamica molecolare (al momento con l'utilizzo del potenziale di Lennard-Jones): gas e liquidi, condensazione ed evaporazione, calcolo delle grandezze macroscopiche e loro variazione</li>
       <li xml:lang="ka">მოლეკულური დინამიკა (ამჟამად გამოიყენება ლენარდ-ჯოუნსის პოტენციალი): აირი და სითხე, კონდენსაცია და აორთქლება, მიკროსკოპული რაოდენობების ანგარიში და მათი ცვალებადობები</li>
       <li xml:lang="ko">분자 동력학(현재 Lennard-Jones 포텐셜 사용): 기체 및 액체, 응축 및 증발, 거시적인 양 및 분산 계산</li>
+      <li xml:lang="lv">Molekulāra dinamika (šobrīd izmanto Lennarda—Dzonsa potenciālu): gāze un škidrums, kondensācija un iztvaikošana, makroskopisko daudzumu un to dispersijas aprēķināšana</li>
       <li xml:lang="nds">Molekööldünamik  (opstunns mit Lennard-Jones-Potenschaal): Gas un Flaat, kondenseren un verdampen, utreken vun makroskoopsch Mengden un ehr Varianten</li>
       <li xml:lang="nl">Moleculaire dynamica (thans wordt de Lennard-Jones potentiaal gebruikt): gas en vloeistof, condensatie en verdamping, berekening van macroscopische hoeveelheden en hun varianties</li>
       <li xml:lang="pl">Dynamika molekularna (obecnie przy użyciu potencjału Lennard-Jones): gaz i ciecz, kondensacja i parowanie, obliczanie wielkości makroskopowych i ich wariancji</li>
@@ -363,6 +373,7 @@
       <li xml:lang="it">Conversione di unità e calcolo di espressioni: puoi inserire ad esempio "(2 days + 3 hours) * 80 km/h" e sarà accettato come valore di distanza (richiede libqalculate)</li>
       <li xml:lang="ka">ერთეულების გადაყვანა და განტოლებების ამოხსნა: შეგიძლიათ ქნათ რამე მსგავსი "(2 დღეს + 3 საათი) * 80 კმ/სთ" და ის მიღებული იქნება, როგორც მანძილის მნიშვნელობა (სჭირდება ბიბლიოთეკა libqalculate)</li>
       <li xml:lang="ko">단위 변환 및 표현식 계산: "(2일+3시간) * 80km/h"와 같이 입력할 수 있으며 거리 값으로 간주됩니다(libqalculate 필요)</li>
+      <li xml:lang="lv">Mērvienību konvertācijas un izteiksmju kalkulators: ļauj ievadīt, piemēram „(2 days + 3 hours) * 80 km/h“, ko programma pieņems kā attāluma vērtību (nepieciešama „libqalculate“ pakotne)</li>
       <li xml:lang="nds">Eenheiten ümreken un Utdrück utreken: Di giffst wat in as „(2 Daag + 3 Stünnen) * 80 km/h“ un dat gellt denn as Längdenweert (bruukt „libqalculate“)</li>
       <li xml:lang="nl">Conversie van eenheden en berekening van expressies zoals "(2 dagen + 3 uren) * 80 km/h", waarna dit zal worden beschouwd als een afstand (vereist libqalculate)</li>
       <li xml:lang="pl">Przekształcanie jednostek i obliczanie wyrażeń: możesz  wpisać coś takiego"(2 dni + 3 godziny) * 80 km/h" i zostanie to potraktowane jako wartość odległości (wymaga libqalculate)</li>
@@ -395,6 +406,7 @@
       <li xml:lang="it">Calcolo e propagazione degli errori: puoi inserire valori come "1.3 ± 0.2" per ogni proprietà e gli errori per le proprietà dipendenti saranno calcolati tramite formule statistiche</li>
       <li xml:lang="ka">შეცდომების გამოთვლა და გავრცელება: შეგიძლიათ შეიყვანოთ მნიშვნელობები, როგორიცაა "1.3 ± 0.2" ნებისმიერი თვისებისთვის და შეცდომები ყველა დამოკიდებული თვისებისთვის სტატისტიკური ფორმულებით იქნება გამოთვლილი</li>
       <li xml:lang="ko">오류 계산 및 전파: 모든 속성에 "1.3 ± 0.2"처럼 입력할 수 있으며, 여기에 의존하는 다른 모든 속성은 통계 공식을 사용하여 오류를 계산합니다</li>
+      <li xml:lang="lv">Kļūdu aprēķināšana un izplatīšanās: varat jebkurai īpašībai norādīt, piemēram, „1,3 ± 0,2“, lai programma visas atkarīgās īpašības aprēķinātu, izmantojot statistikas formulas.</li>
       <li xml:lang="nds">Fehlerreken: Du kannst wat as „1,3 ± 0,2“ för jichtenseen Egenschap ingeven, denn reekt Step för all afhangen Weerten över statistische Formeln de Fehlers ut.</li>
       <li xml:lang="nl">Foutenberekening en -voortplanting: u kunt voor elke eigenschap zoiets invullen als "1,3 ± 0,2", waarna voor elke daarvan afhankelijke eigenschap de fouten zullen worden berekend met gebruik van statistische formules</li>
       <li xml:lang="pl">Obliczanie i propagacja błędów: możesz wpisać wartości takie jak "1.3 ± 0.2" dla każdej własności, a błędy dla wszystkich zależnych własności zostaną obliczone używając równań statystycznych</li>
@@ -427,6 +439,7 @@
       <li xml:lang="it">Stima degli errori del solutore: gli errori introdotti dal solutore sono calcolati e aggiunti al valore dell'errore inserito dall'utente</li>
       <li xml:lang="ka">ამომხსნელის შეცდომის შეფასება: შეცდომები, რომლებსაც ამომხსნელი შემოიტანს, გამოითვლება და დაემატება მომხმარებლის შეყვანილ შეცდომებს</li>
       <li xml:lang="ko">해 찾기 오류 추정: 해 찾기 도구의 오류를 계산하여 사용자가 입력한 오류에 추가합니다</li>
+      <li xml:lang="lv">Atrisinātāja kļūdas aplēse: pie lietotāja norādītajām kļūdām tiek aprēķinātas un pieskaitītas atrisinātāja radītās kļūdas</li>
       <li xml:lang="nds">Löserfehler-Estemeren: Vun den Löser inbuut Fehlers warrt estemeert un de vun den Bruker ingeven Fehlers toföögt</li>
       <li xml:lang="nl">Het afschatten van fouten veroorzaakt door de oplossingsmethode: fouten die bij het oplossen zijn ontstaan worden berekend en opgeteld bij de fouten die door de gebruiker zijn ingevoerd</li>
       <li xml:lang="pl">Oszacowanie błędu solvera: błędy wprowadzone przez solver są obliczane i dodawane do błędów podanych przez użytkownika</li>
@@ -459,6 +472,7 @@
       <li xml:lang="it">Diversi tipi di solutori: fino all'ottavo ordine, espliciti ed impliciti, con o senza un passo temporale adattivo (la maggior parte dei solutori richiedono la libreria GSL)</li>
       <li xml:lang="ka">რამდენიმე სხვადასხვა ამომხსნელი: მერვე დონემდე, აშკარა და არააშკარა, ადაპიური დროის ნაბიჯით ან მის გარეშე (ამომხსნელების უმრავლესობას GSL ბიბლიოთეკა სჭირდება)</li>
       <li xml:lang="ko">다양한 해결 도구: 최대 8차식, 명시적 및 암시적, 적응형 시간 단위 사용 여부(대부분의 해결 도구에는 GSL 라이브러리 필요)</li>
+      <li xml:lang="lv">Dažādi atrisinātāji: līdz 8. pakāpei, eksplicīti un implicīti, ar un bez adaptība laika soļa (lielā daļa atrisinātāju izmanto GSL bibliotēku)</li>
       <li xml:lang="nds">En Reeg verscheden Lösers: bet to de 8. Orden, ex- un implizit, mit un ahn topassen Tietschreed (de mehrsten Lösers bruukt de GSL-Bibliotheek)</li>
       <li xml:lang="nl">Er zijn diverse oplossingsmethoden: tot aan de 8e orde, expliciet en impliciet, met of zonder een adaptieve tijdstap (voor de meesten is de GSL-bibliotheek nodig)</li>
       <li xml:lang="pl">Kilka różnych solwerów: aż do 8-mego rzędu, uwikłane i nieuwikłane, z lub bez adaptowanego kroku czasowego (większość z solwerów wymaga biblioteki GSL)</li>
@@ -492,6 +506,7 @@
       <li xml:lang="it">Strumenti per controllare facilmente le proprietà durante la simulazione (anche con scorciatoie di tastiera personalizzate)</li>
       <li xml:lang="ka">კონტროლერის ხელსაწყო თვისებების იოლად სამართავად სიმულაციის მიმდევრობისას (აქვს კლავიატურის მალსახმობებიც)</li>
       <li xml:lang="ko">시뮬레이션 중에 속성을 쉽게 제어할 수 있는 컨트롤러 도구(사용자 정의 키보드 단축키 포함)</li>
+      <li xml:lang="lv">Kontroliera rīks, kas ļauj viegli mainīt īpašības simulācijas laikā (pat ar pielāgotām tastatūras saīsnēm)</li>
       <li xml:lang="nds">Kuntrullwarktüüch för't Bekieken vun Egenschappen binnen de Simuleren (ok mit topasst Tastkombinatschoon)</li>
       <li xml:lang="nl">Hulpmiddel voor het eenvoudig beheersen van eigenschappen tijdens een simulatie (zelfs met aangepaste sneltoetsen)</li>
       <li xml:lang="pl">Narzędzie sterujące do łatwego sterowania właściwościami podczas symulacji (nawet przy użyciu własnych skrótów klawiszowych)</li>
@@ -525,6 +540,7 @@
       <li xml:lang="it">Strumenti per visualizzare i risultati: grafici, misuratori, traccianti</li>
       <li xml:lang="ka">შედეგების ვიზუალიზაციის პროგრამები: გრაფიკები, გაზომვები, ტრაექტორიები</li>
       <li xml:lang="ko">결과 시각화 도구: 그래프, 측정기, 추적기</li>
+      <li xml:lang="lv">Rīki, lai vizualizētu rezultātus: grafiks, mērītājs un trasētājs</li>
       <li xml:lang="nds">Warktüüch, mit de sik de Resultaten ankieken laat: Diagramm, Meter, Spoor</li>
       <li xml:lang="nl">Hulpmiddelen voor het visualiseren van de resultaten: grafiek, meter, spoor</li>
       <li xml:lang="pl">Narzędzia do wizualizacji wyników: wykres, miara, wskaźnik</li>
@@ -558,6 +574,7 @@
       <li xml:lang="it">Informazioni di contesto per tutti gli oggetti, browser per wikipedia integrato</li>
       <li xml:lang="ka">კონტექსტური ინფორმაცია ყველა ობიექტისთვის. ინტეგრირებული ვიკიპედიის ბრაუზერი</li>
       <li xml:lang="ko">모든 객체의 콘텍스트 정보, 위키백과 탐색기 통합</li>
+      <li xml:lang="lv">Konteksta informācija visiem objektiem un iebūvēts Vikipēdijas pārlūks</li>
       <li xml:lang="nds">Kontextinformatschonen för all Objekten, inbuut Wikipedia-Kieker</li>
       <li xml:lang="nl">Contekstinformatie voor alle objecten, geïntegreerde wikipedia-browser</li>
       <li xml:lang="pl">Kontekstowe informacje dla wszystkich obiektów, zintegrowana przeglądarka wikipedi</li>
@@ -591,6 +608,7 @@
       <li xml:lang="it">Collezione di esperimenti di esempio, altri possono essere scaricati con KNewStuff2</li>
       <li xml:lang="ka">მაგალითი ექსპერიმენტების კოლექცია. მეტი, შეგიძლიათ, KnewStuff-ით გადმოწეროთ</li>
       <li xml:lang="ko">예제 실험 모음, KNewStuff로 더 많은 다운로드 가능</li>
+      <li xml:lang="lv">Piemēra eksperimentu kolekcija, kā arī iespēja lejupielādēt papildu eksperimentus caur „KNewStuff“</li>
       <li xml:lang="nds">Sammeln vun Bispill-Experimenten, mehr laat sik vun KNewStuff daalladen</li>
       <li xml:lang="nl">Verzameling van voorbeeldexperimenten, meer kunnen er worden opgehaald met KNewStuff</li>
       <li xml:lang="pl">Zbiór przykładowych eksperymentów, można pobrać więcej z KNewStuff</li>
@@ -624,6 +642,7 @@
       <li xml:lang="it">Tutorial integrati</li>
       <li xml:lang="ka">ჩაშენებული სახელმძღვანელოები</li>
       <li xml:lang="ko">통합된 자습서</li>
+      <li xml:lang="lv">Iebūvētas pamācības</li>
       <li xml:lang="nds">Inbuut Anleden</li>
       <li xml:lang="nl">Geïntegreerd lesmateriaal</li>
       <li xml:lang="pl">Zintegrowane samouczki</li>
@@ -665,6 +684,7 @@
       <caption xml:lang="it">Simulazione di fisica in Step</caption>
       <caption xml:lang="ka">ფიზიკის სიმულაცია Step-ში</caption>
       <caption xml:lang="ko">Step의 물리 시뮬레이션</caption>
+      <caption xml:lang="lv">Fizikas simulācija ar „Step“</caption>
       <caption xml:lang="nl">Fysieke simulatie in Step</caption>
       <caption xml:lang="pl">Symulacja fizyczna w Step</caption>
       <caption xml:lang="pt">Simulação de física no Step</caption>
