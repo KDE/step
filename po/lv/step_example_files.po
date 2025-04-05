@@ -182,7 +182,7 @@ msgctxt "name"
 msgid ""
 "Pendule de Newton à 8 billes (http://fr.wikipedia.org/wiki/Pendule_de_Newton)"
 msgstr ""
-"Ņūtona šūpulis ar 8 lodītēm (https://lv.wikipedia.org/wiki/Ņūtona_šūpulis"
+"Ņūtona šūpulis ar 8 lodītēm (https://lv.wikipedia.org/wiki/Ņūtona_šūpulis)"
 
 #: examples/eightpendula.step:41 examples/fourpendula.step:35
 #: tutorials/tutorial1.step:111
