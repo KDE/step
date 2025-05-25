@@ -821,14 +821,14 @@ msgstr ""
 #: step/polygongraphics.cc:428
 #, kde-format
 msgid "Click on the scene to create a first vertex of %1"
-msgstr "Cliqueu damunt l'escena per a crear el primer vèrtex de %1"
+msgstr "Cliqueu damunt de l'escena per a crear el primer vèrtex de %1"
 
 #: step/polygongraphics.cc:476
 #, kde-format
 msgid "Click on the scene to add new vertex or press Enter to finish"
 msgstr ""
-"Cliqueu damunt l'escena per a afegir un vèrtex nou o premeu «Retorn» per a "
-"acabar"
+"Cliqueu damunt de l'escena per a afegir un vèrtex nou o premeu «Retorn» per "
+"a acabar"
 
 #: step/propertiesbrowser.cc:267
 #, kde-format
@@ -877,7 +877,7 @@ msgstr "Propietats"
 #: step/worldgraphics.cc:94
 #, kde-format
 msgid "Click on the scene to create a %1"
-msgstr "Cliqueu sobre l'escena per a crear un %1"
+msgstr "Cliqueu damunt de l'escena per a crear un %1"
 
 #: step/softbodygraphics.cc:54
 #, kde-format
@@ -1236,7 +1236,7 @@ msgid ""
 "then drag and release it to position the second end"
 msgstr ""
 "Premeu el botó esquerre del ratolí per a posicionar el primer extrem de %1\n"
-"llavors arrossegueu i amolleu-lo per tal de posicionar el segon extrem"
+"llavors arrossegueu i deixeu-lo per tal de posicionar el segon extrem"
 
 #: step/worldgraphics.cc:118
 #, kde-format

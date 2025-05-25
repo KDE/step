@@ -1328,7 +1328,7 @@ msgid ""
 "can drag the little gray square at the end of the velocity arrow to change "
 "the velocity."
 msgstr ""
-"- Feu clic en un dels discs per a seleccionar-lo. Podreu veure-hi dues "
+"- Cliqueu damunt d'un dels discs per a seleccionar-lo. Podreu veure-hi dues "
 "fletxes: la blava representa la velocitat i la roja representa "
 "l'acceleració. Podeu arrossegar el quadrat gris xicotet al final de la "
 "fletxa de la velocitat per a canviar-la."
@@ -1358,8 +1358,8 @@ msgid ""
 "- Select a spring by clicking on it. Change its stiffness and see how it is "
 "affecting the simulation."
 msgstr ""
-"- Seleccioneu una molla fent-hi clic. Canvieu la seua rigidesa i vegeu com "
-"açò afecta la simulació."
+"- Seleccioneu una molla clicant-hi. Canvieu la seua rigidesa i vegeu com açò "
+"afecta la simulació."
 
 #: tutorials/tutorial1.step:78 tutorials/tutorial5.step:78
 #, kde-format
@@ -1401,9 +1401,9 @@ msgid ""
 "follow the instructions given in the information widget in the top left "
 "corner of scene"
 msgstr ""
-"- Per tal de crear un cos, feu clic en la seua icona en el quadro de la "
-"Paleta i seguiu les instruccions que s'indiquen en el giny d'informació en "
-"el cantó superior esquerre de l'escena"
+"- Per tal de crear un cos, cliqueu damunt de la seua icona en el quadro de "
+"la Paleta i seguiu les instruccions que s'indiquen en el giny d'informació "
+"en el cantó superior esquerre de l'escena"
 
 #: tutorials/tutorial1.step:95
 #, kde-format
@@ -1428,8 +1428,8 @@ msgid ""
 "- Click on the \"Simulate\" button in the toolbar to start simulation. Click "
 "on the same button again to stop it."
 msgstr ""
-"- Feu clic en el botó «Simula» de la barra d'eines per a iniciar la "
-"simulació. Torneu a fer clic en el mateix botó per a parar-la."
+"- Cliqueu damunt del botó «Simula» de la barra d'eines per a iniciar la "
+"simulació. Torneu a clicar damunt del mateix botó per a parar-la."
 
 #: tutorials/tutorial1.step:134
 #, kde-format
@@ -1500,7 +1500,7 @@ msgid ""
 "- Click on it with the right mouse button and choose \"Configure controller"
 "\" from the context menu."
 msgstr ""
-"- Feu-hi clic amb el botó dret del ratolí i trieu «Configura el controlador» "
+"- Cliqueu-hi amb el botó dret del ratolí i trieu «Configura el controlador» "
 "del menú contextual."
 
 #: tutorials/tutorial2.step:114
