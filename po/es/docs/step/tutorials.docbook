@@ -7,7 +7,7 @@
 ><guimenu
 >Archivo</guimenu
 ><guimenuitem
->Abrir tutorial...</guimenuitem
+>Abrir tutorial…</guimenuitem
 ></menuchoice
 > abre un diálogo de archivos donde puede cargar los tutoriales integrados en &step;. Existen cinco tutoriales con los que aprenderá progresivamente cómo interactuar con cada elemento de &step;. Lo más aconsejable es comenzar por el primer tutorial pulsando sobre el archivo <filename
 >tutorial1.step</filename
@@ -74,7 +74,7 @@
 >, aumentará la rigidez del muelle, y si desplaza el deslizador hacia la izquierda o usa la tecla <keycap
 >Q</keycap
 >, la disminuirá. Si pulsa sobre el controlador con el botón derecho del ratón tendrá acceso a varias acciones de contexto, y el elemento <guimenuitem
->Configurar el controlador...</guimenuitem
+>Configurar el controlador…</guimenuitem
 > muestra un diálogo que le permitirá cambiar cualquier propiedad del controlador. </para>
 
 <screenshot>

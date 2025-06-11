@@ -1,16 +1,16 @@
 # Translation of step_objinfo_files.po to Catalan
-# Copyright (C) 2019-2024 This_file_is_part_of_KDE
+# Copyright (C) 2019-2025 This_file_is_part_of_KDE
 # This file is distributed under the license LGPL version 2.1 or
 # version 3 or later versions approved by the membership of KDE e.V.
 #
-# Josep M. Ferrer <txemaq@gmail.com>, 2019, 2020, 2021, 2022, 2024.
-# Antoni Bella Pérez <antonibella5@yahoo.com>, 2020, 2022.
+# SPDX-FileCopyrightText: 2020, 2022, 2025 Antoni Bella Pérez <antonibella5@yahoo.com>
+# Josep M. Ferrer <txemaq@gmail.com>, 2019, 2020, 2021, 2022, 2024, 2025.
 msgid ""
 msgstr ""
 "Project-Id-Version: step\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2023-11-05 12:24+0000\n"
-"PO-Revision-Date: 2024-01-30 13:28+0100\n"
+"PO-Revision-Date: 2025-06-10 21:59+0200\n"
 "Last-Translator: Josep M. Ferrer <txemaq@gmail.com>\n"
 "Language-Team: Catalan <kde-i18n-ca@kde.org>\n"
 "Language: ca\n"
@@ -601,7 +601,9 @@ msgstr ""
 "continuarà girant a menys que actuï un parell extern.</li>\n"
 "\t\t<li><b>energia cinètica:</b> El treball necessari per a accelerar el cos "
 "d'una massa indicada des del repòs a la seva velocitat actual.</li>\n"
-"\t\t<li><b>mida:</b> Defineix l'amplada i l'alçada del polígon.</li>\n"
+"\t\t<li><b>vèrtexs:</b> Una llista de vèrtexs (cantonades) del polígon, les "
+"quals defineixen la seva mida i forma. Les coordenades de cada vèrtex són "
+"relatives al centre de massa del polígon.</li>\n"
 "\t</ul>"
 
 #: objectinfo/softbody.html:6
