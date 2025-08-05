@@ -143,7 +143,7 @@ msgstr "الأقصى:"
 #: step/configure_graph.ui:122 step/configure_graph.ui:174
 #, kde-format
 msgid "auto"
-msgstr "تلقائي"
+msgstr "آليّ"
 
 #. i18n: ectx: property (title), widget (QGroupBox, groupBox_2)
 #. i18n: ectx: property (title), widget (QGroupBox, groupBox)
@@ -741,7 +741,7 @@ msgid ""
 "resolved automatically.\n"
 "Please move colliding objects apart and try again."
 msgstr ""
-"تعذّر إكمال هذه الخطوة لأنه هناك تصادمات لا يمكن حلّها تلقائيًّا.\n"
+"تعذّر إكمال هذه الخطوة لأنه هناك تصادمات لا يمكن حلّها آليًّا.\n"
 "يرجى تحريك الكائنات المتصادمة بعيدًا وحاول مجدّدًا."
 
 #: step/mainwindow.cc:501
