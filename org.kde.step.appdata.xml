@@ -455,7 +455,7 @@
       <li xml:lang="zh-CN">求解器误差估计：计算求解器引入的误差，并将其添加到用户输入的误差中</li>
       <li xml:lang="zh-TW">計算器誤差估計：由計算器造成的誤差會被計算，並加入使用者輸入的誤差</li>
       <li>Several different solvers: up to 8th order, explicit and implicit, with or without adaptive timestep (most of the solvers require GSL library)</li>
-      <li xml:lang="ar">عدة أدوات حل مختلفة: حتى الترتيب الثامن، صريحًا وضمنيًا، مع أو بدون خطوة زمنية قابلة للتكيف (تتطلب معظم أدوات الحل مكتبة GSL)</li>
+      <li xml:lang="ar">عدة أدوات حل مختلفة: حتى الترتيب الثامن، صريحًا وضمنيًا، مع أو دون خطوة زمنية قابلة للتكيف (تتطلب معظم أدوات الحل مكتبة GSL)</li>
       <li xml:lang="bs">Nekoliko različitih rješavača: do osmog poretka, eksplicitno i implicitno, sa ili bez prilagodljivog vremesnog koraka(većina rješavača zahtjeva GSL biblioteku)</li>
       <li xml:lang="ca">Diversos solucionadors diferents: fins al vuitè ordre, explícits i implícits, amb adaptació o sense de pas de temps (la majoria dels solucionadors requereixen la biblioteca «GSL»)</li>
       <li xml:lang="ca-valencia">Diversos solucionadors diferents: fins al vuitè ordre, explícits i implícits, amb adaptació o sense de pas de temps (la majoria dels solucionadors requerixen la biblioteca «GSL»)</li>
