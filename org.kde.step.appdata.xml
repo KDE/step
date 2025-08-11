@@ -355,7 +355,7 @@
       <li xml:lang="zh-CN">分子动力学（目前使用Lennard-Jones势）：气体和液体、冷凝和蒸发、宏观量及其方差的计算</li>
       <li xml:lang="zh-TW">分子動態（目前使用雷納德-瓊斯勢能，Lennard-Jones potential）：氣體與液體，濃縮與蒸發，可見質量與變異的計算</li>
       <li>Units conversion and expression calculation: you can enter something like "(2 days + 3 hours) * 80 km/h" and it will be accepted as distance value (requires libqalculate)</li>
-      <li xml:lang="ar">تحويل الوحدات وحساب التعبير: يمكنك إدخال شيء مثل "(يومان + 3 ساعات) * 80 كم/ساعة" وسيتم قبوله كقيمة للمسافة (يتطلب libqalculate)</li>
+      <li xml:lang="ar">تحويل الوحدات وحساب التعبير: يمكنك إدخال شيء مثل "(يومان + 3 ساعات) * 80 كم/ساعة" وستُقبل كقيمة للمسافة (يتطلب libqalculate)</li>
       <li xml:lang="bs">Jedinice konverzije i proračun izraza: možete unijeti nešto poput "(2 dana + 3 sata) * 80 km / h", a ona će biti prihvaćena kao vrijednost udaljenosti (zahtijeva libqalculate)</li>
       <li xml:lang="ca">Conversió d'unitats i càlcul d'expressions: podeu introduir quelcom del tipus «(2 dies + 3 hores) * 80 km/h» i serà acceptat com un valor de distància (requereix la «libqalculate»)</li>
       <li xml:lang="ca-valencia">Conversió d'unitats i càlcul d'expressions: podeu introduir alguna cosa del tipus «(2 dies + 3 hores) * 80 km/h» i serà acceptat com un valor de distància (requerix la «libqalculate»)</li>
@@ -389,7 +389,7 @@
       <li xml:lang="zh-CN">单位转换和表达式计算：您可以输入类似“（2天+3小时）*80公里/小时”的内容，它将被视为距离值（需要libqalculate库）</li>
       <li xml:lang="zh-TW">單位轉換與表示式計算：您可以輸入像是 "(2 days + 3 hours) * 80 km/h" 它會接受並做距離計算（需要 libqalculate）</li>
       <li>Errors calculation and propagation: you can enter values like "1.3 ± 0.2" for any property and errors for all dependent properties will be calculated using statistical formulas</li>
-      <li xml:lang="ar">حساب الأخطاء وانتشارها: يمكنك إدخال قيم مثل "1.3 ± 0.2" لأي خاصية وسيتم حساب الأخطاء لجميع الخصائص التابعة باستخدام الصيغ الإحصائية</li>
+      <li xml:lang="ar">حساب الأخطاء وانتشارها: يمكنك إدخال قيم مثل "1.3 ± 0.2" لأي خاصية وستُحسب الأخطاء لجميع الخصائص التابعة باستخدام الصيغ الإحصائية</li>
       <li xml:lang="bs">Obračun i propagacija greške: možete unijeti vrijednosti kao što su "1.3 ± 0.2" za bilo koje vlasništvo i grešake za sve zavisne osobine će se izračunati pomoću statističkih formula</li>
       <li xml:lang="ca">Errors de càlcul i propagació: podeu introduir valors com «1,3 ± 0,2» per a qualsevol propietat i error per a totes les propietats dependents que es calculin utilitzant fórmules estadístiques</li>
       <li xml:lang="ca-valencia">Errors de càlcul i propagació: podeu introduir valors com «1,3 ± 0,2» per a qualsevol propietat i error per a totes les propietats dependents que es calculen utilitzant fórmules estadístiques</li>
