@@ -1,10 +1,11 @@
 # Translation for step_qt.po to Euskara/Basque (eu).
-# Copyright (C) 2020, This file is copyright:
+# Copyright (C) 2020-2025 This file is copyright:
 # This file is distributed under the same license as the original file.
-# KDE euskaratzeko proiektuko arduraduna <xalba@euskalnet.net>.
+# KDE euskaratzeko proiektuaren arduraduna <xalba@ni.eus>.
 #
 # Translators:
 # @Krr4m4rr0 <birazabal@gmail.com>, 2020.
+# Iñigo Salvador Azurmendi <xalba@ni.eus>, 2025.
 msgid ""
 msgstr ""
 "Project-Id-Version: \n"

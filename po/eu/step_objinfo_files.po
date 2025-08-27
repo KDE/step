@@ -1,24 +1,25 @@
 # Translation for step_objinfo_files.po to Euskara/Basque (eu).
 # Copyright (C) 2020, This file is copyright:
 # This file is distributed under the same license as the step package.
-# KDE euskaratzeko proiektuko arduraduna <xalba@euskalnet.net>.
+# SPDX-FileCopyrightText: 2025 KDE euskaratzeko proiektuaren arduraduna <xalba@ni.eus>
 #
 # Translators:
 # @Krr4m4rr0 <birazabal@gmail.com>, 2020.
+# Iñigo Salvador Azurmendi <xalba@ni.eus>, 2025.
 msgid ""
 msgstr ""
 "Project-Id-Version: step\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2023-11-05 12:24+0000\n"
-"PO-Revision-Date: 2020-08-21 10:25+0200\n"
-"Last-Translator: @Krr4m4rr0 <birazabal@gmail.com>\n"
+"PO-Revision-Date: 2025-08-26 19:50+0200\n"
+"Last-Translator: Iñigo Salvador Azurmendi <xalba@ni.eus>\n"
 "Language-Team: Basque <kde-i18n-eu@kde.org>\n"
 "Language: eu\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Generator: Lokalize 20.04.2\n"
+"X-Generator: Lokalize 25.08.0\n"
 
 #: objectinfo/anchor.html:6
 #, kde-format
@@ -33,8 +34,8 @@ msgid ""
 "Anchor is a joint that fixes position of the body. The body can not move "
 "when it has an anchor."
 msgstr ""
-"Aingura gorputzaren kokapena zehazten duen lotura bat da. Gorputza ezin da "
-"mugitu aingura bat duenean."
+"Aingura gorputzaren posizioa finkatzen duen giltzadura da. Gorputza ezin da "
+"mugitu aingura duenean."
 
 #: objectinfo/box.html:6
 #, kde-format
@@ -46,7 +47,7 @@ msgstr "Kutxa"
 #, kde-format
 msgctxt "box.html:p"
 msgid "A rigid box with a unique name and the following parameters:"
-msgstr "Kutxa zurrun bat izen bakarrekoa eta ondorengo ezaugarriekin:"
+msgstr "Izen bakarra eta ondoko parametroak dituen kutxa zurrun bat:"
 
 #: objectinfo/box.html:21
 #, kde-format
@@ -75,6 +76,26 @@ msgid ""
 "\t\t<li><b>size:</b> Defines width and height of the box.</li>\n"
 "\t</ul>"
 msgstr ""
+"<ul>\n"
+"\t\t<li><b>posizioa:</b> Kutxaren masa-zentroaren X/Y posizioa, <a href="
+"\"objinfo:World\">munduaren</a> zentroarekiko.</li>\n"
+"\t\t<li><b>angelua:</b> Kutxak noranzko positiboan zenbat biratzen duen, hau "
+"da, erloju-orratzen noranzkoan.</li>\n"
+"\t\t<li><b>abiadura:</b> Kutxaren masa-zentroaren abiadura. Unitatea: metro "
+"segundoko.</li>\n"
+"\t\t<li><b>abiadura angeluarra:</b> Kutxa noranzko positiboan biratzeko "
+"abiadura, hau da, erloju-orratzen noranzkoan.</li>\n"
+"\t\t<li><b>masa:</b> Kutxaren masa osoa. Horrek kutxak beste elementuekin "
+"izango dituen indar-harremanak baldintzatzen ditu.</li>\n"
+"\t\t<li><b>inertzia:</b> Kutxaren biraketa aldatzeko zailtasuna.</li>\n"
+"\t\t<li><b>momentua:</b> Kanpoko indarrik ezean mekanikan kontserbatzen den "
+"oinarrizko kopuru bat. Masaren eta abiaduraren biderkadura.</li>\n"
+"\t\t<li><b>momentu angeluarra:</b> Kutxak kanpoko momentu baten eraginik "
+"izan ezean biratzen jarraitzeko duen neurriaren heina.</li>\n"
+"\t\t<li><b>Energia zinetikoa:</b> Masa jakin bateko gorputza geldiunetik "
+"bere uneko abiadurara azeleratzeko beharrezko lana.</li>\n"
+"\t\t<li><b>neurria:</b> Kutxaren zabalera eta altuera definitzen ditu.</li>\n"
+"\t</ul>"
 
 #: objectinfo/chargedparticle.html:6
 #, kde-format
@@ -89,8 +110,8 @@ msgid ""
 "A zero-sized particle which carries an electric charge. It has a unique name "
 "and five parameters:"
 msgstr ""
-"Zero-tamainako partikula karga elektrikoa garraiatzen duena. Izen bakarra "
-"eta bost ezaugarri ditu:"
+"Zero-neurriko partikula bat karga elektrikoa garraiatzen duena. Izen bakarra "
+"eta bost parametro ditu:"
 
 #: objectinfo/chargedparticle.html:16
 #, kde-format
@@ -109,19 +130,30 @@ msgid ""
 "deposited on the particle. Unit: Coulomb.</li>\n"
 "\t</ul>"
 msgstr ""
+"<ul>\n"
+"\t\t<li><b>posizioa:</b> Partikularen X/Y posizioa, <a href=\"objinfo:World"
+"\">munduaren</a> zentroarekiko.</li>\n"
+"\t\t<li><b>abiadura:</b> Partikularen abiadura. Unitatea: metro segundoko.</"
+"li>\n"
+"\t\t<li><b>indarra:</b> Partikularen mugimendua eragiten duen indarra.</li>\n"
+"\t\t<li><b>masa:</b> Partikularen masa. Honek partikulak beste elementuekin "
+"izango dituzten indar-harremanak baldintzatzen ditu.</li>\n"
+" \t\t<li><b>karga:</b> Partikulan metatutako karga elektriko positibo edo "
+"negatibo kopurua. Unitatea: Coulomb.</li>\n"
+"\t</ul>"
 
 #: objectinfo/coulombforce.html:6
 #, kde-format
 msgctxt "coulombforce.html:title"
 msgid "Coulomb Force"
-msgstr "Coulomb-en Indarra"
+msgstr "Coulomben Indarra"
 
 #: objectinfo/coulombforce.html:9
 #, kde-format
 msgctxt "coulombforce.html:p"
 msgid "Coulomb force is a force of interaction between charged particles."
 msgstr ""
-"Coulomb-en indarra kargatutako partikulen arteko elkarrekintza indarra da. "
+"Coulomben indarra kargadun partikulen arteko elkarrekintza-indar bat da."
 
 #: objectinfo/coulombforce.html:10
 #, kde-format
@@ -138,6 +170,10 @@ msgid ""
 "the charges and inversely proportional to the square of the distance between "
 "the two charges.</li>"
 msgstr ""
+"<li>Bi karga elektriko punturen arteko indar elektrostatikoaren magnitudea "
+"kargetako bakoitzaren magnitudearen biderkadurarekiko zuzenki proportzionala "
+"da eta bi kargen arteko distantziaren karratuarekiko alderantziz "
+"proportzionala da.</li>"
 
 #: objectinfo/coulombforce.html:12
 #, kde-format
@@ -146,6 +182,8 @@ msgid ""
 "For more details, please refer to the <a href=\"https://en.wikipedia.org/"
 "wiki/Coulomb's_law\">Coulomb Force</a>."
 msgstr ""
+"Xehetasun gehiagorako, mesedez begiratu <a href=\"https://en. wikipedia.org/"
+"wiki/Coulomb's_law\">Coulomben indarra</a>."
 
 #: objectinfo/disk.html:6
 #, kde-format
@@ -157,7 +195,7 @@ msgstr "Diskoa"
 #, kde-format
 msgctxt "disk.html:p"
 msgid "A rigid disk with a unique name and the following parameters:"
-msgstr "Disko zurrun bat izen bakarraz eta ondorengo ezaugarriekin:"
+msgstr "Izen bakarra eta ondoko parametroak dituen disko zurrun bat:"
 
 #: objectinfo/disk.html:21
 #, kde-format
@@ -186,6 +224,30 @@ msgid ""
 "\t\t<li><b>radius:</b> Defines how big the disk is.</li>\n"
 "\t</ul>"
 msgstr ""
+"<ul>\n"
+"\t\t<li><b>posizioa:</b> Diskoaren masa-zentroaren X/Y posizioa, <a href="
+"\"objinfo:World\">munduaren</a> zentroarekiko.</li>\n"
+"\t\t<li><b>angelua:</b> Diskoak noranzko positiboan zenbat biratzen duen, "
+"hau da, erloju-orratzen noranzkoan.</li>\n"
+"\t\t<li><b>abiadura:</b> Diskoaren masa-zentroaren abiadura. Unitatea: metro "
+"segundoko.</li>\n"
+"\t\t<li><b>abiadura angeluarra:</b> Diskoa noranzko positiboan biratzeko "
+"abiadura, hau da, erloju-orratzen noranzkoan.</li>\n"
+"\t\t<li><b>mass:</b> Total mass of the disk. This influences forces with "
+"which the disk interacts with other items.</li>\n"
+"\t\t<li><b>masa:</b> Diskoaren masa osoa. Horrek Diskoak beste elementuekin "
+"izango dituen indar-harremanak baldintzatzen ditu.</li>\n"
+"\t\t<li><b>inertzia:</b> Diskoaren biraketa aldatzeko zailtasuna.</li>\n"
+"\t\t<li><b>momentua:</b> Kanpoko indarrik ezean mekanikan kontserbatzen den "
+"oinarrizko kopuru bat. Masaren eta abiaduraren biderkadura.</li>\n"
+"\t\t<li><b>angular momentum:</b> Measure of the extent to which the disk "
+"will continue to rotate unless acted upon by an external torque.</li>\n"
+"\t\t<li><b>momentu angeluarra:</b> Diskoak kanpoko momentu baten eraginik "
+"izan ezean biratzen jarraitzeko duen neurriaren heina.</li>\n"
+"\t\t<li><b>Energia zinetikoa:</b> Masa jakin bateko gorputza geldiunetik "
+"bere uneko abiadurara azeleratzeko beharrezko lana.</li>\n"
+"\t\t<li><b>erradioa:</b> Diskoaren handiera definitzen du.</li>\n"
+"\t</ul>"
 
 #: objectinfo/gas.html:6
 #, kde-format
@@ -201,6 +263,10 @@ msgid ""
 "a>. Associated with the gas is a <a href=\"objinfo:GasLJForce\">force</a>. "
 "To add gas particles right-click the gas and click on \"Create particles\"."
 msgstr ""
+"Gas bat <a href=\"objinfo:GasParticle\">gas partikulen</a> bilduma bat da. "
+"Gasari lotuta <a href=\"objinfo:GasLJForce\">indar</a> bat dago. Gas "
+"partikulak gehitzeko, gasean eskuin klik egin eta egin klik \"Sortu "
+"partikulak\" gainean."
 
 #: objectinfo/gas.html:10
 #, kde-format
@@ -210,6 +276,9 @@ msgid ""
 "<a href=\"https://en.wikipedia.org/wiki/Lennard-Jones_potential\">Lennard-"
 "Jones potential</a>."
 msgstr ""
+"Indarrak kalkulatzeko erabilitako matematikari buruzko xehetasunetarako, "
+"begiratu <a href=\"https://en.wikipedia.org/wiki/Lennard-Jones_potential"
+"\">Lennard-Jones potentziala</a>."
 
 #: objectinfo/gasljforce.html:6
 #, kde-format
@@ -225,6 +294,9 @@ msgid ""
 "Jones_potential\">Lennard-Jones potential</a>. There are three parameters "
 "for this force:"
 msgstr ""
+"Indar honek <a href=\"https://en.wikipedia.org/wiki/Lennard-Jones_potential"
+"\">Lennard-Jones potentziala</a> simulatzen du. Indar honek hiru parametro "
+"ditu:"
 
 #: objectinfo/gasljforce.html:14
 #, kde-format
@@ -239,6 +311,14 @@ msgid ""
 "potential is often truncated to save computational time</li>\n"
 "\t</ul>"
 msgstr ""
+"<ul>\n"
+"        <li><b>sakonera:</b> Lennard-Jones potentzial-putzuaren balio "
+"minimoa</li>\n"
+"        <li><b>rmin:</b> Jatorritik potentzialaren minimora dagoen "
+"distantzia</li>\n"
+"        <li><b>mozketa:</b> Kalkulu-denbora aurrezteko Lennard-Jones (LJ) "
+"potentziala moztu ohi den distantzia</li>\n"
+"\t</ul>"
 
 #: objectinfo/gasljforce.html:15
 #, kde-format
@@ -247,8 +327,8 @@ msgid ""
 "These parameters are empirical and are usually obtained from experiment or "
 "some rough estimation."
 msgstr ""
-"Parametro hauek enpirikoak dira eta orohar saiakuntza edo gerturapen "
-"estimazio bidez lortzen dira."
+"Parametro hauek enpirikoak dira eta oro har saiakuntza edo gutxi "
+"gorabeherako estimazio bidez lortzen dira."
 
 #: objectinfo/gasparticle.html:6
 #, kde-format
@@ -264,6 +344,9 @@ msgid ""
 "a gasoline system. Each particle is tracked individually and has a unique "
 "name and four parameters:"
 msgstr ""
+"<a href=\"objinfo:Gas\">gas</a> partikula batek gas sistema bateko partikula "
+"bakar bat simulatzen du. Partikula bakoitzaren jarraipen indibiduala egiten "
+"da eta izen bakarra eta lau parametro ditu:"
 
 #: objectinfo/gasparticle.html:15
 #, kde-format
@@ -280,12 +363,23 @@ msgid ""
 "which the particle interacts with other items.</li>\n"
 "\t</ul>"
 msgstr ""
+"<ul>\n"
+"\t\t<li><b>posizioa:</b> Partikularen X/Y posizioa, <a href=\"objinfo:World"
+"\">munduaren</a> zentroarekiko.</li>\n"
+"\t\t<li><b>abiadura:</b> Partikularen abiadura. Unitatea: metro segundoko.</"
+"li>\n"
+"\t\t<li><b>indarra:</b> Partikularen mugimendua eragiten duen indarra.</li>\n"
+"\t\t<li><b>masa:</b> the mass of the particle. This influences forces with "
+"which the particle interacts with other items.</li>\n"
+"\t\t<li><b>masa:</b> Partikularen masa. Horrek partikulak beste elementuekin "
+"izango dituen indar-harremanak baldintzatzen ditu.</li>\n"
+"\t</ul>"
 
 #: objectinfo/gravitationforce.html:6
 #, kde-format
 msgctxt "gravitationforce.html:title"
 msgid "Gravitation Force"
-msgstr "Indar Grabitatorioa"
+msgstr "Grabitazio indarra"
 
 #: objectinfo/gravitationforce.html:9
 #, kde-format
@@ -294,8 +388,8 @@ msgid ""
 "Gravitational force is an attractive force that act between bodies having "
 "mass."
 msgstr ""
-"Indar grabitatorioa erakarpen indar bat da, masa duten gorputzen artean "
-"eragiten duena."
+"Grabitazio-indarra masa duten gorputzen artean eragiten den erakarpen indar "
+"bat da."
 
 #: objectinfo/gravitationforce.html:10
 #, kde-format
@@ -311,12 +405,15 @@ msgid ""
 "is proportional to the product of the masses of the bodies and inversely "
 "proportional to square of the distance between them.</li>"
 msgstr ""
+"<li>Unibertsoko gorputz orok gainerako gorputz guztiak indar batekin "
+"erakartzen ditu, gorputzen masen biderkadurarekiko proportzionala eta haien "
+"arteko distantzien karratuekiko alderantziz proportzionala dena.</li>"
 
 #: objectinfo/gravitationforce.html:12
 #, kde-format
 msgctxt "gravitationforce.html:p"
 msgid "<b>General relativity</b>"
-msgstr "<b> Erlatibitate orokorra </b>"
+msgstr "<b>Erlatibitate orokorra</b>"
 
 #: objectinfo/gravitationforce.html:13
 #, kde-format
@@ -325,6 +422,8 @@ msgid ""
 "<li>In general relativity gravitation is explained on the basis of curvature "
 "of space-time.</li>"
 msgstr ""
+"<li>Erlatibitate orokorrean, grabitazioa espazio-denboraren kurbaduran "
+"oinarrituta azaltzen da.</li>"
 
 #: objectinfo/gravitationforce.html:14
 #, kde-format
@@ -333,20 +432,21 @@ msgid ""
 "For more details, please refer to the <a href=\"https://en.wikipedia.org/"
 "wiki/Gravitation\">Gravitation Force</a>."
 msgstr ""
-"Xehetasun gehiagorako, mesedez ikusi <a href=\"https://en.wikipedia.org/wiki/"
-"Gravitation\">Indar Grabitatorioa</a>."
+"Xehetasun gehiagorako, mesedez begiratu <a href=\"https://eu.wikipedia.org/"
+"wiki/Grabitazio\">Grabitazio indarra</a>."
 
 #: objectinfo/linearmotor.html:6
 #, kde-format
 msgctxt "linearmotor.html:title"
 msgid "Linear Motor"
-msgstr ""
+msgstr "Motor lineala"
 
 #: objectinfo/linearmotor.html:9
 #, kde-format
 msgctxt "linearmotor.html:p"
 msgid "A linear motor produces a linear force along its length."
 msgstr ""
+"Motor lineal batek bere luzeraren norabidean indar lineal bat sortzen du."
 
 #: objectinfo/linearmotor.html:10
 #, kde-format
@@ -355,6 +455,8 @@ msgid ""
 "You can set the desired linear force for an object by changing the force "
 "value in the properties browser."
 msgstr ""
+"Objektu bati aplikatu nahi diozun indar lineala ezar dezakezu propietateen "
+"arakatzailean indarraren balioa aldatuz."
 
 #: objectinfo/meter.html:6
 #, kde-format
@@ -369,9 +471,8 @@ msgid ""
 "A meter can show you values of properties. The meter can be configured to "
 "show property of any given object of the simulation."
 msgstr ""
-"Neurgailu batek ezaugarrien balioak bistaratu ditzake. Neurgailuak "
-"simulazioan objetuei emandako edozein ezaugarri erakusteko konfiguratu "
-"daitezke."
+"Neurgailu batek propietateen balioak erakuts ditzake. Neurgailua simulazioko "
+"edozein objekturen propietateak erakusteko konfiguratu daiteke."
 
 #: objectinfo/note.html:6
 #, kde-format
@@ -383,7 +484,7 @@ msgstr "Oharra"
 #, kde-format
 msgctxt "note.html:p"
 msgid "You can use notes to place text on the canvas of Step."
-msgstr ""
+msgstr "Oharrak erabil ditzakezu Step-en mihisean testua jartzeko."
 
 #: objectinfo/particle.html:6
 #, kde-format
@@ -395,7 +496,7 @@ msgstr "Partikula"
 #, kde-format
 msgctxt "particle.html:p"
 msgid "A zero-sized particle which has a unique name and four parameters:"
-msgstr "Zero-tamainako partikula bat izen bakarraz eta lau ezaugarrirekin:"
+msgstr "Izen bakarra eta lau propietate dituen zero-neurriko partikula bat:"
 
 #: objectinfo/particle.html:15
 #, kde-format
@@ -412,12 +513,21 @@ msgid ""
 "which the particle interacts with other items.</li>\n"
 "\t</ul>"
 msgstr ""
+"<ul>\n"
+"\t\t<li><b>posizioa:</b> Partikularen X/Y posizioa, <a href=\"objinfo:World"
+"\">munduaren</a> zentroarekiko.</li>\n"
+"\t\t<li><b>abiadura:</b> Partikularen abiadura. Unitatea: metro segundoko.</"
+"li>\n"
+"\t\t<li><b>indarra:</b> Partikularen mugimendua eragiten duen indarra.</li>\n"
+"\t\t<li><b>masa:</b> the mass of the particle. This influences forces with "
+"which the particle interacts with other items.</li>\n"
+"\t</ul>"
 
 #: objectinfo/pin.html:6
 #, kde-format
 msgctxt "pin.html:title"
 msgid "Pin"
-msgstr ""
+msgstr "Iltzea"
 
 #: objectinfo/pin.html:9
 #, kde-format
@@ -426,6 +536,8 @@ msgid ""
 "A pin is a joint that fixes a particular point of the body, The body can "
 "still move around the pin."
 msgstr ""
+"Iltze bat gorputzaren puntu jakin bat finkatzen duen giltzadura bat da. "
+"Gorputza iltzearen inguruan mugitu daiteke."
 
 #: objectinfo/polygon.html:6
 #, kde-format
@@ -437,7 +549,7 @@ msgstr "Poligonoa"
 #, kde-format
 msgctxt "polygon.html:p"
 msgid "A rigid polygon with a unique name and the following parameters:"
-msgstr "Poligono zurrun bat izen bakarrekoa eta ondorengo ezaugarriekin:"
+msgstr "Izen bakarra eta ondoko parametroak dituen poligono zurrun bat:"
 
 #: objectinfo/polygon.html:21
 #, kde-format
@@ -469,12 +581,34 @@ msgid ""
 "center of mass of the polygon.</li>\n"
 "\t</ul>"
 msgstr ""
+"<ul>\n"
+"\t\t<li><b>posizioa:</b> Poligonoaren masa-zentroaren X/Y posizioa, <a href="
+"\"objinfo:World\">munduaren</a> zentroarekiko.</li>\n"
+"\t\t<li><b>angelua:</b> Poligonoak noranzko positiboan zenbat biratzen duen, "
+"hau da, erloju-orratzen noranzkoan.</li>\n"
+"\t\t<li><b>abiadura:</b> Poligonoaren masa-zentroaren abiadura. Unitatea: "
+"metro segundoko.</li>\n"
+"\t\t<li><b>abiadura angeluarra:</b> Poligonoa noranzko positiboan biratzeko "
+"abiadura, hau da, erloju-orratzen noranzkoan.</li>\n"
+"\t\t<li><b>masa:</b> Poligonoaren masa osoa. Horrek poligonoak beste "
+"elementuekin izango dituen indar-harremanak baldintzatzen ditu.</li>\n"
+"\t\t<li><b>inertzia:</b> Poligonoaren biraketa aldatzeko zailtasuna.</li>\n"
+"\t\t<li><b>momentua:</b> Kanpoko indarrik ezean mekanikan kontserbatzen den "
+"oinarrizko kopuru bat. Masaren eta abiaduraren biderkadura.</li>\n"
+"\t\t<li><b>momentu angeluarra:</b> Kutxak kanpoko momentu baten eraginik "
+"izan ezean biratzen jarraitzeko duen neurriaren heina.</li>\n"
+"\t\t<li><b>Energia zinetikoa:</b> Masa jakin bateko gorputza geldiunetik "
+"bere uneko abiadurara azeleratzeko beharrezko lana.</li>\n"
+"\t\t<li><b>erpinak:</b> Poligonoaren erpinen (izkina) zerrenda bat, bere "
+"neurria eta forma definitzen duena. Erpin bakoitzaren koordenatuak "
+"poligonoaren masa-zentroarekiko adierazten dira.</li>\n"
+"\t</ul>"
 
 #: objectinfo/softbody.html:6
 #, kde-format
 msgctxt "softbody.html:title"
 msgid "Soft body"
-msgstr ""
+msgstr "Gorputz biguna"
 
 #: objectinfo/softbody.html:9
 #, kde-format
@@ -485,22 +619,26 @@ msgid ""
 "simulate an <a href=\"https://en.wikipedia.org/wiki/"
 "Elasticity_(physics)\">elastic</a> or viscoelastic body."
 msgstr ""
+"Gorputz bigun bat <a href=\"objinfo:spring\">malgukien</a> bidez elkartutako "
+"<a href=\"objinfo:particle\">partikula</a> bilduma bat da. Hori gorputz <a "
+"href=\"https://en.wikipedia.org/wiki/Elasticity_(physics)\">elastiko</a> edo "
+"biskoelastiko baten simulazioa egiteko erabil daiteke."
 
 #: objectinfo/spring.html:6
 #, kde-format
 msgctxt "spring.html:title"
 msgid "Spring"
-msgstr ""
+msgstr "Malgukia"
 
 #: objectinfo/spring.html:9
-#, fuzzy, kde-format
-#| msgctxt "box.html:p"
-#| msgid "A rigid box with a unique name and the following parameters:"
+#, kde-format
 msgctxt "spring.html:p"
 msgid ""
 "A flexible elastic object to store mechanical energy. It has a unique name "
 "and the following parameters:"
-msgstr "Kutxa zurrun bat izen bakarrekoa eta ondorengo ezaugarriekin:"
+msgstr ""
+"Energia mekanikoa gordetzeko objektu malgu elastiko bat. Izen bakarra eta "
+"ondoko propietateak ditu:"
 
 #: objectinfo/spring.html:19
 #, kde-format
@@ -523,18 +661,34 @@ msgid ""
 "\t\t<li><b>force:</b> is the force that acts along the spring</li>\n"
 "\t</ul>"
 msgstr ""
+"<ul>\n"
+"\t\t<li><b>atsedeneko luzera:</b> Ez konprimatuta ez luzatuta dagoenean duen "
+"luzera.</li>\n"
+"\t\t<li><b>luzera:</b> Malgukiaren hasierako luzera da</li>\n"
+"\t\t<li><b>zurruntasuna:</b> Malgukiak konprimatzeari edo luzatzeari egiten "
+"dion erresistentzia-maila</li>\n"
+"\t\t<li><b>moteltzea:</b> malgukiak gordetako energia barreiatzeko duen "
+"gaitasun maila da, barne-biskositatea</li>\n"
+"\t\t<li><b>1 eta 2 gorputza:</b> malgukia finkatuta dagoen gorputzak dira</"
+"li>\n"
+"\t\t<li><b>tokiko 1 eta 2 posizioa:</b> malgukiaren muturren posizio lokalak "
+"dira, deformatu gabeko egoeran bere zentroarekiko erlatibo.</li>\n"
+"\t\t<li><b>1 eta 2 posizioa:</b> malgukiaren muturren posizio globalak dira</"
+"li>\n"
+"\t\t<li><b>indarra:</b> malgukiaren norabidean jarduten duen indarra</li>\n"
+"\t</ul>"
 
 #: objectinfo/weightforce.html:6
 #, kde-format
 msgctxt "weightforce.html:title"
 msgid "Weight Force"
-msgstr ""
+msgstr "Pisua (indarra)"
 
 #: objectinfo/weightforce.html:9
 #, kde-format
 msgctxt "weightforce.html:p"
 msgid "Weight of an object is the force exerted on it by gravity."
-msgstr ""
+msgstr "Objektu baten pisua grabitateak hartan eragiten duen indarra da."
 
 #: objectinfo/weightforce.html:10
 #, kde-format
@@ -543,6 +697,8 @@ msgid ""
 "Weight is a vector quantity. It is often denoted by W and given by the "
 "relation W = mg."
 msgstr ""
+"Pisua kopuru bektoriala da. Maiz P letraz adierazten da eta P = mg erlazioak "
+"ematen du."
 
 #: objectinfo/weightforce.html:12
 #, kde-format
@@ -551,26 +707,24 @@ msgid ""
 "<li>Where, <b>m</b> is the mass of the body</li>\n"
 "<li>and <b>g</b> is the acceleration due to gravity.</li>"
 msgstr ""
+"<li>Non, <b>m</b> gorputzaren masa</li>\n"
+"<li>eta <b>g</b> grabitateagatiko azelerazioa den.</li>"
 
 #: objectinfo/weightforce.html:13
-#, fuzzy, kde-format
-#| msgctxt "gravitationforce.html:p"
-#| msgid ""
-#| "For more details, please refer to the <a href=\"https://en.wikipedia.org/"
-#| "wiki/Gravitation\">Gravitation Force</a>."
+#, kde-format
 msgctxt "weightforce.html:p"
 msgid ""
 "For more details, please refer to the <a href=\"https://en.wikipedia.org/"
 "wiki/Weight\">Weight Force</a>."
 msgstr ""
-"Xehetasun gehiagorako, mesedez ikusi <a href=\"https://en.wikipedia.org/wiki/"
-"Gravitation\">Indar Grabitatorioa</a>."
+"Xehetasun gehiagorako, mesedez begiratu <a href=\"https://https://eu."
+"wikipedia.org/wiki/Pisu\">Pisu indarra</a>."
 
 #: objectinfo/world.html:6
 #, kde-format
 msgctxt "world.html:title"
 msgid "World"
-msgstr ""
+msgstr "Mundua"
 
 #: objectinfo/world.html:9
 #, kde-format
@@ -581,3 +735,7 @@ msgid ""
 "click on the <b>Simulate</b> button in toolbar and your scene will evolve "
 "according to the laws of physics."
 msgstr ""
+"Hau munduaren eszena da. Objektuen paletatik objektu batzuk hautatu eta "
+"mihisean jarri behar dituzu. Objektuen propietateak ezarri ondoren tresna-"
+"barrako <b>Simulatu</b> botoian klik egin dezakezu eta zure eszena fisikaren "
+"legeen arabera eboluzionatuko du."
