@@ -1358,7 +1358,7 @@ msgid ""
 "- Select a spring by clicking on it. Change its stiffness and see how it is "
 "affecting the simulation."
 msgstr ""
-"- Seleccioneu una molla clicant-hi. Canvieu la seua rigidesa i vegeu com açò "
+"- Trieu una molla clicant-hi. Canvieu la seua rigidesa i vegeu com açò "
 "afecta la simulació."
 
 #: tutorials/tutorial1.step:78 tutorials/tutorial5.step:78
@@ -1510,7 +1510,7 @@ msgid ""
 "- Select mass of the particle1 as the data source, adjust the range and "
 "assign keyboard shortcuts."
 msgstr ""
-"- Seleccioneu la massa de la partícula1 com a font de les dades, ajusteu "
+"- Trieu la massa de la partícula1 com a font de les dades, ajusteu "
 "l'interval i assigneu les dreceres del teclat."
 
 #: tutorials/tutorial2.step:115
