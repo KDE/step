@@ -33,6 +33,7 @@
     <comment xml:lang="ta">ஸ்டெப் இயற்பியல் பாவனையாக்கி கோப்புகள்</comment>
     <comment xml:lang="tr">Step Fiziksel Benzetici dosyaları</comment>
     <comment xml:lang="uk">файли імітатора фізичних процесів Step</comment>
+    <comment xml:lang="x_test">xxStep Physical Simulator filesxx</comment>
     <comment xml:lang="zh_CN">Step 物理模拟器文件</comment>
     <icon name="step"/>
     <magic priority="80">
