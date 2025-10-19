@@ -4,15 +4,15 @@
 # Laurenţiu Buzdugan <lbuz@rolix.org>, 2008".
 # Florentina Mușat <kuchiki14@yahoo.com >, 2010.
 # Victor Cărbune <victor.carbune@kdemail.net>, 2010.
-# Sergiu Bivol <sergiu@cip.md>, 2012.
+# SPDX-FileCopyrightText: 2012, 2025 Sergiu Bivol <sergiu@cip.md>
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: step\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2025-03-11 00:38+0000\n"
-"PO-Revision-Date: 2012-12-22 11:46+0200\n"
-"Last-Translator: Sergiu Bivol <sergiu@ase.md>\n"
+"PO-Revision-Date: 2025-10-18 14:50+0100\n"
+"Last-Translator: Sergiu Bivol <sergiu@cip.md>\n"
 "Language-Team: Romanian <kde-i18n-ro@kde.org>\n"
 "Language: ro\n"
 "MIME-Version: 1.0\n"
@@ -20,6 +20,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=n==1 ? 0 : (n==0 || (n%100 > 0 && n%100 < "
 "20)) ? 1 : 2;\n"
+"X-Generator: Lokalize 25.08.1\n"
 
 #, kde-format
 msgctxt "NAME OF TRANSLATORS"
@@ -1055,32 +1056,30 @@ msgid "Font &Size"
 msgstr "Dimen&siune font"
 
 #: step/toolgraphics.cc:411
-#, fuzzy, kde-format
-#| msgid "Insert &Image"
+#, kde-format
 msgid "Insert &Image..."
-msgstr "Inserează &imagine"
+msgstr "Inserează &imagine…"
 
 #: step/toolgraphics.cc:416
-#, fuzzy, kde-format
-#| msgid "Insert &Formula"
+#, kde-format
 msgid "Insert &Formula..."
-msgstr "Inserează &formulă"
+msgstr "Inserează &formulă…"
 
 #: step/toolgraphics.cc:527
 #, kde-format
 msgid "Edit %1"
-msgstr "Editează %1"
+msgstr "Modifică %1"
 
 #: step/toolgraphics.cc:632
 #, kde-format
 msgctxt "@title:window"
 msgid "Open Image File"
-msgstr ""
+msgstr "Deschide fișier cu imagine"
 
 #: step/toolgraphics.cc:632
 #, kde-format
 msgid "Images (*.png *.jpg *.jpeg)"
-msgstr ""
+msgstr "Imagini (*.png *.jpg *.jpeg)"
 
 #: step/toolgraphics.cc:650
 #, kde-format
@@ -1097,11 +1096,10 @@ msgstr ""
 "”latex”, ”dvips” și ”gs” instalate și disponibile de la $PATH"
 
 #: step/toolgraphics.cc:700
-#, fuzzy, kde-format
-#| msgid "LaTex Formula - Step"
+#, kde-format
 msgctxt "@title:window"
 msgid "LaTex Formula - Step"
-msgstr "Formulă LaTex - Pas"
+msgstr "Formulă LaTex - Step"
 
 #: step/toolgraphics.cc:701
 #, fuzzy, kde-format
@@ -1150,23 +1148,20 @@ msgid "[not configured]"
 msgstr "[neconfigurat]"
 
 #: step/toolgraphics.cc:1078
-#, fuzzy, kde-format
-#| msgid "Clear graph"
+#, kde-format
 msgid "Clear Graph"
-msgstr "Eliberează grafic"
+msgstr "Curăță graficul"
 
 #: step/toolgraphics.cc:1079
-#, fuzzy, kde-format
-#| msgid "Configure graph..."
+#, kde-format
 msgid "Configure Graph..."
-msgstr "Configurare grafic..."
+msgstr "Configurează graficul…"
 
 #: step/toolgraphics.cc:1097
-#, fuzzy, kde-format
-#| msgid "Configure graph"
+#, kde-format
 msgctxt "@title:window"
 msgid "Configure Graph"
-msgstr "Configurează grafic"
+msgstr "Configurează graficul…"
 
 #: step/toolgraphics.cc:1173 step/toolgraphics.cc:1372
 #: step/toolgraphics.cc:1710
@@ -1193,16 +1188,14 @@ msgid "Configure Meter"
 msgstr "Configurează măsură"
 
 #: step/toolgraphics.cc:1421 step/toolgraphics.cc:1618
-#, fuzzy, kde-format
-#| msgid "Increase value"
+#, kde-format
 msgid "Increase Value"
-msgstr "Mărește valoarea"
+msgstr "Crește valoarea"
 
 #: step/toolgraphics.cc:1422 step/toolgraphics.cc:1619
-#, fuzzy, kde-format
-#| msgid "Decrease value"
+#, kde-format
 msgid "Decrease Value"
-msgstr "Micșorează valoarea"
+msgstr "Descrește valoarea"
 
 #: step/toolgraphics.cc:1452 step/toolgraphics.cc:1747
 #, kde-format
