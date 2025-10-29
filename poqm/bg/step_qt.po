@@ -2,14 +2,15 @@
 # This file is distributed under the same license as the PACKAGE package.
 #
 # Svetoslav Stefanov <lfu.project@gmail.com>, 2010.
+# SPDX-FileCopyrightText: 2025 Mincho Kondarev <mkondarev@yahoo.de>
 msgid ""
 msgstr ""
 "Project-Id-Version: step_qt\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2016-06-22 08:50+0000\n"
-"PO-Revision-Date: 2010-08-16 10:38+0200\n"
-"Last-Translator: Svetoslav Stefanov <lfu.project@gmail.com>\n"
-"Language-Team: Svetoslav Stefanov <lfu.project@gmail.com>\n"
+"PO-Revision-Date: 2025-10-24 23:40+0200\n"
+"Last-Translator: Mincho Kondarev <mkondarev@yahoo.de>\n"
+"Language-Team: Bulgarian <kde-i18n-doc@kde.org>\n"
 "Language: bg\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -19,6 +20,7 @@ msgstr ""
 "X-Poedit-SourceCharset: utf-8\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
 "X-Qt-Contexts: true\n"
+"X-Generator: Lokalize 25.08.2\n"
 
 #: body.cc:13
 #, fuzzy
@@ -2702,25 +2704,25 @@ msgstr "Файлът не е от тип StepCoreXML."
 #, fuzzy, qt-format
 msgctxt "QObject|"
 msgid "Unknown item type \"%1\""
-msgstr "Неизвестен тип на елемента \"%1\""
+msgstr "Неизвестен тип на елемента „%1“"
 
 #: xmlfile.cc:258
 #, fuzzy, qt-format
 msgctxt "QObject|"
 msgid "Unknown solver type \"%1\""
-msgstr "Неизвестен тип решавач \"%1\""
+msgstr "Неизвестен тип решавач „%1“"
 
 #: xmlfile.cc:272
 #, fuzzy, qt-format
 msgctxt "QObject|"
 msgid "Unknown collisionSolver type \"%1\""
-msgstr "Неизвестен тип колизияРешавач \"%1\""
+msgstr "Неизвестен тип колизияРешавач „%1“"
 
 #: xmlfile.cc:286
 #, fuzzy, qt-format
 msgctxt "QObject|"
 msgid "Unknown constraint solver type \"%1\""
-msgstr "Неизвестен тип ограничениеРешавач \"%1\""
+msgstr "Неизвестен тип ограничениеРешавач „%1“"
 
 #: xmlfile.cc:314
 #, qt-format
@@ -2738,7 +2740,7 @@ msgstr ""
 #, fuzzy, qt-format
 msgctxt "QObject|"
 msgid "Property \"%1\" of \"%2\" has illegal value"
-msgstr "Свойството \"%1\" на \"%2\" има недопустима стойност"
+msgstr "Свойството „%1“ на „%2“ има недопустима стойност"
 
 #: xmlfile.cc:374
 #, fuzzy
