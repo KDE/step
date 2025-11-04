@@ -19,7 +19,7 @@ msgstr ""
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2016-06-22 08:50+0000\n"
 "PO-Revision-Date: 2023-11-06 14:20+0100\n"
-"Last-Translator: Xavier BESNARD <xavier.besnard@neuf.fr>\n"
+"Last-Translator: Xavier Besnard <xavier.besnard@kde.org>\n"
 "Language-Team: French <kde-francophone@kde.org>\n"
 "Language: fr\n"
 "MIME-Version: 1.0\n"
@@ -1537,7 +1537,7 @@ msgstr "Boîte rigide"
 #: rigidbody.cc:77
 msgctxt "PropertyDescription|"
 msgid "Size of the box"
-msgstr "Taille de la boîte"
+msgstr "Taille de la boite"
 
 #: rigidbody.cc:77 tool.cc:27 tool.cc:34 tool.cc:56 tool.cc:68
 msgctxt "PropertyName|"

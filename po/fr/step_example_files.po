@@ -5,7 +5,7 @@ msgstr ""
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2023-11-05 12:24+0000\n"
 "PO-Revision-Date: 2023-10-28 18:39+0200\n"
-"Last-Translator: Xavier BESNARD <xavier.besnard@neuf.fr>\n"
+"Last-Translator: Xavier Besnard <xavier.besnard@kde.org>\n"
 "Language-Team: French <kde-francophone@kde.org>\n"
 "Language: fr\n"
 "MIME-Version: 1.0\n"
@@ -1277,7 +1277,7 @@ msgstr ""
 "Quand vous démarrer la simulation, l'onde commence à se propager à partir de "
 "la particule rouge. La particule bleue réfléchira l'onde et elle repartira "
 "dans la direction inverse, jusqu'à ce que la particule rouge la revoit un "
-"fois de plus. Après un certain temps, l'onde disparaîtra car les ressorts "
+"fois de plus. Après un certain temps, l'onde disparaitra car les ressorts "
 "sont soumis à un certain amortissement."
 
 #: examples/wave.step:477
@@ -1600,7 +1600,7 @@ msgid ""
 "- Attach one more tracer to the box and compare trajectories of different "
 "points."
 msgstr ""
-"- Attachez un indicateur de plus à la boîte et comparez les trajectoires de "
+"- Attachez un indicateur de plus à la boite et comparez les trajectoires de "
 "différents points."
 
 #: tutorials/tutorial4.step:77
@@ -1670,7 +1670,7 @@ msgstr ""
 msgctxt "HTML:p"
 msgid "- Try to attach a circular motor to the box and start simulation."
 msgstr ""
-"- Essayez d'attacher un moteur circulaire à la boîte et lancer la simulation."
+"- Essayez d'attacher un moteur circulaire à la boite et lancer la simulation."
 
 #: tutorials/tutorial4.step:146
 #, kde-format
@@ -1750,8 +1750,8 @@ msgid ""
 "- Remove anchor1 that fixes position of the box and attach a pin to the "
 "corner of the box. Try starting the simulation."
 msgstr ""
-"- Supprimez l'ancre 1 fixant la position de la boîte et attaché la tige au "
-"coin de la boîte. Essayez de lancer la simulation."
+"- Supprimez l'ancre 1 fixant la position de la boite et attaché la tige au "
+"coin de la boite. Essayez de lancer la simulation."
 
 #: tutorials/tutorial5.step:114
 #, kde-format
