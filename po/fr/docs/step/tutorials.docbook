@@ -9,7 +9,7 @@
 ><guimenuitem
 >Ouvrir un tutoriel...</guimenuitem
 ></menuchoice
-> vous ouvre une boîte de dialogue où vous pouvez charger des tutoriels intégrés à &step;. Il existe cinq tutoriels et vous pouvez apprendre progressivement comment interagir avec chaque élément de &step;. Le mieux est de démarrer avec le premier tutoriel en cliquant sur <filename
+> vous ouvre une boite de dialogue où vous pouvez charger des tutoriels intégrés à &step;. Il existe cinq tutoriels et vous pouvez apprendre progressivement comment interagir avec chaque élément de &step;. Le mieux est de démarrer avec le premier tutoriel en cliquant sur <filename
 >tutorial1.step</filename
 >. Cela affichera le premier tutoriel dans &step;. </para>
 
@@ -73,7 +73,7 @@
 >W</keycap
 >, vous pouvez augmenter la valeur de la raideur de « ressort-1 » et en déplaçant le curseur vers la gauche ou en utilisant la touche <keycap
 >Q</keycap
->, vous pouvez la diminuer. Un clic avec le bouton droit sur le contrôleur vous apporte plusieurs actions contextuelle et la boîte de dialogue <guilabel
+>, vous pouvez la diminuer. Un clic avec le bouton droit sur le contrôleur vous apporte plusieurs actions contextuelle et la boite de dialogue <guilabel
 >Configurer le contrôleur...</guilabel
 > vous permet de modifier chaque propriété du contrôleur. </para>
 
@@ -91,7 +91,7 @@
 </screenshot>
 
 <para
->Les graphiques vous permettent d'afficher graphiquement la relation entre deux variables. L'exemple donné dans ce tutoriel affiche l'évolution de la position de particule1 en fonction du temps de world1. Cliquer droit sur le graphique vous permet d'effacer ou de supprimer le graphique ainsi que de modifier la boîte de dialogue de configuration où vous pouvez modifier toutes les caractéristiques de ce graphique. </para>
+>Les graphiques vous permettent d'afficher graphiquement la relation entre deux variables. L'exemple donné dans ce tutoriel affiche l'évolution de la position de particule1 en fonction du temps de world1. Cliquer droit sur le graphique vous permet d'effacer ou de supprimer le graphique ainsi que de modifier la boite de dialogue de configuration où vous pouvez modifier toutes les caractéristiques de ce graphique. </para>
 
 <para
 >À la fin de ce tutoriel, vous êtes capable d'utiliser les contrôleurs pour agir sur les caractéristiques de vos corps et les graphiques pour surveiller les caractéristiques particulières de votre expérience. </para>
@@ -140,15 +140,15 @@
 </screenshot>
 
 <para
->L'expérience du tutoriel 3 montre un disque et un boîte reliés par un ressort. Un traceur (bleu) est toujours présent sur la boîte. Vous pouvez en ajouter un deuxième : veuillez sélectionner le bouton <guilabel
+>L'expérience du tutoriel 3 montre un disque et un boite reliés par un ressort. Un traceur (bleu) est toujours présent sur la boite. Vous pouvez en ajouter un deuxième : veuillez sélectionner le bouton <guilabel
 >Traceur</guilabel
 > dans le panneau <guilabel
 >Palette</guilabel
-> puis cliquer sur le point de la boîte où vous souhaitez placer le traceur. Dans le panneau <guilabel
+> puis cliquer sur le point de la boite où vous souhaitez placer le traceur. Dans le panneau <guilabel
 > Caractéristiques</guilabel
 >, veuillez cliquer sur la ligne de <guilabel
 >couleur</guilabel
-> et à droite de la ligne, vous pouvez cliquer sur le carré bleu pour faire apparaître une palette de couleurs : vous pouvez sélectionner une nouvelle couleur pour le traceur. La copie d'écran ci-dessous affiche deux traceurs après l'exécution de la simulation pendant quelques secondes. </para>
+> et à droite de la ligne, vous pouvez cliquer sur le carré bleu pour faire apparaitre une palette de couleurs : vous pouvez sélectionner une nouvelle couleur pour le traceur. La copie d'écran ci-dessous affiche deux traceurs après l'exécution de la simulation pendant quelques secondes. </para>
 </sect1>
 
 <sect1 id="tutorial4">
@@ -175,10 +175,10 @@
 </screenshot>
 
 <para
->Dans l'expérience, il y a un disque et une boîte reliés par un ressort. Une boîte plate située en bas formera une limite. Le disque et la boîte ont chacun un moteur linéaire qui leur est appliqué/ Deux contrôleurs vous permettent de modifier la valeur de la force de chaque moteur. Lancez la simulation et jouer avec les contrôleurs. Ensuite arrêtez la simulation et ajoutez une force de pesanteur dans le monde (les forces sont globales et s'appliquent au monde dans sa totalité). Redémarrez la simulation et constatez la différence. </para>
+>Dans l'expérience, il y a un disque et une boite reliés par un ressort. Une boite plate située en bas formera une limite. Le disque et la boite ont chacun un moteur linéaire qui leur est appliqué/ Deux contrôleurs vous permettent de modifier la valeur de la force de chaque moteur. Lancez la simulation et jouer avec les contrôleurs. Ensuite arrêtez la simulation et ajoutez une force de pesanteur dans le monde (les forces sont globales et s'appliquent au monde dans sa totalité). Redémarrez la simulation et constatez la différence. </para>
 
 <para
->Vous pouvez également supprimer le moteur linéaire de la boîte et ajouter un moteur circulaire. Veuillez cliquer sur le bouton <inlinemediaobject
+>Vous pouvez également supprimer le moteur linéaire de la boite et ajouter un moteur circulaire. Veuillez cliquer sur le bouton <inlinemediaobject
 ><imageobject
 ><imagedata fileref="step_object_CircularMotor.png" format="PNG"/></imageobject
 ></inlinemediaobject
@@ -186,7 +186,7 @@
 >Moteur-Circulaire</guibutton
 > dans le panneau <guilabel
 >Palette</guilabel
-> puis cliquer sur la boîte. Le moteur circulaire est appliqué à la boîte. Vous devez alors régler la valeur du couple en cliquant sur la poignée grise et en la déplaçant sur le moteur. </para>
+> puis cliquer sur la boite. Le moteur circulaire est appliqué à la boite. Vous devez alors régler la valeur du couple en cliquant sur la poignée grise et en la déplaçant sur le moteur. </para>
 
 <screenshot>
   <screeninfo
