@@ -5,11 +5,12 @@
 */
 
 #include "constraintsolver.h"
+#include "eigeniterationcontroller.h"
+#include "eigenconstrainedconjgrad.h"
 #include "rigidbody.h"
 #include "particle.h"
 #include "types.h"
 #include <iostream>
-#include <unsupported/Eigen/IterativeSolvers>
 #include <cmath>
 
 using namespace Eigen;
