@@ -249,7 +249,7 @@ public:
 /** Casts between pointers to Object */
 template<class _Dst, class _Src> // XXX: implement it better
 _Dst stepcore_cast(_Src src) {
-    if(!src || !src->metaObject()->template inherits(_Dst())) return NULL;
+    if(!src || !src->metaObject()->template inherits<>(_Dst())) return NULL;
     return static_cast<_Dst>(src);
 }
 
