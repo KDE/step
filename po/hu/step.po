@@ -5,20 +5,21 @@
 # Kiszel Kristóf <ulysses@kubuntu.org>, 2010.
 # Kristóf Kiszel <ulysses@kubuntu.org>, 2011, 2012, 2015.
 # Balázs Úr <urbalazs@gmail.com>, 2012, 2013.
+# SPDX-FileCopyrightText: 2025 Kristof Kiszel <ulysses@fsf.hu>
 msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2025-11-17 14:38+0000\n"
-"PO-Revision-Date: 2015-09-04 15:13+0200\n"
-"Last-Translator: Kristóf Kiszel <ulysses@kubuntu.org>\n"
+"PO-Revision-Date: 2025-11-22 22:40+0100\n"
+"Last-Translator: Kristof Kiszel <ulysses@fsf.hu>\n"
 "Language-Team: Hungarian <kde-l10n-hu@kde.org>\n"
 "Language: hu\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Generator: Lokalize 1.5\n"
+"X-Generator: Lokalize 25.08.3\n"
 
 #, kde-format
 msgctxt "NAME OF TRANSLATORS"
@@ -28,7 +29,7 @@ msgstr "Kiszel Kristóf,Úr Balázs,Bojtos Péter"
 #, kde-format
 msgctxt "EMAIL OF TRANSLATORS"
 msgid "Your emails"
-msgstr "ulysses@kubuntu.org,urbalazs@gmail.com,ptr@ulx.hu"
+msgstr "ulysses@fsf.hu,ur.balazs@fsf.hu,ptr@ulx.hu"
 
 #. i18n: ectx: property (title), widget (QGroupBox, groupBox)
 #: step/configure_controller.ui:28 step/configure_graph.ui:28
@@ -130,13 +131,13 @@ msgstr "Tartományok"
 #: step/configure_graph.ui:83
 #, kde-format
 msgid "Min:"
-msgstr ""
+msgstr "Min:"
 
 #. i18n: ectx: property (text), widget (QLabel, label_6)
 #: step/configure_graph.ui:99
 #, kde-format
 msgid "Max:"
-msgstr ""
+msgstr "Max:"
 
 #. i18n: ectx: property (text), widget (QCheckBox, checkBoxAutoX)
 #. i18n: ectx: property (text), widget (QCheckBox, checkBoxAutoY)
@@ -204,10 +205,9 @@ msgstr "Wikipédia megnyitása külső böngészőben"
 
 #. i18n: ectx: property (text), widget (QLabel, label_5)
 #: step/create_gas_particles.ui:34
-#, fuzzy, kde-format
-#| msgid "Area"
+#, kde-format
 msgid "Area:"
-msgstr "Terület"
+msgstr "Terület:"
 
 #. i18n: ectx: property (toolTip), widget (QLineEdit, lineEditVolume)
 #: step/create_gas_particles.ui:41
@@ -339,11 +339,10 @@ msgid "(4,4)"
 msgstr "(4,4)"
 
 #: step/gascreationdialog.cc:31
-#, fuzzy, kde-format
-#| msgid "Create gas particles"
+#, kde-format
 msgctxt "@title:window"
 msgid "Create Gas Particles"
-msgstr "Gáz részecskék létrehozása"
+msgstr "Gázrészecskék létrehozása"
 
 #: step/gasgraphics.cc:31
 #, kde-format
@@ -385,10 +384,9 @@ msgid "%1 named '%2' created"
 msgstr "%1 létrehozva „%2” névvel"
 
 #: step/gasgraphics.cc:282
-#, fuzzy, kde-format
-#| msgid "Create particles..."
+#, kde-format
 msgid "Create Particles..."
-msgstr "Részecskék létrehozása..."
+msgstr "Részecskék létrehozása…"
 
 #: step/gasgraphics.cc:352
 #, kde-format
@@ -410,10 +408,9 @@ msgid "Create particles for %1"
 msgstr "Részecskék létrehozása %1 számára"
 
 #: step/infobrowser.cc:26
-#, fuzzy, kde-format
-#| msgid "Context info"
+#, kde-format
 msgid "Context Info"
-msgstr "Összefüggés információ"
+msgstr "Kontextusinformációk"
 
 #: step/infobrowser.cc:44
 #, kde-format
@@ -436,8 +433,7 @@ msgid "Follow selection"
 msgstr "Kiválasztás követése"
 
 #: step/infobrowser.cc:57
-#, fuzzy, kde-format
-#| msgid "Open in browser"
+#, kde-format
 msgid "Open in Browser"
 msgstr "Megnyitás böngészőben"
 
@@ -459,17 +455,15 @@ msgstr "Dokumentációs hiba"
 #: step/infobrowser.cc:164
 #, kde-format
 msgid "Documentation for %1 not available. "
-msgstr "A dokumentáció a(z) %1 számára nem elérhető."
+msgstr "A(z) %1 dokumentációja nem érhető el. "
 
 #: step/infobrowser.cc:165
-#, fuzzy, kde-format
-#| msgid ""
-#| "You can help <a href=\"http://edu.kde.org/step\">Step</a> by writing it!"
+#, kde-format
 msgid ""
 "You can help <a href=\"https://edu.kde.org/step\">Step</a> by writing it!"
 msgstr ""
-"Segíthet a <a href=\"http://edu.kde.org/step\">Step</a> projektnek annak "
-"írásával!"
+"Segíthet a <a href=\"https://edu.kde.org/step\">Step</a> projektnek annak "
+"megírásával!"
 
 #: step/itempalette.cc:177
 #, kde-format
@@ -546,10 +540,9 @@ msgid "(C) 2007 Vladimir Kuznetsov"
 msgstr "© 2007 Vladimir Kuznetsov"
 
 #: step/main.cc:37
-#, fuzzy, kde-format
-#| msgid "http://edu.kde.org/step"
+#, kde-format
 msgid "https://edu.kde.org/step"
-msgstr "http://edu.kde.org/step"
+msgstr "https://edu.kde.org/step"
 
 #: step/main.cc:42
 #, kde-format
@@ -676,13 +669,12 @@ msgstr "<új fájl>"
 #, kde-format
 msgctxt "@title:window"
 msgid "Open Step File"
-msgstr ""
+msgstr "Step fájl megnyitása"
 
 #: step/mainwindow.cc:307 step/mainwindow.cc:342
-#, fuzzy, kde-format
-#| msgid "*.step|Step files (*.step)"
+#, kde-format
 msgid "Step files (*.step)"
-msgstr "*.step|Step fájlok (*.step)"
+msgstr "Step fájlok (*.step)"
 
 #: step/mainwindow.cc:317 step/mainwindow.cc:358
 #, kde-format
@@ -703,7 +695,7 @@ msgstr "<fájl megnyitása: %1>"
 #, kde-format
 msgctxt "@title:window"
 msgid "Save Step File"
-msgstr ""
+msgstr "Step fájl mentése"
 
 #: step/mainwindow.cc:364
 #, kde-format
@@ -894,11 +886,10 @@ msgid "Please fill in the parameters for %1"
 msgstr "Kérem töltse ki a paramétereket %1 számára"
 
 #: step/softbodygraphics.cc:114
-#, fuzzy, kde-format
-#| msgid "Create soft body items"
+#, kde-format
 msgctxt "@title:window"
 msgid "Create Soft Body Items"
-msgstr "Gyenge törzs elemek létrehozása"
+msgstr "Lágy testű tárgyak létrehozása"
 
 #: step/softbodygraphics.cc:175
 #, kde-format
@@ -1054,16 +1045,14 @@ msgid "Font &Size"
 msgstr "Betűtípus &méret"
 
 #: step/toolgraphics.cc:411
-#, fuzzy, kde-format
-#| msgid "Insert &Image"
+#, kde-format
 msgid "Insert &Image..."
-msgstr "&Kép beszúrása"
+msgstr "&Kép beszúrása…"
 
 #: step/toolgraphics.cc:416
-#, fuzzy, kde-format
-#| msgid "Insert &Formula"
+#, kde-format
 msgid "Insert &Formula..."
-msgstr "&Képlet beszúrása"
+msgstr "&Képlet beszúrása…"
 
 #: step/toolgraphics.cc:527
 #, kde-format
@@ -1074,12 +1063,12 @@ msgstr "%1 szerkesztése"
 #, kde-format
 msgctxt "@title:window"
 msgid "Open Image File"
-msgstr ""
+msgstr "Képfájl megnyitása"
 
 #: step/toolgraphics.cc:632
 #, kde-format
 msgid "Images (*.png *.jpg *.jpeg)"
-msgstr ""
+msgstr "Képek (*.png *.jpg*.jpeg)"
 
 #: step/toolgraphics.cc:650
 #, kde-format
@@ -1096,17 +1085,15 @@ msgstr ""
 "végrehajthatók telepítésére és a $PATH-ból való hozzáférésére"
 
 #: step/toolgraphics.cc:700
-#, fuzzy, kde-format
-#| msgid "LaTex Formula - Step"
+#, kde-format
 msgctxt "@title:window"
 msgid "LaTex Formula - Step"
 msgstr "LaTeX képlet - Step"
 
 #: step/toolgraphics.cc:701
-#, fuzzy, kde-format
-#| msgid "Enter LaTeX formula string"
+#, kde-format
 msgid "Enter LaTeX formula string:"
-msgstr "LaTeX képlet sztring bevitele"
+msgstr "LaTeX képletszöveg megadása:"
 
 #: step/toolgraphics.cc:710
 #, kde-format
@@ -1149,23 +1136,20 @@ msgid "[not configured]"
 msgstr "[nincs konfigurálva]"
 
 #: step/toolgraphics.cc:1078
-#, fuzzy, kde-format
-#| msgid "Clear graph"
+#, kde-format
 msgid "Clear Graph"
 msgstr "Grafikon törlése"
 
 #: step/toolgraphics.cc:1079
-#, fuzzy, kde-format
-#| msgid "Configure graph..."
+#, kde-format
 msgid "Configure Graph..."
-msgstr "Grafikon konfigurálása..."
+msgstr "Grafikon beállítása…"
 
 #: step/toolgraphics.cc:1097
-#, fuzzy, kde-format
-#| msgid "Configure graph"
+#, kde-format
 msgctxt "@title:window"
 msgid "Configure Graph"
-msgstr "Grafikon konfigurálása"
+msgstr "Grafikon beállítása"
 
 #: step/toolgraphics.cc:1173 step/toolgraphics.cc:1372
 #: step/toolgraphics.cc:1710
@@ -1179,27 +1163,23 @@ msgid "Clear graph %1"
 msgstr "%1 grafikon törlése"
 
 #: step/toolgraphics.cc:1306
-#, fuzzy, kde-format
-#| msgid "Configure meter..."
+#, kde-format
 msgid "Configure Meter..."
-msgstr "Méter konfigurálása..."
+msgstr "Mérő beállítása…"
 
 #: step/toolgraphics.cc:1324
-#, fuzzy, kde-format
-#| msgid "Configure meter"
+#, kde-format
 msgctxt "@title:window"
 msgid "Configure Meter"
-msgstr "Méter konfigurálása"
+msgstr "Mérő beállítása"
 
 #: step/toolgraphics.cc:1421 step/toolgraphics.cc:1618
-#, fuzzy, kde-format
-#| msgid "Increase value"
+#, kde-format
 msgid "Increase Value"
-msgstr "Érték megnövelése"
+msgstr "Érték növelése"
 
 #: step/toolgraphics.cc:1422 step/toolgraphics.cc:1619
-#, fuzzy, kde-format
-#| msgid "Decrease value"
+#, kde-format
 msgid "Decrease Value"
 msgstr "Érték csökkentése"
 
@@ -1219,21 +1199,18 @@ msgid "Change controller %1"
 msgstr "%1 vezérlő változtatása"
 
 #: step/toolgraphics.cc:1621
-#, fuzzy, kde-format
-#| msgid "Configure controller..."
+#, kde-format
 msgid "Configure Controller..."
-msgstr "Vezérlő konfigurálása..."
+msgstr "Vezérlő beállítása…"
 
 #: step/toolgraphics.cc:1639
-#, fuzzy, kde-format
-#| msgid "Configure controller"
+#, kde-format
 msgctxt "@title:window"
 msgid "Configure Controller"
-msgstr "Vezérlő konfigurálása"
+msgstr "Vezérlő beállítása"
 
 #: step/toolgraphics.cc:1900
-#, fuzzy, kde-format
-#| msgid "Clear trace"
+#, kde-format
 msgid "Clear Trace"
 msgstr "Követés törlése"
 
@@ -1243,10 +1220,9 @@ msgid "Clear tracer %1"
 msgstr "%1 követő törlése"
 
 #: step/undobrowser.cc:18
-#, fuzzy, kde-format
-#| msgid "Undo history"
+#, kde-format
 msgid "Undo History"
-msgstr "Napló visszavonása"
+msgstr "Visszavonási előzmények"
 
 #: step/worldbrowser.cc:50
 #, kde-format
