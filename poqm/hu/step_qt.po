@@ -3,290 +3,200 @@
 #
 # Kristóf Kiszel <ulysses@kubuntu.org>, 2012.
 # Balázs Úr <urbalazs@gmail.com>, 2012, 2013.
+# SPDX-FileCopyrightText: 2025 Kristof Kiszel <ulysses@fsf.hu>
 msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2016-06-22 08:50+0000\n"
-"PO-Revision-Date: 2013-03-29 13:22+0100\n"
-"Last-Translator: Balázs Úr <urbalazs@gmail.com>\n"
+"PO-Revision-Date: 2025-11-23 22:30+0100\n"
+"Last-Translator: Kristof Kiszel <ulysses@fsf.hu>\n"
 "Language-Team: Hungarian <kde-l10n-hu@kde.org>\n"
 "Language: hu\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Generator: Lokalize 1.5\n"
+"X-Generator: Lokalize 25.08.3\n"
 "X-Qt-Contexts: true\n"
 
 #: body.cc:13
-#, fuzzy
-#| msgid "Body"
 msgctxt "ObjectClass|"
 msgid "Body"
-msgstr "Törzs"
+msgstr "Test"
 
 #: body.cc:13
-#, fuzzy
-#| msgid "Body"
 msgctxt "ObjectDescription|"
 msgid "Body"
-msgstr "Törzs"
+msgstr "Test"
 
 #: collisionsolver.cc:19
-#, fuzzy
-#| msgctxt "ObjectClass"
-#| msgid "CollisionSolver"
 msgctxt "ObjectClass|"
 msgid "CollisionSolver"
 msgstr "Ütközésmegoldó"
 
 #: collisionsolver.cc:20 solver.cc:16
-#, fuzzy
-#| msgid "Allowed absolute tolerance"
 msgctxt "PropertyDescription|"
 msgid "Allowed absolute tolerance"
-msgstr "Megengedett abszolút tolerancia"
+msgstr "Engedélyezett abszolút tűrés"
 
 #: collisionsolver.cc:20 solver.cc:16
-#, fuzzy
-#| msgctxt "PropertyName"
-#| msgid "toleranceAbs"
 msgctxt "PropertyName|"
 msgid "toleranceAbs"
-msgstr "Abszolút tolerancia"
+msgstr "abszolútTűrés"
 
 #: collisionsolver.cc:21 solver.cc:19
-#, fuzzy
-#| msgid "Maximal local error during last step"
 msgctxt "PropertyDescription|"
 msgid "Maximal local error during last step"
 msgstr "Maximális helyi hiba az utolsó lépés során"
 
 #: collisionsolver.cc:21 solver.cc:19
-#, fuzzy
-#| msgctxt "PropertyName"
-#| msgid "localError"
 msgctxt "PropertyName|"
 msgid "localError"
-msgstr "Helyi hiba"
+msgstr "helyiHiba"
 
 #: collisionsolver.cc:23
-#, fuzzy
-#| msgctxt "ObjectClass"
-#| msgid "GJKCollisionSolver"
 msgctxt "ObjectClass|"
 msgid "GJKCollisionSolver"
-msgstr "GJKCollisionSolver"
+msgstr "GJK ütközésmegoldó"
 
 #: constraintsolver.cc:19
-#, fuzzy
-#| msgctxt "ObjectClass"
-#| msgid "ConstraintSolver"
 msgctxt "ObjectClass|"
 msgid "ConstraintSolver"
 msgstr "Kényszermegoldó"
 
 #: constraintsolver.cc:23
-#, fuzzy
-#| msgctxt "ObjectClass"
-#| msgid "CGConstraintSolver"
 msgctxt "ObjectClass|"
 msgid "CGConstraintSolver"
-msgstr "CGConstraintSolver"
+msgstr "CG kényszermegoldó"
 
 #: coulombforce.cc:14
-#, fuzzy
-#| msgctxt "ObjectClass"
-#| msgid "CoulombForce"
 msgctxt "ObjectClass|"
 msgid "CoulombForce"
 msgstr "Coulomb-erő"
 
 #: coulombforce.cc:14
-#, fuzzy
-#| msgid "Coulomb force"
 msgctxt "ObjectDescription|"
 msgid "Coulomb force"
 msgstr "Coulomb-erő"
 
 #: coulombforce.cc:16
-#, fuzzy
-#| msgctxt "PropertyName"
-#| msgid "coulombConst"
 msgctxt "PropertyName|"
 msgid "coulombConst"
-msgstr "Coulomb-állandó"
+msgstr "coulombÁllandó"
 
 #: coulombforce.cc:16 coulombforce.cc:21
-#, fuzzy
-#| msgctxt "Units"
-#| msgid "N m²/C²"
 msgctxt "Units|"
 msgid "N m²/C²"
-msgstr "N*m²/C²"
+msgstr "Nm²/C²"
 
 #: coulombforce.cc:17
-#, fuzzy
-#| msgid "Coulomb constant"
 msgctxt "PropertyDescription|"
 msgid "Coulomb constant"
 msgstr "Coulomb-állandó"
 
 #: coulombforce.cc:19
-#, fuzzy
-#| msgctxt "ObjectClass"
-#| msgid "CoulombForceErrors"
 msgctxt "ObjectClass|"
 msgid "CoulombForceErrors"
-msgstr "Coulomb-erőhibák"
+msgstr "Coulomb-erő hibái"
 
 #: coulombforce.cc:19
-#, fuzzy
-#| msgid "Errors class for CoulombForce"
 msgctxt "ObjectDescription|"
 msgid "Errors class for CoulombForce"
 msgstr "Hibaosztály a Coulomb-erőhöz"
 
 #: coulombforce.cc:21
-#, fuzzy
-#| msgctxt "PropertyName"
-#| msgid "coulombConstVariance"
 msgctxt "PropertyName|"
 msgid "coulombConstVariance"
-msgstr "coulombConstVariance"
+msgstr "coulombÁllandóSzórás"
 
 #: coulombforce.cc:22
-#, fuzzy
-#| msgid "Coulomb constant variance"
 msgctxt "PropertyDescription|"
 msgid "Coulomb constant variance"
-msgstr "Coulomb-konstans eltérése"
+msgstr "Coulomb-állandó szórása"
 
 #: eulersolver.cc:15
-#, fuzzy
-#| msgctxt "ObjectClass"
-#| msgid "GenericEulerSolver"
 msgctxt "ObjectClass|"
 msgid "GenericEulerSolver"
-msgstr "ÁltalánosEulerMegfejtő"
+msgstr "Általános Euler-megoldó"
 
 #: eulersolver.cc:15
-#, fuzzy
-#| msgid "Generic Euler solver"
 msgctxt "ObjectDescription|"
 msgid "Generic Euler solver"
-msgstr "Általános Euler megfejtő"
+msgstr "Általános Euler-megoldó"
 
 #: eulersolver.cc:16
-#, fuzzy
-#| msgctxt "ObjectClass"
-#| msgid "EulerSolver"
 msgctxt "ObjectClass|"
 msgid "EulerSolver"
-msgstr "EulerMegfejtő"
+msgstr "Euler-megoldó"
 
 #: eulersolver.cc:16
-#, fuzzy
-#| msgid "Non-adaptive Euler solver"
 msgctxt "ObjectDescription|"
 msgid "Non-adaptive Euler solver"
-msgstr "Nem-alkalmazkodó Euler megfejtő"
+msgstr "Nem adaptív Euler-megoldó"
 
 #: eulersolver.cc:17
-#, fuzzy
-#| msgctxt "ObjectClass"
-#| msgid "AdaptiveEulerSolver"
 msgctxt "ObjectClass|"
 msgid "AdaptiveEulerSolver"
-msgstr "AlkalmazkodóEulerMegfejtő"
+msgstr "Adaptív Euler-megoldó"
 
 #: eulersolver.cc:17
-#, fuzzy
-#| msgid "Adaptive Euler solver"
 msgctxt "ObjectDescription|"
 msgid "Adaptive Euler solver"
-msgstr "Alkalmazkodó Euler megfejtő"
+msgstr "Adaptív Euler-megoldó"
 
 #: force.cc:14
-#, fuzzy
-#| msgid "Force"
 msgctxt "ObjectClass|"
 msgid "Force"
 msgstr "Erő"
 
 #: force.cc:14
-#, fuzzy
-#| msgid "Force"
 msgctxt "ObjectDescription|"
 msgid "Force"
 msgstr "Erő"
 
 #: gas.cc:15
-#, fuzzy
-#| msgctxt "ObjectClass"
-#| msgid "GasParticle"
 msgctxt "ObjectClass|"
 msgid "GasParticle"
-msgstr "GázRészecske"
+msgstr "Gázrészecske"
 
 #: gas.cc:15
-#, fuzzy
-#| msgid "Gas particle"
 msgctxt "ObjectDescription|"
 msgid "Gas particle"
-msgstr "Gáz részecske"
+msgstr "Gázrészecske"
 
 #: gas.cc:17
-#, fuzzy
-#| msgctxt "ObjectClass"
-#| msgid "GasLJForce"
 msgctxt "ObjectClass|"
 msgid "GasLJForce"
-msgstr "GázLJErő"
+msgstr "Gáz LJ-erő"
 
 #: gas.cc:17
-#, fuzzy
-#| msgid "Lennard-Jones force"
 msgctxt "ObjectDescription|"
 msgid "Lennard-Jones force"
 msgstr "Lennard-Jones erő"
 
 #: gas.cc:19
-#, fuzzy
-#| msgid "Potential depth"
 msgctxt "PropertyDescription|"
 msgid "Potential depth"
-msgstr "Potenciális mélység"
+msgstr "Potenciálmélység"
 
 #: gas.cc:19
-#, fuzzy
-#| msgctxt "PropertyName"
-#| msgid "depth"
 msgctxt "PropertyName|"
 msgid "depth"
 msgstr "mélység"
 
 #: gas.cc:19 gas.cc:25 gas.cc:47 gas.cc:62 particle.cc:25 particle.cc:41
 #: rigidbody.cc:37 rigidbody.cc:68
-#, fuzzy
-#| msgctxt "Units"
-#| msgid "J"
 msgctxt "Units|"
 msgid "J"
 msgstr "J"
 
 #: gas.cc:20
-#, fuzzy
-#| msgid "Distance at which the force is zero"
 msgctxt "PropertyDescription|"
 msgid "Distance at which the force is zero"
-msgstr "Az a távolság, amelynél az erő nulla"
+msgstr "Az a távolság, ahol az erő nulla"
 
 #: gas.cc:20
-#, fuzzy
-#| msgctxt "PropertyName"
-#| msgid "rmin"
 msgctxt "PropertyName|"
 msgid "rmin"
 msgstr "rmin"
@@ -300,490 +210,327 @@ msgstr "rmin"
 #: spring.cc:43 spring.cc:45 spring.cc:47 spring.cc:49 tool.cc:26 tool.cc:27
 #: tool.cc:33 tool.cc:34 tool.cc:55 tool.cc:56 tool.cc:67 tool.cc:68 tool.cc:86
 #: tool.cc:88 tool.cc:89
-#, fuzzy
-#| msgctxt "Units"
-#| msgid "m"
 msgctxt "Units|"
 msgid "m"
 msgstr "m"
 
 #: gas.cc:21
-#, fuzzy
-#| msgid "Cut-off distance"
 msgctxt "PropertyDescription|"
 msgid "Cut-off distance"
-msgstr "Távolság kivágása"
+msgstr "Kikapcsolási távolság"
 
 #: gas.cc:21
-#, fuzzy
-#| msgctxt "PropertyName"
-#| msgid "cutoff"
 msgctxt "PropertyName|"
 msgid "cutoff"
-msgstr "kivágás"
+msgstr "kikapcsolás"
 
 #: gas.cc:23
-#, fuzzy
-#| msgctxt "ObjectClass"
-#| msgid "GasLJForceErrors"
 msgctxt "ObjectClass|"
 msgid "GasLJForceErrors"
-msgstr "GázLJErőHibák"
+msgstr "Gáz LJ-erő hibái"
 
 #: gas.cc:23
-#, fuzzy
-#| msgid "Errors class for GasLJForce"
 msgctxt "ObjectDescription|"
 msgid "Errors class for GasLJForce"
-msgstr "Hibás osztály a GázLJErő számára"
+msgstr "Hibaosztály a Gáz LJ-erőhöz"
 
 #: gas.cc:25
-#, fuzzy
-#| msgctxt "PropertyName"
-#| msgid "depthVariance"
 msgctxt "PropertyName|"
 msgid "depthVariance"
-msgstr "mélységVariancia"
+msgstr "mélységSzórás"
 
 #: gas.cc:26
-#, fuzzy
-#| msgid "Potential depth variance"
 msgctxt "PropertyDescription|"
 msgid "Potential depth variance"
-msgstr "Potenciális mélység variancia"
+msgstr "Potenciálmélység szórása"
 
 #: gas.cc:27
-#, fuzzy
-#| msgctxt "PropertyName"
-#| msgid "rminVariance"
 msgctxt "PropertyName|"
 msgid "rminVariance"
-msgstr "rminVariancia"
+msgstr "rminSzórás"
 
 #: gas.cc:28
-#, fuzzy
-#| msgid "Variance of the distance at which the force is zero"
 msgctxt "PropertyDescription|"
 msgid "Variance of the distance at which the force is zero"
-msgstr "Távolság eltérése, ahol az erő nulla"
+msgstr "Azon távolság szórása, ahol az erő nulla"
 
 #: gas.cc:32
-#, fuzzy
-#| msgctxt "ObjectClass"
-#| msgid "Gas"
 msgctxt "ObjectClass|"
 msgid "Gas"
 msgstr "Gáz"
 
 #: gas.cc:32
-#, fuzzy
-#| msgid "Particle gas"
 msgctxt "ObjectDescription|"
 msgid "Particle gas"
-msgstr "Részecske gáz"
+msgstr "Részecskegáz"
 
 #: gas.cc:33
-#, fuzzy
-#| msgctxt "PropertyName"
-#| msgid "measureRectCenter"
 msgctxt "PropertyName|"
 msgid "measureRectCenter"
-msgstr "mérésTéglalapKözpont"
+msgstr "mérőTéglalapKözéppont"
 
 #: gas.cc:34
-#, fuzzy
-#| msgid "Center of the rect for measurements"
 msgctxt "PropertyDescription|"
 msgid "Center of the rect for measurements"
-msgstr "A téglalap közepe a mérés számára"
+msgstr "A méréshez használt téglalap középpontja"
 
 #: gas.cc:35
-#, fuzzy
-#| msgctxt "PropertyName"
-#| msgid "measureRectSize"
 msgctxt "PropertyName|"
 msgid "measureRectSize"
-msgstr "mérésTéglalapMéret"
+msgstr "mérőTéglalapMéret"
 
 #: gas.cc:36
-#, fuzzy
-#| msgid "Size of the rect for measurements"
 msgctxt "PropertyDescription|"
 msgid "Size of the rect for measurements"
-msgstr "A téglalap mérete a mérés számára"
+msgstr "A méréshez használt téglalap mérete"
 
 #: gas.cc:37
-#, fuzzy
-#| msgctxt "PropertyName"
-#| msgid "rectVolume"
 msgctxt "PropertyName|"
 msgid "rectVolume"
-msgstr "téglalapTérfogat"
+msgstr "téglatestTérfogat"
 
 #: gas.cc:37
-#, fuzzy
-#| msgctxt "Units"
-#| msgid "m²"
 msgctxt "Units|"
 msgid "m²"
 msgstr "m²"
 
 #: gas.cc:38
-#, fuzzy
-#| msgid "Volume of the measureRect"
 msgctxt "PropertyDescription|"
 msgid "Volume of the measureRect"
-msgstr "A mérésiTéglalap térfogata"
+msgstr "A mérőtéglatest térfogata"
 
 #: gas.cc:39
-#, fuzzy
-#| msgctxt "PropertyName"
-#| msgid "rectParticleCount"
 msgctxt "PropertyName|"
 msgid "rectParticleCount"
-msgstr "téglalapRészecskeSzámláló"
+msgstr "téglatestRészecskeSzám"
 
 #: gas.cc:40
-#, fuzzy
-#| msgid "Count of particles in the measureRect"
 msgctxt "PropertyDescription|"
 msgid "Count of particles in the measureRect"
-msgstr "A részecskeszámláló a mérésiTéglalap-ban"
+msgstr "A mérőtéglatestben lévő részecskék száma"
 
 #: gas.cc:41
-#, fuzzy
-#| msgctxt "PropertyName"
-#| msgid "rectConcentration"
 msgctxt "PropertyName|"
 msgid "rectConcentration"
-msgstr "téglalapKoncentráció"
+msgstr "téglatestKoncentráció"
 
 #: gas.cc:41
-#, fuzzy
-#| msgctxt "Units"
-#| msgid "1/m²"
 msgctxt "Units|"
 msgid "1/m²"
 msgstr "1/m²"
 
 #: gas.cc:42
-#, fuzzy
-#| msgid "Concentration of particles in the measureRect"
 msgctxt "PropertyDescription|"
 msgid "Concentration of particles in the measureRect"
-msgstr "Részecske koncentrációja a mérésiTéglalap-ban"
+msgstr "A mérőtéglatestben lévő részecskék koncentrációja"
 
 #: gas.cc:43
-#, fuzzy
-#| msgctxt "PropertyName"
-#| msgid "rectPressure"
 msgctxt "PropertyName|"
 msgid "rectPressure"
-msgstr "téglalapNyomás"
+msgstr "téglatestNyomás"
 
 #: gas.cc:43 gas.cc:58
-#, fuzzy
-#| msgctxt "Units"
-#| msgid "Pa"
 msgctxt "Units|"
 msgid "Pa"
 msgstr "Pa"
 
 #: gas.cc:44
-#, fuzzy
-#| msgid "Pressure of particles in the measureRect"
 msgctxt "PropertyDescription|"
 msgid "Pressure of particles in the measureRect"
-msgstr "Részecske nyomása a mérésiTéglalap-ban"
+msgstr "A mérőtéglatestben lévő részecskék nyomása"
 
 #: gas.cc:45
-#, fuzzy
-#| msgctxt "PropertyName"
-#| msgid "rectTemperature"
 msgctxt "PropertyName|"
 msgid "rectTemperature"
-msgstr "téglalapHőmérséklet"
+msgstr "téglatestHőmérséklet"
 
 #: gas.cc:45 gas.cc:60
-#, fuzzy
-#| msgctxt "Units"
-#| msgid "K"
 msgctxt "Units|"
 msgid "K"
 msgstr "K"
 
 #: gas.cc:46
-#, fuzzy
-#| msgid "Temperature of particles in the measureRect"
 msgctxt "PropertyDescription|"
 msgid "Temperature of particles in the measureRect"
-msgstr "A részecske hőmérséklete a mérésiTéglalapban"
+msgstr "A mérőtéglatestben lévő részecskék hőmérséklete"
 
 #: gas.cc:47
-#, fuzzy
-#| msgctxt "PropertyName"
-#| msgid "rectMeanKineticEnergy"
 msgctxt "PropertyName|"
 msgid "rectMeanKineticEnergy"
-msgstr "téglalapJelentésKinetikusEnergia"
+msgstr "téglatestÁtlagKinetikusEnergia"
 
 #: gas.cc:48
-#, fuzzy
-#| msgid "Mean kinetic energy of particles in the measureRect"
 msgctxt "PropertyDescription|"
 msgid "Mean kinetic energy of particles in the measureRect"
-msgstr "A részecskék kinetikus energiáinak jelentése a mérésiTéglalap-ban"
+msgstr "A mérőtéglatestben lévő részecskék átlagos kinetikus energiája"
 
 #: gas.cc:49
-#, fuzzy
-#| msgctxt "PropertyName"
-#| msgid "rectMeanVelocity"
 msgctxt "PropertyName|"
 msgid "rectMeanVelocity"
-msgstr "téglalapJelentésSebesség"
+msgstr "téglatestÁtlagSebesség"
 
 #: gas.cc:49 gas.cc:64 particle.cc:18 particle.cc:31 rigidbody.cc:19
 #: rigidbody.cc:46 softbody.cc:26
-#, fuzzy
-#| msgctxt "Units"
-#| msgid "m/s"
 msgctxt "Units|"
 msgid "m/s"
 msgstr "m/s"
 
 #: gas.cc:50
-#, fuzzy
-#| msgid "Mean velocity of particles in the measureRect"
 msgctxt "PropertyDescription|"
 msgid "Mean velocity of particles in the measureRect"
-msgstr "A részecskék sebességének jelentése a mérésiTéglalap-ban"
+msgstr "A mérőtéglatestben lévő részecskék átlagos sebessége"
 
 #: gas.cc:51
-#, fuzzy
-#| msgctxt "PropertyName"
-#| msgid "rectMeanParticleMass"
 msgctxt "PropertyName|"
 msgid "rectMeanParticleMass"
-msgstr "téglalapJelentésRészecskeTömeg"
+msgstr "téglatestÁtlagRészecskeTömeg"
 
 #: gas.cc:51 gas.cc:53 gas.cc:66 gas.cc:68 particle.cc:22 particle.cc:37
 #: particle.cc:49 rigidbody.cc:30 rigidbody.cc:59 softbody.cc:38
-#, fuzzy
-#| msgctxt "Units"
-#| msgid "kg"
 msgctxt "Units|"
 msgid "kg"
 msgstr "kg"
 
 #: gas.cc:52
-#, fuzzy
-#| msgid "Mean mass of particles in the measureRect"
 msgctxt "PropertyDescription|"
 msgid "Mean mass of particles in the measureRect"
-msgstr "A részecskék tömegének jelentése a mérésiTéglalap-ban"
+msgstr "A mérőtéglatestben lévő részecskék átlagos tömege"
 
 #: gas.cc:53
-#, fuzzy
-#| msgctxt "PropertyName"
-#| msgid "rectMass"
 msgctxt "PropertyName|"
 msgid "rectMass"
-msgstr "téglalapTömeg"
+msgstr "téglatestTömeg"
 
 #: gas.cc:54
-#, fuzzy
-#| msgid "Total mass of particles in the measureRect"
 msgctxt "PropertyDescription|"
 msgid "Total mass of particles in the measureRect"
-msgstr "A részecskék teljes tömege a mérésiTéglalap-ban"
+msgstr "A mérőtéglatestben lévő részecskék össztömege"
 
 #: gas.cc:57
-#, fuzzy
-#| msgctxt "ObjectClass"
-#| msgid "GasErrors"
 msgctxt "ObjectClass|"
 msgid "GasErrors"
-msgstr "GázHibák"
+msgstr "Gáz hibák"
 
 #: gas.cc:57
-#, fuzzy
-#| msgid "Errors class for Gas"
 msgctxt "ObjectDescription|"
 msgid "Errors class for Gas"
-msgstr "Hiba osztály a Gáz számára"
+msgstr "Hibaosztály a Gázhoz"
 
 #: gas.cc:58
-#, fuzzy
-#| msgctxt "PropertyName"
-#| msgid "rectPressureVariance"
 msgctxt "PropertyName|"
 msgid "rectPressureVariance"
-msgstr "téglalapNyomásVariancia"
+msgstr "téglatestNyomásSzórás"
 
 #: gas.cc:59
-#, fuzzy
-#| msgid "Variance of pressure of particles in the measureRect"
 msgctxt "PropertyDescription|"
 msgid "Variance of pressure of particles in the measureRect"
-msgstr "A részecskék nyomásának a varianciája a mérésiTéglalap-ban"
+msgstr "A mérőtéglatestben lévő részecskék nyomásának szórása"
 
 #: gas.cc:60
-#, fuzzy
-#| msgctxt "PropertyName"
-#| msgid "rectTemperatureVariance"
 msgctxt "PropertyName|"
 msgid "rectTemperatureVariance"
-msgstr "téglalapHőmérsékletVariancia"
+msgstr "téglatestHőmérsékletSzórás"
 
 #: gas.cc:61
-#, fuzzy
-#| msgid "Variance of temperature of particles in the measureRect"
 msgctxt "PropertyDescription|"
 msgid "Variance of temperature of particles in the measureRect"
-msgstr "A részecskék hőmérsékletének eltérése a mérési térfogatban"
+msgstr "A mérőtéglatestben lévő részecskék hőmérsékletének szórása"
 
 #: gas.cc:62
-#, fuzzy
-#| msgctxt "PropertyName"
-#| msgid "rectMeanKineticEnergyVariance"
 msgctxt "PropertyName|"
 msgid "rectMeanKineticEnergyVariance"
-msgstr "rectMeanKineticEnergyVariance"
+msgstr "téglatestÁtlagKinetikusEnergiaSzórás"
 
 #: gas.cc:63
-#, fuzzy
-#| msgid "Variance of mean kinetic energy of particles in the measureRect"
 msgctxt "PropertyDescription|"
 msgid "Variance of mean kinetic energy of particles in the measureRect"
-msgstr "Az átlag kinetikus-energia eltérése a mért térfogatban"
+msgstr ""
+"A mérőtéglatestben lévő részecskék átlagos kinetikus energiájának szórása"
 
 #: gas.cc:64
-#, fuzzy
-#| msgctxt "PropertyName"
-#| msgid "rectMeanVelocityVariance"
 msgctxt "PropertyName|"
 msgid "rectMeanVelocityVariance"
-msgstr "rectMeanVelocityVariance"
+msgstr "téglatestÁtlagSebességSzórás"
 
 #: gas.cc:65
-#, fuzzy
-#| msgid "Variance of mean velocity of particles in the measureRect"
 msgctxt "PropertyDescription|"
 msgid "Variance of mean velocity of particles in the measureRect"
-msgstr "A részecskék átlagsebességének eltérése a mérési térfogatban"
+msgstr "A mérőtéglatestben lévő részecskék átlagos sebességének szórása"
 
 #: gas.cc:66
-#, fuzzy
-#| msgctxt "PropertyName"
-#| msgid "rectMeanParticleMassVariance"
 msgctxt "PropertyName|"
 msgid "rectMeanParticleMassVariance"
-msgstr "rectMeanParticleMassVariance"
+msgstr "téglatestÁtlagRészecskeTömegSzórás"
 
 #: gas.cc:67
-#, fuzzy
-#| msgid "Variance of mean mass of particles in the measureRect"
 msgctxt "PropertyDescription|"
 msgid "Variance of mean mass of particles in the measureRect"
-msgstr "A részecskék átlagtömegének eltérése a mérési térfogatban"
+msgstr "A mérőtéglatestben lévő részecskék átlagos tömegének szórása"
 
 #: gas.cc:68
-#, fuzzy
-#| msgctxt "PropertyName"
-#| msgid "rectMassVariance"
 msgctxt "PropertyName|"
 msgid "rectMassVariance"
-msgstr "rectMassVariance"
+msgstr "téglatestTömegSzórás"
 
 #: gas.cc:69
-#, fuzzy
-#| msgid "Variance of total mass of particles in the measureRect"
 msgctxt "PropertyDescription|"
 msgid "Variance of total mass of particles in the measureRect"
-msgstr "A teljes részecsketömeg eltérése a mért térfogatban"
+msgstr "A mérőtéglatestben lévő részecskék össztömegének szórása"
 
 #: gravitation.cc:15
-#, fuzzy
-#| msgctxt "ObjectClass"
-#| msgid "GravitationForce"
 msgctxt "ObjectClass|"
 msgid "GravitationForce"
 msgstr "Gravitációs erő"
 
 #: gravitation.cc:15
-#, fuzzy
-#| msgid "Gravitation force"
 msgctxt "ObjectDescription|"
 msgid "Gravitation force"
 msgstr "Gravitációs erő"
 
 #: gravitation.cc:17
-#, fuzzy
-#| msgctxt "PropertyName"
-#| msgid "gravitationConst"
 msgctxt "PropertyName|"
 msgid "gravitationConst"
-msgstr "gravitációsKonstans"
+msgstr "gravitációsÁllandó"
 
 #: gravitation.cc:17 gravitation.cc:22
-#, fuzzy
-#| msgctxt "Units"
-#| msgid "N m²/kg²"
 msgctxt "Units|"
 msgid "N m²/kg²"
 msgstr "N m²/kg²"
 
 #: gravitation.cc:18
-#, fuzzy
-#| msgid "Gravitation constant"
 msgctxt "PropertyDescription|"
 msgid "Gravitation constant"
-msgstr "Gravitációs konstans"
+msgstr "Gravitációs állandó"
 
 #: gravitation.cc:20
-#, fuzzy
-#| msgctxt "ObjectClass"
-#| msgid "GravitationForceErrors"
 msgctxt "ObjectClass|"
 msgid "GravitationForceErrors"
 msgstr "GravitációsErőHibák"
 
 #: gravitation.cc:20
-#, fuzzy
-#| msgid "Errors class for GravitationForce"
 msgctxt "ObjectDescription|"
 msgid "Errors class for GravitationForce"
-msgstr "Hibaosztály a Gravitációs erő számára"
+msgstr "Hibaosztály a Gravitációs erőhöz"
 
 #: gravitation.cc:22
-#, fuzzy
-#| msgctxt "PropertyName"
-#| msgid "gravitationConstVariance"
 msgctxt "PropertyName|"
 msgid "gravitationConstVariance"
-msgstr "GravitációsKonstansVariancia"
+msgstr "gravitációsÁllandóSzórás"
 
 #: gravitation.cc:23
-#, fuzzy
-#| msgid "Gravitation constant variance"
 msgctxt "PropertyDescription|"
 msgid "Gravitation constant variance"
-msgstr "Gravitációs konstans variancia"
+msgstr "A gravitációs állandó szórása"
 
 #: gravitation.cc:25
-#, fuzzy
-#| msgctxt "ObjectClass"
-#| msgid "WeightForce"
 msgctxt "ObjectClass|"
 msgid "WeightForce"
-msgstr "SúlyErő"
+msgstr "Súlyerő"
 
 #: gravitation.cc:25
-#, fuzzy
-#| msgid "Weight force"
 msgctxt "ObjectDescription|"
 msgid "Weight force"
-msgstr "Súly erő"
+msgstr "Súlyerő"
 
 #: gravitation.cc:27
 #, fuzzy
