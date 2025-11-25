@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2016-06-22 08:50+0000\n"
-"PO-Revision-Date: 2025-11-23 22:30+0100\n"
+"PO-Revision-Date: 2025-11-24 21:55+0100\n"
 "Last-Translator: Kristof Kiszel <ulysses@fsf.hu>\n"
 "Language-Team: Hungarian <kde-l10n-hu@kde.org>\n"
 "Language: hu\n"
@@ -2368,768 +2368,534 @@ msgid "Position2 variance"
 msgstr "pozíció variancia"
 
 #: spring.cc:52
-#, fuzzy
-#| msgid "Spring tension force variance"
 msgctxt "PropertyDescription|"
 msgid "Spring tension force variance"
-msgstr "Rugó húzóerejének eltérése"
+msgstr "A rugófeszítő erő szórása"
 
 #: tool.cc:14
-#, fuzzy
-#| msgctxt "ObjectClass"
-#| msgid "NoteImage"
 msgctxt "ObjectClass|"
 msgid "NoteImage"
-msgstr "NoteImage"
+msgstr "Jegyzetkép"
 
 #: tool.cc:14
-#, fuzzy
-#| msgid "NoteImage: an image embedded in Note"
 msgctxt "ObjectDescription|"
 msgid "NoteImage: an image embedded in Note"
-msgstr "NoteImage: egy kép beágyazva egy jegyzetbe"
+msgstr "Jegyzetkép: egy kép beágyazva egy jegyzetbe"
 
 #: tool.cc:16
-#, fuzzy
-#| msgid "Image data"
 msgctxt "PropertyDescription|"
 msgid "Image data"
-msgstr "Képadat"
+msgstr "Képadatok"
 
 #: tool.cc:16
-#, fuzzy
-#| msgctxt "PropertyName"
-#| msgid "image"
 msgctxt "PropertyName|"
 msgid "image"
 msgstr "kép"
 
 #: tool.cc:19
-#, fuzzy
-#| msgctxt "ObjectClass"
-#| msgid "NoteFormula"
 msgctxt "ObjectClass|"
 msgid "NoteFormula"
-msgstr "NoteFormula"
+msgstr "Jegyzetképlet"
 
 #: tool.cc:19
-#, fuzzy
-#| msgid "NoteFormula: a formula embedded in Note"
 msgctxt "ObjectDescription|"
 msgid "NoteFormula: a formula embedded in Note"
-msgstr "NoteFormula: egy képlet beágyazva egy jegyzetbe"
+msgstr "Jegyzetképlet: egy jegyzetbe ágyazott képlet"
 
 #: tool.cc:21
-#, fuzzy
-#| msgid "Formula code"
 msgctxt "PropertyDescription|"
 msgid "Formula code"
-msgstr "Képlet kódja"
+msgstr "Képletkód"
 
 #: tool.cc:21
-#, fuzzy
-#| msgctxt "PropertyName"
-#| msgid "code"
 msgctxt "PropertyName|"
 msgid "code"
 msgstr "kód"
 
 #: tool.cc:24
-#, fuzzy
-#| msgctxt "ObjectClass"
-#| msgid "Note"
 msgctxt "ObjectClass|"
 msgid "Note"
-msgstr "Megjegyzés"
+msgstr "Jegyzet"
 
 #: tool.cc:24
-#, fuzzy
-#| msgid "Note: displays a textual note on the scene"
 msgctxt "ObjectDescription|"
 msgid "Note: displays a textual note on the scene"
-msgstr "Note: megjelenít egy szöveget a jelenetben"
+msgstr "Jegyzet: megjelenít egy szöveget a jelenetben"
 
 #: tool.cc:26
-#, fuzzy
-#| msgid "Note position on the scene"
 msgctxt "PropertyDescription|"
 msgid "Note position on the scene"
 msgstr "Jegyzet pozíciója a jelenetben"
 
 #: tool.cc:27
-#, fuzzy
-#| msgid "Note size on the scene"
 msgctxt "PropertyDescription|"
 msgid "Note size on the scene"
 msgstr "Jegyzet mérete a jelenetben"
 
 #: tool.cc:28
-#, fuzzy
-#| msgid "Text"
 msgctxt "PropertyDescription|"
 msgid "Text"
 msgstr "Szöveg"
 
 #: tool.cc:28
-#, fuzzy
-#| msgctxt "PropertyName"
-#| msgid "text"
 msgctxt "PropertyName|"
 msgid "text"
 msgstr "szöveg"
 
 #: tool.cc:31
-#, fuzzy
-#| msgctxt "ObjectClass"
-#| msgid "Graph"
 msgctxt "ObjectClass|"
 msgid "Graph"
 msgstr "Grafikon"
 
 #: tool.cc:31
-#, fuzzy
-#| msgid "Graph: plots a graph of any properties"
 msgctxt "ObjectDescription|"
 msgid "Graph: plots a graph of any properties"
-msgstr "Grafikon: ábrázol bármely tulajdonságot"
+msgstr "Grafikon: bármely tulajdonság grafikonját ábrázolja"
 
 #: tool.cc:33
-#, fuzzy
-#| msgid "Graph position on the scene"
 msgctxt "PropertyDescription|"
 msgid "Graph position on the scene"
-msgstr "Grafikon helyzete a jelenetben"
+msgstr "Grafikon pozíciója a jelenetben"
 
 #: tool.cc:34
-#, fuzzy
-#| msgid "Graph size on the scene"
 msgctxt "PropertyDescription|"
 msgid "Graph size on the scene"
 msgstr "Grafikon mérete a jelenetben"
 
 #: tool.cc:35
-#, fuzzy
-#| msgid "X axis: object"
 msgctxt "PropertyDescription|"
 msgid "X axis: object"
 msgstr "X tengely: objektum"
 
 #: tool.cc:35
-#, fuzzy
-#| msgctxt "PropertyName"
-#| msgid "objectX"
 msgctxt "PropertyName|"
 msgid "objectX"
-msgstr "objectX"
+msgstr "objektumX"
 
 #: tool.cc:36
-#, fuzzy
-#| msgid "X axis: object property"
 msgctxt "PropertyDescription|"
 msgid "X axis: object property"
-msgstr "X tengely: objektum tulajdonság"
+msgstr "X tengely: objektumtulajdonság"
 
 #: tool.cc:36
-#, fuzzy
-#| msgctxt "PropertyName"
-#| msgid "propertyX"
 msgctxt "PropertyName|"
 msgid "propertyX"
-msgstr "propertyX"
+msgstr "tulajdonságX"
 
 #: tool.cc:37
-#, fuzzy
-#| msgid "X axis: vector index"
 msgctxt "PropertyDescription|"
 msgid "X axis: vector index"
-msgstr "X tengely: vektor-index"
+msgstr "X tengely: vektorindex"
 
 #: tool.cc:37
-#, fuzzy
-#| msgctxt "PropertyName"
-#| msgid "indexX"
 msgctxt "PropertyName|"
 msgid "indexX"
 msgstr "indexX"
 
 #: tool.cc:38
-#, fuzzy
-#| msgid "Y axis: object"
 msgctxt "PropertyDescription|"
 msgid "Y axis: object"
 msgstr "Y tengely: objektum"
 
 #: tool.cc:38
-#, fuzzy
-#| msgctxt "PropertyName"
-#| msgid "objectY"
 msgctxt "PropertyName|"
 msgid "objectY"
-msgstr "objectY"
+msgstr "objektumY"
 
 #: tool.cc:39
-#, fuzzy
-#| msgid "Y axis: property"
 msgctxt "PropertyDescription|"
 msgid "Y axis: property"
 msgstr "Y tengely: tulajdonság"
 
 #: tool.cc:39
-#, fuzzy
-#| msgctxt "PropertyName"
-#| msgid "propertyY"
 msgctxt "PropertyName|"
 msgid "propertyY"
-msgstr "propertyY"
+msgstr "tulajdonságY"
 
 #: tool.cc:40
-#, fuzzy
-#| msgid "Y axis: vector index"
 msgctxt "PropertyDescription|"
 msgid "Y axis: vector index"
-msgstr "Y tengely: vektor-index"
+msgstr "Y tengely: vektorindex"
 
 #: tool.cc:40
-#, fuzzy
-#| msgctxt "PropertyName"
-#| msgid "indexY"
 msgctxt "PropertyName|"
 msgid "indexY"
 msgstr "indexY"
 
 #: tool.cc:41
-#, fuzzy
-#| msgid "Auto-limits along X axis"
 msgctxt "PropertyDescription|"
 msgid "Auto-limits along X axis"
-msgstr "Automatikus határok az X tengelyen"
+msgstr "Automatikus korlátok az X tengelyen"
 
 #: tool.cc:41
-#, fuzzy
-#| msgctxt "PropertyName"
-#| msgid "autoLimitsX"
 msgctxt "PropertyName|"
 msgid "autoLimitsX"
-msgstr "autoLimitsX"
+msgstr "autoKorlátokX"
 
 #: tool.cc:42
-#, fuzzy
-#| msgid "Auto-limits along Y axis"
 msgctxt "PropertyDescription|"
 msgid "Auto-limits along Y axis"
-msgstr "Automatikus határok az Y tengelyen"
+msgstr "Automatikus korlátok az Y tengelyen"
 
 #: tool.cc:42
-#, fuzzy
-#| msgctxt "PropertyName"
-#| msgid "autoLimitsY"
 msgctxt "PropertyName|"
 msgid "autoLimitsY"
-msgstr "autoLimitsY"
+msgstr "autoKorlátokY"
 
 #: tool.cc:43
-#, fuzzy
-#| msgid "Limits along X axis"
 msgctxt "PropertyDescription|"
 msgid "Limits along X axis"
-msgstr "Határok az X tengelyen"
+msgstr "Korlátok az X tengelyen"
 
 #: tool.cc:43
-#, fuzzy
-#| msgctxt "PropertyName"
-#| msgid "limitsX"
 msgctxt "PropertyName|"
 msgid "limitsX"
-msgstr "limitsX"
+msgstr "korlátokX"
 
 #: tool.cc:44
-#, fuzzy
-#| msgid "Limits along Y axis"
 msgctxt "PropertyDescription|"
 msgid "Limits along Y axis"
-msgstr "Határok az Y tengelyen"
+msgstr "Korlátok az Y tengelyen"
 
 #: tool.cc:44
-#, fuzzy
-#| msgctxt "PropertyName"
-#| msgid "limitsY"
 msgctxt "PropertyName|"
 msgid "limitsY"
-msgstr "limitsY"
+msgstr "korlátokY"
 
 #: tool.cc:45
-#, fuzzy
-#| msgid "Show points on the graph"
 msgctxt "PropertyDescription|"
 msgid "Show points on the graph"
-msgstr "Mutasson pontokat a grafikonon"
+msgstr "Pontok megjelenítése a grafikonon"
 
 #: tool.cc:45
-#, fuzzy
-#| msgctxt "PropertyName"
-#| msgid "showPoints"
 msgctxt "PropertyName|"
 msgid "showPoints"
-msgstr "showPoints"
+msgstr "pontokMegjelenítése"
 
 #: tool.cc:46
-#, fuzzy
-#| msgid "Show lines on the graph"
 msgctxt "PropertyDescription|"
 msgid "Show lines on the graph"
-msgstr "Mutasson vonalakat a grafikonon"
+msgstr "Vonalak megjelenítése a grafikonon"
 
 #: tool.cc:46
-#, fuzzy
-#| msgctxt "PropertyName"
-#| msgid "showLines"
 msgctxt "PropertyName|"
 msgid "showLines"
-msgstr "showLines"
+msgstr "vonalakMegjelenítése"
 
 #: tool.cc:47
-#, fuzzy
-#| msgid "Current value"
 msgctxt "PropertyDescription|"
 msgid "Current value"
 msgstr "Jelenlegi érték"
 
 #: tool.cc:47
-#, fuzzy
-#| msgid "currentValue"
 msgctxt "PropertyName|"
 msgid "currentValue"
-msgstr "currentValue"
+msgstr "jelenlegiÉrték"
 
 #: tool.cc:48 tool.cc:89
-#, fuzzy
-#| msgid "points"
 msgctxt "PropertyDescription|"
 msgid "points"
-msgstr "pont"
+msgstr "pontok"
 
 #: tool.cc:48 tool.cc:89
-#, fuzzy
-#| msgid "points"
 msgctxt "PropertyName|"
 msgid "points"
-msgstr "pont"
+msgstr "pontok"
 
 #: tool.cc:49
-#, fuzzy
-#| msgid "unitsX"
 msgctxt "PropertyName|"
 msgid "unitsX"
-msgstr "unitsX"
+msgstr "mértékegységekX"
 
 #: tool.cc:49
-#, fuzzy
-#| msgid "Units along X axis"
 msgctxt "PropertyName|"
 msgid "Units along X axis"
-msgstr "Egységek az X tengelyen"
+msgstr "Mértékegységek az X tengelyen"
 
 #: tool.cc:50
-#, fuzzy
-#| msgid "unitsY"
 msgctxt "PropertyName|"
 msgid "unitsY"
-msgstr "unitsY"
+msgstr "mértékegységekY"
 
 #: tool.cc:50
-#, fuzzy
-#| msgid "Units along Y axis"
 msgctxt "PropertyName|"
 msgid "Units along Y axis"
-msgstr "Egységek az Y tengelyen"
+msgstr "Mértékegységek az Y tengelyen"
 
 #: tool.cc:53
-#, fuzzy
-#| msgctxt "ObjectClass"
-#| msgid "Meter"
 msgctxt "ObjectClass|"
 msgid "Meter"
 msgstr "Mérő"
 
 #: tool.cc:53
-#, fuzzy
-#| msgid "Meter: displays any property on the scene"
 msgctxt "ObjectDescription|"
 msgid "Meter: displays any property on the scene"
 msgstr "Mérő: megjelenít egy tulajdonságot a jelenetben"
 
 #: tool.cc:55
-#, fuzzy
-#| msgid "Meter position on the scene"
 msgctxt "PropertyDescription|"
 msgid "Meter position on the scene"
-msgstr "A mérő helye a jelenetben"
+msgstr "A mérő pozíciója a jelenetben"
 
 #: tool.cc:56
-#, fuzzy
-#| msgid "Meter size on the scene"
 msgctxt "PropertyDescription|"
 msgid "Meter size on the scene"
-msgstr "Mérő mérete a jelenetben"
+msgstr "A mérő mérete a jelenetben"
 
 #: tool.cc:57
-#, fuzzy
-#| msgid "Observed object"
 msgctxt "PropertyDescription|"
 msgid "Observed object"
 msgstr "Megfigyelt objektum"
 
 #: tool.cc:57 tool.cc:69
-#, fuzzy
-#| msgctxt "PropertyName"
-#| msgid "object"
 msgctxt "PropertyName|"
 msgid "object"
 msgstr "objektum"
 
 #: tool.cc:58
-#, fuzzy
-#| msgid "Observed property"
 msgctxt "PropertyDescription|"
 msgid "Observed property"
 msgstr "Megfigyelt tulajdonság"
 
 #: tool.cc:58 tool.cc:70
-#, fuzzy
-#| msgctxt "PropertyName"
-#| msgid "property"
 msgctxt "PropertyName|"
 msgid "property"
 msgstr "tulajdonság"
 
 #: tool.cc:59 tool.cc:71
-#, fuzzy
-#| msgid "Vector index"
 msgctxt "PropertyDescription|"
 msgid "Vector index"
 msgstr "Vektorindex"
 
 #: tool.cc:59 tool.cc:71
-#, fuzzy
-#| msgctxt "PropertyName"
-#| msgid "index"
 msgctxt "PropertyName|"
 msgid "index"
 msgstr "index"
 
 #: tool.cc:60
-#, fuzzy
-#| msgid "Display digits"
 msgctxt "PropertyDescription|"
 msgid "Display digits"
 msgstr "Számjegyek megjelenítése"
 
 #: tool.cc:60
-#, fuzzy
-#| msgctxt "PropertyName"
-#| msgid "digits"
 msgctxt "PropertyName|"
 msgid "digits"
 msgstr "számjegyek"
 
 #: tool.cc:61 tool.cc:78
-#, fuzzy
-#| msgid "Value"
 msgctxt "PropertyDescription|"
 msgid "Value"
 msgstr "Érték"
 
 #: tool.cc:61 tool.cc:78
-#, fuzzy
-#| msgid "value"
 msgctxt "PropertyName|"
 msgid "value"
 msgstr "érték"
 
 #: tool.cc:62
-#, fuzzy
-#| msgid "Units of measured property"
 msgctxt "PropertyDescription|"
 msgid "Units of measured property"
-msgstr "A mért tulajdonság mértékegysége"
+msgstr "A mért tulajdonság mértékegységei"
 
 #: tool.cc:62 tool.cc:80
-#, fuzzy
-#| msgid "units"
 msgctxt "PropertyName|"
 msgid "units"
-msgstr "egységek"
+msgstr "mértékegységek"
 
 #: tool.cc:65
-#, fuzzy
-#| msgctxt "ObjectClass"
-#| msgid "Controller"
 msgctxt "ObjectClass|"
 msgid "Controller"
 msgstr "Vezérlő"
 
 #: tool.cc:65
-#, fuzzy
-#| msgid "Controller: allows to easily control any property"
 msgctxt "ObjectDescription|"
 msgid "Controller: allows to easily control any property"
 msgstr ""
 "Vezérlő: lehetővé teszi, hogy könnyen megváltoztasson bármely tulajdonságot"
 
 #: tool.cc:67
-#, fuzzy
-#| msgid "Controller position on the scene"
 msgctxt "PropertyDescription|"
 msgid "Controller position on the scene"
-msgstr "Vezérlő helyzete a jelenetben"
+msgstr "Vezérlő pozíciója a jelenetben"
 
 #: tool.cc:68
-#, fuzzy
-#| msgid "Controller size on the scene"
 msgctxt "PropertyDescription|"
 msgid "Controller size on the scene"
 msgstr "Vezérlő mérete a jelenetben"
 
 #: tool.cc:69
-#, fuzzy
-#| msgid "Controlled object"
 msgctxt "PropertyDescription|"
 msgid "Controlled object"
 msgstr "Kontrollált objektum"
 
 #: tool.cc:70
-#, fuzzy
-#| msgid "Controlled property"
 msgctxt "PropertyDescription|"
 msgid "Controlled property"
 msgstr "Kontrollált tulajdonság"
 
 #: tool.cc:72
-#, fuzzy
-#| msgid "Limits"
 msgctxt "PropertyDescription|"
 msgid "Limits"
 msgstr "Korlátok"
 
 #: tool.cc:72
-#, fuzzy
-#| msgctxt "PropertyName"
-#| msgid "limits"
 msgctxt "PropertyName|"
 msgid "limits"
 msgstr "korlátok"
 
 #: tool.cc:73
-#, fuzzy
-#| msgctxt "PropertyName"
-#| msgid "increaseShortcut"
 msgctxt "PropertyName|"
 msgid "increaseShortcut"
-msgstr "increaseShortcut"
+msgstr "növelésGyorsbillentyű"
 
 #: tool.cc:74
-#, fuzzy
-#| msgid "Shortcut to increase the value"
 msgctxt "PropertyDescription|"
 msgid "Shortcut to increase the value"
 msgstr "Az értéket növelő gyorsbillentyű"
 
 #: tool.cc:75
-#, fuzzy
-#| msgctxt "PropertyName"
-#| msgid "decreaseShortcut"
 msgctxt "PropertyName|"
 msgid "decreaseShortcut"
-msgstr "decreaseShortcut"
+msgstr "csökkentésGyorsbillentyű"
 
 #: tool.cc:76
-#, fuzzy
-#| msgid "Shortcut to decrease the value"
 msgctxt "PropertyDescription|"
 msgid "Shortcut to decrease the value"
 msgstr "Az értéket csökkentő gyorsbillentyű"
 
 #: tool.cc:77
-#, fuzzy
-#| msgid "Increment value"
 msgctxt "PropertyDescription|"
 msgid "Increment value"
 msgstr "Érték növelése"
 
 #: tool.cc:77
-#, fuzzy
-#| msgctxt "PropertyName"
-#| msgid "increment"
 msgctxt "PropertyName|"
 msgid "increment"
 msgstr "növelés"
 
 #: tool.cc:80
-#, fuzzy
-#| msgid "Units of controlled property"
 msgctxt "PropertyDescription|"
 msgid "Units of controlled property"
 msgstr "Kontrollált tulajdonság mértékegysége"
 
 #: tool.cc:83
-#, fuzzy
-#| msgctxt "ObjectClass"
-#| msgid "Tracer"
 msgctxt "ObjectClass|"
 msgid "Tracer"
 msgstr "Követő"
 
 #: tool.cc:83
-#, fuzzy
-#| msgid "Tracer: traces trajectory of a point on a body"
 msgctxt "ObjectDescription|"
 msgid "Tracer: traces trajectory of a point on a body"
 msgstr "Követő: követi egy test egy adott pontjának pályáját"
 
 #: tool.cc:85
-#, fuzzy
-#| msgid "Traced body"
 msgctxt "PropertyDescription|"
 msgid "Traced body"
 msgstr "Követett test"
 
 #: tool.cc:87
-#, fuzzy
-#| msgid "Local position"
 msgctxt "PropertyDescription|"
 msgid "Local position"
 msgstr "Helyi pozíció"
 
 #: world.cc:20
-#, fuzzy
-#| msgid "Tool"
 msgctxt "ObjectClass|"
 msgid "Tool"
 msgstr "Eszköz"
 
 #: world.cc:20
-#, fuzzy
-#| msgid "Tool"
 msgctxt "ObjectDescription|"
 msgid "Tool"
 msgstr "Eszköz"
 
 #: world.cc:22
-#, fuzzy
-#| msgid "World"
 msgctxt "ObjectClass|"
 msgid "World"
 msgstr "Világ"
 
 #: world.cc:22
-#, fuzzy
-#| msgid "World"
 msgctxt "ObjectDescription|"
 msgid "World"
 msgstr "Világ"
 
 #: world.cc:23
-#, fuzzy
-#| msgid "Current time"
 msgctxt "PropertyDescription|"
 msgid "Current time"
 msgstr "Jelenlegi idő"
 
 #: world.cc:23
-#, fuzzy
-#| msgctxt "PropertyName"
-#| msgid "time"
 msgctxt "PropertyName|"
 msgid "time"
 msgstr "idő"
 
 #: world.cc:24
-#, fuzzy
-#| msgid "Simulation speed scale"
 msgctxt "PropertyDescription|"
 msgid "Simulation speed scale"
-msgstr "Szimulációs sebesség skála"
+msgstr "Szimuláció sebességének skálája"
 
 #: world.cc:24
-#, fuzzy
-#| msgid "timeScale"
 msgctxt "PropertyName|"
 msgid "timeScale"
 msgstr "időSkála"
 
 #: world.cc:25
-#, fuzzy
-#| msgid "errorsCalculation"
 msgctxt "PropertyName|"
 msgid "errorsCalculation"
-msgstr "hibaKalkuláció"
+msgstr "hibaSzámítás"
 
 #: world.cc:26
-#, fuzzy
-#| msgid "Enable global error calculation"
 msgctxt "PropertyDescription|"
 msgid "Enable global error calculation"
 msgstr "Globális hibaszámítás bekapcsolása"
 
 #: xmlfile.cc:191
-#, fuzzy
-#| msgid "The file is not a StepCoreXML file."
 msgctxt "QObject|"
 msgid "The file is not a StepCoreXML file."
 msgstr "A fájl nem StepCoreXML fájl."
 
 #: xmlfile.cc:237
-#, fuzzy, qt-format
-#| msgid "Unknown item type \"%1\""
+#, qt-format
 msgctxt "QObject|"
 msgid "Unknown item type \"%1\""
 msgstr "Ismeretlen elemtípus: „%1”"
 
 #: xmlfile.cc:258
-#, fuzzy, qt-format
-#| msgid "Unknown solver type \"%1\""
+#, qt-format
 msgctxt "QObject|"
 msgid "Unknown solver type \"%1\""
 msgstr "Ismeretlen megoldótípus: „%1”"
 
 #: xmlfile.cc:272
-#, fuzzy, qt-format
-#| msgid "Unknown collisionSolver type \"%1\""
+#, qt-format
 msgctxt "QObject|"
 msgid "Unknown collisionSolver type \"%1\""
-msgstr "Ismeretlen ütközésmegoldó típus: \"%1\""
+msgstr "Ismeretlen ütközésmegoldó típus: „%1”"
 
 #: xmlfile.cc:286
-#, fuzzy, qt-format
-#| msgid "Unknown constraint solver type \"%1\""
+#, qt-format
 msgctxt "QObject|"
 msgid "Unknown constraint solver type \"%1\""
-msgstr "Ismeretlen kényszer-megoldó típus: \"%1\""
+msgstr "Ismeretlen kényszermegoldó típus: „%1”"
 
 #: xmlfile.cc:314
-#, fuzzy, qt-format
-#| msgid "Wrong ID attribute value for %1"
+#, qt-format
 msgctxt "QObject|"
 msgid "Wrong ID attribute value for %1"
-msgstr "Hibás ID attribútum érték %1-re"
+msgstr "Hibás azonosítóattribútum-érték ehhez: %1"
 
 #: xmlfile.cc:319
-#, fuzzy, qt-format
-#| msgid "Non-unique ID attribute value for %1"
+#, qt-format
 msgctxt "QObject|"
 msgid "Non-unique ID attribute value for %1"
-msgstr "Nem egyedi ID attribútum-érték %1 számára"
+msgstr "Nem egyedi azonosítóattribútum-érték ehhez: %1"
 
 #: xmlfile.cc:347 xmlfile.cc:361
-#, fuzzy, qt-format
-#| msgid "Property \"%1\" of \"%2\" has illegal value"
+#, qt-format
 msgctxt "QObject|"
 msgid "Property \"%1\" of \"%2\" has illegal value"
-msgstr "\"%1\" tulajdonság \"%2\" esetében nem érvényes értéket kapott"
+msgstr "A(z) „%2” „%1” tulajdonságának értéke érvénytelen"
 
 #: xmlfile.cc:374
-#, fuzzy
-#| msgid "File is not writable."
 msgctxt "QObject|"
 msgid "File is not writable."
 msgstr "A fájl nem írható."
