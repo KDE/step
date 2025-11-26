@@ -44,7 +44,7 @@ find_package(KF6 ${KF_MIN_VERSION} REQUIRED COMPONENTS
     XmlGui
 )
 find_package(KF6DocTools ${KF_MIN_VERSION})
-find_package(Eigen3 3.2.2 REQUIRED)
+find_package(Eigen3 REQUIRED)
 find_package(GSL)
 find_package(Qalculate)
 
