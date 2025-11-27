@@ -64,13 +64,13 @@ msgctxt "ObjectClass|"
 msgid "GJKCollisionSolver"
 msgstr "അറിയപ്പെടാത്ത \"%1\"സമ്മര്‍ദ്ദ പരിഹാര ഇനം"
 
-#: constraintsolver.cc:19
+#: constraintsolver.cc:20
 #, fuzzy
 msgctxt "ObjectClass|"
 msgid "ConstraintSolver"
 msgstr "അറിയപ്പെടാത്ത \"%1\"സമ്മര്‍ദ്ദ പരിഹാര ഇനം"
 
-#: constraintsolver.cc:23
+#: constraintsolver.cc:24
 #, fuzzy
 msgctxt "ObjectClass|"
 msgid "CGConstraintSolver"

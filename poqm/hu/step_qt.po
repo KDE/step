@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2016-06-22 08:50+0000\n"
-"PO-Revision-Date: 2025-11-24 21:55+0100\n"
+"PO-Revision-Date: 2025-11-26 21:08+0100\n"
 "Last-Translator: Kristof Kiszel <ulysses@fsf.hu>\n"
 "Language-Team: Hungarian <kde-l10n-hu@kde.org>\n"
 "Language: hu\n"
@@ -60,12 +60,12 @@ msgctxt "ObjectClass|"
 msgid "GJKCollisionSolver"
 msgstr "GJK ütközésmegoldó"
 
-#: constraintsolver.cc:19
+#: constraintsolver.cc:20
 msgctxt "ObjectClass|"
 msgid "ConstraintSolver"
 msgstr "Kényszermegoldó"
 
-#: constraintsolver.cc:23
+#: constraintsolver.cc:24
 msgctxt "ObjectClass|"
 msgid "CGConstraintSolver"
 msgstr "CG kényszermegoldó"
@@ -533,1839 +533,1238 @@ msgid "Weight force"
 msgstr "Súlyerő"
 
 #: gravitation.cc:27
-#, fuzzy
-#| msgid "Weight constant"
 msgctxt "PropertyDescription|"
 msgid "Weight constant"
-msgstr "Súly konstans"
+msgstr "Súlyállandó"
 
 #: gravitation.cc:27
-#, fuzzy
-#| msgctxt "PropertyName"
-#| msgid "weightConst"
 msgctxt "PropertyName|"
 msgid "weightConst"
-msgstr "súlyKonstans"
+msgstr "súlyÁllandó"
 
 #: gravitation.cc:27 gravitation.cc:32 particle.cc:19 particle.cc:33
 #: rigidbody.cc:22 rigidbody.cc:51 softbody.cc:31
-#, fuzzy
-#| msgctxt "Units"
-#| msgid "m/s²"
 msgctxt "Units|"
 msgid "m/s²"
 msgstr "m/s²"
 
 #: gravitation.cc:30
-#, fuzzy
-#| msgctxt "ObjectClass"
-#| msgid "WeightForceErrors"
 msgctxt "ObjectClass|"
 msgid "WeightForceErrors"
 msgstr "SúlyErőHibák"
 
 #: gravitation.cc:30
-#, fuzzy
-#| msgid "Errors class for WeightForce"
 msgctxt "ObjectDescription|"
 msgid "Errors class for WeightForce"
-msgstr "Hiba osztály a SúlyErő számára"
+msgstr "Hibaosztály a súlyerőhöz"
 
 #: gravitation.cc:32
-#, fuzzy
-#| msgctxt "PropertyName"
-#| msgid "weightConstVariance"
 msgctxt "PropertyName|"
 msgid "weightConstVariance"
-msgstr "súlyKonstansVariancia"
+msgstr "súlyÁllandóSzórás"
 
 #: gravitation.cc:33
-#, fuzzy
-#| msgid "Weight constant variance"
 msgctxt "PropertyDescription|"
 msgid "Weight constant variance"
-msgstr "Súly konstans variancia"
+msgstr "A súlyállandó szórása"
 
 #: gslsolver.cc:18
-#, fuzzy
-#| msgctxt "ObjectClass"
-#| msgid "GslGenericSolver"
 msgctxt "ObjectClass|"
 msgid "GslGenericSolver"
-msgstr "GslGenericSolver"
+msgstr "GslÁltalánosMegoldó"
 
 #: gslsolver.cc:18
-#, fuzzy
-#| msgid "GSL generic solver"
 msgctxt "ObjectDescription|"
 msgid "GSL generic solver"
 msgstr "GSL általános megoldó"
 
 #: gslsolver.cc:20
-#, fuzzy
-#| msgctxt "ObjectClass"
-#| msgid "GslSolver"
 msgctxt "ObjectClass|"
 msgid "GslSolver"
-msgstr "GslSolver"
+msgstr "GslMegoldó"
 
 #: gslsolver.cc:20
-#, fuzzy
-#| msgid "GSL non-adaptive solver"
 msgctxt "ObjectDescription|"
 msgid "GSL non-adaptive solver"
-msgstr "GSL nem adaptív megoldó"
+msgstr "Nem adaptív GSL megoldó"
 
 #: gslsolver.cc:23
-#, fuzzy
-#| msgctxt "ObjectClass"
-#| msgid "GslAdaptiveSolver"
 msgctxt "ObjectClass|"
 msgid "GslAdaptiveSolver"
-msgstr "GslAdaptiveSolver"
+msgstr "GslAdaptívMegoldó"
 
 #: gslsolver.cc:23
-#, fuzzy
-#| msgid "GSL adaptive solver"
 msgctxt "ObjectDescription|"
 msgid "GSL adaptive solver"
 msgstr "GSL adaptív megoldó"
 
 #: gslsolver.cc:26
-#, fuzzy
-#| msgctxt "ObjectClass"
-#| msgid "GslRK2Solver"
 msgctxt "ObjectClass|"
 msgid "GslRK2Solver"
-msgstr "GslRK2Solver"
+msgstr "GslRK2Megoldó"
 
 #: gslsolver.cc:26
-#, fuzzy
-#| msgid "Runge-Kutta second-order solver from GSL library"
 msgctxt "ObjectDescription|"
 msgid "Runge-Kutta second-order solver from GSL library"
-msgstr "Rungne-Kutta másodrendű megoldó a GSL könyvtárból"
+msgstr "Runge-Kutta másodrendű megoldó a GSL könyvtárból"
 
 #: gslsolver.cc:28
-#, fuzzy
-#| msgctxt "ObjectClass"
-#| msgid "GslAdaptiveRK2Solver"
 msgctxt "ObjectClass|"
 msgid "GslAdaptiveRK2Solver"
-msgstr "GslAdaptiveRK2Solver"
+msgstr "GslAdaptívRK2Megoldó"
 
 #: gslsolver.cc:28
-#, fuzzy
-#| msgid "Adaptive Runge-Kutta second-order solver from GSL library"
 msgctxt "ObjectDescription|"
 msgid "Adaptive Runge-Kutta second-order solver from GSL library"
-msgstr "Adaptív Rungne-Kutta másodrendű megoldó a GSL könyvtárból"
+msgstr "Adaptív Runge-Kutta másodrendű megoldó a GSL könyvtárból"
 
 #: gslsolver.cc:31
-#, fuzzy
-#| msgctxt "ObjectClass"
-#| msgid "GslRK4Solver"
 msgctxt "ObjectClass|"
 msgid "GslRK4Solver"
-msgstr "GslRK4Solver"
+msgstr "GslRK4Megoldó"
 
 #: gslsolver.cc:31
-#, fuzzy
-#| msgid "Runge-Kutta classical fourth-order solver from GSL library"
 msgctxt "ObjectDescription|"
 msgid "Runge-Kutta classical fourth-order solver from GSL library"
-msgstr "Rungne-Kutta klasszikus negyedrendű megoldó a GSL könyvtárból"
+msgstr "Runge-Kutta klasszikus negyedrendű megoldó a GSL könyvtárból"
 
 #: gslsolver.cc:33
-#, fuzzy
-#| msgctxt "ObjectClass"
-#| msgid "GslAdaptiveRK4Solver"
 msgctxt "ObjectClass|"
 msgid "GslAdaptiveRK4Solver"
-msgstr "GslAdaptiveRK4Solver"
+msgstr "GslAdaptívRK4Megoldó"
 
 #: gslsolver.cc:33
-#, fuzzy
-#| msgid "Adaptive Runge-Kutta classical fourth-order solver from GSL library"
 msgctxt "ObjectDescription|"
 msgid "Adaptive Runge-Kutta classical fourth-order solver from GSL library"
-msgstr "Adaptív Rungne-Kutta klasszikus negyedrendű megoldó a GSL könyvtárból"
+msgstr "Adaptív Runge-Kutta klasszikus negyedrendű megoldó a GSL könyvtárból"
 
 #: gslsolver.cc:36
-#, fuzzy
-#| msgctxt "ObjectClass"
-#| msgid "GslRKF45Solver"
 msgctxt "ObjectClass|"
 msgid "GslRKF45Solver"
-msgstr "GslRKF45Solver"
+msgstr "GslRKF45Megoldó"
 
 #: gslsolver.cc:36
-#, fuzzy
-#| msgid "Runge-Kutta-Fehlberg (4,5) solver from GSL library"
 msgctxt "ObjectDescription|"
 msgid "Runge-Kutta-Fehlberg (4,5) solver from GSL library"
 msgstr "Runge-Kutta-Fehlberg (4,5) megoldó a GSL könyvtárból"
 
 #: gslsolver.cc:38
-#, fuzzy
-#| msgctxt "ObjectClass"
-#| msgid "GslAdaptiveRKF45Solver"
 msgctxt "ObjectClass|"
 msgid "GslAdaptiveRKF45Solver"
-msgstr "GslAdaptiveRKF45Solver"
+msgstr "GslAdaptívRKF45Megoldó"
 
 #: gslsolver.cc:38
-#, fuzzy
-#| msgid "Adaptive Runge-Kutta-Fehlberg (4,5) solver from GSL library"
 msgctxt "ObjectDescription|"
 msgid "Adaptive Runge-Kutta-Fehlberg (4,5) solver from GSL library"
 msgstr "Adaptív Runge-Kutta-Fehlberg (4,5) megoldó a GSL könyvtárból"
 
 #: gslsolver.cc:41
-#, fuzzy
-#| msgctxt "ObjectClass"
-#| msgid "GslRKCKSolver"
 msgctxt "ObjectClass|"
 msgid "GslRKCKSolver"
-msgstr "GslRKCKSolver"
+msgstr "GslRKCKMegoldó"
 
 #: gslsolver.cc:41
-#, fuzzy
-#| msgid "Runge-Kutta Cash-Karp (4,5) solver from GSL library"
 msgctxt "ObjectDescription|"
 msgid "Runge-Kutta Cash-Karp (4,5) solver from GSL library"
 msgstr "Runge-Kutta Cash-Karp (4,5) megoldó a GSL könyvtárból"
 
 #: gslsolver.cc:43
-#, fuzzy
-#| msgctxt "ObjectClass"
-#| msgid "GslAdaptiveRKCKSolver"
 msgctxt "ObjectClass|"
 msgid "GslAdaptiveRKCKSolver"
-msgstr "GslAdaptiveRKCKSolver"
+msgstr "GslAdaptívRKCKMegoldó"
 
 #: gslsolver.cc:43
-#, fuzzy
-#| msgid "Adaptive Runge-Kutta Cash-Karp (4,5) solver from GSL library"
 msgctxt "ObjectDescription|"
 msgid "Adaptive Runge-Kutta Cash-Karp (4,5) solver from GSL library"
 msgstr "Adaptív Runge-Kutta Cash-Karp (4,5) megoldó a GSL könyvtárból"
 
 #: gslsolver.cc:46
-#, fuzzy
-#| msgctxt "ObjectClass"
-#| msgid "GslRK8PDSolver"
 msgctxt "ObjectClass|"
 msgid "GslRK8PDSolver"
-msgstr "GslRK8PDSolver"
+msgstr "GslRK8PDMegoldó"
 
 #: gslsolver.cc:46
-#, fuzzy
-#| msgid "Runge-Kutta Prince-Dormand (8,9) solver from GSL library"
 msgctxt "ObjectDescription|"
 msgid "Runge-Kutta Prince-Dormand (8,9) solver from GSL library"
 msgstr "Runge-Kutta Prince-Dormand (8,9) megoldó a GSL könyvtárból"
 
 #: gslsolver.cc:48
-#, fuzzy
-#| msgctxt "ObjectClass"
-#| msgid "GslAdaptiveRK8PDSolver"
 msgctxt "ObjectClass|"
 msgid "GslAdaptiveRK8PDSolver"
-msgstr "GslAdaptiveRK8PDSolver"
+msgstr "GslAdaptívRK8PDMegoldó"
 
 #: gslsolver.cc:48
-#, fuzzy
-#| msgid "Adaptive Runge-Kutta Prince-Dormand (8,9) solver from GSL library"
 msgctxt "ObjectDescription|"
 msgid "Adaptive Runge-Kutta Prince-Dormand (8,9) solver from GSL library"
 msgstr "Adaptív Runge-Kutta Prince-Dormand (8,9) megoldó a GSL könyvtárból"
 
 #: gslsolver.cc:51
-#, fuzzy
-#| msgctxt "ObjectClass"
-#| msgid "GslRK2IMPSolver"
 msgctxt "ObjectClass|"
 msgid "GslRK2IMPSolver"
-msgstr "GslRK2IMPSolver"
+msgstr "GslRK2IMPMegoldó"
 
 #: gslsolver.cc:51
-#, fuzzy
-#| msgid "Runge-Kutta implicit second-order solver from GSL library"
 msgctxt "ObjectDescription|"
 msgid "Runge-Kutta implicit second-order solver from GSL library"
 msgstr "Runge-Kutta implicit másodrendű megoldó a GSL könyvtárból"
 
 #: gslsolver.cc:53
-#, fuzzy
-#| msgctxt "ObjectClass"
-#| msgid "GslAdaptiveRK2IMPSolver"
 msgctxt "ObjectClass|"
 msgid "GslAdaptiveRK2IMPSolver"
-msgstr "GslAdaptiveRK2IMPSolver"
+msgstr "GslAdaptívRK2IMPMegoldó"
 
 #: gslsolver.cc:53
-#, fuzzy
-#| msgid "Adaptive Runge-Kutta implicit second-order solver from GSL library"
 msgctxt "ObjectDescription|"
 msgid "Adaptive Runge-Kutta implicit second-order solver from GSL library"
 msgstr ""
 "Adaptív Runge-Kutta implicit másodrendű megoldó megoldó a GSL könyvtárból"
 
 #: gslsolver.cc:56
-#, fuzzy
-#| msgctxt "ObjectClass"
-#| msgid "GslRK4IMPSolver"
 msgctxt "ObjectClass|"
 msgid "GslRK4IMPSolver"
-msgstr "GslRK4IMPSolver"
+msgstr "GslRK4IMPMegoldó"
 
 #: gslsolver.cc:56
-#, fuzzy
-#| msgid "Runge-Kutta implicit fourth-order solver from GSL library"
 msgctxt "ObjectDescription|"
 msgid "Runge-Kutta implicit fourth-order solver from GSL library"
 msgstr "Runge-Kutta implicit negyedrendű megoldó a GSL könyvtárból"
 
 #: gslsolver.cc:58
-#, fuzzy
-#| msgctxt "ObjectClass"
-#| msgid "GslAdaptiveRK4IMPSolver"
 msgctxt "ObjectClass|"
 msgid "GslAdaptiveRK4IMPSolver"
-msgstr "GslAdaptiveRK4IMPSolver"
+msgstr "GslAdaptívRK4IMPMegoldó"
 
 #: gslsolver.cc:58
-#, fuzzy
-#| msgid "Adaptive Runge-Kutta implicit fource-order solver from GSL library"
 msgctxt "ObjectDescription|"
 msgid "Adaptive Runge-Kutta implicit fourth-order solver from GSL library"
 msgstr "Adaptív Runge-Kutta implicit negyedrendű megoldó a GSL könyvtárból"
 
 #: item.cc:15
-#, fuzzy
-#| msgid "Item"
 msgctxt "ObjectClass|"
 msgid "Item"
 msgstr "Elem"
 
 #: item.cc:15
-#, fuzzy
-#| msgid "Item"
 msgctxt "ObjectDescription|"
 msgid "Item"
 msgstr "Elem"
 
 #: item.cc:17
-#, fuzzy
-#| msgctxt "PropertyName"
-#| msgid "color"
 msgctxt "PropertyName|"
 msgid "color"
 msgstr "szín"
 
 #: item.cc:18
-#, fuzzy
-#| msgid "Item color"
 msgctxt "PropertyDescription|"
 msgid "Item color"
 msgstr "Elemszín"
 
 #: itemgroup.cc:15
-#, fuzzy
-#| msgid "ItemGroup"
 msgctxt "ObjectClass|"
 msgid "ItemGroup"
 msgstr "ElemCsoport"
 
 #: itemgroup.cc:15
-#, fuzzy
-#| msgid "ItemGroup"
 msgctxt "ObjectDescription|"
 msgid "ItemGroup"
 msgstr "ElemCsoport"
 
 #: joint.cc:14
-#, fuzzy
-#| msgid "Joint"
 msgctxt "ObjectClass|"
 msgid "Joint"
-msgstr "Összekapcsolás"
+msgstr "Csatlakozás"
 
 #: joint.cc:14
-#, fuzzy
-#| msgid "Joint"
 msgctxt "ObjectDescription|"
 msgid "Joint"
-msgstr "Összekapcsolás"
+msgstr "Csatlakozás"
 
 #: joints.cc:14
-#, fuzzy
-#| msgctxt "ObjectClass"
-#| msgid "Anchor"
 msgctxt "ObjectClass|"
 msgid "Anchor"
-msgstr "Rögzítő elem"
+msgstr "Horgony"
 
 #: joints.cc:14
-#, fuzzy
-#| msgid "Anchor: fixes position of the body"
 msgctxt "ObjectDescription|"
 msgid "Anchor: fixes position of the body"
-msgstr "Rögzítő elem: a törzs pozíciójának megoldása"
+msgstr "Horgony: rögzíti a test pozícióját"
 
 #: joints.cc:16 joints.cc:22 motor.cc:18 motor.cc:25
-#, fuzzy
-#| msgid "Body"
 msgctxt "PropertyDescription|"
 msgid "Body"
-msgstr "Törzs"
+msgstr "Test"
 
 #: joints.cc:16 joints.cc:22 motor.cc:18 motor.cc:25 tool.cc:85
-#, fuzzy
-#| msgctxt "PropertyName"
-#| msgid "body"
 msgctxt "PropertyName|"
 msgid "body"
-msgstr "törzs"
+msgstr "test"
 
 #: joints.cc:17 tool.cc:88
-#, fuzzy
-#| msgid "Position"
 msgctxt "PropertyDescription|"
 msgid "Position"
 msgstr "Pozíció"
 
 #: joints.cc:17 joints.cc:24 particle.cc:17 rigidbody.cc:16 softbody.cc:24
 #: tool.cc:26 tool.cc:33 tool.cc:55 tool.cc:67 tool.cc:88
-#, fuzzy
-#| msgid "position"
 msgctxt "PropertyName|"
 msgid "position"
 msgstr "pozíció"
 
 #: joints.cc:18
-#, fuzzy
-#| msgid "Angle"
 msgctxt "PropertyDescription|"
 msgid "Angle"
 msgstr "Szög"
 
 #: joints.cc:18 rigidbody.cc:17
-#, fuzzy
-#| msgctxt "PropertyName"
-#| msgid "angle"
 msgctxt "PropertyName|"
 msgid "angle"
 msgstr "szög"
 
 #: joints.cc:18 rigidbody.cc:17 rigidbody.cc:43
-#, fuzzy
-#| msgctxt "Units"
-#| msgid "rad"
 msgctxt "Units|"
 msgid "rad"
 msgstr "rad"
 
 #: joints.cc:20
-#, fuzzy
-#| msgctxt "ObjectClass"
-#| msgid "Pin"
 msgctxt "ObjectClass|"
 msgid "Pin"
-msgstr "Pin"
+msgstr "Tű"
 
 #: joints.cc:20
-#, fuzzy
-#| msgid "Pin: fixes position of a given point on the body"
 msgctxt "ObjectDescription|"
 msgid "Pin: fixes position of a given point on the body"
-msgstr "Pin: egy adott pont helyzete a törzsön"
+msgstr "Tű: rögzíti egy adott pont pozícióját a testen"
 
 #: joints.cc:23
-#, fuzzy
-#| msgid "Position on the body"
 msgctxt "PropertyDescription|"
 msgid "Position on the body"
-msgstr "Pozíció a törzsön"
+msgstr "Pozíció a testen"
 
 #: joints.cc:23 motor.cc:19 motor.cc:26 tool.cc:86
-#, fuzzy
-#| msgctxt "PropertyName"
-#| msgid "localPosition"
 msgctxt "PropertyName|"
 msgid "localPosition"
 msgstr "helyiPozíció"
 
 #: joints.cc:24
-#, fuzzy
-#| msgid "Position in the world"
 msgctxt "PropertyDescription|"
 msgid "Position in the world"
 msgstr "Pozíció a világban"
 
 #: joints.cc:26
-#, fuzzy
-#| msgctxt "ObjectClass"
-#| msgid "Stick"
 msgctxt "ObjectClass|"
 msgid "Stick"
-msgstr "Stick"
+msgstr "Rúd"
 
 #: joints.cc:26
-#, fuzzy
-#| msgid "Massless stick which can be connected to bodies"
 msgctxt "ObjectDescription|"
 msgid "Massless stick which can be connected to bodies"
-msgstr "Tömeg nélküli rúd, amely testekhez rögzíthető"
+msgstr "Tömeg nélküli rúd, amely testekhez csatlakoztatható"
 
 #: joints.cc:28
-#, fuzzy
-#| msgid "Rest length of the stick"
 msgctxt "PropertyDescription|"
 msgid "Rest length of the stick"
-msgstr "A stick maradék hossza"
+msgstr "A rúd nyugalmi hossza"
 
 #: joints.cc:28 spring.cc:18
-#, fuzzy
-#| msgctxt "PropertyName"
-#| msgid "restLength"
 msgctxt "PropertyName|"
 msgid "restLength"
 msgstr "maradékHossz"
 
 #: joints.cc:29 spring.cc:22
-#, fuzzy
-#| msgid "Body1"
 msgctxt "PropertyDescription|"
 msgid "Body1"
-msgstr "Törzs1"
+msgstr "Test1"
 
 #: joints.cc:29 spring.cc:22
-#, fuzzy
-#| msgctxt "PropertyName"
-#| msgid "body1"
 msgctxt "PropertyName|"
 msgid "body1"
-msgstr "törzs1"
+msgstr "test1"
 
 #: joints.cc:30 spring.cc:23
-#, fuzzy
-#| msgid "Body2"
 msgctxt "PropertyDescription|"
 msgid "Body2"
-msgstr "Törzs2"
+msgstr "Test2"
 
 #: joints.cc:30 spring.cc:23
-#, fuzzy
-#| msgctxt "PropertyName"
-#| msgid "body2"
 msgctxt "PropertyName|"
 msgid "body2"
-msgstr "törzs2"
+msgstr "test2"
 
 #: joints.cc:31 spring.cc:24
-#, fuzzy
-#| msgctxt "PropertyName"
-#| msgid "localPosition1"
 msgctxt "PropertyName|"
 msgid "localPosition1"
 msgstr "helyiPozíció1"
 
 #: joints.cc:32 spring.cc:25
-#, fuzzy
-#| msgid "Local position 1"
 msgctxt "PropertyDescription|"
 msgid "Local position 1"
 msgstr "Helyi pozíció 1"
 
 #: joints.cc:33 spring.cc:26
-#, fuzzy
-#| msgctxt "PropertyName"
-#| msgid "localPosition2"
 msgctxt "PropertyName|"
 msgid "localPosition2"
 msgstr "helyiPozíció2"
 
 #: joints.cc:34 spring.cc:27
-#, fuzzy
-#| msgid "Local position 2"
 msgctxt "PropertyDescription|"
 msgid "Local position 2"
 msgstr "Helyi pozíció 2"
 
 #: joints.cc:35 spring.cc:28
-#, fuzzy
-#| msgid "Position1"
 msgctxt "PropertyDescription|"
 msgid "Position1"
 msgstr "Pozíció1"
 
 #: joints.cc:35 spring.cc:28
-#, fuzzy
-#| msgctxt "PropertyName"
-#| msgid "position1"
 msgctxt "PropertyName|"
 msgid "position1"
 msgstr "pozíció1"
 
 #: joints.cc:36 spring.cc:29
-#, fuzzy
-#| msgid "Position2"
 msgctxt "PropertyDescription|"
 msgid "Position2"
 msgstr "Pozíció2"
 
 #: joints.cc:36 spring.cc:29
-#, fuzzy
-#| msgctxt "PropertyName"
-#| msgid "position2"
 msgctxt "PropertyName|"
 msgid "position2"
 msgstr "pozíció2"
 
 #: joints.cc:39
-#, fuzzy
-#| msgctxt "ObjectClass"
-#| msgid "Rope"
 msgctxt "ObjectClass|"
 msgid "Rope"
 msgstr "Kötél"
 
 #: joints.cc:39
-#, fuzzy
-#| msgid "Massless rope which can be connected to bodies"
 msgctxt "ObjectDescription|"
 msgid "Massless rope which can be connected to bodies"
-msgstr "Tömeg nélküli kötél, amely testekhez rögzíthető"
+msgstr "Tömeg nélküli kötél, amely testekhez csatlakoztatható"
 
 #: motor.cc:16
-#, fuzzy
-#| msgctxt "ObjectClass"
-#| msgid "LinearMotor"
 msgctxt "ObjectClass|"
 msgid "LinearMotor"
 msgstr "LineárisMotor"
 
 #: motor.cc:16
-#, fuzzy
-#| msgid ""
-#| "Linear motor: applies a constant force to a given position of the body"
 msgctxt "ObjectDescription|"
 msgid "Linear motor: applies a constant force to a given position of the body"
-msgstr "Lineáris motor: egy állandó erőt fejt ki a test egy adott pontjára"
+msgstr "Lineáris motor: állandó erőt fejt ki a test egy adott pontjára"
 
 #: motor.cc:19 motor.cc:26
-#, fuzzy
-#| msgid "Position of the motor on a body"
 msgctxt "PropertyDescription|"
 msgid "Position of the motor on a body"
-msgstr "A motor pozíciója egy törzsön"
+msgstr "A motor pozíciója egy testen"
 
 #: motor.cc:20
-#, fuzzy
-#| msgid "Value of the force, acting on the body"
 msgctxt "PropertyDescription|"
 msgid "Value of the force, acting on the body"
 msgstr "A testre ható erő értéke"
 
 #: motor.cc:20
-#, fuzzy
-#| msgctxt "PropertyName"
-#| msgid "forceValue"
 msgctxt "PropertyName|"
 msgid "forceValue"
 msgstr "erőÉrték"
 
 #: motor.cc:20 particle.cc:21 particle.cc:35 rigidbody.cc:27 rigidbody.cc:56
 #: softbody.cc:36 spring.cc:30 spring.cc:51
-#, fuzzy
-#| msgctxt "Units"
-#| msgid "N"
 msgctxt "Units|"
 msgid "N"
 msgstr "N"
 
 #: motor.cc:21
-#, fuzzy
-#| msgid "Value of the force, acting on the body"
 msgctxt "PropertyDescription|"
 msgid "Rotate the force vector in sync with body rotation"
-msgstr "A testre ható erő értéke"
+msgstr "Az erővektor forgatása a test forgásával szinkronban"
 
 #: motor.cc:21
 msgctxt "PropertyName|"
 msgid "rigidlyFixed"
-msgstr ""
+msgstr "merevenRögzített"
 
 #: motor.cc:23
-#, fuzzy
-#| msgctxt "ObjectClass"
-#| msgid "CircularMotor"
 msgctxt "ObjectClass|"
 msgid "CircularMotor"
-msgstr "CirkulárisMotor"
+msgstr "KörkörösMotor"
 
 #: motor.cc:23
-#, fuzzy
-#| msgid "Circular motor: applies a constant torque to the body"
 msgctxt "ObjectDescription|"
 msgid "Circular motor: applies a constant torque to the body"
-msgstr "Cirkuláris motor: egy állandó forgatónyomatékot fejt ki a testre"
+msgstr "Körkörös motor: állandó forgatónyomatékot fejt ki a testre"
 
 #: motor.cc:27
-#, fuzzy
-#| msgid "Value of the torque, acting on the body"
 msgctxt "PropertyDescription|"
 msgid "Value of the torque, acting on the body"
-msgstr "A forgatónyomaték értéke, a törzsön végezve"
+msgstr "A testre ható forgatónyomaték értéke"
 
 #: motor.cc:27
-#, fuzzy
-#| msgctxt "PropertyName"
-#| msgid "torqueValue"
 msgctxt "PropertyName|"
 msgid "torqueValue"
 msgstr "forgatónyomatékÉrték"
 
 #: motor.cc:27 rigidbody.cc:28 rigidbody.cc:57 softbody.cc:37
-#, fuzzy
-#| msgctxt "Units"
-#| msgid "N m"
 msgctxt "Units|"
 msgid "N m"
-msgstr "N*m"
+msgstr "Nm"
 
 #: object.cc:13
-#, fuzzy
-#| msgid "Object"
 msgctxt "ObjectClass|"
 msgid "Object"
 msgstr "Objektum"
 
 #: object.cc:13
-#, fuzzy
-#| msgid "Object"
 msgctxt "ObjectDescription|"
 msgid "Object"
 msgstr "Objektum"
 
 #: object.cc:14
-#, fuzzy
-#| msgid "Object name"
 msgctxt "PropertyDescription|"
 msgid "Object name"
-msgstr "Objektumnév"
+msgstr "Objektum neve"
 
 #: object.cc:14
-#, fuzzy
-#| msgctxt "PropertyName"
-#| msgid "name"
 msgctxt "PropertyName|"
 msgid "name"
 msgstr "név"
 
 #: objecterrors.cc:14
-#, fuzzy
-#| msgid "ObjectErrors"
 msgctxt "ObjectClass|"
 msgid "ObjectErrors"
 msgstr "ObjektumHibák"
 
 #: objecterrors.cc:14
-#, fuzzy
-#| msgid "ObjectErrors"
 msgctxt "ObjectDescription|"
 msgid "ObjectErrors"
 msgstr "ObjektumHibák"
 
 #: particle.cc:15
-#, fuzzy
-#| msgctxt "ObjectClass"
-#| msgid "Particle"
 msgctxt "ObjectClass|"
 msgid "Particle"
 msgstr "Részecske"
 
 #: particle.cc:15
-#, fuzzy
-#| msgid "Simple zero-size particle"
 msgctxt "ObjectDescription|"
 msgid "Simple zero-size particle"
-msgstr "Egyszerű nulla-méretű részecske"
+msgstr "Egyszerű, nulla méretű részecske"
 
 #: particle.cc:17
-#, fuzzy
-#| msgid "position"
 msgctxt "PropertyDescription|"
 msgid "position"
 msgstr "pozíció"
 
 #: particle.cc:18
-#, fuzzy
-#| msgid "velocity"
 msgctxt "PropertyDescription|"
 msgid "velocity"
 msgstr "sebesség"
 
 #: particle.cc:18 rigidbody.cc:19 softbody.cc:26
-#, fuzzy
-#| msgid "velocity"
 msgctxt "PropertyName|"
 msgid "velocity"
 msgstr "sebesség"
 
 #: particle.cc:19 rigidbody.cc:22 softbody.cc:31
-#, fuzzy
-#| msgid "acceleration"
 msgctxt "PropertyName|"
 msgid "acceleration"
 msgstr "gyorsulás"
 
 #: particle.cc:20
-#, fuzzy
-#| msgid "acceleration"
 msgctxt "PropertyDescription|"
 msgid "acceleration"
 msgstr "gyorsulás"
 
 #: particle.cc:21
-#, fuzzy
-#| msgid "force"
 msgctxt "PropertyDescription|"
 msgid "force"
 msgstr "erő"
 
 #: particle.cc:21 rigidbody.cc:27 softbody.cc:36 spring.cc:30
-#, fuzzy
-#| msgid "force"
 msgctxt "PropertyName|"
 msgid "force"
 msgstr "erő"
 
 #: particle.cc:22
-#, fuzzy
-#| msgid "mass"
 msgctxt "PropertyDescription|"
 msgid "mass"
 msgstr "tömeg"
 
 #: particle.cc:22 rigidbody.cc:30 softbody.cc:38
-#, fuzzy
-#| msgid "mass"
 msgctxt "PropertyName|"
 msgid "mass"
 msgstr "tömeg"
 
 #: particle.cc:23 rigidbody.cc:33
-#, fuzzy
-#| msgid "momentum"
 msgctxt "PropertyDescription|"
 msgid "momentum"
-msgstr "momentum"
+msgstr "impulzus"
 
 #: particle.cc:23 rigidbody.cc:33
-#, fuzzy
-#| msgid "momentum"
 msgctxt "PropertyName|"
 msgid "momentum"
-msgstr "momentum"
+msgstr "impulzus"
 
 #: particle.cc:23 particle.cc:39 rigidbody.cc:33 rigidbody.cc:63
-#, fuzzy
-#| msgctxt "Units"
-#| msgid "kg m/s"
 msgctxt "Units|"
 msgid "kg m/s"
 msgstr "kg*m/s"
 
 #: particle.cc:25 rigidbody.cc:37
-#, fuzzy
-#| msgid "kinetic energy"
 msgctxt "PropertyDescription|"
 msgid "kinetic energy"
 msgstr "kinetikus energia"
 
 #: particle.cc:25 rigidbody.cc:37
-#, fuzzy
-#| msgctxt "PropertyName"
-#| msgid "kineticEnergy"
 msgctxt "PropertyName|"
 msgid "kineticEnergy"
 msgstr "kinetikusEnergia"
 
 #: particle.cc:28
-#, fuzzy
-#| msgctxt "ObjectClass"
-#| msgid "ParticleErrors"
 msgctxt "ObjectClass|"
 msgid "ParticleErrors"
-msgstr "RécsercskeHibák"
+msgstr "RészecskeHibák"
 
 #: particle.cc:28
-#, fuzzy
-#| msgid "Errors class for Particle"
 msgctxt "ObjectDescription|"
 msgid "Errors class for Particle"
-msgstr "Hibás osztály a részecskére"
+msgstr "Hibaosztály a részecskéhez"
 
 #: particle.cc:29 rigidbody.cc:41
-#, fuzzy
-#| msgctxt "PropertyName"
-#| msgid "positionVariance"
 msgctxt "PropertyName|"
 msgid "positionVariance"
-msgstr "pozícióVariancia"
+msgstr "pozícióSzórás"
 
 #: particle.cc:30 rigidbody.cc:42
-#, fuzzy
-#| msgid "position variance"
 msgctxt "PropertyDescription|"
 msgid "position variance"
-msgstr "pozíció variancia"
+msgstr "A pozíció szórása"
 
 #: particle.cc:31 rigidbody.cc:46
-#, fuzzy
-#| msgctxt "PropertyName"
-#| msgid "velocityVariance"
 msgctxt "PropertyName|"
 msgid "velocityVariance"
-msgstr "sebességVariancia"
+msgstr "sebességSzórás"
 
 #: particle.cc:32 rigidbody.cc:47
-#, fuzzy
-#| msgid "velocity variance"
 msgctxt "PropertyDescription|"
 msgid "velocity variance"
-msgstr "sebesség variancia"
+msgstr "A sebesség szórása"
 
 #: particle.cc:33 rigidbody.cc:51
-#, fuzzy
-#| msgctxt "PropertyName"
-#| msgid "accelerationVariance"
 msgctxt "PropertyName|"
 msgid "accelerationVariance"
-msgstr "gyorsulásVariancia"
+msgstr "gyorsulásSzórás"
 
 #: particle.cc:34 rigidbody.cc:52
-#, fuzzy
-#| msgid "acceleration variance"
 msgctxt "PropertyDescription|"
 msgid "acceleration variance"
-msgstr "gyorsulás variancia"
+msgstr "A gyorsulás szórása"
 
 #: particle.cc:35 rigidbody.cc:56 spring.cc:51
-#, fuzzy
-#| msgctxt "PropertyName"
-#| msgid "forceVariance"
 msgctxt "PropertyName|"
 msgid "forceVariance"
-msgstr "erőltetőVariancia"
+msgstr "erőSzórás"
 
 #: particle.cc:36 rigidbody.cc:56
-#, fuzzy
-#| msgid "force variance"
 msgctxt "PropertyDescription|"
 msgid "force variance"
-msgstr "erőltető variancia"
+msgstr "Az erő szórása"
 
 #: particle.cc:37 rigidbody.cc:59
-#, fuzzy
-#| msgctxt "PropertyName"
-#| msgid "massVariance"
 msgctxt "PropertyName|"
 msgid "massVariance"
-msgstr "tömegVariancia"
+msgstr "tömegSzórás"
 
 #: particle.cc:38 rigidbody.cc:60
-#, fuzzy
-#| msgid "mass variance"
 msgctxt "PropertyDescription|"
 msgid "mass variance"
-msgstr "tömeg variancia"
+msgstr "A tömeg szórása"
 
 #: particle.cc:39 rigidbody.cc:63
-#, fuzzy
-#| msgctxt "PropertyName"
-#| msgid "momentumVariance"
 msgctxt "PropertyName|"
 msgid "momentumVariance"
-msgstr "momentumVariancia"
+msgstr "impulzusSzórás"
 
 #: particle.cc:40 rigidbody.cc:64
-#, fuzzy
-#| msgid "momentum variance"
 msgctxt "PropertyDescription|"
 msgid "momentum variance"
-msgstr "momentum variancia"
+msgstr "Az impulzus szórása"
 
 #: particle.cc:41 rigidbody.cc:68
-#, fuzzy
-#| msgctxt "PropertyName"
-#| msgid "kineticEnergyVariance"
 msgctxt "PropertyName|"
 msgid "kineticEnergyVariance"
-msgstr "kinetikusEnergiaVariancia"
+msgstr "kinetikusEnergiaSzórás"
 
 #: particle.cc:42 rigidbody.cc:69
-#, fuzzy
-#| msgid "kinetic energy variance"
 msgctxt "PropertyDescription|"
 msgid "kinetic energy variance"
-msgstr "kinetikus energia variancia"
+msgstr "A kinetikus energia szórása"
 
 #: particle.cc:44
-#, fuzzy
-#| msgctxt "ObjectClass"
-#| msgid "ChargedParticle"
 msgctxt "ObjectClass|"
 msgid "ChargedParticle"
 msgstr "TöltöttRészecske"
 
 #: particle.cc:44
-#, fuzzy
-#| msgid "Charged zero-size particle"
 msgctxt "ObjectDescription|"
 msgid "Charged zero-size particle"
-msgstr "Töltött nulla-méretű részecske"
+msgstr "Töltött, nulla méretű részecske"
 
 #: particle.cc:45
-#, fuzzy
-#| msgid "charge"
 msgctxt "PropertyDescription|"
 msgid "charge"
 msgstr "töltés"
 
 #: particle.cc:45
-#, fuzzy
-#| msgid "charge"
 msgctxt "PropertyName|"
 msgid "charge"
 msgstr "töltés"
 
 #: particle.cc:45
-#, fuzzy
-#| msgctxt "Units"
-#| msgid "C"
 msgctxt "Units|"
 msgid "C"
 msgstr "C"
 
 #: particle.cc:47
-#, fuzzy
-#| msgctxt "ObjectClass"
-#| msgid "ChargedParticleErrors"
 msgctxt "ObjectClass|"
 msgid "ChargedParticleErrors"
 msgstr "TöltöttRészecskeHibák"
 
 #: particle.cc:47
-#, fuzzy
-#| msgid "Errors class for ChargedParticle"
 msgctxt "ObjectDescription|"
 msgid "Errors class for ChargedParticle"
-msgstr "Hibás osztály a TöltöttRészecske számára"
+msgstr "Hibaosztály a TöltöttRészecskéhez"
 
 #: particle.cc:49
-#, fuzzy
-#| msgctxt "PropertyName"
-#| msgid "chargeVariance"
 msgctxt "PropertyName|"
 msgid "chargeVariance"
-msgstr "töltésVariancia"
+msgstr "töltésSzórás"
 
 #: particle.cc:50
-#, fuzzy
-#| msgid "charge variance"
 msgctxt "PropertyDescription|"
 msgid "charge variance"
-msgstr "töltés variancia"
+msgstr "A töltés szórása"
 
 #: rigidbody.cc:15
-#, fuzzy
-#| msgctxt "ObjectClass"
-#| msgid "RigidBody"
 msgctxt "ObjectClass|"
 msgid "RigidBody"
-msgstr "RigidBody"
+msgstr "MerevTest"
 
 #: rigidbody.cc:15
-#, fuzzy
-#| msgid "Generic rigid body"
 msgctxt "ObjectDescription|"
 msgid "Generic rigid body"
 msgstr "Általános merev test"
 
 #: rigidbody.cc:16 softbody.cc:24
-#, fuzzy
-#| msgid "Position of the center of mass"
 msgctxt "PropertyDescription|"
 msgid "Position of the center of mass"
-msgstr "Tömegközpont pozíció"
+msgstr "A tömegközéppont pozíciója"
 
 #: rigidbody.cc:17
-#, fuzzy
-#| msgid "Rotation angle"
 msgctxt "PropertyDescription|"
 msgid "Rotation angle"
-msgstr "Forgatás szöge"
+msgstr "A forgatási szög"
 
 #: rigidbody.cc:19 softbody.cc:26
-#, fuzzy
-#| msgid "Velocity of the center of mass"
 msgctxt "PropertyDescription|"
 msgid "Velocity of the center of mass"
-msgstr "Tömegközpont sebessége"
+msgstr "A tömegközpont sebessége"
 
 #: rigidbody.cc:20 softbody.cc:27
-#, fuzzy
-#| msgid "Angular velocity of the body"
 msgctxt "PropertyDescription|"
 msgid "Angular velocity of the body"
-msgstr "A törzs szög sebessége"
+msgstr "A test szögsebessége"
 
 #: rigidbody.cc:20 softbody.cc:27
-#, fuzzy
-#| msgctxt "PropertyName"
-#| msgid "angularVelocity"
 msgctxt "PropertyName|"
 msgid "angularVelocity"
 msgstr "szögSebesség"
 
 #: rigidbody.cc:20 rigidbody.cc:48 softbody.cc:27
-#, fuzzy
-#| msgctxt "Units"
-#| msgid "rad/s"
 msgctxt "Units|"
 msgid "rad/s"
 msgstr "rad/s"
 
 #: rigidbody.cc:23 softbody.cc:32
-#, fuzzy
-#| msgid "Acceleration of the center of mass"
 msgctxt "PropertyDescription|"
 msgid "Acceleration of the center of mass"
 msgstr "A tömegközéppont gyorsulása"
 
 #: rigidbody.cc:24 softbody.cc:33
-#, fuzzy
-#| msgctxt "PropertyName"
-#| msgid "angularAcceleration"
 msgctxt "PropertyName|"
 msgid "angularAcceleration"
 msgstr "szögGyorsulás"
 
 #: rigidbody.cc:24 rigidbody.cc:53 softbody.cc:33
-#, fuzzy
-#| msgctxt "Units"
-#| msgid "rad/s²"
 msgctxt "Units|"
 msgid "rad/s²"
 msgstr "rad/s²"
 
 #: rigidbody.cc:25 softbody.cc:34
-#, fuzzy
-#| msgid "Angular acceleration of the body"
 msgctxt "PropertyDescription|"
 msgid "Angular acceleration of the body"
-msgstr "A törzs gyorsulási szöge"
+msgstr "A test szöggyorsulása"
 
 #: rigidbody.cc:27 softbody.cc:36
-#, fuzzy
-#| msgid "Force that acts upon the body"
 msgctxt "PropertyDescription|"
 msgid "Force that acts upon the body"
-msgstr "Erő, amely a testre hat"
+msgstr "A testre ható erő"
 
 #: rigidbody.cc:28 softbody.cc:37
-#, fuzzy
-#| msgid "Torque that acts upon the body"
 msgctxt "PropertyDescription|"
 msgid "Torque that acts upon the body"
-msgstr "Forgatónyomaték, amely a testre hat"
+msgstr "A testre ható forgatónyomaték"
 
 #: rigidbody.cc:28 softbody.cc:37
-#, fuzzy
-#| msgctxt "PropertyName"
-#| msgid "torque"
 msgctxt "PropertyName|"
 msgid "torque"
 msgstr "forgatónyomaték"
 
 #: rigidbody.cc:30 softbody.cc:38
-#, fuzzy
-#| msgid "Total mass of the body"
 msgctxt "PropertyDescription|"
 msgid "Total mass of the body"
 msgstr "A test teljes tömege"
 
 #: rigidbody.cc:31 softbody.cc:39
-#, fuzzy
-#| msgctxt "PropertyName"
-#| msgid "inertia"
 msgctxt "PropertyName|"
 msgid "inertia"
-msgstr "Incercia"
+msgstr "tehetetlenség"
 
 #: rigidbody.cc:31 rigidbody.cc:61 softbody.cc:39
-#, fuzzy
-#| msgctxt "Units"
-#| msgid "kg m²"
 msgctxt "Units|"
 msgid "kg m²"
 msgstr "kg*m²"
 
 #: rigidbody.cc:32 softbody.cc:40
-#, fuzzy
-#| msgid "Inertia \"tensor\" of the body"
 msgctxt "PropertyDescription|"
 msgid "Inertia \"tensor\" of the body"
-msgstr "A törzs inercia tenzora"
+msgstr "A test tehetetlenségi „tenzora”"
 
 #: rigidbody.cc:35
-#, fuzzy
-#| msgid "angular momentum"
 msgctxt "PropertyDescription|"
 msgid "angular momentum"
-msgstr "Perdület"
+msgstr "szögimpulzus"
 
 #: rigidbody.cc:35 softbody.cc:28
-#, fuzzy
-#| msgctxt "PropertyName"
-#| msgid "angularMomentum"
 msgctxt "PropertyName|"
 msgid "angularMomentum"
-msgstr "szögMomentum"
+msgstr "szögImpulzus"
 
 #: rigidbody.cc:35 rigidbody.cc:65
-#, fuzzy
-#| msgctxt "Units"
-#| msgid "kg m² rad/s"
 msgctxt "Units|"
 msgid "kg m² rad/s"
 msgstr "kg*m²*rad/s"
 
 #: rigidbody.cc:40
-#, fuzzy
-#| msgctxt "ObjectClass"
-#| msgid "RigidBodyErrors"
 msgctxt "ObjectClass|"
 msgid "RigidBodyErrors"
-msgstr "RigidBodyErrors"
+msgstr "MerevTestHibák"
 
 #: rigidbody.cc:40
-#, fuzzy
-#| msgid "Errors class for RigidBody"
 msgctxt "ObjectDescription|"
 msgid "Errors class for RigidBody"
-msgstr "Hibaosztály a Merev Test számára"
+msgstr "Hibaosztály a MerevTesthez"
 
 #: rigidbody.cc:43
-#, fuzzy
-#| msgctxt "PropertyName"
-#| msgid "angleVariance"
 msgctxt "PropertyName|"
 msgid "angleVariance"
-msgstr "angleVariance"
+msgstr "szögSzórás"
 
 #: rigidbody.cc:44
-#, fuzzy
-#| msgid "angle variance"
 msgctxt "PropertyDescription|"
 msgid "angle variance"
-msgstr "szögeltérés"
+msgstr "A szög szórása"
 
 #: rigidbody.cc:48
-#, fuzzy
-#| msgctxt "PropertyName"
-#| msgid "angularVelocityVariance"
 msgctxt "PropertyName|"
 msgid "angularVelocityVariance"
-msgstr "angularVelocityVariance"
+msgstr "szögSebességSzórás"
 
 #: rigidbody.cc:49
-#, fuzzy
-#| msgid "angularVelocity variance"
 msgctxt "PropertyDescription|"
 msgid "angularVelocity variance"
-msgstr "angularVelocity eltérés"
+msgstr "A szögsebesség szórása"
 
 #: rigidbody.cc:53
-#, fuzzy
-#| msgctxt "PropertyName"
-#| msgid "angularAccelerationVariance"
 msgctxt "PropertyName|"
 msgid "angularAccelerationVariance"
-msgstr "angularAccelerationVariance"
+msgstr "szögGyorsulásSzórás"
 
 #: rigidbody.cc:54
-#, fuzzy
-#| msgid "angularAcceleration variance"
 msgctxt "PropertyDescription|"
 msgid "angularAcceleration variance"
-msgstr "angularAcceleration eltérés"
+msgstr "A szöggyorsulás szórása"
 
 #: rigidbody.cc:57
-#, fuzzy
-#| msgid "torque variance"
 msgctxt "PropertyDescription|"
 msgid "torque variance"
-msgstr "nyomaték variancia"
+msgstr "A forgatónyomaték szórása"
 
 #: rigidbody.cc:57
-#, fuzzy
-#| msgctxt "PropertyName"
-#| msgid "torqueVariance"
 msgctxt "PropertyName|"
 msgid "torqueVariance"
-msgstr "torqueVariance"
+msgstr "forgatónyomatékSzórás"
 
 #: rigidbody.cc:61
-#, fuzzy
-#| msgctxt "PropertyName"
-#| msgid "inertiaVariance"
 msgctxt "PropertyName|"
 msgid "inertiaVariance"
-msgstr "inertiaVariance"
+msgstr "tehetetlenségSzórás"
 
 #: rigidbody.cc:62
-#, fuzzy
-#| msgid "inertia variance"
 msgctxt "PropertyDescription|"
 msgid "inertia variance"
-msgstr "lendület variancia"
+msgstr "A tehetetlenség szórása"
 
 #: rigidbody.cc:65
-#, fuzzy
-#| msgctxt "PropertyName"
-#| msgid "angularMomentumVariance"
 msgctxt "PropertyName|"
 msgid "angularMomentumVariance"
-msgstr "angularMomentumVariance"
+msgstr "szögImpulzusSzórás"
 
 #: rigidbody.cc:66
-#, fuzzy
-#| msgid "angular momentum variance"
 msgctxt "PropertyDescription|"
 msgid "angular momentum variance"
-msgstr "Perdület eltérés"
+msgstr "A szögimpulzus szórása"
 
 #: rigidbody.cc:71
-#, fuzzy
-#| msgctxt "ObjectClass"
-#| msgid "Disk"
 msgctxt "ObjectClass|"
 msgid "Disk"
 msgstr "Lemez"
 
 #: rigidbody.cc:71
-#, fuzzy
-#| msgid "Rigid disk"
 msgctxt "ObjectDescription|"
 msgid "Rigid disk"
 msgstr "Merev lemez"
 
 #: rigidbody.cc:72
-#, fuzzy
-#| msgid "Radius of the disk"
 msgctxt "PropertyDescription|"
 msgid "Radius of the disk"
-msgstr "Lemez sugara"
+msgstr "A lemez sugara"
 
 #: rigidbody.cc:72
-#, fuzzy
-#| msgctxt "PropertyName"
-#| msgid "radius"
 msgctxt "PropertyName|"
 msgid "radius"
 msgstr "sugár"
 
 #: rigidbody.cc:74
-#, fuzzy
-#| msgctxt "ObjectClass"
-#| msgid "BasePolygon"
 msgctxt "ObjectClass|"
 msgid "BasePolygon"
-msgstr "BasePolygon"
+msgstr "AlapSokszög"
 
 #: rigidbody.cc:74
-#, fuzzy
-#| msgid "Base polygon body"
 msgctxt "ObjectDescription|"
 msgid "Base polygon body"
-msgstr "Alap sokszög-test"
+msgstr "Alap sokszög test"
 
 #: rigidbody.cc:76
-#, fuzzy
-#| msgctxt "ObjectClass"
-#| msgid "Box"
 msgctxt "ObjectClass|"
 msgid "Box"
 msgstr "Doboz"
 
 #: rigidbody.cc:76
-#, fuzzy
-#| msgid "Rigid box"
 msgctxt "ObjectDescription|"
 msgid "Rigid box"
 msgstr "Merev doboz"
 
 #: rigidbody.cc:77
-#, fuzzy
-#| msgid "Size of the box"
 msgctxt "PropertyDescription|"
 msgid "Size of the box"
 msgstr "Dobozméret"
 
 #: rigidbody.cc:77 tool.cc:27 tool.cc:34 tool.cc:56 tool.cc:68
-#, fuzzy
-#| msgctxt "PropertyName"
-#| msgid "size"
 msgctxt "PropertyName|"
 msgid "size"
 msgstr "méret"
 
 #: rigidbody.cc:79
-#, fuzzy
-#| msgctxt "ObjectClass"
-#| msgid "Polygon"
 msgctxt "ObjectClass|"
 msgid "Polygon"
 msgstr "Sokszög"
 
 #: rigidbody.cc:79
-#, fuzzy
-#| msgid "Rigid polygon body"
 msgctxt "ObjectDescription|"
 msgid "Rigid polygon body"
 msgstr "Merev sokszög-test"
 
 #: rigidbody.cc:80
-#, fuzzy
-#| msgid "Vertex list"
 msgctxt "PropertyDescription|"
 msgid "Vertex list"
-msgstr "Csúcs-lista"
+msgstr "Csúcslista"
 
 #: rigidbody.cc:80
-#, fuzzy
-#| msgctxt "PropertyName"
-#| msgid "vertices"
 msgctxt "PropertyName|"
 msgid "vertices"
 msgstr "csúcsok"
 
 #: softbody.cc:19
-#, fuzzy
-#| msgctxt "ObjectClass"
-#| msgid "SoftBodyParticle"
 msgctxt "ObjectClass|"
 msgid "SoftBodyParticle"
-msgstr "EnyheTörzsRészecske"
+msgstr "LágyTestRészecske"
 
 #: softbody.cc:19
-#, fuzzy
-#| msgid "SoftBody particle"
 msgctxt "ObjectDescription|"
 msgid "SoftBody particle"
-msgstr "EnyheTörzs részecske"
+msgstr "LágyTest részecske"
 
 #: softbody.cc:20
-#, fuzzy
-#| msgctxt "ObjectClass"
-#| msgid "SoftBodySpring"
 msgctxt "ObjectClass|"
 msgid "SoftBodySpring"
-msgstr "SoftBodySpring"
+msgstr "LágyTestRugó"
 
 #: softbody.cc:20
-#, fuzzy
-#| msgid "SoftBody spring"
 msgctxt "ObjectDescription|"
 msgid "SoftBody spring"
-msgstr "SoftBody rugó"
+msgstr "LágyTest rugó"
 
 #: softbody.cc:21
-#, fuzzy
-#| msgctxt "ObjectClass"
-#| msgid "SoftBody"
 msgctxt "ObjectClass|"
 msgid "SoftBody"
-msgstr "EnyheTörzs"
+msgstr "LágyTest"
 
 #: softbody.cc:21
-#, fuzzy
-#| msgid "Deformable SoftBody"
 msgctxt "ObjectDescription|"
 msgid "Deformable SoftBody"
-msgstr "Deformálható EnyheTörzs"
+msgstr "Deformálható LágyTest"
 
 #: softbody.cc:22
-#, fuzzy
-#| msgid "Show internal items"
 msgctxt "PropertyDescription|"
 msgid "Show internal items"
 msgstr "Belső elemek megjelenítése"
 
 #: softbody.cc:22
-#, fuzzy
-#| msgctxt "PropertyName"
-#| msgid "showInternalItems"
 msgctxt "PropertyName|"
 msgid "showInternalItems"
-msgstr "BelsőElemekMegjelenítése"
+msgstr "belsőElemekMegjelenítése"
 
 #: softbody.cc:28
-#, fuzzy
-#| msgctxt "Units"
-#| msgid "kg m²/s"
 msgctxt "Units|"
 msgid "kg m²/s"
 msgstr "kg*m²/s"
 
 #: softbody.cc:29
-#, fuzzy
-#| msgid "Angular momentum of the body"
 msgctxt "PropertyDescription|"
 msgid "Angular momentum of the body"
-msgstr "A törzs szögmomentuma"
+msgstr "A test szögimpulzusa"
 
 #: softbody.cc:41
-#, fuzzy
-#| msgctxt "PropertyName"
-#| msgid "borderParticleNames"
 msgctxt "PropertyName|"
 msgid "borderParticleNames"
-msgstr "szegélyRészecskeNevek"
+msgstr "határRészecskeNevek"
 
 #: softbody.cc:42
-#, fuzzy
-#| msgid "Border particle names (temporal property)"
 msgctxt "PropertyDescription|"
 msgid "Border particle names (temporal property)"
-msgstr "Szegély részecske nevek (átmeneti tulajdonság)"
+msgstr "Határrészecske-nevek (időleges tulajdonság)"
 
 #: solver.cc:13
-#, fuzzy
-#| msgid "Solver"
 msgctxt "ObjectClass|"
 msgid "Solver"
 msgstr "Megoldó"
 
 #: solver.cc:13
-#, fuzzy
-#| msgid "Solver"
 msgctxt "ObjectDescription|"
 msgid "Solver"
 msgstr "Megoldó"
 
 #: solver.cc:14
-#, fuzzy
-#| msgid "Solver type"
 msgctxt "PropertyDescription|"
 msgid "Solver type"
-msgstr "Megoldótípus"
+msgstr "A megoldó típusa"
 
 #: solver.cc:14
-#, fuzzy
-#| msgctxt "PropertyName"
-#| msgid "solverType"
 msgctxt "PropertyName|"
 msgid "solverType"
 msgstr "megoldóTípus"
 
 #: solver.cc:15
-#, fuzzy
-#| msgid "Step size"
 msgctxt "PropertyDescription|"
 msgid "Step size"
-msgstr "Lépés méret"
+msgstr "Lépésméret"
 
 #: solver.cc:15
-#, fuzzy
-#| msgctxt "PropertyName"
-#| msgid "stepSize"
 msgctxt "PropertyName|"
 msgid "stepSize"
 msgstr "lépésMéret"
 
 #: solver.cc:15 world.cc:23
-#, fuzzy
-#| msgctxt "Units"
-#| msgid "s"
 msgctxt "Units|"
 msgid "s"
 msgstr "s"
 
 #: solver.cc:17
-#, fuzzy
-#| msgid "Allowed relative tolerance"
 msgctxt "PropertyDescription|"
 msgid "Allowed relative tolerance"
-msgstr "Relatív tolerancia engedélyezése"
+msgstr "Megengedett relatív tűréshatár"
 
 #: solver.cc:17
-#, fuzzy
-#| msgctxt "PropertyName"
-#| msgid "toleranceRel"
 msgctxt "PropertyName|"
 msgid "toleranceRel"
-msgstr "toleranciaRel"
+msgstr "relatívTűréshatár"
 
 #: solver.cc:18
-#, fuzzy
-#| msgid "Count of dynamic variables"
 msgctxt "PropertyDescription|"
 msgid "Count of dynamic variables"
-msgstr "Dinamikus változók számlálása"
+msgstr "Dinamikus változók száma"
 
 #: solver.cc:18
-#, fuzzy
-#| msgctxt "PropertyName"
-#| msgid "dimension"
 msgctxt "PropertyName|"
 msgid "dimension"
 msgstr "dimenzió"
 
 #: solver.cc:20
-#, fuzzy
-#| msgid "Maximal local error ratio during last step"
 msgctxt "PropertyDescription|"
 msgid "Maximal local error ratio during last step"
-msgstr "Maximális helyi hiba arány az utolsó lépés közben"
+msgstr "Az utolsó lépés során mért maximális helyi hibaarány"
 
 #: solver.cc:20
-#, fuzzy
-#| msgctxt "PropertyName"
-#| msgid "localErrorRatio"
 msgctxt "PropertyName|"
 msgid "localErrorRatio"
 msgstr "helyiHibaArány"
 
 #: spring.cc:16
-#, fuzzy
-#| msgctxt "ObjectClass"
-#| msgid "Spring"
 msgctxt "ObjectClass|"
 msgid "Spring"
 msgstr "Rugó"
 
 #: spring.cc:16
-#, fuzzy
-#| msgid "Massless spring which can be connected to bodies"
 msgctxt "ObjectDescription|"
 msgid "Massless spring which can be connected to bodies"
-msgstr "Tömeg nélküli rugó, amely testekhez kapcsolható"
+msgstr "Tömeg nélküli rugó, amely testekhez csatlakoztatható"
 
 #: spring.cc:18
-#, fuzzy
-#| msgid "Rest length"
 msgctxt "PropertyDescription|"
 msgid "Rest length"
-msgstr "Maradék hossz"
+msgstr "Nyugalmi hossz"
 
 #: spring.cc:19
-#, fuzzy
-#| msgid "Current length"
 msgctxt "PropertyDescription|"
 msgid "Current length"
 msgstr "Jelenlegi hossz"
 
 #: spring.cc:19
-#, fuzzy
-#| msgctxt "PropertyName"
-#| msgid "length"
 msgctxt "PropertyName|"
 msgid "length"
 msgstr "hossz"
 
 #: spring.cc:20
-#, fuzzy
-#| msgid "Stiffness"
 msgctxt "PropertyDescription|"
 msgid "Stiffness"
 msgstr "Merevség"
 
 #: spring.cc:20
-#, fuzzy
-#| msgctxt "PropertyName"
-#| msgid "stiffness"
 msgctxt "PropertyName|"
 msgid "stiffness"
 msgstr "merevség"
 
 #: spring.cc:20 spring.cc:39 spring.cc:41
-#, fuzzy
-#| msgctxt "Units"
-#| msgid "N/m"
 msgctxt "Units|"
 msgid "N/m"
 msgstr "N/m"
 
 #: spring.cc:21
-#, fuzzy
-#| msgid "Damping"
 msgctxt "PropertyDescription|"
 msgid "Damping"
-msgstr "Lecsengés"
+msgstr "Csillapítás"
 
 #: spring.cc:21
-#, fuzzy
-#| msgctxt "PropertyName"
-#| msgid "damping"
 msgctxt "PropertyName|"
 msgid "damping"
-msgstr "lecsengés"
+msgstr "csillapítás"
 
 #: spring.cc:21
-#, fuzzy
-#| msgctxt "Units"
-#| msgid "N s/m"
 msgctxt "Units|"
 msgid "N s/m"
 msgstr "N*s/m"
 
 #: spring.cc:30
-#, fuzzy
-#| msgid "Spring tension force"
 msgctxt "PropertyDescription|"
 msgid "Spring tension force"
-msgstr "Feszültségerőt repeszt meg"
+msgstr "Rugó feszítőerő"
 
 #: spring.cc:33
-#, fuzzy
-#| msgctxt "ObjectClass"
-#| msgid "SpringErrors"
 msgctxt "ObjectClass|"
 msgid "SpringErrors"
-msgstr "RugalmasságHibák"
+msgstr "RugóHibák"
 
 #: spring.cc:33
-#, fuzzy
-#| msgid "Errors class for Spring"
 msgctxt "ObjectDescription|"
 msgid "Errors class for Spring"
-msgstr "Hiba osztály a rugalmasság számára"
+msgstr "Hibaosztály a Rugóhoz"
 
 #: spring.cc:35
-#, fuzzy
-#| msgctxt "PropertyName"
-#| msgid "restLengthVariance"
 msgctxt "PropertyName|"
 msgid "restLengthVariance"
-msgstr "maradékHosszVariancia"
+msgstr "nyugalmiHosszSzórás"
 
 #: spring.cc:36
-#, fuzzy
-#| msgid "Rest length variance"
 msgctxt "PropertyDescription|"
 msgid "Rest length variance"
-msgstr "Nyugalmi hossz eltérése"
+msgstr "A nyugalmi hossz szórása"
 
 #: spring.cc:37
-#, fuzzy
-#| msgctxt "PropertyName"
-#| msgid "lengthVariance"
 msgctxt "PropertyName|"
 msgid "lengthVariance"
-msgstr "lengthVariance"
+msgstr "hosszSzórás"
 
 #: spring.cc:38
-#, fuzzy
-#| msgid "Current length variance"
 msgctxt "PropertyDescription|"
 msgid "Current length variance"
-msgstr "Jelenlegi hossz eltérése"
+msgstr "A jelenlegi hossz szórása"
 
 #: spring.cc:39
-#, fuzzy
-#| msgctxt "PropertyName"
-#| msgid "stiffnessVariance"
 msgctxt "PropertyName|"
 msgid "stiffnessVariance"
-msgstr "stiffnessVariance"
+msgstr "merevségSzórás"
 
 #: spring.cc:40
-#, fuzzy
-#| msgid "Stiffness variance"
 msgctxt "PropertyDescription|"
 msgid "Stiffness variance"
-msgstr "Merevség eltérése"
+msgstr "A merevség szórása"
 
 #: spring.cc:41
-#, fuzzy
-#| msgctxt "PropertyName"
-#| msgid "dampingVariance"
 msgctxt "PropertyName|"
 msgid "dampingVariance"
-msgstr "dampingVariance"
+msgstr "csillapításSzórás"
 
 #: spring.cc:42
-#, fuzzy
-#| msgid "Damping variance"
 msgctxt "PropertyDescription|"
 msgid "Damping variance"
-msgstr "Csillapítás eltérése"
+msgstr "A csillapítás szórása"
 
 #: spring.cc:43
-#, fuzzy
-#| msgctxt "PropertyName"
-#| msgid "localPosition1Variance"
 msgctxt "PropertyName|"
 msgid "localPosition1Variance"
-msgstr "localPosition1Variance"
+msgstr "helyiPozíció1Szórás"
 
 #: spring.cc:44
-#, fuzzy
-#| msgid "Local position 1 variance"
 msgctxt "PropertyDescription|"
 msgid "Local position 1 variance"
-msgstr "Helyi pozíció 1 eltérése"
+msgstr "Helyi pozíció 1 szórása"
 
 #: spring.cc:45
-#, fuzzy
-#| msgctxt "PropertyName"
-#| msgid "localPosition2Variance"
 msgctxt "PropertyName|"
 msgid "localPosition2Variance"
-msgstr "localPosition2Variance"
+msgstr "helyiPozíció2Szórás"
 
 #: spring.cc:46
-#, fuzzy
-#| msgid "Local position 2 variance"
 msgctxt "PropertyDescription|"
 msgid "Local position 2 variance"
-msgstr "Helyi pozíció 2 eltérése"
+msgstr "Helyi pozíció 2 szórása"
 
 #: spring.cc:47
-#, fuzzy
-#| msgctxt "PropertyName"
-#| msgid "position1Variance"
 msgctxt "PropertyName|"
 msgid "position1Variance"
-msgstr "pozíció variancia"
+msgstr "pozíció1Szórás"
 
 #: spring.cc:48
-#, fuzzy
-#| msgid "Position1 variance"
 msgctxt "PropertyDescription|"
 msgid "Position1 variance"
-msgstr "pozíció variancia"
+msgstr "A Pozíció1 szórása"
 
 #: spring.cc:49
-#, fuzzy
-#| msgctxt "PropertyName"
-#| msgid "position2Variance"
 msgctxt "PropertyName|"
 msgid "position2Variance"
-msgstr "pozíció variancia"
+msgstr "pozíció2Szórás"
 
 #: spring.cc:50
-#, fuzzy
-#| msgid "Position2 variance"
 msgctxt "PropertyDescription|"
 msgid "Position2 variance"
-msgstr "pozíció variancia"
+msgstr "A Pozíció2 szórása"
 
 #: spring.cc:52
 msgctxt "PropertyDescription|"

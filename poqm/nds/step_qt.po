@@ -80,7 +80,7 @@ msgctxt "ObjectClass|"
 msgid "GJKCollisionSolver"
 msgstr "GJK-Tosamenstöötlöser"
 
-#: constraintsolver.cc:19
+#: constraintsolver.cc:20
 #, fuzzy
 #| msgctxt "ObjectClass"
 #| msgid "ConstraintSolver"
@@ -88,7 +88,7 @@ msgctxt "ObjectClass|"
 msgid "ConstraintSolver"
 msgstr "Bedingenlöser"
 
-#: constraintsolver.cc:23
+#: constraintsolver.cc:24
 #, fuzzy
 #| msgctxt "ObjectClass"
 #| msgid "CGConstraintSolver"
