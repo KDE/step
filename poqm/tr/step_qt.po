@@ -63,12 +63,12 @@ msgctxt "ObjectClass|"
 msgid "GJKCollisionSolver"
 msgstr "GJKÇarpışmaÇözücü"
 
-#: constraintsolver.cc:19
+#: constraintsolver.cc:20
 msgctxt "ObjectClass|"
 msgid "ConstraintSolver"
 msgstr "KısıtlamaÇözücü"
 
-#: constraintsolver.cc:23
+#: constraintsolver.cc:24
 msgctxt "ObjectClass|"
 msgid "CGConstraintSolver"
 msgstr "KısıtlamaÇözücü"

@@ -61,12 +61,12 @@ msgctxt "ObjectClass|"
 msgid "GJKCollisionSolver"
 msgstr "ReševalnikTrkovGJK"
 
-#: constraintsolver.cc:19
+#: constraintsolver.cc:20
 msgctxt "ObjectClass|"
 msgid "ConstraintSolver"
 msgstr "ReševalnikOmejitev"
 
-#: constraintsolver.cc:23
+#: constraintsolver.cc:24
 msgctxt "ObjectClass|"
 msgid "CGConstraintSolver"
 msgstr "ReševalnikOmejitevCG"
