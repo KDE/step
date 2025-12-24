@@ -2,30 +2,32 @@
 # Copyright (C) 2009 This_file_is_part_of_KDE
 # This file is distributed under the same license as the step package.
 # Kevin Scannell <kscanne@gmail.com>, 2009.
+# SPDX-FileCopyrightText: 2025 Charlotte <altronic25@protonmail.com>
 msgid ""
 msgstr ""
 "Project-Id-Version: playground-edu/step.po\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2025-11-17 14:38+0000\n"
-"PO-Revision-Date: 2007-08-21 07:54-0500\n"
-"Last-Translator: Kevin Scannell <kscanne@gmail.com>\n"
-"Language-Team: Irish <gaeilge-gnulinux@lists.sourceforge.net>\n"
+"PO-Revision-Date: 2025-12-23 21:43+0000\n"
+"Last-Translator: Charlotte <altronic25@protonmail.com>\n"
+"Language-Team: Irish\n"
 "Language: ga\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=5; plural=n==1 ? 0 : n==2 ? 1 : n<7 ? 2 : n < 11 ? "
 "3 : 4\n"
+"X-Generator: Lokalize 25.12.0\n"
 
 #, kde-format
 msgctxt "NAME OF TRANSLATORS"
 msgid "Your names"
-msgstr "Kevin Scannell"
+msgstr "Kevin Scannell,Charlotte"
 
 #, kde-format
 msgctxt "EMAIL OF TRANSLATORS"
 msgid "Your emails"
-msgstr "kscanne@gmail.com"
+msgstr "kscanne@gmail.com,altronic25@protonmail.com"
 
 #. i18n: ectx: property (title), widget (QGroupBox, groupBox)
 #: step/configure_controller.ui:28 step/configure_graph.ui:28
@@ -127,13 +129,13 @@ msgstr "Raonta"
 #: step/configure_graph.ui:83
 #, kde-format
 msgid "Min:"
-msgstr ""
+msgstr "Íos:"
 
 #. i18n: ectx: property (text), widget (QLabel, label_6)
 #: step/configure_graph.ui:99
 #, kde-format
 msgid "Max:"
-msgstr ""
+msgstr "Uas:"
 
 #. i18n: ectx: property (text), widget (QCheckBox, checkBoxAutoX)
 #. i18n: ectx: property (text), widget (QCheckBox, checkBoxAutoY)
@@ -201,10 +203,9 @@ msgstr "Oscail an Vicipéid i mbrabhsálaí seachtrach"
 
 #. i18n: ectx: property (text), widget (QLabel, label_5)
 #: step/create_gas_particles.ui:34
-#, fuzzy, kde-format
-#| msgid "Area"
+#, kde-format
 msgid "Area:"
-msgstr "Achar"
+msgstr "Achar:"
 
 #. i18n: ectx: property (toolTip), widget (QLineEdit, lineEditVolume)
 #: step/create_gas_particles.ui:41
@@ -336,11 +337,10 @@ msgid "(4,4)"
 msgstr "(4,4)"
 
 #: step/gascreationdialog.cc:31
-#, fuzzy, kde-format
-#| msgid "Create gas particles"
+#, kde-format
 msgctxt "@title:window"
 msgid "Create Gas Particles"
-msgstr "Cruthaigh cáithníní gáis..."
+msgstr "Cruthaigh Cáithníní Gáis..."
 
 #: step/gasgraphics.cc:31
 #, kde-format
@@ -383,10 +383,9 @@ msgid "%1 named '%2' created"
 msgstr "Cruthaíodh %1 darb ainm '%2'"
 
 #: step/gasgraphics.cc:282
-#, fuzzy, kde-format
-#| msgid "Create particles..."
+#, kde-format
 msgid "Create Particles..."
-msgstr "Cruthaigh cáithníní..."
+msgstr "Cruthaigh Cáithníní..."
 
 #: step/gasgraphics.cc:352
 #, kde-format
@@ -409,10 +408,9 @@ msgid "Create particles for %1"
 msgstr "Cruthaigh cáithníní le haghaidh %1"
 
 #: step/infobrowser.cc:26
-#, fuzzy, kde-format
-#| msgid "Context info"
+#, kde-format
 msgid "Context Info"
-msgstr "Eolas comhthéacs"
+msgstr "Eolas Comhthéacs"
 
 #: step/infobrowser.cc:44
 #, kde-format
@@ -435,10 +433,9 @@ msgid "Follow selection"
 msgstr "Lean an roghnúchán"
 
 #: step/infobrowser.cc:57
-#, fuzzy, kde-format
-#| msgid "Open in browser"
+#, kde-format
 msgid "Open in Browser"
-msgstr "Oscail i mbrabhsálaí"
+msgstr "Oscail i mBrabhsálaí"
 
 #: step/infobrowser.cc:132
 #, kde-format
@@ -461,13 +458,11 @@ msgid "Documentation for %1 not available. "
 msgstr "Níl doiciméadú ar %1 ar fáil."
 
 #: step/infobrowser.cc:165
-#, fuzzy, kde-format
-#| msgid ""
-#| "You can help <a href=\"http://edu.kde.org/step\">Step</a> by writing it!"
+#, kde-format
 msgid ""
 "You can help <a href=\"https://edu.kde.org/step\">Step</a> by writing it!"
 msgstr ""
-"Is féidir leat cabhrú le <a href=\"http://edu.kde.org/step\">Step</a> - "
+"Is féidir leat cabhrú le <a href=\"https://edu.kde.org/step\">Step</a> - "
 "scríobh é!"
 
 #: step/itempalette.cc:177
@@ -548,7 +543,7 @@ msgstr "© 2007 Vladimir Kuznetsov"
 #: step/main.cc:37
 #, kde-format
 msgid "https://edu.kde.org/step"
-msgstr ""
+msgstr "https://edu.kde.org/step"
 
 #: step/main.cc:42
 #, kde-format
@@ -558,7 +553,7 @@ msgstr "An chéad údar"
 #: step/main.cc:43
 #, kde-format
 msgid "ks.vladimir@gmail.com"
-msgstr ""
+msgstr "ks.vladimir@gmail.com"
 
 #: step/main.cc:48
 #, kde-format
@@ -568,7 +563,7 @@ msgstr "Rannchuidiú cóid"
 #: step/main.cc:49
 #, kde-format
 msgid "cniehaus@kde.org"
-msgstr ""
+msgstr "cniehaus@kde.org"
 
 #: step/main.cc:59
 #, kde-format
@@ -675,13 +670,12 @@ msgstr "<comhad nua>"
 #, kde-format
 msgctxt "@title:window"
 msgid "Open Step File"
-msgstr ""
+msgstr "Oscail Step Comhaid"
 
 #: step/mainwindow.cc:307 step/mainwindow.cc:342
-#, fuzzy, kde-format
-#| msgid "*.step|Step files (*.step)"
+#, kde-format
 msgid "Step files (*.step)"
-msgstr "*.step|Comhaid Step (*.step)"
+msgstr "Comhaid Step (*.step)"
 
 #: step/mainwindow.cc:317 step/mainwindow.cc:358
 #, kde-format
@@ -702,7 +696,7 @@ msgstr "<oscail comhad: %1>"
 #, kde-format
 msgctxt "@title:window"
 msgid "Save Step File"
-msgstr ""
+msgstr "Sábháil Step Comhaid"
 
 #: step/mainwindow.cc:364
 #, kde-format
@@ -893,11 +887,10 @@ msgid "Please fill in the parameters for %1"
 msgstr "Líon isteach na paraiméadair le haghaidh %1"
 
 #: step/softbodygraphics.cc:114
-#, fuzzy, kde-format
-#| msgid "Create soft body items"
+#, kde-format
 msgctxt "@title:window"
 msgid "Create Soft Body Items"
-msgstr "Cruthaigh coirp bhoga"
+msgstr "Cruthaigh Coirp Bhoga"
 
 #: step/softbodygraphics.cc:175
 #, kde-format
@@ -1053,16 +1046,14 @@ msgid "Font &Size"
 msgstr "Cló&mhéid"
 
 #: step/toolgraphics.cc:411
-#, fuzzy, kde-format
-#| msgid "Insert &Image"
+#, kde-format
 msgid "Insert &Image..."
-msgstr "Ionsáigh Í&omhá"
+msgstr "Ionsáigh Í&omhá..."
 
 #: step/toolgraphics.cc:416
-#, fuzzy, kde-format
-#| msgid "Insert &Formula"
+#, kde-format
 msgid "Insert &Formula..."
-msgstr "Ionsáigh &Foirmle"
+msgstr "Ionsáigh &Foirmle..."
 
 #: step/toolgraphics.cc:527
 #, kde-format
@@ -1073,12 +1064,12 @@ msgstr "Cuir %1 in Eagar"
 #, kde-format
 msgctxt "@title:window"
 msgid "Open Image File"
-msgstr ""
+msgstr "Oscail Íomhá Comhaid"
 
 #: step/toolgraphics.cc:632
 #, kde-format
 msgid "Images (*.png *.jpg *.jpeg)"
-msgstr ""
+msgstr "Íomhánna (*.png *.jpg *.jpeg)"
 
 #: step/toolgraphics.cc:650
 #, kde-format
@@ -1095,17 +1086,15 @@ msgstr ""
 "'gs' de dhíth ort, caithfidh siad a bheith i do $PATH"
 
 #: step/toolgraphics.cc:700
-#, fuzzy, kde-format
-#| msgid "LaTex Formula - Step"
+#, kde-format
 msgctxt "@title:window"
 msgid "LaTex Formula - Step"
 msgstr "Foirmle LaTeX - Step"
 
 #: step/toolgraphics.cc:701
-#, fuzzy, kde-format
-#| msgid "Enter LaTeX formula string"
+#, kde-format
 msgid "Enter LaTeX formula string:"
-msgstr "Iontráil foirmle LaTeX"
+msgstr "Iontráil foirmle LaTeX:"
 
 #: step/toolgraphics.cc:710
 #, kde-format
@@ -1148,23 +1137,20 @@ msgid "[not configured]"
 msgstr "[gan chumrú]"
 
 #: step/toolgraphics.cc:1078
-#, fuzzy, kde-format
-#| msgid "Clear graph"
+#, kde-format
 msgid "Clear Graph"
-msgstr "Glan an graf"
+msgstr "Glan an Graf"
 
 #: step/toolgraphics.cc:1079
-#, fuzzy, kde-format
-#| msgid "Configure graph..."
+#, kde-format
 msgid "Configure Graph..."
-msgstr "Cumraigh graf..."
+msgstr "Cumraigh Graf..."
 
 #: step/toolgraphics.cc:1097
-#, fuzzy, kde-format
-#| msgid "Configure graph"
+#, kde-format
 msgctxt "@title:window"
 msgid "Configure Graph"
-msgstr "Cumraigh graf"
+msgstr "Cumraigh Graf"
 
 #: step/toolgraphics.cc:1173 step/toolgraphics.cc:1372
 #: step/toolgraphics.cc:1710
@@ -1178,29 +1164,25 @@ msgid "Clear graph %1"
 msgstr "Glan graf %1"
 
 #: step/toolgraphics.cc:1306
-#, fuzzy, kde-format
-#| msgid "Configure meter..."
+#, kde-format
 msgid "Configure Meter..."
-msgstr "Cumraigh méadar..."
+msgstr "Cumraigh Méadar..."
 
 #: step/toolgraphics.cc:1324
-#, fuzzy, kde-format
-#| msgid "Configure meter"
+#, kde-format
 msgctxt "@title:window"
 msgid "Configure Meter"
-msgstr "Cumraigh méadar"
+msgstr "Cumraigh Méadar"
 
 #: step/toolgraphics.cc:1421 step/toolgraphics.cc:1618
-#, fuzzy, kde-format
-#| msgid "Increase value"
+#, kde-format
 msgid "Increase Value"
-msgstr "Méadaigh an luach"
+msgstr "Méadaigh an Luach"
 
 #: step/toolgraphics.cc:1422 step/toolgraphics.cc:1619
-#, fuzzy, kde-format
-#| msgid "Decrease value"
+#, kde-format
 msgid "Decrease Value"
-msgstr "Laghdaigh an luach"
+msgstr "Laghdaigh an Luach"
 
 #: step/toolgraphics.cc:1452 step/toolgraphics.cc:1747
 #, kde-format
@@ -1218,23 +1200,20 @@ msgid "Change controller %1"
 msgstr "Athraigh rialtán %1"
 
 #: step/toolgraphics.cc:1621
-#, fuzzy, kde-format
-#| msgid "Configure controller..."
+#, kde-format
 msgid "Configure Controller..."
-msgstr "Cumraigh rialtán..."
+msgstr "Cumraigh Rialtán..."
 
 #: step/toolgraphics.cc:1639
-#, fuzzy, kde-format
-#| msgid "Configure controller"
+#, kde-format
 msgctxt "@title:window"
 msgid "Configure Controller"
-msgstr "Cumraigh rialtán"
+msgstr "Cumraigh Rialtán"
 
 #: step/toolgraphics.cc:1900
-#, fuzzy, kde-format
-#| msgid "Clear trace"
+#, kde-format
 msgid "Clear Trace"
-msgstr "Glan an lorg"
+msgstr "Glan an Lorg"
 
 #: step/toolgraphics.cc:1909
 #, kde-format
@@ -1242,10 +1221,9 @@ msgid "Clear tracer %1"
 msgstr "Glan lorgaire %1"
 
 #: step/undobrowser.cc:18
-#, fuzzy, kde-format
-#| msgid "Undo history"
+#, kde-format
 msgid "Undo History"
-msgstr "Stair"
+msgstr "Scaoil Stair"
 
 #: step/worldbrowser.cc:50
 #, kde-format
