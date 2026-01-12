@@ -498,7 +498,7 @@ msgstr "no s'ha pogut iniciar %1"
 #: step/latexformula.cc:40
 #, kde-format
 msgid "error running %1"
-msgstr "s'ha produït un error en executar %1"
+msgstr "s'ha produït un error mentre s'executava %1"
 
 #: step/latexformula.cc:44
 #, kde-format
