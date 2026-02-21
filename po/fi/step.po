@@ -3,6 +3,7 @@
 # This file is distributed under the same license as the step package.
 # Matti Simoska <matti.simoska@gmail.com>, 2012.
 # Lasse Liehu <lasse.liehu@gmail.com>, 2012, 2013, 2014, 2015.
+# SPDX-FileCopyrightText: 2026 Tommi Nieminen <translator@legisign.org>
 # Copyright © 2012 This_file_is_part_of_KDE
 # Rosetta contributors: Heikki Kulhia, T Kortehisto
 #
@@ -13,14 +14,15 @@ msgstr ""
 "Project-Id-Version: step\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2025-11-17 11:49+0000\n"
-"PO-Revision-Date: 2015-03-11 00:04+0200\n"
-"Last-Translator: Lasse Liehu <lasse.liehu@gmail.com>\n"
-"Language-Team: Finnish <lokalisointi@lists.coss.fi>\n"
+"PO-Revision-Date: 2026-01-19 19:35+0200\n"
+"Last-Translator: Tommi Nieminen <translator@legisign.org>\n"
+"Language-Team: Finnish <kde-i18n-doc@kde.org>\n"
 "Language: fi\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"X-Generator: Lokalize 25.04.0\n"
 
 #, kde-format
 msgctxt "NAME OF TRANSLATORS"
@@ -132,13 +134,13 @@ msgstr "Arvojoukot"
 #: step/configure_graph.ui:83
 #, kde-format
 msgid "Min:"
-msgstr ""
+msgstr "Min:"
 
 #. i18n: ectx: property (text), widget (QLabel, label_6)
 #: step/configure_graph.ui:99
 #, kde-format
 msgid "Max:"
-msgstr ""
+msgstr "Maks:"
 
 #. i18n: ectx: property (text), widget (QCheckBox, checkBoxAutoX)
 #. i18n: ectx: property (text), widget (QCheckBox, checkBoxAutoY)
@@ -206,10 +208,9 @@ msgstr "Avaa Wikipedia WWW-selaimessa"
 
 #. i18n: ectx: property (text), widget (QLabel, label_5)
 #: step/create_gas_particles.ui:34
-#, fuzzy, kde-format
-#| msgid "Area"
+#, kde-format
 msgid "Area:"
-msgstr "Ala"
+msgstr "Ala:"
 
 #. i18n: ectx: property (toolTip), widget (QLineEdit, lineEditVolume)
 #: step/create_gas_particles.ui:41
@@ -341,8 +342,7 @@ msgid "(4,4)"
 msgstr "(4,4)"
 
 #: step/gascreationdialog.cc:31
-#, fuzzy, kde-format
-#| msgid "Create gas particles"
+#, kde-format
 msgctxt "@title:window"
 msgid "Create Gas Particles"
 msgstr "Luo kaasuhiukkasia"
@@ -391,8 +391,7 @@ msgid "%1 named '%2' created"
 msgstr "%1 nimeltä ”%2” luotu"
 
 #: step/gasgraphics.cc:282
-#, fuzzy, kde-format
-#| msgid "Create particles..."
+#, kde-format
 msgid "Create Particles..."
 msgstr "Luo hiukkasia…"
 
@@ -416,8 +415,7 @@ msgid "Create particles for %1"
 msgstr "Luo hiukkasia %1:lle"
 
 #: step/infobrowser.cc:26
-#, fuzzy, kde-format
-#| msgid "Context info"
+#, kde-format
 msgid "Context Info"
 msgstr "Asiayhteystiedot"
 
@@ -442,10 +440,9 @@ msgid "Follow selection"
 msgstr "Seuraa valintaa"
 
 #: step/infobrowser.cc:57
-#, fuzzy, kde-format
-#| msgid "Open in browser"
+#, kde-format
 msgid "Open in Browser"
-msgstr "Avaa selaimessa"
+msgstr "Avaa selaimeen"
 
 #: step/infobrowser.cc:132
 #, kde-format
@@ -468,13 +465,11 @@ msgid "Documentation for %1 not available. "
 msgstr "Dokumentaatiota ei saatavissa %1:lle."
 
 #: step/infobrowser.cc:165
-#, fuzzy, kde-format
-#| msgid ""
-#| "You can help <a href=\"http://edu.kde.org/step\">Step</a> by writing it!"
+#, kde-format
 msgid ""
 "You can help <a href=\"https://edu.kde.org/step\">Step</a> by writing it!"
 msgstr ""
-"Voit avustaa <a href=\"http://edu.kde.org/step\">Stepiä</a> kirjoittamalla "
+"Voit avustaa <a href=\"https://edu.kde.org/step\">Stepiä</a> kirjoittamalla "
 "sitä!"
 
 #: step/itempalette.cc:177
@@ -554,10 +549,9 @@ msgid "(C) 2007 Vladimir Kuznetsov"
 msgstr "© 2007 Vladimir Kuznetsov"
 
 #: step/main.cc:37
-#, fuzzy, kde-format
-#| msgid "http://edu.kde.org/step"
+#, kde-format
 msgid "https://edu.kde.org/step"
-msgstr "http://edu.kde.org/step"
+msgstr "https://edu.kde.org/step"
 
 #: step/main.cc:42
 #, kde-format
@@ -684,13 +678,12 @@ msgstr "<uusi tiedosto>"
 #, kde-format
 msgctxt "@title:window"
 msgid "Open Step File"
-msgstr ""
+msgstr "Avaa Step-tiedosto"
 
 #: step/mainwindow.cc:307 step/mainwindow.cc:342
-#, fuzzy, kde-format
-#| msgid "*.step|Step files (*.step)"
+#, kde-format
 msgid "Step files (*.step)"
-msgstr "*.step|Step-tiedostot (*.step)"
+msgstr "Step-tiedostot (*.step)"
 
 #: step/mainwindow.cc:317 step/mainwindow.cc:358
 #, kde-format
@@ -711,7 +704,7 @@ msgstr "<avaa tiedosto: %1>"
 #, kde-format
 msgctxt "@title:window"
 msgid "Save Step File"
-msgstr ""
+msgstr "Tallenna Step-tiedosto"
 
 #: step/mainwindow.cc:364
 #, kde-format
@@ -1075,16 +1068,14 @@ msgid "Font &Size"
 msgstr "Fontt&ikoko"
 
 #: step/toolgraphics.cc:411
-#, fuzzy, kde-format
-#| msgid "Insert &Image"
+#, kde-format
 msgid "Insert &Image..."
-msgstr "Lisää k&uva"
+msgstr "&Lisää kuva…"
 
 #: step/toolgraphics.cc:416
-#, fuzzy, kde-format
-#| msgid "Insert &Formula"
+#, kde-format
 msgid "Insert &Formula..."
-msgstr "Lisää kaa&va"
+msgstr "L&isää kaava…"
 
 #: step/toolgraphics.cc:527
 #, kde-format
@@ -1095,12 +1086,12 @@ msgstr "Muokkaa %1"
 #, kde-format
 msgctxt "@title:window"
 msgid "Open Image File"
-msgstr ""
+msgstr "Avaa kuvatiedosto"
 
 #: step/toolgraphics.cc:632
 #, kde-format
 msgid "Images (*.png *.jpg *.jpeg)"
-msgstr ""
+msgstr "Kuvat (*.png *.jpg *.jpeg)"
 
 #: step/toolgraphics.cc:650
 #, kde-format
@@ -1117,17 +1108,15 @@ msgstr ""
 "ja ”gs” asennettuina ja saatavilla polussa $PATH"
 
 #: step/toolgraphics.cc:700
-#, fuzzy, kde-format
-#| msgid "LaTex Formula - Step"
+#, kde-format
 msgctxt "@title:window"
 msgid "LaTex Formula - Step"
 msgstr "LaTeX-kaava – Step"
 
 #: step/toolgraphics.cc:701
-#, fuzzy, kde-format
-#| msgid "Enter LaTeX formula string"
+#, kde-format
 msgid "Enter LaTeX formula string:"
-msgstr "Syötä LaTeX-kaavamerkkijono"
+msgstr "Syötä LaTeX-kaava:"
 
 #: step/toolgraphics.cc:710
 #, kde-format
@@ -1170,23 +1159,20 @@ msgid "[not configured]"
 msgstr "[ei määritelty]"
 
 #: step/toolgraphics.cc:1078
-#, fuzzy, kde-format
-#| msgid "Clear graph"
+#, kde-format
 msgid "Clear Graph"
 msgstr "Tyhjennä kuvaaja"
 
 #: step/toolgraphics.cc:1079
-#, fuzzy, kde-format
-#| msgid "Configure graph..."
+#, kde-format
 msgid "Configure Graph..."
-msgstr "Valitse kuvaajan asetukset…"
+msgstr "Kuvaajan asetukset…"
 
 #: step/toolgraphics.cc:1097
-#, fuzzy, kde-format
-#| msgid "Configure graph"
+#, kde-format
 msgctxt "@title:window"
 msgid "Configure Graph"
-msgstr "Valitse kuvaajan asetukset"
+msgstr "Kuvaajan asetukset"
 
 #: step/toolgraphics.cc:1173 step/toolgraphics.cc:1372
 #: step/toolgraphics.cc:1710
@@ -1200,27 +1186,23 @@ msgid "Clear graph %1"
 msgstr "Tyhjennä kuvaaja %1"
 
 #: step/toolgraphics.cc:1306
-#, fuzzy, kde-format
-#| msgid "Configure meter..."
+#, kde-format
 msgid "Configure Meter..."
 msgstr "Mittarin asetukset…"
 
 #: step/toolgraphics.cc:1324
-#, fuzzy, kde-format
-#| msgid "Configure meter"
+#, kde-format
 msgctxt "@title:window"
 msgid "Configure Meter"
 msgstr "Mittarin asetukset"
 
 #: step/toolgraphics.cc:1421 step/toolgraphics.cc:1618
-#, fuzzy, kde-format
-#| msgid "Increase value"
+#, kde-format
 msgid "Increase Value"
 msgstr "Suurenna arvoa"
 
 #: step/toolgraphics.cc:1422 step/toolgraphics.cc:1619
-#, fuzzy, kde-format
-#| msgid "Decrease value"
+#, kde-format
 msgid "Decrease Value"
 msgstr "Pienennä arvoa"
 
@@ -1240,21 +1222,18 @@ msgid "Change controller %1"
 msgstr "Muuta säädintä %1"
 
 #: step/toolgraphics.cc:1621
-#, fuzzy, kde-format
-#| msgid "Configure controller..."
+#, kde-format
 msgid "Configure Controller..."
 msgstr "Säätimen asetukset…"
 
 #: step/toolgraphics.cc:1639
-#, fuzzy, kde-format
-#| msgid "Configure controller"
+#, kde-format
 msgctxt "@title:window"
 msgid "Configure Controller"
 msgstr "Säätimen asetukset"
 
 #: step/toolgraphics.cc:1900
-#, fuzzy, kde-format
-#| msgid "Clear trace"
+#, kde-format
 msgid "Clear Trace"
 msgstr "Tyhjennä jäljet"
 
@@ -1264,10 +1243,9 @@ msgid "Clear tracer %1"
 msgstr "Tyhjennä %1:n jäljet"
 
 #: step/undobrowser.cc:18
-#, fuzzy, kde-format
-#| msgid "Undo history"
+#, kde-format
 msgid "Undo History"
-msgstr "Toimintohistoria"
+msgstr "Kumoamishistoria"
 
 #: step/worldbrowser.cc:50
 #, kde-format
