@@ -426,7 +426,7 @@ msgstr "备注"
 #, kde-format
 msgctxt "note.html:p"
 msgid "You can use notes to place text on the canvas of Step."
-msgstr "您可以使用备注在 Step 的画布上放置文字。"
+msgstr "您可以使用备注在 Step 的画布上放置文本。"
 
 #: objectinfo/particle.html:6
 #, kde-format

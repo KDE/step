@@ -1827,7 +1827,7 @@ msgstr ""
 #: tool.cc:28
 msgctxt "PropertyDescription|"
 msgid "Text"
-msgstr "文字"
+msgstr "文本"
 
 #: tool.cc:28
 msgctxt "PropertyName|"
