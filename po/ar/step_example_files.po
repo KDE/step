@@ -1709,7 +1709,7 @@ msgid ""
 "- Remove anchor1 that fixes position of the box and attach a pin to the "
 "corner of the box. Try starting the simulation."
 msgstr ""
-"- أزل المرساة1 الّتي تثبّت موضع الصّندوق وأرفق مسمارًا بزاوية الصّندوق. حاول بدء "
+"- أزل المرساة1 التي تثبّت موضع الصّندوق وأرفق مسمارًا بزاوية الصّندوق. حاول بدء "
 "المحاكاة."
 
 #: tutorials/tutorial5.step:114
