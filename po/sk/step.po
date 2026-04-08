@@ -14,8 +14,8 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Lokalize 21.12.3\n"
 "Plural-Forms: nplurals=3; plural=(n==1) ? 0 : (n>=2 && n<=4) ? 1 : 2;\n"
+"X-Generator: Lokalize 21.12.3\n"
 
 #, kde-format
 msgctxt "NAME OF TRANSLATORS"
@@ -335,8 +335,7 @@ msgid "(4,4)"
 msgstr "(4,4)"
 
 #: step/gascreationdialog.cc:31
-#, fuzzy, kde-format
-#| msgid "Create gas particles"
+#, kde-format
 msgctxt "@title:window"
 msgid "Create Gas Particles"
 msgstr "Vytvoriť plynné častice"
@@ -381,8 +380,7 @@ msgid "%1 named '%2' created"
 msgstr "%1 s názvom '%2' vytvorený"
 
 #: step/gasgraphics.cc:282
-#, fuzzy, kde-format
-#| msgid "Create particles..."
+#, kde-format
 msgid "Create Particles..."
 msgstr "Vytvoriť častice..."
 
@@ -406,8 +404,7 @@ msgid "Create particles for %1"
 msgstr "Vytvoriť častice pre %1"
 
 #: step/infobrowser.cc:26
-#, fuzzy, kde-format
-#| msgid "Context info"
+#, kde-format
 msgid "Context Info"
 msgstr "Súvisiace informácie"
 
@@ -457,13 +454,12 @@ msgid "Documentation for %1 not available. "
 msgstr "Dokumentácia pre %1 nie je dostupná. "
 
 #: step/infobrowser.cc:165
-#, fuzzy, kde-format
-#| msgid ""
-#| "You can help <a href=\"http://edu.kde.org/step\">Step</a> by writing it!"
+#, kde-format
 msgid ""
 "You can help <a href=\"https://edu.kde.org/step\">Step</a> by writing it!"
 msgstr ""
-"Stepu <a href=\"http://edu.kde.org/step\">môžete pomôcť</a> tým, že napíšete!"
+"Aplikácii <a href=\"https://edu.kde.org/step\">Step</a> môžete pomôcť tým, "
+"že to napíšete!"
 
 #: step/itempalette.cc:177
 #, kde-format
@@ -540,10 +536,9 @@ msgid "(C) 2007 Vladimir Kuznetsov"
 msgstr "(C) 2007 Vladimir Kuznetsov"
 
 #: step/main.cc:37
-#, fuzzy, kde-format
-#| msgid "http://edu.kde.org/step"
+#, kde-format
 msgid "https://edu.kde.org/step"
-msgstr "http://edu.kde.org/step"
+msgstr "https://edu.kde.org/step"
 
 #: step/main.cc:42
 #, kde-format
@@ -667,8 +662,7 @@ msgid "<new file>"
 msgstr "<nový súbor>"
 
 #: step/mainwindow.cc:307
-#, fuzzy, kde-format
-#| msgid "Open Step File"
+#, kde-format
 msgctxt "@title:window"
 msgid "Open Step File"
 msgstr "Otvoriť súbor Step"
@@ -694,8 +688,7 @@ msgid "<open file: %1>"
 msgstr "<open file: %1>"
 
 #: step/mainwindow.cc:342
-#, fuzzy, kde-format
-#| msgid "Save Step File"
+#, kde-format
 msgctxt "@title:window"
 msgid "Save Step File"
 msgstr "Uložiť súbor Step"
@@ -888,8 +881,7 @@ msgid "Please fill in the parameters for %1"
 msgstr "Prosím vyplnte všetky parametre pre %1"
 
 #: step/softbodygraphics.cc:114
-#, fuzzy, kde-format
-#| msgid "Create soft body items"
+#, kde-format
 msgctxt "@title:window"
 msgid "Create Soft Body Items"
 msgstr "Vytvoriť položky mäkkých telies"
@@ -1048,16 +1040,14 @@ msgid "Font &Size"
 msgstr "Veľko&sť písma"
 
 #: step/toolgraphics.cc:411
-#, fuzzy, kde-format
-#| msgid "Insert &Image"
+#, kde-format
 msgid "Insert &Image..."
-msgstr "Vložiť obrázok"
+msgstr "Vložiť &obrázok..."
 
 #: step/toolgraphics.cc:416
-#, fuzzy, kde-format
-#| msgid "Insert &Formula"
+#, kde-format
 msgid "Insert &Formula..."
-msgstr "Vložiť vzo&rec"
+msgstr "Vložiť vzo&rec..."
 
 #: step/toolgraphics.cc:527
 #, kde-format
@@ -1065,8 +1055,7 @@ msgid "Edit %1"
 msgstr "Upraviť %1"
 
 #: step/toolgraphics.cc:632
-#, fuzzy, kde-format
-#| msgid "Open Image File"
+#, kde-format
 msgctxt "@title:window"
 msgid "Open Image File"
 msgstr "Otvoriť súbor obrázka"
@@ -1091,17 +1080,15 @@ msgstr ""
 "'latex' a 'gs' a musia byť prístupné v $PATH"
 
 #: step/toolgraphics.cc:700
-#, fuzzy, kde-format
-#| msgid "LaTex Formula - Step"
+#, kde-format
 msgctxt "@title:window"
 msgid "LaTex Formula - Step"
-msgstr "Step - LaTex vzorce"
+msgstr "LaTeX vzorec – Step"
 
 #: step/toolgraphics.cc:701
-#, fuzzy, kde-format
-#| msgid "Enter LaTeX formula string"
+#, kde-format
 msgid "Enter LaTeX formula string:"
-msgstr "Zadať reťazec LaTeX vzorca"
+msgstr "Zadajte reťazec LaTeX vzorca:"
 
 #: step/toolgraphics.cc:710
 #, kde-format
@@ -1144,20 +1131,17 @@ msgid "[not configured]"
 msgstr "[nenastavené]"
 
 #: step/toolgraphics.cc:1078
-#, fuzzy, kde-format
-#| msgid "Clear graph"
+#, kde-format
 msgid "Clear Graph"
-msgstr "Vyčistiť graf %1"
+msgstr "Vyčistiť graf"
 
 #: step/toolgraphics.cc:1079
-#, fuzzy, kde-format
-#| msgid "Configure graph..."
+#, kde-format
 msgid "Configure Graph..."
 msgstr "Nastaviť graf..."
 
 #: step/toolgraphics.cc:1097
-#, fuzzy, kde-format
-#| msgid "Configure graph"
+#, kde-format
 msgctxt "@title:window"
 msgid "Configure Graph"
 msgstr "Nastaviť graf"
@@ -1174,14 +1158,12 @@ msgid "Clear graph %1"
 msgstr "Vyčistiť graf %1"
 
 #: step/toolgraphics.cc:1306
-#, fuzzy, kde-format
-#| msgid "Configure meter..."
+#, kde-format
 msgid "Configure Meter..."
 msgstr "Nastaviť meradlo..."
 
 #: step/toolgraphics.cc:1324
-#, fuzzy, kde-format
-#| msgid "Configure meter"
+#, kde-format
 msgctxt "@title:window"
 msgid "Configure Meter"
 msgstr "Nastaviť meradlo"
@@ -1212,21 +1194,18 @@ msgid "Change controller %1"
 msgstr "Ovládač zmien %1"
 
 #: step/toolgraphics.cc:1621
-#, fuzzy, kde-format
-#| msgid "Configure controller..."
+#, kde-format
 msgid "Configure Controller..."
 msgstr "Nastaviť ovládač..."
 
 #: step/toolgraphics.cc:1639
-#, fuzzy, kde-format
-#| msgid "Configure controller"
+#, kde-format
 msgctxt "@title:window"
 msgid "Configure Controller"
 msgstr "Nastaviť ovládač"
 
 #: step/toolgraphics.cc:1900
-#, fuzzy, kde-format
-#| msgid "Clear trace"
+#, kde-format
 msgid "Clear Trace"
 msgstr "Vyčistiť stopu"
 
@@ -1236,8 +1215,7 @@ msgid "Clear tracer %1"
 msgstr "Vyčistiť sledovač %1"
 
 #: step/undobrowser.cc:18
-#, fuzzy, kde-format
-#| msgid "Undo history"
+#, kde-format
 msgid "Undo History"
 msgstr "História vrátení"
 
