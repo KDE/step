@@ -12,8 +12,8 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Lokalize 19.08.3\n"
 "Plural-Forms: nplurals=3; plural=(n==1) ? 0 : (n>=2 && n<=4) ? 1 : 2;\n"
+"X-Generator: Lokalize 19.08.3\n"
 
 #: objectinfo/anchor.html:6
 #, kde-format
@@ -28,6 +28,8 @@ msgid ""
 "Anchor is a joint that fixes position of the body. The body can not move "
 "when it has an anchor."
 msgstr ""
+"Kotva je spoj, ktorý fixuje polohu telesa. Teleso sa nemôže pohybovať, keď "
+"má kotvu."
 
 #: objectinfo/box.html:6
 #, kde-format
@@ -39,7 +41,7 @@ msgstr "Obdĺžnik"
 #, kde-format
 msgctxt "box.html:p"
 msgid "A rigid box with a unique name and the following parameters:"
-msgstr ""
+msgstr "Tuhý kváder s jedinečným názvom a nasledujúcimi parametrami:"
 
 #: objectinfo/box.html:21
 #, kde-format
@@ -68,12 +70,32 @@ msgid ""
 "\t\t<li><b>size:</b> Defines width and height of the box.</li>\n"
 "\t</ul>"
 msgstr ""
+"<ul>\n"
+"\t\t<li><b>poloha:</b> Poloha X/Y ťažiska kvádra vzhľadom na stred <a href="
+"\"objinfo:World\">sveta</a>.</li>\n"
+"\t\t<li><b>uhol:</b> O koľko je kváder otočený v kladnom smere, teda v smere "
+"hodinových ručičiek.</li>\n"
+"\t\t<li><b>rýchlosť:</b> Rýchlosť ťažiska kvádra. Jednotka: metre/sekunda.</"
+"li>\n"
+"\t\t<li><b>uhlová rýchlosť:</b> Ako rýchlo sa kváder otáča v kladnom smere, "
+"teda v smere hodinových ručičiek.</li>\n"
+"\t\t<li><b>hmotnosť:</b> Celková hmotnosť kvádra. Ovplyvňuje sily, ktorými "
+"kváder pôsobí na ostatné objekty.</li>\n"
+"\t\t<li><b>zotrvačnosť:</b> Ako ťažko je zmeniť rotáciu kvádra.</li>\n"
+"\t\t<li><b>hybnosť:</b> Základná veličina v mechanike, ktorá sa zachováva "
+"pri absencii vonkajších síl. Súčin hmotnosti a rýchlosti.</li>\n"
+"\t\t<li><b>moment hybnosti:</b> Miera, do akej sa bude kváder naďalej "
+"otáčať, pokiaľ naň nepôsobí vonkajší moment sily.</li>\n"
+"\t\t<li><b>kinetická energia:</b> Práca potrebná na urýchlenie telesa danej "
+"hmotnosti z pokoja na jeho aktuálnu rýchlosť.</li>\n"
+"\t\t<li><b>veľkosť:</b> Definuje šírku a výšku kvádra.</li>\n"
+"\t</ul>"
 
 #: objectinfo/chargedparticle.html:6
 #, kde-format
 msgctxt "chargedparticle.html:title"
 msgid "Charged Particle"
-msgstr ""
+msgstr "Nabitá častica"
 
 #: objectinfo/chargedparticle.html:9
 #, kde-format
@@ -82,6 +104,8 @@ msgid ""
 "A zero-sized particle which carries an electric charge. It has a unique name "
 "and five parameters:"
 msgstr ""
+"Častica s nulovou veľkosťou, ktorá nesie elektrický náboj. Má jedinečný "
+"názov a päť parametrov:"
 
 #: objectinfo/chargedparticle.html:16
 #, kde-format
@@ -100,6 +124,16 @@ msgid ""
 "deposited on the particle. Unit: Coulomb.</li>\n"
 "\t</ul>"
 msgstr ""
+"<ul>\n"
+"\t\t<li><b>poloha:</b> Poloha X/Y častice vzhľadom na stred <a href="
+"\"objinfo:World\">sveta</a>.</li>\n"
+"\t\t<li><b>rýchlosť:</b> Rýchlosť častice. Jednotka: metre/sekunda.</li>\n"
+"\t\t<li><b>sila:</b> Sila, ktorou sa častica pohybuje.</li>\n"
+"\t\t<li><b>hmotnosť:</b> Hmotnosť častice. Ovplyvňuje sily, ktorými častica "
+"pôsobí na ostatné objekty.</li>\n"
+" \t\t<li><b>náboj:</b> Množstvo kladnej alebo zápornej elektriny uloženej na "
+"častici. Jednotka: Coulomb.</li>\n"
+"\t</ul>"
 
 #: objectinfo/coulombforce.html:6
 #, kde-format
@@ -111,13 +145,13 @@ msgstr "Coulombova sila"
 #, kde-format
 msgctxt "coulombforce.html:p"
 msgid "Coulomb force is a force of interaction between charged particles."
-msgstr ""
+msgstr "Coulombova sila je sila vzájomného pôsobenia medzi nabitými časticami."
 
 #: objectinfo/coulombforce.html:10
 #, kde-format
 msgctxt "coulombforce.html:p"
 msgid "<b>Coulomb's law</b>"
-msgstr ""
+msgstr "<b>Coulombov zákon</b>"
 
 #: objectinfo/coulombforce.html:11
 #, kde-format
@@ -128,6 +162,9 @@ msgid ""
 "the charges and inversely proportional to the square of the distance between "
 "the two charges.</li>"
 msgstr ""
+"<li>Veľkosť elektrostatickej sily medzi dvoma bodovými elektrickými nábojmi "
+"je priamo úmerná súčinu veľkostí oboch nábojov a nepriamo úmerná druhej "
+"mocnine vzdialenosti medzi nimi.</li>"
 
 #: objectinfo/coulombforce.html:12
 #, kde-format
@@ -136,6 +173,8 @@ msgid ""
 "For more details, please refer to the <a href=\"https://en.wikipedia.org/"
 "wiki/Coulomb's_law\">Coulomb Force</a>."
 msgstr ""
+"Podrobnosti nájdete v článku o <a href=\"https://en.wikipedia.org/wiki/"
+"Coulomb's_law\">Coulombovej sile</a>."
 
 #: objectinfo/disk.html:6
 #, kde-format
@@ -147,7 +186,7 @@ msgstr "Disk"
 #, kde-format
 msgctxt "disk.html:p"
 msgid "A rigid disk with a unique name and the following parameters:"
-msgstr ""
+msgstr "Tuhý disk s jedinečným názvom a nasledujúcimi parametrami:"
 
 #: objectinfo/disk.html:21
 #, kde-format
@@ -176,6 +215,26 @@ msgid ""
 "\t\t<li><b>radius:</b> Defines how big the disk is.</li>\n"
 "\t</ul>"
 msgstr ""
+"<ul>\n"
+"\t\t<li><b>poloha:</b> Poloha X/Y ťažiska disku vzhľadom na stred <a href="
+"\"objinfo:World\">sveta</a>.</li>\n"
+"\t\t<li><b>uhol:</b> O koľko je disk otočený v kladnom smere, teda v smere "
+"hodinových ručičiek.</li>\n"
+"\t\t<li><b>rýchlosť:</b> Rýchlosť ťažiska disku. Jednotka: metre/sekunda.</"
+"li>\n"
+"\t\t<li><b>uhlová rýchlosť:</b> Ako rýchlo sa disk otáča v kladnom smere, "
+"teda v smere hodinových ručičiek.</li>\n"
+"\t\t<li><b>hmotnosť:</b> Celková hmotnosť disku. Ovplyvňuje sily, ktorými "
+"disk pôsobí na ostatné objekty.</li>\n"
+"\t\t<li><b>zotrvačnosť:</b> Ako ťažko je zmeniť rotáciu disku.</li>\n"
+"\t\t<li><b>hybnosť:</b> Základná veličina v mechanike, ktorá sa zachováva "
+"pri absencii vonkajších síl. Súčin hmotnosti a rýchlosti.</li>\n"
+"\t\t<li><b>moment hybnosti:</b> Miera, do akej sa bude disk naďalej otáčať, "
+"pokiaľ naň nepôsobí vonkajší moment sily.</li>\n"
+"\t\t<li><b>kinetická energia:</b> Práca potrebná na urýchlenie telesa danej "
+"hmotnosti z pokoja na jeho aktuálnu rýchlosť.</li>\n"
+"\t\t<li><b>polomer:</b> Definuje veľkosť disku.</li>\n"
+"\t</ul>"
 
 #: objectinfo/gas.html:6
 #, kde-format
@@ -191,6 +250,9 @@ msgid ""
 "a>. Associated with the gas is a <a href=\"objinfo:GasLJForce\">force</a>. "
 "To add gas particles right-click the gas and click on \"Create particles\"."
 msgstr ""
+"A gas is a collection of <a href=\"objinfo:GasParticle\">gasoline particles</"
+"a>. Associated with the gas is a <a href=\"objinfo:GasLJForce\">force</a>. "
+"To add gas particles right-click the gas and click on \"Create particles\"."
 
 #: objectinfo/gas.html:10
 #, kde-format
@@ -200,6 +262,9 @@ msgid ""
 "<a href=\"https://en.wikipedia.org/wiki/Lennard-Jones_potential\">Lennard-"
 "Jones potential</a>."
 msgstr ""
+"Podrobnosti o matematike použitej na výpočet síl nájdete v článku o <a href="
+"\"https://en.wikipedia.org/wiki/Lennard-Jones_potential\">Lennard-Jonesovom "
+"potenciáli</a>."
 
 #: objectinfo/gasljforce.html:6
 #, kde-format
@@ -215,6 +280,8 @@ msgid ""
 "Jones_potential\">Lennard-Jones potential</a>. There are three parameters "
 "for this force:"
 msgstr ""
+"Táto sila simuluje <a href=\"https://en.wikipedia.org/wiki/Lennard-"
+"Jones_potential\">Lennard-Jonesov potenciál</a>. Táto sila má tri parametre:"
 
 #: objectinfo/gasljforce.html:14
 #, kde-format
@@ -229,6 +296,13 @@ msgid ""
 "potential is often truncated to save computational time</li>\n"
 "\t</ul>"
 msgstr ""
+"<ul>\n"
+"        <li><b>hĺbka:</b> Minimálna hodnota potenciálovej jamy Lennard-"
+"Jonesovho potenciálu</li>\n"
+"        <li><b>rmin:</b> Vzdialenosť od počiatku k minimu potenciálu</li>\n"
+"        <li><b>odrezanie:</b> Vzdialenosť, pri ktorej sa Lennard-Jonesov "
+"(LJ) potenciál často skracuje na úsporu výpočtového času</li>\n"
+"\t</ul>"
 
 #: objectinfo/gasljforce.html:15
 #, kde-format
@@ -237,6 +311,8 @@ msgid ""
 "These parameters are empirical and are usually obtained from experiment or "
 "some rough estimation."
 msgstr ""
+"Tieto parametre sú empirické a zvyčajne sa získavajú z experimentu alebo "
+"hrubého odhadu."
 
 #: objectinfo/gasparticle.html:6
 #, kde-format
@@ -252,6 +328,9 @@ msgid ""
 "a gasoline system. Each particle is tracked individually and has a unique "
 "name and four parameters:"
 msgstr ""
+"Častica <a href=\"objinfo:Gas\">plynu</a> simuluje jednu časticu v plynovom "
+"systéme. Každá častica sa sleduje individuálne a má jedinečný názov a štyri "
+"parametre:"
 
 #: objectinfo/gasparticle.html:15
 #, kde-format
@@ -268,6 +347,14 @@ msgid ""
 "which the particle interacts with other items.</li>\n"
 "\t</ul>"
 msgstr ""
+"<ul>\n"
+"\t\t<li><b>poloha:</b> Poloha X/Y častice vzhľadom na stred <a href="
+"\"objinfo:World\">sveta</a>.</li>\n"
+"\t\t<li><b>rýchlosť:</b> Rýchlosť častice. Jednotka: metre/sekunda.</li>\n"
+"\t\t<li><b>sila:</b> Sila, ktorou sa častica pohybuje.</li>\n"
+"\t\t<li><b>hmotnosť:</b> Hmotnosť častice. Ovplyvňuje sily, ktorými častica "
+"pôsobí na ostatné objekty.</li>\n"
+"\t</ul>"
 
 #: objectinfo/gravitationforce.html:6
 #, kde-format
@@ -282,12 +369,13 @@ msgid ""
 "Gravitational force is an attractive force that act between bodies having "
 "mass."
 msgstr ""
+"Gravitačná sila je príťažlivá sila, ktorá pôsobí medzi telesami s hmotnosťou."
 
 #: objectinfo/gravitationforce.html:10
 #, kde-format
 msgctxt "gravitationforce.html:p"
 msgid "<b>Newton's law</b>"
-msgstr ""
+msgstr "<b>Newtonov zákon</b>"
 
 #: objectinfo/gravitationforce.html:11
 #, kde-format
@@ -297,12 +385,15 @@ msgid ""
 "is proportional to the product of the masses of the bodies and inversely "
 "proportional to square of the distance between them.</li>"
 msgstr ""
+"<li>Každé teleso vo vesmíre priťahuje každé iné teleso silou, ktorá je "
+"úmerná súčinu hmotností telies a nepriamo úmerná štvorcu vzdialenosti medzi "
+"nimi.</li>"
 
 #: objectinfo/gravitationforce.html:12
 #, kde-format
 msgctxt "gravitationforce.html:p"
 msgid "<b>General relativity</b>"
-msgstr ""
+msgstr "<b>Všeobecná teória relativity</b>"
 
 #: objectinfo/gravitationforce.html:13
 #, kde-format
@@ -311,6 +402,8 @@ msgid ""
 "<li>In general relativity gravitation is explained on the basis of curvature "
 "of space-time.</li>"
 msgstr ""
+"<li>Vo všeobecnej teórii relativity sa gravitácia vysvetľuje na základe "
+"zakrivenia časopriestoru.</li>"
 
 #: objectinfo/gravitationforce.html:14
 #, kde-format
@@ -319,18 +412,20 @@ msgid ""
 "For more details, please refer to the <a href=\"https://en.wikipedia.org/"
 "wiki/Gravitation\">Gravitation Force</a>."
 msgstr ""
+"Ďalšie podrobnosti nájdete na stránke <a href=\"https://en.wikipedia.org/"
+"wiki/Gravitation\">Gravitačná sila</a>."
 
 #: objectinfo/linearmotor.html:6
 #, kde-format
 msgctxt "linearmotor.html:title"
 msgid "Linear Motor"
-msgstr ""
+msgstr "Lineárny motor"
 
 #: objectinfo/linearmotor.html:9
 #, kde-format
 msgctxt "linearmotor.html:p"
 msgid "A linear motor produces a linear force along its length."
-msgstr ""
+msgstr "Lineárny motor vytvára lineárnu silu pozdĺž svojej dĺžky."
 
 #: objectinfo/linearmotor.html:10
 #, kde-format
@@ -339,6 +434,8 @@ msgid ""
 "You can set the desired linear force for an object by changing the force "
 "value in the properties browser."
 msgstr ""
+"Požadovanú lineárnu silu objektu môžete nastaviť zmenou hodnoty sily v "
+"prehliadači vlastností."
 
 #: objectinfo/meter.html:6
 #, kde-format
@@ -353,6 +450,8 @@ msgid ""
 "A meter can show you values of properties. The meter can be configured to "
 "show property of any given object of the simulation."
 msgstr ""
+"Merač vám môže zobraziť hodnoty vlastností. Merač je možné nastaviť na "
+"zobrazenie vlastnosti ľubovoľného objektu simulácie."
 
 #: objectinfo/note.html:6
 #, kde-format
@@ -364,7 +463,7 @@ msgstr "Poznámka"
 #, kde-format
 msgctxt "note.html:p"
 msgid "You can use notes to place text on the canvas of Step."
-msgstr ""
+msgstr "Poznámky môžete použiť na umiestnenie textu na plátno programu Step."
 
 #: objectinfo/particle.html:6
 #, kde-format
@@ -377,6 +476,7 @@ msgstr "Častica"
 msgctxt "particle.html:p"
 msgid "A zero-sized particle which has a unique name and four parameters:"
 msgstr ""
+"Častica s nulovou veľkosťou, ktorá má jedinečný názov a štyri parametre:"
 
 #: objectinfo/particle.html:15
 #, kde-format
@@ -393,6 +493,14 @@ msgid ""
 "which the particle interacts with other items.</li>\n"
 "\t</ul>"
 msgstr ""
+"<ul>\n"
+"\t\t<li><b>poloha:</b> Poloha X/Y častice vzhľadom na stred <a href="
+"\"objinfo:World\">sveta</a>.</li>\n"
+"\t\t<li><b>rýchlosť:</b> rýchlosť častice. Jednotka: metre/sekunda.</li>\n"
+"\t\t<li><b>sila:</b> sila, ktorou sa častica pohybuje.</li>\n"
+"\t\t<li><b>hmotnosť:</b> hmotnosť častice. Ovplyvňuje sily, ktorými častica "
+"interaguje s inými objektmi.</li>\n"
+"\t</ul>"
 
 #: objectinfo/pin.html:6
 #, kde-format
@@ -407,6 +515,8 @@ msgid ""
 "A pin is a joint that fixes a particular point of the body, The body can "
 "still move around the pin."
 msgstr ""
+"Kolík je spoj, ktorý fixuje konkrétny bod telesa. Teleso sa stále môže "
+"pohybovať okolo kolíka."
 
 #: objectinfo/polygon.html:6
 #, kde-format
@@ -418,7 +528,7 @@ msgstr "Mnohouholník"
 #, kde-format
 msgctxt "polygon.html:p"
 msgid "A rigid polygon with a unique name and the following parameters:"
-msgstr ""
+msgstr "Tuhý mnohouholník s jedinečným názvom a nasledujúcimi parametrami:"
 
 #: objectinfo/polygon.html:21
 #, kde-format
@@ -450,12 +560,34 @@ msgid ""
 "center of mass of the polygon.</li>\n"
 "\t</ul>"
 msgstr ""
+"<ul>\n"
+"\t\t<li><b>poloha:</b> Poloha X/Y ťažiska mnohouholníka vzhľadom na stred <a "
+"href=\"objinfo:World\">sveta</a>.</li>\n"
+"\t\t<li><b>uhol:</b> O koľko je mnohouholník otočený v kladnom smere, teda v "
+"smere hodinových ručičiek.</li>\n"
+"\t\t<li><b>rýchlosť:</b> Rýchlosť ťažiska mnohouholníka. Jednotka: metre/"
+"sekunda.</li>\n"
+"\t\t<li><b>uhlová rýchlosť:</b> Ako rýchlo sa mnohouholník otáča v kladnom "
+"smere, teda v smere hodinových ručičiek.</li>\n"
+"\t\t<li><b>hmotnosť:</b> Celková hmotnosť mnohouholníka. Ovplyvňuje sily, "
+"ktorými mnohouholník interaguje s inými objektmi.</li>\n"
+"\t\t<li><b>zotrvačnosť:</b> Ako ťažko je zmeniť rotáciu mnohouholníka.</li>\n"
+"\t\t<li><b>hybnosť:</b> Základná veličina v mechanike, ktorá sa zachováva v "
+"neprítomnosti vonkajších síl. Súčin hmotnosti a rýchlosti.</li>\n"
+"\t\t<li><b>moment hybnosti:</b> Miera, do akej sa bude mnohouholník naďalej "
+"otáčať, pokiaľ naň nepôsobí vonkajší moment sily.</li>\n"
+"\t\t<li><b>kinetická energia:</b> Práca potrebná na zrýchlenie telesa danej "
+"hmotnosti z pokoja na jeho aktuálnu rýchlosť.</li>\n"
+"\t\t<li><b>vrcholy:</b> Zoznam vrcholov (rohov) mnohouholníka, ktoré "
+"definujú jeho veľkosť a tvar. Súradnice každého vrcholu sú relatívne voči "
+"ťažisku mnohouholníka.</li>\n"
+"\t</ul>"
 
 #: objectinfo/softbody.html:6
 #, kde-format
 msgctxt "softbody.html:title"
 msgid "Soft body"
-msgstr ""
+msgstr "Mäkké teleso"
 
 #: objectinfo/softbody.html:9
 #, kde-format
@@ -466,6 +598,10 @@ msgid ""
 "simulate an <a href=\"https://en.wikipedia.org/wiki/"
 "Elasticity_(physics)\">elastic</a> or viscoelastic body."
 msgstr ""
+"Mäkké teleso je súbor <a href=\"objinfo:particle\">častíc</a> spojených <a "
+"href=\"objinfo:spring\">pružinami</a>. Možno ho použiť na simuláciu <a href="
+"\"https://en.wikipedia.org/wiki/Elasticity_(physics)\">pružného</a> alebo "
+"viskoelastického telesa."
 
 #: objectinfo/spring.html:6
 #, kde-format
@@ -480,6 +616,8 @@ msgid ""
 "A flexible elastic object to store mechanical energy. It has a unique name "
 "and the following parameters:"
 msgstr ""
+"Pružný elastický objekt na ukladanie mechanickej energie. Má jedinečný názov "
+"a nasledujúce parametre:"
 
 #: objectinfo/spring.html:19
 #, kde-format
@@ -502,6 +640,20 @@ msgid ""
 "\t\t<li><b>force:</b> is the force that acts along the spring</li>\n"
 "\t</ul>"
 msgstr ""
+"<ul>\n"
+"\t\t<li><b>pokojová dĺžka:</b> dĺžka pružiny, keď nie je stlačená ani "
+"natiahnutá.</li>\n"
+"\t\t<li><b>dĺžka:</b> počiatočná dĺžka pružiny</li>\n"
+"\t\t<li><b>tuhosť:</b> miera odporu pružiny voči stlačeniu alebo "
+"natiahnutiu</li>\n"
+"\t\t<li><b>tlmenie:</b> miera schopnosti pružiny rozptýliť uloženú energiu, "
+"vnútorná viskozita</li>\n"
+"\t\t<li><b>teleso 1 a 2:</b> telesá, ku ktorým je pružina pripevnená</li>\n"
+"\t\t<li><b>lokálna poloha 1 a 2:</b> lokálne polohy koncov pružiny vzhľadom "
+"na jej stred v nedeformovanom stave</li>\n"
+"\t\t<li><b>poloha 1 a 2:</b> globálne polohy koncov pružiny</li>\n"
+"\t\t<li><b>sila:</b> sila pôsobiaca pozdĺž pružiny</li>\n"
+"\t</ul>"
 
 #: objectinfo/weightforce.html:6
 #, kde-format
@@ -513,7 +665,7 @@ msgstr "Sila tiaže"
 #, kde-format
 msgctxt "weightforce.html:p"
 msgid "Weight of an object is the force exerted on it by gravity."
-msgstr ""
+msgstr "Váha objektu je sila, ktorou naň pôsobí gravitácia."
 
 #: objectinfo/weightforce.html:10
 #, kde-format
@@ -522,6 +674,7 @@ msgid ""
 "Weight is a vector quantity. It is often denoted by W and given by the "
 "relation W = mg."
 msgstr ""
+"Váha je vektorová veličina. Často sa označuje W a je daná vzťahom W = mg."
 
 #: objectinfo/weightforce.html:12
 #, kde-format
@@ -530,6 +683,8 @@ msgid ""
 "<li>Where, <b>m</b> is the mass of the body</li>\n"
 "<li>and <b>g</b> is the acceleration due to gravity.</li>"
 msgstr ""
+"<li>Kde <b>m</b> je hmotnosť telesa</li>\n"
+"<li>a <b>g</b> je gravitačné zrýchlenie.</li>"
 
 #: objectinfo/weightforce.html:13
 #, kde-format
@@ -538,6 +693,8 @@ msgid ""
 "For more details, please refer to the <a href=\"https://en.wikipedia.org/"
 "wiki/Weight\">Weight Force</a>."
 msgstr ""
+"Ďalšie podrobnosti nájdete na stránke <a href=\"https://en.wikipedia.org/"
+"wiki/Weight\">Gravitačná sila</a>."
 
 #: objectinfo/world.html:6
 #, kde-format
@@ -554,3 +711,7 @@ msgid ""
 "click on the <b>Simulate</b> button in toolbar and your scene will evolve "
 "according to the laws of physics."
 msgstr ""
+"Toto je scéna sveta. Z palety objektov vyberte niektoré položky a umiestnite "
+"ich na plátno. Po nastavení vlastností objektov kliknite na tlačidlo "
+"<b>Simulovať</b> na paneli nástrojov a vaša scéna sa bude vyvíjať podľa "
+"zákonov fyziky."

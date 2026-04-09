@@ -13,8 +13,8 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Lokalize 21.12.3\n"
 "Plural-Forms: nplurals=3; plural=(n==1) ? 0 : (n>=2 && n<=4) ? 1 : 2;\n"
+"X-Generator: Lokalize 21.12.3\n"
 
 #: examples/brownian.step:4 examples/doublependulum.step:4
 #: examples/fourpendula.step:4 examples/gas.step:4 examples/graph.step:4
@@ -116,7 +116,7 @@ msgstr "riešiteľZrážok1"
 #: examples/wave.step:493 tutorials/tutorial1.step:150
 #: tutorials/tutorial2.step:159 tutorials/tutorial3.step:112
 #: tutorials/tutorial4.step:185 tutorials/tutorial5.step:134
-#, fuzzy, kde-format
+#, kde-format
 msgctxt "name"
 msgid "constraintSolver1"
 msgstr "Riešiteľ rovníc obmedzenia"
@@ -172,7 +172,7 @@ msgstr "poznámka1"
 #, kde-format
 msgctxt "HTML:p"
 msgid "Double pendulum example"
-msgstr ""
+msgstr "Príklad dvojitého kyvadla"
 
 #: examples/eightpendula.step:4
 #, kde-format
@@ -180,6 +180,8 @@ msgctxt "name"
 msgid ""
 "Pendule de Newton à 8 billes (http://fr.wikipedia.org/wiki/Pendule_de_Newton)"
 msgstr ""
+"Newtonovo kyvadlo s 8 guličkami (http://fr.wikipedia.org/wiki/"
+"Pendule_de_Newton)"
 
 #: examples/eightpendula.step:41 examples/fourpendula.step:35
 #: tutorials/tutorial1.step:111
@@ -315,7 +317,7 @@ msgid "disk3"
 msgstr "disk3"
 
 #: examples/gas.step:65 examples/liquid.step:17
-#, fuzzy, kde-format
+#, kde-format
 msgctxt "name"
 msgid "gasLJForce1"
 msgstr "Sila plynu LJ"
@@ -527,7 +529,7 @@ msgstr "poznámka4"
 #, kde-format
 msgctxt "HTML:p"
 msgid "<span style=\" font-size:medium;\">Macroscopic quantities:</span>"
-msgstr ""
+msgstr "<span style=\" font-size:medium;\">Makroskopické veličiny:</span>"
 
 #: examples/gas.step:353 tutorials/tutorial1.step:123
 #: tutorials/tutorial5.step:105
@@ -540,7 +542,7 @@ msgstr "poznámka6"
 #, kde-format
 msgctxt "HTML:p"
 msgid "<span style=\" font-size:medium;\">Spring tension:</span>"
-msgstr ""
+msgstr "<span style=\" font-size:medium;\">Napätie pružiny:</span>"
 
 #: examples/gas.step:366
 #, kde-format
@@ -554,6 +556,7 @@ msgctxt "HTML:p"
 msgid ""
 "(run simulation for ~20 seconds and compare spring tension with pressure)"
 msgstr ""
+"(spustite simuláciu na ~20 sekúnd a porovnajte napätie pružiny s tlakom)"
 
 #: examples/graph.step:59
 #, kde-format
@@ -565,7 +568,7 @@ msgstr "graf2"
 #, kde-format
 msgctxt "HTML:p"
 msgid "Phase diagram"
-msgstr ""
+msgstr "Fázový diagram"
 
 #: examples/graph.step:101
 #, kde-format
@@ -581,6 +584,9 @@ msgid ""
 "potential as gas. Notice how sometimes a particle leaves the drop - it is "
 "evaporation."
 msgstr ""
+"Táto malá kvapka kvapaliny vo voľnom priestore je simulovaná pomocou "
+"rovnakého potenciálu ako plyn. Všimnite si, ako občas častica opustí kvapku "
+"– to je vyparovanie."
 
 #: examples/lissajous.step:39 examples/wave.step:423
 #, kde-format
@@ -599,7 +605,7 @@ msgstr "ovladač1"
 #, kde-format
 msgctxt "HTML:p"
 msgid "Lissajous curve"
-msgstr ""
+msgstr "Lissajousova krivka"
 
 #: examples/lissajous.step:108
 #, kde-format
@@ -609,6 +615,9 @@ msgid ""
 "how the curve will change. Try the following values:<br></br>1, 2.25, "
 "1.7778, 1.5625, 0.6944"
 msgstr ""
+"Skúste zmeniť tuhosť pružiny spring1 a pozorujte, \n"
+"ako sa krivka zmení. Vyskúšajte nasledujúce hodnoty:<br></br>1, 2,25, "
+"1,7778, 1,5625, 0,6944"
 
 #: examples/motor.step:43 examples/motor1.step:23 tutorials/tutorial4.step:47
 #, kde-format
@@ -638,7 +647,7 @@ msgstr "Príklad vzorca:"
 #, kde-format
 msgctxt "HTML:p"
 msgid "<img src=\"img:0\"></img>"
-msgstr ""
+msgstr "<img src=\"img:0\"></img>"
 
 #: examples/note.step:22
 #, kde-format
@@ -650,7 +659,7 @@ msgstr "Príklad obrázka:"
 #, kde-format
 msgctxt "HTML:p"
 msgid "<img src=\"img:1\"></img>"
-msgstr ""
+msgstr "<img src=\"img:1\"></img>"
 
 #: examples/note.step:26
 #, kde-format
@@ -692,7 +701,7 @@ msgstr "Disk"
 #, kde-format
 msgctxt "name"
 msgid "PinDisk"
-msgstr ""
+msgstr "PinDisk"
 
 #: examples/resonance.step:67
 #, kde-format
@@ -704,13 +713,13 @@ msgstr "Pružina"
 #, kde-format
 msgctxt "name"
 msgid "AnchorLeftWall"
-msgstr ""
+msgstr "AnchorLeftWall"
 
 #: examples/resonance.step:87
 #, kde-format
 msgctxt "name"
 msgid "AnchorRightWall"
-msgstr ""
+msgstr "AnchorRightWall"
 
 #: examples/resonance.step:95
 #, kde-format
@@ -755,349 +764,349 @@ msgid "softBody1"
 msgstr "lahkeTeleso1"
 
 #: examples/softbody.step:21 examples/wave.step:21
-#, fuzzy, kde-format
+#, kde-format
 msgctxt "name"
 msgid "softBodyParticle1"
-msgstr "Častica ľahkého telesa"
+msgstr "Častica mäkkého telesa"
 
 #: examples/softbody.step:29 examples/wave.step:29
-#, fuzzy, kde-format
+#, kde-format
 msgctxt "name"
 msgid "softBodyParticle2"
-msgstr "Častica ľahkého telesa"
+msgstr "Častica mäkkého telesa"
 
 #: examples/softbody.step:37 examples/wave.step:37
-#, fuzzy, kde-format
+#, kde-format
 msgctxt "name"
 msgid "softBodyParticle3"
-msgstr "Častica ľahkého telesa"
+msgstr "Častica mäkkého telesa"
 
 #: examples/softbody.step:45 examples/wave.step:45
-#, fuzzy, kde-format
+#, kde-format
 msgctxt "name"
 msgid "softBodyParticle4"
-msgstr "Častica ľahkého telesa"
+msgstr "Častica mäkkého telesa"
 
 #: examples/softbody.step:53 examples/wave.step:53
-#, fuzzy, kde-format
+#, kde-format
 msgctxt "name"
 msgid "softBodyParticle5"
-msgstr "Častica ľahkého telesa"
+msgstr "Častica mäkkého telesa"
 
 #: examples/softbody.step:61 examples/wave.step:61
-#, fuzzy, kde-format
+#, kde-format
 msgctxt "name"
 msgid "softBodyParticle6"
-msgstr "Častica ľahkého telesa"
+msgstr "Častica mäkkého telesa"
 
 #: examples/softbody.step:69 examples/wave.step:69
-#, fuzzy, kde-format
+#, kde-format
 msgctxt "name"
 msgid "softBodyParticle7"
-msgstr "Častica ľahkého telesa"
+msgstr "Častica mäkkého telesa"
 
 #: examples/softbody.step:77 examples/wave.step:77
-#, fuzzy, kde-format
+#, kde-format
 msgctxt "name"
 msgid "softBodyParticle8"
-msgstr "Častica ľahkého telesa"
+msgstr "Častica mäkkého telesa"
 
 #: examples/softbody.step:85 examples/wave.step:85
-#, fuzzy, kde-format
+#, kde-format
 msgctxt "name"
 msgid "softBodyParticle9"
-msgstr "Častica ľahkého telesa"
+msgstr "Častica mäkkého telesa"
 
 #: examples/softbody.step:93 examples/wave.step:93
-#, fuzzy, kde-format
+#, kde-format
 msgctxt "name"
 msgid "softBodyParticle10"
-msgstr "Častica ľahkého telesa"
+msgstr "Častica mäkkého telesa"
 
 #: examples/softbody.step:101 examples/wave.step:101
-#, fuzzy, kde-format
+#, kde-format
 msgctxt "name"
 msgid "softBodyParticle11"
-msgstr "Častica ľahkého telesa"
+msgstr "Častica mäkkého telesa"
 
 #: examples/softbody.step:109 examples/wave.step:109
-#, fuzzy, kde-format
+#, kde-format
 msgctxt "name"
 msgid "softBodyParticle12"
-msgstr "Častica ľahkého telesa"
+msgstr "Častica mäkkého telesa"
 
 #: examples/softbody.step:117 examples/wave.step:117
-#, fuzzy, kde-format
+#, kde-format
 msgctxt "name"
 msgid "softBodyParticle13"
-msgstr "Častica ľahkého telesa"
+msgstr "Častica mäkkého telesa"
 
 #: examples/softbody.step:125 examples/wave.step:125
-#, fuzzy, kde-format
+#, kde-format
 msgctxt "name"
 msgid "softBodyParticle14"
-msgstr "Častica ľahkého telesa"
+msgstr "Častica mäkkého telesa"
 
 #: examples/softbody.step:133 examples/wave.step:133
-#, fuzzy, kde-format
+#, kde-format
 msgctxt "name"
 msgid "softBodyParticle15"
-msgstr "Častica ľahkého telesa"
+msgstr "Častica mäkkého telesa"
 
 #: examples/softbody.step:141 examples/wave.step:141
-#, fuzzy, kde-format
+#, kde-format
 msgctxt "name"
 msgid "softBodyParticle16"
-msgstr "Častica ľahkého telesa"
+msgstr "Častica mäkkého telesa"
 
 #: examples/softbody.step:149 examples/wave.step:181
-#, fuzzy, kde-format
+#, kde-format
 msgctxt "name"
 msgid "softBodySpring1"
-msgstr "Pružnosť ľahkého telesa"
+msgstr "Pružina mäkkého telesa"
 
 #: examples/softbody.step:161 examples/wave.step:193
-#, fuzzy, kde-format
+#, kde-format
 msgctxt "name"
 msgid "softBodySpring2"
-msgstr "Pružnosť ľahkého telesa"
+msgstr "Pružina mäkkého telesa"
 
 #: examples/softbody.step:173 examples/wave.step:205
-#, fuzzy, kde-format
+#, kde-format
 msgctxt "name"
 msgid "softBodySpring3"
 msgstr "Pružnosť ľahkého telesa"
 
 #: examples/softbody.step:185 examples/wave.step:217
-#, fuzzy, kde-format
+#, kde-format
 msgctxt "name"
 msgid "softBodySpring4"
 msgstr "Pružnosť ľahkého telesa"
 
 #: examples/softbody.step:197 examples/wave.step:229
-#, fuzzy, kde-format
+#, kde-format
 msgctxt "name"
 msgid "softBodySpring5"
 msgstr "Pružnosť ľahkého telesa"
 
 #: examples/softbody.step:209 examples/wave.step:241
-#, fuzzy, kde-format
+#, kde-format
 msgctxt "name"
 msgid "softBodySpring6"
 msgstr "Pružnosť ľahkého telesa"
 
 #: examples/softbody.step:221 examples/wave.step:253
-#, fuzzy, kde-format
+#, kde-format
 msgctxt "name"
 msgid "softBodySpring7"
 msgstr "Pružnosť ľahkého telesa"
 
 #: examples/softbody.step:233 examples/wave.step:265
-#, fuzzy, kde-format
+#, kde-format
 msgctxt "name"
 msgid "softBodySpring8"
 msgstr "Pružnosť ľahkého telesa"
 
 #: examples/softbody.step:245 examples/wave.step:277
-#, fuzzy, kde-format
+#, kde-format
 msgctxt "name"
 msgid "softBodySpring9"
 msgstr "Pružnosť ľahkého telesa"
 
 #: examples/softbody.step:257 examples/wave.step:289
-#, fuzzy, kde-format
+#, kde-format
 msgctxt "name"
 msgid "softBodySpring10"
 msgstr "Pružnosť ľahkého telesa"
 
 #: examples/softbody.step:269 examples/wave.step:301
-#, fuzzy, kde-format
+#, kde-format
 msgctxt "name"
 msgid "softBodySpring11"
 msgstr "Pružnosť ľahkého telesa"
 
 #: examples/softbody.step:281 examples/wave.step:313
-#, fuzzy, kde-format
+#, kde-format
 msgctxt "name"
 msgid "softBodySpring12"
 msgstr "Pružnosť ľahkého telesa"
 
 #: examples/softbody.step:293 examples/wave.step:325
-#, fuzzy, kde-format
+#, kde-format
 msgctxt "name"
 msgid "softBodySpring13"
 msgstr "Pružnosť ľahkého telesa"
 
 #: examples/softbody.step:305 examples/wave.step:337
-#, fuzzy, kde-format
+#, kde-format
 msgctxt "name"
 msgid "softBodySpring14"
 msgstr "Pružnosť ľahkého telesa"
 
 #: examples/softbody.step:317 examples/wave.step:349
-#, fuzzy, kde-format
+#, kde-format
 msgctxt "name"
 msgid "softBodySpring15"
 msgstr "Pružnosť ľahkého telesa"
 
 #: examples/softbody.step:329 examples/wave.step:361
-#, fuzzy, kde-format
+#, kde-format
 msgctxt "name"
 msgid "softBodySpring16"
 msgstr "Pružnosť ľahkého telesa"
 
 #: examples/softbody.step:341 examples/wave.step:373
-#, fuzzy, kde-format
+#, kde-format
 msgctxt "name"
 msgid "softBodySpring17"
 msgstr "Pružnosť ľahkého telesa"
 
 #: examples/softbody.step:353 examples/wave.step:385
-#, fuzzy, kde-format
+#, kde-format
 msgctxt "name"
 msgid "softBodySpring18"
 msgstr "Pružnosť ľahkého telesa"
 
 #: examples/softbody.step:365 examples/wave.step:397
-#, fuzzy, kde-format
+#, kde-format
 msgctxt "name"
 msgid "softBodySpring19"
 msgstr "Pružnosť ľahkého telesa"
 
 #: examples/softbody.step:377
-#, fuzzy, kde-format
+#, kde-format
 msgctxt "name"
 msgid "softBodySpring20"
 msgstr "Pružnosť ľahkého telesa"
 
 #: examples/softbody.step:389
-#, fuzzy, kde-format
+#, kde-format
 msgctxt "name"
 msgid "softBodySpring21"
 msgstr "Pružnosť ľahkého telesa"
 
 #: examples/softbody.step:401
-#, fuzzy, kde-format
+#, kde-format
 msgctxt "name"
 msgid "softBodySpring22"
 msgstr "Pružnosť ľahkého telesa"
 
 #: examples/softbody.step:413
-#, fuzzy, kde-format
+#, kde-format
 msgctxt "name"
 msgid "softBodySpring23"
 msgstr "Pružnosť ľahkého telesa"
 
 #: examples/softbody.step:425
-#, fuzzy, kde-format
+#, kde-format
 msgctxt "name"
 msgid "softBodySpring24"
 msgstr "Pružnosť ľahkého telesa"
 
 #: examples/softbody.step:437
-#, fuzzy, kde-format
+#, kde-format
 msgctxt "name"
 msgid "softBodySpring25"
 msgstr "Pružnosť ľahkého telesa"
 
 #: examples/softbody.step:449
-#, fuzzy, kde-format
+#, kde-format
 msgctxt "name"
 msgid "softBodySpring26"
 msgstr "Pružnosť ľahkého telesa"
 
 #: examples/softbody.step:461
-#, fuzzy, kde-format
+#, kde-format
 msgctxt "name"
 msgid "softBodySpring27"
 msgstr "Pružnosť ľahkého telesa"
 
 #: examples/softbody.step:473
-#, fuzzy, kde-format
+#, kde-format
 msgctxt "name"
 msgid "softBodySpring28"
 msgstr "Pružnosť ľahkého telesa"
 
 #: examples/softbody.step:485
-#, fuzzy, kde-format
+#, kde-format
 msgctxt "name"
 msgid "softBodySpring29"
 msgstr "Pružnosť ľahkého telesa"
 
 #: examples/softbody.step:497
-#, fuzzy, kde-format
+#, kde-format
 msgctxt "name"
 msgid "softBodySpring30"
 msgstr "Pružnosť ľahkého telesa"
 
 #: examples/softbody.step:509
-#, fuzzy, kde-format
+#, kde-format
 msgctxt "name"
 msgid "softBodySpring31"
 msgstr "Pružnosť ľahkého telesa"
 
 #: examples/softbody.step:521
-#, fuzzy, kde-format
+#, kde-format
 msgctxt "name"
 msgid "softBodySpring32"
 msgstr "Pružnosť ľahkého telesa"
 
 #: examples/softbody.step:533
-#, fuzzy, kde-format
+#, kde-format
 msgctxt "name"
 msgid "softBodySpring33"
 msgstr "Pružnosť ľahkého telesa"
 
 #: examples/softbody.step:545
-#, fuzzy, kde-format
+#, kde-format
 msgctxt "name"
 msgid "softBodySpring34"
 msgstr "Pružnosť ľahkého telesa"
 
 #: examples/softbody.step:557
-#, fuzzy, kde-format
+#, kde-format
 msgctxt "name"
 msgid "softBodySpring35"
 msgstr "Pružnosť ľahkého telesa"
 
 #: examples/softbody.step:569
-#, fuzzy, kde-format
+#, kde-format
 msgctxt "name"
 msgid "softBodySpring36"
 msgstr "Pružnosť ľahkého telesa"
 
 #: examples/softbody.step:581
-#, fuzzy, kde-format
+#, kde-format
 msgctxt "name"
 msgid "softBodySpring37"
 msgstr "Pružnosť ľahkého telesa"
 
 #: examples/softbody.step:593
-#, fuzzy, kde-format
+#, kde-format
 msgctxt "name"
 msgid "softBodySpring38"
 msgstr "Pružnosť ľahkého telesa"
 
 #: examples/softbody.step:605
-#, fuzzy, kde-format
+#, kde-format
 msgctxt "name"
 msgid "softBodySpring39"
 msgstr "Pružnosť ľahkého telesa"
 
 #: examples/softbody.step:617
-#, fuzzy, kde-format
+#, kde-format
 msgctxt "name"
 msgid "softBodySpring40"
 msgstr "Pružnosť ľahkého telesa"
 
 #: examples/softbody.step:629
-#, fuzzy, kde-format
+#, kde-format
 msgctxt "name"
 msgid "softBodySpring41"
 msgstr "Pružnosť ľahkého telesa"
 
 #: examples/softbody.step:641
-#, fuzzy, kde-format
+#, kde-format
 msgctxt "name"
 msgid "softBodySpring42"
 msgstr "Pružnosť ľahkého telesa"
@@ -1235,28 +1244,28 @@ msgid "Solver"
 msgstr "riešiteľ"
 
 #: examples/wave.step:149
-#, fuzzy, kde-format
+#, kde-format
 msgctxt "name"
 msgid "softBodyParticle17"
-msgstr "Častica ľahkého telesa"
+msgstr "častica mäkkého telesa 17"
 
 #: examples/wave.step:157
-#, fuzzy, kde-format
+#, kde-format
 msgctxt "name"
 msgid "softBodyParticle18"
-msgstr "Častica ľahkého telesa"
+msgstr "častica mäkkého telesa 18"
 
 #: examples/wave.step:165
-#, fuzzy, kde-format
+#, kde-format
 msgctxt "name"
 msgid "softBodyParticle19"
-msgstr "Častica ľahkého telesa"
+msgstr "častica mäkkého telesa 19"
 
 #: examples/wave.step:173
-#, fuzzy, kde-format
+#, kde-format
 msgctxt "name"
 msgid "softBodyParticle20"
-msgstr "Častica ľahkého telesa"
+msgstr "častica mäkkého telesa 20"
 
 #: examples/wave.step:444
 #, kde-format
@@ -1267,36 +1276,40 @@ msgid ""
 "direction until the red particle reflects in again. After some time the wave "
 "will vanish because springs have damping."
 msgstr ""
+"Keď spustíte simuláciu, vlna sa začne šíriť od červenej častice. Modrá "
+"častica vlnu odrazí a tá sa bude šíriť v opačnom smere, kým ju červená "
+"častica znovu neodrazí. Po určitom čase vlna zanikne, pretože pružiny majú "
+"tlmenie."
 
 #: examples/wave.step:477
 #, kde-format
 msgctxt "HTML:p"
 msgid "The graph shows oscillations of the green particle"
-msgstr ""
+msgstr "Graf zobrazuje oscilácie zelenej častice"
 
 #: tutorials/tutorial1.step:32
-#, fuzzy, kde-format
+#, kde-format
 msgctxt "HTML:p"
 msgid "<span style=\" font-size:14pt; font-weight:600;\">Tutorial 1</span>"
-msgstr "Výučba"
+msgstr "<span style=\" font-size:14pt; font-weight:600;\">Výučba 1</span>"
 
 #: tutorials/tutorial1.step:33
 #, kde-format
 msgctxt "HTML:p"
 msgid "<span style=\" font-size:12pt;\">Bodies and springs.</span>"
-msgstr ""
+msgstr "<span style=\" font-size:12pt;\">Telesá a pružiny.</span>"
 
 #: tutorials/tutorial1.step:46
 #, kde-format
 msgctxt "HTML:p"
 msgid "<span style=\" font-weight:600;\">Position and velocity</span>"
-msgstr ""
+msgstr "<span style=\" font-weight:600;\">Poloha a rýchlosť</span>"
 
 #: tutorials/tutorial1.step:47
 #, kde-format
 msgctxt "HTML:p"
 msgid "- You can change position of any body simply by dragging it."
-msgstr ""
+msgstr "- Polohu ľubovoľného telesa môžete zmeniť jednoduchým potiahnutím."
 
 #: tutorials/tutorial1.step:48
 #, kde-format
@@ -1307,6 +1320,10 @@ msgid ""
 "can drag the little gray square at the end of the velocity arrow to change "
 "the velocity."
 msgstr ""
+"- Kliknutím na jeden z diskov ho vyberiete. Teraz na ňom vidíte dve šípky: "
+"modrá šípka znázorňuje rýchlosť a červená šípka znázorňuje zrýchlenie. "
+"Potiahnutím malého sivého štvorca na konci šípky rýchlosti môžete zmeniť "
+"rýchlosť."
 
 #: tutorials/tutorial1.step:49 tutorials/tutorial1.step:63
 #, kde-format
@@ -1316,12 +1333,14 @@ msgid ""
 "set position and velocity (as well as all other properties) for the current "
 "body."
 msgstr ""
+"- Pozrite sa na panel Vlastnosti vpravo. Tu môžete číselne nastaviť polohu a "
+"rýchlosť (ako aj všetky ostatné vlastnosti) pre aktuálne teleso."
 
 #: tutorials/tutorial1.step:62
-#, fuzzy, kde-format
+#, kde-format
 msgctxt "HTML:p"
 msgid "<span style=\" font-weight:600;\">Properties</span>"
-msgstr "Vlastnosti"
+msgstr "<span style=\" font-weight:600;\">Vlastnosti</span>"
 
 #: tutorials/tutorial1.step:64
 #, kde-format
@@ -1330,12 +1349,14 @@ msgid ""
 "- Select a spring by clicking on it. Change its stiffness and see how it is "
 "affecting the simulation."
 msgstr ""
+"- Vyberte pružinu kliknutím na ňu. Zmeňte jej tuhosť a pozorujte, ako to "
+"ovplyvňuje simuláciu."
 
 #: tutorials/tutorial1.step:78 tutorials/tutorial5.step:78
 #, kde-format
 msgctxt "HTML:p"
 msgid "<span style=\" font-weight:600;\">Quest</span>"
-msgstr ""
+msgstr "<span style=\" font-weight:600;\">Úloha</span>"
 
 #: tutorials/tutorial1.step:79
 #, kde-format
@@ -1343,7 +1364,7 @@ msgctxt "HTML:p"
 msgid ""
 "- Try to change the system in a way to make the disks spining around the "
 "center of the system."
-msgstr ""
+msgstr "- Skúste zmeniť systém tak, aby sa disky otáčali okolo stredu systému."
 
 #: tutorials/tutorial1.step:80
 #, kde-format
@@ -1352,12 +1373,14 @@ msgid ""
 "- Now try to change the properties of the spring in order to make its length "
 "constant while the disks are spinning."
 msgstr ""
+"- Teraz skúste zmeniť vlastnosti pružiny tak, aby jej dĺžka zostala "
+"konštantná, kým sa disky otáčajú."
 
 #: tutorials/tutorial1.step:93
 #, kde-format
 msgctxt "HTML:p"
 msgid "<span style=\" font-weight:600;\">More bodies</span>"
-msgstr ""
+msgstr "<span style=\" font-weight:600;\">Viac telies</span>"
 
 #: tutorials/tutorial1.step:94
 #, kde-format
@@ -1367,6 +1390,8 @@ msgid ""
 "follow the instructions given in the information widget in the top left "
 "corner of scene"
 msgstr ""
+"- Ak chcete vytvoriť teleso, kliknite na jeho ikonu v paneli Paleta a "
+"postupujte podľa pokynov v informačnom prvku v ľavom hornom rohu scény."
 
 #: tutorials/tutorial1.step:95
 #, kde-format
@@ -1375,12 +1400,14 @@ msgid ""
 "- Create one more disk and two more springs and connect all the items in the "
 "triangle. Now make them all spin around the center."
 msgstr ""
+"- Vytvorte ešte jeden disk a dve ďalšie pružiny a spojte všetky prvky do "
+"trojuholníka. Teraz ich všetky roztočte okolo stredu."
 
 #: tutorials/tutorial1.step:132
-#, fuzzy, kde-format
+#, kde-format
 msgctxt "HTML:p"
 msgid "<span style=\" font-weight:600;\">Simulation</span>"
-msgstr "Simulátory"
+msgstr "<span style=\" font-weight:600;\">Simulácia</span>"
 
 #: tutorials/tutorial1.step:133
 #, kde-format
@@ -1389,6 +1416,8 @@ msgid ""
 "- Click on the \"Simulate\" button in the toolbar to start simulation. Click "
 "on the same button again to stop it."
 msgstr ""
+"- Kliknite na the \"Simulate\" button in the toolbar to start simulation. "
+"Kliknite na the same button again to stop it."
 
 #: tutorials/tutorial1.step:134
 #, kde-format
@@ -1397,24 +1426,26 @@ msgid ""
 "- After stopping the simulation you can revert to the initial state by "
 "pressing Undo button."
 msgstr ""
+"- Po zastavení simulácie sa môžete vrátiť do počiatočného stavu stlačením "
+"tlačidla Späť."
 
 #: tutorials/tutorial2.step:82
-#, fuzzy, kde-format
+#, kde-format
 msgctxt "HTML:p"
 msgid "<span style=\" font-size:14pt; font-weight:600;\">Tutorial 2</span>"
-msgstr "Výučba"
+msgstr "<span style=\" font-size:14pt; font-weight:600;\">Výučba 2</span>"
 
 #: tutorials/tutorial2.step:83
 #, kde-format
 msgctxt "HTML:p"
 msgid "<span style=\" font-size:12pt;\">Controllers and Graphs</span>"
-msgstr ""
+msgstr "<span style=\" font-size:12pt;\">Ovládače a grafy</span>"
 
 #: tutorials/tutorial2.step:96
 #, kde-format
 msgctxt "HTML:p"
 msgid "<span style=\" font-weight:600;\">Try it</span>"
-msgstr ""
+msgstr "<span style=\" font-weight:600;\">Vyskúšajte si to</span>"
 
 #: tutorials/tutorial2.step:97
 #, kde-format
@@ -1423,6 +1454,8 @@ msgid ""
 "- Change the stiffness of the spring by moving the slider just below the "
 "bodies. You can also change it by pressing \"Q\" and \"W\" keys!"
 msgstr ""
+"- Change the stiffness of the spring by moving the slider just below the "
+"bodies. Môžete also change it by pressing \"Q\" and \"W\" keys!"
 
 #: tutorials/tutorial2.step:98
 #, kde-format
@@ -1431,18 +1464,19 @@ msgid ""
 "- Try changing it while the simulation is active and see how the graph will "
 "change."
 msgstr ""
+"- Skúste to zmeniť počas aktívnej simulácie a pozorujte, ako sa zmení graf."
 
 #: tutorials/tutorial2.step:111
-#, fuzzy, kde-format
+#, kde-format
 msgctxt "HTML:p"
 msgid "<span style=\" font-weight:600;\">Controller</span>"
-msgstr "ovladač1"
+msgstr "<span style=\" font-weight:600;\">Ovládač</span>"
 
 #: tutorials/tutorial2.step:112
 #, kde-format
 msgctxt "HTML:p"
 msgid "- Create a new controller on the scene."
-msgstr ""
+msgstr "- Vytvorte na scéne nový ovládač."
 
 #: tutorials/tutorial2.step:113
 #, kde-format
@@ -1451,6 +1485,8 @@ msgid ""
 "- Click on it with the right mouse button and choose \"Configure controller"
 "\" from the context menu."
 msgstr ""
+"- Kliknite na it with the right mouse button and choose \"Nastaviť controller"
+"\" from the context menu."
 
 #: tutorials/tutorial2.step:114
 #, kde-format
@@ -1459,6 +1495,8 @@ msgid ""
 "- Select mass of the particle1 as the data source, adjust the range and "
 "assign keyboard shortcuts."
 msgstr ""
+"- Vyberte hmotnosť častice particle1 ako zdroj dát, upravte rozsah a "
+"priraďte klávesové skratky."
 
 #: tutorials/tutorial2.step:115
 #, kde-format
@@ -1467,18 +1505,20 @@ msgid ""
 "- Now try moving the slider and pressing the selected shortcuts while "
 "simulation is active."
 msgstr ""
+"- Teraz skúste posúvať posuvník a stláčať vybrané skratky počas aktívnej "
+"simulácie."
 
 #: tutorials/tutorial2.step:128
-#, fuzzy, kde-format
+#, kde-format
 msgctxt "HTML:p"
 msgid "<span style=\" font-weight:600;\">Graph</span>"
-msgstr "Graf"
+msgstr "<span style=\" font-weight:600;\">Graf</span>"
 
 #: tutorials/tutorial2.step:129
 #, kde-format
 msgctxt "HTML:p"
 msgid "- Create a graph for the velocity of particle1."
-msgstr ""
+msgstr "- Vytvorte graf pre rýchlosť častice particle1."
 
 #: tutorials/tutorial2.step:130
 #, kde-format
@@ -1487,24 +1527,26 @@ msgid ""
 "- Place it below the position graph and make the ranges along X axis the "
 "same for the both graphs. See how the graphs relates to each other."
 msgstr ""
+"- Umiestnite ho pod graf polohy a nastavte rozsahy pozdĺž osi X rovnaké pre "
+"oba grafy. Pozorujte, ako spolu grafy súvisia."
 
 #: tutorials/tutorial3.step:64
-#, fuzzy, kde-format
+#, kde-format
 msgctxt "HTML:p"
 msgid "<span style=\" font-size:14pt; font-weight:600;\">Tutorial 3</span>"
-msgstr "Výučba"
+msgstr "<span style=\" font-size:14pt; font-weight:600;\">Výučba 3</span>"
 
 #: tutorials/tutorial3.step:65
 #, kde-format
 msgctxt "HTML:p"
 msgid "<span style=\" font-size:12pt;\">Rigid bodies and tracers</span>"
-msgstr ""
+msgstr "<span style=\" font-size:12pt;\">Tuhé telesá a sledovače</span>"
 
 #: tutorials/tutorial3.step:79
 #, kde-format
 msgctxt "HTML:p"
 msgid "<span style=\" font-weight:600;\">Angle and angular velocity</span>"
-msgstr ""
+msgstr "<span style=\" font-weight:600;\">Uhol a uhlová rýchlosť</span>"
 
 #: tutorials/tutorial3.step:80
 #, kde-format
@@ -1513,12 +1555,14 @@ msgid ""
 "- When the rigid body is selected you see three gray handlers on it. Using "
 "them you can change velocity, angle and angular velocity of the body."
 msgstr ""
+"- Keď je tuhé teleso vybrané, uvidíte na ňom tri sivé úchyty. Pomocou nich "
+"môžete meniť rýchlosť, uhol a uhlovú rýchlosť telesa."
 
 #: tutorials/tutorial3.step:93
-#, fuzzy, kde-format
+#, kde-format
 msgctxt "HTML:p"
 msgid "<span style=\" font-weight:600;\">Tracer</span>"
-msgstr "sledovač1"
+msgstr "<span style=\" font-weight:600;\">Sledovač</span>"
 
 #: tutorials/tutorial3.step:94
 #, kde-format
@@ -1527,6 +1571,8 @@ msgid ""
 "- Tracer is a tool to show trajectory of a given point on a rigid body. Turn "
 "on the simulation to see it in action."
 msgstr ""
+"- Sledovač je nástroj na zobrazenie trajektórie daného bodu na tuhom telese. "
+"Zapnite simuláciu, aby ste ho videli v akcii."
 
 #: tutorials/tutorial3.step:95
 #, kde-format
@@ -1535,6 +1581,8 @@ msgid ""
 "- Change various properties like spring stiffness and see how they affect "
 "the trajectory."
 msgstr ""
+"- Meňte rôzne vlastnosti, ako je tuhosť pružiny, a sledujte, ako ovplyvňujú "
+"trajektóriu."
 
 #: tutorials/tutorial3.step:96
 #, kde-format
@@ -1543,36 +1591,37 @@ msgid ""
 "- Attach one more tracer to the box and compare trajectories of different "
 "points."
 msgstr ""
+"- Pripojte ďalší sledovač ku krabici a porovnajte trajektórie rôznych bodov."
 
 #: tutorials/tutorial4.step:77
-#, fuzzy, kde-format
+#, kde-format
 msgctxt "name"
 msgid "controller2"
-msgstr "ovladač1"
+msgstr "ovládač2"
 
 #: tutorials/tutorial4.step:100
-#, fuzzy, kde-format
+#, kde-format
 msgctxt "HTML:p"
 msgid "<span style=\" font-size:14pt; font-weight:600;\">Tutorial 4</span>"
-msgstr "Výučba"
+msgstr "<span style=\" font-size:14pt; font-weight:600;\">Výučba 4</span>"
 
 #: tutorials/tutorial4.step:101
 #, kde-format
 msgctxt "HTML:p"
 msgid "<span style=\" font-size:12pt;\">Motors and forces</span>"
-msgstr ""
+msgstr "<span style=\" font-size:12pt;\">Motory a sily</span>"
 
 #: tutorials/tutorial4.step:114
 #, kde-format
 msgctxt "HTML:p"
 msgid "<span style=\" font-weight:600;\">Linear motor</span>"
-msgstr ""
+msgstr "<span style=\" font-weight:600;\">Lineárny motor</span>"
 
 #: tutorials/tutorial4.step:115
 #, kde-format
 msgctxt "HTML:p"
 msgid "- A linear motor applies a constant force to a given point on a body."
-msgstr ""
+msgstr "- Lineárny motor pôsobí konštantnou silou na daný bod telesa."
 
 #: tutorials/tutorial4.step:116
 #, kde-format
@@ -1581,36 +1630,38 @@ msgid ""
 "- You can change the force by dragging its handler \n"
 "while the motor is selected."
 msgstr ""
+"- Silu môžete zmeniť ťahaním jej úchytu, \n"
+"kým je motor vybraný."
 
 #: tutorials/tutorial4.step:118
 #, kde-format
 msgctxt "HTML:p"
 msgid "- You can change the point of application by dragging the force"
-msgstr ""
+msgstr "- Bod pôsobenia môžete zmeniť ťahaním sily"
 
 #: tutorials/tutorial4.step:131
 #, kde-format
 msgctxt "HTML:p"
 msgid "<span style=\" font-weight:600;\">Circular motor</span>"
-msgstr ""
+msgstr "<span style=\" font-weight:600;\">Kruhový motor</span>"
 
 #: tutorials/tutorial4.step:132
 #, kde-format
 msgctxt "HTML:p"
 msgid "- A circular motor applies a constant angular momentum to a body."
-msgstr ""
+msgstr "- Kruhový motor pôsobí na teleso konštantným momentom hybnosti."
 
 #: tutorials/tutorial4.step:133
 #, kde-format
 msgctxt "HTML:p"
 msgid "- Try to attach a circular motor to the box and start simulation."
-msgstr ""
+msgstr "- Skúste pripojiť kruhový motor ku krabici a spustiť simuláciu."
 
 #: tutorials/tutorial4.step:146
 #, kde-format
 msgctxt "HTML:p"
 msgid "<span style=\" font-weight:600;\">Global forces</span>"
-msgstr ""
+msgstr "<span style=\" font-weight:600;\">Globálne sily</span>"
 
 #: tutorials/tutorial4.step:147
 #, kde-format
@@ -1619,6 +1670,8 @@ msgid ""
 "<span style=\" font-weight:400;\">- Global forces are forces that act on all "
 "bodies of a specific kind, for example weight force.</span>"
 msgstr ""
+"<span style=\" font-weight:400;\">- Globálne sily sú sily, ktoré pôsobia na "
+"všetky telesá určitého druhu, napríklad tiažová sila.</span>"
 
 #: tutorials/tutorial4.step:148
 #, kde-format
@@ -1627,12 +1680,14 @@ msgid ""
 "- By default all global forces in Step are turned off. To turn them on, just "
 "add an object for appropriate force to the scene."
 msgstr ""
+"- V predvolenom nastavení sú všetky globálne sily v Step vypnuté. Na ich "
+"zapnutie stačí pridať objekt príslušnej sily do scény."
 
 #: tutorials/tutorial4.step:149
 #, kde-format
 msgctxt "HTML:p"
 msgid "- Try to add WeightForce to the scene and start the simulation."
-msgstr ""
+msgstr "- Skúste pridať WeightForce do scény a spustiť simuláciu."
 
 #: tutorials/tutorial4.step:153
 #, kde-format
@@ -1641,22 +1696,22 @@ msgid "box2"
 msgstr "obdĺžnik2"
 
 #: tutorials/tutorial5.step:63
-#, fuzzy, kde-format
+#, kde-format
 msgctxt "HTML:p"
 msgid "<span style=\" font-size:14pt; font-weight:600;\">Tutorial 5</span>"
-msgstr "Výučba"
+msgstr "<span style=\" font-size:14pt; font-weight:600;\">Výučba 5</span>"
 
 #: tutorials/tutorial5.step:64
 #, kde-format
 msgctxt "HTML:p"
 msgid "<span style=\" font-size:12pt;\">Joints</span>"
-msgstr ""
+msgstr "<span style=\" font-size:12pt;\">Väzby</span>"
 
 #: tutorials/tutorial5.step:79
 #, kde-format
 msgctxt "HTML:p"
 msgid "- Create graphs to display coordinates of particles in double pendulum."
-msgstr ""
+msgstr "- Vytvorte grafy na zobrazenie súradníc častíc v dvojitom kyvadle."
 
 #: tutorials/tutorial5.step:80
 #, kde-format
@@ -1665,6 +1720,8 @@ msgid ""
 "- Create triple pendulum by attaching one more particle to the particle2 "
 "using the stick."
 msgstr ""
+"- Vytvorte trojité kyvadlo pripojením ďalšej častice k particle2 pomocou "
+"tyče."
 
 #: tutorials/tutorial5.step:81
 #, kde-format
@@ -1673,12 +1730,14 @@ msgid ""
 "- Remove anchor1 that fixes position of the box and attach a pin to the "
 "corner of the box. Try starting the simulation."
 msgstr ""
+"- Odstráňte anchor1, ktorý fixuje polohu krabice, a pripojte kolík k rohu "
+"krabice. Skúste spustiť simuláciu."
 
 #: tutorials/tutorial5.step:114
 #, kde-format
 msgctxt "HTML:p"
 msgid "<span style=\" font-weight:600;\">Joints</span>"
-msgstr ""
+msgstr "<span style=\" font-weight:600;\">Väzby</span>"
 
 #: tutorials/tutorial5.step:115
 #, kde-format
@@ -1687,18 +1746,20 @@ msgid ""
 "<span style=\" font-weight:400;\">- Joints are objects that attach bodies to "
 "each other or to the background.</span>"
 msgstr ""
+"<span style=\" font-weight:400;\">- Väzby sú objekty, ktoré pripájajú telesá "
+"k sebe navzájom alebo k pozadiu.</span>"
 
 #: tutorials/tutorial5.step:116
 #, kde-format
 msgctxt "HTML:p"
 msgid "- An anchor is a joint that fixes the position of the body."
-msgstr ""
+msgstr "- Kotva je väzba, ktorá fixuje polohu telesa."
 
 #: tutorials/tutorial5.step:117
 #, kde-format
 msgctxt "HTML:p"
 msgid "- A pin is a joint that fixes one point of the body."
-msgstr ""
+msgstr "- Kolík je väzba, ktorá fixuje jeden bod telesa."
 
 #: tutorials/tutorial5.step:118
 #, kde-format
@@ -1707,3 +1768,4 @@ msgid ""
 "- A stick is a joint that fixes the distance between two points on two "
 "bodies."
 msgstr ""
+"- Tyč je väzba, ktorá fixuje vzdialenosť medzi dvoma bodmi na dvoch telesách."
