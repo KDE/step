@@ -1454,8 +1454,8 @@ msgid ""
 "- Change the stiffness of the spring by moving the slider just below the "
 "bodies. You can also change it by pressing \"Q\" and \"W\" keys!"
 msgstr ""
-"- Change the stiffness of the spring by moving the slider just below the "
-"bodies. Môžete also change it by pressing \"Q\" and \"W\" keys!"
+"- Zmeňte tuhosť pružiny pohybom posuvníka tesne pod telesami. Môžete ju tiež "
+"zmeniť stlačením kláves \"Q\" a \"W\"!"
 
 #: tutorials/tutorial2.step:98
 #, kde-format
@@ -1485,8 +1485,8 @@ msgid ""
 "- Click on it with the right mouse button and choose \"Configure controller"
 "\" from the context menu."
 msgstr ""
-"- Kliknite na it with the right mouse button and choose \"Nastaviť controller"
-"\" from the context menu."
+"- Kliknite na ňu pravým tlačidlom myši a vyberte \"Nastaviť ovládač\" z "
+"kontextovej ponuky."
 
 #: tutorials/tutorial2.step:114
 #, kde-format
