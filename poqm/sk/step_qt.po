@@ -70,7 +70,7 @@ msgstr "Riešiteľ rovníc obmedzenia CG"
 #: coulombforce.cc:14
 msgctxt "ObjectClass|"
 msgid "CoulombForce"
-msgstr "Coulombova sila"
+msgstr "CoulombForce"
 
 #: coulombforce.cc:14
 msgctxt "ObjectDescription|"
@@ -80,7 +80,7 @@ msgstr "Coulombova sila"
 #: coulombforce.cc:16
 msgctxt "PropertyName|"
 msgid "coulombConst"
-msgstr "Coulombova konštanta"
+msgstr "coulombConst"
 
 #: coulombforce.cc:16 coulombforce.cc:21
 msgctxt "Units|"
@@ -105,7 +105,7 @@ msgstr "Trieda odchýlok pre Coulombovu silu"
 #: coulombforce.cc:21
 msgctxt "PropertyName|"
 msgid "coulombConstVariance"
-msgstr "Rozdiel v Coulombovej konštante"
+msgstr "coulombConstVariance"
 
 #: coulombforce.cc:22
 msgctxt "PropertyDescription|"
@@ -135,7 +135,7 @@ msgstr "Neprispôsobujúci sa Eulerov riešiteľ rovníc"
 #: eulersolver.cc:17
 msgctxt "ObjectClass|"
 msgid "AdaptiveEulerSolver"
-msgstr "Prispôsobujúci sa Eulerov riešiteľ rovníc"
+msgstr "AdaptiveEulerSolver"
 
 #: eulersolver.cc:17
 msgctxt "ObjectDescription|"
@@ -479,7 +479,7 @@ msgstr "Rozdiel celkovej hmotnosti častíc v nádrži na meranie"
 #: gravitation.cc:15
 msgctxt "ObjectClass|"
 msgid "GravitationForce"
-msgstr "Gravitačná sila"
+msgstr "GravitationForce"
 
 #: gravitation.cc:15
 msgctxt "ObjectDescription|"
@@ -489,7 +489,7 @@ msgstr "Gravitačná sila"
 #: gravitation.cc:17
 msgctxt "PropertyName|"
 msgid "gravitationConst"
-msgstr "Gravitačná konštanta"
+msgstr "gravitationConst"
 
 #: gravitation.cc:17 gravitation.cc:22
 msgctxt "Units|"
@@ -514,7 +514,7 @@ msgstr "Trieda odchýlky pre gravitačnú silu"
 #: gravitation.cc:22
 msgctxt "PropertyName|"
 msgid "gravitationConstVariance"
-msgstr "Rozdiel gravitačnej konštanty"
+msgstr "gravitationConstVariance"
 
 #: gravitation.cc:23
 msgctxt "PropertyDescription|"
@@ -524,7 +524,7 @@ msgstr "Rozdiel gravitačnej konštanty"
 #: gravitation.cc:25
 msgctxt "ObjectClass|"
 msgid "WeightForce"
-msgstr "Sila tiaže"
+msgstr "WeightForce"
 
 #: gravitation.cc:25
 msgctxt "ObjectDescription|"
@@ -539,7 +539,7 @@ msgstr "Konštanta tiaže"
 #: gravitation.cc:27
 msgctxt "PropertyName|"
 msgid "weightConst"
-msgstr "Konštanta tiaže"
+msgstr "weightConst"
 
 #: gravitation.cc:27 gravitation.cc:32 particle.cc:19 particle.cc:33
 #: rigidbody.cc:22 rigidbody.cc:51 softbody.cc:31
@@ -560,7 +560,7 @@ msgstr "Trieda odchýlky pre silu tiaže"
 #: gravitation.cc:32
 msgctxt "PropertyName|"
 msgid "weightConstVariance"
-msgstr "Rozdiel v konštante tiaže"
+msgstr "weightConstVariance"
 
 #: gravitation.cc:33
 msgctxt "PropertyDescription|"
@@ -570,7 +570,7 @@ msgstr "Rozdiel v konštante tiaže"
 #: gslsolver.cc:18
 msgctxt "ObjectClass|"
 msgid "GslGenericSolver"
-msgstr "Všeobecný riešiteľ rovníc GSL"
+msgstr "GslGenericSolver"
 
 #: gslsolver.cc:18
 msgctxt "ObjectDescription|"
@@ -590,7 +590,7 @@ msgstr "Neprispôsobujúci sa riešiteľ rovníc GSL"
 #: gslsolver.cc:23
 msgctxt "ObjectClass|"
 msgid "GslAdaptiveSolver"
-msgstr "Prispôsobujúci sa riešiteľ rovníc GSL"
+msgstr "GslAdaptiveSolver"
 
 #: gslsolver.cc:23
 msgctxt "ObjectDescription|"
@@ -855,7 +855,7 @@ msgstr "Poloha na telese"
 #: joints.cc:23 motor.cc:19 motor.cc:26 tool.cc:86
 msgctxt "PropertyName|"
 msgid "localPosition"
-msgstr "Miestna poloha"
+msgstr "localPosition"
 
 #: joints.cc:24
 msgctxt "PropertyDescription|"
@@ -905,7 +905,7 @@ msgstr "teleso2"
 #: joints.cc:31 spring.cc:24
 msgctxt "PropertyName|"
 msgid "localPosition1"
-msgstr "Miestna poloha 1"
+msgstr "localPosition1"
 
 #: joints.cc:32 spring.cc:25
 msgctxt "PropertyDescription|"
@@ -915,7 +915,7 @@ msgstr "Miestna poloha 1"
 #: joints.cc:33 spring.cc:26
 msgctxt "PropertyName|"
 msgid "localPosition2"
-msgstr "Miestna poloha 2"
+msgstr "localPosition2"
 
 #: joints.cc:34 spring.cc:27
 msgctxt "PropertyDescription|"
@@ -1143,7 +1143,7 @@ msgstr "Trieda odchýlky pre časticu"
 #: particle.cc:29 rigidbody.cc:41
 msgctxt "PropertyName|"
 msgid "positionVariance"
-msgstr "Rozdiel v polohe"
+msgstr "positionVariance"
 
 #: particle.cc:30 rigidbody.cc:42
 msgctxt "PropertyDescription|"
@@ -1153,7 +1153,7 @@ msgstr "Rozdiel v polohe"
 #: particle.cc:31 rigidbody.cc:46
 msgctxt "PropertyName|"
 msgid "velocityVariance"
-msgstr "Rozdiel v rýchlosti"
+msgstr "velocityVariance"
 
 #: particle.cc:32 rigidbody.cc:47
 msgctxt "PropertyDescription|"
@@ -1163,7 +1163,7 @@ msgstr "Rozdiel v rýchlosti"
 #: particle.cc:33 rigidbody.cc:51
 msgctxt "PropertyName|"
 msgid "accelerationVariance"
-msgstr "Rozdiel v zrýchlení"
+msgstr "accelerationVariance"
 
 #: particle.cc:34 rigidbody.cc:52
 msgctxt "PropertyDescription|"
@@ -1173,7 +1173,7 @@ msgstr "Rozdiel v zrýchlení"
 #: particle.cc:35 rigidbody.cc:56 spring.cc:51
 msgctxt "PropertyName|"
 msgid "forceVariance"
-msgstr "Rozdiel v sile"
+msgstr "forceVariance"
 
 #: particle.cc:36 rigidbody.cc:56
 msgctxt "PropertyDescription|"
@@ -1183,7 +1183,7 @@ msgstr "Rozdiel v sile"
 #: particle.cc:37 rigidbody.cc:59
 msgctxt "PropertyName|"
 msgid "massVariance"
-msgstr "Rozdiel v hmotnosti"
+msgstr "massVariance"
 
 #: particle.cc:38 rigidbody.cc:60
 msgctxt "PropertyDescription|"
@@ -1193,7 +1193,7 @@ msgstr "Rozdiel v hmotnosti"
 #: particle.cc:39 rigidbody.cc:63
 msgctxt "PropertyName|"
 msgid "momentumVariance"
-msgstr "Rozdiel v hybnosti"
+msgstr "momentumVariance"
 
 #: particle.cc:40 rigidbody.cc:64
 msgctxt "PropertyDescription|"
@@ -1203,7 +1203,7 @@ msgstr "Rozdiel v hybnosti"
 #: particle.cc:41 rigidbody.cc:68
 msgctxt "PropertyName|"
 msgid "kineticEnergyVariance"
-msgstr "Rozdiel v kinetickej energii"
+msgstr "kineticEnergyVariance"
 
 #: particle.cc:42 rigidbody.cc:69
 msgctxt "PropertyDescription|"
@@ -1248,7 +1248,7 @@ msgstr "Trieda chyby pre nabitú časticu"
 #: particle.cc:49
 msgctxt "PropertyName|"
 msgid "chargeVariance"
-msgstr "Rozdiel v náboji"
+msgstr "chargeVariance"
 
 #: particle.cc:50
 msgctxt "PropertyDescription|"
@@ -1358,7 +1358,7 @@ msgstr "Uhlová hybnosť"
 #: rigidbody.cc:35 softbody.cc:28
 msgctxt "PropertyName|"
 msgid "angularMomentum"
-msgstr "Uhlová hybnosť"
+msgstr "angularMomentum"
 
 #: rigidbody.cc:35 rigidbody.cc:65
 msgctxt "Units|"
@@ -1378,7 +1378,7 @@ msgstr "Trieda odchýlok pevného telesa"
 #: rigidbody.cc:43
 msgctxt "PropertyName|"
 msgid "angleVariance"
-msgstr "Uhlová odchýlka"
+msgstr "angleVariance"
 
 #: rigidbody.cc:44
 msgctxt "PropertyDescription|"
@@ -1388,7 +1388,7 @@ msgstr "Uhlová odchýlka"
 #: rigidbody.cc:48
 msgctxt "PropertyName|"
 msgid "angularVelocityVariance"
-msgstr "Rozdiel v uhlovej rýchlosti"
+msgstr "angularVelocityVariance"
 
 #: rigidbody.cc:49
 msgctxt "PropertyDescription|"
@@ -1398,7 +1398,7 @@ msgstr "Rozdiel v uhlovej rýchlosti"
 #: rigidbody.cc:53
 msgctxt "PropertyName|"
 msgid "angularAccelerationVariance"
-msgstr "Rozdiel v uhlovom zrýchlení"
+msgstr "angularAccelerationVariance"
 
 #: rigidbody.cc:54
 msgctxt "PropertyDescription|"
@@ -1418,7 +1418,7 @@ msgstr "Rozdiel v točivom momente"
 #: rigidbody.cc:61
 msgctxt "PropertyName|"
 msgid "inertiaVariance"
-msgstr "Rozdiel v zotrvačnosti"
+msgstr "inertiaVariance"
 
 #: rigidbody.cc:62
 msgctxt "PropertyDescription|"
@@ -1428,7 +1428,7 @@ msgstr "Rozdiel v zotrvačnosti"
 #: rigidbody.cc:65
 msgctxt "PropertyName|"
 msgid "angularMomentumVariance"
-msgstr "Rozdiel v uhlovej hybnosti"
+msgstr "angularMomentumVariance"
 
 #: rigidbody.cc:66
 msgctxt "PropertyDescription|"
@@ -1508,7 +1508,7 @@ msgstr "vrcholy"
 #: softbody.cc:19
 msgctxt "ObjectClass|"
 msgid "SoftBodyParticle"
-msgstr "Častica ľahkého telesa"
+msgstr "SoftBodyParticle"
 
 #: softbody.cc:19
 msgctxt "ObjectDescription|"
@@ -1518,7 +1518,7 @@ msgstr "Častica ľahkého telesa"
 #: softbody.cc:20
 msgctxt "ObjectClass|"
 msgid "SoftBodySpring"
-msgstr "Pružnosť ľahkého telesa"
+msgstr "SoftBodySpring"
 
 #: softbody.cc:20
 msgctxt "ObjectDescription|"
@@ -1543,7 +1543,7 @@ msgstr "Ukázať vnútorné prvky"
 #: softbody.cc:22
 msgctxt "PropertyName|"
 msgid "showInternalItems"
-msgstr "Ukázať vnútorné prvky"
+msgstr "showInternalItems"
 
 #: softbody.cc:28
 msgctxt "Units|"
@@ -1583,7 +1583,7 @@ msgstr "Druh riešiteľa rovníc"
 #: solver.cc:14
 msgctxt "PropertyName|"
 msgid "solverType"
-msgstr "Druh riešiteľa rovníc"
+msgstr "solverType"
 
 #: solver.cc:15
 msgctxt "PropertyDescription|"
@@ -1593,7 +1593,7 @@ msgstr "Veľkosť kroku"
 #: solver.cc:15
 msgctxt "PropertyName|"
 msgid "stepSize"
-msgstr "Veľkosť kroku"
+msgstr "stepSize"
 
 #: solver.cc:15 world.cc:23
 msgctxt "Units|"
@@ -1678,7 +1678,7 @@ msgstr "Tlmenie"
 #: spring.cc:21
 msgctxt "PropertyName|"
 msgid "damping"
-msgstr "Tlmenie"
+msgstr "tlmenie"
 
 #: spring.cc:21
 msgctxt "Units|"
@@ -1703,7 +1703,7 @@ msgstr "Trieda odchýlky pre pružinu"
 #: spring.cc:35
 msgctxt "PropertyName|"
 msgid "restLengthVariance"
-msgstr "Rozdiel v dĺžke pokoja"
+msgstr "restLengthVariance"
 
 #: spring.cc:36
 msgctxt "PropertyDescription|"
@@ -1723,7 +1723,7 @@ msgstr "Aktuálny rozdiel v dĺžke"
 #: spring.cc:39
 msgctxt "PropertyName|"
 msgid "stiffnessVariance"
-msgstr "Rozdiel v tuhosti"
+msgstr "stiffnessVariance"
 
 #: spring.cc:40
 msgctxt "PropertyDescription|"
@@ -1733,7 +1733,7 @@ msgstr "Rozdiel v tuhosti"
 #: spring.cc:41
 msgctxt "PropertyName|"
 msgid "dampingVariance"
-msgstr "Rozdiel v tlmení"
+msgstr "dampingVariance"
 
 #: spring.cc:42
 msgctxt "PropertyDescription|"
@@ -1743,7 +1743,7 @@ msgstr "Rozdiel v tlmení"
 #: spring.cc:43
 msgctxt "PropertyName|"
 msgid "localPosition1Variance"
-msgstr "Rozdiel v miestnej polohe 1"
+msgstr "localPosition1Variance"
 
 #: spring.cc:44
 msgctxt "PropertyDescription|"
@@ -1753,7 +1753,7 @@ msgstr "Rozdiel v miestnej polohe 1"
 #: spring.cc:45
 msgctxt "PropertyName|"
 msgid "localPosition2Variance"
-msgstr "Rozdiel v miestnej polohe 2"
+msgstr "localPosition2Variance"
 
 #: spring.cc:46
 msgctxt "PropertyDescription|"
@@ -1763,7 +1763,7 @@ msgstr "Rozdiel v miestnej polohe 2"
 #: spring.cc:47
 msgctxt "PropertyName|"
 msgid "position1Variance"
-msgstr "Rozdiel v polohe 1"
+msgstr "position1Variance"
 
 #: spring.cc:48
 msgctxt "PropertyDescription|"
@@ -1773,7 +1773,7 @@ msgstr "Rozdiel v polohe 1"
 #: spring.cc:49
 msgctxt "PropertyName|"
 msgid "position2Variance"
-msgstr "Rozdiel v polohe 2"
+msgstr "position2Variance"
 
 #: spring.cc:50
 msgctxt "PropertyDescription|"
