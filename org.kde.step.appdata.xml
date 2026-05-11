@@ -20,6 +20,7 @@
   <name xml:lang="fi">Step</name>
   <name xml:lang="fr">Step</name>
   <name xml:lang="gl">Paso</name>
+  <name xml:lang="he">Step</name>
   <name xml:lang="hu">Step</name>
   <name xml:lang="ia">Passo</name>
   <name xml:lang="id">Step</name>
@@ -58,6 +59,7 @@
   <summary xml:lang="fi">Vuorovaikutteinen fysiikkasimulaattori</summary>
   <summary xml:lang="fr">Simulateur physique interactif</summary>
   <summary xml:lang="gl">Simulador físico interactivo</summary>
+  <summary xml:lang="he">מדמה פיזיקלי אינטראקטיבי</summary>
   <summary xml:lang="hu">Interaktív fizikai szimulátor</summary>
   <summary xml:lang="ia">Simulator Physic Interactive</summary>
   <summary xml:lang="id">Simulator Fisik Interaktif</summary>
@@ -97,6 +99,7 @@
     <p xml:lang="fi">Step on vuorovaikutteinen fysiikkasimulaattori. Sen avulla voit tutkia fyysistä maailmaa simuloinnein. Se toimii näin: asetat joitakin kappaleita näkymään, lisäät voimia kuten painovoiman tai jousia ja painat Simuloi. Step näyttää sinulle, miten näkymä muuttuu fysiikan lakien mukaan. Voit muuttaa kaikkien kokeesi kappaleiden ja voimien ominaisuuksia jopa simuloinnin aikana ja nähdä, miten tämä vaikuttaa kokeesi etenemiseen. Stepillä et vain opi vaan tunnet, miten fysiikka toimii!</p>
     <p xml:lang="fr">Step est un simulateur physique interactif. Il vous permet d'explorer le monde physique au travers de simulations. Il fonctionne comme ceci : vous placez quelques corps sur l'espace de travail, vous ajoutez quelques forces tels que la gravité ou des ressorts, puis vous cliquez sur Simuler et Step vous montre comme votre espace de travail évolue en suivant les lois de la physique. Vous pouvez modifier chaque propriétés des corps/forces dans votre expérience (même durant la simulation) et voir comment cela modifiera l'évolution de l'expérience. Avec Step vous ne ferez pas qu'apprendre mais vous ressentirez comment la physique fonctionne !</p>
     <p xml:lang="gl">Step é un simulador interactivo de física. Permite explorar o mundo físico mediante simulacións. Funciona deste xeito: sitúanse algúns corpos na escena, engádense forzas como a gravidade ou molas, logo prémese Simular e Step amósase a evolución da escena segundo as leis da física. Pódese cambiar cada propiedade dos corpos/forzas no experimento (mesmo durante a simulación) e ver como isto cambiará a evolución do experimento. Con Step non só podes aprender, senón que sentirás como funciona a física!</p>
+    <p xml:lang="he">‏Step הוא מדמה פיזיקלי אינטראקטיבי. הוא מאפשר לך לחקור את העולם הפיזיקלי באמצעות הדמניות. כך זה עובד: מניחים כמה גופים בסצנה, מוסיפים כוחות כמו כבידה או קפיצים, לוחצים על „הדמיה”, ו־Step מראה לך כיצד התרחיש שלך יתפתח בהתאם לחוקי הפיזיקה. ניתן לשנות כל תכונה של הגופים או הכוחות בניסוי שלך (אפילו במהלך ההדמיה) ולראות כיצד זה ישנה את התפתחות הניסוי. עם Step לא רק לומדים, אלא ממש מרגישים איך הפיזיקה עובדת!</p>
     <p xml:lang="id">Step adalah simulator fisik interaktif. Ini memungkinkan kamu untuk menjelajahi dunia fisik melalui simulasi. Ini bekerja seperti ini: Kamu menempatkan beberapa benda di tempat kejadian, menambahkan beberapa kekuatan seperti gravitasi atau mata air, lalu klik Simulasikan dan Step menunjukkan kepada kamu bagaimana adegan kamu akan berkembang sesuai dengan hukum fisika. Kamu bisa mengubah setiap properti benda/kekuatan dalam percobaanmu (bahkan selama simulasi) dan melihat bagaimana ini akan mengubah evolusi percobaan. Dengan Step kamu tidak hanya bisa belajar tetapi merasakan bagaimana fisika bekerja!</p>
     <p xml:lang="it">Step è un simulatore interattivo di fisica. Ti consente di esplorare il mondo fisico tramite simulazioni. Funziona in questo modo: posizioni alcuni corpi nella scena, aggiungi delle forze come quella gravitazionale o la forza elastica, quindi fai clic su Simula e Step mostrerà l'evoluzione della scena secondo le leggi della fisica. Puoi cambiare ogni proprietà dei corpi e delle forze nel tuo esperimento (anche durante la simulazione) e vedere come questo ne influenza l'evoluzione. Con Step puoi non solo imparare ma anche "toccare con mano" il funzionamento della fisica!</p>
     <p xml:lang="ka">Step ინტერაქტიული ფიზიკური სიმულატორია. ის საშუალებას გაძლევთ, გამოიკვლიოთ ფიზიკური სამყარო სიმულაციებით. ის ასე მუშაობს: თქვენა ათავსებთ სხეულებს სცენაზე, ამატებთ რაღაც ძალებს (მაგ: გრავიტაცია ან ზამბარები) შემდეგ დააწკაპუნეთ სიმულაციაზე და Step გაჩვენებთ, როგორ ვითარდება მოვლენები ფიზიკის კანონების მიხედვით. თქვენ ექსპერიმენტში ნებისმიერი სხეულის/ძალის თვისება შეგიძლიათ (სიმულაციის მიმდინარეობისასაც კი) შეცვალოთ და ნახოთ, როგორ შეიცვლება სცენა. Step-თან ერთად შეგიძლიათ, გაიგოთ, როგორ მუშაობს ფიზიკა!</p>
@@ -131,6 +134,7 @@
     <p xml:lang="fi">Ominaisuudet:</p>
     <p xml:lang="fr">Fonctionnalités :</p>
     <p xml:lang="gl">Funcionalidades:</p>
+    <p xml:lang="he">יכולות:</p>
     <p xml:lang="ia">Characteristicas:</p>
     <p xml:lang="id">Fitur:</p>
     <p xml:lang="it">Caratteristiche:</p>
@@ -169,6 +173,7 @@
       <li xml:lang="fi">Klassinen mekaaninen simulaatio kahdessa ulottuvuudessa</li>
       <li xml:lang="fr">Simulation de la mécanique classique en deux dimensions</li>
       <li xml:lang="gl">Simulación de mecánica clásica en dúas dimensións.</li>
+      <li xml:lang="he">הדמיה מכנית קלסית בשני ממדים</li>
       <li xml:lang="id">Simulasi mekanis klasik dalam dua dimensi</li>
       <li xml:lang="it">Simulazioni di meccanica classica in due dimensioni</li>
       <li xml:lang="ka">კლასიკური მექანიკური სიმულაცია ორ განზომილებაში</li>
@@ -203,6 +208,7 @@
       <li xml:lang="fi">Hiukkaset, jouset vaimennuksella, painovoima ja Coulombin voima</li>
       <li xml:lang="fr">Particules, ressorts avec amortissement, forces gravitationnelle et coulombienne</li>
       <li xml:lang="gl">Partículas, resortes con forzas de amortecemento, gravidade e Coulomb.</li>
+      <li xml:lang="he">חלקיקים וקפיצים עם שיכוך, כוחות כבידה וכוחות קולון</li>
       <li xml:lang="id">Partikel, pegas dengan kekuatan redaman, gravitasi dan kulom</li>
       <li xml:lang="it">Particelle, molle smorzate, forze gravitazionali e coulombiane</li>
       <li xml:lang="ka">ნაწილაკები, ზამბარები სიბლანტით, მიზიდულობის და კოლუმბის ზალები</li>
@@ -237,6 +243,7 @@
       <li xml:lang="fi">Jäykät kappaleet</li>
       <li xml:lang="fr">Corps rigides</li>
       <li xml:lang="gl">Corpos ríxidos</li>
+      <li xml:lang="he">גופים קשיחים</li>
       <li xml:lang="id">Tubuh kaku</li>
       <li xml:lang="it">Corpi rigidi</li>
       <li xml:lang="ka">უხეში სხეულები</li>
@@ -373,6 +380,7 @@
       <li xml:lang="fi">Yksikkömuunnokset ja lausekkeiden laskenta: voit kirjoittaa esimerkiksi ”(2 days + 3 hours) * 80 km/h” ja se hyväksytään etäisyysarvoksi (tarvitsee libqalculate-kirjaston)</li>
       <li xml:lang="fr">Conversion d'unités et calcul d'expression : vous pouvez saisir quelque chose comme « (2 jours + 3 heures) * 80 km / h » et ce sera considéré comme une distance (nécessite « libqalculate »).</li>
       <li xml:lang="gl">Conversión de unidades e cálculo de expresións: pode inserir algo como «(2 día + 3 horas) * 80 km/h» e aceitarase como un valor de distancia (require de libqalculate).</li>
+      <li xml:lang="he">המרת יחידות וחישוב ביטויים: אפשר למלא ביטוי כגון „(2 days + 3 hours) * 80 km/h” והוא יתקבל בתור ערך מרחק (דורש את libqalculate)</li>
       <li xml:lang="id">Menghitung konversi dan ekspresi unit: kamu bisa memasukkan sesuatu seperti "(2 hari + 3 jam) * 80 km/jam" dan itu akan diterima sebagai nilai jarak (memerlukan libqalculate)</li>
       <li xml:lang="it">Conversione di unità e calcolo di espressioni: puoi inserire ad esempio "(2 days + 3 hours) * 80 km/h" e sarà accettato come valore di distanza (richiede libqalculate)</li>
       <li xml:lang="ka">ერთეულების გადაყვანა და განტოლებების ამოხსნა: შეგიძლიათ ქნათ რამე მსგავსი "(2 დღეს + 3 საათი) * 80 კმ/სთ" და ის მიღებული იქნება, როგორც მანძილის მნიშვნელობა (სჭირდება ბიბლიოთეკა libqalculate)</li>
@@ -407,6 +415,7 @@
       <li xml:lang="fi">Virheiden laskenta ja leviäminen: voit kirjoittaa arvoja kuten ”1.3 ± 0.2” mille tahansa ominaisuudelle, ja kaikkien siitä riippuvien ominaisuuksien virheet lasketaan käyttäen tilastollisia malleja</li>
       <li xml:lang="fr">Calcul d'erreurs et propagation : vous pouvez saisir des valeurs comme « 1.3 ± 0.2 » pour n'importe quelle propriété et les erreurs pour toutes les propriétés indépendantes seront calculées suivant des formules statistiques.</li>
       <li xml:lang="gl">Cálculo e propagación de erros: pode inserir valores como "1,3 ± 0,2" en calquera propiedade e erro de calquera propiedade dependente calcularase mediante fórmulas estatísticas.</li>
+      <li xml:lang="he">חישוב והפצת שגיאות: אפשר למלא ערכים כמו „1.3 ± 0.2” לכל מאפיין והשגיאות בכל המאפיינים שתלויים בו תחושבנה באמצעות נוסחאות סטטיסטיות</li>
       <li xml:lang="id">Perhitungan dan propagasi kesalahan: kamu bisa memasukkan nilai seperti "1,3 ± 0,2 " untuk properti apa pun dan semua properti yang bergantung akan dihitung menggunakan rumus statistik</li>
       <li xml:lang="it">Calcolo e propagazione degli errori: puoi inserire valori come "1.3 ± 0.2" per ogni proprietà e gli errori per le proprietà dipendenti saranno calcolati tramite formule statistiche</li>
       <li xml:lang="ka">შეცდომების გამოთვლა და გავრცელება: შეგიძლიათ შეიყვანოთ მნიშვნელობები, როგორიცაა "1.3 ± 0.2" ნებისმიერი თვისებისთვის და შეცდომები ყველა დამოკიდებული თვისებისთვის სტატისტიკური ფორმულებით იქნება გამოთვლილი</li>
@@ -441,6 +450,7 @@
       <li xml:lang="fi">Ratkaisinvirheiden arviointi: ratkaisimen aiheuttamat virheet lasketaan ja lisätään käyttäjän syöttämiin virheisiin</li>
       <li xml:lang="fr">Estimation des erreurs du solveur : les erreurs introduites par le solveur sont calculées et ajoutées aux erreurs saisies par l'utilisateur</li>
       <li xml:lang="gl">Estimación do erro da solución: os erros inseridos polo resolvente son calculados e engadidos aos erros inseridos polo usuario.</li>
+      <li xml:lang="he">שיערוך שגיאות הפותר: שגיאות הנוצרות על ידי הפותר מחושבות ומתווספות לשגיאות שהוזנו על ידי המשתמש/ת.</li>
       <li xml:lang="id">Estimasi kesalahan pemecah: kesalahan yang diperkenalkan oleh pemecah dihitung dan ditambahkan ke kesalahan yang dimasukkan pengguna</li>
       <li xml:lang="it">Stima degli errori del solutore: gli errori introdotti dal solutore sono calcolati e aggiunti al valore dell'errore inserito dall'utente</li>
       <li xml:lang="ka">ამომხსნელის შეცდომის შეფასება: შეცდომები, რომლებსაც ამომხსნელი შემოიტანს, გამოითვლება და დაემატება მომხმარებლის შეყვანილ შეცდომებს</li>
@@ -543,6 +553,7 @@
       <li xml:lang="fi">Työkalut tulosten visualisointiin: kuvaaja, mittari ja jäljitin</li>
       <li xml:lang="fr">Outils pour afficher les résultats : graphe, capteur, traceur</li>
       <li xml:lang="gl">Ferramentas para visualizar os resultados: gráfico, metro, trazador.</li>
+      <li xml:lang="he">כלים להמחשת התוצאות: תרשים, מד אורך, עוקב</li>
       <li xml:lang="id">Peralatan untuk memvisualkan hasil: grafik, meter, pengeblab</li>
       <li xml:lang="it">Strumenti per visualizzare i risultati: grafici, misuratori, traccianti</li>
       <li xml:lang="ka">შედეგების ვიზუალიზაციის პროგრამები: გრაფიკები, გაზომვები, ტრაექტორიები</li>
@@ -577,6 +588,7 @@
       <li xml:lang="fi">Kontekstitietoa kaikille kohteille sekä integroitu Wikipedia-selain</li>
       <li xml:lang="fr">Informations contextuelles pour tous les objets, accès à Wikipédia</li>
       <li xml:lang="gl">Información de contexto para todos os obxectos, con navegador de Wikipedia integrado.</li>
+      <li xml:lang="he">פרטי הקשר לכל הפריטים, דפדפן ויקיפדיה משולב</li>
       <li xml:lang="id">Informasi konteks untuk semua objek, penelusur wikipedia yang terintegrasi</li>
       <li xml:lang="it">Informazioni di contesto per tutti gli oggetti, browser per wikipedia integrato</li>
       <li xml:lang="ka">კონტექსტური ინფორმაცია ყველა ობიექტისთვის. ინტეგრირებული ვიკიპედიის ბრაუზერი</li>
@@ -611,6 +623,7 @@
       <li xml:lang="fi">Kokoelma esimerkkikokeita, ja lisää on ladattavissa verkosta KNewStuffin välityksellä</li>
       <li xml:lang="fr">Collection d'exemples d'expérience, davantage peuvent être téléchargé avec KNewStuff</li>
       <li xml:lang="gl">Colección de experimentos de exemplo; pódense descargar máis con KNewStuff.</li>
+      <li xml:lang="he">אוסף של ניסויים לדוגמה, אפשר להוריד עוד בעזרת KNewStuff</li>
       <li xml:lang="id">Koleksi contoh eksperimen, selebihnya bisa diunduh dengan KNewStuff</li>
       <li xml:lang="it">Collezione di esperimenti di esempio, altri possono essere scaricati con KNewStuff2</li>
       <li xml:lang="ka">მაგალითი ექსპერიმენტების კოლექცია. მეტი, შეგიძლიათ, KnewStuff-ით გადმოწეროთ</li>
@@ -645,6 +658,7 @@
       <li xml:lang="fi">Sisäänrakennetut tutoriaalit</li>
       <li xml:lang="fr">Tutoriels intégrés</li>
       <li xml:lang="gl">Titoriais integrados.</li>
+      <li xml:lang="he">הדרכה מובנית</li>
       <li xml:lang="id">Tutorial terintegrasi</li>
       <li xml:lang="it">Tutorial integrati</li>
       <li xml:lang="ka">ჩაშენებული სახელმძღვანელოები</li>
@@ -687,6 +701,7 @@
       <caption xml:lang="fi">Fysiikkasimulaatio Stepissä</caption>
       <caption xml:lang="fr">Simulation physique sur Step</caption>
       <caption xml:lang="gl">Simulación física en Step.</caption>
+      <caption xml:lang="he">הדמיה פיזית ב־Step</caption>
       <caption xml:lang="id">Simulasi fisik di Step</caption>
       <caption xml:lang="it">Simulazione di fisica in Step</caption>
       <caption xml:lang="ka">ფიზიკის სიმულაცია Step-ში</caption>
