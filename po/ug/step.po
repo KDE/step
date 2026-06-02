@@ -8,31 +8,32 @@ msgstr ""
 "Project-Id-Version: step\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2025-11-17 11:49+0000\n"
-"PO-Revision-Date: 2013-09-08 07:05+0900\n"
-"Last-Translator: Gheyret Kenji <gheyret@gmail.com>\n"
+"PO-Revision-Date: 2026-06-01 18:49-0400\n"
+"Last-Translator: Abduqadir Abliz <sahranbay@gmail.com>\n"
 "Language-Team: Uyghur Computer Science Association <UKIJ@yahoogroups.com>\n"
 "Language: ug\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
+"X-Generator: Poedit 3.9\n"
 
 #, kde-format
 msgctxt "NAME OF TRANSLATORS"
 msgid "Your names"
-msgstr "ئابدۇقادىر ئابلىز, غەيرەت كەنجى"
+msgstr "ئابدۇقادىر ئابلىز، غەيرەت كەنجى"
 
 #, kde-format
 msgctxt "EMAIL OF TRANSLATORS"
 msgid "Your emails"
-msgstr "sahran.ug@gmail.com,  gheyret@gmail.com"
+msgstr "sahranbay@gmail.com, gheyret@gmail.com"
 
 #. i18n: ectx: property (title), widget (QGroupBox, groupBox)
 #: step/configure_controller.ui:28 step/configure_graph.ui:28
 #: step/configure_meter.ui:28
 #, kde-format
 msgid "Data Source"
-msgstr "سانلىق-مەلۇمات مەنبەسى"
+msgstr "سانلىق مەلۇمات مەنبەسى"
 
 #. i18n: ectx: property (title), widget (QGroupBox, groupBox_2)
 #: step/configure_controller.ui:47
@@ -77,7 +78,7 @@ msgstr "1"
 #: step/configure_controller.ui:132
 #, kde-format
 msgid "Shortcuts"
-msgstr "تېزلەتمىلەر"
+msgstr "تېزلەتمە"
 
 #. i18n: ectx: property (text), widget (QLabel, label)
 #: step/configure_controller.ui:138
@@ -101,7 +102,7 @@ msgstr ""
 #: step/configure_controller.ui:192
 #, kde-format
 msgid "0.1"
-msgstr "0.1"
+msgstr ""
 
 #. i18n: ectx: property (text), widget (QLabel, label)
 #. i18n: ectx: property (text), widget (QLabel, label_3)
@@ -127,13 +128,13 @@ msgstr "دائىرە"
 #: step/configure_graph.ui:83
 #, kde-format
 msgid "Min:"
-msgstr ""
+msgstr "ئەڭ كىچىك:"
 
 #. i18n: ectx: property (text), widget (QLabel, label_6)
 #: step/configure_graph.ui:99
 #, kde-format
 msgid "Max:"
-msgstr ""
+msgstr "ئەڭ چوڭ:"
 
 #. i18n: ectx: property (text), widget (QCheckBox, checkBoxAutoX)
 #. i18n: ectx: property (text), widget (QCheckBox, checkBoxAutoY)
@@ -201,10 +202,9 @@ msgstr ""
 
 #. i18n: ectx: property (text), widget (QLabel, label_5)
 #: step/create_gas_particles.ui:34
-#, fuzzy, kde-format
-#| msgid "Area"
+#, kde-format
 msgid "Area:"
-msgstr "دائىرە"
+msgstr "رايون:"
 
 #. i18n: ectx: property (toolTip), widget (QLineEdit, lineEditVolume)
 #: step/create_gas_particles.ui:41
@@ -229,7 +229,7 @@ msgstr ""
 #: step/create_gas_particles.ui:74
 #, kde-format
 msgid "20"
-msgstr "20"
+msgstr ""
 
 #. i18n: ectx: property (text), widget (QLabel, label_6)
 #: step/create_gas_particles.ui:91
@@ -309,7 +309,7 @@ msgstr ""
 #: step/create_softbody_items.ui:95
 #, kde-format
 msgid "15"
-msgstr "15"
+msgstr ""
 
 #. i18n: ectx: property (text), widget (QLabel, label1)
 #: step/create_softbody_items.ui:105
@@ -321,7 +321,7 @@ msgstr ""
 #: step/create_softbody_items.ui:112
 #, kde-format
 msgid "0.3"
-msgstr "0.3"
+msgstr ""
 
 #. i18n: ectx: property (text), widget (QLabel, label2)
 #: step/create_softbody_items.ui:122
@@ -406,12 +406,12 @@ msgstr ""
 #: step/infobrowser.cc:44
 #, kde-format
 msgid "Back"
-msgstr "كەينى"
+msgstr "قايت"
 
 #: step/infobrowser.cc:46
 #, kde-format
 msgid "Forward"
-msgstr "ئالدى"
+msgstr "ئالدىغا"
 
 #: step/infobrowser.cc:50
 #, kde-format
@@ -424,15 +424,14 @@ msgid "Follow selection"
 msgstr ""
 
 #: step/infobrowser.cc:57
-#, fuzzy, kde-format
-#| msgid "Open in browser"
+#, kde-format
 msgid "Open in Browser"
-msgstr "كۆرگۈدە ئاچ"
+msgstr ""
 
 #: step/infobrowser.cc:132
 #, kde-format
 msgid "Documentation"
-msgstr "قوللانمىلار"
+msgstr "قوللانما"
 
 #: step/infobrowser.cc:137
 #, kde-format
@@ -535,7 +534,7 @@ msgstr ""
 #: step/main.cc:42
 #, kde-format
 msgid "Original author"
-msgstr "ئەسلى ئاپتور"
+msgstr "ئەسلى يازغۇچى"
 
 #: step/main.cc:43
 #, kde-format
@@ -605,12 +604,12 @@ msgstr "ئىجرا قىل(&R)"
 #: step/mainwindow.cc:205
 #, kde-format
 msgid "Execute the program"
-msgstr "پروگراممىنى ئىجرا قىلىدۇ"
+msgstr "پىروگراممىنى ئىجرا قىلىدۇ"
 
 #: step/mainwindow.cc:206
 #, kde-format
 msgid "Run: Execute the program"
-msgstr "ئىجرا قىلىش: بۇ پروگراممىنى ئىجرا قىلىدۇ"
+msgstr "ئىجرا قىلىش: بۇ پىروگراممىنى ئىجرا قىلىدۇ"
 
 #: step/mainwindow.cc:208
 #, kde-format
