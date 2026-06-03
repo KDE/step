@@ -40,6 +40,7 @@
   <name xml:lang="sl">Step</name>
   <name xml:lang="sv">Step</name>
   <name xml:lang="tr">Step</name>
+  <name xml:lang="ug">Step</name>
   <name xml:lang="uk">Step</name>
   <name xml:lang="zh-CN">Step</name>
   <name xml:lang="zh-TW">物理_Step</name>
@@ -79,6 +80,7 @@
   <summary xml:lang="sl">Interaktivni fizikalni simulator</summary>
   <summary xml:lang="sv">Interaktiv fysiksimulator</summary>
   <summary xml:lang="tr">Etkileşimli Fizik Öykünücüsü</summary>
+  <summary xml:lang="ug">تەسىرلىشىشچان فىزىكا تەقلىدلىگۈچ</summary>
   <summary xml:lang="uk">Інтерактивний фізичний імітатор</summary>
   <summary xml:lang="zh-CN">交互式物理模拟器</summary>
   <summary xml:lang="zh-TW">互動式物理模擬器</summary>
@@ -153,6 +155,7 @@
     <p xml:lang="sl">Zmožnosti:</p>
     <p xml:lang="sv">Funktioner:</p>
     <p xml:lang="tr">Özellikler:</p>
+    <p xml:lang="ug">ئىقتىدار:</p>
     <p xml:lang="uk">Можливості:</p>
     <p xml:lang="zh-CN">功能：</p>
     <p xml:lang="zh-TW">功能：</p>
@@ -674,6 +677,7 @@
       <li xml:lang="sl">Vgrajeni vodniki</li>
       <li xml:lang="sv">Integrerade handledningar</li>
       <li xml:lang="tr">Tümleşik eğitmenler</li>
+      <li xml:lang="ug">توپلاشتۇرۇلغان دەرسلىك</li>
       <li xml:lang="uk">Вбудовані підручники</li>
       <li xml:lang="zh-CN">内置教程</li>
       <li xml:lang="zh-TW">整合教學</li>
@@ -716,6 +720,7 @@
       <caption xml:lang="sl">Fizikalni simulator Step</caption>
       <caption xml:lang="sv">Fysiksimulering i Step</caption>
       <caption xml:lang="tr">Step içinde fiziksel benzetim</caption>
+      <caption xml:lang="ug">Step تا فىزىكا ئىلمىنى تەقلىدلەيدۇ</caption>
       <caption xml:lang="uk">Фізичний експеримент у Step</caption>
       <caption xml:lang="zh-CN">在 Step 进行物理学模拟</caption>
       <caption xml:lang="zh-TW">在 Step 中模擬物理</caption>
