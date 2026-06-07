@@ -1,13 +1,13 @@
-# Copyright (C) YEAR This file is copyright:
+# Copyright (C) 2026 This file is copyright:
 # This file is distributed under the same license as the step package.
-# Shinjo Park <kde@peremen.name>, 2021.
+# SPDX-FileCopyrightText: 2021, 2026 Shinjo Park <kde@peremen.name>
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: step\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2025-11-17 11:49+0000\n"
-"PO-Revision-Date: 2021-07-19 00:32+0200\n"
+"PO-Revision-Date: 2026-06-06 14:18+0200\n"
 "Last-Translator: Shinjo Park <kde@peremen.name>\n"
 "Language-Team: Korean <kde-kr@kde.org>\n"
 "Language: ko\n"
@@ -15,7 +15,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
-"X-Generator: Lokalize 20.12.3\n"
+"X-Generator: Lokalize 25.12.3\n"
 
 #: objectinfo/anchor.html:6
 #, kde-format
@@ -496,7 +496,7 @@ msgstr ""
 #, kde-format
 msgctxt "spring.html:title"
 msgid "Spring"
-msgstr ""
+msgstr "스프링"
 
 #: objectinfo/spring.html:9
 #, fuzzy, kde-format
@@ -559,24 +559,20 @@ msgid ""
 msgstr ""
 
 #: objectinfo/weightforce.html:13
-#, fuzzy, kde-format
-#| msgctxt "gravitationforce.html:p"
-#| msgid ""
-#| "For more details, please refer to the <a href=\"https://en.wikipedia.org/"
-#| "wiki/Gravitation\">Gravitation Force</a>."
+#, kde-format
 msgctxt "weightforce.html:p"
 msgid ""
 "For more details, please refer to the <a href=\"https://en.wikipedia.org/"
 "wiki/Weight\">Weight Force</a>."
 msgstr ""
-"더 많은 정보를 보려면 <a href=\"https://ko.wikipedia.org/wiki/중력\">중력</a>"
-"을 참조하십시오."
+"더 많은 정보를 보려면 <a href=\"https://ko.wikipedia.org/wiki/무게\">무게</a>"
+"를 참조하십시오."
 
 #: objectinfo/world.html:6
 #, kde-format
 msgctxt "world.html:title"
 msgid "World"
-msgstr ""
+msgstr "세계"
 
 #: objectinfo/world.html:9
 #, kde-format
