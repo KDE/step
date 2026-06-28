@@ -579,7 +579,7 @@ msgstr "Diagrama de fase"
 #, kde-format
 msgctxt "HTML:p"
 msgid "Position - time"
-msgstr "Posició - temps"
+msgstr "Posició – temps"
 
 #: examples/liquid.step:196
 #, kde-format

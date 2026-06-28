@@ -401,7 +401,7 @@ msgstr ""
 #: step/gasgraphics.cc:354 step/mainwindow.cc:402
 #, kde-format
 msgid "Warning - Step"
-msgstr "Atenció - Step"
+msgstr "Atenció – Step"
 
 #: step/gasgraphics.cc:365
 #, kde-format
@@ -719,7 +719,7 @@ msgstr "La pujada encara no està implementada en la kdelibs."
 #: step/mainwindow.cc:450
 #, kde-format
 msgid "Sorry - Step"
-msgstr "Ho sentim - Step"
+msgstr "Ho sentim – Step"
 
 #: step/mainwindow.cc:477
 #, kde-format
@@ -1087,7 +1087,7 @@ msgstr ""
 #, kde-format
 msgctxt "@title:window"
 msgid "LaTex Formula - Step"
-msgstr "Fórmula de LaTeX - Step"
+msgstr "Fórmula de LaTeX – Step"
 
 #: step/toolgraphics.cc:701
 #, kde-format
