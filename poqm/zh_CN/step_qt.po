@@ -12,8 +12,8 @@ msgstr ""
 "X-Crowdin-Project: kdeorg\n"
 "X-Crowdin-Project-ID: 269464\n"
 "X-Crowdin-Language: zh-CN\n"
-"X-Crowdin-File: /kf6-trunk/messages/step/step_qt.pot\n"
-"X-Crowdin-File-ID: 57248\n"
+"X-Crowdin-File: /kf6-stable/messages/step/step_qt.pot\n"
+"X-Crowdin-File-ID: 58128\n"
 
 #: body.cc:13
 msgctxt "ObjectClass|"
