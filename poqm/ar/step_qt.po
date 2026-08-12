@@ -188,7 +188,7 @@ msgstr "جول"
 #: gas.cc:20
 msgctxt "PropertyDescription|"
 msgid "Distance at which the force is zero"
-msgstr "المسافة التي تكون عندها القوة صفراً"
+msgstr "المسافة التي تكون عندها القوة صفرًا"
 
 #: gas.cc:20
 msgctxt "PropertyName|"
@@ -246,7 +246,7 @@ msgstr "تباين_أدنى_نصف_قطر"
 #: gas.cc:28
 msgctxt "PropertyDescription|"
 msgid "Variance of the distance at which the force is zero"
-msgstr "تباين المسافة التي تكون عندها القوة صفراً"
+msgstr "تباين المسافة التي تكون عندها القوة صفرًا"
 
 #: gas.cc:32
 msgctxt "ObjectClass|"
@@ -1841,7 +1841,7 @@ msgstr "رسم بياني"
 #: tool.cc:31
 msgctxt "ObjectDescription|"
 msgid "Graph: plots a graph of any properties"
-msgstr "رسم بياني: ارسم بياناً لأي خصائص"
+msgstr "رسم بياني: ارسم بيانًا لأي خصائص"
 
 #: tool.cc:33
 msgctxt "PropertyDescription|"
@@ -2288,4 +2288,4 @@ msgstr "الخاصية \"%1\" لـ \"%2\" لها قيمة غير قانونية"
 #: xmlfile.cc:374
 msgctxt "QObject|"
 msgid "File is not writable."
-msgstr "الملف ليس قابلاً للكتابة."
+msgstr "الملف ليس قابلًا للكتابة."
