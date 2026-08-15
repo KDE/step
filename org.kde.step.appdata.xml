@@ -704,6 +704,9 @@
   <url type="bugtracker">https://bugs.kde.org/enter_bug.cgi?format=guided&amp;product=step</url>
   <url type="help">https://docs.kde.org/?application=step</url>
   <url type="donation">https://www.kde.org/community/donations/?app=step&amp;source=appdata</url>
+  <custom>
+    <value key="KDE::mailinglist">kde-edu@kde.org</value>
+  </custom>
   <screenshots>
     <screenshot type="default">
       <caption>Physical simulation in Step</caption>
