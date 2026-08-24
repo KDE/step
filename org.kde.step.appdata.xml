@@ -486,7 +486,7 @@
       <li xml:lang="ar">عدة أدوات حل مختلفة: حتى الترتيب الثامن، صريحًا وضمنيًا، مع أو دون خطوة زمنية قابلة للتكيف (تتطلب معظم أدوات الحل مكتبة GSL)</li>
       <li xml:lang="bs">Nekoliko različitih rješavača: do osmog poretka, eksplicitno i implicitno, sa ili bez prilagodljivog vremesnog koraka(većina rješavača zahtjeva GSL biblioteku)</li>
       <li xml:lang="ca">Diversos solucionadors diferents: fins al vuitè ordre, explícits i implícits, amb adaptació o sense de pas de temps (la majoria dels solucionadors requereixen la biblioteca «GSL»)</li>
-      <li xml:lang="ca-valencia">Diversos solucionadors diferents: fins al vuitè ordre, explícits i implícits, amb adaptació o sense de pas de temps (la majoria dels solucionadors requerixen la biblioteca «GSL»)</li>
+      <li xml:lang="ca-valencia">Diversos solucionadors diferents: fins al huité ordre, explícits i implícits, amb adaptació o sense de pas de temps (la majoria dels solucionadors requerixen la biblioteca «GSL»)</li>
       <li xml:lang="cs">Několik různých řešitelů: až 8. řádu, explicitní i implicitní, s adaptivním časovým krokem nebo bez něj (většina řešitelů vyžaduje knihovnu GSL)</li>
       <li xml:lang="de">Mehrere verschiedene Gleichungslösungssysteme: bis zur achten Ordnung, explizit und implizit, mit oder ohne angepassten Zeitschritten. Die meisten Gleichungslösungssysteme benötigen die GSL-Bibliothek.</li>
       <li xml:lang="el">Διάφοροι διαλύτες: μέχρι 8ης τάξης, εξωτερικοί και εσωτερικοί, με ή χωρίς προσαρμοσμένο χρονικό βήμα (οι περισσότεροι διαλύτες απαιτούν τη βιβλιοθήκη GSL)</li>
