@@ -4,17 +4,17 @@
 Dependencies:
  - 'on': ['Linux/Qt6', 'Linux/Qt6Next', 'FreeBSD/Qt6', 'Windows/Qt6']
    'require':
-    'frameworks/extra-cmake-modules': '@latest-kf6'
-    'frameworks/kcrash': '@latest-kf6'
-    'frameworks/kconfig': '@latest-kf6'
-    'frameworks/ki18n': '@latest-kf6'
-    'frameworks/kiconthemes': '@latest-kf6'
-    'frameworks/kio': '@latest-kf6'
-    'frameworks/knewstuff': '@latest-kf6'
-    'frameworks/kplotting': '@latest-kf6'
-    'frameworks/ktextwidgets': '@latest-kf6'
-    'frameworks/kdoctools': '@latest-kf6'
-    'frameworks/kxmlgui': '@latest-kf6'
+    'frameworks/extra-cmake-modules': 'Frameworks/6.24'
+    'frameworks/kcrash': 'Frameworks/6.24'
+    'frameworks/kconfig': 'Frameworks/6.24'
+    'frameworks/ki18n': 'Frameworks/6.24'
+    'frameworks/kiconthemes': 'Frameworks/6.24'
+    'frameworks/kio': 'Frameworks/6.24'
+    'frameworks/knewstuff': 'Frameworks/6.24'
+    'frameworks/kplotting': 'Frameworks/6.24'
+    'frameworks/ktextwidgets': 'Frameworks/6.24'
+    'frameworks/kdoctools': 'Frameworks/6.24'
+    'frameworks/kxmlgui': 'Frameworks/6.24'
 
 Options:
  require-passing-tests-on: ['Linux', 'FreeBSD', 'Windows']
