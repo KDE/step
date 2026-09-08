@@ -1527,12 +1527,12 @@ msgstr "Corps polygonal de base"
 #: rigidbody.cc:76
 msgctxt "ObjectClass|"
 msgid "Box"
-msgstr "Boîte"
+msgstr "Boite"
 
 #: rigidbody.cc:76
 msgctxt "ObjectDescription|"
 msgid "Rigid box"
-msgstr "Boîte rigide"
+msgstr "Boite rigide"
 
 #: rigidbody.cc:77
 msgctxt "PropertyDescription|"
