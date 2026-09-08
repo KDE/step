@@ -34,7 +34,7 @@ msgstr ""
 #, kde-format
 msgctxt "box.html:title"
 msgid "Box"
-msgstr "Boîte"
+msgstr "Boite"
 
 #: objectinfo/box.html:9
 #, kde-format
