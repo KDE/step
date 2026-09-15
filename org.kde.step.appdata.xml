@@ -498,6 +498,7 @@
       <li xml:lang="fi">Useita eri ratkaisimia: kahdeksanteen asteeseen asti, eksplisiittisiä sekä implisiittisiä, adaptive timestep -menetelmällä tai ilman sitä (useimmat ratkaisimet tarvitsevat GSL-kirjaston)</li>
       <li xml:lang="fr">Plusieurs solveurs différents :jusqu'à l'ordre 8, explicite et implicite, avec ou sans pas adaptatif (la plupart des solveurs nécessite la bibliothèque GSL)</li>
       <li xml:lang="gl">Varios tipos distintos de resolventes: ata a 8ª orde, explícitos e implícitos, con ou sen paso adaptábel de tempo (a maioría dos resolventes requiren da biblioteca GSL).</li>
+      <li xml:lang="he">כמה פותרים שונים: עד לסדר שמיני, מפורש ומרומז, עם או בלי פסע זמן מסתגל (רוב הפותרים דורשים את תיקיית GSL)</li>
       <li xml:lang="ia">Plure solutores differente: usque al octave ordine, explicite e implicite, con o sin passo de tempore adaptive (le majoritate del solutores require le bibliotheca GSL).</li>
       <li xml:lang="id">Beberapa pemecah yang berbeda: hingga urutan ke 8, eksplisit dan implisit, dengan atau tanpa catatan waktu adaptif (sebagian besar pemecah memerlukan pustaka GSL)</li>
       <li xml:lang="it">Diversi tipi di solutori: fino all'ottavo ordine, espliciti ed impliciti, con o senza un passo temporale adattivo (la maggior parte dei solutori richiedono la libreria GSL)</li>
@@ -533,6 +534,7 @@
       <li xml:lang="fi">Säädintyökalu ominaisuuksien helppoon säätämiseen simulaation aikana (tukee jopa itse valittuja pikanäppäimiä)</li>
       <li xml:lang="fr">Un outil de contrôleur facilement les propriétés pendant la simulation (même avec des raccourcis claviers prédéfinis)</li>
       <li xml:lang="gl">Ferramenta de control para controlar facilmente as propiedades durante a simulación (mesmo con atallos de teclado personalizado).</li>
+      <li xml:lang="he">כלי בקרה לשליטה פשוטה במאפיינים תוך כדי הדמיה (אפילו עם מקשי קיצור מותאמים אישית)</li>
       <li xml:lang="ia">Instrumento de controlo pro controlar facilemente proprietates durante le simulation (mesmo con vias breve de claviero personalisate)</li>
       <li xml:lang="id">Alat pengendali untuk mengendalikan properti dengan mudah selama simulasi (bahkan dengan pintasan keyboard khusus)</li>
       <li xml:lang="it">Strumenti per controllare facilmente le proprietà durante la simulazione (anche con scorciatoie di tastiera personalizzate)</li>
