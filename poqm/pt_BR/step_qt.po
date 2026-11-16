@@ -6,14 +6,14 @@
 # Eliana Megumi Habiro Boaglio <eliana.habiro@gmail.com>, 2008.
 # André Marcelo Alvarenga <alvarenga@kde.org>, 2009, 2011, 2015.
 # Luiz Fernando Ranghetti <elchevive@opensuse.org>, 2010, 2016, 2017, 2019.
-# SPDX-FileCopyrightText: 2010, 2025 Marcus Vinícius de Andrade Gama <marcus.gama@gmail.com>
+# SPDX-FileCopyrightText: 2010, 2025 Marcus Vinícius de Andrade Gama <marcus.gama@kde.org>
 msgid ""
 msgstr ""
 "Project-Id-Version: step_qt\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2016-06-22 08:50+0000\n"
 "PO-Revision-Date: 2025-08-11 12:34-0300\n"
-"Last-Translator: Marcus Gama <marcus.gama@gmail.com>\n"
+"Last-Translator: Marcus Gama <marcus.gama@kde.org>\n"
 "Language-Team: Brazilian Portuguese <kde-i18n-pt_BR@kde.org>\n"
 "Language: pt_BR\n"
 "MIME-Version: 1.0\n"
